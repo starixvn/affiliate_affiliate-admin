@@ -1,0 +1,47 @@
+﻿@{
+    var currentSession = Fanex.AffiliateAdmin.Core.Session.SessionManager.CurrentSession;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/bundles/css")
+    @RenderSection("css", required: false)
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="~/scripts/libraries/jquery.multiselect.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row-fulid">
+            @Html.Partial("_Header")
+            <div class="span12 content narrow-padding">
+                <!--content html-->
+                <div class="row-fluid main-content">
+                    <div class="span12">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/js")
+    @if (currentSession != null)
+    {
+        <script type="text/javascript" src="@Url.Content("~/Scripts/site/RecheckIn.js")"></script>
+    }
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $.unblockUI();
+        AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
+            return '@Url.Content("~/")' + relativeUrl;
+        };
+        
+        $("#affiliateInfo").addClass("active");
+    </script>
+</body>
+</html>

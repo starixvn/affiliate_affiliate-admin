@@ -1,0 +1,64 @@
+﻿var DOMAIN = function ($) {
+    return {
+        init: function () {
+            // Event click login
+            $("#addDomain").click(function () {
+                DOMAIN.Insert();
+            });
+            if ($('#gridId').length > 0) {
+                DOMAIN.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            }
+
+            $("#btnCancel").click(function () {
+                if (parent.AFFILIATE.currentOpenDialog)
+                    parent.AFFILIATE.currentOpenDialog.dialog("close");
+            });
+        },
+        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
+            // resize height of datagrid
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+
+            $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/AffDomainList"),
+                type: 'post',
+                success: function (data) {
+                    gridOption.pagerOption = {
+                        itemsPerPage: itemsPerPage,
+                        itemsPerPageArray: AFFILIATE.pageSizes,
+                        currentPage: currentPage,
+                        maxItemsPerPage: 200,
+                        totalItem: data.List.length
+                    };
+                    gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
+
+                    $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
+                    $(".btnAdd").addClass("icon-add-affDomain");
+                }
+            });
+        },
+        Insert: function () {
+            AFFILIATE.openDialogFrame("Domain/AffDomainAdd", lang.AddDomain, { width: 550, height: 230 });
+        },
+        ShowUpdate: function (id) {
+            AFFILIATE.openDialogFrame("Domain/AffDomainUpd/" + id, lang.EditDomain, { width: 550, height: 230 });
+        },
+        Remove: function (id) {
+            if (confirm(lang.DeleteDomain)) {
+                $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/AffDomainRemove/" + id),
+                    type: 'post',
+                    success: function (result) {
+                        if (!result.Success) {
+                            alert(result.Message);
+                        }
+                        else {
+                            DOMAIN.ReRenderAfterPaged(0, $("#itemperpage").val());
+                        }
+                    }
+                });
+            }
+        }
+    }
+} (jQuery);
+
+$(function () {
+    DOMAIN.init();
+});

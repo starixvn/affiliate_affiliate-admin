@@ -1,0 +1,57 @@
+﻿@using Fanex.AffiliateAdmin.Core.Session
+@{
+    var roleAccess = SessionManager.CurrentSession.RoleAccess;
+}
+<ul class="span12 menu">
+    @if (roleAccess.Any())
+    {
+            if (roleAccess.HasPolicy("[AffReport]"))
+            {
+            <li id="home"><a href="@Url.Content("~/")"><span>@Lang.Home</span></a></li>
+            }            
+            if (SessionManager.CurrentSession.CurrencyList.Count > 0)
+            {
+                if (roleAccess.HasPolicy("[Affiliate]"))
+                {
+            <li id="affiliateInfo"><a href="@Url.Content("~/AffiliateInfo")"><span>@Lang.AffiliateInfo</span></a></li>
+            <li id="affiliate"><a href="@Url.Content("~/Affiliate")"><span>@Lang.AffManagement</span></a></li>
+                }
+                if (roleAccess.HasPolicy("[Payment]"))
+                {
+            <li id="payment"><a href="@Url.Content("~/Payment")"><span>@Lang.Payment</span></a></li>
+                }
+                if (roleAccess.HasPolicy("[CommissionGroup]"))
+                {
+            <li id="commissionGroup"><a href="@Url.Content("~/CommGroup")"><span>@Lang.CommissionGroup</span></a></li>
+                }
+                if (roleAccess.HasPolicy("[AffReport]"))
+                {
+            <li id="report"><a href="@Url.Content("~/Report")"><span>@Lang.Report</span></a></li>
+                }
+            }
+            if (roleAccess.HasPolicy("[Media]"))
+            {
+            <li id="media"><a href="@Url.Content("~/Media/BannerList")"><span>@Lang.MarketingTools</span></a></li>
+            }
+            if (roleAccess.HasPolicy("[HotNews]"))
+            {
+            <li id="message"><a href="@Url.Content("~/Message")"><span>@Lang.Message</span></a></li>
+            }
+            if (roleAccess.HasPolicy("[AffEx.Rate]"))
+            {
+            <li id="currency"><a href="@Url.Content("~/Exchange")"><span>@Lang.Currency</span></a></li>
+            }
+            if (roleAccess.HasPolicy("[SystemSettings]"))
+            {
+            <li id="configuration"><a href="@Url.Content("~/Configuration")"><span>@Lang.Configurations</span></a></li>
+            }
+            if (roleAccess.HasPolicy("[Domain]"))
+            {
+            <li id="domain"><a href="@Url.Content("~/Domain/AffDomain")"><span>@Lang.Domain</span></a></li>
+            }
+            if (roleAccess.HasPolicy("[UserControl]"))
+            {
+            <li id="user"><a href="@Url.Content("~/Management/Users")"><span>@Lang.UserManagement</span></a></li>
+        }
+    }
+</ul>

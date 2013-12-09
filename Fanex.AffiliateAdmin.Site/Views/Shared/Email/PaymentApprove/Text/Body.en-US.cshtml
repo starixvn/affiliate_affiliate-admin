@@ -1,0 +1,19 @@
+﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+<div>
+    Dear @Model.FirstName,
+    <br />
+    <br />
+    Request reference number is @Model.TransId, dated @(Model.WinlostDate.ToString("MM/dd/yyyy")).<br />
+    <br />
+    We are pleased to inform that your payment request amount of @Model.Amount has been
+    completed successfully and money sent to your payment processor.<br />
+    <br />
+    This is a system auto generated email, please do not reply to this email directly.
+    <br />
+    Do not hesitate to contact us if you have any questions or comments at <a href="mailto:@Model.CsdEmail">@Model.CsdEmail</a><br />
+    <br />
+    Sincerely,<br />
+    <br />
+    @Model.SystemName Affiliates Team<br />
+    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
+</div>

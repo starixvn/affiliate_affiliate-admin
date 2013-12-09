@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BD0B5C2D-17B3-443E-ACC5-3A1094FD9B36}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fanex.AffiliateAdmin.Models</RootNamespace>
+    <AssemblyName>Fanex.AffiliateAdmin.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fanex.NAP.Framework">
+      <HintPath>..\_Dependencies\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountViewModel.cs" />
+    <Compile Include="AdjustmentViewModel.cs" />
+    <Compile Include="AffiliateEditViewModel.cs" />
+    <Compile Include="AffiliateListReportViewModel.cs" />
+    <Compile Include="AffiliateListViewModel.cs" />
+    <Compile Include="AffiliateMasterViewModel.cs" />
+    <Compile Include="AffiliateViewModel.cs" />
+    <Compile Include="BannerAddViewModel.cs" />
+    <Compile Include="BannerDeleteViewModel.cs" />
+    <Compile Include="BannerEditViewModel.cs" />
+    <Compile Include="AffTypeViewModel.cs" />
+    <Compile Include="AffTypeAddViewModel.cs" />
+    <Compile Include="AccountPasswordViewModel.cs" />
+    <Compile Include="ChangeAccountTypeViewModel.cs" />
+    <Compile Include="ChangeAffPasswordViewModel.cs" />
+    <Compile Include="ChangeCommissionGroupViewModel.cs" />
+    <Compile Include="CommissionReportViewModel.cs" />
+    <Compile Include="CompanyWinlossViewModel.cs" />
+    <Compile Include="CompanyWLByAffiliateViewModel.cs" />
+    <Compile Include="PendingCommissionViewModel.cs" />
+    <Compile Include="MemberListViewModel.cs" />
+    <Compile Include="PlayerWLByAffiliateViewModel.cs" />
+    <Compile Include="PlayerWinlossViewModel.cs" />
+    <Compile Include="NoteViewModel.cs" />
+    <Compile Include="ReferrerViewModel.cs" />
+    <Compile Include="StatementViewModel.cs" />
+    <Compile Include="SystemSettingUpdateViewModel.cs" />
+    <Compile Include="LanguageAddViewModel.cs" />
+    <Compile Include="LanguageUpdateViewModel.cs" />
+    <Compile Include="LanguageViewModel.cs" />
+    <Compile Include="ProductViewModel.cs" />
+    <Compile Include="DomainControlViewModel.cs" />
+    <Compile Include="MessageAddViewModel.cs" />
+    <Compile Include="AddConfigurationViewModel.cs" />
+    <Compile Include="MessageDeleteViewModel.cs" />
+    <Compile Include="TextAddViewModel.cs" />
+    <Compile Include="AffiliateInfoViewModel.cs" />
+    <Compile Include="AffiliateStatisticViewModel.cs" />
+    <Compile Include="ConfigurationViewModel.cs" />
+    <Compile Include="CountryViewModel.cs" />
+    <Compile Include="DomainViewModel.cs" />
+    <Compile Include="BannerListViewModel.cs" />
+    <Compile Include="EmailHistoryViewModel.cs" />
+    <Compile Include="GroupViewModel.cs" />
+    <Compile Include="HomeViewModel.cs" />
+    <Compile Include="LoginViewModel.cs" />
+    <Compile Include="MessageViewModel.cs" />
+    <Compile Include="PasswordViewModel.cs" />
+    <Compile Include="PaymentUpdateViewModel.cs" />
+    <Compile Include="PaymentViewModel.cs" />
+    <Compile Include="PermissionCurrencyViewModel.cs" />
+    <Compile Include="PolicyMultiUserViewModel.cs" />
+    <Compile Include="PolicyViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultViewModel.cs" />
+    <Compile Include="SubCategoriesViewModel.cs" />
+    <Compile Include="TextDeleteViewModel.cs" />
+    <Compile Include="TextEditViewModel.cs" />
+    <Compile Include="TextListViewModel.cs" />
+    <Compile Include="TrackingStatisticDetailViewModel.cs" />
+    <Compile Include="TrackingStatisticViewModel.cs" />
+    <Compile Include="UserManagementViewModel.cs" />
+    <Compile Include="ViewLogViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Core\Fanex.AffiliateAdmin.Core.csproj">
+      <Project>{43399D4B-C46F-4E71-BFE1-8F303B7F9B84}</Project>
+      <Name>Fanex.AffiliateAdmin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Criterias\Fanex.AffiliateAdmin.Criterias.csproj">
+      <Project>{B97E8D03-D5F0-44BA-BA3B-C1D64561C291}</Project>
+      <Name>Fanex.AffiliateAdmin.Criterias</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.DTO\Fanex.AffiliateAdmin.DTO.csproj">
+      <Project>{124861EC-18BE-416D-8DD1-360A51613C76}</Project>
+      <Name>Fanex.AffiliateAdmin.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Resources\Fanex.AffiliateAdmin.Resources.csproj">
+      <Project>{791B3B16-82E3-43E7-A1F9-9EE3DD81C290}</Project>
+      <Name>Fanex.AffiliateAdmin.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

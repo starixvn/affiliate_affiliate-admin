@@ -1,0 +1,55 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="AccountViewModel.cs" company="Microsoft">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace Fanex.AffiliateAdmin.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using DTO;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class AccountViewModel
+    {
+        public int CustID { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ValidUsername")]
+        [Display(ResourceType = typeof(Resources.Lang), Name = "Username")]
+        public string Username { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrPasswordRequired")]
+        [Display(ResourceType = typeof(Resources.Lang), Name = "Password")]
+        public string Password { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrFName")]
+        [Display(ResourceType = typeof(Resources.Lang), Name = "FirstName")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrLName")]
+        [Display(ResourceType = typeof(Resources.Lang), Name = "LastName")]
+        public string LastName { get; set; }
+
+        public bool Status { get; set; }
+
+        public string Creator { get; set; }
+
+        public DateTime CreateDate { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrDepartmentChoose")]
+        [Display(ResourceType = typeof(Resources.Lang), Name = "GroupID")]
+        public int GroupID { get; set; }
+
+        public string GroupName { get; set; }
+
+        public bool IsIT { get; set; }
+
+        public int OnUserID { get; set; }
+
+        public IEnumerable<GroupInfo> GroupList { get; set; }
+    }
+}

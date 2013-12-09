@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.Title = "Log out";
+    Layout = "~/Views/Shared/_LayoutNoHeader.cshtml";
+}
+
+<script type='text/javascript'>
+    top.location.href = '@FormsAuthentication.LoginUrl';
+</script>

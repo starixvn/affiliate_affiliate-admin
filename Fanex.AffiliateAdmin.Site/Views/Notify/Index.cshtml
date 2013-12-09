@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Under Maintenance";
+    Layout = "~/Views/Shared/_LayoutNoHeader.cshtml";
+}
+@using Fanex.AffiliateAdmin.Core.Configurations
+@section css{
+    @Styles.Render("~/bundles/notify")
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+}
+
+<div class="header">
+    <a href="/" class="no-underline">
+        <div class="logo">UNDER MAINTENANCE</div>
+    </a>
+    <div class="seperator">
+    </div>
+</div>
+<div class="content">
+    <div class="icon um">
+    </div>
+    <div class="text">
+        <ul class="notify-content">
+            @for (var i = 0; i <= AppSettings.BaseLanguages.Count() - 1; i++)
+            {
+                var lang = AppSettings.BaseLanguages.ElementAt(i);
+                <li class="@(i == (AppSettings.BaseLanguages.Count() - 1) ? "end" : string.Empty)">
+                @switch (lang.LanguageID)
+                {
+                    case "en-US":
+                        <span>We are having server maintenance,<br />
+				            website will be unavailable until @ViewBag.EndTime (HK Time GMT +8).
+				            <br />Sorry for the inconveniences caused!</span>
+                        break;
+                    case "id-ID":
+                        <span>We are having server maintenance,<br />
+				            website will be unavailable until @ViewBag.EndTime (HK Time GMT +8).
+				            <br />Sorry for the inconveniences caused!</span> 
+                        break;
+                    case "th-TH":
+                        <span>We are having server maintenance,<br />
+				            website will be unavailable until @ViewBag.EndTime (HK Time GMT +8).
+				            <br />Sorry for the inconveniences caused!</span> 
+                        break;
+                    case "vi-VN":
+                        <span>We are having server maintenance,<br />
+				            website will be unavailable until @ViewBag.EndTime (HK Time GMT +8).
+				            <br />Sorry for the inconveniences caused!</span>                                                                                     
+                        break;
+                    case "zh-CN":
+                        <span>本公司正進行伺服器維護，時間至 @ViewBag.EndTime (HK Time GMT +8).
+				            <br />所有網頁將無法登入，不便之處 有請見諒</span>
+                                       break;
+                    case "zh-TW":
+                        <span>本公司正進行伺服器維護，時間至 @ViewBag.EndTime (HK Time GMT +8).
+				            <br />所有網頁將無法登入，不便之處 有請見諒</span>
+                                       break;
+                    default:
+                        <span>We are having server maintenance,<br />
+				            website will be unavailable until @ViewBag.EndTime (HK Time GMT +8).
+				            <br />Sorry for the inconveniences caused!</span> 
+                        break;
+                }
+                </li>
+            }      
+        </ul>
+    </div>    
+</div>

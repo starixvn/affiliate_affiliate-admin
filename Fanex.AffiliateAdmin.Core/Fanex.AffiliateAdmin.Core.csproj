@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{43399D4B-C46F-4E71-BFE1-8F303B7F9B84}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fanex.AffiliateAdmin.Core</RootNamespace>
+    <AssemblyName>Fanex.AffiliateAdmin.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Fanex.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=0.5.404.59, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Fanex.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Fanex.MailDeliver.MailClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="IBCFile">
+      <HintPath>..\_Dependencies\IBCFile.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\_Dependencies\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\_Dependencies\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="SPSRemoting">
+      <HintPath>..\_Dependencies\SPSRemoting.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UMControllerLibrary">
+      <HintPath>..\_Dependencies\UMControllerLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configurations\AffiliateSettings.cs" />
+    <Compile Include="Filter\HasCurrencyPermissionAttribute.cs" />
+    <Compile Include="Mvc\DecimalModelBinder.cs" />
+    <Compile Include="Service References\MemberSiteService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Configurations\MediaSettings.cs" />
+    <Compile Include="Configurations\MessageSettings.cs" />
+    <Compile Include="Configurations\PaymentSettings.cs" />
+    <Compile Include="Configurations\StatementSettings.cs" />
+    <Compile Include="Entities\EmailTemplateInfo.cs" />
+    <Compile Include="Entities\SiteDomainInfo.cs" />
+    <Compile Include="Enumerations\AffiliateStatus.cs" />
+    <Compile Include="Enumerations\EmailFormatType.cs" />
+    <Compile Include="Enumerations\EmailTemplateType.cs" />
+    <Compile Include="Mvc\AttributesExtensions.cs" />
+    <Compile Include="Services\Impl\AffiliateSettingService.cs" />
+    <Compile Include="Services\Impl\MediaSettingService.cs" />
+    <Compile Include="Services\Interface\IAffiliateSettingService.cs" />
+    <Compile Include="Services\Interface\IMediaSettingService.cs" />
+    <Compile Include="Session\AppSession.cs" />
+    <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Session\CurrentSession.cs" />
+    <Compile Include="Enumerations\ErrorCode.cs" />
+    <Compile Include="Enumerations\PaymentStatus.cs" />
+    <Compile Include="Filter\AuthorizationAttribute.cs" />
+    <Compile Include="Filter\UndermaintenanceAttribute.cs" />
+    <Compile Include="Session\ICurrentSession.cs" />
+    <Compile Include="LanguageManager.cs" />
+    <Compile Include="Mvc\CustomRazorViewEngine.cs" />
+    <Compile Include="Mvc\HtmlHelperExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Impl\SystemSettingRepository.cs" />
+    <Compile Include="Repositories\Interface\ISystemSettingRepository.cs" />
+    <Compile Include="Services\Impl\QueryService.cs" />
+    <Compile Include="Services\Impl\ServiceBase.cs" />
+    <Compile Include="Services\Impl\SystemSettingService.cs" />
+    <Compile Include="Services\Interface\ISystemSettingService.cs" />
+    <Compile Include="Services\Impl\UnderMaintenanceService.cs" />
+    <Compile Include="Session\SessionExtensions.cs" />
+    <Compile Include="Session\SessionManager.cs" />
+    <Compile Include="Utilities\BannerStorage.cs" />
+    <Compile Include="Utilities\Common.cs" />
+    <Compile Include="Utilities\EmailTemplate.cs" />
+    <Compile Include="Utilities\Extensions.cs" />
+    <Compile Include="Utilities\ExternalLogin.cs" />
+    <Compile Include="Utilities\Formater.cs" />
+    <Compile Include="Utilities\FormatType.cs" />
+    <Compile Include="Utilities\Menu.cs" />
+    <Compile Include="Utilities\Remote.cs" />
+    <Compile Include="Mvc\StringExtension.cs" />
+    <Compile Include="Utilities\SubMenu.cs" />
+    <Compile Include="Utilities\FormaterCurrency.cs" />
+    <Compile Include="Utilities\SwfInfo.cs" />
+    <Compile Include="Utilities\ThumbnailCreator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Criterias\Fanex.AffiliateAdmin.Criterias.csproj">
+      <Project>{B97E8D03-D5F0-44BA-BA3B-C1D64561C291}</Project>
+      <Name>Fanex.AffiliateAdmin.Criterias</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.DTO\Fanex.AffiliateAdmin.DTO.csproj">
+      <Project>{124861EC-18BE-416D-8DD1-360A51613C76}</Project>
+      <Name>Fanex.AffiliateAdmin.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Resources\Fanex.AffiliateAdmin.Resources.csproj">
+      <Project>{791B3B16-82E3-43E7-A1F9-9EE3DD81C290}</Project>
+      <Name>Fanex.AffiliateAdmin.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\System.Xml.Linq.XElement.datasource" />
+    <None Include="Service References\MemberSiteService\service.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\MemberSiteService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberSiteService\service.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberSiteService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberSiteService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberSiteService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

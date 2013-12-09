@@ -1,0 +1,5 @@
+﻿.loading
+{
+    background: url('images/ajax-loader.gif') no-repeat;
+    .setWidthHeight (32px, 32px);
+}

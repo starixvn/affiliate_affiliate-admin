@@ -1,0 +1,68 @@
+﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+<table width="100%">
+    <tr>
+        <td valign="top" align="center" background="@Model.AdminSiteUrl/Content/themes/theme1/images/email_bg.png">
+            <table width="588" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td height="77" background="@Model.AdminSiteUrl/Content/themes/theme1/images/email_top.jpg">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="3">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" bgcolor="#a30003" height="25">
+                        &nbsp;&nbsp; <strong style="color: #ffffff;"><font style="font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
+                            text-transform: uppercase;">Permintaan pembayaran Anda telah ditolak</font></strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" bgcolor="#ffffff">
+                        <table style="text-align: left" width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td style="padding: 20px 15px">
+                                    <font style="font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
+                                        <strong>Yang terhormat @(Model.FirstName),</strong><br />
+                                        <br />
+                                        Permintaan nombor referensi adalah @(Model.TransId), tanggal @(Model.WinlostDate.ToString("MM/dd/yyyy")).<br />
+                                        <br />
+                                        Permintaan pembayaran Anda sebesar @(Model.Amount)
+                                        telah dibatalkan.
+                                        <br />
+                                        <br />
+                                        Ini adalah sistem yang dihasilkan otomatis email, harap jangan balas email ini secara
+                                        langsung.
+                                        <br />
+                                        Jangan ragu untuk menghubungi kami jika Anda memiliki pertanyaan atau komentar di
+                                        <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a><br />
+                                        <br />
+                                        Salam Sejahtera,
+                                        <br />
+                                        <br />
+                                        Tim di @(Model.SystemName)
+                                        Afiliasi<br />
+                                        <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a> </font>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" bgcolor="#d7d7d7" height="25" style="padding-right: 15px">
+                        <font style="font-size: 11px; color: #333333; font-family: Verdana,Arial,Helvetica,sans-serif;">
+                            © Hak Cipta @DateTime.Now.Year <a href="@Model.MemberSiteUrl">@Model.MemberSiteDomain</a>
+                        </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" bgcolor="#a30003" height="40">
+                        <font style="font-size: 12px; color: #eba6a6; font-family: Verdana,Arial,Helvetica,sans-serif;">
+                            Ini adalah sistem yang dihasilkan otomatis email, harap jangan balas email ini secara langsung.
+                        </font>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

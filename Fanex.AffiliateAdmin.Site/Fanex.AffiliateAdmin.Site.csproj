@@ -1,0 +1,897 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{36FEEA64-4934-4FAF-A8AE-1B25865C704F}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fanex.AffiliateAdmin.Site</RootNamespace>
+    <AssemblyName>Fanex.AffiliateAdmin.Site</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <ExcludeApp_Data>false</ExcludeApp_Data>
+    <PublishDatabases>true</PublishDatabases>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.3.1.7705, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="BundleTransformer.Core">
+      <HintPath>..\packages\BundleTransformer.Core.1.6.28\lib\net40\BundleTransformer.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="BundleTransformer.Less">
+      <HintPath>..\packages\BundleTransformer.Less.1.6.26\lib\net40\BundleTransformer.Less.dll</HintPath>
+    </Reference>
+    <Reference Include="dotless.Core">
+      <HintPath>..\packages\dotless.1.3.1.0\lib\dotless.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data">
+      <HintPath>..\_Dependencies\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Logging">
+      <HintPath>..\_Dependencies\Fanex.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.AspNet, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.AspNet.1.3.1\lib\net40\Glimpse.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Core, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Glimpse.1.6.1\lib\net40\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc4, Version=1.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.Mvc4.1.3.3\lib\net40\Glimpse.Mvc4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MiniProfiler, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.2.1.0\lib\net40\MiniProfiler.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=2.3.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web, Version=2.3.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\SimpleInjector.Integration.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web.Mvc, Version=2.3.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\SimpleInjector.Integration.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0-rc\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20505.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20505.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20505.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20505.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20505.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\SpMYMBet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SpMacauBet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SpLB365.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\Spitcbet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SpI668Bet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SpBwinning.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SpAthena000.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SpAoncash.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\themes\base\AffiliateAdmin.css" />
+    <Content Include="Content\themes\base\Fanex.Grid.css" />
+    <Content Include="Content\themes\base\Fanex.Pagination.css" />
+    <Content Include="Content\themes\base\images\ajax-loader.gif" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\bg-demo-docs-param.gif" />
+    <Content Include="Content\themes\base\images\demo-spindown-closed.gif" />
+    <Content Include="Content\themes\base\images\demo-spindown-open.gif" />
+    <Content Include="Content\themes\base\images\fanexgrid\1350530947_page_excel.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\ajax-loader.gif" />
+    <Content Include="Content\themes\base\images\fanexgrid\back-icon.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\bgtitle.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\bg_gloss_wave.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\check-box.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\collapse-icon.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\collapse-small.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\email.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\excel-icon.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\expand-icon.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\expand-small.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\go-hover-icon.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\icn_add.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\icn_del.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\icn_edit.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\icon_page.gif" />
+    <Content Include="Content\themes\base\images\fanexgrid\more_buttons.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\refresh_icon.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\report_check.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\send-mail.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\seperations.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\setting.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\sort-icon-new.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\sort-icon-new1.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\sort-icon-new3.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\sort-icon.png" />
+    <Content Include="Content\themes\base\images\fanexgrid\sorting_asc.gif" />
+    <Content Include="Content\themes\base\images\fanexgrid\sorting_bg.gif" />
+    <Content Include="Content\themes\base\images\fanexgrid\sorting_desc.gif" />
+    <Content Include="Content\themes\base\images\fanexgrid\white-top-bottom.gif" />
+    <Content Include="Content\themes\base\images\seperations.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.multiselect.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\bootstrap\js\bootstrap-affix.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-alert.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-button.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-carousel.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-collapse.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-dropdown.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-modal.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-popover.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-scrollspy.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-tab.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-tooltip.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-transition.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-typeahead.js" />
+    <Content Include="Content\bootstrap\js\tests\index.html" />
+    <Content Include="Content\bootstrap\js\tests\phantom.js" />
+    <Content Include="Content\bootstrap\js\tests\server.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-affix.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-alert.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-button.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-carousel.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-collapse.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-dropdown.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-modal.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-phantom.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-popover.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-scrollspy.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-tab.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-tooltip.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-transition.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-typeahead.js" />
+    <Content Include="Content\bootstrap\js\tests\vendor\jquery.js" />
+    <Content Include="Content\bootstrap\js\tests\vendor\qunit.css" />
+    <Content Include="Content\bootstrap\js\tests\vendor\qunit.js" />
+    <Content Include="Content\bootstrap\less\tests\buttons.html" />
+    <Content Include="Content\bootstrap\less\tests\css-tests.css" />
+    <Content Include="Content\bootstrap\less\tests\css-tests.html" />
+    <Content Include="Content\bootstrap\less\tests\forms-responsive.html" />
+    <Content Include="Content\bootstrap\less\tests\forms.html" />
+    <Content Include="Content\bootstrap\less\tests\navbar-fixed-top.html" />
+    <Content Include="Content\bootstrap\less\tests\navbar-static-top.html" />
+    <Content Include="Content\bootstrap\less\tests\navbar.html" />
+    <Content Include="Content\themes\base\monpickr.css" />
+    <Content Include="Content\themes\base\ui.dropdownchecklist.standalone.css" />
+    <Content Include="Content\themes\base\daterangepicker.css" />
+    <Content Include="Content\themes\Default\affiliateinfo.less" />
+    <Content Include="Content\themes\Default\images\arrow_left.jpg" />
+    <Content Include="Content\themes\Default\images\arrow_left_out.jpg" />
+    <Content Include="Content\themes\Default\images\arrUpDown.png" />
+    <Content Include="Content\themes\Default\images\a_bg.jpg" />
+    <Content Include="Content\themes\Default\images\banner_top.png" />
+    <Content Include="Content\themes\Default\images\bg-btn.png" />
+    <Content Include="Content\themes\Default\images\bg-dropdown.jpg" />
+    <Content Include="Content\themes\Default\images\bg-search-title.png" />
+    <Content Include="Content\themes\Default\images\bg-search.png" />
+    <Content Include="Content\themes\Default\images\bg_header_06.jpg" />
+    <Content Include="Content\themes\Default\images\bg_left.jpg" />
+    <Content Include="Content\themes\Default\images\bg_leftbottom.jpg" />
+    <Content Include="Content\themes\Default\images\bg_lefttop.jpg" />
+    <Content Include="Content\themes\Default\images\calendar.gif" />
+    <Content Include="Content\themes\Default\images\check.gif" />
+    <Content Include="Content\themes\Default\images\checkbox.png" />
+    <Content Include="Content\themes\Default\images\dialog-title.png" />
+    <Content Include="Content\themes\Default\images\dialog-title2.png" />
+    <Content Include="Content\themes\Default\images\email_bg.png" />
+    <Content Include="Content\themes\Default\images\bg_box_tab.jpg" />
+    <Content Include="Content\themes\Default\images\bg_menu.jpg" />
+    <Content Include="Content\themes\Default\images\bg_search01.jpg" />
+    <Content Include="Content\themes\Default\images\bodybg.jpg" />
+    <Content Include="Content\themes\Default\images\btbg.png" />
+    <Content Include="Content\themes\Default\images\btDown.png" />
+    <Content Include="Content\themes\Default\images\clock.gif" />
+    <Content Include="Content\themes\Default\images\ComboBox.png" />
+    <Content Include="Content\themes\Default\images\flag.png" />
+    <Content Include="Content\themes\Default\images\fThai.png" />
+    <Content Include="Content\themes\Default\images\fChinese.png" />
+    <Content Include="Content\themes\Default\images\fEnglish.png" />
+    <Content Include="Content\themes\Default\images\fIndonesian.png" />
+    <Content Include="Content\themes\Default\images\flag_E.png" />
+    <Content Include="Content\themes\Default\images\glyphicons-halflings-gray-lighter.png" />
+    <Content Include="Content\themes\Default\images\glyphicons-halflings-gray.png" />
+    <Content Include="Content\themes\Default\images\headerbg.jpg" />
+    <Content Include="Content\themes\Default\images\icon-button-more.png" />
+    <Content Include="Content\themes\Default\images\icon-calendar.png" />
+    <Content Include="Content\themes\Default\images\icon_edit.png" />
+    <Content Include="Content\themes\Default\images\icon_refresh.png" />
+    <Content Include="Content\themes\Default\images\icon_top.png" />
+    <Content Include="Content\themes\Default\images\i_admin.png" />
+    <Content Include="Content\themes\Default\images\i_affiliateslist.png" />
+    <Content Include="Content\themes\Default\images\i_commg.png" />
+    <Content Include="Content\themes\Default\images\i_customer.png" />
+    <Content Include="Content\themes\Default\images\i_domain.jpg" />
+    <Content Include="Content\themes\Default\images\i_email_history.png" />
+    <Content Include="Content\themes\Default\images\i_ex_rate.png" />
+    <Content Include="Content\themes\Default\images\i_home.png" />
+    <Content Include="Content\themes\Default\images\i_media1.png" />
+    <Content Include="Content\themes\Default\images\i_member.png" />
+    <Content Include="Content\themes\Default\images\i_message.png" />
+    <Content Include="Content\themes\Default\images\i_pay_re.png" />
+    <Content Include="Content\themes\Default\images\i_report.png" />
+    <Content Include="Content\themes\Default\images\i_settings.png" />
+    <Content Include="Content\themes\Default\images\i_tran.png" />
+    <Content Include="Content\themes\Default\images\left_btleft.gif" />
+    <Content Include="Content\themes\Default\images\left_button.jpg" />
+    <Content Include="Content\themes\Default\images\line_left02.jpg" />
+    <Content Include="Content\themes\Default\images\line_popup.jpg" />
+    <Content Include="Content\themes\Default\images\listBt.png" />
+    <Content Include="Content\themes\Default\images\listRp.png" />
+    <Content Include="Content\themes\Default\images\listTop.png" />
+    <Content Include="Content\themes\Default\images\logo.jpg" />
+    <Content Include="Content\themes\Default\images\main_left.jpg" />
+    <Content Include="Content\themes\Default\images\main_right.jpg" />
+    <Content Include="Content\themes\Default\images\more_buttons.png" />
+    <Content Include="Content\themes\Default\images\panel.png" />
+    <Content Include="Content\themes\Default\images\popup_menu01.jpg" />
+    <Content Include="Content\themes\Default\images\popup_menu02.jpg" />
+    <Content Include="Content\themes\Default\images\pop_top.png" />
+    <Content Include="Content\themes\Default\images\pop_bgcenter.jpg" />
+    <Content Include="Content\themes\Default\images\right_btleft.gif" />
+    <Content Include="Content\themes\Default\images\right_button.jpg" />
+    <Content Include="Content\themes\Default\images\sprite.png" />
+    <Content Include="Content\themes\Default\images\spritex.png" />
+    <Content Include="Content\themes\Default\images\email_top.jpg" />
+    <Content Include="Content\themes\Default\images\uncheck.gif" />
+    <Content Include="Content\_Sites\Athena\Images\best-browsers.png" />
+    <Content Include="Content\_Sites\Athena\Images\bodybg.jpg" />
+    <Content Include="Content\_Sites\Athena\Images\headerbg.jpg" />
+    <Content Include="Content\_Sites\Athena\Images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\Athena\Images\logo.jpg" />
+    <Content Include="Content\_Sites\Athena\Images\banner_top.png" />
+    <Content Include="Content\_Sites\Athena\Images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\Athena\Images\notify.png" />
+    <Content Include="Content\_Sites\Athena\Images\panel.png" />
+    <Content Include="Content\_Sites\MYM\Images\banner_top.png" />
+    <Content Include="Content\_Sites\MYM\Images\bodybg.jpg" />
+    <Content Include="Content\_Sites\MYM\Images\headerbg.jpg" />
+    <Content Include="Content\_Sites\MYM\Images\logo.jpg" />
+    <Content Include="Content\_Sites\MYM\Images\Logo.png" />
+    <Content Include="Content\_Sites\MYM\Images\panel.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\libraries\accounting.js" />
+    <Content Include="Scripts\libraries\BigDecimal-all-last.js" />
+    <Content Include="Scripts\libraries\date.min.js" />
+    <Content Include="Scripts\libraries\daterangepicker.js" />
+    <Content Include="Scripts\libraries\Fanex.Grid.js" />
+    <Content Include="Scripts\libraries\Fanex.Pagination.js" />
+    <Content Include="Scripts\libraries\head.js" />
+    <Content Include="Scripts\libraries\head.min.js" />
+    <Content Include="Scripts\libraries\jquery-1.10.1.js" />
+    <Content Include="Scripts\libraries\jquery-1.10.1.min.js" />
+    <Content Include="Scripts\libraries\jquery-ui-1.10.3.js" />
+    <Content Include="Scripts\libraries\jquery.ba-resize.min.js" />
+    <Content Include="Scripts\libraries\jquery.blockUI.js" />
+    <Content Include="Scripts\libraries\jquery.formattyping.js" />
+    <Content Include="Scripts\libraries\jquery.multiselect.js" />
+    <Content Include="Scripts\libraries\jquery.multiselect.min.js" />
+    <Content Include="Scripts\libraries\jquery.numeric.js" />
+    <Content Include="Scripts\libraries\jquery.placeholder.js" />
+    <Content Include="Scripts\libraries\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\libraries\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\libraries\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\libraries\jquery.validate.js" />
+    <Content Include="Scripts\libraries\jquery.validate.min.js" />
+    <Content Include="Scripts\libraries\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\libraries\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\libraries\monpickr.js" />
+    <Content Include="Scripts\libraries\placeholder_fixer.js" />
+    <Content Include="Scripts\libraries\ui.dropdownchecklist.js" />
+    <Content Include="Scripts\site\Adjustment.js" />
+    <Content Include="Scripts\site\AffiliateEdit.js" />
+    <Content Include="Scripts\site\AffiliateInfo.js" />
+    <Content Include="Scripts\site\AffiliateList.js" />
+    <Content Include="Scripts\site\AffiliateStatistic.js" />
+    <Content Include="Scripts\site\BannerList.js" />
+    <Content Include="Scripts\site\CompanyWinlossReport.js" />
+    <Content Include="Scripts\site\Configuration.js" />
+    <Content Include="Scripts\site\AffType.js" />
+    <Content Include="Scripts\libraries\jquery.mtz.monthpicker.seph.custom.js" />
+    <Content Include="Scripts\site\AffiliateMaster.js" />
+    <Content Include="Scripts\site\CommGroupPopup.js" />
+    <Content Include="Scripts\site\CompanyWLHelper.js" />
+    <Content Include="Scripts\site\CommissionReport.js" />
+    <Content Include="Scripts\site\CommissionByAffiliateReport.js" />
+    <Content Include="Scripts\site\PendingCommission.js" />
+    <Content Include="Scripts\site\PlayerWLHelper.js" />
+    <Content Include="Scripts\site\PlayerWinlossReport.js" />
+    <Content Include="Scripts\site\MemberStatistics.js" />
+    <Content Include="Scripts\site\Note.js" />
+    <Content Include="Scripts\site\OnlineList.js" />
+    <Content Include="Scripts\site\Language.js" />
+    <Content Include="Scripts\site\Product.js" />
+    <Content Include="Scripts\site\CommGroup.js" />
+    <Content Include="Scripts\site\Country.js" />
+    <Content Include="Scripts\site\DomainControl.js" />
+    <Content Include="Scripts\site\MultiUserPolicy.js" />
+    <Content Include="Scripts\site\Statement.js" />
+    <Content Include="Scripts\site\TrackingStatistic.js" />
+    <Content Include="Scripts\site\TrackingStatisticDetail.js" />
+    <Content Include="Scripts\site\UserPolicy.js" />
+    <Content Include="Scripts\site\Exchange.js" />
+    <Content Include="Scripts\site\DomainMem.js" />
+    <Content Include="Scripts\site\DomainAff.js" />
+    <Content Include="Scripts\site\Customer.js" />
+    <Content Include="Scripts\site\EmailHistoryDetail.js" />
+    <Content Include="Scripts\site\EmailHistory.js" />
+    <Content Include="Scripts\site\Dashboard.js" />
+    <Content Include="Scripts\libraries\moment.js" />
+    <Content Include="Scripts\libraries\numeral.js" />
+    <Content Include="Scripts\site\GroupManagement.js" />
+    <Content Include="Scripts\site\TextList.js" />
+    <Content Include="Scripts\site\Report.js" />
+    <Content Include="Scripts\site\GroupPolicy.js" />
+    <Content Include="Scripts\site\UserManagement.js" />
+    <Content Include="Scripts\site\Message.js" />
+    <Content Include="Scripts\site\RecheckIn.js" />
+    <Content Include="Scripts\site\Login.js" />
+    <Content Include="Scripts\site\Paging.js" />
+    <Content Include="Scripts\site\Payment.js" />
+    <Content Include="Scripts\site\Query.string.js" />
+    <Content Include="Scripts\site\ViewLog.js" />
+    <Content Include="Scripts\site\_Global.js" />
+    <Content Include="Views\Email\PaymentRequest.en-US.txt" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Subject.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Subject.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Subject.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Subject.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Subject.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Subject.zh-TW.cshtml" />
+    <Content Include="Views\Notify\Message.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
+    <Content Include="Views\Message\AddMessage.cshtml" />
+    <Content Include="Content\themes\Default\affiliatelist.less" />
+    <Content Include="Content\themes\Default\media.less" />
+    <Content Include="Content\themes\Default\message.less" />
+    <Content Include="Views\Domain\AffDomain.cshtml" />
+    <Content Include="Views\Domain\AffDomainAdd.cshtml" />
+    <Content Include="Views\Message\EditMessage.cshtml" />
+    <Content Include="Views\Domain\AffDomainUpd.cshtml" />
+    <Content Include="Views\Domain\MemDomain.cshtml" />
+    <Content Include="Views\Domain\MemDomainUpd.cshtml" />
+    <Content Include="Views\Domain\MemDomainAdd.cshtml" />
+    <Content Include="Views\Media\BannerList.cshtml" />
+    <Content Include="Views\Media\TextList.cshtml" />
+    <Content Include="Views\Media\AddBanner.cshtml" />
+    <Content Include="Views\Media\SubCategories.cshtml" />
+    <Content Include="Views\Configuration\Index.cshtml" />
+    <Content Include="Views\Management\AddGroup.cshtml" />
+    <Content Include="Views\Management\ChangePolicyGroup.cshtml" />
+    <Content Include="Views\Management\EditGroup.cshtml" />
+    <Content Include="Views\Exchange\Index.cshtml" />
+    <Content Include="Views\Management\UserInGroup.cshtml" />
+    <Content Include="Views\Management\ChangePolicyMultiUser.cshtml" />
+    <Content Include="Views\Management\ChangePolicyMultiUser.cshtml" />
+    <Content Include="Content\_Sites\Athena\Login.less" />
+    <Content Include="Views\Configuration\ConfigurationDetail.cshtml" />
+    <Content Include="Content\themes\Default\configuration.less" />
+    <Content Include="Views\Configuration\AddConfiguration.cshtml" />
+    <Content Include="Views\Management\ChangeCurrencyUser.cshtml" />
+    <Content Include="Content\themes\Default\commgroup.less" />
+    <Content Include="Content\_Sites\Athena\Notify.less" />
+    <None Include="Content\_Sites\MYM\Login.less" />
+    <Content Include="Views\Exchange\UpdateExRate.cshtml" />
+    <Content Include="Views\Configuration\CountryDetail.cshtml" />
+    <Content Include="Views\Configuration\AddCountry.cshtml" />
+    <Content Include="Views\Media\AddText.cshtml" />
+    <Content Include="Views\Media\EditText.cshtml" />
+    <Content Include="Views\AffiliateInfo\Index.cshtml" />
+    <Content Include="Views\AffiliateInfo\Info.cshtml" />
+    <Content Include="Views\AffiliateInfo\Statistic.cshtml" />
+    <Content Include="Views\AffiliateInfo\_Commission.cshtml" />
+    <Content Include="Views\Media\EditBanner.cshtml" />
+    <Content Include="Views\Domain\DomainControl.cshtml" />
+    <Content Include="Views\Domain\DomainControlUpd.cshtml" />
+    <Content Include="Views\Domain\DomainControlAdd.cshtml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\Configuration\Country.cshtml" />
+    <Content Include="Views\CommGroup\Index.cshtml" />
+    <Content Include="Views\Configuration\Product.cshtml" />
+    <Content Include="Views\Configuration\ProductDetail.cshtml" />
+    <Content Include="Views\Configuration\AddProduct.cshtml" />
+    <Content Include="Views\Configuration\AddLanguage.cshtml" />
+    <Content Include="Views\Configuration\Language.cshtml" />
+    <Content Include="Views\Configuration\LanguageDetail.cshtml" />
+    <Content Include="Views\Configuration\AffType.cshtml" />
+    <Content Include="Views\Configuration\AffTypeDetail.cshtml" />
+    <Content Include="Views\Configuration\AddAffType.cshtml" />
+    <Content Include="Views\Home\UserOnlineList.cshtml" />
+    <Content Include="Views\CommGroup\Add.cshtml" />
+    <Content Include="Views\AffiliateInfo\Edit.cshtml" />
+    <Content Include="Views\Note\Index.cshtml" />
+    <Content Include="Views\AffiliateInfo\_Setting.cshtml" />
+    <Content Include="Views\AffiliateInfo\_OnlineList.cshtml" />
+    <Content Include="Views\AffiliateInfo\ChangePassword.cshtml" />
+    <Content Include="Views\ViewLog\Index.cshtml" />
+    <Content Include="Views\Note\AddNote.cshtml" />
+    <Content Include="Views\Note\EditNote.cshtml" />
+    <Content Include="Views\Affiliate\AssignMember.cshtml" />
+    <Content Include="Views\Adjustment\Index.cshtml" />
+    <Content Include="Views\Affiliate\MemberListByAffiliate.cshtml" />
+    <Content Include="Views\Affiliate\ChangeAccountType.cshtml" />
+    <Content Include="Views\AffiliateInfo\Search.cshtml" />
+    <Content Include="Views\CommGroup\ViewSetting.cshtml" />
+    <Content Include="Views\Affiliate\ChangeCommissionGroup.cshtml" />
+    <Content Include="Views\Affiliate\ChangePassword.cshtml" />
+    <Content Include="Views\Affiliate\ChangeCommissionApprove.cshtml" />
+    <Content Include="Views\Report\CompanyWinloss.cshtml" />
+    <Content Include="Views\Email\PaymentRequest.en-US.cshtml" />
+    <Content Include="Views\Report\MemberStatistics.cshtml" />
+    <Content Include="Views\Report\CompanyWinlossByAffiliate.cshtml" />
+    <Content Include="Views\Report\Commission.cshtml" />
+    <Content Include="Views\Report\PlayerWinloss.cshtml" />
+    <Content Include="Views\Report\PlayerWinlossByAffiliate.cshtml" />
+    <Content Include="Views\Report\CommissionByAffiliate.cshtml" />
+    <Content Include="Views\Report\QualifiedMembers.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ko-KR.cshtml" />
+    <Content Include="Views\Payment\PendingCommission.cshtml" />
+    <None Include="Views\Shared\Email\AffiliateApprove\Html\Body.en-US.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\libraries\_references.js" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Subject.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Subject.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Subject.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Subject.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Subject.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Subject.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.zh-CN.cshtml" />
+    <Content Include="Views\Management\Users.cshtml" />
+    <Content Include="Views\Management\Groups.cshtml" />
+    <Content Include="Views\Management\EditUser.cshtml" />
+    <Content Include="Views\Management\ChangePolicyUser.cshtml" />
+    <Content Include="Views\Management\GroupInfo.cshtml" />
+    <Content Include="Views\Management\ChangePassword.cshtml" />
+    <Content Include="Views\Management\AddUser.cshtml" />
+    <Content Include="Views\Shared\_LayoutFrame.cshtml" />
+    <Content Include="Views\Shared\_LayoutFrameNoHeader.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoSubMenu.cshtml" />
+    <Content Include="Views\Statement\Index.cshtml" />
+    <Content Include="Views\TrackingStatistic\Referrer.cshtml" />
+    <Content Include="Views\TrackingStatistic\LandingPage.cshtml" />
+    <Content Include="Views\Statement\DailyEarning.cshtml" />
+    <Content Include="Views\TrackingStatistic\StatisticDetail.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Subject.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.ko-KR.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj">
+      <Project>{D7E60D7D-CD3D-40A7-AB59-B7281AA7A579}</Project>
+      <Name>Fanex.AffiliateAdmin.Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Core\Fanex.AffiliateAdmin.Core.csproj">
+      <Project>{43399D4B-C46F-4E71-BFE1-8F303B7F9B84}</Project>
+      <Name>Fanex.AffiliateAdmin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.DTO\Fanex.AffiliateAdmin.DTO.csproj">
+      <Project>{124861EC-18BE-416D-8DD1-360A51613C76}</Project>
+      <Name>Fanex.AffiliateAdmin.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Models\Fanex.AffiliateAdmin.Models.csproj">
+      <Project>{BD0B5C2D-17B3-443E-ACC5-3A1094FD9B36}</Project>
+      <Name>Fanex.AffiliateAdmin.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Services\Fanex.AffiliateAdmin.Services.csproj">
+      <Project>{77FE9ADA-C75D-4F4D-95D0-6096AB6BACD4}</Project>
+      <Name>Fanex.AffiliateAdmin.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Resources\Fanex.AffiliateAdmin.Resources.csproj">
+      <Project>{791B3B16-82E3-43E7-A1F9-9EE3DD81C290}</Project>
+      <Name>Fanex.AffiliateAdmin.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\RazorHelper.cshtml" />
+    <None Include="BundleTransformer.Configuration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Content\bootstrap\js\.jshintrc" />
+    <Content Include="Content\bootstrap\less\accordion.less" />
+    <Content Include="Content\bootstrap\less\alerts.less" />
+    <Content Include="Content\bootstrap\less\bootstrap.less" />
+    <Content Include="Content\bootstrap\less\breadcrumbs.less" />
+    <Content Include="Content\bootstrap\less\button-groups.less" />
+    <Content Include="Content\bootstrap\less\buttons.less" />
+    <Content Include="Content\bootstrap\less\carousel.less" />
+    <Content Include="Content\bootstrap\less\close.less" />
+    <Content Include="Content\bootstrap\less\code.less" />
+    <Content Include="Content\bootstrap\less\component-animations.less" />
+    <Content Include="Content\bootstrap\less\dropdowns.less" />
+    <Content Include="Content\bootstrap\less\forms.less" />
+    <Content Include="Content\bootstrap\less\grid.less" />
+    <Content Include="Content\bootstrap\less\hero-unit.less" />
+    <Content Include="Content\bootstrap\less\labels-badges.less" />
+    <Content Include="Content\bootstrap\less\layouts.less" />
+    <Content Include="Content\bootstrap\less\media.less" />
+    <Content Include="Content\bootstrap\less\mixins.less" />
+    <Content Include="Content\bootstrap\less\modals.less" />
+    <Content Include="Content\bootstrap\less\navbar.less" />
+    <Content Include="Content\bootstrap\less\navs.less" />
+    <Content Include="Content\bootstrap\less\pager.less" />
+    <Content Include="Content\bootstrap\less\pagination.less" />
+    <Content Include="Content\bootstrap\less\popovers.less" />
+    <Content Include="Content\bootstrap\less\progress-bars.less" />
+    <Content Include="Content\bootstrap\less\reset.less" />
+    <Content Include="Content\bootstrap\less\responsive-1200px-min.less" />
+    <Content Include="Content\bootstrap\less\responsive-767px-max.less" />
+    <Content Include="Content\bootstrap\less\responsive-768px-979px.less" />
+    <Content Include="Content\bootstrap\less\responsive-navbar.less" />
+    <Content Include="Content\bootstrap\less\responsive-utilities.less" />
+    <Content Include="Content\bootstrap\less\responsive.less" />
+    <Content Include="Content\bootstrap\less\scaffolding.less" />
+    <Content Include="Content\bootstrap\less\sprites.less" />
+    <Content Include="Content\bootstrap\less\tables.less" />
+    <Content Include="Content\bootstrap\less\thumbnails.less" />
+    <Content Include="Content\bootstrap\less\tooltip.less" />
+    <Content Include="Content\bootstrap\less\type.less" />
+    <Content Include="Content\bootstrap\less\utilities.less" />
+    <Content Include="Content\bootstrap\less\variables.less" />
+    <Content Include="Content\bootstrap\less\wells.less" />
+    <Content Include="Content\themes\common.less" />
+    <Content Include="Content\themes\Default\calendar.less" />
+    <Content Include="Content\themes\Default\header.less" />
+    <Content Include="Content\themes\Default\index.less" />
+    <Content Include="Content\themes\Default\mixins.less" />
+    <Content Include="Content\themes\Default\variables.less" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Web.AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.ConnectionString.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoHeader.cshtml" />
+    <Content Include="Views\Affiliate\Index.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\Logout.cshtml" />
+    <Content Include="Views\Home\Language.cshtml" />
+    <Content Include="Views\EmailHistory\Index.cshtml" />
+    <Content Include="Views\EmailHistory\Detail.cshtml" />
+    <Content Include="Views\Affiliate\MemberList.cshtml" />
+    <Content Include="Views\Home\Menu.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutPopup.cshtml" />
+    <Content Include="Views\Payment\UpdatePayment.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Html\Body.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Html\Body.en-US.cshtml" />
+    <Content Include="Views\Notify\AccessDenied.cshtml" />
+    <Content Include="Views\Notify\Error.cshtml" />
+    <Content Include="Views\Notify\Index.cshtml" />
+    <Content Include="Views\Notify\PageNotFound.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Text\Body.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Html\Body.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Text\Body.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Html\Body.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Subject.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Subject.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Subject.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Text\Body.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Html\Body.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Html\Body.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Text\Body.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Text\Body.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Html\Body.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Text\Body.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Html\Body.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Text\Body.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Html\Body.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Subject.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Subject.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Subject.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Subject.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Subject.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Html\Body.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Html\Body.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Html\Body.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Html\Body.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Html\Body.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Text\Body.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Text\Body.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Text\Body.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Text\Body.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Text\Body.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Subject.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Subject.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Subject.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Subject.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Subject.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Text\Body.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Text\Body.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Text\Body.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Text\Body.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Text\Body.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Html\Body.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Html\Body.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Html\Body.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Html\Body.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Html\Body.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Subject.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Subject.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Subject.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Subject.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Subject.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Html\Body.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Html\Body.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Html\Body.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Html\Body.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Html\Body.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Html\Body.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Text\Body.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Subject.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Html\Body.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateDisapprove\Text\Body.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Subject.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Html\Body.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Subject.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Html\Body.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove_Kiosk\Text\Body.ko-KR.cshtml" />
+    <None Include="Views\Shared\Email\PaymentApprove\Text\Body.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Subject.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Text\Body.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Text\Body.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Text\Body.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Text\Body.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Text\Body.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Subject.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Subject.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Subject.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Subject.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Subject.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Html\Body.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Html\Body.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Html\Body.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Html\Body.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Html\Body.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentApprove\Text\Body.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Subject.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Html\Body.ko-KR.cshtml" />
+    <None Include="Views\Shared\Email\PaymentCancel\Text\Body.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Text\Body.en-US.cshtml" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52291</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

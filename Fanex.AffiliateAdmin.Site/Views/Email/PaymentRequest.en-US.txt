@@ -1,0 +1,18 @@
+﻿<div>
+Dear @Model.FirstName,<br /><br />
+
+Thank you for your payment request dated @Model.PaymentRequestDate for the amount of @Model.PaymentAmount.<br />
+Your request reference number is @Model.PaymentID.<br /><br />
+                                         
+Your payment request will be processed within 7 working days. All requests are reviewed in the order in which they are received.<br /><br />
+                                         
+This is a system auto generated email, please do not reply to this email directly.<br />
+Do not hesitate to contact us if you have any questions or comments at <a href="mailto:@Model.MailContact">@Model.MailContact</a><br /><br />
+                                         
+Have a great day!<br /><br />
+                                         
+Best regards,<br /><br />
+                                         
+@Model.AffiliateName Affiliates Team<br />
+<a href="mailto:@Model.MailContact">@Model.MailContact</a>
+</div>

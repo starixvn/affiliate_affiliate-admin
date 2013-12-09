@@ -1,0 +1,38 @@
+﻿@model Tuple<IEnumerable<Fanex.AffiliateAdmin.DTO.Language>, String, Fanex.AffiliateAdmin.DTO.SystemDateTime>
+@{
+    var languageList = Model.Item1;
+    var selectedLang = Model.Item2;
+    var systemDate = Model.Item3;
+}
+@if (languageList.Count() > 1)
+{
+    <div class="langSelectLink">
+        <div class="box">
+            <span class="arrUp" id="arrow">&nbsp;</span> <span id="selectedLang" class="@AppSession.Language">
+                @selectedLang</span>
+        </div>
+    </div>
+    <div id="langList" class="langList">
+        <div class="langListRp">
+            @foreach (var item in languageList)
+            {                        
+                <a class="@(item.LanguageID)" href="#">@item.LanguageName</a>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="langSelectLink"></div>
+}
+<script type="text/javascript">
+    
+    var sysGmt = '@systemDate.GMTOffSet';
+    var sysYear = @systemDate.DatabaseDateTime.Year.ToString();
+    var sysMonth = @systemDate.DatabaseDateTime.Month.ToString();
+    var sysDay = @systemDate.DatabaseDateTime.Day.ToString();
+    var sysHour = @systemDate.DatabaseDateTime.Hour.ToString();
+    var sysMinute = @systemDate.DatabaseDateTime.Minute.ToString();
+    var sysSecond = @systemDate.DatabaseDateTime.Second.ToString();
+    var sysMonthName = ['@Lang.Jan', '@Lang.Feb', '@Lang.Mar', '@Lang.Apr', '@Lang.May', '@Lang.Jun', '@Lang.Jul', '@Lang.Aug', '@Lang.Sep', '@Lang.Oct', '@Lang.Nov', '@Lang.Dec'];
+</script>

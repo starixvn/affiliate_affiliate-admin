@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bundles/css")
+    @RenderSection("css", required: false)
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    @StackExchange.Profiling.MiniProfiler.RenderIncludes()
+</head>
+<body class="popup">
+    
+    <div class="container-fluid">
+        <div class="box-insite">
+            @RenderBody()
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/js")
+    @RenderSection("scripts", required: false)
+    <script type="text/ecmascript">
+        $.unblockUI();
+
+        var Lang = {
+            NoDataInfo: '@Html.Raw(Lang.NoInfo)'
+        };
+
+        AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
+            return '@Url.Content("~/")' + relativeUrl;
+        };
+    </script>
+</body>
+</html>

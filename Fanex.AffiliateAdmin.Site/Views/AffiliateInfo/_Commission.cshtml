@@ -1,0 +1,25 @@
+﻿@using Fanex.AffiliateAdmin.Core.Utilities
+
+@model Fanex.AffiliateAdmin.Models.AffiliateInfoViewModel
+@using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.Core.Configurations
+
+<div class="left-group">
+    <div class="left-tab"><a href="#"><span>@Lang.Commission</span></a></div>
+    <div class="left-tab-info">
+        <table>
+            <tbody>
+                <tr>
+                    <td>@Lang.CommissionGroup<span class="icon-edit" id="spEdit" title="@Lang.ChangeComGroup"></span></td>
+                    <td class="text-r">
+                        <a href="javascript:void(0);" id="groupLink" title="@Model.AffiliateInfo.GroupName">@Model.AffiliateInfo.GroupName.LeftString(12)</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Lang.BF</td>
+                    <td class="col-right">@Html.Raw(FormaterCurrency.Format(Model.AffiliateInfo.BalanceBF))</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

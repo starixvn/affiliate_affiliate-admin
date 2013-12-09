@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = Lang.ViewLog;
+    Layout = "~/Views/Shared/_LayoutFrame.cshtml";
+}
+@using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Core.Mvc
+@using Fanex.AffiliateAdmin.Core.Utilities
+@model Fanex.AffiliateAdmin.Models.ViewLogViewModel
+@section iconcss{
+affiliate-info
+}
+@section submenu{
+    @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 7)
+    <div class="line line-statement">
+        <div class="ic-open-window"></div>
+        <div class="ic-reload" title="@Lang.RefreshPage"></div>
+    </div>
+}
+<div class="search-panel search-viewLog no-border">
+    @RazorHelper.SearchPanel(".search-form", "Information text", false, false)
+    <div class="span12 search-form">
+        <div class="row-fluid row-form end-search">
+            <div class="cell">
+                @Html.LabelFor(m => m.LogType, new { @class = "txt" })
+                @Html.DropDownCheckList("LogType", Model.LogTypeListItem, false, false, new { @class = "width-140" })
+            </div>
+            <div class="cell width-160">
+                @Html.LabelFor(m => m.DateFrom)
+                @Html.DatePicker("DateFrom", Model.DateFrom, (AppSettings.SystemStartDate > Model.DateFrom) ? AppSettings.SystemStartDate : Model.DateFrom, DateTime.Now)
+            </div>
+            <div class="cell width-160">
+                @Html.LabelFor(m => m.DateTo)
+                @Html.DatePicker("DateTo", Model.DateTo, (AppSettings.SystemStartDate > Model.DateFrom) ? AppSettings.SystemStartDate : Model.DateFrom, DateTime.Now)
+            </div>
+        </div>
+        <div class="row-fluid row-form btn-action">
+            <div class="span12">
+                <button type="submit" class="btn" id="btnSubmit">
+                    @Lang.Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w-space">
+</div>
+@Html.ValidationSummary()
+<div id="gridId" class="freegrid content-grid">
+</div>
+@section scripts{
+    <script type="text/javascript">
+        var ipCheckUrl = "@AppSettings.IPCheckerURL";
+
+        var MSG = {
+            NoInfo: "@Lang.NoInfo"
+        };
+
+        var gridOption = {
+            showTitle: true,
+
+            titleInfo:
+            {
+                text: "@Lang.LogList"
+            },
+            columns: [
+                      { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
+                      { HeaderText: "@Lang.ID", Width: 80, Name: "ID", CellAlign: "center", Formatter:
+                        function (rowIndex, rowData, cell, cellFormated) {
+                            return rowData.RefNo;
+                        }
+                      },
+                      { HeaderText: "@Lang.Date", Width: 120, Name: "LoggedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+                      { HeaderText: "@Lang.UpdatedBy", Width: 100, Name: "UpdatedDate", CellAlign: "center", Formatter:
+                        function (rowIndex, rowData, cell, cellFormated) {
+                            return rowData.UserName + "<br/>(" + rowData.AffId + ")";
+                        }
+                      },
+                      { HeaderText: "@Lang.Action", Width: 175, Name: "Action", CellAlign: "center", Formatter:
+                        function (rowIndex, rowData, cell, cellFormated) {
+                            return rowData.Description + "<br/>(" + rowData.SpName + ")";
+                        }
+                      },
+                      { HeaderText: "@Lang.Description", Width: 250, Name: "Description" },
+                      { HeaderText: "@Lang.IP", Width: 110, Name: "Ip", CellAlign: "center", Formatter:
+                        function (rowIndex, rowData, cell, cellFormated) {
+                            return "<a href=\"" + ipCheckUrl.replace("{0}", cell.Value) + "\" target=\"_blank\" >" + cell.Value + "</a>";
+                        }
+                      }
+                   ],
+            showPager: true,
+            customPager: true,
+            allowTruncate: true,
+            gridExpandHeight: 250,
+            showNumberColumn: true
+        }
+    </script>
+    <script src="~/Scripts/site/ViewLog.js" type="text/javascript"></script>
+}

@@ -1,0 +1,26 @@
+﻿@{
+    var currentSession = Fanex.AffiliateAdmin.Core.Session.SessionManager.CurrentSession;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Scripts.Render("~/bundles/headjs")        
+        @RenderSection("css", required: false)
+    </head>
+    <body>
+        <!--content html-->
+        @RenderBody()      
+        
+        @RenderSection("scripts", required: false)
+        <script type="text/javascript">
+            AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
+                return '@Url.Content("~/")' + relativeUrl;
+            };
+        </script>
+    </body>
+</html>

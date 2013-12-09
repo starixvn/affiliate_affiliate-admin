@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = Lang.ChangeComGroup;
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+@using Fanex.AffiliateAdmin.Core.Mvc
+@using Fanex.AffiliateAdmin.Models 
+
+@model Fanex.AffiliateAdmin.Models.ChangeCommissionGroupViewModel
+
+@Html.HiddenFor(m=>m.Status)
+<span class="information">@Lang.MsgApproveAffiliate</span>     
+<fieldset>
+    <legend>@Lang.Assignee</legend>
+    <div class="row-fluid">
+        <div class="controls-row" style="word-wrap: break-word;">
+            @Model.Usernames
+        </div>
+    </div>
+</fieldset>
+<fieldset>
+    <legend>@Lang.CommissionGroup</legend>
+    <div class="row-fluid">
+        <div class="controls-row span4">
+            @Lang.ChangeGroup:
+        </div>
+        <div class="bold">
+            @Html.DropDownCheckList("GroupId", Model.CommissionGroupOptionList, false, false)
+        </div>
+    </div>
+</fieldset>
+
+<div class="popup-footer">
+    <div class="row-fluid">
+        <button type="submit" id="btnSave" class="btn">@Lang.Save</button>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $('#btnSave').click(function () {
+            parent.AFFMASTER.changeAffInfo($("#GroupId").val(), $("#Status").val());
+        });
+    </script>
+}

@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Fanex.AffiliateAdmin.Core.Utilities
+@model Fanex.AffiliateAdmin.Models.ProductViewModel
+@section iconcss{
+settings
+}
+@section submenu{
+    @RazorHelper.ListSubmenu(SubMenu.Configuration, 2, "configuration")
+}
+<div class="search-panel search-product">
+    <div class="ic-reload" title="@Lang.RefreshPage">
+    </div>
+    @RazorHelper.SearchPanel(".search-form", "Information text", false, false)
+    @using (Html.BeginForm("GetProductList", "Configuration", FormMethod.Post, new { id = "ConfigurationForm", @class = "row-fluid" }))
+    {
+        <div class="span12 search-form">
+            <div class="row-fluid row-form end-search">
+                <div class="cell">
+                    @Html.LabelFor(m => m.Name, Lang.SearchByName)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control width-140", placeholder = Lang.All, maxlength = "100" })
+                </div>
+            </div>
+            <div class="row-fluid row-form btn-action">
+                <div class="span12">
+                    <button type="submit" class="btn btn-default" id="btnSubmit">
+                        @Lang.Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div id="gridId" class="freegrid content-grid" colheight="200" expheight="290">
+</div>
+@section scripts{
+    <script type="text/javascript">
+        var MSG = {
+            AddNewProduct: '@Lang.AddNewProduct',
+            InvalidProduct: '@Lang.InvalidProduct',
+            DeleteProductMsg: '@Lang.DeleteProductMsg',
+            UpdateProduct: '@Lang.UpdateProduct',
+            NoInfo: '@Lang.NoInfo',
+            Remove: '@Lang.Remove',
+            Edit: '@Lang.Edit',
+            Title: "@Lang.ProductList"
+        };
+
+        var gridOption = {
+            showTitle: true,
+            titleInfo:
+            {
+                text: "@Lang.ProductList" + " [{0}]",
+                showAddButton: true,
+                addFunction: function() {
+                    Product.addProduct();
+                }
+            },
+            columns: [
+                { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.Name", Width: 150, Name: "ProductName", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.Description", Width: 200, Name: "Description", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.Creator", Width: 100, Name: "CreatorName", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.CreatedDate", Width: 150, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+                { HeaderText: "@Lang.BettypeList", Width: 150, Name: "BettypeList", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.APIProductID", Width: 100, Name: "API_ProductID", HeaderAlign: "center", CellAlign: "center" },
+                {
+                    HeaderText: "@Lang.Action",
+                    Width: 70,
+                    Name: "Update",
+                    HeaderAlign: "center",
+                    CellAlign: "center",
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        return "<a title='{0}' href='javascript:Product.showProductDlg(".format(MSG.Edit) + record.ProductID + ");'><i class='icon-edit'></i></a>"
+                            + "&nbsp;&nbsp;<a title='{0}' href='javascript:Product.deleteProduct(".format(MSG.Remove) + record.ProductID + ");'><i class='icon-remove'></i></a>";
+                    }
+                }
+            ],
+            gridExpandHeight: 290,
+            allowTruncate: true,
+            indexNumberColumn: 0
+        };
+    </script>
+    <script src="~/Scripts/site/Product.js" type="text/javascript"></script>
+}

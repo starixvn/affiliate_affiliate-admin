@@ -1,0 +1,183 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="QueryService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Johnny.Trinh" date="2013.08.22">Created</change>
+// </history>
+namespace Fanex.AffiliateAdmin.Core.Services
+{
+    using System;
+    using System.Collections.Generic;
+    using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.Common.Helper;
+    using Fanex.Data;
+    using Fanex.NAP.Framework.Data;
+
+    /// <summary>
+    /// Query Service class.
+    /// </summary>
+    public class QueryService : ServiceBase
+    {
+        private readonly IDynamicRepository _repository;
+
+        public QueryService(IDynamicRepository repository = null)
+        {
+            _repository = repository ?? new DynamicRepository();
+        }
+
+        /// <summary>
+        /// Get the list of founded entities.
+        /// </summary>
+        /// <typeparam name="T">General type.</typeparam>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>The list of founded entities.</returns>
+        public virtual IEnumerable<T> GetData<T>(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    return _repository.Fetch<T>(criteria);
+                }
+
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get the list of founded entities and total page.
+        /// </summary>
+        /// <typeparam name="T">General type.</typeparam>
+        /// <param name="criteria">Input criteria.</param>
+        /// <param name="totalPages">Total page.</param>
+        /// <returns>The list of founded entities and total page.</returns>
+        public IEnumerable<T> GetData<T>(ICriteria criteria, ref int totalPages)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        var param = criteria.GetSpParams();
+                        var list = objectDb.Query<T>(param);
+                        totalPages = Convert.ToInt32(param["totalpages"]);
+                        return list;
+                    }
+                }
+
+                return new List<T>();
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                throw;
+            }
+        }
+     
+        /// <summary>
+        /// Get the list of found entities and output values.
+        /// </summary>
+        /// <typeparam name="T">General type.</typeparam>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>The list of found entities and output values.</returns>
+        public IEnumerable<T> GetDataOutput<T>(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                var param = criteria.GetSpParams();
+                var list = objectDb.Query<T>(param);
+                var outputParams = objectDb.GetOuputParams();
+                if (outputParams != null)
+                {
+                    var properties = criteria.GetType().GetProperties();
+
+                    foreach (string outputParam in outputParams.Keys)
+                    {                                                
+                        foreach (var property in properties)
+                        {
+                            if (property.CanWrite && property.Name.ToLower() == outputParam)
+                            {                                
+                                property.SetValue(criteria, param[outputParam], null);                                
+                            }
+                        }
+                    }
+                }
+
+                return list;
+            }            
+        }
+
+        /// <summary>
+        /// Get entity details.
+        /// </summary>
+        /// <typeparam name="T">General type.</typeparam>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>Entity details.</returns>
+        public T GetEntity<T>(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        var param = criteria.GetSpParams();
+                        var result = objectDb.QueryEntity<T>(param);
+                        return result;
+                    }
+                }
+
+                return (T)new object();
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get output values.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        public void ExecuteOutput(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                var param = criteria.GetSpParams();
+                objectDb.ExecuteNonQuery(param);
+
+                var outputParams = objectDb.GetOuputParams();
+                var properties = criteria.GetType().GetProperties();
+                foreach (string outputParam in outputParams.Keys)
+                {
+                    foreach (var property in properties)
+                    {
+                        if (property.CanWrite && property.Name.ToLower() == outputParam)
+                        {
+                            property.SetValue(criteria, param[outputParam] == DBNull.Value ? null : param[outputParam], null);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

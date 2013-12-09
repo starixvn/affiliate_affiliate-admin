@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = Lang.ChangeComGroup;
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+@using Fanex.AffiliateAdmin.Core.Mvc
+@using Fanex.AffiliateAdmin.Models 
+@model Fanex.AffiliateAdmin.Models.ChangeCommissionGroupViewModel
+@{
+    string disabled = Model.CommissionGroupOptionList.Any() ? string.Empty : "disabled=disabled";
+}
+
+@using (Html.BeginForm("ChangeCommissionGroup", "Affiliate", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+     @Html.ValidationSummary()
+     @Html.HiddenFor(m => m.AffIds)
+     @Html.HiddenFor(m => m.Usernames)
+     @Html.HiddenFor(m => m.Currency)
+    <fieldset>
+        <legend>@Lang.Assignee</legend>
+        <div class="row-fluid">
+            <div class="controls-row" style="word-wrap: break-word; display: inline-block; padding: 4px 6px;">
+                @Model.Usernames
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>@Lang.CommissionGroup</legend>
+        <div class="row-fluid">
+            <div class="controls-row span4" style="display: inline-block; padding: 4px 6px;">
+                @Lang.ChangeGroup:
+            </div>
+            <div class="bold">
+                @Html.DropDownCheckList("GroupId", Model.CommissionGroupOptionList, false, false)
+            </div>
+        </div>
+    </fieldset>
+    <div class="popup-footer">
+        <div class="row-fluid">
+            <button type="submit" id="btnUpdate" class="btn" @disabled>@Lang.Update</button>
+            <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/site/AffiliateList.js")" type="text/javascript"></script>
+    @if (ViewBag.Result != null)
+    {
+        var result = (ResultViewModel)ViewBag.Result;
+        <script type="text/javascript">
+            if (parent.AffiliateList != undefined) {
+                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.AffiliateList.ReRenderAfterPaged);
+            }
+            else if(parent[0] != undefined) {
+                 AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent[0].AFFINFO.refreshPage);
+            }
+        </script>
+    }
+}
+

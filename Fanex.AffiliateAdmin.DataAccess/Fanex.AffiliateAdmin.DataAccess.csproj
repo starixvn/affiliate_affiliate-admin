@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DDF3DCFA-4798-48C6-A0FB-C32D627A3C48}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fanex.AffiliateAdmin.DataAccess</RootNamespace>
+    <AssemblyName>Fanex.AffiliateAdmin.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fanex.Common">
+      <HintPath>..\_Dependencies\Fanex.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data">
+      <HintPath>..\_Dependencies\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.NAP.Framework">
+      <HintPath>..\_Dependencies\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Imp\AccountDataAccess.cs" />
+    <Compile Include="Imp\AffiliateDataAccess.cs" />
+    <Compile Include="Imp\GroupDataAccess.cs" />
+    <Compile Include="Imp\HomeDataAccess.cs" />
+    <Compile Include="Imp\MessageDataAccess.cs" />
+    <Compile Include="Interface\IGroupDataAccess.cs" />
+    <Compile Include="Interface\IAffiliateDataAccess.cs" />
+    <Compile Include="Interface\IHomeDataAccess.cs" />
+    <Compile Include="Interface\IAccountDataAccess.cs" />
+    <Compile Include="Interface\IMessageDataAccess.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Core\Fanex.AffiliateAdmin.Core.csproj">
+      <Project>{43399D4B-C46F-4E71-BFE1-8F303B7F9B84}</Project>
+      <Name>Fanex.AffiliateAdmin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Criterias\Fanex.AffiliateAdmin.Criterias.csproj">
+      <Project>{B97E8D03-D5F0-44BA-BA3B-C1D64561C291}</Project>
+      <Name>Fanex.AffiliateAdmin.Criterias</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.DTO\Fanex.AffiliateAdmin.DTO.csproj">
+      <Project>{124861EC-18BE-416D-8DD1-360A51613C76}</Project>
+      <Name>Fanex.AffiliateAdmin.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Models\Fanex.AffiliateAdmin.Models.csproj">
+      <Project>{BD0B5C2D-17B3-443E-ACC5-3A1094FD9B36}</Project>
+      <Name>Fanex.AffiliateAdmin.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

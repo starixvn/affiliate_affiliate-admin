@@ -1,0 +1,58 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="PaymentUpdateCriteria.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Leo.Vo" date="2013.7.31">Created</change>
+// </history>
+
+namespace Fanex.AffiliateAdmin.Criterias
+{
+    using System.ComponentModel.DataAnnotations;
+    using Fanex.NAP.Framework.Data;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class PaymentUpdateCriteria : CriteriaBase
+    {
+        public long TransId { get; set; }
+
+        public string Status { get; set; }
+
+        public int UserId { get; set; }
+
+        public string IP { get; set; }
+
+        [SpParam(SqlParamName = "AdminDesc")]
+        public string AdminRemark { get; set; }
+
+        [SpParam(SqlParamName = "AffDesc")]
+        public string AffRemark { get; set; }
+
+        public long RefNo { get; set; }
+
+        public long IbcRefNo { get; set; }
+
+        public long IbcTransId { get; set; }
+
+        public string IbcUsername { get; set; }
+
+        public string PreferredLang { get; set; }
+
+        public bool MailOption { get; set; }
+
+        public int ErrCode { get; set; }
+
+        public override string GetSettingKey()
+        {
+            return "AffAdmin_PaymentRequestUpd";
+        }
+
+        public override bool IsValid()
+        {
+            return true;
+        }
+    }
+}

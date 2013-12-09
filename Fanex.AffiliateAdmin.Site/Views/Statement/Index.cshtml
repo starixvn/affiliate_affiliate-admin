@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = Lang.EarningsHistory;
+    Layout = "~/Views/Shared/_LayoutFrame.cshtml";
+}
+@using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Core.Mvc
+@using Fanex.AffiliateAdmin.Core.Utilities
+@using System.Web.Script.Serialization
+@model Fanex.AffiliateAdmin.Models.StatementViewModel
+@section iconcss{
+affiliate-info
+}
+@section submenu{
+    @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 0)
+    <div class="line line-statement">
+        <div class="ic-open-window">
+        </div>
+        <div class="ic-reload" title="@Lang.RefreshPage">
+        </div>
+    </div>
+}
+<div class="search-panel search-statement no-border">
+    @RazorHelper.SearchPanel(".search-form", "Information text", false, false)
+    @using (Html.BeginForm("ListStatement", "Statement", FormMethod.Post, new { @class = "row-fluid" }))
+    {
+        <div class="span12 search-form">
+            <div class="row-fluid row-form">
+                <div class="cell">
+                    @Html.LabelFor(m => m.TransType, new { @class = "txt" })
+                    @Html.DropDownCheckList("TransType", Model.TransTypeListItem, false, false, new { @class = "width-140" })
+                </div>
+                <div class="cell">
+                    @Html.LabelFor(m => m.Status, new { @class = "txt" })
+                    @Html.DropDownCheckList("Status", StatementSettings.ListStatus, true, false, new { @class = "width-140" })
+                </div>
+                <div class="cell">
+                    @Html.LabelFor(m => m.BaseCurrency, new { @class = "txt" })
+                    @Html.DropDownCheckList("BaseCurrency", Model.BaseCurrencyListItem, false, false, new { @class = "width-140" })
+                </div>
+            </div>
+            <div class="row-fluid row-form end-search">
+                <div class="cell">
+                    @Html.LabelFor(m => m.DateOption, new { @class = "txt" })
+                    @Html.DropDownCheckList("DateOption", PaymentSettings.ListDateOption, false, false, new { @class = "width-140" })
+                </div>
+                <div class="cell">
+                    @Html.LabelFor(m => m.FromDate, new { @class = "txt" })
+                    @Html.DatePicker("FromDate", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), AppSettings.SystemStartDate, DateTime.Now, true)
+                </div>
+                <div class="cell">
+                    @Html.LabelFor(m => m.ToDate)
+                    @Html.DatePicker("ToDate", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, true)
+                </div>
+            </div>
+            <div class="row-fluid row-form btn-action">
+                <div class="span12">
+                    <button type="submit" class="btn" id="btnSubmit">
+                        @Lang.Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="w-space">
+</div>
+@Html.ValidationSummary()
+<div class="grid-status">
+    <div id="gridId" class="freegrid" colheight="200" expheight="350">
+    </div>
+    <ul class="unstyled inline status">
+        <li><span class="approved"></span>@Lang.Approved/@Lang.BF</li>
+        <li><span class="rejected"></span>@Lang.Rejected</li>
+        <li><span class="pending"></span>@Lang.Proccessing</li>
+        <li><span class="cancelled"></span>@Lang.Cancelled</li>
+    </ul>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        var MSG = {
+            NoEmailSelected: "@Lang.NoEmailSelected",
+            ConfirmDeleteEmail: "@Lang.ConfirmDeleteEmail",
+            Amount: "@Lang.Amount",
+            NoInfo: "@Lang.NoInfo"
+        };
+        var currencySymbol = "@ViewBag.AffCurrencySymbol";
+        var gridOption = {
+            titleInfo:
+            {
+                text: "@Lang.StatementHistory"
+            },
+            columns: [
+                { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.TransactionDate", Width: 100, Name: "TransDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+            {
+                HeaderText: "@Lang.Type",
+                Width: 100,
+                Name: "TransTypeName",
+                HeaderAlign: "center",
+                Formatter:
+                    function(rowIndex, rowData, cell, cellFormated) {
+                        var typeName = '';
+                        for (var index = 0; index < TransType.length; index++) {
+                            if (TransType[index].TypeId == rowData.TransType) {
+                                typeName = TransType[index].TypeName;
+                                break;
+                            }
+                        }
+                        return typeName;
+                    }
+            },
+            {
+                HeaderText: "@Lang.Amount",
+                Width: 120,
+                Name: "Amount",
+                HeaderAlign: "center",
+                CellAlign: "right",
+                FormatNumber: "0,0.00",
+                FormatNegative: '($)',
+                Formatter: function(rowIndex, rowData, cell, cellFormated) {
+                    if (rowData.TransType == 201) {
+                        var href = AFFILIATE.getAbsoluteUrl("Report/CommissionByAffiliate");
+                        var transdate = moment(rowData.TransDate).format(AFFILIATE.DATE_FORMAT_FULL);
+                        href += "?FromDate=" + transdate + "&ToDate=" + transdate;
+                        return "<a href=\"{0}\">".format(href) + numeral(cell.Value).format(AFFILIATE.FORMATNUMBER) + "</a>";
+                    } else if (rowData.TransType == 202) {
+                        return "<a href=\"javascript:STATEMENT.showDetail(" + rowData.TransId + ");\">" + numeral(cell.Value).format(AFFILIATE.FORMATNUMBER) + "</a>";
+                    }
+                    
+                    var currentValue = rowData.Amount;
+                    
+                    if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
+                        if (currentValue < 0) {
+                            currentValue = -1 * currentValue;
+                        }
+
+                        currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
+                    }
+                    
+                    if (rowData.Amount < 0) {
+                        currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
+                    }
+
+                    return currentValue;
+                }
+            },
+            { HeaderText: "@Lang.Status", Width: 80, Name: "Status", HeaderAlign: "center" },
+            { HeaderText: "@Lang.CompletedDate", Width: 115, Name: "CompletedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+            { HeaderText: "@Lang.Creator", Width: 80, Name: "Creator", HeaderAlign: "center" },
+            { HeaderText: "@Lang.Description", Width: 270, Name: "Description", HeaderAlign: "center" }
+        ],
+            gridExpandHeight: 290,
+            showTitle: true,
+            allowTruncate: true,
+            showPager: true,
+            indexNumberColumn: 0,
+            rowCssClass: function(rowIndex, rowData) {
+            return rowData.Status.toLowerCase().replace('/', '');
+        }
+        };
+
+            var TransType = @(MvcHtmlString.Create(new JavaScriptSerializer().Serialize(Model.TransTypeList)));
+    </script>
+    <script src="@Url.Content("~/Scripts/site/Statement.js")" type="text/javascript"></script>
+}

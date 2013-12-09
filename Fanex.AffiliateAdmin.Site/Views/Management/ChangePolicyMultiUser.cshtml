@@ -1,0 +1,71 @@
+﻿@using Fanex.AffiliateAdmin.Models
+@{
+    ViewBag.Title = @Lang.RolePolicy;
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+
+@model Fanex.AffiliateAdmin.Models.PolicyMultiUserViewModel
+<br />
+@Html.ValidationSummary()
+<div id="gridId" class="freegrid"></div>
+@using (Html.BeginForm("ChangePolicyMultiUser", "Management", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+@Html.HiddenFor(m => m.CustIds)
+
+<div class="control-group action-grp">
+    <div class="controls">
+        <button type="submit" id="btnUpdate" class="btn">@Lang.Update</button>
+        <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
+    </div>
+</div>
+<input type="hidden" id="IndividualPolicy" name="IndividualPolicy"/>
+}
+@section scripts{
+    <script type="text/javascript">
+        var gridOption = {
+            customizeHeader: true,
+            groupHeaderRows: [
+                 {
+                     Columns: [
+                            { HeaderText: "@Lang.Function", Name: "FuncDesc", MergeRowNumber: 2 },
+                            { HeaderText: "@Lang.IndividualPermission", Name: "IndividualRead", MergeColNumber: 2 },
+                            { HeaderText: "@Lang.GroupPermission", Name: "GroupRead", MergeColNumber: 2 }
+                        ]
+                 }
+            ],
+            columns: [
+                      { HeaderText: "@Lang.Function", Width: 100, Name: "FuncDesc" },
+                      { HeaderText: "@Lang.Read", Width: 80, Name: "IndividualRead", CellAlign: "center", Formatter:
+                        function (rowIndex, rowData, cell, cellFormated) {
+                            return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' " + ((rowData.GroupHost || rowData.GroupRead || cell.Value) ? "checked=checked" : "") + " />";
+                        }
+                      },
+                      { HeaderText: "@Lang.Host", Width: 80, Name: "IndividualHost", CellAlign: "center", Formatter:
+                        function (rowIndex, rowData, cell, cellFormated) {
+                            return "<input type='checkbox' class='p-check' id='ih_" + rowData.FuncID + "' name='IndividualHost' " + ((rowData.GroupHost || cell.Value) ? "checked=checked" : "") + " />";
+                        }
+                      },
+                      { HeaderText: "@Lang.Read", Width: 80, Name: "GroupRead", CellAlign: "center", Formatter:
+                        function (rowIndex, rowData, cell, cellFormated) {
+                            return "<input type='checkbox' class='p-check' id='gr_" + rowData.FuncID + "' name='GroupRead' " + (cell.Value ? "checked=checked" : "") + " disabled/>";
+                        }
+                      },
+                      { HeaderText: "@Lang.Host", Width: 80, Name: "GroupHost", CellAlign: "center", Formatter:
+                        function (rowIndex, rowData, cell, cellFormated) {
+                            return "<input type='checkbox' class='p-check' id='gh_" + rowData.FuncID + "' name='GroupHost' " + (cell.Value ? "checked=checked" : "") + " disabled/>";
+                        }
+                      }
+                   ],
+            gridExpandHeight: 50,
+            hideYBackGroundScroller: true
+        }
+    </script>
+    <script src="~/Scripts/site/MultiUserPolicy.js" type="text/javascript"></script>
+    @if (ViewBag.Result != null)
+    {
+        var result = (ResultViewModel)ViewBag.Result;
+        <script type="text/javascript">
+            AFFILIATE.showUpdateStatus(@(result.ErrorCode), "@result.Message", parent.Management.ReRenderAfterPaged);
+        </script>
+    }
+}

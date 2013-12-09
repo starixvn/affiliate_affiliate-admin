@@ -1,0 +1,22 @@
+﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+<div>
+    เรียน @(Model.FirstName),
+    <br />
+    <br />
+    @(Model.TransId)
+    หมายเลขการขอถอนเงิน, วันที่ @(Model.WinlostDate.ToString("MM/dd/yyyy")).<br />
+    <br />
+    ราขอแสดงความเสียใจที่จะแจ้งให้คุณทราบว่าการขอถอนเงินของคุณจำนวน @(Model.Amount)
+    ได้ถูกปฎิเสธ<br />
+    <br />
+    กรุณาติดต่อเรา สำหรับข้อมูลเพิ่มเติม<br />
+    <br />
+    อีเมลล์นี้ถูกส่งโดยระบบ กรุณาอย่าตอบกลับอีเมลล์นี้โดยตรง<br />
+    <br />
+    กรุณาอย่าลังเลที่จะติดต่อเรา หากคุณมีคำถามหรือความคิดเห็นเพิ่มเติม<br />
+    <br />
+    ขอแสดงความนับถือ<br />
+    <br />
+    ทีมงานพันธมิตร @(Model.SystemName)<br />
+    <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a>
+</div>

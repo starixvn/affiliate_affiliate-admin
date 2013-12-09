@@ -1,0 +1,52 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="ICommGroupService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Joseph.Pham" date="2013.9.9">Created</change>
+// </history>
+
+namespace Fanex.AffiliateAdmin.Services.Interface
+{
+    using System.Collections.Generic;
+    using Criterias;
+    using DTO;
+    using NAP.Framework.Data;
+
+    /// <summary>
+    /// Interface service.
+    /// </summary>
+    public interface ICommGroupService
+    {
+        /// <summary>
+        /// Execute store procedure.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        void ExecuteOutput(ICriteria criteria);
+
+        /// <summary>
+        /// Get deduction settings.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>List data.</returns>
+        IEnumerable<DeductionSetting> GetDeductionSettings(DeductionSettingCriteria criteria);
+
+        /// <summary>
+        /// Get group details.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>List data.</returns>
+        IEnumerable<CommGroupDetail> GetGroupDetails(CommGroupDetailCriteria criteria);
+
+        /// <summary>
+        /// Get list data.
+        /// </summary>
+        /// <typeparam name="T">DTO generic type.</typeparam>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>List data.</returns>
+        IEnumerable<T> GetListData<T>(ICriteria criteria);
+
+        IEnumerable<CommGroup> GetById(CommGroupSelByIdCriteria criteria);
+    }
+}

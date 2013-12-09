@@ -1,0 +1,70 @@
+﻿@using Fanex.AffiliateAdmin.Core.Configurations
+@{
+    var currentSession = Fanex.AffiliateAdmin.Core.Session.SessionManager.CurrentSession;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/bundles/css")
+    @RenderSection("css", required: false)
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="~/scripts/libraries/jquery.multiselect.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row-fulid">
+            <div class="span12 content w-none">
+                <!--Submenu box-->
+                <div class="row-fluid submenu">                    
+                    <div class="span12 menu">
+                        <div class="span1 icon-submenu @RenderSection("iconcss", required: false)"></div>
+                        @RenderSection("submenu", required: false)
+                    </div>
+                </div>
+                <!--content html-->
+                <div class="row-fluid main-content contentIframe" id="frmBottom">
+                    <div class="span12">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/js")
+
+    @if (currentSession != null)
+    {
+        <script type="text/javascript" src="@Url.Content("~/Scripts/site/RecheckIn.js")"></script>
+    }
+    
+   
+    <script type="text/javascript">
+        $.unblockUI();
+
+        var Lang = {
+            NoDataInfo: '@Html.Raw(Lang.NoInfo)',
+            SubTotal: '@Lang.SubTotal',
+            Total: '@Lang.Total',
+            TotalBaseCurrency: '@Lang.Total (@AppSettings.BaseExchange.Prefix)'
+        };
+
+        var System = {
+            Currency: '@AppSettings.BaseExchange.Code',
+            Prefix: '@AppSettings.BaseExchange.Prefix'
+        };
+
+        AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
+            return '@Url.Content("~/")' + relativeUrl;
+        };
+    </script>
+
+     @RenderSection("scripts", required: false)
+
+</body>
+</html>

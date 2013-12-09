@@ -1,0 +1,277 @@
+﻿ALTER PROCEDURE [dbo].[AffAdmin_MemberStatisticsReport]
+	@UserId int=0, 
+	@AffName NVARCHAR(100) = NULL,
+	@AffTypes varchar(100) = NULL,
+	--@CommGroups varchar(1000) = NULL,
+	@PreferLanguages varchar(1000) = NULL,
+	@Currencies varchar(100) = NULL,
+	@GroupBy tinyint = 0,
+	@FromDate smalldatetime = NULL,
+	@ToDate smalldatetime = NULL,
+	@SortBy tinyint = 0,
+	@ExcludeTest bit = 1,
+	@IsITAdmin bit = 0
+AS
+/*    
+Task : Player Winloss Report     
+DB:    
+Original:[[AffAdmin_MemberStatisticsReport]]
+Revisions:           
+                
+Param's Explanation: 
+• @UserId: Admin user id
+• @AffName: Affiliate username
+• @AffTypes: List affilaite type
+--• @CommGroups: List Commission group
+• @PreferLanguages: list preference language
+• @Currencies: List currencies
+• @GroupBy: by date or month (0: by All; 1: by Date; 2: By Month)
+• @FromDate: From date
+• @ToDate: To date
+• @SortBy: 
+	- 0: Affiliate
+	- 1: Sign Up
+	- 2: Active
+• @ExcludeTest: not include test accounts if true.
+• @@IsITAdmin: Is IT Account.
+*/    
+SET NOCOUNT ON 
+
+
+Declare @LastDateSum smalldatetime
+if(@FromDate > @ToDate)
+	return
+
+Declare @AffList as table(AffId int, Username varchar(50), AffType varchar(50), Language nvarchar(255), Currency varchar(5), status varchar(50))
+
+insert INTO @AffList(AffId, Username, AffType, Language, Currency, Status)
+Select AffId, Username, AffType, Language, Currency, Status
+from [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, null, @PreferLanguages, @Currencies, @ExcludeTest, @IsITAdmin) 
+
+Declare @Result as table(AffId int, Username varchar(50), DateClick datetime, AffType varchar(50), Language nvarchar(255), Currency varchar(5), status varchar(50)
+			, TotalClick int, UniqueClick int, Signups int, FDM int)
+
+select @LastDateSum = (select MAX(Date) from ClickStatisticsSum)
+
+select @LastDateSum = isnull(@LastDateSum, dateadd(d, -1, @FromDate))
+		, @FromDate = [dbo].[Aff_GetStartDate](@FromDate)
+
+IF(@GroupBy = 0)--Reset from date from system start and Current date (All data)
+Begin
+	Select @FromDate = cast((select top(1) SValue from SystemSettings(nolock) where Type='Meta' and SName='SystemStartDate') as smalldatetime )
+			, @ToDate = current_timestamp
+End
+
+
+if (@LastDateSum < @FromDate)--get from main table
+Begin
+	insert into @Result	
+	Select 
+		t.AffId,
+		Username,
+		Date,
+		AffType,
+		Language,
+		Currency,
+		t.Status,
+		sum(ClickCount) as TotalClick,
+		count(distinct IP) as UniqueClick,
+		SUM(isnull(Signups, 0)) as Signups,
+		SUM(isnull(FDM, 0)) as  FDM
+	from ClickStatistics c with(nolock) 
+		INNER JOIN @AffList as t on c.AffId = t.AffId
+		left join 
+			(Select ClickId, 
+				SUM(case when m.RegisteredDate is not null then 1 else 0 end) as Signups,
+				SUM(case when m.CreatedDate is not null then 1 else 0 end) as  FDM 
+			from MemberInfo m with (nolock) 
+			where RegisteredDate between @FromDate and @ToDate--For month that is not sum click
+				or CreatedDate between @FromDate and @ToDate
+			group by ClickId
+			) as m on c.ClickId = m.ClickId
+	where [Date] between @FromDate and @ToDate
+	group by t.AffId, Username, Date, AffType, Language, Currency, t.Status
+	--[Date] in group by to calculate unique click
+End
+else if (@LastDateSum > @ToDate)--get from summary table
+Begin
+	insert into @Result
+	Select 
+		t.AffId,
+		Username,
+		Date,
+		AffType,
+		Language,
+		Currency,
+		Status,
+		sum(TotalClick) as TotalClick,
+		sum(UniqueClick) as UniqueClick,
+		sum(TotalSignup) as Signups,
+		sum(TotalDeposit) as FDM
+	from ClickStatisticsSum c with(nolock) 
+		INNER JOIN @AffList as t on c.AffId = t.AffId
+	where [Date] between @FromDate and @ToDate
+	group by t.AffId, Username, Date, AffType, Language, Currency, Status
+	order by Username, Date
+End
+else--@fromdate < @LastDateSum < @ToDate
+Begin
+	insert into @Result
+	select	AffId,
+			Username,
+			Date,
+			AffType,
+			Language,
+			Currency,
+			Status,
+			sum(TotalClick) as TotalClick,
+			sum(UniqueClick) as UniqueClick,
+			sum(Signups) as Signups,
+			sum(FDM) as FDM
+	from 
+		(
+		Select 
+			t.AffId,
+			Username,
+			Date,
+			AffType,
+			Language,
+			Currency,
+			t.Status,
+			sum(TotalClick) as TotalClick,
+			sum(UniqueClick) as UniqueClick,
+			sum(TotalSignup) as Signups,
+			sum(TotalDeposit) as FDM
+		from ClickStatisticsSum c with(nolock) 
+			INNER JOIN @AffList as t on c.AffId = t.AffId
+		where [Date] between @FromDate and @LastDateSum
+		group by t.AffId, Username, Date, AffType, Language, Currency, t.Status
+
+		Union All
+
+		Select 
+			t.AffId,
+			Username,
+			Date,
+			AffType,
+			Language,
+			Currency,
+			t.Status,
+			sum(ClickCount) as TotalClick,
+			count(distinct IP) as UniqueClick,
+			SUM(isnull(Signups, 0)) as Signups,
+			SUM(isnull(FDM, 0)) as  FDM
+		from ClickStatistics c with(nolock) 
+			INNER JOIN @AffList as t on c.AffId = t.AffId
+			left join 
+				(Select ClickId, 
+					SUM(case when m.RegisteredDate is not null then 1 else 0 end) as Signups,
+					SUM(case when m.CreatedDate is not null then 1 else 0 end) as  FDM 
+				from MemberInfo m with (nolock) 
+				where RegisteredDate between @FromDate and @ToDate--For month that is not sum click
+						or CreatedDate between @FromDate and @ToDate
+				group by ClickId
+				) as m on c.ClickId = m.ClickId
+		where [Date] between @FromDate and @ToDate
+		group by t.AffId, Username, Date, AffType, Language, Currency, t.Status
+		) tmp
+	group by AffId, Username, Date, AffType, Language, Currency, Status
+End
+
+
+IF (@GroupBy = 0)-- By All (Affiliate)
+Begin
+	Select	r.AffId,
+			Username,
+			--Date,
+			AffType,
+			Language,
+			Currency,
+			Status,
+			Sum(TotalClick) as TotalClick,
+			Sum(UniqueClick) as UniqueClick,
+			Sum(Signups) as Signups,
+			Sum(FDM) as FDM,
+			Sum(Signups - FDM) as NonDeposit,
+			Sum(isnull(tmp.ActivePlayers, 0)) as ActivePlayers
+	From @Result as r
+		LEFT JOIN 
+			(SELECT AffId, COUNT(IBCCustId) as ActivePlayers
+			From MemberDaily WITH (NOLOCK) 
+			where Turnover > 0
+			GROUP  by AffID
+			) as tmp on r.AffId = tmp.AffId
+	Group BY r.AffId, Username, AffType, Language, Currency, Status
+	order BY 
+			(CASE 
+				WHEN @SortBy = 1 THEN Sum(Signups)
+				WHEN @SortBy = 2 THEN Sum(tmp.ActivePlayers)
+			END) desc, r.Username
+End
+ELSE IF (@GroupBy = 1)-- By Date
+Begin
+	Select	r.AffId,
+			Username,
+			r.DateClick,
+			AffType,
+			Language,
+			Currency,
+			Status,
+			TotalClick,
+			UniqueClick,
+			Signups,
+			FDM,
+			(Signups - FDM) as NonDeposit,
+			isnull(tmp.ActivePlayers, 0) as ActivePlayers
+	From @Result as r
+		LEFT JOIN 
+			(SELECT AffID, COUNT(IBCCustId) as ActivePlayers, WinlostDate
+			From MemberDaily WITH (NOLOCK) 
+			where Winlostdate between @FromDate and @ToDate
+				AND Turnover > 0
+			GROUP  by AffID, Winlostdate
+			) as tmp on r.AffId = tmp.AffId and r.DateClick = tmp.Winlostdate
+	order BY 
+			(CASE 
+				WHEN @SortBy = 1 THEN Signups
+				WHEN @SortBy = 2 THEN tmp.ActivePlayers
+			END), r.Username
+End
+ELSE IF (@GroupBy = 2)-- By Month
+Begin
+	Select	r.AffId,
+			Username,
+			dateadd(m, datediff(m, 0, r.DateClick), 0) as DateClick,
+			AffType,
+			Language,
+			Currency,
+			Status,
+			Sum(TotalClick) as TotalClick,
+			Sum(UniqueClick) as UniqueClick,
+			Sum(Signups) as Signups,
+			Sum(FDM) as FDM,
+			Sum(Signups - FDM) as NonDeposit,
+			Sum(isnull(tmp.ActivePlayers, 0)) as ActivePlayers
+	From @Result as r
+		LEFT JOIN 
+			(SELECT AffID
+				, COUNT(IBCCustId) as ActivePlayers
+				, dateadd(m, datediff(m, 0, Winlostdate), 0) as WinlostDate					
+			From MemberDaily WITH (NOLOCK) 
+			where Winlostdate between @FromDate and @ToDate
+				AND Turnover > 0
+			GROUP  by AffID, dateadd(m, datediff(m, 0, Winlostdate), 0)
+			) as tmp on r.AffId = tmp.AffId and r.DateClick = tmp.Winlostdate
+	Group By r.AffId, Username, dateadd(m, datediff(m, 0, r.DateClick), 0), AffType, Language, Currency, Status
+	order BY 
+			(CASE 
+				WHEN @SortBy = 1 THEN Sum(Signups)
+				WHEN @SortBy = 2 THEN Sum(tmp.ActivePlayers)
+			END) desc, r.Username
+End
+
+
+GO
+GRANT EXECUTE ON [dbo].[AffAdmin_MemberStatisticsReport] TO [bodbAdminNet] AS [dbo]
+GO
+GRANT VIEW DEFINITION ON [dbo].[AffAdmin_MemberStatisticsReport] TO [vnteam] AS [dbo]

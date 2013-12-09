@@ -1,0 +1,103 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="PlayerWinloss.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2013.11.6">Created</change>
+// </history>
+
+namespace Fanex.AffiliateAdmin.DTO
+{
+    using System;
+
+    /// <summary>
+    /// Player win loss class.
+    /// </summary>
+    public class PlayerWinloss
+    {
+        public DateTime WinlostDate { get; set; }
+
+        public string Username { get; set; }
+
+        public string Currency { get; set; }
+
+        public string PlayerUsername { get; set; }
+
+        public string PlayerCurrency { get; set; }
+
+        public double? ExRate { get; set; }
+
+        public decimal? Deposit { get; set; }
+
+        public decimal? Withdrawal { get; set; }
+
+        public decimal? Bonus { get; set; }
+
+        public decimal? PSP { get; set; }
+
+        public decimal? Adjustment { get; set; }
+
+        public decimal? SportsBookTurnover { get; set; }
+
+        public decimal? NumberGameTurnover { get; set; }
+
+        public decimal? LiveCasinoTurnover { get; set; }
+
+        public decimal? RNGCasinoTurnover { get; set; }
+
+        public decimal? TotalTurnover { get; set; }
+
+        public decimal? SportsBookWinlost { get; set; }
+
+        public decimal? NumberGameWinlost { get; set; }
+
+        public decimal? LiveCasinoWinlost { get; set; }
+
+        public decimal? RNGCasinoWinlost { get; set; }
+
+        public decimal? TotalWinlost { get; set; }
+
+        public int? BetCount { get; set; }
+
+        public double? DepositBase { get; set; }
+
+        public double? WithdrawalBase { get; set; }
+
+        public double? BonusBase { get; set; }
+
+        public double? PSPBase { get; set; }
+
+        public double? AdjustmentBase { get; set; }
+
+        public double? SportsBookTurnoverBase { get; set; }
+
+        public double? NumberGameTurnoverBase { get; set; }
+
+        public double? LiveCasinoTurnoverBase { get; set; }
+
+        public double? RNGCasinoTurnoverBase { get; set; }
+
+        public double? TotalTurnoverBase { get; set; }
+
+        public double? SportsBookWinlostBase { get; set; }
+
+        public double? NumberGameWinlostBase { get; set; }
+
+        public double? LiveCasinoWinlostBase { get; set; }
+
+        public double? RNGCasinoWinlostBase { get; set; }
+
+        public double? TotalWinlostBase { get; set; }
+
+        public decimal? CustomerWinlost
+        {
+            get { return -TotalWinlost; }
+        }
+
+        public double? CustomerWinlostBase 
+        {
+            get { return -TotalWinlostBase;  }
+        }
+    }
+}

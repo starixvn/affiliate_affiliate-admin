@@ -1,0 +1,85 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="UnderMaintenanceService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Kaden.Trinh" date="2013.06.05">Created</change>
+//   <change who="Johnny.Trinh" date="2013.07.03">Created</change>
+// </history>
+
+namespace Fanex.AffiliateAdmin.Core.Services
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.Caching;
+    using System.Text;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Sunplus.UMControllerLibrary;
+
+    /// <summary>
+    /// Under Maintenance Service.
+    /// </summary>
+    public class UnderMaintenanceService
+    {
+        /// <summary>
+        /// Time Cache in Seconds.
+        /// </summary>
+        private const int _TimeCacheUM = 30;
+
+        /// <summary>
+        /// Cache maintenance.
+        /// </summary>
+        private static MemoryCache _memoryCache = MemoryCache.Default;
+
+        /// <summary>
+        /// Gets Down time.
+        /// </summary>
+        /// <param name="startTime">Start Time of Down time.</param>
+        /// <param name="endTime">End Time of Down time.</param>
+        /// <returns>Return down time.</returns>
+        public static bool GetDownTime(ref string startTime, ref string endTime)
+        {
+            startTime = endTime = null;
+            DateTime now = DateTime.Now;
+            if (now >= AppSettings.UM_StartTime && now <= AppSettings.UM_EndTime)
+            {
+                startTime = AppSettings.UM_StartTime.ToString("hh:mm tt");
+                endTime = AppSettings.UM_EndTime.ToString("hh:mm tt");
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(AppSettings.LBUrl))
+            {
+                return false;
+            }
+
+            var maintenanceController = new UMBusiness();
+            bool underMaintenance = false;  
+
+            if (_memoryCache["IsUM"] == null)
+            {
+                try
+                {
+                    ////Get Affiliate Site UM Status
+                    underMaintenance = maintenanceController.isUnderMaintainence(Sites.Affiliate, AppSettings.LBUrl, ref startTime, ref endTime);
+                    _memoryCache.Add("IsUM", underMaintenance, DateTime.Now.AddSeconds(_TimeCacheUM));
+                    _memoryCache.Add("StartTime", startTime, DateTime.Now.AddSeconds(_TimeCacheUM));
+                    _memoryCache.Add("EndTime", endTime, DateTime.Now.AddSeconds(_TimeCacheUM));
+                }
+                catch
+                {
+                }
+            }
+            else
+            {
+                underMaintenance = Convert.ToBoolean(_memoryCache["IsUM"]);
+                startTime = Convert.ToString(_memoryCache["StartTime"]);
+                endTime = Convert.ToString(_memoryCache["EndTime"]);
+            }
+
+            return underMaintenance;
+        }
+    }
+}

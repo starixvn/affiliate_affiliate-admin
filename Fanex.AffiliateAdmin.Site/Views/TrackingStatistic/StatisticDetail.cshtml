@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "ReferrerDetail";
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+
+@using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.DTO
+
+@model Fanex.AffiliateAdmin.Models.TrackingStatisticDetailViewModel
+@Html.HiddenFor(m=>m.SportCode)
+@Html.HiddenFor(m=>m.LanguageCode)
+@Html.HiddenFor(m=>m.Domain)
+@Html.HiddenFor(m=>m.FromDate)
+@Html.HiddenFor(m=>m.ToDate)
+
+<div id="gridId" class="freegrid content-grid"></div>
+
+@section scripts{
+    <script type="text/javascript">
+        var MSG = {
+            NoInfo: "@Lang.NoInfo"
+        };
+        var gridOption = {
+            showTitle: true,
+
+            titleInfo:
+            {
+                text: "@Lang.TrackingStatistics"
+            },
+            columns: [
+                { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.SiteUrl", Width: 350, Name: "UrlReferrer", HeaderAlign: "center" },
+                { HeaderText: "@Lang.TotalClicks", Width: 80, Name: "TotalClick", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "@Lang.UniqueClicks", Width: 80, Name: "UniqueClick", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "@Lang.Signups", Width: 80, Name: "Signups", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "@Lang.FDM", Width: 80, Name: "FDM", HeaderAlign: "center", CellAlign: "right" }
+            ],
+            showPager: true,
+            customPager: true,
+            allowTruncate: true,
+            gridExpandHeight: 10,
+            showNumberColumn: true
+        };
+    </script>
+    <script src="~/Scripts/site/TrackingStatisticDetail.js" type="text/javascript"></script>
+}

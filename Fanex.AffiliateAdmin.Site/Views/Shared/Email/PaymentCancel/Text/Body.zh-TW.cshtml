@@ -1,0 +1,18 @@
+﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+<div>
+    尊敬的@(Model.FirstName),
+    <br />
+    <br />
+    提款單號@(Model.TransId)，日期@(Model.WinlostDate.ToString("MM/dd/yyyy")。<br />
+    <br />
+    非常遺憾的通知您，您金額為@(Model.Amount)的提款申請未獲核准。
+    <br />
+    <br />
+    請發送諮詢郵件至<a href="mailto:@(Model.CsdEmail)">@(Model.CsdEmail)</a>獲知詳情.<br />
+    這是一封系統郵件，請不要在此郵件基礎上直接回复.<br />
+    <br />
+    誠摯的,<br />
+    <br />
+    @(Model.SystemName)合作夥伴團隊<br />
+    <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a>
+</div>

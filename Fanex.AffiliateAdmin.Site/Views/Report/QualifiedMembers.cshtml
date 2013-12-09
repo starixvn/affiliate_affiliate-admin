@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Qualified Members";
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";   
+}
+@using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.DTO
+@using Fanex.AffiliateAdmin.Models
+@using Fanex.AffiliateAdmin.Core.Mvc
+@using Fanex.AffiliateAdmin.Core.Configurations
+@using System.Linq
+
+@model IEnumerable<QualifiedMember>
+
+<div class="freegrid" style="display: block; border: 0px">
+<div class="col_header">
+<table class="grid-fixed-table col_header_content" style="width:100%">
+    <thead>
+        <tr style="height:24px">
+        <th rowspan="2" width="60px">#</th>
+        <th rowspan="2" width="150px">@Lang.Member</th>
+        <th rowspan="2" width="100px">@Lang.PlayerCurrency</th>
+        <th rowspan="2">@Lang.QualifiedAmount (@AppSettings.BaseExchange.Prefix)</th>        
+        <th colspan="@(AppSettings.Products.Count())">@Lang.Turnover  (@AppSettings.BaseExchange.Prefix)</th>
+        </tr>
+        <tr style="height:24px">
+        @foreach (var product in AppSettings.Products)
+        {
+            <th>@product.ProductName</th>    
+        }        
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model == null || Model.Count() == 0)
+    {
+        var colspan = 4 + AppSettings.Products.Count();
+        <tr>
+        <td class="noinfo" colspan="@colspan">@Lang.NoInfo</td>
+        </tr>
+    }
+    else
+    {            
+        var count = 1;
+        var className = "";
+        var totalData = new Dictionary<int, int>();    
+        
+    foreach (QualifiedMember member in Model)
+    {
+        className = count % 2 == 1 ? "freegrid-odd" : "freegrid-even";        
+        <tr class="@className" style="height:21px">                    
+        <td align="center">@(count++)</td>
+        <td class="">@member.Username</td>    
+        <td class="" align="center">@member.Currency</td>    
+        <td class="" align="right">@member.QualifiedAmount.ToString("00.00")</td>    
+        @foreach (var product in AppSettings.Products)
+        {
+            var turnover = (double)@member.GetPropertyValue(product.ProductName.Replace(" ", "") + "Turnover");
+            var isQualified = (decimal)turnover > member.QualifiedAmount;
+            var style = isQualified ? "style=color:green" : null;
+            if (!totalData.ContainsKey(product.ProductID))
+                totalData.Add(product.ProductID, isQualified ? 1 : 0);
+            else
+                totalData[product.ProductID] += isQualified ? 1 : 0;
+            <td class="" width="100px" align="right" @style >@turnover</td>    
+        }
+        </tr>
+    }
+    
+    <!-- Total row -->
+    <tr class="total-whole-range" style="height:21px; border-top: 2px solid red">
+        <td colspan="4" align="center">@Lang.TotalQM</td>
+        @foreach (var product in AppSettings.Products)
+        {
+            <td class="" width="100px" align="right">@totalData[product.ProductID]</td>
+        }
+    </tr>
+    }
+    </tbody>
+</table>
+</div>
+
+</div>
+
+@section css{    
+    <style>        
+        .box-insite
+        {
+            border: 1px solid #CACACA;
+        }
+    </style>
+}

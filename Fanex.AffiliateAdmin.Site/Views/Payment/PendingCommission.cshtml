@@ -1,0 +1,118 @@
+﻿@using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.Models
+@using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Core.Mvc
+@model PendingCommissionViewModel
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section iconcss{
+payment
+}
+@section submenu{
+    @RazorHelper.ListSubmenu(SubMenu.Payment, 1, "payment")
+}
+<div class="search-panel search-payment">
+    <div class="ic-reload" title="@Lang.RefreshPage">
+    </div>
+    @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
+    <form class="row-fluid" id="SearchForm">
+    <div class="span12 search-form">
+        <div class="row-fluid row-form">
+            <div class="cell">
+                @Html.LabelFor(m => m.Username, new { @class = "txt" })
+                @Html.TextBoxFor(m => m.Username, new { placeholder = Lang.All, @class = "width-140", maxlength = "100" })
+            </div>
+            <div class="cell">
+                @Html.LabelFor(m => m.AffType, new { @class = "txt" })
+                @Html.DropDownCheckList("AffType", new SelectList(AppSettings.AffTypes, "TypeID", "Name"), true, true, new { @class = "width-140" })
+            </div>
+            <div class="cell">
+                @Html.LabelFor(m => m.CommGroup, new { @class = "txt" })
+                @Html.DropDownCheckList("CommGroup", Model.CommissionGroupOptionList, true, true, new { @class = "width-140" })
+            </div>
+            <div class="cell">
+                @Html.LabelFor(m => m.Language, new { @class = "txt auto" })
+                @Html.DropDownCheckList("Language", Model.PreferLanguageOptionList, true, true, new { @class = "width-140" })
+            </div>
+        </div>
+        <div class="row-fluid row-form">
+            <div class="cell">
+                @Html.LabelFor(m => m.Currency, new { @class = "txt" })
+                @Html.DropDownCheckList("Currency", Model.AffiliateCurrencyOptionList, true, true, new { @class = "width-140" })
+            </div>
+            <div class="cell">
+                @Html.LabelFor(m => m.BaseCurrency, new { @class = "txt" })
+                @Html.DropDownCheckList("BaseCurrency", Model.BaseCurrencyOptionList, false, false, new { @class = "width-140" })
+            </div>
+            <div class="cell">
+                <label for="SortBy" class="txt">@Lang.SortBy</label>
+                <select id="MemberType" class="width-140 single-select dropdownchecklist">
+                    <option value="0">@Lang.Affiliate</option>
+                    <option value="1">@Lang.Commission</option>
+                </select>
+            </div>
+            <div class="cell">
+                <label class="checkbox txt">
+                    @Html.CheckBoxFor(m => m.ExcludeTest)
+                    @Html.LabelFor(m => m.ExcludeTest)
+                </label>
+            </div>
+        </div>
+        <div class="row-fluid row-form btn-action">
+            <div class="span12">
+                <button type="submit" class="btn" id="btnSubmit">
+                    @Lang.Submit
+                </button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+<div class="grid-status">
+    <div id="gridId" class="freegrid" colheight="230" expheight="380"></div>
+    <ul class="unstyled inline status">
+        <li><span class="approved"></span>@Lang.Approved</li>
+        <li><span class="rejected"></span>@Lang.Rejected</li>
+        <li><span class="pending"></span>@Lang.Proccessing</li>
+        <li><span class="cancelled"></span>@Lang.Cancelled</li>
+    </ul>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        var columnsBase = [
+            { HeaderText: "#", Width: 40, Name: "RowID", CellAlign: "center" },
+            { HeaderText: "@Lang.TransId", Width: 72, Name: "Transid", HeaderAlign: "center", CellAlign: "center", Formatter: formatTransId },
+            { HeaderText: "@Lang.Username", Width: 150, Name: "Username", HeaderAlign: "center" },
+            { HeaderText: "@Lang.AffType", Width: 90, Name: "AffType", HeaderAlign: "center" },
+            { HeaderText: "@Lang.Status", Width: 100, Name: "Status" },
+            { HeaderText: "@Lang.UpdatedBy", Width: 120, Name: "Creator" },
+            { HeaderText: "@Lang.DateRequest", Width: 140, Name: "Transdate", HeaderAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL, CellAlign: "center" },
+            { HeaderText: "@Lang.CompletedDate", Width: 140, Name: "Completeddate", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL, CellAlign: "center" },
+            { HeaderText: "@Lang.Currency", Width: 105, Name: "Currency", HeaderAlign: "center", CellAlign: "center" }
+        ];
+        var columnAmount = { HeaderText: "@Lang.Amount", Width: 220, Name: "Amt", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER };
+        var HeaderText = "@Lang.Amount";
+
+        var gridOption = {
+            showTitle: true,
+            titleInfo:
+            {
+                text: "@Lang.Payment"
+            },
+            rowCssClass: function(rowIndex, rowData) {
+                return rowData.Status.toLowerCase();
+            },
+            showPager: true,
+            gridExpandHeight: 380,
+            showNumberColumn: true,
+            showFooter: true
+        };
+
+        function formatTransId(rIndex, record, cell, cellFormated) {
+            return '<a href="javascript:Payment.updatePayment(' + cell.Value + ')">' + cell.Value + '</a>';
+        }
+    </script>
+    @*<script src="~/Scripts/site/Payment.js" type="text/javascript"></script>*@
+}

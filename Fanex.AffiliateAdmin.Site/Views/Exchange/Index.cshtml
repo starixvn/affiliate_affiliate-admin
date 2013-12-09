@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.DTO
+@using Fanex.AffiliateAdmin.Core.Mvc
+@using Fanex.AffiliateAdmin.Core.Configurations
+
+@section iconcss{
+exchange-rate
+}
+@section submenu{
+    @RazorHelper.ListSubmenu(SubMenu.Exchange, 0, "currency")
+}
+<div class="search-panel" style="width: 1000px">
+    <div class="ic-reload" title="@Lang.RefreshPage">
+    </div>
+    @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
+    <form class="row-fluid" id="SearchForm">
+    <div class="span12 search-form">
+        <div class="row-fluid row-form end-search">
+            <div class="cell">
+                @Html.DatePicker("Time", DateTime.Now, AppSettings.SystemStartDate,DateTime.Now)
+                <button type="button" id="btnSubmit" class="btn btn-default" style="vertical-align: top">@Lang.Submit</button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+<div class="grid-status">
+<div id="gridId" class="freegrid" colheight="200" expheight="290"></div>
+<br />
+<p id="notification-header" class="hide text-error">
+    * @Lang.DropLastZeroDigits
+</p>
+<div id="notification" class="text-error">
+</div>
+</div>
+@section scripts{
+    <script>
+        var MSG = {
+            SelRate: "@Lang.SelRate",
+            NoInfo: "@Lang.NoInfo",
+            ConfirmCopyRate: "@Lang.ConfirmCopyRate",
+            Title: "@Lang.ExchangeRate"
+        };
+        var formatter = function (rowIndex, rowData, cell, cellFormated) {
+            var className = cell.Name == rowData.Code ? "c" : "linkpopup";
+            return "<div class='" + className + "' data-exchangeid='" + rowData.ExchangeID +
+                "' data-codefrom='" + rowData.Code +
+                "' data-codeto='" + cell.Name +
+                "' data-rate='" + cellFormated + "'>" + cellFormated + "</div>";
+        };
+        var formatNumber = "0,0.00000";
+        var gridOption = {
+            showTitle: true,
+            titleInfo:
+            {
+                text: "@Lang.ExchangeRate",
+                customButtons: "<input type='button' name='btnCopy' value='' title='@Lang.CopyRateMarket' class='btnCopy icon-add-config' id='btnCopy'>"
+            },
+            columns: [
+                        { HeaderText: "", Width: 30, Name: "a", HeaderAlign: "center", CellAlign: "center",
+                            Formatter: function (rowIndex, rowData, cell, cellFormated)
+                            { return "<input class='check' type='checkbox' data-mid='" + rowData.ExchangeID + "' />"; }
+                        },
+                        { HeaderText: "#", Width: 30, Name: "b", HeaderAlign: "center", CellAlign: "center" },
+                        { HeaderText: "@Lang.Currency", Width: 70, Name: "Code", HeaderAlign: "center", CellAlign: "center" },
+                        { HeaderText: "AUD @Lang.rate_", Width: 80, Code: "AUD", Name: "AUD", HeaderAlign: "center", CellAlign: "center", Formatter: formatter, FormatNumber: formatNumber },
+                        { HeaderText: "AUD @Lang.MarketRate", Width: 80, Code: "AUD", Name: "AUD_Market", HeaderAlign: "center", CellAlign: "center", FormatNumber: formatNumber },
+                        { HeaderText: "CHF @Lang.rate_", Width: 80, Code: "CHF", Name: "CHF", HeaderAlign: "center", CellAlign: "center", Formatter: formatter, FormatNumber: formatNumber },
+                        { HeaderText: "CHF @Lang.MarketRate", Width: 80, Code: "CHF", Name: "CHF_Market", HeaderAlign: "center", CellAlign: "center", FormatNumber: formatNumber },
+                        { HeaderText: "CNY @Lang.rate_", Width: 80, Code: "CNY", Name: "CNY", HeaderAlign: "center", CellAlign: "center", Formatter: formatter, FormatNumber: formatNumber },
+                        { HeaderText: "CNY @Lang.MarketRate", Width: 80, Code: "CNY", Name: "CNY_Market", HeaderAlign: "center", CellAlign: "center", FormatNumber: formatNumber },
+                        { HeaderText: "EUR @Lang.rate_", Width: 80, Code: "EUR", Name: "EUR", HeaderAlign: "center", CellAlign: "center", Formatter: formatter, FormatNumber: formatNumber },
+                        { HeaderText: "EUR @Lang.MarketRate", Width: 80, Code: "EUR", Name: "EUR_Market", HeaderAlign: "center", CellAlign: "center", FormatNumber: formatNumber },
+                        { HeaderText: "GBP @Lang.rate_", Width: 80, Code: "GBP", Name: "GBP", HeaderAlign: "center", CellAlign: "center", Formatter: formatter, FormatNumber: formatNumber },
+                        { HeaderText: "GBP @Lang.MarketRate", Width: 80, Code: "GBP", Name: "GBP_Market", HeaderAlign: "center", CellAlign: "center", FormatNumber: formatNumber },
+                        { HeaderText: "IDR @Lang.rate_", Width: 80, Code: "IDR", Name: "IDR", HeaderAlign: "center", CellAlign: "center", Formatter: formatter, FormatNumber: formatNumber },
+                        { HeaderText: "IDR @Lang.MarketRate", Width: 80, Code: "IDR", Name: "IDR_Market", HeaderAlign: "center", CellAlign: "center", FormatNumber: formatNumber },
+                        { HeaderText: "MYR @Lang.rate_", Width: 80, Code: "MYR", Name: "MYR", HeaderAlign: "center", CellAlign: "center", Formatter: formatter, FormatNumber: formatNumber },
+                        { HeaderText: "MYR @Lang.MarketRate", Width: 80, Code: "MYR", Name: "MYR_Market", HeaderAlign: "center", CellAlign: "center", FormatNumber: formatNumber },
+                        { HeaderText: "SGD @Lang.rate_", Width: 80, Code: "SGD", Name: "SGD", HeaderAlign: "center", CellAlign: "center", Formatter: formatter, FormatNumber: formatNumber },
+                        { HeaderText: "SGD @Lang.MarketRate", Width: 80, Code: "SGD", Name: "SGD_Market", HeaderAlign: "center", CellAlign: "center", FormatNumber: formatNumber },
+                        { HeaderText: "THB @Lang.rate_", Width: 80, Code: "THB", Name: "THB", HeaderAlign: "center", CellAlign: "center", Formatter: formatter, FormatNumber: formatNumber },
+                        { HeaderText: "THB @Lang.MarketRate", Width: 80, Code: "THB", Name: "THB_Market", HeaderAlign: "center", CellAlign: "center", FormatNumber: formatNumber },
+                        { HeaderText: "USD @Lang.rate_", Width: 80, Code: "USD", Name: "USD", HeaderAlign: "center", CellAlign: "center", Formatter: formatter, FormatNumber: formatNumber },
+                        { HeaderText: "USD @Lang.MarketRate", Width: 80, Code: "USD", Name: "USD_Market", HeaderAlign: "center", CellAlign: "center", FormatNumber: formatNumber },
+                        { HeaderText: "UUS @Lang.rate_", Width: 80, Code: "UUS", Name: "UUS", HeaderAlign: "center", CellAlign: "center", Formatter: formatter, FormatNumber: formatNumber },
+                        { HeaderText: "UUS @Lang.MarketRate", Width: 80, Code: "UUS", Name: "UUS_Market", HeaderAlign: "center", CellAlign: "center", FormatNumber: formatNumber },
+                        { HeaderText: "VND @Lang.rate_", Width: 80, Code: "VND", Name: "VND", HeaderAlign: "center", CellAlign: "center", Formatter: formatter, FormatNumber: formatNumber },
+                        { HeaderText: "VND @Lang.MarketRate", Width: 80, Code: "VND", Name: "VND_Market", HeaderAlign: "center", CellAlign: "center", FormatNumber: formatNumber },
+                        { HeaderText: "@Lang.AutoUpdate", Width: 100, Name: "IsAutoRefresh", HeaderAlign: "center", CellAlign: "center",
+                            Formatter: function (rowIndex, rowData, cell, cellFormated)
+                            { return "<input class='autoupdate' type='checkbox' " + (rowData.IsAutoRefresh ? "checked='checked'" : null) + " data-id='" + rowData.ExchangeID + "' />"; }
+                        }
+                   ],
+            showPager: false,
+            customPager: true,
+            allowTruncate: true,
+            gridExpandHeight: 290,
+            numberOfFrozenColumn: 3,
+            headerColumnHeight: 38,
+            indexNumberColumn: 1
+        }
+        $(function () {
+            EXCHANGE.init();
+        });
+    </script>
+    <script src="@Url.Content("~/Scripts/site/Exchange.js")" type="text/javascript"></script>
+}

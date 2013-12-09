@@ -1,0 +1,19 @@
+﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+<div>
+    Kính gửi @(Model.FirstName),<br />
+    <br />
+    Bạn đã gửi cho chúng tôi yêu cầu thanh toán số @(Model.TransId)
+    vào ngày @(Model.WinlostDate.ToString("MM/dd/yyyy")).
+    <br />
+    <br />
+    Chúng tôi xin thông báo yêu cầu thanh toán của bạn với số tiền @(Model.Amount)
+    đã bị từ chối.<br />
+    Mọi thắc mắc và ý kiến đóng góp xin vui lòng liên hệ ngay với chúng tôi.<br />
+    <br />
+    Đây là thư tự động do hệ thống gửi, xin vui lòng không trả lời trực tiếp thư này.<br />
+    Xin chân thành cảm ơn.
+    <br />
+    <br />
+    Bộ phận liên kết @(Model.SystemName).<br />
+    <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a>
+</div>

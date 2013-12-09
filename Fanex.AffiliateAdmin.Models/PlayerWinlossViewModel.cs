@@ -1,0 +1,148 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="PlayerWinlossViewModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2013.10.16">Created</change>
+// </history>
+
+namespace Fanex.AffiliateAdmin.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+
+    /// <summary>
+    /// Affiliate List View Model.
+    /// </summary>
+    public class PlayerWinlossViewModel
+    {
+        #region Fields
+
+        #endregion
+
+        public PlayerWinlossViewModel()
+        {
+            ExcludeTest = true;
+        }
+
+        public string AffName { get; set; }
+
+        public string AffTypes { get; set; }
+
+        public string CommGroups { get; set; }
+
+        public string PreferLanguages { get; set; }
+
+        public int DrawFilter { get; set; }
+
+        public string Status { get; set; }
+
+        public int GroupBy { get; set; }
+
+        public int BaseCurrency { get; set; }
+
+        public bool ExcludeTest { get; set; }
+
+        public string PlayerCurrencies { get; set; }
+
+        public DateTime? FromDate { get; set; }
+
+        public DateTime? ToDate { get; set; }
+
+        public MultiSelectList AffTypeOptionList
+        {
+            get
+            {
+                var affTypeList = string.IsNullOrEmpty(AffTypes)
+                                       ? new List<byte>()
+                                       : AffTypes.Split(',').Select(t => byte.Parse(t));
+
+                var selectedValues = string.IsNullOrEmpty(AffTypes)
+                                         ? AppSettings.AffTypes.Select(t => t.TypeID)
+                                         : affTypeList;
+
+                return new MultiSelectList(AppSettings.AffTypes, "TypeID", "Name", selectedValues);
+            }
+        }
+
+        public MultiSelectList CommissionGroupOptionList
+        {
+            get
+            {
+                var groups = AppSettings.GetCommGroups(null);
+
+                var commGroupList = string.IsNullOrEmpty(CommGroups)
+                                       ? new List<int>()
+                                       : CommGroups.Split(',').Select(t => int.Parse(t));
+
+                var selectedValues = string.IsNullOrEmpty(CommGroups)
+                                         ? groups.Select(t => t.GroupID)
+                                         : commGroupList;
+
+                return new MultiSelectList(groups, "GroupID", "GroupName", selectedValues);
+            }
+        }
+
+        public MultiSelectList PreferLanguageOptionList
+        {
+            get
+            {
+                var preferLanguagesList = string.IsNullOrEmpty(PreferLanguages)
+                                    ? new List<string>()
+                                    : PreferLanguages.Split(',').ToList();
+
+                var selectedValues = string.IsNullOrEmpty(PreferLanguages)
+                                        ? AppSettings.AffSupportLanguages.Select(t => t.LanguageID)
+                                        : preferLanguagesList;
+
+                return new MultiSelectList(AppSettings.AffSupportLanguages, "LanguageID", "LanguageName", selectedValues);
+            }
+        }
+
+        public MultiSelectList PlayerCurrencyOptionList
+        {
+            get
+            {
+                var currencyList = string.IsNullOrEmpty(PlayerCurrencies)
+                                       ? new List<short>()
+                                       : PlayerCurrencies.Split(',').Select(t => short.Parse(t));
+
+                var selectedValues = string.IsNullOrEmpty(PlayerCurrencies)
+                                         ? AppSettings.PlayerCurrencies.Select(t => t.CurrencyID)
+                                         : currencyList;
+
+                var selectItemList = new MultiSelectList(AppSettings.PlayerCurrencies, "CurrencyID", "CurrencyCode", selectedValues);
+
+                return selectItemList;
+            }
+        } 
+
+        public SelectList GroupByOptionList
+        {
+            get
+            {
+                return new SelectList(AppSettings.GroupBysDateMember, "Value", "Text", GroupBy.ToString());
+            }
+        }
+
+        public SelectList DrawFilterOptionList
+        {
+            get
+            {
+                return new SelectList(AppSettings.DrawFilters, "Value", "Text", DrawFilter.ToString());
+            }
+        }
+
+        public SelectList BaseCurrencyOptionList
+        {
+            get
+            {
+                return new SelectList(AppSettings.BaseCurrencyInMember, "Value", "Text", BaseCurrency.ToString());
+            }
+        }
+    }
+}

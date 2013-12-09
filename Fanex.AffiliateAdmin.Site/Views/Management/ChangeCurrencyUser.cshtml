@@ -1,0 +1,47 @@
+﻿@using Fanex.AffiliateAdmin.Models
+@{
+    ViewBag.Title = @Lang.RolePolicy;
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+@using Fanex.AffiliateAdmin.Core.Utilities
+@model Fanex.AffiliateAdmin.Models.PermissionCurrencyViewModel
+
+
+@RazorHelper.ListPopupMenu(SubMenu.Permission, 1, new Dictionary<string, object> { { "custid", Model.CustId } })
+
+@Html.ValidationSummary()
+
+<div class="box">
+    <div><input type="checkbox" id="chkAll" />@Lang.AllCurrencies</div>
+    <ul>
+        @foreach (var currency in Model.ListPermissionCurrency)
+        {
+            <li><input type="checkbox" name="chkCurrency" value="@currency.CurrencyId" @(currency.IsChecked?"checked=checked":string.Empty) />@currency.CurrencyName</li>
+        }
+    </ul>
+</div>
+
+@using (Html.BeginForm("ChangeCurrencyUser", "Management", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+@Html.HiddenFor(m => m.CustId)
+
+<div class="control-group action-grp">
+    <div class="controls">
+        <button type="submit" id="btnSubmit" class="btn">@Lang.Submit</button>
+        <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
+        <input type="hidden" id="Currencies" name="Currencies" />
+    </div>
+</div>
+}
+
+@section scripts{
+    <script src="~/Scripts/site/UserPolicy.js" type="text/javascript"></script> 
+    
+    @if (ViewBag.Result != null)
+    {
+        var result = (ResultViewModel)ViewBag.Result;
+        <script type="text/javascript">
+            AFFILIATE.showUpdateStatus(@(result.ErrorCode), "@result.Message", null);
+        </script>
+    }
+}

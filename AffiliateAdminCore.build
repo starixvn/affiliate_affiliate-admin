@@ -1,0 +1,97 @@
+<project default="help">
+  <property name="solutiondir" value="${directory::get-current-directory()}" />
+  <property name="solution" unless="${property::exists('solution')}" value="AffiliateAdminCore.sln" />
+  <property name="configuration" unless="${property::exists('configuration')}" value="Debug"/>
+  <property name="CCNetListenerFile" unless="${property::exists('CCNetListenerFile')}" value="listen.xml"    />
+  <property name="msbuildverbose" unless="${property::exists('msbuildverbose')}" value="normal"/>
+  <property name="CCNetLabel" unless="${property::exists('CCNetLabel')}" value="0.0.0.0"      />
+  <property overwrite="false" name="nantcontrib"    value="D:\1.Tools\nantcontrib\bin\NAnt.Contrib.Tasks.dll"/>
+  <property overwrite="false" name="msbuildlogger"    value="C:\Program Files\CruiseControl.NET\server\MSBuildListener.dll"/>
+  <property overwrite="false" name="versionInfofile"  value="VersionInfo.cs" />
+  
+  <property name="mstest_metadatafile" value="${string::replace(solution, '.sln', '.vsmdi')}" />
+  <property name="mstest_unit_test_file" value="MStest_UnitTestResults.xml" />
+  <property name="mstest_exe" value="C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\mstest.exe" />
+  <property name="stylecop_dir" value="D:/1.Tools/Net.SF.StyleCopCmd.Console" />
+  <property name="stylecop_file" value="stylecopreport.xml" />
+  <property name="Simian_exe"            value="C:\Tools\simian\bin\simian-2.3.34.exe"  />
+  <property name="Simian_Threshold"      value="30"  />
+  <property name="Simian_output"         value="simian.xml"  />
+
+  <!-- custom scripts -->
+  <script language="C#" prefix="RuWi">
+    <references>
+      <include name="System.Xml.dll" />
+      <include name="System.dll" />
+    </references>
+    <imports>
+      <import namespace="System.Text" />
+    </imports>
+    <code>
+      <![CDATA[]]>
+    </code>
+  </script>
+  <!-- end custom scripts -->
+
+  <target name="help" >
+    <echo message="'nant clean' or 'nant compile'" />
+  </target>
+
+  <target name="clean" description="deletes all created files">
+    <delete >
+      <fileset>
+        <patternset >
+          <include name="**/bin/**" />
+          <include name="**/obj/**" />
+          <include name="${mstest_unit_test_file}" />
+        </patternset>
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="compile">
+    <loadtasks assembly="${nantcontrib}" />
+    <msbuild project="${solution}" verbosity="minimal" >
+      <property name="Configuration" value="${configuration}" />
+      <arg value="/p:Configuration=${configuration}" />
+      <arg value="/p:CCNetListenerFile=${CCNetListenerFile}" />
+      <arg value="/v:${msbuildverbose}" />
+      <arg value="/l:${msbuildlogger}" />
+
+    </msbuild>
+  </target>
+  <!--<target name="unittest" description="runs the tests" depends="compile">
+    <if test="${file::exists(mstest_metadatafile)}">
+      <exec program="${mstest_exe}">
+        <arg value="/testmetadata:${mstest_metadatafile}" />
+        <arg value="/resultsfile:${mstest_unit_test_file}" />
+        <arg value="/testlist:UnitTests" />
+      </exec>
+    </if>
+  </target>-->
+  <!--<target name="simian" description="find duplicate code" >
+    <exec program="${Simian_exe}" failonerror="false">
+      <arg value="-includes=**/*.cs" />
+      <arg value="-excludes=**/*Designer.cs" />
+      <arg value="-excludes=**/*Generated.cs" />
+      <arg value="-excludes=**/*Reference.cs" />
+      <arg value="-excludes=**/obj/*" />
+      <arg value="-threshold=${Simian_Threshold}" />
+      <arg value="-formatter=xml:${Simian_output}" />
+    </exec>
+  </target>-->
+
+  <target name="stylecop" description="Coding Convention" >
+    <exec program='${stylecop_dir}/Net.SF.StyleCopCmd.Console.exe' failonerror="true">
+      <arg value='-r' />
+      <arg value='-d' />
+      <arg value='"${solutiondir}"' />
+      <arg value='-tf' />
+      <arg value='"${stylecop_dir}/StyleCopReport.xsl"' />
+      <arg value='-of' />
+      <arg value='"${stylecop_file}"' />
+      <arg value='-sc' />
+      <arg value='"${stylecop_dir}/Settings.StyleCop"' />
+    </exec>
+  </target>
+</project>

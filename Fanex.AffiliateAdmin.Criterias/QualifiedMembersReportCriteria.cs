@@ -1,0 +1,33 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="QualifiedMembersReportCriteria.cs" company="Nexcel Solution">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace Fanex.AffiliateAdmin.Criterias
+{
+    using System;
+    using Fanex.NAP.Framework.Data;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class QualifiedMembersReportCriteria : CriteriaBase
+    {
+        public int UserId { get; set; }
+
+        public int AffId { get; set; }
+
+        public DateTime MonthDate { get; set; }
+
+        public override string GetSettingKey()
+        {
+            return "AffAdmin_QualifiedMembersReport";
+        }
+
+        public override bool IsValid()
+        {
+            return true;
+        }
+    }
+}

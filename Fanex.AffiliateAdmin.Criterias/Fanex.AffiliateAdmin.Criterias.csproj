@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B97E8D03-D5F0-44BA-BA3B-C1D64561C291}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fanex.AffiliateAdmin.Criterias</RootNamespace>
+    <AssemblyName>Fanex.AffiliateAdmin.Criterias</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountCriteria.cs" />
+    <Compile Include="AccountTypeCriteria.cs" />
+    <Compile Include="AdjustmentCriteria.cs" />
+    <Compile Include="AdjustmentEditCriteria.cs" />
+    <Compile Include="AffiliateUnlockCriteria.cs" />
+    <Compile Include="AffiliateLanguageCriteria.cs" />
+    <Compile Include="AffiliateSelCriteria.cs" />
+    <Compile Include="AffiliateInfoCriteria.cs" />
+    <Compile Include="AffiliateUpdAccountTypeCriteria.cs" />
+    <Compile Include="AffiliateUpdAffTypeCriteria.cs" />
+    <Compile Include="AffiliateUpdCriteria.cs" />
+    <Compile Include="AffiliateUpdLanguageCriteria.cs" />
+    <Compile Include="AffiliateUpdStatusCriteria.cs" />
+    <Compile Include="BannerDeleteCriteria.cs" />
+    <Compile Include="BannerInsCriteria.cs" />
+    <Compile Include="AffTypeCriteria.cs" />
+    <Compile Include="BannerDetailCriteria.cs" />
+    <Compile Include="BannerUpdateCriteria.cs" />
+    <Compile Include="ChangePasswordCriteria.cs" />
+    <Compile Include="ChangeAffPasswordCriteria.cs" />
+    <Compile Include="BannerTypeDetailCriteria.cs" />
+    <Compile Include="CheckMemberExistCriteria.cs" />
+    <Compile Include="CommGroupActionCriteria.cs" />
+    <Compile Include="CommGroupCriteria.cs" />
+    <Compile Include="CommGroupInfoCriteria.cs" />
+    <Compile Include="CommGroupSelByIdCriteria.cs" />
+    <Compile Include="CommissionReportCriteria.cs" />
+    <Compile Include="Configuration\AffType\AffTypeSelectCriteria.cs" />
+    <Compile Include="CommGroupDetailCriteria.cs" />
+    <Compile Include="AffiliateStatisticCriteria.cs" />
+    <Compile Include="Configuration\AffType\AffTypeUpdateCriteria.cs" />
+    <Compile Include="Configuration\AffType\AffTypeAddCriteria.cs" />
+    <Compile Include="Configuration\AffType\AffTypeDeleteCriteria.cs" />
+    <Compile Include="Configuration\AffType\AffTypeDetailCriteria.cs" />
+    <Compile Include="Configuration\Country\CountryAddCriteria.cs" />
+    <Compile Include="AccountPasswordCriteria.cs" />
+    <Compile Include="Configuration\SystemSetting\SystemSettingExchangeCriteria.cs" />
+    <Compile Include="Configuration\Tracking\ClickStatisticByPageCriteria.cs" />
+    <Compile Include="Configuration\Tracking\ClickStatisticBySiteCriteria.cs" />
+    <Compile Include="Configuration\Tracking\ClickStatisticDetailCriteria.cs" />
+    <Compile Include="CommGroupAssignCriteria.cs" />
+    <Compile Include="CompanyWinlossReportCriteria.cs" />
+    <Compile Include="PlayerWinlossReportCriteria.cs" />
+    <Compile Include="FavoriteCriteria.cs" />
+    <Compile Include="CountryCriteria.cs" />
+    <Compile Include="DeductionSettingCriteria.cs" />
+    <Compile Include="Configuration\Language\LanguageDetailCriteria.cs" />
+    <Compile Include="DeductionTypeCriteria.cs" />
+    <Compile Include="Configuration\Language\LanguageDeleteCriteria.cs" />
+    <Compile Include="Configuration\Language\LanguageAddCriteria.cs" />
+    <Compile Include="Configuration\Language\LanguageSelectCriteria.cs" />
+    <Compile Include="Configuration\Language\LanguageUpdateCriteria.cs" />
+    <Compile Include="GroupSettingCriteria.cs" />
+    <Compile Include="InsertMemberCriteria.cs" />
+    <Compile Include="LogTypeCriteria.cs" />
+    <Compile Include="MemberSiteLanguageCriteria.cs" />
+    <Compile Include="MemberStatisticReportCriteria.cs" />
+    <Compile Include="NoteCriteria.cs" />
+    <Compile Include="NoteListCriteria.cs" />
+    <Compile Include="PaymentMethodCriteria.cs" />
+    <Compile Include="PlayerPayoutInfoSelCriteria.cs" />
+    <Compile Include="Configuration\Product\ProductDeleteCriteria.cs" />
+    <Compile Include="Configuration\Product\ProductAddCriteria.cs" />
+    <Compile Include="Configuration\Product\ProductSelectCriteria.cs" />
+    <Compile Include="Configuration\SystemSetting\SearchByType.cs" />
+    <Compile Include="Configuration\SystemSetting\SystemSettingSelectCriteria.cs" />
+    <Compile Include="Configuration\Product\ProductUpdateCriteria.cs" />
+    <Compile Include="Configuration\Product\ProductDetailCriteria.cs" />
+    <Compile Include="Configuration\Country\CountryUpdateCriteria.cs" />
+    <Compile Include="Configuration\Country\CountryDeleteCriteria.cs" />
+    <Compile Include="DomainControlCriteria.cs" />
+    <Compile Include="CommGroupCurrencyCriteria.cs" />
+    <Compile Include="Configuration\Country\CountryDetailCriteria.cs" />
+    <Compile Include="Configuration\SystemSetting\SystemSettingAddCriteria.cs" />
+    <Compile Include="Configuration\SystemSetting\SystemSettingDeleteCriteria.cs" />
+    <Compile Include="Configuration\SystemSetting\SystemSettingUpdateCriteria.cs" />
+    <Compile Include="ExchangeRateCriteria.cs" />
+    <Compile Include="DatabaseAction.cs" />
+    <Compile Include="BannerListCriteria.cs" />
+    <Compile Include="BannerTypeCriteria.cs" />
+    <Compile Include="DomainMemCriteria.cs" />
+    <Compile Include="GroupListCriteria.cs" />
+    <Compile Include="MessageAddCriteria.cs" />
+    <Compile Include="AffiliateListCriteria.cs" />
+    <Compile Include="DomainAffCriteria.cs" />
+    <Compile Include="CustomerRemoveCriteria.cs" />
+    <Compile Include="MemberListCriteria.cs" />
+    <Compile Include="CriteriaType.cs" />
+    <Compile Include="DummyAccIdCriteria.cs" />
+    <Compile Include="EmailHistoryCriteria.cs" />
+    <Compile Include="GroupCriteria.cs" />
+    <Compile Include="HomeOnlineListCriteria.cs" />
+    <Compile Include="HomeGeneralInfoCriteria.cs" />
+    <Compile Include="AffLanguageCriteria.cs" />
+    <Compile Include="LoginCriteria.cs" />
+    <Compile Include="Configuration\Country\CountrySelectCriteria.cs" />
+    <Compile Include="PlayerCurrencyCriteria.cs" />
+    <Compile Include="ExchangeCriteria.cs" />
+    <Compile Include="LanguageCriteria.cs" />
+    <Compile Include="LogOutCriteria.cs" />
+    <Compile Include="MessageCriteria.cs" />
+    <Compile Include="MessageDeleteCriteria.cs" />
+    <Compile Include="MessageDetailCriteria.cs" />
+    <Compile Include="MessageUpdateCriteria.cs" />
+    <Compile Include="PaymentCriteria.cs" />
+    <Compile Include="PaymentDetailCriteria.cs" />
+    <Compile Include="PaymentUpdateCriteria.cs" />
+    <Compile Include="PermissionCurrencyCriteria.cs" />
+    <Compile Include="PolicyCriteria.cs" />
+    <Compile Include="PolicyMultiUserCriteria.cs" />
+    <Compile Include="PolicyUpdateCriteria.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QualifiedMembersReportCriteria.cs" />
+    <Compile Include="ReCheckInCriteria.cs" />
+    <Compile Include="StatementCriteria.cs" />
+    <Compile Include="SystemDateTimeCriteria.cs" />
+    <Compile Include="TransTypeCriteria.cs" />
+    <Compile Include="UpdateMessageCriteria.cs" />
+    <Compile Include="UserCriteria.cs" />
+    <Compile Include="UserPolicyCriteria.cs" />
+    <Compile Include="Configuration\SystemSetting\SystemSettingDetailCriteria.cs" />
+    <Compile Include="ViewLogListCriteria.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.DTO\Fanex.AffiliateAdmin.DTO.csproj">
+      <Project>{124861EC-18BE-416D-8DD1-360A51613C76}</Project>
+      <Name>Fanex.AffiliateAdmin.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.AffiliateAdmin.Resources\Fanex.AffiliateAdmin.Resources.csproj">
+      <Project>{791B3B16-82E3-43E7-A1F9-9EE3DD81C290}</Project>
+      <Name>Fanex.AffiliateAdmin.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

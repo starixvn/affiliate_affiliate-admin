@@ -1,0 +1,41 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="DomainControl.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Johnny.Trinh" date="2013.9.3">Created</change>
+// </history>
+
+namespace Fanex.AffiliateAdmin.DTO
+{
+    using System;
+
+    /// <summary>
+    /// Domain Control class.
+    /// </summary>
+    public class DomainControl
+    {
+        public int ID { get; set; }
+
+        public int AffDomainId { get; set; }
+
+        public string AffDomain { get; set; }
+
+        public int MemberDomainId { get; set; }
+
+        public string MemberDomain { get; set; }
+
+        public string CountryId { get; set; }
+
+        public string CountryName { get; set; }
+
+        public DateTime CreateDate { get; set; }
+
+        public DateTime ModifyDate { get; set; }
+
+        public string Creator { get; set; }
+
+        public bool Status { get; set; }
+    }
+}

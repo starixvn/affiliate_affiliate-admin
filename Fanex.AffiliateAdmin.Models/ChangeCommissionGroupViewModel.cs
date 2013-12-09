@@ -1,0 +1,54 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="ChangeCommissionGroupViewModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2013.10.8">Created</change>
+// </history>
+
+namespace Fanex.AffiliateAdmin.Models
+{
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Criterias;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class ChangeCommissionGroupViewModel
+    {
+        public string AffIds { get; set; }
+
+        public string Usernames { get; set; }
+
+        public int GroupId { get; set; }
+
+        public int UserId { get; set; }
+
+        public string Currency { get; set; }
+
+        public string Status { get; set; }
+
+        public IEnumerable<SelectListItem> CommissionGroupOptionList
+        {
+            get
+            {
+                var comGroups = AppSettings.GetCommGroups(new CommGroupCurrencyCriteria
+                    {
+                        UserId = UserId,
+                        Currency = Currency
+                    });
+
+                return comGroups.Select(t => new SelectListItem
+                        {
+                            Text = t.GroupName,
+                            Value = t.GroupID.ToString(),
+                            Selected = t.GroupID == GroupId
+                        });
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="AffTypeUpdateCriteria.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2013.9.10">Created</change>
+// </history>
+
+namespace Fanex.AffiliateAdmin.Criterias.Configuration.AffType
+{
+    using NAP.Framework.Data;
+
+    /// <summary>
+    /// Update criteria class.
+    /// </summary>
+    public class AffTypeUpdateCriteria : CriteriaBase
+    {
+        public int Updatedby { get; set; }
+
+        public byte ID { get; set; }
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public string IP { get; set; }
+
+        public int ErrCode { get; set; }
+
+        public string ErrMsg { get; set; }
+
+        public override string GetSettingKey()
+        {
+            return "AffAdmin_AffTypeUpd";
+        }
+
+        public override bool IsValid()
+        {
+            return ID > 0;
+        }
+    }
+}

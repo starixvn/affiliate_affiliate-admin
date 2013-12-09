@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="Msg2001" xml:space="preserve">
+    <value>This Affiliate Domain has existed.</value>
+  </data>
+	<data name="Msg2003" xml:space="preserve">
+    <value>This Member Domain has existed.</value>
+  </data>
+	<data name="Msg2020" xml:space="preserve">
+    <value>This Domain setting has been existed!</value>
+  </data>
+	<data name="Msg2021" xml:space="preserve">
+    <value>Your Domain setting is duplicate with other setting. Please recheck it.</value>
+  </data>
+	<data name="Msg500" xml:space="preserve">
+    <value>You are not authorized to access this function.</value>
+  </data>
+	<data name="Msg501" xml:space="preserve">
+    <value>Error occurs.Insert unsuccessfully.</value>
+  </data>
+	<data name="Msg502" xml:space="preserve">
+    <value>Error occurs.Update unsuccessfully.</value>
+  </data>
+	<data name="Msg503" xml:space="preserve">
+    <value>You are not authorized on this currency.</value>
+  </data>
+	<data name="Msg1" xml:space="preserve">
+    <value>This transaction is not a withdrawal.</value>
+  </data>
+	<data name="Msg2" xml:space="preserve">
+    <value>Oops, You do not have permission to update this transaction.</value>
+  </data>
+	<data name="Msg3" xml:space="preserve">
+    <value>Insert transaction failed.</value>
+  </data>
+	<data name="Msg4" xml:space="preserve">
+    <value>This member does not exist or be removed before!</value>
+  </data>
+	<data name="Msg5" xml:space="preserve">
+    <value>Error occur when re-calculate affiliate winloss</value>
+  </data>
+	<data name="Msg6" xml:space="preserve">
+    <value>Invalid mail ID!</value>
+  </data>
+	<data name="Msg7" xml:space="preserve">
+    <value>Sorry, the selected email(s) are invalid. Please recheck them again.</value>
+  </data>
+	<data name="Msg8" xml:space="preserve">
+    <value>Sorry, Admin id is invalid. Please recheck it again.</value>
+  </data>
+	<data name="Msg9" xml:space="preserve">
+    <value>Error! Email unsuccessfully deleted!</value>
+  </data>
+	<data name="Msg200" xml:space="preserve">
+    <value>Error! Insert message unsuccessfully!</value>
+  </data>
+	<data name="Msg201" xml:space="preserve">
+    <value>Error! Insert data into resouces unsuccessfully!</value>
+  </data>
+	<data name="Msg202" xml:space="preserve">
+    <value>Invalid message ID!</value>
+  </data>
+	<data name="Msg203" xml:space="preserve">
+    <value>Error! Update message unsuccessfully!</value>
+  </data>
+	<data name="Msg204" xml:space="preserve">
+    <value>Sorry, your input message id is invalid. Please recheck it again.</value>
+  </data>
+	<data name="Msg205" xml:space="preserve">
+    <value>Sorry, The admin ID is invalid. Please recheck it again.</value>
+  </data>
+	<data name="Msg206" xml:space="preserve">
+    <value>Error! Delete message unsuccessfully!</value>
+  </data>
+	<data name="Msg2005" xml:space="preserve">
+    <value>This username is not available.</value>
+  </data>
+	<data name="Msg10" xml:space="preserve">
+    <value>Failed to add member.</value>
+  </data>
+	<data name="Msg2006" xml:space="preserve">
+    <value>This affiliate has been added before.</value>
+  </data>
+	<data name="Msg2007" xml:space="preserve">
+    <value>Error! Add favorite unsuccessfully!</value>
+  </data>
+	<data name="Msg2008" xml:space="preserve">
+    <value>This affiliate does not exist.</value>
+  </data>
+	<data name="Msg2009" xml:space="preserve">
+    <value>Error! Delete favorite unsuccessfully!</value>
+  </data>
+	<data name="Msg11" xml:space="preserve">
+    <value>Old password is incorrect</value>
+  </data>
+	<data name="Msg12" xml:space="preserve">
+    <value>Fail to add group.</value>
+  </data>
+	<data name="Msg13" xml:space="preserve">
+    <value>Error! This affiliate does not exist!</value>
+  </data>
+	<data name="Msg14" xml:space="preserve">
+    <value>You cannot delete this group as it has customer.</value>
+  </data>
+	<data name="Msg2010" xml:space="preserve">
+    <value>Fail to update process</value>
+  </data>
+	<data name="Msg300" xml:space="preserve">
+    <value>Invalid Banner ID!</value>
+  </data>
+	<data name="Msg301" xml:space="preserve">
+    <value>Sorry, your input banner id is invalid. Please recheck it again.</value>
+  </data>
+	<data name="Msg302" xml:space="preserve">
+    <value>Sorry, Admin id is invalid. Please recheck it again.</value>
+  </data>
+	<data name="Msg303" xml:space="preserve">
+    <value>Error! Banner unsuccessfully deleted!</value>
+  </data>
+	<data name="Msg400" xml:space="preserve">
+    <value>Error! This country is existed.</value>
+  </data>
+	<data name="Msg1001" xml:space="preserve">
+    <value>Error! This setting key has existed.</value>
+  </data>
+	<data name="Msg1002" xml:space="preserve">
+    <value>Error! This language has existed.</value>
+  </data>
+	<data name="Msg1003" xml:space="preserve">
+    <value>Error! Invalid request.</value>
+  </data>
+	<data name="Msg1004" xml:space="preserve">
+    <value>This account is having 1 processing payment request, please update this transaction first.</value>
+  </data>
+	<data name="Msg15" xml:space="preserve">
+    <value>Email Address has been used. Please choose another one!</value>
+  </data>
+	<data name="Msg16" xml:space="preserve">
+    <value>Invalid user infomation. Update process is unsuccessful!</value>
+  </data>
+	<data name="Msg17" xml:space="preserve">
+    <value>Error! Update process is unsuccessful!</value>
+  </data>
+	<data name="Msg20" xml:space="preserve">
+    <value>Group name is empty. Please choose a name!</value>
+  </data>
+	<data name="Msg21" xml:space="preserve">
+    <value>This group name has existed. Please choose another name!</value>
+  </data>
+	<data name="Msg22" xml:space="preserve">
+    <value>Invalid qualified amount. Please recheck it.</value>
+  </data>
+	<data name="Msg23" xml:space="preserve">
+    <value>There is no room for a new Group! Please contact to administrator.</value>
+  </data>
+	<data name="Msg24" xml:space="preserve">
+    <value>Error occurs. Insert unsuccessfully.</value>
+  </data>
+	<data name="Msg25" xml:space="preserve">
+    <value>Error! Insert Deduction Setting unsuccessfully!</value>
+  </data>
+	<data name="Msg26" xml:space="preserve">
+    <value>Error! Invalid Tier List!</value>
+  </data>
+	<data name="Msg27" xml:space="preserve">
+    <value>Oops, maximum of 50 tiers are allowed!</value>
+  </data>
+	<data name="Msg28" xml:space="preserve">
+    <value>There was an error when inserting tier setting.</value>
+  </data>
+	<data name="Msg29" xml:space="preserve">
+    <value>Error! Invalid Setting Data(ProductID={0})!</value>
+  </data>
+	<data name="Msg30" xml:space="preserve">
+    <value>Error! Invalid Setting Data (ProductIDList) !</value>
+  </data>
+	<data name="Msg31" xml:space="preserve">
+    <value>The group ID={0} is no longer existed. Please check.</value>
+  </data>
+	<data name="Msg1005" xml:space="preserve">
+    <value>Error occurs. Update process is unsuccessful!</value>
+  </data>
+	<data name="Msg32" xml:space="preserve">
+    <value>At least 1 affiliate was assigned to this group. You cannot delete it.</value>
+  </data>
+	<data name="Msg1006" xml:space="preserve">
+    <value>Invalid Affiliate!</value>
+  </data>
+	<data name="Msg1007" xml:space="preserve">
+    <value>Invalid status!</value>
+  </data>
+	<data name="Msg1008" xml:space="preserve">
+    <value>Invalid group!</value>
+  </data>
+	<data name="Msg1009" xml:space="preserve">
+    <value>Currency does not match with the selected group. Please recheck it.</value>
+  </data>
+	<data name="Msg1010" xml:space="preserve">
+    <value>There was an error updating the data.</value>
+  </data>
+	<data name="Msg33" xml:space="preserve">
+    <value>The group ID {0}  is not existed. Please check.</value>
+  </data>
+	<data name="Msg34" xml:space="preserve">
+    <value>Group name is empty. Please choose a name!</value>
+  </data>
+	<data name="Msg35" xml:space="preserve">
+    <value>Group name existed. Please choose another name!</value>
+  </data>
+	<data name="Msg36" xml:space="preserve">
+    <value>The group has been used. Cannot change the currency. Please check!</value>
+  </data>
+	<data name="Msg37" xml:space="preserve">
+    <value>Error! Invalid Deduction Setting!</value>
+  </data>
+	<data name="Msg39" xml:space="preserve">
+    <value>Oops, maximum of 50 tiers are allowed!</value>
+  </data>
+	<data name="Msg40" xml:space="preserve">
+    <value>There was an error when inserting tier setting.</value>
+  </data>
+	<data name="Msg41" xml:space="preserve">
+    <value>Error! Invalid Setting Data!</value>
+  </data>
+	<data name="Msg42" xml:space="preserve">
+    <value>Error! Invalid Setting Data (ProductIDList) !</value>
+  </data>
+	<data name="Msg43" xml:space="preserve">
+    <value>There was an error when updating data.Please try again!</value>
+  </data>
+	<data name="Msg50" xml:space="preserve">
+    <value>Error! Insert note unsuccessfully!</value>
+  </data>
+	<data name="Msg51" xml:space="preserve">
+    <value>Error! Update note unsuccessfully!</value>
+  </data>
+	<data name="Msg52" xml:space="preserve">
+    <value>Error! Delete note unsuccessfully!</value>
+  </data>
+	<data name="Msg44" xml:space="preserve">
+    <value>Invalid Affiliate''s username!</value>
+  </data>
+	<data name="Msg45" xml:space="preserve">
+    <value>User has been existed in the system!</value>
+  </data>
+	<data name="Msg1011" xml:space="preserve">
+    <value>Sorry, amount is invalid.</value>
+  </data>
+	<data name="Msg1012" xml:space="preserve">
+    <value>Invalid Currency</value>
+  </data>
+	<data name="Msg1013" xml:space="preserve">
+    <value>Sorry, you cannot adjust because this Affiliate is not approved yet.</value>
+  </data>
+	<data name="Msg1014" xml:space="preserve">
+    <value>Sorry, you cannot adjust because this Affiliate is closed.</value>
+  </data>
+	<data name="Msg1015" xml:space="preserve">
+    <value>This transaction is unsuccessful.</value>
+  </data>
+	<data name="Msg101" xml:space="preserve">
+    <value>Wrong username or password.</value>
+  </data>
+	<data name="Msg102" xml:space="preserve">
+    <value>Your account is closed due to 5 consecutive failed login attempts. Please contact your administrator.</value>
+  </data>
+	<data name="Msg103" xml:space="preserve">
+    <value>Account closed. Please contact your administrator!</value>
+  </data>
+	<data name="Msg601" xml:space="preserve">
+    <value>Invalid Group. Please check.</value>
+  </data>
+	<data name="Msg602" xml:space="preserve">
+    <value>Invalid Affiliate List. Please check.</value>
+  </data>
+	<data name="Msg603" xml:space="preserve">
+    <value>Invalid Affiliate List. Please check.</value>
+  </data>
+	<data name="Msg604" xml:space="preserve">
+    <value>Currency of the group does not match with affiliate''s currency. Please check.</value>
+  </data>
+	<data name="Msg605" xml:space="preserve">
+    <value>There was an error when updating data.Please try again!</value>
+  </data>
+	<data name="Msg606" xml:space="preserve">
+    <value>There was an error when updating data.Please try again!</value>
+  </data>
+	<data name="Msg607" xml:space="preserve">
+    <value>There was an error when updating data.Please try again!</value>
+  </data>
+	<data name="Msg608" xml:space="preserve">
+    <value>There was an error when updating data.Please try again!</value>
+  </data>
+</root>

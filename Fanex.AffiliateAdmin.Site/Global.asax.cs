@@ -14,12 +14,10 @@ namespace Fanex.AffiliateAdmin.Site
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
-    using System.Web.Script.Serialization;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Mvc;
     using Fanex.Data.Configuration;
     using Fanex.Logging;
-    using StackExchange.Profiling;
 
     /// <summary>
     /// Global configuration.

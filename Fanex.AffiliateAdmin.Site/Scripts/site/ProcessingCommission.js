@@ -1,0 +1,264 @@
+﻿var ProcessingCommission = function ($) {
+    var submitOptions = {};
+
+    var SYS_CURRENCY_OPTION = 1;
+    var _freezeColumnCount = 5;
+
+    var gridOption = {};
+
+    function customizeGridOption() {
+        for (var i = 0; i < PRODUCTS.length; i++) {
+            var name = nomalizeProductName(PRODUCTS[i].Name);
+
+            gridOption.groupHeaderRows[0].Columns.push(
+                { HeaderCaption: MSG[name], HeaderText: MSG[name], IsCurrency: true, Name: name + "Winloss", NameCache: name + "Winloss", MergeColNumber: 4 }
+            );
+
+            gridOption.columns.push(
+                { IsCurrency: true, HeaderCaption: MSG.Winloss, HeaderText: MSG.Winloss, Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
+            );
+            gridOption.columns.push(
+                { IsCurrency: false, HeaderCaption: MSG.QM, HeaderText: MSG.QM, Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
+                    Formatter: function (rIndex, record, cell, cellFormated) {
+                        if (cellFormated)
+                            return "<a class='qm' data-currency='" + record.Currency + "' data-affname='" + record.Username + "' data-affid='" + record.AffId + "' data-date='" + moment(record.WinlostDate).format("MMM YYYY") + "' href='javascript:void(0)'>" + cellFormated + "</a>";
+                        return 0;
+                    }
+                }
+            );
+            gridOption.columns.push(
+                { IsCurrency: false, HeaderCaption: MSG.CommPercent, HeaderText: MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER }
+            );
+
+            gridOption.columns.push(
+                { IsCurrency: true, HeaderCaption: MSG.Commission, HeaderText: MSG.Commission, Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
+            );
+        }
+
+        gridOption.groupHeaderRows[0].Columns.push(
+            { HeaderCaption: MSG.Cashback, HeaderText: MSG.Cashback, IsCurrency: true, Name: "CashbackPercent", MergeColNumber: 2 }
+        );
+
+        gridOption.columns.push(
+            { IsCurrency: false, HeaderCaption: MSG.DeductionPercent, HeaderText: MSG.DeductionPercent, Width: 80, Name: "CashbackPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER }
+        );
+
+        gridOption.columns.push(
+            {
+                IsCurrency: true, HeaderCaption: MSG.Amount, HeaderText: MSG.Amount, Width: 100, Name: "CashbackAmount", NameCache: "CashbackAmount", HeaderAlign: "center", CellAlign: "left", FormatNumber: AFFILIATE.FORMATNUMBER,
+                Formatter: function (rIndex, record, cell, cellFormated) {
+                    var currentValue = record.CashbackAmount;
+
+                    if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
+                        if (currentValue < 0) {
+                            currentValue = -1 * currentValue;
+                        }
+
+                        currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
+                    }
+
+                    if (record.CashbackAmount.Amount < 0) {
+                        currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
+                    }
+
+                    var winlostdate = moment(record.WinlostDate).format(AFFILIATE.DATE_FORMAT);
+
+                    var html = '<div class="amount-region"><div class="amount-info" style="text-align: right;">' + currentValue + '&nbsp;&nbsp; <i class="icon-edit"></i></div>';
+                    html += '<div class="amount-edit" style="display: none;"><input type="text" value="{0}" data-affid="{1}" data-winlostdate="{2}"  style="display:inline-block; width: 40px; margin-right: 5px;"><i class="icon-ok"></i>&nbsp;&nbsp;<i class="icon-remove"></i><div class="edit-amount">'.format(record.CashbackAmount, record.AffId, winlostdate);
+                    html += '</div>';
+
+                    return html;
+                }
+            }
+        );
+
+        gridOption.groupHeaderRows[0].Columns.push(totalPaymentHeader);
+        gridOption.columns.push(totalPaymentCol);
+    }
+
+    function renameCurrencyColumns(isUseBaseCurrency) {
+        for (var i = _freezeColumnCount; i < gridOption.columns.length; i++) {
+            var col = gridOption.columns[i];
+            if (col.NameCache) {
+                var name = col.NameCache;
+                if (isUseBaseCurrency)
+                    name += "Base";
+                col.Name = name;
+            }
+        }
+
+        for (var i = _freezeColumnCount; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
+            var col = gridOption.groupHeaderRows[0].Columns[i];
+            if (col.NameCache) {
+                var name = col.NameCache;
+                if (isUseBaseCurrency)
+                    name += "Base";
+                col.Name = name;
+            }
+        }
+    }
+
+    function changeHeaderCaptions(showCurrencySymbol) {
+        var text = showCurrencySymbol ? " (" + System.Prefix + ")" : "";
+        for (var i = 0; i < gridOption.columns.length; i++) {
+            var col = gridOption.columns[i];
+            if (col.IsCurrency)
+                col.HeaderText = col.HeaderCaption + text;
+        }
+
+        for (var i = 0; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
+            var col = gridOption.groupHeaderRows[0].Columns[i];
+            if (col.IsCurrency)
+                col.HeaderText = col.HeaderCaption + text;
+        }
+    }
+
+    function nomalizeProductName(name) {
+        return name.replace(/ /g, "");
+    }
+
+    return {
+        init: function () {
+            $('#btnSubmit').click(function () {
+                ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+                return false;
+            });
+
+            if ($('#gridId').length > 0) {
+                ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            }
+
+            var mainContentObject = $('.main-content');
+
+            mainContentObject.on("click", ".icon-edit", function () {
+                var parent = $(this).parents(".amount-region").get(0);
+                var $parent = $(parent);
+                $parent.find(".amount-info").hide();
+                $parent.find(".amount-edit").show();
+                $parent.find("input").ForceDecimalOnly();
+            });
+
+            mainContentObject.on("click", ".icon-ok", function () {
+                var parent = $(this).parents(".amount-region").get(0);
+                var $parent = $(parent);
+                ProcessingCommission.UpdateCashBack($parent.find("input"));
+            });
+
+            mainContentObject.on("click", ".icon-remove", function () {
+                var parent = $(this).parents(".amount-region").get(0);
+                var $parent = $(parent);
+                $parent.find(".amount-info").show();
+                $parent.find(".amount-edit").hide();
+            });
+
+            mainContentObject.on("click", "#transferAll", function () {
+                ProcessingCommission.MonthlyTransfer();
+            });
+        },
+
+        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
+
+            AFFILIATE.trimBeforeSubmit();
+            submitOptions = $('form').serializeObject2();
+            submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
+
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Payment/ProcessingCommission"),
+                type: 'post',
+                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
+                beforeSend: function () {
+                    $.blockUI();
+                },
+                success: function (data) {
+
+                    var gridObject = $('#gridId');
+                    gridObject.show();
+
+                    gridOption = $.extend(true, {}, sampleGridOption);
+
+                    customizeGridOption();
+
+                    var baseCurrency = $("#BaseCurrency").val();
+                    renameCurrencyColumns(baseCurrency == SYS_CURRENCY_OPTION);
+                    changeHeaderCaptions(baseCurrency == SYS_CURRENCY_OPTION);
+
+                    gridOption.pagerOption = {
+                        itemsPerPage: data.ItemsPerPage,
+                        itemsPerPageArray: AFFILIATE.pageSizes,
+                        currentPage: data.CurrentPage,
+                        totalItem: data.TotalItem,
+                        pagerSelectCallBack: ProcessingCommission.ReRenderAfterPaged
+                    };
+
+                    gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
+
+                    gridObject.removeClass("noinfo").fanexGrid(gridOption);
+
+                    if (data.List.length == 0) {
+                        $('.status').hide();
+                        AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
+                        return;
+                    } else {
+                        $('.status').show();
+                    }
+
+                    //AFFILIATE.updateSearchPanel(gridObject);
+                },
+                complete: function () {
+                    $.unblockUI();
+                }
+            });
+        },
+
+        UpdateCashBack: function (input) {
+            var self = $(input);
+
+            var data = {
+                AffId: self.data("affid"),
+                MonthDate: self.data("winlostdate"),
+                Amount: self.val()
+            };
+
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Payment/UpdateCashBack"),
+                type: 'post',
+                data: jQuery.param(data),
+                beforeSend: function () {
+                    $.blockUI();
+                },
+                success: function (data) {
+                    if (data.Success) {
+                        window.location.reload();
+                    } else {
+                    }
+                },
+                complete: function () {
+                    $.unblockUI();
+                }
+            });
+        }, 
+        MonthlyTransfer: function (input) {
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Payment/MonthlyTransfer"),
+                type: 'post',
+                beforeSend: function () {
+                    $.blockUI();
+                },
+                success: function (data) {
+                    if (data.Success) {
+                        alert(data.Message);
+                    } else {
+                        alert(data.Message);
+                    }
+                },
+                complete: function () {
+                    $.unblockUI();
+                }
+            });
+        }, 
+    };
+} (jQuery);
+
+$(function () {
+    ProcessingCommission.init();
+});

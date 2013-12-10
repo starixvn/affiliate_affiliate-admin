@@ -9,8 +9,6 @@
 
 namespace Fanex.AffiliateAdmin.DTO
 {
-    using System;
-
     /// <summary>
     /// Commission Group Detail Class.
     /// </summary>

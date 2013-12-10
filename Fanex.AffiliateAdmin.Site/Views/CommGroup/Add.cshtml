@@ -101,10 +101,10 @@
     </div>
         @if (AppSettings.DeductionTypes.Any(x => x.ProductID == 0) || (Model != null && Model.DeductionSettings.Any(t => t.ProductID == 0)))
         {
-            //var deduction = AppSettings.DeductionTypes.FirstOrDefault(x => x.ProductID == 0);
-            //var check = Model != null ? Model.DeductionSettings.Any(x => x.DeductionID == deduction.DTypeID) : false;
-            //var d = check ? Model.DeductionSettings.FirstOrDefault(x => x.DeductionID == deduction.DTypeID) : null;
-            //var percent = d == null ? (decimal)deduction.DeductedPercentage : d.DeductedPercentage;
+            var deduction = AppSettings.DeductionTypes.FirstOrDefault(x => x.ProductID == 0);
+            var check = Model != null ? Model.DeductionSettings.Any(x => x.DeductionID == deduction.DTypeID) : false;
+            var d = check ? Model.DeductionSettings.FirstOrDefault(x => x.DeductionID == deduction.DTypeID) : null;
+            var percent = d == null ? (decimal)deduction.DeductedPercentage : d.DeductedPercentage;
         
             <div id="tab_header0" data-productid="0" class="tab_header" data-productname="@Lang.Deduction">
                 <div class="tab_title">                   
@@ -125,44 +125,23 @@
                 </div>    
             </div>
             <div class="tab_content" style="" id="tab_content0">
-                @{
-                    var deductions = AppSettings.DeductionTypes.Where(x => x.ProductID == 0);
-
-                    if (deductions.Count() > 0)
-                    {
-                        <!--Deduction-->
-                        <div class="fieldset">
-                            <div class="legend">@Lang.Deductions</div>
-                            <div class="clear"></div>
-                            <!--DeductionOption-->
-                            <div class="row-fluid row-form deductions">                    
-                                @foreach (var item in deductions)
-                                {
-                                    var check = Model != null ? Model.DeductionSettings.Any(x => x.DeductionID == item.DTypeID) : false;
-                                    var d = check ? Model.DeductionSettings.Where(x => x.DeductionID == item.DTypeID).FirstOrDefault() : null;
-                                    var percent = d == null ? (decimal)item.DeductedPercentage : d.DeductedPercentage;
-                
-                                    <div class="cell span3" style="min-width:160px">            
-                                        <label for="exclude-test" title="@(Lang.ResourceManager.GetString("Deduction" + item.DTypeName.Replace(" ", string.Empty)))">
-                                            <input type="checkbox" class="deduction" @(check ? "checked=checked" : "") data-id="@item.DTypeID" data-percent="@item.DeductedPercentage">
-                                            @item.DTypeName
-                                        </label>
-                                        <select style="margin-left:10px; width: 70px" class="deductionlist nopadding" @(check ? null : "disabled")>
-                                            @for (int i = 0; i <= 100; i++)
-                                            {
-                                                var num = (decimal)i / 100;
-                                                var val = string.Format("{0:0.00}", num);
-                                                <option value="@val" @(num == percent ? "selected" : null)>@val</option> 
-                                            }
-                                        </select>
-                                    </div>
-                                }
-                            </div>          
-                            <!--DeductionOption-->
-                        </div>
-                        <!--Deduction-->
-                    }
-                }              
+                <br/>
+                <div class="row-fluid row-form deductions">                    
+                    <div class="cell span3" style="min-width: 160px">            
+                        <label>
+                            <input type="checkbox" class="deduction" @(check ? "checked=checked" : "") data-id="@deduction.DTypeID" data-percent="@deduction.DeductedPercentage">
+                            @deduction.DTypeName
+                        </label>
+                        <select style="margin-left: 10px; width: 70px" class="deductionlist nopadding">
+                            @for (int i = 0; i <= 100; i++)
+                            {
+                                var num = (decimal) i/100;
+                                var val = string.Format("{0:0.00}", num);
+                                <option value="@val" @(num == percent ? "selected" : null)>@val</option>
+                            }
+                        </select>
+                    </div>	
+                </div>                  
             </div>
         }
         

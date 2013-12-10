@@ -1,0 +1,155 @@
+﻿@using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.Models
+@using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Core.Mvc
+@model PendingCommissionViewModel
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section iconcss{
+payment
+}
+@section submenu{
+    @RazorHelper.ListSubmenu(SubMenu.Payment, 1, "payment")
+}
+<div class="search-panel search-payment">
+    <div class="ic-reload" title="@Lang.RefreshPage">
+    </div>
+    @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
+    @using (Html.BeginForm("ProcessingCommission", "Payment", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
+    {
+        <div class="span12 search-form">
+            <div class="row-fluid row-form">
+                <div class="cell">
+                    @Html.LabelFor(m => m.Username, new {@class = "txt"})
+                    @Html.TextBoxFor(m => m.Username, new {placeholder = Lang.All, @class = "width-140", maxlength = "100", Name = "AffName"})
+                </div>
+                <div class="cell">
+                    @Html.LabelFor(m => m.AffType, new {@class = "txt"})
+                    @Html.DropDownCheckList("AffTypes", new SelectList(AppSettings.AffTypes, "TypeID", "Name"), true, true, new {@class = "width-140"})
+                </div>
+                <div class="cell">
+                    @Html.LabelFor(m => m.CommGroup, new {@class = "txt"})
+                    @Html.DropDownCheckList("CommGroups", Model.CommissionGroupOptionList, true, true, new {@class = "width-140"})
+                </div>
+                <div class="cell">
+                    @Html.LabelFor(m => m.Language, new {@class = "txt auto"})
+                    @Html.DropDownCheckList("PreferLanguages", Model.PreferLanguageOptionList, true, true, new {@class = "width-140"})
+                </div>
+            </div>
+            <div class="row-fluid row-form">
+                <div class="cell">
+                    @Html.LabelFor(m => m.Currency, new {@class = "txt"})
+                    @Html.DropDownCheckList("Currencies", Model.AffiliateCurrencyOptionList, true, true, new {@class = "width-140"})
+                </div>
+                <div class="cell">
+                    @Html.LabelFor(m => m.BaseCurrency, new {@class = "txt"})
+                    @Html.DropDownCheckList("BaseCurrency", Model.BaseCurrencyOptionList, false, false, new {@class = "width-140"})
+                </div>
+                <div class="cell">
+                    <label for="SortBy" class="txt">@Lang.SortBy</label>
+                    <select id="SortBy" class="width-140 single-select dropdownchecklist">
+                        <option value="0">@Lang.Affiliate</option>
+                        <option value="1">@Lang.Commission</option>
+                    </select>
+                </div>
+                <div class="cell">
+                    <label class="checkbox txt">
+                        @Html.CheckBoxFor(m => m.ExcludeTest)
+                        @Html.LabelFor(m => m.ExcludeTest)
+                    </label>
+                </div>
+            </div>
+            <div class="row-fluid row-form btn-action">
+                <div class="span12">
+                    <button type="submit" class="btn" id="btnSubmit">
+                        @Lang.Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div id="gridId" class="freegrid" colheight="200" expheight="350" >
+</div>
+
+<div class="grid-status">
+    <div id="gridId" class="freegrid" colheight="230" expheight="380"></div>
+    <ul class="unstyled inline status">
+        <li><span class="approved"></span>@Lang.Approved</li>
+        <li><span class="rejected"></span>@Lang.Rejected</li>
+        <li><span class="pending"></span>@Lang.Proccessing</li>
+        <li><span class="cancelled"></span>@Lang.Cancelled</li>
+    </ul>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        var MSG = {
+            ActivePlayers: "@Lang.ActiveMembers",
+            BetCount: "@Lang.BetCount",
+            Turnover: "@Lang.Turnover",
+            Winloss: "@Lang.Winloss",
+            Commission: "@Lang.Commission",
+            SubTotalIn: "@Lang.SubTotalIn",
+            Total: "@Lang.Total",
+            TotalAll: "@Lang.TotalAll",
+            Sportsbook: "@Lang.Sportsbook",
+            NumberGame: "@Lang.NumberGame",
+            LiveCasino: "@Lang.LiveCasino",
+            RNGCasino: "@Lang.RNGCasino",
+            SubTotal: "@Lang.SubTotal",
+            Total: "@Lang.Total",
+            CommPercent: "@Lang.CommPercent",
+            QM: "@Lang.QM",
+            CommGroupSettingFor: "@Lang.CommGroupSettingFor",
+            AffQualifiedMemReportDetailFor: "@Html.Raw(Lang.AffQualifiedMemReportDetailFor)",
+            Currency: "@Lang.Currency",
+            Cashback: "@Lang.Cashback",
+            DeductionPercent: "@Lang.DeductionPercent",
+            Amount: "@Lang.Amount",
+            CommissionTitle: "@Lang.Commission",
+            
+        };
+        
+        var PRODUCTS = @(Html.Raw(ViewBag.Products));
+        
+        var sampleGridOption = {
+            showTitle: true,
+            
+            titleInfo:
+            {
+                text: "@Lang.ProcessingCommission",
+                customButtons: "<input type='button' value='Transfer All' id='transferAll'>"
+            },
+            groupHeaderRows: [
+                {
+                    Columns: [
+                        { HeaderText: "#", Name: "No", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.Affiliate", Name: "Username", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.Month", Name: "WinlostDate", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.CommGroup", Name: "GroupName", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 }
+                    ]
+                }
+            ],
+            columns: [
+                { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.Affiliate", Width: 80, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.Month", Width: 80, Name: "WinlostDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_MONTH },
+                { HeaderText: "@Lang.CommGroup", Width: 90, Name: "GroupName", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.Currency", Width: 90, Name: "Currency", HeaderAlign: "center", CellAlign: "center" }
+            ],
+            allowTruncate: true,
+            gridExpandHeight: 350,
+            customizeHeader: true,
+            indexNumberColumn: 0
+        };
+
+        var totalPaymentHeader = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Name: "Commission", NameCache: "Commission", MergeRowNumber: 2,  };
+        var totalPaymentCol = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right" };
+        
+    </script>
+    <script src="~/Scripts/site/ProcessingCommission.js" type="text/javascript"></script>
+}

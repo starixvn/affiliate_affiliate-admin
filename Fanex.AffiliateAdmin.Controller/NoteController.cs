@@ -135,7 +135,7 @@ namespace Fanex.AffiliateAdmin.Controller
             ViewBag.Result = new ResultViewModel
             {
                 ErrorCode = criteria.ErrCode,
-                Message = criteria.ErrCode == 0 ? Lang.ErrUpdateSucc : ErrorMessage(criteria.ErrCode)
+                Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
             };
 
             return View();

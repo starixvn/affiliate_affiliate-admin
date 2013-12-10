@@ -29,7 +29,7 @@ var COMMGROUP = function ($) {
                     var colName = columns[k].Name;
                     var col = columns[k];
                     var data = null;
-                    if (k < INDEX_PRODUCT_COL || k == INDEX_GENERAL_DEDUCTION_COL) {
+                    if (k < INDEX_PRODUCT_COL) {
                         data = record;
                     }
                     else {
@@ -52,6 +52,7 @@ var COMMGROUP = function ($) {
                                         if (deductions.hasOwnProperty(property)) {
                                             var deductionValue = deductions[property];
                                             value += "<input disabled type='checkbox' " + (deductionValue >= 0 ? " checked='checked' " : null) + " /> " + property;
+                                            
                                             if (deductionValue >= 0)
                                                 value += " (" + numeral(deductionValue).format(AFFILIATE.FORMATNUMBER) + ") ";
                                             value += "<br />";

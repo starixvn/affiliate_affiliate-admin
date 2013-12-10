@@ -88,6 +88,9 @@
     <Compile Include="Configuration\Tracking\ClickStatisticDetailCriteria.cs" />
     <Compile Include="CommGroupAssignCriteria.cs" />
     <Compile Include="CompanyWinlossReportCriteria.cs" />
+    <Compile Include="CashBackUpdateCriteria.cs" />
+    <Compile Include="MonthlyTransferCriteria.cs" />
+    <Compile Include="ProcessingCommCriteria.cs" />
     <Compile Include="PlayerWinlossReportCriteria.cs" />
     <Compile Include="FavoriteCriteria.cs" />
     <Compile Include="CountryCriteria.cs" />

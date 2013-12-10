@@ -141,7 +141,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             {
                 return new List<Menu>
                 {
-                    new Menu { Text = Lang.ListBanner, Link = "~/Media/BannerList" },
+                    new Menu { Text = Lang.BannerList, Link = "~/Media/BannerList" },
                     new Menu { Text = Lang.TextList, Link = "~/Media/TextList" }
                 };
             }
@@ -173,7 +173,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 return new List<Menu>
                 {
                     new Menu { Text = Lang.Payment, Link = "~/Payment" },
-                    new Menu { Text = Lang.PendingCommission, Link = "~/Payment/PendingCommission" }
+                    new Menu { Text = Lang.PendingCommission, Link = "~/Payment/ProcessingCommission" }
                 };
             }
         }

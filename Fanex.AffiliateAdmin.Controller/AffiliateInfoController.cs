@@ -410,7 +410,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 AffMinPlayer = selectCriteria.AffMinPlayer,
                 AffMinWire = selectCriteria.AffMinWire,
                 Countries = _countryService.GetAll(new CountryCriteria()),
-                PaymentMethods = this._systemSettingService.GetPaymentMethod(new PaymentMethodCriteria()).ToList()
+                PaymentMethods = _systemSettingService.GetPaymentMethod(new PaymentMethodCriteria()).ToList()
             };
 
             return model;

@@ -11,9 +11,9 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using System.Web.Script.Serialization;
     using Core.Configurations;
     using Core.Entities;
     using Core.Enumerations;
@@ -22,9 +22,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Session;
     using Core.Utilities;
     using Criterias;
-    using DTO;
     using Models;
-    using Resources;
     using Services.Impl;
     using Services.Interface;
 
@@ -176,9 +174,83 @@ namespace Fanex.AffiliateAdmin.Controller
             return View(model);
         }
 
-        public ActionResult PendingCommission()
+        /// <summary>
+        /// Processing Commission.
+        /// </summary>
+        /// <returns>Processing Commission Page.</returns>
+        public ActionResult ProcessingCommission()
         {
+            var serializer = new JavaScriptSerializer();
+
+            ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
+            {
+                Id = x.ProductID,
+                Name = x.ProductName
+            }));
+
             return View(new PendingCommissionViewModel());
+        }
+
+        /// <summary>
+        /// Processing Commission.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>Processing Commission Result.</returns>
+        [HttpPost]
+        public ActionResult ProcessingCommission(ProcessingCommCriteria criteria)
+        {
+            criteria.UserId = CurrentSession.CustID;
+            criteria.IsITAdmin = CurrentSession.IsIT;
+
+            var data = _paymentService.GetProcessingCommissions(criteria);
+
+            return Json(new
+                {
+                    List = data,
+                    ItemsPerPage = data.Count(),
+                    TotalItem = data.Count(),
+                });
+        }
+
+        /// <summary>
+        /// Update Cash Back.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>Update Cash Back Result.</returns>
+        [HttpPost]
+        public ActionResult UpdateCashBack(CashBackUpdateCriteria criteria)
+        {
+            criteria.UserId = CurrentSession.CustID;
+            _paymentService.UpdateCashBack(criteria);
+
+             var result = new ResultViewModel
+             {
+                 Success = criteria.ErrCode == 0,
+                 ErrorCode = criteria.ErrCode,
+                 Message = criteria.ErrCode == 0 ? string.Empty : ErrorMessage(criteria.ErrCode)
+             };
+
+            return Json(result);
+        }
+
+        /// <summary>
+        /// Monthly Transfer.
+        /// </summary>
+        /// <returns>MonthlyTransfer Result.</returns>
+        [HttpPost]
+        public ActionResult MonthlyTransfer()
+        {
+            var now = DateTime.Now.AddMonths(-1);
+
+            var criteria = new MonthlyTransferCriteria { Month = now.Month, Year = now.Year };
+
+            var result = _paymentService.MonthlyTransfer(criteria);
+
+            return Json(new ResultViewModel 
+            {
+                Success = string.IsNullOrEmpty(result),
+                Message = result
+            });
         }
 
         #region Helpers

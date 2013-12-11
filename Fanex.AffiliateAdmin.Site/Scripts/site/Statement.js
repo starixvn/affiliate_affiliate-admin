@@ -18,8 +18,6 @@
             });
 
             $('.search-panel form').submit(function () {
-                
-
                 STATEMENT.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
                 return false;
             });

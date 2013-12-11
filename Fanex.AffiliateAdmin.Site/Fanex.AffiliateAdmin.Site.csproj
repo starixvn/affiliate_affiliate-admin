@@ -421,8 +421,6 @@
     <Content Include="Content\_Sites\MYM\Images\panel.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\libraries\accounting.js" />
-    <Content Include="Scripts\libraries\BigDecimal-all-last.js" />
     <Content Include="Scripts\libraries\date.min.js" />
     <Content Include="Scripts\libraries\daterangepicker.js" />
     <Content Include="Scripts\libraries\Fanex.Grid.js" />
@@ -464,7 +462,7 @@
     <Content Include="Scripts\site\CompanyWLHelper.js" />
     <Content Include="Scripts\site\CommissionReport.js" />
     <Content Include="Scripts\site\CommissionByAffiliateReport.js" />
-    <Content Include="Scripts\site\PendingCommission.js" />
+    <Content Include="Scripts\site\ProcessingCommission.js" />
     <Content Include="Scripts\site\PlayerWLHelper.js" />
     <Content Include="Scripts\site\PlayerWinlossReport.js" />
     <Content Include="Scripts\site\MemberStatistics.js" />
@@ -599,7 +597,7 @@
     <Content Include="Views\Report\CommissionByAffiliate.cshtml" />
     <Content Include="Views\Report\QualifiedMembers.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ko-KR.cshtml" />
-    <Content Include="Views\Payment\PendingCommission.cshtml" />
+    <Content Include="Views\Payment\ProcessingCommission.cshtml" />
     <None Include="Views\Shared\Email\AffiliateApprove\Html\Body.en-US.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

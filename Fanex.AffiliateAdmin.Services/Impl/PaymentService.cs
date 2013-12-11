@@ -58,5 +58,20 @@ namespace Fanex.AffiliateAdmin.Services.Impl
         {
             ExecuteOutput(criteria);
         }
+
+        public IEnumerable<ProcessingComm> GetProcessingCommissions(ProcessingCommCriteria criteria)
+        {
+            return GetDataOutput<ProcessingComm>(criteria);
+        }
+
+        public void UpdateCashBack(CashBackUpdateCriteria criteria)
+        {
+            ExecuteOutput(criteria);
+        }
+
+        public string MonthlyTransfer(MonthlyTransferCriteria criteria)
+        {
+            return GetEntity<string>(criteria);
+        }
     }
 }

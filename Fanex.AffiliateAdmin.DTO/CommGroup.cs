@@ -39,6 +39,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal Deduction { get; set; }
 
+        public Dictionary<string, decimal> GeneralDeductions { get; set; }
+
         public Dictionary<string, object> Products { get; set; }
 
         public IEnumerable<CommGroupDetail> Details { get; set; }

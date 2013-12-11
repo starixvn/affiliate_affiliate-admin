@@ -226,6 +226,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var deduction = new Dictionary<string, decimal>();
             var deductions = allDeductions.Where(x => x.ProductID == detail.ProductID);
+
             if (deductions.Count() > 0)
             {
                 var settings = deductionSettings.Where(x => x.GroupID == group.GroupID);
@@ -255,21 +256,12 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="groupIDList">List group id.</param>
         private void BuildGroupData(IEnumerable<CommGroup> groups, DateTime date, string groupIDList)
         {
-            var detailCriteria = new CommGroupDetailCriteria
-            {
-                GroupIDList = groupIDList,
-                Date = date
-            };
-            var settingCriteria = new DeductionSettingCriteria
-            {
-                GroupIDList = groupIDList,
-                Date = date
-            };
+            var detailCriteria = new CommGroupDetailCriteria { GroupIDList = groupIDList, Date = date };
+            var settingCriteria = new DeductionSettingCriteria { GroupIDList = groupIDList, Date = date };
             var groupDetails = _service.GetGroupDetails(detailCriteria);
             var deductionSettings = _service.GetDeductionSettings(settingCriteria);
             var allDeductions = AppSettings.DeductionTypes;
-            var cashbackDeduction = AppSettings.DeductionTypes.FirstOrDefault(x => x.ProductID == 0);
-
+            var hasGeneralDeduction = AppSettings.DeductionTypes.FirstOrDefault(x => x.ProductID == 0);
             foreach (var group in groups)
             {
                 var details = groupDetails.Where(x => x.GroupId == group.GroupID);
@@ -292,11 +284,24 @@ namespace Fanex.AffiliateAdmin.Controller
                 group.IsAllowedToDelete = group.NoOfAffiliate == 0 && group.CurrencyID != 0;
                 group.Products = products.ToDictionary(x => x.Key, x => x.Value);
                 group.Details = details.ToList();
-
-                if (cashbackDeduction != null)
+                if (hasGeneralDeduction != null)
                 {
-                    var d = deductionSettings.FirstOrDefault(t => t.DeductionID == cashbackDeduction.DTypeID && t.GroupID == group.GroupID);
-                    group.Deduction = d != null ? d.DeductedPercentage : (decimal)cashbackDeduction.DeductedPercentage;
+                    var d = deductionSettings.FirstOrDefault(t => t.DeductionID == hasGeneralDeduction.DTypeID && t.GroupID == group.GroupID);
+                    group.Deduction = d != null ? d.DeductedPercentage : (decimal)hasGeneralDeduction.DeductedPercentage;
+                    var deduction = new Dictionary<string, decimal>();
+                    var deductions = allDeductions.Where(x => x.ProductID == 0);
+                    if (deductions.Count() > 0)
+                    {
+                        var settings = deductionSettings.Where(x => x.GroupID == group.GroupID).ToList();
+
+                        foreach (var item in deductions)
+                        {
+                            var setting = settings.Where(x => x.DeductionID == item.DTypeID).FirstOrDefault();
+                            deduction.Add(item.DTypeName, setting == null ? -1 : setting.DeductedPercentage);
+                        }
+                    }
+
+                    group.GeneralDeductions = deduction;
                 }
             }
         }

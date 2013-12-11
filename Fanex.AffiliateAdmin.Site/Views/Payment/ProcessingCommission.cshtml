@@ -4,7 +4,7 @@
 @using Fanex.AffiliateAdmin.Core.Mvc
 @model PendingCommissionViewModel
 @{
-    ViewBag.Title = "Payment";
+    ViewBag.Title = Lang.ProcessingCommission;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section iconcss{
@@ -13,6 +13,15 @@ payment
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.Payment, 1, "payment")
 }
+
+@{
+    var isMonthlyTransfer = (bool)ViewBag.IsMonthlyTransfer;
+    const int transferDay = 8;
+    var today = DateTime.Now;
+    var isTransferDay = today.Date.Day == transferDay;
+    var transferBtn = isTransferDay && !isMonthlyTransfer ? string.Format("<input type='button' value='{0}' id='transferAll'>", Lang.TransferAll) : string.Empty;
+}
+
 <div class="search-panel search-payment">
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
@@ -49,7 +58,7 @@ payment
                 </div>
                 <div class="cell">
                     <label for="SortBy" class="txt">@Lang.SortBy</label>
-                    <select id="SortBy" class="width-140 single-select dropdownchecklist">
+                    <select id="SortBy" name="SortBy" class="width-140 single-select dropdownchecklist">
                         <option value="0">@Lang.Affiliate</option>
                         <option value="1">@Lang.Commission</option>
                     </select>
@@ -110,18 +119,19 @@ payment
             DeductionPercent: "@Lang.DeductionPercent",
             Amount: "@Lang.Amount",
             CommissionTitle: "@Lang.Commission",
-            
+            DoYouWantToTransferAll: "@Lang.DoYouWantToTransferAll"
         };
         
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
-        
+        var button = "@(Html.Raw(transferBtn))";
+
         var sampleGridOption = {
             showTitle: true,
             
             titleInfo:
             {
                 text: "@Lang.ProcessingCommission",
-                customButtons: "<input type='button' value='Transfer All' id='transferAll'>"
+                customButtons: button
             },
             groupHeaderRows: [
                 {
@@ -144,11 +154,12 @@ payment
             allowTruncate: true,
             gridExpandHeight: 350,
             customizeHeader: true,
-            indexNumberColumn: 0
+            indexNumberColumn: 0,
+            numberOfFrozenColumn: 5
         };
 
         var totalPaymentHeader = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Name: "Commission", NameCache: "Commission", MergeRowNumber: 2,  };
-        var totalPaymentCol = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right" };
+        var totalPaymentCol = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER };
         
     </script>
     <script src="~/Scripts/site/ProcessingCommission.js" type="text/javascript"></script>

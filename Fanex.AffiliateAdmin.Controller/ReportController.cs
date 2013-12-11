@@ -331,13 +331,15 @@ namespace Fanex.AffiliateAdmin.Controller
             });
         }
 
+        #region Helpers
+
         /// <summary>
         /// Set data to sub total and total objects.
         /// </summary>
         /// <param name="commissions">Commission data.</param>
         /// <param name="subTotalData">List of Sub total object.</param>
         /// <param name="totalRowData">Total object.</param>
-        private static void SetDataForTotalCommissions(IEnumerable<CommissionReport> commissions, List<CommissionReport> subTotalData, CommissionReport totalRowData)
+        private void SetDataForTotalCommissions(IEnumerable<CommissionReport> commissions, List<CommissionReport> subTotalData, CommissionReport totalRowData)
         {
             // Sub total
             var groups = commissions.GroupBy(t => t.Currency);
@@ -375,5 +377,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
         }
+
+        #endregion
     }
 }

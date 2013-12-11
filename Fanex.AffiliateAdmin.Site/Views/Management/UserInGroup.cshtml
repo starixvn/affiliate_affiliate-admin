@@ -42,57 +42,76 @@
     <script type="text/javascript">
         var PageVar = {
             NoInfo: "@Lang.NoInfo",
-            ChangeStatus: "@Lang.ChangeStateMess"
+            ChangeStatus: "@Lang.ConfirmChangeStatusAff"
         };
         var gridOption = {
             showTitle: true,
 
             titleInfo:
             {
-                text: "@Lang.AdministratorList",
-                showUpdateButton: true,
-                updateFunction: function () {
-                    Management.updatePolicy();
-                }
+                text: "@Lang.UserManagement",
             },
             columns: [
-                      { HeaderText: "<input type='checkbox' value='all' />", Width: 40, Name: "check", HeaderAlign: "center", CellAlign: "center",
-                          Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) { return "<input type='checkbox' name='user' value='" + rowData.CustID + "' data-name='" + rowData.Username + "' />"; }
-                      },
-                      { HeaderText: "#", Width: 40, Name: "number", HeaderAlign: "center", CellAlign: "center" },
-                      { HeaderText: "@Lang.Username", Width: 120, Name: "Username", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) { return '<a href="javascript:Management.editAccount(' + rowData.CustID + ",'" + rowData.Username + '\')">' + cell.Value + '</a>'; }
-                      },
-                      { HeaderText: "@Lang.FirstName", Width: 80, Name: "FirstName" },
-                      { HeaderText: "@Lang.LastName", Width: 80, Name: "LastName" },
-                      { HeaderText: "@Lang.Status", Width: 80, Name: "Status", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) {
+                {
+                    HeaderText: "<input type='checkbox' value='all' />",
+                    Width: 40,
+                    Name: "check",
+                    HeaderAlign: "center",
+                    CellAlign: "center",
+                    Formatter:
+                        function(rowIndex, rowData, cell, cellFormated) { return "<input type='checkbox' name='user' value='" + rowData.CustID + "' data-name='" + rowData.Username + "' />"; }
+                },
+                { HeaderText: "#", Width: 40, Name: "number", HeaderAlign: "center", CellAlign: "center" },
+                {
+                    HeaderText: "@Lang.Username",
+                    Width: 120,
+                    Name: "Username",
+                    Formatter:
+                        function(rowIndex, rowData, cell, cellFormated) { return '<a href="javascript:Management.editAccount(' + rowData.CustID + ",'" + rowData.Username + '\')">' + cell.Value + '</a>'; }
+                },
+                { HeaderText: "@Lang.FirstName", Width: 80, Name: "FirstName" },
+                { HeaderText: "@Lang.LastName", Width: 80, Name: "LastName" },
+                {
+                    HeaderText: "@Lang.Status",
+                    Width: 80,
+                    Name: "Status",
+                    Formatter:
+                        function(rowIndex, rowData, cell, cellFormated) {
                             var statusName = cell.Value ? "@Lang.Closed" : "@Lang.Open";
                             var className = cell.Value ? "icon-ban-circle" : "icon-ok-circle";
                             return statusName + "<a href=\"javascript:Management.changeStatus(this," + rowData.CustID + ");\"><i id='i_" + rowData.CustID + "' class=\"" + className + "\"></i></a>";
                         }
-                      },
-                      { HeaderText: "@Lang.Creator", Width: 80, Name: "Creator" },
-                      { HeaderText: "@Lang.CreatedDate", Width: 160, Name: "CreateDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
-                      { HeaderText: "@Lang.Policy", Width: 100, Name: "CustID", CellAlign: "center", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) {
+                },
+                { HeaderText: "@Lang.Creator", Width: 80, Name: "Creator" },
+                { HeaderText: "@Lang.CreatedDate", Width: 160, Name: "CreateDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+                {
+                    HeaderText: "@Lang.Policy",
+                    Width: 100,
+                    Name: "CustID",
+                    CellAlign: "center",
+                    Formatter:
+                        function(rowIndex, rowData, cell, cellFormated) {
                             return '<a href="javascript:Management.viewAccountPolicy(' + rowData.CustID + ",'" + rowData.Username + "','" + rowData.GroupName + '\')">@Lang.AccountPolicy</a>';
                         }
-                      },
-                      { HeaderText: "@Lang.Password", Width: 80, Name: "CustID", CellAlign: "center", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) {
+                },
+                {
+                    HeaderText: "@Lang.Password",
+                    Width: 80,
+                    Name: "CustID",
+                    CellAlign: "center",
+                    Formatter:
+                        function(rowIndex, rowData, cell, cellFormated) {
                             if (rowData.Status)
                                 return "";
                             return "<a href=\"javascript:Management.editPassword(" + rowData.CustID + ",'" + rowData.Username + "\')\"><i class=\"icon-edit\"></i></a>";
                         }
-                      }
-                   ],
+                }
+            ],
             showPager: true,
             allowTruncate: true,
             gridExpandHeight: 100,
             indexNumberColumn: 1
-        }
+        };
     </script>
     <script src="~/scripts/libraries/jquery.multiselect.js"></script>
     <script src="~/Scripts/site/UserManagement.js" type="text/javascript"></script>

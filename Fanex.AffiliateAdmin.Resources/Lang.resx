@@ -2398,4 +2398,10 @@
   <data name="DeductionPercent" xml:space="preserve">
     <value>% Deduction</value>
   </data>
+  <data name="DoYouWantToTransferAll" xml:space="preserve">
+    <value>Do you want to transfer all?</value>
+  </data>
+  <data name="TransferAll" xml:space="preserve">
+    <value>Transfer All</value>
+  </data>
 </root>

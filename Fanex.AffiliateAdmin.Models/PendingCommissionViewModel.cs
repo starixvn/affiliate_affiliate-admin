@@ -21,6 +21,11 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class PendingCommissionViewModel
     {
+        public PendingCommissionViewModel()
+        {
+            ExcludeTest = true;
+        }
+
         [Display(Name = "Affiliate", ResourceType = typeof(Lang))]
         public string Username { get; set; }
 

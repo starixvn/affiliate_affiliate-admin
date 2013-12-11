@@ -188,6 +188,12 @@ namespace Fanex.AffiliateAdmin.Controller
                 Name = x.ProductName
             }));
 
+            var criteria = new IsMonthlyTransferCriteria { MonthDate = DateTime.Now.AddMonths(-1).Date };
+
+            _paymentService.CheckMonthlyTransfer(criteria);
+
+            ViewBag.IsMonthlyTransfer = criteria.IsMonthly;
+
             return View(new PendingCommissionViewModel());
         }
 

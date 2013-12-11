@@ -73,5 +73,10 @@ namespace Fanex.AffiliateAdmin.Services.Impl
         {
             return GetEntity<string>(criteria);
         }
+
+        public void CheckMonthlyTransfer(IsMonthlyTransferCriteria criteria)
+        {
+            ExecuteOutput(criteria);
+        }
     }
 }

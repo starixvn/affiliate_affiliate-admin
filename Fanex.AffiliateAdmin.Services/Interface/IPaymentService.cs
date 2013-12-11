@@ -33,5 +33,7 @@ namespace Fanex.AffiliateAdmin.Services.Interface
         void UpdateCashBack(CashBackUpdateCriteria criteria);
 
         string MonthlyTransfer(MonthlyTransferCriteria criteria);
+
+        void CheckMonthlyTransfer(IsMonthlyTransferCriteria criteria);
     }
 }

@@ -17,7 +17,7 @@ report
 
 @{
     var now = DateTime.Now;
-    var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : new DateTime(now.Year, now.Month, 1);
+    var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : now;
     var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now; 
 }
 

@@ -54,11 +54,10 @@ report
                 </div>
                 <div class="cell">
                     <label for="FromDate" class="txt width-90">@Lang.From</label>
-                    @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), AppSettings.SystemStartDate, now, false)
-                </div>
+                    @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), AppSettings.SystemStartDate, now, false, new { isdefault = "false" })</div>
                 <div class="cell">
                     <label for="ToDate" class="txt auto text-left">@Lang.To</label>
-                    @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, false)
+                    @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, false, new { isdefault = "false" })
                 </div>
             </div>
             <div class="row-fluid row-form end-search">

@@ -185,6 +185,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
         /// <param name="minDate">Minimum date.</param>
         /// <param name="maxDate">Maximum date.</param>
         /// <param name="disabled">Disabled date picker.</param>
+        /// <param name="htmlAttributes">Html attributes.</param>
         /// <returns>Date picker string.</returns>
         public static MvcHtmlString DatePicker(
           this HtmlHelper htmlHelper,
@@ -192,8 +193,11 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
           DateTime? date,
           DateTime? minDate = null,
           DateTime? maxDate = null,
-          bool disabled = false)
+          bool disabled = false,
+          object htmlAttributes = null)
         {
+            var attributes = htmlAttributes == null ? new Dictionary<string, object>() : htmlAttributes.ToDictionary();
+
             // check the constraint [mindate - maxdate]
             if (date.HasValue && minDate.HasValue && date.Value < minDate.Value)
             {
@@ -207,14 +211,11 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
 
             var value = date.HasValue ? date.Value.ToString("dd MMM yyyy") : string.Empty;
 
-            var attributes = new Dictionary<string, object>()
-                    {
-                        { "class", "datepicker" },
-                        { "data-mindate", minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy/MM/dd") : "null" },
-                        { "data-maxdate", maxDate != null && maxDate != DateTime.MaxValue ? ((DateTime)maxDate).ToString("yyyy/MM/dd") : "null" },
-                        { "data-value", date.HasValue ? date.Value.ToString("yyyy/MM/dd") : null },
-                        { "readonly", "true" }
-                    };
+            attributes.AddOrAppend("class", "datepicker");
+            attributes.AddOrAppend("data-mindate", minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy/MM/dd") : "null");
+            attributes.AddOrAppend("data-maxdate", maxDate != null && maxDate != DateTime.MaxValue ? ((DateTime)maxDate).ToString("yyyy/MM/dd") : "null");
+            attributes.AddOrAppend("data-value", date.HasValue ? date.Value.ToString("yyyy/MM/dd") : null);
+            attributes.AddOrAppend("readonly", "true");
 
             if (disabled)
             {

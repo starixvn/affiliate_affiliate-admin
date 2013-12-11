@@ -154,6 +154,16 @@
             mainContentObject.on("click", "#transferAll", function () {
                 ProcessingCommission.MonthlyTransfer();
             });
+            
+            mainContentObject.on("click", "a.qm", function () {
+                var param = {
+                affid: $(this).data("affid"),
+                monthdate: $(this).data("date")
+                };
+                var title = MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
+                title = title.replace("{1}", param.monthdate) + " - " + MSG.Currency + ": " + $(this).data("currency");
+                parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });
+            }); 
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
@@ -202,7 +212,7 @@
                         $('.status').show();
                     }
 
-                    //AFFILIATE.updateSearchPanel(gridObject);
+                    AFFILIATE.updateSearchPanel(gridObject);
                 },
                 complete: function () {
                     $.unblockUI();
@@ -238,23 +248,25 @@
             });
         }, 
         MonthlyTransfer: function (input) {
-            $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Payment/MonthlyTransfer"),
-                type: 'post',
-                beforeSend: function () {
-                    $.blockUI();
-                },
-                success: function (data) {
-                    if (data.Success) {
-                        alert(data.Message);
-                    } else {
-                        alert(data.Message);
+            if (confirm("Do you want to transfer all?")) {
+                $.ajax({
+                    url: AFFILIATE.getAbsoluteUrl("Payment/MonthlyTransfer"),
+                    type: 'post',
+                    beforeSend: function() {
+                        $.blockUI();
+                    },
+                    success: function(data) {
+                        if (data.Success) {
+                            window.location.reload();
+                        } else {
+                            alert(data.Message);
+                        }
+                    },
+                    complete: function() {
+                        $.unblockUI();
                     }
-                },
-                complete: function () {
-                    $.unblockUI();
-                }
-            });
+                });
+            }
         }, 
     };
 } (jQuery);

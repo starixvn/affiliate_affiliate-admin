@@ -2176,6 +2176,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to transfer all?.
+        /// </summary>
+        public static string DoYouWantToTransferAll {
+            get {
+                return ResourceManager.GetString("DoYouWantToTransferAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Draw Filter.
         /// </summary>
         public static string DrawFilter {
@@ -6285,6 +6294,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string TransactionsId {
             get {
                 return ResourceManager.GetString("TransactionsId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer All.
+        /// </summary>
+        public static string TransferAll {
+            get {
+                return ResourceManager.GetString("TransferAll", resourceCulture);
             }
         }
         

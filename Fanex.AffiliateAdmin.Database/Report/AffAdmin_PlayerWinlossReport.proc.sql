@@ -173,8 +173,8 @@ Begin
 				, m.SysExRate
 		From MemberDaily m with (NOLOCK)
 			inner JOIN @PlayerCurrencyList e ON m.Currency = e.ExchangeID
-			inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin) 
-								as t on m.AffId = t.AffId
+			inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
+								as t on m.AffId = t.AffId and DATEDIFF(m, m.WinlostDate, t.MonthDate) = 0
 		where WinlostDate between @FromDate AND @ToDate
 				and m.UserName LIKE @PlayerName
 		Group by m.WinlostDate
@@ -304,8 +304,8 @@ Begin
 				, m.SysExRate as ExRate
 		From MemberDaily m with (NOLOCK)
 			inner JOIN @PlayerCurrencyList e ON m.Currency = e.ExchangeID
-			inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin) 
-								as t on m.AffId = t.AffId
+			inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
+								as t on m.AffId = t.AffId and DATEDIFF(m, m.WinlostDate, t.MonthDate) = 0
 		where WinlostDate between @FromDate AND @ToDate
 			and m.UserName LIKE @PlayerName
 		Group by t.Username

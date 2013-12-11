@@ -92,8 +92,8 @@ Select	ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0) as Winlost
 		, SUM(CASE WHEN ad.ProductID = @RNGCasino then ad.MemWinlost_aff ELSE 0 END) as RNGCasinoWinloss
 		, SUM(CASE WHEN ad.ProductID = @RNGCasino then MemWinlost ELSE 0 END) as RNGCasinoWinlossBase
 From AffDailySummary ad with (nolock)
-	inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, @Currencies, @ExcludeTest, @IsITAdmin) 
-				as t on ad.AffId = t.AffId
+	inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, @Currencies, @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
+				as t on ad.AffId = t.AffId and DATEDIFF(m, ad.WinlostDate, t.MonthDate) = 0
 Where WinlostDate > @MaxCalculatedDate
 Group BY ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0), t.Username, t.ExchangeId, t.Currency
 
@@ -143,8 +143,8 @@ BEGIN
 			, CashbackPercent =				isnull(d.DeductedPercentage, 0)
 			, CashbackAmount =				isnull(a.Amount, 0)
 			, CashbackAmountBase =			isnull(a.Amount * dbo.Aff_GetExchangeRate(@ExchangeId, @SystemExchangeId, NULL), 0)
-			, Commission =					isnull(@Amount - (d.DeductedPercentage * a.Amount), 0)--All Product
-			, CommissionBase =				isnull((@Amount - (d.DeductedPercentage * a.Amount)) * dbo.Aff_GetExchangeRate(@ExchangeId, @SystemExchangeId, NULL), 0)
+			, Commission =					isnull(@Amount - isnull((d.DeductedPercentage * a.Amount), 0), 0)--All Product
+			, CommissionBase =				isnull((@Amount - isnull((d.DeductedPercentage * a.Amount), 0)) * dbo.Aff_GetExchangeRate(@ExchangeId, @SystemExchangeId, NULL), 0)
 			, SportsbookCommission =		isnull(@SportsbookAmount, 0)
 			, SportsbookQM =				isnull(@SportsbookQualifiedMember, 0)
 			, SportsbookCommissionPercent = isnull(@SportsbookCommission, 0)

@@ -575,10 +575,16 @@
     <Build Include="Common Function\Aff_CommissionForCurrentMonth.function.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Report\AffAdmin_CommissionSettle.proc.sql">
+    <NotInBuild Include="Common Function\Aff_GetAffDeductionAll.function.sql">
       <SubType>Code</SubType>
-    </Build>
-    <Build Include="Common Function\Aff_GetAffDeductionAll.function.sql">
+    </NotInBuild>
+    <NotInBuild Include="Payment\AffAdmin_CashBackUpdate.proc.sql">
+      <SubType>Code</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Payment\AffAdmin_CommissionSettle.proc.sql">
+      <SubType>Code</SubType>
+    </NotInBuild>
+    <Build Include="Payment\AffAdmin_IsMonthlyTransfer.proc.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

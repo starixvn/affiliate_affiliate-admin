@@ -7,7 +7,9 @@
 	@PreferLanguages varchar(1000) = NULL,
 	@Currencies varchar(100) = NULL,
 	@ExcludeTest bit = 1,
-	@IsITAdmin bit = 0
+	@IsITAdmin bit = 0,
+	@FromDate datetime = null,
+	@ToDate datetime = null
 )
 RETURNS @returntable TABLE 
 (
@@ -17,7 +19,8 @@ RETURNS @returntable TABLE
 	Language nvarchar(255),
 	ExchangeId int,
 	Currency varchar(5),
-	Status varchar(50)
+	Status varchar(50),
+	MonthDate datetime
 )
 AS
 BEGIN
@@ -63,26 +66,75 @@ BEGIN
 	FROM [dbo].[strSplit] ( @PreferLanguages, ',' )
 
 
-	--Get Affiliate list
-	Insert INTO @returntable
-	Select ai.AffId, ai.Username, at.Name, l.LanguageName, ex.ExchangeId, Code
-		, (CASE 
-				WHEN IsClosed = 1 THEN 'Closed'
-				WHEN IsLocked = 1 THEN 'Locked'
-				ELSE Status
-			END) as Status
-	From AffInfo ai with (nolock)
-		INNER JOIN AffDetail AD (NOLOCK) ON AD.AffID = AI.AffID
-		INNER JOIN Exchange ex with (nolock) on ai.Currency = ex.ExchangeID
-		INNER JOIN AffType at WITH (NOLOCK) on ai.AffType = at.TypeID
-		INNER JOIN Language l WITH (NOLOCK) on AD.PreferredLanguage = l.LanguageID
-	Where 
-		ai.Status = 'Approved' AND
-		AI.UserName like @AffName AND
-		(@AffTypes IS NULL OR AI.AffType IN (SELECT AffTypeID FROM @AffTypeList)) AND
-		(@Currencies = 'All' OR AI.Currency IN (SELECT CurrencyID FROM @tmpCurrency)) AND
-		(@CommGroups IS NULL OR AI.GroupID IN (SELECT CommGroupID FROM @CommGroupList)) AND
-		(@PreferLanguages IS NULL OR AD.PreferredLanguage IN (SELECT LanguageID FROM @PreferLangList)) AND
-		((@ExcludeTest = 1 AND AI.TestLevel=0) OR (@ExcludeTest = 0 AND @IsITAdmin = 1) OR (@ExcludeTest = 0 AND @IsITAdmin = 0 AND AI.TestLevel IN (0,1)))
+	Declare @CurrentDate datetime
+	Select @CurrentDate = [dbo].[Aff_GetFirstDayOfMonth](CURRENT_TIMESTAMP)
+
+	--Get data from current affinfo table
+	IF(@CommGroups IS NULL or datediff(m, @CurrentDate, @ToDate) = 0)
+	BEGIN
+		--Get Affiliate list
+		Insert INTO @returntable
+		Select ai.AffId, ai.Username, at.Name, l.LanguageName, ex.ExchangeId, Code
+			, (CASE 
+					WHEN IsClosed = 1 THEN 'Closed'
+					WHEN IsLocked = 1 THEN 'Locked'
+					ELSE Status
+				END) as Status
+			, @CurrentDate as MonthDate
+		From AffInfo ai with (nolock)
+			INNER JOIN AffDetail AD (NOLOCK) ON AD.AffID = AI.AffID
+			INNER JOIN Exchange ex with (nolock) on ai.Currency = ex.ExchangeID
+			INNER JOIN AffType at WITH (NOLOCK) on ai.AffType = at.TypeID
+			INNER JOIN Language l WITH (NOLOCK) on AD.PreferredLanguage = l.LanguageID
+		Where 
+			ai.Status = 'Approved' AND
+			AI.UserName like @AffName AND
+			(@AffTypes IS NULL OR AI.AffType IN (SELECT AffTypeID FROM @AffTypeList)) AND
+			(@Currencies = 'All' OR AI.Currency IN (SELECT CurrencyID FROM @tmpCurrency)) AND
+			--(@CommGroups IS NULL OR AI.GroupID IN (SELECT CommGroupID FROM @CommGroupList)) AND
+			(@PreferLanguages IS NULL OR AD.PreferredLanguage IN (SELECT LanguageID FROM @PreferLangList)) AND
+			((@ExcludeTest = 1 AND AI.TestLevel=0) OR (@ExcludeTest = 0 AND @IsITAdmin = 1) OR (@ExcludeTest = 0 AND @IsITAdmin = 0 AND AI.TestLevel IN (0,1)))
+	END
+	
+
+	IF (@CommGroups IS NOT NULL)
+	BEGIN
+		--Get from history comm group table
+		IF (datediff(m, @FromDate, @CurrentDate) > 0)
+		BEGIN
+			Declare @TmpTodate datetime -- last date of the month to get all data
+			Select @TmpTodate = [dbo].[Aff_GetLastDayOfMonth](@ToDate)
+
+
+			Insert INTO @returntable
+			Select ai.AffId, ai.Username, at.Name, l.LanguageName, ex.ExchangeId, Code
+				, (CASE 
+						WHEN IsClosed = 1 THEN 'Closed'
+						WHEN IsLocked = 1 THEN 'Locked'
+						ELSE Status
+					END) as Status
+				, tmp.MonthDate
+			From AffInfo ai with (nolock)
+				INNER JOIN AffDetail AD (NOLOCK) ON AD.AffID = AI.AffID
+				INNER JOIN Exchange ex with (nolock) on ai.Currency = ex.ExchangeID
+				INNER JOIN AffType at WITH (NOLOCK) on ai.AffType = at.TypeID
+				INNER JOIN Language l WITH (NOLOCK) on AD.PreferredLanguage = l.LanguageID
+				INNER JOIN 
+				(
+					SELECT AffId, MonthDate
+					FROM AffGroupHistory ag WITH (NOLOCK)
+						INNER JOIN @CommGroupList c ON ag.GroupId = c.CommGroupID
+					Where MonthDate BETWEEN @FromDate and @TmpTodate						
+				) AS tmp on ai.AffID = tmp.AffId
+			Where 
+				ai.Status = 'Approved' AND
+				AI.UserName like @AffName AND
+				(@AffTypes IS NULL OR AI.AffType IN (SELECT AffTypeID FROM @AffTypeList)) AND
+				(@Currencies = 'All' OR AI.Currency IN (SELECT CurrencyID FROM @tmpCurrency)) AND
+				--(AI.GroupID IN (SELECT CommGroupID FROM @CommGroupList)) AND
+				(@PreferLanguages IS NULL OR AD.PreferredLanguage IN (SELECT LanguageID FROM @PreferLangList)) AND
+				((@ExcludeTest = 1 AND AI.TestLevel=0) OR (@ExcludeTest = 0 AND @IsITAdmin = 1) OR (@ExcludeTest = 0 AND @IsITAdmin = 0 AND AI.TestLevel IN (0,1)))
+		END
+	END
 	return
 END

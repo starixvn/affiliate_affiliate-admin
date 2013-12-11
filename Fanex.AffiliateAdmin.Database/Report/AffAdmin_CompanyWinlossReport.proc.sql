@@ -61,7 +61,7 @@ From [dbo].[strSplit](@PlayerCurrencies, ',') tmp
 IF(@GroupBy = 0)--Group by Date
 Begin
 	Select	
-		Winlostdate,
+		ad.Winlostdate,
 		p.Currency,
 		p.CurrencyId,
 		ad.SysExRate as ExRate,
@@ -73,14 +73,14 @@ Begin
 		SUM(CASE WHEN @DrawFilter = 0 THEN
 				ad.MemTurnover 
 			ELSE
-				ad.MemTurnover - ad.MemTurnoverDraw
+				ad.MemTurnoverNoDraw
 			End) as Turnover,
 		Sum(CASE 
 				WHEN ad.ProductID = @SportsbookId then 
 					(CASE WHEN @DrawFilter = 0 THEN
 						ad.MemTurnover 
 					ELSE
-						ad.MemTurnover - ad.MemTurnoverDraw
+						ad.MemTurnoverNoDraw
 					End)
 				ELSE 0 
 			END) as SportsBookTurnover,
@@ -89,7 +89,7 @@ Begin
 					(CASE WHEN @DrawFilter = 0 THEN
 						ad.MemTurnover 
 					ELSE
-						ad.MemTurnover - ad.MemTurnoverDraw
+						ad.MemTurnoverNoDraw
 					End)
 				ELSE 0 
 			END) as NumberGameTurnover,
@@ -98,7 +98,7 @@ Begin
 					(CASE WHEN @DrawFilter = 0 THEN
 						ad.MemTurnover 
 					ELSE
-						ad.MemTurnover - ad.MemTurnoverDraw
+						ad.MemTurnoverNoDraw
 					End)
 				ELSE 0 
 			END) as LiveCasinoTurnover,
@@ -107,7 +107,7 @@ Begin
 					(CASE WHEN @DrawFilter = 0 THEN
 						ad.MemTurnover 
 					ELSE
-						ad.MemTurnover - ad.MemTurnoverDraw
+						ad.MemTurnoverNoDraw
 					End)
 				ELSE 0 
 			END)as RNGCasinoTurnover,
@@ -115,7 +115,7 @@ Begin
 				WHEN @DrawFilter = 1 THEN ad.MemBetCountNoDraw
 				ELSE ad.MemBetCount  
 			END) AS int) as BetCount,
-		CAST(Sum(ad.ActivePlayer) AS int) as ActivePlayer,
+		CAST(isnull(m.ActivePlayer, 0) AS int) as ActivePlayer,
 		Sum(ad.MemWinlost) as Winlost,
 		-(Sum(CASE WHEN ad.ProductID = @SportsbookId then ad.MemWinlost ELSE 0 END)) as SportsBookWinlost,
 		-(Sum(CASE WHEN ad.ProductID = @NumberGame then ad.MemWinlost ELSE 0 END )) as NumberGameWinlost,
@@ -131,14 +131,14 @@ Begin
 		SUM(CASE WHEN @DrawFilter = 0 THEN
 				ad.MemTurnover 
 			ELSE
-				ad.MemTurnover - ad.MemTurnoverDraw
+				ad.MemTurnoverNoDraw
 			End * SysExRate) as TurnoverBase,
 		Sum(CASE 
 				WHEN ad.ProductID = @SportsbookId then 
 					(CASE WHEN @DrawFilter = 0 THEN
 						ad.MemTurnover 
 					ELSE
-						ad.MemTurnover - ad.MemTurnoverDraw
+						ad.MemTurnoverNoDraw
 					End)
 				ELSE 0 
 			END * SysExRate) as SportsBookTurnoverBase,
@@ -147,7 +147,7 @@ Begin
 					(CASE WHEN @DrawFilter = 0 THEN
 						ad.MemTurnover 
 					ELSE
-						ad.MemTurnover - ad.MemTurnoverDraw
+						ad.MemTurnoverNoDraw
 					End)
 				ELSE 0 
 			END * SysExRate) as NumberGameTurnoverBase,
@@ -156,7 +156,7 @@ Begin
 					(CASE WHEN @DrawFilter = 0 THEN
 						ad.MemTurnover 
 					ELSE
-						ad.MemTurnover - ad.MemTurnoverDraw
+						ad.MemTurnoverNoDraw
 					End)
 				ELSE 0 
 			END * SysExRate) as LiveCasinoTurnoverBase,
@@ -165,7 +165,7 @@ Begin
 					(CASE WHEN @DrawFilter = 0 THEN
 						ad.MemTurnover 
 					ELSE
-						ad.MemTurnover - ad.MemTurnoverDraw
+						ad.MemTurnoverNoDraw
 					End)
 				ELSE 0 
 			END * SysExRate)as RNGCasinoTurnoverBase,
@@ -177,13 +177,25 @@ Begin
 		-(Sum(ad.MemWinlost * SysExRate)) as TotalBase
 	From AffDaily ad with (nolock)
 		inner JOIN #PlayerCurrencies as p ON ad.MemCurrency = p.CurrencyId
-		inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin) 
-					as t on ad.AffId = t.AffId
-	where Winlostdate between @FromDate and @ToDate
-	Group by Winlostdate
+		inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
+					as t on ad.AffId = t.AffId and DATEDIFF(m, ad.WinlostDate, t.MonthDate) = 0
+		LEFT JOIN 
+		(
+			Select	Winlostdate
+					, COUNT(DISTINCT m.Username) as ActivePlayer
+			From MemberDaily m WITH (NOLOCK) 
+				inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
+							as t on m.AffId = t.AffId  and DATEDIFF(m, m.WinlostDate, t.MonthDate) = 0
+			where Winlostdate between @FromDate and @ToDate
+				AND Turnover > 0
+			GROUP  by Winlostdate
+		) as m ON DATEDIFF(d, ad.Winlostdate, m.WinlostDate) = 0	
+	where ad.Winlostdate between @FromDate and @ToDate
+	Group by ad.Winlostdate
 			, p.Currency
 			, p.CurrencyId
 			, ad.SysExRate
+			, m.ActivePlayer
 End
 Else
 Begin --By Month
@@ -240,14 +252,14 @@ Begin --By Month
 				SUM(CASE WHEN @DrawFilter = 0 THEN
 						ad.MemTurnover 
 					ELSE
-						ad.MemTurnover - ad.MemTurnoverDraw
+						ad.MemTurnoverNoDraw
 					End) as Turnover,
 				Sum(CASE 
 						WHEN ad.ProductID = @SportsbookId then 
 							(CASE WHEN @DrawFilter = 0 THEN
 								ad.MemTurnover 
 							ELSE
-								ad.MemTurnover - ad.MemTurnoverDraw
+								ad.MemTurnoverNoDraw
 							End)
 						ELSE 0 
 					END) as SportsBookTurnover,
@@ -256,7 +268,7 @@ Begin --By Month
 							(CASE WHEN @DrawFilter = 0 THEN
 								ad.MemTurnover 
 							ELSE
-								ad.MemTurnover - ad.MemTurnoverDraw
+								ad.MemTurnoverNoDraw
 							End)
 						ELSE 0 
 					END) as NumberGameTurnover,
@@ -265,7 +277,7 @@ Begin --By Month
 							(CASE WHEN @DrawFilter = 0 THEN
 								ad.MemTurnover 
 							ELSE
-								ad.MemTurnover - ad.MemTurnoverDraw
+								ad.MemTurnoverNoDraw
 							End)
 						ELSE 0 
 					END) as LiveCasinoTurnover,
@@ -274,7 +286,7 @@ Begin --By Month
 							(CASE WHEN @DrawFilter = 0 THEN
 								ad.MemTurnover 
 							ELSE
-								ad.MemTurnover - ad.MemTurnoverDraw
+								ad.MemTurnoverNoDraw
 							End)
 						ELSE 0 
 					END )as RNGCasinoTurnover,
@@ -298,14 +310,14 @@ Begin --By Month
 				SUM(CASE WHEN @DrawFilter = 0 THEN
 						ad.MemTurnover 
 					ELSE
-						ad.MemTurnover - ad.MemTurnoverDraw
+						ad.MemTurnoverNoDraw
 					End * ad.SysExRate) as TurnoverBase,
 				Sum(CASE 
 						WHEN ad.ProductID = @SportsbookId then 
 							(CASE WHEN @DrawFilter = 0 THEN
 								ad.MemTurnover 
 							ELSE
-								ad.MemTurnover - ad.MemTurnoverDraw
+								ad.MemTurnoverNoDraw
 							End)
 						ELSE 0 
 					END * ad.SysExRate) as SportsBookTurnoverBase,
@@ -314,7 +326,7 @@ Begin --By Month
 							(CASE WHEN @DrawFilter = 0 THEN
 								ad.MemTurnover 
 							ELSE
-								ad.MemTurnover - ad.MemTurnoverDraw
+								ad.MemTurnoverNoDraw
 							End)
 						ELSE 0 
 					END * ad.SysExRate) as NumberGameTurnoverBase,
@@ -323,7 +335,7 @@ Begin --By Month
 							(CASE WHEN @DrawFilter = 0 THEN
 								ad.MemTurnover 
 							ELSE
-								ad.MemTurnover - ad.MemTurnoverDraw
+								ad.MemTurnoverNoDraw
 							End)
 						ELSE 0 
 					END * ad.SysExRate) as LiveCasinoTurnoverBase,
@@ -332,7 +344,7 @@ Begin --By Month
 							(CASE WHEN @DrawFilter = 0 THEN
 								ad.MemTurnover 
 							ELSE
-								ad.MemTurnover - ad.MemTurnoverDraw
+								ad.MemTurnoverNoDraw
 							End)
 						ELSE 0 
 					END  * ad.SysExRate)as RNGCasinoTurnoverBase,
@@ -344,8 +356,8 @@ Begin --By Month
 				-(Sum(ad.MemWinlost * ad.SysExRate)) as TotalBase
 			From AffDaily ad with (nolock)
 				inner JOIN #PlayerCurrencies as p ON ad.MemCurrency = p.CurrencyId
-				inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin) 
-							as t on ad.AffId = t.AffId
+				inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
+							as t on ad.AffId = t.AffId and DATEDIFF(m, ad.WinlostDate, t.MonthDate) = 0
 			where Winlostdate between @FromDate and @ToDate
 			Group by dateadd(m, datediff(m, 0, Winlostdate), 0)
 					, p.Currency, p.CurrencyId
@@ -353,8 +365,10 @@ Begin --By Month
 		LEFT JOIN 
 		(
 			Select	dateadd(m, datediff(m, 0, Winlostdate), 0) as WinlostDate
-					, COUNT(1) as ActivePlayer
-			From MemberDaily WITH (NOLOCK) 
+					, COUNT(DISTINCT m.Username) as ActivePlayer
+			From MemberDaily m WITH (NOLOCK) 
+				inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
+							as t on m.AffId = t.AffId and DATEDIFF(m, m.WinlostDate, t.MonthDate) = 0
 			where Winlostdate between @FromDate and @ToDate
 				AND Turnover > 0
 			GROUP  by dateadd(m, datediff(m, 0, Winlostdate), 0)

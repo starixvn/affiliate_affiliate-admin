@@ -255,8 +255,8 @@ BEGIN
 			, Sum(Case WHEN ProductID = @RNGCasino THEN ac.AffWinlost ELSE 0 END) as RNGCasinoCommissionBase
 
 	FROM AffCommission ac with (NOLOCK)
-		INNER JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, @Currencies, @ExcludeTest, @IsITAdmin) 
-				as t on ac.AffId = t.AffId
+		INNER JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, @Currencies, @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
+				as t on ac.AffId = t.AffId and DATEDIFF(m, ac.WinlostDate, t.MonthDate) = 0
 		INNER JOIN AffGroupHistory ag with (NOLOCK) on ac.AffId = ag.AffID and DATEDIFF(m, ac.WinlostDate, ag.MonthDate) = 0
 		INNER JOIN CommGroupHistory cg with (NOLOCK) on ag.GroupID = cg.GroupID and ag.MonthDate = cg.MonthDate
 	Where WinlostDate between @FromDate and @ToDate 
@@ -424,8 +424,8 @@ Select	ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0) as Winlost
 				END) as RNGCasinoWinlossBase
 
 From AffDailySummary ad with (nolock)
-	inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, @Currencies, @ExcludeTest, @IsITAdmin) 
-				as t on ad.AffId = t.AffId
+	inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, @Currencies, @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
+				as t on ad.AffId = t.AffId  and DATEDIFF(m, ad.WinlostDate, t.MonthDate) = 0
 Where WinlostDate between @FromDate and @ToDate
 	and WinlostDate > @MaxCalculatedDate
 Group BY ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0)
@@ -609,7 +609,7 @@ Begin
 		LEFT JOIN 
 		(
 			Select	AffID
-					, SUM(1) as ActivePlayers
+					, COUNT(distinct tmp.UserName) as ActivePlayers
 					, SUM(Case WHEN ProductId = @SportsbookId THEN 1 ELSE 0 end) as SportsbookActivePlayers
 					, SUM(Case WHEN ProductId = @NumberGame THEN 1 ELSE 0 end) as NumberGameActivePlayers
 					, SUM(Case WHEN ProductId = @LiveCasino THEN 1 ELSE 0 end) as LiveCasinoActivePlayers
@@ -632,7 +632,7 @@ Begin
 				WHEN 4 THEN r.WithdrawalBase
 				WHEN 5 THEN r.TurnoverBase
 				WHEN 6 THEN r.WinlossBase
-			End) desc, r.WinlostDate
+			End) desc, r.WinlostDate desc
 End
 Else
 Begin--By Affiliate
@@ -692,7 +692,7 @@ Begin--By Affiliate
 		LEFT JOIN 
 		(
 			Select	AffId
-					, SUM(1) as ActivePlayers
+					, COUNT(distinct tmp.UserName) as ActivePlayers
 					, SUM(Case WHEN ProductId = @SportsbookId THEN 1 ELSE 0 end) as SportsbookActivePlayers
 					, SUM(Case WHEN ProductId = @NumberGame THEN 1 ELSE 0 end) as NumberGameActivePlayers
 					, SUM(Case WHEN ProductId = @LiveCasino THEN 1 ELSE 0 end) as LiveCasinoActivePlayers
@@ -715,7 +715,7 @@ Begin--By Affiliate
 				WHEN 4 THEN Sum(r.WithdrawalBase)
 				WHEN 5 THEN Sum(r.TurnoverBase) 
 				WHEN 6 THEN Sum(r.WinlossBase) 
-			END) desc
+			END) desc, r.AffId asc
 End
 
 GO

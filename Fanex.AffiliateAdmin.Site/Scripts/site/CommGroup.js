@@ -52,7 +52,7 @@ var COMMGROUP = function ($) {
                                         if (deductions.hasOwnProperty(property)) {
                                             var deductionValue = deductions[property];
                                             value += "<input disabled type='checkbox' " + (deductionValue >= 0 ? " checked='checked' " : null) + " /> " + property;
-                                            
+
                                             if (deductionValue >= 0)
                                                 value += " (" + numeral(deductionValue).format(AFFILIATE.FORMATNUMBER) + ") ";
                                             value += "<br />";
@@ -80,7 +80,22 @@ var COMMGROUP = function ($) {
                         } else {
 
                             var value = null;
-                            if (k == INDEX_ACTION_COL) {
+
+                            if (k == INDEX_GENERAL_DEDUCTION_COL) {
+                                value = '';
+                                var deductions = record.GeneralDeductions;
+
+                                for (var property in deductions) {
+                                    if (deductions.hasOwnProperty(property)) {
+                                        var deductionValue = deductions[property];
+                                        value += "<input disabled type='checkbox' " + (deductionValue >= 0 ? " checked='checked' " : "") + " /> " + property;
+
+                                        if (deductionValue >= 0)
+                                            value += " (" + numeral(deductionValue).format(AFFILIATE.FORMATNUMBER) + ") ";
+                                        value += "<br />";
+                                    }
+                                }
+                            }else if (k == INDEX_ACTION_COL) {
 
                                 var deleteButton = record.IsAllowedToDelete ?
                                             "<a class='remove' data-groupname='" + record.GroupName + "' data-groupid='" + data.GroupId + "' href='#' title='{0}'><i class='icon-remove'></i></a>".format(MSG.Remove)
@@ -141,7 +156,7 @@ var COMMGROUP = function ($) {
                 COMMGROUP.submitRequest();
             }
 
-            $('#btnSubmit').submit(function () {
+            $('.search-panel form').submit(function () {
                 COMMGROUP.submitRequest();
                 return false;
             });
@@ -224,9 +239,9 @@ var COMMGROUP = function ($) {
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 
                     if (data.HasCashBackDeduction == false) {
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $("#gridId").fanexGrid("hideColumns", gridOption, [16]);
-                        }, 100);    
+                        }, 100);
                     }
 
                     $(".btnAdd").addClass("icon-add-commgrp");
@@ -236,7 +251,7 @@ var COMMGROUP = function ($) {
                         // remove tooltips of two last columns
                         $("#gridId tr ").find("td.free-grid-td-2 div,td.free-grid-td-16 div,td.free-grid-td-15 div").prop("title", "");
                     } else {
-                        $("#gridId").fanexGrid("hideColumns", gridOption, [16]);
+                        $("#gridId").fanexGrid("hideColumns", gridOption, [17]);
                     }
                     if (data.TotalItem == 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);

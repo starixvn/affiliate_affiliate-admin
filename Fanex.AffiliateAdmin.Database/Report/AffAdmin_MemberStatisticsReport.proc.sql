@@ -46,7 +46,7 @@ Declare @AffList as table(AffId int, Username varchar(50), AffType varchar(50), 
 
 insert INTO @AffList(AffId, Username, AffType, Language, Currency, Status)
 Select AffId, Username, AffType, Language, Currency, Status
-from [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, null, @PreferLanguages, @Currencies, @ExcludeTest, @IsITAdmin) 
+from [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, null, @PreferLanguages, @Currencies, @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
 
 Declare @Result as table(AffId int, Username varchar(50), DateClick datetime, AffType varchar(50), Language nvarchar(255), Currency varchar(5), status varchar(50)
 			, TotalClick int, UniqueClick int, Signups int, FDM int)
@@ -196,7 +196,7 @@ Begin
 			Sum(isnull(tmp.ActivePlayers, 0)) as ActivePlayers
 	From @Result as r
 		LEFT JOIN 
-			(SELECT AffId, COUNT(IBCCustId) as ActivePlayers
+			(SELECT AffId, COUNT(UserName) as ActivePlayers
 			From MemberDaily WITH (NOLOCK) 
 			where Turnover > 0
 			GROUP  by AffID
@@ -225,7 +225,7 @@ Begin
 			isnull(tmp.ActivePlayers, 0) as ActivePlayers
 	From @Result as r
 		LEFT JOIN 
-			(SELECT AffID, COUNT(IBCCustId) as ActivePlayers, WinlostDate
+			(SELECT AffID, COUNT(UserName) as ActivePlayers, WinlostDate
 			From MemberDaily WITH (NOLOCK) 
 			where Winlostdate between @FromDate and @ToDate
 				AND Turnover > 0
@@ -235,7 +235,7 @@ Begin
 			(CASE 
 				WHEN @SortBy = 1 THEN Signups
 				WHEN @SortBy = 2 THEN tmp.ActivePlayers
-			END), r.Username
+			END) desc, r.DateClick desc, r.Username
 End
 ELSE IF (@GroupBy = 2)-- By Month
 Begin
@@ -255,19 +255,19 @@ Begin
 	From @Result as r
 		LEFT JOIN 
 			(SELECT AffID
-				, COUNT(IBCCustId) as ActivePlayers
+				, COUNT(UserName) as ActivePlayers
 				, dateadd(m, datediff(m, 0, Winlostdate), 0) as WinlostDate					
 			From MemberDaily WITH (NOLOCK) 
 			where Winlostdate between @FromDate and @ToDate
 				AND Turnover > 0
 			GROUP  by AffID, dateadd(m, datediff(m, 0, Winlostdate), 0)
-			) as tmp on r.AffId = tmp.AffId and r.DateClick = tmp.Winlostdate
+			) as tmp on r.AffId = tmp.AffId and datediff(m, r.DateClick, tmp.Winlostdate) = 0
 	Group By r.AffId, Username, dateadd(m, datediff(m, 0, r.DateClick), 0), AffType, Language, Currency, Status
 	order BY 
 			(CASE 
 				WHEN @SortBy = 1 THEN Sum(Signups)
 				WHEN @SortBy = 2 THEN Sum(tmp.ActivePlayers)
-			END) desc, r.Username
+			END) desc, dateadd(m, datediff(m, 0, r.DateClick), 0) desc, r.Username
 End
 
 

@@ -632,7 +632,7 @@ Begin
 				WHEN 4 THEN r.WithdrawalBase
 				WHEN 5 THEN r.TurnoverBase
 				WHEN 6 THEN r.WinlossBase
-			End) desc, r.WinlostDate desc
+			End) desc, r.WinlostDate desc, r.AffId asc
 End
 Else
 Begin--By Affiliate

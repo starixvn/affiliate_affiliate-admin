@@ -17,7 +17,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime TransDate { get; set; }
 
-        public DateTime CompletedDate { get; set; }
+        public DateTime? CompletedDate { get; set; }
 
         public int TransType { get; set; }
 

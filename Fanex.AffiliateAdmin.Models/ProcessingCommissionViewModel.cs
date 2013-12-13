@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="PendingCommissionViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ProcessingCommissionViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -19,9 +19,9 @@ namespace Fanex.AffiliateAdmin.Models
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class PendingCommissionViewModel
+    public class ProcessingCommissionViewModel
     {
-        public PendingCommissionViewModel()
+        public ProcessingCommissionViewModel()
         {
             ExcludeTest = true;
         }

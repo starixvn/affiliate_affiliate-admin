@@ -134,5 +134,11 @@ namespace Fanex.AffiliateAdmin.DTO
         public int RNGCasinoQM { get; set; }
 
         public decimal RNGCasinoCommissionPercent { get; set; }
+
+        public double? DeductedPercentage { get; set; }
+
+        public decimal? Cashback { get; set; }
+
+        public double? CashbackBase { get; set; }
     }
 }

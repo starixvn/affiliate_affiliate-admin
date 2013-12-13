@@ -20,6 +20,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Criterias.Configuration.Product;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Resources;
     using Models;
     using Services.Interface;
 
@@ -119,11 +120,25 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult CompanyWinlossByAffiliate()
         {
-            var baseCurrencyList = new List<SelectListItem>
+            var baseCurrencyList = new List<SelectListItem>();
+
+            if (CurrentSession.Affiliate.Currency.Equals(AppSettings.BaseExchange.Code))
             {
-                new SelectListItem { Value = "0",  Text = CurrentSession.Affiliate.Currency },
-                new SelectListItem { Value = "1",  Text = AppSettings.BaseExchange.Code },
-            };
+                baseCurrencyList = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "0", Text = Lang.Member },
+                        new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
+                    };
+            }
+            else
+            {
+                baseCurrencyList = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "0", Text = Lang.Member },
+                        new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
+                        new SelectListItem { Value = "2", Text = CurrentSession.Affiliate.Currency }
+                    };
+            }
 
             var model = new CompanyWLByAffiliateViewModel
                 {
@@ -186,11 +201,25 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult PlayerWinlossByAffiliate(PlayerWLByAffiliateViewModel model)
         {
-            var baseCurrencyList = new List<SelectListItem>
+            var baseCurrencyList = new List<SelectListItem>();
+
+            if (CurrentSession.Affiliate.Currency.Equals(AppSettings.BaseExchange.Code))
             {
-                new SelectListItem { Value = "0",  Text = CurrentSession.Affiliate.Currency },
-                new SelectListItem { Value = "1",  Text = AppSettings.BaseExchange.Code },
-            };
+                baseCurrencyList = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "0", Text = Lang.Member },
+                        new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
+                    };
+            }
+            else
+            {
+                baseCurrencyList = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "0", Text = Lang.Member },
+                        new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
+                        new SelectListItem { Value = "2", Text = CurrentSession.Affiliate.Currency }
+                    };
+            }
 
             model.BaseCurrencyList = baseCurrencyList;
 
@@ -260,6 +289,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 Name = x.ProductName
             }));
 
+            ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
+
             var baseCurrencyList = new List<SelectListItem>
             {
                 new SelectListItem { Value = "0",  Text = CurrentSession.Affiliate.Currency },
@@ -279,6 +310,10 @@ namespace Fanex.AffiliateAdmin.Controller
             return View(members);
         }
 
+        /// <summary>
+        /// Commission Report.
+        /// </summary>
+        /// <returns>Commission Report Page.</returns>
         [HttpGet]
         public ActionResult Commission()
         {
@@ -288,6 +323,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 Id = x.ProductID,
                 Name = x.ProductName
             }));
+
+            ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
 
             return View(new CommissionReportViewModel());
         }
@@ -334,7 +371,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 SubTotalData = subTotalCommissions,
                 CurrentPage = 1,
                 ItemsPerPage = data.Count,
-                TotalItem = data.Count,
+                TotalItem = data.Count
             });
         }
 

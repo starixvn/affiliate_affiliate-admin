@@ -65,7 +65,7 @@
     <Compile Include="CommissionReportViewModel.cs" />
     <Compile Include="CompanyWinlossViewModel.cs" />
     <Compile Include="CompanyWLByAffiliateViewModel.cs" />
-    <Compile Include="PendingCommissionViewModel.cs" />
+    <Compile Include="ProcessingCommissionViewModel.cs" />
     <Compile Include="MemberListViewModel.cs" />
     <Compile Include="PlayerWLByAffiliateViewModel.cs" />
     <Compile Include="PlayerWinlossViewModel.cs" />

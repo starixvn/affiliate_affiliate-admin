@@ -194,7 +194,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             ViewBag.IsMonthlyTransfer = criteria.IsMonthly;
 
-            return View(new PendingCommissionViewModel());
+            return View(new ProcessingCommissionViewModel());
         }
 
         /// <summary>

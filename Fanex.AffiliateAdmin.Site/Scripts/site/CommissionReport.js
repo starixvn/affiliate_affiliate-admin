@@ -3,10 +3,13 @@
     var SYS_CURRENCY_OPTION = 1;
     var GROUP_BY_MONTH = 0;
     var MONTH_COL = 1, COMMGROUP_COL = 4;
+    var DEDUCTION_PERCENT_COL = 9;
+    var DEDUCTION_AMOUNT_COL = 10;
     // number of all common columns (except product columns).
     var _commonColumnCount = 0;
     var _freezeColumnCount = 4;
     var _hideColumns = [MONTH_COL, COMMGROUP_COL];
+    var _bonusColumns = [DEDUCTION_PERCENT_COL, DEDUCTION_AMOUNT_COL];
     var _indexProductColumns = [];
     var _isSimpleMode = false;
     var _gridOption = {};
@@ -148,6 +151,11 @@
         if (_isSimpleMode) {
             columns = _indexProductColumns.clone();
         }
+
+        if (HasCashbackDeduction === false) {
+            columns = columns.concat(_bonusColumns.clone());
+        }
+
         if ($("#GroupBy").val() == GROUP_BY_MONTH) {
             $("#gridId").fanexGrid("hideColumns", _gridOption, columns);
         }
@@ -158,7 +166,7 @@
             $("#gridId .row_footer table tr th").show();
         }
 
-        if (_isSimpleMode)
+        if (_isSimpleMode && HasCashbackDeduction === false)
             $("#gridId table:lt(4) th div").height(30);
     }
     return {

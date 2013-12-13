@@ -7,19 +7,19 @@
             if ($('#gridId').length > 0) {
                 Management.submitRequest();
             }
-            
+
             $('#gridId').hide();
 
             $('.search-panel form').submit(function () {
                 Management.submitRequest();
                 return false;
             });
-            
+
             $('#btnAdd').click(function () {
                 AFFILIATE.openDialogFrame("Management/AddUser", "Add User", { width: 500, height: 400 });
                 return false;
             });
-            
+
             $("#btnCancel").click(function () {
                 if (parent.AFFILIATE.currentOpenDialog)
                     parent.AFFILIATE.currentOpenDialog.dialog("close");
@@ -124,9 +124,9 @@
         viewAccountPolicy: function (custId, userName, groupName) {
             var param = {
                 custId: custId
-            }
+            };
 
-            AFFILIATE.openDialogFrame("Management/ChangePolicyUser?" + jQuery.param(param), groupName + ' - ' + userName, { width: 480, height: 500 });
+            AFFILIATE.openDialogFrame("Management/ChangePolicyUser?" + jQuery.param(param), groupName + ' - ' + userName, { width: 490, height: 530 });
         },
         viewGroup: function (groupId, groupName) {
             var param = {

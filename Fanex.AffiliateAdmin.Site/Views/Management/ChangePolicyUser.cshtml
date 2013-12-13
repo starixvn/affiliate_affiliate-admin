@@ -14,16 +14,17 @@
 
 @using (Html.BeginForm("ChangePolicyUser", "Management", FormMethod.Post, new { @class = "form-horizontal" }))
 {
-@Html.HiddenFor(m => m.CustId)
+    @Html.HiddenFor(m => m.CustId)
 
-<div class="control-group action-grp">
-    <div class="controls">
-        <button type="submit" id="btnUpdate" class="btn">@Lang.Submit</button>
-        <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
+    <div class="control-group action-grp">
+        <div class="controls">
+            <button type="submit" id="btnUpdate" class="btn">@Lang.Submit</button>
+            <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
+        </div>
     </div>
-</div>
-<input type="hidden" id="IndividualPolicy" name="IndividualPolicy"/>
+    <input type="hidden" id="IndividualPolicy" name="IndividualPolicy"/>
 }
+
 @section scripts{
     <script type="text/javascript">
         var gridOption = {

@@ -124,11 +124,15 @@ report
             AffQualifiedMemReportDetailFor: "@Html.Raw(Lang.AffQualifiedMemReportDetailFor)",
             Currency: "@Lang.Currency",
             CommissionTitle: "@Lang.Commission",
+            Amount: "@Lang.Amount",
             
         };
         var affiliateUrl = AFFILIATE.getAbsoluteUrl("AffiliateInfo?username=");
         var commGroupUrl = AFFILIATE.getAbsoluteUrl("CommGroup?groupname=");
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
+        var True = true, False = false;
+        var HasCashbackDeduction = "@ViewBag.HasCashbackDeduction";
+
         var sampleGridOption = {
             showTitle: true,
 
@@ -149,6 +153,7 @@ report
                         { HeaderText: "@Lang.ActiveMembers", Name: "ActivePlayers", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Deposit", IsCurrency: true, HeaderText: "@Lang.Deposit", Name: "Deposit", NameCache: "Deposit", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Cashback", HeaderText: "@Lang.Cashback", Name: "DeductedPercentage", MergeColNumber: 2 },
                         { HeaderCaption: "@Lang.Withdrawal", IsCurrency: true, HeaderText: "@Lang.Withdrawal", Name: "Withdrawal", NameCache: "Withdrawal", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Turnover", IsCurrency: true, HeaderText: "@Lang.Turnover", Name: "Turnover", NameCache: "Turnover", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Winloss", IsCurrency: true, HeaderText: "@Lang.Winloss", Name: "Winloss", NameCache: "Winloss", MergeRowNumber: 2 },
@@ -195,6 +200,8 @@ report
                 { HeaderText: "@Lang.ActiveMembers", Width: 80, Name: "ActivePlayers", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.BetCount", Width: 80, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.Deposit", Width: 80, Name: "Deposit", NameCache: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
+                { HeaderText: "@Lang.DeductionPercent", Width: 80, Name: "DeductedPercentage", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER },                
+                { HeaderCaption: "@Lang.Amount", HeaderText: "@Lang.Amount", Width: 80, IsCurrency: true, Name: "Cashback", NameCache: "Cashback", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
                 { HeaderText: "@Lang.Withdrawal", Width: 70, Name: "Withdrawal", NameCache: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
                 { HeaderText: "@Lang.Turnover", Width: 80, Name: "Turnover", NameCache: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMAT_INT_NUMBER, FormatNegative: '($)' },
                 { HeaderText: "@Lang.Winloss", Width: 110, Name: "Winloss", NameCache: "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
@@ -207,6 +214,7 @@ report
             showDistinctRow: true,
             numberOfFrozenColumn: 6,
             headerColumnHeight: 30,
+            
             rowCssClass: function (rowIndex, rowData) {
                 return rowData.Status.toLowerCase();
             }

@@ -91,7 +91,7 @@ BEGIN
 			AI.UserName like @AffName AND
 			(@AffTypes IS NULL OR AI.AffType IN (SELECT AffTypeID FROM @AffTypeList)) AND
 			(@Currencies = 'All' OR AI.Currency IN (SELECT CurrencyID FROM @tmpCurrency)) AND
-			--(@CommGroups IS NULL OR AI.GroupID IN (SELECT CommGroupID FROM @CommGroupList)) AND
+			(@CommGroups IS NULL OR AI.GroupID IN (SELECT CommGroupID FROM @CommGroupList)) AND
 			(@PreferLanguages IS NULL OR AD.PreferredLanguage IN (SELECT LanguageID FROM @PreferLangList)) AND
 			((@ExcludeTest = 1 AND AI.TestLevel=0) OR (@ExcludeTest = 0 AND @IsITAdmin = 1) OR (@ExcludeTest = 0 AND @IsITAdmin = 0 AND AI.TestLevel IN (0,1)))
 	END
@@ -131,7 +131,6 @@ BEGIN
 				AI.UserName like @AffName AND
 				(@AffTypes IS NULL OR AI.AffType IN (SELECT AffTypeID FROM @AffTypeList)) AND
 				(@Currencies = 'All' OR AI.Currency IN (SELECT CurrencyID FROM @tmpCurrency)) AND
-				--(AI.GroupID IN (SELECT CommGroupID FROM @CommGroupList)) AND
 				(@PreferLanguages IS NULL OR AD.PreferredLanguage IN (SELECT LanguageID FROM @PreferLangList)) AND
 				((@ExcludeTest = 1 AND AI.TestLevel=0) OR (@ExcludeTest = 0 AND @IsITAdmin = 1) OR (@ExcludeTest = 0 AND @IsITAdmin = 0 AND AI.TestLevel IN (0,1)))
 		END

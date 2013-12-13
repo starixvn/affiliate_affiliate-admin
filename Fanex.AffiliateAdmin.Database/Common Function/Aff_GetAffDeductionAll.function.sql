@@ -1,6 +1,6 @@
 ﻿ALTER function [dbo].[Aff_GetAffDeductionAll] (  
 	@AffID int,  
-	@MonthDate smalldatetime  
+	@MonthDate smalldatetime
 )  
 RETURNS money  
 AS  

@@ -20,6 +20,8 @@ declare @TblGroup table (id int primary key, rank int, val nvarchar( 6) )
 	
 insert into @TblGroup 
 select * from [dbo].[strSplit] ( @GroupIDList, ',' ) 
+
+select * from @TblGroup
 if  @Date is null or DateDiff(m,CURRENT_TIMESTAMP,@Date) >= 0
 Begin
 	Select ds.DeductionID,ds.GroupID,ds.DeductedPercentage,d.ProductID, d.DTypeName
@@ -33,6 +35,7 @@ Begin
 	from dbo.DeductionSettingHistory ds (nolock)
 		inner JOIN DeductionType d WITH(nolock) ON ds.DeductionID = d.DTypeId
 	where ds.GroupID in (select val from @TblGroup)	
+		and DATEDIFF(m, ds.MonthDate, @Date) = 0
 End
 
 

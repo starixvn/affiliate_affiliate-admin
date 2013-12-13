@@ -71,22 +71,28 @@ declare @Group table(GroupID int primary key,GroupName nvarchar(100),
 						CurrencyID smallint,Currency varchar(5),QualifiedAmount money,NoAff int)
 
 if DateDiff(m,CURRENT_TIMESTAMP,@Date) >= 0 -- current month
-
-insert into @Group(GroupID,GroupName,Description,Creator,CreatedDate,CurrencyID,Currency,QualifiedAmount)
- select GroupID,GroupName,Description,Creator,CreatedDate,CurrencyID,Currency,QualifiedAmount
-	 from (
-			 SELECT GroupID,GroupName,Description,CommGroup.Creator,CommGroup.CreatedDate,e.CurrencyID,e.CurrencyCode as Currency,QualifiedAmount		  
-				  ,ROW_NUMBER() OVER(ORDER BY GroupID) AS TheCount
-			  from CommGroup with (nolock)
-			  inner join dbo.Currency e on CommGroup.Currency = e.CurrencyID
-			   where 			   
-			    GroupName like @GroupName and IsDeleted = 0 
-			   and (@Currencies = 'All' or (@Currencies is not null and CommGroup.Currency in (select val from @TblCurrency)))
-         ) x
-     where x.TheCount between @RowStart and @RowEnd 
-     
+Begin
+	insert into @Group(GroupID,GroupName,Description,Creator,CreatedDate,CurrencyID,Currency,QualifiedAmount)
+	select GroupID,GroupName,Description,Creator,CreatedDate,CurrencyID,Currency,QualifiedAmount
+	from (
+			SELECT GroupID,GroupName,Description,CommGroup.Creator,CommGroup.CreatedDate,e.CurrencyID,e.CurrencyCode as Currency,QualifiedAmount		  
+				,ROW_NUMBER() OVER(ORDER BY GroupID) AS TheCount
+			from CommGroup with (nolock)
+			inner join dbo.Currency e on CommGroup.Currency = e.CurrencyID
+			where 			   
+			GroupName like @GroupName and IsDeleted = 0 
+			and (@Currencies = 'All' or (@Currencies is not null and CommGroup.Currency in (select val from @TblCurrency)))
+		) x
+	where x.TheCount between @RowStart and @RowEnd 
+	
+	Update t
+	set t.NoAff=(select sum(1) from AffInfo i with (nolock) 
+	where i.GroupID=t.GroupID 
+			and (@IsITAdmin = 1 or i.TestLevel in (0,1)))
+	from @Group t
+End
 else -- history
-
+Begin
 insert into @Group(GroupID,GroupName,Description,Creator,CreatedDate,CurrencyID,Currency,QualifiedAmount)
     select GroupID,GroupName,Description,Creator,CreatedDate,CurrencyID,Currency,QualifiedAmount
 	 from (
@@ -99,11 +105,18 @@ insert into @Group(GroupID,GroupName,Description,Creator,CreatedDate,CurrencyID,
 			  and DateDiff(m,@Date,MonthDate) = 0
          ) x
      where x.TheCount between @RowStart and @RowEnd   
-     
- Update t
- set t.NoAff=(select sum(1) from AffInfo i with (nolock) 
-		where i.GroupID=t.GroupID and (@IsITAdmin = 1 or i.TestLevel in (0,1)))
- from @Group t
+	
+	Update t
+	set t.NoAff=(
+				select count(*) 
+				from AffInfo ai WITH (NOLOCK)
+					INNER JOIN	AffGroupHistory i with (nolock) on i.AffID = ai.AffID
+				where i.GroupID=t.GroupID 
+						and (@IsITAdmin = 1 or ai.TestLevel in (0,1))
+						and datediff(m, MonthDate, @Date) = 0
+				)
+	from @Group t
+End
  
 select @GroupIDList = ''
 

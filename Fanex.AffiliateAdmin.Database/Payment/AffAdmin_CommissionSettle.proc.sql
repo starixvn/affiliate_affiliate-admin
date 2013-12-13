@@ -142,7 +142,7 @@ BEGIN
 			, r.GroupId =					@GroupId
 			, CashbackPercent =				isnull(d.DeductedPercentage, 0)
 			, CashbackAmount =				isnull(a.Amount, 0)
-			, CashbackAmountBase =			isnull(a.Amount * dbo.Aff_GetExchangeRate(@ExchangeId, @SystemExchangeId, NULL), 0)
+			, CashbackAmountBase =			isnull(a.Amount * a.SysExRate, 0)
 			, Commission =					isnull(@Amount - isnull((d.DeductedPercentage * a.Amount), 0), 0)--All Product
 			, CommissionBase =				isnull((@Amount - isnull((d.DeductedPercentage * a.Amount), 0)) * dbo.Aff_GetExchangeRate(@ExchangeId, @SystemExchangeId, NULL), 0)
 			, SportsbookCommission =		isnull(@SportsbookAmount, 0)
@@ -218,9 +218,9 @@ select @count=0
 			, r.GroupId =					@GroupId
 			, CashbackPercent =				d.DeductedPercentage
 			, CashbackAmount =				isnull(a.Amount, 0)
-			, CashbackAmountBase =			isnull(a.Amount * dbo.Aff_GetExchangeRate(@ExchangeId, @SystemExchangeId, NULL), 0)
+			, CashbackAmountBase =			isnull(a.Amount * SysExRate, 0)
 			, Commission =					isnull(@Amount - ISNULL(d.DeductedPercentage * a.Amount, 0), 0)--All Product
-			, CommissionBase =				isnull((@Amount - ISNULL(d.DeductedPercentage * a.Amount, 0)) * dbo.Aff_GetExchangeRate(@ExchangeId, @SystemExchangeId, NULL), 0)
+			, CommissionBase =				isnull((@Amount - ISNULL(d.DeductedPercentage * a.Amount * a.SysExRate, 0)) * dbo.Aff_GetExchangeRate(@ExchangeId, @SystemExchangeId, NULL), 0)
 
 			, SportsbookCommission =		isnull(@SportsbookAmount, 0)
 			, SportsbookQM =				isnull(@SportsbookQualifiedMember, 0)

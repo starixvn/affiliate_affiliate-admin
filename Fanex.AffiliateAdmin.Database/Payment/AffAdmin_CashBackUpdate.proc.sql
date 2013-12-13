@@ -29,9 +29,15 @@ EXEC dbo.Aff_CheckPermissionOnAff
 If @ErrCode <> 0  
 	RETURN  
 
-Declare @DTypeID int, @ProductId int
+Declare @DTypeID int, @ProductId int, @AffCurrencyID int, @SysExRate float
 
 select @ProductId = 0 --Cashback for all sport
+
+Select @AffCurrencyID = Currency
+From AffInfo nolock
+where AffID = @AffID
+
+Select @SysExRate = [dbo].[Aff_GetExchangeRate](@AffCurrencyID, [dbo].Aff_GetSystemCurrencyID(), null)
 
 Select @DTypeID = DTypeID 
 From DeductionType nolock 
@@ -56,12 +62,13 @@ BEGIN
 	SET Amount = @Amount
 		, TransDate = CURRENT_TIMESTAMP
 		, Creator = @UserId
+		, SysExRate = @SysExRate
 	WHERE AffId = @AffId AND MonthDate = @MonthDate AND DTypeID = @DTypeID AND ProductId = @ProductId
 END
 ELSE
 BEGIN
-	insert into AffDeductionTransaction(DTypeID, MonthDate, AffID, ProductID, Amount, TransDate, Creator)
-	VALUES (@DTypeID, @MonthDate, @AffId, @ProductId, @Amount, CURRENT_TIMESTAMP, @UserId)
+	insert into AffDeductionTransaction(DTypeID, MonthDate, AffID, ProductID, Amount, SysExRate, TransDate, Creator)
+	VALUES (@DTypeID, @MonthDate, @AffId, @ProductId, @Amount, @SysExRate, CURRENT_TIMESTAMP, @UserId)
 END
 
 

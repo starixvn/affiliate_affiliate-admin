@@ -87,6 +87,7 @@
     <Folder Include="Report" />
     <Folder Include="Common Function" />
     <Folder Include="Customer" />
+    <Folder Include="zTask" />
   </ItemGroup>
   <ItemGroup>
     <PropertiesFile Include="Properties\Database.sqlsettings">
@@ -585,6 +586,12 @@
       <SubType>Code</SubType>
     </NotInBuild>
     <Build Include="Payment\AffAdmin_IsMonthlyTransfer.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="zTask\Task_Aff_MonthlyTransfer.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Common Function\Aff_GetAffDeductionBaseAll.function.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

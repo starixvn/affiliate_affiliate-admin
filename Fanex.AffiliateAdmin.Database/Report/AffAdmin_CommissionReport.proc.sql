@@ -77,6 +77,8 @@ Select	@SportsbookId = dbo.[Aff_GetProductID]('Sportsbook')
 		, @LiveCasino = dbo.[Aff_GetProductID]('Live Casino')
 		, @RNGCasino = dbo.[Aff_GetProductID]('RNG Casino')
 
+Declare @Cashback Table(AffId int,GroupID int, MonthDate datetime, Amount money, SysExRate float, DeductedPercentage float)
+
 Declare @Result Table(AffId int, Status varchar(50), WinlostDate datetime, Username varchar(50), AffType varchar(50), Language nvarchar(255), ExchangeId int, Currency varchar(5), GroupID int, GroupName nvarchar(100)
 					, Commission money, CommissionBase money, BetCount int, Deposit money, Withdrawal money, Turnover money, Winloss money
 					, DepositBase money, WithdrawalBase money, TurnoverBase money, WinlossBase money
@@ -592,6 +594,21 @@ BEGIN
 	end	
 END
 
+-------Get Cashback data---------------------
+insert into @Cashback (AffId, GroupId, MonthDate, Amount, SysExRate, DeductedPercentage)
+Select AffId, d.GroupID, a.MonthDate, a.Amount, a.SysExRate, d.DeductedPercentage
+From AffDeductionTransaction a with (nolock) 
+		LEFT JOIN DeductionSettingHistory d with (nolock)  on d.DeductionID=a.DTypeID and datediff(m, d.MonthDate, @PreviousMonth) = 0
+Where a.ProductID = 0
+		And a.MonthDate between @FromDate and @ToDate		
+Union ALL
+Select AffId, d.GroupID, @CurrentDate as MonthDate, a.Amount, a.SysExRate, d.DeductedPercentage
+From AffDeductionTransaction a with (nolock) 
+		LEFT JOIN DeductionSetting d with (nolock) on d.DeductionID=a.DTypeID
+Where a.ProductID = 0
+	And DATEDIFF(m, @ToDate, @CurrentDate) = 0
+
+
 -------Return Data------------
 IF(@GroupBy = 0) -- By Month
 Begin
@@ -605,7 +622,9 @@ Begin
 					, LiveCasinoTurnoverBase, LiveCasinoWinlossBase, LiveCasinoCommissionBase
 					, isnull(m.RNGCasinoActivePlayers, 0) as RNGCasinoActivePlayers, RNGCasinoBetCount, RNGCasinoQM, RNGCasinoCommissionPercent, RNGCasinoTurnover, RNGCasinoWinloss, RNGCasinoCommission
 					, RNGCasinoTurnoverBase, RNGCasinoWinlossBase, RNGCasinoCommissionBase
+					, isnull(c.DeductedPercentage, 0), isnull(c.Amount, 0) as Cashback, isnull(c.Amount * c.SysExRate, 0) as CashbackBase
 	From @Result as r
+		LEFT JOIN @Cashback c on r.AffId = c.AffId and datediff(m, r.WinlostDate, c.MonthDate) = 0 and c.GroupId = r.GroupID
 		LEFT JOIN 
 		(
 			Select	AffID
@@ -644,7 +663,7 @@ Begin--By Affiliate
 			, Sum(Withdrawal) as Withdrawal
 			, Sum(Turnover) as Turnover
 			, Sum(Winloss) as Winloss
-			, Sum(CommissionBase) as Commission
+			, Sum(CommissionBase) as CommissionBase
 			, Sum(DepositBase) as DepositBase
 			, Sum(WithdrawalBase) as WithdrawalBase
 			, Sum(TurnoverBase) as TurnoverBase
@@ -688,7 +707,14 @@ Begin--By Affiliate
 			, Sum(RNGCasinoTurnoverBase) as RNGCasinoTurnoverBase
 			, Sum(RNGCasinoWinlossBase) as RNGCasinoWinlossBase
 			, Sum(RNGCasinoCommissionBase) as RNGCasinoCommissionBase
+
+			--Cashback
+			, Sum(isnull(c.DeductedPercentage, 0)) as DeductedPercentage
+			, Sum(isnull(c.Amount, 0)) as Cashback
+			, Sum(isnull(c.Amount * c.SysExRate, 0)) as CashbackBase
+
 	From @Result as r
+		LEFT JOIN @Cashback c on r.AffId = c.AffId and datediff(m, r.WinlostDate, c.MonthDate) = 0 and c.GroupId = r.GroupID
 		LEFT JOIN 
 		(
 			Select	AffId

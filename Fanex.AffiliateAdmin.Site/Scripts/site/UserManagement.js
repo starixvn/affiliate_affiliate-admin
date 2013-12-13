@@ -7,16 +7,19 @@
             if ($('#gridId').length > 0) {
                 Management.submitRequest();
             }
+            
             $('#gridId').hide();
 
-            $('#btnSearch').click(function () {
+            $('.search-panel form').submit(function () {
                 Management.submitRequest();
                 return false;
             });
+            
             $('#btnAdd').click(function () {
                 AFFILIATE.openDialogFrame("Management/AddUser", "Add User", { width: 500, height: 400 });
                 return false;
             });
+            
             $("#btnCancel").click(function () {
                 if (parent.AFFILIATE.currentOpenDialog)
                     parent.AFFILIATE.currentOpenDialog.dialog("close");

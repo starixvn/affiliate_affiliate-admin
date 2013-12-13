@@ -20,7 +20,7 @@ commgroup
         <div class="row-fluid row-form end-search">
             <div class="cell">
                 <label for="groupname">@Lang.GroupName</label>
-                <input type="text" size="25" value="@ViewBag.GroupName" class="form-control width-140" id="groupname" name="groupname" placeholder="@Lang.All">
+                <input type="text" maxlength = "100" value="@ViewBag.GroupName" class="form-control width-140" id="groupname" name="groupname" placeholder="@Lang.All">
             </div>
             <div class="cell">
                 <label for="currency">@Lang.Currency</label>
@@ -95,7 +95,7 @@ commgroup
                         { HeaderText: "@Lang.QualifiedAmount", Width: 70, Name: "QualifiedAmount", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Currency", Width: 55, Name: "Currency", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Policy", Width: 70, Name: "ProductName", MergeColNumber: 8 },
-                        { HeaderText: "@Lang.Deduction", Width: 70, Name: "Deduction", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.Deduction", Width: 110, Name: "Deduction", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Action", Width: 50, Name: "Action", MergeRowNumber: 2 }
                     ]
                 }
@@ -117,7 +117,7 @@ commgroup
                 { HeaderText: "@Lang.MaxQM", Width: 70, Name: "MaxQM", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.Commission", Width: 70, Name: "Commission", HeaderAlign: "center", CellAlign: "center", FormatNumber: AFFILIATE.FORMATNUMBER },
                 { HeaderText: "@Lang.Deductions", Width: 110, Name: "Deductions", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "@Lang.Deduction", Width: 70, Name: "Deduction", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER },
+                { HeaderText: "@Lang.Deduction", Width: 110, Name: "Deduction", HeaderAlign: "center", CellAlign: "left", FormatNumber: AFFILIATE.FORMATNUMBER },
                 { HeaderText: "@Lang.Action", Width: 50, Name: "Action", HeaderAlign: "center", CellAlign: "center" }
             ],
             showPager: true,

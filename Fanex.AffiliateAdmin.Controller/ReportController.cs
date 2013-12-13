@@ -94,6 +94,13 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var products = _systemSettingService.GetProductList(new ProductSelectCriteria()).OrderBy(t => t.ProductName);
 
+            var serializer = new JavaScriptSerializer();
+            ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
+            {
+                Id = x.ProductID,
+                Name = x.ProductName
+            }));
+
             return Json(new
             {
                 Groups = groups,
@@ -377,7 +384,6 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
         }
-
         #endregion
     }
 }

@@ -66,6 +66,7 @@ Begin
 			, tmp.PlayerUsername
 			, tmp.PlayerCurrency
 			, tmp.SysExRate as ExRate
+			, tmp.AffExRate
 			, SUM(tmp.Deposit) as Deposit
 			, SUM(tmp.Withdrawal) as Withdrawal
 			, SUM(tmp.Bonus) as Bonus
@@ -98,6 +99,22 @@ Begin
 			, SUM(tmp.LiveCasinoWinlost * tmp.SysExRate) as LiveCasinoWinlostBase
 			, SUM(tmp.RNGCasinoWinlost * tmp.SysExRate) as RNGCasinoWinlostBase
 			, SUM(tmp.TotalWinlost * tmp.SysExRate) as TotalWinlostBase
+			--Affiliate currency
+			, SUM(tmp.Deposit * tmp.AffExRate) as Deposit_Aff
+			, SUM(tmp.Withdrawal * tmp.AffExRate) as Withdrawal_Aff
+			, SUM(tmp.Bonus * tmp.AffExRate) as Bonus_Aff
+			, SUM(tmp.Adjustment * tmp.AffExRate) as Adjustment_Aff
+			, SUM(tmp.PSP * tmp.AffExRate) as PSP_Aff
+			, SUM(tmp.SportsBookTurnover * tmp.AffExRate) as SportsBookTurnover_Aff
+			, SUM(tmp.NumberGameTurnover * tmp.AffExRate) as NumberGameTurnover_Aff
+			, SUM(tmp.LiveCasinoTurnover * tmp.AffExRate) as LiveCasinoTurnover_Aff
+			, SUM(tmp.RNGCasinoTurnover * tmp.AffExRate) as RNGCasinoTurnover_Aff
+			, SUM(tmp.TotalTurnover * tmp.AffExRate) as TotalTurnover_Aff
+			, SUM(tmp.SportsBookWinlost * tmp.AffExRate) as SportsBookWinlost_Aff
+			, SUM(tmp.NumberGameWinlost * tmp.AffExRate) as NumberGameWinlost_Aff
+			, SUM(tmp.LiveCasinoWinlost * tmp.AffExRate) as LiveCasinoWinlost_Aff
+			, SUM(tmp.RNGCasinoWinlost * tmp.AffExRate) as RNGCasinoWinlost_Aff
+			, SUM(tmp.TotalWinlost * tmp.AffExRate) as TotalWinlost_Aff
 	From
 		(Select	
 				m.WinlostDate
@@ -171,6 +188,7 @@ Begin
 					END )as RNGCasinoWinlost
 				, -(SUM(m.Winlost)) as TotalWinlost
 				, m.SysExRate
+				, m.AffExRate
 		From MemberDaily m with (NOLOCK)
 			inner JOIN @PlayerCurrencyList e ON m.Currency = e.ExchangeID
 			inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
@@ -183,6 +201,7 @@ Begin
 				, m.UserName
 				, e.Code 
 				, m.SysExRate
+				, m.AffExRate
 		) as tmp
 	
 	group BY tmp.WinlostDate
@@ -191,6 +210,7 @@ Begin
 			, tmp.PlayerUsername
 			, tmp.PlayerCurrency
 			, tmp.SysExRate
+			, tmp.AffExRate
 End
 Else
 Begin
@@ -230,6 +250,22 @@ Begin
 			, SUM(tmp.LiveCasinoWinlost * tmp.ExRate) as LiveCasinoWinlostBase
 			, SUM(tmp.RNGCasinoWinlost * tmp.ExRate) as RNGCasinoWinlostBase
 			, SUM(tmp.TotalWinlost * tmp.ExRate) as TotalWinlostBase
+			--Affiliate currency
+			, SUM(tmp.Deposit * tmp.AffExRate) as Deposit_Aff
+			, SUM(tmp.Withdrawal * tmp.AffExRate) as Withdrawal_Aff
+			, SUM(tmp.Bonus * tmp.AffExRate) as Bonus_Aff
+			, SUM(tmp.Adjustment * tmp.AffExRate) as Adjustment_Aff
+			, SUM(tmp.PSP * tmp.AffExRate) as PSP_Aff
+			, SUM(tmp.SportsBookTurnover * tmp.AffExRate) as SportsBookTurnover_Aff
+			, SUM(tmp.NumberGameTurnover * tmp.AffExRate) as NumberGameTurnover_Aff
+			, SUM(tmp.LiveCasinoTurnover * tmp.AffExRate) as LiveCasinoTurnover_Aff
+			, SUM(tmp.RNGCasinoTurnover * tmp.AffExRate) as RNGCasinoTurnover_Aff
+			, SUM(tmp.TotalTurnover * tmp.AffExRate) as TotalTurnover_Aff
+			, SUM(tmp.SportsBookWinlost * tmp.AffExRate) as SportsBookWinlost_Aff
+			, SUM(tmp.NumberGameWinlost * tmp.AffExRate) as NumberGameWinlost_Aff
+			, SUM(tmp.LiveCasinoWinlost * tmp.AffExRate) as LiveCasinoWinlost_Aff
+			, SUM(tmp.RNGCasinoWinlost * tmp.AffExRate) as RNGCasinoWinlost_Aff
+			, SUM(tmp.TotalWinlost * tmp.AffExRate) as TotalWinlost_Aff
 	From
 		(Select	
 				t.Username
@@ -302,6 +338,7 @@ Begin
 					END )as RNGCasinoWinlost
 				, -(SUM(m.Winlost)) as TotalWinlost
 				, m.SysExRate as ExRate
+				, m.AffExRate as AffExRate
 		From MemberDaily m with (NOLOCK)
 			inner JOIN @PlayerCurrencyList e ON m.Currency = e.ExchangeID
 			inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
@@ -313,6 +350,7 @@ Begin
 				, m.UserName
 				, e.Code 
 				, m.SysExRate
+				, m.AffExRate
 		) as tmp
 	
 	group BY tmp.Username
@@ -323,6 +361,6 @@ End
 			
 
 GO
-GRANT EXECUTE ON [dbo].[AffAdmin_CompanyWinlossReport] TO [bodbAdminNet] AS [dbo]
+GRANT EXECUTE ON [dbo].[AffAdmin_PlayerWinlossReport] TO [bodbAdminNet] AS [dbo]
 GO
-GRANT VIEW DEFINITION ON [dbo].[AffAdmin_CompanyWinlossReport] TO [vnteam] AS [dbo]
+GRANT VIEW DEFINITION ON [dbo].[AffAdmin_PlayerWinlossReport] TO [vnteam] AS [dbo]

@@ -118,7 +118,7 @@ BEGIN
 					CASE WHEN @DrawFilter = 0 THEN
 						ac.MemberTurnover_aff 
 					ELSE
-						ac.MemberTurnover_aff - ac.MemberTurnoverDraw_aff
+						ac.MemberTurnoverNoDraw_aff
 					End) as Turnover
 			, Sum(ac.MemberWinlost_aff) as Winloss
 			, Sum(ac.MemberDeposit) as DepositBase
@@ -126,7 +126,7 @@ BEGIN
 			, Sum(CASE WHEN @DrawFilter = 0 THEN
 						ac.MemberTurnover
 					ELSE
-						ac.MemberTurnover - ac.MemberTurnoverDraw
+						ac.MemberTurnoverDraw
 					End) as TurnoverBase
 			, Sum(ac.MemberWinlost) as WinlossBase
 			--Sportbook
@@ -143,7 +143,7 @@ BEGIN
 						(CASE WHEN @DrawFilter = 0 THEN
 							ac.MemberTurnover_aff 
 						ELSE
-							ac.MemberTurnover_aff - ac.MemberTurnoverDraw_aff
+							ac.MemberTurnoverNoDraw_aff
 						End)
 				ELSE 0 END) as SportsbookTurnover
 			, Sum(Case WHEN ProductID = @SportsbookId THEN ac.MemberWinlost_aff ELSE 0 END) as SportsbookWinloss
@@ -155,7 +155,7 @@ BEGIN
 						(CASE WHEN @DrawFilter = 0 THEN
 							ac.MemberTurnover 
 						ELSE
-							ac.MemberTurnover - ac.MemberTurnoverDraw
+							ac.MemberTurnoverDraw
 						End)
 				ELSE 0 END) as SportsbookTurnoverBase
 			, Sum(Case WHEN ProductID = @SportsbookId THEN ac.MemberWinlost ELSE 0 END) as SportsbookWinlossBase
@@ -174,7 +174,7 @@ BEGIN
 						(CASE WHEN @DrawFilter = 0 THEN
 							ac.MemberTurnover_aff 
 						ELSE
-							ac.MemberTurnover_aff - ac.MemberTurnoverDraw_aff
+							ac.MemberTurnoverNoDraw_aff
 						End)
 					ELSE 0 END) as NumberGameTurnover
 			, Sum(Case WHEN ProductID = @NumberGame THEN ac.MemberWinlost_aff ELSE 0 END) as NumberGameWinloss
@@ -186,7 +186,7 @@ BEGIN
 							(CASE WHEN @DrawFilter = 0 THEN
 								ac.MemberTurnover 
 							ELSE
-								ac.MemberTurnover - ac.MemberTurnoverDraw
+								ac.MemberTurnoverDraw
 							End)
 				ELSE 0 END) as NumberGameTurnoverBase
 			, Sum(Case WHEN ProductID = @NumberGame THEN ac.MemberWinlost ELSE 0 END) as NumberGameWinlossBase
@@ -205,7 +205,7 @@ BEGIN
 						(CASE WHEN @DrawFilter = 0 THEN
 							ac.MemberTurnover_aff 
 						ELSE
-							ac.MemberTurnover_aff - ac.MemberTurnoverDraw_aff
+							ac.MemberTurnoverNoDraw_aff
 						End)
 					ELSE 0 END) as LiveCasinoTurnover
 			, Sum(Case WHEN ProductID = @LiveCasino THEN 
@@ -219,7 +219,7 @@ BEGIN
 							(CASE WHEN @DrawFilter = 0 THEN
 								ac.MemberTurnover 
 							ELSE
-								ac.MemberTurnover - ac.MemberTurnoverDraw
+								ac.MemberTurnoverDraw
 							End)
 				ELSE 0 END) as LiveCasinoTurnoverBase
 			, Sum(Case WHEN ProductID = @LiveCasino THEN ac.MemberWinlost ELSE 0 END) as LiveCasinoWinlossBase
@@ -238,7 +238,7 @@ BEGIN
 						(CASE WHEN @DrawFilter = 0 THEN
 							ac.MemberTurnover_aff 
 						ELSE
-							ac.MemberTurnover_aff - ac.MemberTurnoverDraw_aff
+							ac.MemberTurnoverNoDraw_aff
 						End)
 					ELSE 0 END) as RNGCasinoTurnover
 			, Sum(Case WHEN ProductID = @RNGCasino THEN ac.MemberWinlost_aff ELSE 0 END) as RNGCasinoWinloss
@@ -250,7 +250,7 @@ BEGIN
 							(CASE WHEN @DrawFilter = 0 THEN
 								ac.MemberTurnover 
 							ELSE
-								ac.MemberTurnover - ac.MemberTurnoverDraw
+								ac.MemberTurnoverDraw
 							End)
 				ELSE 0 END) as RNGCasinoTurnoverBase
 			, Sum(Case WHEN ProductID = @RNGCasino THEN ac.MemberWinlost ELSE 0 END) as RNGCasinoWinlossBase
@@ -284,7 +284,7 @@ Select	ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0) as Winlost
 		, SUM(CASE WHEN @DrawFilter = 0 THEN
 					ad.MemTurnover_aff 
 				ELSE
-					ad.MemTurnover_aff - ad.MemTurnoverDraw_aff
+					ad.MemTurnoverNoDraw_aff
 				End) as Turnover
 		, SUM(ad.MemWinlost_aff) as  Winloss
 		, SUM(ad.MemDeposit) as DepositBase
@@ -292,7 +292,7 @@ Select	ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0) as Winlost
 		, SUM(CASE WHEN @DrawFilter = 0 THEN
 					ad.MemTurnover
 				ELSE
-					ad.MemTurnover - ad.MemTurnoverDraw
+					ad.MemTurnoverDraw
 				End) as TurnoverBase
 		, SUM(ad.MemWinlost) as  WinlossBase
 
@@ -311,7 +311,7 @@ Select	ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0) as Winlost
 						(CASE WHEN @DrawFilter = 0 THEN
 							ad.MemTurnover_aff 
 						ELSE
-							ad.MemTurnover_aff - ad.MemTurnoverDraw_aff
+							ad.MemTurnoverNoDraw_aff
 						End)					
 					ELSE 0 
 				END) as SportsBookTurnover
@@ -321,7 +321,7 @@ Select	ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0) as Winlost
 						(CASE WHEN @DrawFilter = 0 THEN
 							ad.MemTurnover
 						ELSE
-							ad.MemTurnover - ad.MemTurnoverDraw
+							ad.MemTurnoverDraw
 						End)
 					ELSE 0 
 				END) as SportsBookTurnoverBase
@@ -341,7 +341,7 @@ Select	ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0) as Winlost
 						(CASE WHEN @DrawFilter = 0 THEN
 							ad.MemTurnover_aff 
 						ELSE
-							ad.MemTurnover_aff - ad.MemTurnoverDraw_aff
+							ad.MemTurnoverNoDraw_aff
 						End)
 					ELSE 0 
 				END) as NumberGameTurnover
@@ -351,7 +351,7 @@ Select	ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0) as Winlost
 						(CASE WHEN @DrawFilter = 0 THEN
 							ad.MemTurnover
 						ELSE
-							ad.MemTurnover - ad.MemTurnoverDraw
+							ad.MemTurnoverDraw
 						End)
 					ELSE 0 
 				END) as NumberGameTurnoverBase
@@ -371,7 +371,7 @@ Select	ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0) as Winlost
 						(CASE WHEN @DrawFilter = 0 THEN
 							ad.MemTurnover_aff 
 						ELSE
-							ad.MemTurnover_aff - ad.MemTurnoverDraw_aff
+							ad.MemTurnoverNoDraw_aff
 						End)
 					ELSE 0 
 				END) as LiveCasinoTurnover
@@ -381,7 +381,7 @@ Select	ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0) as Winlost
 						(CASE WHEN @DrawFilter = 0 THEN
 								ad.MemTurnover 
 							ELSE
-								ad.MemTurnover - ad.MemTurnoverDraw
+								ad.MemTurnoverDraw
 							End)
 					ELSE 0 
 				END) as LiveCasinoTurnoverBase
@@ -401,7 +401,7 @@ Select	ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0) as Winlost
 						(CASE WHEN @DrawFilter = 0 THEN
 							ad.MemTurnover_aff 
 						ELSE
-							ad.MemTurnover_aff - ad.MemTurnoverDraw_aff
+							ad.MemTurnoverNoDraw_aff
 						End)
 					ELSE 0 
 				END) as RNGCasinoTurnover
@@ -415,7 +415,7 @@ Select	ad.AffId, t.Status, dateadd(m, datediff(m, 0, Winlostdate), 0) as Winlost
 						(CASE WHEN @DrawFilter = 0 THEN
 								ad.MemTurnover 
 							ELSE
-								ad.MemTurnover - ad.MemTurnoverDraw
+								ad.MemTurnoverDraw
 							End)
 					ELSE 0 
 				END) as RNGCasinoTurnoverBase

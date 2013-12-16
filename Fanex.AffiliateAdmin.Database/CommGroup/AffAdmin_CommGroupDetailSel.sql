@@ -16,10 +16,12 @@ Revisions:
 */
 SET NOCOUNT ON
 
-declare @TblGroup table (id int primary key, rank int, val nvarchar( 6) )
+declare @TblGroup table (GroupID int)
 
 insert into @TblGroup 
-select * from [dbo].[strSplit] ( @GroupIDList, ',' ) 
+select DISTINCT val as GroupId from [dbo].[strSplit] ( @GroupIDList, ',' ) 
+
+select GroupID from @TblGroup
 
 if  @Date is null or DateDiff(m,CURRENT_TIMESTAMP,@Date) >= 0
 	select 

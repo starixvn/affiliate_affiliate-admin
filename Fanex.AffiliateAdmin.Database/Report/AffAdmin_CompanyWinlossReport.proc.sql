@@ -37,6 +37,7 @@ Param's Explanation:
 • @BaseCurrency: The current exchange rate will be used if we wanna convert the affiliate's currency to system currency
 	- 0: Original
 	- 1: Convert to System Currency.
+	- 2: Convert to Affiliate Currency.
 • @ExcludeTest: not include test accounts if true.
 */     
 SET NOCOUNT ON 
@@ -122,7 +123,8 @@ Begin
 		-(Sum(CASE WHEN ad.ProductID = @LiveCasino then ad.MemWinlost ELSE 0 END)) as LiveCasinoWinlost,
 		-(Sum(CASE WHEN ad.ProductID = @RNGCasino then ad.MemWinlost ELSE 0 END)) as RNGCasinoWinlost,
 		-(Sum(ad.MemWinlost)) as Total,
-
+		
+		--Convert to system currency
 		Sum(ad.MemDeposit * SysExRate) as DepositBase,
 		Sum(ad.MemWithdrawal * SysExRate) as WithdrawalBase,
 		Sum(ad.MemBonus * SysExRate) as BonusBase,
@@ -174,7 +176,61 @@ Begin
 		-(Sum(CASE WHEN ad.ProductID = @NumberGame then ad.MemWinlost * SysExRate ELSE 0 END)) as NumberGameWinlostBase,
 		-(Sum(CASE WHEN ad.ProductID = @LiveCasino then ad.MemWinlost * SysExRate ELSE 0 END)) as LiveCasinoWinlostBase,
 		-(Sum(CASE WHEN ad.ProductID = @RNGCasino then ad.MemWinlost * SysExRate ELSE 0 END)) as RNGCasinoWinlostBase,
-		-(Sum(ad.MemWinlost * SysExRate)) as TotalBase
+		-(Sum(ad.MemWinlost * SysExRate)) as TotalBase,
+
+		--Convert to Aff Currency
+		Sum(ad.MemDeposit * AffExRate) as Deposit_Aff,
+		Sum(ad.MemWithdrawal * AffExRate) as Withdrawal_Aff,
+		Sum(ad.MemBonus * AffExRate) as Bonus_Aff,
+		Sum(ad.MemAdjustment * AffExRate) as Adjustment_Aff,
+		Sum(ad.MemPSP * AffExRate) as PSP_Aff,
+		SUM(CASE WHEN @DrawFilter = 0 THEN
+				ad.MemTurnover 
+			ELSE
+				ad.MemTurnoverNoDraw
+			End * AffExRate) as Turnover_Aff,
+		Sum(CASE 
+				WHEN ad.ProductID = @SportsbookId then 
+					(CASE WHEN @DrawFilter = 0 THEN
+						ad.MemTurnover 
+					ELSE
+						ad.MemTurnoverNoDraw
+					End)
+				ELSE 0 
+			END * AffExRate) as SportsBookTurnover_Aff,
+		Sum(CASE 
+				WHEN ad.ProductID = @NumberGame then 
+					(CASE WHEN @DrawFilter = 0 THEN
+						ad.MemTurnover 
+					ELSE
+						ad.MemTurnoverNoDraw
+					End)
+				ELSE 0 
+			END * AffExRate) as NumberGameTurnover_Aff,
+		Sum(CASE 
+				WHEN ad.ProductID = @LiveCasino then 
+					(CASE WHEN @DrawFilter = 0 THEN
+						ad.MemTurnover 
+					ELSE
+						ad.MemTurnoverNoDraw
+					End)
+				ELSE 0 
+			END * AffExRate) as LiveCasinoTurnover_Aff,
+		Sum(CASE 
+				WHEN ad.ProductID = @RNGCasino then 
+					(CASE WHEN @DrawFilter = 0 THEN
+						ad.MemTurnover 
+					ELSE
+						ad.MemTurnoverNoDraw
+					End)
+				ELSE 0 
+			END * AffExRate)as RNGCasinoTurnover_Aff,
+		Sum(ad.MemWinlost * AffExRate) as Winlost_Aff,
+		-(Sum(CASE WHEN ad.ProductID = @SportsbookId then ad.MemWinlost * AffExRate ELSE 0 END)) as SportsBookWinlost_Aff,
+		-(Sum(CASE WHEN ad.ProductID = @NumberGame then ad.MemWinlost * AffExRate ELSE 0 END)) as NumberGameWinlost_Aff,
+		-(Sum(CASE WHEN ad.ProductID = @LiveCasino then ad.MemWinlost * AffExRate ELSE 0 END)) as LiveCasinoWinlost_Aff,
+		-(Sum(CASE WHEN ad.ProductID = @RNGCasino then ad.MemWinlost * AffExRate ELSE 0 END)) as RNGCasinoWinlost_Aff,
+		-(Sum(ad.MemWinlost * AffExRate)) as Total_Aff
 	From AffDaily ad with (nolock)
 		inner JOIN #PlayerCurrencies as p ON ad.MemCurrency = p.CurrencyId
 		inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 
@@ -195,6 +251,7 @@ Begin
 			, p.Currency
 			, p.CurrencyId
 			, ad.SysExRate
+			, ad.AffExRate
 			, m.ActivePlayer
 End
 Else
@@ -237,7 +294,25 @@ Begin --By Month
 		Sum(NumberGameWinlostBase) as NumberGameWinlostBase,
 		Sum(LiveCasinoWinlostBase) as LiveCasinoWinlostBase,
 		Sum(RNGCasinoWinlostBase) as RNGCasinoWinlostBase,
-		Sum(TotalBase) as TotalBase
+		Sum(TotalBase) as TotalBase,
+
+		
+		Sum(MemDeposit_Aff) as Deposit_Aff,
+		Sum(MemWithdrawal_Aff) as Withdrawal_Aff,
+		Sum(MemBonus_Aff) as Bonus_Aff,
+		Sum(MemAdjustment_Aff) as Adjustment_Aff,
+		Sum(MemPSP_Aff) as PSP_Aff,
+		Sum(Turnover_Aff) as Turnover_Aff,
+		Sum(SportsBookTurnover_Aff) as SportsBookTurnover_Aff,
+		Sum(NumberGameTurnover_Aff) as NumberGameTurnover_Aff,
+		Sum(LiveCasinoTurnover_Aff) as LiveCasinoTurnover_Aff,
+		Sum(RNGCasinoTurnover_Aff)as RNGCasinoTurnover_Aff,
+		Sum(MemWinlost_Aff) as Winlost_Aff,
+		Sum(SportsBookWinlost_Aff) as SportsBookWinlost_Aff,
+		Sum(NumberGameWinlost_Aff) as NumberGameWinlost_Aff,
+		Sum(LiveCasinoWinlost_Aff) as LiveCasinoWinlost_Aff,
+		Sum(RNGCasinoWinlost_Aff) as RNGCasinoWinlost_Aff,
+		Sum(Total_Aff) as Total_Aff
 
 	from (
 			Select	
@@ -301,7 +376,7 @@ Begin --By Month
 				-(Sum(CASE WHEN ad.ProductID = @RNGCasino then ad.MemWinlost ELSE 0 END)) as RNGCasinoWinlost,
 				-(Sum(ad.MemWinlost)) as Total,
 
-
+				--Convert to System ex.Rate
 				Sum(ad.MemDeposit * ad.SysExRate) as MemDepositBase,
 				Sum(ad.MemWithdrawal * ad.SysExRate) as MemWithdrawalBase,
 				Sum(ad.MemBonus * ad.SysExRate) as MemBonusBase,
@@ -353,7 +428,61 @@ Begin --By Month
 				-(Sum(CASE WHEN ad.ProductID = @NumberGame then ad.MemWinlost ELSE 0 END  * ad.SysExRate)) as NumberGameWinlostBase,
 				-(Sum(CASE WHEN ad.ProductID = @LiveCasino then ad.MemWinlost ELSE 0 END * ad.SysExRate)) as LiveCasinoWinlostBase,
 				-(Sum(CASE WHEN ad.ProductID = @RNGCasino then ad.MemWinlost ELSE 0 END * ad.SysExRate)) as RNGCasinoWinlostBase,
-				-(Sum(ad.MemWinlost * ad.SysExRate)) as TotalBase
+				-(Sum(ad.MemWinlost * ad.SysExRate)) as TotalBase,
+
+				--Convert to Affiliate ex.Rate
+				Sum(ad.MemDeposit * ad.AffExRate) as MemDeposit_Aff,
+				Sum(ad.MemWithdrawal * ad.AffExRate) as MemWithdrawal_Aff,
+				Sum(ad.MemBonus * ad.AffExRate) as MemBonus_Aff,
+				Sum(ad.MemAdjustment * ad.AffExRate) as MemAdjustment_Aff,
+				Sum(ad.MemPSP * ad.AffExRate) as MemPSP_Aff,
+				SUM(CASE WHEN @DrawFilter = 0 THEN
+						ad.MemTurnover 
+					ELSE
+						ad.MemTurnoverNoDraw
+					End * ad.AffExRate) as Turnover_Aff,
+				Sum(CASE 
+						WHEN ad.ProductID = @SportsbookId then 
+							(CASE WHEN @DrawFilter = 0 THEN
+								ad.MemTurnover 
+							ELSE
+								ad.MemTurnoverNoDraw
+							End)
+						ELSE 0 
+					END * ad.AffExRate) as SportsBookTurnover_Aff,
+				Sum(CASE 
+						WHEN ad.ProductID = @NumberGame then 
+							(CASE WHEN @DrawFilter = 0 THEN
+								ad.MemTurnover 
+							ELSE
+								ad.MemTurnoverNoDraw
+							End)
+						ELSE 0 
+					END * ad.AffExRate) as NumberGameTurnover_Aff,
+				Sum(CASE 
+						WHEN ad.ProductID = @LiveCasino then 
+							(CASE WHEN @DrawFilter = 0 THEN
+								ad.MemTurnover 
+							ELSE
+								ad.MemTurnoverNoDraw
+							End)
+						ELSE 0 
+					END * ad.AffExRate) as LiveCasinoTurnover_Aff,
+				Sum(CASE 
+						WHEN ad.ProductID = @RNGCasino then 
+							(CASE WHEN @DrawFilter = 0 THEN
+								ad.MemTurnover 
+							ELSE
+								ad.MemTurnoverNoDraw
+							End)
+						ELSE 0 
+					END  * ad.AffExRate)as RNGCasinoTurnover_Aff,
+				Sum(ad.MemWinlost * ad.AffExRate) as MemWinlost_Aff,
+				-(Sum(CASE WHEN ad.ProductID = @SportsbookId then ad.MemWinlost ELSE 0 END  * ad.AffExRate)) as SportsBookWinlost_Aff,
+				-(Sum(CASE WHEN ad.ProductID = @NumberGame then ad.MemWinlost ELSE 0 END  * ad.AffExRate)) as NumberGameWinlost_Aff,
+				-(Sum(CASE WHEN ad.ProductID = @LiveCasino then ad.MemWinlost ELSE 0 END * ad.AffExRate)) as LiveCasinoWinlost_Aff,
+				-(Sum(CASE WHEN ad.ProductID = @RNGCasino then ad.MemWinlost ELSE 0 END * ad.AffExRate)) as RNGCasinoWinlost_Aff,
+				-(Sum(ad.MemWinlost * ad.AffExRate)) as Total_Aff
 			From AffDaily ad with (nolock)
 				inner JOIN #PlayerCurrencies as p ON ad.MemCurrency = p.CurrencyId
 				inner JOIN [dbo].[AffAdmin_AffiliateListForReport](@UserId, @AffName, @AffTypes, @CommGroups, @PreferLanguages, 'All', @ExcludeTest, @IsITAdmin, @FromDate, @ToDate) 

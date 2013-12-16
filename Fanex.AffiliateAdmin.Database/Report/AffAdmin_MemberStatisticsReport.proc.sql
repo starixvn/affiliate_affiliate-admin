@@ -207,7 +207,7 @@ Begin
 			(CASE 
 				WHEN @SortBy = 1 THEN Sum(Signups)
 				WHEN @SortBy = 2 THEN Sum(tmp.ActivePlayers)
-			END) desc, r.Username
+			END) desc, r.AffId
 End
 ELSE IF (@GroupBy = 1)-- By Date
 Begin
@@ -241,7 +241,14 @@ Begin
 			(CASE 
 				WHEN @SortBy = 1 THEN Signups
 				WHEN @SortBy = 2 THEN tmp.ActivePlayers
-			END) desc, r.DateClick desc, r.Username
+			END) desc,
+			(CASE 
+				WHEN @SortBy = 3 THEN r.AffId
+			END), 
+			(CASE 
+				WHEN r.DateClick IS NULL THEN tmp.WinlostDate
+				ELSE r.DateClick
+			END) Desc, r.Username
 End
 ELSE IF (@GroupBy = 2)-- By Month
 Begin
@@ -293,7 +300,14 @@ Begin
 			(CASE 
 				WHEN @SortBy = 1 THEN Signups
 				WHEN @SortBy = 2 THEN tmp.ActivePlayers
-			END) desc, r.DateClick desc, r.Username
+			END) desc,
+			(CASE 
+				WHEN @SortBy = 3 THEN r.AffId
+			END), 
+			(CASE 
+				WHEN r.DateClick IS NULL THEN tmp.WinlostDate
+				ELSE r.DateClick
+			END) Desc, r.Username
 End
 
 GO

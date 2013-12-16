@@ -52,7 +52,7 @@ else
 		 inner join Product s with (nolock) on s.ProductID=g.ProductID
 	where g.GroupID in (
 		 select GroupID from @TblGroup
-	   )
+	   ) AND datediff(m, g.MonthDate, @Date) = 0
 
 GO
 GRANT EXECUTE ON [dbo].[AffAdmin_CommGroupDetailSel] TO [bodbAdminNet]

@@ -72,6 +72,9 @@ namespace Fanex.AffiliateAdmin.Controller
             if (criteria.ByAffiliate)
             {
                 criteria.AffName = CurrentSession.Affiliate.UserName;
+                criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
+                criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
+                criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
                 criteria.ExcludeTest = false;
             }
 
@@ -174,6 +177,9 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.AffName = CurrentSession.Affiliate.UserName;
                 criteria.ExcludeTest = false;
+                criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
+                criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
+                criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
             }
 
             criteria.UserId = CurrentSession.CustID;

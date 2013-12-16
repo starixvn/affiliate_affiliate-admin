@@ -15,7 +15,17 @@
             var baseCurrency = data.BaseCurrency;
             var groupBy = data.GroupBy;
             var currencySymbol = baseCurrency === "1" ? " (" + System.Prefix + ")" : "";
-            var suffixBase = baseCurrency === "1" ? "Base" : "";
+
+             var suffixBase = "";
+            
+            if (baseCurrency === "1") {
+                suffixBase = "Base";
+            }
+            
+            if (baseCurrency === "2") {
+                suffixBase = "_Aff";
+            }
+            
             var startTurnoverPosition = turnoverPosition;
 
             gridOption.numberOfFrozenColumn = _byAffiliate ? 2 : 4;
@@ -395,7 +405,8 @@
                             break;                            
                         default:
                             // alway value based on base currency
-                            if (baseCurrency === '0' && level === 0) {
+                            if (level === 0) {
+                                console.log(colName);
                                 subTotalRow[colName] += rowData[colName + "Base"];
                             } else {
                                 subTotalRow[colName] += rowData[colName];

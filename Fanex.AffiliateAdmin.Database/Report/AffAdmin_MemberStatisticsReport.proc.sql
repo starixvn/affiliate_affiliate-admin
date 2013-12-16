@@ -78,8 +78,8 @@ Begin
 		count(distinct IP) as UniqueClick,
 		SUM(isnull(Signups, 0)) as Signups,
 		SUM(isnull(FDM, 0)) as  FDM
-	from ClickStatistics c with(nolock) 
-		INNER JOIN @AffList as t on c.AffId = t.AffId
+	from @AffList as t 
+		LEFT JOIN ClickStatistics c with(nolock) on c.AffId = t.AffId and [Date] between @FromDate and @ToDate
 		left join 
 			(Select ClickId, 
 				SUM(case when m.RegisteredDate is not null then 1 else 0 end) as Signups,
@@ -88,8 +88,7 @@ Begin
 			where RegisteredDate between @FromDate and @ToDate--For month that is not sum click
 				or CreatedDate between @FromDate and @ToDate
 			group by ClickId
-			) as m on c.ClickId = m.ClickId
-	where [Date] between @FromDate and @ToDate
+			) as m on c.ClickId = m.ClickId	
 	group by t.AffId, Username, Date, AffType, Language, Currency, t.Status
 	--[Date] in group by to calculate unique click
 End
@@ -108,9 +107,8 @@ Begin
 		sum(UniqueClick) as UniqueClick,
 		sum(TotalSignup) as Signups,
 		sum(TotalDeposit) as FDM
-	from ClickStatisticsSum c with(nolock) 
-		INNER JOIN @AffList as t on c.AffId = t.AffId
-	where [Date] between @FromDate and @ToDate
+	from @AffList as t
+		LEFT JOIN ClickStatisticsSum c with(nolock) on c.AffId = t.AffId and [Date] between @FromDate and @ToDate
 	group by t.AffId, Username, Date, AffType, Language, Currency, Status
 	order by Username, Date
 End
@@ -142,9 +140,8 @@ Begin
 			sum(UniqueClick) as UniqueClick,
 			sum(TotalSignup) as Signups,
 			sum(TotalDeposit) as FDM
-		from ClickStatisticsSum c with(nolock) 
-			INNER JOIN @AffList as t on c.AffId = t.AffId
-		where [Date] between @FromDate and @LastDateSum
+		from @AffList as t
+			LEFT JOIN ClickStatisticsSum c with(nolock) on c.AffId = t.AffId and [Date] between @FromDate and @LastDateSum
 		group by t.AffId, Username, Date, AffType, Language, Currency, t.Status
 
 		Union All
@@ -161,8 +158,8 @@ Begin
 			count(distinct IP) as UniqueClick,
 			SUM(isnull(Signups, 0)) as Signups,
 			SUM(isnull(FDM, 0)) as  FDM
-		from ClickStatistics c with(nolock) 
-			INNER JOIN @AffList as t on c.AffId = t.AffId
+		from @AffList as t
+			LEFT JOIN ClickStatistics c with(nolock) on c.AffId = t.AffId AND [Date] between @FromDate and @ToDate
 			left join 
 				(Select ClickId, 
 					SUM(case when m.RegisteredDate is not null then 1 else 0 end) as Signups,
@@ -172,7 +169,6 @@ Begin
 						or CreatedDate between @FromDate and @ToDate
 				group by ClickId
 				) as m on c.ClickId = m.ClickId
-		where [Date] between @FromDate and @ToDate
 		group by t.AffId, Username, Date, AffType, Language, Currency, t.Status
 		) tmp
 	group by AffId, Username, Date, AffType, Language, Currency, Status
@@ -183,7 +179,6 @@ IF (@GroupBy = 0)-- By All (Affiliate)
 Begin
 	Select	r.AffId,
 			Username,
-			--Date,
 			AffType,
 			Language,
 			Currency,
@@ -196,12 +191,18 @@ Begin
 			Sum(isnull(tmp.ActivePlayers, 0)) as ActivePlayers
 	From @Result as r
 		LEFT JOIN 
-			(SELECT AffId, COUNT(UserName) as ActivePlayers
+			(SELECT AffId, COUNT(DISTINCT UserName) as ActivePlayers
 			From MemberDaily WITH (NOLOCK) 
 			where Turnover > 0
 			GROUP  by AffID
 			) as tmp on r.AffId = tmp.AffId
 	Group BY r.AffId, Username, AffType, Language, Currency, Status
+	Having Sum(TotalClick) > 0 OR
+			Sum(UniqueClick) > 0 OR
+			Sum(Signups) > 0 OR
+			Sum(FDM) > 0 OR
+			Sum(Signups - FDM) > 0 OR
+			Sum(isnull(tmp.ActivePlayers, 0)) > 0
 	order BY 
 			(CASE 
 				WHEN @SortBy = 1 THEN Sum(Signups)
@@ -212,25 +213,30 @@ ELSE IF (@GroupBy = 1)-- By Date
 Begin
 	Select	r.AffId,
 			Username,
-			r.DateClick,
+			isnull(r.DateClick, tmp.Winlostdate) as DateClick,
 			AffType,
 			Language,
 			Currency,
 			Status,
-			TotalClick,
-			UniqueClick,
-			Signups,
-			FDM,
-			(Signups - FDM) as NonDeposit,
+			isnull(TotalClick, 0) as TotalClick,
+			isnull(UniqueClick, 0) as UniqueClick,
+			isnull(Signups, 0) as Signups,
+			isnull(FDM, 0) as FDM,
+			isnull((Signups - FDM), 0) as NonDeposit,
 			isnull(tmp.ActivePlayers, 0) as ActivePlayers
 	From @Result as r
 		LEFT JOIN 
-			(SELECT AffID, COUNT(UserName) as ActivePlayers, WinlostDate
+			(SELECT AffID, COUNT(DISTINCT UserName) as ActivePlayers, WinlostDate
 			From MemberDaily WITH (NOLOCK) 
 			where Winlostdate between @FromDate and @ToDate
 				AND Turnover > 0
 			GROUP  by AffID, Winlostdate
-			) as tmp on r.AffId = tmp.AffId and r.DateClick = tmp.Winlostdate
+			) as tmp on r.AffId = tmp.AffId and (r.DateClick = tmp.Winlostdate OR r.DateClick IS NULL OR tmp.WinlostDate IS NULL)
+	Where TotalClick > 0 or
+			UniqueClick > 0 OR
+			Signups > 0 OR
+			FDM > 0 OR
+			tmp.ActivePlayers > 0
 	order BY 
 			(CASE 
 				WHEN @SortBy = 1 THEN Signups
@@ -239,37 +245,51 @@ Begin
 End
 ELSE IF (@GroupBy = 2)-- By Month
 Begin
-	Select	r.AffId,
+	Select r.AffId,
 			Username,
-			dateadd(m, datediff(m, 0, r.DateClick), 0) as DateClick,
+			isnull(r.DateClick, tmp.WinlostDate) as DateClick,
 			AffType,
 			Language,
 			Currency,
 			Status,
-			Sum(TotalClick) as TotalClick,
-			Sum(UniqueClick) as UniqueClick,
-			Sum(Signups) as Signups,
-			Sum(FDM) as FDM,
-			Sum(Signups - FDM) as NonDeposit,
-			Sum(isnull(tmp.ActivePlayers, 0)) as ActivePlayers
-	From @Result as r
-		LEFT JOIN 
-			(SELECT AffID
-				, COUNT(UserName) as ActivePlayers
-				, dateadd(m, datediff(m, 0, Winlostdate), 0) as WinlostDate					
-			From MemberDaily WITH (NOLOCK) 
-			where Winlostdate between @FromDate and @ToDate
-				AND Turnover > 0
-			GROUP  by AffID, dateadd(m, datediff(m, 0, Winlostdate), 0)
-			) as tmp on r.AffId = tmp.AffId and datediff(m, r.DateClick, tmp.Winlostdate) = 0
-	Group By r.AffId, Username, dateadd(m, datediff(m, 0, r.DateClick), 0), AffType, Language, Currency, Status
-	order BY 
-			(CASE 
-				WHEN @SortBy = 1 THEN Sum(Signups)
-				WHEN @SortBy = 2 THEN Sum(tmp.ActivePlayers)
-			END) desc, dateadd(m, datediff(m, 0, r.DateClick), 0) desc, r.Username
+			isnull(TotalClick, 0) as TotalClick,
+			isnull(UniqueClick, 0) as UniqueClick,
+			isnull(Signups, 0) as Signups,
+			isnull(FDM, 0) as FDM,
+			isnull((Signups - FDM), 0) as NonDeposit,
+			isnull(tmp.ActivePlayers, 0) as ActivePlayers
+	From
+		(
+		Select	r.AffId,
+				Username,
+				dateadd(m, datediff(m, 0, r.DateClick), 0) as DateClick,
+				AffType,
+				Language,
+				Currency,
+				Status,
+				Sum(TotalClick) as TotalClick,
+				Sum(UniqueClick) as UniqueClick,
+				Sum(Signups) as Signups,
+				Sum(FDM) as FDM,
+				Sum(Signups - FDM) as NonDeposit
+		From @Result as r
+		Group By r.AffId, Username, dateadd(m, datediff(m, 0, r.DateClick), 0), AffType, Language, Currency, Status
+		) as r
+		LEFT JOIN
+		(SELECT AffID
+			, COUNT(DISTINCT UserName) as ActivePlayers
+			, dateadd(m, datediff(m, 0, Winlostdate), 0) as WinlostDate					
+		From MemberDaily WITH (NOLOCK) 
+		where Winlostdate between @FromDate and @ToDate
+			AND Turnover > 0
+		GROUP  by AffID, dateadd(m, datediff(m, 0, Winlostdate), 0)
+		) as tmp on r.AffId = tmp.AffId and (datediff(m, r.DateClick, tmp.Winlostdate) = 0 OR r.DateClick IS NULL OR tmp.WinlostDate IS NULL)
+	Where TotalClick > 0 or
+			UniqueClick > 0 OR
+			Signups > 0 OR
+			FDM > 0 OR
+			tmp.ActivePlayers > 0
 End
-
 
 GO
 GRANT EXECUTE ON [dbo].[AffAdmin_MemberStatisticsReport] TO [bodbAdminNet] AS [dbo]

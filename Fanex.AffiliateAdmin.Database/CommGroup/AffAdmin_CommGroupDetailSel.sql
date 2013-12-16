@@ -21,8 +21,6 @@ declare @TblGroup table (GroupID int)
 insert into @TblGroup 
 select DISTINCT val as GroupId from [dbo].[strSplit] ( @GroupIDList, ',' ) 
 
-select GroupID from @TblGroup
-
 if  @Date is null or DateDiff(m,CURRENT_TIMESTAMP,@Date) >= 0
 	select 
 		g.GroupId,	

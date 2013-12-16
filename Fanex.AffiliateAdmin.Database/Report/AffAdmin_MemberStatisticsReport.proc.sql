@@ -289,6 +289,11 @@ Begin
 			Signups > 0 OR
 			FDM > 0 OR
 			tmp.ActivePlayers > 0
+	order BY 
+			(CASE 
+				WHEN @SortBy = 1 THEN Signups
+				WHEN @SortBy = 2 THEN tmp.ActivePlayers
+			END) desc, r.DateClick desc, r.Username
 End
 
 GO

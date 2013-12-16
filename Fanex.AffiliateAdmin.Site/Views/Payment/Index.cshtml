@@ -82,7 +82,7 @@ payment
     <ul class="unstyled inline status">
         <li><span class="approved"></span>@Lang.Approved</li>
         <li><span class="rejected"></span>@Lang.Rejected</li>
-        <li><span class="pending"></span>@Lang.Proccessing</li>
+        <li><span class="pending"></span>@Lang.Processing</li>
         <li><span class="cancelled"></span>@Lang.Cancelled</li>
     </ul>
 </div>
@@ -96,7 +96,15 @@ payment
             { HeaderText: "@Lang.Status", Width: 100, Name: "Status" },
             { HeaderText: "@Lang.UpdatedBy", Width: 120, Name: "Creator" },
             { HeaderText: "@Lang.DateRequest", Width: 140, Name: "Transdate", HeaderAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL, CellAlign: "center" },
-            { HeaderText: "@Lang.CompletedDate", Width: 140, Name: "Completeddate", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL, CellAlign: "center" },
+            { HeaderText: "@Lang.CompletedDate", Width: 140, Name: "Completeddate", CellAlign: "center",
+                Formatter: function (rIndex, record, cell, cellFormated) {
+                    if (record["Status"] === 'Processing') {
+                        return moment(record['Completeddate']).format(AFFILIATE.DATE_FORMAT_FULL);
+                    }
+
+                    return null;
+                }
+            },
             { HeaderText: "@Lang.Currency", Width: 105, Name: "Currency", HeaderAlign: "center", CellAlign: "center" }
         ];
         var columnAmount = { HeaderText: "@Lang.Amount", Width: 220, Name: "Amt", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER };

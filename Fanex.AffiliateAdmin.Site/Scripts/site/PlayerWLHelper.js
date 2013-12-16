@@ -224,10 +224,10 @@
 
             var range = PlayerWLHelper.genNormalRows(bodyRows, data.List, baseCurrency, groupBy);
 
-            var footerRows = PlayerWLHelper.genFooterRows(range, groupBy);
+            //var footerRows = PlayerWLHelper.genFooterRows(range, groupBy);
 
             _options.bodyRows = bodyRows;
-            _options.footerRows = footerRows;
+            //_options.footerRows = footerRows;
         },
         
         genFooterRows: function(range, groupBy) {
@@ -405,7 +405,7 @@
                             break;                            
                         default:
                             // alway value based on base currency
-                            if (level === 0) {
+                            if (baseCurrency == "1" && level === 0) {
                                 console.log(colName);
                                 subTotalRow[colName] += rowData[colName + "Base"];
                             } else {

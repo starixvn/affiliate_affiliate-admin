@@ -24,7 +24,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             {
                 return new List<SelectListItem>
                 {
-                    new SelectListItem { Value = "Pending", Text = Lang.Proccessing, Selected = true },
+                    new SelectListItem { Value = "Pending", Text = Lang.Processing, Selected = true },
                     new SelectListItem { Value = "Approved", Text = Lang.Approved, Selected = true },
                     new SelectListItem { Value = "Rejected", Text = Lang.Rejected },
                     new SelectListItem { Value = "Cancelled", Text = Lang.Cancelled }

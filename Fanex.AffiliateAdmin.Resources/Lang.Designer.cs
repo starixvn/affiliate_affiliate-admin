@@ -5119,11 +5119,11 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proccessing.
+        ///   Looks up a localized string similar to Processing.
         /// </summary>
-        public static string Proccessing {
+        public static string Processing {
             get {
-                return ResourceManager.GetString("Proccessing", resourceCulture);
+                return ResourceManager.GetString("Processing", resourceCulture);
             }
         }
         

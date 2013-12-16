@@ -115,7 +115,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             {
                 case "running":
                 case "pending":
-                    return Lang.Proccessing;
+                    return Lang.Processing;
                 case "completed":
                     return Lang.Approved;
                 case "cancelled":
@@ -282,7 +282,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             switch (status.ToLower())
             {
                 case "pending":
-                    return Lang.Proccessing;
+                    return Lang.Processing;
                 case "completed":
                     return Lang.Approved;
                 case "cancelled":

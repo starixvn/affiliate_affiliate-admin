@@ -1,4 +1,4 @@
-﻿var CommissionReport = function ($) {
+﻿var MemberWinlossReport = function ($) {
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = 1;
     var GROUP_BY_MONTH = 0;

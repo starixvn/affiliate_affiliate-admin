@@ -22,7 +22,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             {
                 return new List<SelectListItem>
                 {
-                    new SelectListItem { Value = "Processing", Text = Lang.Proccessing, Selected = true },
+                    new SelectListItem { Value = "Processing", Text = Lang.Processing, Selected = true },
                     new SelectListItem { Value = "Approved,B/F", Text = Lang.ApprovedBF, Selected = true },
                     new SelectListItem { Value = "Rejected", Text = Lang.Rejected },
                     new SelectListItem { Value = "Cancelled", Text = Lang.Cancelled }

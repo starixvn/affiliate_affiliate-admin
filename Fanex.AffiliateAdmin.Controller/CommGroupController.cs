@@ -241,10 +241,22 @@ namespace Fanex.AffiliateAdmin.Controller
             return deduction;
         }
 
+        /// <summary>
+        /// Get Grid Data.
+        /// </summary>
+        /// <param name="criteria">Input Criteria.</param>
+        /// <returns>List Commission Group.</returns>
         private IEnumerable<CommGroup> GetGridData(CommGroupCriteria criteria)
         {
             var groups = _service.GetListData<CommGroup>(criteria);
+            
+            if (criteria.GroupIDList.IndexOf(',') == 0)
+            {
+                criteria.GroupIDList = criteria.GroupIDList.Substring(1);
+            }
+
             BuildGroupData(groups, criteria.Date, criteria.GroupIDList);
+
             return groups;
         }
 
@@ -264,8 +276,9 @@ namespace Fanex.AffiliateAdmin.Controller
             var hasGeneralDeduction = AppSettings.DeductionTypes.FirstOrDefault(x => x.ProductID == 0);
             foreach (var group in groups)
             {
-                var details = groupDetails.Where(x => x.GroupId == group.GroupID);
+                var details = groupDetails.Where(x => x.GroupId == group.GroupID).ToList();
                 var products = new Dictionary<string, object>();
+
                 foreach (var detail in details)
                 {
                     var id = detail.ProductID.ToString();
@@ -286,8 +299,6 @@ namespace Fanex.AffiliateAdmin.Controller
                 group.Details = details.ToList();
                 if (hasGeneralDeduction != null)
                 {
-                    var d = deductionSettings.FirstOrDefault(t => t.DeductionID == hasGeneralDeduction.DTypeID && t.GroupID == group.GroupID);
-                    group.Deduction = d != null ? d.DeductedPercentage : (decimal)hasGeneralDeduction.DeductedPercentage;
                     var deduction = new Dictionary<string, decimal>();
                     var deductions = allDeductions.Where(x => x.ProductID == 0);
                     if (deductions.Count() > 0)

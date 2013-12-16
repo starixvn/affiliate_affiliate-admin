@@ -95,7 +95,7 @@ var COMMGROUP = function ($) {
                                         value += "<br />";
                                     }
                                 }
-                            }else if (k == INDEX_ACTION_COL) {
+                            } else if (k == INDEX_ACTION_COL) {
 
                                 var deleteButton = record.IsAllowedToDelete ?
                                             "<a class='remove' data-groupname='" + record.GroupName + "' data-groupid='" + data.GroupId + "' href='#' title='{0}'><i class='icon-remove'></i></a>".format(MSG.Remove)
@@ -105,7 +105,12 @@ var COMMGROUP = function ($) {
                                             : "<a title='{0}'><i class='icon-edit icon-white'></i></a>".format(MSG.Edit);
                                 value = editButton + deleteButton;
                             } else if (colName == "NoOfAffiliate") {
-                                value = "<a href='" + AFFILIATE.baseUrl + "Affiliate?ExcludeTest=false&groupid=" + data.GroupID + "'>" + data[colName] + "</a>";
+                                var date = $("#month").monthpicker("getDate");
+                                if (date.getMonth() == (new Date()).getMonth()) {
+                                    value = "<a href='" + AFFILIATE.baseUrl + "Affiliate?ExcludeTest=false&groupid=" + data.GroupID + "'>" + data[colName] + "</a>";
+                                } else {
+                                    value = data[colName];
+                                }
                             } else if (k == 0) {
                                 value = i + 1;
                             }

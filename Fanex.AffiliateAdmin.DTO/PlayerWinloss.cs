@@ -99,5 +99,40 @@ namespace Fanex.AffiliateAdmin.DTO
         {
             get { return -TotalWinlostBase;  }
         }
+
+        public double? CustomerWinlost_Aff
+        {
+            get { return -TotalWinlost_Aff; }
+        }
+
+        public decimal? Deposit_Aff { get; set; }
+
+        public double? Withdrawal_Aff { get; set; }
+
+        public double? Bonus_Aff { get; set; }
+
+        public double? Adjustment_Aff { get; set; }
+
+        public double? PSP_Aff { get; set; }
+
+        public double? SportsBookTurnover_Aff { get; set; }
+
+        public double? NumberGameTurnover_Aff { get; set; }
+
+        public double? LiveCasinoTurnover_Aff { get; set; }
+
+        public double? RNGCasinoTurnover_Aff { get; set; }
+
+        public double? TotalTurnover_Aff { get; set; }
+
+        public double? SportsBookWinlost_Aff { get; set; }
+
+        public double? NumberGameWinlost_Aff { get; set; }
+
+        public double? LiveCasinoWinlost_Aff { get; set; }
+
+        public double? RNGCasinoWinlost_Aff { get; set; }
+
+        public double? TotalWinlost_Aff { get; set; }
     }
 }

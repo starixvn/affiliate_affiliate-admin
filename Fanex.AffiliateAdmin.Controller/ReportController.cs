@@ -162,6 +162,14 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>Player Win loss page.</returns>
         public ActionResult PlayerWinloss(PlayerWinlossViewModel model)
         {
+            var serializer = new JavaScriptSerializer();
+
+            ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
+            {
+                Id = x.ProductID,
+                Name = x.ProductName
+            }));
+
             return View("PlayerWinloss", model);
         }
 
@@ -186,16 +194,19 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.IsITAdmin = CurrentSession.IsIT;
 
             var data = _reportService.GetPlayerWinloss(criteria).ToList();
-            var products = _systemSettingService.GetProductList(new ProductSelectCriteria()).OrderBy(t => t.ProductName);
+            var subTotalPlayerWinlosses = new List<PlayerWinloss>();
+            var totalPlayerWinloss = new PlayerWinloss();
+
+            SetDataForTotalMemberWinloss(data, subTotalPlayerWinlosses, totalPlayerWinloss);
 
             return Json(new
             {
                 List = data,
-                Products = products.Select(t => t.ProductName.Replace(" ", string.Empty).ToLower()),
+                TotalRowData = totalPlayerWinloss,
+                SubTotalData = subTotalPlayerWinlosses,
+                CurrentPage = 1,
                 ItemsPerPage = data.Count,
-                TotalItem = data.Count,
-                GroupBy = criteria.GroupBy.ToString(),
-                BaseCurrency = criteria.BaseCurrency.ToString()
+                TotalItem = data.Count
             });
         }
 
@@ -228,6 +239,14 @@ namespace Fanex.AffiliateAdmin.Controller
             }
 
             model.BaseCurrencyList = baseCurrencyList;
+
+            var serializer = new JavaScriptSerializer();
+
+            ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
+            {
+                Id = x.ProductID,
+                Name = x.ProductName
+            }));
 
             return View("PlayerWinlossByAffiliate", model);
         }
@@ -427,6 +446,67 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
         }
+
+        /// <summary>
+        /// Player Win loss Report.
+        /// </summary>
+        /// <param name="playerWinlosses">Player Win losses.</param>
+        /// <param name="subTotalData">Sub Total Data.</param>
+        /// <param name="totalRowData">Total Data.</param>
+        private void SetDataForTotalMemberWinloss(
+            List<PlayerWinloss> playerWinlosses, 
+            List<PlayerWinloss> subTotalData, 
+            PlayerWinloss totalRowData)
+        {
+            var groups = playerWinlosses.GroupBy(t => t.PlayerCurrency);
+
+            var properties = typeof(PlayerWinloss).GetProperties()
+                .Where(p => p.Name != "ExRate" && (p.PropertyType == typeof(int) || p.PropertyType == typeof(decimal) || p.PropertyType == typeof(double)));
+
+            foreach (var group in groups)
+            {
+                var playerWinloss = new PlayerWinloss { PlayerCurrency = group.Key };
+
+                foreach (var property in properties)
+                {
+                    var value = group.Sum(g => (decimal)Convert.ChangeType(property.GetValue(g, null), TypeCode.Decimal));
+
+                    if (property.CanWrite)
+                    {
+                        property.SetValue(playerWinloss, Convert.ChangeType(value, property.PropertyType), null);
+                    }
+                }
+
+                subTotalData.Add(playerWinloss);
+            }
+
+            // Calculate Total Data
+            foreach (var property in properties)
+            {
+                if (property.Name.EndsWith("Base"))
+                {
+                    var value = playerWinlosses.Sum(g => (decimal)Convert.ChangeType(property.GetValue(g, null), TypeCode.Decimal));
+
+                    if (property.CanWrite)
+                    {
+                        property.SetValue(totalRowData, Convert.ChangeType(value, property.PropertyType), null);
+                    }
+                }
+
+                if (property.Name.EndsWith("BetCount"))
+                {
+                    var value = playerWinlosses.Sum(g => (int)Convert.ChangeType(property.GetValue(g, null), TypeCode.Int32));
+
+                    if (property.CanWrite)
+                    {
+                        property.SetValue(totalRowData, Convert.ChangeType(value, property.PropertyType), null);
+                    }
+                }
+            }
+
+            totalRowData.PlayerCurrency = AppSettings.BaseExchange.Code;
+        }
+
         #endregion
     }
 }

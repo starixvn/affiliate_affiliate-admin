@@ -1,4 +1,11 @@
-﻿ALTER PROCEDURE [dbo].[AffAdmin_PlayerWinlossReport]
+﻿USE [Affiliate_AoncashUAT]
+GO
+/****** Object:  StoredProcedure [dbo].[AffAdmin_PlayerWinlossReport]    Script Date: 12/16/2013 7:15:40 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[AffAdmin_PlayerWinlossReport]
 	@UserId int=0, 
 	@AffName NVARCHAR(100) = NULL,
 	@AffTypes varchar(100) = NULL,
@@ -72,12 +79,12 @@ Begin
 			, SUM(tmp.Bonus) as Bonus
 			, SUM(ISNULL(tmp.Adjustment, 0)) as Adjustment
 			, SUM(tmp.PSP) as PSP
-			, SUM(tmp.SportsBookTurnover) as SportsBookTurnover
+			, SUM(tmp.SportsbookTurnover) as SportsbookTurnover
 			, SUM(tmp.NumberGameTurnover) as NumberGameTurnover
 			, SUM(tmp.LiveCasinoTurnover) as LiveCasinoTurnover
 			, SUM(tmp.RNGCasinoTurnover) as RNGCasinoTurnover
 			, SUM(tmp.TotalTurnover) as TotalTurnover
-			, SUM(tmp.SportsBookWinlost) as SportsBookWinlost
+			, SUM(tmp.SportsbookWinlost) as SportsbookWinlost
 			, SUM(tmp.NumberGameWinlost) as NumberGameWinlost
 			, SUM(tmp.LiveCasinoWinlost) as LiveCasinoWinlost
 			, SUM(tmp.RNGCasinoWinlost) as RNGCasinoWinlost
@@ -89,12 +96,12 @@ Begin
 			, SUM(tmp.Bonus * tmp.SysExRate) as BonusBase
 			, SUM(tmp.Adjustment * tmp.SysExRate) as AdjustmentBase
 			, SUM(tmp.PSP * tmp.SysExRate) as PSPBase
-			, SUM(tmp.SportsBookTurnover * tmp.SysExRate) as SportsBookTurnoverBase
+			, SUM(tmp.SportsbookTurnover * tmp.SysExRate) as SportsbookTurnoverBase
 			, SUM(tmp.NumberGameTurnover * tmp.SysExRate) as NumberGameTurnoverBase
 			, SUM(tmp.LiveCasinoTurnover * tmp.SysExRate) as LiveCasinoTurnoverBase
 			, SUM(tmp.RNGCasinoTurnover * tmp.SysExRate) as RNGCasinoTurnoverBase
 			, SUM(tmp.TotalTurnover * tmp.SysExRate) as TotalTurnoverBase
-			, SUM(tmp.SportsBookWinlost * tmp.SysExRate) as SportsBookWinlostBase
+			, SUM(tmp.SportsbookWinlost * tmp.SysExRate) as SportsbookWinlostBase
 			, SUM(tmp.NumberGameWinlost * tmp.SysExRate) as NumberGameWinlostBase
 			, SUM(tmp.LiveCasinoWinlost * tmp.SysExRate) as LiveCasinoWinlostBase
 			, SUM(tmp.RNGCasinoWinlost * tmp.SysExRate) as RNGCasinoWinlostBase
@@ -105,12 +112,12 @@ Begin
 			, SUM(tmp.Bonus * tmp.AffExRate) as Bonus_Aff
 			, SUM(tmp.Adjustment * tmp.AffExRate) as Adjustment_Aff
 			, SUM(tmp.PSP * tmp.AffExRate) as PSP_Aff
-			, SUM(tmp.SportsBookTurnover * tmp.AffExRate) as SportsBookTurnover_Aff
+			, SUM(tmp.SportsbookTurnover * tmp.AffExRate) as SportsbookTurnover_Aff
 			, SUM(tmp.NumberGameTurnover * tmp.AffExRate) as NumberGameTurnover_Aff
 			, SUM(tmp.LiveCasinoTurnover * tmp.AffExRate) as LiveCasinoTurnover_Aff
 			, SUM(tmp.RNGCasinoTurnover * tmp.AffExRate) as RNGCasinoTurnover_Aff
 			, SUM(tmp.TotalTurnover * tmp.AffExRate) as TotalTurnover_Aff
-			, SUM(tmp.SportsBookWinlost * tmp.AffExRate) as SportsBookWinlost_Aff
+			, SUM(tmp.SportsbookWinlost * tmp.AffExRate) as SportsbookWinlost_Aff
 			, SUM(tmp.NumberGameWinlost * tmp.AffExRate) as NumberGameWinlost_Aff
 			, SUM(tmp.LiveCasinoWinlost * tmp.AffExRate) as LiveCasinoWinlost_Aff
 			, SUM(tmp.RNGCasinoWinlost * tmp.AffExRate) as RNGCasinoWinlost_Aff
@@ -135,7 +142,7 @@ Begin
 								m.TurnoverNoDraw
 							End)
 						ELSE 0 
-					END) as SportsBookTurnover
+					END) as SportsbookTurnover
 				, Sum(CASE 
 						WHEN m.ProductID = @NumberGame then 
 							(CASE WHEN @DrawFilter = 0 THEN
@@ -170,7 +177,7 @@ Begin
 						WHEN m.ProductID = @SportsbookId then 
 							m.Winlost
 						ELSE 0 
-					END) as SportsBookWinlost
+					END) as SportsbookWinlost
 				, -SUM(CASE 
 						WHEN m.ProductID = @NumberGame then 
 							m.Winlost
@@ -223,12 +230,12 @@ Begin
 			, SUM(tmp.Bonus) as Bonus
 			, SUM(ISNULL(tmp.Adjustment, 0)) as Adjustment
 			, SUM(tmp.PSP) as PSP
-			, SUM(tmp.SportsBookTurnover) as SportsBookTurnover
+			, SUM(tmp.SportsbookTurnover) as SportsbookTurnover
 			, SUM(tmp.NumberGameTurnover) as NumberGameTurnover
 			, SUM(tmp.LiveCasinoTurnover) as LiveCasinoTurnover
 			, SUM(tmp.RNGCasinoTurnover) as RNGCasinoTurnover
 			, SUM(tmp.TotalTurnover) as TotalTurnover
-			, SUM(tmp.SportsBookWinlost) as SportsBookWinlost
+			, SUM(tmp.SportsbookWinlost) as SportsbookWinlost
 			, SUM(tmp.NumberGameWinlost) as NumberGameWinlost
 			, SUM(tmp.LiveCasinoWinlost) as LiveCasinoWinlost
 			, SUM(tmp.RNGCasinoWinlost) as RNGCasinoWinlost
@@ -240,12 +247,12 @@ Begin
 			, SUM(tmp.Bonus * tmp.ExRate) as BonusBase
 			, SUM(tmp.Adjustment * tmp.ExRate) as AdjustmentBase
 			, SUM(tmp.PSP * tmp.ExRate) as PSPBase
-			, SUM(tmp.SportsBookTurnover * tmp.ExRate) as SportsBookTurnoverBase
+			, SUM(tmp.SportsbookTurnover * tmp.ExRate) as SportsbookTurnoverBase
 			, SUM(tmp.NumberGameTurnover * tmp.ExRate) as NumberGameTurnoverBase
 			, SUM(tmp.LiveCasinoTurnover * tmp.ExRate) as LiveCasinoTurnoverBase
 			, SUM(tmp.RNGCasinoTurnover * tmp.ExRate) as RNGCasinoTurnoverBase
 			, SUM(tmp.TotalTurnover * tmp.ExRate) as TotalTurnoverBase
-			, SUM(tmp.SportsBookWinlost * tmp.ExRate) as SportsBookWinlostBase
+			, SUM(tmp.SportsbookWinlost * tmp.ExRate) as SportsbookWinlostBase
 			, SUM(tmp.NumberGameWinlost * tmp.ExRate) as NumberGameWinlostBase
 			, SUM(tmp.LiveCasinoWinlost * tmp.ExRate) as LiveCasinoWinlostBase
 			, SUM(tmp.RNGCasinoWinlost * tmp.ExRate) as RNGCasinoWinlostBase
@@ -256,12 +263,12 @@ Begin
 			, SUM(tmp.Bonus * tmp.AffExRate) as Bonus_Aff
 			, SUM(tmp.Adjustment * tmp.AffExRate) as Adjustment_Aff
 			, SUM(tmp.PSP * tmp.AffExRate) as PSP_Aff
-			, SUM(tmp.SportsBookTurnover * tmp.AffExRate) as SportsBookTurnover_Aff
+			, SUM(tmp.SportsbookTurnover * tmp.AffExRate) as SportsbookTurnover_Aff
 			, SUM(tmp.NumberGameTurnover * tmp.AffExRate) as NumberGameTurnover_Aff
 			, SUM(tmp.LiveCasinoTurnover * tmp.AffExRate) as LiveCasinoTurnover_Aff
 			, SUM(tmp.RNGCasinoTurnover * tmp.AffExRate) as RNGCasinoTurnover_Aff
 			, SUM(tmp.TotalTurnover * tmp.AffExRate) as TotalTurnover_Aff
-			, SUM(tmp.SportsBookWinlost * tmp.AffExRate) as SportsBookWinlost_Aff
+			, SUM(tmp.SportsbookWinlost * tmp.AffExRate) as SportsbookWinlost_Aff
 			, SUM(tmp.NumberGameWinlost * tmp.AffExRate) as NumberGameWinlost_Aff
 			, SUM(tmp.LiveCasinoWinlost * tmp.AffExRate) as LiveCasinoWinlost_Aff
 			, SUM(tmp.RNGCasinoWinlost * tmp.AffExRate) as RNGCasinoWinlost_Aff
@@ -285,7 +292,7 @@ Begin
 								m.TurnoverNoDraw
 							End)
 						ELSE 0 
-					END) as SportsBookTurnover
+					END) as SportsbookTurnover
 				, Sum(CASE 
 						WHEN m.ProductID = @NumberGame then 
 							(CASE WHEN @DrawFilter = 0 THEN
@@ -320,7 +327,7 @@ Begin
 						WHEN m.ProductID = @SportsbookId then 
 							m.Winlost
 						ELSE 0 
-					END) as SportsBookWinlost
+					END) as SportsbookWinlost
 				, -Sum(CASE 
 						WHEN m.ProductID = @NumberGame then 
 							m.Winlost
@@ -360,7 +367,3 @@ Begin
 End
 			
 
-GO
-GRANT EXECUTE ON [dbo].[AffAdmin_PlayerWinlossReport] TO [bodbAdminNet] AS [dbo]
-GO
-GRANT VIEW DEFINITION ON [dbo].[AffAdmin_PlayerWinlossReport] TO [vnteam] AS [dbo]

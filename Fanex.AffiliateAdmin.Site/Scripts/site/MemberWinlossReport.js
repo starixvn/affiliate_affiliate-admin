@@ -1,97 +1,134 @@
 ﻿var MemberWinlossReport = function ($) {
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = 1;
-    var GROUP_BY_MONTH = 0;
-    var MONTH_COL = 1, COMMGROUP_COL = 4;
-    var DEDUCTION_PERCENT_COL = 9;
-    var DEDUCTION_AMOUNT_COL = 10;
+    var GROUP_BY_MEMBER = 1;
     // number of all common columns (except product columns).
-    var _commonColumnCount = 0;
     var _freezeColumnCount = 4;
-    var _hideColumns = [MONTH_COL, COMMGROUP_COL];
-    var _bonusColumns = [DEDUCTION_PERCENT_COL, DEDUCTION_AMOUNT_COL];
-    var _indexProductColumns = [];
-    var _isSimpleMode = false;
     var _gridOption = {};
-    
+
+
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     function initProductColumnsForGridOption() {
-        var hasGroupByMonth = $("#GroupBy").val() == GROUP_BY_MONTH;
-        var mergeColNumber = hasGroupByMonth ? 7 : 5;
+        var startTurnoverPosition = turnoverPosition;
 
-        for (var i = 0; i < PRODUCTS.length; i++) {
-            var name = nomalizeProductName(PRODUCTS[i].Name);
+        if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
+            // replace Winlostdate col by Cardinal col
+            _gridOption.groupHeaderRows[0].Columns.splice(0, 1, cardinalHeaderCol);
+            _gridOption.columns.splice(0, 1, cardinalCol);
 
-            _gridOption.groupHeaderRows[0].Columns.push(
-                { HeaderText: MSG[name], Name: name + "ActivePlayers", MergeColNumber: mergeColNumber }
-            );
-            _gridOption.columns.push(
-                { HeaderText: MSG.ActivePlayers, Width: 90, Name: name + "ActivePlayers", HeaderAlign: "center", CellAlign: "right" }
-            );
-            _gridOption.columns.push(
-                { HeaderText: MSG.BetCount, Width: 60, Name: name + "BetCount", HeaderAlign: "center", CellAlign: "right" }
-            );
-            _gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: MSG.Turnover, HeaderText: MSG.Turnover, Width: 70, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
-            );
-            _gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: MSG.Winloss, HeaderText: MSG.Winloss, Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
-            );
+            // remove exchange rate column.
+            _gridOption.groupHeaderRows[0].Columns.splice(exRatePosition, 1);
+            _gridOption.columns.splice(exRatePosition, 1);
 
-            // add QM column to hidden list
-            if (hasGroupByMonth) {
+            // set value for index column.
+            _gridOption.indexNumberColumn = 0;
 
-                _gridOption.columns.push(
-                    {
-                        IsCurrency: false,
-                        HeaderCaption: MSG.QM,
-                        HeaderText: MSG.QM,
-                        Width: 80,
-                        Name: name + "QM",
-                        HeaderAlign: "center",
-                        CellAlign: "right",
-                        Formatter: function (rIndex, record, cell, cellFormated) {
-                            if (cellFormated)
-                                return "<a class='qm' data-currency='" + record.Currency + "' data-affname='" + record.Username + "' data-affid='" + record.AffId + "' data-date='" + moment(record.WinlostDate).format("MMM YYYY") + "' href='javascript:void(0)'>" + cellFormated + "</a>";
-                            return 0;
-                        }
-                    }
-                );
-                // add CommPercent column to hidden list
-                _gridOption.columns.push(
-                    { IsCurrency: false, HeaderCaption: MSG.CommPercent, HeaderText: MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
-                );
+            // update the position of turnover column.
+            startTurnoverPosition = startTurnoverPosition - 1;
+        }
+
+        // generarte turnover/winlost columns based on products
+        var productCount = PRODUCTS.length;
+
+        // for turnover cols
+        if (productCount > 1) {
+            for (var i = 0; i < productCount; i++) {
+                var name = nomalizeProductName(PRODUCTS[i].Name);
+
+                if (i == 0) {
+                    var turnoverHeader = $.extend(true, {}, sampleTurnoverHeader);
+                    turnoverHeader.Name = name + "Turnover";
+                    turnoverHeader.MergeColNumber = productCount + 1;
+                    _gridOption.groupHeaderRows[0].Columns.splice(startTurnoverPosition, 0, turnoverHeader);
+                }
+
+                var turnoverCol = { HeaderCaption: MSG[name], HeaderText: MSG[name], Width: 110, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' };
+                _gridOption.columns.splice(startTurnoverPosition + i, 0, turnoverCol);
             }
+        }
 
-            _gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: MSG.Commission, HeaderText: MSG.Commission, Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
-            );
+        var totalTurnoverCol = $.extend(true, {}, sampleTotalTurnoverCol);
+
+        if (productCount > 1) {
+            totalTurnoverCol.HeaderCaption = MSG['Total'];
+            totalTurnoverCol.HeaderText = MSG['Total'];
+            delete totalTurnoverCol.IsCurrency;
+            _gridOption.columns.splice(startTurnoverPosition + productCount, 0, totalTurnoverCol);
+
+        } else {
+            _gridOption.columns.splice(startTurnoverPosition + productCount, 0, totalTurnoverCol);
+        }
+
+        // for winlost cols
+        if (productCount > 2) {
+            for (var i = 0; i < productCount; i++) {
+                var name = nomalizeProductName(PRODUCTS[i].Name);
+
+                if (i == 0) {
+                    var companyWLHeader = $.extend(true, {}, sampleCompanyWLHeader);
+                    companyWLHeader.Name = name + "Winlost";
+                    companyWLHeader.MergeColNumber = productCount + 1;
+                    _gridOption.groupHeaderRows[0].Columns.splice(_gridOption.groupHeaderRows[0].Columns.length, 0, companyWLHeader);
+                }
+
+                var winlostCol = { HeaderCaption: MSG[name], HeaderText: MSG[name], Width: 110, Name: name + "Winlost", NameCache: name + "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' };
+                _gridOption.columns.splice(_gridOption.columns.length, 0, winlostCol);
+            }
+        }
+
+        var totalWinlostCol = $.extend(true, {}, sampleTotalWinlostCol);
+
+        if (productCount > 1) {
+            totalWinlostCol.HeaderCaption = MSG['Total'];
+            totalWinlostCol.HeaderText = MSG['Total'];
+            delete totalWinlostCol.IsCurrency;
+            _gridOption.columns.splice(_gridOption.columns.length, 0, totalWinlostCol);
+
+        } else {
+            _gridOption.columns.splice(_gridOption.columns.length, 0, totalWinlostCol);
+        }
+
+        // hide Affiliate, Currency columns if viewing in AffInfo.
+        if ($('#ByAffiliate').length > 0) {
+            _gridOption.groupHeaderRows[0].Columns.splice(1, 2);
+            _gridOption.columns.splice(1, 2);
+            _gridOption.numberOfFrozenColumn = 2;
+            _freezeColumnCount = 2;
+        }
+
+        if (productCount == 1) {
+            _gridOption.customizeHeader = false;
         }
     }
-    function renameCurrencyColumns(isUseBaseCurrency) {
+
+    function renameCurrencyColumns() {
+        var suffix = '';
+
+        switch ($('#BaseCurrency').val()) {
+            case '1':
+                suffix = 'Base';
+                break;
+            case '2':
+                suffix = '_Aff';
+                break;
+        }
+
         for (var i = _freezeColumnCount; i < _gridOption.columns.length; i++) {
             var col = _gridOption.columns[i];
             if (col.NameCache) {
-                var name = col.NameCache;
-                if (isUseBaseCurrency)
-                    name += "Base";
-                col.Name = name;
+                col.Name = col.NameCache + suffix;
             }
         }
 
         for (var i = _freezeColumnCount; i < _gridOption.groupHeaderRows[0].Columns.length; i++) {
             var col = _gridOption.groupHeaderRows[0].Columns[i];
             if (col.NameCache) {
-                var name = col.NameCache;
-                if (isUseBaseCurrency)
-                    name += "Base";
-                col.Name = name;
+                col.Name = col.NameCache + suffix;
             }
         }
     }
-
     function getFooterRows(subTotalData, totalRowData) {
-        var mergeCols = 5;
+        var mergeCols = _gridOption.numberOfFrozenColumn;
         var subTotalRowCount = subTotalData.length;
 
         var footerRows = [];
@@ -102,7 +139,7 @@
                 var columns = [];
 
                 if (idx == 0) {
-                    columns.push({ Value: MSG.SubTotal, Name: "Username", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
+                    columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
                 }
 
                 for (var i = mergeCols; i < _gridOption.columns.length; i++) {
@@ -116,9 +153,18 @@
 
         // Total row
         var totalColums = [];
-        totalColums.push({ Value: "<div align='center'>" + MSG.Total + "</div>", Name: "Username", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
+        totalColums.push({ Value: "<div align='center'>" + MSG.Total + "</div>", Name: "WinlostDate", MergeColNumber: mergeCols });
+        var startIndex = mergeCols;
 
-        for (var i = mergeCols; i < _gridOption.columns.length; i++) {
+        if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
+            totalColums.push({ Value: System.Currency, Name: "PlayerCurrency", MergeColNumber: 1 });
+            startIndex += 1;
+        } else {
+            totalColums.push({ Value: System.Currency, Name: "PlayerCurrency", MergeColNumber: 2 });
+            startIndex += 2;
+        }
+
+        for (var i = startIndex; i < _gridOption.columns.length; i++) {
             var col = _gridOption.columns[i];
             var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
 
@@ -146,102 +192,21 @@
     function nomalizeProductName(name) {
         return name.replace(/ /g, "");
     }
-    function hideColumns() {
-        var columns = [];
-        if (_isSimpleMode) {
-            columns = _indexProductColumns.clone();
-        }
 
-        if (HasCashbackDeduction === false) {
-            columns = columns.concat(_bonusColumns.clone());
-        }
-
-        if ($("#GroupBy").val() == GROUP_BY_MONTH) {
-            $("#gridId").fanexGrid("hideColumns", _gridOption, columns);
-        }
-        else {
-            columns = columns.concat(_hideColumns.clone());
-            $("#gridId").fanexGrid("hideColumns", _gridOption, columns);
-            $(".footer-container table th").show();
-            $("#gridId .row_footer table tr th").show();
-        }
-
-        if (_isSimpleMode && HasCashbackDeduction === false)
-            $("#gridId table:lt(4) th div").height(30);
-    }
     return {
         init: function () {
             $("#gridId").resize(function () {
                 $(".search-panel").width($(this).width());
             });
 
-            AFFILIATE.initMonthPicker();
             var $maincontent = $(".main-content");
-            // change view mode event
-            $maincontent.on("click", "#btnChangeViewMode", function () {
-                _isSimpleMode = !_isSimpleMode;
-                $(this).attr("title", _isSimpleMode ? "Full Mode" : "Simple Mode")
-                    .attr("class", _isSimpleMode ? "icon-circle-arrow-right" : "icon-circle-arrow-left");
-
-                hideColumns();
-
-            });
-            // Comm group link event
-            $maincontent.on("click", ".commgroup", function () {
-                var param = {
-                    groupid: $(this).data("groupid")
-                };
-                parent.AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommGroupSettingFor.replace("{0}", '"' + $(this).html() + '" ' + $(this).data("date")), { width: 900, height: 450 });
-            });
-            $maincontent.on("click", "a.afflink", function () {
-                var params = $('form').serializeObject2();
-                params.AffName = $(this).data("affname");
-                params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
-                params["SortBy"] = $('#SortBy').val();
-                params["GroupBy"] = 1;
-                params.PlayerCurrencies = params.Currencies;
-                delete params.Currencies;
-
-                params["FromDate"] = '01 ' + params["FromDate"];
-                var toDateObj = moment('01 ' + params["ToDate"]);
-                var lastDateObj = toDateObj.add("months", 1).add("days", -1);
-                params["ToDate"] = lastDateObj.format("DD MMM YYYY");
-                window.location = AFFILIATE.getAbsoluteUrl("Report/PlayerWinloss?") + jQuery.param(params);
-            });
-            $maincontent.on("click", "a.monthlink", function () {
-                var params = $('form').serializeObject2();
-                params.AffName = $(this).data("affname");
-                params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
-                params["SortBy"] = $('#SortBy').val();
-                params["GroupBy"] = 0;
-                params.PlayerCurrencies = params.Currencies;
-                delete params.Currencies;
-
-                var winlostDateObj = moment($(this).attr('data-winlostdate'));
-                var firstDayObj = winlostDateObj.date(1);
-                var firstDay = firstDayObj.format("DD MMM YYYY");
-                var lastDay = firstDayObj.add("months", 1).add("days", -1).format("DD MMM YYYY");
-
-                params["FromDate"] = firstDay;
-                params["ToDate"] = lastDay;
-                window.location = AFFILIATE.getAbsoluteUrl("Report/PlayerWinloss?") + jQuery.param(params);
-            });
-            $maincontent.on("click", "a.qm", function () {
-                var param = {
-                    affid: $(this).data("affid"),
-                    monthdate: $(this).data("date")
-                };
-                var title = MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
-                title = title.replace("{1}", param.monthdate) + " - " + MSG.Currency + ": " + $(this).data("currency");
-                parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });
-            });
 
             if ($('#gridId').length > 0) {
-                CommissionReport.submitRequest();
+                MemberWinlossReport.submitRequest();
             }
 
             $('form').submit(function () {
-                CommissionReport.submitRequest();
+                MemberWinlossReport.submitRequest();
                 return false;
             });
 
@@ -254,7 +219,6 @@
 
             });
         },
-
         checkRangeTime: function () {
             $('#FromDate, #ToDate').removeClass('input-validation-error');
 
@@ -300,13 +264,13 @@
 
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
-            if (!CommissionReport.checkRangeTime()) {
+            if (!MemberWinlossReport.checkRangeTime()) {
                 alert(MSG.RangeTime3Months);
             } else {
                 submitOptions = $('form').serializeObject2();
                 submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
                 submitOptions["SortBy"] = $('#SortBy').val();
-                CommissionReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+                MemberWinlossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             }
         },
 
@@ -314,7 +278,7 @@
             var baseCurrency = $("#BaseCurrency").val();
 
             $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Report/Commission"),
+                url: AFFILIATE.getAbsoluteUrl("Report/PlayerWinloss"),
                 type: 'post',
                 data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 beforeSend: function () {
@@ -322,13 +286,8 @@
                 },
                 success: function (data) {
                     _gridOption = $.extend(true, {}, sampleGridOption);
-                    _indexProductColumns.clear();
                     _commonColumnCount = _gridOption.columns.length;
                     initProductColumnsForGridOption();
-
-                    for (var i = _commonColumnCount; i < _gridOption.columns.length; i++) {
-                        _indexProductColumns.push(i);
-                    }
 
                     renameCurrencyColumns(baseCurrency == SYS_CURRENCY_OPTION);
                     changeHeaderCaptions(baseCurrency == SYS_CURRENCY_OPTION);
@@ -340,21 +299,14 @@
                         totalItem: data.List.length
                     };
 
-                    _gridOption.titleInfo.text = MSG.CommissionTitle + ' [{0}]'.format(data.TotalItem);
-
-                    _gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData);
                     _gridOption.bodyRows = AFFILIATE.genGridRows(data.List, _gridOption);
+                    _gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(_gridOption);
 
-                    hideColumns();
-
                     if (data.List.length == 0) {
-                        $('.status').hide();
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
-                    } else {
-                        $('.status').show();
                     }
 
                     AFFILIATE.updateSearchPanel($('#gridId'));
@@ -368,5 +320,5 @@
 } (jQuery);
 
 $(function () {
-    CommissionReport.init();
+    MemberWinlossReport.init();
 });

@@ -102,7 +102,7 @@
                 var columns = [];
 
                 if (idx == 0) {
-                    columns.push({ Value: MSG.SubTotal, Name: "Username", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
+                    columns.push({ Value: MSG.SubTotal, Name: "Username", HeaderAlign: "center", CellAlign: "center", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
                 }
 
                 for (var i = mergeCols; i < _gridOption.columns.length; i++) {
@@ -129,6 +129,7 @@
 
         return footerRows;
     }
+    
     function changeHeaderCaptions(showCurrencySymbol) {
         var text = showCurrencySymbol ? " (" + System.Prefix + ")" : "";
         for (var i = 0; i < _gridOption.columns.length; i++) {

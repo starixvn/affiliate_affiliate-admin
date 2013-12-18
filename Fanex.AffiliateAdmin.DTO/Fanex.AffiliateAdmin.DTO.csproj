@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompanyWinlossByGroup.cs" />
     <Compile Include="Account.cs" />
     <Compile Include="AccountType.cs" />
     <Compile Include="Adjustment.cs" />

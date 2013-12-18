@@ -439,6 +439,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This affiliate has been approved..
+        /// </summary>
+        public static string AffApproved {
+            get {
+                return ResourceManager.GetString("AffApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This affiliate has been closed..
         /// </summary>
         public static string AffClosed {

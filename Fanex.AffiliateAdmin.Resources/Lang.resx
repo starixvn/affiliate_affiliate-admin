@@ -2404,4 +2404,7 @@
   <data name="TransferAll" xml:space="preserve">
     <value>Transfer All</value>
   </data>
+  <data name="AffApproved" xml:space="preserve">
+    <value>This affiliate has been approved.</value>
+  </data>
 </root>

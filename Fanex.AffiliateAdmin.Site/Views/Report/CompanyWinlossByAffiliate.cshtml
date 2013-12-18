@@ -91,9 +91,11 @@
             Sportsbook: "@Lang.Sportsbook",
             NumberGame: "@Lang.NumberGame",
             LiveCasino: "@Lang.LiveCasino",
-            RNGCasino: "@Lang.RNGCasino",            
-            RangeTime3Months: "@Lang.RangeTime3Months"
+            RNGCasino: "@Lang.RNGCasino",     
+            RangeTime3Months: "@Lang.RangeTime3Months",
         };
+        
+        var PRODUCTS = @(Html.Raw(ViewBag.Products));
 
         var sampleGridOption = {
             showTitle: true,
@@ -106,34 +108,30 @@
                     Columns: [
                         { HeaderText: "@Lang.Date", Name: "WinlostDate", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.UnitPerBaseCurrency", Name: "ExRate", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.Deposit", Name: "Deposit", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.Withdrawal", Name: "Withdrawal", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.Bonus", Name: "Bonus", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.Adjustment", Name: "Adjustment", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.PSP", Name: "PSP", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.Turnover", Name: "SportsBookTurnover", MergeColNumber: 5 },
+                        { HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Name: "ExRate", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Name: "Deposit", NameCache: "Deposit", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Withdrawal", HeaderText: "@Lang.Withdrawal", IsCurrency: true, Name: "Withdrawal", NameCache: "Withdrawal", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Name: "Bonus", NameCache: "Bonus", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Name: "Adjustment", NameCache: "Adjustment", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.PSP", HeaderText: "@Lang.PSP", IsCurrency: true, Name: "PSP", NameCache: "PSP", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.ActiveMembers", Name: "ActivePlayer", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.CustomerWL", Name: "Winlost", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.CompanyWL", Name: "SportsBookWinlost", MergeColNumber: 5 }
+                        { HeaderCaption: "@Lang.CustomerWL", HeaderText: "@Lang.CustomerWL", IsCurrency: true, Name: "Winlost", NameCache: "Winlost", MergeRowNumber: 2 }
                     ]
                 }
             ],
             columns: [                                                
                 { HeaderText: "@Lang.Date", Width: 80, Name: "WinlostDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
                 { HeaderText: "@Lang.Currency", Width: 80, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "@Lang.UnitPerBaseCurrency", Width: 80, Name: "ExRate", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "@Lang.Deposit", Width: 90, Name: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
-                { HeaderText: "@Lang.Withdrawal", Width: 90, Name: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
-                { HeaderText: "@Lang.Bonus", Width: 90, Name: "Bonus", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
-                { HeaderText: "@Lang.Adjustment", Width: 90, Name: "Adjustment", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
-                { HeaderText: "@Lang.PSP", Width: 50, Name: "PSP", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
-                { HeaderText: "@Lang.Total", Width: 110, Name: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },                
+                { HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Width: 80, Name: "ExRate", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Width: 90, Name: "Deposit", NameCache: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
+                { HeaderCaption: "@Lang.Withdrawal", HeaderText: "@Lang.Withdrawal", IsCurrency: true, Width: 90, Name: "Withdrawal", NameCache: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
+                { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Width: 90, Name: "Bonus", NameCache: "Bonus", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
+                { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Width: 90, Name: "Adjustment", NameCache: "Adjustment", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
+                { HeaderCaption: "@Lang.PSP", HeaderText: "@Lang.PSP", IsCurrency: true, Width: 50, Name: "PSP", NameCache: "PSP", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
                 { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },                
                 { HeaderText: "@Lang.ActiveMembers", Width: 110, Name: "ActivePlayer", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "@Lang.CustomerWL", Width: 110, Name: "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },                
-                { HeaderText: "@Lang.Total", Width: 110, Name: "Total", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
+                { HeaderCaption: "@Lang.CustomerWL", HeaderText: "@Lang.CustomerWL", IsCurrency: true, Width: 110, Name: "Winlost", NameCache: "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
             ],            
             allowTruncate: true,
             gridExpandHeight: 350,
@@ -143,10 +141,14 @@
             numberOfFrozenColumn: 3
         };
         
+        var sampleTotalTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "Turnover", NameCache: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' };
+        var sampleTotalWinlostCol = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Width: 110, Name: "Total", NameCache: "Total", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' };
 
-        var sampleCol = { HeaderText: "@Lang.Sportsbook", Width: 110, Name: "SportsBookTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' };
+        var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Name: "Turnover", NameCache: "Turnover",  MergeColNumber: 5 };
+        var sampleCompanyWLHeader = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Name: "Total", NameCache: "Total", MergeColNumber: 5 };
+
+        var exRatePosition = 2;
         var turnoverPosition = 8;
     </script>
-    <script src="@Url.Content("~/Scripts/site/CompanyWLHelper.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/site/CompanyWinlossReport.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/site/CompanyWinlossReport2.js")" type="text/javascript"></script>
 }

@@ -469,6 +469,7 @@
     <Content Include="Scripts\site\CompanyWLHelper.js" />
     <Content Include="Scripts\site\CommissionReport.js" />
     <Content Include="Scripts\site\CommissionByAffiliateReport.js" />
+    <Content Include="Scripts\site\CompanyWinlossReport2.js" />
     <Content Include="Scripts\site\MemberWinlossReport.js" />
     <Content Include="Scripts\site\ProcessingCommission.js" />
     <Content Include="Scripts\site\PlayerWLHelper.js" />

@@ -292,6 +292,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.AffUsername = this.CurrentSession.Affiliate.UserName;
                 criteria.IsITAdmin = this.CurrentSession.IsIT;
+                criteria.AffType = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.ExcludeTest = false;
             }
 
@@ -426,7 +427,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     message = Lang.AffClosed;
                     break;
                 case "approved":
-                    message = Lang.AffClosed;
+                    message = Lang.AffApproved;
                     break;
                 default:
                     message = string.Format(Lang.AffiliateIs, affiliateStatus);
@@ -449,7 +450,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 AffUserName = affname,
                 Username = customerName,
-                Currency = "UUS",
+                Currency = AppSettings.BaseExchange.Code,
                 IBCCustID = 0,                
                 AgentID = 0,
                 CreatedDate = DateTime.Now,

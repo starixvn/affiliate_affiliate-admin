@@ -4,6 +4,7 @@
         DATE_FORMAT: "MM/DD/YYYY",
         DATE_FORMAT_FULL: "MM/DD/YYYY hh:mm:ss",
         DATE_FORMAT_MONTH: "MM/YYYY",
+        DATE_FORMAT_YEAR: "YYYY",
         FORMATNUMBER: '0,0.00',
         FORMAT_INT_NUMBER: '0,0',
         MIN_CONTENT_WIDTH: '1110',

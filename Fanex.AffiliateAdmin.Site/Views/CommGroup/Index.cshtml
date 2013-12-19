@@ -23,12 +23,12 @@ commgroup
                 <input type="text" maxlength = "100" value="@ViewBag.GroupName" class="form-control width-140" id="groupname" name="groupname" placeholder="@Lang.All">
             </div>
             <div class="cell">
-                <label for="currency">@Lang.Currency</label>
-                @Html.DropDownCheckList("currencylist", new SelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode"), true, true, new { @class = "width-140" })
+                <label for="Currencies">@Lang.Currency</label>
+                @Html.DropDownCheckList("Currencies", new SelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode"), true, true, new { @class = "width-140" })
             </div>
             <div class="cell">
-                <label for="month" class="">@Lang.Month</label>
-                @Html.MonthPicker("month", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, new { @class = "width-140" })                
+                <label for="Date" class="">@Lang.Month</label>
+                @Html.MonthPicker("Date", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, new { @class = "width-140" })                
             </div>
         </div>
         <div class="row-fluid row-form btn-action">

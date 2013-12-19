@@ -99,10 +99,9 @@ payment
             { HeaderText: "@Lang.CompletedDate", Width: 140, Name: "Completeddate", CellAlign: "center",
                 Formatter: function (rIndex, record, cell, cellFormated) {
                     if (record["Status"] === 'Processing') {
-                        return moment(record['Completeddate']).format(AFFILIATE.DATE_FORMAT_FULL);
+                        return null;
                     }
-
-                    return null;
+                    return moment(record['Completeddate']).format(AFFILIATE.DATE_FORMAT_FULL);
                 }
             },
             { HeaderText: "@Lang.Currency", Width: 105, Name: "Currency", HeaderAlign: "center", CellAlign: "center" }

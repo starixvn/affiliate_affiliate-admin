@@ -6,6 +6,7 @@ var COMMGROUP = function ($) {
     var INDEX_DEDUCTION_COL = 15;
     var INDEX_GENERAL_DEDUCTION_COL = 16;
     var INDEX_ACTION_COL = 17;
+    var submitOptions = {};
 
     var genGridRows = function (list, gridOption) {
         var len = list.length;
@@ -17,6 +18,7 @@ var COMMGROUP = function ($) {
         var preProduct = -1;
         var cssClass = "";
         var tdClass = "sub_odd";
+        var startRowIndex = gridOption.pagerOption.itemsPerPage * gridOption.pagerOption.currentPage;
 
         for (var i = 0; i < len; i++) {
 
@@ -105,14 +107,14 @@ var COMMGROUP = function ($) {
                                             : "<a title='{0}'><i class='icon-edit icon-white'></i></a>".format(MSG.Edit);
                                 value = editButton + deleteButton;
                             } else if (colName == "NoOfAffiliate") {
-                                var date = $("#month").monthpicker("getDate");
+                                var date = $("#Date").monthpicker("getDate");
                                 if (date.getMonth() == (new Date()).getMonth()) {
                                     value = "<a href='" + AFFILIATE.baseUrl + "Affiliate?ExcludeTest=false&groupid=" + data.GroupID + "'>" + data[colName] + "</a>";
                                 } else {
                                     value = data[colName];
                                 }
                             } else if (k == 0) {
-                                value = i + 1;
+                                value = startRowIndex + i + 1;
                             }
                             else {
                                 value = data[colName];
@@ -211,31 +213,20 @@ var COMMGROUP = function ($) {
             // resize height of datagrid
             gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
 
-            if (gridOption && gridOption.pagerOption) {
-                currentPage = currentPage >= 0 ? currentPage : gridOption.pagerOption.currentPage;
-                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage;
-            }
-            var currency = $("#currencylist").val();
-            var date = $("#month").monthpicker("getDate");
-            var groupname = $('#SearchForm #groupname').val().trim();
-            $('#SearchForm #groupname').val(groupname);
+            AFFILIATE.trimBeforeSubmit();
+            submitOptions = $('form').serializeObject2();
+
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("CommGroup/GetList"),
                 type: 'post',
-                data: {
-                    groupname: groupname,
-                    currencies: currency ? currency.toString() : undefined,
-                    date: date.toShortDate(),
-                    pageIndex: (currentPage + 1),
-                    pageSize: itemsPerPage
-                },
+                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 success: function (data) {
 
                     gridOption.pagerOption = {
-                        itemsPerPage: AFFILIATE.pageSizes[0],
+                        itemsPerPage: data.ItemsPerPage,
                         itemsPerPageArray: AFFILIATE.pageSizes,
-                        currentPage: 0,
-                        totalItem: data.List.length,
+                        currentPage: data.CurrentPage,
+                        totalItem: data.TotalItem,
                         pagerSelectCallBack: COMMGROUP.ReRenderAfterPaged
                     };
 

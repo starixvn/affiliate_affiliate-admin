@@ -87,13 +87,15 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult GetList(CommGroupCriteria criteria)
         {
             criteria.UserId = SessionManager.CurrentSession.CustID;
+            criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
+            criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
 
             var groups = GetGridData(criteria);
 
             return Json(new
             {                
                 List = groups,
-                CurrentPage = criteria.PageIndex - 1,
+                CurrentPage = criteria.PageIndex,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows,
                 HasCashBackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0)

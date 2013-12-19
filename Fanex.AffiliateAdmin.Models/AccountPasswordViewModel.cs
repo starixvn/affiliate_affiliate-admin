@@ -21,7 +21,7 @@ namespace Fanex.AffiliateAdmin.Models
         public string OldPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "PassRequire")]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "PasswordIsRequired")]
         [Display(ResourceType = typeof(Lang), Name = "PassNew")]
         public string NewPassword { get; set; }
 

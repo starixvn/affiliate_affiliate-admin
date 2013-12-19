@@ -472,7 +472,7 @@
                 gridObject.addClass("noinfo").html(Lang.NoDataInfo);
             }
 
-            AFFILIATE.updateSearchPanel(gridObject);
+            //AFFILIATE.updateSearchPanel(gridObject);
 
         },
         updateSearchPanel: function(gridObject) {

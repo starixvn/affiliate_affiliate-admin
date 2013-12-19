@@ -5,6 +5,10 @@
         Loaded: false,
         init: function () {
 
+            $("#gridId").resize(function () {
+                $(".search-panel").width($(this).width());
+            });
+            
             CUSTOMER.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
 
             $('#btnSubmit').click(function () {

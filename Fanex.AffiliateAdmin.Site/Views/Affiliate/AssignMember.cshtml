@@ -2,12 +2,14 @@
     ViewBag.Title = "Assign Member To Affiliate";
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";   
 }
-@using Fanex.AffiliateAdmin.Core.Utilities
-@using Fanex.AffiliateAdmin.DTO
-@using Fanex.AffiliateAdmin.Models
-@using Fanex.AffiliateAdmin.Core.Mvc
 
-@model ResultViewModel
+@using Fanex.AffiliateAdmin.Models
+
+@model AssignMemberViewModel
+
+@{
+    var result = ViewBag.Result as ResultViewModel;
+}
 
 @using (Html.BeginForm("AssignMember", "Affiliate", FormMethod.Post, new { @class = "form-horizontal" }))
 {
@@ -17,13 +19,21 @@
    <div class="control-group">
         <label for="MemberName" class="control-label">@Lang.Member</label>   
         <div class="controls">
-            @Html.TextBox("MemberName")
+            @Html.TextBoxFor(m => m.MemberName)
         </div>
     </div>
     <div class="control-group">
         <label for="AffName" class="control-label">@Lang.Affiliate</label>   
         <div class="controls">
-            @Html.TextBox("AffName")
+            @if (Model.ByAffiliate)
+            {
+                @Html.TextBoxFor(m => m.AffName, new { @readonly = "readonly" })
+            }
+            else
+            {
+                @Html.TextBoxFor(m => m.AffName)
+            }
+            @Html.HiddenFor(m => m.ByAffiliate)
         </div>
     </div>
    </div>
@@ -37,9 +47,10 @@
     </div>
 }
 @section scripts{
-    @if (Model != null){        
+    @if (result != null)
+    {        
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@Model.ErrorCode, "@Model.Message", parent.CUSTOMER.ReRenderAfterPaged);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.CUSTOMER.ReRenderAfterPaged);
         </script>
     }
     <script type="text/javascript">

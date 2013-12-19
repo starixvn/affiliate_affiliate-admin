@@ -23,6 +23,9 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int AffID { get; set; }
 
+        [SpParam(Ignored = true)]
+        public bool ByAffiliate { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_CheckMemberExist";

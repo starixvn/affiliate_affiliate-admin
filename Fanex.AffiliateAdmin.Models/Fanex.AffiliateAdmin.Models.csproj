@@ -53,6 +53,7 @@
     <Compile Include="AffiliateListViewModel.cs" />
     <Compile Include="AffiliateMasterViewModel.cs" />
     <Compile Include="AffiliateViewModel.cs" />
+    <Compile Include="AssignMemberViewModel.cs" />
     <Compile Include="BannerAddViewModel.cs" />
     <Compile Include="BannerDeleteViewModel.cs" />
     <Compile Include="BannerEditViewModel.cs" />

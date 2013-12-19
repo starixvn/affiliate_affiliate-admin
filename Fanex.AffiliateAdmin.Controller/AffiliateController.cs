@@ -165,7 +165,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 {
                     ErrorCode = 16,
                     Success = false,
-                    Message = "Invalid Request"
+                    Message = Lang.InvalidRequest
                 };
             }
 
@@ -329,10 +329,15 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return Json(GetResultViewModel(criteria.ErrCode));
         }
-        
-        public ActionResult AssignMember()
+
+        public ActionResult AssignMember(AssignMemberViewModel model)
         {
-            return View();
+            if (model.ByAffiliate)
+            {
+                model.AffName = CurrentSession.Affiliate.UserName;
+            }
+
+            return View(model);
         }
 
         /// <summary>
@@ -378,14 +383,14 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
 
-            if (errorCode == 0)
-            {
-                return View(GetResultViewModel(string.IsNullOrEmpty(message) ? 0 : 1, null, message));
-            }
-            else
-            {
-                return View(GetResultViewModel(errorCode));
-            }
+            ViewBag.Result = errorCode == 0 ? GetResultViewModel(string.IsNullOrEmpty(message) ? 0 : 1, null, message) : GetResultViewModel(errorCode);
+
+            return AssignMember(new AssignMemberViewModel
+                {
+                    MemberName = criteria.MemberName,
+                    AffName = criteria.AffName,
+                    ByAffiliate = criteria.ByAffiliate
+                });
         }        
 
         /// <summary>

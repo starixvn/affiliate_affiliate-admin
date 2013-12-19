@@ -3,33 +3,36 @@
 
     return {
         Loaded: false,
-        init: function() {
+        init: function () {
 
             CUSTOMER.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
 
-            $('#btnSubmit').click(function() {
+            $('#btnSubmit').click(function () {
                 CUSTOMER.submitRequest();
                 return false;
             });
 
-            $("#DateOption").change(function() {
+            $("#DateOption").change(function () {
                 $("#FromDate, #ToDate").prop("disabled", this.value == 0);
             });
 
-            $("#gridId").parent().on("click", "#btnAssign", function() {
-                var groupid = $(this).data("groupid");
+            $("#gridId").parent().on("click", "#btnAssign", function () {
                 var url = "Affiliate/AssignMember";
+
+                if ($('#ByAffiliate').length > 0) {
+                    url += "?ByAffiliate=True";
+                }
 
                 AFFILIATE.openDialogFrame(url, "Assign Member To Affiliate", { width: 420, height: 260 });
             });
         },
 
-        submitRequest: function() {
+        submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
             CUSTOMER.ReRenderAfterPaged();
         },
 
-        ReRenderAfterPaged: function(currentPage, itemsPerPage) {
+        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid            
             gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
 
@@ -40,19 +43,19 @@
                 url: AFFILIATE.getAbsoluteUrl("Affiliate/MemberList"),
                 type: 'post',
                 data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
-                success: function(data) {
+                success: function (data) {
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, CUSTOMER.ReRenderAfterPaged);
                     $(".btnAdd").addClass("icon-add-config");
                 }
             });
         },
-        Remove: function(username) {
+        Remove: function (username) {
             if (confirm(MSG.ConfirmRemoveMem)) {
                 $.ajax({
                     url: AFFILIATE.getAbsoluteUrl("Affiliate/CustomerRemove"),
                     type: 'post',
                     data: "username=" + username,
-                    success: function(result) {
+                    success: function (result) {
                         if (!result.Success) {
                             alert(result.Message);
                         } else {

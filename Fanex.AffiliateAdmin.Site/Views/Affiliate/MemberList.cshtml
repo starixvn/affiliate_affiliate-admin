@@ -116,42 +116,53 @@ customer
                 customButtons: "<input type='button' name='btnAdd' value='' title='@Lang.AssignMemToAff' class='btnAdd icon-add-config' id='btnAssign'>"
             },
             columns: [
-                        { HeaderText: "#", Width: 30, Name: "No", CellAlign: "center" },
-                        { HeaderText: "@Lang.Username", Width: 70, Name: "UserName" },
-                        { HeaderText: "@Lang.FirstName", Width: 100, Name: "FirstName" },
-                        { HeaderText: "@Lang.LastName", Width: 100, Name: "LastName" },
-                        { HeaderText: "@Lang.Email", Width: 110, Name: "Email",
-                            Formatter: function (rowIndex, rowData, cell, cellFormated) {                              
-                                return cellFormated ? "<a href='mailto:" + cellFormated + "'>" + cellFormated + "</a>" : "";
-                            }
-                        },
-                        { HeaderText: "@Lang.Phone", Width: 100, Name: "Phone" },
-                        { HeaderText: "@Lang.Address", Width: 100, Name: "Address" },
-                        { HeaderText: "@Lang.Country", Width: 80, Name: "Country" },
-                        { HeaderText: "@Lang.RegisterDate", Width: 100, Name: "RegisteredDate", CellAlign: "center" , FormatDateTime: AFFILIATE.DATE_FORMAT },
-                        { HeaderText: "@Lang.FirstDepositDate", Width: 100, Name: "CreatedDate", CellAlign: "center" , FormatDateTime: AFFILIATE.DATE_FORMAT },
-                        { HeaderText: "@Lang.Affiliate", Width: 70, Name: "AffUserName",
-                            Formatter: function (rowIndex, rowData, cell, cellFormated) {                                
-                                return "<a href=\"" +AFFILIATE.baseUrl + "AffiliateInfo?username=" + cellFormated + "\">" +cellFormated+ "</a>";
-                            } },
-                        { HeaderText: "@Lang.Currency", Width: 60, Name: "Currency", CellAlign: "center" },
-                        { HeaderText: "@Lang.Remove", Width: 70, Name: "Remove", CellAlign: "center",
-                            Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                if(rowData.IsRemoved)
-                                    return moment(rowData.RemovedDate).format(AFFILIATE.DATE_FORMAT);
-                                return "<a href=\"javascript:CUSTOMER.Remove('" + rowData.UserName + "')\"><i class=\"icon-remove\"></i></a>";
-                            }
-                        }
-                   ],
+                { HeaderText: "#", Width: 30, Name: "No", CellAlign: "center" },
+                { HeaderText: "@Lang.Username", Width: 70, Name: "UserName" },
+                { HeaderText: "@Lang.FirstName", Width: 100, Name: "FirstName" },
+                { HeaderText: "@Lang.LastName", Width: 100, Name: "LastName" },
+                {
+                    HeaderText: "@Lang.Email",
+                    Width: 110,
+                    Name: "Email",
+                    Formatter: function(rowIndex, rowData, cell, cellFormated) {
+                        return cellFormated ? "<a href='mailto:" + cellFormated + "'>" + cellFormated + "</a>" : "";
+                    }
+                },
+                { HeaderText: "@Lang.Phone", Width: 100, Name: "Phone" },
+                { HeaderText: "@Lang.Address", Width: 100, Name: "Address" },
+                { HeaderText: "@Lang.Country", Width: 80, Name: "Country" },
+                { HeaderText: "@Lang.RegisterDate", Width: 100, Name: "RegisteredDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+                { HeaderText: "@Lang.FirstDepositDate", Width: 100, Name: "CreatedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+                {
+                    HeaderText: "@Lang.Affiliate",
+                    Width: 70,
+                    Name: "AffUserName",
+                    Formatter: function(rowIndex, rowData, cell, cellFormated) {
+                        return "<a href=\"" + AFFILIATE.baseUrl + "AffiliateInfo?username=" + cellFormated + "\">" + cellFormated + "</a>";
+                    }
+                },
+                { HeaderText: "@Lang.Currency", Width: 60, Name: "Currency", CellAlign: "center" },
+                {
+                    HeaderText: "@Lang.Remove",
+                    Width: 70,
+                    Name: "Remove",
+                    CellAlign: "center",
+                    Formatter: function(rowIndex, rowData, cell, cellFormated) {
+                        if (rowData.IsRemoved)
+                            return moment(rowData.RemovedDate).format(AFFILIATE.DATE_FORMAT);
+                        return "<a href=\"javascript:CUSTOMER.Remove('" + rowData.UserName + "')\"><i class=\"icon-remove\"></i></a>";
+                    }
+                }
+            ],
             showPager: true,
             customPager: true,
             gridExpandHeight: 290,
             showNumberColumn: true,
             allowTruncate: true,
-            rowCssClass: function (rowIndex, rowData) {
-                return rowData.IsRemoved ? "removed": "approved";
+            rowCssClass: function(rowIndex, rowData) {
+                return rowData.IsRemoved ? "removed" : "approved";
             }
-        }
+        };
         $(function () {
             CUSTOMER.init();
         });

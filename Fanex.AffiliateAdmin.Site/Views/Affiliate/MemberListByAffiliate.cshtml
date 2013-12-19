@@ -102,6 +102,10 @@ customer
 			NoDataInfo: "@Lang.NoInfo"
 		};
 
+        var MSG = {
+            ConfirmRemoveMem: "@Lang.ConfirmRemoveMem"
+        };
+
 		var gridOption = {
 			showTitle: true,
 			titleInfo:
@@ -125,17 +129,26 @@ customer
 						{ HeaderText: "@Lang.RegisterDate", Width: 100, Name: "RegisteredDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
 						{ HeaderText: "@Lang.FirstDepositDate", Width: 90, Name: "CreatedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
 						{ HeaderText: "@Lang.Currency", Width: 60, Name: "Currency", CellAlign: "center" },
-						{ HeaderText: "@Lang.Remove", Width: 50, Name: "Remove", CellAlign: "center",
-							Formatter: function (rowIndex, rowData, cell, cellFormated) {
-								return "<a href=\"javascript:CUSTOMER.Remove('" + rowData.UserName + "')\"><i class=\"icon-remove\"></i></a>";
-							}
+						{
+						    HeaderText: "@Lang.Remove",
+						    Width: 70,
+						    Name: "Remove",
+						    CellAlign: "center",
+						    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+						        if (rowData.IsRemoved)
+						            return moment(rowData.RemovedDate).format(AFFILIATE.DATE_FORMAT);
+						        return "<a href=\"javascript:CUSTOMER.Remove('" + rowData.UserName + "')\"><i class=\"icon-remove\"></i></a>";
+						    }
 						}
 				   ],
 			showPager: true,
 			customPager: true,
 			gridExpandHeight: 290,
 			showNumberColumn: true,
-			allowTruncate: true
+			allowTruncate: true,
+			rowCssClass: function (rowIndex, rowData) {
+			    return rowData.IsRemoved ? "removed" : "approved";
+			}
 		}
 		$(function () {
 			CUSTOMER.init();

@@ -25,36 +25,6 @@ namespace Fanex.AffiliateAdmin.Services.Impl
     /// </summary>
     public class HomeService : QueryService, IHomeService
     {
-        #region Fields
-
-        /// <summary>
-        /// Define Account DataAccess.
-        /// </summary>
-        private readonly IHomeDataAccess _homeDataAccess;
-
-        #endregion Fields
-
-        #region Constructor
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HomeService" /> class.
-        /// </summary>
-        public HomeService()
-            : this(null)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HomeService" /> class.
-        /// </summary>
-        /// <param name="homeDataAccess">Home data access.</param>
-        private HomeService(IHomeDataAccess homeDataAccess)
-        {
-            _homeDataAccess = homeDataAccess ?? new HomeDataAccess();
-        }
-
-        #endregion Constructor
-
         /// <summary>
         /// Login user.
         /// </summary>

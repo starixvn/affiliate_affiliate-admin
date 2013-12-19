@@ -17,7 +17,7 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class HomeViewModel
     {
-        public int PaymentRequestNum { get; set; }
+        public int PaymentReqNum { get; set; }
 
         public int AffInProAllNum { get; set; }
 

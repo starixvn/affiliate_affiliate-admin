@@ -52,11 +52,9 @@
     <Compile Include="Imp\AccountDataAccess.cs" />
     <Compile Include="Imp\AffiliateDataAccess.cs" />
     <Compile Include="Imp\GroupDataAccess.cs" />
-    <Compile Include="Imp\HomeDataAccess.cs" />
     <Compile Include="Imp\MessageDataAccess.cs" />
     <Compile Include="Interface\IGroupDataAccess.cs" />
     <Compile Include="Interface\IAffiliateDataAccess.cs" />
-    <Compile Include="Interface\IHomeDataAccess.cs" />
     <Compile Include="Interface\IAccountDataAccess.cs" />
     <Compile Include="Interface\IMessageDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

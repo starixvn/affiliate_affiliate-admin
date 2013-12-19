@@ -291,11 +291,11 @@ namespace Fanex.AffiliateAdmin.Controller
             if (criteria.ByAffiliate)
             {
                 criteria.AffUsername = this.CurrentSession.Affiliate.UserName;
-                criteria.IsITAdmin = this.CurrentSession.IsIT;
                 criteria.AffType = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.ExcludeTest = false;
             }
 
+            criteria.IsITAdmin = this.CurrentSession.IsIT;
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
             criteria.UserId = SessionManager.CurrentSession.CustID;

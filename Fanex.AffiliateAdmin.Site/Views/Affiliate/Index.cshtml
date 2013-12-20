@@ -121,14 +121,7 @@ aff-list
             titleInfo:
             {
                 text: "@Lang.AffList",
-                showEditAccountTypeButton: true,
-                editAccountType: function() {
-                    AffiliateList.changeAccountTypeOnMultiAff();
-                },
-                showEditComGroupButton: true,
-                editComGroup: function() {
-                    AffiliateList.changeCommissionGroupOnMultiAff();
-                }
+                customButtons: '<input type="button" title="Change Account Type" class="icon-edit-account-type" /><input type="button" title="Change Commission Group" class="icon-edit-commission-group"/>'
             },
             columns: [
                 {

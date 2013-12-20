@@ -24,6 +24,10 @@
                 if (parent.AFFILIATE.currentOpenDialog)
                     parent.AFFILIATE.currentOpenDialog.dialog("close");
             });
+
+            $(".popup").on("click", ".icon-assign-permission-to-multi-user", function () {
+                Management.updatePolicy();
+            });
         },
         reInit: function () {
             $('input:checkbox').change(function () {
@@ -64,7 +68,8 @@
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
                     $('#gridId').show().fanexGrid(gridOption);
 
-                    $(".btnAdd").addClass("icon-add-user");
+                    $(".btnAdd").addClass("icon-assign-permission-to-multi-user");
+
 
                     if (data.List.length == 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', PageVar.NoInfo);
@@ -101,7 +106,7 @@
             if (multiCustId != '') {
                 var param = {
                     CustIds: multiCustId
-                }
+                };
 
                 AFFILIATE.openDialogFrame("Management/ChangePolicyMultiUser?" + jQuery.param(param), multiCustName, { width: 500, height: 400 });
             }
@@ -110,7 +115,7 @@
         editAccount: function (custId, userName) {
             var param = {
                 custId: custId
-            }
+            };
 
             AFFILIATE.openDialogFrame("Management/EditUser?" + jQuery.param(param), userName, { width: 500, height: 230 });
         },
@@ -162,7 +167,7 @@
             var param = {
                 custId: custId,
                 closed: !status
-            }
+            };
             $.ajax({ url: AFFILIATE.getAbsoluteUrl("Management/ChangeStatus"),
                 type: 'post',
                 data: jQuery.param(param),

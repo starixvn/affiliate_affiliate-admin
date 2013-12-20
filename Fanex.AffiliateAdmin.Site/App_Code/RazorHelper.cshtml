@@ -257,7 +257,6 @@
 }
 @helper FormatCurrencyNumber(decimal number, int dec = 2)
     {
-        string html = string.Empty;
         if (number < 0)
         {
             <span style="color: red">
@@ -273,11 +272,11 @@
     {
         if (status.Equals(AffiliateStatus.Disapproved.ToString(), StringComparison.CurrentCultureIgnoreCase))
         {
-        @Lang.Disapproved
+            @Lang.Disapproved
         }
         else
         {
-        @Lang.Pending
+            @Lang.Pending
         }
 }
 @helper DropDownListCountry(List<Country> list, string selectedValue, IDictionary<string, object> htmlAttributies = null)

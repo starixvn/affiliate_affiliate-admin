@@ -133,16 +133,27 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
-                var criteria = new AccountPasswordCriteria
+                if (model.NewPassword.Equals(model.OldPassword))
                 {
-                    CustId = SessionManager.CurrentSession.CustID,
-                    OldPassword = Cryptography.CfsEnCode(model.OldPassword),
-                    NewPassword = Cryptography.CfsEnCode(model.NewPassword),
-                    Ip = Remote.GetClientIPAddress()
-                };
-                _accountService.AccountUpdatePassword(criteria);
+                    ViewBag.Result = new ResultViewModel
+                        {
+                            ErrorCode = 16,
+                            Message = Lang.NewPassworDifferOldPassword
+                        };
+                }
+                else
+                {
+                    var criteria = new AccountPasswordCriteria
+                        {
+                            CustId = SessionManager.CurrentSession.CustID,
+                            OldPassword = Cryptography.CfsEnCode(model.OldPassword),
+                            NewPassword = Cryptography.CfsEnCode(model.NewPassword),
+                            Ip = Remote.GetClientIPAddress()
+                        };
 
-                ViewBag.Result = GetResultViewModel(criteria.ErrCode);
+                    _accountService.AccountUpdatePassword(criteria);
+                    ViewBag.Result = GetResultViewModel(criteria.ErrCode);
+                }
             }
 
             return View(model);

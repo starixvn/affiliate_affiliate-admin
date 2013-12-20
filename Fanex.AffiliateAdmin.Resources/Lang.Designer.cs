@@ -2122,6 +2122,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Displaying &lt;b&gt;{0}&lt;/b&gt; to &lt;b&gt;{1}&lt;/b&gt; of &lt;b&gt;{2}&lt;/b&gt; item(s)..
+        /// </summary>
+        public static string DisplayingItems {
+            get {
+                return ResourceManager.GetString("DisplayingItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display Order.
         /// </summary>
         public static string DisplayOrder {
@@ -3297,6 +3306,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string GetAll {
             get {
                 return ResourceManager.GetString("GetAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go To Page.
+        /// </summary>
+        public static string GoToPage {
+            get {
+                return ResourceManager.GetString("GoToPage", resourceCulture);
             }
         }
         
@@ -4597,6 +4615,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New password must be different with old password!.
+        /// </summary>
+        public static string NewPassworDifferOldPassword {
+            get {
+                return ResourceManager.GetString("NewPassworDifferOldPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Signups.
         /// </summary>
         public static string NewSignup {
@@ -4611,6 +4638,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no data..
+        /// </summary>
+        public static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
             }
         }
         

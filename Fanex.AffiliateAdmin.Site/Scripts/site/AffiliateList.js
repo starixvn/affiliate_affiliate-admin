@@ -52,6 +52,16 @@
                     $(".search-panel").width(parent.AFFILIATE.MIN_CONTENT_WIDTH);
                 }
             });
+
+            var $maincontent = $('.main-content');
+
+            $maincontent.on("click", ".icon-edit-account-type", function () {
+                AffiliateList.changeAccountTypeOnMultiAff();
+            });
+
+            $maincontent.on("click", ".icon-edit-commission-group", function () {
+                AffiliateList.changeCommissionGroupOnMultiAff();
+            });
         },
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();

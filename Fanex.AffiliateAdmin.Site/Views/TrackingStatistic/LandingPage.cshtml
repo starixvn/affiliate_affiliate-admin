@@ -31,7 +31,7 @@
             </div>
             <div class="cell">
                 @Html.LabelFor(m => m.BaseLanguage, new { @class = "txt" })
-                @Html.DropDownCheckList("BaseLanguage", new SelectList(AppSettings.BaseLanguages, "LanguageID", "LanguageName"), true, true, new { @class = "width-140" })
+                @Html.DropDownCheckList("BaseLanguage", new SelectList(AppSettings.AffSupportLanguages, "LanguageID", "LanguageName"), true, true, new { @class = "width-140" })
             </div>
             <div class="cell width-140">
                 @Html.LabelFor(m => m.FromDate)

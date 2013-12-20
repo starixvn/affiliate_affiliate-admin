@@ -2407,4 +2407,16 @@
   <data name="AffApproved" xml:space="preserve">
     <value>This affiliate has been approved.</value>
   </data>
+  <data name="NewPassworDifferOldPassword" xml:space="preserve">
+    <value>New password must be different with old password!</value>
+  </data>
+  <data name="DisplayingItems" xml:space="preserve">
+    <value>Displaying &lt;b&gt;{0}&lt;/b&gt; to &lt;b&gt;{1}&lt;/b&gt; of &lt;b&gt;{2}&lt;/b&gt; item(s).</value>
+  </data>
+  <data name="GoToPage" xml:space="preserve">
+    <value>Go To Page</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>There is no data.</value>
+  </data>
 </root>

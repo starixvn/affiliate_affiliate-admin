@@ -1,5 +1,5 @@
 ﻿var Management = function ($) {
-    var submitOptions = {}
+    var submitOptions = {};
     return {
         init: function () {
             submitOptions = $('form').serializeObject();
@@ -61,21 +61,21 @@
         viewGroup: function (groupId, groupName) {
             var param = {
                 groupId: groupId
-            }
+            };
 
             AFFILIATE.openDialogFrame("Management/UserInGroup?" + jQuery.param(param), 'Group - ' + groupName, { width: 960, height: 600 });
         },
         editRolePolicy: function (groupId, groupName) {
             var param = {
                 groupId: groupId
-            }
+            };
 
-            AFFILIATE.openDialogFrame("Management/ChangePolicyGroup?" + jQuery.param(param), groupName, { width: 350, height: 540 });
+            AFFILIATE.openDialogFrame("Management/ChangePolicyGroup?" + jQuery.param(param), groupName, { width: 380, height: 540 });
         },
         editGroup: function (groupId, groupName) {
             var param = {
                 groupId: groupId
-            }
+            };
 
             AFFILIATE.openDialogFrame("Management/EditGroup?" + jQuery.param(param), groupName, { width: 480, height: 440 });
         },
@@ -83,7 +83,7 @@
             if (confirm(PageVar.ConfirmDelGroup.format(groupName))) {
                 var param = {
                     groupId: groupId
-                }
+                };
 
                 $.ajax({ url: AFFILIATE.getAbsoluteUrl("Management/DeleteGroup"),
                     type: 'post',
@@ -107,7 +107,7 @@
             var param = {
                 custId: custId,
                 closed: status
-            }
+            };
 
             $.ajax({ url: AFFILIATE.getAbsoluteUrl("Management/ChangeStatus"),
                 type: 'post',

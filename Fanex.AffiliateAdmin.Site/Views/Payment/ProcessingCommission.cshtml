@@ -19,7 +19,7 @@ payment
     const int transferDay = 8;
     var today = DateTime.Now;
     var isTransferDay = today.Date.Day == transferDay;
-    var transferBtn = AppSettings.TestMonthlyTransfer || (isTransferDay && !isMonthlyTransfer) ? string.Format("<input type='button' value='{0}' id='transferAll' style='height: 18px; width: 16px; margin: 0; padding: 0 6px;'>", Lang.TransferAll) : string.Empty;
+    var transferBtn = AppSettings.TestMonthlyTransfer || (isTransferDay && !isMonthlyTransfer) ? string.Format("<input type='button' value='{0}' id='transferAll'>", Lang.TransferAll) : string.Empty;
 }
 
 <div class="search-panel search-payment">

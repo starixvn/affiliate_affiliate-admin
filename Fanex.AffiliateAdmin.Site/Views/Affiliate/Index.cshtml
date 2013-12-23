@@ -92,9 +92,12 @@ aff-list
     <div class="row-fluid">
         <ul class="unstyled inline status pull-right">
             <li><span class="approved"></span>@Lang.Approved</li>
-            <li><span class="rejected"></span>@Lang.Disapproved</li>
+            @if (!Model.IsFavorite)
+            {
+                <li><span class="rejected"></span>@Lang.Disapproved</li>
+                <li><span class="pending"></span>@Lang.Pending</li>
+            }
             <li><span class="closed"></span>@Lang.Closed</li>
-            <li><span class="pending"></span>@Lang.Pending</li>
             <li><span class="locked"></span>@Lang.LockedOut</li>
         </ul>
     </div>

@@ -215,6 +215,7 @@ var COMMGROUP = function ($) {
 
             AFFILIATE.trimBeforeSubmit();
             submitOptions = $('form').serializeObject2();
+            var date = $("#Date").monthpicker("getDate");
 
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("CommGroup/GetList"),

@@ -5047,7 +5047,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Processing.
+        ///   Looks up a localized string similar to Pending.
         /// </summary>
         public static string Pending {
             get {

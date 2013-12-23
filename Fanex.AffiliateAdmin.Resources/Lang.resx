@@ -973,7 +973,7 @@
     <value>Payment updated successfully!</value>
   </data>
   <data name="Pending" xml:space="preserve">
-    <value>Processing</value>
+    <value>Pending</value>
   </data>
   <data name="PersonalInfo" xml:space="preserve">
     <value>Personal Information</value>

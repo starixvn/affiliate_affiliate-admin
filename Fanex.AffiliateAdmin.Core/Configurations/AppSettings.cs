@@ -196,7 +196,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                         new SelectListItem { Value = "pending", Text = "Pending" },
                         new SelectListItem { Value = "disapproved", Text = "Disapproved" },
                         new SelectListItem { Value = "closed", Text = "Closed" },
-                        new SelectListItem { Value = "lockedOut", Text = "Locked Out" }
+                        new SelectListItem { Value = "lockedOut", Text = "Locked" }
                     };
                 }
 

@@ -237,7 +237,7 @@
 }
 @helper SearchPanel(string contentSelector, string information, bool hasExport = true, bool hasInfo = true)
     {
-    <div class="span12 search-title" data-selector="@contentSelector">
+    <div class="span12 search-title" data-selector="@contentSelector"  title="@Lang.CollapseExpand">
         <div class="collapse" class="expand collapse">&nbsp;</div><label>@Lang.Search</label>
         <div class="more">
         @if (hasExport)

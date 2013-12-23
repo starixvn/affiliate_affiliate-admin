@@ -70,7 +70,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add customer failed..
+        ///   Looks up a localized string similar to Failed to add member..
         /// </summary>
         public static string Msg10 {
             get {
@@ -79,7 +79,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error! This setting key is existed!.
+        ///   Looks up a localized string similar to Error! This setting key has existed..
         /// </summary>
         public static string Msg1001 {
             get {
@@ -88,7 +88,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error! This language is existed!.
+        ///   Looks up a localized string similar to Error! This language has existed..
         /// </summary>
         public static string Msg1002 {
             get {
@@ -106,7 +106,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oops, this account is having 1 pending pay out request , please update this transaction first!.
+        ///   Looks up a localized string similar to This account is having 1 processing payment request, please update this transaction first..
         /// </summary>
         public static string Msg1004 {
             get {
@@ -151,7 +151,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Currency does not match with the selected group. Please check!.
+        ///   Looks up a localized string similar to Currency does not match with the selected group. Please recheck it..
         /// </summary>
         public static string Msg1009 {
             get {
@@ -169,7 +169,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There was an error when updating data..
+        ///   Looks up a localized string similar to There was an error updating the data..
         /// </summary>
         public static string Msg1010 {
             get {
@@ -196,7 +196,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, You cannot do adjustment because this Affiliate is not approved yet..
+        ///   Looks up a localized string similar to Sorry, you cannot adjust because this Affiliate is not approved yet..
         /// </summary>
         public static string Msg1013 {
             get {
@@ -205,7 +205,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, You cannot do adjustment because this Affiliate is closed..
+        ///   Looks up a localized string similar to Sorry, you cannot adjust because this Affiliate is closed..
         /// </summary>
         public static string Msg1014 {
             get {
@@ -250,7 +250,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add group failed..
+        ///   Looks up a localized string similar to Fail to add group..
         /// </summary>
         public static string Msg12 {
             get {
@@ -268,7 +268,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This group has customer belong to, so you cannot delete!.
+        ///   Looks up a localized string similar to You cannot delete group which has member..
         /// </summary>
         public static string Msg14 {
             get {
@@ -295,7 +295,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error occurs. Update process is unsuccessful!.
+        ///   Looks up a localized string similar to Error! Update process is unsuccessful!.
         /// </summary>
         public static string Msg17 {
             get {
@@ -331,7 +331,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This Affiliate Domain has been existed..
+        ///   Looks up a localized string similar to This Affiliate Domain has existed..
         /// </summary>
         public static string Msg2001 {
             get {
@@ -340,29 +340,11 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This Affiliate Domain has been used!.
-        /// </summary>
-        public static string Msg2002 {
-            get {
-                return ResourceManager.GetString("Msg2002", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This Member domain has been used!.
+        ///   Looks up a localized string similar to This Member Domain has existed..
         /// </summary>
         public static string Msg2003 {
             get {
                 return ResourceManager.GetString("Msg2003", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This Member Domain has been existed..
-        /// </summary>
-        public static string Msg2004 {
-            get {
-                return ResourceManager.GetString("Msg2004", resourceCulture);
             }
         }
         
@@ -394,7 +376,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This affiliate does not exists..
+        ///   Looks up a localized string similar to This affiliate does not exist..
         /// </summary>
         public static string Msg2008 {
             get {
@@ -412,7 +394,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error! Insert data into refresouces unsuccessfully!.
+        ///   Looks up a localized string similar to Error! Insert data into resouces unsuccessfully!.
         /// </summary>
         public static string Msg201 {
             get {
@@ -421,7 +403,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update process is unsuccessful!.
+        ///   Looks up a localized string similar to Fail to update process.
         /// </summary>
         public static string Msg2010 {
             get {
@@ -448,7 +430,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Domain setting is duplicate with other setting. Please check!.
+        ///   Looks up a localized string similar to Your Domain setting is duplicate with other setting. Please recheck it..
         /// </summary>
         public static string Msg2021 {
             get {
@@ -457,7 +439,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error occurs. Message unsuccessfully updated.
+        ///   Looks up a localized string similar to Error! Update message unsuccessfully!.
         /// </summary>
         public static string Msg203 {
             get {
@@ -475,7 +457,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, Admin id is invalid. Please recheck it again..
+        ///   Looks up a localized string similar to Sorry, The admin ID is invalid. Please recheck it again..
         /// </summary>
         public static string Msg205 {
             get {
@@ -484,7 +466,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error! Message unsuccessfully deleted!.
+        ///   Looks up a localized string similar to Error! Delete message unsuccessfully!.
         /// </summary>
         public static string Msg206 {
             get {
@@ -493,7 +475,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Group name existed. Please choose another name!.
+        ///   Looks up a localized string similar to This group name has existed. Please choose another name!.
         /// </summary>
         public static string Msg21 {
             get {
@@ -502,7 +484,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid qualified amount. Please check..
+        ///   Looks up a localized string similar to Invalid qualified amount. Please recheck it..
         /// </summary>
         public static string Msg22 {
             get {
@@ -691,24 +673,6 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error! Invalid Tier List!.
-        /// </summary>
-        public static string Msg38 {
-            get {
-                return ResourceManager.GetString("Msg38", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Oops, maximum of 50 tiers are allowed!.
-        /// </summary>
-        public static string Msg39 {
-            get {
-                return ResourceManager.GetString("Msg39", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This member does not exist or be removed before!.
         /// </summary>
         public static string Msg4 {
@@ -741,15 +705,6 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string Msg41 {
             get {
                 return ResourceManager.GetString("Msg41", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error! Invalid Setting Data (ProductIDList) !.
-        /// </summary>
-        public static string Msg42 {
-            get {
-                return ResourceManager.GetString("Msg42", resourceCulture);
             }
         }
         
@@ -799,7 +754,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are not authorized on this function..
+        ///   Looks up a localized string similar to You are not authorized to access this function..
         /// </summary>
         public static string Msg500 {
             get {
@@ -880,15 +835,6 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Affiliate List. Please check..
-        /// </summary>
-        public static string Msg603 {
-            get {
-                return ResourceManager.GetString("Msg603", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Currency of the group does not match with affiliate&apos;&apos;s currency. Please check..
         /// </summary>
         public static string Msg604 {
@@ -903,33 +849,6 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string Msg605 {
             get {
                 return ResourceManager.GetString("Msg605", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There was an error when updating data.Please try again!.
-        /// </summary>
-        public static string Msg606 {
-            get {
-                return ResourceManager.GetString("Msg606", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There was an error when updating data.Please try again!.
-        /// </summary>
-        public static string Msg607 {
-            get {
-                return ResourceManager.GetString("Msg607", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There was an error when updating data.Please try again!.
-        /// </summary>
-        public static string Msg608 {
-            get {
-                return ResourceManager.GetString("Msg608", resourceCulture);
             }
         }
         

@@ -1222,6 +1222,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collapse/Expand.
+        /// </summary>
+        public static string CollapseExpand {
+            get {
+                return ResourceManager.GetString("CollapseExpand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comm Group.
         /// </summary>
         public static string CommGroup {

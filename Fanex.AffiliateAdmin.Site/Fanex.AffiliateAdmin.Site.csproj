@@ -535,8 +535,6 @@
     <Content Include="Views\Management\EditGroup.cshtml" />
     <Content Include="Views\Exchange\Index.cshtml" />
     <Content Include="Views\Management\UserInGroup.cshtml" />
-    <Content Include="Views\Management\ChangePolicyMultiUser.cshtml" />
-    <Content Include="Views\Management\ChangePolicyMultiUser.cshtml" />
     <Content Include="Content\_Sites\Athena\Login.less" />
     <Content Include="Views\Configuration\ConfigurationDetail.cshtml" />
     <Content Include="Content\themes\Default\configuration.less" />
@@ -603,6 +601,7 @@
     <Content Include="Views\Report\QualifiedMembers.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ko-KR.cshtml" />
     <Content Include="Views\Payment\ProcessingCommission.cshtml" />
+    <Content Include="Views\Management\ChangePolicyMultiUser.cshtml" />
     <None Include="Views\Shared\Email\AffiliateApprove\Html\Body.en-US.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

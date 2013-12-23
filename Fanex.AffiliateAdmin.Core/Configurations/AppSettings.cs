@@ -552,6 +552,14 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
+        public static bool TestMonthlyTransfer
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("TestMonthlyTransfer")) > 0;
+            }
+        }
+
         public static IEnumerable<Language> BaseLanguages
         {
             get

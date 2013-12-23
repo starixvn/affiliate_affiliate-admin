@@ -68,9 +68,6 @@
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
                     $('#gridId').show().fanexGrid(gridOption);
 
-                    $(".btnAdd").addClass("icon-assign-permission-to-multi-user");
-
-
                     if (data.List.length == 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', PageVar.NoInfo);
                     }
@@ -117,7 +114,7 @@
                 custId: custId
             };
 
-            AFFILIATE.openDialogFrame("Management/EditUser?" + jQuery.param(param), userName, { width: 500, height: 230 });
+            AFFILIATE.openDialogFrame("Management/EditUser?" + jQuery.param(param), userName, { width: 500, height: 270 });
         },
         changeStatus: function (obj, custId) {
             if (!Management.updateStatus(custId, Management.getStatus(obj, custId)))

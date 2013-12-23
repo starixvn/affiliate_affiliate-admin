@@ -288,17 +288,20 @@ namespace Fanex.AffiliateAdmin.Controller
 
             doc.AppendChild(root);
 
-            var currencyList = currencies.Split(';');
-
-            foreach (string currency in currencyList)
+            if (!string.IsNullOrEmpty(currencies))
             {
-                var transNode = doc.CreateElement("currency");
+                var currencyList = currencies.Split(';');
 
-                transNode.SetAttribute("currencyid", currency);
+                foreach (string currency in currencyList)
+                {
+                    var transNode = doc.CreateElement("currency");
 
-                transNode.SetAttribute("status", "1");
+                    transNode.SetAttribute("currencyid", currency);
 
-                root.AppendChild(transNode);
+                    transNode.SetAttribute("status", "1");
+
+                    root.AppendChild(transNode);
+                }
             }
 
             var criteria = new PermissionCurrencyCriteria

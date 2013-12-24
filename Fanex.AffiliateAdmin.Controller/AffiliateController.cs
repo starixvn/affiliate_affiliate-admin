@@ -7,11 +7,10 @@
 //   <change who="Joseph.Pham" date="2013.8.1">Created</change>
 // </history>
 
-using System.Collections.Generic;
-
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using System.Xml.Linq;

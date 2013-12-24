@@ -25,7 +25,7 @@ aff-list
             <div class="row-fluid row-form">
                 <div class="cell">
                     <label for="AffName" class="txt">@Lang.Affiliate</label>
-                    <input type="text" class="form-control width-140" id="AffName" name="AffName" placeholder="@Lang.Affiliate" maxlength="100"/>
+                    <input type="text" class="form-control width-140" id="AffName" name="AffName" placeholder="@Lang.All" maxlength="100"/>
                 </div>
                 <div class="cell">
                     <label for="AffTypes" class="txt">@Lang.AffType</label>
@@ -119,7 +119,7 @@ aff-list
 
         var customerListUrl = '@Url.Action("MemberList", "Affiliate")';
 
-        var gridOption = {
+        var sampleGridOption = {
             showTitle: true,
             titleInfo:
             {

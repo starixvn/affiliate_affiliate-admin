@@ -7,6 +7,8 @@
 //   <change who="Joseph.Pham" date="2013.8.1">Created</change>
 // </history>
 
+using System.Collections.Generic;
+
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
@@ -67,6 +69,19 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = SessionManager.CurrentSession.CustID;
             var result = _service.GetAffiliateList(criteria);
 
+            var approveStatusList = new List<string> { "approved", "closed", "lockedout" };
+
+            var hideTotalRows = true;
+
+            if (!string.IsNullOrEmpty(criteria.Status))
+            {
+                var selectedStatusList = criteria.Status.Split(',');
+                if (approveStatusList.Intersect(selectedStatusList).Any())
+                {
+                    hideTotalRows = false;
+                }
+            }
+
             return Json(new
             {
                 List = result.AffiliateList,
@@ -78,6 +93,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         Total = result.CurrencyList.ToList().Sum(t => t.Currency),
                         TotalMembers = result.CurrencyList.ToList().Sum(t => t.TotalMembers)
                     },
+                HideTotalRows = hideTotalRows,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows

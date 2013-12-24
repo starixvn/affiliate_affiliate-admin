@@ -24,7 +24,7 @@ namespace Fanex.AffiliateAdmin.Models
         {
             "approved",
             "closed",
-            "lockedout",
+            "lockedout"
         };
 
         public AffiliateListViewModel()

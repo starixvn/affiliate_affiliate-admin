@@ -1,5 +1,7 @@
 ﻿var AffiliateList = function ($) {
     var submitOptions = {};
+    var BF_COL = 14, MEMBER_COL = 15;
+    var _hideColums = [BF_COL, MEMBER_COL];
 
     return {
         init: function () {
@@ -11,7 +13,6 @@
                 AffiliateList.submitRequest();
                 return false;
             });
-
 
             $('.form-popup').submit(function () {
                 AFFILIATE.trimBeforeSubmit();
@@ -71,6 +72,8 @@
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
+
+            var gridOption = $.extend(true, {}, sampleGridOption);
             gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
 
             $.ajax({
@@ -106,9 +109,18 @@
                     };
                     var bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
                     gridOption.bodyRows = bodyRows;
-                    gridOption.footerRows = AffiliateList.getFooterRows(data.SubTotal, data.Total, 13);
+
+                    if (data.HideTotalRows) {
+                        gridOption.footerRows = [];
+                    } else {
+                        gridOption.footerRows = AffiliateList.getFooterRows(data.SubTotal, data.Total, 13);
+                    }
 
                     gridObject.removeClass("noinfo").fanexGrid(gridOption);
+
+                    if (data.HideTotalRows) {
+                        gridObject.fanexGrid("hideColumns", gridOption, _hideColums);
+                    }
 
                     if (data.TotalItem == 0) {
                         gridObject.addClass("noinfo").html(Lang.NoDataInfo);

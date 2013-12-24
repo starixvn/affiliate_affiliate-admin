@@ -42,22 +42,30 @@
                       { HeaderText: "@Lang.Function", Width: 100, Name: "FuncDesc" },
                       { HeaderText: "@Lang.Read", Width: 80, Name: "IndividualRead", CellAlign: "center", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
-                            return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' " + ((rowData.GroupHost || rowData.GroupRead || cell.Value) ? "checked=checked" : "") + " />";
+                            if (rowData.GroupHost || rowData.GroupRead) {
+                                return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' checked=checked disabled=disabled/>";
+                            }
+                            
+                            return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' " + ( cell.Value ? "checked=checked" : "") + " />";
                         } 
                       },
                       { HeaderText: "@Lang.Host", Width: 80, Name: "IndividualHost", CellAlign: "center", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
-                            return "<input type='checkbox' class='p-check' id='ih_" + rowData.FuncID + "' name='IndividualHost' " + ((rowData.GroupHost || cell.Value) ? "checked=checked" : "") + " />";
+                            if (rowData.GroupHost) {
+                                return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' checked=checked disabled=disabled/>";
+                            }
+                            
+                            return "<input type='checkbox' class='p-check' id='ih_" + rowData.FuncID + "' name='IndividualHost' " + (cell.Value ? "checked=checked" : "") + " />";
                         } 
                       },
                       { HeaderText: "@Lang.Read", Width: 80, Name: "GroupRead", CellAlign: "center", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
-                            return "<input type='checkbox' class='p-check' id='gr_" + rowData.FuncID + "' name='GroupRead' " + (cell.Value ? "checked=checked" : "") + " disabled/>";
+                            return "<input type='checkbox' class='p-check' id='gr_" + rowData.FuncID + "' name='GroupRead' " + (cell.Value ? "checked=checked" : "") + " disabled=disabled/>";
                         }
                       },
                       { HeaderText: "@Lang.Host", Width: 80, Name: "GroupHost", CellAlign: "center", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
-                            return "<input type='checkbox' class='p-check' id='gh_" + rowData.FuncID + "' name='GroupHost' " + (cell.Value ? "checked=checked" : "") + " disabled/>";
+                            return "<input type='checkbox' class='p-check' id='gh_" + rowData.FuncID + "' name='GroupHost' " + (cell.Value ? "checked=checked" : "") + " disabled=disabled/>";
                         } 
                       }
                    ],

@@ -105,7 +105,7 @@
                     CustIds: multiCustId
                 };
 
-                AFFILIATE.openDialogFrame("Management/ChangePolicyMultiUser?" + jQuery.param(param), multiCustName, { width: 500, height: 400 });
+                AFFILIATE.openDialogFrame("Management/ChangePolicyMultiUser?" + jQuery.param(param), multiCustName, { width: 500, height: 430 });
             }
             return false;
         },

@@ -119,7 +119,7 @@
 
     return {
         init: function () {
-            $('#btnSubmit').click(function () {
+            $('.search-panel form').submit(function () {
                 ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
                 return false;
             });

@@ -106,7 +106,8 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             criteria.UserId = CurrentSession.CustID;
             var groups = _service.GetById(criteria);
-            BuildGroupData(groups, DateTime.Now, criteria.GroupID.ToString());
+            var date = criteria.Date == null ? DateTime.Now : criteria.Date.Value;
+            BuildGroupData(groups, date, criteria.GroupID.ToString());
             ViewBag.HasCashBackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
             return View(groups.FirstOrDefault());
         }

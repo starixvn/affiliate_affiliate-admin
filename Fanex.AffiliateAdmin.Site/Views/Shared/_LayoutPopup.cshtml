@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Fanex.AffiliateAdmin.Core.Configurations
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <meta charset="utf-8" />
@@ -18,9 +19,14 @@
         </div>
     </div>
     @Scripts.Render("~/bundles/js")
-    @RenderSection("scripts", required: false)
+    
     <script type="text/ecmascript">
         $.unblockUI();
+
+        var System = {
+            Currency: '@AppSettings.BaseExchange.Code',
+            Prefix: '@AppSettings.BaseExchange.Prefix'
+        };
 
         var Lang = {
             NoDataInfo: '@Html.Raw(Lang.NoInfo)'
@@ -30,5 +36,8 @@
             return '@Url.Content("~/")' + relativeUrl;
         };
     </script>
+    
+    @RenderSection("scripts", required: false)
+
 </body>
 </html>

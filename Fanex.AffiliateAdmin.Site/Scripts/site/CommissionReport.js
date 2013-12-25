@@ -13,7 +13,7 @@
     var _indexProductColumns = [];
     var _isSimpleMode = false;
     var _gridOption = {};
-    
+
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     function initProductColumnsForGridOption() {
         var hasGroupByMonth = $("#GroupBy").val() == GROUP_BY_MONTH;
@@ -59,7 +59,7 @@
                 );
                 // add CommPercent column to hidden list
                 _gridOption.columns.push(
-                    { IsCurrency: false, HeaderCaption: MSG.CommPercent, HeaderText: MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
+                    { IsCurrency: false, IsPercent: true, HeaderCaption: MSG.CommPercent, HeaderText: MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
                 );
             }
 
@@ -107,7 +107,12 @@
 
                 for (var i = mergeCols; i < _gridOption.columns.length; i++) {
                     var col = _gridOption.columns[i];
-                    columns.push({ Value: item[col.Name], Name: col.Name });
+
+                    if (col.IsPercent) {
+                        columns.push({ Value: MSG.NA, Name: col.Name });
+                    } else {
+                        columns.push({ Value: item[col.Name], Name: col.Name });
+                    }
                 }
 
                 footerRows.push({ Columns: columns });
@@ -121,15 +126,19 @@
         for (var i = mergeCols; i < _gridOption.columns.length; i++) {
             var col = _gridOption.columns[i];
             var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-
-            totalColums.push({ Value: totalRowData[colName], Name: col.Name });
+            
+            if (col.IsPercent) {
+                totalColums.push({ Value: MSG.NA, Name: col.Name });
+            } else {
+                totalColums.push({ Value: totalRowData[colName], Name: col.Name });
+            }
         }
 
         footerRows.push({ Columns: totalColums, CssClass: 'total-whole-range' });
 
         return footerRows;
     }
-    
+
     function changeHeaderCaptions(showCurrencySymbol) {
         var text = showCurrencySymbol ? " (" + System.Prefix + ")" : "";
         for (var i = 0; i < _gridOption.columns.length; i++) {
@@ -190,7 +199,8 @@
             // Comm group link event
             $maincontent.on("click", ".commgroup", function () {
                 var param = {
-                    groupid: $(this).data("groupid")
+                    groupid: $(this).data("groupid"),
+                    date: $(this).data("date")
                 };
                 parent.AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommGroupSettingFor.replace("{0}", '"' + $(this).html() + '" ' + $(this).data("date")), { width: 900, height: 450 });
             });

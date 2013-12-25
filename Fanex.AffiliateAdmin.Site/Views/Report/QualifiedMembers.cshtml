@@ -2,14 +2,15 @@
     ViewBag.Title = "Qualified Members";
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";   
 }
+@using System.Globalization
 @using Fanex.AffiliateAdmin.Core.Utilities
-@using Fanex.AffiliateAdmin.DTO
-@using Fanex.AffiliateAdmin.Models
-@using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using System.Linq
 
 @model IEnumerable<QualifiedMember>
+
+<div id="gridId" class="freegrid" colheight="200" expheight="350" style="width: 1249px;">
+</div>
 
 <div class="freegrid" style="display: block; border: 0px">
 <div class="col_header">
@@ -49,18 +50,24 @@
         <tr class="@className" style="height:21px">                    
         <td align="center">@(count++)</td>
         <td class="">@member.Username</td>    
-        <td class="" align="center">@member.Currency</td>    
-        <td class="" align="right">@member.QualifiedAmount.ToString("00.00")</td>    
+            <td class="" align="center">@member.Currency</td>    
+            
+            
+            <td class="" align="right">@String.Format(CultureInfo.InvariantCulture, "{0:,0.00}", @member.QualifiedAmount)</td>    
         @foreach (var product in AppSettings.Products)
         {
             var turnover = (double)@member.GetPropertyValue(product.ProductName.Replace(" ", "") + "Turnover");
             var isQualified = (decimal)turnover > member.QualifiedAmount;
             var style = isQualified ? "style=color:green" : null;
             if (!totalData.ContainsKey(product.ProductID))
+            {
                 totalData.Add(product.ProductID, isQualified ? 1 : 0);
+            }
             else
+            {
                 totalData[product.ProductID] += isQualified ? 1 : 0;
-            <td class="" width="100px" align="right" @style >@turnover</td>    
+            }
+            <td class="" width="100px" align="right" @style >@String.Format(CultureInfo.InvariantCulture, "{0:,0.00}", turnover)</td>    
         }
         </tr>
     }
@@ -70,7 +77,7 @@
         <td colspan="4" align="center">@Lang.TotalQM</td>
         @foreach (var product in AppSettings.Products)
         {
-            <td class="" width="100px" align="right">@totalData[product.ProductID]</td>
+            <td class="" width="100px" align="right">@String.Format(CultureInfo.InvariantCulture, "{0:,0.00}", totalData[product.ProductID])</td>
         }
     </tr>
     }

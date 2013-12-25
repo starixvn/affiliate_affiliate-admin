@@ -119,15 +119,18 @@ payment
             DeductionPercent: "@Lang.DeductionPercent",
             Amount: "@Lang.Amount",
             CommissionTitle: "@Lang.Commission",
-            DoYouWantToTransferAll: "@Lang.DoYouWantToTransferAll"
+            DoYouWantToTransferAll: "@Lang.DoYouWantToTransferAll",
+            CommissionGroup: "@Lang.CommGroup",
+            CommGroupSettingFor: "@Lang.CommGroupSettingFor",
+            ProcessingCommissionTitle: "@Lang.ProcessingCommission"
         };
-        
+
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
         var button = "@(Html.Raw(transferBtn))";
 
         var sampleGridOption = {
             showTitle: true,
-            
+
             titleInfo:
             {
                 text: "@Lang.ProcessingCommission",
@@ -148,7 +151,16 @@ payment
                 { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Affiliate", Width: 80, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.Month", Width: 80, Name: "WinlostDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_MONTH },
-                { HeaderText: "@Lang.CommGroup", Width: 90, Name: "GroupName", HeaderAlign: "center", CellAlign: "left" },
+                {
+                    HeaderText: "@Lang.CommGroup",
+                    Width: 90,
+                    Name: "GroupName",
+                    HeaderAlign: "center",
+                    CellAlign: "left",
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        return '<a href="javascript:void(0)" data-groupid={0} data-date="{1}" class="commgroup">{2}</a>'.format(record.GroupID, moment(record.WinlostDate).format(AFFILIATE.DATE_FORMAT_MONTH), record.GroupName);
+                    }
+                },
                 { HeaderText: "@Lang.Currency", Width: 90, Name: "Currency", HeaderAlign: "center", CellAlign: "center" }
             ],
             allowTruncate: true,
@@ -158,9 +170,9 @@ payment
             numberOfFrozenColumn: 5
         };
 
-        var totalPaymentHeader = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Name: "Commission", NameCache: "Commission", MergeRowNumber: 2,  };
-        var totalPaymentCol = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER };
-        
+        var totalPaymentHeader = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Name: "Commission", NameCache: "Commission", MergeRowNumber: 2, };
+        var totalPaymentCol = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' };
+
     </script>
     <script src="~/Scripts/site/ProcessingCommission.js" type="text/javascript"></script>
 }

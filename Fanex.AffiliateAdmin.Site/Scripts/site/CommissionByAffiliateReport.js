@@ -43,7 +43,7 @@
                 }
             );
             gridOption.columns.push(
-                { IsCurrency: false, HeaderCaption: MSG.CommPercent, HeaderText: MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
+                { IsCurrency: false, IsPercent: true, HeaderCaption: MSG.CommPercent, HeaderText: MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
             );
 
             gridOption.columns.push(
@@ -90,7 +90,12 @@
 
                 for (var i = mergeCols; i < gridOption.columns.length; i++) {
                     var col = gridOption.columns[i];
-                    columns.push({ Value: item[col.Name], Name: col.Name });
+
+                    if (col.IsPercent) {
+                        columns.push({ Value: MSG.NA, Name: col.Name });
+                    } else {
+                        columns.push({ Value: item[col.Name], Name: col.Name });
+                    }
                 }
 
                 footerRows.push({ Columns: columns });
@@ -98,14 +103,17 @@
         }
 
         // Total row
-        var totalColums = []
+        var totalColums = [];
         totalColums.push({ Value: "<div align='center'>" + MSG.Total + "</div>", Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
-
         for (var i = mergeCols; i < gridOption.columns.length; i++) {
             var col = gridOption.columns[i];
             var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
 
-            totalColums.push({ Value: totalRowData[colName], Name: col.Name });
+            if (col.IsPercent) {
+                totalColums.push({ Value: MSG.NA, Name: col.Name });
+            } else {
+                totalColums.push({ Value: totalRowData[colName], Name: col.Name });
+            }
         }
 
         footerRows.push({ Columns: totalColums, CssClass: 'total-whole-range' });
@@ -138,7 +146,7 @@
         if (HasCashbackDeduction === false) {
             columns = columns.concat(_bonusColumns.clone());
         }
-        
+
         if ($("#GroupBy").val() == GROUP_BY_MONTH) {
             $("#gridId").fanexGrid("hideColumns", gridOption, columns);
         }
@@ -292,7 +300,7 @@
                         currentPage: currentPage,
                         totalItem: data.List.length
                     };
-                    
+
                     gridOption.titleInfo.text = MSG.CommissionTitle + ' [{0}]'.format(data.TotalItem);
                     gridOption.footerRows = getFooterRows(gridOption, data.SubTotalData, data.TotalRowData);
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);

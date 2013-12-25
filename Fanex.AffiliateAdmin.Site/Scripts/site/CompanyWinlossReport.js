@@ -476,6 +476,8 @@
                         totalItem: data.TotalItem
                     };
 
+                    _gridOption.titleInfo.text = MSG.CompanyWinlossTitle + ' [{0}]'.format(data.TotalItem);
+
                     if (data.TotalItem > 0) {
                         _gridOption.bodyRows = getBodyRows(data.Groups, submitOptions);
                         _gridOption.footerRows = getFooterRows(data.TotalData);

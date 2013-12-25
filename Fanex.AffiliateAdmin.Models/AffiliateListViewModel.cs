@@ -27,6 +27,13 @@ namespace Fanex.AffiliateAdmin.Models
             "lockedout"
         };
 
+        private readonly List<SelectListItem> _dateOptions = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "0", Text = Lang.All },
+            new SelectListItem { Value = "1", Text = Lang.DateRequest },
+            new SelectListItem { Value = "2", Text = Lang.ApprovalDate }
+        };
+
         public AffiliateListViewModel()
         {
             IsFavorite = false;
@@ -49,7 +56,7 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                return new SelectList(PaymentSettings.ListDateOption, "Value", "Text");
+                return new SelectList(_dateOptions, "Value", "Text");
             }
         }
 

@@ -163,7 +163,15 @@
                 var title = MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
                 title = title.replace("{1}", param.monthdate) + " - " + MSG.Currency + ": " + $(this).data("currency");
                 parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });
-            }); 
+            });
+
+            mainContentObject.on("click", "a.commgroup", function () {
+                var param = {
+                    groupid: $(this).data('groupid'),
+                    date: $(this).data('date')
+                };
+                AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommGroupSettingFor.replace("{0}", '"' + $(this).html() + '" ' + $(this).data("date")), { width: 1000, height: 450 });
+            });    
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
@@ -199,6 +207,8 @@
                         totalItem: data.TotalItem,
                         pagerSelectCallBack: ProcessingCommission.ReRenderAfterPaged
                     };
+
+                    gridOption.titleInfo.text = MSG.ProcessingCommissionTitle + ' [{0}]'.format(data.TotalItem);
 
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
@@ -268,6 +278,12 @@
                 });
             }
         }, 
+        showCommGroup: function(groupId) {
+            var param = {
+                groupid: groupId
+            };
+            parent.AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommissionGroup, { width: 1000, height: 450 });
+        }
     };
 } (jQuery);
 

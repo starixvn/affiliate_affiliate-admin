@@ -118,15 +118,7 @@ affiliate-info
                 FormatNumber: "0,0.00",
                 FormatNegative: '($)',
                 Formatter: function(rowIndex, rowData, cell, cellFormated) {
-                    if (rowData.TransType == 201) {
-                        var href = AFFILIATE.getAbsoluteUrl("Report/CommissionByAffiliate");
-                        var transdate = moment(rowData.TransDate).format(AFFILIATE.DATE_FORMAT_FULL);
-                        href += "?FromDate=" + transdate + "&ToDate=" + transdate;
-                        return "<a href=\"{0}\">".format(href) + numeral(cell.Value).format(AFFILIATE.FORMATNUMBER) + "</a>";
-                    } else if (rowData.TransType == 202) {
-                        return "<a href=\"javascript:STATEMENT.showDetail(" + rowData.TransId + ");\">" + numeral(cell.Value).format(AFFILIATE.FORMATNUMBER) + "</a>";
-                    }
-                    
+                    // handle the number format.
                     var currentValue = rowData.Amount;
                     
                     if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
@@ -141,11 +133,27 @@ affiliate-info
                         currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
                     }
 
+                    if (rowData.TransType == 201) {
+                        var href = AFFILIATE.getAbsoluteUrl("Report/CommissionByAffiliate");
+                        var transdate = moment(rowData.TransDate).format(AFFILIATE.DATE_FORMAT_FULL);
+                        href += "?FromDate=" + transdate + "&ToDate=" + transdate;
+                        return "<a href=\"{0}\">".format(href) + currentValue + "</a>";
+                    } else if (rowData.TransType == 202) {
+                        return "<a href=\"javascript:STATEMENT.showDetail(" + rowData.TransId + ");\">" + currentValue + "</a>";
+                    }
+
                     return currentValue;
                 }
             },
             { HeaderText: "@Lang.Status", Width: 80, Name: "Status", HeaderAlign: "center" },
-            { HeaderText: "@Lang.CompletedDate", Width: 115, Name: "CompletedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+            { HeaderText: "@Lang.CompletedDate", Width: 115, Name: "CompletedDate", HeaderAlign: "center", CellAlign: "center", 
+                Formatter: function (rIndex, record, cell, cellFormated) {
+                    if (record["Status"] === 'Processing') {
+                        return null;
+                    }
+                    return moment(record['CompletedDate']).format(AFFILIATE.DATE_FORMAT_FULL);
+                }
+            },
             { HeaderText: "@Lang.Creator", Width: 80, Name: "Creator", HeaderAlign: "center" },
             { HeaderText: "@Lang.Description", Width: 270, Name: "Description", HeaderAlign: "center" }
         ],

@@ -6,6 +6,7 @@
 
 namespace Fanex.AffiliateAdmin.Criterias
 {
+    using System;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -16,6 +17,9 @@ namespace Fanex.AffiliateAdmin.Criterias
         public int GroupID { get; set; }
 
         public int UserId { get; set; }
+
+        [SpParam(Ignored = true)]
+        public DateTime? Date { get; set; }
 
         public override string GetSettingKey()
         {

@@ -149,7 +149,7 @@ aff-list
 
                         var url = AFFILIATE.getAbsoluteUrl("AffiliateInfo?userName={0}".format(record.UserName));
                         var favorite = record.Favorite ? "favor-check" : 'favor-uncheck';
-                        var title = record.Favorite ? MSG.RemoveFromMyFavorite: MSG.AddToMyFavorite;
+                        var title = record.Favorite ? MSG.RemoveFromMyFavorite : MSG.AddToMyFavorite;
                         var action = record.Favorite ? -1 : 1;
 
                         if (status === 'disapproved' || status === 'pending') {
@@ -183,7 +183,11 @@ aff-list
                 { HeaderText: "@Lang.AffType", Width: 70, Name: "AffTypeName", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.RegisterDate", Width: 90, Name: "RegisteredDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
                 { HeaderText: "@Lang.ApprovalDate", Width: 80, Name: "ApprovedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
-                { HeaderText: "@Lang.Status", Width: 70, Name: "Status", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.Status", Width: 70, Name: "Status", HeaderAlign: "center", CellAlign: "left",
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        return "<span style='text-transform: capitalize;'>{0}</span>".format(record.Status);
+                    }
+                },
                 {
                     HeaderText: "@Lang.AccountType",
                     Width: 110,
@@ -191,7 +195,7 @@ aff-list
                     HeaderAlign: "center",
                     CellAlign: "left",
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        return "<a href='javascript:AffiliateList.changeAccountType({0}, \"{1}\", {2});'>{3}</a>".format(record.AffID, record.UserName, record.TestLevel, record.AccountType);
+                        return "<a href='javascript:AffiliateList.changeAccountType({0}, \"{1}\", {2});' >{3}</a>".format(record.AffID, record.UserName, record.TestLevel, record.AccountType);
                     }
                 },
                 {

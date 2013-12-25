@@ -422,7 +422,7 @@ namespace Fanex.AffiliateAdmin.Controller
             // Sub total
             var groups = commissions.GroupBy(t => t.Currency);
             var properties = typeof(CommissionReport).GetProperties()
-                .Where(p => p.Name != "AffId" && (p.PropertyType == typeof(int) || p.PropertyType == typeof(decimal)));
+                .Where(p => p.Name != "AffId" && (p.PropertyType == typeof(int) || p.PropertyType == typeof(decimal) || p.PropertyType == typeof(double)));
 
             foreach (var group in groups)
             {

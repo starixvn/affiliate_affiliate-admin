@@ -1447,7 +1447,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to delete selected email(s)?.
+        ///   Looks up a localized string similar to Are you sure you want to delete the selected email?.
         /// </summary>
         public static string ConfirmDeleteEmail {
             get {

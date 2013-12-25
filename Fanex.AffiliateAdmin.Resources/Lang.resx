@@ -358,7 +358,7 @@
     <value>Are you sure you want to delete this group?</value>
   </data>
   <data name="ConfirmDeleteEmail" xml:space="preserve">
-    <value>Are you sure you want to delete selected email(s)?</value>
+    <value>Are you sure you want to delete the selected email?</value>
   </data>
   <data name="ConfirmDeleteMessage" xml:space="preserve">
     <value>Are you sure you want to delete selected message(s)?</value>

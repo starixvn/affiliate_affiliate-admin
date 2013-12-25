@@ -4,6 +4,9 @@
 }
 @using System.Globalization
 @using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.DTO
+@using Fanex.AffiliateAdmin.Models
+@using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using System.Linq
 
@@ -60,13 +63,9 @@
             var isQualified = (decimal)turnover > member.QualifiedAmount;
             var style = isQualified ? "style=color:green" : null;
             if (!totalData.ContainsKey(product.ProductID))
-            {
                 totalData.Add(product.ProductID, isQualified ? 1 : 0);
-            }
             else
-            {
                 totalData[product.ProductID] += isQualified ? 1 : 0;
-            }
             <td class="" width="100px" align="right" @style >@String.Format(CultureInfo.InvariantCulture, "{0:,0.00}", turnover)</td>    
         }
         </tr>

@@ -76,7 +76,7 @@
         <td colspan="4" align="center">@Lang.TotalQM</td>
         @foreach (var product in AppSettings.Products)
         {
-            <td class="" width="100px" align="right">@String.Format(CultureInfo.InvariantCulture, "{0:,0.00}", totalData[product.ProductID])</td>
+            <td class="" width="100px" align="right">@totalData[product.ProductID]</td>
         }
     </tr>
     }

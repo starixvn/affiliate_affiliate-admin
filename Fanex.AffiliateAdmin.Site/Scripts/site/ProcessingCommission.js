@@ -154,11 +154,11 @@
             mainContentObject.on("click", "#transferAll", function () {
                 ProcessingCommission.MonthlyTransfer();
             });
-            
+
             mainContentObject.on("click", "a.qm", function () {
                 var param = {
-                affid: $(this).data("affid"),
-                monthdate: $(this).data("date")
+                    affid: $(this).data("affid"),
+                    monthdate: $(this).data("date")
                 };
                 var title = MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
                 title = title.replace("{1}", param.monthdate) + " - " + MSG.Currency + ": " + $(this).data("currency");
@@ -171,7 +171,7 @@
                     date: $(this).data('date')
                 };
                 AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommGroupSettingFor.replace("{0}", '"' + $(this).html() + '" ' + $(this).data("date")), { width: 1000, height: 450 });
-            });    
+            });
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
@@ -248,7 +248,7 @@
                 },
                 success: function (data) {
                     if (data.Success) {
-                        window.location.reload();
+                        ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
                     } else {
                     }
                 },
@@ -256,33 +256,33 @@
                     $.unblockUI();
                 }
             });
-        }, 
+        },
         MonthlyTransfer: function (input) {
             if (confirm("Do you want to transfer all?")) {
                 $.ajax({
                     url: AFFILIATE.getAbsoluteUrl("Payment/MonthlyTransfer"),
                     type: 'post',
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $.blockUI();
                     },
-                    success: function(data) {
+                    success: function (data) {
                         if (data.Success) {
-                            window.location.reload();
+                            ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
                         } else {
                             alert(data.Message);
                         }
                     },
-                    complete: function() {
+                    complete: function () {
                         $.unblockUI();
                     }
                 });
             }
-        }, 
-        showCommGroup: function(groupId) {
+        },
+        showCommGroup: function (groupId) {
             var param = {
                 groupid: groupId
             };
-            parent.AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommissionGroup, { width: 1000, height: 450 });
+            parent.AFFILIATE.openDialogFrame(AFFILIATE.getAbsoluteUrl("CommGroup/ViewSetting?") + jQuery.param(param), MSG.CommissionGroup, { width: 1000, height: 450 });
         }
     };
 } (jQuery);

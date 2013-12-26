@@ -42,7 +42,7 @@
                 fromDate: $("#FromDate").val(),
                 toDate: $("#ToDate").val()
             };
-            AFFILIATE.openDialogFrame("TrackingStatistic/StatisticDetail?" + jQuery.param(param), "Referrers Statistic Detail", { width: 800, height: 400 });
+            AFFILIATE.openDialogFrame("TrackingStatistic/StatisticDetail?" + jQuery.param(param), MSG.ReferrersStatisticDetails, { width: 800, height: 400 });
         },
         showLandingPageDetail: function (sportCode, languageCode) {
             var param = {
@@ -51,7 +51,7 @@
                 toDate: $("#ToDate").val(),
                 languageCode: languageCode
             };
-            AFFILIATE.openDialogFrame("TrackingStatistic/StatisticDetail?" + jQuery.param(param), "Landing Pages Statistic Details", { width: 800, height: 400 });
+            AFFILIATE.openDialogFrame("TrackingStatistic/StatisticDetail?" + jQuery.param(param), MSG.LandingPagesStatisticDetails, { width: 800, height: 400 });
         }
     }
 } (jQuery);

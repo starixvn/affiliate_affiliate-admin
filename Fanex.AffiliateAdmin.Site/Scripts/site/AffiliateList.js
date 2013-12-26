@@ -1,7 +1,7 @@
 ﻿var AffiliateList = function ($) {
     var submitOptions = {};
-    var BF_COL = 14, MEMBER_COL = 15;
-    var _hideColums = [BF_COL, MEMBER_COL];
+    var COMMGROUP_COL = 12, BF_COL = 14, MEMBER_COL = 15;
+    var _hideColums = [COMMGROUP_COL, BF_COL, MEMBER_COL];
 
     return {
         init: function () {

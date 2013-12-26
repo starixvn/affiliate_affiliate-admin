@@ -153,12 +153,7 @@
                     success: function (data) {
                         if (data.Success) {
                             alert(data.Message);
-                            if (status) {
-                                $("#spClosed").html(MSG.Yes);
-                            }
-                            else {
-                                $("#spClosed").html(MSG.No);
-                            }
+                            document.location.reload();
                         }
                     },
                     complete: function () {

@@ -38,6 +38,9 @@
             }
         }
 
+        _indexProductColumns.clear();
+        _commonColumnCount = _gridOption.columns.length;
+
         for (var i = 0; i < PRODUCTS.length; i++) {
             var name = nomalizeProductName(PRODUCTS[i].Name);
 
@@ -350,8 +353,7 @@
                 },
                 success: function (data) {
                     _gridOption = $.extend(true, {}, sampleGridOption);
-                    _indexProductColumns.clear();
-                    _commonColumnCount = _gridOption.columns.length;
+
                     initProductColumnsForGridOption();
 
                     for (var i = _commonColumnCount; i < _gridOption.columns.length; i++) {
@@ -376,6 +378,12 @@
                     $('#gridId').removeClass("noinfo").fanexGrid(_gridOption);
 
                     hideColumns();
+
+                    if (_isSimpleMode) {
+                        $('#btnChangeViewMode').removeClass('icon-circle-arrow-left').addClass('icon-circle-arrow-right');
+                    } else {
+                        $('#btnChangeViewMode').removeClass('icon-circle-arrow-right').addClass('icon-circle-arrow-left');
+                    }
 
                     if (data.List.length == 0) {
                         $('.status').hide();

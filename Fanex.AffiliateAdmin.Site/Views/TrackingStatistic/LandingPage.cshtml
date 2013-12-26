@@ -65,9 +65,9 @@
         var gridOption = {
             columns: [
                         { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
-                        { HeaderText: "@Lang.Page", Width: 230, Name: "SportCode", HeaderAlign: "center", Formatter:
-                            function (rowIndex, rowData, cell, cellFormated) {
-                                return "<a href=\"javascript:STATISTIC.showLandingPageDetail('" + rowData.SportCode + "');\">" + cell.Value + "</a>";
+                        { HeaderText: "@Lang.Page", Width: 230, Name: "SportCode", HeaderAlign: "center", 
+                            Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                                return "<a href=\"javascript:STATISTIC.showLandingPageDetail('{0}', '{1}')\">{0}</a>".format(rowData.SportCode, rowData.LanguageCode);
                             }
                         },
                         { HeaderText: "@Lang.Language", Width: 155, Name: "LanguageCode", HeaderAlign: "center" },

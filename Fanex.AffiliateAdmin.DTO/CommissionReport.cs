@@ -45,7 +45,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal Winloss { get; set; }
 
-        public decimal CommissionBase { get; set; }
+        public double CommissionBase { get; set; }
 
         public decimal DepositBase { get; set; }
 

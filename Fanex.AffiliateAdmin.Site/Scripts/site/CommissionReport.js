@@ -19,6 +19,25 @@
         var hasGroupByMonth = $("#GroupBy").val() == GROUP_BY_MONTH;
         var mergeColNumber = hasGroupByMonth ? 7 : 5;
 
+        if (HasCashbackDeduction) {
+            if (hasGroupByMonth) {
+                _gridOption.groupHeaderRows[0].Columns.splice(DEDUCTION_PERCENT_COL, 0, sampleCashbackHeader);
+                _gridOption.columns.splice(DEDUCTION_PERCENT_COL, 0, sampleDeductedPercentageCol, sampleAmountCol);
+            } else {
+                var cashbackHeader = $.extend(true, {}, sampleCashbackHeader);
+                cashbackHeader.HeaderCaption = MSG.CashbackAmount;
+                cashbackHeader.HeaderText = MSG.CashbackAmount;
+                cashbackHeader.Name = "Cashback";
+                cashbackHeader.NameCache = "Cashback";
+                cashbackHeader.MergeColNumber = 1;
+                cashbackHeader.MergeRowNumber = 2;
+                cashbackHeader.IsCurrency = true;
+
+                _gridOption.groupHeaderRows[0].Columns.splice(DEDUCTION_PERCENT_COL, 0, cashbackHeader);
+                _gridOption.columns.splice(DEDUCTION_PERCENT_COL, 0, sampleAmountCol);
+            }
+        }
+
         for (var i = 0; i < PRODUCTS.length; i++) {
             var name = nomalizeProductName(PRODUCTS[i].Name);
 
@@ -126,7 +145,7 @@
         for (var i = mergeCols; i < _gridOption.columns.length; i++) {
             var col = _gridOption.columns[i];
             var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-            
+
             if (col.IsPercent) {
                 totalColums.push({ Value: MSG.NA, Name: col.Name });
             } else {
@@ -162,10 +181,6 @@
             columns = _indexProductColumns.clone();
         }
 
-        if (HasCashbackDeduction === false) {
-            columns = columns.concat(_bonusColumns.clone());
-        }
-
         if ($("#GroupBy").val() == GROUP_BY_MONTH) {
             $("#gridId").fanexGrid("hideColumns", _gridOption, columns);
         }
@@ -176,7 +191,9 @@
             $("#gridId .row_footer table tr th").show();
         }
 
-        if (_isSimpleMode && HasCashbackDeduction === false)
+        var hasGroupByMonth = submitOptions.GroupBy == GROUP_BY_MONTH;
+
+        if ((_isSimpleMode && !HasCashbackDeduction) || (_isSimpleMode && HasCashbackDeduction && !hasGroupByMonth))
             $("#gridId table:lt(4) th div").height(30);
     }
     return {

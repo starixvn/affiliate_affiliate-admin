@@ -51,7 +51,7 @@
                 toDate: $("#ToDate").val(),
                 languageCode: $("#BaseLanguage").val()
             };
-            AFFILIATE.openDialogFrame("TrackingStatistic/StatisticDetail?" + jQuery.param(param), "Landing Pages Statistic Detail", { width: 800, height: 400 });
+            AFFILIATE.openDialogFrame("TrackingStatistic/StatisticDetail?" + jQuery.param(param), "Landing Pages Statistic Details", { width: 800, height: 400 });
         }
     }
 } (jQuery);

@@ -2425,4 +2425,10 @@
   <data name="NA" xml:space="preserve">
     <value>NA</value>
   </data>
+  <data name="CashbackAmount" xml:space="preserve">
+    <value>Cashback Amount</value>
+  </data>
+  <data name="LandingPagesStatisticDetails" xml:space="preserve">
+    <value>Landing Pages Statistic Details</value>
+  </data>
 </root>

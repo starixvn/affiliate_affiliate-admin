@@ -1060,6 +1060,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cashback Amount.
+        /// </summary>
+        public static string CashbackAmount {
+            get {
+                return ResourceManager.GetString("CashbackAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string Category {
@@ -3882,6 +3891,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string LandingPages {
             get {
                 return ResourceManager.GetString("LandingPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landing Pages Statistic Details.
+        /// </summary>
+        public static string LandingPagesStatisticDetails {
+            get {
+                return ResourceManager.GetString("LandingPagesStatisticDetails", resourceCulture);
             }
         }
         

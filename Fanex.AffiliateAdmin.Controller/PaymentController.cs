@@ -22,6 +22,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Session;
     using Core.Utilities;
     using Criterias;
+    using Fanex.AffiliateAdmin.Resources;
     using Models;
     using Services.Impl;
     using Services.Interface;
@@ -246,17 +247,28 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult MonthlyTransfer()
         {
-            var now = DateTime.Now.AddMonths(-1);
-
-            var criteria = new MonthlyTransferCriteria { Month = now.Month, Year = now.Year };
-
-            var result = _paymentService.MonthlyTransfer(criteria);
-
-            return Json(new ResultViewModel 
+            if (SessionManager.CurrentSession.RoleAccess.HasPolicy("[MonthlyTransfer]", 1))
             {
-                Success = string.IsNullOrEmpty(result),
-                Message = result
-            });
+                var now = DateTime.Now.AddMonths(-1);
+
+                var criteria = new MonthlyTransferCriteria { Month = now.Month, Year = now.Year, UserId = CurrentSession.CustID };
+
+                var result = _paymentService.MonthlyTransfer(criteria);
+
+                return Json(new ResultViewModel
+                {
+                    Success = string.IsNullOrEmpty(result),
+                    Message = result
+                });
+            }
+            else
+            {
+                return Json(new ResultViewModel 
+                {
+                    Success = false,
+                    Message = Lang.YouDontHaveMonthlyTransfer
+                });
+            }
         }
 
         #region Helpers

@@ -25,8 +25,6 @@
                 _gridOption.columns.splice(DEDUCTION_PERCENT_COL, 0, sampleDeductedPercentageCol, sampleAmountCol);
             } else {
                 var cashbackHeader = $.extend(true, {}, sampleCashbackHeader);
-                cashbackHeader.HeaderCaption = MSG.CashbackAmount;
-                cashbackHeader.HeaderText = MSG.CashbackAmount;
                 cashbackHeader.Name = "Cashback";
                 cashbackHeader.NameCache = "Cashback";
                 cashbackHeader.MergeColNumber = 1;

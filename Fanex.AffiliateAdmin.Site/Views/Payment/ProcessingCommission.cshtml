@@ -7,19 +7,31 @@
     ViewBag.Title = Lang.ProcessingCommission;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@section iconcss{
-payment
-}
-@section submenu{
-    @RazorHelper.ListSubmenu(SubMenu.Payment, 1, "payment")
-}
 
 @{
+    var roleAccess = SessionManager.CurrentSession.RoleAccess;
+    var hasMonthlyTransfer = roleAccess.HasPolicy("[MonthlyTransfer]");
+    var hasWriteMonthlyTransfer = roleAccess.HasPolicy("[MonthlyTransfer]", 1);
+    var subMenu = new List<Menu>();
+    subMenu.AddRange(SubMenu.Payment);
+
+    if (hasMonthlyTransfer)
+    {
+        subMenu.Add(new Menu { Text = Lang.ProcessingCommission, Link = "~/Payment/ProcessingCommission" });
+    }
+
     var isMonthlyTransfer = (bool)ViewBag.IsMonthlyTransfer;
     const int transferDay = 8;
     var today = DateTime.Now;
     var isTransferDay = today.Date.Day == transferDay;
-    var transferBtn = AppSettings.TestMonthlyTransfer || (isTransferDay && !isMonthlyTransfer) ? string.Format("<input type='button' value='{0}' id='transferAll' style='line-height: normal; top: -1px; left: 0;'>", Lang.TransferAll) : string.Empty;
+    var transferBtn = AppSettings.TestMonthlyTransfer || (hasWriteMonthlyTransfer && isTransferDay && !isMonthlyTransfer) ? string.Format("<input type='button' value='{0}' id='transferAll' style='line-height: normal; top: -1px; left: 0;'>", Lang.TransferAll) : string.Empty;
+}
+
+@section iconcss{
+payment
+}
+@section submenu{
+    @RazorHelper.ListSubmenu(subMenu, 1, "payment")
 }
 
 <div class="search-panel search-payment">
@@ -60,7 +72,7 @@ payment
                     <label for="SortBy" class="txt">@Lang.SortBy</label>
                     <select id="SortBy" name="SortBy" class="width-140 single-select dropdownchecklist">
                         <option value="0">@Lang.Affiliate</option>
-                        <option value="1">@Lang.Commission</option>
+                        <option value="1">@Lang.TotalPayment</option>
                     </select>
                 </div>
                 <div class="cell">

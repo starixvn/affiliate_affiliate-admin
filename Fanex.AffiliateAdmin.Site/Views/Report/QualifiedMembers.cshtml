@@ -54,9 +54,9 @@
         <td align="center">@(count++)</td>
         <td class="">@member.Username</td>    
             <td class="" align="center">@member.Currency</td>    
-            
-            
-            <td class="" align="right">@String.Format(CultureInfo.InvariantCulture, "{0:,0.00}", @member.QualifiedAmount)</td>    
+            <td class="" align="right">
+                @member.QualifiedAmount.ToString("N", CultureInfo.InvariantCulture)
+            </td>    
         @foreach (var product in AppSettings.Products)
         {
             var turnover = (double)@member.GetPropertyValue(product.ProductName.Replace(" ", "") + "Turnover");
@@ -66,7 +66,9 @@
                 totalData.Add(product.ProductID, isQualified ? 1 : 0);
             else
                 totalData[product.ProductID] += isQualified ? 1 : 0;
-            <td class="" width="100px" align="right" @style >@String.Format(CultureInfo.InvariantCulture, "{0:,0.00}", turnover)</td>    
+            <td class="" width="100px" align="right" @style >
+                @turnover.ToString("N", CultureInfo.InvariantCulture)
+            </td>    
         }
         </tr>
     }

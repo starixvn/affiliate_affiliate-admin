@@ -42,7 +42,7 @@ customer
         <div class="row-fluid row-form">
             <div class="cell">
                 <label for="MemberType" class="txt">@Lang.MemberType</label>
-                <select id="MemberType" class="width-140 single-select dropdownchecklist">
+                <select id="MemberType" name="MemberType" class="width-140 single-select dropdownchecklist">
                     <option value="0">@Lang.All</option>
                     <option value="1">@Lang.Deposit</option>
                     <option value="2">@Lang.NonDeposit</option>
@@ -50,7 +50,7 @@ customer
             </div>
             <div class="cell">
                 <label for="DateOption" class="txt">@Lang.DateOption</label>
-                <select id="DateOption" class="width-140 single-select dropdownchecklist">
+                <select id="DateOption" name="DateOption" class="width-140 single-select dropdownchecklist">
                     <option value="0">@Lang.All</option>
                     <option value="1">@Lang.RegisterDate</option>
                     <option value="2">@Lang.FirstDepositDate</option>
@@ -68,7 +68,7 @@ customer
         <div class="row-fluid row-form">
         <div class="cell">
                 <label for="SortBy" class="txt">@Lang.SortBy</label>
-                <select id="SortBy" class="width-140 single-select dropdownchecklist">
+                <select id="SortBy" name="SortBy" class="width-140 single-select dropdownchecklist" >
                     <option value="0">@Lang.Username</option>
                     <option value="1" selected>@Lang.RegisterDate</option>
                     <option value="2">@Lang.FirstDepositDate</option>                    

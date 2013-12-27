@@ -16,6 +16,8 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class MonthlyTransferCriteria : CriteriaBase
     {
+        public int UserId { get; set; }
+
         public int Month { get; set; }
 
         public int Year { get; set; }

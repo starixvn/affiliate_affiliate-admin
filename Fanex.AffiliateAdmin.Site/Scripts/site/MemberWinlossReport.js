@@ -299,6 +299,7 @@
                         totalItem: data.List.length
                     };
 
+                    _gridOption.titleInfo.text = MSG.MemberWinloss + ' [{0}]'.format(data.TotalItem);
                     _gridOption.bodyRows = AFFILIATE.genGridRows(data.List, _gridOption);
                     _gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData);
 

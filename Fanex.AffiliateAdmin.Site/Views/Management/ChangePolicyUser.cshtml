@@ -52,7 +52,7 @@
                       { HeaderText: "@Lang.Host", Width: 80, Name: "IndividualHost", CellAlign: "center", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
                             if (rowData.GroupHost) {
-                                return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' checked=checked disabled=disabled/>";
+                                return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualHost' checked=checked disabled=disabled/>";
                             }
                             
                             return "<input type='checkbox' class='p-check' id='ih_" + rowData.FuncID + "' name='IndividualHost' " + (cell.Value ? "checked=checked" : "") + " />";

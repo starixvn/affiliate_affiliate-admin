@@ -10,8 +10,20 @@
 @section iconcss{
 payment
 }
+
+@{
+    var roleAccess = SessionManager.CurrentSession.RoleAccess;
+    var subMenu = new List<Menu>();
+    subMenu.AddRange(SubMenu.Payment);
+        
+    if (roleAccess.HasPolicy("[MonthlyTransfer]"))
+    {
+        subMenu.Add(new Menu { Text = Lang.ProcessingCommission, Link = "~/Payment/ProcessingCommission" });
+    }
+}
+
 @section submenu{
-    @RazorHelper.ListSubmenu(SubMenu.Payment, 0, "payment")
+    @RazorHelper.ListSubmenu(subMenu, 0, "payment")
 }
 <div class="search-panel search-payment">
     <div class="ic-reload" title="@Lang.RefreshPage">

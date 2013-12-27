@@ -7142,5 +7142,14 @@ namespace Fanex.AffiliateAdmin.Resources {
                 return ResourceManager.GetString("YouAreNotAuthorized", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorrry! You don&apos;t have monthly transfer permission..
+        /// </summary>
+        public static string YouDontHaveMonthlyTransfer {
+            get {
+                return ResourceManager.GetString("YouDontHaveMonthlyTransfer", resourceCulture);
+            }
+        }
     }
 }

@@ -43,6 +43,7 @@
                 if (i == 0) {
                     var turnoverHeader = $.extend(true, {}, sampleTurnoverHeader);
                     turnoverHeader.Name = name + "Turnover";
+                    turnoverHeader.NameCache = name + "Turnover";
                     turnoverHeader.MergeColNumber = productCount + 1;
                     _gridOption.groupHeaderRows[0].Columns.splice(startTurnoverPosition, 0, turnoverHeader);
                 }
@@ -72,12 +73,13 @@
                 if (i == 0) {
                     var companyWLHeader = $.extend(true, {}, sampleCompanyWLHeader);
                     companyWLHeader.Name = name + "Winlost";
+                    companyWLHeader.NameCache = name + "Winlost";
                     companyWLHeader.MergeColNumber = productCount + 1;
-                    _gridOption.groupHeaderRows[0].Columns.splice(_gridOption.groupHeaderRows[0].Columns.length, 0, companyWLHeader);
+                    _gridOption.groupHeaderRows[0].Columns.push(companyWLHeader);
                 }
 
                 var winlostCol = { HeaderCaption: MSG[name], HeaderText: MSG[name], Width: 110, Name: name + "Winlost", NameCache: name + "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' };
-                _gridOption.columns.splice(_gridOption.columns.length, 0, winlostCol);
+                _gridOption.columns.push(winlostCol);
             }
         }
 

@@ -172,8 +172,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             {
                 return new List<Menu>
                 {
-                    new Menu { Text = Lang.Payment, Link = "~/Payment" },
-                    new Menu { Text = Lang.ProcessingCommission, Link = "~/Payment/ProcessingCommission" }
+                    new Menu { Text = Lang.Payment, Link = "~/Payment" }
                 };
             }
         }

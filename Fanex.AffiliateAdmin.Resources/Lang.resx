@@ -2479,4 +2479,7 @@
   <data name="UpdatePayment" xml:space="preserve">
     <value>Update Payment</value>
   </data>
+  <data name="YouDontHaveMonthlyTransfer" xml:space="preserve">
+    <value>Sorrry! You don't have monthly transfer permission.</value>
+  </data>
 </root>

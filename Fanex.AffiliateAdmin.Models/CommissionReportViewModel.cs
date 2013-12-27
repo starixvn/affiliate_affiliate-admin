@@ -192,7 +192,7 @@ namespace Fanex.AffiliateAdmin.Models
             {
                 if (_sortByOptionList == null)
                 {
-                    _sortByOptionList = new SelectList(_sortByList.OrderBy(t => t.Text), "Value", "Text");
+                    _sortByOptionList = new SelectList(_sortByList.OrderBy(t => t.Text), "Value", "Text", "0");
                 }
 
                 return _sortByOptionList;

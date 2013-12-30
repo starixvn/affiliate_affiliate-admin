@@ -224,8 +224,8 @@
 
             var value = $('#GroupBy').val();
 
-            var fromDate = moment('01 ' + $('#FromDate').val());
-            var toDate = moment('01 ' + $('#ToDate').val());
+            var fromDate = moment($('#FromDate').val());
+            var toDate = moment($('#ToDate').val());
 
 
             var fromYear = fromDate.year();

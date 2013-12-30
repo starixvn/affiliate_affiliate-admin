@@ -173,7 +173,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             var affiliateEmailBody = GetEmailBody(templatePath, emailContent);
             var affiliateSubject = string.Format(mailSubject, AppSettings.AffiliateName);
 
-            SendEmail(affiliateEmailBody, mailTo, affiliateSubject, AppSettings.BCCMail);
+            SendEmail(affiliateEmailBody, mailTo, affiliateSubject, AppSettings.ITMail);
         }
 
         /// <summary>

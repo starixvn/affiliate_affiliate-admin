@@ -92,7 +92,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         {
             var emailSubject = ParseTemplate(_subjectPath, info);
             var emailBody = ParseTemplate(_bodyPath, info);
-            Common.SendEmail(emailBody, mailTo, emailSubject, AppSettings.BCCMail, AppSettings.CCMail);
+            Common.SendEmail(emailBody, mailTo, emailSubject, AppSettings.ITMail);
         }
 
         /// <summary>

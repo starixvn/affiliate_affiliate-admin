@@ -24,6 +24,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string LanguageCode { get; set; }
 
+        public string LanguageName { get; set; }
+
         public int TotalClick { get; set; }
 
         public int UniqueClick { get; set; }

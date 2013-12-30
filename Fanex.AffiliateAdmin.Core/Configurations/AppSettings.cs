@@ -375,15 +375,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                 return Convert.ToInt32(GetValue("ServerID"));
             }
         }
-
-        public static int InputAffType
-        {
-            get
-            {
-                return Convert.ToInt32(GetValue("InputAffType"));
-            }
-        }
-
+        
         public static string DefaultLanguage
         {
             get
@@ -392,19 +384,11 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        public static string BCCMail
+        public static string ITMail
         {
             get
             {
-                return GetValue("BCCMail");
-            }
-        }
-
-        public static string CCMail
-        {
-            get
-            {
-                return GetValue("CCMail");
+                return GetValue("ITMail");
             }
         }
 
@@ -436,15 +420,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                return GetValue("LocalTest") == "1";
-            }
-        }
-
-        public static string EnvironmentBasedOnLocalTest
-        {
-            get
-            {
-                return LocalTest ? "Local Development" : "Production";
+                return GetValue("LocalTest").Equals("1");
             }
         }
 
@@ -639,23 +615,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                 return Convert.ToDecimal(GetValue("MinimumWithdrawalAmount"));
             }
         }
-
-        public static string DefaultCurrencySymbol
-        {
-            get
-            {
-                return GetValue("DefaultCurrencySymbol");
-            }
-        }
-
-        public static string AffiliateBaseCurrencyList
-        {
-            get
-            {
-                return GetValue("AffiliateBaseCurrencyList");
-            }
-        }
-
+        
         public static string SystemName
         {
             get

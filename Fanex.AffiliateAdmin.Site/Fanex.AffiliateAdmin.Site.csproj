@@ -183,31 +183,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SpMYMBet.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Data\SpMacauBet.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Data\SpLB365.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Data\Spitcbet.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Data\SpI668Bet.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Data\SpBwinning.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Data\SpAthena000.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Data\SpAoncash.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Data\SpNames.xml">
+    <Content Include="App_Data\SPAthena000.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />

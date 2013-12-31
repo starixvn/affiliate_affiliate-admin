@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
     using System;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
+    using Fanex.AffiliateAdmin.Core.Configurations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -58,7 +59,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
             var memberSiteUrl = adminSiteUrl;
             var affiliateSiteUrl = adminSiteUrl;
             
-            if (siteUrl.HostNameType == UriHostNameType.Dns)
+            if (siteUrl.HostNameType == UriHostNameType.Dns && AppSettings.Environment.Equals("Production"))
             {
                 var words = host.Split('.');
                 if (words.Length > 2)

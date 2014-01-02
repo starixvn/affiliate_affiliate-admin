@@ -170,7 +170,7 @@ var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
         setValue: function (settings) {
             var 
                 month = settings.selectedMonth,
-                year = settings.year;
+                year = settings.selectedYear;
             
             if (settings.pattern.indexOf('mmm') >= 0) {
                 month = settings.selectedMonthName;

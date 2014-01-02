@@ -118,7 +118,7 @@ payment
             },
             { HeaderText: "@Lang.Currency", Width: 105, Name: "Currency", HeaderAlign: "center", CellAlign: "center" }
         ];
-        var columnAmount = { HeaderText: "@Lang.Amount", Width: 220, Name: "Amt", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER };
+        var columnAmount = { HeaderText: "@Lang.Amount", Width: 200, Name: "Amt", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER };
         var HeaderText = "@Lang.Amount";
 
         var gridOption = {
@@ -131,7 +131,8 @@ payment
                 return rowData.Status.toLowerCase();
             },
             showPager: true,
-            gridExpandHeight: 380,
+            fullHeight: false,
+            gridHeight: 500,
             showNumberColumn: true,
             showFooter: true
         };

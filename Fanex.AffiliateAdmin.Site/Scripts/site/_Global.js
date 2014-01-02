@@ -796,7 +796,7 @@ $.fn.createSearchPanel = function () {
                 // keep width of datagrid
                 if (!$(".search-form").is(":visible")) {
                     // resize height of datagrid
-                    $("#gridId").fanexGrid('resizeHeight', expHeight);
+                    //$("#gridId").fanexGrid('resizeHeight', expHeight);
                 }
 
                 $contentPanel.stop().slideToggle(function () {
@@ -804,7 +804,7 @@ $.fn.createSearchPanel = function () {
                         collapse.removeClass("expand");                        
                     } else {
                         // resize height of datagrid
-                        $("#gridId").fanexGrid('resizeHeight', colHeight);
+                        //$("#gridId").fanexGrid('resizeHeight', colHeight);
                     }
                 });
             });

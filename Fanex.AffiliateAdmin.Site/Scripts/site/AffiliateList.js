@@ -5,6 +5,10 @@
 
     return {
         init: function () {
+            $("#gridId").resize(function () {
+                $(".search-panel").width($(this).width());
+            }); 
+
             if ($('#gridId').length > 0) {
                 AffiliateList.submitRequest();
             }

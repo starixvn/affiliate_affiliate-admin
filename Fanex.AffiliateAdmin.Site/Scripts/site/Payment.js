@@ -64,7 +64,7 @@
                     //To define header has prefix "$" or not
                     var headerColumns = columnsBase.slice(0);
                     var colAmt = columnAmount;
-                    colAmt.HeaderText = $("#BaseCurrency").val() != "" ? HeaderText + "(" + System.Prefix + ")" : HeaderText;
+                    colAmt.HeaderText = $("#BaseCurrency").val() != "0" ? HeaderText + "(" + System.Prefix + ")" : HeaderText;
 
                     headerColumns.push(colAmt);
                     gridOption.columns = headerColumns;

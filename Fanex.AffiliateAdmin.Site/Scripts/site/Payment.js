@@ -1,6 +1,11 @@
 ﻿var Payment = function ($) {
     return {
         init: function () {
+
+            $("#gridId").resize(function () {
+                $(".search-panel").width($(this).width());
+            }); 
+
             $("#GetAll").click(function () {
                 var isChecked = $(this).is(':checked');
                 Payment.toggleGetAllChecked(isChecked);
@@ -64,7 +69,7 @@
                     //To define header has prefix "$" or not
                     var headerColumns = columnsBase.slice(0);
                     var colAmt = columnAmount;
-                    colAmt.HeaderText = $("#BaseCurrency").val() != "0" ? HeaderText + "(" + System.Prefix + ")" : HeaderText;
+                    colAmt.HeaderText = $("#BaseCurrency").val() != "0" ? HeaderText + " (" + System.Prefix + ")" : HeaderText;
                     colAmt.Name = $("#BaseCurrency").val() != "0" ? "ConvertedAmt" : "Amt";
 
                     headerColumns.push(colAmt);
@@ -78,7 +83,10 @@
                     };
 
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
-                    gridOption.footerRows = Payment.genFooterRow(gridOption, data.List.length > 1 ? data.SubTotal : [], 8, data.Total, 8);
+
+                    if (data.List.length > 0) {
+                        gridOption.footerRows = Payment.genFooterRow(gridOption, data.List.length > 1 ? data.SubTotal : [], 8, data.Total, 8);
+                    }
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 

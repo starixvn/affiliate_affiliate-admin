@@ -353,10 +353,10 @@
                 var record = list[i];
                 var dataRow = [];
 
-                for (var i = 0; i < columns.length; i++) {
+                for (var j = 0; j < columns.length; j++) {
                     (function () {
-                        var colName = columns[i].Name;
-                        var col = columns[i];
+                        var colName = columns[j].Name;
+                        var col = columns[j];
                         dataRow.push({
                             Name: colName,
                             Value: record[colName],

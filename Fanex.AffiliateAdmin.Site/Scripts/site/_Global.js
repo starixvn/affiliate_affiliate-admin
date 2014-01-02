@@ -345,6 +345,7 @@
             }
             return bodyRows;
         },
+
         genGridData: function (columns, list, rowCssClass) {
             var bodyRows = [];
             var len = list.length;
@@ -352,10 +353,10 @@
                 var record = list[i];
                 var dataRow = [];
 
-                for (var j = 0; j < columns.length; j++) {
+                for (var i = startColIdx; i < columns.length; i++) {
                     (function () {
-                        var colName = columns[j].Name;
-                        var col = columns[j];
+                        var colName = columns[i].Name;
+                        var col = columns[i];
                         dataRow.push({
                             Name: colName,
                             Value: record[colName],
@@ -369,6 +370,7 @@
                     } ());
                 }
 
+
                 bodyRows.push({
                     Columns: dataRow,
                     CssClass: rowCssClass ? rowCssClass(record) : undefined
@@ -376,38 +378,7 @@
             }
             return bodyRows;
         },
-        genFooterRow: function (listSubTotalRows, colSpanSub, totalRow, colSpanTotal) {
-            var footerRows = [];
-            var subRowLength = listSubTotalRows.length;
-            var subRowCurrency = listSubTotalRows[0];
-            var colSubTotal = [];
-            var colTotal = [];
-
-            //Sub total row.
-            if (subRowLength > 1 || (subRowLength == 1 && subRowCurrency["Currency"] != System.Currency && $("#BaseCurrency").val() != System.Currency)) {
-                colSubTotal.push({ Value: Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: subRowLength });
-                for (var i = 0; i < subRowLength; i++) {
-                    var subRow = listSubTotalRows[i];
-
-                    for (key in subRow) {
-                        colSubTotal.push({ Name: key, Value: subRow[key] });
-                    }
-                    footerRows.push({ Columns: colSubTotal });
-
-                    colSubTotal = []; //Init sub total row.
-                }
-            }
-
-            //Total Row
-            colTotal.push({ Value: Lang.Total, Name: "RowID", MergeColNumber: colSpanTotal });
-            var totalRowObject = totalRow[0];
-            for (key in totalRowObject) {
-                colTotal.push({ Name: key, Value: totalRowObject[key] });
-            }
-            footerRows.push({ Columns: colTotal, CssClass: "total" });
-
-            return footerRows;
-        },
+        
         showUpdateStatus: function (errCode, msg, callback, timeout) {
             if (errCode == 0) {
                 AFFILIATE.showSuccessMsg(msg);

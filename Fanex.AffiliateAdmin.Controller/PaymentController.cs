@@ -78,7 +78,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var subTotalRow = 
                 from p in data
                 group p by p.Currency into g
-                select new { Currency = g.Key, Amt = g.Sum(p => p.Amt) };
+                select new { Currency = g.Key, Amt = g.Sum(p => p.Amt), ConvertedAmt = g.Sum(p => p.ConvertedAmt) };
 
             var totalRow = from x in data
                         group x by 1
@@ -86,7 +86,8 @@ namespace Fanex.AffiliateAdmin.Controller
                         select new
                         {
                             Currency = AppSettings.BaseExchange.Code,
-                            Amt = g.Sum(y => y.ConvertedAmt)
+                            Amt = g.Sum(y => y.ConvertedAmt),
+                            ConvertedAmt = g.Sum(p => p.ConvertedAmt)
                         };
 
             return Json(new

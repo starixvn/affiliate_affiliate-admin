@@ -353,7 +353,7 @@
                 var record = list[i];
                 var dataRow = [];
 
-                for (var i = startColIdx; i < columns.length; i++) {
+                for (var i = 0; i < columns.length; i++) {
                     (function () {
                         var colName = columns[i].Name;
                         var col = columns[i];

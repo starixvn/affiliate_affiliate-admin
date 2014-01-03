@@ -5920,7 +5920,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign up.
+        ///   Looks up a localized string similar to Sign Up.
         /// </summary>
         public static string SignUp {
             get {

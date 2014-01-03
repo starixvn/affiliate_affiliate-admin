@@ -286,12 +286,14 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Customer list action.
         /// </summary>
-        /// <param name="affname">Affiliate name.</param>
+        /// <param name="affName">Affiliate name.</param>
+        /// <param name="memberName">Member name.</param>
         /// <returns>Action Result.</returns>
         [HttpGet]
-        public ActionResult MemberList(string affname)
+        public ActionResult MemberList(string affName, string memberName)
         {
-            ViewBag.affname = affname;
+            ViewBag.AffName = affName;
+            ViewBag.MemberName = memberName;
             return View();
         }
 

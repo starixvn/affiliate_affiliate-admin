@@ -26,6 +26,8 @@ namespace Fanex.AffiliateAdmin.Models
                 new SelectListItem { Value = "2", Text = Lang.FirstDepositDate },
             };
 
+        public string Username { get; set; }
+
         public DateTime? FromDate { get; set; }
 
         public DateTime? ToDate { get; set; }

@@ -134,7 +134,12 @@
                 { HeaderText: "@Lang.Date", Width: 80, Name: "WinlostDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
                 { HeaderText: "@Lang.Affiliate", Width: 70, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.Currency", Width: 70, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "@Lang.Member", Width: 70, Name: "PlayerUsername", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.Member", Width: 70, Name: "PlayerUsername", HeaderAlign: "center", CellAlign: "left",
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        var url = AFFILIATE.getAbsoluteUrl("Affiliate/MemberListByAffiliate?Username={0}".format(record.PlayerUsername));
+                        return "<a href='{0}'>{1}</a>".format(url, record.PlayerUsername);
+                    }
+                },
                 { HeaderText: "@Lang.MemberCurrency", Width: 80, Name: "PlayerCurrency", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Width: 80, Name: "ExRate", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Width: 90, Name: "Deposit", NameCache: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },

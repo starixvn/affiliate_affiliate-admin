@@ -12,6 +12,10 @@
                 return false;
             });
 
+            $(".main-content").on("click", ".icon-add-config", function () {
+                Configuration.addConfiguration();
+            });
+
             $('.form-popup').submit(function () {
                 AFFILIATE.trimBeforeSubmit();
             });
@@ -45,7 +49,6 @@
                 },
                 success: function (data) {
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, Configuration.ReRenderAfterPaged);
-                    $(".btnAdd").addClass("icon-add-config");
                 },
                 complete: function () {
                     $.unblockUI();

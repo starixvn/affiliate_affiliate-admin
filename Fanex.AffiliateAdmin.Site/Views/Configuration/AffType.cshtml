@@ -42,10 +42,7 @@ settings
             titleInfo:
             {
                 text: "@Lang.AffiliateTypeList",
-                showAddButton: true,
-                addFunction: function() {
-                    AffType.addAffType();
-                }
+                customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddNewAffType" class="btnAdd icon-add-config" id="btnAddgridId">'
             },
             columns: [
                 { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },

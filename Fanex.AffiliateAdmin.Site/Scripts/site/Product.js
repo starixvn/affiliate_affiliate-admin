@@ -12,6 +12,10 @@
                 return false;
             });
 
+            $(".main-content").on("click", ".icon-add-config", function () {
+                Product.addProduct();
+            });
+
             $('.form-popup').submit(function () {
                 AFFILIATE.trimBeforeSubmit();
             });
@@ -46,7 +50,6 @@
                 success: function (data) {
                     gridOption.titleInfo.text = MSG.Title + ' [{0}]'.format(data.List.length);
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, Product.ReRenderAfterPaged);
-                    $(".btnAdd").addClass("icon-add-config");
                 },
                 complete: function () {
                     $.unblockUI();

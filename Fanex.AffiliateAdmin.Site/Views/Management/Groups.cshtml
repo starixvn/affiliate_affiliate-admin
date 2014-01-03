@@ -21,17 +21,15 @@ management
     <script type="text/javascript">
         var PageVar = {
             NoInfo: "@Lang.NoInfo",
-            ConfirmDelGroup: "@Lang.ConfirmDelGroup"
+            ConfirmDelGroup: "@Lang.ConfirmDelGroup",
+            AddNewGroup: "@Lang.AddNewGroup"
         };
         var gridOption = {
             showTitle: true,
             titleInfo:
             {
                 text: "@Lang.DepartmentList",
-                showAddButton: true,
-                addFunction: function () {
-                    Management.addGroup();
-                }
+                customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddNewGroup" class="btnAdd icon-add-group" id="btnAddgridId">'
             },
             columns: [
                       { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },

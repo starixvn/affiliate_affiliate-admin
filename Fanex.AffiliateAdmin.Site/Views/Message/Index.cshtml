@@ -66,14 +66,7 @@ message
             titleInfo:
             {
                 text: "@Lang.MessageList",
-                showAddButton: true,
-                addFunction: function() {
-                    Message.addMessage();
-                },
-                showEditButton: true,
-                editFunction: function() {
-                    Message.editMessage();
-                }
+                customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddMessage" class="btnAdd icon-add-message" /> <input type="button" name="btnEdit" value="" title="@Lang.EditCurrentMessage" class="btnEdit icon-edit-message" />'
             },
             columns: [
                 { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },

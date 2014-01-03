@@ -2,6 +2,11 @@
     return {
         init: function () {
             AFFILIATE.RefreshGridData = NOTE.ReRenderAfterPaged;
+
+            $(".main-content").on("click", ".icon-add-note", function () {
+                NOTE.addNote();
+            });
+
             $("#btnCancel").click(function () {
                 if (parent.AFFILIATE.currentOpenDialog)
                     parent.AFFILIATE.currentOpenDialog.dialog("close");
@@ -49,7 +54,7 @@
             });
         },
         addNote: function () {
-            AFFILIATE.openDialogFrame("Note/AddNote", "Add Note", { width: 600, height: 220 });
+            AFFILIATE.openDialogFrame("Note/AddNote", MSG.AddNote, { width: 600, height: 220 });
             return false;
         },
         editNote: function (noteId) {

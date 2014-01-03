@@ -29,6 +29,7 @@
     <script type="text/javascript">
         var MSG = {
             NoInfo: "@Lang.NoInfo",
+            AddNote: "@Lang.AddNote",
             Title: "@Lang.NotesList"
         };
         var gridOption = {
@@ -37,10 +38,7 @@
             titleInfo:
             {
                 text: "@Lang.NotesList",
-                showAddButton: true,
-                addFunction: function() {
-                    NOTE.addNote();
-                }
+                customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddNote" class="btnAdd icon-add-note" />'
             },
             columns: [
                 { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },

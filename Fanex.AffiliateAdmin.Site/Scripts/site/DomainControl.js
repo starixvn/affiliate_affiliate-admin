@@ -9,6 +9,10 @@
                 DOMAINCONTROL.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             }
 
+            $(".main-content").on("click", ".icon-add-affDomain", function () {
+                DOMAINCONTROL.Insert();
+            });
+
             $("#btnCancel").click(function () {
                 if (parent.AFFILIATE.currentOpenDialog)
                     parent.AFFILIATE.currentOpenDialog.dialog("close");
@@ -35,7 +39,6 @@
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
-                    $(".btnAdd").addClass("icon-add-affDomain");
                 }
             });
         },

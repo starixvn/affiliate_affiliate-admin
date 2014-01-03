@@ -7,6 +7,10 @@
                 TextList.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             }
 
+            $(".main-content").on("click", ".icon-add-banner", function () {
+                TextList.addText();
+            });
+
             $('.search-panel form').submit(function () {
                 TextList.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
                 return false;
@@ -37,7 +41,6 @@
                 },
                 success: function (data) {
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, TextList.ReRenderAfterPaged);
-                    $(".btnAdd").addClass("icon-add-banner");
                 },
                 complete: function () {
                     $.unblockUI();

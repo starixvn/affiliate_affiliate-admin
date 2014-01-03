@@ -34,7 +34,7 @@ settings
             <div class="row-fluid row-form btn-action">
                 <div class="span12">
                     <button type="submit" class="btn btn-default" id="btnSubmit">
-                        @Lang.Submit
+                        @Lang.Submit 
                     </button>
                 </div>
             </div>
@@ -50,10 +50,7 @@ settings
             titleInfo:
             {
                 text: "@Lang.ConfigurationList",
-                showAddButton: true,
-                addFunction: function() {
-                    Configuration.addConfiguration();
-                }
+                customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddNewConfiguration" class="btnAdd icon-add-config" id="btnAddgridId">'
             },
             columns: [
                 { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },

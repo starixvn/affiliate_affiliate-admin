@@ -574,7 +574,7 @@
     <value>You uploaded an invalid file.</value>
   </data>
   <data name="ErrmsgFileNameEmpty" xml:space="preserve">
-    <value>File Name is required!</value>
+    <value>File name is required!</value>
   </data>
   <data name="ErrmsgSizeFile" xml:space="preserve">
     <value>Your upload file size must be &lt;= 3 MB</value>
@@ -2481,5 +2481,11 @@
   </data>
   <data name="YouDontHaveMonthlyTransfer" xml:space="preserve">
     <value>Sorrry! You don't have monthly transfer permission.</value>
+  </data>
+  <data name="AddDomainControl" xml:space="preserve">
+    <value>Add Domain Control</value>
+  </data>
+  <data name="AddNewUser" xml:space="preserve">
+    <value>Add New User</value>
   </data>
 </root>

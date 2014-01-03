@@ -53,10 +53,7 @@ settings
             titleInfo:
             {
                 text: "@Lang.ProductList" + " [{0}]",
-                showAddButton: true,
-                addFunction: function() {
-                    Product.addProduct();
-                }
+                customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddNewConfiguration" class="btnAdd icon-add-config" id="btnAddgridId">'
             },
             columns: [
                 { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },

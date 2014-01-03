@@ -22,10 +22,7 @@ domain
             titleInfo:
             {
                 text: "@Lang.DomainControl",
-                showAddButton: true,
-                addFunction: function() {
-                    DOMAINCONTROL.Insert();
-                }
+                customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddDomainControl" class="btnAdd icon-add-affDomain" id="btnAddgridId">'
             },
             columns: [
                 { HeaderText: "#", Width: 30, Name: "No", CellAlign: "center" },

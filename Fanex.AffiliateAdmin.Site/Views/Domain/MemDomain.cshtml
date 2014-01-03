@@ -14,6 +14,7 @@ domain
     </div>
 </div>
 <div id="gridId" class="freegrid">
+
 </div>
 @section scripts{
     <script type="text/javascript">
@@ -22,10 +23,7 @@ domain
             titleInfo:
             {
                 text: "@Lang.MemberDomain",
-                showAddButton: true,
-                addFunction: function() {
-                    DOMAIN.Insert();
-                }
+                customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddMemberDomain" class="btnAdd icon-add-affDomain" id="btnAddgridId">'
             },
             columns: [
                 { HeaderText: "#", Width: 30, Name: "No", CellAlign: "center" },

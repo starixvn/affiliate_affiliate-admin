@@ -168,6 +168,10 @@ var COMMGROUP = function ($) {
                 return false;
             });
 
+            $(".main-content").on("click", ".icon-add-commgrp", function () {
+                COMMGROUP.showAddPopup();
+            });
+
             $("#gridId").on("click", "a.edit", function () {
                 var groupid = $(this).data("groupid");
                 var url = "CommGroup/Add?groupid=" + groupid;
@@ -236,19 +240,25 @@ var COMMGROUP = function ($) {
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 
                     if (data.HasCashBackDeduction == false) {
-                        setTimeout(function () {
-                            $("#gridId").fanexGrid("hideColumns", gridOption, [16]);
-                        }, 100);
+                        $("#gridId").fanexGrid("hideColumns", gridOption, [16]);
                     }
 
-                    $(".btnAdd").addClass("icon-add-commgrp");
-
                     if (date.getMonth() == (new Date()).getMonth()) {
-                        $("#gridId").fanexGrid("hideColumns", gridOption, []);
                         // remove tooltips of two last columns
-                        $("#gridId tr ").find("td.free-grid-td-2 div,td.free-grid-td-16 div,td.free-grid-td-15 div").prop("title", "");
+                        //$("#gridId tr ").find("td.free-grid-td-2 div,td.free-grid-td-16 div,td.free-grid-td-15 div").prop("title", "");
+
+                        if (data.HasCashBackDeduction == false) {
+                            $("#gridId").fanexGrid("hideColumns", gridOption, [INDEX_GENERAL_DEDUCTION_COL]);
+                        } else {
+                            $("#gridId").fanexGrid("hideColumns", gridOption, []);
+                        }
+
                     } else {
-                        $("#gridId").fanexGrid("hideColumns", gridOption, [17]);
+                        if (data.HasCashBackDeduction == false) {
+                            $("#gridId").fanexGrid("hideColumns", gridOption, [INDEX_GENERAL_DEDUCTION_COL, INDEX_ACTION_COL]);
+                        } else {
+                            $("#gridId").fanexGrid("hideColumns", gridOption, [INDEX_ACTION_COL]);
+                        }
                     }
                     if (data.TotalItem == 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);

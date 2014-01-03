@@ -7,12 +7,10 @@
             if ($('#gridId').length > 0)
                 Management.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
 
-            $('#gridId').hide();
-
-            $('#btnAdd').click(function () {
-                AFFILIATE.openDialogFrame("Management/AddGroup", "Add Group", { width: 500, height: 400 });
-                return false;
+            $(".main-content").on("click", ".icon-add-group", function () {
+                Management.addGroup();
             });
+          
             $("#btnCancel").click(function () {
                 if (parent.AFFILIATE.currentOpenDialog)
                     parent.AFFILIATE.currentOpenDialog.dialog("close");
@@ -47,7 +45,6 @@
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
-                    $(".btnAdd").addClass("icon-add-group");
                 },
                 complete: function () {
                     $.unblockUI();
@@ -55,7 +52,7 @@
             });
         },
         addGroup: function () {
-            AFFILIATE.openDialogFrame("Management/AddGroup", "Add Group", { width: 500, height: 400 });
+            AFFILIATE.openDialogFrame("Management/AddGroup", PageVar.AddNewGroup, { width: 500, height: 400 });
             return false;
         },
         viewGroup: function (groupId, groupName) {

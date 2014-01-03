@@ -40,12 +40,14 @@ management
 </div>
 
 <div id="gridId" class="freegrid content-grid" colheight="200" expheight="290">
+
 </div>
 @section scripts{
     <script type="text/javascript">
         var PageVar = {
             NoInfo: "@Lang.NoInfo",
-            ChangeStatus: "@Lang.ConfirmChangeStatusAff"
+            ChangeStatus: "@Lang.ConfirmChangeStatusAff",
+            AddNewUser: "@Lang.AddNewUser"
         };
         var gridOption = {
             showTitle: true,
@@ -53,10 +55,7 @@ management
             titleInfo:
             {
                 text: "@Lang.UserManagement",
-                showAddButton: true,
-                addFunction: function () {
-                    Management.addUser();
-                }
+                customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddNewUser" class="btnAdd" id="btnAddgridId">'
             },
             columns: [
                       { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },

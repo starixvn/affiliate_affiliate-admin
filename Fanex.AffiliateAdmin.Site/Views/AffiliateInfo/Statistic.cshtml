@@ -36,7 +36,7 @@
         <tr>
             <td class="col-label">@Lang.NewSignup/@Lang.FDM</td>
             <td class="col-data">
-                @Html.ActionLink(Model.Statistic.NewSignUp.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 1, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })/@Html.ActionLink(Model.Statistic.NewSignUpDep.ToString(), "PlayerWinlossByAffiliate", "Report", new { GroupBy = 1, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
+                @Html.ActionLink(Model.Statistic.NewSignUp.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 1, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })/@Html.ActionLink(Model.Statistic.NewSignUpDep.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 2, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
             </td>
             <td class="col-data">
                 @Html.ActionLink(Model.Statistic.TotalPlayer.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 0 }, new { @class = "link" })/@Model.Statistic.TotalPlayerDepUp

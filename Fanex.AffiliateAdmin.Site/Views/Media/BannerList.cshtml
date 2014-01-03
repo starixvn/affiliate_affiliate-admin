@@ -110,10 +110,7 @@ marketing-tools
             titleInfo:
             {
                 text: "@Lang.BannerList",
-                showAddButton: true,
-                addFunction: function() {
-                    BannerList.addBanner();
-                }
+                customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddBanner" class="btnAdd icon-add-banner">'
             },
             columns: [
                 { HeaderText: "#", Width: 30, Name: "No", CellAlign: "center" },

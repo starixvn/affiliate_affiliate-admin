@@ -223,6 +223,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Domain Control.
+        /// </summary>
+        public static string AddDomainControl {
+            get {
+                return ResourceManager.GetString("AddDomainControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter the content of message at least one language..
         /// </summary>
         public static string AddEmptyMessError {
@@ -336,6 +345,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string AddNewProduct {
             get {
                 return ResourceManager.GetString("AddNewProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New User.
+        /// </summary>
+        public static string AddNewUser {
+            get {
+                return ResourceManager.GetString("AddNewUser", resourceCulture);
             }
         }
         
@@ -2878,7 +2896,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Name is required!.
+        ///   Looks up a localized string similar to File name is required!.
         /// </summary>
         public static string ErrmsgFileNameEmpty {
             get {

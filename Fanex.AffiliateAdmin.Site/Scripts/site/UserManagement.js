@@ -8,15 +8,12 @@
                 Management.submitRequest();
             }
 
-            $('#gridId').hide();
+            $(".main-content").on("click", "#btnAddgridId", function () {
+                Management.addUser();
+            });
 
             $('.search-panel form').submit(function () {
                 Management.submitRequest();
-                return false;
-            });
-
-            $('#btnAdd').click(function () {
-                AFFILIATE.openDialogFrame("Management/AddUser", "Add User", { width: 500, height: 400 });
                 return false;
             });
 
@@ -81,7 +78,7 @@
             });
         },
         addUser: function () {
-            AFFILIATE.openDialogFrame("Management/AddUser", "Add User", { width: 500, height: 400 });
+            AFFILIATE.openDialogFrame("Management/AddUser", PageVar.AddNewUser, { width: 500, height: 400 });
             return false;
         },
         updatePolicy: function () {

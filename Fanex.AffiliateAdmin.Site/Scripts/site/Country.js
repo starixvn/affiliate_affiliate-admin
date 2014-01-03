@@ -12,6 +12,10 @@
                 return false;
             });
 
+            $(".main-content").on("click", ".icon-add-config", function () {
+                Country.addCountry();
+            });
+
             $('.form-popup').submit(function () {
                 AFFILIATE.trimBeforeSubmit();
             });
@@ -42,7 +46,6 @@
                 },
                 success: function (data) {
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, Country.ReRenderAfterPaged);
-                    $(".btnAdd").addClass("icon-add-config");
                 },
                 complete: function () {
                     $.unblockUI();

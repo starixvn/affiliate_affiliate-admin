@@ -145,20 +145,6 @@
             showSendMailButton: false,
             sendMailFunction: null,
             showCollapseExpandButton: false,
-            showAddButton: false,
-            addFunction: null,
-            showDeleteButton: false,
-            deleteFunction: null,
-            showRefresh: false,
-            refreshFunction: null,
-            showUpdateButton: false,
-            updateFunction: null,
-            showEditButton: false,
-            editFunction: null,
-            showEditAccountTypeButton: false,
-            editAccountType: null,
-            showEditComGroupButton: false,
-            editComGroup: null,
             customButtons: ''
         },
         showPager: false,
@@ -420,37 +406,6 @@
                 if (options.titleInfo.showBackButton == true) {
                     titleHtml.push('<input id="btnBack' + me.gridId + '" class="btnBack" type="button" title="Back" value="" name="btnBack" />');
                 }
-
-                //# region: add/delete buttons
-                // modified by Brian
-                if (options.titleInfo.showAddButton === true) {
-                    titleHtml.push('<input id="btnAdd' + me.gridId + '" class="btnAdd" type="button" title="Add" value="" name="btnAdd" />');
-                }
-
-                if (options.titleInfo.showDeleteButton === true) {
-                    titleHtml.push('<input id="btnDelete' + me.gridId + '" class="btnDelete" type="button" title="Delete" value="" name="btnDelete" />');
-                }
-
-                if (options.titleInfo.showRefresh === true) {
-                    titleHtml.push('<input id="btnRefresh' + me.gridId + '" class="btnRefresh" type="button" title="Refresh Page" value="" name="btnRefresh" />');
-                }
-                if (options.titleInfo.showUpdateButton === true) {
-                    titleHtml.push('<input id="btnUpdate' + me.gridId + '" class="btnUpdate" type="button" title="Update" value="" name="btnUpdate" />');
-                }
-                if (options.titleInfo.showEditButton === true) {
-                    titleHtml.push('<input id="btnEdit' + me.gridId + '" class="btnEdit" type="button" title="Edit" value="" name="btnEdit" />');
-                }
-
-                if (options.titleInfo.showEditAccountTypeButton === true) {
-                    titleHtml.push('<input id="btnEditAccountType' + me.gridId + '" class="btnEditAccountType" type="button" title="Assign Account Type" value="" name="btnEditAccountType" />');
-                }
-
-                if (options.titleInfo.showEditComGroupButton === true) {
-                    titleHtml.push('<input id="btnEditComGroup' + me.gridId + '" class="btnEditComGroup" type="button" title="Assign Commission Group" value="" name="btnEditComGroup" />');
-                }
-
-                //# end-region
-
 
                 if (options.bodyRows.length > 0) {
                     if (options.titleInfo.customButtons != '') {

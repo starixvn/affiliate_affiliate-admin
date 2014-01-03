@@ -7,6 +7,14 @@
                 Message.submitRequest();
             }
 
+            $(".main-content").on("click", ".icon-add-message", function () {
+                Message.addMessage();
+            });
+
+            $(".main-content").on("click", ".icon-edit-message", function () {
+                Message.editMessage();
+            });
+
             $('form').submit(function () {
                 Message.submitRequest();
                 return false;
@@ -40,12 +48,9 @@
                 },
                 success: function (data) {
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, Message.ReRenderAfterPaged);
-                    $(".btnAdd").addClass("icon-add-message");
-                    $(".btnEdit").addClass("icon-edit-message").attr("title", MSG.EditCurrentMessage);
-                    $(".btnEdit").show();
-                    
+
                     if (data.TotalItem === 0) {
-                        $(".btnEdit").hide();
+                        $(".icon-edit-message").hide();
                     }
                 },
                 complete: function () {

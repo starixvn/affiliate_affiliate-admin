@@ -12,6 +12,11 @@
                 return false;
             });
 
+            $(".main-content").on("click", ".icon-add-config", function () {
+                Language.addLanguage();
+            });
+
+
             $('.form-popup').submit(function () {
                 AFFILIATE.trimBeforeSubmit();
             });
@@ -37,7 +42,6 @@
                 success: function (data) {
                     gridOption.titleInfo.text = MSG.Title + ' [{0}]'.format(data.List.length);
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, Language.ReRenderAfterPaged);
-                    $(".btnAdd").addClass("icon-add-config");
                 },
                 complete: function () {
                     $.unblockUI();

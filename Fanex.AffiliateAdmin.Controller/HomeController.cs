@@ -88,27 +88,6 @@ namespace Fanex.AffiliateAdmin.Controller
             return PartialView();
         }
 
-        /// <summary>
-        /// Test send email.
-        /// </summary>
-        /// <returns>Action Result.</returns>
-        public ActionResult Test()
-        {
-            //// test email
-            var siteDomainInfo = SiteDomainInfo.Parse(this);
-            var emailTemplate = new EmailTemplate(EmailTemplateType.AffiliateApprove, EmailFormatType.Text, "zh-CN");
-            var emailTemplateInfo = new EmailTemplateInfo(siteDomainInfo)
-            {
-                TransId = 123,
-                FirstName = "ACB",
-                WinlostDate = DateTime.Now,
-                Amount = FormaterCurrency.Format(12345, "MYR")
-            };
-
-            var emailBody = emailTemplate.ResolvePath(Server).GetEmailBody(emailTemplateInfo);
-            return Content(emailBody);
-        }
-
         [HttpGet]
         public ActionResult UserOnlineList()
         {

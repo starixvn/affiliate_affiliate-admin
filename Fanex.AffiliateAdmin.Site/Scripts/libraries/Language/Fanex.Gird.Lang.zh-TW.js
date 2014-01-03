@@ -5,9 +5,6 @@ if (fanexGridLanguage) {
         noData: 'There is no data TW',
         pageSize: 'Page size TW',
         goToPage: 'Go To Page TW',
-        displaying: 'Displaying TW',
-        to: 'to TW',
-        of: 'of TW',
-        items: 'item(s) TW'
+        pagingText: 'Displaying <b>{0}</b> to <b>{1}</b> of <b>{2}</b> item(s) TW'
     };
 }

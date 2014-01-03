@@ -65,6 +65,13 @@ namespace Fanex.AffiliateAdmin.Site
                 "~/Scripts/libraries/jquery.validate.unobtrusive.js").Include(
                 "~/Scripts/libraries/Fanex.Grid.js").Include(
                 "~/Scripts/libraries/Fanex.Pagination.js").Include(
+                "~/Scripts/libraries/Language/Fanex.Grid.Lang.en-US.js").Include(
+                "~/Scripts/libraries/Language/Fanex.Grid.Lang.ja-JP.js").Include(
+                "~/Scripts/libraries/Language/Fanex.Grid.Lang.ko-KR.js").Include(
+                "~/Scripts/libraries/Language/Fanex.Grid.Lang.th-TH.js").Include(
+                "~/Scripts/libraries/Language/Fanex.Grid.Lang.vi-VN.js").Include(
+                "~/Scripts/libraries/Language/Fanex.Grid.Lang.zh-CN.js").Include(
+                "~/Scripts/libraries/Language/Fanex.Grid.Lang.zh-TW.js").Include(
                 "~/Scripts/libraries/moment.js").Include(
                 "~/Scripts/libraries/numeral.js").Include(
                 "~/Scripts/libraries/jquery.placeholder.js").Include(

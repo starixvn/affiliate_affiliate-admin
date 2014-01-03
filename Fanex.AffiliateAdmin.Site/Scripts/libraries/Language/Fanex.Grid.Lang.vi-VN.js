@@ -4,9 +4,6 @@ if (fanexGridLanguage) {
         noData: 'There is no data',
         pageSize: 'Page size',
         goToPage: 'Go To Page',
-        displaying: 'Displaying',
-        to: 'to',
-        of: 'of',
-        items: 'item(s)'
+        pagingText: 'Displaying <b>{0}</b> to <b>{1}</b> of <b>{2}</b> item(s)'
     };
 }

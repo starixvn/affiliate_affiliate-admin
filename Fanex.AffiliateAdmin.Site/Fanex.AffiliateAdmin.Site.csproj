@@ -400,6 +400,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\libraries\date.min.js" />
     <Content Include="Scripts\libraries\daterangepicker.js" />
+    <Content Include="Scripts\libraries\Fanex.Grid.Convert.js" />
     <Content Include="Scripts\libraries\Fanex.Grid.js" />
     <Content Include="Scripts\libraries\Fanex.Pagination.js" />
     <Content Include="Scripts\libraries\head.js" />
@@ -421,12 +422,12 @@
     <Content Include="Scripts\libraries\jquery.validate.min.js" />
     <Content Include="Scripts\libraries\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\libraries\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\libraries\Language\Fanex.Gird.Lang.en-US.js" />
-    <Content Include="Scripts\libraries\Language\Fanex.Gird.Lang.ja-JP.js" />
-    <Content Include="Scripts\libraries\Language\Fanex.Gird.Lang.ko-KR.js" />
-    <Content Include="Scripts\libraries\Language\Fanex.Gird.Lang.th-TH.js" />
-    <Content Include="Scripts\libraries\Language\Fanex.Gird.Lang.vi-VN.js" />
-    <Content Include="Scripts\libraries\Language\Fanex.Gird.Lang.zh-CN.js" />
+    <Content Include="Scripts\libraries\Language\Fanex.Grid.Lang.en-US.js" />
+    <Content Include="Scripts\libraries\Language\Fanex.Grid.Lang.ja-JP.js" />
+    <Content Include="Scripts\libraries\Language\Fanex.Grid.Lang.ko-KR.js" />
+    <Content Include="Scripts\libraries\Language\Fanex.Grid.Lang.th-TH.js" />
+    <Content Include="Scripts\libraries\Language\Fanex.Grid.Lang.vi-VN.js" />
+    <Content Include="Scripts\libraries\Language\Fanex.Grid.Lang.zh-CN.js" />
     <Content Include="Scripts\libraries\Language\Fanex.Gird.Lang.zh-TW.js" />
     <Content Include="Scripts\libraries\monpickr.js" />
     <Content Include="Scripts\libraries\placeholder_fixer.js" />

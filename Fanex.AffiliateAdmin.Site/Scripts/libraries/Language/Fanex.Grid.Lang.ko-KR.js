@@ -1,12 +1,10 @@
 ﻿/* File Created: December 4, 2013 */
+/*global fanexGridLanguage*/
 if (fanexGridLanguage) {
-    fanexGridLanguage['zh-CN'] = {
+    fanexGridLanguage['ko-KR'] = {
         noData: 'There is no data',
         pageSize: 'Page size',
         goToPage: 'Go To Page',
-        displaying: 'Displaying',
-        to: 'to',
-        of: 'of',
-        items: 'item(s)'
+        pagingText: 'Displaying <b>{0}</b> to <b>{1}</b> of <b>{2}</b> item(s)'
     };
 }

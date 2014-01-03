@@ -141,8 +141,8 @@ payment
         var button = "@(Html.Raw(transferBtn))";
 
         var sampleGridOption = {
+            language: '@AppSession.Language',
             showTitle: true,
-
             titleInfo:
             {
                 text: "@Lang.ProcessingCommission",

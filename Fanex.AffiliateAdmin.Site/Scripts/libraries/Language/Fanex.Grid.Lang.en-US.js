@@ -8,9 +8,3 @@ fanexGridLanguage['en-US'] = {
 };
 
 var fanexGridCurrentLanguage = fanexGridLanguage['en-US'];
-
-
-
-
-<input type="button" title="Change Account Type" class="icon-edit-account-type" />
-<input type="button" title="Change Commission Group" class="btnEditComGroup icon-edit-commission-group" id="btnEditComGroupgridId" />

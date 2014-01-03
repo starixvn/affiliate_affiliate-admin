@@ -83,6 +83,7 @@ affiliate-info
             Amount: "@Lang.Amount",
             NoInfo: "@Lang.NoInfo"
         };
+
         var currencySymbol = "@ViewBag.AffCurrencySymbol";
         var gridOption = {
             language: '@AppSession.Language',
@@ -168,7 +169,7 @@ affiliate-info
         }
         };
 
-            var TransType = @(MvcHtmlString.Create(new JavaScriptSerializer().Serialize(Model.TransTypeList)));
+        var TransType = @(MvcHtmlString.Create(new JavaScriptSerializer().Serialize(Model.TransTypeList)));
     </script>
     <script src="@Url.Content("~/Scripts/site/Statement.js")" type="text/javascript"></script>
 }

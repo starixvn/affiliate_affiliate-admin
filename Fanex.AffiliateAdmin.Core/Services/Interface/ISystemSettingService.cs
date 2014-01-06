@@ -145,13 +145,6 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
         IEnumerable<Currency> GetPlayerCurrencyList(PlayerCurrencyCriteria criteria);
 
         /// <summary>
-        /// Get admin currencies.
-        /// </summary>
-        /// <param name="criteria">Account criteria.</param>
-        /// <returns>Currency list.</returns>
-        IEnumerable<Currency> GetAdminCurrencyList(AccountCriteria criteria);
-
-        /// <summary>
         /// Get system supported currencies.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>

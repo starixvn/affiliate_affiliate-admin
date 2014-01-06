@@ -158,22 +158,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                 return _affSystemAllSupportedCurrencies;
             }
         }
-
-        public static IEnumerable<Currency> AdminCurrencies
-        {
-            get
-            {
-                if (_adminCurrencies == null)
-                {
-                    var criteria = new AccountCriteria();
-                    criteria.UserId = SessionManager.CurrentSession.CustID;
-                    _adminCurrencies = _SystemSetting.GetAdminCurrencyList(criteria);
-                }
-
-                return _adminCurrencies;
-            }
-        }
-
+       
         public static IEnumerable<Currency> PlayerCurrencies
         {
             get

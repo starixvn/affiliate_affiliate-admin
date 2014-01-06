@@ -11,7 +11,6 @@
 namespace Fanex.AffiliateAdmin.Core.Services
 {
     using System.Collections.Generic;
-    using Fanex.AffiliateAdmin.Core.Repositories.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Criterias;
@@ -21,7 +20,6 @@ namespace Fanex.AffiliateAdmin.Core.Services
     using Fanex.AffiliateAdmin.Criterias.Configuration.Product;
     using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
     using Fanex.AffiliateAdmin.DTO;
-    using Fanex.AffiliateAdmin.Repositories.Interface;
     using Fanex.Common.Helper;
 
     /// <summary>
@@ -29,26 +27,6 @@ namespace Fanex.AffiliateAdmin.Core.Services
     /// </summary>
     public class SystemSettingService : QueryService, ISystemSettingService
     {
-        #region Fields
-
-        private readonly ISystemSettingRepository _settingsRepository;
-
-        #endregion Fields
-
-        #region Constructor
-
-        public SystemSettingService()
-            : this(null)
-        {
-        }
-
-        private SystemSettingService(ISystemSettingRepository settingsRepository)
-        {
-            this._settingsRepository = settingsRepository ?? new SystemSettingRepository();
-        }
-
-        #endregion Constructor
-
         #region Configuration
 
         /// <summary>
@@ -298,13 +276,6 @@ namespace Fanex.AffiliateAdmin.Core.Services
             return list;
         }
 
-        public IEnumerable<Currency> GetAdminCurrencyList(AccountCriteria criteria)
-        {
-            Check.Argument.IsNotNull(criteria, "criteria");
-            var data = this._settingsRepository.GetCurrencies(criteria);
-            return data;
-        }
-
         public IEnumerable<AffType> GetAffTypeList(AffTypeCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -314,15 +285,17 @@ namespace Fanex.AffiliateAdmin.Core.Services
         public IEnumerable<Currency> GetAffSystemSupportedCurrencyList(AccountCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            var data = this._settingsRepository.GetAffSystemSupportedCurrencies(criteria);
-            return data;
+            criteria.Type = "SystemCurrency";
+
+            return this.GetData<Currency>(criteria);
         }
 
         public IEnumerable<Currency> GetAffSystemAllSupportedCurrencyList(AccountCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            var data = this._settingsRepository.GetAffSystemAllSupportedCurrencies(criteria);
-            return data;
+            criteria.Type = "AllSystemCurrency";
+
+            return this.GetData<Currency>(criteria);
         }
 
         /// <summary>
@@ -345,7 +318,8 @@ namespace Fanex.AffiliateAdmin.Core.Services
         public Exchange GetSystemBaseExchange(SystemSettingExchangeCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return _settingsRepository.GetSystemBaseExchange(criteria);
+
+            return GetEntity<Exchange>(criteria);
         }
 
         /// <summary>

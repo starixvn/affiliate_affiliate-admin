@@ -52,8 +52,6 @@ namespace Fanex.AffiliateAdmin.Models
                     Value = t.CurrencyID.ToString()
                 }).ToList();
 
-                selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
-
                 return selectItemList;
             }
         } 

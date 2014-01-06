@@ -75,21 +75,21 @@
         <tr>
             <td class="col-label">@Lang.TotalDeposit</td>
             <td class="col-data">
-                @Html.ActionLink(FormaterCurrency.Format(Model.Statistic.TotalDeposit), "PlayerWinlossByAffiliate", "Report", new { GroupBy = 1, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
+                @Html.ActionLink(FormaterCurrency.Format(Model.Statistic.TotalDeposit), "PlayerWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
             </td>
             <td class="col-data">@MvcHtmlString.Create(FormaterCurrency.Format(Model.Statistic.TotalDepositUp))</td>
         </tr>
         <tr>
             <td class="col-label">@Lang.TotalTurnover</td>
             <td class="col-data">
-                @Html.ActionLink(FormaterCurrency.Format(Model.Statistic.TotalTurnover), "PlayerWinlossByAffiliate", "Report", new { GroupBy = 1, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
+                @Html.ActionLink(FormaterCurrency.Format(Model.Statistic.TotalTurnover), "PlayerWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
             </td>
             <td class="col-data">@MvcHtmlString.Create(FormaterCurrency.Format(Model.Statistic.TotalTurnoverUp))</td>
         </tr>
         <tr>
             <td class="col-label">@Lang.TotalWinlost</td>
             <td class="col-data">
-                <a href="@Url.Action("PlayerWinlossByAffiliate", "Report", new { GroupBy = 1, FromDate = fromDate, ToDate = toDate })" class="link">@Html.Raw(FormaterCurrency.Format(Model.Statistic.TotalWinlost))</a>
+                <a href="@Url.Action("PlayerWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate })" class="link">@Html.Raw(FormaterCurrency.Format(Model.Statistic.TotalWinlost))</a>
             </td>
             <td class="col-data">@Html.Raw(FormaterCurrency.Format(Model.Statistic.TotalWinlostUp))</td>
         </tr>

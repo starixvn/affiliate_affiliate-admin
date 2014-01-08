@@ -28,6 +28,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Configuration Controller.
     /// </summary>
+    [FunctionAuth(Function = "[SystemSettings]")]
     public class ConfigurationController : BaseController
     {
         #region Fields

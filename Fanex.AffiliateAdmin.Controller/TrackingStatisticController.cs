@@ -11,6 +11,7 @@ namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Linq;
     using System.Web.Mvc;
+    using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
@@ -20,6 +21,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [FunctionAuth(Function = "[Affiliate]")]
     public class TrackingStatisticController : BaseController
     {
         #region Services

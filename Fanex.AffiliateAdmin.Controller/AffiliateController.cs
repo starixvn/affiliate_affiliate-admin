@@ -28,7 +28,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Affiliate Controller.
     /// </summary>    
-    [HasCurrencyPermission]
+    [FunctionAuth(Function = "[Affiliate]")]
     public partial class AffiliateController : BaseController
     {
         #region Services

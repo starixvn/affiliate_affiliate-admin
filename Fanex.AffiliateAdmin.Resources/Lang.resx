@@ -2182,10 +2182,10 @@
     <value>Member Page</value>
   </data>
   <data name="ChangeAccountType" xml:space="preserve">
-    <value>Change Account Type</value>
+    <value>Change Account Type Of Multiple Affiliate</value>
   </data>
   <data name="ChangeComGroup" xml:space="preserve">
-    <value>Change Commission Group</value>
+    <value>Change Commission Group Of Multiple Affiliate</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Change Password</value>
@@ -2487,5 +2487,15 @@
   </data>
   <data name="AddNewUser" xml:space="preserve">
     <value>Add New User</value>
+  </data>
+  <data name="ChangePolicyOfMultipleUsers" xml:space="preserve">
+    <value>Change Policy Of Multiple Users.</value>
+  </data>
+  <data name="AccessDeniedHtml" xml:space="preserve">
+    <value>&lt;h3 class="c"&gt;
+    Access Denied! &lt;br&gt;
+    You don't have permission on this action. &lt;br&gt;
+    Please contact your administrator.
+&lt;/h3&gt;</value>
   </data>
 </root>

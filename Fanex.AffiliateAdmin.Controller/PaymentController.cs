@@ -30,7 +30,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [HasCurrencyPermission]
+    [FunctionAuth(Function = "[Payment]")]
     public class PaymentController : BaseController
     {
         private readonly IPaymentService _paymentService;
@@ -180,6 +180,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// Processing Commission.
         /// </summary>
         /// <returns>Processing Commission Page.</returns>
+        [FunctionAuth(Function = "[MonthlyTransfer]")]
         public ActionResult ProcessingCommission()
         {
             var serializer = new JavaScriptSerializer();
@@ -204,6 +205,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Processing Commission Result.</returns>
+        [FunctionAuth(Function = "[MonthlyTransfer]")]
         [HttpPost]
         public ActionResult ProcessingCommission(ProcessingCommCriteria criteria)
         {
@@ -226,6 +228,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Update Cash Back Result.</returns>
         [HttpPost]
+        [FunctionAuth(Function = "[MonthlyTransfer]")]
         public ActionResult UpdateCashBack(CashBackUpdateCriteria criteria)
         {
             criteria.UserId = CurrentSession.CustID;
@@ -246,6 +249,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>MonthlyTransfer Result.</returns>
         [HttpPost]
+        [FunctionAuth(Function = "[MonthlyTransfer]")]
         public ActionResult MonthlyTransfer()
         {
             if (SessionManager.CurrentSession.RoleAccess.HasPolicy("[MonthlyTransfer]", 1))

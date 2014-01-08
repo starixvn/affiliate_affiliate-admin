@@ -12,6 +12,9 @@ home
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.Home, 0)
 }
+@{
+    var roleAccess = SessionManager.CurrentSession.RoleAccess;
+}
 <div class="line">
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
@@ -28,20 +31,38 @@ home
             <tr>
                 <td>@Lang.Affiliate
                 </td>
-                <td><strong>@Html.ActionLink(Model.PendingAllNum.ToString(), "Index", "Affiliate", new { Status= "Pending" }, new { })</strong>
+                <td>
+                @if (roleAccess.HasPolicy("[Affiliate]"))
+                {
+                    <strong>@Html.ActionLink(Model.PendingAllNum.ToString(), "Index", "Affiliate", new { Status = "Pending" }, new { })</strong>
+                }
+                else
+                {
+                    <strong>@Model.PendingAllNum.ToString()</strong>
+                }
                 </td>
                 <td>@Lang.Payment
                 </td>
-                <td><strong>@Html.ActionLink(Model.PaymentReqNum.ToString(), "Index", "Payment", new { Status = "Pending" }, new { })</strong>
+                <td>
+                @if (roleAccess.HasPolicy("[Payment]"))
+                {
+                    <strong>@Html.ActionLink(Model.PaymentReqNum.ToString(), "Index", "Payment", new { Status = "Pending" }, new { })</strong>
+                }
+                else
+                {
+                    <strong>@Model.PaymentReqNum.ToString()</strong>
+                }
                 </td>
             </tr>
         </table>
     </div>
+    @if (roleAccess.HasPolicy("[Media]"))
+    {
     <div class="span6">
         <table class="table table-bordered">
             @{
-                var count = AppSettings.AffTypes.Count();
-                var span = 4 * count;
+        var count = AppSettings.AffTypes.Count();
+        var span = 4 * count;
                 <tr>
                     <th colspan="@span" class="l">
                         <span class="ico-home-banner"> </span> @Lang.BannerStatc (@Lang.WeHave @Html.ActionLink(Model.BannerNum.ToString(), "BannerList", "Media") @Lang.BannerInPro)                    
@@ -63,6 +84,36 @@ home
             }
         </table>
     </div>
+    }
+    else
+    {
+    <div class="span6">
+        <table class="table table-bordered">
+            @{
+        var count = AppSettings.AffTypes.Count();
+        var span = 4 * count;
+                <tr>
+                    <th colspan="@span" class="l">
+                        <span class="ico-home-banner"> </span> @Lang.BannerStatc (@Lang.WeHave @Model.BannerNum.ToString() @Lang.BannerInPro)                    
+                    </th>
+                </tr>
+                <tr>
+                    <td>@Lang.NormalImageBanner</td>
+                    <td><strong>@Model.ImageBannerNum.ToString()</strong></td>
+                    <td>@Lang.NormalFlashBanner</td>
+                    <td><strong>@Model.FlashBannerNum.ToString()</strong></td>
+                    @if (count == 2)
+                    {
+                        <td>@Lang.KioskImageBanner</td>
+                        <td><strong>@Model.KioskImageBannerNum.ToString()</strong></td>
+                        <td>@Lang.KioskFlashBanner</td>
+                        <td><strong>@Model.KioskFlashBannerNum.ToString()</strong></td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+    }
 </div>
 <!--Affiliate statistics for all and current month-->
 <div class="row-fluid">
@@ -79,6 +130,8 @@ home
                 </td>
             </tr>
             <tr class="info">
+            @if (roleAccess.HasPolicy("[Affiliate]"))
+            {
                 <td><strong>@Html.ActionLink(Model.PendingAllNum.ToString(), "Index", "Affiliate", new { Status = "Pending" }, new { })</strong> @Lang.Pending
                 </td>
                 <td><strong>@Html.ActionLink(Model.ApprovedAllNum.ToString(), "Index", "Affiliate", new { Status = "Approved" }, new { })</strong>  @Lang.Approved
@@ -89,6 +142,20 @@ home
                 </td>
                 <td><strong>@Html.ActionLink(Model.LockedAllNum.ToString(), "Index", "Affiliate", new { Status = "LockedOut" }, new { })</strong> @Lang.LockedOut
                 </td>
+            }
+            else
+            {
+                <td><strong>@Model.PendingAllNum.ToString()</strong> @Lang.Pending
+                </td>
+                <td><strong>@Model.ApprovedAllNum.ToString()</strong>  @Lang.Approved
+                </td>
+                <td><strong>@Model.DisapprovedAllNum.ToString()</strong> @Lang.Disapproved
+                </td>
+                <td><strong>@Model.ClosedAllNum.ToString()</strong> @Lang.Closed
+                </td>
+                <td><strong>@Model.LockedAllNum.ToString()</strong> @Lang.LockedOut
+                </td>
+            }
             </tr>
         </table>
     </div>

@@ -27,7 +27,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Commission group Controller.
     /// </summary>
-    [HasCurrencyPermission]
+    [FunctionAuth(Function = "[CommissionGroup]")]
     public partial class CommGroupController : BaseController
     {
         #region Services

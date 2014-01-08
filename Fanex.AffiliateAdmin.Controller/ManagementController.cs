@@ -17,6 +17,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Session;
     using Core.Utilities;
     using Criterias;
+    using Fanex.AffiliateAdmin.Core.Filter;
     using Models;
     using Resources;
     using Services.Interface;
@@ -24,6 +25,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [FunctionAuth(Function = "[UserControl]")]
     public class ManagementController : BaseController
     {
         #region Services

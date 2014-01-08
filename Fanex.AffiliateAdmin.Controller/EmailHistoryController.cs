@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Session;
     using Core.Utilities;
     using Criterias;
+    using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Resources;
     using Models;
     using Services.Interface;
@@ -22,6 +23,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Email History Controller.
     /// </summary>
+    [FunctionAuth(Function = "[Affiliate]")]
     public partial class EmailHistoryController : BaseController
     {
         #region Services

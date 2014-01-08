@@ -70,6 +70,19 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;h3 class=&quot;c&quot;&gt;
+        ///    Access Denied! &lt;br&gt;
+        ///    You don&apos;t have permission on this action. &lt;br&gt;
+        ///    Please contact your administrator.
+        ///&lt;/h3&gt;.
+        /// </summary>
+        public static string AccessDeniedHtml {
+            get {
+                return ResourceManager.GetString("AccessDeniedHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Information.
         /// </summary>
         public static string AccInfo {
@@ -1141,7 +1154,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Account Type.
+        ///   Looks up a localized string similar to Change Account Type Of Multiple Affiliate.
         /// </summary>
         public static string ChangeAccountType {
             get {
@@ -1150,7 +1163,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Commission Group.
+        ///   Looks up a localized string similar to Change Commission Group Of Multiple Affiliate.
         /// </summary>
         public static string ChangeComGroup {
             get {
@@ -1209,6 +1222,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string ChangePolicyMultiUser {
             get {
                 return ResourceManager.GetString("ChangePolicyMultiUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Policy Of Multiple Users..
+        /// </summary>
+        public static string ChangePolicyOfMultipleUsers {
+            get {
+                return ResourceManager.GetString("ChangePolicyOfMultipleUsers", resourceCulture);
             }
         }
         

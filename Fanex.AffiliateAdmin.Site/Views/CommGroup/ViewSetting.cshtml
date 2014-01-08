@@ -10,7 +10,10 @@
     var MAXQM = 1000000000;
     var hasCashBackDeduction = ViewBag.HasCashBackDeduction is bool && (bool)ViewBag.HasCashBackDeduction;
 }
-<div class="freegrid" style="display: block; border: 0px">
+
+@if (Model != null)
+{
+    <div class="freegrid" style="display: block; border: 0px">
 <div class="col_header">
 <table class="grid-fixed-table col_header_content" style="width: 100%;">
     <thead>
@@ -112,7 +115,7 @@
                                         text += " (" + deduction.Value.ToString("0.00") + ")";
                                     }
                                     <input type="checkbox" @(deduction.Value >= 0 ? "checked" : null) disabled> @text<br />
-                                    }
+                                }
                             </div>
                         }
                     </td>    
@@ -123,6 +126,12 @@
 </table>
 </div>
 </div>
+}
+else
+{
+    
+}
+    
 @section css{
     <link href="@Url.Content("~/Content/themes/Default/commgroup.less")" rel="stylesheet" type="text/css" />
     <style>

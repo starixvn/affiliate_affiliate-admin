@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias;
     using Criterias.Configuration.Country;
     using DTO;
+    using Fanex.AffiliateAdmin.Core.Filter;
     using Models;
     using Resources;
     using Services.Interface;
@@ -25,6 +26,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Domain Controller.
     /// </summary>
+    [FunctionAuth(Function = "[Domain]")]
     public partial class DomainController : BaseController
     {
         #region Services

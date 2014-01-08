@@ -19,6 +19,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Utilities;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Core.Filter;
     using Models;
     using Resources;
     using Services.Interface;
@@ -26,6 +27,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [FunctionAuth(Function = "[Media]")]
     public class MediaController : BaseController
     {
         #region Fields

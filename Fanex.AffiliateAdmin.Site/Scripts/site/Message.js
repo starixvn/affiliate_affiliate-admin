@@ -15,9 +15,13 @@
                 Message.editMessage();
             });
 
-            $('form').submit(function () {
+            $('.search-panel form').submit(function () {
                 Message.submitRequest();
                 return false;
+            });
+
+            $('.form-popup').submit(function () {
+                AFFILIATE.trimBeforeSubmit();
             });
 
             $('#DateChecked').click(function () {

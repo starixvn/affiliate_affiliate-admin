@@ -25,7 +25,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Currency Rate Controller.
     /// </summary>
-    [Authorization]
+    [FunctionAuth(Function = "[AffEx.Rate]")]
     public partial class ExchangeController : BaseController
     {
         private static Dictionary<string, int> _multipliedCurrencies = new Dictionary<string, int>();

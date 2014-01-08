@@ -48,7 +48,7 @@
             });
         },
         addText: function () {
-            AFFILIATE.openDialogFrame("Media/AddText", MSG.AddText, { width: 580, height: 400 });
+            AFFILIATE.openDialogFrame("Media/AddText", MSG.AddText, { width: 580, height: 420 });
         },
 
         editText: function (textId) {

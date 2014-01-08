@@ -37,7 +37,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         private static IEnumerable<Language> _affLanguage;
         private static IEnumerable<Language> _affSupportLanguage;
         private static IEnumerable<Language> _memberSiteSupportedLanguage;
-        private static IEnumerable<Currency> _adminCurrencies;
         private static IEnumerable<Exchange> _affiliateCurrencies;
         private static IEnumerable<AffType> _affType;
         private static IEnumerable<Currency> _affSystemSupportedCurrencies;

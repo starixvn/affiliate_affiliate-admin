@@ -27,7 +27,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Report Controller.
     /// </summary>
-    [HasCurrencyPermission]
+    [FunctionAuth(Function = "[AffReport]")]
     public class ReportController : BaseController
     {
         private readonly IReportService _reportService;

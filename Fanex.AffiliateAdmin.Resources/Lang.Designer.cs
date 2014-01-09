@@ -1154,7 +1154,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Account Type Of Multiple Affiliate.
+        ///   Looks up a localized string similar to Change Account Type.
         /// </summary>
         public static string ChangeAccountType {
             get {
@@ -1163,7 +1163,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Commission Group Of Multiple Affiliate.
+        ///   Looks up a localized string similar to Change Commission Group.
         /// </summary>
         public static string ChangeComGroup {
             get {

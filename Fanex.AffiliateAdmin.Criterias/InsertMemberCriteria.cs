@@ -48,6 +48,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public DateTime RegisterDate { get; set; }
 
+        public DateTime AffAffectedDate { get; set; }
+
         public string Btag { get; set; }
 
         public long ClickID { get; set; }

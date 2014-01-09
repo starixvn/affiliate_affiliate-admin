@@ -18,6 +18,8 @@ namespace Fanex.AffiliateAdmin.DTO
     {
         public string UserName { get; set; }
 
+        public string UserName2 { get; set; }
+
         public string Currency { get; set; }
 
         public string FirstName { get; set; }

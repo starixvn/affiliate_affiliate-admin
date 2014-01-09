@@ -148,7 +148,11 @@
                     var columns = [];
 
                     if (idx == 0) {
-                        columns.push({ Value: Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: subTotalRowCount });
+                        columns.push({ Value: Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: subTotalRowCount,
+                            CustomCellRender: function (cell, cellFormated) {
+                                return "<div>abc</div><div>{0}</div>".format(Lang.SubTotal);
+                            }
+                        });
                     }
 
                     columns.push({ Value: item.CurrencyCode, Name: "Currency" });

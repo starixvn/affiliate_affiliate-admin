@@ -220,5 +220,15 @@ namespace Fanex.AffiliateAdmin.Services.Impl
         {
             ExecuteOutput(criteria);
         }
+
+        /// <summary>
+        /// Get customer.
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public Customer GetCustomer(CustomerSelByUserNameCriteria criteria)
+        {
+            return GetEntity<Customer>(criteria);
+        }
     }
 }

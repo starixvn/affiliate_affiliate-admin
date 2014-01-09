@@ -365,7 +365,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult AssignMember(CheckMemberExistCriteria criteria)
         {
-            this._service.CheckMemberExist(criteria);
+            _service.CheckMemberExist(criteria);
             var message = string.Empty;
             var errorCode = 0;
             if (criteria.AffID < 1)
@@ -385,6 +385,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 else if (AppSettings.Environment != "Local Development")
                 {
                     var xml = ServiceWrapper.GetLicenseeCustInfo(AppSettings.SystemName, criteria.MemberName);
+                    
                     if (xml.Element("ReturnCode").Value != "0")
                     {
                         message = xml.Element("ReturnMessage").Value;
@@ -492,22 +493,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="customerInfo">Customer Information.</param>
         /// <returns>Error code.</returns>
         private int InsertMember(int affid, string affname, string customerName, XElement customerInfo)
-        {            
-            long clickid = 0;
-            var btag = customerInfo.Element("btag").Value;
-
-            if (!string.IsNullOrEmpty(btag))
-            {
-                var array = btag.Split('_');
-                //// var licensee = array[0];
-                //// var affid = array.Length > 1 ? array[1] : String.Empty;
-                clickid = long.Parse(array.Length > 2 ? array[2] : "0");
-            }
-
-            var createdate = DateTime.MinValue;
-            DateTime.TryParse(customerInfo.Element("FirstDepositDate").Value, out createdate);
-            var registerDate = DateTime.Now;
-            DateTime.TryParse(customerInfo.Element("RegisterDate").Value, out registerDate);
+        {
             var insertCriteria = new InsertMemberCriteria()
             {
                 AffUserName = affname,
@@ -516,10 +502,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 IBCCustID = 0,
                 IBCUserName = customerInfo.Element("IBCusername").Value,
                 AgentID = 0,
-                CreatedDate = createdate,
-                RegisterDate = registerDate,
-                Btag = btag,
-                ClickID = clickid,
+                AffAffectedDate = DateTime.Now,
+                Btag = customerInfo.Element("btag").Value,
                 Language = AppSession.Language,
                 FirstName = customerInfo.Element("FirstName").Value,
                 LastName = customerInfo.Element("LastName").Value,
@@ -527,12 +511,49 @@ namespace Fanex.AffiliateAdmin.Controller
                 Address = customerInfo.Element("Address").Value,
                 IP = Remote.GetClientIPAddress()
             };
+
+            GetMoreCustomerInfo(customerInfo, insertCriteria);
+
             _service.InsertMember(insertCriteria);
-            ServiceWrapper.UpdateBtage(
-                AppSettings.SystemName,
-                customerName,
-                string.Format("{0}_{1}_0", AppSettings.LicenseeID, affid));
+
+            ServiceWrapper.UpdateBtage(AppSettings.SystemName, customerName, string.Format("{0}_{1}_0", AppSettings.LicenseeID, affid));
+
             return insertCriteria.ErrCode;
+        }
+
+        /// <summary>
+        /// Get more customer information.
+        /// </summary>
+        /// <param name="customerInfo">Customer Info under XML.</param>
+        /// <param name="criteria">Input criteria.</param>
+        private void GetMoreCustomerInfo(XElement customerInfo, InsertMemberCriteria criteria)
+        {
+            long clickid = 0;
+
+            if (!string.IsNullOrEmpty(customerInfo.Element("btag").Value))
+            {
+                var array = customerInfo.Element("btag").Value.Split('_');
+                clickid = long.Parse(array.Length > 2 ? array[2] : "0");
+            }
+
+            DateTime createdate = DateTime.MinValue;
+
+            if (customerInfo.Element("FirstDepositDate").Value.Equals("N/A"))
+            {
+                var customer = _service.GetCustomer(new CustomerSelByUserNameCriteria { UserName = customerInfo.Element("IBCusername").Value });
+                createdate = customer.CreatedDate.HasValue ? customer.CreatedDate.Value : createdate;
+            }
+            else
+            {
+                DateTime.TryParse(customerInfo.Element("FirstDepositDate").Value, out createdate);
+            }
+
+            DateTime registerDate = DateTime.Now;
+            DateTime.TryParse(customerInfo.Element("RegisterDate").Value, out registerDate);
+
+            criteria.ClickID = clickid;
+            criteria.CreatedDate = createdate;
+            criteria.RegisterDate = registerDate;
         }
 
         #endregion

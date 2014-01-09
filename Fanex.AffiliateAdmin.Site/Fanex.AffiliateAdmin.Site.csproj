@@ -319,6 +319,7 @@
     <Content Include="Content\themes\Default\images\calendar.gif" />
     <Content Include="Content\themes\Default\images\check.gif" />
     <Content Include="Content\themes\Default\images\checkbox.png" />
+    <Content Include="Content\themes\Default\images\Collapse_icon.png" />
     <Content Include="Content\themes\Default\images\dialog-title.png" />
     <Content Include="Content\themes\Default\images\dialog-title2.png" />
     <Content Include="Content\themes\Default\images\email_bg.png" />

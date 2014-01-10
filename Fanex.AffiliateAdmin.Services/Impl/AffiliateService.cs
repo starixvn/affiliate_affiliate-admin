@@ -222,10 +222,10 @@ namespace Fanex.AffiliateAdmin.Services.Impl
         }
 
         /// <summary>
-        /// Get customer.
+        /// Get Customer.
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">Input Criteria.</param>
+        /// <returns>Customer Info.</returns>
         public Customer GetCustomer(CustomerSelByUserNameCriteria criteria)
         {
             return GetEntity<Customer>(criteria);

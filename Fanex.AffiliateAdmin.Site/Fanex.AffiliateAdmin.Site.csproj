@@ -331,6 +331,7 @@
     <Content Include="Content\themes\Default\images\btDown.png" />
     <Content Include="Content\themes\Default\images\clock.gif" />
     <Content Include="Content\themes\Default\images\ComboBox.png" />
+    <Content Include="Content\themes\Default\images\Expand_icon.png" />
     <Content Include="Content\themes\Default\images\flag.png" />
     <Content Include="Content\themes\Default\images\fThai.png" />
     <Content Include="Content\themes\Default\images\fChinese.png" />

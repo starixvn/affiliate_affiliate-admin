@@ -44,11 +44,11 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int AgentID { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
-        public DateTime RegisterDate { get; set; }
+        public DateTime? RegisterDate { get; set; }
 
-        public DateTime AffAffectedDate { get; set; }
+        public DateTime? AffAffectedDate { get; set; }
 
         public string Btag { get; set; }
 
@@ -57,6 +57,8 @@ namespace Fanex.AffiliateAdmin.Criterias
         public string IP { get; set; }
 
         public string Language { get; set; }
+
+        public int AffId { get; set; }
 
         public int ErrCode { get; set; }
 

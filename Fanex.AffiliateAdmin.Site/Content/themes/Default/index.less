@@ -777,6 +777,26 @@ body {
 		padding: 0 3px;
 		text-decoration: none;
 	}
+
+	.cell-subtotal {
+		position: relative;
+
+		.toggle-indicator {
+			position: absolute;
+			cursor: pointer;
+			width: 27px;
+			height: 6px;
+			top: 0;
+
+			&.collapse {
+				background: url(images/Collapse_icon.png);
+			}
+
+			&.expand {
+				background: url(images/Expand_icon.png);
+			}
+		}
+	}
 }
 
 /* FIX IE */

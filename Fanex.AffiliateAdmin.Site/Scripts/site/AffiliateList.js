@@ -1,13 +1,15 @@
 ﻿var AffiliateList = function ($) {
     var submitOptions = {};
     var COMMGROUP_COL = 12, BF_COL = 14, MEMBER_COL = 15;
+    var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
     var _hideColums = [COMMGROUP_COL, BF_COL, MEMBER_COL];
+    var _widthCellSubtotal = -1;
 
     return {
         init: function () {
             $("#gridId").resize(function () {
                 $(".search-panel").width($(this).width());
-            }); 
+            });
 
             if ($('#gridId').length > 0) {
                 AffiliateList.submitRequest();
@@ -47,6 +49,11 @@
                 if (chkCount === checkedCount) {
                     $('#chkAll').prop('checked', true);
                 }
+            });
+
+            $('#gridId').on('click', '.toggle-indicator', function () {
+                subTotalStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS;
+                AffiliateList.resetToggleIndicator();
             });
 
             // resize browser
@@ -129,6 +136,8 @@
                     if (data.TotalItem == 0) {
                         gridObject.addClass("noinfo").html(Lang.NoDataInfo);
                         legendObject.hide();
+                    } else if (!data.HideTotalRows) {
+                        AffiliateList.resetToggleIndicator();
                     }
 
                     $(".btnEditAccountType").addClass("icon-edit-account-type").attr("title", MSG.ChangeAccountType);
@@ -139,6 +148,31 @@
                 }
             });
         },
+        resetToggleIndicator: function () {
+            var isCollapseStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS;
+
+            if (isCollapseStatus) {
+                $('.real-subtotal').hide();
+                $('.pseudo-subtotal').show();
+            } else {
+                $('.real-subtotal').show();
+                $('.pseudo-subtotal').hide();
+            }
+
+            if ($('.real-cell').find('.toggle-indicator').length == 0) {
+                $('.real-cell').prepend("<div class='toggle-indicator collapse' title='{0}'></div>".format(MSG.ToggleSubTotal));
+            }
+
+            if ($('.pseudo-cell').find('.toggle-indicator').length == 0) {
+                $('.pseudo-cell').prepend("<div class='toggle-indicator expand' title='{0}'></div>".format(MSG.ToggleSubTotal));
+            }
+
+            var width = $('.cell-subtotal').width();
+
+            _widthCellSubtotal = width > 0 ? width : _widthCellSubtotal;
+
+            $('.toggle-indicator').css('left', _widthCellSubtotal / 2 + 'px');
+        },
         getFooterRows: function (subTotalData, totalData, colspan) {
             var subTotalRowCount = subTotalData.length;
             var footerRows = [];
@@ -148,18 +182,21 @@
                     var columns = [];
 
                     if (idx == 0) {
-                        columns.push({ Value: Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: subTotalRowCount,
-                            CustomCellRender: function (cell, cellFormated) {
-                                return "<div>abc</div><div>{0}</div>".format(Lang.SubTotal);
-                            }
-                        });
+                        columns.push({ Value: Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: subTotalRowCount, TdClass: 'cell-subtotal real-cell' });
                     }
 
                     columns.push({ Value: item.CurrencyCode, Name: "Currency" });
                     columns.push({ Value: item.Total, Name: "BF" });
                     columns.push({ Value: item.TotalMembers, Name: "TotalMembers" });
-                    footerRows.push({ Columns: columns });
+                    footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
                 });
+
+                var columns = [];
+                columns.push({ Value: Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: 1, TdClass: 'cell-subtotal pseudo-cell' });
+                columns.push({ Value: "", Name: "Currency" });
+                columns.push({ Value: "", Name: "BF" });
+                columns.push({ Value: "", Name: "TotalMembers" });
+                footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
             }
 
             var columns = [];

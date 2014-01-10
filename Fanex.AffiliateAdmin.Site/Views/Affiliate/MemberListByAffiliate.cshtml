@@ -87,7 +87,6 @@ customer
 <br />
 <div id="gridId" class="freegrid" colheight="200" expheight="290">
 </div>
-
 <div class="content legend">
     <div class="row-fluid">
         <ul class="unstyled inline status pull-right">
@@ -111,7 +110,7 @@ customer
 			showTitle: true,
 			titleInfo:
 			{
-				text: "@Lang.Member",
+			    text: "@Lang.MemberList",
 				customButtons: "<input type='button' name='btnAssign' value='' title='@Lang.AssignMemToAff' class='btnAdd btnAssign' id='btnAssign'>"
 			},
 			columns: [
@@ -129,6 +128,7 @@ customer
 						{ HeaderText: "@Lang.Country", Width: 80, Name: "Country" },
 						{ HeaderText: "@Lang.RegisterDate", Width: 100, Name: "RegisteredDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
 						{ HeaderText: "@Lang.FirstDepositDate", Width: 90, Name: "CreatedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+                        { HeaderText: "@Lang.AffectedDate", Width: 100, Name: "AffAffectedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
 						{ HeaderText: "@Lang.Currency", Width: 60, Name: "Currency", CellAlign: "center" },
 						{
 						    HeaderText: "@Lang.Remove",

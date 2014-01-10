@@ -131,9 +131,10 @@ namespace Fanex.AffiliateAdmin.Services.Interface
         void ChangeAffType(AffiliateUpdAffTypeCriteria criteria);
 
         /// <summary>
-        /// Get Customer Info.
+        /// Get Customer.
         /// </summary>
-        /// <param name="criteria">Input criteria.</param>
+        /// <param name="criteria">Input Criteria.</param>
+        /// <returns>Customer Info.</returns>
         Customer GetCustomer(CustomerSelByUserNameCriteria criteria);  
     }
 }

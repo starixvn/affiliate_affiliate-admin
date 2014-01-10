@@ -40,7 +40,9 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime? CreatedDate { get; set; }
 
-        public DateTime RegisteredDate { get; set; }
+        public DateTime? RegisteredDate { get; set; }
+
+        public DateTime? AffAffectedDate { get; set; }
 
         public int AffID { get; set; }
 

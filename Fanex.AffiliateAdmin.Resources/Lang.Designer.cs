@@ -61,6 +61,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string @__HeaderText____Lang_FirstDepositDate___Width_ {
+            get {
+                return ResourceManager.GetString("{ HeaderText: \"@Lang.FirstDepositDate\", Width:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access Denied.
         /// </summary>
         public static string AccessDenied {
@@ -529,6 +538,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string AffDomainNameNotContainChar {
             get {
                 return ResourceManager.GetString("AffDomainNameNotContainChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affected Date.
+        /// </summary>
+        public static string AffectedDate {
+            get {
+                return ResourceManager.GetString("AffectedDate", resourceCulture);
             }
         }
         
@@ -6298,6 +6316,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string Today {
             get {
                 return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Collapse/Expand Sub Total.
+        /// </summary>
+        public static string ToggleSubTotal {
+            get {
+                return ResourceManager.GetString("ToggleSubTotal", resourceCulture);
             }
         }
         

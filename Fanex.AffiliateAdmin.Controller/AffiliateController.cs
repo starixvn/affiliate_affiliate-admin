@@ -478,9 +478,12 @@ namespace Fanex.AffiliateAdmin.Controller
                 AgentID = 0,
                 CreatedDate = DateTime.Now,
                 RegisterDate = DateTime.Now,
+                AffAffectedDate = DateTime.Now,
                 IP = Remote.GetClientIPAddress()
             };
+
             _service.InsertMember(insertCriteria);
+
             return insertCriteria.ErrCode;
         }
 
@@ -515,7 +518,6 @@ namespace Fanex.AffiliateAdmin.Controller
             GetMoreCustomerInfo(customerInfo, insertCriteria);
 
             _service.InsertMember(insertCriteria);
-
             ServiceWrapper.UpdateBtage(AppSettings.SystemName, customerName, string.Format("{0}_{1}_0", AppSettings.LicenseeID, affid));
 
             return insertCriteria.ErrCode;
@@ -536,20 +538,30 @@ namespace Fanex.AffiliateAdmin.Controller
                 clickid = long.Parse(array.Length > 2 ? array[2] : "0");
             }
 
-            DateTime createdate = DateTime.MinValue;
-
+            DateTime? createdate = null;
             if (customerInfo.Element("FirstDepositDate").Value.Equals("N/A"))
             {
-                var customer = _service.GetCustomer(new CustomerSelByUserNameCriteria { UserName = customerInfo.Element("IBCusername").Value });
-                createdate = customer.CreatedDate.HasValue ? customer.CreatedDate.Value : createdate;
+                if (!string.IsNullOrEmpty(customerInfo.Element("IBCusername").Value))
+                {
+                    var customer = _service.GetCustomer(new CustomerSelByUserNameCriteria { UserName = customerInfo.Element("IBCusername").Value });
+                    createdate = customer.CreatedDate;
+                }
             }
             else
             {
-                DateTime.TryParse(customerInfo.Element("FirstDepositDate").Value, out createdate);
+                DateTime tempCreatedDate;
+                if (DateTime.TryParse(customerInfo.Element("FirstDepositDate").Value, out tempCreatedDate))
+                {
+                    createdate = tempCreatedDate;
+                }
             }
 
-            DateTime registerDate = DateTime.Now;
-            DateTime.TryParse(customerInfo.Element("RegisterDate").Value, out registerDate);
+            DateTime? registerDate = null;
+            DateTime tempRegisterDate;
+            if (DateTime.TryParse(customerInfo.Element("RegisterDate").Value, out tempRegisterDate))
+            {
+                registerDate = tempRegisterDate;
+            }
 
             criteria.ClickID = clickid;
             criteria.CreatedDate = createdate;

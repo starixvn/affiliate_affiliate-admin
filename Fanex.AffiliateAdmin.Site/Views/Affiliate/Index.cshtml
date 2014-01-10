@@ -114,10 +114,12 @@ aff-list
             CommissionGroup: '@Lang.CommissionGroup',
             BF: '@Lang.BF',
             AddToMyFavorite: '@Lang.AddToMyFavorite',
-            RemoveFromMyFavorite: '@Lang.RemoveFromMyFavorite'
+            RemoveFromMyFavorite: '@Lang.RemoveFromMyFavorite',
+            ToggleSubTotal: '@Lang.ToggleSubTotal',
         };
 
         var customerListUrl = '@Url.Action("MemberList", "Affiliate")';
+        var subTotalStatus = 1; // 0: collapse, 1: expand
 
         var sampleGridOption = {
             language: '@AppSession.Language',

@@ -100,6 +100,8 @@ payment
 </div>
 @section scripts{
     <script type="text/javascript">
+        var MSG = { ToggleSubTotal: '@Lang.ToggleSubTotal' };
+
         var columnsBase = [
             { HeaderText: "#", Width: 40, Name: "RowID", CellAlign: "center" },
             { HeaderText: "@Lang.TransId", Width: 72, Name: "Transid", HeaderAlign: "center", CellAlign: "center", Formatter: formatTransId },
@@ -120,6 +122,8 @@ payment
         ];
         var columnAmount = { HeaderText: "@Lang.Amount", Width: 200, Name: "Amt", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER };
         var HeaderText = "@Lang.Amount";
+        var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
+        var subTotalStatus = EXPAND_SUBTOTAL_STATUS;
 
         var gridOption = {
             language: '@AppSession.Language',

@@ -115,11 +115,12 @@ aff-list
             BF: '@Lang.BF',
             AddToMyFavorite: '@Lang.AddToMyFavorite',
             RemoveFromMyFavorite: '@Lang.RemoveFromMyFavorite',
-            ToggleSubTotal: '@Lang.ToggleSubTotal',
+            ToggleSubTotal: '@Lang.ToggleSubTotal'
         };
 
         var customerListUrl = '@Url.Action("MemberList", "Affiliate")';
-        var subTotalStatus = 1; // 0: collapse, 1: expand
+        var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
+        var subTotalStatus = EXPAND_SUBTOTAL_STATUS;
 
         var sampleGridOption = {
             language: '@AppSession.Language',

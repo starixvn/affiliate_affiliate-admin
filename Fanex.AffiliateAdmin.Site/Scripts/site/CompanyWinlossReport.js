@@ -268,31 +268,52 @@
         var footerRows = [];
 
         if (memberCurrencyCount > 0) {
-            $.each(companyWinlossInMemberCurrencies, function (idx, item) {
+            var realSubTotalclass = memberCurrencyCount > 0 ? 'cell-subtotal real-cell' : '';
+            var pseudoSubTotalclass = memberCurrencyCount > 0 ? 'cell-subtotal pseudo-cell' : '';
 
+            if (subTotalStatus == EXPAND_SUBTOTAL_STATUS) {
+
+                $.each(companyWinlossInMemberCurrencies, function (idx, item) {
+
+                    var columns = [];
+
+                    if (idx == 0) {
+                        columns.push({ Value: MSG.TotalAll, Name: "WinlostDate", MergeRowNumber: memberCurrencyCount, TdClass: realSubTotalclass });
+                    }
+
+                    if ($("#GroupBy").val() != GROUP_BY_MONTH) {
+                        columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 2 });
+                    } else {
+                        columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 1 });
+                    }
+
+                    for (var i = mergeCols; i < _gridOption.columns.length; i++) {
+                        var col = _gridOption.columns[i];
+                        columns.push({ Value: item[col.Name], Name: col.Name });
+                    }
+
+                    footerRows.push({ Columns: columns, CssClass: 'currency-whole-range real-subtotal' });
+                });
+            } else {
                 var columns = [];
-
-                if (idx == 0) {
-                    columns.push({ Value: MSG.TotalAll, Name: "WinlostDate", MergeRowNumber: memberCurrencyCount });
-                }
+                columns.push({ Value: MSG.TotalAll, Name: "WinlostDate", MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
 
                 if ($("#GroupBy").val() != GROUP_BY_MONTH) {
-                    columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 2 });
+                    columns.push({ Value: '', Name: "Currency", MergeColNumber: 2 });
                 } else {
-                    columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 1 });
+                    columns.push({ Value: '', Name: "Currency", MergeColNumber: 1 });
                 }
 
                 for (var i = mergeCols; i < _gridOption.columns.length; i++) {
                     var col = _gridOption.columns[i];
-                    columns.push({ Value: item[col.Name], Name: col.Name });
+                    columns.push({ Value: '', Name: col.Name });
                 }
 
-                footerRows.push({ Columns: columns, CssClass: 'currency-whole-range' });
-            });
+                footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
+            }
         }
 
         // Total row in system 
-
         if (memberCurrencyCount > _currencyThreshold || companyWinlossInMemberCurrencies[0].Currency !== System.Currency) {
             var companyWinlossInSystemCurrency = totalData.CompanyWinlossInSystemCurrency;
             var totalColums = [];
@@ -397,6 +418,12 @@
                     AFFILIATE.initMonthPicker();
                 }
             });
+
+            $('#gridId').on('click', '.toggle-indicator', function () {
+                subTotalStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS;
+                CompanyWinlossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            });
+
         },
         checkRangeTime: function () {
             $('#FromDate, #ToDate').removeClass('input-validation-error');
@@ -493,6 +520,8 @@
                     if (data.TotalItem == 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
+                    } else {
+                        AFFILIATE.resetToggleIndicator();
                     }
 
                     AFFILIATE.updateSearchPanel($('#gridId'));

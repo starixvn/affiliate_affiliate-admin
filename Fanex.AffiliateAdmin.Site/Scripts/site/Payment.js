@@ -4,7 +4,7 @@
 
             $("#gridId").resize(function () {
                 $(".search-panel").width($(this).width());
-            }); 
+            });
 
             $("#GetAll").click(function () {
                 var isChecked = $(this).is(':checked');
@@ -35,6 +35,11 @@
             if ($('#gridId').length > 0) {
                 Payment.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             }
+
+            $('#gridId').on('click', '.toggle-indicator', function () {
+                subTotalStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS;
+                Payment.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            });
 
         },
         toggleGetAllChecked: function (isChecked) {
@@ -85,7 +90,7 @@
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
                     if (data.List.length > 0) {
-                        gridOption.footerRows = Payment.genFooterRow(gridOption, data.List.length > 1 ? data.SubTotal : [], 8, data.Total, 8);
+                        gridOption.footerRows = Payment.genFooterRow(gridOption, data.SubTotal, 8, data.Total, 8);
                     }
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
@@ -95,6 +100,7 @@
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
                     } else {
+                        AFFILIATE.resetToggleIndicator();
                         $('.status').show();
                     }
                 },
@@ -133,30 +139,36 @@
             var footerRows = [];
             var subRowLength = listSubTotalRows.length;
             var subRowCurrency = listSubTotalRows[0];
-            var colSubTotal = [];
-            var colTotal = [];
 
+            if (subRowLength > 1 || (subRowLength == 1 && subRowCurrency["Currency"] != System.Currency)) {
+                var realSubTotalclass = subRowLength > 1 ? 'cell-subtotal real-cell' : '';
+                var pseudoSubTotalclass = subRowLength > 1 ? 'cell-subtotal pseudo-cell' : '';
 
-            //Sub total row.
-            if (subRowLength > 1 || (subRowLength == 1 && subRowCurrency["Currency"] != System.Currency && $("#BaseCurrency").val() != System.Currency)) {
-                colSubTotal.push({ Value: Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: subRowLength });
+                if (subTotalStatus == EXPAND_SUBTOTAL_STATUS) {
+                    $.each(listSubTotalRows, function (idx, item) {
+                        var colSubTotal = [];
 
-                for (var i = 0; i < subRowLength; i++) {
-                    var subRow = listSubTotalRows[i];
+                        if (idx == 0) {
+                            colSubTotal.push({ Value: Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: subRowLength, TdClass: realSubTotalclass });
+                        }
 
-                    colSubTotal = Payment.genOneRow(columns, subRow, colSubTotal, colSpanSub);
-
-                    footerRows.push({ Columns: colSubTotal });
-
-                    colSubTotal = []; //Init sub total row.
+                        colSubTotal = Payment.genOneRow(columns, item, colSubTotal, colSpanSub);
+                        footerRows.push({ Columns: colSubTotal, CssClass: "real-subtotal" });
+                    });
+                }
+                else {
+                    var colSubTotal = [];
+                    colSubTotal.push({ Value: Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
+                    colSubTotal.push({ Value: "", Name: "Currency" });
+                    colSubTotal.push({ Value: "", Name: $("#BaseCurrency").val() != "0" ? "ConvertedAmt" : "Amt" });
+                    footerRows.push({ Columns: colSubTotal, CssClass: "pseudo-subtotal" });
                 }
             }
 
             //Total Row
+            var colTotal = [];
             colTotal.push({ Value: Lang.Total, Name: "RowID", MergeColNumber: colSpanTotal });
-
             colTotal = Payment.genOneRow(columns, totalRow[0], colTotal, colSpanSub);
-
             footerRows.push({ Columns: colTotal, CssClass: "total" });
 
             return footerRows;

@@ -133,22 +133,43 @@
 
         var footerRows = [];
 
-        if (subTotalRowCount > 1) {
-            $.each(subTotalData, function (idx, item) {
+        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency)) {
+            var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
+            var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
 
+            if (subTotalStatus == EXPAND_SUBTOTAL_STATUS) {
+                $.each(subTotalData, function (idx, item) {
+
+                    var columns = [];
+
+                    if (idx == 0) {
+                        columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });
+                    }
+
+                    for (var i = mergeCols; i < _gridOption.columns.length; i++) {
+                        var col = _gridOption.columns[i];
+
+                        if (col.IsExRate) {
+                            columns.push({ Value: '', Name: col.Name });
+                        } else {
+                            columns.push({ Value: item[col.Name], Name: col.Name });
+                        }
+                    }
+
+                    footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
+                });
+            }
+            else {
                 var columns = [];
-
-                if (idx == 0) {
-                    columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
-                }
+                columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
 
                 for (var i = mergeCols; i < _gridOption.columns.length; i++) {
                     var col = _gridOption.columns[i];
-                    columns.push({ Value: item[col.Name], Name: col.Name });
+                    columns.push({ Value: '', Name: col.Name });
                 }
 
-                footerRows.push({ Columns: columns });
-            });
+                footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
+            }
         }
 
         // Total row
@@ -217,6 +238,11 @@
 
             $("#GroupBy").change(function () {
 
+            });
+
+            $('#gridId').on('click', '.toggle-indicator', function () {
+                subTotalStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS;
+                MemberWinlossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             });
         },
         checkRangeTime: function () {
@@ -308,6 +334,8 @@
                     if (data.List.length == 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
+                    } else {
+                        AFFILIATE.resetToggleIndicator();
                     }
 
                     AFFILIATE.updateSearchPanel($('#gridId'));

@@ -83,7 +83,6 @@
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
-
             gridOption = $.extend(true, {}, sampleGridOption);
             gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
 

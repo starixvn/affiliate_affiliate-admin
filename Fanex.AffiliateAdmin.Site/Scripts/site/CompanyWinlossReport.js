@@ -267,50 +267,47 @@
 
         var footerRows = [];
 
-        if (memberCurrencyCount > 0) {
-            var realSubTotalclass = memberCurrencyCount > 0 ? 'cell-subtotal real-cell' : '';
-            var pseudoSubTotalclass = memberCurrencyCount > 0 ? 'cell-subtotal pseudo-cell' : '';
+        if (memberCurrencyCount > 1) {
+            var realSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal real-cell' : '';
+            var pseudoSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal pseudo-cell' : '';
 
-            if (subTotalStatus == EXPAND_SUBTOTAL_STATUS) {
-
-                $.each(companyWinlossInMemberCurrencies, function (idx, item) {
-
-                    var columns = [];
-
-                    if (idx == 0) {
-                        columns.push({ Value: MSG.TotalAll, Name: "WinlostDate", MergeRowNumber: memberCurrencyCount, TdClass: realSubTotalclass });
-                    }
-
-                    if ($("#GroupBy").val() != GROUP_BY_MONTH) {
-                        columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 2 });
-                    } else {
-                        columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 1 });
-                    }
-
-                    for (var i = mergeCols; i < _gridOption.columns.length; i++) {
-                        var col = _gridOption.columns[i];
-                        columns.push({ Value: item[col.Name], Name: col.Name });
-                    }
-
-                    footerRows.push({ Columns: columns, CssClass: 'currency-whole-range real-subtotal' });
-                });
-            } else {
+            $.each(companyWinlossInMemberCurrencies, function (idx, item) {
                 var columns = [];
-                columns.push({ Value: MSG.TotalAll, Name: "WinlostDate", MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
+
+                if (idx == 0) {
+                    columns.push({ Value: MSG.TotalAll, Name: "WinlostDate", MergeRowNumber: memberCurrencyCount, TdClass: realSubTotalclass });
+                }
 
                 if ($("#GroupBy").val() != GROUP_BY_MONTH) {
-                    columns.push({ Value: '', Name: "Currency", MergeColNumber: 2 });
+                    columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 2 });
                 } else {
-                    columns.push({ Value: '', Name: "Currency", MergeColNumber: 1 });
+                    columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 1 });
                 }
 
                 for (var i = mergeCols; i < _gridOption.columns.length; i++) {
                     var col = _gridOption.columns[i];
-                    columns.push({ Value: '', Name: col.Name });
+                    columns.push({ Value: item[col.Name], Name: col.Name });
                 }
 
-                footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
+                footerRows.push({ Columns: columns, CssClass: 'currency-whole-range real-subtotal' });
+            });
+
+            // pseudo sub total row
+            var columns = [];
+            columns.push({ Value: MSG.TotalAll, Name: "WinlostDate", MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
+
+            if ($("#GroupBy").val() != GROUP_BY_MONTH) {
+                columns.push({ Value: '', Name: "Currency", MergeColNumber: 2 });
+            } else {
+                columns.push({ Value: '', Name: "Currency", MergeColNumber: 1 });
             }
+
+            for (var i = mergeCols; i < _gridOption.columns.length; i++) {
+                var col = _gridOption.columns[i];
+                columns.push({ Value: '', Name: col.Name });
+            }
+
+            footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
         }
 
         // Total row in system 
@@ -421,7 +418,7 @@
 
             $('#gridId').on('click', '.toggle-indicator', function () {
                 subTotalStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS;
-                CompanyWinlossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+                AFFILIATE.resetToggleIndicator(_gridOption);
             });
 
         },
@@ -521,7 +518,7 @@
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
                     } else {
-                        AFFILIATE.resetToggleIndicator();
+                        AFFILIATE.resetToggleIndicator(_gridOption);
                     }
 
                     AFFILIATE.updateSearchPanel($('#gridId'));

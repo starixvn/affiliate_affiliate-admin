@@ -98,6 +98,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     Currencies = string.Join(",", CurrentSession.CurrencyList.Select(c => c.CurrencyID).ToArray()),
                     IsITAdmin = CurrentSession.IsIT
                 });
+
                 if (model != null && model.AffiliateInfo != null)
                 {
                     CurrentSession.Affiliate = new AffiliateSession
@@ -116,14 +117,12 @@ namespace Fanex.AffiliateAdmin.Controller
                         Currency = model.AffiliateInfo.CurrencyCode
                     };
                     FormaterCurrency.SetDefaultCurrency(model.AffiliateInfo.CurrencyCode);
-                    
                     model.ExternalLoginUrl = ExternalLogin.ExternalLoginUrl(
                         CurrentSession.Affiliate.UserName,
                         CurrentSession.CustID,
                         CurrentSession.OnUserID,
                         Session.SessionID,
                         model.AffiliateInfo.AffType);
-
                     ViewBag.IsLoadOtherPage = Request["IsLoadOtherPage"];
 
                     return View(model);
@@ -277,8 +276,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         AffMinPlayer = criteria.AffMinPlayer,
                         AffMinWire = criteria.AffMinWire,
                         Countries = _countryService.GetAll(new CountryCriteria()),
-                        PaymentMethods =
-                            this._systemSettingService.GetPaymentMethod(new PaymentMethodCriteria()).ToList()
+                        PaymentMethods = this._systemSettingService.GetPaymentMethod(new PaymentMethodCriteria()).ToList()
                     };
             }
 
@@ -303,6 +301,30 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.PreferredPayment = criteria.PreferredPayment ?? CurrentSession.Affiliate.PrefferredPayment;
 
                 _affiliateService.UpdateAffiliateInfo(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    var affiliateInfo = _affiliateService.GetAffiliateInfo(new AffiliateSelCriteria 
+                    { 
+                        AffId = criteria.AffId,
+                    });
+
+                    CurrentSession.Affiliate = new AffiliateSession
+                    {
+                        AffiliateId = affiliateInfo.AffId,
+                        UserName = affiliateInfo.Username,
+                        Prefix = affiliateInfo.Prefix,
+                        Status = affiliateInfo.Status,
+                        PrefferredLanguage = affiliateInfo.PreferredLanguage,
+                        AffType = affiliateInfo.AffType,
+                        MailOption = affiliateInfo.MailOption,
+                        Email = affiliateInfo.Email,
+                        PrefferredPayment = affiliateInfo.PreferredPayment,
+                        GroupID = affiliateInfo.GroupId,
+                        CurrencyID = affiliateInfo.Currency,
+                        Currency = affiliateInfo.CurrencyCode
+                    };
+                }
 
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdAffSuccess, CurrentSession.Affiliate.UserName));
             }

@@ -1,17 +1,20 @@
 ﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
 <div>
-    Yang terhormat @(Model.FirstName),<br />
+    Yang terhormat @(Model.FirstName),
+    <br />
     <br />
     Aku menyesal untuk memberitahu Anda bahwa aplikasi Anda untuk bergabung dengan program
     Afiliasi @(Model.SystemName)
-    belum disetujui. Saya mohon maaf atas ketidaknyamanan yang ditimbulkan.<br />
+    belum disetujui. Saya mohon maaf atas ketidaknyamanan yang ditimbulkan.
+    <br />
     <br />
     Jika Anda mempunyai pertanyaan mengenai mengapa situs Web Anda belum memenuhi kriteria
-    yang diperlukan, silakan menghubungi saya di <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a>.<br />
+    yang diperlukan, silakan menghubungi saya di <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a>.
     <br />
-    Hormat kami,<br />
     <br />
-    Afiliasi @(Model.SystemName)
-    Tim<br />
+    Hormat kami,
+    <br />
+    <br />
+    Afiliasi @(Model.SystemName) Tim<br />
     <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a>
 </div>

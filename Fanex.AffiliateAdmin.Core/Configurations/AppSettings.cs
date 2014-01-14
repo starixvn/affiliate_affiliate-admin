@@ -604,7 +604,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                return GetSettingValue(new SystemSettingDetailCriteria { Name = "SystemName" });
+                return GetSettingValue(new SystemSettingDetailCriteria { SearchBy = SearchByType.ByName, Name = "SystemName" });
             }
         }
 

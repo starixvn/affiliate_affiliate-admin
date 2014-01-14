@@ -1,4 +1,6 @@
 ﻿var Payment = function ($) {
+    var gridOption = {};
+
     return {
         init: function () {
 
@@ -38,7 +40,7 @@
 
             $('#gridId').on('click', '.toggle-indicator', function () {
                 subTotalStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS;
-                Payment.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+                AFFILIATE.resetToggleIndicator(gridOption);
             });
 
         },
@@ -56,6 +58,7 @@
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
+            gridOption = $.extend(true, {}, sampleGridOption);
             gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
 
             AFFILIATE.trimBeforeSubmit();
@@ -100,7 +103,7 @@
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
                     } else {
-                        AFFILIATE.resetToggleIndicator();
+                        AFFILIATE.resetToggleIndicator(gridOption);
                         $('.status').show();
                     }
                 },
@@ -141,28 +144,28 @@
             var subRowCurrency = listSubTotalRows[0];
 
             if (subRowLength > 1 || (subRowLength == 1 && subRowCurrency["Currency"] != System.Currency)) {
-                var realSubTotalclass = subRowLength > 1 ? 'cell-subtotal real-cell' : '';
-                var pseudoSubTotalclass = subRowLength > 1 ? 'cell-subtotal pseudo-cell' : '';
+                var realSubTotalclass = subRowLength > 0 ? 'cell-subtotal real-cell' : '';
+                var pseudoSubTotalclass = subRowLength > 0 ? 'cell-subtotal pseudo-cell' : '';
 
-                if (subTotalStatus == EXPAND_SUBTOTAL_STATUS) {
-                    $.each(listSubTotalRows, function (idx, item) {
-                        var colSubTotal = [];
 
-                        if (idx == 0) {
-                            colSubTotal.push({ Value: Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: subRowLength, TdClass: realSubTotalclass });
-                        }
-
-                        colSubTotal = Payment.genOneRow(columns, item, colSubTotal, colSpanSub);
-                        footerRows.push({ Columns: colSubTotal, CssClass: "real-subtotal" });
-                    });
-                }
-                else {
+                $.each(listSubTotalRows, function (idx, item) {
                     var colSubTotal = [];
-                    colSubTotal.push({ Value: Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
-                    colSubTotal.push({ Value: "", Name: "Currency" });
-                    colSubTotal.push({ Value: "", Name: $("#BaseCurrency").val() != "0" ? "ConvertedAmt" : "Amt" });
-                    footerRows.push({ Columns: colSubTotal, CssClass: "pseudo-subtotal" });
-                }
+
+                    if (idx == 0) {
+                        colSubTotal.push({ Value: Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: subRowLength, TdClass: realSubTotalclass });
+                    }
+
+                    colSubTotal = Payment.genOneRow(columns, item, colSubTotal, colSpanSub);
+                    footerRows.push({ Columns: colSubTotal, CssClass: "real-subtotal" });
+                });
+
+                // pseudo sub total row
+                var colSubTotal = [];
+                colSubTotal.push({ Value: Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
+                colSubTotal.push({ Value: "", Name: "Currency" });
+                colSubTotal.push({ Value: "", Name: $("#BaseCurrency").val() != "0" ? "ConvertedAmt" : "Amt" });
+                footerRows.push({ Columns: colSubTotal, CssClass: "pseudo-subtotal" });
+
             }
 
             //Total Row

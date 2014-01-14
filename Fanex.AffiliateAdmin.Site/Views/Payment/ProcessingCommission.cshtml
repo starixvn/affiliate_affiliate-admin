@@ -146,6 +146,7 @@ payment
             titleInfo:
             {
                 text: "@Lang.ProcessingCommission",
+                showButtonsWhenNoData: true,
                 customButtons: button
             },
             groupHeaderRows: [
@@ -184,7 +185,7 @@ payment
         };
 
         var totalPaymentHeader = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Name: "Commission", NameCache: "Commission", MergeRowNumber: 2 };
-        var totalPaymentCol = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' };
+        var totalPaymentCol = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true };
 
     </script>
     <script src="~/Scripts/site/ProcessingCommission.js" type="text/javascript"></script>

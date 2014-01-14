@@ -26,7 +26,7 @@
                     _gridOption.groupHeaderRows[0].Columns.splice(_gridOption.groupHeaderRows[0].Columns.length, 0, turnoverHeader);
                 }
 
-                var turnoverCol = { HeaderCaption: MSG[name], HeaderText: MSG[name], Width: 110, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' };
+                var turnoverCol = { HeaderCaption: MSG[name], HeaderText: MSG[name], Width: 110, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true };
                 _gridOption.columns.splice(_gridOption.columns.length, 0, turnoverCol);
             }
         }

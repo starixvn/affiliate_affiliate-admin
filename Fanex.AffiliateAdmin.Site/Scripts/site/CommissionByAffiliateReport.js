@@ -28,10 +28,10 @@
                 { HeaderText: MSG.BetCount, Width: 60, Name: name + "BetCount", HeaderAlign: "center", CellAlign: "right" }
             );
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: MSG.Turnover, HeaderText: MSG.Turnover, Width: 70, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMAT_INT_NUMBER, FormatNegative: '($)' }
+                { IsCurrency: true, HeaderCaption: MSG.Turnover, HeaderText: MSG.Turnover, Width: 70, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMAT_INT_NUMBER, FormatNegative: '($)', IsAbs: true }
             );
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: MSG.Winloss, HeaderText: MSG.Winloss, Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
+                { IsCurrency: true, HeaderCaption: MSG.Winloss, HeaderText: MSG.Winloss, Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
             gridOption.columns.push(
                 { IsCurrency: false, HeaderCaption: MSG.QM, HeaderText: MSG.QM, Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
@@ -43,11 +43,11 @@
                 }
             );
             gridOption.columns.push(
-                { IsCurrency: false, IsPercent: true, HeaderCaption: MSG.CommPercent, HeaderText: MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
+                { IsCurrency: false, IsPercent: true, HeaderCaption: MSG.CommPercent, HeaderText: MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
 
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: MSG.Commission, HeaderText: MSG.Commission, Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
+                { IsCurrency: true, HeaderCaption: MSG.Commission, HeaderText: MSG.Commission, Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
         }
     }

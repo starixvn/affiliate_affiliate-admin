@@ -149,7 +149,8 @@
             showSendMailButton: false,
             sendMailFunction: null,
             showCollapseExpandButton: false,
-            customButtons: ''
+            customButtons: '',
+            showButtonsWhenNoData: false
         },
         showPager: false,
         pagerOption:
@@ -191,7 +192,8 @@
         gridHeight: 400,
         gridWidth: 0,
         noDataText: "There is no data",
-        language: 'en-US'
+        language: 'en-US',
+        autoFixFrozenRowHeight: false
     };
 
     var Fanex = Fanex || {};
@@ -326,10 +328,18 @@
                         for (var ftColIndex = 0; ftColIndex < footerLength; ftColIndex++) {
                             currentCol = options.footerRows[0].Columns[ftColIndex];
                             if (currentCol.MergeColNumber) {
+                                var removeArray = [];
                                 for (nhIndex = 0; nhIndex < needHideCols.length; nhIndex++) {
-                                    if (ftColIndex < needHideCols[nhIndex]) {
+                                    if (ftColIndex + currentCol.MergeColNumber >= needHideCols[nhIndex]) {
+                                        removeArray.push(nhIndex);
+                                    }
+                                    else if (ftColIndex < needHideCols[nhIndex]) {
                                         needHideCols[nhIndex] -= currentCol.MergeColNumber - 1;
                                     }
+                                }
+
+                                for (var rmIndex = removeArray.length - 1; rmIndex >= 0; rmIndex--) {
+                                    needHideCols.splice(removeArray[rmIndex], 1);
                                 }
                             }
                         }
@@ -355,6 +365,7 @@
             me.gridOptions = Fanex.Grid.List[me.tableContentId].gridOptions;
             me.gridOptions.isResetScroller = false;
             me.RegisterMouseHoverEvent();
+            me.AutoResizeRowHeight()
             $(me.$grid).gridScroller(me.gridOptions);
             //// Save Current Sor
             Fanex.Grid.List[me.tableContentId].sortOption =
@@ -430,6 +441,8 @@
                 Fanex.Grid.List[me.tableContentId].pagerOption = options.pagerOption;
             }
             me.RegisterEvents();
+            me.AutoResizeRowHeight();
+
         },
         RenderTitle: function () {
             var me = this;
@@ -449,7 +462,7 @@
                 if (options.titleInfo.showBackButton === true) {
                     titleHtml.push('<input id="btnBack' + me.gridId + '" class="btnBack" type="button" title="Back" value="" name="btnBack" />');
                 }
-                if (options.bodyRows.length > 0) {
+                if (options.bodyRows.length > 0 || options.titleInfo.showButtonsWhenNoData === true) {
                     if (options.titleInfo.customButtons !== '') {
                         titleHtml.push(options.titleInfo.customButtons);
                     }
@@ -579,10 +592,10 @@
                                     //// If It has merge row and current row has only one columns and column has merge row, then remove next row
                                     Fanex.Grid.Helper.RemoveItemForRowSpan(currentGroupHeader, rowIndex, currentCol, me.columnsHastable);
                                     var currentMergeRowNumber = ' rowspan="' + currentCol.MergeRowNumber + '"';
-                                    if (type === 'frozenheader' || type === 'frozenbody') {
+                                    //if (type === 'frozenheader' || type === 'frozenbody') {
                                         //// Calculate height for merger row
                                         currentHeight = ((options.headerColumnHeight * currentCol.MergeRowNumber) + (currentCol.MergeRowNumber - 1) * 5);
-                                    }
+                                    //}
                                     customSpan += currentMergeRowNumber;
                                 }
 
@@ -875,11 +888,11 @@
             var currentCollapseExpandId = '';
 
             var currentValue = currentCol.Value;
-            if (me.columnsHastable[currentCol.Name].FormatNumber && !isNaN(currentValue) && currentValue !== '') {
-                if (currentValue < 0) {
-                    currentValue = -1 * currentValue;
-                }
+            if (me.columnsHastable[currentCol.Name].IsAbs) {
+                currentValue = Math.abs(currentValue);
+            }
 
+            if (me.columnsHastable[currentCol.Name].FormatNumber && !isNaN(currentValue) && currentValue !== '') {
                 currentValue = numeral(currentValue).format(me.columnsHastable[currentCol.Name].FormatNumber);
             }
 
@@ -1082,6 +1095,31 @@
             var currentPageStartIndex = 0,
                 currentRow;
 
+            if (options.sortOption.serverSortFunction == null) {
+                var defaultSort = false,
+                customSortFunction = null,
+                columnName = '',
+                currentDirection = '';
+                for (var colIndex = 0; colIndex < options.columns.length; colIndex++) {
+                    if (options.columns[colIndex].SortDirection != null
+                    && options.columns[colIndex].SortDirection != '') {
+                        defaultSort = true;
+                        currentDirection = options.columns[colIndex].SortDirection;
+                        customSortFunction = options.columns[colIndex].CustomSortFunction;
+                        columnName = options.columns[colIndex].Name;
+                        break;
+                    }
+                }
+
+                if (defaultSort) {
+                    options.bodyRows = Fanex.Grid.Helper.GetSortedArray(options.bodyRows,
+                                                                    columnName,
+                                                                    currentDirection,
+                                                                    customSortFunction);
+
+                }
+            }
+
             //// If show pager, then take approriate data range
             if (options.showPager === true && options.customPager !== true) {
                 var startIndex = (options.pagerOption.currentPage * options.pagerOption.itemsPerPage);
@@ -1249,6 +1287,7 @@
                             $(me.$grid).gridScroller(me.gridOptions);
                             me.RenderPager();
                             me.RegisterMouseHoverEvent();
+                            me.AutoResizeRowHeight();
                             //// Save for rerender
                             Fanex.Grid.List[me.tableContentId].pagerOption = me.Options.pagerOption;
                             if (typeof (options.pagerOption.afterPagedFunction) === 'function') {
@@ -1375,17 +1414,17 @@
                                 if ($this.hasClass('desc')) {
                                     me.$grid.find('.divSorter').removeClass('asc').removeClass('desc');
                                     $this.addClass('asc');
-                                    currentDirection = 'ASC';
+                                    currentDirection = 'asc';
                                 }
                                 else if ($this.hasClass('asc')) {
                                     me.$grid.find('.divSorter').removeClass('asc').removeClass('desc');
                                     $this.addClass('desc');
-                                    currentDirection = 'DESC';
+                                    currentDirection = 'desc';
                                 }
                                 else {
                                     me.$grid.find('.divSorter').removeClass('asc').removeClass('desc');
                                     $this.addClass('desc');
-                                    currentDirection = 'DESC';
+                                    currentDirection = 'desc';
                                 }
                                 var customSortFunction = null;
                                 for (var colIndex = 0; colIndex < options.columns.length; colIndex++) {
@@ -1459,6 +1498,22 @@
                     }
                 });
             }
+        },
+
+        AutoResizeRowHeight: function () {
+            var me = this,
+                options = me.Options;
+            if (options.autoFixFrozenRowHeight) {
+                me.$grid.find('.content-container .highlight-row').each(function () {
+                    var $this = $(this),
+                        currentHeight = $this.height(),
+                        hlattr = $this.attr('highlightatt');
+
+                    if (isValid(hlattr)) {
+                        me.$grid.find('.row_header tr[highlightatt="' + hlattr.replace('main', 'frozen') + '"]').css('height', currentHeight + 'px');
+                    }
+                });
+            }
         }
     };
 
@@ -1478,6 +1533,7 @@
                 var match = /(chrome)[ \/]([\w.]+)/.exec(ua) ||
                 /(webkit)[ \/]([\w.]+)/.exec(ua) ||
                 /(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) ||
+                /(trident)(?:.*rv:([\w.]+))?/.exec(ua) ||
                 /(msie) ([\w.]+)/.exec(ua) ||
                 ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) ||
                 [];
@@ -1494,6 +1550,10 @@
             if (matchedBrowser.browserDectect) {
                 browserDectect[matchedBrowser.browserDectect] = true;
                 browserDectect.version = matchedBrowser.version;
+
+                if (matchedBrowser.browserDectect == 'trident') {
+                    browserDectect.msie = true;
+                }
             }
 
             // Chrome is Webkit, but Webkit is also Safari.
@@ -1649,7 +1709,7 @@
                 }
             }
 
-            if (sortDirection === 'ASC') {
+            if (sortDirection.toLowerCase() === 'asc') {
                 return rows.sort(function (row1, row2) {
                     return Fanex.Grid.Helper.CompareRow(sortColIndex, row1, row2, sortField, function (col1Value, col2Value) {
                         if (typeof (customSortFunction) === 'function') {

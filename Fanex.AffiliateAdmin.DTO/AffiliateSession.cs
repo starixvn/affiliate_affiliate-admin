@@ -28,6 +28,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public int AffType { get; set; }
 
+        public string AffTypeName { get; set; }
+
         public int GroupID { get; set; }
 
         public string PrefferredLanguage { get; set; }

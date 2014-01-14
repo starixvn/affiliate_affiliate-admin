@@ -138,8 +138,9 @@ report
             showTitle: true,
             titleInfo:
             {
-                customButtons: "<i title='Simple Mode' id='btnChangeViewMode' style='cursor: pointer' class='icon-circle-arrow-left'></i>",
                 text: "@Lang.Commission",
+                showButtonsWhenNoData: false,
+                customButtons: "<i title='Simple Mode' id='btnChangeViewMode' style='cursor: pointer' class='icon-circle-arrow-left'></i>"
             },
             groupHeaderRows: [
                 {
@@ -195,14 +196,14 @@ report
                         return null;
                     }
                 },
-                { HeaderText: "@Lang.Currency", Width: 80, Name: "Currency", HeaderAlign: "center", CellAlign: "center", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
+                { HeaderText: "@Lang.Currency", Width: 80, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.ActiveMembers", Width: 80, Name: "ActivePlayers", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.BetCount", Width: 80, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "@Lang.Deposit", Width: 80, Name: "Deposit", NameCache: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
-                { HeaderText: "@Lang.Withdrawal", Width: 70, Name: "Withdrawal", NameCache: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
-                { HeaderText: "@Lang.Turnover", Width: 80, Name: "Turnover", NameCache: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMAT_INT_NUMBER, FormatNegative: '($)' },
-                { HeaderText: "@Lang.Winloss", Width: 110, Name: "Winloss", NameCache: "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' },
-                { HeaderText: "@Lang.Commission", Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
+                { HeaderText: "@Lang.Deposit", Width: 80, Name: "Deposit", NameCache: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
+                { HeaderText: "@Lang.Withdrawal", Width: 70, Name: "Withdrawal", NameCache: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
+                { HeaderText: "@Lang.Turnover", Width: 80, Name: "Turnover", NameCache: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMAT_INT_NUMBER, FormatNegative: '($)', IsAbs: true },
+                { HeaderText: "@Lang.Winloss", Width: 110, Name: "Winloss", NameCache: "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
+                { HeaderText: "@Lang.Commission", Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             ],
             allowTruncate: false,
             fullHeight: false,
@@ -220,7 +221,7 @@ report
 
         var sampleCashbackHeader = { HeaderCaption: "@Lang.Cashback", HeaderText: "@Lang.Cashback", Name: "DeductedPercentage", MergeColNumber: 2 };
         var sampleDeductedPercentageCol = { HeaderText: "@Lang.DeductionPercent", IsPercent: true, Width: 80, Name: "DeductedPercentage", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER };
-        var sampleAmountCol ={ HeaderCaption: "@Lang.Amount", HeaderText: "@Lang.Amount", Width: 80, IsCurrency: true, Name: "Cashback", NameCache: "Cashback", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' };
+        var sampleAmountCol ={ HeaderCaption: "@Lang.Amount", HeaderText: "@Lang.Amount", Width: 80, IsCurrency: true, Name: "Cashback", NameCache: "Cashback", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true };
 
     </script>
     <script src="@Url.Content("~/Scripts/site/CommissionReport.js")" type="text/javascript"></script>

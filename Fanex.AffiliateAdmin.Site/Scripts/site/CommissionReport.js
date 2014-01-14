@@ -16,8 +16,6 @@
 
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     function initProductColumnsForGridOption() {
-        var hasGroupByMonth = $("#GroupBy").val() == GROUP_BY_MONTH;
-        var mergeColNumber = hasGroupByMonth ? 7 : 5;
 
         if (HasCashbackDeduction) {
             if (hasGroupByMonth) {
@@ -36,6 +34,9 @@
             }
         }
 
+        var hasGroupByMonth = $("#GroupBy").val() == GROUP_BY_MONTH;
+        var mergeColNumber = hasGroupByMonth ? 7 : 5;
+
         _indexProductColumns.clear();
         _commonColumnCount = _gridOption.columns.length;
 
@@ -52,10 +53,10 @@
                 { HeaderText: MSG.BetCount, Width: 60, Name: name + "BetCount", HeaderAlign: "center", CellAlign: "right" }
             );
             _gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: MSG.Turnover, HeaderText: MSG.Turnover, Width: 70, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
+                { IsCurrency: true, HeaderCaption: MSG.Turnover, HeaderText: MSG.Turnover, Width: 70, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
             _gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: MSG.Winloss, HeaderText: MSG.Winloss, Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
+                { IsCurrency: true, HeaderCaption: MSG.Winloss, HeaderText: MSG.Winloss, Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
 
             // add QM column to hidden list
@@ -79,12 +80,12 @@
                 );
                 // add CommPercent column to hidden list
                 _gridOption.columns.push(
-                    { IsCurrency: false, IsPercent: true, HeaderCaption: MSG.CommPercent, HeaderText: MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
+                    { IsCurrency: false, IsPercent: true, HeaderCaption: MSG.CommPercent, HeaderText: MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
                 );
             }
 
             _gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: MSG.Commission, HeaderText: MSG.Commission, Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' }
+                { IsCurrency: true, HeaderCaption: MSG.Commission, HeaderText: MSG.Commission, Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
         }
     }
@@ -188,8 +189,8 @@
         else {
             columns = columns.concat(_hideColumns.clone());
             $("#gridId").fanexGrid("hideColumns", _gridOption, columns);
-            $(".footer-container table th").show();
-            $("#gridId .row_footer table tr th").show();
+            //$(".footer-container table th").show();
+            //$("#gridId .row_footer table tr th").show();
         }
 
         var hasGroupByMonth = submitOptions.GroupBy == GROUP_BY_MONTH;

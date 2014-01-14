@@ -42,7 +42,7 @@
                     _gridOption.groupHeaderRows[0].Columns.splice(startTurnoverPosition, 0, turnoverHeader);
                 }
 
-                var turnoverCol = { HeaderCaption: MSG[name], HeaderText: MSG[name], Width: 110, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' };
+                var turnoverCol = { HeaderCaption: MSG[name], HeaderText: MSG[name], Width: 110, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true };
                 _gridOption.columns.splice(startTurnoverPosition + i, 0, turnoverCol);
             }
         }
@@ -71,7 +71,7 @@
                     _gridOption.groupHeaderRows[0].Columns.splice(_gridOption.groupHeaderRows[0].Columns.length, 0, companyWLHeader);
                 }
 
-                var winlostCol = { HeaderCaption: MSG[name], HeaderText: MSG[name], Width: 110, Name: name + "Winlost", NameCache: name + "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)' };
+                var winlostCol = { HeaderCaption: MSG[name], HeaderText: MSG[name], Width: 110, Name: name + "Winlost", NameCache: name + "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true };
                 _gridOption.columns.splice(_gridOption.columns.length, 0, winlostCol);
             }
         }
@@ -135,9 +135,9 @@
         var startIndex = $("#GroupBy").val() == GROUP_BY_MEMBER ? mergeCols + 1 : mergeCols + 2;
 
 
-        if (subTotalRowCount > 0 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency)) {
-            var realSubTotalclass = subTotalRowCount > 0 ? 'cell-subtotal real-cell' : '';
-            var pseudoSubTotalclass = subTotalRowCount > 0 ? 'cell-subtotal pseudo-cell' : '';
+        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency)) {
+            var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
+            var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
 
             $.each(subTotalData, function (idx, item) {
 

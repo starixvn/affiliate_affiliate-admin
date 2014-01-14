@@ -91,6 +91,7 @@
     <Compile Include="Configurations\AffiliateSettings.cs" />
     <Compile Include="Filter\FunctionAuthAttribute.cs" />
     <Compile Include="Mvc\DecimalModelBinder.cs" />
+    <Compile Include="Mailinator\Mailinator.cs" />
     <Compile Include="Service References\MemberSiteService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

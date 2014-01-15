@@ -14,8 +14,7 @@
                 <tr>
                     <td align="left" bgcolor="#a30003" height="25">
                         &nbsp;&nbsp; <strong style="color: #ffffff;"><font style="font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
-                            text-transform: uppercase;">Xác nhận thành viên chương trình kết nối @Model.SystemName
-                        </font></strong>
+                            text-transform: uppercase;">Thông tin của bạn</font></strong>
                     </td>
                 </tr>
                 <tr>
@@ -24,29 +23,21 @@
                             <tr>
                                 <td style="padding: 20px 15px">
                                     <font style="font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
-                                        <strong>Kính gửi Quý khách,</strong><br />
+                                        <strong>Kính gửi @Model.FirstName,</strong><br />
                                         <br />
-                                        Xin chúc mừng, bạn đã là hội viên chương trình liên kết @Model.SystemName.<br />
-                                        <br />
-                                        Để chúng tôi có thể phục vụ bạn tốt hơn, xin vui lòng cập nhật thông tin cá nhân
-                                        mới nhất và bao gồm website mới nhất (nếu có) trong "Thông tin cá nhân" tại trang
-                                        chương trình liên kết @Model.SystemName.<br />
-                                        <br />
-                                        Xin vui lòng gửi thư đến <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-                                        để thông báo cho chúng tôi chính xác website hoặc URLs mà bạn dự định đặt quảng
-                                        cáo của @Model.SystemName. Nếu bạn có nhu cầu thay đổi về kích cỡ của biểu ngữ,
-                                        xin liên hệ với chúng tôi, chúng tôi sẽ hỗ trợ cho bạn trong thời gian sớm nhất.<br />
-                                        <br />
-                                        Xin lưu ý rằng, tài khoản của bạn sẽ bị đóng nếu như website hoặc URLs mà bạn đăng
-                                        ký không đặt quảng cáo của @Model.SystemName trong vòng 7 ngày sau khi được thông
-                                        báo đã trở thành hội viện của chúng tôi, trừ trường hợp bạn đã gửi thư giải thích
-                                        với chúng tôi trước.<br />
-                                        <br />
-                                        Chúng tôi chúc bạn nhiều may mắn, và mong rằng bạn sẽ tận dụng lưu lượng trang web
-                                        của bạn để gặt được lợi nhuận cao nhất.<br />
-                                        <br />
-                                        Chân thành cảm ơn.<br />
-                                        <br />
+                                        Xin chúc mừng, đơn xin tham gia chương trình liên kết @Model.SystemName của bạn đã được chấp nhận.<br /><br />
+
+                                        Chúng tôi rất vui mừng vì bạn đã trở thành thành viên của chương trình kết nối @Model.SystemName  và hy vọng rằng chúng ta sẽ xây dựng được mối quan hệ kinh doanh tốt đẹp. Xin vui lòng sử dụng thông tin dưới đây để đăng nhập tài khoản Kết Nối {systemname}:<br /><br />
+
+                                        Text link: <a href="@Model.AffiliateSiteUrl">@Model.AffiliateSiteUrl</a><br />
+                                        Tên tài khoản: @Model.Username<br />
+                                        Mật mã: @Model.Password<br /><br />
+
+                                        Sau khi đăng nhập, bạn sẽ tìm thấy liên kết URL, biểu ngữ và tài liệu quảng cáo. Hãy gửi lưu lượng Web đến và bắt đầu kiếm tiền ngay hôm nay.<br /><br />
+
+                                        Mọi thắc mắc và yêu cầu xin vui lòng liên hệ ngay với chúng tôi.<br /><br />
+
+                                        Chân thành cảm ơn,<br /><br />
                                         Bộ phận liên kết @Model.SystemName.<br />
                                         <a href="mailto:@Model.MailContact">@Model.MailContact</a> </font>
                                 </td>

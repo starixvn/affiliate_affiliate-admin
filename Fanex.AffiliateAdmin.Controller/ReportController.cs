@@ -79,7 +79,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (criteria.ByAffiliate)
             {
-                criteria.AffName = CurrentSession.Affiliate.UserName;
+                criteria.AffName = CurrentSession.Affiliate.Username;
                 criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
                 criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
@@ -192,7 +192,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (criteria.ByAffiliate)
             {
-                criteria.AffName = CurrentSession.Affiliate.UserName;
+                criteria.AffName = CurrentSession.Affiliate.Username;
                 criteria.ExcludeTest = false;
                 criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
@@ -366,7 +366,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult CommissionByAffiliate(CommissionReportCriteria criteria)
         {
-            criteria.AffName = CurrentSession.Affiliate.UserName;
+            criteria.AffName = CurrentSession.Affiliate.Username;
             criteria.AffTypes = CurrentSession.Affiliate.AffType.ToString();
             criteria.CommGroups = CurrentSession.Affiliate.GroupID.ToString();
             criteria.Currencies = CurrentSession.Affiliate.CurrencyID.ToString();

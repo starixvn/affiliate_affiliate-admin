@@ -90,8 +90,10 @@
   <ItemGroup>
     <Compile Include="Configurations\AffiliateSettings.cs" />
     <Compile Include="Filter\FunctionAuthAttribute.cs" />
+    <Compile Include="Mailinator\AffiliateMailinator.cs" />
+    <Compile Include="Mailinator\KioskAffiliateMailinator.cs" />
     <Compile Include="Mvc\DecimalModelBinder.cs" />
-    <Compile Include="Mailinator\Mailinator.cs" />
+    <Compile Include="Mailinator\NormalAffiliateMailinator.cs" />
     <Compile Include="Service References\MemberSiteService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

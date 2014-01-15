@@ -267,7 +267,7 @@
 
         var footerRows = [];
 
-        if (memberCurrencyCount > 1) {
+        if (memberCurrencyCount > 0) {
             var realSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal real-cell' : '';
             var pseudoSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal pseudo-cell' : '';
 

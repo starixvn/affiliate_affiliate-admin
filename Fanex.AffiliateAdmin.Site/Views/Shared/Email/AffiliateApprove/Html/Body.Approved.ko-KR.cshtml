@@ -1,0 +1,60 @@
+﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+<table width="100%">
+    <tr>
+        <td valign="top" align="center" background="@Model.AdminSiteUrl/Content/themes/theme1/images/email_bg.png">
+            <table width="588" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td height="77" background="@Model.AdminSiteUrl/Content/themes/theme1/images/email_top.jpg">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="3">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" bgcolor="#a30003" height="25">
+                        &nbsp;&nbsp; <strong style="color: #ffffff;"><font style="font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
+                            text-transform: uppercase;">저희의 가맹자 정보 </font></strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" bgcolor="#ffffff">
+                        <table style="text-align: left" width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td style="padding: 20px 15px">
+                                    <font style="font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
+                                        <strong>@Model.FirstName 귀중,</strong>
+                                        <br /><br />
+                                        축하드립니다, 귀하의 @(Model.SystemName)가맹자 신청이 승인되었습니다!<br /><br />
+                                        저희의 협력 가족의 일원으로 모시게되어 기쁘며 귀하와 수익이 높은 사업관계를 형성할 것을 고대하고 있습니다. @(Model.SystemName) 가맹 계정에 가입하기 위한 하기의 정보를 이용해 주시기 바랍니다: <br /><br /> 
+                                        텍스트 링크: <a href="@Model.AffiliateSiteUrl">@Model.AffiliateSiteUrl</a><br />
+                                        사용자명: @Model.Username<br />
+                                        비밀번호: @Model.Password<br /><br />
+                                        귀하의 계정에서 귀하의 가맹 추적 URL과 현수막 및 판촉 자료를 보실 수 있습니다. 트레픽을 보내셔서 오늘 소득을 올려보십시오!  <br /><br />
+                                        의문이 있거나 도움이 필요하시면 주저마시고 저희에게 연락해 주십시오. <br /><br />
+                                        감사합니다,  <br /><br />
+                                        @Model.SystemName 가맹자 팀 배상 <br />
+                                        <a href="mailto:@Model.MailContact">@Model.MailContact</a> </font>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" bgcolor="#d7d7d7" height="25" style="padding-right: 15px">
+                        <font style="font-size: 11px; color: #333333; font-family: Verdana,Arial,Helvetica,sans-serif;">
+                            © 저작권 @DateTime.Now.Year <a href="@Model.MemberSiteUrl">@Model.MemberSiteDomain</a>
+                        </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" bgcolor="#a30003" height="40">
+                        <font style="font-size: 12px; color: #eba6a6; font-family: Verdana,Arial,Helvetica,sans-serif;">
+                            이 공지는 시스템에서 자동으로 생성된 이메일입니다. 이 메일에 직접 회신하지 마십시오. 
+                        </font>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

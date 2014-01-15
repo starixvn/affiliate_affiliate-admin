@@ -14,7 +14,7 @@
                 <tr>
                     <td align="left" bgcolor="#a30003" height="25">
                         &nbsp;&nbsp; <strong style="color: #ffffff;"><font style="font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
-                            text-transform: uppercase;">@(Model.SystemName)合作伙伴通知 </font></strong>
+                            text-transform: uppercase;">Your Affiliate Information</font></strong>
                     </td>
                 </tr>
                 <tr>
@@ -23,24 +23,24 @@
                             <tr>
                                 <td style="padding: 20px 15px">
                                     <font style="font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
-                                        <strong>尊敬的客户,</strong><br />
+                                        <strong>Dear @Model.FirstName,</strong><br />
                                         <br />
-                                        恭喜您，您已经成为了@(Model.SystemName)的合作伙伴!<br />
+                                        Congratulations, your application to become an affiliate of @Model.SystemName has been approved!<br />
                                         <br />
-                                        如需要更改您的任何个人信息或添加其他额外的网站，只需点击“我的帐户”即可更改。如果您在个人网站或者其他网站添加了多个@(Model.SystemName)横幅或促销素材链接，请电邮通知我们您添加横幅的网址，以便统计。<br />
+                                        We are glad to have you as part of our Affiliates family and we are looking forward to building a profitable business relationship with you. Please use the below information to sign into your @Model.SystemName affiliate account:<br />
                                         <br />
-                                        有请注意，如果@(Model.SystemName)横幅或促销素材链接在批准后的7天内，没有被更新在您注册时所填写的网站或其他已被@(Model.SystemName)确认的网站，那么您的合作伙伴帐号可能会被关闭。如有任何特殊情况请事前通过邮件告知我们。<br />
+                                        Text link: <a href="@Model.AffiliateSiteUrl">@Model.AffiliateSiteUrl</a><br />
+                                        Username: @Model.Username <br />
+                                        Password: @Model.Password <br />
                                         <br />
-                                        同时，如您需要其他特定的横幅尺寸，请通知我们，我们也会为您安排准备。<br />
+                                        In your account you will find your affiliate tracking URL as well as banners and promotional materials. Send your traffic and start earning today!<br />
                                         <br />
-                                        祝愿您的网站流量早日为您带来可观的收入！<br />
+                                        If you have any questions and require any help please do not hesitate to contact us.<br />
                                         <br />
-                                        谢谢！<br />
+                                        Sincerely,<br />
                                         <br />
-                                        诚挚的,<br />
-                                        <br />
-                                        @(Model.SystemName)合作伙伴团队<br />
-                                        <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a> </font>
+                                        @Model.SystemName Affiliates Team<br />
+                                        <a href="mailto:@Model.MailContact">@Model.MailContact</a> </font>
                                 </td>
                             </tr>
                         </table>
@@ -49,14 +49,14 @@
                 <tr>
                     <td align="right" bgcolor="#d7d7d7" height="25" style="padding-right: 15px">
                         <font style="font-size: 11px; color: #333333; font-family: Verdana,Arial,Helvetica,sans-serif;">
-                            © 版权所有 @DateTime.Now.Year <a href="@Model.MemberSiteUrl">@Model.MemberSiteDomain</a>
+                            © Copyright @DateTime.Now.Year <a href="@Model.MemberSiteUrl">@Model.MemberSiteDomain</a>
                         </font>
                     </td>
                 </tr>
                 <tr>
                     <td align="center" bgcolor="#a30003" height="40">
                         <font style="font-size: 12px; color: #eba6a6; font-family: Verdana,Arial,Helvetica,sans-serif;">
-                            此邮件为系统邮件，请不要直接回复。
+                            This is a system auto generated email, please do not reply to this email directly.
                         </font>
                     </td>
                 </tr>

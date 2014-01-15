@@ -54,7 +54,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return View(new AdjustmentViewModel
             {
-                AffName = this.CurrentSession.Affiliate.UserName,
+                AffName = this.CurrentSession.Affiliate.Username,
                 Adjustment = adjustment,
                 Currency = AppSettings.AffSystemSupportedCurrencies
                                       .Where(c => c.CurrencyCode == this.CurrentSession.Affiliate.Currency)

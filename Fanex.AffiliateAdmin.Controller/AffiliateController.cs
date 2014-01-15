@@ -307,7 +307,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (criteria.ByAffiliate)
             {
-                criteria.AffUsername = this.CurrentSession.Affiliate.UserName;
+                criteria.AffUsername = this.CurrentSession.Affiliate.Username;
                 criteria.AffType = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.ExcludeTest = false;
             }
@@ -351,7 +351,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (model.ByAffiliate)
             {
-                model.AffName = CurrentSession.Affiliate.UserName;
+                model.AffName = CurrentSession.Affiliate.Username;
             }
 
             return View(model);

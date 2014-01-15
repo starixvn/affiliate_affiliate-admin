@@ -96,16 +96,6 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         }
 
         /// <summary>
-        /// Gets Body Email.
-        /// </summary>
-        /// <param name="info">Email template info.</param>
-        /// <returns>Return email content.</returns>
-        public string GetEmailBody(EmailTemplateInfo info)
-        {
-            return ParseTemplate(_bodyPath, info);
-        }
-
-        /// <summary>
         /// Fill value by Razor view engine.
         /// </summary>
         /// <param name="templatePath">Template Path.</param>

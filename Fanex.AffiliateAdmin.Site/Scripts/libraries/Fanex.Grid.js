@@ -888,7 +888,7 @@
             var currentCollapseExpandId = '';
 
             var currentValue = currentCol.Value;
-            if (me.columnsHastable[currentCol.Name].IsAbs) {
+            if (me.columnsHastable[currentCol.Name].IsAbs && currentValue < 0) {
                 currentValue = Math.abs(currentValue);
             }
 

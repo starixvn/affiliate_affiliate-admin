@@ -17,6 +17,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Sender;
     using Models;
     using Resources;
     using Services.Interface;
@@ -69,7 +70,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             if (string.IsNullOrEmpty(userName) && this.CurrentSession.Affiliate != null)
             {
-                userName = this.CurrentSession.Affiliate.UserName;
+                userName = this.CurrentSession.Affiliate.Username;
             }
 
             return View(new AffiliateMasterViewModel
@@ -90,7 +91,6 @@ namespace Fanex.AffiliateAdmin.Controller
             if (!string.IsNullOrEmpty(userName))
             {
                 this.CurrentSession.Affiliate = null;
-
                 var model = _affiliateService.GetAffiliateGeneralInfo(new AffiliateInfoCriteria
                 {
                     Username = userName,
@@ -104,7 +104,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     CurrentSession.Affiliate = new AffiliateSession
                     {
                         AffiliateId = model.AffiliateInfo.AffId,
-                        UserName = model.AffiliateInfo.Username,
+                        Username = model.AffiliateInfo.Username,
+                        FirstName = model.AffiliateInfo.FirstName,
                         Prefix = model.AffiliateInfo.Prefix,
                         Status = model.AffiliateInfo.Status,
                         PrefferredLanguage = model.AffiliateInfo.PreferredLanguage,
@@ -119,7 +120,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     };
                     FormaterCurrency.SetDefaultCurrency(model.AffiliateInfo.CurrencyCode);
                     model.ExternalLoginUrl = ExternalLogin.ExternalLoginUrl(
-                        CurrentSession.Affiliate.UserName,
+                        CurrentSession.Affiliate.Username,
                         CurrentSession.CustID,
                         CurrentSession.OnUserID,
                         Session.SessionID,
@@ -147,7 +148,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return View(new PasswordViewModel
             {
                 CustId = CurrentSession.Affiliate.AffiliateId,
-                UserName = CurrentSession.Affiliate.UserName
+                UserName = CurrentSession.Affiliate.Username
             });
         }
 
@@ -183,10 +184,12 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ChangeStatus(AffiliateUpdStatusCriteria criteria)
         {
+            const int PASSWORD_LENGTH = 6;
             criteria.UserId = CurrentSession.CustID;
             criteria.AffId = CurrentSession.Affiliate.AffiliateId;
             criteria.Ip = Remote.GetClientIPAddress();
             criteria.Type = "Status";
+            criteria.Password = Fanex.Security.Cryptography.RandomString(PASSWORD_LENGTH);
 
             this._affiliateService.ChangeAffiliateStatus(criteria);
 
@@ -194,25 +197,29 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 this.CurrentSession.Affiliate.Status = criteria.Status.ToLower();
 
-                if (!criteria.Status.Equals("pending", System.StringComparison.CurrentCultureIgnoreCase)
-                    && this.CurrentSession.Affiliate.AffType == 1)
+                if (!criteria.Status.Equals("pending", System.StringComparison.CurrentCultureIgnoreCase))
                 {
-                    var emailType = criteria.Status.Equals("approved", System.StringComparison.CurrentCultureIgnoreCase) ?
+                    var mailinator = AffiliateMailinator.GetMailinator(CurrentSession.Affiliate.AffTypeName);
+                    mailinator.Server = Server;
+                    mailinator.EmailTemplateType = criteria.Status.Equals("approved", System.StringComparison.CurrentCultureIgnoreCase) ?
                                         EmailTemplateType.AffiliateApprove :
                                         EmailTemplateType.AffiliateDisapprove;
-
-                    var emailTemplate = new EmailTemplate(emailType, CurrentSession.Affiliate.PrefferredLanguage, CurrentSession.Affiliate.MailOption);
-
-                    var emailTemplateInfo = new EmailTemplateInfo
+                    mailinator.Language = CurrentSession.Affiliate.PrefferredLanguage;
+                    mailinator.FormatType = CurrentSession.Affiliate.MailOption ? EmailFormatType.Text : EmailFormatType.Html;
+                    mailinator.EmailOfAffiliate = CurrentSession.Affiliate.Email;
+                    mailinator.EmailTemplateInfo = new EmailTemplateInfo
                     {
-                        Status = criteria.Status
+                        Status = criteria.Status,
+                        Username = CurrentSession.Affiliate.Username,
+                        FirstName = CurrentSession.Affiliate.FirstName,
+                        Password = criteria.Password
                     };
 
-                    emailTemplate.ResolvePath(Server).Send(this.CurrentSession.Affiliate.Email, emailTemplateInfo);
+                    mailinator.Send();
                 }
             }
 
-            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdateStaSucc, CurrentSession.Affiliate.UserName)));
+            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdateStaSucc, CurrentSession.Affiliate.Username)));
         }
 
         /// <summary>
@@ -229,7 +236,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             this._affiliateService.ChangeAffiliateOpenClose(criteria);
 
-            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdateStaSucc, CurrentSession.Affiliate.UserName)));
+            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdateStaSucc, CurrentSession.Affiliate.Username)));
         }
 
         /// <summary>
@@ -245,7 +252,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var model = _affiliateService.GetAffiliateStatistic(criteria);
             model.FullDateTime = criteria.MonthDate;
             model.AffId = CurrentSession.Affiliate.AffiliateId;
-            model.AffName = CurrentSession.Affiliate.UserName;
+            model.AffName = CurrentSession.Affiliate.Username;
             model.BaseCurrency = AppSettings.BaseExchange.Code;
 
             return View(model);
@@ -313,7 +320,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     CurrentSession.Affiliate = new AffiliateSession
                     {
                         AffiliateId = affiliateInfo.AffId,
-                        UserName = affiliateInfo.Username,
+                        Username = affiliateInfo.Username,
+                        FirstName = affiliateInfo.FirstName,
                         Prefix = affiliateInfo.Prefix,
                         Status = affiliateInfo.Status,
                         PrefferredLanguage = affiliateInfo.PreferredLanguage,
@@ -328,7 +336,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     };
                 }
 
-                ViewBag.Result = GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdAffSuccess, CurrentSession.Affiliate.UserName));
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdAffSuccess, CurrentSession.Affiliate.Username));
             }
 
             return this.Edit(model);
@@ -351,7 +359,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 this._affiliateService.ChangeAffiliateLanguage(criteria);
             }
 
-            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.ErrLanguageSucc, CurrentSession.Affiliate.UserName)));
+            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.ErrLanguageSucc, CurrentSession.Affiliate.Username)));
         }
 
         /// <summary>
@@ -371,7 +379,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 this._affiliateService.ChangeAffType(criteria);
             }
 
-            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdateAffType, CurrentSession.Affiliate.UserName)));
+            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdateAffType, CurrentSession.Affiliate.Username)));
         }
 
         /// <summary>
@@ -407,7 +415,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var affiliate = _affiliateService.GetAffiliateInfo(selectCriteria);
             affiliate.AffId = CurrentSession.Affiliate.AffiliateId;
-            affiliate.Username = CurrentSession.Affiliate.UserName;
+            affiliate.Username = CurrentSession.Affiliate.Username;
             affiliate.FirstName = criteria.FirstName;
             affiliate.LastName = criteria.LastName;
             affiliate.Address = criteria.Address;

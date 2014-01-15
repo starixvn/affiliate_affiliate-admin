@@ -117,13 +117,16 @@
 
         var footerRows = [];
 
-        if (subTotalRowCount > 1) {
+        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].Currency != System.Currency)) {
+            var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
+            var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
+
             $.each(subTotalData, function (idx, item) {
 
                 var columns = [];
 
                 if (idx == 0) {
-                    columns.push({ Value: MSG.SubTotal, Name: "Username", HeaderAlign: "center", CellAlign: "center", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
+                    columns.push({ Value: MSG.SubTotal, Name: "Username", HeaderAlign: "center", CellAlign: "center", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });
                 }
 
                 for (var i = mergeCols; i < _gridOption.columns.length; i++) {
@@ -136,8 +139,19 @@
                     }
                 }
 
-                footerRows.push({ Columns: columns });
+                footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
             });
+
+            // pseudo sub total row.
+            var columns = [];
+            columns.push({ Value: MSG.SubTotal, Name: "Username", HeaderAlign: "center", CellAlign: "center", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
+
+            for (var i = mergeCols; i < _gridOption.columns.length; i++) {
+                var col = _gridOption.columns[i];
+                columns.push({ Value: '', Name: col.Name });
+            }
+
+            footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
         }
 
         // Total row
@@ -189,8 +203,6 @@
         else {
             columns = columns.concat(_hideColumns.clone());
             $("#gridId").fanexGrid("hideColumns", _gridOption, columns);
-            //$(".footer-container table th").show();
-            //$("#gridId .row_footer table tr th").show();
         }
 
         var hasGroupByMonth = submitOptions.GroupBy == GROUP_BY_MONTH;
@@ -256,6 +268,7 @@
                 params["ToDate"] = lastDay;
                 window.location = AFFILIATE.getAbsoluteUrl("Report/PlayerWinloss?") + jQuery.param(params);
             });
+
             $maincontent.on("click", "a.qm", function () {
                 var param = {
                     affid: $(this).data("affid"),
@@ -264,6 +277,11 @@
                 var title = MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
                 title = title.replace("{1}", param.monthdate) + " - " + MSG.Currency + ": " + $(this).data("currency");
                 parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });
+            });
+
+            $('#gridId').on('click', '.toggle-indicator', function () {
+                subTotalStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS;
+                AFFILIATE.resetToggleIndicator(_gridOption);
             });
 
             if ($('#gridId').length > 0) {
@@ -280,9 +298,6 @@
                     parent.AFFILIATE.currentOpenDialog.dialog("close");
             });
 
-            $("#GroupBy").change(function () {
-
-            });
         },
 
         checkRangeTime: function () {
@@ -390,6 +405,7 @@
                         return;
                     } else {
                         $('.status').show();
+                        AFFILIATE.resetToggleIndicator(_gridOption);
                     }
 
                     AFFILIATE.updateSearchPanel($('#gridId'));

@@ -48,6 +48,10 @@ namespace Fanex.AffiliateAdmin.Core.Entities
 
         public string FirstName { get; set; }
 
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+
         public DateTime WinlostDate { get; set; }
 
         public string Amount { get; set; }

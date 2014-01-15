@@ -20,11 +20,6 @@ namespace Fanex.AffiliateAdmin.Core.Enumerations
         AffiliateApprove = 1,
 
         /// <summary>
-        /// Affiliate Kiosk Approve.
-        /// </summary>
-        AffiliateApprove_Kiosk = 2,
-
-        /// <summary>
         /// Affiliate Cancel.
         /// </summary>
         AffiliateCancel = 3,

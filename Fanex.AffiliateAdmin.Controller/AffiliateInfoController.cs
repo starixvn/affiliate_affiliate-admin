@@ -6,6 +6,7 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Common;
@@ -47,7 +48,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="countryService">Country Service.</param>     
         /// <param name="systemSettingService">System Setting Service.</param> 
         public AffiliateInfoController(
-            IAffiliateService affiliateService, 
+            IAffiliateService affiliateService,
             ICountryService countryService,
             ISystemSettingService systemSettingService)
         {
@@ -101,30 +102,20 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 if (model != null && model.AffiliateInfo != null)
                 {
-                    CurrentSession.Affiliate = new AffiliateSession
-                    {
-                        AffiliateId = model.AffiliateInfo.AffId,
-                        Username = model.AffiliateInfo.Username,
-                        FirstName = model.AffiliateInfo.FirstName,
-                        Prefix = model.AffiliateInfo.Prefix,
-                        Status = model.AffiliateInfo.Status,
-                        PrefferredLanguage = model.AffiliateInfo.PreferredLanguage,
-                        AffType = model.AffiliateInfo.AffType,
-                        AffTypeName = AppSettings.AffTypes.FirstOrDefault(t => t.TypeID == model.AffiliateInfo.AffType).Name,
-                        MailOption = model.AffiliateInfo.MailOption,
-                        Email = model.AffiliateInfo.Email,
-                        PrefferredPayment = model.AffiliateInfo.PreferredPayment,
-                        GroupID = model.AffiliateInfo.GroupId,
-                        CurrencyID = model.AffiliateInfo.Currency,
-                        Currency = model.AffiliateInfo.CurrencyCode
-                    };
+                    UpdateAffiliateSession(model.AffiliateInfo);
+                    
                     FormaterCurrency.SetDefaultCurrency(model.AffiliateInfo.CurrencyCode);
-                    model.ExternalLoginUrl = ExternalLogin.ExternalLoginUrl(
-                        CurrentSession.Affiliate.Username,
-                        CurrentSession.CustID,
-                        CurrentSession.OnUserID,
-                        Session.SessionID,
-                        model.AffiliateInfo.AffType);
+
+                    model.ExternalLoginUrl = ExternalLogin.ExternalLoginUrl(new ExternalLoginInfo
+                        {
+                            Request = Request,
+                            Username = CurrentSession.Affiliate.Username,
+                            CustId = CurrentSession.CustID,
+                            OnUserID = CurrentSession.OnUserID,
+                            SessionID = Session.SessionID,
+                            AffTypeName = CurrentSession.Affiliate.AffTypeName
+                        });
+
                     ViewBag.IsLoadOtherPage = Request["IsLoadOtherPage"];
 
                     return View(model);
@@ -185,11 +176,12 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult ChangeStatus(AffiliateUpdStatusCriteria criteria)
         {
             const int PASSWORD_LENGTH = 6;
+            var password = Generator.GetRandomString(PASSWORD_LENGTH);
             criteria.UserId = CurrentSession.CustID;
             criteria.AffId = CurrentSession.Affiliate.AffiliateId;
             criteria.Ip = Remote.GetClientIPAddress();
             criteria.Type = "Status";
-            criteria.Password = Fanex.Security.Cryptography.RandomString(PASSWORD_LENGTH);
+            criteria.Password = Cryptography.CfsEnCode(password); 
 
             this._affiliateService.ChangeAffiliateStatus(criteria);
 
@@ -199,20 +191,22 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 if (!criteria.Status.Equals("pending", System.StringComparison.CurrentCultureIgnoreCase))
                 {
+                    var siteInfo = SiteInfo.Parse(Request, CurrentSession.Affiliate.AffTypeName.Equals("kiosk", System.StringComparison.CurrentCultureIgnoreCase));
                     var mailinator = AffiliateMailinator.GetMailinator(CurrentSession.Affiliate.AffTypeName);
                     mailinator.Server = Server;
                     mailinator.EmailTemplateType = criteria.Status.Equals("approved", System.StringComparison.CurrentCultureIgnoreCase) ?
                                         EmailTemplateType.AffiliateApprove :
                                         EmailTemplateType.AffiliateDisapprove;
                     mailinator.Language = CurrentSession.Affiliate.PrefferredLanguage;
-                    mailinator.FormatType = CurrentSession.Affiliate.MailOption ? EmailFormatType.Text : EmailFormatType.Html;
+                    mailinator.FormatType = CurrentSession.Affiliate.MailOption ? EmailFormatType.Html : EmailFormatType.Text;
                     mailinator.EmailOfAffiliate = CurrentSession.Affiliate.Email;
                     mailinator.EmailTemplateInfo = new EmailTemplateInfo
                     {
                         Status = criteria.Status,
                         Username = CurrentSession.Affiliate.Username,
                         FirstName = CurrentSession.Affiliate.FirstName,
-                        Password = criteria.Password
+                        Password = password,
+                        AffiliateSiteUrl = siteInfo.AffiliateDomain
                     };
 
                     mailinator.Send();
@@ -312,28 +306,9 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 if (criteria.ErrCode == 0)
                 {
-                    var affiliateInfo = _affiliateService.GetAffiliateInfo(new AffiliateSelCriteria 
-                    { 
-                        AffId = criteria.AffId,
-                    });
+                    var affiliateInfo = _affiliateService.GetAffiliateInfo(new AffiliateSelCriteria { AffId = criteria.AffId });
 
-                    CurrentSession.Affiliate = new AffiliateSession
-                    {
-                        AffiliateId = affiliateInfo.AffId,
-                        Username = affiliateInfo.Username,
-                        FirstName = affiliateInfo.FirstName,
-                        Prefix = affiliateInfo.Prefix,
-                        Status = affiliateInfo.Status,
-                        PrefferredLanguage = affiliateInfo.PreferredLanguage,
-                        AffType = affiliateInfo.AffType,
-                        AffTypeName = AppSettings.AffTypes.FirstOrDefault(t => t.TypeID == affiliateInfo.AffType).Name,
-                        MailOption = affiliateInfo.MailOption,
-                        Email = affiliateInfo.Email,
-                        PrefferredPayment = affiliateInfo.PreferredPayment,
-                        GroupID = affiliateInfo.GroupId,
-                        CurrencyID = affiliateInfo.Currency,
-                        Currency = affiliateInfo.CurrencyCode
-                    };
+                    UpdateAffiliateSession(affiliateInfo);
                 }
 
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdAffSuccess, CurrentSession.Affiliate.Username));
@@ -355,8 +330,13 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.Ip = Remote.GetClientIPAddress();
                 criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
                 criteria.UserId = this.CurrentSession.CustID;
-
                 this._affiliateService.ChangeAffiliateLanguage(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    var affiliateInfo = _affiliateService.GetAffiliateInfo(new AffiliateSelCriteria { AffId = criteria.AffId });
+                    UpdateAffiliateSession(affiliateInfo);
+                }
             }
 
             return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.ErrLanguageSucc, CurrentSession.Affiliate.Username)));
@@ -377,6 +357,12 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.UserId = this.CurrentSession.CustID;
 
                 this._affiliateService.ChangeAffType(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    var affiliateInfo = _affiliateService.GetAffiliateInfo(new AffiliateSelCriteria { AffId = criteria.AffId });
+                    UpdateAffiliateSession(affiliateInfo);
+                }
             }
 
             return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdateAffType, CurrentSession.Affiliate.Username)));
@@ -447,8 +433,32 @@ namespace Fanex.AffiliateAdmin.Controller
             };
 
             return model;
-        } 
+        }
 
+        /// <summary>
+        /// Update Affiliate Session.
+        /// </summary>
+        /// <param name="affiliateInfo">Affiliate info.</param>
+        private void UpdateAffiliateSession(Affiliate affiliateInfo)
+        {
+            CurrentSession.Affiliate = new AffiliateSession
+            {
+                AffiliateId = affiliateInfo.AffId,
+                Username = affiliateInfo.Username,
+                FirstName = affiliateInfo.FirstName,
+                Prefix = affiliateInfo.Prefix,
+                Status = affiliateInfo.Status,
+                PrefferredLanguage = affiliateInfo.PreferredLanguage,
+                AffType = affiliateInfo.AffType,
+                AffTypeName = AppSettings.AffTypes.FirstOrDefault(t => t.TypeID == affiliateInfo.AffType).Name,
+                MailOption = affiliateInfo.MailOption,
+                Email = affiliateInfo.Email,
+                PrefferredPayment = affiliateInfo.PreferredPayment,
+                GroupID = affiliateInfo.GroupId,
+                CurrencyID = affiliateInfo.Currency,
+                Currency = affiliateInfo.CurrencyCode
+            };
+        }
         #endregion
     }
 }

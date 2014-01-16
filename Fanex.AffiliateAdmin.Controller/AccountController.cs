@@ -220,10 +220,10 @@ namespace Fanex.AffiliateAdmin.Controller
                 {
                     OnUserId = SessionManager.CurrentSession.OnUserID
                 });
-            }
 
-            FormsAuthentication.SignOut();
-            SessionManager.ClearAll();
+                FormsAuthentication.SignOut();
+                SessionManager.ClearAll();
+            }
         }
 
         private ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")

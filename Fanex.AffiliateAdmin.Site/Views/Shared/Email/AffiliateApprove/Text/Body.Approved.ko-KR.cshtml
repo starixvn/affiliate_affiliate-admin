@@ -1,20 +1,14 @@
 ﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
 <div>
-    존경하는 가맹자께, 
-    <br />
-    <br />
-    축하드립니다, 귀하는 이제 가치있는 @Model.SystemName 가맹 회원입니다! <br />
-    <br />
-    저희가 귀하에게 보다 낫게 조력하기 위해 개인 정보 상의 최근의 변경 사항을 업데이트하시고 저희의 @Model.SystemName 협력 사이트의 “내 계정” 내에 귀하의 추가 URL(있는 경우)을 포함시켜주십시오. <br />
-    <br />
-    @Model.SystemName 의 현수막을 내걸기를 계획하는 정확한 웹사이트 URL(들)을 <a href="mailto:@Model.MailContact">@Model.MailContact</a> 로 메일을 보내 공지해 주시기 바랍니다. 다른 크기의 현수막들이 필요하시면, 저희에게 연락해 주시면 빠른 시일 내에 마련해 드리겠습니다. <br />
-    <br />
-    만약 @Model.SystemName 현수막이 귀하의 등록 웹사이트나 기타의 공지된 URL에 가맹회원 승인일로부터 7일 이내에 게재되지 않으면 이를 @Model.SystemName 에 서면으로 설명하지 않는 한 귀하의 가맹 계정이 닫힐 수도 있다는 것을 주지하시기 바랍니다. <br />
-    <br />
-    최선을 다하여 귀하의 웹 트래픽이 귀하에게 커다란 이익을 가져오길 기원합니다! <br />
-    <br />
-    감사합니다.<br />
-    <br />
+    @Model.FirstName 귀중,<br /><br />
+    축하드립니다, 귀하의 @(Model.SystemName)가맹자 신청이 승인되었습니다!<br /><br />
+    저희의 협력 가족의 일원으로 모시게되어 기쁘며 귀하와 수익이 높은 사업관계를 형성할 것을 고대하고 있습니다. @(Model.SystemName) 가맹 계정에 가입하기 위한 하기의 정보를 이용해 주시기 바랍니다: <br /><br /> 
+    텍스트 링크: <a href="@Model.AffiliateSiteUrl">@Model.AffiliateSiteUrl</a><br />
+    사용자명: @Model.Username<br />
+    비밀번호: @Model.Password<br /><br />
+    귀하의 계정에서 귀하의 가맹 추적 URL과 현수막 및 판촉 자료를 보실 수 있습니다. 트레픽을 보내셔서 오늘 소득을 올려보십시오!  <br /><br />
+    의문이 있거나 도움이 필요하시면 주저마시고 저희에게 연락해 주십시오. <br /><br />
+    감사합니다,  <br /><br />
     @Model.SystemName 가맹자 팀 배상 <br />
     <a href="mailto:@Model.MailContact">@Model.MailContact</a>
 </div>

@@ -1,28 +1,20 @@
 ﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
 <div>
-    Dear valued Affiliate,<br />
+    Dear @Model.FirstName,<br />
     <br />
-    Congratulations, you are now a valued @Model.SystemName Affiliate member!<br />
+    Congratulations, your application to become an affiliate of @Model.SystemName has been approved!<br />
     <br />
-    To assist us in serving you better please update any latest change in your personal
-    details and include your additional URL (if any) in "My Account" at our @Model.SystemName
-    Affiliate site.<br />
+    We are glad to have you as part of our Affiliates family and we are looking forward to building a profitable business relationship with you. Please use the below information to sign into your @Model.SystemName affiliate account:<br />
     <br />
-    Kindly notify us by e-mail to <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-    the exact website URL or URLs you are planning to put up @Model.SystemName’s banners.
-    If there is a need for different sizes banners, kindly contact us and we will arrange
-    them soonest for you.<br />
+    Text link: <a href="@Model.AffiliateSiteUrl">@Model.AffiliateSiteUrl</a><br />
+    Username: @Model.Username <br />
+    Password: @Model.Password <br />
     <br />
-    Please be informed that your affiliate account may be subjected to closure if @Model.SystemName
-    banners have not been put up on your registered website or any notified URL within
-    seven days from your affiliate membership approval unless you have given prior written
-    explanation to @Model.SystemName.<br />
+    In your account you will find your affiliate tracking URL as well as banners and promotional materials. Send your traffic and start earning today!<br />
     <br />
-    We wish you all the best and may your web traffic bring forth great profits to you!<br />
+    If you have any questions and require any help please do not hesitate to contact us.<br />
     <br />
-    Thank you.<br />
-    <br />
-    Regards,<br />
+    Sincerely,<br />
     <br />
     Your @Model.SystemName Affiliates Team<br />
     <a href="mailto:@Model.MailContact">@Model.MailContact</a>

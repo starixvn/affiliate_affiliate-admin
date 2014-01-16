@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Configurations\AffiliateSettings.cs" />
     <Compile Include="Filter\FunctionAuthAttribute.cs" />
+    <Compile Include="Filter\NoCacheAttribute.cs" />
     <Compile Include="Mailinator\AffiliateMailinator.cs" />
     <Compile Include="Mailinator\KioskAffiliateMailinator.cs" />
     <Compile Include="Mvc\DecimalModelBinder.cs" />
@@ -137,11 +138,14 @@
     <Compile Include="Utilities\EmailTemplate.cs" />
     <Compile Include="Utilities\Extensions.cs" />
     <Compile Include="Utilities\ExternalLogin.cs" />
+    <Compile Include="Utilities\ExternalLoginInfo.cs" />
     <Compile Include="Utilities\Formater.cs" />
     <Compile Include="Utilities\FormatType.cs" />
+    <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\Menu.cs" />
     <Compile Include="Utilities\Remote.cs" />
     <Compile Include="Mvc\StringExtension.cs" />
+    <Compile Include="Utilities\SiteInfo.cs" />
     <Compile Include="Utilities\SubMenu.cs" />
     <Compile Include="Utilities\FormaterCurrency.cs" />
     <Compile Include="Utilities\SwfInfo.cs" />

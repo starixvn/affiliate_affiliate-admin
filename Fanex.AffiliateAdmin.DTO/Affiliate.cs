@@ -78,7 +78,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public int AffLevel { get; set; }
 
-        public int AffType { get; set; }
+        public byte AffType { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrGender")]
         public bool Gender { get; set; }

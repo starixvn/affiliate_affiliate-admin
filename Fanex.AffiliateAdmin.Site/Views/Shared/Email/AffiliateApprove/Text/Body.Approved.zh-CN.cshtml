@@ -1,21 +1,20 @@
 ﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
 <div>
-    尊敬的客户,<br />
+    尊敬的 @Model.FirstName,<br />
     <br />
-    恭喜您，您已经成为了@(Model.SystemName)的合作伙伴!<br />
-    <br />
-    如需要更改您的任何个人信息或添加其他额外的网站，只需点击“我的帐户”即可更改。如果您在个人网站或者其他网站添加了多个@(Model.SystemName)横幅或促销素材链接，请电邮通知我们您添加横幅的网址，以便统计。<br />
-    <br />
-    有请注意，如果@(Model.SystemName)横幅或促销素材链接在批准后的7天内，没有被更新在您注册时所填写的网站或其他已被@(Model.SystemName)确认的网站，那么您的合作伙伴帐号可能会被关闭。如有任何特殊情况请事前通过邮件告知我们。<br />
-    <br />
-    同时，如您需要其他特定的横幅尺寸，请通知我们，我们也会为您安排准备。<br />
-    <br />
-    祝愿您的网站流量早日为您带来可观的收入！<br />
-    <br />
-    谢谢！<br />
-    <br />
-    诚挚的,<br />
-    <br />
+    恭喜您, 您的@(Model.SystemName)合作伙伴加盟申请已获核准!<br /><br />
+
+    欢迎您成为@(Model.SystemName)合作大家庭中的一员，并祝愿我们之间的合作能成为现代商业共赢典范.  请使用以下信息登入您的@(Model.SystemName)合作伙伴帐号：<br /><br />
+
+    文字链接: <a href="@Model.AffiliateSiteUrl">@Model.AffiliateSiteUrl</a><br />
+    用户名: @Model.Username<br />
+    密码: @Model.Password<br /><br />
+
+    您可在该帐户内查询到合作伙伴跟踪链接以及横幅等促销素材，无需犹豫，赶快利用您的流量开始赚钱吧！<br /><br />
+
+    如果您遇到任何疑问需要帮助，欢迎随时联系我们.<br /><br />
+
+    诚挚的,<br /><br />
     @(Model.SystemName)合作伙伴团队<br />
     <a href="mailto:@Model.MailContact">@Model.MailContact</a>
 </div>

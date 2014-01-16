@@ -6,58 +6,31 @@
 
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.Security;
-    using Fanex.AffiliateAdmin.Core.Configurations;
-    
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class ExternalLogin
     {
-        /// <summary>
-        /// Get random string.
-        /// </summary>
-        /// <param name="length">Length of string random.</param>
-        /// <returns>Result of string after random.</returns>
-        public static string GetRandomString(int length)
-        {
-            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var stringChars = new char[length];
-            var random = new Random();
-
-            for (int i = 0; i < length; i++)
-            {
-                stringChars[i] = chars[random.Next(chars.Length)];
-            }
-
-            return new string(stringChars);
-        }
+        private const int PASSWORDLENGTH = 6;
 
         /// <summary>
         /// Get string url external login.
         /// </summary>
-        /// <param name="custName">Customer name.</param>
-        /// <param name="custId">Customer ID.</param>
-        /// <param name="userId">On user ID of affiliate.</param>
-        /// <param name="sessionId">Application session ID.</param>
-        /// <param name="affType">Affiliate type.</param>
-        /// <returns>Link external.</returns>
-        public static string ExternalLoginUrl(string custName, int custId, int userId, string sessionId, int affType)
+        /// <param name="loginInfo">External Login Info.</param>
+        /// <returns>Return URL link.</returns>
+        public static string ExternalLoginUrl(ExternalLoginInfo loginInfo)
         {
-            var chalengeStr = ExternalLogin.GetRandomString(6);
+            var chalengeStr = Generator.GetRandomString(PASSWORDLENGTH);
 
-            var accKey = FormsAuthentication.HashPasswordForStoringInConfigFile(sessionId + chalengeStr, "MD5");
+            const string LINKFORMAT = "{0}/User/AdminLogin?chalengeStr={1}&amp;accKey={2}&amp;custName={3}&amp;accId={4}&amp;accOnId={5}";
 
-            if (affType == 3)
-            {
-                return string.Format(AppSettings.InternalURLKiosk, chalengeStr, accKey, custName, custId, userId);
-            }
+            var accKey = FormsAuthentication.HashPasswordForStoringInConfigFile(loginInfo.SessionID + chalengeStr, "MD5");
 
-            return string.Format(AppSettings.InternalURL, chalengeStr, accKey, custName, custId, userId);
+            var siteInfo = SiteInfo.Parse(loginInfo.Request, loginInfo.IsKiosk());
+
+            return string.Format(LINKFORMAT, siteInfo.AffiliateDomain, chalengeStr, accKey, loginInfo.Username, loginInfo.CustId, loginInfo.OnUserID);
         }
     }
 }

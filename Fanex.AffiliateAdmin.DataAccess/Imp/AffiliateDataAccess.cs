@@ -66,7 +66,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Impl
                             MailOption = reader.ToBool("MailOption"),
                             GroupName = reader.ToString("GroupName"),
                             GroupId = reader.ToInt("GroupId"),
-                            AffType = reader.ToInt("AffType"),
+                            AffType = reader.ToByte("AffType"),
                             CurrencyCode = reader.ToString("CurrencyCode"),
                             Currency = reader.ToShort("Currency"),
                             AffLevel = reader.ToShort("TestLevel"),

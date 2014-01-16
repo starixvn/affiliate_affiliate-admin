@@ -19,8 +19,15 @@
                                 {
                                 <option value="@type.TypeID" @(type.TypeID == Model.AffiliateInfo.AffType ? "selected='selected'" : string.Empty) >@type.Name</option>
                                 }
-                            </select>                            
-                            <span class="link-box-active" id="spAffType" title="@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name)">@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name.LeftString(12))</span>
+                            </select>   
+                            @if (AppSettings.AffTypes.Count() > 1)
+                            {
+                                <span class="link-box-active" id="spAffType" title="@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name)">@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name.LeftString(12))</span>
+                            }
+                            else
+                            {
+                                <span title="@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name)">@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name.LeftString(12))</span>
+                            }
                         </td>
                     </tr>
                     <tr>

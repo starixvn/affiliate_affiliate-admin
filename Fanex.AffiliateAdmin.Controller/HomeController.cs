@@ -24,6 +24,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Home Controller class.
     /// </summary>
+    [NoCache]
     public class HomeController : BaseController
     {
         private readonly IHomeService _homeService;

@@ -13,6 +13,7 @@ namespace Fanex.AffiliateAdmin.Core.Session
     using System.Linq;
     using System.Text;
     using System.Web;
+    using System.Web.Security;
 
     /// <summary>
     /// Session Manager.

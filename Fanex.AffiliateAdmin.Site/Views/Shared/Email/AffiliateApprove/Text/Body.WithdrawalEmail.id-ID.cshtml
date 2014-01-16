@@ -1,33 +1,27 @@
 ﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
 <div>
-    Yang terhormat dihargai Afiliasi,<br />
+    Yang terhormat @Model.FirstName,<br />
     <br />
-    Syabas , anda sudah menjadi ahli Afiliasi @Model.SystemName!<br />
-    <br />
-    Untuk membantu kami untuk melayani Anda kami berharap setiap perubahan terbaru dalam
-    informasi pribadi Anda disertakan URL tambahan (jika ada) dalam "My Account" di
-    situs Afiliasi @Model.SystemName kami.
-    <br />
-    <br />
-    Sila memberitahu kami melalui e-mail ke situs yang tepat <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-    URL atau URL anda berencana untuk memasang @Model.SystemName's spanduk. Jika ada
-    kebutuhan untuk berbagai ukuran banner, silakan hubungi kami dan kami akan bertindak
-    balas dengan secepat mungkin.
-    <br />
-    <br />
-    Sila ambil perhatian bahwa rekening afiliasi Anda akan ditutup sekiranya spanduk
-    @Model.SystemName belum memasang di situs web berdaftar. Jikalau anda tidak dapat
-    memasang sepanduk @Model.SystemName dalam waktu tujuh hari Anda perlu memberitahui
-    memberitahu kami untik mendapatkan persetujuan.
-    <br />
-    <br />
-    Kami berharap Anda pasti berjaya melalui lintasan web Anda yang mendatangkan keuntungan
-    lumayan kepada Anda!<br />
-    <br />
-    Terima kasih.<br />
-    <br />
-    Salam Sejahtera,<br />
-    <br />
+    Selamat untuk menjadi afiliasi @(Model.SystemName) kami!<br /><br />
+
+    Untuk memastikan untuk pembayaran yang lebih cepat untuk afiliasi Anda, silahkan luangkan waktu untuk membaca prosedur untuk penarikan berikut:<br /><br />
+
+    1. Tolong jangan mendaftarkan rekening taruhan @(Model.SystemName) baru<br /><br />
+    2. Kirim email ke <a href="mailto:@Model.MailContact">@Model.MailContact</a> dan negara pengguna @(Model.SystemName) Anda bersama dengan nama pengguna afiliasi<br /><br />
+    3. Setelah mengirim email kepada kami untuk Anda @(Model.SystemName) account, silahkan login account afiliasi Anda dan klik pada "Rekening Saya", 
+        pada kolom Informasi pembayaran, silakan ubah metode pembayaran Anda @(Model.SystemName) Player Account, isikan username dan @(Model.SystemName) Anda klik submit.<br /><br />
+    4. Kami akan menyelesaikan pembayaran komisi member sekali dalam sebulan, silakan mengakses rekening afiliasi Anda dan klik pada permintaan Pembayaran, masukkan jumlah dan permintaan Payout.<br /><br />
+    5. ika permintaan penarikan Anda disetujui, dana Anda akan secara otomatis ditransfer ke rekening taruhan @(Model.SystemName) Anda.<br /><br />
+    6. Anda dapat meminta penarikan dari rekening taruhan @(Model.SystemName) Anda kapan saja dan tidak akan ada biaya tambahan. <br /><br />
+
+    Harap perhatikan:<br /><br />
+    1. @(Model.SystemName) rekening taruhan Anda adalah untuk tujuan afiliasi saja; tolong jangan membuat deposito atau menempatkan taruhan.<br /><br />
+    2. Anda terdaftar @(Model.SystemName) rekening taruhan nama harus sama nama yang terdaftar sudah terdaftar di rekening afiliasi Anda, dan itu harus nama asli Anda.<br /><br />
+    3. Prosedur di atas adalah untuk pertama kali penarikan hanya anggota afiliasi, jika permintaan penarikan 2 atau 3, silahkan merujuk pada langkah 4, 5 dan 6.<br /><br />
+
+    Jangan ragu untuk menghubungi kami jika Anda memiliki pertanyaan lebih lanjut.<br /><br />
+
+    Hormat kami,<br /><br />
     Tim Afiliasi @Model.SystemName Anda<br />
     <a href="mailto:@Model.MailContact">@Model.MailContact</a>
 </div>

@@ -613,23 +613,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Subject.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Subject.id-ID.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.id-ID.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.id-ID.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Subject.th-TH.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.th-TH.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.th-TH.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Subject.vi-VN.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Subject.zh-TW.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Subject.zh-CN.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.vi-VN.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.zh-TW.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.zh-CN.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.vi-VN.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.zh-TW.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.zh-TW.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.th-TH.cshtml" />
@@ -651,9 +634,6 @@
     <Content Include="Views\Statement\DailyEarning.cshtml" />
     <Content Include="Views\TrackingStatistic\StatisticDetail.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.ko-KR.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Subject.ko-KR.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Html\Body.ko-KR.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.ko-KR.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -766,7 +746,6 @@
     <Content Include="Views\Notify\PageNotFound.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateDisapprove\Text\Body.en-US.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateDisapprove\Html\Body.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\Withdrawal\Text\Body.en-US.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateDisapprove\Subject.en-US.cshtml" />
     <Content Include="Views\Shared\Email\PaymentApprove\Subject.en-US.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Text\Body.ApprovalEmail.id-ID.cshtml" />

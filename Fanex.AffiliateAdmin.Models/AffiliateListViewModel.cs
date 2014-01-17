@@ -23,8 +23,7 @@ namespace Fanex.AffiliateAdmin.Models
         private readonly List<string> _defaultStatusList = new List<string>
         {
             "approved",
-            "closed",
-            "lockedout"
+            "pending"
         };
 
         private readonly List<SelectListItem> _dateOptions = new List<SelectListItem>

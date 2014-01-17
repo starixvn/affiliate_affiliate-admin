@@ -23,6 +23,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int AffID { get; set; }
 
+        public int MemberAffID { get; set; }
+
         [SpParam(Ignored = true)]
         public bool ByAffiliate { get; set; }
 

@@ -72,6 +72,7 @@
     <Compile Include="AffiliateController.cs" />
     <Compile Include="ConfigurationController.cs" />
     <Compile Include="CommGroupController.cs" />
+    <Compile Include="TestWebServiceController.cs" />
     <Compile Include="ExchangeController.cs" />
     <Compile Include="DomainController.cs" />
     <Compile Include="MediaController.cs" />

@@ -6,7 +6,7 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Diagnostics.CodeAnalysis;
+    using System;
     using System.Linq;
     using System.Web.Mvc;
     using Common;
@@ -189,7 +189,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 this.CurrentSession.Affiliate.Status = criteria.Status.ToLower();
 
-                if (!criteria.Status.Equals("pending", System.StringComparison.CurrentCultureIgnoreCase))
+                if (!criteria.Status.Equals("pending", StringComparison.CurrentCultureIgnoreCase))
                 {
                     var siteInfo = SiteInfo.Parse(Request, CurrentSession.Affiliate.AffTypeName.Equals("kiosk", System.StringComparison.CurrentCultureIgnoreCase));
                     var mailinator = AffiliateMailinator.GetMailinator(CurrentSession.Affiliate.AffTypeName);

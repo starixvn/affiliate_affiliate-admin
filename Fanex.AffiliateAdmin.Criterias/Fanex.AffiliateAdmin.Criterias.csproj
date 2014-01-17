@@ -89,6 +89,7 @@
     <Compile Include="CommGroupAssignCriteria.cs" />
     <Compile Include="CompanyWinlossReportCriteria.cs" />
     <Compile Include="CashBackUpdateCriteria.cs" />
+    <Compile Include="TestWebServiceCriteria.cs" />
     <Compile Include="CustomerSelByUserNameCriteria.cs" />
     <Compile Include="IsMonthlyTransferCriteria.cs" />
     <Compile Include="MonthlyTransferCriteria.cs" />

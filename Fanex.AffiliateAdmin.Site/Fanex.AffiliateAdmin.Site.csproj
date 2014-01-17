@@ -448,6 +448,7 @@
     <Content Include="Scripts\site\CommissionReport.js" />
     <Content Include="Scripts\site\CommissionByAffiliateReport.js" />
     <Content Include="Scripts\site\CompanyWinlossReport.js" />
+    <Content Include="Scripts\site\TestWebService.js" />
     <Content Include="Scripts\site\QualifiedMember.js" />
     <Content Include="Scripts\site\MemberWinlossReport.js" />
     <Content Include="Scripts\site\ProcessingCommission.js" />
@@ -634,6 +635,7 @@
     <Content Include="Views\Statement\DailyEarning.cshtml" />
     <Content Include="Views\TrackingStatistic\StatisticDetail.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.ko-KR.cshtml" />
+    <Content Include="Views\TestWebService\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

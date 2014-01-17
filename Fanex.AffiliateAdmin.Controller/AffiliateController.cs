@@ -372,7 +372,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 message = Lang.AffNotExist;
             }
-            else if (!string.IsNullOrEmpty(criteria.AffStatus) && !criteria.AffStatus.Equals("approved"))
+            else if (!string.IsNullOrEmpty(criteria.AffStatus) && !criteria.AffStatus.Equals("approved", StringComparison.CurrentCultureIgnoreCase))
             {
                 message = GetMessageFromAffiliateStatus(criteria.AffStatus);
             }
@@ -384,16 +384,16 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
                 else if (AppSettings.Environment != "Local Development")
                 {
-                    var xml = ServiceWrapper.GetLicenseeCustInfo(AppSettings.SystemName, criteria.MemberName);
-                    
-                    if (xml.Element("ReturnCode").Value != "0")
+                    if (criteria.MemberAffID > 0)
                     {
-                        message = xml.Element("ReturnMessage").Value;
+                        errorCode = AssignOldMemberToAffiliate(criteria);
                     }
                     else
                     {
-                        errorCode = InsertMember(criteria.AffID, criteria.AffName, criteria.MemberName, xml);
+                        AssignNewMemberToAffiliate(criteria, ref message, ref errorCode);
                     }
+
+                    ServiceWrapper.UpdateBtage(AppSettings.SystemName, criteria.MemberName, string.Format("{0}_{1}_0", AppSettings.LicenseeID, criteria.AffID));
                 }
                 else
                 {
@@ -409,7 +409,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     AffName = criteria.AffName,
                     ByAffiliate = criteria.ByAffiliate
                 });
-        }        
+        }
 
         /// <summary>
         /// Member list.
@@ -488,39 +488,64 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         /// <summary>
-        /// Insert member to affiliate.
+        /// Assign old member to affiliate.
         /// </summary>
-        /// <param name="affid">Affiliate ID.</param>
-        /// <param name="affname">Affiliate Name.</param>
-        /// <param name="customerName">Member Name.</param>
-        /// <param name="customerInfo">Customer Information.</param>
-        /// <returns>Error code.</returns>
-        private int InsertMember(int affid, string affname, string customerName, XElement customerInfo)
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>Return error code.</returns>
+        private int AssignOldMemberToAffiliate(CheckMemberExistCriteria criteria)
         {
             var insertCriteria = new InsertMemberCriteria()
             {
-                AffUserName = affname,
-                Username = customerName,
-                Currency = customerInfo.Element("Currency").Value,
-                IBCCustID = 0,
-                IBCUserName = customerInfo.Element("IBCusername").Value,
-                AgentID = 0,
+                AffUserName = criteria.AffName,
+                Username = criteria.MemberName,
                 AffAffectedDate = DateTime.Now,
-                Btag = customerInfo.Element("btag").Value,
-                Language = AppSession.Language,
-                FirstName = customerInfo.Element("FirstName").Value,
-                LastName = customerInfo.Element("LastName").Value,
-                Phone = customerInfo.Element("Phone").Value,
-                Address = customerInfo.Element("Address").Value,
+                ClickID = 0,
+                Btag = string.Empty,
                 IP = Remote.GetClientIPAddress()
             };
 
-            GetMoreCustomerInfo(customerInfo, insertCriteria);
-
             _service.InsertMember(insertCriteria);
-            ServiceWrapper.UpdateBtage(AppSettings.SystemName, customerName, string.Format("{0}_{1}_0", AppSettings.LicenseeID, affid));
-
             return insertCriteria.ErrCode;
+        }
+
+        /// <summary>
+        /// Assign New Member To Affiliate.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <param name="message">Error message.</param>
+        /// <param name="errorCode">Error code.</param>
+        private void AssignNewMemberToAffiliate(CheckMemberExistCriteria criteria, ref string message, ref int errorCode)
+        {
+            var xml = ServiceWrapper.GetLicenseeCustInfo(AppSettings.SystemName, criteria.MemberName);
+
+            if (xml.Element("ReturnCode").Value != "0")
+            {
+                message = xml.Element("ReturnMessage").Value;
+            }
+            else
+            {
+                var insertCriteria = new InsertMemberCriteria()
+                {
+                    AffUserName = criteria.AffName,
+                    Username = criteria.MemberName,
+                    Currency = xml.Element("Currency").Value,
+                    IBCCustID = 0,
+                    IBCUserName = xml.Element("IBCusername").Value,
+                    AgentID = 0,
+                    AffAffectedDate = DateTime.Now,
+                    Btag = xml.Element("btag").Value,
+                    Language = AppSession.Language,
+                    FirstName = xml.Element("FirstName").Value,
+                    LastName = xml.Element("LastName").Value,
+                    Phone = xml.Element("Phone").Value,
+                    Address = xml.Element("Address").Value,
+                    IP = Remote.GetClientIPAddress()
+                };
+
+                GetMoreCustomerInfo(xml, insertCriteria);
+                _service.InsertMember(insertCriteria);
+                errorCode = insertCriteria.ErrCode;
+            }
         }
 
         /// <summary>

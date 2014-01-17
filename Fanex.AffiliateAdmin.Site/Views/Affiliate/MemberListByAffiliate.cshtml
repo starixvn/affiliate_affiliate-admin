@@ -137,8 +137,16 @@ customer
 						    Name: "Remove",
 						    CellAlign: "center",
 						    Formatter: function (rowIndex, rowData, cell, cellFormated) {
-						        if (rowData.IsRemoved)
-						            return moment(rowData.RemovedDate).format(AFFILIATE.DATE_FORMAT);
+						        if (rowData.IsRemoved) {
+						            var obj = rowData.RemovedDate;
+
+						            if (typeof obj !== "undefined" && obj != null && moment(obj).isValid()) {
+						                return moment(obj).format(AFFILIATE.DATE_FORMAT);
+						            }
+
+						            return '';
+						        }
+
 						        return "<a href=\"javascript:CUSTOMER.Remove('" + rowData.UserName + "')\"><i class=\"icon-remove\"></i></a>";
 						    }
 						}

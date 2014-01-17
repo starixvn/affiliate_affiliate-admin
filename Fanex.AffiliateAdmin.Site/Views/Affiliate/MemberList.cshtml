@@ -126,7 +126,7 @@ customer
                     HeaderText: "@Lang.Email",
                     Width: 110,
                     Name: "Email",
-                    Formatter: function(rowIndex, rowData, cell, cellFormated) {
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return cellFormated ? "<a href='mailto:" + cellFormated + "'>" + cellFormated + "</a>" : "";
                     }
                 },
@@ -140,7 +140,7 @@ customer
                     HeaderText: "@Lang.Affiliate",
                     Width: 70,
                     Name: "AffUserName",
-                    Formatter: function(rowIndex, rowData, cell, cellFormated) {
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return "<a href=\"" + AFFILIATE.baseUrl + "AffiliateInfo?username=" + cellFormated + "\">" + cellFormated + "</a>";
                     }
                 },
@@ -150,9 +150,17 @@ customer
                     Width: 70,
                     Name: "Remove",
                     CellAlign: "center",
-                    Formatter: function(rowIndex, rowData, cell, cellFormated) {
-                        if (rowData.IsRemoved)
-                            return moment(rowData.RemovedDate).format(AFFILIATE.DATE_FORMAT);
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        if (rowData.IsRemoved) {
+                            var obj = rowData.RemovedDate;
+
+                            if (typeof obj !== "undefined" && obj != null && moment(obj).isValid()) {
+                                return moment(obj).format(AFFILIATE.DATE_FORMAT);
+                            }
+
+                            return '';
+                        }
+
                         return "<a href=\"javascript:CUSTOMER.Remove('" + rowData.UserName + "')\"><i class=\"icon-remove\"></i></a>";
                     }
                 }
@@ -163,7 +171,7 @@ customer
             gridHeight: 500,
             showNumberColumn: true,
             allowTruncate: true,
-            rowCssClass: function(rowIndex, rowData) {
+            rowCssClass: function (rowIndex, rowData) {
                 return rowData.IsRemoved ? "removed" : "approved";
             }
         };

@@ -193,14 +193,29 @@
         gridWidth: 0,
         noDataText: "There is no data",
         language: 'en-US',
-        autoFixFrozenRowHeight: false
+        autoFixFrozenRowHeight: false,
+        autoResizeColumn: false,
+        pixelsPerCharacter: 0,
+        calTextWidthWithFontSize: true
     };
 
     var Fanex = Fanex || {};
 
     Fanex.Grid = function (grid, options) {
-        this.Options = options;
         this.$grid = $(grid);
+        //// Calculate fontsize for hide cell value if cell value exceed
+        try {
+            this.currentFontSize = parseInt(this.$grid.css('font-size').replace('px', ''));
+        }
+        catch (e) {
+            this.currentFontSize = 12;
+        }
+        this.currentFontSize -= 4;
+        if (options.pixelsPerCharacter == 0) {
+            options.pixelsPerCharacter = this.currentFontSize;
+        }
+        this.Options = options.autoResizeColumn ? Fanex.Grid.Helper.ComputeResizeColumn(this.$grid, options) : options;
+
         this.gridObject = grid;
         this.gridId = this.$grid.attr('id');
         this.tableContentId = 'tblContent_' + this.gridId;
@@ -213,14 +228,8 @@
         else {
             fanexGridCurrentLanguage = fanexGridLanguage[options.language];
         }
-        //// Calculate fontsize for hide cell value if cell value exceed
-        try {
-            this.currentFontSize = parseInt(this.$grid.css('font-size').replace('px', ''));
-        }
-        catch (e) {
-            this.currentFontSize = 12;
-        }
-        this.currentFontSize -= 4;
+
+
         //// Create a hashtable contain columns information for esay retrieve data
         this.columnsHastable = Fanex.Grid.Helper.GetColumnsHastable(options.columns);
         //// Create columnswidth array
@@ -593,8 +602,8 @@
                                     Fanex.Grid.Helper.RemoveItemForRowSpan(currentGroupHeader, rowIndex, currentCol, me.columnsHastable);
                                     var currentMergeRowNumber = ' rowspan="' + currentCol.MergeRowNumber + '"';
                                     //if (type === 'frozenheader' || type === 'frozenbody') {
-                                        //// Calculate height for merger row
-                                        currentHeight = ((options.headerColumnHeight * currentCol.MergeRowNumber) + (currentCol.MergeRowNumber - 1) * 5);
+                                    //// Calculate height for merger row
+                                    currentHeight = ((options.headerColumnHeight * currentCol.MergeRowNumber) + (currentCol.MergeRowNumber - 1) * 5);
                                     //}
                                     customSpan += currentMergeRowNumber;
                                 }
@@ -896,7 +905,10 @@
                 currentValue = numeral(currentValue).format(me.columnsHastable[currentCol.Name].FormatNumber);
             }
 
-            if (me.columnsHastable[currentCol.Name].FormatDateTime && isValid(currentValue) && currentValue !== '') {
+            if (me.columnsHastable[currentCol.Name].FormatDateTime &&
+                isValid(currentValue) && 
+                currentValue !== '' &&
+                currentValue != null) {
                 var momentObject = moment(currentValue);
                 if (momentObject.isValid()) {
                     currentValue = momentObject.format(me.columnsHastable[currentCol.Name].FormatDateTime);
@@ -1468,7 +1480,6 @@
                 }
             }
         },
-
         RegisterMouseHoverEvent: function () {
             var me = this;
             var options = me.Options;
@@ -1827,6 +1838,95 @@
                 }
             }
             return false;
+        },
+        ComputeResizeColumn: function (mainContainer, options) {
+            var resizeObject = {},
+                columnHashtable = Fanex.Grid.Helper.GetColumnsHastable(options.columns),
+                pixelsPerCharacter = options.pixelsPerCharacter;
+
+            resizeObject = Fanex.Grid.Helper.ComputeMaxWidthInRows(options.bodyRows, resizeObject, columnHashtable, pixelsPerCharacter);
+
+            if (options.showFooter) {
+                resizeObject = Fanex.Grid.Helper.ComputeMaxWidthInRows(options.footerRows, resizeObject, columnHashtable, pixelsPerCharacter);
+            }
+
+            var mainColLength = options.columns.length;
+            for (var mainColIndex = 0; mainColIndex < mainColLength; mainColIndex++) {
+                var currentResizeObject = resizeObject[options.columns[mainColIndex].Name];
+                if (currentResizeObject != null) {
+                    if (currentResizeObject.calculated || options.calTextWidthWithFontSize) {
+                        options.columns[mainColIndex].Width = resizeObject[options.columns[mainColIndex].Name].length;
+                    }
+                    else {
+                        options.columns[mainColIndex].Width = Fanex.Grid.Helper.ComputeTextWidth(mainContainer, currentResizeObject.rawData) + 20;
+                    }
+                }
+            }
+
+            return options;
+        },
+        ComputeMaxWidthInRows: function (rows, resizeObject, columnHashtable, pixelsPerCharacter) {
+            var rowLength = rows.length,
+                currentPixelsPerChar = 0;
+
+            for (var rowIndex = 0; rowIndex < rowLength; rowIndex++) {
+                var currentRow = rows[rowIndex],
+                    colLength = currentRow.Columns.length;
+                for (var colIndex = 0; colIndex < colLength; colIndex++) {
+                    var currentCol = currentRow.Columns[colIndex];
+                    if (columnHashtable[currentCol.Name].CanResize === true) {
+                        var textLength = 0;
+                        var calculated = true;
+                        if (typeof (resizeObject[currentCol.Name]) == 'undefined') {
+                            resizeObject[currentCol.Name] = {
+                                length: columnHashtable[currentCol.Name].Width,
+                                calculated: true,
+                                rawData: ''
+                            };
+                        }
+
+                        if (columnHashtable[currentCol.Name].CalResizeFunction != null) {
+                            textLength = columnHashtable[currentCol.Name].CalResizeFunction(currentCol.Value);
+                        }
+                        else {
+                            if (columnHashtable[currentCol.Name].PixelsPerCharacter != null) {
+                                textLength = currentCol.Value.toString().length * columnHashtable[currentCol.Name].PixelsPerCharacter;
+                            }
+                            else {
+                                //currentpixelsPerChar = Fanex.Grid.;
+                                textLength = currentCol.Value.toString().length * pixelsPerCharacter;
+                                calculated = false;
+                            }
+
+                            ////resizeResult = currentCol.Value.toString().length * currentpixelsPerChar;
+                        }
+
+                        if (resizeObject[currentCol.Name].length < textLength) {
+                            resizeObject[currentCol.Name].length = textLength;
+                            if (calculated === false) {
+                                resizeObject[currentCol.Name].calculated = calculated;
+                                resizeObject[currentCol.Name].rawData = currentCol.Value.toString();
+                            }
+                        }
+                    }
+                }
+            }
+
+            return resizeObject;
+        },
+        ComputeTextWidth: function (mainContainer, text) {
+            var tempElement = $('<div>' + text + '</div>')
+            .css({
+                'position': 'absolute',
+                'float': 'left',
+                'white-space': 'nowrap',
+                'visibility': 'hidden'
+            }).appendTo(mainContainer);
+            var textWidth = tempElement.width();
+
+            tempElement.remove();
+
+            return textWidth;
         }
     };
 

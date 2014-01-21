@@ -121,6 +121,7 @@
                     gridOption.bodyRows = bodyRows;
 
                     if (data.HideTotalRows) {
+                        gridOption.showFooter = true,
                         gridOption.footerRows = [];
                     } else {
                         gridOption.footerRows = AffiliateList.getFooterRows(data.SubTotal, data.Total, 13);

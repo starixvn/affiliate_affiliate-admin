@@ -11,9 +11,13 @@
             
             CUSTOMER.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
 
-            $('#btnSubmit').click(function () {
+            $('.search-panel form').submit(function () {
                 CUSTOMER.submitRequest();
                 return false;
+            });
+
+            $('.form-popup').submit(function () {
+                AFFILIATE.trimBeforeSubmit();
             });
 
             $("#DateOption").change(function () {
@@ -33,7 +37,7 @@
 
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
-            CUSTOMER.ReRenderAfterPaged();
+            CUSTOMER.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {

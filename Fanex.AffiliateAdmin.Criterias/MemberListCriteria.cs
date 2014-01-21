@@ -22,7 +22,7 @@ namespace Fanex.AffiliateAdmin.Criterias
         /// </summary>
         public MemberListCriteria()
         {
-            PageSize = 20;
+            PageSize = 10;
             PageIndex = 1;
         }
 

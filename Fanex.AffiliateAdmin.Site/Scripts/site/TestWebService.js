@@ -12,14 +12,16 @@
 
             $("#method").change(function () {
                 showHide($(this).val());
-                
+
             });
 
             $('#submit').click(function () {
+                var paras = $('form').serialize();
+
                 $.ajax({
                     url: AFFILIATE.getAbsoluteUrl("TestWebService/CallWebSerive"),
                     type: 'post',
-                    data: jQuery.param($('form').serializeObject()),
+                    data: paras,
                     success: function (result) {
                         $('#result').text(result);
                     }

@@ -31,5 +31,7 @@ namespace Fanex.AffiliateAdmin.Models
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ApprovedErr")]
         public string Status { get; set; }
+
+        public bool FromStatement { get; set; }
     }
 }

@@ -7,6 +7,7 @@
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System.Web.Security;
+    using Fanex.AffiliateAdmin.Core.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -28,9 +29,9 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
 
             var accKey = FormsAuthentication.HashPasswordForStoringInConfigFile(loginInfo.SessionID + chalengeStr, "MD5");
 
-            var siteInfo = SiteInfo.Parse(loginInfo.Request, loginInfo.IsKiosk());
+            var siteInfo = SiteDomainInfo.Parse(loginInfo.Controller, loginInfo.IsKiosk());
 
-            return string.Format(LINKFORMAT, siteInfo.AffiliateDomain, chalengeStr, accKey, loginInfo.Username, loginInfo.CustId, loginInfo.OnUserID);
+            return string.Format(LINKFORMAT, siteInfo.AffiliateSiteUrl, chalengeStr, accKey, loginInfo.Username, loginInfo.CustId, loginInfo.OnUserID);
         }
     }
 }

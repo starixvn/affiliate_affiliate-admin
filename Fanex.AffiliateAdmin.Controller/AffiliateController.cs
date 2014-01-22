@@ -476,6 +476,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 Currency = AppSettings.BaseExchange.Code,
                 IBCCustID = 0,                
                 AgentID = 0,
+                Btag = string.Format("{0}_{1}_0", AppSettings.LicenseeID, affid),
                 CreatedDate = DateTime.Now,
                 RegisterDate = DateTime.Now,
                 AffAffectedDate = DateTime.Now,

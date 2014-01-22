@@ -132,51 +132,6 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         }
 
         /// <summary>
-        /// Send Email by template.
-        /// </summary>
-        /// <param name="mailTo">To Email address.</param>
-        /// <param name="templateEmail">Template Email.</param>
-        /// <param name="mailSubject">Mail Subject.</param>
-        /// <param name="firstName">First Name.</param>
-        /// <param name="language">Language of email.</param>
-        /// <param name="format">Format HTML or TXT.</param>
-        public static void SendEmail(string mailTo, string templateEmail, string mailSubject, string firstName, string language, bool format)
-        {
-            var emailFormat = format ? ".txt" : ".cshtml";
-            var affilatePath = string.Format(templateEmail, language, emailFormat);
-            var templatePath = HttpContext.Current.Server.MapPath(affilatePath);
-
-            dynamic emailContent = new
-            {
-                AffiliateName = AppSettings.AffiliateName,
-                CurrentMemberSiteDomain = "test",
-                ////siteDomainInfo.MemberSiteDomain,
-                MemberSiteDomainEmail = "test",
-                ////siteDomainInfo.MemberSiteDomainEmail,
-                FirstName = firstName,
-                MailContact = AppSettings.MailContact,
-                RootUrl = "test",
-                ////siteDomainInfo.RootDomain,
-                ThemeID = "theme" + AppSettings.Theme,
-                LanguageCode = language + ".jpg",
-                CopyrightYear = DateTime.Now.Year,
-                HeaderBgColor = AppSettings.EmailHeaderBgColor,
-                HeaderFontColor = AppSettings.EmailHeaderFontColor,
-                ContentBgColor = AppSettings.EmailContentBgColor,
-                ContentFontColor = AppSettings.EmailContentFontColor,
-                CopyrightBgColor = AppSettings.EmailCopyrightBgColor,
-                CopyrightFontColor = AppSettings.EmailCopyrightFontColor,
-                FooterBgColor = AppSettings.EmailFooterBgColor,
-                FooterFontColor = AppSettings.EmailFooterFontColor
-            };
-
-            var affiliateEmailBody = GetEmailBody(templatePath, emailContent);
-            var affiliateSubject = string.Format(mailSubject, AppSettings.AffiliateName);
-
-            SendEmail(affiliateEmailBody, mailTo, affiliateSubject, AppSettings.ITMail);
-        }
-
-        /// <summary>
         /// Get email body use RAZOR.
         /// </summary>
         /// <param name="templatePath">Template Path.</param>

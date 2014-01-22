@@ -101,23 +101,25 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Update Payment.
         /// </summary>
-        /// <param name="id">Payment Id.</param>
+        /// <param name="transId">Payment Id.</param>
+        /// <param name="fromStatement">From Statement.</param>
         /// <returns>Action Result.</returns>
         [HttpGet]
-        public ActionResult UpdatePayment(int id)
+        public ActionResult UpdatePayment(int transId, bool fromStatement = false)
         {
             var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria
             {
-                TransId = id
+                TransId = transId
             });
 
             var model = new PaymentUpdateViewModel
             {
-                TransId = id,
+                TransId = transId,
                 Status = paymentDetail.Status,
                 AdminRemark = paymentDetail.AdminDesc,
                 AffRemark = paymentDetail.AffDesc,
-                PaymentDetail = paymentDetail
+                PaymentDetail = paymentDetail,
+                FromStatement = fromStatement
             };
 
             return View(model);
@@ -151,20 +153,25 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 UpdatePayment(criteria, paymentDetail.AffId, paymentDetail.RefId, paymentDetail.Amt);
                 model.PaymentDetail = paymentDetail;
+                
                 if (criteria.ErrCode == 0)
                 {
                     var emailType = criteria.Status.ToLower() == "approved" ? EmailTemplateType.PaymentApprove : EmailTemplateType.PaymentCancel;
                     var emailTemplate = new EmailTemplate(emailType, criteria.PreferredLang, criteria.MailOption);
+                    var siteInfo = SiteDomainInfo.Parse(this, false);
                     var emailTemplateInfo = new EmailTemplateInfo
                     {
                         TransId = criteria.TransId,
                         FirstName = paymentDetail.Firstname,
                         WinlostDate = paymentDetail.Transdate,
-                        Amount = FormaterCurrency.Format(paymentDetail.Amt, paymentDetail.AffCurrency)
+                        Amount = FormaterCurrency.Format(paymentDetail.Amt, paymentDetail.AffCurrency),
+                        AdminSiteUrl = siteInfo.AdminSiteUrl,
+                        AffiliateSiteUrl = siteInfo.AffiliateSiteUrl,
+                        MemberSiteUrl = siteInfo.MemberSiteUrl,
+                        MemberSiteDomain = siteInfo.MemberSiteDomain
                     };
 
                     emailTemplate.ResolvePath(Server).Send(paymentDetail.Email, emailTemplateInfo);
-
                     ViewBag.Result = GetResultViewModel(criteria.ErrCode);
                 }
                 else

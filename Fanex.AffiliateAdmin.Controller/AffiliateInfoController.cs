@@ -67,7 +67,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Index(string userName)
         {
-            var siteDomainInfo = SiteDomainInfo.Parse(this);
+            var isKiosk = CurrentSession.Affiliate == null ? false : CurrentSession.Affiliate.AffTypeName.Equals("kiosk", System.StringComparison.CurrentCultureIgnoreCase);
+
+            var siteDomainInfo = SiteDomainInfo.Parse(this, isKiosk);
 
             if (string.IsNullOrEmpty(userName) && this.CurrentSession.Affiliate != null)
             {
@@ -108,7 +110,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                     model.ExternalLoginUrl = ExternalLogin.ExternalLoginUrl(new ExternalLoginInfo
                         {
-                            Request = Request,
+                            Controller = this,
                             Username = CurrentSession.Affiliate.Username,
                             CustId = CurrentSession.CustID,
                             OnUserID = CurrentSession.OnUserID,
@@ -191,7 +193,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 if (!criteria.Status.Equals("pending", StringComparison.CurrentCultureIgnoreCase))
                 {
-                    var siteInfo = SiteInfo.Parse(Request, CurrentSession.Affiliate.AffTypeName.Equals("kiosk", System.StringComparison.CurrentCultureIgnoreCase));
+                    var siteInfo = SiteDomainInfo.Parse(this, CurrentSession.Affiliate.AffTypeName.Equals("kiosk", System.StringComparison.CurrentCultureIgnoreCase));
                     var mailinator = AffiliateMailinator.GetMailinator(CurrentSession.Affiliate.AffTypeName);
                     mailinator.Server = Server;
                     mailinator.EmailTemplateType = criteria.Status.Equals("approved", System.StringComparison.CurrentCultureIgnoreCase) ?
@@ -206,7 +208,10 @@ namespace Fanex.AffiliateAdmin.Controller
                         Username = CurrentSession.Affiliate.Username,
                         FirstName = CurrentSession.Affiliate.FirstName,
                         Password = password,
-                        AffiliateSiteUrl = siteInfo.AffiliateDomain
+                        AdminSiteUrl = siteInfo.AdminSiteUrl,
+                        AffiliateSiteUrl = siteInfo.AffiliateSiteUrl,
+                        MemberSiteUrl = siteInfo.MemberSiteUrl,
+                        MemberSiteDomain = siteInfo.MemberSiteDomain
                     };
 
                     mailinator.Send();

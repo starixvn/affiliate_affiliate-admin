@@ -1,10 +1,10 @@
 ﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
 <table width="100%">
     <tr>
-        <td valign="top" align="center" background="@Model.AdminSiteUrl/Content/themes/theme1/images/email_bg.png">
+        <td valign="top" align="center" background="@Model.AdminSiteUrl/Content/themes/Default/images/emailBg.jpg">
             <table width="588" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                    <td height="77" background="@Model.AdminSiteUrl/Content/themes/theme1/images/email_top.jpg">
+                    <td height="77" background="@Model.AdminSiteUrl/Content/themes/Default/images/emailBanner.jpg">
                     </td>
                 </tr>
                 <tr>
@@ -12,16 +12,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="left" bgcolor="#a30003" height="25">
-                        &nbsp;&nbsp; <strong style="color: #ffffff;"><font style="font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
-                            text-transform: uppercase;">เรื่อง ข้อมูลเพิ่มเติมเกี่ยวกับพันธมิตร </font></strong>
+                    <td align="left" bgcolor="@Model.HeaderBgColor" height="30">
+                        &nbsp;&nbsp;<strong><font style="color: @Model.HeaderFontColor; font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
+                            text-transform: uppercase;">เรื่อง ข้อมูลเพิ่มเติมเกี่ยวกับพันธมิตร</font></strong>
                     </td>
                 </tr>
                 <tr>
-                    <td align="left" bgcolor="#ffffff">
-                        <table style="text-align: left" width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <td align="left" bgcolor="@Model.ContentBgColor">
+                        <table width="100%" border="0">
                             <tr>
-                                <td style="padding: 20px 15px">
+                                <td style="background-color:@Model.ContentBgColor !important; padding: 20px 15px;">
                                     <font style="font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
                                         <strong>เรียน @(Model.FirstName),</strong><br />
                                         <br />
@@ -51,15 +51,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="right" bgcolor="#d7d7d7" height="25" style="padding-right: 15px">
-                        <font style="font-size: 11px; color: #333333; font-family: Verdana,Arial,Helvetica,sans-serif;">
-                            © ลิขสิทธิ์ @DateTime.Now.Year <a href="@Model.MemberSiteUrl">@Model.MemberSiteDomain</a>
+                    <td align="right" bgcolor="@Model.CopyrightBgColor" height="25" style="padding-right: 15px">
+                        <font style="font-size: 11px; color: @Model.CopyrightFontColor; font-family: Verdana,Arial,Helvetica,sans-serif;">
+                            © ลิขสิทธิ์ @Model.CopyrightYear <a href="@Model.MemberSiteUrl">@Model.MemberSiteDomain</a>
                         </font>
                     </td>
                 </tr>
                 <tr>
-                    <td align="center" bgcolor="#a30003" height="40">
-                        <font style="font-size: 12px; color: #eba6a6; font-family: Verdana,Arial,Helvetica,sans-serif;">
+                    <td align="center" bgcolor="@Model.FooterBgColor" height="40">
+                        <font style="font-size: 12px; color: @Model.FooterFontColor; font-family: Verdana,Arial,Helvetica,sans-serif;">
                             อีเมลล์นี้เป็นการอีเมลล์ที่ถูกส่งโดยระบบ  กรุณาอย่าตอบกลับอีเมลล์นี้โดยตรง
                         </font>
                     </td>

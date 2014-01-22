@@ -76,6 +76,8 @@ affiliate-info
     </ul>
 </div>
 @section scripts{
+    <script src="@Url.Content("~/Scripts/site/Statement.js")" type="text/javascript"></script>
+
     <script type="text/javascript">
         var MSG = {
             NoEmailSelected: "@Lang.NoEmailSelected",
@@ -119,7 +121,6 @@ affiliate-info
                 CellAlign: "right",
                 FormatNumber: "0,0.00",
                 FormatNegative: '($)',
-                
                 Formatter: function(rowIndex, rowData, cell, cellFormated) {
                     // handle the number format.
                     var currentValue = rowData.Amount;
@@ -169,8 +170,7 @@ affiliate-info
             return rowData.Status.toLowerCase().replace('/', '');
         }
         };
-
         var TransType = @(MvcHtmlString.Create(new JavaScriptSerializer().Serialize(Model.TransTypeList)));
     </script>
-    <script src="@Url.Content("~/Scripts/site/Statement.js")" type="text/javascript"></script>
+    
 }

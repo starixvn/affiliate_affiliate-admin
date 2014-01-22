@@ -31,10 +31,11 @@ namespace Fanex.AffiliateAdmin.Core.Entities
         /// Parse site domain information.
         /// </summary>
         /// <param name="controller">Controller name.</param>
+        /// <param name="isKiosk">Is Kiosk Affiliate.</param>
         /// <returns>Return Site domain info.</returns>
-        public static SiteDomainInfo Parse(Controller controller)
+        public static SiteDomainInfo Parse(Controller controller, bool isKiosk)
         {
-            var siteUrl = controller.Request.Url;            
+            var siteUrl = controller.Request.Url;
             var scheme = siteUrl.Scheme;
             var host = siteUrl.Authority;
             if (siteUrl.HostNameType == UriHostNameType.Dns)
@@ -58,16 +59,19 @@ namespace Fanex.AffiliateAdmin.Core.Entities
             var memberSiteDomain = host;
             var memberSiteUrl = adminSiteUrl;
             var affiliateSiteUrl = adminSiteUrl;
-            
+
             if (siteUrl.HostNameType == UriHostNameType.Dns && AppSettings.Environment.Equals("Production"))
             {
                 var words = host.Split('.');
                 if (words.Length > 2)
                 {
-                    memberSiteDomain = string.Format("{0}.{1}", words[1], words[2]);
-                    memberSiteUrl = string.Format("{0}://www.{1}.{2}", scheme, words[1], words[2]);
-                    affiliateSiteUrl = string.Format("{0}://affiliate.{1}.{2}", scheme, words[1], words[2]);
-                    adminSiteUrl = string.Format("{0}://affadmin.{1}.{2}", scheme, words[1], words[2]);
+                    return new SiteDomainInfo
+                    {
+                        MemberSiteDomain = string.Format("{0}.{1}", words[1], words[2]),
+                        MemberSiteUrl = string.Format("{0}://www.{1}.{2}/vender.aspx", scheme, words[1], words[2]),
+                        AffiliateSiteUrl = string.Format("{0}://affiliate.{1}.{2}", scheme, words[1], words[2]),
+                        AdminSiteUrl = string.Format("{0}://{1}.{2}.{3}", scheme, isKiosk ? "agt" : "affiliate", words[1], words[2])
+                    };
                 }
             }
 
@@ -75,7 +79,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
             {
                 MemberSiteDomain = memberSiteDomain,
                 MemberSiteUrl = memberSiteUrl,
-                AffiliateSiteUrl = affiliateSiteUrl,
+                AffiliateSiteUrl = isKiosk ? AppSettings.InternalURLKiosk : AppSettings.InternalURL,
                 AdminSiteUrl = adminSiteUrl
             };
         }

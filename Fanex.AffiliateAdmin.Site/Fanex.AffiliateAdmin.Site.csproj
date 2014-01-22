@@ -322,6 +322,8 @@
     <Content Include="Content\themes\Default\images\Collapse_icon.png" />
     <Content Include="Content\themes\Default\images\dialog-title.png" />
     <Content Include="Content\themes\Default\images\dialog-title2.png" />
+    <Content Include="Content\themes\Default\images\emailBanner.jpg" />
+    <Content Include="Content\themes\Default\images\emailBg.jpg" />
     <Content Include="Content\themes\Default\images\email_bg.png" />
     <Content Include="Content\themes\Default\images\bg_box_tab.jpg" />
     <Content Include="Content\themes\Default\images\bg_menu.jpg" />

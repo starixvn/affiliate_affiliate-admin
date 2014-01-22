@@ -178,7 +178,7 @@
         },
 
         updatePayment: function (transId) {
-            AFFILIATE.openDialogFrame("Payment/UpdatePayment/" + transId, "Trxn.ID " + transId, { width: 500, height: 572 });
+            AFFILIATE.openDialogFrame("Payment/UpdatePayment?transId=" + transId, "Trxn.ID " + transId, { width: 500, height: 572 });
         }
     }
 } (jQuery);

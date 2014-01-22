@@ -67,5 +67,77 @@ namespace Fanex.AffiliateAdmin.Core.Entities
         public string AdminSiteUrl { get; set; }
 
         public string AffiliateSiteUrl { get; set; }
+
+        public string HeaderBgColor
+        {
+            get
+            {
+                return AppSettings.EmailHeaderBgColor;
+            }
+        }
+
+        public string HeaderFontColor
+        {
+            get
+            {
+                return AppSettings.EmailHeaderFontColor;
+            }
+        }
+
+        public string ContentBgColor
+        {
+            get
+            {
+                return AppSettings.EmailContentBgColor;
+            }
+        }
+
+        public string ContentFontColor
+        {
+            get
+            {
+                return AppSettings.EmailContentFontColor;
+            }
+        }
+
+        public string CopyrightBgColor
+        {
+            get
+            {
+                return AppSettings.EmailCopyrightBgColor;
+            }
+        }
+
+        public string CopyrightFontColor
+        {
+            get
+            {
+                return AppSettings.EmailCopyrightFontColor;
+            }
+        }
+
+        public string FooterBgColor
+        {
+            get
+            {
+                return AppSettings.EmailFooterBgColor;
+            }
+        }
+
+        public string FooterFontColor
+        {
+            get
+            {
+                return AppSettings.EmailFooterFontColor;
+            }
+        }
+
+         public int CopyrightYear
+        {
+            get
+            {
+                return DateTime.Now.Year;
+            }
+        }
     }
 }

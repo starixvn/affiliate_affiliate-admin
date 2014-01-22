@@ -145,7 +145,6 @@
     <Compile Include="Utilities\Menu.cs" />
     <Compile Include="Utilities\Remote.cs" />
     <Compile Include="Mvc\StringExtension.cs" />
-    <Compile Include="Utilities\SiteInfo.cs" />
     <Compile Include="Utilities\SubMenu.cs" />
     <Compile Include="Utilities\FormaterCurrency.cs" />
     <Compile Include="Utilities\SwfInfo.cs" />

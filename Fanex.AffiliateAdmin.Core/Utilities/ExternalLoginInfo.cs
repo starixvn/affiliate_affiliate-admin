@@ -14,13 +14,14 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     using System.Linq;
     using System.Text;
     using System.Web;
+    using System.Web.Mvc;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class ExternalLoginInfo
     {
-        public HttpRequestBase Request { get; set; }
+        public Controller Controller { get; set; }
 
         public string Username { get; set; }
 

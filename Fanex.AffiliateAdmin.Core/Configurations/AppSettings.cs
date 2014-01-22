@@ -667,6 +667,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             string value = string.Empty;
             var systemSettings = _SystemSetting.GetSystemSettingList(detailCriteria) as List<SystemSetting>;
+
             if (systemSettings != null && systemSettings.Count > 0)
             {
                 var selectedSystemSetting = systemSettings.FirstOrDefault(x => x.Environment == Environment);

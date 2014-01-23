@@ -2,10 +2,10 @@
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = 1;
     var GROUP_BY_MEMBER = 1;
+    var _exRateIndex = 5;
     // number of all common columns (except product columns).
     var _freezeColumnCount = 4;
     var _gridOption = {};
-
 
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     function initProductColumnsForGridOption() {
@@ -26,8 +26,7 @@
             // update the position of turnover column.
             startTurnoverPosition = startTurnoverPosition - 1;
         } else {
-            if($('#BaseCurrency').val() == '2')
-            {
+            if ($('#BaseCurrency').val() == '2') {
                 _gridOption.groupHeaderRows[0].Columns[exRatePosition].HeaderText = MSG.UnitPerBaseCurrency.format($('#BaseCurrency option:selected').text());
                 _gridOption.groupHeaderRows[0].Columns[exRatePosition].Name = "AffExRate";
                 _gridOption.columns[exRatePosition].Name = "AffExRate";
@@ -101,6 +100,7 @@
             _gridOption.columns.splice(1, 2);
             _gridOption.numberOfFrozenColumn = 2;
             _freezeColumnCount = 2;
+            _exRateIndex = 3;
         }
 
         if (productCount == 1) {
@@ -139,7 +139,7 @@
         var subTotalRowCount = subTotalData.length;
         var footerRows = [];
 
-        var startIndex = $("#GroupBy").val() == GROUP_BY_MEMBER ? mergeCols + 1 : mergeCols + 2;
+        var startIndex = ($("#GroupBy").val() == GROUP_BY_MEMBER) || ($("#GroupBy").val() != GROUP_BY_MEMBER && $('#BaseCurrency').val() == '1') ? mergeCols + 1 : mergeCols + 2;
 
         if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency && $('#BaseCurrency').val() != '1')) {
             var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
@@ -156,7 +156,11 @@
                 if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
                     columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 1 });
                 } else {
-                    columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 2 });
+                    if ($('#BaseCurrency').val() != '1') {
+                        columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 2 });
+                    } else {
+                        columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 1 });
+                    }
                 }
 
                 for (var i = startIndex; i < _gridOption.columns.length; i++) {
@@ -174,8 +178,13 @@
             if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
                 columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 1 });
             } else {
-                columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 2 });
+                if ($('#BaseCurrency').val() != '1') {
+                    columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 2 });
+                } else {
+                    columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 1 });
+                }
             }
+
             for (var i = startIndex; i < _gridOption.columns.length; i++) {
                 var col = _gridOption.columns[i];
                 columns.push({ Value: '', Name: col.Name });
@@ -192,7 +201,11 @@
         if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
             totalColums.push({ Value: System.Currency, Name: "PlayerCurrency", MergeColNumber: 1 });
         } else {
-            totalColums.push({ Value: System.Currency, Name: "PlayerCurrency", MergeColNumber: 2 });
+            if ($('#BaseCurrency').val() != '1') {
+                totalColums.push({ Value: System.Currency, Name: "PlayerCurrency", MergeColNumber: 2 });
+            } else {
+                totalColums.push({ Value: System.Currency, Name: "PlayerCurrency", MergeColNumber: 1 });
+            }
         }
 
         for (var i = startIndex; i < _gridOption.columns.length; i++) {
@@ -244,10 +257,6 @@
             $('#btnCancel').click(function () {
                 if (parent.AFFILIATE.currentOpenDialog)
                     parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
-
-            $("#GroupBy").change(function () {
-
             });
 
             $('#gridId').on('click', '.toggle-indicator', function () {
@@ -345,6 +354,10 @@
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
                     } else {
+                        if ($('#BaseCurrency').val() == 1 && $("#GroupBy").val() == 0) {
+                            $("#gridId").fanexGrid("hideColumns", _gridOption, [_exRateIndex]);
+                        }
+
                         AFFILIATE.resetToggleIndicator(_gridOption);
                     }
 

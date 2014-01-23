@@ -28,6 +28,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public double ExRate { get; set; }
 
+        public double AffExRate { get; set; }
+
         public decimal Deposit { get; set; }
 
         public decimal Withdrawal { get; set; }

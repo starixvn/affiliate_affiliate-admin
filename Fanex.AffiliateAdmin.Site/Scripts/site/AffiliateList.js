@@ -121,7 +121,7 @@
                     gridOption.bodyRows = bodyRows;
 
                     if (data.HideTotalRows) {
-                        gridOption.showFooter = true,
+                        gridOption.showFooter = false;
                         gridOption.footerRows = [];
                     } else {
                         gridOption.footerRows = AffiliateList.getFooterRows(data.SubTotal, data.Total, 13);
@@ -168,7 +168,7 @@
                     columns.push({ Value: item.TotalMembers, Name: "TotalMembers" });
                     footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
                 });
-                
+
                 var columns = [];
                 columns.push({ Value: Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
                 columns.push({ Value: "", Name: "Currency" });

@@ -1,6 +1,10 @@
 ﻿// --------------------------------------------------------------------------
 // <copyright file="Fanex.Grid.js" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// Revision:
+//          + 01/10/2014: Auto re-size column
+//          + 01/21/2014: Supported Sort with SortType for each column
+//          + 01/22/2014: Fixed bug Auto reset scroller when resize grid
 // </copyright>
 // --------------------------------------------------------------------------
 /*jshint maxdepth:false, maxstatements:false*/
@@ -83,6 +87,8 @@
             return this.each(function () {
                 var $this = $(this);
                 var currentContentId = 'tblContent_' + $this.attr('id');
+                var gridOptions = Fanex.Grid.List[currentContentId].gridOptions;
+                gridOptions.isResetScroller = false;
                 $this.gridScroller(Fanex.Grid.List[currentContentId].gridOptions);
                 return $this;
             });
@@ -334,12 +340,13 @@
                     if (options.showFooter) {
                         var footerLength = options.footerRows[0].Columns.length;
                         var needHideCols = options.hiddenColumns.slice(0);
+                        var currentColIndex = 0;
                         for (var ftColIndex = 0; ftColIndex < footerLength; ftColIndex++) {
                             currentCol = options.footerRows[0].Columns[ftColIndex];
                             if (currentCol.MergeColNumber) {
                                 var removeArray = [];
                                 for (nhIndex = 0; nhIndex < needHideCols.length; nhIndex++) {
-                                    if (ftColIndex + currentCol.MergeColNumber >= needHideCols[nhIndex]) {
+                                    if (ftColIndex + currentCol.MergeColNumber >= ftColIndex + needHideCols[nhIndex]) {
                                         removeArray.push(nhIndex);
                                     }
                                     else if (ftColIndex < needHideCols[nhIndex]) {
@@ -350,7 +357,10 @@
                                 for (var rmIndex = removeArray.length - 1; rmIndex >= 0; rmIndex--) {
                                     needHideCols.splice(removeArray[rmIndex], 1);
                                 }
+
+                                //currentColIndex += currentCol.MergeColNumber;
                             }
+                           // currentColIndex++;
                         }
 
                         for (nhIndex = 0; nhIndex < needHideCols.length; nhIndex++) {
@@ -906,7 +916,7 @@
             }
 
             if (me.columnsHastable[currentCol.Name].FormatDateTime &&
-                isValid(currentValue) && 
+                isValid(currentValue) &&
                 currentValue !== '' &&
                 currentValue != null) {
                 var momentObject = moment(currentValue);
@@ -1110,6 +1120,7 @@
             if (options.sortOption.serverSortFunction == null) {
                 var defaultSort = false,
                 customSortFunction = null,
+                sortType = null,
                 columnName = '',
                 currentDirection = '';
                 for (var colIndex = 0; colIndex < options.columns.length; colIndex++) {
@@ -1119,6 +1130,7 @@
                         currentDirection = options.columns[colIndex].SortDirection;
                         customSortFunction = options.columns[colIndex].CustomSortFunction;
                         columnName = options.columns[colIndex].Name;
+                        sortType = options.columns[colIndex].SortType;
                         break;
                     }
                 }
@@ -1127,7 +1139,8 @@
                     options.bodyRows = Fanex.Grid.Helper.GetSortedArray(options.bodyRows,
                                                                     columnName,
                                                                     currentDirection,
-                                                                    customSortFunction);
+                                                                    customSortFunction,
+                                                                    sortType);
 
                 }
             }
@@ -1439,10 +1452,12 @@
                                     currentDirection = 'desc';
                                 }
                                 var customSortFunction = null;
+                                var sortType = null;
                                 for (var colIndex = 0; colIndex < options.columns.length; colIndex++) {
                                     if (options.columns[colIndex].Name === $this.data('columnname')) {
                                         options.columns[colIndex].SortDirection = currentDirection.toLowerCase();
                                         customSortFunction = options.columns[colIndex].CustomSortFunction;
+                                        sortType = options.columns[colIndex].SortType;
                                     }
                                     else {
                                         options.columns[colIndex].SortDirection = '';
@@ -1461,13 +1476,15 @@
                                                             options.bodyRows,
                                                             $this.data('columnname'),
                                                             currentDirection,
-                                                            customSortFunction);
+                                                            customSortFunction,
+                                                            sortType);
                                     }
                                     else {
                                         options.bodyRows = Fanex.Grid.Helper.GetSortedArray(options.bodyRows,
                                                                                         $this.data('columnname'),
                                                                                         currentDirection,
-                                                                                        customSortFunction);
+                                                                                        customSortFunction,
+                                                                                        sortType);
                                     }
                                     me.ReRenderBodyAfterSort($this.data('columnname'), currentDirection);
                                     if (typeof (options.sortOption.afterGridSorted) === 'function') {
@@ -1706,7 +1723,35 @@
             }
             return hastable;
         },
-        GetSortedArray: function (rows, sortField, sortDirection, customSortFunction) {
+        SortByNumber: function (col1Value, col2Value, sortDirection) {
+            var isNumber1 = !isNaN(col1Value);
+            var isNumber2 = !isNaN(col2Value);
+
+            if (isNumber1 && isNumber2) {
+                var parseValCol1 = parseFloat(col1Value);
+                var parseValCol2 = parseFloat(col2Value);
+                if (sortDirection === 'asc') {
+                    return parseValCol1 > parseValCol2 ? 1 : -1;
+                }
+                else {
+                    return parseValCol1 < parseValCol2 ? 1 : -1;
+                }
+            }
+
+            if (sortDirection === 'asc') {
+                if (!isNumber1) {
+                    return 1;
+                }
+            }
+            else {
+                if (!isNumber2) {
+                    return 1;
+                }
+            }
+
+            return -1;
+        },
+        GetSortedArray: function (rows, sortField, sortDirection, customSortFunction, sortType) {
             var sortColIndex = null;
             if (rows.length > 0) {
                 var firstRow = rows[0];
@@ -1720,33 +1765,61 @@
                 }
             }
 
-            if (sortDirection.toLowerCase() === 'asc') {
+            if (sortType != null) {
+                sortType = sortType.toLowerCase();
+            }
+
+            sortDirection = sortDirection.toLowerCase();
+
+            if (sortDirection === 'asc') {
                 return rows.sort(function (row1, row2) {
-                    return Fanex.Grid.Helper.CompareRow(sortColIndex, row1, row2, sortField, function (col1Value, col2Value) {
+                    return Fanex.Grid.Helper.CompareRow(sortColIndex, row1, row2, sortField, sortType, function (col1Value, col2Value) {
                         if (typeof (customSortFunction) === 'function') {
                             return customSortFunction(col1Value, col2Value, sortDirection);
                         }
+
+                        if (sortType != null) {
+                            switch (sortType) {
+                                case 'number':
+                                    return Fanex.Grid.Helper.SortByNumber(col1Value, col2Value, sortDirection);
+                                case 'string':
+                                    break;
+                            }
+                        }
+
                         return col1Value > col2Value ? 1 : -1;
                     });
                 });
             }
             else {
                 return rows.sort(function (row1, row2) {
-                    return Fanex.Grid.Helper.CompareRow(sortColIndex, row1, row2, sortField, function (col1Value, col2Value) {
+                    return Fanex.Grid.Helper.CompareRow(sortColIndex, row1, row2, sortField, sortType, function (col1Value, col2Value) {
                         if (typeof (customSortFunction) === 'function') {
                             return customSortFunction(col1Value, col2Value, sortDirection);
                         }
+
+                        if (sortType != null) {
+                            switch (sortType) {
+                                case 'number':
+                                    return Fanex.Grid.Helper.SortByNumber(col1Value, col2Value, sortDirection);
+                                case 'string':
+                                    break;
+                            }
+                        }
+
                         return col1Value < col2Value ? 1 : -1;
                     });
                 });
             }
         },
-        CompareRow: function (sortColIndex, row1, row2, sortField, compareFunction) {
-
-
-            //            if (typeof (col1Value) == 'string' && typeof (col2Value) == 'string') {
-            //                col1Value = parseFloat(col1Value.replace(',', ''));
-            //                col2Value = parseFloat(col2Value.replace(',', ''));
+        CompareRow: function (sortColIndex, row1, row2, sortField, sortType, compareFunction) {
+            //            var col1Value = row1.Columns[sortColIndex].Value;
+            //            var col2Value = row2.Columns[sortColIndex].Value;
+            //            if (sortType != null) {
+            //                switch (sortType) {
+            //                    case 'number':
+            //                        
+            //                }
             //            }
 
             return compareFunction(row1.Columns[sortColIndex].Value, row2.Columns[sortColIndex].Value);
@@ -1955,7 +2028,7 @@
             if (!isValid(Fanex.Grid.List[options.tblContentId])) {
                 $(window).resize(function () {
                     if (!o.hasClass("display-none")) {
-                        o.resetGrid(options.tblContentId);
+                        //o.resetGrid(options.tblContentId);
                         var opt = $.extend({}, {}, Fanex.Grid.List[options.tblContentId].gridOptions);
                         opt.manualCopyHeader = true;
                         o.renderScroller(opt);

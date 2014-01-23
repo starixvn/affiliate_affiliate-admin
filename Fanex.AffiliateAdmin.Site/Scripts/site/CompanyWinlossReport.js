@@ -30,6 +30,12 @@
             _gridOption.groupHeaderRows[0].Columns[0].HeaderText = MSG.Month;
             _gridOption.columns[0].HeaderText = MSG.Month;
             _gridOption.columns[0].FormatDateTime = AFFILIATE.DATE_FORMAT_MONTH;
+        } else {
+            if ($('#BaseCurrency').val() == '2') {
+                _gridOption.groupHeaderRows[0].Columns[exRatePosition].HeaderText = MSG.UnitPerBaseCurrency.format($('#BaseCurrency option:selected').text());
+                _gridOption.groupHeaderRows[0].Columns[exRatePosition].Name = "AffExRate";
+                _gridOption.columns[exRatePosition].Name = "AffExRate";
+            }
         }
 
         // generarte turnover/winlost columns based on products
@@ -186,7 +192,7 @@
                     bodyRows.push({ Columns: columns });
                 });
 
-                if (memberCurrencyCount > _currencyThreshold || companyWinlossInMemberCurrencies[0].Currency !== System.Currency) {
+                if (memberCurrencyCount > _currencyThreshold || (companyWinlossInMemberCurrencies[0].Currency !== System.Currency && $('#BaseCurrency').val() != '1')) {
                     var totalColums = [];
                     totalColums.push({ Value: MSG.SubTotalIn.format(System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
                     var startIndex = mergeCols;
@@ -267,9 +273,10 @@
 
         var footerRows = [];
 
-        if (memberCurrencyCount > 0) {
+        if (memberCurrencyCount > 1 || (memberCurrencyCount == 1 && $('#BaseCurrency').val() != '1')) {
             var realSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal real-cell' : '';
             var pseudoSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal pseudo-cell' : '';
+
 
             $.each(companyWinlossInMemberCurrencies, function (idx, item) {
                 var columns = [];

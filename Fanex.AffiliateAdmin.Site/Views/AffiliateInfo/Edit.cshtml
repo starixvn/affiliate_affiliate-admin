@@ -227,9 +227,9 @@
                     <td>
                     </td>
                     <td>
-                        @Html.RadioButtonFor(m => m.Affiliate.MailOption, false, new { Name = "MailOption", id = "PlainText" })
+                        @Html.RadioButtonFor(m => m.Affiliate.MailOption, true, new { Name = "MailOption", id = "PlainText" })
                         <label for="PlainText" >@Lang.PlainText</label>
-                        @Html.RadioButtonFor(m => m.Affiliate.MailOption, true, new { Name = "MailOption", id = "HtmlFormat" })
+                        @Html.RadioButtonFor(m => m.Affiliate.MailOption, false, new { Name = "MailOption", id = "HtmlFormat" })
                         <label for="HtmlFormat" >@Lang.HtmlFormat</label>
                     </td>
                 </tr>

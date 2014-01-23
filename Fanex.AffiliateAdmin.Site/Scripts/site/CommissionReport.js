@@ -117,7 +117,7 @@
 
         var footerRows = [];
 
-        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].Currency != System.Currency)) {
+        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].Currency != System.Currency && $('#BaseCurrency').val() != '1')) {
             var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
             var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
 

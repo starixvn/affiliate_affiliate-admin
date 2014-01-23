@@ -47,7 +47,7 @@
                         totalItem: data.List.length
                     };
 
-                    var symbolCurrency = $("#BaseCurrency").val() != "" ? " (" + System.Prefix + ")" : '';
+                    var symbolCurrency = $("#BaseCurrency").val() == "1" ? " (" + System.Prefix + ")" : '';
 
                     gridOption.columns[3].HeaderText = MSG.Amount + symbolCurrency;
 

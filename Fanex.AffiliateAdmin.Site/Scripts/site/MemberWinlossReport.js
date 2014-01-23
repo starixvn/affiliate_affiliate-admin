@@ -25,6 +25,13 @@
 
             // update the position of turnover column.
             startTurnoverPosition = startTurnoverPosition - 1;
+        } else {
+            if($('#BaseCurrency').val() == '2')
+            {
+                _gridOption.groupHeaderRows[0].Columns[exRatePosition].HeaderText = MSG.UnitPerBaseCurrency.format($('#BaseCurrency option:selected').text());
+                _gridOption.groupHeaderRows[0].Columns[exRatePosition].Name = "AffExRate";
+                _gridOption.columns[exRatePosition].Name = "AffExRate";
+            }
         }
 
         // generarte turnover/winlost columns based on products
@@ -134,8 +141,7 @@
 
         var startIndex = $("#GroupBy").val() == GROUP_BY_MEMBER ? mergeCols + 1 : mergeCols + 2;
 
-
-        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency)) {
+        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency && $('#BaseCurrency').val() != '1')) {
             var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
             var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
 
@@ -153,7 +159,7 @@
                     columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 2 });
                 }
 
-                for (var i = startIndex ; i < _gridOption.columns.length; i++) {
+                for (var i = startIndex; i < _gridOption.columns.length; i++) {
                     var col = _gridOption.columns[i];
                     columns.push({ Value: item[col.Name], Name: col.Name });
                 }

@@ -79,7 +79,7 @@
 
         var footerRows = [];
 
-        if (subTotalRowCount > 1) {
+        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].Currency != System.Currency && $('#BaseCurrency').val() != '1')) {
             $.each(subTotalData, function (idx, item) {
 
                 var columns = [];

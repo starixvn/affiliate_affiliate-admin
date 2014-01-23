@@ -44,7 +44,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// <param name="language">Language of email.</param>
         /// <param name="mailOption">Mail Option.</param>
         public EmailTemplate(EmailTemplateType templateType, string language, bool mailOption)
-            : this(templateType, mailOption ? EmailFormatType.Html : EmailFormatType.Text, language)
+            : this(templateType, mailOption ? EmailFormatType.Text : EmailFormatType.Html, language)
         {
         }
 

@@ -200,7 +200,7 @@ namespace Fanex.AffiliateAdmin.Controller
                                         EmailTemplateType.AffiliateApprove :
                                         EmailTemplateType.AffiliateDisapprove;
                     mailinator.Language = CurrentSession.Affiliate.PrefferredLanguage;
-                    mailinator.FormatType = CurrentSession.Affiliate.MailOption ? EmailFormatType.Html : EmailFormatType.Text;
+                    mailinator.FormatType = CurrentSession.Affiliate.MailOption ? EmailFormatType.Text : EmailFormatType.Html;
                     mailinator.EmailOfAffiliate = CurrentSession.Affiliate.Email;
                     mailinator.EmailTemplateInfo = new EmailTemplateInfo
                     {

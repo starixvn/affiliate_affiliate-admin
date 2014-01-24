@@ -1,8 +1,10 @@
 ﻿var MemberWinlossReport = function ($) {
     var submitOptions = {};
-    var SYS_CURRENCY_OPTION = 1;
-    var GROUP_BY_MEMBER = 1;
-    var _exRateIndex = 5;
+    var SYS_CURRENCY_OPTION = '1';
+    var AFF_CURRENCY_OPTION = '2';
+    var GROUP_BY_MEMBER = '0';
+    var GROUP_BY_MEMBER = '1';
+    var EXRATE_INDEX = 5;
     // number of all common columns (except product columns).
     var _freezeColumnCount = 4;
     var _gridOption = {};
@@ -26,10 +28,16 @@
             // update the position of turnover column.
             startTurnoverPosition = startTurnoverPosition - 1;
         } else {
-            if ($('#BaseCurrency').val() == '2') {
-                _gridOption.groupHeaderRows[0].Columns[exRatePosition].HeaderText = MSG.UnitPerBaseCurrency.format($('#BaseCurrency option:selected').text());
-                _gridOption.groupHeaderRows[0].Columns[exRatePosition].Name = "AffExRate";
-                _gridOption.columns[exRatePosition].Name = "AffExRate";
+            switch ($('#BaseCurrency').val()) {
+                case SYS_CURRENCY_OPTION:
+                    _gridOption.enableHiddenColumns = false;
+                    _gridOption.hiddenColumns = $('#ByAffiliate').length > 0 ? [EXRATE_INDEX - 2] : [EXRATE_INDEX];
+                    break;
+                case AFF_CURRENCY_OPTION:
+                    _gridOption.groupHeaderRows[0].Columns[exRatePosition].HeaderText = MSG.UnitPerBaseCurrency.format($('#BaseCurrency option:selected').text());
+                    _gridOption.groupHeaderRows[0].Columns[exRatePosition].Name = "AffExRate";
+                    _gridOption.columns[exRatePosition].Name = "AffExRate";
+                    break;
             }
         }
 
@@ -100,7 +108,6 @@
             _gridOption.columns.splice(1, 2);
             _gridOption.numberOfFrozenColumn = 2;
             _freezeColumnCount = 2;
-            _exRateIndex = 3;
         }
 
         if (productCount == 1) {
@@ -354,10 +361,6 @@
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
                     } else {
-                        if ($('#BaseCurrency').val() == 1 && $("#GroupBy").val() == 0) {
-                            $("#gridId").fanexGrid("hideColumns", _gridOption, [_exRateIndex]);
-                        }
-
                         AFFILIATE.resetToggleIndicator(_gridOption);
                     }
 

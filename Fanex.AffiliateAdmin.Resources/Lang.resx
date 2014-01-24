@@ -2507,4 +2507,7 @@
   <data name="{ HeaderText: &quot;@Lang.FirstDepositDate&quot;, Width:" xml:space="preserve">
     <value />
   </data>
+  <data name="UncheckPendingDisapprovedAffiliates" xml:space="preserve">
+    <value>Please uncheck affiliates which has Pending/Disapproved status!</value>
+  </data>
 </root>

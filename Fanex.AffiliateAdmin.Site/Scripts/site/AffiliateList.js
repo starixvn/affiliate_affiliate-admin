@@ -223,6 +223,12 @@
                 return;
             }
 
+            var invalidAffiliateCount = $('.chkItem:checked[data-status="pending"], .chkItem:checked[data-status="disapproved"]').length;
+            if (invalidAffiliateCount > 0) {
+                alert(MSG.UncheckPendingDisapprovedAffiliates);
+                return;
+            }
+
             // get aff id list, username list
             var affList = [], usernameList = [], groupIdList = [], currency;
             var singleCurrency = true;

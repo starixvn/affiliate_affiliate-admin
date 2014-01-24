@@ -6653,6 +6653,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please uncheck affiliates which has Pending/Disapproved status!.
+        /// </summary>
+        public static string UncheckPendingDisapprovedAffiliates {
+            get {
+                return ResourceManager.GetString("UncheckPendingDisapprovedAffiliates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Under Maintenance.
         /// </summary>
         public static string UnderMaintenance {

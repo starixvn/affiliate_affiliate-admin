@@ -115,7 +115,8 @@ aff-list
             BF: '@Lang.BF',
             AddToMyFavorite: '@Lang.AddToMyFavorite',
             RemoveFromMyFavorite: '@Lang.RemoveFromMyFavorite',
-            ToggleSubTotal: '@Lang.ToggleSubTotal'
+            ToggleSubTotal: '@Lang.ToggleSubTotal',
+            UncheckPendingDisapprovedAffiliates: '@Lang.UncheckPendingDisapprovedAffiliates'
         };
 
         var customerListUrl = '@Url.Action("MemberList", "Affiliate")';
@@ -139,7 +140,7 @@ aff-list
                     HeaderAlign: "center",
                     CellAlign: "center",
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        return "<input type='checkbox' class='chkItem' data-username='{0}' data-affid='{1}' data-testlevel='{2}' data-groupid='{3}' data-currency='{4}'/>".format(record.UserName, record.AffID, record.TestLevel, record.CommGroupID, record.CurrencyId);
+                        return "<input type='checkbox' class='chkItem' data-username='{0}' data-affid='{1}' data-testlevel='{2}' data-groupid='{3}' data-currency='{4}' data-status='{5}'/>".format(record.UserName, record.AffID, record.TestLevel, record.CommGroupID, record.CurrencyId, record.Status.toLowerCase());
                     }
                 },
                 { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },

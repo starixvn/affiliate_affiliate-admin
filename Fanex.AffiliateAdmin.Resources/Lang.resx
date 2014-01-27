@@ -390,7 +390,7 @@
     <value>Assign</value>
   </data>
   <data name="AssignComGroup" xml:space="preserve">
-    <value>Assign Commission Group For New Affiliate</value>
+    <value>Assign Commission Group To New Affiliate</value>
   </data>
   <data name="Assignee" xml:space="preserve">
     <value>Assignee</value>
@@ -2503,9 +2503,6 @@
   </data>
   <data name="YouDontHaveMonthlyTransfer" xml:space="preserve">
     <value>Sorrry! You don't have monthly transfer permission.</value>
-  </data>
-  <data name="{ HeaderText: &quot;@Lang.FirstDepositDate&quot;, Width:" xml:space="preserve">
-    <value />
   </data>
   <data name="UncheckPendingDisapprovedAffiliates" xml:space="preserve">
     <value>Please uncheck affiliates which has Pending/Disapproved status!</value>

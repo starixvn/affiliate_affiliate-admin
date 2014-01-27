@@ -32,7 +32,7 @@
                             }
                             else
                             {
-                                <a href="@Model.ExternalLoginUrl" id="lnkUN" target="_blank" class="upper b" title="@Lang.ViewAffiliateWebsite">@Model.AffiliateInfo.Username</a>
+                                <a href="@Html.Raw(Model.ExternalLoginUrl)" id="lnkUN" target="_blank" class="upper b" title="@Lang.ViewAffiliateWebsite">@Model.AffiliateInfo.Username</a>
                             }
                             &nbsp;[<span id="affID">@Model.AffiliateInfo.AffId</span>]
                         </th>

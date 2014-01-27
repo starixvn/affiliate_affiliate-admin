@@ -358,7 +358,7 @@
     <value>Assign</value>
   </data>
 	<data name="AssignComGroup" xml:space="preserve">
-    <value>Assign Commission Group For New Affiliate</value>
+    <value>Assign Commission Group To New Affiliate</value>
   </data>
 	<data name="Assignee" xml:space="preserve">
     <value>지정받는 이</value>

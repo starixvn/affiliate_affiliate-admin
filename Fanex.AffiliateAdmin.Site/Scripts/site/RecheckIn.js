@@ -14,7 +14,7 @@
                     if (result.Success) {//Use Success = IsKickedOut
                         if (result.ErrorMessage == "Expired") {
                             alert(result.Message);
-                            top.location.href = AFFILIATE.getAbsoluteUrl("");
+                            top.location.href = AFFILIATE.getAbsoluteUrl("Account/Login");
                         }
                         else if (result.ErrorMessage == "UM") {
                             parent.location.href = AFFILIATE.getAbsoluteUrl("/UnderMaintenance");

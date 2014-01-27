@@ -61,15 +61,6 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string @__HeaderText____Lang_FirstDepositDate___Width_ {
-            get {
-                return ResourceManager.GetString("{ HeaderText: \"@Lang.FirstDepositDate\", Width:", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Access Denied.
         /// </summary>
         public static string AccessDenied {
@@ -875,7 +866,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assign Commission Group For New Affiliate.
+        ///   Looks up a localized string similar to Assign Commission Group To New Affiliate.
         /// </summary>
         public static string AssignComGroup {
             get {

@@ -151,7 +151,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     IP = Remote.GetClientIPAddress()
                 };
 
-                UpdatePayment(criteria, paymentDetail.AffId, paymentDetail.RefId, paymentDetail.Amt);
+                UpdatePayment(criteria, paymentDetail.AffId, paymentDetail.RefId, paymentDetail.TransferAmount);
                 model.PaymentDetail = paymentDetail;
                 
                 if (criteria.ErrCode == 0)
@@ -373,8 +373,8 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">The criteria.</param>
         /// <param name="affId">The affiliate id.</param>
         /// <param name="refId">The preference unique identifier.</param>
-        /// <param name="amount">The amount.</param>
-        private void UpdatePayment(PaymentUpdateCriteria criteria, long affId, long refId, decimal amount)
+        /// <param name="transferAmount">The amount.</param>
+        private void UpdatePayment(PaymentUpdateCriteria criteria, long affId, long refId, decimal transferAmount)
         {
             if (criteria.Status.ToLower() == "approved")
             {
@@ -394,7 +394,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 if (TransferToPlayerAcc(
                     playerPayoutInfo.SystemName,
                     playerPayoutInfo.PlayerUsername,
-                    Math.Abs(Convert.ToDouble(amount)),
+                    Math.Abs(Convert.ToDouble(transferAmount)),
                     balAccCustId,
                     ref ibcRefNo,
                     ref ibcTransId,

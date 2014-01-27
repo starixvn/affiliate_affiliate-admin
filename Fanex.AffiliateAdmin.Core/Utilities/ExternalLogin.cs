@@ -25,7 +25,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         {
             var chalengeStr = Generator.GetRandomString(PASSWORDLENGTH);
 
-            const string LINKFORMAT = "{0}/User/AdminLogin?chalengeStr={1}&amp;accKey={2}&amp;custName={3}&amp;accId={4}&amp;accOnId={5}";
+            const string LINKFORMAT = "{0}/User/AdminLogin?chalengeStr={1}&accKey={2}&custName={3}&accId={4}&accOnId={5}";
 
             var accKey = FormsAuthentication.HashPasswordForStoringInConfigFile(loginInfo.SessionID + chalengeStr, "MD5");
 

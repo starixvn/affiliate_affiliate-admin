@@ -20,6 +20,13 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class AffiliateListViewModel
     {
+        private readonly List<string> _favoriteStatusList = new List<string>
+        {
+            "approved",
+            "closed",
+            "lockedout"
+        };
+
         private readonly List<string> _defaultStatusList = new List<string>
         {
             "approved",
@@ -104,7 +111,7 @@ namespace Fanex.AffiliateAdmin.Models
                 {
                     // Exclude two status: Pending, Disapproved if isFavorite = true.
                     return AppSettings.AffiliateStatuses
-                        .Where(t => _defaultStatusList.Contains(t.Value.ToLower()))
+                        .Where(t => _favoriteStatusList.Contains(t.Value.ToLower()))
                         .Select(t => new SelectListItem
                     {
                         Text = t.Text,

@@ -144,9 +144,8 @@
             var subRowCurrency = listSubTotalRows[0];
 
             if (subRowLength > 1 || (subRowLength == 1 && subRowCurrency["Currency"] != System.Currency)) {
-                var realSubTotalclass = subRowLength > 0 ? 'cell-subtotal real-cell' : '';
-                var pseudoSubTotalclass = subRowLength > 0 ? 'cell-subtotal pseudo-cell' : '';
-
+                var realSubTotalclass = subRowLength > 1 ? 'cell-subtotal real-cell' : '';
+                var pseudoSubTotalclass = subRowLength > 1 ? 'cell-subtotal pseudo-cell' : '';
 
                 $.each(listSubTotalRows, function (idx, item) {
                     var colSubTotal = [];

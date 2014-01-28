@@ -119,6 +119,7 @@ report
                     Columns: [
                         { HeaderText: "@Lang.Month", Name: "WinlostDate", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.CommGroup", Name: "GroupName", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.ActiveMembers", Name: "ActivePlayers", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Deposit", IsCurrency: true, HeaderText: "@Lang.Deposit", Name: "Deposit", NameCache: "Deposit", MergeRowNumber: 2 },
@@ -162,6 +163,7 @@ report
                         return null;
                     }
                 },
+                { HeaderText: "@Lang.Currency", Width: 80, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.ActiveMembers", Width: 80, Name: "ActivePlayers", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.BetCount", Width: 80, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.Deposit", Width: 80, Name: "Deposit", NameCache: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
@@ -177,7 +179,7 @@ report
             showFooter: true,
             customizeHeader: true,
             showDistinctRow: true,
-            numberOfFrozenColumn: 2,
+            numberOfFrozenColumn: 3,
             headerColumnHeight: 30,
             rowCssClass: function (rowIndex, rowData) {
                 return rowData.Status.toLowerCase();

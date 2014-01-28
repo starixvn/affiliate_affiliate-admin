@@ -1,5 +1,6 @@
 ﻿var CompanyWinlossReport = function ($) {
     var submitOptions = {};
+    var MEMBER_CURRENCY_OPTION = '0';
     var SYS_CURRENCY_OPTION = '1';
     var AFF_CURRENCY_OPTION = '2';
     var GROUP_BY_DATE = 0;
@@ -34,7 +35,7 @@
             _gridOption.columns[0].FormatDateTime = AFFILIATE.DATE_FORMAT_MONTH;
         } else {
             switch ($('#BaseCurrency').val()) {
-                case SYS_CURRENCY_OPTION:
+                case MEMBER_CURRENCY_OPTION:
                     _gridOption.hiddenColumns = [EXRATE_INDEX];
                     _gridOption.enableHiddenColumns = false;
                     break;
@@ -200,7 +201,7 @@
                     bodyRows.push({ Columns: columns });
                 });
 
-                if (memberCurrencyCount > _currencyThreshold || (companyWinlossInMemberCurrencies[0].Currency !== System.Currency && $('#BaseCurrency').val() != '1')) {
+                if (memberCurrencyCount > _currencyThreshold || (companyWinlossInMemberCurrencies[0].Currency !== System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
                     var totalColums = [];
                     totalColums.push({ Value: MSG.SubTotalIn.format(System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
                     var startIndex = mergeCols;
@@ -242,7 +243,7 @@
                 columns.push({ Value: MSG.Total + suffix, Name: "WinlostDate", MergeRowNumber: memberCurrencyCount });
 
                 if (groupBy == GROUP_BY_DATE) {
-                    if (baseCurrency == SYS_CURRENCY_OPTION) {
+                    if (baseCurrency == MEMBER_CURRENCY_OPTION) {
                         columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 1 });
                         startIndex += 1;
                     } else {
@@ -264,21 +265,21 @@
         });
 
         if (memberCurrencyCount > _currencyThreshold || companyWinlossInMemberCurrencies[0].Currency !== System.Currency) {
-        if (groupBy == GROUP_BY_DATE && baseCurrency == SYS_CURRENCY_OPTION) {
-            mergeCols = mergeCols - 1;
-        }
-        var totalColums = [];
-        totalColums.push({ Value: MSG.TotalRangeIn.format(suffix, System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
-        var startIndex = mergeCols;
+            if (groupBy == GROUP_BY_DATE && baseCurrency == MEMBER_CURRENCY_OPTION) {
+                mergeCols = mergeCols - 1;
+            }
+            var totalColums = [];
+            totalColums.push({ Value: MSG.TotalRangeIn.format(suffix, System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
+            var startIndex = mergeCols;
 
-        for (var i = startIndex; i < _gridOption.columns.length; i++) {
-            var col = _gridOption.columns[i];
-            var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
+            for (var i = startIndex; i < _gridOption.columns.length; i++) {
+                var col = _gridOption.columns[i];
+                var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
 
-            totalColums.push({ Value: companyWinlossInSystemCurrency[colName], Name: col.Name });
-        }
+                totalColums.push({ Value: companyWinlossInSystemCurrency[colName], Name: col.Name });
+            }
 
-        bodyRows.push({ Columns: totalColums, CssClass: 'total-range' });
+            bodyRows.push({ Columns: totalColums, CssClass: 'total-range' });
         }
     }
 
@@ -291,11 +292,9 @@
 
         var footerRows = [];
 
-        if (memberCurrencyCount > 1 || (memberCurrencyCount == 1 && $('#BaseCurrency').val() != '1')) {
+        if (memberCurrencyCount > 1 || (memberCurrencyCount == 1 && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
             var realSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal real-cell' : '';
             var pseudoSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal pseudo-cell' : '';
-
-
 
             $.each(companyWinlossInMemberCurrencies, function (idx, item) {
                 var columns = [];
@@ -305,7 +304,7 @@
                 }
 
                 if (groupBy == GROUP_BY_DATE) {
-                    if (baseCurrency == SYS_CURRENCY_OPTION) {
+                    if (baseCurrency == MEMBER_CURRENCY_OPTION) {
                         columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 1 });
                         startIndex += 1;
                     } else {
@@ -330,7 +329,7 @@
             columns.push({ Value: MSG.TotalAll, Name: "WinlostDate", MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
 
             if ($("#GroupBy").val() == GROUP_BY_DATE) {
-                if (baseCurrency == SYS_CURRENCY_OPTION) {
+                if (baseCurrency == MEMBER_CURRENCY_OPTION) {
                     columns.push({ Value: '', Name: "Currency", MergeColNumber: 1 });
                     startIndex += 1;
                 }
@@ -353,7 +352,7 @@
 
         // Total row in system 
         if (memberCurrencyCount > _currencyThreshold || companyWinlossInMemberCurrencies[0].Currency !== System.Currency) {
-            if (groupBy == GROUP_BY_DATE && baseCurrency == SYS_CURRENCY_OPTION) {
+            if (groupBy == GROUP_BY_DATE && baseCurrency == MEMBER_CURRENCY_OPTION) {
                 mergeCols = mergeCols - 1;
             }
             var totalColums = [];

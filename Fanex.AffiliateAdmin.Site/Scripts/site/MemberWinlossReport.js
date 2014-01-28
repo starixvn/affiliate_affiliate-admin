@@ -1,5 +1,6 @@
 ﻿var MemberWinlossReport = function ($) {
     var submitOptions = {};
+    var MEMBER_CURRENCY_OPTION = '0';
     var SYS_CURRENCY_OPTION = '1';
     var AFF_CURRENCY_OPTION = '2';
     var GROUP_BY_MEMBER = '0';
@@ -29,7 +30,7 @@
             startTurnoverPosition = startTurnoverPosition - 1;
         } else {
             switch ($('#BaseCurrency').val()) {
-                case SYS_CURRENCY_OPTION:
+                case MEMBER_CURRENCY_OPTION:
                     _gridOption.enableHiddenColumns = false;
                     _gridOption.hiddenColumns = $('#ByAffiliate').length > 0 ? [EXRATE_INDEX - 2] : [EXRATE_INDEX];
                     break;
@@ -146,9 +147,9 @@
         var subTotalRowCount = subTotalData.length;
         var footerRows = [];
 
-        var startIndex = ($("#GroupBy").val() == GROUP_BY_MEMBER) || ($("#GroupBy").val() != GROUP_BY_MEMBER && $('#BaseCurrency').val() == '1') ? mergeCols + 1 : mergeCols + 2;
+        var startIndex = ($("#GroupBy").val() == GROUP_BY_MEMBER) || ($("#GroupBy").val() != GROUP_BY_MEMBER && $('#BaseCurrency').val() == MEMBER_CURRENCY_OPTION) ? mergeCols + 1 : mergeCols + 2;
 
-        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency && $('#BaseCurrency').val() != '1')) {
+        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
             var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
             var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
 
@@ -163,7 +164,7 @@
                 if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
                     columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 1 });
                 } else {
-                    if ($('#BaseCurrency').val() != '1') {
+                    if ($('#BaseCurrency').val() != MEMBER_CURRENCY_OPTION) {
                         columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 2 });
                     } else {
                         columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 1 });
@@ -185,7 +186,7 @@
             if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
                 columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 1 });
             } else {
-                if ($('#BaseCurrency').val() != '1') {
+                if ($('#BaseCurrency').val() != MEMBER_CURRENCY_OPTION) {
                     columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 2 });
                 } else {
                     columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 1 });
@@ -208,7 +209,7 @@
         if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
             totalColums.push({ Value: System.Currency, Name: "PlayerCurrency", MergeColNumber: 1 });
         } else {
-            if ($('#BaseCurrency').val() != '1') {
+            if ($('#BaseCurrency').val() != MEMBER_CURRENCY_OPTION) {
                 totalColums.push({ Value: System.Currency, Name: "PlayerCurrency", MergeColNumber: 2 });
             } else {
                 totalColums.push({ Value: System.Currency, Name: "PlayerCurrency", MergeColNumber: 1 });

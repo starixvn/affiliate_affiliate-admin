@@ -273,14 +273,12 @@ namespace Fanex.AffiliateAdmin.Controller
                     Message = result
                 });
             }
-            else
-            {
-                return Json(new ResultViewModel 
+
+            return Json(new ResultViewModel 
                 {
                     Success = false,
                     Message = Lang.YouDontHaveMonthlyTransfer
                 });
-            }
         }
 
         #region Helpers

@@ -1866,7 +1866,7 @@
     <value>Member Username</value>
   </data>
   <data name="PleaseInput1For" xml:space="preserve">
-    <value>Please input 1 for {0} {1}. Ex : {2}  is {3} in real value.</value>
+    <value>Please input 1 for {0} {1}. Ex: {2}  is {3} in real value.</value>
   </data>
   <data name="Policy" xml:space="preserve">
     <value>Policy</value>

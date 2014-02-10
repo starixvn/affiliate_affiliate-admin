@@ -5294,7 +5294,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please input 1 for {0} {1}. Ex : {2}  is {3} in real value..
+        ///   Looks up a localized string similar to Please input 1 for {0} {1}. Ex: {2}  is {3} in real value..
         /// </summary>
         public static string PleaseInput1For {
             get {

@@ -91,5 +91,7 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal? RNGCasinoCommissionBase { get; set; }
 
         public long? RowNo { get; set; }
+
+        public bool EnableCashback { get; set; }
     }
 }

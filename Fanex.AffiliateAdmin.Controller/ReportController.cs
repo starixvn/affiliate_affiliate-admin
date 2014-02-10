@@ -19,6 +19,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
+    using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
     using Models;
@@ -124,7 +125,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult CompanyWinlossByAffiliate()
         {
-            var baseCurrencyList = new List<SelectListItem>();
+            List<SelectListItem> baseCurrencyList;
 
             if (CurrentSession.Affiliate.Currency.Equals(AppSettings.BaseExchange.Code))
             {
@@ -151,6 +152,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 Id = x.ProductID,
                 Name = x.ProductName
             }));
+
+            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(CurrentSession.Affiliate.Currency);
 
             var model = new CompanyWLByAffiliateViewModel
                 {
@@ -256,6 +259,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 Id = x.ProductID,
                 Name = x.ProductName
             }));
+
+            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(CurrentSession.Affiliate.Currency);
 
             return View("PlayerWinlossByAffiliate", model);
         }

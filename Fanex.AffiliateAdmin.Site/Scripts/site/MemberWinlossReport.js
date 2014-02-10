@@ -116,14 +116,14 @@
         }
     }
 
-    function renameCurrencyColumns() {
+    function renameCurrencyColumns(baseCurrency) {
         var suffix = '';
 
-        switch ($('#BaseCurrency').val()) {
-            case '1':
+        switch (baseCurrency) {
+            case SYS_CURRENCY_OPTION:
                 suffix = 'Base';
                 break;
-            case '2':
+            case AFF_CURRENCY_OPTION:
                 suffix = '_Aff';
                 break;
         }
@@ -227,8 +227,21 @@
 
         return footerRows;
     }
-    function changeHeaderCaptions(showCurrencySymbol) {
-        var text = showCurrencySymbol ? " (" + System.Prefix + ")" : "";
+    function changeHeaderCaptions(baseCurrency) {
+        var text;
+
+        switch (baseCurrency) {
+            case SYS_CURRENCY_OPTION:
+                text = " (" + System.Prefix + ")";
+                break;
+            case AFF_CURRENCY_OPTION:
+                text = " (" + $('#AffiliateCurrencySymbol').val() + ")";
+                break;
+            default:
+                text = "";
+                break;
+        }
+
         for (var i = 0; i < _gridOption.columns.length; i++) {
             var col = _gridOption.columns[i];
             if (col.IsCurrency)
@@ -342,8 +355,8 @@
                     _commonColumnCount = _gridOption.columns.length;
                     initProductColumnsForGridOption();
 
-                    renameCurrencyColumns(baseCurrency == SYS_CURRENCY_OPTION);
-                    changeHeaderCaptions(baseCurrency == SYS_CURRENCY_OPTION);
+                    renameCurrencyColumns(baseCurrency);
+                    changeHeaderCaptions(baseCurrency);
 
                     _gridOption.pagerOption = {
                         itemsPerPage: itemsPerPage,

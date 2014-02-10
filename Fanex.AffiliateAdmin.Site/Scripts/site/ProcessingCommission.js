@@ -63,6 +63,10 @@
 
                     var winlostdate = moment(record.WinlostDate).format(AFFILIATE.DATE_FORMAT);
 
+                    if (!record.EnableCashback) {
+                        return '<div style="text-align: right;">' + currentValue + '</div>';
+                    }
+
                     var html = '<div class="amount-region"><div class="amount-info" style="text-align: right;">' + currentValue + '&nbsp;&nbsp; <i class="icon-edit"></i></div>';
                     html += '<div class="amount-edit" style="display: none;"><input type="text" value="{0}" data-affid="{1}" data-winlostdate="{2}"  style="display:inline-block; width: 40px; margin-right: 5px;"><i class="icon-ok"></i>&nbsp;&nbsp;<i class="icon-remove"></i><div class="edit-amount">'.format(record.CashbackAmount, record.AffId, winlostdate);
                     html += '</div>';

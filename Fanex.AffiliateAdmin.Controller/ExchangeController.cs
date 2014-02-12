@@ -61,7 +61,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (_multipliedCurrencies.Count == 0)
             {
-                foreach (var obj in AppSettings.AffSystemSupportedCurrencies)
+                foreach (var obj in AppSettings.AffSystemAllSupportedCurrencies)
                 {
                     if (obj.MultipliedBy > 1)
                     {

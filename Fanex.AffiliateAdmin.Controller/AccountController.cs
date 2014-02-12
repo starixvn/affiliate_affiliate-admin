@@ -88,7 +88,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 if (criteria.ErrCode == 0 && user.CustID > 0)
                 {
                     FormsAuthentication.SetAuthCookie(username, true);
-                    ////Get Role Access for this user
+                    
                     SessionManager.CurrentSession = new CurrentSession(user)
                     {
                         RoleAccess = _accountService.UserPolicySel(new UserPolicyCriteria
@@ -100,7 +100,6 @@ namespace Fanex.AffiliateAdmin.Controller
                             UserId = user.CustID
                         }).ToList()
                     };
-                    ////Get List Currency Supported for this admin
                 }
                 else
                 {

@@ -49,13 +49,15 @@
                 Formatter: function (rIndex, record, cell, cellFormated) {
                     var currentValue = record.CashbackAmount;
 
-                    if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
-                        if (currentValue < 0) {
-                            currentValue = -1 * currentValue;
-                        }
-
-                        currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
+                    if (isNaN(currentValue) || currentValue == '' || currentValue == null)
+                        return '';
+                    
+                    if (currentValue < 0) {
+                        currentValue = -1 * currentValue;
                     }
+
+                    currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
+                    
 
                     if (record.CashbackAmount.Amount < 0) {
                         currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';

@@ -73,33 +73,35 @@
         }
     }
 
-    function getFooterRows(gridOption, subTotalData, totalRowData) {
+    function getFooterRows(gridOption, subTotalData, totalRowData, totalItem) {
         var mergeCols = 2;
         var subTotalRowCount = subTotalData.length;
 
         var footerRows = [];
 
-        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].Currency != System.Currency && $('#BaseCurrency').val() != '1')) {
-            $.each(subTotalData, function (idx, item) {
+        if (totalItem > 1) {
+            if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].Currency != System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
+                $.each(subTotalData, function(idx, item) {
 
-                var columns = [];
+                    var columns = [];
 
-                if (idx == 0) {
-                    columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
-                }
-
-                for (var i = mergeCols; i < gridOption.columns.length; i++) {
-                    var col = gridOption.columns[i];
-
-                    if (col.IsPercent) {
-                        columns.push({ Value: MSG.NA, Name: col.Name });
-                    } else {
-                        columns.push({ Value: item[col.Name], Name: col.Name });
+                    if (idx == 0) {
+                        columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
                     }
-                }
 
-                footerRows.push({ Columns: columns });
-            });
+                    for (var i = mergeCols; i < gridOption.columns.length; i++) {
+                        var col = gridOption.columns[i];
+
+                        if (col.IsPercent) {
+                            columns.push({ Value: MSG.NA, Name: col.Name });
+                        } else {
+                            columns.push({ Value: item[col.Name], Name: col.Name });
+                        }
+                    }
+
+                    footerRows.push({ Columns: columns });
+                });
+            }
         }
 
         // Total row
@@ -302,7 +304,7 @@
                     };
 
                     gridOption.titleInfo.text = MSG.CommissionTitle + ' [{0}]'.format(data.TotalItem);
-                    gridOption.footerRows = getFooterRows(gridOption, data.SubTotalData, data.TotalRowData);
+                    gridOption.footerRows = getFooterRows(gridOption, data.SubTotalData, data.TotalRowData, data.TotalItem);
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);

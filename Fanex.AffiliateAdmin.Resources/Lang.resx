@@ -2507,4 +2507,7 @@
   <data name="UncheckPendingDisapprovedAffiliates" xml:space="preserve">
     <value>Please uncheck affiliates which has Pending/Disapproved status!</value>
   </data>
+  <data name="AlreadyTransfersForThisMonth" xml:space="preserve">
+    <value>Please check the data. Transfers have been done for {0}!</value>
+  </data>
 </root>

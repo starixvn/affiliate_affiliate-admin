@@ -261,11 +261,22 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (SessionManager.CurrentSession.RoleAccess.HasPolicy("[MonthlyTransfer]", 1))
             {
-                var now = DateTime.Now.AddMonths(-1);
+                var lastMonth = DateTime.Now.AddMonths(-1);
 
-                var criteria = new MonthlyTransferCriteria { Month = now.Month, Year = now.Year, UserId = CurrentSession.CustID };
+                var criteria = new IsMonthlyTransferCriteria { MonthDate = lastMonth.Date };
 
-                var result = _paymentService.MonthlyTransfer(criteria);
+                _paymentService.CheckMonthlyTransfer(criteria);
+
+                if (criteria.IsMonthly)
+                {
+                    return Json(new ResultViewModel
+                        {
+                            Success = false,
+                            Message = string.Format(Lang.AlreadyTransfersForThisMonth, lastMonth.ToString("MMMM yyyy"))
+                        });
+                }
+
+                var result = _paymentService.MonthlyTransfer(new MonthlyTransferCriteria { Month = lastMonth.Month, Year = lastMonth.Year, UserId = CurrentSession.CustID });
 
                 return Json(new ResultViewModel
                 {
@@ -274,7 +285,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 });
             }
 
-            return Json(new ResultViewModel 
+            return Json(new ResultViewModel
                 {
                     Success = false,
                     Message = Lang.YouDontHaveMonthlyTransfer

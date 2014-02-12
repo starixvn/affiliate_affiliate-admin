@@ -36,8 +36,15 @@
         } else {
             switch ($('#BaseCurrency').val()) {
                 case MEMBER_CURRENCY_OPTION:
-                    _gridOption.hiddenColumns = [EXRATE_INDEX];
-                    _gridOption.enableHiddenColumns = false;
+//                    _gridOption.hiddenColumns = [EXRATE_INDEX];
+//                    _gridOption.enableHiddenColumns = false;
+
+                    _gridOption.groupHeaderRows[0].Columns.splice(EXRATE_INDEX, 1);
+                    _gridOption.columns.splice(EXRATE_INDEX, 1);
+
+                    startTurnoverPosition = startTurnoverPosition - 1;
+                    _gridOption.numberOfFrozenColumn = 2;
+
                     break;
                 case AFF_CURRENCY_OPTION:
                     _gridOption.groupHeaderRows[0].Columns[exRatePosition].HeaderText = MSG.UnitPerBaseCurrency.format($('#BaseCurrency option:selected').text());
@@ -313,6 +320,7 @@
                     }
                 } else {
                     columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 1 });
+                    startIndex += 1;
                 }
 
                 for (var i = startIndex; i < _gridOption.columns.length; i++) {

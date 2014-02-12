@@ -56,9 +56,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 AffName = this.CurrentSession.Affiliate.Username,
                 Adjustment = adjustment,
-                Currency = AppSettings.AffSystemSupportedCurrencies
-                                      .Where(c => c.CurrencyCode == this.CurrentSession.Affiliate.Currency)
-                                      .FirstOrDefault()
+                Currency = AppSettings.AffSystemSupportedCurrencies.FirstOrDefault(c => c.CurrencyCode == CurrentSession.Affiliate.Currency)
             });
         }
 

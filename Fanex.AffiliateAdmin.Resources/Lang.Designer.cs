@@ -776,6 +776,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please check the data. Transfers have been done for {0}!.
+        /// </summary>
+        public static string AlreadyTransfersForThisMonth {
+            get {
+                return ResourceManager.GetString("AlreadyTransfersForThisMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string Amount {

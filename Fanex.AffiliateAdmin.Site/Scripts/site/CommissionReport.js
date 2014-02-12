@@ -111,49 +111,51 @@
         }
     }
 
-    function getFooterRows(subTotalData, totalRowData) {
+    function getFooterRows(subTotalData, totalRowData, totalItem) {
         var mergeCols = 5;
         var subTotalRowCount = subTotalData.length;
 
         var footerRows = [];
 
-        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].Currency != System.Currency && $('#BaseCurrency').val() != '1')) {
-            var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
-            var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
+        if (totalItem > 1) {
+            if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].Currency != System.Currency && $('#BaseCurrency').val() != '1')) {
+                var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
+                var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
 
-            $.each(subTotalData, function (idx, item) {
+                $.each(subTotalData, function(idx, item) {
 
+                    var columns = [];
+
+                    if (idx == 0) {
+                        columns.push({ Value: MSG.SubTotal, Name: "Username", HeaderAlign: "center", CellAlign: "center", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });
+                    }
+
+                    for (var i = mergeCols; i < _gridOption.columns.length; i++) {
+                        var col = _gridOption.columns[i];
+
+                        if (col.IsPercent) {
+                            columns.push({ Value: MSG.NA, Name: col.Name });
+                        } else {
+                            columns.push({ Value: item[col.Name], Name: col.Name });
+                        }
+                    }
+
+                    footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
+                });
+
+                // pseudo sub total row.
                 var columns = [];
-
-                if (idx == 0) {
-                    columns.push({ Value: MSG.SubTotal, Name: "Username", HeaderAlign: "center", CellAlign: "center", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });
-                }
+                columns.push({ Value: MSG.SubTotal, Name: "Username", HeaderAlign: "center", CellAlign: "center", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
 
                 for (var i = mergeCols; i < _gridOption.columns.length; i++) {
                     var col = _gridOption.columns[i];
-
-                    if (col.IsPercent) {
-                        columns.push({ Value: MSG.NA, Name: col.Name });
-                    } else {
-                        columns.push({ Value: item[col.Name], Name: col.Name });
-                    }
+                    columns.push({ Value: '', Name: col.Name });
                 }
 
-                footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
-            });
-
-            // pseudo sub total row.
-            var columns = [];
-            columns.push({ Value: MSG.SubTotal, Name: "Username", HeaderAlign: "center", CellAlign: "center", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
-
-            for (var i = mergeCols; i < _gridOption.columns.length; i++) {
-                var col = _gridOption.columns[i];
-                columns.push({ Value: '', Name: col.Name });
+                footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
             }
-
-            footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
         }
-
+        
         // Total row
         var totalColums = [];
         totalColums.push({ Value: "<div align='center'>" + MSG.Total + "</div>", Name: "Username", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
@@ -386,7 +388,7 @@
 
                     _gridOption.titleInfo.text = MSG.CommissionTitle + ' [{0}]'.format(data.TotalItem);
 
-                    _gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData);
+                    _gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.TotalItem);
                     _gridOption.bodyRows = AFFILIATE.genGridRows(data.List, _gridOption);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(_gridOption);

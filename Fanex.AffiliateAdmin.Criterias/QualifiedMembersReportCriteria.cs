@@ -18,7 +18,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int AffId { get; set; }
 
-        public int BaseCurrency { get; set; }
+        public byte BaseCurrency { get; set; }
 
         [SpParam(Ignored = true)]
         public string Currency { get; set; }

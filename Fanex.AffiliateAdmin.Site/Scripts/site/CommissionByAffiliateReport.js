@@ -158,8 +158,6 @@
         else {
             columns = columns.concat(_hideColumns.clone());
             $("#gridId").fanexGrid("hideColumns", gridOption, columns);
-            $(".footer-container table th").show();
-            $("#gridId .row_footer table tr th").show();
         }
 
         if (_isSimpleMode && HasCashbackDeduction === false)
@@ -305,7 +303,7 @@
                         itemsPerPage: itemsPerPage,
                         itemsPerPageArray: AFFILIATE.pageSizes,
                         currentPage: currentPage,
-                        totalItem: data.List.length
+                        totalItem: data.TotalItem
                     };
 
                     gridOption.titleInfo.text = MSG.CommissionTitle + ' [{0}]'.format(data.TotalItem);

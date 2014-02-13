@@ -15,13 +15,23 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string Currency { get; set; }
 
-        public decimal QualifiedAmount { get; set; }
+        public decimal QualifiedAmountBase { get; set; }
+
+        public double QualifiedAmount { get; set; }
+
+        public decimal SportsbookTurnoverBase { get; set; }
 
         public double SportsbookTurnover { get; set; }
 
+        public decimal NumberGameTurnoverBase { get; set; }
+
         public double NumberGameTurnover { get; set; }
 
+        public decimal LiveCasinoTurnoverBase { get; set; }
+
         public double LiveCasinoTurnover { get; set; }
+
+        public decimal RNGCasinoTurnoverBase { get; set; }
 
         public double RNGCasinoTurnover { get; set; }
     }

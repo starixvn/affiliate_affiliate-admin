@@ -347,6 +347,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var members = _reportService.GetQualifiedMembers(criteria);
 
             ViewBag.SymbolCurrency = FormaterCurrency.GetCurrencySymbol(criteria.Currency);
+            ViewBag.BaseCurrency = criteria.BaseCurrency;
 
             return View(members);
         }

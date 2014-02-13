@@ -55,19 +55,22 @@
         <td class="">@member.Username</td>    
             <td class="" align="center">@member.Currency</td>    
             <td class="" align="right">
-                @member.QualifiedAmount.ToString("N", CultureInfo.InvariantCulture)
+                @(ViewBag.BaseCurrency == 2 ? member.QualifiedAmount.ToString("N", CultureInfo.InvariantCulture) : member.QualifiedAmountBase.ToString("N", CultureInfo.InvariantCulture))
             </td>    
         @foreach (var product in AppSettings.Products)
         {
             var turnover = (double)@member.GetPropertyValue(product.ProductName.Replace(" ", "") + "Turnover");
-            var isQualified = (decimal)turnover > member.QualifiedAmount;
+            var turnoverBase = (decimal)@member.GetPropertyValue(product.ProductName.Replace(" ", "") + "TurnoverBase");
+            
+            var isQualified = turnover > member.QualifiedAmount;
             var style = isQualified ? "style=color:green" : null;
             if (!totalData.ContainsKey(product.ProductID))
                 totalData.Add(product.ProductID, isQualified ? 1 : 0);
             else
                 totalData[product.ProductID] += isQualified ? 1 : 0;
+            
             <td class="" width="100px" align="right" @style >
-                @turnover.ToString("N", CultureInfo.InvariantCulture)
+                @(ViewBag.BaseCurrency == 2 ? turnover.ToString("N", CultureInfo.InvariantCulture) : turnoverBase.ToString("N", CultureInfo.InvariantCulture))
             </td>    
         }
         </tr>

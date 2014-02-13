@@ -269,15 +269,16 @@
                         usernames: userName,
                         currency: currency,
                         status: status
-                    }
+                    };
                     parent.AFFILIATE.openDialogFrame("Affiliate/ChangeCommissionApprove?" + jQuery.param(param), MSG.AssignComGroup, { width: 550, height: 300 });
-                }
-                else {
+                } else {
                     var param = {
                         status: $("#slStatus").val()
-                    }
+                    };
                     parent.AFFMASTER.updateAffInfo(param, false);
                 }
+            } else {
+                $('#slStatus').val($('#spStatus').text());
             }
         },
         setStatus: function (status) {

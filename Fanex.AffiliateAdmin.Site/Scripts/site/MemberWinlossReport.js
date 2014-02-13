@@ -317,7 +317,7 @@
 
             } else {
 
-                var diffMonth = (toMonth + 11) - fromMonth;
+                var diffMonth = (toMonth + 12) - fromMonth;
 
                 if (diffMonth < 0 || diffMonth > 2) {
                     $('#FromDate, #ToDate').addClass('input-validation-error');

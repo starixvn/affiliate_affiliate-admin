@@ -360,9 +360,9 @@
 
         // Total row in system 
         if (memberCurrencyCount > _currencyThreshold || companyWinlossInMemberCurrencies[0].Currency !== System.Currency) {
-            if (groupBy == GROUP_BY_DATE && baseCurrency == MEMBER_CURRENCY_OPTION) {
-                mergeCols = mergeCols - 1;
-            }
+//            if (groupBy == GROUP_BY_DATE && baseCurrency == MEMBER_CURRENCY_OPTION) {
+//                mergeCols = mergeCols - 1;
+//            }
             var totalColums = [];
             var companyWinlossInSystemCurrency = totalData.CompanyWinlossInSystemCurrency;
             totalColums.push({ Value: MSG.TotalAllIn.format(System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
@@ -521,7 +521,7 @@
 
             } else {
 
-                var diffMonth = (toMonth + 11) - fromMonth;
+                var diffMonth = (toMonth + 12) - fromMonth;
 
                 if (diffMonth < 0 || diffMonth > 2) {
                     $('#FromDate, #ToDate').addClass('input-validation-error');

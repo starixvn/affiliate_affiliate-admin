@@ -430,6 +430,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult ChangeCommissionApprove(ChangeCommissionGroupViewModel model)
         {
+            model.Currency = CurrentSession.Affiliate.CurrencyID.ToString();
             model.UserId = SessionManager.CurrentSession.CustID;
             return View(model);
         }

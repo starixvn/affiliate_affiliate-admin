@@ -26,6 +26,7 @@
                 AFFINFO.lockedOut();
             });
             $('#spStatus').click(function () {
+                $('#slStatus').val($('#spStatus').text());
                 $("#slStatus").show();
                 $(this).hide();
             });

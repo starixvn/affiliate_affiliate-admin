@@ -72,8 +72,11 @@
                         HeaderAlign: "center",
                         CellAlign: "right",
                         Formatter: function (rIndex, record, cell, cellFormated) {
+                            var actualBaseCurreny = $('#BaseCurrency').val() == "0" ? "2" : "1";
+                            var currency = actualBaseCurreny == "1" ? System.Currency : record.Currency;
+                            
                             if (cellFormated)
-                                return "<a class='qm' data-currency='" + record.Currency + "' data-affname='" + record.Username + "' data-affid='" + record.AffId + "' data-date='" + moment(record.WinlostDate).format("MMM YYYY") + "' href='javascript:void(0)'>" + cellFormated + "</a>";
+                                return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)'>{5}</a>".format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, cellFormated);
                             return 0;
                         }
                     }
@@ -122,7 +125,7 @@
                 var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
                 var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
 
-                $.each(subTotalData, function(idx, item) {
+                $.each(subTotalData, function (idx, item) {
 
                     var columns = [];
 
@@ -155,7 +158,7 @@
                 footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
             }
         }
-        
+
         // Total row
         var totalColums = [];
         totalColums.push({ Value: "<div align='center'>" + MSG.Total + "</div>", Name: "Username", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
@@ -274,7 +277,9 @@
             $maincontent.on("click", "a.qm", function () {
                 var param = {
                     affid: $(this).data("affid"),
-                    monthdate: $(this).data("date")
+                    monthdate: $(this).data("date"),
+                    basecurrency: $(this).data("basecurrency"),
+                    currency: $(this).data("currency")
                 };
                 var title = MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
                 title = title.replace("{1}", param.monthdate) + " - " + MSG.Currency + ": " + $(this).data("currency");

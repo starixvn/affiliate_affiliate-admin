@@ -23,8 +23,8 @@
         <th rowspan="2" width="60px">#</th>
         <th rowspan="2" width="150px">@Lang.Member</th>
         <th rowspan="2" width="100px">@Lang.MemberCurrency</th>
-        <th rowspan="2">@Lang.QualifiedAmount (@AppSettings.BaseExchange.Prefix)</th>        
-        <th colspan="@(AppSettings.Products.Count())">@Lang.Turnover  (@AppSettings.BaseExchange.Prefix)</th>
+        <th rowspan="2">@Lang.QualifiedAmount (@ViewBag.SymbolCurrency)</th>        
+        <th colspan="@(AppSettings.Products.Count())">@Lang.Turnover  (@ViewBag.SymbolCurrency)</th>
         </tr>
         <tr style="height:24px">
         @foreach (var product in AppSettings.Products)

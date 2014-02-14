@@ -75,7 +75,7 @@
                         type: 'post',
                         data: param,
                         success: function (result) {
-                            AFFILIATE.PreHandleAjaxResult(data);
+                            AFFILIATE.PreHandleAjaxResult(result);
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {

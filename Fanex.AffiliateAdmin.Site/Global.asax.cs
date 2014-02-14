@@ -89,8 +89,6 @@ namespace Fanex.AffiliateAdmin.Site
             ////{
             ////    MiniProfiler.Stop();
             ////}
-            Response.BufferOutput = true;
-            Response.Flush();
         }
     }
 }

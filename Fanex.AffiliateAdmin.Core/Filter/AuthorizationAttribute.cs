@@ -31,13 +31,12 @@ namespace Fanex.AffiliateAdmin.Core.Filter
         {
             if (context.HttpContext.Request.IsAjaxRequest())
             {
-                var urlHelper = new UrlHelper(context.RequestContext);
                 context.Result = new JsonResult
                 {
                     Data = new
                     {
                         Error = "NotAuthorized",
-                        LogOnUrl = urlHelper.Action("Logout", "Account")
+                        LogOnUrl = "Account/Logout"
                     },
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };

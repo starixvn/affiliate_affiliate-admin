@@ -553,7 +553,7 @@
         PreHandleAjaxResult: function(data) {
             if (typeof data == "object") {
                 if (data.hasOwnProperty("Error") && data.hasOwnProperty("LogOnUrl")) {
-                    window.top.location.href = AFFILIATE.getAbsoluteUrl(data.LogOnUrl.substr(1, data.LogOnUrl.length - 1));
+                    window.top.location.href = AFFILIATE.getAbsoluteUrl(data.LogOnUrl);
                     
                 }
             }

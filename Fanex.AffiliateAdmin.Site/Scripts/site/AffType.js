@@ -63,7 +63,7 @@
                     $.ajax({ url: AFFILIATE.getAbsoluteUrl("Configuration/DeleteAffType?idlist=" + id),
                         type: 'post',
                         success: function (result) {
-                            AFFILIATE.PreHandleAjaxResult(data);
+                            AFFILIATE.PreHandleAjaxResult(result);
                             if (!result.Success) {
                                 alert(result.Message);
                             }

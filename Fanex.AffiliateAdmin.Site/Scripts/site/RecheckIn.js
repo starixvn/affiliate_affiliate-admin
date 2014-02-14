@@ -11,7 +11,7 @@
                 contentType: "application/json",
                 dataType: "json",
                 success: function (result) {
-                    AFFILIATE.PreHandleAjaxResult(data);
+                    AFFILIATE.PreHandleAjaxResult(result);
                     
                     if (result.Success) {//Use Success = IsKickedOut
                         if (result.ErrorMessage == "Expired") {

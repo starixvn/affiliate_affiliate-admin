@@ -76,7 +76,7 @@
                         url: AFFILIATE.getAbsoluteUrl("Configuration/DeleteCountry?idlist=" + id),
                         type: 'post',
                         success: function (result) {
-                            AFFILIATE.PreHandleAjaxResult(data);
+                            AFFILIATE.PreHandleAjaxResult(result);
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {

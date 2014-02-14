@@ -388,7 +388,8 @@
             }
             else {
                 AFFILIATE.showErrorMsg(msg);
-                callback();
+                if(callback)
+                    callback();
             }
         },
         refreshParent: function () {

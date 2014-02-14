@@ -14,12 +14,10 @@ namespace Fanex.AffiliateAdmin.Site
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
-    using System.Web.Script.Serialization;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Mvc;
     using Fanex.Data.Configuration;
     using Fanex.Logging;
-    using StackExchange.Profiling;
 
     /// <summary>
     /// Global configuration.
@@ -65,19 +63,6 @@ namespace Fanex.AffiliateAdmin.Site
             var message = exception.Message + Environment.NewLine + exception.StackTrace;
             LogService.Error("Affiliate Admin " + AppSettings.AffiliateName + System.Environment.NewLine + message);
 
-            ////if (!AppSettings.LocalTest && Request.RequestContext.HttpContext.Request.IsAjaxRequest())
-            ////{
-            ////    Context.ClearError();
-            ////    Response.ContentType = "application/json";
-            ////    Response.StatusCode = 500;
-            ////    Response.Write(new JavaScriptSerializer().Serialize(new
-            ////    {
-            ////        Success = false,
-            ////        Message = exception.Message,
-            ////        ErrorCode = exception.GetHashCode(),
-            ////        ErrorMessage = exception.Message
-            ////    }));
-            ////}
             if (exception != null)
             {
                 throw exception;
@@ -104,6 +89,8 @@ namespace Fanex.AffiliateAdmin.Site
             ////{
             ////    MiniProfiler.Stop();
             ////}
+            Response.BufferOutput = true;
+            Response.Flush();
         }
     }
 }

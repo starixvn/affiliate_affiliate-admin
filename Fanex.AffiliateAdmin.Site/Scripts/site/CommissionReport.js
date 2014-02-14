@@ -17,6 +17,9 @@
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     function initProductColumnsForGridOption() {
 
+        var hasGroupByMonth = $("#GroupBy").val() == GROUP_BY_MONTH;
+        var mergeColNumber = hasGroupByMonth ? 7 : 5;
+
         if (HasCashbackDeduction) {
             if (hasGroupByMonth) {
                 _gridOption.groupHeaderRows[0].Columns.splice(DEDUCTION_PERCENT_COL, 0, sampleCashbackHeader);
@@ -33,9 +36,6 @@
                 _gridOption.columns.splice(DEDUCTION_PERCENT_COL, 0, sampleAmountCol);
             }
         }
-
-        var hasGroupByMonth = $("#GroupBy").val() == GROUP_BY_MONTH;
-        var mergeColNumber = hasGroupByMonth ? 7 : 5;
 
         _indexProductColumns.clear();
         _commonColumnCount = _gridOption.columns.length;

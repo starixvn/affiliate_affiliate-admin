@@ -32,7 +32,8 @@ namespace Fanex.AffiliateAdmin.Core.Filter
         {
             var response = filterContext.HttpContext.Response;
            
-            if (SessionManager.CurrentSession.CurrencyList.Count == 0 || !SessionManager.CurrentSession.RoleAccess.HasPolicy(Function))
+            if (SessionManager.CurrentSession != null && 
+                (SessionManager.CurrentSession.CurrencyList.Count == 0 || !SessionManager.CurrentSession.RoleAccess.HasPolicy(Function)))
             {
                 filterContext.HttpContext.Response.Redirect("~/notify/AccessDenied");
             }    

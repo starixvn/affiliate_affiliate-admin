@@ -59,7 +59,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Login()
         {
-            return View(new LoginViewModel());            
+            return View(new LoginViewModel());
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 if (criteria.ErrCode == 0 && user.CustID > 0)
                 {
                     FormsAuthentication.SetAuthCookie(username, true);
-                    
+
                     SessionManager.CurrentSession = new CurrentSession(user)
                     {
                         RoleAccess = _accountService.UserPolicySel(new UserPolicyCriteria
@@ -120,7 +120,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             return View(new AccountPasswordViewModel());
         }
-        
+
         /// <summary>
         /// Change password.
         /// </summary>
@@ -189,7 +189,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 if (isKickedOut)
                 {
                     result.Success = isKickedOut;
-                    result.Message = isKickedOut ? Resources.Lang.MsgKickout : string.Empty;
+                    result.Message = isKickedOut ? Lang.MsgKickout : string.Empty;
                     result.ErrorMessage = "Expired";
                     ////Signout and clean all session
                     DoLogOut();

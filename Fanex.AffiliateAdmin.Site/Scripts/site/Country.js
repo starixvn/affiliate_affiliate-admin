@@ -45,6 +45,7 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, Country.ReRenderAfterPaged);
                 },
                 complete: function () {
@@ -75,6 +76,7 @@
                         url: AFFILIATE.getAbsoluteUrl("Configuration/DeleteCountry?idlist=" + id),
                         type: 'post',
                         success: function (result) {
+                            AFFILIATE.PreHandleAjaxResult(data);
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {

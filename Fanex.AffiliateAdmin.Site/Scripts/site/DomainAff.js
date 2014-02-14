@@ -25,6 +25,8 @@
             $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/AffDomainList"),
                 type: 'post',
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     gridOption.pagerOption = {
                         itemsPerPage: itemsPerPage,
                         itemsPerPageArray: AFFILIATE.pageSizes,
@@ -49,6 +51,8 @@
                 $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/AffDomainRemove/" + id),
                     type: 'post',
                     success: function (result) {
+                        AFFILIATE.PreHandleAjaxResult(result);
+                        
                         if (!result.Success) {
                             alert(result.Message);
                         }

@@ -9,6 +9,8 @@
                     listID: msgList
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     if (!data.Success) {
                         AFFILIATE.showUpdateStatus(data.ErrorCode, data.Message, parent.ME.ReRenderAfterPaged);
                     } else {

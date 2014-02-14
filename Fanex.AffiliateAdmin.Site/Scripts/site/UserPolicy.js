@@ -95,6 +95,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     gridOption.pagerOption = {
                         itemsPerPage: 100,
                         itemsPerPageArray: [100],

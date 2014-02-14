@@ -52,6 +52,7 @@
                 type: 'post',
                 data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, CUSTOMER.ReRenderAfterPaged);
                     $(".btnAdd").addClass("icon-add-config");
                 }
@@ -64,6 +65,8 @@
                     type: 'post',
                     data: "username=" + username,
                     success: function (result) {
+                        AFFILIATE.PreHandleAjaxResult(result);
+                        
                         if (!result.Success) {
                             alert(result.Message);
                         } else {

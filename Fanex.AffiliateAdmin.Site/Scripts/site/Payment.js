@@ -73,6 +73,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     $('#gridId').show();
                     //To define header has prefix "$" or not
                     var headerColumns = columnsBase.slice(0);

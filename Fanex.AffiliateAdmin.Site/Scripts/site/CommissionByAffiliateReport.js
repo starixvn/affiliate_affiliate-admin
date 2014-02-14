@@ -299,6 +299,7 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     gridOption.pagerOption = {
                         itemsPerPage: itemsPerPage,
                         itemsPerPageArray: AFFILIATE.pageSizes,

@@ -49,6 +49,8 @@
                 type: 'post',
                 //data: "pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     var bodyRows = AFFILIATE.genGridData(gridOption.columns, data.List);
                     for (var i = 0; i < bodyRows.length; i++) {
                         bodyRows[i].Columns[4].CustomCellRender = function (cell, cellFormated) {
@@ -82,6 +84,8 @@
                 $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/AffDomainRemove/" + id),
                     type: 'post',
                     success: function (result) {
+                        AFFILIATE.PreHandleAjaxResult(result);
+                        
                         if (!result.Success) {
                             alert(result.Message);
                         }

@@ -40,6 +40,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, TextList.ReRenderAfterPaged);
                 },
                 complete: function () {
@@ -73,6 +75,8 @@
                         type: 'post',
                         data: param,
                         success: function (result) {
+                            AFFILIATE.PreHandleAjaxResult(result);
+                            
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {

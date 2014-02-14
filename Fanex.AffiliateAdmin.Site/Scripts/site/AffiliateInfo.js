@@ -52,6 +52,8 @@
                             $.blockUI();
                         },
                         success: function (data) {
+                            AFFILIATE.PreHandleAjaxResult(data);
+                            
                             if (data.Success) {
                                 alert(data.Message);
                                 $("#spLanguage").html($("#slLanguage").find(":selected").text());
@@ -87,6 +89,7 @@
                             $.blockUI();
                         },
                         success: function (data) {
+                            AFFILIATE.PreHandleAjaxResult(data);
                             if (!data.Success) {
                                 alert(data.Message);
                             } else {
@@ -152,6 +155,8 @@
                         $.blockUI();
                     },
                     success: function (data) {
+                        AFFILIATE.PreHandleAjaxResult(data);
+                        
                         if (data.Success) {
                             alert(data.Message);
                             document.location.reload();
@@ -171,6 +176,7 @@
                         $.blockUI();
                     },
                     success: function (data) {
+                        AFFILIATE.PreHandleAjaxResult(data);
                         if (data.Success) {
                             $("#spLockedOut").html(MSG.No).removeClass("link-box-active");
                             $("#spLockedOut").unbind("click");

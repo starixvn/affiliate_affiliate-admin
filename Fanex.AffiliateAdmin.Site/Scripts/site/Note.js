@@ -29,23 +29,7 @@
                     $.blockUI();
                 },
                 success: function (data) {
-//                    $('#gridId').removeClass('noinfo');
-
-//                    gridOption.pagerOption = {
-//                        itemsPerPage: itemsPerPage,
-//                        itemsPerPageArray: AFFILIATE.pageSizes,
-//                        currentPage: currentPage,
-//                        totalItem: data.List.length
-//                    };
-
-//                    gridOption.titleInfo.text = MSG.Title + ' [{0}]'.format(data.List.length);
-
-//                    gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
-//                    $('#gridId').show().fanexGrid(gridOption);
-
-//                    if (data.List.length == 0) {
-//                        AFFILIATE.showNoDataMsgInGrid('#gridId', MSG.NoInfo);
-//                    }
+                    AFFILIATE.PreHandleAjaxResult(data);
 
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, NOTE.ReRenderAfterPaged);
 

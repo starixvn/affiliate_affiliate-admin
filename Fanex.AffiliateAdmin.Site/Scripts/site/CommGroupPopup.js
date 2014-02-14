@@ -133,6 +133,8 @@
                         currencyid: this.value
                     },
                     success: function (data) {                      
+                       AFFILIATE.PreHandleAjaxResult(data);
+                        
                        if(data=="")
                         {
                             $("#currNotify").hide();
@@ -480,7 +482,8 @@
                 $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/Add"),
                     type: 'post',
                     data: data,
-                    success: function (data) {                      
+                    success: function (data) {   
+                        AFFILIATE.PreHandleAjaxResult(data);
                        AFFILIATE.showUpdateStatus(data.ErrorCode, data.Message, (parent.COMMGROUP ? parent.COMMGROUP.ReRenderAfterPaged : undefined));                       
                     }
                  });

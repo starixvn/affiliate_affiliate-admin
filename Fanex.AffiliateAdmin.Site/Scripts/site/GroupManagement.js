@@ -32,6 +32,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     if (data.List.length == 0) {
                         $('#gridId').addClass("noinfo").html(PageVar.NoInfo);
                         return;
@@ -89,6 +91,8 @@
                         $.blockUI();
                     },
                     success: function (data) {
+                        AFFILIATE.PreHandleAjaxResult(data);
+                        
                         Management.showMsg(data);
                     },
                     complete: function () {
@@ -113,6 +117,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     Management.showMsg(data);
                     if (data.ErrorCode != 0) {
                         return false;

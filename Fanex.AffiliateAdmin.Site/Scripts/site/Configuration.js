@@ -48,6 +48,7 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, Configuration.ReRenderAfterPaged);
                 },
                 complete: function () {
@@ -74,6 +75,7 @@
                         type: 'post',
                         data: param,
                         success: function (result) {
+                            AFFILIATE.PreHandleAjaxResult(data);
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {

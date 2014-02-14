@@ -13,6 +13,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     $('#gridId').removeClass('noinfo');
 
                     gridOption.pagerOption = {

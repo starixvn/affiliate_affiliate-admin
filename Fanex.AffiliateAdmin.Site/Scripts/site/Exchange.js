@@ -35,6 +35,8 @@
                         exchangeidlist: listID
                     },
                     success: function (data) {
+                        AFFILIATE.PreHandleAjaxResult(data);
+                        
                         if (!data.Success) {
                             alert(data.Message);
                         } else
@@ -50,6 +52,8 @@
                         exchangeid: $(this).attr("data-id")
                     },
                     success: function (data) {
+                        AFFILIATE.PreHandleAjaxResult(data);
+                        
                          if (!data.Success) {
                             alert(data.Message);                        
                             self.checked = !self.checked;
@@ -79,6 +83,8 @@
                     Time: $('#SearchForm #Time').datepicker("getDate").toShortDate()
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     if (data.List.length == 0) {
                         $('#gridId').addClass("noinfo").html(MSG.NoInfo);
                         return;
@@ -131,6 +137,8 @@ var POPUP = function ($) {
                     type: 'post',
                     data: $("form input").serializeObject(),
                     success: function (data) {
+                        AFFILIATE.PreHandleAjaxResult(data);
+                        
                         if (!data.Success) {
                             alert(data.Message);
                         } else {

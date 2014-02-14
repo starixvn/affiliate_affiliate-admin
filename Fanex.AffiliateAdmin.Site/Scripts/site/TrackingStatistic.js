@@ -28,6 +28,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     gridOption.titleInfo.text = MSG.Title + ' [{0}]'.format(data.List.length);
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, STATISTIC.ReRenderAfterPaged);
                 },

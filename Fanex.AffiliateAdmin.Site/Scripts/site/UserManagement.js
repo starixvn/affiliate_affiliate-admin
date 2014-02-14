@@ -54,6 +54,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     $('#gridId').removeClass('noinfo');
 
                     gridOption.pagerOption = {
@@ -169,6 +171,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     Management.showMsg(data);
                     if (data.ErrorCode != 0) {
                         return false;

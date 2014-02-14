@@ -47,6 +47,8 @@
                         listID: id
                     },
                     success: function (data) {
+                        AFFILIATE.PreHandleAjaxResult(data);
+                        
                         if (!data.Success) {
                             alert(data.Message);
                         } else {
@@ -77,6 +79,8 @@
                 type: 'post',
                 data: $('#SearchForm').find('select,input').serialize() + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     if (data.TotalItem == 0) {
                         $('#gridId').addClass("noinfo").html(MSG.NoInfo);
                         return;

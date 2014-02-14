@@ -94,6 +94,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+
                     var gridObject = $('#gridId');
                     var legendObject = $('.legend');
 
@@ -108,7 +110,7 @@
                             item.HeaderText = MSG.BF + currencySymbol;
                             return false;
                         }
-                    });
+                    }); 
 
                     gridOption.pagerOption = {
                         itemsPerPage: data.ItemsPerPage,
@@ -298,6 +300,7 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     if (!data.Success) {
                         alert(data.Message);
                         return;
@@ -323,6 +326,7 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     if (!data.Success) {
                         alert(data.Message);
                         return;

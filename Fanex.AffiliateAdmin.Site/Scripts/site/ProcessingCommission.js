@@ -199,7 +199,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
-
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     var gridObject = $('#gridId');
                     gridObject.show();
 
@@ -258,6 +259,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     if (data.Success) {
                         ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
                     } else {
@@ -277,6 +280,8 @@
                         $.blockUI();
                     },
                     success: function (data) {
+                        AFFILIATE.PreHandleAjaxResult(data);
+                        
                         if (data.Success) {
                             ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
                         } else {

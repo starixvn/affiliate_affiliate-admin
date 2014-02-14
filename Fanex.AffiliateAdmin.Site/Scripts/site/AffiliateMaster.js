@@ -56,6 +56,7 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     if (data.Success) {
                         alert(data.Message);
                         if (isReload) {

@@ -40,6 +40,7 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     gridOption.titleInfo.text = MSG.Title + ' [{0}]'.format(data.List.length);
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, Language.ReRenderAfterPaged);
                 },
@@ -63,6 +64,8 @@
                     $.ajax({ url: AFFILIATE.getAbsoluteUrl("Configuration/DeleteLanguage?idlist=" + id),
                         type: 'post',
                         success: function (result) {
+                            AFFILIATE.PreHandleAjaxResult(result);
+                            
                             if (!result.Success) {
                                 alert(result.Message);
                             }

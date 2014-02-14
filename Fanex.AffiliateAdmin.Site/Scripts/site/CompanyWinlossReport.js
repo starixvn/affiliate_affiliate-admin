@@ -555,6 +555,7 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     _gridOption = $.extend(true, {}, sampleGridOption);
                     _commonColumnCount = _gridOption.columns.length;
                     initProductColumnsForGridOption();

@@ -188,6 +188,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     if (data.TotalItem == 0)
                         $('.legend').hide();
                     else

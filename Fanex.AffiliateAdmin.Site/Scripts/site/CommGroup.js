@@ -191,6 +191,7 @@ var COMMGROUP = function ($) {
                             groupid: groupid
                         },
                         success: function (data) {
+                            AFFILIATE.PreHandleAjaxResult(data);
                             if (data != "")
                                 alert(data);
                             else
@@ -226,7 +227,7 @@ var COMMGROUP = function ($) {
                 type: 'post',
                 data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 success: function (data) {
-
+                    AFFILIATE.PreHandleAjaxResult(data);
                     gridOption.pagerOption = {
                         itemsPerPage: data.ItemsPerPage,
                         itemsPerPageArray: AFFILIATE.pageSizes,

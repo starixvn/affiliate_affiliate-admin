@@ -26,6 +26,8 @@
                 type: 'post',
                 //data: "pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     if (data.List.length == 0) {
                         $('#gridId').addClass("noinfo").html(MSG.NoInfo);
                         return;
@@ -55,6 +57,8 @@
                 $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/MemDomainRemove/" + id),
                     type: 'post',
                     success: function (result) {
+                        AFFILIATE.PreHandleAjaxResult(result);
+                        
                         if (!result.Success) {
                             alert(result.Message);
                         }

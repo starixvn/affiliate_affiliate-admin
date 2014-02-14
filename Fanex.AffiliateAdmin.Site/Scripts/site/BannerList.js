@@ -56,6 +56,7 @@
                 beforeSend: function () {
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     if (data.length > 0) {
                         $('#divSubCategories').html(data).show();
                         $(".dropdownchecklist").createDropdownchecklist();
@@ -82,6 +83,7 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, BannerList.ReRenderAfterPaged);
                 },
                 complete: function () {
@@ -169,6 +171,7 @@
                         type: 'post',
                         data: param,
                         success: function (result) {
+                            AFFILIATE.PreHandleAjaxResult(data);
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {

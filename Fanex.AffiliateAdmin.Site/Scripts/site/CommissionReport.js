@@ -373,6 +373,7 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     _gridOption = $.extend(true, {}, sampleGridOption);
 
                     initProductColumnsForGridOption();

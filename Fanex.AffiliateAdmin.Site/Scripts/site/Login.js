@@ -39,6 +39,8 @@
 					dataType: "json",
 					data: JSON.stringify(param),
 					success: function (result) {
+					    AFFILIATE.PreHandleAjaxResult(result);
+					    
 						if (!result.Success) {
 							alert(result.Message);
 							$("#Password").val("");

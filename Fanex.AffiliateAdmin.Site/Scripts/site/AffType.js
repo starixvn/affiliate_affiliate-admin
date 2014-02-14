@@ -39,6 +39,7 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
                     gridOption.titleInfo.text = MSG.Title + ' [{0}]'.format(data.List.length);
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, AffType.ReRenderAfterPaged);
                 },
@@ -62,6 +63,7 @@
                     $.ajax({ url: AFFILIATE.getAbsoluteUrl("Configuration/DeleteAffType?idlist=" + id),
                         type: 'post',
                         success: function (result) {
+                            AFFILIATE.PreHandleAjaxResult(data);
                             if (!result.Success) {
                                 alert(result.Message);
                             }

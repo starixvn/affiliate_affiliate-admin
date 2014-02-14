@@ -19,6 +19,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, LOG.ReRenderAfterPaged);
                 },
                 complete: function () {

@@ -37,6 +37,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     var gridObject = $('#gridId');
 
                     gridOption.pagerOption = {

@@ -17,6 +17,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, ONLINELIST.ReRenderAfterPaged);
                 },
                 complete: function () {

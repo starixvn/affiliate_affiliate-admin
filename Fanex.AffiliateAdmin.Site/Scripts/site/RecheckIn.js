@@ -2,7 +2,7 @@
     return {
         init: function () {
             setInterval("RECHECKIN.ReCheckIn()", 60000);
-            //RECHECKIN.ReCheckIn();
+            RECHECKIN.ReCheckIn();
         },
         ReCheckIn: function () {
             $.ajax({
@@ -11,6 +11,8 @@
                 contentType: "application/json",
                 dataType: "json",
                 success: function (result) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     if (result.Success) {//Use Success = IsKickedOut
                         if (result.ErrorMessage == "Expired") {
                             alert(result.Message);

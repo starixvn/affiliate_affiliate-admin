@@ -23,8 +23,10 @@
             gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
 
             $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/DomainControlList"),
-                type: 'post',                
+                type: 'post',
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+
                     if (data.List.length == 0) {
                         $('#gridId').addClass("noinfo").html(MSG.NoInfo);
                         return;
@@ -53,6 +55,8 @@
                 $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/DomainControlRemove/" + id),
                     type: 'post',
                     success: function (result) {
+                        AFFILIATE.PreHandleAjaxResult(result);
+                        
                         if (!result.Success) {
                             alert(result.Message);
                         }

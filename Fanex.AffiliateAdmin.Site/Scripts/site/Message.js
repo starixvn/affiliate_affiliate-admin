@@ -51,6 +51,8 @@
                     $.blockUI();
                 },
                 success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, Message.ReRenderAfterPaged);
 
                     if (data.TotalItem === 0) {
@@ -75,6 +77,8 @@
                         type: 'post',
                         data: { msgids: id },
                         success: function (result) {
+                            AFFILIATE.PreHandleAjaxResult(result);
+                            
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {

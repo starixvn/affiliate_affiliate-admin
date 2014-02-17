@@ -16,7 +16,6 @@
 
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     function initProductColumnsForGridOption() {
-
         var hasGroupByMonth = $("#GroupBy").val() == GROUP_BY_MONTH;
         var mergeColNumber = hasGroupByMonth ? 7 : 5;
 
@@ -74,7 +73,7 @@
                         Formatter: function (rIndex, record, cell, cellFormated) {
                             var actualBaseCurreny = $('#BaseCurrency').val() == "0" ? "2" : "1";
                             var currency = actualBaseCurreny == "1" ? System.Currency : record.Currency;
-                            
+
                             if (cellFormated)
                                 return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)'>{5}</a>".format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, cellFormated);
                             return 0;
@@ -135,12 +134,17 @@
 
                     for (var i = mergeCols; i < _gridOption.columns.length; i++) {
                         var col = _gridOption.columns[i];
-
+                        var column = {};
                         if (col.IsPercent) {
-                            columns.push({ Value: MSG.NA, Name: col.Name });
+                            column = { Value: MSG.NA, Name: col.Name };                            
                         } else {
-                            columns.push({ Value: item[col.Name], Name: col.Name });
+                            column = { Value: item[col.Name], Name: col.Name };
                         }
+
+                        if (i == mergeCols && idx != 0) {
+                            column.PrevRowsColMergeNumber = mergeCols;
+                        }
+                        columns.push(column);
                     }
 
                     footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
@@ -230,6 +234,7 @@
                     .attr("class", _isSimpleMode ? "icon-circle-arrow-right" : "icon-circle-arrow-left");
 
                 hideColumns();
+                AFFILIATE.resetToggleIndicator(_gridOption);
 
             });
             // Comm group link event

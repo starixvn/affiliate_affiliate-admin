@@ -541,6 +541,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     LastName = xml.Element("LastName").Value,
                     Phone = xml.Element("Phone").Value,
                     Address = xml.Element("Address").Value,
+                    Email = xml.Element("Email").Value,
                     IP = Remote.GetClientIPAddress()
                 };
 

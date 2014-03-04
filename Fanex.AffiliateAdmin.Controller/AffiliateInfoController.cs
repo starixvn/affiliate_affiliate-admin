@@ -67,7 +67,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Index(string userName)
         {
-            var isKiosk = CurrentSession.Affiliate == null ? false : CurrentSession.Affiliate.AffTypeName.Equals("kiosk", System.StringComparison.CurrentCultureIgnoreCase);
+            var isKiosk = CurrentSession.Affiliate != null && CurrentSession.Affiliate.AffTypeName.Equals("kiosk", StringComparison.CurrentCultureIgnoreCase);
 
             var siteDomainInfo = SiteDomainInfo.Parse(this, isKiosk);
 

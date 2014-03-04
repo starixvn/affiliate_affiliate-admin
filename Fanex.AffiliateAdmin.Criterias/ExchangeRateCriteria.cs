@@ -42,25 +42,22 @@ namespace Fanex.AffiliateAdmin.Criterias
         /// <returns>Setting Key.</returns>
         public override string GetSettingKey()
         {
-            if (this.Type == CriteriaType.Update)
+            if (Type == CriteriaType.Update)
             {
                 if (!string.IsNullOrWhiteSpace(this.ToCurrency))
                 {
                     return "AffAdmin_ExchangeUpdate";                       
                 }
-                else if (!string.IsNullOrWhiteSpace(this.ExchangeIdList))
+
+                if (!string.IsNullOrWhiteSpace(this.ExchangeIdList))
                 {
                     return "AffAdmin_CopyRateFromMarket";
                 }
-                else
-                {
-                    return "AffAdmin_ExchangeAutoRefreshUpd";
-                }
+
+                return "AffAdmin_ExchangeAutoRefreshUpd";
             }
-            else
-            {
-                return "AffAdmin_ExchangeSel";
-            }
+
+            return "AffAdmin_ExchangeSel";
         }
     }
 }

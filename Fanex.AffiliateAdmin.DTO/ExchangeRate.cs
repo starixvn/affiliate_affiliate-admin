@@ -83,5 +83,13 @@ namespace Fanex.AffiliateAdmin.DTO
         public double VND { get; set; }
 
         public double VND_Market { get; set; }
+
+        public double JPY { get; set; }
+
+        public double JPY_Market { get; set; }
+
+        public double KRW { get; set; }
+
+        public double KRW_Market { get; set; }
     }
 }

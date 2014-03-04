@@ -36,9 +36,6 @@
         } else {
             switch ($('#BaseCurrency').val()) {
                 case MEMBER_CURRENCY_OPTION:
-//                    _gridOption.hiddenColumns = [EXRATE_INDEX];
-//                    _gridOption.enableHiddenColumns = false;
-
                     _gridOption.groupHeaderRows[0].Columns.splice(EXRATE_INDEX, 1);
                     _gridOption.columns.splice(EXRATE_INDEX, 1);
 

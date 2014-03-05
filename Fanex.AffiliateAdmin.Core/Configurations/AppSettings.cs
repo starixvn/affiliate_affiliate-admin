@@ -404,7 +404,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                return GetValue("LocalTest").Equals("1");
+                return Environment.Equals("Local Development", StringComparison.OrdinalIgnoreCase);
             }
         }
 
@@ -413,6 +413,14 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             get
             {
                 return GetValue("Environment");
+            }
+        }
+
+        public static bool SkipCheckUMTime
+        {
+            get
+            {
+                return GetValue("SkipCheckUMTime").Equals("1");
             }
         }
 
@@ -429,14 +437,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             get
             {
                 return Convert.ToDateTime(GetValue("UM_EndTime"));
-            }
-        }
-
-        public static string MailErrorTitle
-        {
-            get
-            {
-                return GetValue("MailErrorTitle");
             }
         }
 
@@ -573,22 +573,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             get
             {
                 return _baseExchange;
-            }
-        }
-
-        public static string LinkFormat
-        {
-            get
-            {
-                return GetValue("LinkFormat");
-            }
-        }
-
-        public static string DefaultTarget
-        {
-            get
-            {
-                return GetValue("DefaultTarget");
             }
         }
 

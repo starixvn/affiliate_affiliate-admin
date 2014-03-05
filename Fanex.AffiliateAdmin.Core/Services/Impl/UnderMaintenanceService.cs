@@ -43,11 +43,15 @@ namespace Fanex.AffiliateAdmin.Core.Services
         {
             startTime = endTime = null;
             DateTime now = DateTime.Now;
-            if (now >= AppSettings.UM_StartTime && now <= AppSettings.UM_EndTime)
+
+            if (!AppSettings.SkipCheckUMTime)
             {
-                startTime = AppSettings.UM_StartTime.ToString("hh:mm tt");
-                endTime = AppSettings.UM_EndTime.ToString("hh:mm tt");
-                return true;
+                if (now >= AppSettings.UM_StartTime && now <= AppSettings.UM_EndTime)
+                {
+                    startTime = AppSettings.UM_StartTime.ToString("hh:mm tt");
+                    endTime = AppSettings.UM_EndTime.ToString("hh:mm tt");
+                    return true;
+                }
             }
 
             if (string.IsNullOrEmpty(AppSettings.LBUrl))
@@ -56,7 +60,8 @@ namespace Fanex.AffiliateAdmin.Core.Services
             }
 
             var maintenanceController = new UMBusiness();
-            bool underMaintenance = false;  
+
+            bool underMaintenance = false;
 
             if (_memoryCache["IsUM"] == null)
             {

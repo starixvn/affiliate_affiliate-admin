@@ -97,11 +97,11 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        public static long ImageSize
+        public static long MaxImageSize
         {
             get
             {
-                return Convert.ToInt64(AppSettings.GetValue("ImageSize"));
+                return Convert.ToInt64(AppSettings.GetValue("MaxImageSize"));
             }
         }
 

@@ -387,6 +387,10 @@
     <Content Include="Content\themes\Default\images\uncheck.gif" />
     <Content Include="Content\_Sites\Athena\Images\best-browsers.png" />
     <Content Include="Content\_Sites\Athena\Images\bodybg.jpg" />
+    <Content Include="Content\_Sites\Athena\Images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\Athena\Images\emailBg.jpg" />
+    <Content Include="Content\_Sites\Athena\Images\email_bg.png" />
+    <Content Include="Content\_Sites\Athena\Images\email_top.jpg" />
     <Content Include="Content\_Sites\Athena\Images\headerbg.jpg" />
     <Content Include="Content\_Sites\Athena\Images\headerbg_notify.png" />
     <Content Include="Content\_Sites\Athena\Images\logo.jpg" />
@@ -599,7 +603,7 @@
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.WithdrawalEmail.ko-KR.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.WithdrawalEmail.th-TH.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.WithdrawalEmail.vi-VN.cshtml" />
-    <Content Include="Views\Shared\Email\AffiliateApprove\Subject.WithdrawalEmailzh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\AffiliateApprove\Subject.WithdrawalEmail.zh-TW.cshtml" />
     <None Include="Views\Shared\Email\AffiliateApprove\Html\Body.ApprovalEmail.en-US.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

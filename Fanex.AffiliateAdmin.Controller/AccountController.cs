@@ -191,13 +191,15 @@ namespace Fanex.AffiliateAdmin.Controller
                     result.Success = isKickedOut;
                     result.Message = isKickedOut ? Lang.MsgKickout : string.Empty;
                     result.ErrorMessage = "Expired";
-                    ////Signout and clean all session
+                    
+                    // Signout and clean all session.
                     DoLogOut();
                 }
             }
 
             string startTime = string.Empty, endTime = string.Empty;
             bool isUM = UnderMaintenanceService.GetDownTime(ref startTime, ref endTime);
+
             if (isUM)
             {
                 result.Success = isKickedOut;

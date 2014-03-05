@@ -7,16 +7,12 @@
 //   <change who="Brian.Dinh" date="2014.1.15">Created</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.Core.Sender
+namespace Fanex.AffiliateAdmin.Core.Mailinator
 {
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class KioskAffiliateMailinator : AffiliateMailinator
     {
-        public override void Approve()
-        {
-            base.Approve();
-        }
     }
 }

@@ -177,7 +177,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
 
         public bool HasExceedSizeLimit()
         {
-            return File.ContentLength > MediaSettings.ImageSize;
+            return File.ContentLength > MediaSettings.MaxImageSize;
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             // Check the maximum file size.
             if (HasExceedSizeLimit())
             {
-                return string.Format(Lang.MaxFileSizeLimit, MediaSettings.ImageSize);
+                return string.Format(Lang.MaxFileSizeLimit, MediaSettings.MaxImageSize);
             }
 
             // Check the banner file exist.
@@ -263,7 +263,12 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                         return string.Empty;
                     }
 
-                    return string.Format(Lang.CouldNotFindPath, oldBannerPath);
+                    if (!System.IO.File.Exists(oldBannerPath))
+                    {
+                        return string.Format(Lang.CouldNotFindPath, oldBannerPath.Replace("\\", "/"));
+                    }
+
+                    return string.Format(Lang.CouldNotFindPath, oldThumbnailPath.Replace("\\", "/"));
                 }
 
                 if (System.IO.File.Exists(oldBannerPath))
@@ -273,7 +278,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                     return string.Empty;
                 }
 
-                return string.Format(Lang.CouldNotFindPath, oldBannerPath);
+                return string.Format(Lang.CouldNotFindPath, oldBannerPath.Replace("\\", "/"));
             }
 
             return string.Empty;

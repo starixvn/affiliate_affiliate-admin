@@ -13,12 +13,12 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Configurations;
     using Core.Entities;
     using Core.Enumerations;
+    using Core.Filter;
     using Core.Services.Interface;
     using Core.Utilities;
     using Criterias;
     using DTO;
-    using Fanex.AffiliateAdmin.Core.Filter;
-    using Fanex.AffiliateAdmin.Core.Sender;
+    using Fanex.AffiliateAdmin.Core.Mailinator;
     using Models;
     using Resources;
     using Services.Interface;

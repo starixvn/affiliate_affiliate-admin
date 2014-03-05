@@ -7,7 +7,7 @@
 //   <change who="Brian.Dinh" date="2014.1.15">Created</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.Core.Sender
+namespace Fanex.AffiliateAdmin.Core.Mailinator
 {
     using System;
     using System.IO;
@@ -106,7 +106,7 @@ namespace Fanex.AffiliateAdmin.Core.Sender
         {
             var emailSubject = ParseTemplate(SubjectPath, info);
             var emailBody = ParseTemplate(BodyPath, info);
-            Common.SendEmail(emailBody, mailTo, emailSubject, AppSettings.ITMail);
+            Utilities.Common.SendEmail(emailBody, mailTo, emailSubject, AppSettings.ITMail);
         }
 
         /// <summary>

@@ -25,8 +25,8 @@ namespace Fanex.AffiliateAdmin.Models
         {
             var dateFrom = DateTime.Now.AddMonths(AppSettings.ViewLogBackMonth);
 
-            this.DateFrom = AppSettings.SystemStartDate.CompareTo(dateFrom) <= 0 ? dateFrom : AppSettings.SystemStartDate;
-            this.DateTo = DateTime.Now;
+            DateFrom = AppSettings.SystemStartDate.CompareTo(dateFrom) <= 0 ? dateFrom : AppSettings.SystemStartDate;
+            DateTo = DateTime.Now;
         }
 
         [Display(Name = "From", ResourceType = typeof(Lang))]

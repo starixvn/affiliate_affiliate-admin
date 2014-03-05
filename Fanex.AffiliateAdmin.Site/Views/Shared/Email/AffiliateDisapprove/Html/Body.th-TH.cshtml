@@ -1,10 +1,11 @@
-﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+﻿@using Fanex.AffiliateAdmin.Core.Configurations
+@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
 <table width="100%">
     <tr>
-        <td valign="top" align="center" background="@Model.AdminSiteUrl/Content/themes/Default/images/emailBg.jpg">
+        <td valign="top" align="center" background="@Model.AdminSiteUrl/Content/_Sites/@AppSettings.Layout/images/emailBg.jpg">
             <table width="588" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                    <td height="77" background="@Model.AdminSiteUrl/Content/themes/Default/images/emailBanner.jpg">
+                    <td height="77" background="@Model.AdminSiteUrl/Content/_Sites/@AppSettings.Layout/images/emailBanner.jpg">
                     </td>
                 </tr>
                 <tr>

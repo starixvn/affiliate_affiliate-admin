@@ -493,7 +493,6 @@
     <Content Include="Scripts\site\Query.string.js" />
     <Content Include="Scripts\site\ViewLog.js" />
     <Content Include="Scripts\site\_Global.js" />
-    <Content Include="Views\Email\PaymentRequest.en-US.txt" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.en-US.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.th-TH.cshtml" />
@@ -579,7 +578,6 @@
     <Content Include="Views\Affiliate\ChangePassword.cshtml" />
     <Content Include="Views\Affiliate\ChangeCommissionApprove.cshtml" />
     <Content Include="Views\Report\CompanyWinloss.cshtml" />
-    <Content Include="Views\Email\PaymentRequest.en-US.cshtml" />
     <Content Include="Views\Report\MemberStatistics.cshtml" />
     <Content Include="Views\Report\CompanyWinlossByAffiliate.cshtml" />
     <Content Include="Views\Report\Commission.cshtml" />

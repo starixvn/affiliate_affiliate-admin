@@ -110,7 +110,7 @@
                         var fromDate = $('#FromMonth').val();
                         var toDate = $('#ToMonth').val();
 
-                        if (!moment(fromDate).isValid() && !moment(toDate).isValid()) {
+                        if (fromDate.split(' ').length == 2) {
                             // get the first day of month;
                             fromDate = '01 ' + fromDate;
 

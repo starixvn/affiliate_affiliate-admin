@@ -33,12 +33,9 @@ namespace Fanex.AffiliateAdmin.Controller
     {
         private readonly IReportService _reportService;
 
-        private readonly ISystemSettingService _systemSettingService;
-
         public ReportController(IReportService reportService, ISystemSettingService systemSettingService)
         {
             _reportService = reportService;
-            _systemSettingService = systemSettingService;
         }
 
         #region Company Winloss Report

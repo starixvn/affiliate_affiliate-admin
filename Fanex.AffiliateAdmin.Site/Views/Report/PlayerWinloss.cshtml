@@ -142,7 +142,7 @@ report
         
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
         var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
-        var subTotalStatus = EXPAND_SUBTOTAL_STATUS;
+        var subTotalStatus = COLLAPSE_SUBTOTAL_STATUS;
 
         var sampleGridOption = {
             language: '@AppSession.Language',  
@@ -200,7 +200,7 @@ report
             showFooter: true,
             customizeHeader: true,
             showDistinctRow: false,
-            numberOfFrozenColumn: 4            
+            numberOfFrozenColumn: 5            
         };
 
         var cardinalHeaderCol = { HeaderText: "#", Name: "WinlostDate", MergeRowNumber: 2 };

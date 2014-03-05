@@ -107,8 +107,8 @@
         if ($('#ByAffiliate').length > 0) {
             _gridOption.groupHeaderRows[0].Columns.splice(1, 2);
             _gridOption.columns.splice(1, 2);
-            _gridOption.numberOfFrozenColumn = 2;
-            _freezeColumnCount = 2;
+            _gridOption.numberOfFrozenColumn = _gridOption.numberOfFrozenColumn - 2;
+            _freezeColumnCount = _gridOption.numberOfFrozenColumn;
         }
 
         if (productCount == 1) {
@@ -143,7 +143,7 @@
         }
     }
     function getFooterRows(subTotalData, totalRowData) {
-        var mergeCols = _gridOption.numberOfFrozenColumn;
+        var mergeCols = _gridOption.numberOfFrozenColumn - 1;
         var subTotalRowCount = subTotalData.length;
         var footerRows = [];
 

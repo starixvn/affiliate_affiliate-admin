@@ -152,6 +152,7 @@
         if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
             var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
             var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
+            subTotalStatus = memberCurrencyCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
 
             $.each(subTotalData, function (idx, item) {
 
@@ -179,7 +180,6 @@
                 footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
             });
 
-
             // pseudo sub total row.
             var columns = [];
             columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
@@ -199,7 +199,6 @@
             }
 
             footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
-
         }
 
         // Total row

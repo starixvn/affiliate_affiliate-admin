@@ -269,9 +269,6 @@
         });
 
         if (memberCurrencyCount > _currencyThreshold || companyWinlossInMemberCurrencies[0].Currency !== System.Currency) {
-            if (groupBy == GROUP_BY_DATE && baseCurrency == MEMBER_CURRENCY_OPTION) {
-                mergeCols = mergeCols - 1;
-            }
             var totalColums = [];
             totalColums.push({ Value: MSG.TotalRangeIn.format(suffix, System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
             var startIndex = mergeCols;
@@ -299,6 +296,7 @@
         if (memberCurrencyCount > 1 || (memberCurrencyCount == 1 && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
             var realSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal real-cell' : '';
             var pseudoSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal pseudo-cell' : '';
+            subTotalStatus = memberCurrencyCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
 
             $.each(companyWinlossInMemberCurrencies, function (idx, item) {
                 var columns = [];
@@ -357,9 +355,6 @@
 
         // Total row in system 
         if (memberCurrencyCount > _currencyThreshold || companyWinlossInMemberCurrencies[0].Currency !== System.Currency) {
-//            if (groupBy == GROUP_BY_DATE && baseCurrency == MEMBER_CURRENCY_OPTION) {
-//                mergeCols = mergeCols - 1;
-//            }
             var totalColums = [];
             var companyWinlossInSystemCurrency = totalData.CompanyWinlossInSystemCurrency;
             totalColums.push({ Value: MSG.TotalAllIn.format(System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
@@ -380,7 +375,7 @@
 
     function changeHeaderCaptions(baseCurrency) {
         var text;
-        
+
         switch (baseCurrency) {
             case SYS_CURRENCY_OPTION:
                 text = " (" + System.Prefix + ")";
@@ -388,11 +383,11 @@
             case AFF_CURRENCY_OPTION:
                 text = " (" + $('#AffiliateCurrencySymbol').val() + ")";
                 break;
-        default:
-            text = "";
-            break;
+            default:
+                text = "";
+                break;
         }
-        
+
         for (var i = 0; i < _gridOption.columns.length; i++) {
             var col = _gridOption.columns[i];
             if (col.IsCurrency)

@@ -152,7 +152,7 @@
         if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
             var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
             var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
-            subTotalStatus = memberCurrencyCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
+            subTotalStatus = subTotalRowCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
 
             $.each(subTotalData, function (idx, item) {
 

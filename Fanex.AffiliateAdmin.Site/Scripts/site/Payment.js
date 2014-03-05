@@ -148,7 +148,7 @@
             if (subRowLength > 1 || (subRowLength == 1 && subRowCurrency["Currency"] != System.Currency)) {
                 var realSubTotalclass = subRowLength > 1 ? 'cell-subtotal real-cell' : '';
                 var pseudoSubTotalclass = subRowLength > 1 ? 'cell-subtotal pseudo-cell' : '';
-                subTotalStatus = memberCurrencyCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
+                subTotalStatus = subRowLength > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
 
                 $.each(listSubTotalRows, function (idx, item) {
                     var colSubTotal = [];

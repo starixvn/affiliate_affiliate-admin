@@ -45,7 +45,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 return _SymbolsByCode[currencyCode].NumberFormat.CurrencySymbol;
             }
 
-            return currencyCode;
+            return _SymbolsByCode["USD"].NumberFormat.CurrencySymbol;
         }
 
         /// <summary>

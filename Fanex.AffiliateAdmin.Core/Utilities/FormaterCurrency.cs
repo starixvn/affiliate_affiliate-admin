@@ -40,7 +40,12 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 InitCurrencyCodeMapper();
             }
 
-            return _SymbolsByCode[currencyCode].NumberFormat.CurrencySymbol;
+            if (_SymbolsByCode.ContainsKey(currencyCode))
+            {
+                return _SymbolsByCode[currencyCode].NumberFormat.CurrencySymbol;
+            }
+
+            return currencyCode;
         }
 
         /// <summary>

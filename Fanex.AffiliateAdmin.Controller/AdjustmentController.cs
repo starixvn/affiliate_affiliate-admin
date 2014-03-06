@@ -56,6 +56,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 AffName = this.CurrentSession.Affiliate.Username,
                 Adjustment = adjustment,
+                Description = string.Empty,
                 Currency = AppSettings.AffSystemSupportedCurrencies.FirstOrDefault(c => c.CurrencyCode == CurrentSession.Affiliate.Currency)
             });
         }
@@ -80,6 +81,8 @@ namespace Fanex.AffiliateAdmin.Controller
             this._adjustmentService.UpdateAdjustment(criteria);
 
             ViewBag.Result = GetResultViewModel(criteria.ErrCode);
+
+            ModelState.Clear();
 
             return this.Index();
         }

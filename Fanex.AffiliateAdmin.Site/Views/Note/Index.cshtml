@@ -10,7 +10,7 @@
 }
 
 @section submenu{
-    @if (Convert.ToString(ViewBag.Status) == "approved")
+    @if(String.Equals(Convert.ToString(ViewBag.Status), "approved", StringComparison.OrdinalIgnoreCase))
     {
          @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 2)
     }

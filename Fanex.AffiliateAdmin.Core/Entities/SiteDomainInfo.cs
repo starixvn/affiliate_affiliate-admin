@@ -48,8 +48,8 @@ namespace Fanex.AffiliateAdmin.Core.Entities
                 }
             }
 
-            var adminSiteDomain = host;
             var adminSitePath = controller.Url.Content("~/");
+
             if (adminSitePath.EndsWith("/"))
             {
                 adminSitePath = adminSitePath.Remove(adminSitePath.Length - 1);
@@ -58,7 +58,6 @@ namespace Fanex.AffiliateAdmin.Core.Entities
             var adminSiteUrl = string.Format("{0}://{1}{2}", scheme, host, adminSitePath);
             var memberSiteDomain = host;
             var memberSiteUrl = adminSiteUrl;
-            var affiliateSiteUrl = adminSiteUrl;
 
             if (siteUrl.HostNameType == UriHostNameType.Dns && AppSettings.Environment.Equals("Production"))
             {
@@ -67,7 +66,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
                 {
                     return new SiteDomainInfo
                     {
-                        MemberSiteDomain = string.Format("{0}.{1}", words[1], words[2]),
+                        MemberSiteDomain = string.Format("www.{0}.{1}", words[1], words[2]),
                         MemberSiteUrl = string.Format("{0}://www.{1}.{2}/vender.aspx", scheme, words[1], words[2]),
                         AffiliateSiteUrl = string.Format("{0}://affiliate.{1}.{2}", scheme, words[1], words[2]),
                         AdminSiteUrl = string.Format("{0}://{1}.{2}.{3}", scheme, isKiosk ? "agt" : "affadmin", words[1], words[2])

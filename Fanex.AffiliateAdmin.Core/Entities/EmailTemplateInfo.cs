@@ -11,6 +11,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
 {
     using System;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Mailinator;
 
     /// <summary>
     /// TODO: Update summary.
@@ -72,7 +73,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
         {
             get
             {
-                return AppSettings.EmailHeaderBgColor;
+                return EmailColorPalette.EmailHeaderBgColor;
             }
         }
 
@@ -80,7 +81,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
         {
             get
             {
-                return AppSettings.EmailHeaderFontColor;
+                return EmailColorPalette.EmailHeaderFontColor;
             }
         }
 
@@ -88,7 +89,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
         {
             get
             {
-                return AppSettings.EmailContentBgColor;
+                return EmailColorPalette.EmailContentBgColor;
             }
         }
 
@@ -96,7 +97,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
         {
             get
             {
-                return AppSettings.EmailContentFontColor;
+                return EmailColorPalette.EmailContentFontColor;
             }
         }
 
@@ -104,7 +105,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
         {
             get
             {
-                return AppSettings.EmailCopyrightBgColor;
+                return EmailColorPalette.EmailCopyrightBgColor;
             }
         }
 
@@ -112,7 +113,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
         {
             get
             {
-                return AppSettings.EmailCopyrightFontColor;
+                return EmailColorPalette.EmailCopyrightFontColor;
             }
         }
 
@@ -120,7 +121,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
         {
             get
             {
-                return AppSettings.EmailFooterBgColor;
+                return EmailColorPalette.EmailFooterBgColor;
             }
         }
 
@@ -128,7 +129,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
         {
             get
             {
-                return AppSettings.EmailFooterFontColor;
+                return EmailColorPalette.EmailFooterFontColor;
             }
         }
 

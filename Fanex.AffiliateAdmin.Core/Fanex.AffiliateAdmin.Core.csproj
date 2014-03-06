@@ -89,9 +89,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AffiliateSettings.cs" />
+    <Compile Include="Configurations\GetAppSettings.cs" />
     <Compile Include="Filter\FunctionAuthAttribute.cs" />
     <Compile Include="Filter\NoCacheAttribute.cs" />
     <Compile Include="Mailinator\AffiliateMailinator.cs" />
+    <Compile Include="Mailinator\EmailColorPalette.cs" />
     <Compile Include="Mailinator\KioskAffiliateMailinator.cs" />
     <Compile Include="Mvc\DecimalModelBinder.cs" />
     <Compile Include="Mailinator\NormalAffiliateMailinator.cs" />

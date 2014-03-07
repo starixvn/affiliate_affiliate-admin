@@ -44,14 +44,16 @@ namespace Fanex.AffiliateAdmin.Core.Services
             startTime = endTime = null;
             DateTime now = DateTime.Now;
 
-            if (!AppSettings.SkipCheckUMTime)
+            if (AppSettings.SkipCheckUMTime)
             {
-                if (now >= AppSettings.UM_StartTime && now <= AppSettings.UM_EndTime)
-                {
-                    startTime = AppSettings.UM_StartTime.ToString("hh:mm tt");
-                    endTime = AppSettings.UM_EndTime.ToString("hh:mm tt");
-                    return true;
-                }
+                return false;
+            }
+
+            if (now >= AppSettings.UM_StartTime && now <= AppSettings.UM_EndTime)
+            {
+                startTime = AppSettings.UM_StartTime.ToString("hh:mm tt");
+                endTime = AppSettings.UM_EndTime.ToString("hh:mm tt");
+                return true;
             }
 
             if (string.IsNullOrEmpty(AppSettings.LBUrl))

@@ -4,41 +4,47 @@
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Mvc
-@using (Html.BeginForm("", "", FormMethod.Post, new { @class = "form-horizontal" }))
-{
+@using Fanex.AffiliateAdmin.Models
+@model ExchangeRateViewModel
 
+@using (Html.BeginForm("UpdateExRate", "Exchange", FormMethod.Post, new { @class = "form-horizontal" }))
+{
     @Html.ValidationSummary()
     <div class="popup-content">   
     <div class="control-group">
         <label for="Currency" class="control-label">@Lang.Currency</label>   
          <div class="controls" style="padding-top: 8px">
-            <strong>@ViewBag.CodeFrom</strong>
+            <strong>@Model.CodeFrom</strong>
         </div>
      </div>
      <div class="control-group">
-        <label for="Currency" class="control-label">@ViewBag.CodeTo @Lang.rate_</label>                       
+        <label for="Currency" class="control-label">@Model.CodeTo @Lang.rate_</label>                       
          <div class="controls">
-            <input type="text" id="rate" name="rate" value="@ViewBag.Rate" />
+            <input type="text" id="rate" name="rate" value="@Model.Rate" />
         </div>
      </div>
      </div>
       <div class="popup-footer">
         <div class="control-group">
         <div class="span1 offset1">
-            <input type="button" id="btnSubmit" class="btn" value="@Lang.Submit" />
+            <input type="submit" id="btnSubmit" class="btn" value="@Lang.Submit" />
         </div>
      </div>
      </div>
-     <input type="hidden" name="exchangeid" value="@ViewBag.ExchangeId" />
-     <input type="hidden" name="tocurrency" value="@ViewBag.CodeTo" />
+     <input type="hidden" name="exchangeid" value="@Model.ExchangeId" />
+    <input type="hidden" name="tocurrency" value="@Model.CodeTo" />
+    <input type="hidden" name="fromcurrency" value="@Model.CodeFrom" />
 
 }
 
 @section scripts{
-    <script type="text/javascript">
-        $(function(){
-            POPUP.init();
-        });
-    </script>
     <script src="@Url.Content("~/Scripts/site/Exchange.js")" type="text/javascript"></script> 
+
+    @if (ViewBag.Result != null)
+    {
+        var result = (ResultViewModel)ViewBag.Result;
+        <script type="text/javascript">
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.EXCHANGE.ReRenderAfterPaged);
+        </script>
+    }
 }

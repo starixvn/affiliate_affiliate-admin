@@ -19,7 +19,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Utilities;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Filter;
-    using Resources;
+    using Fanex.AffiliateAdmin.Models;
     using Services.Interface;
 
     /// <summary>
@@ -115,16 +115,16 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         [HttpGet]
-        public ActionResult UpdateExRate(int exchangeid, double rate, string codeFrom, string codeTo)
+        public ActionResult UpdateExRate(ExchangeRateViewModel model)
         {
-            ViewBag.ExchangeId = exchangeid;
-            ViewBag.Rate = rate;
-            ViewBag.CodeFrom = codeFrom;
-            ViewBag.CodeTo = codeTo;
-
-            return View();
+            return View(model);
         }
 
+        /// <summary>
+        /// Update exchange rate.
+        /// </summary>
+        /// <param name="criteria">Exchange rate criteria.</param>
+        /// <returns>Exchange rate view.</returns>
         [HttpPost]
         public ActionResult UpdateExRate(ExchangeRateCriteria criteria)
         {
@@ -132,7 +132,16 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.Ip = Remote.GetClientIPAddress();            
             _service.ExecuteOutput(criteria);
-            return Json(GetResultViewModel(criteria.ErrCode));
+
+            ViewBag.Result = GetResultViewModel(criteria.ErrCode);
+
+            return View(new ExchangeRateViewModel
+                {
+                    ExchangeId = criteria.ExchangeId,
+                    Rate = criteria.Rate,
+                    CodeFrom = criteria.FromCurrency,
+                    CodeTo = criteria.ToCurrency
+                });
         }
 
         public ActionResult CopyRate(ExchangeRateCriteria criteria)

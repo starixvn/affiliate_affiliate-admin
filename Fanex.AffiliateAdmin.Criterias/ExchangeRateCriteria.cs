@@ -30,6 +30,9 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public double Rate { get; set; }
 
+        [SpParam(Ignored = true)]
+        public string FromCurrency { get; set; }
+
         public string ToCurrency { get; set; }
 
         public string Ip { get; set; }

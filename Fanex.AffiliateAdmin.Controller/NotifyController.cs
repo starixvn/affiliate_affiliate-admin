@@ -40,7 +40,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Error page.
         /// </summary>
-        /// <returns>Return Error page.</returns>
+        /// <returns>Return error page.</returns>
         public ActionResult Error()
         {
             return View();

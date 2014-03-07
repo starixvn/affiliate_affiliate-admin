@@ -49,9 +49,15 @@
             });
 
             AFFILIATE.RefreshGridData = EXCHANGE.ReRenderAfterPaged;
+            
             EXCHANGE.ReRenderAfterPaged();
+            
             $('#btnSubmit').click(function () {
                 EXCHANGE.ReRenderAfterPaged();
+            });
+
+            $('.form-popup').submit(function () {
+                AFFILIATE.trimBeforeSubmit();
             });
 
             $("#gridId").parent().on("click", "#btnCopy", function () {
@@ -112,18 +118,13 @@
                 var url = AFFILIATE.getAbsoluteUrl("Exchange/UpdateExRate?");
                 AFFILIATE.openDialogUrl(url + "exchangeid=" + $this.attr("data-exchangeid") +
                     "&codefrom=" + $this.attr("data-codefrom") + "&codeto=" + $this.attr("data-codeto") +
-                    "&rate=" + parseFloat($this.attr("data-rate").replace(',', ''), 10), "Ex.Rate", { width: 400, height: 240 });
+                    "&rate=" + parseFloat($this.attr("data-rate").replace(/,/g, ''), 10), "Ex.Rate", { width: 450, height: 300 });
             });
         },
         checkAll: function (value) {
             $('#gridId input[type=checkbox].check').prop('checked', value);
         },
         ReRenderAfterPaged: function () {
-            // resize height of datagrid
-
-
-            //_gridOption = AFFILIATE.resizeHeightDataGrid(_gridOption);
-
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Exchange/GetList"),
                 type: 'post',
@@ -170,30 +171,30 @@
     };
 } (jQuery);
 
-/////////////////////////////////////////////////////////////////////////////////
-var POPUP = function ($) {
-    return {
-        init: function () {
-            $("#btnSubmit").click(function () {
-                
-                $.ajax({ url: AFFILIATE.getAbsoluteUrl("Exchange/UpdateExRate"),
-                    type: 'post',
-                    data: $("form input").serializeObject(),
-                    success: function (data) {
-                        AFFILIATE.PreHandleAjaxResult(data);
-                        
-                        if (!data.Success) {
-                            alert(data.Message);
-                        } else {
-                            if (parent.AFFILIATE.currentOpenDialog)
-                                parent.AFFILIATE.currentOpenDialog.dialog("close");
-                            if (window.self !== window.top && parent.EXCHANGE)
-                                parent.EXCHANGE.ReRenderAfterPaged();
-                        }
-                    }
-                });
-            });
-        }
-    }
-} (jQuery);
+///////////////////////////////////////////////////////////////////////////////////
+//var POPUP = function ($) {
+//    return {
+//        init: function () {
+//            $("#btnSubmit").click(function () {
+//                
+//                $.ajax({ url: AFFILIATE.getAbsoluteUrl("Exchange/UpdateExRate"),
+//                    type: 'post',
+//                    data: $("form input").serializeObject(),
+//                    success: function (data) {
+//                        AFFILIATE.PreHandleAjaxResult(data);
+//                        
+//                        if (!data.Success) {
+//                            alert(data.Message);
+//                        } else {
+//                            if (parent.AFFILIATE.currentOpenDialog)
+//                                parent.AFFILIATE.currentOpenDialog.dialog("close");
+//                            if (window.self !== window.top && parent.EXCHANGE)
+//                                parent.EXCHANGE.ReRenderAfterPaged();
+//                        }
+//                    }
+//                });
+//            });
+//        }
+//    }
+//} (jQuery);
 

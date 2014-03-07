@@ -112,7 +112,7 @@
                 var url = AFFILIATE.getAbsoluteUrl("Exchange/UpdateExRate?");
                 AFFILIATE.openDialogUrl(url + "exchangeid=" + $this.attr("data-exchangeid") +
                     "&codefrom=" + $this.attr("data-codefrom") + "&codeto=" + $this.attr("data-codeto") +
-                    "&rate=" + parseFloat($this.attr("data-rate")), "Ex.Rate", { width: 400, height: 240 });
+                    "&rate=" + parseFloat($this.attr("data-rate").replace(',', ''), 10), "Ex.Rate", { width: 400, height: 240 });
             });
         },
         checkAll: function (value) {

@@ -37,21 +37,25 @@ body{
             .setWidthHeight(400px, 240px);
 	        margin: auto;
 	        margin-top: -120px;
-	        padding: 24px 24px 0 24px;
+	        padding: 23px 24px 0 22px;
         }
 
 		.input-prepend{
+			margin-bottom: 10px;
+
 			input {
-				background-color: #f0eef1;
-				color: #b0b0b0;
+				background-color: transparent;
+				color: #a0a0a0;
 				font-weight: bold;
-				.border-radius(0);
-				padding: 12px;
-			}
-			
-			.add-on{
-				border-left : none;
-				padding: 12px;
+				.border-radius(2px);
+				height: 40px;
+				width: 290px;
+				padding-left: 13px;
+				padding-right: 51px;
+
+				&:hover, &:focus{
+					border-color: rgba(18, 124, 200, 0.6);
+				}
 			}
 		}
 

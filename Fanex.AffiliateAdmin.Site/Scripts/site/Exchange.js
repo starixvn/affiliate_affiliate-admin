@@ -19,7 +19,7 @@
 
             var exRateColumn = {
                 HeaderText: "{0} {1}".format(currency, MSG.Rate),
-                Width: 80,
+                Width: 120,
                 Code: currency,
                 Name: currency,
                 HeaderAlign: "center",
@@ -30,7 +30,7 @@
 
             var marketExRateColumn = {
                 HeaderText: "{0} {1}".format(currency, MSG.MarketRate),
-                Width: 80,
+                Width: 120,
                 Code: currency,
                 Name: "{0}_Market".format(currency),
                 HeaderAlign: "center",

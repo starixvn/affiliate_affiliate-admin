@@ -14,7 +14,6 @@ namespace Fanex.AffiliateAdmin.Models
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
-    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// Affiliate List View Model.

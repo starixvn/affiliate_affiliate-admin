@@ -15,7 +15,6 @@ namespace Fanex.AffiliateAdmin.Models
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configurations;
-    using DTO;
     using Resources;
 
     /// <summary>

@@ -11,7 +11,6 @@ namespace Fanex.AffiliateAdmin.Core.Session
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Web;
     using Fanex.AffiliateAdmin.DTO;
 

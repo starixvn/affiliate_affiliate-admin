@@ -8,7 +8,6 @@
 //------------------------------------------------------------------------------
 namespace Fanex.AffiliateAdmin.Criterias
 {
-    using Fanex.NAP.Framework.Data;
     using System;
 
     /// <summary>

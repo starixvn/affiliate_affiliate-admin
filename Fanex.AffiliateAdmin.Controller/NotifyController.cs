@@ -10,7 +10,6 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
-    using Core.Filter;
     using Core.Services;
 
     /// <summary>

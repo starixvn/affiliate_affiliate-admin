@@ -9,7 +9,6 @@
 
 namespace Fanex.AffiliateAdmin.Criterias
 {
-    using System.ComponentModel.DataAnnotations;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

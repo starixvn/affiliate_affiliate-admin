@@ -15,8 +15,6 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     using System.IO;
     using System.Resources;
     using System.Text;
-    using System.Web;
-    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.MailDeliver.MailClient.API;
     using RazorEngine;

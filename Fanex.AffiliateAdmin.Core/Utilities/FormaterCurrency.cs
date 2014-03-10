@@ -8,7 +8,6 @@
 // </history>
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
-    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading;

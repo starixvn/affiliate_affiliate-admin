@@ -6,7 +6,6 @@
 
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
 
     /// <summary>

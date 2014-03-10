@@ -9,7 +9,6 @@
 
 namespace Fanex.AffiliateAdmin.Site
 {
-    using System.Web;
     using System.Web.Mvc;
 
     /// <summary>

@@ -6,14 +6,10 @@
 
 namespace Fanex.AffiliateAdmin.Services.Impl
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
-    using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services.Interface;
     using Fanex.Common.Helper;
 

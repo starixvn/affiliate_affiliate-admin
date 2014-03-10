@@ -8,10 +8,6 @@
 // </history>
 namespace Fanex.AffiliateAdmin.Core.Enumerations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     public enum ErrorCode : int
     {

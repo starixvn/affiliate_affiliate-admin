@@ -32,14 +32,6 @@ namespace Fanex.AffiliateAdmin.Controller
             ////Set default language
             var langManager = new LanguageManager();
             langManager.SetCulture(AppSession.Language);
-
-            /*
-            // Set default currency
-            //if (CurrentSession != null)
-            //{
-            //    FormaterCurrency.SetDefaultCurrency(CurrentSession.Currency);
-            //}
-             */
         }
 
         protected ICurrentSession CurrentSession

@@ -12,8 +12,6 @@ namespace Fanex.AffiliateAdmin.Services.Impl
     using System.Collections.Generic;
     using Core.Services;
     using Criterias;
-    using DataAccess.Imp;
-    using DataAccess.Interface;
     using DTO;
     using Interface;
 

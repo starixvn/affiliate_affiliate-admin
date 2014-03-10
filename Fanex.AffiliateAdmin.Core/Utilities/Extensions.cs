@@ -12,7 +12,6 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Reflection;
     using Fanex.Common.Extensions;
 
     /// <summary>
@@ -84,6 +83,12 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
 
             // Return the first if there was a match.
             return attribs.Length > 0 ? attribs[0].Value : null;
+        }
+
+        public static TEnum ParseEnum<TEnum>(this string value)
+            where TEnum : struct
+        {
+            return (TEnum) Enum.Parse(typeof (TEnum), value);
         }
     }
 }

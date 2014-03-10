@@ -9,9 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Models
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
     using Resources;
 
     /// <summary>

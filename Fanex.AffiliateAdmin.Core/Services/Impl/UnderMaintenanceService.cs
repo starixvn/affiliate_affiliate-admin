@@ -11,10 +11,7 @@
 namespace Fanex.AffiliateAdmin.Core.Services
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.Caching;
-    using System.Text;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Sunplus.UMControllerLibrary;
 

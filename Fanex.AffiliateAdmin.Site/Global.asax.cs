@@ -29,7 +29,7 @@ namespace Fanex.AffiliateAdmin.Site
         /// </summary>
         protected void Application_Start()
         {
-            //// Start setting connect to DB
+            // Start setting connect to DB
             DbSettingProviderManager.Current.Start();
 
             AreaRegistration.RegisterAllAreas();
@@ -41,12 +41,6 @@ namespace Fanex.AffiliateAdmin.Site
             //// Register my types, for instance:
             SimpleInjectorInitializer.Initialize();
             ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
-            /*
-            // Customnize Razor ViewEngine -> for multiple layout
-            //ViewEngines.Engines.Clear();
-            //ViewEngines.Engines.Add(new CustomRazorViewEngine());
-            //ViewEngines.Engines.Add(new RazorViewEngine());
-             */
         }
 
         /// <summary>

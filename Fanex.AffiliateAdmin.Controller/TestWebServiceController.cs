@@ -10,15 +10,10 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Core.Filter;
-    using Fanex.AffiliateAdmin.Core.Utilities;
-    using Fanex.AffiliateAdmin.Criterias;
-    using Fanex.AffiliateAdmin.Models;
-    using Fanex.AffiliateAdmin.Resources;
-    using Fanex.AffiliateAdmin.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Services.Impl;
-    using System.Web;
 
     [FunctionAuth(Function = "[SystemSettings]")]
     public class TestWebServiceController : BaseController

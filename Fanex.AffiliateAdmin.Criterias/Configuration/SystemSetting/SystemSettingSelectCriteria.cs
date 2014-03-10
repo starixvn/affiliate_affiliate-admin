@@ -9,7 +9,6 @@
 
 namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
 {
-    using System;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

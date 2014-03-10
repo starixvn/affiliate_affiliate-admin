@@ -10,7 +10,6 @@ namespace Fanex.AffiliateAdmin.Core.Services
 {
     using System;
     using System.Collections.Generic;
-    using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;

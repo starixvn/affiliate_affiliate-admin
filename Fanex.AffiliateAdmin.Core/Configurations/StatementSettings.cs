@@ -8,7 +8,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 {
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Core.Enumerations;
     using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>

@@ -13,8 +13,6 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configurations;
-    using Core.Entities;
-    using Core.Enumerations;
     using Core.Filter;
     using Core.Session;
     using Core.Utilities;
@@ -62,7 +60,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult Language()
         {
             var languageList = AppSettings.BaseLanguages;
-            var selectedLang = languageList.Where(lang => lang.LanguageID == AppSession.Language).FirstOrDefault().LanguageName;
+            var selectedLang = languageList.FirstOrDefault(lang => lang.LanguageID == AppSession.Language).LanguageName;
             var sysDateTime = _homeService.GetSystemDateTime(new SystemDateTimeCriteria());
             return PartialView(Tuple.Create(languageList, selectedLang, sysDateTime));
         }

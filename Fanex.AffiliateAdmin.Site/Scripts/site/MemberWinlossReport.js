@@ -142,63 +142,65 @@
             }
         }
     }
-    function getFooterRows(subTotalData, totalRowData) {
+    function getFooterRows(subTotalData, totalRowData, hasShowSubTotalData) {
         var mergeCols = _gridOption.numberOfFrozenColumn - 1;
         var subTotalRowCount = subTotalData.length;
         var footerRows = [];
 
         var startIndex = ($("#GroupBy").val() == GROUP_BY_MEMBER) || ($("#GroupBy").val() != GROUP_BY_MEMBER && $('#BaseCurrency').val() == MEMBER_CURRENCY_OPTION) ? mergeCols + 1 : mergeCols + 2;
 
-        if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
-            var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
-            var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
-            subTotalStatus = subTotalRowCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
+        if (hasShowSubTotalData === true) {
+            if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
+                var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
+                var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
+                subTotalStatus = subTotalRowCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
 
-            $.each(subTotalData, function (idx, item) {
+                $.each(subTotalData, function (idx, item) {
 
+                    var columns = [];
+
+                    if (idx == 0) {
+                        columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });
+                    }
+
+                    if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
+                        columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 1 });
+                    } else {
+                        if ($('#BaseCurrency').val() != MEMBER_CURRENCY_OPTION) {
+                            columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 2 });
+                        } else {
+                            columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 1 });
+                        }
+                    }
+
+                    for (var i = startIndex; i < _gridOption.columns.length; i++) {
+                        var col = _gridOption.columns[i];
+                        columns.push({ Value: item[col.Name], Name: col.Name });
+                    }
+
+                    footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
+                });
+
+                // pseudo sub total row.
                 var columns = [];
-
-                if (idx == 0) {
-                    columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });
-                }
-
+                columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
                 if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
-                    columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 1 });
+                    columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 1 });
                 } else {
                     if ($('#BaseCurrency').val() != MEMBER_CURRENCY_OPTION) {
-                        columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 2 });
+                        columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 2 });
                     } else {
-                        columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 1 });
+                        columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 1 });
                     }
                 }
 
                 for (var i = startIndex; i < _gridOption.columns.length; i++) {
                     var col = _gridOption.columns[i];
-                    columns.push({ Value: item[col.Name], Name: col.Name });
+                    columns.push({ Value: '', Name: col.Name });
                 }
 
-                footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
-            });
-
-            // pseudo sub total row.
-            var columns = [];
-            columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
-            if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
-                columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 1 });
-            } else {
-                if ($('#BaseCurrency').val() != MEMBER_CURRENCY_OPTION) {
-                    columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 2 });
-                } else {
-                    columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 1 });
-                }
+                footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
             }
-
-            for (var i = startIndex; i < _gridOption.columns.length; i++) {
-                var col = _gridOption.columns[i];
-                columns.push({ Value: '', Name: col.Name });
-            }
-
-            footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
         }
 
         // Total row
@@ -351,7 +353,7 @@
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     _gridOption = $.extend(true, {}, sampleGridOption);
                     _commonColumnCount = _gridOption.columns.length;
                     initProductColumnsForGridOption();
@@ -368,7 +370,7 @@
 
                     _gridOption.titleInfo.text = MSG.MemberWinloss + ' [{0}]'.format(data.TotalItem);
                     _gridOption.bodyRows = AFFILIATE.genGridRows(data.List, _gridOption);
-                    _gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData);
+                    _gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasShowSubTotalData);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(_gridOption);
 

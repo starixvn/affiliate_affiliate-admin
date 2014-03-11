@@ -81,6 +81,11 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
 
+            var hasShowSubTotalRow = result.AffiliateList
+                                            .GroupBy(t => t.Currency)
+                                            .Select(t => new { Currency = t.Key, RowCount = t.Count() })
+                                            .Any(t => t.RowCount > 1);
+
             return Json(new
             {
                 List = result.AffiliateList,
@@ -92,7 +97,8 @@ namespace Fanex.AffiliateAdmin.Controller
                         Total = result.CurrencyList.ToList().Sum(t => t.Currency),
                         TotalMembers = result.CurrencyList.ToList().Sum(t => t.TotalMembers)
                     },
-                HideTotalRows = hideTotalRows,
+                HasShowSubTotalRow = hasShowSubTotalRow,
+                HideTotalRows = hideTotalRows,                
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows

@@ -105,10 +105,15 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var companyWinlossByGroups = FilterGroupDataCompanyWinloss(criteria, data);
 
+            var hasShowSubTotalRow = data.GroupBy(t => t.Currency)
+                                         .Select(t => new { Currency = t.Key, RowCount = t.Count() })
+                                         .Any(t => t.RowCount > 1);
+
             return Json(new
             {
                 Groups = companyWinlossByGroups.Where(t => !t.Level.Equals("All")),
                 TotalData = companyWinlossByGroups.FirstOrDefault(t => t.Level.Equals("All")),
+                HasShowSubTotalRow = hasShowSubTotalRow,
                 CurrentPage = 1,
                 ItemsPerPage = data.Count,
                 TotalItem = data.Count
@@ -208,11 +213,16 @@ namespace Fanex.AffiliateAdmin.Controller
 
             SetDataForTotalMemberWinloss(data, subTotalPlayerWinlosses, totalPlayerWinloss);
 
+            var hasShowSubTotalRow = data.GroupBy(t => t.Currency)
+                                           .Select(t => new { Currency = t.Key, RowCount = t.Count() })
+                                           .Any(t => t.RowCount > 1);
+
             return Json(new
             {
                 List = data,
                 TotalRowData = totalPlayerWinloss,
                 SubTotalData = subTotalPlayerWinlosses,
+                HasShowSubTotalRow = hasShowSubTotalRow,
                 CurrentPage = 1,
                 ItemsPerPage = data.Count,
                 TotalItem = data.Count
@@ -403,11 +413,16 @@ namespace Fanex.AffiliateAdmin.Controller
                 SetDataForTotalCommissions(data, subTotalCommissions, totalCommission);
             }
 
+            var hasShowSubTotalRow = data.GroupBy(t => t.Currency)
+                                           .Select(t => new { Currency = t.Key, RowCount = t.Count() })
+                                           .Any(t => t.RowCount > 1);
+
             return Json(new
             {
                 List = data,
                 TotalRowData = totalCommission,
                 SubTotalData = subTotalCommissions,
+                HasShowSubTotalRow = hasShowSubTotalRow,
                 CurrentPage = 1,
                 ItemsPerPage = data.Count,
                 TotalItem = data.Count

@@ -23,14 +23,16 @@
                     var year = parseInt(parts[2], 10);
 
                     // Check the ranges of month and year
-                    if (year < 1000 || year > 3000 || month == 0 || month > 12)
+                    if (year < 1000 || year > 3000 || month === 0 || month > 12) {
                         return false;
+                    }
 
                     var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
                     // Adjust for leap years
-                    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+                    if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)) {
                         monthLength[1] = 29;
+                    }
 
                     // Check the range of the day
                     return day > 0 && day <= monthLength[month - 1];
@@ -46,17 +48,19 @@
                     if (!isValidDate(inputDate)) {
                         errMsg = ApoRes.InvalidDate;
                     }
-                    if (errMsg.length == 0 && currentDate < minDate) {
+
+                    if (errMsg.length === 0 && currentDate < minDate) {
                         errMsg = ApoRes.DateIsOutOfRange;
                     }
-                    if (errMsg.length == 0 && maxDate < currentDate) {
+
+                    if (errMsg.length === 0 && maxDate < currentDate) {
                         errMsg = ApoRes.DateIsOutOfRange;
                     }
 
                     target.attr('title', errMsg).tooltip({
                         position: { my: "left top+2", at: "left bottom" },
                         tooltipClass: "warning"
-                    })
+                    });
 
                     if (errMsg.length > 0) {
                         target.tooltip('open');
@@ -104,13 +108,7 @@
                         onSelect: function (dateText, inst) {
                             $(this).attr('data-value', dateText);
                         }
-                    })
-						.blur(function () {
-						    //validateDate($this);
-						})
-						.parents('form').submit(function () {
-						    //return validateDate($this);
-						});
+                    });
 
                     $this.next('.icon-calendar').click(function () {
                         $this.datepicker("show");
@@ -160,9 +158,14 @@
         currentOpenDialog: null,
         openDialog: function (target, title, options) {
             options = options || {};
-            if (title) options.title = title;
 
-            if (target instanceof jQuery == false) target = $(target);
+            if (title) {
+                options.title = title;
+            }
+
+            if (target instanceof jQuery === false) {
+                target = $(target);
+            }
 
             AFFILIATE.currentOpenDialog = target.dialog($.extend({}, AFFILIATE.dialogOpt, options));
 
@@ -233,8 +236,7 @@
         showSuccessMsg: function (msg) {
             var msgWrp = $('.validation-summary-valid');
             msgWrp.show();
-            msgWrp.addClass('success')
-			        .find('li:first').html(msg).show();
+            msgWrp.addClass('success').find('li:first').html(msg).show();
         },
         hideMsg: function () {
             var msgWrp = $('.validation-summary-valid');
@@ -244,26 +246,28 @@
         },
         isValidDate: function (year, month, day) {
             var beginDate = new Date(parseFloat(year) + "/" + month + "/" + day);
-            if (beginDate.getYear() < 200)
-                var begYear = beginDate.getYear() + 1900
-            else var begYear = beginDate.getYear()
-            if (begYear != parseFloat(year) || beginDate.getMonth() + 1 != parseFloat(month) || beginDate.getDate() != parseFloat(day))
+            var begYear = beginDate.getYear() < 200 ? beginDate.getYear() + 1900 : beginDate.getYear();
+
+
+            if (begYear !== parseFloat(year) || beginDate.getMonth() + 1 !== parseFloat(month) || beginDate.getDate() !== parseFloat(day)) {
                 return false;
-            else return true;
+            }
+
+            return true;
         },
 
         //Clock 
         clock: function () {
             sysSecond++;
-            if (sysSecond == 60) {
+            if (sysSecond === 60) {
                 sysSecond = 0;
                 sysMinute++;
             }
-            if (sysMinute == 60) {
+            if (sysMinute === 60) {
                 sysMinute = 0;
                 sysHour++;
             }
-            if (sysHour == 24) {
+            if (sysHour === 24) {
                 sysHour = 0;
                 sysSecond = 0;
                 sysMinute = 0;
@@ -325,12 +329,13 @@
 
                         dataRow.push({
                             Name: colName,
-                            Value: (indexNumberColumn == j) ? rIndex + 1 : record[colName],
+                            Value: (indexNumberColumn === j) ? rIndex + 1 : record[colName],
                             CustomCellRender: function (cell, cellFormated) {
                                 if (col.Formatter) {
                                     return col.Formatter(rIndex, rowData, cell, cellFormated);
-                                } else
-                                    return cellFormated;
+                                }
+
+                                return cellFormated;
                             }
                         });
                     } ());
@@ -364,8 +369,9 @@
                             CustomCellRender: function (cell, cellFormated) {
                                 if (col.Formatter) {
                                     return col.Formatter(record, cell, cellFormated);
-                                } else
-                                    return cellFormated;
+                                }
+
+                                return cellFormated;
                             }
                         });
                     } ());
@@ -379,26 +385,32 @@
             }
             return bodyRows;
         },
-        
+
         showUpdateStatus: function (errCode, msg, callback, timeout) {
-            if (errCode == 0) {
+            if (errCode === 0) {
                 AFFILIATE.showSuccessMsg(msg);
-                if (callback)
+
+                if (callback) {
                     callback(0, parent.$("#itemperpage").val()); //Refresh parent page
+                }
+
                 setTimeout("AFFILIATE.refreshParent()", timeout || 3000);
             }
             else {
                 AFFILIATE.showErrorMsg(msg);
-                if(callback)
+
+                if (callback) {
                     callback();
+                }
             }
         },
         refreshParent: function () {
-            if (parent.AFFILIATE.currentOpenDialog)
+            if (parent.AFFILIATE.currentOpenDialog) {
                 parent.AFFILIATE.currentOpenDialog.dialog("close");
+            }
         },
         closeDialogNotMsg: function (errCode, msg) {
-            if (errCode != 0) {
+            if (errCode !== 0) {
                 AFFILIATE.showErrorMsg(msg);
             }
             else {
@@ -435,20 +447,20 @@
                 totalItem: data.TotalItem,
                 pagerSelectCallBack: callback
             };
-            
+
             var bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
             gridOption.bodyRows = bodyRows;
 
             gridObject.removeClass("noinfo").fanexGrid(gridOption);
 
-            if (data.List.length == 0) {
+            if (data.List.length === 0) {
                 gridObject.addClass("noinfo").html(Lang.NoDataInfo);
             }
 
             //AFFILIATE.updateSearchPanel(gridObject);
 
         },
-        updateSearchPanel: function(gridObject) {
+        updateSearchPanel: function (gridObject) {
             $('.search-panel').width(gridObject.width());
         },
         resizeHeightDataGrid: function (gridOption) {
@@ -462,10 +474,9 @@
             return gridOption;
         },
         setWidthOfFormSearch: function () {
-            var search_panel = $('.search-panel'),
-                dataGrid = $('.freegrid');
+            var search_panel = $('.search-panel'), dataGrid = $('.freegrid');
             // Set default width for form search with width of datagrid
-            if (search_panel != undefined && dataGrid != undefined) {
+            if (search_panel !== undefined && dataGrid !== undefined) {
                 if (dataGrid.width() > search_panel.width()) {
                     search_panel.width(dataGrid.width());
                 }
@@ -502,7 +513,7 @@
             */
             var obj1 = moment(date1);
             var obj2 = moment(date2);
-            
+
             if (obj1.year() < obj2.year()) {
                 return -1;
             } else if (obj1.year() === obj2.year()) {
@@ -524,7 +535,7 @@
             }
         },
         resetToggleIndicator: function (gridOption) {
-            var isCollapseStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS;
+            var isCollapseStatus = subTotalStatus === COLLAPSE_SUBTOTAL_STATUS;
             var width = 0;
 
             if (isCollapseStatus) {
@@ -538,23 +549,23 @@
                 width = $('.real-subtotal .cell-subtotal').width();
             }
 
-            if ($('.real-cell').find('.toggle-indicator').length == 0) {
+            if ($('.real-cell').find('.toggle-indicator').length === 0) {
                 $('.real-cell').prepend("<div class='toggle-indicator collapse' title='{0}'></div>".format(MSG.ToggleSubTotal));
             }
 
-            if ($('.pseudo-cell').find('.toggle-indicator').length == 0) {
+            if ($('.pseudo-cell').find('.toggle-indicator').length === 0) {
                 $('.pseudo-cell').prepend("<div class='toggle-indicator expand' title='{0}'></div>".format(MSG.ToggleSubTotal));
             }
 
             $('.toggle-indicator').css('left', width / 2 - 15 + 'px');
 
             $('#gridId').fanexGrid("resizeGrid", gridOption);
-        }, 
-        PreHandleAjaxResult: function(data) {
-            if (typeof data == "object") {
+        },
+        PreHandleAjaxResult: function (data) {
+            if (typeof data === "object") {
                 if (data.hasOwnProperty("Error") && data.hasOwnProperty("LogOnUrl")) {
                     window.top.location.href = AFFILIATE.getAbsoluteUrl(data.LogOnUrl);
-                    
+
                 }
             }
         }
@@ -573,12 +584,12 @@ $(function () {
     });
 
     $(".ic-open-window").click(function () {
-        if (parent.AFFMASTER != undefined) {
+        if (parent.AFFMASTER !== undefined) {
             parent.AFFMASTER.openNewWindow(location.href);
         }
     });
     
-    if ($(".ic-open-window") && parent.AFFMASTER == undefined) {
+    if ($(".ic-open-window") && parent.AFFMASTER === undefined) {
         $(".ic-open-window").hide();
     }
 
@@ -618,7 +629,7 @@ $(function () {
     // Resize browser when datagrid has the horizontal scroll
     //    $(window).resize(function () {
     //        var searchPanel = $('.search-panel');
-    //        if (searchPanel != undefined) {
+    //        if (searchPanel !== undefined) {
     //            if ($(window).width() > AFFILIATE.MIN_CONTENT_WIDTH) {
     //                searchPanel.width($('.freegrid').width());
     //            } else {
@@ -642,6 +653,7 @@ String.prototype.removeLast = function(count) {
         count = 1;
     return this.substring(0,this.length - count);    
 };
+
 if (!Array.prototype.indexOf) {
     Array.prototype.indexOf = function (obj, start) {
         for (var i = (start || 0), j = this.length; i < j; i++) {
@@ -656,7 +668,7 @@ if (!String.prototype.format) {
     String.prototype.format = function () {
         var args = arguments;
         return this.replace(/{(\d+)}/g, function (match, number) {
-            return typeof args[number] != 'undefined'
+            return typeof args[number] !== 'undefined'
         ? args[number]
         : match
       ;
@@ -729,13 +741,15 @@ $.fn.serializeData = function () {
         var name = this.id || this.name;
         var value = $(this).is(':checkbox') ? this.checked : $(this).val();
 
-        if (value instanceof Array)
+        if (value instanceof Array) {
             value = value.toString();
-        
-        if (value!=null && value != "")
+        }
+
+        if (value !== null && value !== "") {
             o[name] = typeof value === "string" ? value.trim() : value;
+        }
     });
-    
+
     return o;
 };
 
@@ -768,7 +782,7 @@ $.fn.createDropdownchecklist = function () {
                     minWidth: 145,
                     multiple: true,
                     checkAllText: 'All',
-                    uncheckAllText: 'Uncheck',
+                    uncheckAllText: 'Uncheck'
                 });
             } else {
                 $el.multiselect();
@@ -823,7 +837,7 @@ $.fn.createSearchPanel = function () {
 $.fn.pVal = function() {
     var $this = $(this),
         val = $this.eq(0).val();
-    if (val == $this.attr('placeholder'))
+    if (val === $this.attr('placeholder'))
         return '';
     else
         return val;

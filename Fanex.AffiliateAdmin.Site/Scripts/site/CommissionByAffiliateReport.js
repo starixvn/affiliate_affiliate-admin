@@ -76,13 +76,13 @@
         }
     }
 
-    function getFooterRows(gridOption, subTotalData, totalRowData, totalItem) {
+    function getFooterRows(gridOption, subTotalData, totalRowData, totalItem, hasShowSubTotalRow) {
         var mergeCols = 2;
         var subTotalRowCount = subTotalData.length;
 
         var footerRows = [];
 
-        if (totalItem > 1) {
+        if (hasShowSubTotalRow === true && totalItem > 1) {
             if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].Currency != System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
                 $.each(subTotalData, function(idx, item) {
 
@@ -308,7 +308,7 @@
                     };
 
                     gridOption.titleInfo.text = MSG.CommissionTitle + ' [{0}]'.format(data.TotalItem);
-                    gridOption.footerRows = getFooterRows(gridOption, data.SubTotalData, data.TotalRowData, data.TotalItem);
+                    gridOption.footerRows = getFooterRows(gridOption, data.SubTotalData, data.TotalRowData, data.TotalItem, data.hasShowSubTotalData);
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);

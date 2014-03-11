@@ -52,7 +52,7 @@
                 Formatter: function (rIndex, record, cell, cellFormated) {
                     var currentValue = record.CashbackAmount;
 
-                    if (isNaN(currentValue) || currentValue == '' || currentValue == null)
+                    if (isNaN(currentValue) || currentValue === '' || currentValue === null)
                         return '';
                     
                     if (currentValue < 0) {

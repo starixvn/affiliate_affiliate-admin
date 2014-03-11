@@ -16,6 +16,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
+    <JSLintSkip>\Scripts\site\</JSLintSkip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

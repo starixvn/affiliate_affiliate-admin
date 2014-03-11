@@ -6,7 +6,6 @@
 
 namespace Fanex.AffiliateAdmin.DTO
 {
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

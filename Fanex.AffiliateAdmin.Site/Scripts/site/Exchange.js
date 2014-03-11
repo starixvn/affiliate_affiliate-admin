@@ -49,16 +49,23 @@
             });
 
             AFFILIATE.RefreshGridData = EXCHANGE.ReRenderAfterPaged;
-            
-            EXCHANGE.ReRenderAfterPaged();
-            
-            $('#btnSubmit').click(function () {
+
+            if ($("#gridId").length > 0) {
                 EXCHANGE.ReRenderAfterPaged();
-            });
+
+                $('#btnSubmit').click(function () {
+                    EXCHANGE.ReRenderAfterPaged();
+                });
+            }
 
             $('.form-popup').submit(function () {
                 AFFILIATE.trimBeforeSubmit();
             });
+
+            if ($('#rate').length > 0) {
+                $("#rate").keyup(function () {
+                }).ForceDecimalOnly();
+            }
 
             $("#gridId").parent().on("click", "#btnCopy", function () {
 
@@ -171,30 +178,6 @@
     };
 } (jQuery);
 
-///////////////////////////////////////////////////////////////////////////////////
-//var POPUP = function ($) {
-//    return {
-//        init: function () {
-//            $("#btnSubmit").click(function () {
-//                
-//                $.ajax({ url: AFFILIATE.getAbsoluteUrl("Exchange/UpdateExRate"),
-//                    type: 'post',
-//                    data: $("form input").serializeObject(),
-//                    success: function (data) {
-//                        AFFILIATE.PreHandleAjaxResult(data);
-//                        
-//                        if (!data.Success) {
-//                            alert(data.Message);
-//                        } else {
-//                            if (parent.AFFILIATE.currentOpenDialog)
-//                                parent.AFFILIATE.currentOpenDialog.dialog("close");
-//                            if (window.self !== window.top && parent.EXCHANGE)
-//                                parent.EXCHANGE.ReRenderAfterPaged();
-//                        }
-//                    }
-//                });
-//            });
-//        }
-//    }
-//} (jQuery);
-
+$(function () {
+    EXCHANGE.init();
+});

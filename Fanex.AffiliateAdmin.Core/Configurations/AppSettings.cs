@@ -448,6 +448,14 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
+        public static int TransferDay
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("TransferDay"));
+            }
+        }
+
         public static bool TestMonthlyTransfer
         {
             get

@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="Imp\AccountDataAccess.cs" />
     <Compile Include="Imp\AffiliateDataAccess.cs" />
-    <Compile Include="Imp\GroupDataAccess.cs" />
     <Compile Include="Imp\MessageDataAccess.cs" />
     <Compile Include="Interface\IGroupDataAccess.cs" />
     <Compile Include="Interface\IAffiliateDataAccess.cs" />

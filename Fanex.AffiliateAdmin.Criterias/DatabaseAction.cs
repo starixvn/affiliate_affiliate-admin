@@ -9,7 +9,6 @@
 
 namespace Fanex.AffiliateAdmin.Criterias
 {
-
     public enum DatabaseAction : int
     {
         /// <summary>

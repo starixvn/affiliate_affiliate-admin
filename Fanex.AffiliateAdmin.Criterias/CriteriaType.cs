@@ -9,7 +9,6 @@
 
 namespace Fanex.AffiliateAdmin.Criterias
 {
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

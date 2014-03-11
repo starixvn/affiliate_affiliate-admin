@@ -6,7 +6,6 @@
 
 namespace Fanex.AffiliateAdmin.Core.Enumerations
 {
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

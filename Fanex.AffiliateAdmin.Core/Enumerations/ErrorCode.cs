@@ -8,7 +8,6 @@
 // </history>
 namespace Fanex.AffiliateAdmin.Core.Enumerations
 {
-
     public enum ErrorCode : int
     {
         /// <summary>

@@ -64,6 +64,7 @@ namespace Fanex.AffiliateAdmin.Services.Impl
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
+
             return _accountDataAccess.Login(criteria);
         }
 

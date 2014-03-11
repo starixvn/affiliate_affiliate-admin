@@ -32,7 +32,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             dictionary.Add(name, value);
             return dictionary;
         }
-        
+
         public static IDictionary<string, object> ToDictionary(this object obj)
         {
             IDictionary<string, object> result = new Dictionary<string, object>();
@@ -83,12 +83,6 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
 
             // Return the first if there was a match.
             return attribs.Length > 0 ? attribs[0].Value : null;
-        }
-
-        public static TEnum ParseEnum<TEnum>(this string value)
-            where TEnum : struct
-        {
-            return (TEnum) Enum.Parse(typeof (TEnum), value);
         }
     }
 }

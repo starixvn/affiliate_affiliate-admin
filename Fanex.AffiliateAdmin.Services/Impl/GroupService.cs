@@ -21,36 +21,6 @@ namespace Fanex.AffiliateAdmin.Services.Impl
     /// </summary>
     public class GroupService : QueryService, IGroupService
     {
-        #region Fields
-
-        /// <summary>
-        /// Define Account DataAccess.
-        /// </summary>
-        private readonly IGroupDataAccess _groupDataAccess;
-
-        #endregion Fields
-
-        #region Constructor
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GroupService" /> class.
-        /// </summary>
-        public GroupService()
-            : this(null)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GroupService" /> class.
-        /// </summary>
-        /// <param name="groupDataAccess">Group data access.</param>
-        private GroupService(IGroupDataAccess groupDataAccess)
-        {
-            _groupDataAccess = groupDataAccess ?? new GroupDataAccess();
-        }
-
-        #endregion Constructor
-
         /// <summary>
         /// Get List Group.
         /// </summary>

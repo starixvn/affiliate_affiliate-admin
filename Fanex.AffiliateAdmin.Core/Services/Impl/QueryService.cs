@@ -36,20 +36,12 @@ namespace Fanex.AffiliateAdmin.Core.Services
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            try
+            if (criteria.IsValid())
             {
-                if (criteria.IsValid())
-                {
-                    return _repository.Fetch<T>(criteria);
-                }
+                return _repository.Fetch<T>(criteria);
+            }
 
-                return new List<T>();
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-                return null;
-            }
+            return new List<T>();
         }
 
         /// <summary>
@@ -63,28 +55,20 @@ namespace Fanex.AffiliateAdmin.Core.Services
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            try
+            if (criteria.IsValid())
             {
-                if (criteria.IsValid())
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                    {
-                        var param = criteria.GetSpParams();
-                        var list = objectDb.Query<T>(param);
-                        totalPages = Convert.ToInt32(param["totalpages"]);
-                        return list;
-                    }
+                    var param = criteria.GetSpParams();
+                    var list = objectDb.Query<T>(param);
+                    totalPages = Convert.ToInt32(param["totalpages"]);
+                    return list;
                 }
+            }
 
-                return new List<T>();
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-                throw;
-            }
+            return new List<T>();
         }
-     
+
         /// <summary>
         /// Get the list of found entities and output values.
         /// </summary>
@@ -105,19 +89,19 @@ namespace Fanex.AffiliateAdmin.Core.Services
                     var properties = criteria.GetType().GetProperties();
 
                     foreach (string outputParam in outputParams.Keys)
-                    {                                                
+                    {
                         foreach (var property in properties)
                         {
                             if (property.CanWrite && property.Name.ToLower() == outputParam)
-                            {                                
-                                property.SetValue(criteria, param[outputParam], null);                                
+                            {
+                                property.SetValue(criteria, param[outputParam], null);
                             }
                         }
                     }
                 }
 
                 return list;
-            }            
+            }
         }
 
         /// <summary>
@@ -130,25 +114,17 @@ namespace Fanex.AffiliateAdmin.Core.Services
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            try
+            if (criteria.IsValid())
             {
-                if (criteria.IsValid())
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                    {
-                        var param = criteria.GetSpParams();
-                        var result = objectDb.QueryEntity<T>(param);
-                        return result;
-                    }
+                    var param = criteria.GetSpParams();
+                    var result = objectDb.QueryEntity<T>(param);
+                    return result;
                 }
+            }
 
-                return (T)new object();
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-                throw;
-            }
+            return (T)new object();
         }
 
         /// <summary>

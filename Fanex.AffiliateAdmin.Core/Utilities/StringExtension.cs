@@ -6,6 +6,7 @@
 
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
+    using System;
 
     /// <summary>
     /// TODO: Update summary.
@@ -28,6 +29,18 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             {
                 return value.Substring(0, length) + "...";
             }
+        }
+
+        /// <summary>
+        /// Convert string into enumerator.
+        /// </summary>
+        /// <typeparam name="TEnum">Template type.</typeparam>
+        /// <param name="value">String value.</param>
+        /// <returns>Enumerator type.</returns>
+        public static TEnum ParseEnum<TEnum>(this string value)
+            where TEnum : struct
+        {
+            return (TEnum)Enum.Parse(typeof(TEnum), value);
         }
     }
 }

@@ -21,9 +21,8 @@
     }
 
     var isMonthlyTransfer = (bool)ViewBag.IsMonthlyTransfer;
-    const int transferDay = 8;
     var today = DateTime.Now;
-    var isTransferDay = today.Date.Day == transferDay;
+    var isTransferDay = today.Date.Day ==  AppSettings.TransferDay;
     var transferBtn = AppSettings.TestMonthlyTransfer || (hasWriteMonthlyTransfer && isTransferDay && !isMonthlyTransfer) ? string.Format("<input type='button' value='{0}' id='transferAll' style='line-height: normal; top: -1px; left: 0;'>", Lang.TransferAll) : string.Empty;
 }
 

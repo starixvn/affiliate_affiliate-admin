@@ -35,15 +35,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\_Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountCriteria.cs" />
@@ -176,10 +170,6 @@
     <Compile Include="ViewLogListCriteria.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fanex.AffiliateAdmin.DTO\Fanex.AffiliateAdmin.DTO.csproj">
-      <Project>{124861EC-18BE-416D-8DD1-360A51613C76}</Project>
-      <Name>Fanex.AffiliateAdmin.DTO</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Resources\Fanex.AffiliateAdmin.Resources.csproj">
       <Project>{791B3B16-82E3-43E7-A1F9-9EE3DD81C290}</Project>
       <Name>Fanex.AffiliateAdmin.Resources</Name>

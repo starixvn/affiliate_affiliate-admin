@@ -34,24 +34,14 @@
     <Reference Include="Fanex.Common">
       <HintPath>..\_Dependencies\Fanex.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_Dependencies\Fanex.Logging.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\_Dependencies\Fanex.NAP.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="RazorEngine">
-      <HintPath>..\_Dependencies\RazorEngine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>

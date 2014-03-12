@@ -51,23 +51,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\_Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="IBCFile">
-      <HintPath>..\_Dependencies\IBCFile.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
-      <HintPath>..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
-      <HintPath>..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\_Dependencies\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="RazorEngine">
       <HintPath>..\_Dependencies\RazorEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="SPSRemoting">
-      <HintPath>..\_Dependencies\SPSRemoting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -79,7 +64,6 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />

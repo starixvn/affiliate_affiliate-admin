@@ -179,7 +179,7 @@ report
                     }
                  },
                 { HeaderText: "@Lang.Currency", Width: 70, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "@Lang.Member", Width: 70, Name: "PlayerUsername", HeaderAlign: "center", CellAlign: "left",
+                { HeaderText: "@Lang.Member", Width: 100, Name: "PlayerUsername", HeaderAlign: "center", CellAlign: "left",
                     Formatter: function(rIndex, record, cell, cellFormated) {
                         var url = AFFILIATE.getAbsoluteUrl("Affiliate/MemberList?affName={0}&memberName={1}".format(record.Username, record.PlayerUsername));
                         return "<a href='{0}'>{1}</a>".format(url, record.PlayerUsername);

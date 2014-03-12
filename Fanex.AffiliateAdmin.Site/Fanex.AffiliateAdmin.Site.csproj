@@ -336,6 +336,30 @@
     <Content Include="Content\_Sites\athena\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\athena\images\notify.png" />
     <Content Include="Content\_Sites\athena\images\panel.png" />
+    <Content Include="Content\_Sites\idlivebet365\images\banner_top.png" />
+    <Content Include="Content\_Sites\idlivebet365\images\best-browsers.png" />
+    <Content Include="Content\_Sites\idlivebet365\images\bodybg.jpg" />
+    <Content Include="Content\_Sites\idlivebet365\images\btbg.png" />
+    <Content Include="Content\_Sites\idlivebet365\images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\idlivebet365\images\emailBg.jpg" />
+    <Content Include="Content\_Sites\idlivebet365\images\headerbg.jpg" />
+    <Content Include="Content\_Sites\idlivebet365\images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\idlivebet365\images\logo.jpg" />
+    <Content Include="Content\_Sites\idlivebet365\images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\idlivebet365\images\notify.png" />
+    <Content Include="Content\_Sites\idlivebet365\images\panel.png" />
+    <Content Include="Content\_Sites\mymbet\images\banner_top.png" />
+    <Content Include="Content\_Sites\mymbet\images\best-browsers.png" />
+    <Content Include="Content\_Sites\mymbet\images\bodybg.jpg" />
+    <Content Include="Content\_Sites\mymbet\images\btbg.png" />
+    <Content Include="Content\_Sites\mymbet\images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\mymbet\images\emailBg.jpg" />
+    <Content Include="Content\_Sites\mymbet\images\headerbg.jpg" />
+    <Content Include="Content\_Sites\mymbet\images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\mymbet\images\logo.jpg" />
+    <Content Include="Content\_Sites\mymbet\images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\mymbet\images\notify.png" />
+    <Content Include="Content\_Sites\mymbet\images\panel.png" />
     <Content Include="Content\_Sites\i668bet\images\banner_top.png" />
     <Content Include="Content\_Sites\i668bet\images\best-browsers.png" />
     <Content Include="Content\_Sites\i668bet\images\bodybg.jpg" />
@@ -516,6 +540,10 @@
     <Content Include="Views\Domain\DomainControlAdd.cshtml" />
     <None Include="Content\_Sites\athena\Login.less" />
     <None Include="Content\_Sites\athena\Notify.less" />
+    <Content Include="Content\_Sites\mymbet\Login.less" />
+    <Content Include="Content\_Sites\mymbet\Notify.less" />
+    <Content Include="Content\_Sites\idlivebet365\Login.less" />
+    <Content Include="Content\_Sites\idlivebet365\Notify.less" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

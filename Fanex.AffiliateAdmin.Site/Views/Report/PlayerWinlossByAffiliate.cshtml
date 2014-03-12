@@ -138,7 +138,7 @@
                 { HeaderText: "@Lang.Date", Width: 80, Name: "WinlostDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
                 { HeaderText: "@Lang.Affiliate", Width: 70, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.Currency", Width: 70, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "@Lang.Member", Width: 70, Name: "PlayerUsername", HeaderAlign: "center", CellAlign: "left",
+                { HeaderText: "@Lang.Member", Width: 100, Name: "PlayerUsername", HeaderAlign: "center", CellAlign: "left",
                     Formatter: function(rIndex, record, cell, cellFormated) {
                         var url = AFFILIATE.getAbsoluteUrl("Affiliate/MemberListByAffiliate?Username={0}".format(record.PlayerUsername));
                         return "<a href='{0}'>{1}</a>".format(url, record.PlayerUsername);

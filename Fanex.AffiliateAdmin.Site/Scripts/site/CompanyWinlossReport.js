@@ -205,7 +205,8 @@
                     bodyRows.push({ Columns: columns });
                 });
 
-                if (memberCurrencyCount > _currencyThreshold || (companyWinlossInMemberCurrencies[0].Currency !== System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
+                if (groups.length > 1 && 
+                    (memberCurrencyCount > _currencyThreshold || (companyWinlossInMemberCurrencies[0].Currency !== System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION))) {
                     var totalColums = [];
                     totalColums.push({ Value: MSG.SubTotalIn.format(System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
                     var startIndex = mergeCols;

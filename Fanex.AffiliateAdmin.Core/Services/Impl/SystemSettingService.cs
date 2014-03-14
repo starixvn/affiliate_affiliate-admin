@@ -282,7 +282,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
             return this.GetData<AffType>(criteria);
         }
 
-        public IEnumerable<Currency> GetAffSystemSupportedCurrencyList(AccountCriteria criteria)
+        public IEnumerable<Currency> GetGrantedAffiliateCurrencyList(AccountCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             criteria.Type = "SystemCurrency";

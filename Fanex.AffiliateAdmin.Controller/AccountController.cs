@@ -95,7 +95,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         {
                             CustID = user.CustID
                         }).ToList(),
-                        CurrencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new AccountCriteria
+                        CurrencyList = _systemSettingService.GetGrantedAffiliateCurrencyList(new AccountCriteria
                         {
                             UserId = user.CustID
                         }).ToList()

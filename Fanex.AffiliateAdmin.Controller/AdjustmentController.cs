@@ -8,8 +8,8 @@ namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
@@ -57,7 +57,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 AffName = this.CurrentSession.Affiliate.Username,
                 Adjustment = adjustment,
                 Description = string.Empty,
-                Currency = AppSettings.AffSystemSupportedCurrencies.FirstOrDefault(c => c.CurrencyCode == CurrentSession.Affiliate.Currency)
+                Currency = SessionManager.CurrentSession.CurrencyList.FirstOrDefault(c => c.CurrencyCode == CurrentSession.Affiliate.Currency)
             });
         }
 

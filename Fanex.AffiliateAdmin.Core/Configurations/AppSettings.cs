@@ -39,7 +39,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         private static IEnumerable<Language> _memberSiteSupportedLanguage;
         private static IEnumerable<Exchange> _affiliateCurrencies;
         private static IEnumerable<AffType> _affType;
-        private static IEnumerable<Currency> _affSystemSupportedCurrencies;
         private static IEnumerable<Currency> _affSystemAllSupportedCurrencies;
         private static IEnumerable<Currency> _playerCurrencies;
         private static DateTime _systemStartDate;
@@ -60,6 +59,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         static AppSettings()
         {
             _SystemSetting = new SystemSettingService();
+
             var licensee = _SystemSetting.GetSystemSetting(new SystemSettingDetailCriteria()
             {
                 Name = "LicenseeID",
@@ -75,6 +75,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             {
                 Environment = Environment
             });
+
             _affiliateCurrencies = _SystemSetting.GetExchangeList(new ExchangeCriteria { Type = "Affiliate" });
             _affType = _SystemSetting.GetAffTypeList(new AffTypeCriteria());
             var systemSetting = _SystemSetting.GetSystemSetting(new SystemSettingDetailCriteria
@@ -125,21 +126,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             get
             {
                 return _systemStartDate;
-            }
-        }
-
-        public static IEnumerable<Currency> AffSystemSupportedCurrencies
-        {
-            get
-            {
-                if (_affSystemSupportedCurrencies == null)
-                {
-                    var criteria = new AccountCriteria();
-                    criteria.UserId = SessionManager.CurrentSession.CustID;
-                    _affSystemSupportedCurrencies = _SystemSetting.GetAffSystemSupportedCurrencyList(criteria);                    
-                }
-
-                return _affSystemSupportedCurrencies;
             }
         }
 

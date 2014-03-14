@@ -149,7 +149,7 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Currency list.</returns>
-        IEnumerable<Currency> GetAffSystemSupportedCurrencyList(AccountCriteria criteria);
+        IEnumerable<Currency> GetGrantedAffiliateCurrencyList(AccountCriteria criteria);
 
         /// <summary>
         /// Get system supported currencies (without currency permission).

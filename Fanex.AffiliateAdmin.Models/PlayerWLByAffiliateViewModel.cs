@@ -14,12 +14,20 @@ namespace Fanex.AffiliateAdmin.Models
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Options;
+    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// Affiliate List View Model.
     /// </summary>
     public class PlayerWLByAffiliateViewModel
     {
+        private readonly IList<SelectListItem> _groupByList = new List<SelectListItem> 
+        {
+                new SelectListItem { Text = Lang.Date, Value = "0" },
+                new SelectListItem { Text = Lang.Month, Value = "1" }
+        };
+
         public PlayerWLByAffiliateViewModel()
         {
             ExcludeTest = true;
@@ -59,7 +67,7 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                return new SelectList(AppSettings.GroupBysDateMember, "Value", "Text", GroupBy.ToString());
+                return new SelectList(_groupByList, "Value", "Text", GroupBy.ToString());
             }
         }
 
@@ -67,7 +75,7 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                return new SelectList(AppSettings.DrawFilters, "Value", "Text", DrawFilter.ToString());
+                return new SelectList(OptionManager.DrawFilters, "Value", "Text", DrawFilter.ToString());
             }
         }
 

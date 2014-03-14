@@ -9,8 +9,11 @@
 
 namespace Fanex.AffiliateAdmin.Models
 {
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Options;
+    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// Affiliate List View Model.
@@ -18,6 +21,12 @@ namespace Fanex.AffiliateAdmin.Models
     public class CompanyWinlossViewModel
     {
         #region Fields
+
+        private readonly IList<SelectListItem> _groupByList = new List<SelectListItem> 
+        {
+                new SelectListItem { Text = Lang.Date, Value = "0" },
+                new SelectListItem { Text = Lang.Month, Value = "1" }
+        };
 
         private MultiSelectList _commissionGroupOptionList;
 
@@ -91,13 +100,13 @@ namespace Fanex.AffiliateAdmin.Models
             {
                 return new MultiSelectList(AppSettings.PlayerCurrencies, "CurrencyID", "CurrencyCode");
             }
-        } 
+        }
 
         public SelectList GroupByOptionList
         {
             get
             {
-                return new SelectList(AppSettings.GroupByDateMonth, "Value", "Text", DateOption.ToString());
+                return new SelectList(_groupByList, "Value", "Text", DateOption.ToString());
             }
         }
 
@@ -105,7 +114,7 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                return new SelectList(AppSettings.DrawFilters, "Value", "Text", DrawFilter.ToString());
+                return new SelectList(OptionManager.DrawFilters, "Value", "Text", DrawFilter.ToString());
             }
         }
 

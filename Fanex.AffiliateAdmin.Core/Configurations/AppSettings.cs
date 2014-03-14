@@ -42,13 +42,8 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         private static IEnumerable<Currency> _affSystemAllSupportedCurrencies;
         private static IEnumerable<Currency> _playerCurrencies;
         private static DateTime _systemStartDate;
-        private static List<SelectListItem> _affiliateStatuses;
-        private static List<SelectListItem> _drawFilters;
         private static List<SelectListItem> _baseCurrencyInAffiliate;
         private static List<SelectListItem> _baseCurrencyInMember;
-        private static List<SelectListItem> _dateOptions;
-        private static List<SelectListItem> _groupBys;
-        private static List<SelectListItem> _groupBys2;
         private static IEnumerable<DeductionType> _deductionTypes;
         private static IEnumerable<Product> _products;
         private static Exchange _baseExchange;
@@ -154,44 +149,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        public static List<SelectListItem> AffiliateStatuses
-        {
-            get
-            {
-                if (_affiliateStatuses == null)
-                {
-                    _affiliateStatuses = new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "approved", Text = "Approved" },
-                        new SelectListItem { Value = "pending", Text = "Pending" },
-                        new SelectListItem { Value = "disapproved", Text = "Disapproved" },
-                        new SelectListItem { Value = "closed", Text = "Closed" },
-                        new SelectListItem { Value = "lockedOut", Text = "Locked" }
-                    };
-                }
-
-                return _affiliateStatuses;
-            }
-        }
-
-        public static List<SelectListItem> DrawFilters
-        {
-            get
-            {
-                if (_drawFilters == null)
-                {
-                    _drawFilters = new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "0", Text = "Normal" },
-                        new SelectListItem { Value = "1", Text = "No Draw" },
-                        new SelectListItem { Value = "2", Text = "No Draw For Turnover Only" }
-                    };
-                }
-
-                return _drawFilters;
-            }
-        }
-
         public static List<SelectListItem> BaseCurrencyInAffiliate
         {
             get
@@ -239,86 +196,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                 }
 
                 return _baseCurrencyInMember;
-            }
-        }
-
-        public static List<SelectListItem> DateOptions
-        {
-            get
-            {
-                if (_dateOptions == null)
-                {
-                    _dateOptions = new List<SelectListItem> 
-                    {
-                        new SelectListItem 
-                        {
-                            Text = Lang.None,
-                            Value = "0"
-                        },
-                        new SelectListItem
-                        {
-                            Text = Lang.RegisterDate,
-                            Value = "1"
-                        },
-                        new SelectListItem
-                        {
-                            Text = Lang.ApprovalDate,
-                            Value = "2"
-                        }
-                    };
-                }
-
-                return _dateOptions;
-            }
-        }
-
-        public static List<SelectListItem> GroupByDateMonth
-        {
-            get
-            {
-                if (_groupBys == null)
-                {
-                    _groupBys = new List<SelectListItem> 
-                    {
-                        new SelectListItem 
-                        {
-                            Text = Lang.Date,
-                            Value = "0"
-                        },
-                        new SelectListItem
-                        {
-                            Text = Lang.Month,
-                            Value = "1"
-                        }
-                    };
-                }
-
-                return _groupBys;
-            }
-        }
-
-        public static List<SelectListItem> GroupBysDateMember
-        {
-            get
-            {
-                if (_groupBys2 == null)
-                {
-                    _groupBys2 = new List<SelectListItem> 
-                    {
-                        new SelectListItem 
-                        {
-                            Text = Lang.Date,
-                            Value = "0"
-                        },
-                        new SelectListItem
-                        {
-                            Text = Lang.Member,
-                            Value = "1"
-                        }
-                    };
-                }
-
-                return _groupBys2;
             }
         }
 

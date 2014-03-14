@@ -13,6 +13,7 @@ namespace Fanex.AffiliateAdmin.Models
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Options;
     using Resources;
 
     /// <summary>
@@ -110,7 +111,7 @@ namespace Fanex.AffiliateAdmin.Models
                 if (IsFavorite)
                 {
                     // Exclude two status: Pending, Disapproved if isFavorite = true.
-                    return AppSettings.AffiliateStatuses
+                    return OptionManager.AffiliateStatuses
                         .Where(t => _favoriteStatusList.Contains(t.Value.ToLower()))
                         .Select(t => new SelectListItem
                     {
@@ -123,7 +124,7 @@ namespace Fanex.AffiliateAdmin.Models
                     });
                 }
 
-                return AppSettings.AffiliateStatuses.Select(t => new SelectListItem
+                return OptionManager.AffiliateStatuses.Select(t => new SelectListItem
                     {
                         Text = t.Text,
                         Value = t.Value,

@@ -336,6 +336,18 @@
     <Content Include="Content\_Sites\athena\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\athena\images\notify.png" />
     <Content Include="Content\_Sites\athena\images\panel.png" />
+    <Content Include="Content\_Sites\bwinning\images\banner_top.png" />
+    <Content Include="Content\_Sites\bwinning\images\best-browsers.png" />
+    <Content Include="Content\_Sites\bwinning\images\bodybg.jpg" />
+    <Content Include="Content\_Sites\bwinning\images\btbg.png" />
+    <Content Include="Content\_Sites\bwinning\images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\bwinning\images\emailBg.jpg" />
+    <Content Include="Content\_Sites\bwinning\images\headerbg.jpg" />
+    <Content Include="Content\_Sites\bwinning\images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\bwinning\images\logo.jpg" />
+    <Content Include="Content\_Sites\bwinning\images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\bwinning\images\notify.png" />
+    <Content Include="Content\_Sites\bwinning\images\panel.png" />
     <Content Include="Content\_Sites\idlivebet365\images\banner_top.png" />
     <Content Include="Content\_Sites\idlivebet365\images\best-browsers.png" />
     <Content Include="Content\_Sites\idlivebet365\images\bodybg.jpg" />
@@ -348,6 +360,18 @@
     <Content Include="Content\_Sites\idlivebet365\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\idlivebet365\images\notify.png" />
     <Content Include="Content\_Sites\idlivebet365\images\panel.png" />
+    <Content Include="Content\_Sites\macaubet\images\banner_top.png" />
+    <Content Include="Content\_Sites\macaubet\images\best-browsers.png" />
+    <Content Include="Content\_Sites\macaubet\images\bodybg.jpg" />
+    <Content Include="Content\_Sites\macaubet\images\btbg.png" />
+    <Content Include="Content\_Sites\macaubet\images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\macaubet\images\emailBg.jpg" />
+    <Content Include="Content\_Sites\macaubet\images\headerbg.jpg" />
+    <Content Include="Content\_Sites\macaubet\images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\macaubet\images\logo.jpg" />
+    <Content Include="Content\_Sites\macaubet\images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\macaubet\images\notify.png" />
+    <Content Include="Content\_Sites\macaubet\images\panel.png" />
     <Content Include="Content\_Sites\mymbet\images\banner_top.png" />
     <Content Include="Content\_Sites\mymbet\images\best-browsers.png" />
     <Content Include="Content\_Sites\mymbet\images\bodybg.jpg" />
@@ -544,6 +568,10 @@
     <Content Include="Content\_Sites\mymbet\Notify.less" />
     <Content Include="Content\_Sites\idlivebet365\Login.less" />
     <Content Include="Content\_Sites\idlivebet365\Notify.less" />
+    <None Include="Content\_Sites\bwinning\Login.less" />
+    <None Include="Content\_Sites\bwinning\Notify.less" />
+    <None Include="Content\_Sites\macaubet\Login.less" />
+    <None Include="Content\_Sites\macaubet\Notify.less" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

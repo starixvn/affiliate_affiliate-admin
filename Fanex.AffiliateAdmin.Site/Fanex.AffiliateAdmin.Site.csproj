@@ -348,6 +348,18 @@
     <Content Include="Content\_Sites\bwinning\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\bwinning\images\notify.png" />
     <Content Include="Content\_Sites\bwinning\images\panel.png" />
+    <Content Include="Content\_Sites\aoncash\images\banner_top.png" />
+    <Content Include="Content\_Sites\aoncash\images\best-browsers.png" />
+    <Content Include="Content\_Sites\aoncash\images\bodybg.jpg" />
+    <Content Include="Content\_Sites\aoncash\images\btbg.png" />
+    <Content Include="Content\_Sites\aoncash\images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\aoncash\images\emailBg.jpg" />
+    <Content Include="Content\_Sites\aoncash\images\headerbg.jpg" />
+    <Content Include="Content\_Sites\aoncash\images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\aoncash\images\logo.jpg" />
+    <Content Include="Content\_Sites\aoncash\images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\aoncash\images\notify.png" />
+    <Content Include="Content\_Sites\aoncash\images\panel.png" />
     <Content Include="Content\_Sites\idlivebet365\images\banner_top.png" />
     <Content Include="Content\_Sites\idlivebet365\images\best-browsers.png" />
     <Content Include="Content\_Sites\idlivebet365\images\bodybg.jpg" />
@@ -570,6 +582,8 @@
     <Content Include="Content\_Sites\idlivebet365\Notify.less" />
     <None Include="Content\_Sites\bwinning\Login.less" />
     <None Include="Content\_Sites\bwinning\Notify.less" />
+    <Content Include="Content\_Sites\aoncash\Login.less" />
+    <Content Include="Content\_Sites\aoncash\Notify.less" />
     <None Include="Content\_Sites\macaubet\Login.less" />
     <None Include="Content\_Sites\macaubet\Notify.less" />
     <None Include="Properties\Settings.settings">

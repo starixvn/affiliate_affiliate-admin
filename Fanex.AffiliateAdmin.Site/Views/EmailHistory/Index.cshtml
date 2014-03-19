@@ -2,8 +2,10 @@
     ViewBag.Title = Lang.EmailHistory;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.DTO
+@using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Core.Mvc
+@using Fanex.AffiliateAdmin.Core.Utilities
 @model Fanex.AffiliateAdmin.Models.EmailHistoryViewModel
 @section iconcss{
 home
@@ -29,7 +31,7 @@ home
     @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
     <form class="row-fluid" id="SearchForm">
     <div class="span12 search-form">
-        <div class="row-fluid row-form">
+        <div class="row-fluid row-form end-search">
             <div class="cell">
                 <label for="SearchOption" class="txt">@Lang.SearchBy</label>
                 <select id="SearchOption" name="SearchOption" class="width-140 single-select dropdownchecklist">
@@ -46,11 +48,9 @@ home
             <div class="cell checkbox">       
                 @Html.CheckBoxFor(m => m.IsAll)
                 @Html.LabelFor(m => m.FromDate, Lang.From)
-                @Html.TextBoxFor(m => m.FromDate, "{0:d}", datepickerAttr)
-                &nbsp @*<div class="icon-calendar"></div>*@
+                @Html.DatePicker("FromDate", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), AppSettings.SystemStartDate, DateTime.Now, true)
                 @Html.LabelFor(m => m.ToDate, Lang.To)
-                @Html.TextBoxFor(m => m.ToDate, "{0:d}", datepickerAttr)
-                @*<div class="icon-calendar"></div>*@
+                @Html.DatePicker("ToDate", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, true)
             </div>
         </div>
         <div class="row-fluid row-form btn-action">

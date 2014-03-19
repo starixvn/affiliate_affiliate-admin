@@ -453,6 +453,15 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
+        public static string ServerTimeZone
+        {
+            get
+            {
+                var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow);
+                return string.Format("{0}{1:00}:00", offset.Hours > 0 ? "+" : string.Empty, offset.Hours);
+            }
+        }
+
         /// <summary>
         /// Get key value of resource.
         /// </summary>
@@ -489,15 +498,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         public static IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)
         {
             return _SystemSetting.GetCommGroups(criteria);
-        }
-
-        public static string ServerTimeZone
-        {
-            get
-            {
-                var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow);
-                return string.Format("{0}{1:00}:00", offset.Hours > 0 ? "+" : string.Empty , offset.Hours);
-            }
         }
     }
 }

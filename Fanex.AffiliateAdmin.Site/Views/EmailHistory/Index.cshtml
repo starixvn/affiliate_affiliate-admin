@@ -49,6 +49,7 @@ home
                 @Html.CheckBoxFor(m => m.IsAll)
                 @Html.LabelFor(m => m.FromDate, Lang.From)
                 @Html.DatePicker("FromDate", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), AppSettings.SystemStartDate, DateTime.Now, true)
+                &nbsp;&nbsp;
                 @Html.LabelFor(m => m.ToDate, Lang.To)
                 @Html.DatePicker("ToDate", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, true)
             </div>

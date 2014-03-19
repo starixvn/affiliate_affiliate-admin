@@ -205,7 +205,8 @@
         autoFixFrozenRowHeight: false,
         autoResizeColumn: false,
         pixelsPerCharacter: 0,
-        calTextWidthWithFontSize: true
+        calTextWidthWithFontSize: true,
+		timeZone: ''
     };
 
     var Fanex = Fanex || {};
@@ -954,7 +955,12 @@
                 currentValue != null) {
                 var momentObject = moment(currentValue);
                 if (momentObject.isValid()) {
-                    currentValue = momentObject.format(me.columnsHastable[currentCol.Name].FormatDateTime);
+                    if (options.timeZone !== '')
+					{
+					    momentObject = momentObject.zone(options.timeZone);
+					}
+
+					currentValue = momentObject.format(me.columnsHastable[currentCol.Name].FormatDateTime);
                 }
             }
 

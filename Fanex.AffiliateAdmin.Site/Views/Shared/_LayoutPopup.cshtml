@@ -35,6 +35,8 @@
         AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
             return '@Url.Content("~/")' + relativeUrl;
         };
+
+        AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
     </script>
     
     @RenderSection("scripts", required: false)

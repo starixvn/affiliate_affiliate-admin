@@ -490,5 +490,14 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             return _SystemSetting.GetCommGroups(criteria);
         }
+
+        public static string ServerTimeZone
+        {
+            get
+            {
+                var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow);
+                return string.Format("{0}{1:00}:00", offset.Hours > 0 ? "+" : string.Empty , offset.Hours);
+            }
+        }
     }
 }

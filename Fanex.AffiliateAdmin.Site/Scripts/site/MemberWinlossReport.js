@@ -337,7 +337,7 @@
                 submitOptions = $('form').serializeObject2();
                 submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
                 submitOptions["SortBy"] = $('#SortBy').val();
-                MemberWinlossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+                MemberWinlossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[2]);
             }
         },
 

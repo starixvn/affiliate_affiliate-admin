@@ -27,7 +27,7 @@ namespace Fanex.AffiliateAdmin.Models
         private readonly IList<SelectListItem> _groupByList = new List<SelectListItem> 
         {
                 new SelectListItem { Text = Lang.Date, Value = "0" },
-                new SelectListItem { Text = Lang.Month, Value = "1" }
+                new SelectListItem { Text = Lang.Member, Value = "1" }
         };
 
         #endregion

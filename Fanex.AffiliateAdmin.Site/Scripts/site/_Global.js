@@ -456,9 +456,6 @@
             if (data.List.length === 0) {
                 gridObject.addClass("noinfo").html(Lang.NoDataInfo);
             }
-
-            //AFFILIATE.updateSearchPanel(gridObject);
-
         },
         updateSearchPanel: function (gridObject) {
             $('.search-panel').width(gridObject.width());

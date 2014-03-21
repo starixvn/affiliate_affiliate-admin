@@ -362,10 +362,11 @@
                     changeHeaderCaptions(baseCurrency);
 
                     _gridOption.pagerOption = {
-                        itemsPerPage: itemsPerPage,
+                        itemsPerPage: data.ItemsPerPage,
                         itemsPerPageArray: AFFILIATE.pageSizes,
-                        currentPage: currentPage,
-                        totalItem: data.List.length
+                        currentPage: data.CurrentPage,
+                        totalItem: data.TotalItem,
+                        pagerSelectCallBack: MemberWinlossReport.ReRenderAfterPaged
                     };
 
                     _gridOption.titleInfo.text = MSG.MemberWinloss + ' [{0}]'.format(data.TotalItem);

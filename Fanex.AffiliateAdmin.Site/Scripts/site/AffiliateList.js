@@ -160,7 +160,7 @@
             var footerRows = [];
 
             if (hasShowSubTotalRow === true) {
-                if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData["Currency"] != System.Currency)) {
+                if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].CurrencyCode !== System.Currency)) {
                     var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
                     var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
                     subTotalStatus = subTotalRowCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;

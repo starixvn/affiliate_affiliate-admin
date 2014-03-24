@@ -68,8 +68,8 @@ namespace Fanex.AffiliateAdmin.Core.Entities
                     {
                         MemberSiteDomain = string.Format("www.{0}.{1}", words[1], words[2]),
                         MemberSiteUrl = string.Format("{0}://www.{1}.{2}/vender.aspx", scheme, words[1], words[2]),
-                        AffiliateSiteUrl = string.Format("{0}://affiliate.{1}.{2}", scheme, words[1], words[2]),
-                        AdminSiteUrl = string.Format("{0}://{1}.{2}.{3}", scheme, isKiosk ? "agt" : "affadmin", words[1], words[2])
+                        AffiliateSiteUrl = string.Format("{0}://{1}.{2}.{3}", scheme, isKiosk ? "agt" : "affiliate", words[1], words[2]),
+                        AdminSiteUrl = string.Format("{0}://{1}.{2}.{3}", scheme, "affadmin", words[1], words[2])
                     };
                 }
             }

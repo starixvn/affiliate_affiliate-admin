@@ -63,6 +63,8 @@
                             parent.location.href = parent.location.href;
                         }
                         window[0].AFFINFO.setStatus();
+                    } else {
+                        alert(data.Message);
                     }
                 },
                 complete: function () {

@@ -364,7 +364,7 @@
                 submitOptions = $('form').serializeObject2();
                 submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
                 submitOptions["SortBy"] = $('#SortBy').val();
-                CommissionReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+                CommissionReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[2]);
             }
         },
 
@@ -392,10 +392,11 @@
                     changeHeaderCaptions(baseCurrency == SYS_CURRENCY_OPTION);
 
                     _gridOption.pagerOption = {
-                        itemsPerPage: itemsPerPage,
+                        itemsPerPage: data.ItemsPerPage,
                         itemsPerPageArray: AFFILIATE.pageSizes,
-                        currentPage: currentPage,
-                        totalItem: data.List.length
+                        currentPage: data.CurrentPage,
+                        totalItem: data.TotalItem,
+                        pagerSelectCallBack: CommissionReport.ReRenderAfterPaged
                     };
 
                     _gridOption.titleInfo.text = MSG.CommissionTitle + ' [{0}]'.format(data.TotalItem);

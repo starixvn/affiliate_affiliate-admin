@@ -404,6 +404,8 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
             var data = _reportService.GetCommission(criteria).ToList();
+            criteria.NRows = data.Count;
+
             var subTotalCommissions = new List<CommissionReport>();
             var totalCommission = new CommissionReport()
             {
@@ -421,13 +423,13 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return Json(new
             {
-                List = data,
+                List = data.Skip(criteria.PageSize * (criteria.PageIndex - 1)).Take(criteria.PageSize),
                 TotalRowData = totalCommission,
                 SubTotalData = subTotalCommissions,
                 HasShowSubTotalRow = hasShowSubTotalRow,
-                CurrentPage = 1,
-                ItemsPerPage = data.Count,
-                TotalItem = data.Count
+                CurrentPage = criteria.PageIndex - 1,
+                ItemsPerPage = criteria.PageSize,
+                TotalItem = criteria.NRows
             });
         }
 

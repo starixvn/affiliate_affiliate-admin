@@ -364,7 +364,7 @@
                 submitOptions = $('form').serializeObject2();
                 submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
                 submitOptions["SortBy"] = $('#SortBy').val();
-                CommissionReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[2]);
+                CommissionReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             }
         },
 

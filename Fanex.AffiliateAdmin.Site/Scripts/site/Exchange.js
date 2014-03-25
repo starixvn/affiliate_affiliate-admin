@@ -101,24 +101,6 @@
                     }
                 });
             });
-            $("#gridId").on("change", "input.autoupdate", function () {
-                var self = this;
-                $.ajax({
-                    url: AFFILIATE.getAbsoluteUrl("Exchange/ToggleAutoUpdate"),
-                    type: 'post',
-                    data: {
-                        exchangeid: $(this).attr("data-id")
-                    },
-                    success: function (data) {
-                        AFFILIATE.PreHandleAjaxResult(data);
-
-                        if (!data.Success) {
-                            alert(data.Message);
-                            self.checked = !self.checked;
-                        }
-                    }
-                });
-            });
 
             $("#gridId").on("click", "div.linkpopup", function () {
                 var $this = $(this);
@@ -126,6 +108,25 @@
                 AFFILIATE.openDialogUrl(url + "exchangeid=" + $this.attr("data-exchangeid") +
                     "&codefrom=" + $this.attr("data-codefrom") + "&codeto=" + $this.attr("data-codeto") +
                     "&rate=" + parseFloat($this.attr("data-rate").replace(/,/g, ''), 10), "Ex.Rate", { width: 450, height: 300 });
+            });
+        },
+
+        toggleAutoUpdate: function (self) {
+            
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Exchange/ToggleAutoUpdate"),
+                type: 'post',
+                data: {
+                    exchangeid: $(self).attr("data-id")
+                },
+                success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+
+                    if (!data.Success) {
+                        alert(data.Message);
+                        self.checked = !self.checked;
+                    }
+                }
             });
         },
         checkAll: function (value) {

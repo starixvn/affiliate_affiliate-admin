@@ -30,13 +30,12 @@ exchange-rate
 </div>
 
 <div class="grid-status">
-<div id="gridId" class="freegrid" colheight="200" expheight="290"></div>
-<br />
-<p id="notification-header" class="hide text-error">
-    * @Lang.DropLastZeroDigits
-</p>
-<div id="notification" class="text-error">
-</div>
+    <div id="gridId" class="freegrid" colheight="200" expheight="290"></div>
+    <br />
+    <p id="notification-header" class="hide text-error">
+        * @Lang.DropLastZeroDigits
+    </p>
+    <div id="notification" class="text-error"></div>
 </div>
 @section scripts{
     <script>
@@ -79,7 +78,7 @@ exchange-rate
                     HeaderAlign: "center",
                     CellAlign: "center",
                     Formatter: function(rowIndex, rowData, cell, cellFormated) {
-                        return "<input class='autoupdate' type='checkbox' " + (rowData.IsAutoRefresh ? "checked='checked'" : null) + " data-id='" + rowData.ExchangeID + "' />";
+                        return "<input class='' type='checkbox' " + (rowData.IsAutoRefresh ? "checked='checked'" : null) + " data-id='" + rowData.ExchangeID + "' onclick='javascript:EXCHANGE.toggleAutoUpdate(this);'/>";
                     }
                 }
             ],

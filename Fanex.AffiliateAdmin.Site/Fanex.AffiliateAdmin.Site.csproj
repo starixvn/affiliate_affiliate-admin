@@ -140,6 +140,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\_Sites\athena\favicon.ico" />
+    <Content Include="Content\_Sites\livebet365\favicon.ico" />
     <Content Include="Content\themes\base\AffiliateAdmin.css" />
     <Content Include="Content\themes\base\Fanex.Grid.css" />
     <Content Include="Content\themes\base\Fanex.Pagination.css" />

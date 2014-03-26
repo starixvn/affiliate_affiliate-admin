@@ -49,6 +49,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int PageSize { get; set; }
 
+        [SpParam(SqlParamName="PageCurrent")]
         public int PageIndex { get; set; }
 
         public int TotalPages { get; set; }

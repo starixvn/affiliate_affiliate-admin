@@ -7,14 +7,13 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="@Url.Content(string.Format("~/Content/_Sites/{0}/favicon.jpg", AppSettings.Layout))" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     @Scripts.Render("~/bundles/headjs")
     @Styles.Render("~/bundles/css")
     @RenderSection("css", required: false)
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    @*<script src="~/scripts/libraries/jquery.multiselect.js"></script>*@
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()
 </head>
 <body>

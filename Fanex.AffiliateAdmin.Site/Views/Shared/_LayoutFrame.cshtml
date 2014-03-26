@@ -1,13 +1,13 @@
-﻿@using Fanex.AffiliateAdmin.Core.Configurations
-@{
+﻿@{
     var currentSession = Fanex.AffiliateAdmin.Core.Session.SessionManager.CurrentSession;
 }
+@using Fanex.AffiliateAdmin.Core.Configurations
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="@Url.Content(string.Format("~/Content/_Sites/{0}/favicon.jpg", AppSettings.Layout))" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/bundles/css")
     @RenderSection("css", required: false)

@@ -55,6 +55,7 @@
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\_Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
   </ItemGroup>
@@ -65,10 +66,12 @@
     <Compile Include="Imp\AccountDataAccess.cs" />
     <Compile Include="Imp\AffiliateDataAccess.cs" />
     <Compile Include="Imp\MessageDataAccess.cs" />
+    <Compile Include="Imp\ReportDataAccess.cs" />
     <Compile Include="Interface\IGroupDataAccess.cs" />
     <Compile Include="Interface\IAffiliateDataAccess.cs" />
     <Compile Include="Interface\IAccountDataAccess.cs" />
     <Compile Include="Interface\IMessageDataAccess.cs" />
+    <Compile Include="Interface\IReportDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

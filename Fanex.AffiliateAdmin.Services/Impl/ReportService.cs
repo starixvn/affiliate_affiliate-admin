@@ -14,12 +14,21 @@ namespace Fanex.AffiliateAdmin.Services.Impl
     using Criterias;
     using DTO;
     using Interface;
+    using Fanex.AffiliateAdmin.DataAccess.Interface;
+    using Fanex.AffiliateAdmin.DataAccess.Imp;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class ReportService : QueryService, IReportService
     {
+        private readonly IReportDataAccess _reportDataAccess;
+
+        public ReportService()
+        {
+            _reportDataAccess = new ReportDataAccess();
+        }
+
         public IEnumerable<CompanyWinloss> GetCompanyWinloss(CompanyWinlossReportCriteria criteria)
         {
             return GetData<CompanyWinloss>(criteria);
@@ -35,9 +44,10 @@ namespace Fanex.AffiliateAdmin.Services.Impl
             return GetData<CommissionReport>(criteria);
         }
         
-        public IEnumerable<PlayerWinloss> GetPlayerWinloss(PlayerWinlossReportCriteria criteria)
+        public PlayerWinlossReport GetPlayerWinloss(PlayerWinlossReportCriteria criteria)
         {
-            return GetData<PlayerWinloss>(criteria);
+            return _reportDataAccess.GetMemberWinloss(criteria);
+            //return GetData<PlayerWinloss>(criteria);
         }
 
         public IEnumerable<QualifiedMember> GetQualifiedMembers(QualifiedMembersReportCriteria criteria)

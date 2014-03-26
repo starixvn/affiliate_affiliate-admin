@@ -207,23 +207,17 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
 
-            var data = _reportService.GetPlayerWinloss(criteria).ToList();
-            criteria.NRows = data.Count;
+            var data = _reportService.GetPlayerWinloss(criteria);
 
-            var subTotalPlayerWinlosses = new List<PlayerWinloss>();
-            var totalPlayerWinloss = new PlayerWinloss();
-
-            SetDataForTotalMemberWinloss(data, subTotalPlayerWinlosses, totalPlayerWinloss);
-
-            var hasShowSubTotalRow = data.GroupBy(t => t.Currency)
-                                           .Select(t => new { Currency = t.Key, RowCount = t.Count() })
+            var hasShowSubTotalRow = data.PlayerWinlossList.GroupBy(t => t.PlayerCurrency)
+                                           .Select(t => new { PlayerCurrency = t.Key, RowCount = t.Count() })
                                            .Any(t => t.RowCount > 1);
 
             return Json(new
             {
-                List = data.Skip(criteria.PageSize * (criteria.PageIndex - 1)).Take(criteria.PageSize),
-                TotalRowData = totalPlayerWinloss,
-                SubTotalData = subTotalPlayerWinlosses,
+                List = data.PlayerWinlossList,
+                TotalRowData = data.PlayerWinlossInSystemCurrency,
+                SubTotalData = data.PlayerWinlossInMemberCurrencies,
                 HasShowSubTotalRow = hasShowSubTotalRow,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,

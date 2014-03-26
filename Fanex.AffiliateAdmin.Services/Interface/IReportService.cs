@@ -23,8 +23,8 @@ namespace Fanex.AffiliateAdmin.Services.Interface
         IEnumerable<MemberStatistic> GetMemberStatistics(MemberStatisticReportCriteria criteria);
 
         IEnumerable<CommissionReport> GetCommission(CommissionReportCriteria criteria);
-        
-        IEnumerable<PlayerWinloss> GetPlayerWinloss(PlayerWinlossReportCriteria criteria);
+
+        PlayerWinlossReport GetPlayerWinloss(PlayerWinlossReportCriteria criteria);
 
         IEnumerable<QualifiedMember> GetQualifiedMembers(QualifiedMembersReportCriteria criteria);
     }

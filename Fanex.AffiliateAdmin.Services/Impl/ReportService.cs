@@ -13,9 +13,9 @@ namespace Fanex.AffiliateAdmin.Services.Impl
     using Core.Services;
     using Criterias;
     using DTO;
-    using Interface;
-    using Fanex.AffiliateAdmin.DataAccess.Interface;
     using Fanex.AffiliateAdmin.DataAccess.Imp;
+    using Fanex.AffiliateAdmin.DataAccess.Interface;
+    using Interface;
 
     /// <summary>
     /// TODO: Update summary.
@@ -47,7 +47,6 @@ namespace Fanex.AffiliateAdmin.Services.Impl
         public PlayerWinlossReport GetPlayerWinloss(PlayerWinlossReportCriteria criteria)
         {
             return _reportDataAccess.GetMemberWinloss(criteria);
-            //return GetData<PlayerWinloss>(criteria);
         }
 
         public IEnumerable<QualifiedMember> GetQualifiedMembers(QualifiedMembersReportCriteria criteria)

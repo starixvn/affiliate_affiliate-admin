@@ -9,19 +9,14 @@
 
 namespace Fanex.AffiliateAdmin.DataAccess.Imp
 {
-    using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.Linq;
     using Common.Extensions;
-    using Common.Helper;
     using Criterias;
     using Data;
     using DTO;
-    using Interface;
-    using Models;
     using Fanex.NAP.Framework.Data;
-    using System.Collections;
+    using Interface;
 
     /// <summary>
     /// Account data access.
@@ -76,7 +71,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                     {
                         if (property.CanWrite && property.Name.ToLower() == outputParam)
                         {
-                            property.SetValue(criteria, outputParams[outputParam] , null);
+                            property.SetValue(criteria, outputParams[outputParam], null);
                         }
                     }
                 }
@@ -170,7 +165,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <param name="playerWinloss">Player win-loss.</param>
-		private void GetMemberWinlossColunmsInMemberCurrency(IDataReader reader, PlayerWinloss playerWinloss)
+        private void GetMemberWinlossColunmsInMemberCurrency(IDataReader reader, PlayerWinloss playerWinloss)
         {
             playerWinloss.Deposit = reader.ToDecimal("Deposit");
             playerWinloss.Withdrawal = reader.ToDecimal("Withdrawal");
@@ -235,9 +230,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             playerWinloss.NumberGameWinlost_Aff = reader.ToDouble("NumberGameWinlost_Aff");
             playerWinloss.LiveCasinoWinlost_Aff = reader.ToDouble("LiveCasinoWinlost_Aff");
             playerWinloss.RNGCasinoWinlost_Aff = reader.ToDouble("RNGCasinoWinlost_Aff");
-            playerWinloss.TotalWinlost_Aff = reader.ToDouble("TotalWinlost_Aff");          
-        } 
+            playerWinloss.TotalWinlost_Aff = reader.ToDouble("TotalWinlost_Aff");
+        }
 
-	    #endregion
+        #endregion
     }
 }

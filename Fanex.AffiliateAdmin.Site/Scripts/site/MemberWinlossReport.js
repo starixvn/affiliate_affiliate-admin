@@ -391,7 +391,7 @@
 
                     $('#gridId').removeClass("noinfo").fanexGrid(_gridOption);
 
-                    if (data.List.length == 0) {
+                    if (data.TotalItem == 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
                     } else {

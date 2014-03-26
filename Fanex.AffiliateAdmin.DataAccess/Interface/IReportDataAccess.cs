@@ -9,12 +9,8 @@
 
 namespace Fanex.AffiliateAdmin.DataAccess.Interface
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.DTO;
 
     /// <summary>
     /// TODO: Update summary.

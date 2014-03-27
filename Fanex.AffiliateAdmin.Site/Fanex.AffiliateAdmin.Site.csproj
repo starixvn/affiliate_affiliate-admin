@@ -364,6 +364,19 @@
     <Content Include="Content\_Sites\aoncash\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\aoncash\images\notify.png" />
     <Content Include="Content\_Sites\aoncash\images\panel.png" />
+    <Content Include="Content\_Sites\allbetclub\images\banner_top.png" />
+    <Content Include="Content\_Sites\allbetclub\images\best-browsers.png" />
+    <Content Include="Content\_Sites\allbetclub\images\bodybg.jpg" />
+    <Content Include="Content\_Sites\allbetclub\images\btbg.png" />
+    <Content Include="Content\_Sites\allbetclub\images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\allbetclub\images\emailBg.jpg" />
+    <Content Include="Content\_Sites\allbetclub\images\headerbg.jpg" />
+    <Content Include="Content\_Sites\allbetclub\images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\allbetclub\images\logo.jpg" />
+    <Content Include="Content\_Sites\allbetclub\images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\allbetclub\images\notify.png" />
+    <Content Include="Content\_Sites\allbetclub\images\panel.png" />
+    <Content Include="Content\_Sites\idlivebet365\favicon.jpg" />
     <Content Include="Content\_Sites\idlivebet365\images\banner_top.png" />
     <Content Include="Content\_Sites\idlivebet365\images\best-browsers.png" />
     <Content Include="Content\_Sites\idlivebet365\images\bodybg.jpg" />
@@ -376,6 +389,7 @@
     <Content Include="Content\_Sites\idlivebet365\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\idlivebet365\images\notify.png" />
     <Content Include="Content\_Sites\idlivebet365\images\panel.png" />
+    <Content Include="Content\_Sites\livebet365\favicon.jpg" />
     <Content Include="Content\_Sites\macaubet\images\banner_top.png" />
     <Content Include="Content\_Sites\macaubet\images\best-browsers.png" />
     <Content Include="Content\_Sites\macaubet\images\bodybg.jpg" />
@@ -588,6 +602,8 @@
     <None Include="Content\_Sites\bwinning\Notify.less" />
     <Content Include="Content\_Sites\aoncash\Login.less" />
     <Content Include="Content\_Sites\aoncash\Notify.less" />
+    <Content Include="Content\_Sites\allbetclub\Login.less" />
+    <Content Include="Content\_Sites\allbetclub\Notify.less" />
     <None Include="Content\_Sites\macaubet\Login.less" />
     <None Include="Content\_Sites\macaubet\Notify.less" />
     <None Include="Properties\Settings.settings">

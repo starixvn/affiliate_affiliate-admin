@@ -62,7 +62,7 @@
             var turnover = (double)@member.GetPropertyValue(product.ProductName.Replace(" ", "") + "Turnover");
             var turnoverBase = (double)@member.GetPropertyValue(product.ProductName.Replace(" ", "") + "TurnoverBase");
             
-            var isQualified = (decimal)turnover > member.QualifiedAmount;
+            var isQualified = (decimal)turnover >= member.QualifiedAmount;
             var style = isQualified ? "style=color:green" : null;
             if (!totalData.ContainsKey(product.ProductID))
                 totalData.Add(product.ProductID, isQualified ? 1 : 0);

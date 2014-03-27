@@ -44,7 +44,7 @@
                 fromDate: $("#FromDate").val(),
                 toDate: $("#ToDate").val()
             };
-            AFFILIATE.openDialogFrame("TrackingStatistic/StatisticDetail?" + jQuery.param(param), MSG.ReferrersStatisticDetails, { width: 800, height: 400 });
+            AFFILIATE.openDialogFrame("TrackingStatistic/StatisticDetail?" + jQuery.param(param), MSG.ReferrersStatisticDetails, { width: 820, height: 400 });
         },
         showLandingPageDetail: function (sportCode, languageCode) {
             var param = {

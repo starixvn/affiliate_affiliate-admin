@@ -27,6 +27,8 @@ namespace Fanex.AffiliateAdmin.Models
         
         public string AffName { get; set; }
 
+        public string AffCurrency { get; set; }
+
         public string BaseCurrency { get; set; }
 
         public DateTime FullDateTime

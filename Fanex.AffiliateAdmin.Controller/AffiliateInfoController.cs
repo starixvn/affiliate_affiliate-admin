@@ -253,6 +253,7 @@ namespace Fanex.AffiliateAdmin.Controller
             model.AffId = CurrentSession.Affiliate.AffiliateId;
             model.AffName = CurrentSession.Affiliate.Username;
             model.BaseCurrency = AppSettings.BaseExchange.Code;
+            model.AffCurrency = CurrentSession.Affiliate.Currency;
 
             return View(model);
         }

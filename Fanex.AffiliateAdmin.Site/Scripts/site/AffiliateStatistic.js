@@ -47,7 +47,9 @@
             $('a.qm').click(function () {
                 var param = {
                     affid: $(this).data("affid"),
-                    monthdate: $(this).data("date")
+                    monthdate: $(this).data("date"),
+                    basecurrency: $(this).data("basecurrency"),
+                    currency: $(this).data("currency")
                 };
                 
                 var title = MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));

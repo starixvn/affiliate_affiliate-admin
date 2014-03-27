@@ -144,12 +144,23 @@
             }
         }
     }
+
+    function getMergeCols(numberOfFrozenColumn, groupBy) {
+        if (groupBy == GROUP_BY_MEMBER) {
+            return numberOfFrozenColumn - 1;
+        }
+        else {
+            return numberOfFrozenColumn - 2;
+        }
+    }
+
     function getFooterRows(subTotalData, totalRowData, hasShowSubTotalData) {
-        var mergeCols = _gridOption.numberOfFrozenColumn - 1;
+        var groupBy = $("#GroupBy").val();
+        var mergeCols = getMergeCols(_gridOption.numberOfFrozenColumn, groupBy);
         var subTotalRowCount = subTotalData.length;
         var footerRows = [];
 
-        var startIndex = ($("#GroupBy").val() == GROUP_BY_MEMBER) || ($("#GroupBy").val() != GROUP_BY_MEMBER && $('#BaseCurrency').val() == MEMBER_CURRENCY_OPTION) ? mergeCols + 1 : mergeCols + 2;
+        var startIndex = (groupBy == GROUP_BY_MEMBER) || (groupBy != GROUP_BY_MEMBER && $('#BaseCurrency').val() == MEMBER_CURRENCY_OPTION) ? mergeCols + 1 : mergeCols + 2;
 
         if (hasShowSubTotalData === true) {
             if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {

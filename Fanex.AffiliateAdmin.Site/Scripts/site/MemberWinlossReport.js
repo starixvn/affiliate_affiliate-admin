@@ -371,7 +371,7 @@
 
                     _gridOption.titleInfo.text = MSG.MemberWinloss + ' [{0}]'.format(data.TotalItem);
                     _gridOption.bodyRows = AFFILIATE.genGridRows(data.List, _gridOption);
-                    _gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasShowSubTotalData);
+                    _gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasShowSubTotalRow);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(_gridOption);
 

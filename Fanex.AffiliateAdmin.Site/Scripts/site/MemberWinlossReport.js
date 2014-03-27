@@ -26,6 +26,8 @@
             // set value for index column.
             _gridOption.indexNumberColumn = 0;
 
+            _gridOption.numberOfFrozenColumn = _gridOption.numberOfFrozenColumn - 1;
+
             // update the position of turnover column.
             startTurnoverPosition = startTurnoverPosition - 1;
         } else {

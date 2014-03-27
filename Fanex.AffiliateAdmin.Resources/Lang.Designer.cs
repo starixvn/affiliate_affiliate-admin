@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fanex.AffiliateAdmin.Resources
-{
-
-
+namespace Fanex.AffiliateAdmin.Resources {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -713,7 +713,7 @@ namespace Fanex.AffiliateAdmin.Resources
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}&apos;s Qualified members report detail for {1}.
+        ///   Looks up a localized string similar to {0}&apos;s Qualified members report details for {1}.
         /// </summary>
         public static string AffQualifiedMemReportDetailFor {
             get {

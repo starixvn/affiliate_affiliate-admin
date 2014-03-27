@@ -338,7 +338,7 @@
     <value>This affiliate does not exist.</value>
   </data>
   <data name="AffQualifiedMemReportDetailFor" xml:space="preserve">
-    <value>{0}'s Qualified members report detail for {1}</value>
+    <value>{0}'s Qualified members report details for {1}</value>
     <comment>{0}: affiliate name, {1}: month - year</comment>
   </data>
   <data name="AffStatisticsAll" xml:space="preserve">

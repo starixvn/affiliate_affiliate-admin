@@ -286,6 +286,8 @@ namespace Fanex.AffiliateAdmin.Controller
                         Countries = _countryService.GetAll(new CountryCriteria()),
                         PaymentMethods = this._systemSettingService.GetPaymentMethod(new PaymentMethodCriteria()).ToList()
                     };
+
+                model.Affiliate.HtmlDecode();
             }
 
             return View(model);
@@ -296,11 +298,12 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Affiliate update criteria.</param>
         /// <returns>View model.</returns>
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(AffiliateUpdCriteria criteria)
         {
             var model = CacheUserInput(criteria);
-
+            criteria.HtmlEncode();
+            
             if (ModelState.IsValid)
             {
                 criteria.Ip = Remote.GetClientIPAddress();

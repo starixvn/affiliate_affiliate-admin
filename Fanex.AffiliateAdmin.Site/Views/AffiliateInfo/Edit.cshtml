@@ -30,13 +30,6 @@
 
 @using (Html.BeginForm("Edit", "AffiliateInfo", FormMethod.Post, new { @class = "iframe-content" }))
 {
-    Model.Affiliate.FirstName = HttpUtility.HtmlDecode(Model.Affiliate.FirstName);
-    Model.Affiliate.LastName = HttpUtility.HtmlDecode(Model.Affiliate.LastName);
-    Model.Affiliate.Address = HttpUtility.HtmlDecode(Model.Affiliate.Address);
-    Model.Affiliate.City = HttpUtility.HtmlDecode(Model.Affiliate.City);
-    Model.Affiliate.State = HttpUtility.HtmlDecode(Model.Affiliate.State);
-    Model.Affiliate.Phone = HttpUtility.HtmlDecode(Model.Affiliate.Phone);    
-    
 <div class="row-fluid">
     <div class="span6">
         <fieldset>

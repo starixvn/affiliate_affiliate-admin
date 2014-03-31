@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Web;
     using Fanex.Common.Extensions;
 
     /// <summary>
@@ -83,6 +84,44 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
 
             // Return the first if there was a match.
             return attribs.Length > 0 ? attribs[0].Value : null;
+        }
+
+        /// <summary>
+        /// Encode all properties which are string type.
+        /// </summary>
+        /// <param name="obj">Input object.</param>
+        public static void HtmlEncode(this object obj)
+        {
+            var properties = obj.GetType().GetProperties();
+
+            foreach (var property in properties)
+            {
+                var value = property.GetValue(obj, null);
+
+                if (property.GetType() == typeof(string) && property.CanWrite)
+                {
+                    property.SetValue(obj, Convert.ChangeType(HttpUtility.HtmlEncode(value.ToString()), property.GetType()), null);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Decode all properties which are string type.
+        /// </summary>
+        /// <param name="obj">Input object.</param>
+        public static void HtmlDecode(this object obj)
+        {
+            var properties = obj.GetType().GetProperties();
+
+            foreach (var property in properties)
+            {
+                var value = property.GetValue(obj, null);
+
+                if (property.GetType() == typeof(string) && property.CanWrite)
+                {
+                    property.SetValue(obj, Convert.ChangeType(HttpUtility.HtmlEncode(value.ToString()), property.GetType()), null);
+                }
+            }
         }
     }
 }

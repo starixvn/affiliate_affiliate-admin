@@ -3,14 +3,15 @@
     return {
         init: function () {
             submitOptions = $('form').serializeObject();
-            AFFILIATE.RefreshGridData = Management.ReRenderAfterPaged;
-            if ($('#gridId').length > 0)
+            //AFFILIATE.RefreshGridData = Management.ReRenderAfterPaged;
+            if ($('#gridId').length > 0) {
                 Management.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            }
 
             $(".main-content").on("click", ".icon-add-group", function () {
                 Management.addGroup();
             });
-          
+
             $("#btnCancel").click(function () {
                 if (parent.AFFILIATE.currentOpenDialog)
                     parent.AFFILIATE.currentOpenDialog.dialog("close");
@@ -33,7 +34,7 @@
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     if (data.List.length == 0) {
                         $('#gridId').addClass("noinfo").html(PageVar.NoInfo);
                         return;
@@ -92,7 +93,7 @@
                     },
                     success: function (data) {
                         AFFILIATE.PreHandleAjaxResult(data);
-                        
+
                         Management.showMsg(data);
                     },
                     complete: function () {
@@ -118,7 +119,7 @@
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     Management.showMsg(data);
                     if (data.ErrorCode != 0) {
                         return false;

@@ -81,9 +81,12 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>List of email.</returns>
         public ActionResult GetList(ExchangeRateCriteria criteria)
         {
+            bool isToday = false;
+
             if (criteria.Time.HasValue && DateTime.Now.Subtract(criteria.Time.Value).Days == 0)
             {
                 criteria.Time = null;
+                isToday = true;
             }
 
             var result = _service.GetList(criteria);
@@ -101,7 +104,8 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 Notification = _strNotify.ToString(),
                 List = result,
-                Currencies = AppSettings.AffSystemAllSupportedCurrencies.Select(x => x.CurrencyCode).ToArray()
+                Currencies = AppSettings.AffSystemAllSupportedCurrencies.Select(x => x.CurrencyCode).ToArray(),
+                IsToday = isToday
             });
         }
 

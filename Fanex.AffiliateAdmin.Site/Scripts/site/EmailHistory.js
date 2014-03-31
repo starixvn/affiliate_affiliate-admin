@@ -1,7 +1,7 @@
 ﻿var ME = function ($) {
     return {
         init: function () {
-            AFFILIATE.RefreshGridData = ME.ReRenderAfterPaged;
+            //AFFILIATE.RefreshGridData = ME.ReRenderAfterPaged;
             $("#SearchOption").change(function () {
 
                 if (this.value >= 0)
@@ -30,6 +30,7 @@
             });
 
             ME.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+
             $('#btnSubmit').click(function () {
                 ME.submitRequest();
                 return false;

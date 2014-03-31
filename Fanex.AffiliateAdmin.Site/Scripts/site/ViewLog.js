@@ -1,7 +1,7 @@
 ﻿var LOG = function ($) {
     return {
         init: function () {
-            AFFILIATE.RefreshGridData = LOG.ReRenderAfterPaged;
+            //AFFILIATE.RefreshGridData = LOG.ReRenderAfterPaged;
             $("#btnSubmit").click(function () {
                 LOG.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             });

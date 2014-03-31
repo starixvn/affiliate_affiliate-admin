@@ -1,7 +1,7 @@
 ﻿var STATISTIC = function ($) {
     return {
         init: function () {
-            AFFILIATE.RefreshGridData = STATISTIC.ReRenderAfterPaged;
+            //AFFILIATE.RefreshGridData = STATISTIC.ReRenderAfterPaged;
             STATISTIC.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
 
             $('#btnSubmit').click(function () {

@@ -51,10 +51,11 @@
     function removeAutoUpdateColumn(data) {
         var isToday = data.IsToday;
 
-        if(!isToday){
+        if (!isToday) {
             _gridOption.columns.splice(CHECKBOX_COLUMN, 1);
             _gridOption.columns.splice(_gridOption.columns.length - 1, 1);
             _gridOption.numberOfFrozenColumn = 2;
+            _gridOption.indexNumberColumn = 0;
         }
     }
 
@@ -156,7 +157,7 @@
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
 
-                   
+
 
                     if (data.Notification) {
                         $("#notification-header").show();

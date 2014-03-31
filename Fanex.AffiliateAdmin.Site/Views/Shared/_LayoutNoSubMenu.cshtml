@@ -31,10 +31,7 @@
     </div>
 
     @Scripts.Render("~/bundles/js")
-    @if (currentSession != null)
-    {
-        <script type="text/javascript" src="@Url.Content("~/Scripts/site/RecheckIn.js")"></script>
-    }
+    
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
         $.unblockUI();

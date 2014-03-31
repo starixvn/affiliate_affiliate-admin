@@ -41,11 +41,7 @@
     </div>
 
     @Scripts.Render("~/bundles/js")
-    @if (currentSession != null)
-    {
-        <script type="text/javascript" src="@Url.Content("~/Scripts/site/RecheckIn.js")"></script>
-    }
-    
+
     <script type="text/javascript">
         $.unblockUI();
         var Lang = {

@@ -43,7 +43,8 @@ namespace Fanex.AffiliateAdmin.Site
                 "~/Scripts/libraries/jquery.blockUI.js").Include(
                 "~/Scripts/libraries/jquery.placeholder.js").Include(
                 "~/Scripts/site/Login.js").Include(
-                "~/Scripts/site/_Global.js"));
+                "~/Scripts/site/_Global.js").Include(
+                "~/Scripts/site/RecheckIn.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/headjs").Include("~/Scripts/libraries/head.js"));
 
@@ -82,7 +83,9 @@ namespace Fanex.AffiliateAdmin.Site
                 "~/Scripts/libraries/jquery.ba-resize.min.js").Include(
                 "~/Scripts/site/Query.string.js").Include(
                 "~/Scripts/site/Paging.js").Include(
-                "~/Scripts/site/_Global.js"));
+                "~/Scripts/site/_Global.js").Include(
+                "~/Scripts/site/RecheckIn.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/daterange").Include(
                 "~/Scripts/libraries/date.min.js").Include(
                 "~/Scripts/libraries/daterangepicker.js").Include(

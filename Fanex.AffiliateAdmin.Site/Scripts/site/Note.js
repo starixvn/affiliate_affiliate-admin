@@ -1,8 +1,6 @@
 ﻿var NOTE = function ($) {
     return {
         init: function () {
-            //AFFILIATE.RefreshGridData = NOTE.ReRenderAfterPaged;
-
             $(".main-content").on("click", ".icon-add-note", function () {
                 NOTE.addNote();
             });

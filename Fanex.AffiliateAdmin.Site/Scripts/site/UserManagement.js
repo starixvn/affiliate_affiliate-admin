@@ -2,8 +2,6 @@
     var submitOptions = {};
     return {
         init: function () {
-            //AFFILIATE.RefreshGridData = Management.ReRenderAfterPaged;
-
             if ($('#gridId').length > 0) {
                 Management.submitRequest();
             }

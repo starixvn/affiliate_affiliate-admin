@@ -95,7 +95,7 @@ home
                         { HeaderText: "@Lang.SentDate", Width: 100, Name: "CreateDate", HeaderAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
                         { HeaderText: "@Lang.Remove", Width: 50, Name: "Remove", CellAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return "<a href=\"javascript:ME.Delete(" + rowData.Mid + ")\"><i class=\"icon-remove\"></i></a>";
+                                return "<a href=\"javascript:EmailHistory.deleteEmail(" + rowData.Mid + ")\"><i class=\"icon-remove\"></i></a>";
                             }
                         }
                    ],

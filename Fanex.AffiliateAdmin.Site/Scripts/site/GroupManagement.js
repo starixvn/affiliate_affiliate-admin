@@ -3,7 +3,7 @@
     return {
         init: function () {
             submitOptions = $('form').serializeObject();
-            //AFFILIATE.RefreshGridData = Management.ReRenderAfterPaged;
+
             if ($('#gridId').length > 0) {
                 Management.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             }

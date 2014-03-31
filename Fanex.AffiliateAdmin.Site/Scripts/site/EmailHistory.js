@@ -1,7 +1,7 @@
-﻿var ME = function ($) {
+﻿var EmailHistory = function ($) {
     return {
         init: function () {
-            //AFFILIATE.RefreshGridData = ME.ReRenderAfterPaged;
+            
             $("#SearchOption").change(function () {
 
                 if (this.value >= 0)
@@ -29,14 +29,14 @@
 
             });
 
-            ME.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            EmailHistory.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
 
             $('#btnSubmit').click(function () {
-                ME.submitRequest();
+                EmailHistory.submitRequest();
                 return false;
             });
         },
-        Delete: function (id) {
+        deleteEmail: function (id) {
             try {
                 if (!id || id < 1)
                     return;
@@ -53,7 +53,7 @@
                         if (!data.Success) {
                             alert(data.Message);
                         } else {
-                            ME.ReRenderAfterPaged();
+                            EmailHistory.ReRenderAfterPaged();
                         }
                     }
                 });
@@ -65,7 +65,7 @@
         },
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
-            ME.ReRenderAfterPaged();
+            EmailHistory.ReRenderAfterPaged();
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
@@ -91,7 +91,7 @@
                         itemsPerPageArray: AFFILIATE.pageSizes,
                         currentPage: data.CurrentPage,
                         totalItem: data.TotalItem,
-                        pagerSelectCallBack: ME.ReRenderAfterPaged
+                        pagerSelectCallBack: EmailHistory.ReRenderAfterPaged
                     };
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
@@ -103,5 +103,5 @@
     }
 } (jQuery);
 $(function () {
-    ME.init();
+    EmailHistory.init();
 });

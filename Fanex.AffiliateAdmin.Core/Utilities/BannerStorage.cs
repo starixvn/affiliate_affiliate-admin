@@ -126,7 +126,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
 
                     _bannerFolder = Path.Combine(affTypeName, categoryName, subCategoryName);
                 }
-                
+
                 return _bannerFolder;
             }
         }
@@ -255,20 +255,24 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 // Banner Type is image.
                 if (BannerType == 1)
                 {
-                    if (System.IO.File.Exists(oldBannerPath) && System.IO.File.Exists(oldThumbnailPath))
+                    if (System.IO.File.Exists(oldBannerPath))
                     {
-                        Common.MoveFile(oldBannerPath, BannerPath);
                         Common.MoveFile(oldThumbnailPath, ThumbnailPath);
 
                         return string.Empty;
                     }
-
-                    if (!System.IO.File.Exists(oldBannerPath))
+                    else
                     {
                         return string.Format(Lang.CouldNotFindPath, oldBannerPath.Replace("\\", "/"));
                     }
 
-                    return string.Format(Lang.CouldNotFindPath, oldThumbnailPath.Replace("\\", "/"));
+                    if (System.IO.File.Exists(oldThumbnailPath))
+                    {
+                        Common.MoveFile(oldBannerPath, BannerPath);
+
+                    }
+
+                    return string.Empty;
                 }
 
                 if (System.IO.File.Exists(oldBannerPath))

@@ -226,6 +226,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     List = data,
                     ItemsPerPage = data.Count(),
                     TotalItem = data.Count(),
+                    HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0)
                 });
         }
 

@@ -6,7 +6,7 @@
 
     var gridOption = {};
 
-    function customizeGridOption() {
+    function customizeGridOption(hasCashbackDeduction) {
         for (var i = 0; i < PRODUCTS.length; i++) {
             var name = nomalizeProductName(PRODUCTS[i].Name);
 
@@ -38,51 +38,59 @@
             );
         }
 
-        gridOption.groupHeaderRows[0].Columns.push(
-            { HeaderCaption: MSG.Cashback, HeaderText: MSG.Cashback, IsCurrency: true, Name: "CashbackPercent", MergeColNumber: 2 }
-        );
-
-        gridOption.columns.push(
-            { IsCurrency: false, HeaderCaption: MSG.DeductionPercent, HeaderText: MSG.DeductionPercent, Width: 80, Name: "CashbackPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER }
-        );
-
-        gridOption.columns.push(
-            {
-                IsCurrency: true, HeaderCaption: MSG.Amount, HeaderText: MSG.Amount, Width: 100, Name: "CashbackAmount", NameCache: "CashbackAmount", HeaderAlign: "center", CellAlign: "left", FormatNumber: AFFILIATE.FORMATNUMBER,
-                Formatter: function (rIndex, record, cell, cellFormated) {
-                    var currentValue = record.CashbackAmount;
-
-                    if (isNaN(currentValue) || currentValue === '' || currentValue === null)
-                        return '';
-                    
-                    if (currentValue < 0) {
-                        currentValue = -1 * currentValue;
-                    }
-
-                    currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
-                    
-
-                    if (record.CashbackAmount.Amount < 0) {
-                        currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
-                    }
-
-                    var winlostdate = moment(record.WinlostDate).format(AFFILIATE.DATE_FORMAT);
-
-                    if (!record.EnableCashback) {
-                        return '<div style="text-align: right;">' + currentValue + '</div>';
-                    }
-
-                    var html = '<div class="amount-region"><div class="amount-info" style="text-align: right;">' + currentValue + '&nbsp;&nbsp; <i class="icon-edit"></i></div>';
-                    html += '<div class="amount-edit" style="display: none;"><input type="text" value="{0}" data-affid="{1}" data-winlostdate="{2}"  style="display:inline-block; width: 40px; margin-right: 5px;"><i class="icon-ok"></i>&nbsp;&nbsp;<i class="icon-remove"></i><div class="edit-amount">'.format(record.CashbackAmount, record.AffId, winlostdate);
-                    html += '</div>';
-
-                    return html;
-                }
-            }
-        );
+        addCashbackColumns(hasCashbackDeduction);
 
         gridOption.groupHeaderRows[0].Columns.push(totalPaymentHeader);
         gridOption.columns.push(totalPaymentCol);
+    }
+
+    function addCashbackColumns(hasCashbackDeduction) {
+
+        if (hasCashbackDeduction) {
+
+            gridOption.groupHeaderRows[0].Columns.push(
+                { HeaderCaption: MSG.Cashback, HeaderText: MSG.Cashback, IsCurrency: true, Name: "CashbackPercent", MergeColNumber: 2 }
+            );
+
+            gridOption.columns.push(
+                { IsCurrency: false, HeaderCaption: MSG.DeductionPercent, HeaderText: MSG.DeductionPercent, Width: 80, Name: "CashbackPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER }
+            );
+
+            gridOption.columns.push(
+                {
+                    IsCurrency: true, HeaderCaption: MSG.Amount, HeaderText: MSG.Amount, Width: 100, Name: "CashbackAmount", NameCache: "CashbackAmount", HeaderAlign: "center", CellAlign: "left", FormatNumber: AFFILIATE.FORMATNUMBER,
+                    Formatter: function (rIndex, record, cell, cellFormated) {
+                        var currentValue = record.CashbackAmount;
+
+                        if (isNaN(currentValue) || currentValue === '' || currentValue === null)
+                            return '';
+
+                        if (currentValue < 0) {
+                            currentValue = -1 * currentValue;
+                        }
+
+                        currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
+
+
+                        if (record.CashbackAmount.Amount < 0) {
+                            currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
+                        }
+
+                        var winlostdate = moment(record.WinlostDate).format(AFFILIATE.DATE_FORMAT);
+
+                        if (!record.EnableCashback) {
+                            return '<div style="text-align: right;">' + currentValue + '</div>';
+                        }
+
+                        var html = '<div class="amount-region"><div class="amount-info" style="text-align: right;">' + currentValue + '&nbsp;&nbsp; <i class="icon-edit"></i></div>';
+                        html += '<div class="amount-edit" style="display: none;"><input type="text" value="{0}" data-affid="{1}" data-winlostdate="{2}"  style="display:inline-block; width: 40px; margin-right: 5px;"><i class="icon-ok"></i>&nbsp;&nbsp;<i class="icon-remove"></i><div class="edit-amount">'.format(record.CashbackAmount, record.AffId, winlostdate);
+                        html += '</div>';
+
+                        return html;
+                    }
+                }
+            );
+        }
     }
 
     function renameCurrencyColumns(isUseBaseCurrency) {
@@ -200,13 +208,13 @@
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     var gridObject = $('#gridId');
                     gridObject.show();
 
                     gridOption = $.extend(true, {}, sampleGridOption);
 
-                    customizeGridOption();
+                    customizeGridOption(data.HasCashbackDeduction);
 
                     var baseCurrency = $("#BaseCurrency").val();
                     renameCurrencyColumns(baseCurrency == SYS_CURRENCY_OPTION);
@@ -260,7 +268,7 @@
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     if (data.Success) {
                         ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
                     } else {
@@ -281,7 +289,7 @@
                     },
                     success: function (data) {
                         AFFILIATE.PreHandleAjaxResult(data);
-                        
+
                         if (data.Success) {
                             ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
                         } else {

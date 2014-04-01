@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="PlayerWinloss.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MemberWinloss.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -14,7 +14,7 @@ namespace Fanex.AffiliateAdmin.DTO
     /// <summary>
     /// Player win loss class.
     /// </summary>
-    public class PlayerWinloss
+    public class MemberWinloss
     {
         public DateTime WinlostDate { get; set; }
 

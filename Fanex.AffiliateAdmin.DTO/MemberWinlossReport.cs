@@ -14,18 +14,18 @@ namespace Fanex.AffiliateAdmin.DTO
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class PlayerWinlossReport
+    public class MemberWinlossReport
     {
-        public PlayerWinlossReport()
+        public MemberWinlossReport()
         {
-            PlayerWinlossList = new List<PlayerWinloss>();
-            PlayerWinlossInMemberCurrencies = new List<PlayerWinloss>();
+            PlayerWinlossList = new List<MemberWinloss>();
+            PlayerWinlossInMemberCurrencies = new List<MemberWinloss>();
         }
 
-        public IEnumerable<PlayerWinloss> PlayerWinlossList { get; set; }
+        public IEnumerable<MemberWinloss> PlayerWinlossList { get; set; }
 
-        public IEnumerable<PlayerWinloss> PlayerWinlossInMemberCurrencies { get; set; }
+        public IEnumerable<MemberWinloss> PlayerWinlossInMemberCurrencies { get; set; }
 
-        public PlayerWinloss PlayerWinlossInSystemCurrency { get; set; }
+        public MemberWinloss PlayerWinlossInSystemCurrency { get; set; }
     }
 }

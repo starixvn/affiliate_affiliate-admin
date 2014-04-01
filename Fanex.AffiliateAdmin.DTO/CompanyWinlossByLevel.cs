@@ -20,7 +20,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string Level { get; set; }
 
-        public IList<CompanyWinloss> CompanyWinlossInMemberCurrencies { get; set; }
+        public IEnumerable<CompanyWinloss> CompanyWinlossInMemberCurrencies { get; set; }
 
         public CompanyWinloss CompanyWinlossInSystemCurrency { get; set; }
     }

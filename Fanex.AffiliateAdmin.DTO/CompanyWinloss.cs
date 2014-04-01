@@ -29,7 +29,7 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal Deposit { get; set; }
 
         public decimal Withdrawal { get; set; }
-        
+
         public decimal Bonus { get; set; }
 
         public decimal Adjustment { get; set; }
@@ -44,13 +44,13 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal RNGCasinoTurnover { get; set; }
 
-        public decimal Turnover { get; set; }
+        public decimal TotalTurnover { get; set; }
 
         public int BetCount { get; set; }
 
         public int ActivePlayer { get; set; }
 
-        public decimal Winlost { get; set; }
+        public decimal TotalMemberWinlost { get; set; }
 
         public decimal SportsbookWinlost { get; set; }
 
@@ -60,70 +60,70 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal RNGCasinoWinlost { get; set; }
 
-        public decimal Total { get; set; }
+        public decimal TotalCompanyWinlost { get { return -TotalMemberWinlost; } }
 
-        public double DepositBase { get; set; }
+        public decimal DepositBase { get; set; }
 
-        public double WithdrawalBase { get; set; }
+        public decimal WithdrawalBase { get; set; }
 
-        public double BonusBase { get; set; }
+        public decimal BonusBase { get; set; }
 
-        public double AdjustmentBase { get; set; }
+        public decimal AdjustmentBase { get; set; }
 
-        public double PSPBase { get; set; }
+        public decimal PSPBase { get; set; }
 
-        public double SportsbookTurnoverBase { get; set; }
+        public decimal SportsbookTurnoverBase { get; set; }
 
-        public double NumberGameTurnoverBase { get; set; }
+        public decimal NumberGameTurnoverBase { get; set; }
 
-        public double LiveCasinoTurnoverBase { get; set; }
+        public decimal LiveCasinoTurnoverBase { get; set; }
 
-        public double RNGCasinoTurnoverBase { get; set; }
+        public decimal RNGCasinoTurnoverBase { get; set; }
 
-        public double TurnoverBase { get; set; }
+        public decimal TotalTurnoverBase { get; set; }
 
-        public double WinlostBase { get; set; }
+        public decimal TotalMemberWinlostBase { get; set; }
 
-        public double SportsbookWinlostBase { get; set; }
+        public decimal SportsbookWinlostBase { get; set; }
 
-        public double NumberGameWinlostBase { get; set; }
+        public decimal NumberGameWinlostBase { get; set; }
 
-        public double LiveCasinoWinlostBase { get; set; }
+        public decimal LiveCasinoWinlostBase { get; set; }
 
-        public double RNGCasinoWinlostBase { get; set; }
+        public decimal RNGCasinoWinlostBase { get; set; }
 
-        public double TotalBase { get; set; }
+        public decimal TotalCompanyWinlostBase { get { return -TotalMemberWinlostBase; } }
 
-        public double Deposit_Aff { get; set; }
+        public decimal Deposit_Aff { get; set; }
 
-        public double Withdrawal_Aff { get; set; }
+        public decimal Withdrawal_Aff { get; set; }
 
-        public double Bonus_Aff { get; set; }
+        public decimal Bonus_Aff { get; set; }
 
-        public double Adjustment_Aff { get; set; }
+        public decimal Adjustment_Aff { get; set; }
 
-        public double PSP_Aff { get; set; }
+        public decimal PSP_Aff { get; set; }
 
-        public double Turnover_Aff { get; set; }
+        public decimal TotalTurnover_Aff { get; set; }
 
-        public double SportsbookTurnover_Aff { get; set; }
+        public decimal SportsbookTurnover_Aff { get; set; }
 
-        public double NumberGameTurnover_Aff { get; set; }
+        public decimal NumberGameTurnover_Aff { get; set; }
 
-        public double LiveCasinoTurnover_Aff { get; set; }
+        public decimal LiveCasinoTurnover_Aff { get; set; }
 
-        public double RNGCasinoTurnover_Aff { get; set; }
+        public decimal RNGCasinoTurnover_Aff { get; set; }
 
-        public double Winlost_Aff { get; set; }
+        public decimal TotalMemberWinlost_Aff { get; set; }
 
-        public double SportsbookWinlost_Aff { get; set; }
+        public decimal SportsbookWinlost_Aff { get; set; }
 
-        public double NumberGameWinlost_Aff { get; set; }
+        public decimal NumberGameWinlost_Aff { get; set; }
 
-        public double LiveCasinoWinlost_Aff { get; set; }
+        public decimal LiveCasinoWinlost_Aff { get; set; }
 
-        public double RNGCasinoWinlost_Aff { get; set; }
+        public decimal RNGCasinoWinlost_Aff { get; set; }
 
-        public double Total_Aff { get; set; }
+        public decimal TotalCompanyWinlost_Aff { get { return - TotalMemberWinlost_Aff; } }
     }
 }

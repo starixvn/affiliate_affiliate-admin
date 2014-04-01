@@ -45,6 +45,13 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public bool ByAffiliate { get; set; }
 
+        public int PageSize { get; set; }
+
+        [SpParam(SqlParamName = "PageCurrent")]
+        public int PageIndex { get; set; }
+
+        public int NRows { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_CompanyWinlossReport";

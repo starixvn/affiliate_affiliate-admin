@@ -94,7 +94,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
 
-            var data = _reportService.GetCompanyWinloss(criteria).ToList();
+            var data = _reportService.GetCompanyWinloss(criteria);
 
             var serializer = new JavaScriptSerializer();
             ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
@@ -103,20 +103,25 @@ namespace Fanex.AffiliateAdmin.Controller
                 Name = x.ProductName
             }));
 
-            var companyWinlossByGroups = FilterGroupDataCompanyWinloss(criteria, data);
+            var companyWinlossByGroups = FilterGroupDataCompanyWinloss(criteria, data.CompanyWinlossList);
 
-            var hasShowSubTotalRow = data.GroupBy(t => t.Currency)
+            var hasShowSubTotalRow = data.CompanyWinlossList.GroupBy(t => t.Currency)
                                          .Select(t => new { Currency = t.Key, RowCount = t.Count() })
                                          .Any(t => t.RowCount > 1);
 
             return Json(new
             {
-                Groups = companyWinlossByGroups.Where(t => !t.Level.Equals("All")),
-                TotalData = companyWinlossByGroups.FirstOrDefault(t => t.Level.Equals("All")),
+                Groups = companyWinlossByGroups,
+                TotalData = new CompanyWinlossByLevel {
+                    GroupInfo = Lang.TotalAll,
+                    Level = "All",
+                    CompanyWinlossInMemberCurrencies = data.CompanyWinlossInMemberCurrencies,
+                    CompanyWinlossInSystemCurrency = data.CompanyWinlossInSystemCurrency
+                },
                 HasShowSubTotalRow = hasShowSubTotalRow,
-                CurrentPage = 1,
-                ItemsPerPage = data.Count,
-                TotalItem = data.Count
+                CurrentPage = criteria.PageIndex - 1,
+                ItemsPerPage = criteria.PageSize,
+                TotalItem = criteria.NRows
             });
         }
 
@@ -207,7 +212,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
 
-            var data = _reportService.GetPlayerWinloss(criteria);
+            var data = _reportService.GetMemberWinloss(criteria);
 
             var hasShowSubTotalRow = data.PlayerWinlossList.GroupBy(t => t.PlayerCurrency)
                                            .Select(t => new { PlayerCurrency = t.Key, RowCount = t.Count() })
@@ -474,67 +479,7 @@ namespace Fanex.AffiliateAdmin.Controller
             }
         }
 
-        /// <summary>
-        /// Player Win loss Report.
-        /// </summary>
-        /// <param name="playerWinlosses">Player Win losses.</param>
-        /// <param name="subTotalData">Sub Total Data.</param>
-        /// <param name="totalRowData">Total Data.</param>
-        private void SetDataForTotalMemberWinloss(
-            List<PlayerWinloss> playerWinlosses,
-            List<PlayerWinloss> subTotalData,
-            PlayerWinloss totalRowData)
-        {
-            var groups = playerWinlosses.GroupBy(t => t.PlayerCurrency);
-
-            var properties = typeof(PlayerWinloss).GetProperties()
-                .Where(p => p.Name != "ExRate" && (p.PropertyType == typeof(int) || p.PropertyType == typeof(decimal) || p.PropertyType == typeof(double)));
-
-            foreach (var group in groups)
-            {
-                var playerWinloss = new PlayerWinloss { PlayerCurrency = group.Key };
-
-                foreach (var property in properties)
-                {
-                    var value = group.Sum(g => (decimal)Convert.ChangeType(property.GetValue(g, null), TypeCode.Decimal));
-
-                    if (property.CanWrite)
-                    {
-                        property.SetValue(playerWinloss, Convert.ChangeType(value, property.PropertyType), null);
-                    }
-                }
-
-                subTotalData.Add(playerWinloss);
-            }
-
-            // Calculate Total Data
-            foreach (var property in properties)
-            {
-                if (property.Name.EndsWith("Base"))
-                {
-                    var value = playerWinlosses.Sum(g => (decimal)Convert.ChangeType(property.GetValue(g, null), TypeCode.Decimal));
-
-                    if (property.CanWrite)
-                    {
-                        property.SetValue(totalRowData, Convert.ChangeType(value, property.PropertyType), null);
-                    }
-                }
-
-                if (property.Name.EndsWith("BetCount"))
-                {
-                    var value = playerWinlosses.Sum(g => (int)Convert.ChangeType(property.GetValue(g, null), TypeCode.Int32));
-
-                    if (property.CanWrite)
-                    {
-                        property.SetValue(totalRowData, Convert.ChangeType(value, property.PropertyType), null);
-                    }
-                }
-            }
-
-            totalRowData.PlayerCurrency = AppSettings.BaseExchange.Code;
-        }
-
-        #region Company Winloss Report
+        #region Company win-loss report
 
         /// <summary>
         /// Filter Group Data Company Win loss based Group By criteria.
@@ -542,7 +487,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Input criteria.</param>
         /// <param name="companyWinlosses">Company win loss List.</param>
         /// <returns>Company Win loss Group List.</returns>
-        private List<CompanyWinlossByLevel> FilterGroupDataCompanyWinloss(CompanyWinlossReportCriteria criteria, List<CompanyWinloss> companyWinlosses)
+        private List<CompanyWinlossByLevel> FilterGroupDataCompanyWinloss(CompanyWinlossReportCriteria criteria, IEnumerable<CompanyWinloss> companyWinlosses)
         {
             var companyWinlossByGroups = new List<CompanyWinlossByLevel>();
 
@@ -575,7 +520,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="companyWinlosses">Company Win loss List.</param>
         /// <param name="companyWinlossByGroups">Company Win loss Groups.</param>
-        private void GroupDataForCompanyWinloss(IList<CompanyWinloss> companyWinlosses, List<CompanyWinlossByLevel> companyWinlossByGroups)
+        private void GroupDataForCompanyWinloss(IEnumerable<CompanyWinloss> companyWinlosses, List<CompanyWinlossByLevel> companyWinlossByGroups)
         {
             var properties = typeof(CompanyWinloss).GetProperties().Where(p => IsPropertyAbleSumUp(p)).ToList();
             var groupByYears = companyWinlosses.GroupBy(t => t.WinlostDate.Year).ToList();
@@ -589,12 +534,13 @@ namespace Fanex.AffiliateAdmin.Controller
                     GroupDataByDate(companyWinlossByGroups, groupByMonth, properties, groupByYear.Key);
 
                     var companyWlInMemberCurrenciesByMonth = GetCompanyWinlossInMemberCurrencies(groupByMonth.ToList(), properties);
+
                     companyWinlossByGroups.Add(new CompanyWinlossByLevel
                         {
                             GroupInfo = string.Format("{0}/{1}/{2}", groupByMonth.Key, 1, groupByYear.Key),
                             Level = "Month",
                             CompanyWinlossInMemberCurrencies = companyWlInMemberCurrenciesByMonth,
-                            CompanyWinlossInSystemCurrency = GetTotalCompanyWinlossInSystemCurrency(companyWlInMemberCurrenciesByMonth, properties)
+                            CompanyWinlossInSystemCurrency = GetCompanyWinlossInSystemCurrency(companyWlInMemberCurrenciesByMonth, properties)
                         });
                 }
 
@@ -604,18 +550,9 @@ namespace Fanex.AffiliateAdmin.Controller
                     GroupInfo = string.Format("{0}/{1}/{2}", 1, 1, groupByYear.Key),
                     Level = "Year",
                     CompanyWinlossInMemberCurrencies = companyWlInMemberCurrenciesByYear,
-                    CompanyWinlossInSystemCurrency = GetTotalCompanyWinlossInSystemCurrency(companyWlInMemberCurrenciesByYear, properties)
+                    CompanyWinlossInSystemCurrency = GetCompanyWinlossInSystemCurrency(companyWlInMemberCurrenciesByYear, properties)
                 });
             }
-
-            var companyWlInMemberCurrencies = GetCompanyWinlossInMemberCurrencies(companyWinlosses, properties);
-            companyWinlossByGroups.Add(new CompanyWinlossByLevel
-            {
-                GroupInfo = Lang.TotalAll,
-                Level = "All",
-                CompanyWinlossInMemberCurrencies = companyWlInMemberCurrencies,
-                CompanyWinlossInSystemCurrency = GetTotalCompanyWinlossInSystemCurrency(companyWlInMemberCurrencies, properties)
-            });
         }
 
         /// <summary>
@@ -640,7 +577,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     GroupInfo = string.Format("{0}/{1}/{2}", groupByMonth.Key, groupByDate.Key, year),
                     Level = "Date",
                     CompanyWinlossInMemberCurrencies = groupByDate.ToList(),
-                    CompanyWinlossInSystemCurrency = GetTotalCompanyWinlossInSystemCurrency(groupByDate.ToList(), properties)
+                    CompanyWinlossInSystemCurrency = GetCompanyWinlossInSystemCurrency(groupByDate.ToList(), properties)
                 });
             }
         }
@@ -702,7 +639,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="companyWinlosses">Company Win loss List.</param>
         /// <param name="properties">Property List.</param>
         /// <returns>Company Win loss In System Currency.</returns>
-        private CompanyWinloss GetTotalCompanyWinlossInSystemCurrency(IList<CompanyWinloss> companyWinlosses, IEnumerable<PropertyInfo> properties)
+        private CompanyWinloss GetCompanyWinlossInSystemCurrency(IList<CompanyWinloss> companyWinlosses, IEnumerable<PropertyInfo> properties)
         {
             var totalCompanlyWinloss = new CompanyWinloss();
 

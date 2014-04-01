@@ -29,9 +29,9 @@ namespace Fanex.AffiliateAdmin.Services.Impl
             _reportDataAccess = new ReportDataAccess();
         }
 
-        public IEnumerable<CompanyWinloss> GetCompanyWinloss(CompanyWinlossReportCriteria criteria)
+        public CompanyWinlossReport GetCompanyWinloss(CompanyWinlossReportCriteria criteria)
         {
-            return GetData<CompanyWinloss>(criteria);
+            return _reportDataAccess.GetCompanyWinloss(criteria);
         }
         
         public IEnumerable<MemberStatistic> GetMemberStatistics(MemberStatisticReportCriteria criteria)
@@ -44,7 +44,7 @@ namespace Fanex.AffiliateAdmin.Services.Impl
             return GetData<CommissionReport>(criteria);
         }
         
-        public PlayerWinlossReport GetPlayerWinloss(PlayerWinlossReportCriteria criteria)
+        public MemberWinlossReport GetMemberWinloss(PlayerWinlossReportCriteria criteria)
         {
             return _reportDataAccess.GetMemberWinloss(criteria);
         }

@@ -18,13 +18,13 @@ namespace Fanex.AffiliateAdmin.Services.Interface
     /// </summary>
     public interface IReportService
     {
-        IEnumerable<CompanyWinloss> GetCompanyWinloss(CompanyWinlossReportCriteria criteria);
+        CompanyWinlossReport GetCompanyWinloss(CompanyWinlossReportCriteria criteria);
 
         IEnumerable<MemberStatistic> GetMemberStatistics(MemberStatisticReportCriteria criteria);
 
         IEnumerable<CommissionReport> GetCommission(CommissionReportCriteria criteria);
 
-        PlayerWinlossReport GetPlayerWinloss(PlayerWinlossReportCriteria criteria);
+        MemberWinlossReport GetMemberWinloss(PlayerWinlossReportCriteria criteria);
 
         IEnumerable<QualifiedMember> GetQualifiedMembers(QualifiedMembersReportCriteria criteria);
     }

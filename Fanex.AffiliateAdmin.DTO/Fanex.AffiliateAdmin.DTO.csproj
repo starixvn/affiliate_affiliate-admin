@@ -70,9 +70,10 @@
     <Compile Include="ClickStatisticDetail.cs" />
     <Compile Include="CommissionReport.cs" />
     <Compile Include="CompanyWinloss.cs" />
-    <Compile Include="PlayerWinlossReport.cs" />
+    <Compile Include="CompanyWinlossReport.cs" />
+    <Compile Include="MemberWinlossReport.cs" />
     <Compile Include="ProcessingComm.cs" />
-    <Compile Include="PlayerWinloss.cs" />
+    <Compile Include="MemberWinloss.cs" />
     <Compile Include="CurrencyStatistics.cs" />
     <Compile Include="CommGroup.cs" />
     <Compile Include="Banner.cs" />

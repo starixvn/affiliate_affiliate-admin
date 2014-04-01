@@ -298,7 +298,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Affiliate update criteria.</param>
         /// <returns>View model.</returns>
-        [HttpPost, ValidateInput(false)]
+        [HttpPost]
         public ActionResult Edit(AffiliateUpdCriteria criteria)
         {
             var model = CacheUserInput(criteria);

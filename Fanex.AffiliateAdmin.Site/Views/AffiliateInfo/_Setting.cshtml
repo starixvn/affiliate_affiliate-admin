@@ -9,6 +9,12 @@
     <div class="left-tab-info">
         <table>
             <tbody>
+                <tr>
+                    <td>@Lang.AccountType</td>                    
+                    <td class="col-right"> 
+                        <a title="@(AffiliateSettings.AccountTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffLevel).FirstOrDefault().TypeName)" id="accountType" href="javascript:void(0);">@(AffiliateSettings.AccountTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffLevel).FirstOrDefault().TypeName.LeftString(12))</a>
+                    </td>
+                </tr>
                 @if (Model.AffiliateInfo.Status.Equals(AffiliateStatus.Approved.ToString(), StringComparison.CurrentCultureIgnoreCase))
                 {
                     <tr>
@@ -28,12 +34,6 @@
                             {
                                 <span title="@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name)">@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name.LeftString(12))</span>
                             }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>@Lang.AccountType</td>                    
-                        <td class="col-right"> 
-                            <a title="@(AffiliateSettings.AccountTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffLevel).FirstOrDefault().TypeName)" id="accountType" href="javascript:void(0);">@(AffiliateSettings.AccountTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffLevel).FirstOrDefault().TypeName.LeftString(12))</a>
                         </td>
                     </tr>
                     <tr>

@@ -59,7 +59,19 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Login()
         {
-            return View(new LoginViewModel());
+            string startTime = string.Empty, endTime = string.Empty;
+
+            if (UnderMaintenanceService.GetDownTime(ref startTime, ref endTime))
+            {
+                ViewBag.StartTime = startTime;
+                ViewBag.EndTime = endTime;
+
+                return RedirectPermanent("/Notify");
+            }
+            else
+            {
+                return View(new LoginViewModel());
+            }
         }
 
         /// <summary>
@@ -173,15 +185,33 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>Kicked out or not.</returns>
         [HttpPost]
-        [Authorization]
         public ActionResult ReCheckIn()
+        {
+            var result = new ResultViewModel();
+
+            KickedOutSession(result);
+
+            if (result.Success)
+            {
+                return Json(result);
+            }
+
+            KickedOutDownTime(result);
+
+            return Json(result);
+        }
+
+        /// <summary>
+        /// Kicked out session.
+        /// </summary>
+        /// <param name="result">Kick-out result.</param>
+        private void KickedOutSession(ResultViewModel result)
         {
             var criteria = new ReCheckInCriteria
             {
                 OnUserID = SessionManager.CurrentSession == null ? 0 : SessionManager.CurrentSession.OnUserID
             };
 
-            var result = new ResultViewModel();
             var isKickedOut = _accountService.ReCheckIn(criteria);
 
             if (!AppSettings.LocalTest)
@@ -191,23 +221,23 @@ namespace Fanex.AffiliateAdmin.Controller
                     result.Success = isKickedOut;
                     result.Message = isKickedOut ? Lang.MsgKickout : string.Empty;
                     result.ErrorMessage = "Expired";
-                    
+
                     // Signout and clean all session.
                     DoLogOut();
                 }
             }
+        }
 
+        /// <summary>
+        /// Kicked out down time.
+        /// </summary>
+        /// <param name="result">Kick-out result.</param>
+        private void KickedOutDownTime(ResultViewModel result)
+        {
             string startTime = string.Empty, endTime = string.Empty;
-            bool isUM = UnderMaintenanceService.GetDownTime(ref startTime, ref endTime);
-
-            if (isUM)
-            {
-                result.Success = isKickedOut;
-                result.Message = "Undermaintenance";
-                result.ErrorMessage = "UM";
-            }
-
-            return Json(result);
+            result.Success = UnderMaintenanceService.GetDownTime(ref startTime, ref endTime);
+            result.Message = "Under-maintenance";
+            result.ErrorMessage = "UM";
         }
 
         /// <summary>

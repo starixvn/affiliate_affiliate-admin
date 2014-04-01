@@ -24,10 +24,12 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult Index()
         {
             string startTime = string.Empty, endTime = string.Empty;
+
             if (UnderMaintenanceService.GetDownTime(ref startTime, ref endTime))
             {
                 ViewBag.StartTime = startTime;
                 ViewBag.EndTime = endTime;
+
                 return View();
             }
             else

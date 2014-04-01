@@ -2324,7 +2324,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please don&apos;t enter special characters, such as ~!#$%^&amp;*();&lt;&gt;{}[] in text box..
+        ///   Looks up a localized string similar to Please don&apos;t enter special characters, such as ~!#$%^&amp;*();&lt;&gt;{}[]| in text box..
         /// </summary>
         public static string DontEnterSpecialCharacters {
             get {

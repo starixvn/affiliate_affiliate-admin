@@ -2,7 +2,6 @@
     return {
         init: function () {
             setInterval("RECHECKIN.ReCheckIn()", 60000);
-            RECHECKIN.ReCheckIn();
         },
         ReCheckIn: function () {
             $.ajax({
@@ -12,14 +11,15 @@
                 dataType: "json",
                 success: function (result) {
                     AFFILIATE.PreHandleAjaxResult(result);
-                    
-                    if (result.Success) {//Use Success = IsKickedOut
+
+                    if (result.Success) {
                         if (result.ErrorMessage == "Expired") {
                             alert(result.Message);
                             top.location.href = AFFILIATE.getAbsoluteUrl("Account/Login");
                         }
-                        else if (result.ErrorMessage == "UM") {
-                            parent.location.href = AFFILIATE.getAbsoluteUrl("/UnderMaintenance");
+
+                        if (result.ErrorMessage == "UM") {
+                            top.location.href = AFFILIATE.getAbsoluteUrl("Notify");
                         }
                     }
                 },

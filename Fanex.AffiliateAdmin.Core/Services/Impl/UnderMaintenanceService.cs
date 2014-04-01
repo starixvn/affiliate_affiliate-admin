@@ -66,7 +66,6 @@ namespace Fanex.AffiliateAdmin.Core.Services
             {
                 try
                 {
-                    ////Get Affiliate Site UM Status
                     underMaintenance = maintenanceController.isUnderMaintainence(Sites.Affiliate, AppSettings.LBUrl, ref startTime, ref endTime);
                     _memoryCache.Add("IsUM", underMaintenance, DateTime.Now.AddSeconds(_TimeCacheUM));
                     _memoryCache.Add("StartTime", startTime, DateTime.Now.AddSeconds(_TimeCacheUM));

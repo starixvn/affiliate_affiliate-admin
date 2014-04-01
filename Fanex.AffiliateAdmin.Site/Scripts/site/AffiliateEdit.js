@@ -1,12 +1,55 @@
 ﻿var AFFEDIT = function ($) {
+    var inValidEle = null;
+
+    function isValidTextBox(text) {
+        var regex = new RegExp("[~!#$%^&*();\\[\\]<>{}\\|]", "g");
+
+        if (match = regex.test(text)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function showErrorMessage(message) {
+        AFFILIATE.showErrorMsg(message);
+
+        $("input[type=text]").each(function () {
+            $(this).removeClass("input-validation-error");
+        });
+
+        $(inValidEle).addClass("input-validation-error");
+    }
+
     return {
         init: function () {
             $('#btnAddSite').click(function () {
                 AFFEDIT.addUrl();
             });
             $('#btnSubmit').click(function () {
+                if (!AFFEDIT.validateTextBox()) {
+                    showErrorMessage(MSG.DontEnterSpecialCharacters);
+                    return false;
+                }
+
                 AFFEDIT.submitForm();
             });
+        },
+
+        validateTextBox: function () {
+            var isValidURL = true;
+
+            $("input[type=text]").each(function () {
+                var value = $.trim($(this).val());
+                isValidURL = isValidTextBox(value);
+
+                if (!isValidURL) {
+                    inValidEle = this;
+                    return false;
+                }
+            });
+
+            return isValidURL;
         },
         addUrl: function () {
             var sites = $(".sites");
@@ -53,7 +96,7 @@
             var inputs = $('form').find(':disabled');
             // enable them
             inputs.prop('disabled', false);
-            
+
             var moreSiteUrls = '';
             $(".more-site").each(function () {
                 if (moreSiteUrls != '')

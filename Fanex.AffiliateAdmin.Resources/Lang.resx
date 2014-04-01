@@ -2510,4 +2510,7 @@
   <data name="AlreadyTransfersForThisMonth" xml:space="preserve">
     <value>Please check the data. Transfers have been done for {0}!</value>
   </data>
+  <data name="DontEnterSpecialCharacters" xml:space="preserve">
+    <value>Please don't enter special characters, such as ~!#$%^&amp;*();&lt;&gt;{}[] in text box.</value>
+  </data>
 </root>

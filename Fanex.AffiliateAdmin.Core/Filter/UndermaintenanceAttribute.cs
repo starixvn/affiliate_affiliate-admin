@@ -25,7 +25,10 @@ namespace Fanex.AffiliateAdmin.Core.Filter
             string startTime = string.Empty, endTime = string.Empty;
             if (UnderMaintenanceService.GetDownTime(ref startTime, ref endTime))
             {
-                filterContext.HttpContext.Response.Redirect("~/notify/");
+                if (!filterContext.HttpContext.Response.IsRequestBeingRedirected)
+                {
+                    filterContext.HttpContext.Response.RedirectPermanent("~/Notify");
+                }
             }
 
             base.OnActionExecuting(filterContext);

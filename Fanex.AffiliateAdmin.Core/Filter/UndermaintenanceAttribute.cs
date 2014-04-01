@@ -27,7 +27,7 @@ namespace Fanex.AffiliateAdmin.Core.Filter
             {
                 if (!filterContext.HttpContext.Response.IsRequestBeingRedirected)
                 {
-                    filterContext.HttpContext.Response.RedirectPermanent("~/Notify");
+                    filterContext.HttpContext.Response.Redirect("~/Notify/Index");
                 }
             }
 

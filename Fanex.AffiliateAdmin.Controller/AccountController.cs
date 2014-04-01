@@ -66,7 +66,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 ViewBag.StartTime = startTime;
                 ViewBag.EndTime = endTime;
 
-                return RedirectPermanent("/Notify");
+                return Redirect("~/Notify");
             }
             else
             {

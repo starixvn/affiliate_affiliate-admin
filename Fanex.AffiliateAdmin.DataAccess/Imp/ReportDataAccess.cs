@@ -17,6 +17,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
     using DTO;
     using Fanex.NAP.Framework.Data;
     using Interface;
+    using System.Diagnostics;
 
     /// <summary>
     /// Account data access.
@@ -66,7 +67,12 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var param = criteria.GetSpParams();
+
+                    var stopwatch = Stopwatch.StartNew();
+
                     var reader = objectDb.ExecuteReader(param);
+
+                    stopwatch.Stop();
 
                     companyWinlossReport.CompanyWinlossList = GetCompanyWinlossList(reader, criteria);
                     companyWinlossReport.CompanyWinlossInMemberCurrencies = GetCompanyWinlossInMemberCurrencies(reader);

@@ -84,7 +84,7 @@
             _gridOption.columns.splice(startTurnoverPosition + productCount, 0, totalTurnoverCol);
         }
 
-        // for winlost cols
+        // for win-loss cols
         if (productCount > 2) {
             for (var i = 0; i < productCount; i++) {
                 var name = nomalizeProductName(PRODUCTS[i].Name);

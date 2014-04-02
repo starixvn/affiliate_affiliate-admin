@@ -123,7 +123,7 @@
                         { HeaderCaption: "@Lang.PSP", HeaderText: "@Lang.PSP", IsCurrency: true, Name: "PSP", NameCache: "PSP", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.ActiveMembers", Name: "ActivePlayer", MergeRowNumber: 2 },
-                        { HeaderCaption: "@Lang.CustomerWL", HeaderText: "@Lang.CustomerWL", IsCurrency: true, Name: "Winlost", NameCache: "Winlost", MergeRowNumber: 2 }
+                        { HeaderCaption: "@Lang.CustomerWL", HeaderText: "@Lang.CustomerWL", IsCurrency: true, Name: "TotalMemberWinlost", NameCache: "TotalMemberWinlost", MergeRowNumber: 2 }
                     ]
                 }
             ],
@@ -138,8 +138,10 @@
                 { HeaderCaption: "@Lang.PSP", HeaderText: "@Lang.PSP", IsCurrency: true, Width: 90, Name: "PSP", NameCache: "PSP", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
                 { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },                
                 { HeaderText: "@Lang.ActiveMembers", Width: 110, Name: "ActivePlayer", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderCaption: "@Lang.CustomerWL", HeaderText: "@Lang.CustomerWL", IsCurrency: true, Width: 110, Name: "Winlost", NameCache: "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true }
+                { HeaderCaption: "@Lang.CustomerWL", HeaderText: "@Lang.CustomerWL", IsCurrency: true, Width: 110, Name: "TotalMemberWinlost", NameCache: "TotalMemberWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true }
             ],            
+            showPager: true,
+            customPager: true,
             allowTruncate: false,
             gridExpandHeight: 360,
             showFooter: true,
@@ -148,11 +150,11 @@
             numberOfFrozenColumn: 3
         };
         
-        var sampleTotalTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "Turnover", NameCache: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-        var sampleTotalWinlostCol = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Width: 110, Name: "Total", NameCache: "Total", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleTotalTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleTotalWinlostCol = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Width: 110, Name: "TotalCompanyWinlost", NameCache: "TotalCompanyWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
 
-        var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Name: "Turnover", NameCache: "Turnover",  MergeColNumber: 5 };
-        var sampleCompanyWLHeader = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Name: "Total", NameCache: "Total", MergeColNumber: 5 };
+        var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Name: "TotalTurnover", NameCache: "TotalTurnover",  MergeColNumber: 5 };
+        var sampleCompanyWLHeader = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Name: "TotalCompanyWinlost", NameCache: "TotalCompanyWinlost", MergeColNumber: 5 };
 
         var exRatePosition = 2;
         var turnoverPosition = 8;

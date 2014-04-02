@@ -306,7 +306,7 @@
                     };
 
                     _gridOption.titleInfo.text = MSG.CommissionTitle + ' [{0}]'.format(data.TotalItem);
-                    _gridOption.footerRows = getFooterRows(_gridOption, data.SubTotalData, data.TotalRowData, data.TotalItem, data.hasShowSubTotalData);
+                    _gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.TotalItem, data.hasShowSubTotalData);
                     _gridOption.bodyRows = AFFILIATE.genGridRows(data.List, _gridOption);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(_gridOption);

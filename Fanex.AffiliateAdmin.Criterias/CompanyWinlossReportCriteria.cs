@@ -52,6 +52,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int NRows { get; set; }
 
+        public int Duration { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_CompanyWinlossReport";

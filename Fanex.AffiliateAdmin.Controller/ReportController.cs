@@ -121,7 +121,9 @@ namespace Fanex.AffiliateAdmin.Controller
                 HasShowSubTotalRow = hasShowSubTotalRow,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.NRows
+                TotalItem = criteria.NRows,
+                DurationDB = criteria.Duration,
+                DurationFanexData = data.Duration
             });
         }
 
@@ -226,7 +228,9 @@ namespace Fanex.AffiliateAdmin.Controller
                 HasShowSubTotalRow = hasShowSubTotalRow,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.NRows
+                TotalItem = criteria.NRows,
+                DurationDB = criteria.Duration,
+                DurationFanexData = data.Duration
             });
         }
 

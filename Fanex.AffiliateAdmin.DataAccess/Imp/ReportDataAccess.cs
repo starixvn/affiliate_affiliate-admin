@@ -31,18 +31,25 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
         /// <returns>Player win-loss report object.</returns>
         public MemberWinlossReport GetMemberWinloss(PlayerWinlossReportCriteria criteria)
         {
-            var playerWinlossReport = new MemberWinlossReport();
+            var memberWinlossReport = new MemberWinlossReport();
 
             if (criteria.IsValid())
             {
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var param = criteria.GetSpParams();
+
+                    var stopwatch = Stopwatch.StartNew();
+
                     var reader = objectDb.ExecuteReader(param);
 
-                    playerWinlossReport.PlayerWinlossList = GetMemberWinlossList(reader);
-                    playerWinlossReport.PlayerWinlossInMemberCurrencies = GetMemberWinlossInMemberCurrencies(reader);
-                    playerWinlossReport.PlayerWinlossInSystemCurrency = GetMemberWinlossInSystemCurrency(reader);
+                    stopwatch.Stop();
+
+                    memberWinlossReport.Duration = stopwatch.ElapsedMilliseconds;
+
+                    memberWinlossReport.PlayerWinlossList = GetMemberWinlossList(reader);
+                    memberWinlossReport.PlayerWinlossInMemberCurrencies = GetMemberWinlossInMemberCurrencies(reader);
+                    memberWinlossReport.PlayerWinlossInSystemCurrency = GetMemberWinlossInSystemCurrency(reader);
 
                     reader.Close();
 
@@ -50,7 +57,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                 }
             }
 
-            return playerWinlossReport;
+            return memberWinlossReport;
         }
 
         /// <summary>
@@ -73,6 +80,8 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                     var reader = objectDb.ExecuteReader(param);
 
                     stopwatch.Stop();
+
+                    companyWinlossReport.Duration = stopwatch.ElapsedMilliseconds;
 
                     companyWinlossReport.CompanyWinlossList = GetCompanyWinlossList(reader, criteria);
                     companyWinlossReport.CompanyWinlossInMemberCurrencies = GetCompanyWinlossInMemberCurrencies(reader);

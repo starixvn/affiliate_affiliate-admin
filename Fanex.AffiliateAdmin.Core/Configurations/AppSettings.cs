@@ -65,7 +65,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             _licenseeID = int.Parse(licensee.SValue);
             _baseLanguage = _SystemSetting.GetLanguageList(new LanguageCriteria { Type = "Affiliate" });
             _affLanguage = _SystemSetting.GetAffLanguageList(new AffLanguageCriteria());
-            _affSupportLanguage = _SystemSetting.GetAffSupportLanguageList(new AffiliateLanguageCriteria());
+            //_affSupportLanguage = _SystemSetting.GetAffSupportLanguageList(new AffiliateLanguageCriteria());
             _memberSiteSupportedLanguage = _SystemSetting.GetMemberSiteSupportedLanguageList(new MemberSiteLanguageCriteria
             {
                 Environment = Environment

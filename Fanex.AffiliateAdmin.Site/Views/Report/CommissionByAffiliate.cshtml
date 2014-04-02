@@ -100,8 +100,7 @@ report
         var affiliateUrl = AFFILIATE.getAbsoluteUrl("AffiliateInfo?username=");
         var commGroupUrl = AFFILIATE.getAbsoluteUrl("CommGroup?groupname=");
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
-        var True = true, False = false;
-        var HasCashbackDeduction = "@ViewBag.HasCashbackDeduction";
+        var HasCashbackDeduction = @(ViewBag.HasCashbackDeduction ? "true" : "false");
         var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
         var subTotalStatus = COLLAPSE_SUBTOTAL_STATUS;
         

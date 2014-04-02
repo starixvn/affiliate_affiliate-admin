@@ -1,7 +1,7 @@
 ﻿var CommissionReport = function ($) {
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = 1;
-    var DEPOSIT_COL = 5;
+    var DEPOSIT_COL = 6;
     var _commonColumnCount = 0;
     var _freezeColumnCount = 4;
     var _hideColumns = [];
@@ -155,20 +155,8 @@
 
         $("#gridId").fanexGrid("hideColumns", gridOption, columns);
 
-        if (_isSimpleMode && HasCashbackDeduction === false)
-            $("#gridId table:lt(4) th div").height(30);
-
-        /*
-        if ($("#GroupBy").val() == GROUP_BY_MONTH) {
-            
-        }
-        else {
-            columns = columns.concat(_hideColumns.clone());
-            $("#gridId").fanexGrid("hideColumns", gridOption, columns);
-        }
-
-        if (_isSimpleMode && HasCashbackDeduction === false)
-            $("#gridId table:lt(4) th div").height(30); */
+//        if (_isSimpleMode && HasCashbackDeduction === false)
+//            $("#gridId table:lt(4) th div").height(30);
     }
     return {
         init: function () {

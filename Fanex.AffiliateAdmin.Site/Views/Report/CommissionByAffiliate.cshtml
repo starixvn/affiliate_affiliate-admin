@@ -123,7 +123,6 @@ report
                         { HeaderText: "@Lang.ActiveMembers", Name: "ActivePlayers", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Deposit", IsCurrency: true, HeaderText: "@Lang.Deposit", Name: "Deposit", NameCache: "Deposit", MergeRowNumber: 2 },
-                        { HeaderCaption: "@Lang.Cashback", HeaderText: "@Lang.Cashback", Name: "DeductedPercentage", MergeColNumber: 2 },
                         { HeaderCaption: "@Lang.Withdrawal", IsCurrency: true, HeaderText: "@Lang.Withdrawal", Name: "Withdrawal", NameCache: "Withdrawal", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Turnover", IsCurrency: true, HeaderText: "@Lang.Turnover", Name: "Turnover", NameCache: "Turnover", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Winloss", IsCurrency: true, HeaderText: "@Lang.Winloss", Name: "Winloss", NameCache: "Winloss", MergeRowNumber: 2 },
@@ -167,8 +166,6 @@ report
                 { HeaderText: "@Lang.ActiveMembers", Width: 80, Name: "ActivePlayers", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.BetCount", Width: 80, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.Deposit", Width: 80, Name: "Deposit", NameCache: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
-                { HeaderText: "@Lang.DeductionPercent", IsPercent: true, Width: 80, Name: "DeductedPercentage", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER },                
-                { HeaderCaption: "@Lang.Amount", HeaderText: "@Lang.Amount", Width: 80, IsCurrency: true, Name: "Cashback", NameCache: "Cashback", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
                 { HeaderText: "@Lang.Withdrawal", Width: 70, Name: "Withdrawal", NameCache: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
                 { HeaderText: "@Lang.Turnover", Width: 80, Name: "Turnover", NameCache: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
                 { HeaderText: "@Lang.Winloss", Width: 110, Name: "Winloss", NameCache: "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
@@ -187,6 +184,10 @@ report
                 return rowData.Status.toLowerCase();
             }
         };
+
+        var sampleCashbackHeader = { HeaderCaption: "@Lang.Cashback", HeaderText: "@Lang.Cashback", Name: "DeductedPercentage", MergeColNumber: 2 };
+        var sampleDeductedPercentageCol = { HeaderText: "@Lang.DeductionPercent", IsPercent: true, Width: 80, Name: "DeductedPercentage", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER };
+        var sampleAmountCol ={ HeaderCaption: "@Lang.Amount", HeaderText: "@Lang.Amount", Width: 80, IsCurrency: true, Name: "Cashback", NameCache: "Cashback", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true };
 
     </script>
     <script src="@Url.Content("~/Scripts/site/CommissionByAffiliateReport.js")" type="text/javascript"></script>

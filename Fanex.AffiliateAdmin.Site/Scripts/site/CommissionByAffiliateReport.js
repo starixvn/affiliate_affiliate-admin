@@ -1,19 +1,16 @@
 ﻿var CommissionReport = function ($) {
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = 1;
-    var GROUP_BY_MONTH = 0;
-    var DEDUCTION_PERCENT_COL = 9;
-    var DEDUCTION_AMOUNT_COL = 10;
-    var MONTH_COL = 1, COMMGROUP_COL = 4;
-    // number of all common columns (except product columns).
+    var DEPOSIT_COL = 5;
     var _commonColumnCount = 0;
     var _freezeColumnCount = 4;
     var _hideColumns = [];
-    var _bonusColumns = [DEDUCTION_PERCENT_COL, DEDUCTION_AMOUNT_COL];
     var _indexProductColumns = [];
     var _isSimpleMode = false;
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     function initProductColumnsForGridOption(gridOption, isUseBaseCurrency) {
+
+        insertCashbackColumns();
 
         for (var i = 0; i < PRODUCTS.length; i++) {
             var name = nomalizeProductName(PRODUCTS[i].Name);
@@ -54,6 +51,14 @@
             );
         }
     }
+
+    function insertCashbackColumns() {
+        if (HasCashbackDeduction) {
+            gridOption.groupHeaderRows[0].Columns.splice(DEPOSIT_COL, 0, sampleCashbackHeader);
+            gridOption.columns.splice(DEPOSIT_COL, 0, sampleDeductedPercentageCol, sampleAmountCol);
+        }
+    }
+
     function renameCurrencyColumns(gridOption, isUseBaseCurrency) {
         for (var i = _freezeColumnCount; i < gridOption.columns.length; i++) {
             var col = gridOption.columns[i];
@@ -84,7 +89,7 @@
 
         if (hasShowSubTotalRow === true && totalItem > 1) {
             if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].Currency != System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
-                $.each(subTotalData, function(idx, item) {
+                $.each(subTotalData, function (idx, item) {
 
                     var columns = [];
 
@@ -148,12 +153,14 @@
             columns = _indexProductColumns.clone();
         }
 
-        if (HasCashbackDeduction === false) {
-            columns = columns.concat(_bonusColumns.clone());
-        }
+        $("#gridId").fanexGrid("hideColumns", gridOption, columns);
 
+        if (_isSimpleMode && HasCashbackDeduction === false)
+            $("#gridId table:lt(4) th div").height(30);
+
+        /*
         if ($("#GroupBy").val() == GROUP_BY_MONTH) {
-            $("#gridId").fanexGrid("hideColumns", gridOption, columns);
+            
         }
         else {
             columns = columns.concat(_hideColumns.clone());
@@ -161,7 +168,7 @@
         }
 
         if (_isSimpleMode && HasCashbackDeduction === false)
-            $("#gridId table:lt(4) th div").height(30);
+            $("#gridId table:lt(4) th div").height(30); */
     }
     return {
         init: function () {

@@ -297,6 +297,8 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             if (reader.NextResult())
             {
                 reader.Read();
+                companyWinloss.BetCount = reader.ToInt("BetCount");
+                companyWinloss.ActivePlayer = reader.ToInt("ActivePlayer");
                 GetCompanyWinlossColunmsInSystemCurrency(reader, companyWinloss);
             }
 
@@ -313,7 +315,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                 {
                     var companyWinloss = new CompanyWinloss
                     {
-                        Currency = reader.ToString("Currency")
+                        Currency = reader.ToString("Currency"),
+                        BetCount = reader.ToInt("BetCount"),
+                        ActivePlayer = reader.ToInt("ActivePlayer")
                     };
 
                     GetCompanyWinlossColumnsRelatedToMoney(reader, companyWinloss);
@@ -335,7 +339,6 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                     WinlostDate = reader.ToDateTime("WinlostDate"),
                     Currency = reader.ToString("Currency"),
                     CurrencyId = reader.ToShort("CurrencyId"),
-                    
                     BetCount = reader.ToInt("BetCount"),
                     ActivePlayer = reader.ToInt("ActivePlayer")
                 };

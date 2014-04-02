@@ -203,7 +203,7 @@
   </Function>
 
   <Function name="Reports">
-    <Setting Key="AffAdmin_CompanyWinlossReport" SpName="AffAdmin_CompanyWinlossReport_brian" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CompanyWinlossReport" SpName="AffAdmin_CompanyWinlossReport" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_MemberStatisticsReport" SpName="AffAdmin_MemberStatisticsReport" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommissionReport" SpName="AffAdmin_CommissionReport" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_PlayerWinlossReport" SpName="AffAdmin_PlayerWinlossReport_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />

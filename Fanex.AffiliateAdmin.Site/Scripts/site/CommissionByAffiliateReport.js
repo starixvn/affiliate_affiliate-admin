@@ -7,30 +7,31 @@
     var _hideColumns = [];
     var _indexProductColumns = [];
     var _isSimpleMode = false;
-    // isUseBaseCurrency: add postfix "Base" to all currency columns
-    function initProductColumnsForGridOption(gridOption, isUseBaseCurrency) {
+    var _gridOption = {};
+
+    function initProductColumnsForGridOption() {
 
         insertCashbackColumns();
 
         for (var i = 0; i < PRODUCTS.length; i++) {
             var name = nomalizeProductName(PRODUCTS[i].Name);
 
-            gridOption.groupHeaderRows[0].Columns.push(
+            _gridOption.groupHeaderRows[0].Columns.push(
                 { HeaderText: MSG[name], Name: name + "ActivePlayers", MergeColNumber: 7 }
             );
-            gridOption.columns.push(
+            _gridOption.columns.push(
                 { HeaderText: MSG.ActivePlayers, Width: 90, Name: name + "ActivePlayers", HeaderAlign: "center", CellAlign: "right" }
             );
-            gridOption.columns.push(
+            _gridOption.columns.push(
                 { HeaderText: MSG.BetCount, Width: 60, Name: name + "BetCount", HeaderAlign: "center", CellAlign: "right" }
             );
-            gridOption.columns.push(
+            _gridOption.columns.push(
                 { IsCurrency: true, HeaderCaption: MSG.Turnover, HeaderText: MSG.Turnover, Width: 70, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMAT_INT_NUMBER, FormatNegative: '($)', IsAbs: true }
             );
-            gridOption.columns.push(
+            _gridOption.columns.push(
                 { IsCurrency: true, HeaderCaption: MSG.Winloss, HeaderText: MSG.Winloss, Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
-            gridOption.columns.push(
+            _gridOption.columns.push(
                 { IsCurrency: false, HeaderCaption: MSG.QM, HeaderText: MSG.QM, Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
                     Formatter: function (rIndex, record, cell, cellFormated) {
                         var actualBaseCurreny = $('#BaseCurrency').val() == "0" ? "2" : "1";
@@ -42,11 +43,12 @@
                     }
                 }
             );
-            gridOption.columns.push(
+
+            _gridOption.columns.push(
                 { IsCurrency: false, IsPercent: true, HeaderCaption: MSG.CommPercent, HeaderText: MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
 
-            gridOption.columns.push(
+            _gridOption.columns.push(
                 { IsCurrency: true, HeaderCaption: MSG.Commission, HeaderText: MSG.Commission, Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
         }
@@ -54,14 +56,14 @@
 
     function insertCashbackColumns() {
         if (HasCashbackDeduction) {
-            gridOption.groupHeaderRows[0].Columns.splice(DEPOSIT_COL, 0, sampleCashbackHeader);
-            gridOption.columns.splice(DEPOSIT_COL, 0, sampleDeductedPercentageCol, sampleAmountCol);
+            _gridOption.groupHeaderRows[0].Columns.splice(DEPOSIT_COL, 0, sampleCashbackHeader);
+            _gridOption.columns.splice(DEPOSIT_COL, 0, sampleDeductedPercentageCol, sampleAmountCol);
         }
     }
 
-    function renameCurrencyColumns(gridOption, isUseBaseCurrency) {
-        for (var i = _freezeColumnCount; i < gridOption.columns.length; i++) {
-            var col = gridOption.columns[i];
+    function renameCurrencyColumns(isUseBaseCurrency) {
+        for (var i = _freezeColumnCount; i < _gridOption.columns.length; i++) {
+            var col = _gridOption.columns[i];
             if (col.NameCache) {
                 var name = col.NameCache;
                 if (isUseBaseCurrency)
@@ -70,8 +72,8 @@
             }
         }
 
-        for (var i = _freezeColumnCount; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
-            var col = gridOption.groupHeaderRows[0].Columns[i];
+        for (var i = _freezeColumnCount; i < _gridOption.groupHeaderRows[0].Columns.length; i++) {
+            var col = _gridOption.groupHeaderRows[0].Columns[i];
             if (col.NameCache) {
                 var name = col.NameCache;
                 if (isUseBaseCurrency)
@@ -81,7 +83,7 @@
         }
     }
 
-    function getFooterRows(gridOption, subTotalData, totalRowData, totalItem, hasShowSubTotalRow) {
+    function getFooterRows(subTotalData, totalRowData, totalItem, hasShowSubTotalRow) {
         var mergeCols = 2;
         var subTotalRowCount = subTotalData.length;
 
@@ -97,8 +99,8 @@
                         columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
                     }
 
-                    for (var i = mergeCols; i < gridOption.columns.length; i++) {
-                        var col = gridOption.columns[i];
+                    for (var i = mergeCols; i < _gridOption.columns.length; i++) {
+                        var col = _gridOption.columns[i];
 
                         if (col.IsPercent) {
                             columns.push({ Value: MSG.NA, Name: col.Name });
@@ -115,8 +117,8 @@
         // Total row
         var totalColums = [];
         totalColums.push({ Value: "<div align='center'>" + MSG.Total + "</div>", Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
-        for (var i = mergeCols; i < gridOption.columns.length; i++) {
-            var col = gridOption.columns[i];
+        for (var i = mergeCols; i < _gridOption.columns.length; i++) {
+            var col = _gridOption.columns[i];
             var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
 
             if (col.IsPercent) {
@@ -130,16 +132,16 @@
 
         return footerRows;
     }
-    function changeHeaderCaptions(gridOption, showCurrencySymbol) {
+    function changeHeaderCaptions(showCurrencySymbol) {
         var text = showCurrencySymbol ? " (" + System.Prefix + ")" : "";
-        for (var i = 0; i < gridOption.columns.length; i++) {
-            var col = gridOption.columns[i];
+        for (var i = 0; i < _gridOption.columns.length; i++) {
+            var col = _gridOption.columns[i];
             if (col.IsCurrency)
                 col.HeaderText = col.HeaderCaption + text;
         }
 
-        for (var i = 0; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
-            var col = gridOption.groupHeaderRows[0].Columns[i];
+        for (var i = 0; i < _gridOption.groupHeaderRows[0].Columns.length; i++) {
+            var col = _gridOption.groupHeaderRows[0].Columns[i];
             if (col.IsCurrency)
                 col.HeaderText = col.HeaderCaption + text;
         }
@@ -153,22 +155,13 @@
             columns = _indexProductColumns.clone();
         }
 
-        $("#gridId").fanexGrid("hideColumns", gridOption, columns);
-
-//        if (_isSimpleMode && HasCashbackDeduction === false)
-//            $("#gridId table:lt(4) th div").height(30);
+        $("#gridId").fanexGrid("hideColumns", _gridOption, columns);
     }
     return {
         init: function () {
             $("#gridId").resize(function () {
                 $(".search-panel").width($(this).width());
             });
-            _commonColumnCount = gridOption.columns.length;
-            initProductColumnsForGridOption(gridOption);
-
-            for (var i = _commonColumnCount; i < gridOption.columns.length; i++) {
-                _indexProductColumns.push(i);
-            }
 
             AFFILIATE.initMonthPicker();
             var $maincontent = $(".main-content");
@@ -280,11 +273,7 @@
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
-
             var baseCurrency = $("#BaseCurrency").val();
-
-            renameCurrencyColumns(gridOption, baseCurrency == SYS_CURRENCY_OPTION);
-            changeHeaderCaptions(gridOption, baseCurrency == SYS_CURRENCY_OPTION);
 
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Report/CommissionByAffiliate"),
@@ -295,20 +284,29 @@
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    gridOption.pagerOption = {
+
+                    _gridOption = $.extend(true, {}, sampleGridOption);
+                    initProductColumnsForGridOption();
+
+                    for (var i = _commonColumnCount; i < _gridOption.columns.length; i++) {
+                        _indexProductColumns.push(i);
+                    }
+
+                    renameCurrencyColumns(baseCurrency == SYS_CURRENCY_OPTION);
+                    changeHeaderCaptions(baseCurrency == SYS_CURRENCY_OPTION);
+
+                    _gridOption.pagerOption = {
                         itemsPerPage: itemsPerPage,
                         itemsPerPageArray: AFFILIATE.pageSizes,
                         currentPage: currentPage,
                         totalItem: data.TotalItem
                     };
 
-                    gridOption.titleInfo.text = MSG.CommissionTitle + ' [{0}]'.format(data.TotalItem);
-                    gridOption.footerRows = getFooterRows(gridOption, data.SubTotalData, data.TotalRowData, data.TotalItem, data.hasShowSubTotalData);
-                    gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
+                    _gridOption.titleInfo.text = MSG.CommissionTitle + ' [{0}]'.format(data.TotalItem);
+                    _gridOption.footerRows = getFooterRows(_gridOption, data.SubTotalData, data.TotalRowData, data.TotalItem, data.hasShowSubTotalData);
+                    _gridOption.bodyRows = AFFILIATE.genGridRows(data.List, _gridOption);
 
-                    $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
-
-                    hideColumns();
+                    $('#gridId').removeClass("noinfo").fanexGrid(_gridOption);
 
                     if (data.List.length == 0) {
                         $('.status').hide();

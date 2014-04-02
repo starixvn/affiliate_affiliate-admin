@@ -13,6 +13,9 @@
 
         insertCashbackColumns();
 
+        _indexProductColumns.clear();
+        _commonColumnCount = _gridOption.columns.length;
+
         for (var i = 0; i < PRODUCTS.length; i++) {
             var name = nomalizeProductName(PRODUCTS[i].Name);
 

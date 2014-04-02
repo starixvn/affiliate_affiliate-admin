@@ -60,11 +60,6 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             return memberWinlossReport;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
         public CompanyWinlossReport GetCompanyWinloss(CompanyWinlossReportCriteria criteria)
         {
             var companyWinlossReport = new CompanyWinlossReport();
@@ -96,7 +91,35 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             return companyWinlossReport;
         }
 
-        
+        public CommissionReport GetCommission(CommissionReportCriteria criteria)
+        {
+            var commissionReport = new CommissionReport();
+
+            if (criteria.IsValid())
+            {
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+
+                    var stopwatch = Stopwatch.StartNew();
+
+                    var reader = objectDb.ExecuteReader(param);
+
+                    stopwatch.Stop();
+
+                    commissionReport.Duration = stopwatch.ElapsedMilliseconds;
+
+                    commissionReport.CommissionList = GetCommissionList(reader, criteria);
+                    commissionReport.CommissionInSystemCurrency = GetCommissionInSystemCurrency(reader);
+
+                    reader.Close();
+
+                    GetOutputParams(criteria, objectDb);
+                }
+            }
+
+            return commissionReport;
+        }
 
         /// <summary>
         /// Get output parameters from database.
@@ -163,9 +186,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
         /// <param name="memberWinloss">Member win-loss.</param>
         private void GetMemberWinlossColumnsRelatedToMoney(IDataReader reader, MemberWinloss memberWinloss)
         {
-            GetMemberWinlossColunmsInMemberCurrency(reader, memberWinloss);
-            GetMemberWinlossColunmsInSystemCurrency(reader, memberWinloss);
-            GetMemberWinlossInAffiliateCurrency(reader, memberWinloss);
+            GetMemberWinlossColumnsInMemberCurrency(reader, memberWinloss);
+            GetMemberWinlossColumnsInSystemCurrency(reader, memberWinloss);
+            GetMemberWinlossColumnsInAffiliateCurrency(reader, memberWinloss);
         }
 
         /// <summary>
@@ -206,7 +229,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             if (reader.NextResult())
             {
                 reader.Read();
-                GetMemberWinlossColunmsInSystemCurrency(reader, playerWinloss);
+                GetMemberWinlossColumnsInSystemCurrency(reader, playerWinloss);
             }
 
             return playerWinloss;
@@ -217,7 +240,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <param name="playerWinloss">Player win-loss.</param>
-        private void GetMemberWinlossColunmsInMemberCurrency(IDataReader reader, MemberWinloss playerWinloss)
+        private void GetMemberWinlossColumnsInMemberCurrency(IDataReader reader, MemberWinloss playerWinloss)
         {
             playerWinloss.Deposit = reader.ToDecimal("Deposit");
             playerWinloss.Withdrawal = reader.ToDecimal("Withdrawal");
@@ -241,7 +264,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <param name="playerWinloss">Player win-loss.</param>
-        private void GetMemberWinlossColunmsInSystemCurrency(IDataReader reader, MemberWinloss playerWinloss)
+        private void GetMemberWinlossColumnsInSystemCurrency(IDataReader reader, MemberWinloss playerWinloss)
         {
             // base
             playerWinloss.DepositBase = reader.ToDouble("DepositBase");
@@ -266,7 +289,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <param name="playerWinloss">Player win-loss.</param>
-        private void GetMemberWinlossInAffiliateCurrency(IDataReader reader, MemberWinloss playerWinloss)
+        private void GetMemberWinlossColumnsInAffiliateCurrency(IDataReader reader, MemberWinloss playerWinloss)
         {
             playerWinloss.Deposit_Aff = reader.ToDouble("Deposit_Aff");
             playerWinloss.Withdrawal_Aff = reader.ToDouble("Withdrawal_Aff");
@@ -287,22 +310,34 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
 
         #endregion
 
-
         #region Helpers for company win-loss
 
-        private CompanyWinloss GetCompanyWinlossInSystemCurrency(IDataReader reader)
+        private IEnumerable<CompanyWinloss> GetCompanyWinlossList(IDataReader reader, CompanyWinlossReportCriteria criteria)
         {
-            var companyWinloss = new CompanyWinloss();
+            var result = new List<CompanyWinloss>();
 
-            if (reader.NextResult())
+            while (reader.Read())
             {
-                reader.Read();
-                companyWinloss.BetCount = reader.ToInt("BetCount");
-                companyWinloss.ActivePlayer = reader.ToInt("ActivePlayer");
-                GetCompanyWinlossColunmsInSystemCurrency(reader, companyWinloss);
+                var companyWinloss = new CompanyWinloss
+                {
+                    WinlostDate = reader.ToDateTime("WinlostDate"),
+                    Currency = reader.ToString("Currency"),
+                    CurrencyId = reader.ToShort("CurrencyId"),
+                    BetCount = reader.ToInt("BetCount"),
+                    ActivePlayer = reader.ToInt("ActivePlayer")
+                };
+
+                if (criteria.GroupBy == GroupByDate)
+                {
+                    companyWinloss.ExRate = reader.ToDouble("ExRate");
+                    companyWinloss.AffExRate = reader.ToDouble("AffExRate");
+                }
+
+                GetCompanyWinlossColumnsRelatedToMoney(reader, companyWinloss);
+                result.Add(companyWinloss);
             }
 
-            return companyWinloss;
+            return result;
         }
 
         private IEnumerable<CompanyWinloss> GetCompanyWinlossInMemberCurrencies(IDataReader reader)
@@ -328,42 +363,29 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             return result;
         }
 
-        private IEnumerable<CompanyWinloss> GetCompanyWinlossList(IDataReader reader, CompanyWinlossReportCriteria criteria)
+        private CompanyWinloss GetCompanyWinlossInSystemCurrency(IDataReader reader)
         {
-            var result = new List<CompanyWinloss>();
+            var companyWinloss = new CompanyWinloss();
 
-            while (reader.Read())
+            if (reader.NextResult())
             {
-                var companyWinloss = new CompanyWinloss
-                {
-                    WinlostDate = reader.ToDateTime("WinlostDate"),
-                    Currency = reader.ToString("Currency"),
-                    CurrencyId = reader.ToShort("CurrencyId"),
-                    BetCount = reader.ToInt("BetCount"),
-                    ActivePlayer = reader.ToInt("ActivePlayer")
-                };
-
-                if (criteria.GroupBy == 0)
-                {
-                    companyWinloss.ExRate = reader.ToDouble("ExRate");
-                    companyWinloss.AffExRate = reader.ToDouble("AffExRate");
-                }
-
-                GetCompanyWinlossColumnsRelatedToMoney(reader, companyWinloss);
-                result.Add(companyWinloss);
+                reader.Read();
+                companyWinloss.BetCount = reader.ToInt("BetCount");
+                companyWinloss.ActivePlayer = reader.ToInt("ActivePlayer");
+                GetCompanyWinlossColumnsInSystemCurrency(reader, companyWinloss);
             }
 
-            return result;
+            return companyWinloss;
         }
 
         private void GetCompanyWinlossColumnsRelatedToMoney(IDataReader reader, CompanyWinloss companyWinloss)
         {
-            GetCompanyWinlossColunmsInMemberCurrency(reader, companyWinloss);
-            GetCompanyWinlossColunmsInSystemCurrency(reader, companyWinloss);
-            GetCompanyWinlossInAffiliateCurrency(reader, companyWinloss);
+            GetCompanyWinlossColumnsInMemberCurrency(reader, companyWinloss);
+            GetCompanyWinlossColumnsInSystemCurrency(reader, companyWinloss);
+            GetCompanyWinlossColumnsInAffiliateCurrency(reader, companyWinloss);
         }
 
-        private void GetCompanyWinlossInAffiliateCurrency(IDataReader reader, CompanyWinloss companyWinloss)
+        private void GetCompanyWinlossColumnsInAffiliateCurrency(IDataReader reader, CompanyWinloss companyWinloss)
         {
             companyWinloss.Deposit_Aff = reader.ToDecimal("Deposit_Aff");
             companyWinloss.Withdrawal_Aff = reader.ToDecimal("Withdrawal_Aff");
@@ -382,7 +404,12 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             companyWinloss.RNGCasinoWinlost_Aff = reader.ToDecimal("RNGCasinoWinlost_Aff");
         }
 
-        private void GetCompanyWinlossColunmsInSystemCurrency(IDataReader reader, CompanyWinloss companyWinloss)
+        /// <summary>
+        /// Get company win-loss columns in system currency.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="companyWinloss"></param>
+        private void GetCompanyWinlossColumnsInSystemCurrency(IDataReader reader, CompanyWinloss companyWinloss)
         {
             companyWinloss.DepositBase = reader.ToDecimal("DepositBase");
             companyWinloss.WithdrawalBase = reader.ToDecimal("WithdrawalBase");
@@ -401,7 +428,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             companyWinloss.RNGCasinoWinlostBase = reader.ToDecimal("RNGCasinoWinlostBase");
         }
 
-        private void GetCompanyWinlossColunmsInMemberCurrency(IDataReader reader, CompanyWinloss companyWinloss)
+        private void GetCompanyWinlossColumnsInMemberCurrency(IDataReader reader, CompanyWinloss companyWinloss)
         {
             companyWinloss.Deposit = reader.ToDecimal("Deposit");
             companyWinloss.Withdrawal = reader.ToDecimal("Withdrawal");
@@ -419,6 +446,52 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             companyWinloss.LiveCasinoWinlost = reader.ToDecimal("LiveCasinoWinlost");
             companyWinloss.RNGCasinoWinlost = reader.ToDecimal("RNGCasinoWinlost");
         } 
+
+        #endregion
+
+        #region Helpers for commission
+
+        private IEnumerable<Commission> GetCommissionList(IDataReader reader, CommissionReportCriteria criteria)
+        {
+            var result = new List<Commission>();
+
+            while (reader.Read())
+            {
+                var commission = new Commission
+                {
+                    AffId = reader.ToInt("AffId"),
+                    Status = reader.ToString("STATUS"),
+                    Username = reader.ToString("Username"),
+                    AffType = reader.ToString("AffType"),
+                    Language = reader.ToString("LANGUAGE"),
+                    Currency = reader.ToString("Currency"),
+                    GroupID = reader.ToInt("GroupID"),
+                    GroupName = reader.ToString("GroupName"),
+
+                    WinlostDate = reader.ToDateTime("WinlostDate"),
+                    Currency = reader.ToString("Currency"),
+                    CurrencyId = reader.ToShort("CurrencyId"),
+                    BetCount = reader.ToInt("BetCount"),
+                    ActivePlayer = reader.ToInt("ActivePlayer")
+                };
+
+                if (criteria.GroupBy == 0)
+                {
+                    commission.ExRate = reader.ToDouble("ExRate");
+                    commission.AffExRate = reader.ToDouble("AffExRate");
+                }
+
+                GetCompanyWinlossColumnsRelatedToMoney(reader, commission);
+                result.Add(commission);
+            }
+
+            return result;
+        }
+
+        private IEnumerable<Commission> GetCommissionInSystemCurrency(IDataReader reader)
+        {
+            throw new System.NotImplementedException();
+        }
 
         #endregion
     }

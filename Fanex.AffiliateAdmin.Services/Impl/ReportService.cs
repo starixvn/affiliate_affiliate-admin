@@ -38,11 +38,6 @@ namespace Fanex.AffiliateAdmin.Services.Impl
         {
             return GetData<MemberStatistic>(criteria);
         }
-
-        public IEnumerable<CommissionReport> GetCommission(CommissionReportCriteria criteria)
-        {
-            return GetData<CommissionReport>(criteria);
-        }
         
         public MemberWinlossReport GetMemberWinloss(PlayerWinlossReportCriteria criteria)
         {
@@ -52,6 +47,11 @@ namespace Fanex.AffiliateAdmin.Services.Impl
         public IEnumerable<QualifiedMember> GetQualifiedMembers(QualifiedMembersReportCriteria criteria)
         {
             return GetData<QualifiedMember>(criteria);
+        }
+
+        CommissionReport IReportService.GetCommission(CommissionReportCriteria criteria)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

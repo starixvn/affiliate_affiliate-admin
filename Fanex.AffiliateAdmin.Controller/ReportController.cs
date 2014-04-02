@@ -410,6 +410,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.NRows = data.Count;
 
             var subTotalCommissions = new List<CommissionReport>();
+
             var totalCommission = new CommissionReport()
             {
                 Currency = AppSettings.BaseExchange.Code

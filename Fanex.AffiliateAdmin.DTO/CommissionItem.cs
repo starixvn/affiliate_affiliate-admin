@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="CommissionReport.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CommissionItem.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -11,7 +11,7 @@ namespace Fanex.AffiliateAdmin.DTO
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class Commission
+    public class CommissionItem
     {
         public int AffId { get; set; }
 
@@ -45,7 +45,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal Winloss { get; set; }
 
-        public double CommissionBase { get; set; }
+        public decimal CommissionBase { get; set; }
 
         public decimal DepositBase { get; set; }
 
@@ -139,6 +139,6 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal Cashback { get; set; }
 
-        public double CashbackBase { get; set; }
+        public decimal CashbackBase { get; set; }
     }
 }

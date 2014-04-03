@@ -11,13 +11,16 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
 {
     using System.Collections.Generic;
     using System.Data;
+    using System.Diagnostics;
+    using System.Linq;
     using Common.Extensions;
     using Criterias;
     using Data;
-    using DTO;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.DTO;
     using Fanex.NAP.Framework.Data;
     using Interface;
-    using System.Diagnostics;
 
     /// <summary>
     /// Account data access.
@@ -100,17 +103,12 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var param = criteria.GetSpParams();
-
-                    var stopwatch = Stopwatch.StartNew();
-
                     var reader = objectDb.ExecuteReader(param);
 
-                    stopwatch.Stop();
-
-                    commissionReport.Duration = stopwatch.ElapsedMilliseconds;
 
                     commissionReport.CommissionList = GetCommissionList(reader, criteria);
-                    commissionReport.CommissionInSystemCurrency = GetCommissionInSystemCurrency(reader);
+                    commissionReport.CommissionInAffiliateCurrency = GetCommissionInAffiliateCurrency(reader, criteria);
+                    commissionReport.CommissionInSystemCurrency = GetCommissionInSystemCurrency(reader, criteria);
 
                     reader.Close();
 
@@ -315,6 +313,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
         private IEnumerable<CompanyWinloss> GetCompanyWinlossList(IDataReader reader, CompanyWinlossReportCriteria criteria)
         {
             var result = new List<CompanyWinloss>();
+            const int GroupByDate = 0;
 
             while (reader.Read())
             {
@@ -416,6 +415,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             companyWinloss.BonusBase = reader.ToDecimal("BonusBase");
             companyWinloss.AdjustmentBase = reader.ToDecimal("AdjustmentBase");
             companyWinloss.PSPBase = reader.ToDecimal("PSPBase");
+
             companyWinloss.SportsbookTurnoverBase = reader.ToDecimal("SportsbookTurnoverBase");
             companyWinloss.NumberGameTurnoverBase = reader.ToDecimal("NumberGameTurnoverBase");
             companyWinloss.LiveCasinoTurnoverBase = reader.ToDecimal("LiveCasinoTurnoverBase");
@@ -445,19 +445,20 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             companyWinloss.NumberGameWinlost = reader.ToDecimal("NumberGameWinlost");
             companyWinloss.LiveCasinoWinlost = reader.ToDecimal("LiveCasinoWinlost");
             companyWinloss.RNGCasinoWinlost = reader.ToDecimal("RNGCasinoWinlost");
-        } 
+        }
 
         #endregion
 
         #region Helpers for commission
 
-        private IEnumerable<Commission> GetCommissionList(IDataReader reader, CommissionReportCriteria criteria)
+        private IEnumerable<CommissionItem> GetCommissionList(IDataReader reader, CommissionReportCriteria criteria)
         {
-            var result = new List<Commission>();
+            var result = new List<CommissionItem>();
+
 
             while (reader.Read())
             {
-                var commission = new Commission
+                var commission = new CommissionItem
                 {
                     AffId = reader.ToInt("AffId"),
                     Status = reader.ToString("STATUS"),
@@ -465,32 +466,149 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                     AffType = reader.ToString("AffType"),
                     Language = reader.ToString("LANGUAGE"),
                     Currency = reader.ToString("Currency"),
-                    GroupID = reader.ToInt("GroupID"),
-                    GroupName = reader.ToString("GroupName"),
-
-                    WinlostDate = reader.ToDateTime("WinlostDate"),
-                    Currency = reader.ToString("Currency"),
-                    CurrencyId = reader.ToShort("CurrencyId"),
-                    BetCount = reader.ToInt("BetCount"),
-                    ActivePlayer = reader.ToInt("ActivePlayer")
+                    DeductedPercentage = reader.ToDecimal("DeductedPercentage")
                 };
 
-                if (criteria.GroupBy == 0)
+                GetCommonCommissionColumns(reader, commission);
+
+                GetCommissionColumnsInAffiliateCurrency(reader, commission);
+
+                GetCommissionColumnsInSystemCurrency(reader, commission);
+
+                if (IsGroupByMonth(criteria))
                 {
-                    commission.ExRate = reader.ToDouble("ExRate");
-                    commission.AffExRate = reader.ToDouble("AffExRate");
+                    commission.WinlostDate = reader.ToDateTime("WinlostDate");
+                    commission.GroupID = reader.ToInt("GroupID");
+                    commission.GroupName = reader.ToString("GroupName");
+
+                    GetAdditionalCommissionInfo(reader, commission);
                 }
 
-                GetCompanyWinlossColumnsRelatedToMoney(reader, commission);
                 result.Add(commission);
             }
 
             return result;
         }
 
-        private IEnumerable<Commission> GetCommissionInSystemCurrency(IDataReader reader)
+        private IEnumerable<CommissionItem> GetCommissionInAffiliateCurrency(IDataReader reader, CommissionReportCriteria criteria)
         {
-            throw new System.NotImplementedException();
+            var result = new List<CommissionItem>();
+
+            if (reader.NextResult())
+            {
+                while (reader.Read())
+                {
+                    var commission = new CommissionItem { Currency = reader.ToString("Currency") };
+
+                    GetCommonCommissionColumns(reader, commission);
+
+                    GetCommissionColumnsInAffiliateCurrency(reader, commission);
+
+                    GetCommissionColumnsInSystemCurrency(reader, commission);
+
+                    if (IsGroupByMonth(criteria))
+                    {
+                        GetAdditionalCommissionInfo(reader, commission);
+                    }
+
+                    result.Add(commission);
+                }
+            }
+
+            return result;
+        }
+
+        private CommissionItem GetCommissionInSystemCurrency(IDataReader reader, CommissionReportCriteria criteria)
+        {
+            var commission = new CommissionItem();
+
+            if (reader.NextResult())
+            {
+                reader.Read();
+
+                GetCommonCommissionColumns(reader, commission);
+
+                GetCommissionColumnsInSystemCurrency(reader, commission);
+
+                if (IsGroupByMonth(criteria))
+                {
+                    GetAdditionalCommissionInfo(reader, commission);
+                }
+            }
+
+            return commission;
+        }
+
+        private bool IsGroupByMonth(CommissionReportCriteria criteria)
+        {
+            const int GroupByMonth = 0;
+
+            return criteria.GroupBy == GroupByMonth;
+        }
+
+        private void GetAdditionalCommissionInfo(IDataReader reader, CommissionItem commission)
+        {
+            var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
+
+            foreach (var product in products)
+            {
+                commission.SetPropertyValue(string.Format("{0}QM", product), reader.ToInt(string.Format("{0}QM", product)));
+                commission.SetPropertyValue(string.Format("{0}CommissionPercent", product), reader.ToDecimal(string.Format("{0}CommissionPercent", product)));
+            }
+        }
+
+        private void GetCommonCommissionColumns(IDataReader reader, CommissionItem commission)
+        {
+            commission.BetCount = reader.ToInt("BetCount");
+            commission.ActivePlayers = reader.ToInt("ActivePlayers");
+
+            var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
+
+            foreach (var product in products)
+            {
+                commission.SetPropertyValue(string.Format("{0}ActivePlayers", product), reader.ToInt(string.Format("{0}ActivePlayers", product)));
+                commission.SetPropertyValue(string.Format("{0}BetCount", product), reader.ToInt(string.Format("{0}BetCount", product)));
+            }
+        }
+
+        private void GetCommissionColumnsInAffiliateCurrency(IDataReader reader, CommissionItem commission)
+        {
+            commission.Commission = reader.ToDecimal("Commission");
+            commission.Deposit = reader.ToDecimal("Deposit");
+            commission.Withdrawal = reader.ToDecimal("Withdrawal");
+            commission.Turnover = reader.ToDecimal("Turnover");
+            commission.Winloss = reader.ToDecimal("Winloss");
+            commission.Cashback = reader.ToDecimal("Cashback");
+
+            // Get columns which depends on each product.
+            var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
+
+            foreach (var product in products)
+            {
+                commission.SetPropertyValue(string.Format("{0}Winloss", product), reader.ToDecimal(string.Format("{0}Winloss", product)));
+                commission.SetPropertyValue(string.Format("{0}Commission", product), reader.ToDecimal(string.Format("{0}Commission", product)));
+                commission.SetPropertyValue(string.Format("{0}Turnover", product), reader.ToDecimal(string.Format("{0}Turnover", product)));
+            }
+        }
+
+        private void GetCommissionColumnsInSystemCurrency(IDataReader reader, CommissionItem commission)
+        {
+            commission.CommissionBase = reader.ToDecimal("CommissionBase");
+            commission.DepositBase = reader.ToDecimal("DepositBase");
+            commission.WithdrawalBase = reader.ToDecimal("WithdrawalBase");
+            commission.TurnoverBase = reader.ToDecimal("TurnoverBase");
+            commission.WinlossBase = reader.ToDecimal("WinlossBase");
+            commission.CashbackBase = reader.ToDecimal("CashbackBase");
+
+            // Get columns which depends on each product.
+            var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
+
+            foreach (var product in products)
+            {
+                commission.SetPropertyValue(string.Format("{0}WinlossBase", product), reader.ToDecimal(string.Format("{0}WinlossBase", product)));
+                commission.SetPropertyValue(string.Format("{0}CommissionBase", product), reader.ToDecimal(string.Format("{0}CommissionBase", product)));
+                commission.SetPropertyValue(string.Format("{0}TurnoverBase", product), reader.ToDecimal(string.Format("{0}TurnoverBase", product)));
+            }
         }
 
         #endregion

@@ -7,15 +7,17 @@
 namespace Fanex.AffiliateAdmin.DTO
 {
     using System;
-using System.Collections.Generic;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class CommissionReport
     {
-        IEnumerable<Commission> CommissionList { get; set; }
+        public IEnumerable<CommissionItem> CommissionList { get; set; }
 
-        IEnumerable<Commission> CommissionInSystemCurrency { get; set; }
+        public IEnumerable<CommissionItem> CommissionInAffiliateCurrency { get; set; }
+
+        public CommissionItem CommissionInSystemCurrency { get; set; }
     }
 }

@@ -27,6 +27,13 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             return property.GetValue(obj, null);
         }
 
+        public static void SetPropertyValue(this object obj, string propertyName, object value)
+        {
+            var type = obj.GetType();
+            var property = type.GetProperty(propertyName);
+            property.SetValue(obj, Convert.ChangeType(value, property.PropertyType), null);
+        }
+
         public static IDictionary<string, object> AddProperty(this object obj, string name, object value)
         {
             var dictionary = obj.ToDictionary();

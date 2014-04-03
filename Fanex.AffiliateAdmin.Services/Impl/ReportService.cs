@@ -51,7 +51,7 @@ namespace Fanex.AffiliateAdmin.Services.Impl
 
         CommissionReport IReportService.GetCommission(CommissionReportCriteria criteria)
         {
-            throw new System.NotImplementedException();
+            return _reportDataAccess.GetCommission(criteria);
         }
     }
 }

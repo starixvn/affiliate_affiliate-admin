@@ -406,30 +406,20 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
-            var data = _reportService.GetCommission(criteria).ToList();
-            criteria.NRows = data.Count;
+            var data = _reportService.GetCommission(criteria);
 
-            var subTotalCommissions = new List<CommissionReport>();
+            var totalCommission = data.CommissionInSystemCurrency;
+            totalCommission.Currency = AppSettings.BaseExchange.Code;
 
-            var totalCommission = new CommissionReport()
-            {
-                Currency = AppSettings.BaseExchange.Code
-            };
-
-            if (data.Count > 0)
-            {
-                SetDataForTotalCommissions(data, subTotalCommissions, totalCommission);
-            }
-
-            var hasShowSubTotalRow = data.GroupBy(t => t.Currency)
+            var hasShowSubTotalRow = data.CommissionList.GroupBy(t => t.Currency)
                                            .Select(t => new { Currency = t.Key, RowCount = t.Count() })
                                            .Any(t => t.RowCount > 1);
 
             return Json(new
             {
-                List = data.Skip(criteria.PageSize * (criteria.PageIndex - 1)).Take(criteria.PageSize),
+                List = data.CommissionList,
                 TotalRowData = totalCommission,
-                SubTotalData = subTotalCommissions,
+                SubTotalData = data.CommissionInAffiliateCurrency,
                 HasShowSubTotalRow = hasShowSubTotalRow,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
@@ -438,51 +428,6 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         #region Helpers
-
-        /// <summary>
-        /// Set data to sub total and total objects.
-        /// </summary>
-        /// <param name="commissions">Commission data.</param>
-        /// <param name="subTotalData">List of Sub total object.</param>
-        /// <param name="totalRowData">Total object.</param>
-        private void SetDataForTotalCommissions(IEnumerable<CommissionReport> commissions, List<CommissionReport> subTotalData, CommissionReport totalRowData)
-        {
-            // Sub total
-            var groups = commissions.GroupBy(t => t.Currency);
-            var properties = typeof(CommissionReport).GetProperties()
-                .Where(p => p.Name != "AffId" && (p.PropertyType == typeof(int) || p.PropertyType == typeof(decimal) || p.PropertyType == typeof(double)));
-
-            foreach (var group in groups)
-            {
-                var commission = new CommissionReport
-                    {
-                        Currency = group.Key
-                    };
-
-                foreach (var property in properties)
-                {
-                    var value = group.Sum(g => (decimal)Convert.ChangeType(property.GetValue(g, null), TypeCode.Decimal));
-                    property.SetValue(commission, Convert.ChangeType(value, property.PropertyType), null);
-                }
-
-                subTotalData.Add(commission);
-            }
-
-            foreach (var property in properties)
-            {
-                if (property.Name.EndsWith("Base"))
-                {
-                    var value = commissions.Sum(g => (decimal)Convert.ChangeType(property.GetValue(g, null), TypeCode.Decimal));
-                    property.SetValue(totalRowData, Convert.ChangeType(value, property.PropertyType), null);
-                }
-
-                if (property.Name.EndsWith("ActivePlayers") || property.Name.EndsWith("BetCount") || property.Name.EndsWith("QM"))
-                {
-                    var value = commissions.Sum(g => (int)Convert.ChangeType(property.GetValue(g, null), TypeCode.Int32));
-                    property.SetValue(totalRowData, Convert.ChangeType(value, property.PropertyType), null);
-                }
-            }
-        }
 
         #region Company win-loss report
 

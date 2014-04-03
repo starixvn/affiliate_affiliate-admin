@@ -186,8 +186,8 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                 if (criteria.GroupBy == GroupByDate)
                 {
                     memberWinloss.WinlostDate = reader.ToDateTime("WinlostDate");
-                    memberWinloss.ExRate = reader.ToDouble("ExRate"),
-                    memberWinloss.AffExRate = reader.ToDouble("AffExRate"),
+                    memberWinloss.ExRate = reader.ToDouble("ExRate");
+                    memberWinloss.AffExRate = reader.ToDouble("AffExRate");
                 }
 
                 GetMemberWinlossColumnsBasedOnBaseCurrency(criteria, reader, memberWinloss);

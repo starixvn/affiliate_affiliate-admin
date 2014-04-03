@@ -208,9 +208,9 @@
 
                     bodyRows.push({ Columns: columns });
                 });
-                
 
-                if (hasShowSubTotalRows(memberCurrencyCount, firstMemberCurrency, baseCurrency)) {
+
+                if (groups.Length >  1 && hasShowSubTotalRows(memberCurrencyCount, firstMemberCurrency, baseCurrency)) {
                     var totalColums = [];
                     totalColums.push({ Value: MSG.SubTotalIn.format(System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
                     var startIndex = mergeCols;

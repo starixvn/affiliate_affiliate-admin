@@ -60,7 +60,13 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal RNGCasinoWinlost { get; set; }
 
-        public decimal TotalCompanyWinlost { get { return -TotalMemberWinlost; } }
+        public decimal TotalCompanyWinlost 
+        { 
+            get 
+            { 
+                return -TotalMemberWinlost; 
+            } 
+        }
 
         public decimal DepositBase { get; set; }
 
@@ -92,7 +98,13 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal RNGCasinoWinlostBase { get; set; }
 
-        public decimal TotalCompanyWinlostBase { get { return -TotalMemberWinlostBase; } }
+        public decimal TotalCompanyWinlostBase 
+        { 
+            get 
+            { 
+                return -TotalMemberWinlostBase; 
+            } 
+        }
 
         public decimal Deposit_Aff { get; set; }
 
@@ -124,6 +136,12 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal RNGCasinoWinlost_Aff { get; set; }
 
-        public decimal TotalCompanyWinlost_Aff { get { return - TotalMemberWinlost_Aff; } }
+        public decimal TotalCompanyWinlost_Aff 
+        { 
+            get 
+            { 
+                return -TotalMemberWinlost_Aff; 
+            } 
+        }
     }
 }

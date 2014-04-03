@@ -110,7 +110,7 @@
     <Compile Include="IsMonthlyTransferCriteria.cs" />
     <Compile Include="MonthlyTransferCriteria.cs" />
     <Compile Include="ProcessingCommCriteria.cs" />
-    <Compile Include="PlayerWinlossReportCriteria.cs" />
+    <Compile Include="MemberWinlossReportCriteria.cs" />
     <Compile Include="FavoriteCriteria.cs" />
     <Compile Include="CountryCriteria.cs" />
     <Compile Include="DeductionSettingCriteria.cs" />

@@ -17,7 +17,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Interface
     /// </summary>
     public interface IReportDataAccess
     {
-        MemberWinlossReport GetMemberWinloss(PlayerWinlossReportCriteria criteria);
+        MemberWinlossReport GetMemberWinloss(MemberWinlossReportCriteria criteria);
 
         CompanyWinlossReport GetCompanyWinloss(CompanyWinlossReportCriteria criteria);
 

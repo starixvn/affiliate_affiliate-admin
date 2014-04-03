@@ -75,28 +75,12 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult CompanyWinloss(CompanyWinlossReportCriteria criteria)
         {
-            if (criteria.ByAffiliate)
-            {
-                criteria.AffName = CurrentSession.Affiliate.Username;
-                criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
-                criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
-                criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
-                criteria.ExcludeTest = false;
-            }
-
-            if (criteria.GroupBy == 1)
-            {
-                // If group by is month, we need to first day and last day of month.
-                criteria.FromDate = Core.Utilities.Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate, DateTime.Now);
-                criteria.ToDate = Core.Utilities.Common.GetLastDayOfMonth(criteria.ToDate, AppSettings.SystemStartDate, DateTime.Now);
-            }
-
-            criteria.UserId = CurrentSession.CustID;
-            criteria.IsITAdmin = CurrentSession.IsIT;
+            AddMoreParameterForCompanyWinlossReportCriteria(criteria);
 
             var data = _reportService.GetCompanyWinloss(criteria);
 
             var serializer = new JavaScriptSerializer();
+
             ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
             {
                 Id = x.ProductID,
@@ -112,11 +96,12 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(new
             {
                 Groups = companyWinlossByGroups,
-                TotalData = new CompanyWinlossByLevel {
+                TotalData = new CompanyWinlossByLevel 
+                {
                     GroupInfo = Lang.TotalAll,
                     Level = "All",
-                    CompanyWinlossInMemberCurrencies = data.CompanyWinlossInMemberCurrencies,
-                    CompanyWinlossInSystemCurrency = data.CompanyWinlossInSystemCurrency
+                    CompanyWinlossInMemberCurrencies = data.TotalCompanyWinlossInMemberCurrencies,
+                    CompanyWinlossInSystemCurrency = data.TotalCompanyWinlossInSystemCurrency
                 },
                 HasShowSubTotalRow = hasShowSubTotalRow,
                 CurrentPage = criteria.PageIndex - 1,
@@ -200,7 +185,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Player win loss result.</returns>
         [HttpPost]
-        public ActionResult PlayerWinloss(PlayerWinlossReportCriteria criteria)
+        public ActionResult PlayerWinloss(MemberWinlossReportCriteria criteria)
         {
             if (criteria.ByAffiliate)
             {
@@ -216,15 +201,15 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var data = _reportService.GetMemberWinloss(criteria);
 
-            var hasShowSubTotalRow = data.PlayerWinlossList.GroupBy(t => t.PlayerCurrency)
+            var hasShowSubTotalRow = data.MemberWinlossList.GroupBy(t => t.PlayerCurrency)
                                            .Select(t => new { PlayerCurrency = t.Key, RowCount = t.Count() })
                                            .Any(t => t.RowCount > 1);
 
             return Json(new
             {
-                List = data.PlayerWinlossList,
-                TotalRowData = data.PlayerWinlossInSystemCurrency,
-                SubTotalData = data.PlayerWinlossInMemberCurrencies,
+                List = data.MemberWinlossList,
+                TotalRowData = data.TotalMemberWinlossInSystemCurrency,
+                SubTotalData = data.TotalMemberWinlossInMemberCurrencies,
                 HasShowSubTotalRow = hasShowSubTotalRow,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
@@ -430,6 +415,32 @@ namespace Fanex.AffiliateAdmin.Controller
         #region Helpers
 
         #region Company win-loss report
+
+        /// <summary>
+        /// Add more parameter for company win-loss report criteria.
+        /// </summary>
+        /// <param name="criteria">Criteria input.</param>
+        private void AddMoreParameterForCompanyWinlossReportCriteria(CompanyWinlossReportCriteria criteria)
+        {
+            if (criteria.ByAffiliate)
+            {
+                criteria.AffName = CurrentSession.Affiliate.Username;
+                criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
+                criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
+                criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
+                criteria.ExcludeTest = false;
+            }
+
+            if (criteria.GroupBy == 1)
+            {
+                // If group by is month, we need to first day and last day of month.
+                criteria.FromDate = Core.Utilities.Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate, DateTime.Now);
+                criteria.ToDate = Core.Utilities.Common.GetLastDayOfMonth(criteria.ToDate, AppSettings.SystemStartDate, DateTime.Now);
+            }
+
+            criteria.UserId = CurrentSession.CustID;
+            criteria.IsITAdmin = CurrentSession.IsIT;
+        }
 
         /// <summary>
         /// Filter Group Data Company Win loss based Group By criteria.

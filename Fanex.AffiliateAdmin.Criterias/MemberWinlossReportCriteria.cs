@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="PlayerWinlossReportCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MemberWinlossReportCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2013.11.6">Created</change>
+//   <change who="Brian.Dinh" date="2014.4.3">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.Criterias
@@ -15,7 +15,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// <summary>
     /// Player Win loss Report Criteria.
     /// </summary>
-    public class PlayerWinlossReportCriteria : CriteriaBase
+    public class MemberWinlossReportCriteria : CriteriaBase
     {
         public bool ByAffiliate { get; set; }
 
@@ -49,7 +49,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int PageSize { get; set; }
 
-        [SpParam(SqlParamName="PageCurrent")]
+        [SpParam(SqlParamName = "PageCurrent")]
         public int PageIndex { get; set; }
 
         public int NRows { get; set; }

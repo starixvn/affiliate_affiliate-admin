@@ -39,7 +39,7 @@ namespace Fanex.AffiliateAdmin.Services.Impl
             return GetData<MemberStatistic>(criteria);
         }
         
-        public MemberWinlossReport GetMemberWinloss(PlayerWinlossReportCriteria criteria)
+        public MemberWinlossReport GetMemberWinloss(MemberWinlossReportCriteria criteria)
         {
             return _reportDataAccess.GetMemberWinloss(criteria);
         }

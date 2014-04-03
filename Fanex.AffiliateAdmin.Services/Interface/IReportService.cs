@@ -24,7 +24,7 @@ namespace Fanex.AffiliateAdmin.Services.Interface
 
         CommissionReport GetCommission(CommissionReportCriteria criteria);
 
-        MemberWinlossReport GetMemberWinloss(PlayerWinlossReportCriteria criteria);
+        MemberWinlossReport GetMemberWinloss(MemberWinlossReportCriteria criteria);
 
         IEnumerable<QualifiedMember> GetQualifiedMembers(QualifiedMembersReportCriteria criteria);
     }

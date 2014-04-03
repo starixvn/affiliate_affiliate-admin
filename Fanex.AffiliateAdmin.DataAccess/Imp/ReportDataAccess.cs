@@ -179,14 +179,15 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                     Currency = reader.ToString("Currency"),
                     PlayerUsername = reader.ToString("PlayerUsername"),
                     PlayerCurrency = reader.ToString("PlayerCurrency"),
-                    ExRate = reader.ToDouble("ExRate"),
-                    AffExRate = reader.ToDouble("AffExRate"),
+                    
                     BetCount = reader.ToInt("BetCount")
                 };
 
                 if (criteria.GroupBy == GroupByDate)
                 {
                     memberWinloss.WinlostDate = reader.ToDateTime("WinlostDate");
+                    memberWinloss.ExRate = reader.ToDouble("ExRate"),
+                    memberWinloss.AffExRate = reader.ToDouble("AffExRate"),
                 }
 
                 GetMemberWinlossColumnsBasedOnBaseCurrency(criteria, reader, memberWinloss);

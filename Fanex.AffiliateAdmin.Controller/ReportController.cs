@@ -264,6 +264,8 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #endregion
 
+        #region Member Statistics
+
         [HttpGet]
         public ActionResult MemberStatistics()
         {
@@ -309,45 +311,9 @@ namespace Fanex.AffiliateAdmin.Controller
             });
         }
 
-        /// <summary>
-        /// Commission By Affiliate. 
-        /// </summary>
-        /// <param name="model">Model Input.</param>
-        /// <returns>Commission By Affiliate Result.</returns>
-        [HttpGet]
-        public ActionResult CommissionByAffiliate(CommissionReportViewModel model)
-        {
-            var serializer = new JavaScriptSerializer();
+        #endregion
 
-            ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
-            {
-                Id = x.ProductID,
-                Name = x.ProductName
-            }));
-
-            ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
-
-            var baseCurrencyList = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "0",  Text = CurrentSession.Affiliate.Currency },
-                new SelectListItem { Value = "1",  Text = AppSettings.BaseExchange.Code },
-            };
-
-            model.BaseCurrencyList = baseCurrencyList;
-
-            return View(model);
-        }
-
-        public ActionResult QualifiedMembers(QualifiedMembersReportCriteria criteria)
-        {
-            criteria.UserId = CurrentSession.CustID;
-            var members = _reportService.GetQualifiedMembers(criteria);
-
-            ViewBag.SymbolCurrency = FormaterCurrency.GetCurrencySymbol(criteria.Currency);
-            ViewBag.BaseCurrency = criteria.BaseCurrency;
-
-            return View(members);
-        }
+        #region Commission Report
 
         /// <summary>
         /// Commission Report.
@@ -366,19 +332,6 @@ namespace Fanex.AffiliateAdmin.Controller
             ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
 
             return View(new CommissionReportViewModel());
-        }
-
-        [HttpPost]
-        public ActionResult CommissionByAffiliate(CommissionReportCriteria criteria)
-        {
-            criteria.AffName = CurrentSession.Affiliate.Username;
-            criteria.AffTypes = CurrentSession.Affiliate.AffType.ToString();
-            criteria.CommGroups = CurrentSession.Affiliate.GroupID.ToString();
-            criteria.Currencies = CurrentSession.Affiliate.CurrencyID.ToString();
-            criteria.PreferLanguages = CurrentSession.Affiliate.PrefferredLanguage;
-            criteria.GroupBy = 0;
-
-            return Commission(criteria);
         }
 
         /// <summary>
@@ -411,6 +364,66 @@ namespace Fanex.AffiliateAdmin.Controller
                 TotalItem = criteria.NRows
             });
         }
+
+        /// <summary>
+        /// Commission By Affiliate. 
+        /// </summary>
+        /// <param name="model">Model Input.</param>
+        /// <returns>Commission By Affiliate Result.</returns>
+        [HttpGet]
+        public ActionResult CommissionByAffiliate(CommissionReportViewModel model)
+        {
+            var serializer = new JavaScriptSerializer();
+
+            ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
+            {
+                Id = x.ProductID,
+                Name = x.ProductName
+            }));
+
+            ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
+
+            var baseCurrencyList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "0",  Text = CurrentSession.Affiliate.Currency },
+                new SelectListItem { Value = "1",  Text = AppSettings.BaseExchange.Code },
+            };
+
+            model.BaseCurrencyList = baseCurrencyList;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult CommissionByAffiliate(CommissionReportCriteria criteria)
+        {
+            criteria.AffName = CurrentSession.Affiliate.Username;
+            criteria.AffTypes = CurrentSession.Affiliate.AffType.ToString();
+            criteria.CommGroups = CurrentSession.Affiliate.GroupID.ToString();
+            criteria.Currencies = CurrentSession.Affiliate.CurrencyID.ToString();
+            criteria.PreferLanguages = CurrentSession.Affiliate.PrefferredLanguage;
+            criteria.GroupBy = 0;
+
+            return Commission(criteria);
+        }
+
+        /// <summary>
+        /// Qualified Members.
+        /// </summary>
+        /// <param name="criteria">Criteria input.</param>
+        /// <returns>Action Result.</returns>
+        public ActionResult QualifiedMembers(QualifiedMembersReportCriteria criteria)
+        {
+            criteria.UserId = CurrentSession.CustID;
+            var members = _reportService.GetQualifiedMembers(criteria);
+
+            ViewBag.SymbolCurrency = FormaterCurrency.GetCurrencySymbol(criteria.Currency);
+            ViewBag.BaseCurrency = criteria.BaseCurrency;
+
+            return View(members);
+        }
+
+        #endregion
 
         #region Helpers
 

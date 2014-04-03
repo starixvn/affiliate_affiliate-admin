@@ -159,11 +159,12 @@
         var mergeCols = getMergeCols(_gridOption.numberOfFrozenColumn, groupBy);
         var subTotalRowCount = subTotalData.length;
         var footerRows = [];
+        var baseCurrency = $('#BaseCurrency').val();
 
-        var startIndex = (groupBy == GROUP_BY_MEMBER) || (groupBy != GROUP_BY_MEMBER && $('#BaseCurrency').val() == MEMBER_CURRENCY_OPTION) ? mergeCols + 1 : mergeCols + 2;
+        var startIndex = (groupBy == GROUP_BY_MEMBER) || (groupBy != GROUP_BY_MEMBER && baseCurrency == MEMBER_CURRENCY_OPTION) ? mergeCols + 1 : mergeCols + 2;
 
         if (hasShowSubTotalData === true) {
-            if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].PlayerCurrency != System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
+            if (hasShowSubTotalRows(subTotalRowCount, subTotalData[0].PlayerCurrency, baseCurrency)) {
                 var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
                 var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
                 subTotalStatus = subTotalRowCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
@@ -241,6 +242,15 @@
 
         return footerRows;
     }
+
+    function hasShowSubTotalRows(subTotalRowCount, firstPlayCurrency, selectedBaseCurrency) {
+        if (subTotalRowCount > 1) {
+            return true;
+        }
+
+        return subTotalRowCount === 1 && firstPlayCurrency !== System.Currency && selectedBaseCurrency !== SYS_CURRENCY_OPTION;
+    }
+
     function changeHeaderCaptions(baseCurrency) {
         var text;
 

@@ -169,12 +169,12 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
         private IEnumerable<MemberWinloss> GetMemberWinlossList(IDataReader reader, MemberWinlossReportCriteria criteria)
         {
             var result = new List<MemberWinloss>();
+            const byte GroupByDate = 0;
 
             while (reader.Read())
             {
                 var memberWinloss = new MemberWinloss
                 {
-                    WinlostDate = reader.ToDateTime("WinlostDate"),
                     Username = reader.ToString("Username"),
                     Currency = reader.ToString("Currency"),
                     PlayerUsername = reader.ToString("PlayerUsername"),
@@ -183,6 +183,11 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                     AffExRate = reader.ToDouble("AffExRate"),
                     BetCount = reader.ToInt("BetCount")
                 };
+
+                if (criteria.GroupBy == GroupByDate)
+                {
+                    memberWinloss.WinlostDate = reader.ToDateTime("WinlostDate");
+                }
 
                 GetMemberWinlossColumnsBasedOnBaseCurrency(criteria, reader, memberWinloss);
 
@@ -239,7 +244,8 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                 {
                     var memberWinloss = new MemberWinloss
                     {
-                        PlayerCurrency = reader.ToString("PlayerCurrency")
+                        PlayerCurrency = reader.ToString("PlayerCurrency"),
+                        BetCount = reader.ToInt("BetCount")
                     };
 
                     GetMemberWinlossColumnsBasedOnBaseCurrency(criteria, reader, memberWinloss);
@@ -258,15 +264,17 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
         /// <returns>Total member win-loss.</returns>
         private MemberWinloss GetTotalMemberWinlossInSystemCurrency(IDataReader reader)
         {
-            var playerWinloss = new MemberWinloss();
+            var memberWinloss = new MemberWinloss();
 
             if (reader.NextResult())
             {
                 reader.Read();
-                GetMemberWinlossColumnsInSystemCurrency(reader, playerWinloss);
+
+                memberWinloss.BetCount = reader.ToInt("BetCount");
+                GetMemberWinlossColumnsInSystemCurrency(reader, memberWinloss);
             }
 
-            return playerWinloss;
+            return memberWinloss;
         }
 
         /// <summary>
@@ -441,18 +449,13 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
         private void GetCompanyWinlossColumnsBasedOnBaseCurrency(CompanyWinlossReportCriteria criteria, IDataReader reader, CompanyWinloss companyWinloss)
         {
             const byte MemberCurrency = 0;
-            const byte SystemCurrency = 1;
             const byte AffiliateCurrency = 2;
+
+            GetCompanyWinlossColumnsInSystemCurrency(reader, companyWinloss);
 
             if (criteria.BaseCurrency == MemberCurrency)
             {
                 GetCompanyWinlossColumnsInMemberCurrency(reader, companyWinloss);
-                return;
-            }
-
-            if (criteria.BaseCurrency == SystemCurrency)
-            {
-                GetCompanyWinlossColumnsInSystemCurrency(reader, companyWinloss);
                 return;
             }
 

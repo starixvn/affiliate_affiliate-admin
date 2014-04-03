@@ -209,7 +209,7 @@
                     bodyRows.push({ Columns: columns });
                 });
 
-                if (groups.length > 2 && hasShowSubTotalRows(memberCurrencyCount, firstMemberCurrency, baseCurrency)) {
+                if (groups.length > 1 && hasShowSubTotalRows(memberCurrencyCount, firstMemberCurrency, baseCurrency)) {
                     var totalColums = [];
                     totalColums.push({ Value: MSG.SubTotalIn.format(System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
                     var startIndex = mergeCols;

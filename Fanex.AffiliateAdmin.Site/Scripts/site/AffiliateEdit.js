@@ -66,7 +66,7 @@
             var rowHtml = "<tr id='site_{0}'>".format(numberSite) +
                 "<td><label class=\"control-label\" for=\"Affiliate_SiteURL_{0}\">".format(numberSite) + MSG.SiteUrl + ' ' + numberSite + "</label></td>" +
                 "<td></td>" +
-                "<td><input type='text' class='sites more-site control-text valid' id='Affiliate_SiteURL_{0}'/></td>".format(numberSite) +
+                "<td><input type='text' class='sites more-site control-text valid' id='Affiliate_SiteURL_{0}' maxlength = '50'/></td>".format(numberSite) +
                 "<td><button type='button' class='btn btn-default' onclick='AFFEDIT.delUrl(this);' style='vertical-align: top'>" + MSG.Delete + "</button></td>" +
                 "</tr>";
             $("#siteinfo").append(rowHtml);

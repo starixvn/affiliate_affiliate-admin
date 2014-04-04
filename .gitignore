@@ -33,12 +33,3 @@ _ReSharper*/
 *.[Pp]ublish.xml
 /Fanex.AffiliateAdmin.Site/Fanex.AffiliateAdmin.Site.Publish.xml
 Fanex.AffiliateAdmin.Site/Fanex.AffiliateAdmin.Site.Publish.xml
-Fanex.AffiliateAdmin.Controller/Properties/AssemblyInfo.cs
-Fanex.AffiliateAdmin.Core/Properties/AssemblyInfo.cs
-Fanex.AffiliateAdmin.Criterias/Properties/AssemblyInfo.cs
-Fanex.AffiliateAdmin.DataAccess/Properties/AssemblyInfo.cs
-Fanex.AffiliateAdmin.DTO/Properties/AssemblyInfo.cs
-Fanex.AffiliateAdmin.Models/Properties/AssemblyInfo.cs
-Fanex.AffiliateAdmin.Resources/Properties/AssemblyInfo.cs
-Fanex.AffiliateAdmin.Services/Properties/AssemblyInfo.cs
-Fanex.AffiliateAdmin.Site/Properties/AssemblyInfo.cs

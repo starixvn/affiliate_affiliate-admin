@@ -46,6 +46,19 @@
                             <a id="spClosed" class="link-box link-box-active" title="@Lang.CloseOpenAccount">@(Model.AffiliateInfo.IsClosed ? Lang.Yes : Lang.No)</a>
                         </td>
                     </tr>
+                    <tr>
+                        <td>@Lang.LockedOut</td>
+                        <td class="col-right">
+                            @if (Model.AffiliateInfo.IsLocked)
+                            {
+                                <span id="spLockedOut" class="link-box link-box-active">@Lang.Yes</span>
+                            }
+                            else
+                            {
+                                <span class='link-box'>@Lang.No</span>
+                            }
+                        </td>
+                    </tr>
                 }
                 else
                 {
@@ -62,19 +75,7 @@
                         </td>
                     </tr>
                 }
-                <tr>
-                    <td>@Lang.LockedOut</td>
-                    <td class="col-right">
-                        @if (Model.AffiliateInfo.IsLocked)
-                        {
-                            <span id="spLockedOut" class="link-box link-box-active">@Lang.Yes</span>
-                        }
-                        else
-                        {
-                            <span class='link-box'>@Lang.No</span>
-                        }
-                    </td>
-                </tr>
+                
             </tbody>
         </table>
     </div>

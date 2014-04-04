@@ -1,0 +1,47 @@
+﻿@using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Models
+@model MessageAddViewModel
+@{
+    ViewBag.Title = Lang.AddMessage;
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+@using (Html.BeginForm("AddMessage", "Message", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary()
+    <div class="popup-content">
+        <div class="control-group">
+            @Html.LabelFor(m => m.Important, new { @class = "control-label" })
+            <div class="controls">
+                @Html.CheckBoxFor(m => m.Important, new { @class = "form-control" })
+            </div>
+        </div>
+        @foreach (var language in AppSettings.AffSupportLanguages)
+        {
+            <div class="control-group">
+                <label class="control-label">@language.LanguageName</label>
+                <div class="controls">
+                    @Html.TextArea(string.Format("LangMessages[{0}]", @language.LanguageID), new { @class = "small-textarea" })
+                </div>
+            </div>
+        }
+    </div>
+    <div class="popup-footer">
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" id="btnUpdate" class="btn">@Lang.Add</button>
+                <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
+            </div>
+        </div>
+    </div>
+
+}
+@section scripts{
+    <script src="~/Scripts/site/Message.js" type="text/javascript"></script>
+    @if (ViewBag.Result != null)
+    {
+        var result = (ResultViewModel)ViewBag.Result;
+        <script type="text/javascript">
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.Message.ReRenderAfterPaged);
+        </script>
+    }
+}

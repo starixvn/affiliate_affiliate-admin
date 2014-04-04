@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = Lang.CompanyWinloss;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section iconcss{
+report
+}
+@section submenu{
+    @RazorHelper.ListSubmenu(Fanex.AffiliateAdmin.Core.Utilities.SubMenu.Reports, 0, "report")
+}
+@{
+    var now = DateTime.Now;
+}
+
+@using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Core.Mvc
+@model Fanex.AffiliateAdmin.Models.CompanyWinlossViewModel
+
+<div class="search-panel search-company-winloss">
+    <div class="ic-reload" title="@Lang.RefreshPage">
+    </div>
+    @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
+    @using (Html.BeginForm("CompanyWinloss", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
+    {            
+        <div class="span12 search-form">
+            <div class="row-fluid row-form">
+                <div class="cell">
+                    <label for="AffName" class="txt">@Lang.Affiliate</label>
+                    <input type="text" class="form-control width-140" id="AffName" name="AffName" placeholder="@Lang.All" maxlength="100"/>
+                </div>
+                <div class="cell">
+                    <label for="AffTypes" class="txt">@Lang.AffType</label>
+                    @Html.DropDownCheckList("AffTypes", Model.AffTypeOptionList, true, true, new { @class = "width-140" })
+                </div>
+                <div class="cell">
+                    <label for="CommGroups" class="txt auto">@Lang.CommissionGroup</label>
+                    @Html.DropDownCheckList("CommGroups", Model.CommissionGroupOptionList, true, true, new { @class = "width-140" })
+                </div>
+                <div class="cell">
+                    <label for="PreferLanguages" class="txt auto">@Lang.Language</label>
+                    @Html.DropDownCheckList("PreferLanguages", Model.PreferLanguageOptionList, true, true, new { @class = "width-140" })
+                </div>
+            </div>
+            <div class="row-fluid row-form">
+                <div class="cell">
+                    <label for="PlayerCurrencies" class="txt">@Lang.Currency</label>
+                    @Html.DropDownCheckList("PlayerCurrencies", Model.PlayerCurrencyOptionList, true, true, new { @class = "width-140" })
+                </div>
+                <div class="cell">
+                    <label for="DateOption" class="txt">@Lang.GroupBy</label>
+                    @Html.DropDownCheckList("GroupBy", Model.GroupByOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
+                </div>
+                <div class="cell">
+                    <label for="FromDate" class="txt width-90">@Lang.From</label>
+                    @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), AppSettings.SystemStartDate, now, false, new { isdefault = "false" })</div>
+                <div class="cell">
+                    <label for="ToDate" class="txt auto text-left">@Lang.To</label>
+                    @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, false, new { isdefault = "false" })
+                </div>
+            </div>
+            <div class="row-fluid row-form end-search">
+                <div class="cell">
+                    <label for="BaseCurrency" class="txt">@Lang.DrawFilter</label>
+                    @Html.DropDownCheckList("DrawFilter", Model.DrawFilterOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
+                </div>
+                <div class="cell">
+                    <label for="BaseCurrency" class="txt">@Lang.BaseCurrency</label>
+                    @Html.DropDownCheckList("BaseCurrency", Model.BaseCurrencyOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
+                </div>
+                <div class="cell checkbox">
+                    <label for="ExcludeTest">
+                        @Html.CheckBoxFor(m => m.ExcludeTest)
+                        @Lang.ExcludeTestAccounts
+                    </label>
+                </div>
+            </div>
+            <div class="row-fluid row-form btn-action">
+                <div class="span12">
+                    <button id="btnSubmit" type="submit" class="btn btn-default">@Lang.Submit</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div id="gridId" class="freegrid" colheight="200" expheight="350" >
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var MSG = {
+            Date: "@Lang.Date",
+            Month: "@Lang.Month",
+            UnitPerBaseCurrency: "@Lang.UnitPerBaseCurrency",
+            Deposit: "@Lang.Deposit",
+            Withdrawal: "@Lang.Withdrawal",
+            Bonus: "@Lang.Bonus",
+            Adjustment: "@Lang.Adjustment",
+            PSP: "@Lang.PSP",
+            Turnover: "@Lang.Turnover",
+            CustomerWL: "@Lang.CustomerWL",
+            CompanyWL: "@Lang.CompanyWL",
+            SubTotalIn: "@Lang.SubTotalIn",
+            Total: "@Lang.Total",
+            TotalRangeIn: "@Lang.TotalRangeIn",
+            TotalAllIn: "@Lang.TotalAllIn",
+            TotalAll: "@Lang.TotalAll",
+            Sportsbook: "@Lang.Sportsbook",
+            NumberGame: "@Lang.NumberGame",
+            LiveCasino: "@Lang.LiveCasino",
+            RNGCasino: "@Lang.RNGCasino",     
+            RangeTime3Months: "@Lang.RangeTime3Months",
+            CompanyWinlossTitle: "@Lang.CompanyWinloss",
+            ToggleSubTotal: '@Lang.ToggleSubTotal'
+        };
+        
+        var PRODUCTS = @(Html.Raw(ViewBag.Products));
+        var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
+        var subTotalStatus = COLLAPSE_SUBTOTAL_STATUS;
+
+        var sampleGridOption = {
+            language: '@AppSession.Language',
+            showTitle: true,
+            timeZone: AFFILIATE.TimeZone,
+            titleInfo:
+            {
+                text: "@Lang.CompanyWinloss"
+            },
+            groupHeaderRows: [
+                {
+                    Columns: [
+                        { HeaderText: "@Lang.Date", Name: "WinlostDate", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Name: "ExRate", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Name: "Deposit", NameCache: "Deposit", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Withdrawal", HeaderText: "@Lang.Withdrawal", IsCurrency: true, Name: "Withdrawal", NameCache: "Withdrawal", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Name: "Bonus", NameCache: "Bonus", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Name: "Adjustment", NameCache: "Adjustment", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.PSP", HeaderText: "@Lang.PSP", IsCurrency: true, Name: "PSP", NameCache: "PSP", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.ActiveMembers", Name: "ActivePlayer", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.CustomerWL", HeaderText: "@Lang.CustomerWL", IsCurrency: true, Name: "Winlost", NameCache: "Winlost", MergeRowNumber: 2 }
+                    ]
+                }
+            ],
+            columns: [                                                
+                { HeaderText: "@Lang.Date", Width: 80, Name: "WinlostDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+                { HeaderText: "@Lang.Currency", Width: 80, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Width: 80, Name: "ExRate", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Width: 90, Name: "Deposit", NameCache: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
+                { HeaderCaption: "@Lang.Withdrawal", HeaderText: "@Lang.Withdrawal", IsCurrency: true, Width: 90, Name: "Withdrawal", NameCache: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
+                { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Width: 90, Name: "Bonus", NameCache: "Bonus", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
+                { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Width: 90, Name: "Adjustment", NameCache: "Adjustment", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
+                { HeaderCaption: "@Lang.PSP", HeaderText: "@Lang.PSP", IsCurrency: true, Width: 90, Name: "PSP", NameCache: "PSP", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
+                { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },                
+                { HeaderText: "@Lang.ActiveMembers", Width: 110, Name: "ActivePlayer", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderCaption: "@Lang.CustomerWL", HeaderText: "@Lang.CustomerWL", IsCurrency: true, Width: 110, Name: "Winlost", NameCache: "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true }
+            ],            
+            allowTruncate: false,
+            gridExpandHeight: 360,
+            showFooter: true,
+            customizeHeader: true,
+            showDistinctRow: false,
+            numberOfFrozenColumn: 3
+        };
+        
+        var sampleTotalTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "Turnover", NameCache: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleTotalWinlostCol = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Width: 110, Name: "Total", NameCache: "Total", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+
+        var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Name: "Turnover", NameCache: "Turnover",  MergeColNumber: 5 };
+        var sampleCompanyWLHeader = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Name: "Total", NameCache: "Total", MergeColNumber: 5 };
+
+        var exRatePosition = 2;
+        var turnoverPosition = 8;
+    </script>
+    <script src="@Url.Content("~/Scripts/site/CompanyWinlossReport.js")" type="text/javascript"></script>
+}
+

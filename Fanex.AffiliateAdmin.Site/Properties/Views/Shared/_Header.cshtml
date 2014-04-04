@@ -1,0 +1,31 @@
+﻿@{
+    var currentSession = Fanex.AffiliateAdmin.Core.Session.SessionManager.CurrentSession;
+}
+<div class="span12 header">
+    <div class="row-fluid">
+        <div class="span12 info-header">
+            <div class="span3">
+                <img style="margin-bottom: 2px;" src="@Url.Content("~/Content/_Sites/" + Fanex.AffiliateAdmin.Core.Configurations.AppSettings.Layout + "/images/banner_top.png")" />
+            </div>
+            <div class="span4 grp-welcome">
+                <span class="welcome"></span>
+                <div class="grp-info">
+                    <strong>@Lang.Welcome, @currentSession.Username</strong> 
+                    <a id="changePassword" href="#">[@Lang.ChangePassword]</a> 
+                    <a href="@Url.Content("~/Account/Logout")">[@Lang.Logout]</a>
+                </div>
+            </div>
+            <!--Language-->
+            <div class="span2 lang" id="language">
+                @Html.Action("Language", "Home")
+            </div>
+            <!--/Language-->
+            <div class="span3 grp-time">
+                <span class="time"></span>
+                <div id="lblDateTime" class="grp-info">
+                </div>
+            </div>
+        </div>
+        @Html.Action("Menu", "Home")
+    </div>
+</div>

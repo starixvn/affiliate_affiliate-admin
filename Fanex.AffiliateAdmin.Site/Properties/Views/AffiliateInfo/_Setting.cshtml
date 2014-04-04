@@ -1,0 +1,82 @@
+﻿@using Fanex.AffiliateAdmin.Core.Enumerations
+
+@model Fanex.AffiliateAdmin.Models.AffiliateInfoViewModel
+@using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.Core.Configurations
+
+<div class="left-group">
+    <div class="left-tab"><a href="#"><span>@Lang.Setting</span></a></div>
+    <div class="left-tab-info">
+        <table>
+            <tbody>
+                <tr>
+                    <td>@Lang.AccountType</td>                    
+                    <td class="col-right"> 
+                        <a title="@(AffiliateSettings.AccountTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffLevel).FirstOrDefault().TypeName)" id="accountType" href="javascript:void(0);">@(AffiliateSettings.AccountTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffLevel).FirstOrDefault().TypeName.LeftString(12))</a>
+                    </td>
+                </tr>
+                @if (Model.AffiliateInfo.Status.Equals(AffiliateStatus.Approved.ToString(), StringComparison.CurrentCultureIgnoreCase))
+                {
+                    <tr>
+                        <td>@Lang.AffType</td>
+                        <td class="col-right">  
+                            <select id="slAffType" name="slAffType" style="display: none;" class="width-ex-70 nopadding">
+                                @foreach (var type in AppSettings.AffTypes)
+                                {
+                                <option value="@type.TypeID" @(type.TypeID == Model.AffiliateInfo.AffType ? "selected='selected'" : string.Empty) >@type.Name</option>
+                                }
+                            </select>   
+                            @if (AppSettings.AffTypes.Count() > 1)
+                            {
+                                <span class="link-box-active" id="spAffType" title="@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name)">@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name.LeftString(12))</span>
+                            }
+                            else
+                            {
+                                <span title="@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name)">@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name.LeftString(12))</span>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.Status</td>
+                        <td class="col-right"><span>@Lang.Approved</span></td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.Closed</td>
+                        <td class="col-right">
+                            <a id="spClosed" class="link-box link-box-active" title="@Lang.CloseOpenAccount">@(Model.AffiliateInfo.IsClosed ? Lang.Yes : Lang.No)</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.LockedOut</td>
+                        <td class="col-right">
+                            @if (Model.AffiliateInfo.IsLocked)
+                            {
+                                <span id="spLockedOut" class="link-box link-box-active">@Lang.Yes</span>
+                            }
+                            else
+                            {
+                                <span class='link-box'>@Lang.No</span>
+                            }
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>@Lang.Status</td>
+                        <td class="col-right">
+                            <select id="slStatus" name="slStatus" style="display: none;" class="width-ex-100">
+                                <option value="Approved" @(Model.AffiliateInfo.Status.Equals("approved", StringComparison.CurrentCultureIgnoreCase) ? "selected='selected'" : string.Empty)>@Lang.Approved</option>
+                                <option value="Disapproved" @(Model.AffiliateInfo.Status.Equals("disapproved", StringComparison.CurrentCultureIgnoreCase) ? "selected='selected'" : string.Empty)>@Lang.Disapproved</option>
+                                <option value="Pending" @(Model.AffiliateInfo.Status.Equals("pending", StringComparison.CurrentCultureIgnoreCase) ? "selected='selected'" : string.Empty)>@Lang.Pending</option>
+                            </select>
+                            
+                            <span class="link-box-active" id="spStatus">@RazorHelper.GetAffiiateStatus(Model.AffiliateInfo.Status)</span>
+                        </td>
+                    </tr>
+                }
+                
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = Lang.AffiliateTypeList;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Fanex.AffiliateAdmin.Core.Utilities
+@model Fanex.AffiliateAdmin.Models.AffTypeViewModel
+@section iconcss{
+settings
+}
+@section submenu{
+    @RazorHelper.ListSubmenu(SubMenu.Configuration, 4, "configuration")
+}
+<div class="search-panel search-language">
+    <div class="ic-reload" title="@Lang.RefreshPage">
+    </div>
+    @RazorHelper.SearchPanel(".search-form", "Information text", false, false)
+    @using (Html.BeginForm("GetAffTypeList", "Configuration", FormMethod.Post, new { id = "ConfigurationForm", @class = "row-fluid" }))
+    {
+        <div class="span12 search-form">
+            <div class="row-fluid row-form end-search">
+                <div class="cell">
+                    @Html.LabelFor(m => m.Name, Lang.SearchByName)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control width-140", placeholder = Lang.All, maxlength = "100" })
+                </div>
+            </div>
+            <div class="row-fluid row-form btn-action">
+                <div class="span12">
+                    <button type="submit" class="btn btn-default" id="btnSubmit">
+                        @Lang.Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div id="gridId" class="freegrid content-grid" colheight="200" expheight="290">
+</div>
+@section scripts{
+    <script type="text/javascript">
+        var gridOption = {
+            language: '@AppSession.Language',
+            showTitle: true,
+            timeZone: AFFILIATE.TimeZone,
+            titleInfo:
+            {
+                text: "@Lang.AffiliateTypeList",
+                showButtonsWhenNoData: true,
+                customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddNewAffType" class="btnAdd icon-add-config" id="btnAddgridId">'
+            },
+            columns: [
+                { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.Name", Width: 200, Name: "Name", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.Description", Width: 250, Name: "Description", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.Creator", Width: 100, Name: "CreatorName", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.CreatedDate", Width: 150, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+                {
+                    HeaderText: "@Lang.Action",
+                    Width: 70,
+                    Name: "Update",
+                    HeaderAlign: "center",
+                    CellAlign: "center",
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        return "<a title='{0}' href='javascript:AffType.showAffTypeDlg(".format(MSG.Edit) + record.TypeID + ");'><i class='icon-edit'></i></a>"
+                            + "&nbsp;&nbsp;<a title='{0}' href='javascript:AffType.deleteAffType(".format(MSG.Remove) + record.TypeID + ");'><i class='icon-remove'></i></a>";
+                    }
+                }
+            ],
+            customPager: true,
+            gridExpandHeight: 290,
+            allowTruncate: false,
+            indexNumberColumn: 0
+        };
+
+        var MSG =
+        {
+            AffiliateTypeList: '@Lang.AffiliateTypeList',
+            AddNewAffType: '@Lang.AddNewAffType',
+            InvalidAffType: '@Lang.InvalidAffType',
+            DeleteAffTypeMsg: '@Lang.DeleteAffTypeMsg',
+            UpdateAffType: '@Lang.UpdateAffType',
+            NoInfo: '@Lang.NoInfo',
+            Remove: '@Lang.Remove',
+            Edit: '@Lang.Edit',
+            Title: "@Lang.AffiliateTypeList"
+        };
+    </script>
+    <script src="~/Scripts/site/AffType.js" type="text/javascript"></script>
+}

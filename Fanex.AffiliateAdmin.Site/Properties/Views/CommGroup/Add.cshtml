@@ -1,0 +1,319 @@
+﻿@{
+    ViewBag.Title = Lang.AddCommissionGroup;
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+@using System.Linq
+@using Fanex.AffiliateAdmin.Core.Mvc
+@using Fanex.AffiliateAdmin.Core.Configurations
+@model CommGroupInfo 
+@{
+    long MAXAM = 100000000000000;
+    var isNoCommissionGroup = false;
+    var currencyDropDownAttr = new Dictionary<string, object>();
+    currencyDropDownAttr.Add("class", "width-140 dropdownchecklist single-select");
+    if (Model != null)
+    {
+        currencyDropDownAttr.Add("disabled", "true");
+        if (Model.Currency == 0)
+        {
+            isNoCommissionGroup = true;
+        }
+    }
+}
+<div id="commissionlist" class="hide">
+<select style="" class="commission single-select">
+@for (int i = 0; i < 100; i++)
+{
+    var val = string.Format("{0:0.00}", Convert.ToDecimal(i) / 100);<option value="@val">@val</option> 
+}
+</select></div>
+<table id="tierRow" class="hide"><tr class="tier">
+    <td id="tier">0</td>
+    <td>
+        <input type="text" id="minAM" disabled class="minAM"  maxlength="19" /></td> 
+    <td>
+        <input type="text" id="maxAM" class="maxAM" maxlength="19" />
+        <input type="checkbox" />∞
+    </td>
+    <td>
+        <input type="text" id="minQM" disabled class="minQM" maxlength="13"  />
+        </td>
+    <td>
+        <input type="text" id="maxQM" class="maxQM" maxlength="13" />
+        <input type="checkbox" />∞
+    </td>
+    <td id="commission">
+        <select class="commission"><option>0.00</option></select>
+    </td>
+    <td>              
+        <a href="javascript:void(0);" class="icon-remove" title="@Lang.Remove"></a>
+    </td>            
+    </tr>
+</table>
+
+@using (Html.BeginForm("UpdateConfiguration", "Configuration", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary()
+    <div class="popup-content" style="min-width:800px">
+   @Html.HiddenFor(m => m.GroupID)   
+   <div class="control-group">
+        @Html.LabelFor(m => m.GroupName, Lang.GroupName, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.GroupName, new { maxlength = "100", @class = "form-control" }.DisabledIf(isNoCommissionGroup))<span style="color: red"> *</span>
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(m => m.Description, Lang.Description, new { @class = "control-label" })      
+        <div class="controls">
+            @Html.TextBoxFor(m => m.Description, new { maxlength = "100", @class = "form-control" })
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(m => m.QualifiedAmount, Lang.QualifiedAmount, new { @class = "control-label" })      
+        <div class="controls">
+            @Html.TextBox("QualifiedAmount", (Model == null ? null : Model.QualifiedAmount.ToString("#,0")), new { maxlength = "20", @class = "form-control" })<span style="color: red"> *</span>
+        </div>
+    </div>
+     <div class="control-group">
+        @Html.LabelFor(m => m.Currency, Lang.Currency, new { @class = "control-label" })      
+        <div class="controls">
+        
+        @if (isNoCommissionGroup)
+        {
+            @Html.DropDownListFor(m => m.Currency, new SelectList(new List<Currency>(){ new Currency(){
+                CurrencyCode = "All", CurrencyID = 0 }}, "CurrencyID", "CurrencyCode"),
+            currencyDropDownAttr)
+        }
+        else
+        {
+               @Html.DropDownListFor(m => m.Currency, new SelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode"), currencyDropDownAttr)
+        }
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.Label("ActiveAll", @Lang.ActiveAll, new { @class = "control-label" })
+        <div class="controls">
+            @Html.CheckBox("ActiveAll")
+        </div>
+    </div>
+ 
+    <div class="red" id="currNotify" style="display:none;margin: 5px 5px 15px 25px">    
+    </div>
+        @if (AppSettings.DeductionTypes.Any(x => x.ProductID == 0) || (Model != null && Model.DeductionSettings.Any(t => t.ProductID == 0)))
+        {
+            var deduction = AppSettings.DeductionTypes.FirstOrDefault(x => x.ProductID == 0);
+            var check = Model != null ? Model.DeductionSettings.Any(x => x.DeductionID == deduction.DTypeID) : false;
+            var d = check ? Model.DeductionSettings.FirstOrDefault(x => x.DeductionID == deduction.DTypeID) : null;
+            var percent = d == null ? (decimal)deduction.DeductedPercentage : d.DeductedPercentage;
+        
+            <div id="tab_header0" data-productid="0" class="tab_header" data-productname="@Lang.Deduction">
+                <div class="tab_title">                   
+                    <ul>
+                        <li class="expand">				
+                            <span>
+                                <span id="product_header" class="product_header header_hightlight" style="cursor: pointer"> 
+                                    @Lang.Deduction
+                                </span>
+                            </span>
+                        </li>
+                    </ul>			
+                    <div class="textcopy">
+                        <div class="cell checkbox pull-right">
+                        </div>                    
+                    </div>
+                </div>    
+            </div>
+            <div class="tab_content" style="" id="tab_content0">
+                <br/>
+                <div class="row-fluid row-form deductions">                    
+                    <div class="cell span3" style="min-width: 160px">            
+                        <label>
+                            <input type="checkbox" class="deduction" @(check ? "checked=checked" : "") data-id="@deduction.DTypeID" data-percent="@deduction.DeductedPercentage">
+                            @deduction.DTypeName
+                        </label>
+                        <select style="margin-left: 10px; width: 70px" class="deductionlist nopadding">
+                            @for (int i = 0; i <= 100; i++)
+                            {
+                                var num = (decimal) i/100;
+                                var val = string.Format("{0:0.00}", num);
+                                <option value="@val" @(num == percent ? "selected" : null)>@val</option>
+                            }
+                        </select>
+                    </div>	
+                </div>                  
+            </div>
+        }
+        
+        @foreach (var product in AppSettings.Products)
+        {
+            var hasTier = Model == null ? false : Model.GroupSettings.Count(x => x.ProductID == product.ProductID) > 0;        
+            <div id="tab_header@(product.ProductID)" @((Model != null && !hasTier) ? "data-disabled='true'" : null) data-productid="@(product.ProductID)" class="tab_header" data-productname="@product.ProductName">
+                <div class="tab_title">                   
+                    <ul>
+                        <li class="expand">				
+                            <span>
+                                <span id="product_header" class="product_header header_hightlight" style="cursor: pointer"> 
+                                    <i id="header_icon" class="icon-ok-circle"></i>			      
+                                    @product.ProductName
+                                </span>
+                            </span>
+                        </li>
+                    </ul>			
+                    <div class="textcopy">
+                        <div class="cell checkbox pull-right">            
+                            <label for="@(product.ProductID)">
+                                <input type="checkbox" class="copy" id="@(product.ProductID)">
+                                @string.Format(@Lang.CopyTierSettingFor, product.ProductName)
+                            </label>
+                        </div>                    
+                    </div>
+                </div>    
+            </div>
+       
+            <div class="tab_content" style="" id="tab_content@(product.ProductID)">
+                @{
+                    var deductions = AppSettings.DeductionTypes.Where(x => x.ProductID == product.ProductID);
+
+                    if (deductions.Count() > 0)
+                    {
+                        <!--Deduction-->
+                        <div class="fieldset">
+                            <div class="legend">@Lang.Deductions</div>
+                            <div class="clear"></div>
+                            <!--DeductionOption-->
+                            <div class="row-fluid row-form deductions">                    
+                                @foreach (var item in deductions)
+                                {
+                                    var check = Model != null ? Model.DeductionSettings.Any(x => x.DeductionID == item.DTypeID) : false;
+                                    var d = check ? Model.DeductionSettings.Where(x => x.DeductionID == item.DTypeID).FirstOrDefault() : null;
+                                    var percent = d == null ? (decimal)item.DeductedPercentage : d.DeductedPercentage;
+                
+                                    <div class="cell span3" style="min-width:160px">            
+                                        <label for="exclude-test" title="@(Lang.ResourceManager.GetString("Deduction" + item.DTypeName.Replace(" ", string.Empty)))">
+                                            <input type="checkbox" class="deduction" @(check ? "checked=checked" : "") data-id="@item.DTypeID" data-percent="@item.DeductedPercentage">
+                                            @item.DTypeName
+                                        </label>
+                                        <select style="margin-left:10px; width: 70px" class="deductionlist nopadding" @(check ? null : "disabled")>
+                                            @for (int i = 0; i <= 100; i++)
+                                            {
+                                                var num = (decimal)i / 100;
+                                                var val = string.Format("{0:0.00}", num);
+                                                <option value="@val" @(num == percent ? "selected" : null)>@val</option> 
+                                            }
+                                        </select>
+                                    </div>
+                                }
+                            </div>          
+                            <!--/DeductionOption--></div>
+                        <!--/Deduction-->
+                    }
+                }
+                <div class="fieldset">
+                    <div class="legend">@Lang.TierSetting</div><br>
+                        <table width="100%" cellspacing="1" cellpadding="0" border="0" bgcolor="#90b3ce" id="tblTier@(product.ProductID)">
+                            <thead><tr>
+                                        <td width="55" class="theader">Tier</td>
+                                        <td width="110" title="@Lang.MinimumWinlossAmount" class="theader">@Lang.MinAmount</td>
+                                        <td width="165" title="@Lang.MaximumWinlossAmount" class="theader">@Lang.MaxAmount</td>
+                                        <td width="110" title="@Lang.MinimumQualifiedMembers" class="theader">@Lang.MinQM</td>
+                                        <td width="165" title="@Lang.MaximumQualifiedMembers" class="theader">@Lang.MaxQM</td>
+                                        <td width="80" class="theader">@Lang.Commission</td>
+                                        <td width="80" class="theader">@Lang.Action</td>
+                                    </tr>
+                            </thead>
+                            <tbody>   
+                                @if (!hasTier)
+                                {
+                                    <tr class="rnormal"><td class="c" colspan="7">@Lang.NoInfo</td></tr>
+                                }
+                                else
+                                {
+                                    var settings = Model.GroupSettings.Where(x => x.ProductID == product.ProductID);
+
+                                    var count = settings.Count();
+                                    for (int j = 0; j < count; j++)
+                                    {
+                                        var tier = settings.ElementAt(j);
+                                        var ismax = tier.MaxAmount == MAXAM;
+                                        var isLast = j == count - 1;
+                                        <tr class="tier">          
+                                            <td>@(j + 1)</td>
+                                            <td>
+                                                <input type="text" id="minAM" disabled class="minAM" value="@(((long)tier.MinAmount).ToString("#,0"))"  maxlength="19" /></td>
+                                            <td class="for_form">
+                                                <input type="text" id="maxAM" @(ismax ? "disabled" : null) class="maxAM" value="@(ismax ? "∞" : ((long)tier.MaxAmount).ToString("#,0"))" maxlength="19" />
+                                                <input type="checkbox" @(!isLast ? "disabled" : null) @(ismax ? "checked" : null)/>∞
+                                            </td>
+                                            <td>
+                                                <input type="text" id="minQM" disabled class="minQM" value="@tier.MinQM.ToString("#,0")" maxlength="13"  />
+                                            </td>
+                                            <td class="for_form">
+                                                <input type="text" id="maxQM" @(ismax ? "disabled" : null)  class="maxQM" value="@(ismax ? "∞" : tier.MaxQM.ToString("#,0"))" maxlength="13" />
+                                                <input type="checkbox"  @(!isLast ? "disabled" : null) @(ismax ? "checked" : null) />∞
+                                            </td>
+                                            <td style="max-width: 100px">
+                                                <select style="" class="commission">
+                                                    <!--SelectOption-->
+                                                    @*@Html.DropDownList("commission" + tier.GroupID + tier.TierID, AppSettings.Commissions)*@
+                                                    @for (int i = 0; i < 100; i++)
+                                                    {
+                                                        var num = Convert.ToDecimal(i) / 100;
+                                                        var val = string.Format("{0:0.00}", num);
+                                                        <option value="@val" @(num == tier.Commission ? "selected" : null)>@val</option> 
+                                                    }
+                                                    <!--/SelectOption-->              
+                                                </select>
+                                            </td>            
+                                            <td>              
+                                                <a href="javascript:void(0);" class="icon-remove  @(!isLast ? "icon-white" : null)" @(!isLast ? "disabled='disabled'" : "disabled")></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                        <button id="btnAddTier@(product.ProductID)" style="margin-top: 5px" type="button" @(Model == null || Model.GroupSettings.Where(x => x.ProductID == product.ProductID).Count() == 0 ? null : "disabled") class="btn btn-default addtier" style="vertical-align: top" data-productid="@product.ProductID" >@Lang.AddTier</button>
+                </div></div>
+        }
+    </div>
+   <div class="clear"></div>
+    <div class="row-fluid row-form btn-action" style="margin: 10px">
+        <div class="span12">            
+            <button style="vertical-align: top" class="btn btn-default" id="btnSubmit" type="button">@(Model == null ? Lang.Add : Lang.Update)</button>
+        </div>
+    </div>
+}
+
+
+@section css{
+    <link href="@Url.Content("~/Content/themes/Default/commgroup.less")" rel="stylesheet" type="text/css" />
+}
+
+
+@section scripts{
+    <script type="text/javascript">
+        var MAXQM = 1000000000;
+        var MAXAM = 100000000000000;
+
+        var MSG = {
+            PassRequire: "@Lang.ErrNewPass",
+            PassConfirm: "@Lang.PassConfirm",
+            InvalidSettingFor: "@Lang.InvalidSettingFor",
+            TierSettingAtLeastTier: "@Lang.TierSettingAtLeastTier",            
+            LastTierSettingHaveMaxValue: "@Lang.LastTierSettingHaveMaxValue",
+            ConfirmRemoveFromGroup: "@Lang.ConfirmRemoveFromGroup",
+            GroupNameEmpty: "@Lang.GroupNameEmpty",
+            ValidQualifiedAmount: "@Lang.ValidQualifiedAmount",
+            EnableProduct: "@Lang.EnableProduct",
+            MaxTierAllow: "@Lang.MaxTierAllow"
+        };
+
+        var PRODUCTS = JSON.parse("@(ViewBag.ProductIDList)");
+        var HasCashbackDeduction = @(ViewBag.HasCashbackDeduction ? "true" : "false");
+
+        $(function(){
+            POPUP.init();
+        });
+    </script>
+    <script src="@Url.Content("~/Scripts/site/CommGroupPopup.js")" type="text/javascript"></script> 
+}

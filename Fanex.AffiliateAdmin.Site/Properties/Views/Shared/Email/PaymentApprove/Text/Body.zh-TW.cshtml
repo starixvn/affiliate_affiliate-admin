@@ -1,0 +1,19 @@
+﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+<div>
+    尊敬的 @(Model.FirstName),
+    <br />
+    <br />
+    提款單號@(Model.TransId)，日期@(Model.WinlostDate.ToString("MM/dd/yyyy"))。<br />
+    <br />
+    很高興的通知您，您金額為@(Model.Amount)的提款申請已被核准，相應的款項已成功轉入您用於佣金提取的玩家帳戶。
+    <br />
+    <br />
+    這是一封系統郵件，請不要在此郵件基礎上直接回复。
+    <br />
+    如有任何疑問，請隨時聯繫我們<a href="mailto:@(Model.CsdEmail)">@(Model.CsdEmail)</a><br />
+    <br />
+    誠摯的,<br />
+    <br />
+    @(Model.SystemName)合作夥伴團隊<br />
+    <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a>
+</div>

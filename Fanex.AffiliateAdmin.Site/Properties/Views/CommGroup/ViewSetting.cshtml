@@ -1,0 +1,159 @@
+﻿@{
+    ViewBag.Title = Lang.CommissionGroup;
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+@using System.Linq
+@using Fanex.AffiliateAdmin.Core.Utilities
+@model CommGroup
+@{
+    long MAXAM = 100000000000000;
+    var MAXQM = 1000000000;
+    var hasCashBackDeduction = ViewBag.HasCashBackDeduction is bool && (bool)ViewBag.HasCashBackDeduction;
+}
+
+@if (Model != null)
+{
+    <div class="freegrid" style="display: block; border: 0px">
+<div class="col_header">
+<table class="grid-fixed-table col_header_content" style="width: 100%;">
+    <thead>
+        <tr>
+            <th rowspan="2" width="80px">@Lang.Name</th>
+            <th rowspan="2">@Lang.NoOfAffiliate</th>
+            <th rowspan="2">@Lang.Description</th>
+            <th rowspan="2">@Lang.Creator</th>
+            <th rowspan="2" width="50px">@Lang.CreatedDate</th>
+            <th rowspan="2" width="50px">@Lang.QualifiedAmount</th>
+            <th rowspan="2">@Lang.Currency</th>
+            <th colspan="8">@Lang.Policy</th>        
+            @if (hasCashBackDeduction)
+            {
+                <th rowspan="2" width="120px">@Lang.Deduction</th>    
+            }
+        </tr>
+        <tr>
+            <th>@Lang.Product</th>
+            <th>@Lang.Tier</th>
+            <th>@Lang.MinAmount</th>
+            <th>@Lang.MaxAmount</th>
+            <th>@Lang.MinQM</th>
+            <th>@Lang.MaxQM</th>
+            <th>@Lang.Commission</th>
+            <th width="120px">@Lang.Deductions</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var rowCount = Model.Details.Count();
+            var prevProductID = 0;
+            var className = "odd";
+        } 
+        @for (int i = 0; i < rowCount; i++)
+        {
+            var detail = Model.Details.ElementAt(i);
+            var product = Model.Products[detail.ProductID.ToString()];
+            var deductions = product.GetPropertyValue("Deductions") as Dictionary<string, decimal>;
+            var numItems = product.GetPropertyValue("NumOfItems");
+            
+            <tr>
+                @if (i == 0)
+                {
+                    <td rowspan="@rowCount">@Model.GroupName</td>
+                    <td rowspan="@rowCount">@Model.NoOfAffiliate</td>
+                    <td rowspan="@rowCount">@Model.Description</td>
+                    <td rowspan="@rowCount">@Model.Creator</td>
+                    <td rowspan="@rowCount">@Model.CreatedDate.ToShortDateString()</td>
+                    <td rowspan="@rowCount">@Model.QualifiedAmount.ToString("#,0")</td>
+                    <td rowspan="@rowCount">@Model.Currency</td>
+                }
+                @if (prevProductID != detail.ProductID)
+                {
+                    className = className == "odd" ? "even" : "odd";
+                    <td rowspan="@numItems"  class="@className">@detail.ProductName</td>
+                }
+                <td class="@className">@detail.TierID</td>
+                <td class="@className text-right">@detail.MinAmount.ToString("#,0")</td>
+                <td class="@className text-right">@(detail.MaxAmount == MAXAM ? "∞" : detail.MaxAmount.ToString("#,0"))</td>
+                <td class="@className text-right">@detail.MinQM.ToString("#,0")</td>
+                <td class="@className text-right">@(detail.MaxQM == MAXQM ? "∞" : detail.MaxQM.ToString("#,0"))</td>
+                <td class="@className">@detail.Commission.ToString("#,0.00")</td>
+                @if (prevProductID != detail.ProductID)
+                {
+                    <td rowspan="@numItems"  class="@className">
+                        @if (deductions.Count > 0)
+                        {
+                            <div align="left">
+                                @foreach (var deduction in deductions)
+                                {
+                                    var text = deduction.Key;
+                                    if (deduction.Value >= 0)
+                                    {
+                                        text += " (" + deduction.Value.ToString("0.00") + ")";
+                                    }
+                                    <input type="checkbox" @(deduction.Value >= 0 ? "checked" : null) disabled> @text<br />
+                                }
+                            </div>
+                        }
+                    </td>
+                        prevProductID = detail.ProductID;
+                }
+                @if (i == 0 && hasCashBackDeduction)
+                {
+                    var generalDeductions = Model.GeneralDeductions;
+                    
+                    <td rowspan="@rowCount">
+
+                        @if (generalDeductions.Count > 0)
+                        {
+                            <div align="left">
+                                @foreach (var deduction in generalDeductions)
+                                {
+                                    var text = deduction.Key;
+                                    if (deduction.Value >= 0)
+                                    {
+                                        text += " (" + deduction.Value.ToString("0.00") + ")";
+                                    }
+                                    <input type="checkbox" @(deduction.Value >= 0 ? "checked" : null) disabled> @text<br />
+                                }
+                            </div>
+                        }
+                    </td>    
+                }
+            </tr>    
+        }
+    </tbody>
+</table>
+</div>
+</div>
+}
+else
+{
+    
+}
+    
+@section css{
+    <link href="@Url.Content("~/Content/themes/Default/commgroup.less")" rel="stylesheet" type="text/css" />
+    <style>
+        .odd
+        {
+          background-color: #ECF3DD !important;
+        }
+        .even
+        {
+          background-color: #E3E5F6 !important;
+        }
+        .box-insite
+        {
+            border: 1px solid #CACACA;
+        }
+    </style>
+}
+
+@section scripts{
+    <script type="text/javascript">
+        var MAXQM = 1000000000;
+        var MAXAM = 100000000000000;
+    </script>
+    
+}

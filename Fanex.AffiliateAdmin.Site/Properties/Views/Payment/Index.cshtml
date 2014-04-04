@@ -1,0 +1,149 @@
+﻿@using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.Models
+@using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Core.Mvc
+@model PaymentViewModel
+@{
+    ViewBag.Title = Lang.Payment;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section iconcss{
+payment
+}
+
+@{
+    var roleAccess = SessionManager.CurrentSession.RoleAccess;
+    var subMenu = new List<Menu>();
+    subMenu.AddRange(SubMenu.Payment);
+        
+    if (roleAccess.HasPolicy("[MonthlyTransfer]"))
+    {
+        subMenu.Add(new Menu { Text = Lang.ProcessingCommission, Link = "~/Payment/ProcessingCommission" });
+    }
+}
+
+@section submenu{
+    @RazorHelper.ListSubmenu(subMenu, 0, "payment")
+}
+<div class="search-panel search-payment">
+    <div class="ic-reload" title="@Lang.RefreshPage">
+    </div>
+    @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
+    <form class="row-fluid" id="SearchForm">
+    <div class="span12 search-form">
+        <div class="row-fluid row-form">
+            <div class="cell">
+                @Html.LabelFor(m => m.Username, new { @class = "txt" })
+                @Html.TextBoxFor(m => m.Username, new { placeholder = Lang.All, @class = "width-140", maxlength = "100" })
+            </div>
+            <div class="cell">
+                @Html.LabelFor(m => m.AffType, new { @class = "txt" })
+                @Html.DropDownCheckList("AffType", new SelectList(AppSettings.AffTypes, "TypeID", "Name"), true, true, new { @class = "width-140" })
+            </div>
+            <div class="cell">
+                @Html.LabelFor(m => m.Status, new { @class = "txt" })
+                @Html.DropDownCheckList("Status", (string.IsNullOrEmpty(Model.Status) ? PaymentSettings.ListStatus : Model.ListStatus), true, false, new { @class = "width-140" })
+            </div>
+            <div class="cell">
+                @Html.LabelFor(m => m.PreferredLanguage, new { @class = "txt auto" })
+                @Html.DropDownCheckList("PreferredLanguage", new SelectList(AppSettings.AffSupportLanguages, "LanguageID", "LanguageName"), true, true, new { @class = "width-140" })
+            </div>
+        </div>
+        <div class="row-fluid row-form">
+            <div class="cell">
+                @Html.LabelFor(m => m.Currency, new { @class = "txt" })
+                @Html.DropDownCheckList("Currency", new SelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode"), true, true, new { @class = "width-140" })
+            </div>
+            <div class="cell">
+                @Html.LabelFor(m => m.DateOption, new { @class = "txt" })
+                @Html.DropDownCheckList("DateOption", PaymentSettings.ListDateOption, false, false, new { @class = "width-140" })
+            </div>
+            <div class="cell">
+                @Html.LabelFor(m => m.FromDate, new { @class = "txt" })
+                @Html.DatePicker("FromDate", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), AppSettings.SystemStartDate, DateTime.Now, false)
+            </div>
+            <div class="cell">
+                @Html.LabelFor(m => m.ToDate)
+                @Html.DatePicker("ToDate", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, false)
+            </div>
+        </div>
+        <div class="row-fluid row-form end-search">
+            <div class="cell">
+                @Html.LabelFor(m => m.BaseCurrency, new { @class = "txt" })
+                @Html.DropDownCheckList("BaseCurrency", Model.BaseCurrencyListSelectItem, false, false, new { @class = "width-140" })
+            </div>
+            <div class="cell">
+                <label class="checkbox txt">
+                    @Html.CheckBoxFor(m => m.ExcludeTest)
+                    @Html.LabelFor(m => m.ExcludeTest)
+                </label>
+            </div>
+        </div>
+        <div class="row-fluid row-form btn-action">
+            <div class="span12">
+                <button type="submit" class="btn" id="btnSubmit">
+                    @Lang.Submit
+                </button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+<div class="grid-status">
+    <div id="gridId" class="freegrid" colheight="230" expheight="380"></div>
+    <ul class="unstyled inline status">
+        <li><span class="approved"></span>@Lang.Approved</li>
+        <li><span class="rejected"></span>@Lang.Rejected</li>
+        <li><span class="pending"></span>@Lang.Processing</li>
+        <li><span class="cancelled"></span>@Lang.Cancelled</li>
+    </ul>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        var MSG = { ToggleSubTotal: '@Lang.ToggleSubTotal' };
+
+        var columnsBase = [
+            { HeaderText: "#", Width: 40, Name: "RowID", CellAlign: "center" },
+            { HeaderText: "@Lang.TransId", Width: 72, Name: "Transid", HeaderAlign: "center", CellAlign: "center", Formatter: formatTransId },
+            { HeaderText: "@Lang.Username", Width: 150, Name: "Username", HeaderAlign: "center" },
+            { HeaderText: "@Lang.AffType", Width: 90, Name: "AffType", HeaderAlign: "center" },
+            { HeaderText: "@Lang.Status", Width: 100, Name: "Status" },
+            { HeaderText: "@Lang.UpdatedBy", Width: 120, Name: "Creator" },
+            { HeaderText: "@Lang.DateRequest", Width: 140, Name: "Transdate", HeaderAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL, CellAlign: "center" },
+            { HeaderText: "@Lang.CompletedDate", Width: 140, Name: "Completeddate", CellAlign: "center",
+                Formatter: function (rIndex, record, cell, cellFormated) {
+                    if (record["Status"] === 'Processing') {
+                        return null;
+                    }
+                    return moment(record['Completeddate']).format(AFFILIATE.DATE_FORMAT_FULL);
+                }
+            },
+            { HeaderText: "@Lang.Currency", Width: 105, Name: "Currency", HeaderAlign: "center", CellAlign: "center" }
+        ];
+        var columnAmount = { HeaderText: "@Lang.Amount", Width: 200, Name: "Amt", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER };
+        var HeaderText = "@Lang.Amount";
+        var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
+        var subTotalStatus = COLLAPSE_SUBTOTAL_STATUS;
+
+        var sampleGridOption = {
+            language: '@AppSession.Language',
+            showTitle: true,
+            titleInfo:
+            {
+                text: "@Lang.Payment"
+            },
+            rowCssClass: function(rowIndex, rowData) {
+                return rowData.Status.toLowerCase();
+            },
+            showPager: true,
+            gridExpandHeight: 360,
+            showNumberColumn: true,
+            showFooter: true
+        };
+
+        function formatTransId(rIndex, record, cell, cellFormated) {
+            return '<a href="javascript:Payment.updatePayment(' + cell.Value + ')">' + cell.Value + '</a>';
+        }
+    </script>
+    <script src="~/Scripts/site/Payment.js" type="text/javascript"></script>
+}

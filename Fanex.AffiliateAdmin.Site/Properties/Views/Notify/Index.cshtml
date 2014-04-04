@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = Lang.UnderMaintenance;
+    Layout = "~/Views/Shared/_LayoutNoHeader.cshtml";
+}
+@using Fanex.AffiliateAdmin.Core.Configurations
+@section css{
+    @Styles.Render("~/bundles/notify")
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+}
+
+<div class="header">
+    <a href="/" class="no-underline">
+        <div class="logo">UNDER MAINTENANCE</div>
+    </a>
+    <div class="seperator">
+    </div>
+</div>
+<div class="content">
+    <div class="icon um">
+    </div>
+    <div class="text">
+        <ul class="notify-content">
+            @for (var i = 0; i <= AppSettings.BaseLanguages.Count() - 1; i++)
+            {
+                var lang = AppSettings.BaseLanguages.ElementAt(i);
+                <li class="@(i == (AppSettings.BaseLanguages.Count() - 1) ? "end" : string.Empty)">
+                @switch (lang.LanguageID)
+                {
+                    case "en-US":
+                        <span>We are having server maintenance, website will be unavailable until <span class="cont2">
+                             @ViewBag.EndTime (HK Time GMT +8).</span>
+                            <br />Sorry for the inconveniences caused!</span> 
+                        break;
+                    case "id-ID":
+                        <span>Kami sedang melakukan server maintenance, website tidak tersedia hingga pukul <span>@ViewBag.EndTime (HK Time GMT +8).</span><br />
+                                    Mohon maaf untuk ketidaknyamanan ini!</span> 
+                        break;
+                    case "th-TH":
+                        <span>ทางเวบไซด์มีการปรับปรุงระบบขณะนี้ และไม่สามารถเข้าชมหรือใช้งานได้ไปจนถึงเวลา <span>@ViewBag.EndTime (HK Time GMT +8).</span><br />
+                                    ขออภัยในความไม่สะดวก คะ!</span> 
+                        break;
+                    case "vi-VN":
+                        <span>Hệ thống công ty chúng tôi đang trong thời gian bảo trì đến <span class="cont2">@ViewBag.EndTime (HK Time GMT +8).</span><br />
+                    Thành thật xin lỗi những bất tiện gây ra. </span>                                                                                     
+                        break;
+                    case "zh-CN":
+                        <span>本公司正进行伺服器维护，时间至 <span>@ViewBag.EndTime (HK Time GMT +8).</span><br />
+                                    所有网页将无法登入，不便之处有请见谅！</span>
+                        break;
+                    case "zh-TW":
+                        <span>本公司正進行伺服器維護，時間至 <span>@ViewBag.EndTime (HK Time GMT +8).</span><br />
+                                    所有網頁將無法登入，不便之處 有請見諒！</span>
+                                       break;
+                    case "ko-KR":
+                        <span>서버 보전을 수행하고 있어, 웹사이트는 (홍콩 시간 GMT +8)까지 사용할 <span class="cont2">
+                        @ViewBag.EndTime 수</span> 없습니다. <br />
+                    불편을 초래한 데 대한 저희의 사죄를 받아주시기 바랍니다!</span>
+                        break;
+                    default:
+                        <span>We are having server maintenance,<br />
+				            website will be unavailable until @ViewBag.EndTime (HK Time GMT +8).
+				            <br />Sorry for the inconveniences caused!</span> 
+                                             break;
+                }
+                </li>
+            }      
+        </ul>
+    </div>    
+</div>
+@section scripts{    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    @Scripts.Render("~/bundles/loginJs")
+}

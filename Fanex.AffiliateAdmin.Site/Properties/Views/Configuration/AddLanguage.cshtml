@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = Lang.AddNewLanguage;
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+@model Fanex.AffiliateAdmin.Models.LanguageAddViewModel
+@using (Html.BeginForm("AddLanguage", "Configuration", FormMethod.Post, new { @class = "form-horizontal form-popup" }))
+{
+    @Html.ValidationSummary()
+    <div class="popup-content">
+        <div class="control-group">
+            @Html.Label("LanguageID", Lang.ID, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBox("LanguageID", Model.LanguageID, new { @class = "form-control" })
+                <span class="required">*</span>
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.Label("LanguageName", Lang.Name, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBox("LanguageName", Model.LanguageName, new { @class = "form-control" })
+                <span class="required">*</span>
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.Label("CountryID", Lang.Country, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("CountryID", Model.CountryOptionList, new { @class = "width-140 dropdownchecklist single-select" })
+            </div>
+        </div>
+    </div>
+    <div class="popup-footer">
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" id="btnUpdate" class="btn">@Lang.Add</button>
+                <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+    @if (ViewBag.Result != null)
+    {
+        var result = (Fanex.AffiliateAdmin.Models.ResultViewModel)ViewBag.Result;
+        <script type="text/javascript">
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.Language.ReRenderAfterPaged);
+        </script>
+    }
+    <script src="~/Scripts/site/Language.js" type="text/javascript"></script>
+}

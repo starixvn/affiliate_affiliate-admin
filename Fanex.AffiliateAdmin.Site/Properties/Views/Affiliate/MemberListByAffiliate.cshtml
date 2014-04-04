@@ -1,0 +1,170 @@
+﻿@{
+	ViewBag.Title = Lang.MemberList;
+	Layout = "~/Views/Shared/_LayoutFrame.cshtml";
+}
+
+@using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.Core.Mvc
+@using Fanex.AffiliateAdmin.Core.Configurations
+
+@model Fanex.AffiliateAdmin.Models.MemberListViewModel
+
+@section iconcss{
+customer
+}
+
+@section submenu{
+    @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 4)
+    <div class="line line-statement">
+        <div class="ic-open-window" title="@Lang.FullScreen"></div>
+        <div class="ic-reload" title="@Lang.RefreshPage"></div>
+    </div>
+}
+
+@{
+    var now = DateTime.Now;
+    var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : new DateTime(now.Year, now.Month, 1);
+    var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now;
+
+    var disableTimeRange = Model.DateOption == 0;
+}
+
+<div class="search-panel search-statement no-border">
+	@RazorHelper.SearchPanel(".search-form", "Information text", false, false)
+    @using (Html.BeginForm("MemberList", "Affiliate", FormMethod.Post, new { @class = "row-fluid" }))
+    {
+        <div class="span12 search-form">
+            <div class="row-fluid row-form">
+                <div class="cell">
+                    <label for="username" class="txt">@Lang.Member</label>                
+                    <input type="text" placeholder="@Lang.All" id="username" name="username" value="@Model.Username" maxlength="100" class="form-control width-140" />                
+                </div>
+                <div class="cell">
+                    <label for="CurrencyList" class="txt">@Lang.Currency</label>
+                    @Html.DropDownCheckList("CurrencyList", new SelectList(AppSettings.PlayerCurrencies, "CurrencyID", "CurrencyCode"), true, true, new { @class = "width-140" })
+                </div>
+                <div class="cell">
+                    <label for="SortBy" class="txt">@Lang.SortBy</label>
+                    <select id="SortBy" name="SortBy" class="width-140 single-select dropdownchecklist">
+                        <option value="0">@Lang.Username</option>
+                        <option value="1" selected>@Lang.RegisterDate</option>
+                        <option value="2">@Lang.FirstDepositDate</option>                    
+                    </select>
+                </div>
+            </div>
+            <div class="row-fluid row-form end-search">
+                <div class="cell">
+                    <label for="MemberType" class="txt">@Lang.MemberType</label>
+                    <select id="MemberType" name="MemberType" class="width-140 single-select dropdownchecklist">
+                        <option value="0">@Lang.All</option>
+                        <option value="1">@Lang.Deposit</option>
+                        <option value="2">@Lang.NonDeposit</option>
+                    </select>
+                </div>
+                <div class="cell">
+                    <label for="DateOption" class="txt">@Lang.DateOption</label>
+                    @Html.DropDownCheckList("DateOption", Model.DateOptionList, false, false, new { @class = "width-140" })
+
+                </div>
+                <div class="cell width-140">
+                    <label for="FromDate" class="txt">@Lang.From</label>
+                    @Html.DatePicker("FromDate", fromDate, AppSettings.SystemStartDate, now, disableTimeRange)
+                </div>
+                <div class="cell width-140">
+                    <label for="ToDate">@Lang.To</label>
+                    @Html.DatePicker("ToDate", toDate, AppSettings.SystemStartDate, now, disableTimeRange)
+                </div>
+            </div>
+            <div class="row-fluid row-form btn-action">
+                <div class="span12">
+                    <input type="hidden" name="ByAffiliate" id="ByAffiliate" value="True"/>
+                    <button type="submit" class="btn" id="btnSubmit">@Lang.Submit</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<br />
+<div id="gridId" class="freegrid" colheight="200" expheight="290">
+</div>
+<div class="content legend">
+    <div class="row-fluid">
+        <ul class="unstyled inline status pull-right">
+            <li><span class="removed"></span>@Lang.Removed</li>
+        </ul>
+    </div>
+</div>
+
+@section scripts{
+	<script type="text/javascript">
+		var Lang = {
+			NoDataInfo: "@Lang.NoInfo"
+		};
+
+        var MSG = {
+            ConfirmRemoveMem: "@Lang.ConfirmRemoveMem"
+        };
+
+        var gridOption = {
+            language: '@AppSession.Language',
+            showTitle: true,
+            timeZone: AFFILIATE.TimeZone,
+			titleInfo:
+			{
+			    text: "@Lang.MemberList",
+			    showButtonsWhenNoData: true,
+				customButtons: "<input type='button' name='btnAssign' value='' title='@Lang.AssignMemToAff' class='btnAdd btnAssign' id='btnAssign'>"
+			},
+			columns: [
+						{ HeaderText: "#", Width: 30, Name: "No", CellAlign: "center" },
+						{ HeaderText: "@Lang.Username", Width: 70, Name: "UserName" },
+						{ HeaderText: "@Lang.FirstName", Width: 100, Name: "FirstName" },
+						{ HeaderText: "@Lang.LastName", Width: 100, Name: "LastName" },
+						{ HeaderText: "@Lang.Email", Width: 120, Name: "Email",
+							Formatter: function (rowIndex, rowData, cell, cellFormated) {
+								return cellFormated ? "<a href='mailto:" + cellFormated + "'>" + cellFormated + "</a>" : "";
+							}
+						},
+						{ HeaderText: "@Lang.Phone", Width: 90, Name: "Phone" },
+						{ HeaderText: "@Lang.Address", Width: 90, Name: "Address" },
+						{ HeaderText: "@Lang.Country", Width: 80, Name: "Country" },
+						{ HeaderText: "@Lang.RegisterDate", Width: 100, Name: "RegisteredDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+						{ HeaderText: "@Lang.FirstDepositDate", Width: 90, Name: "CreatedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+                        { HeaderText: "@Lang.AffectedDate", Width: 100, Name: "AffAffectedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+						{ HeaderText: "@Lang.Currency", Width: 60, Name: "Currency", CellAlign: "center" },
+						{
+						    HeaderText: "@Lang.Remove",
+						    Width: 70,
+						    Name: "Remove",
+						    CellAlign: "center",
+						    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+						        if (rowData.IsRemoved) {
+						            var obj = rowData.RemovedDate;
+
+						            if (typeof obj !== "undefined" && obj != null && moment(obj).isValid()) {
+						                return moment(obj).format(AFFILIATE.DATE_FORMAT);
+						            }
+
+						            return '';
+						        }
+
+						        return "<a href=\"javascript:CUSTOMER.Remove('" + rowData.UserName + "')\"><i class=\"icon-remove\"></i></a>";
+						    }
+						}
+				   ],
+			showPager: true,
+			customPager: true,
+			gridExpandHeight: 350,
+			showNumberColumn: true,
+			allowTruncate: true,
+			rowCssClass: function (rowIndex, rowData) {
+			    return rowData.IsRemoved ? "removed" : "approved";
+			}
+		}
+		$(function () {
+			CUSTOMER.init();
+		});
+	</script>
+	<script src="~/Scripts/site/Customer.js" type="text/javascript"></script>
+}
+

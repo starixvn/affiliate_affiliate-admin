@@ -1,0 +1,24 @@
+﻿@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+<div>
+    Dear @(Model.FirstName),
+    <br />
+    <br />
+    Permintaan nombor referensi adalah @(Model.TransId), tanggal @(Model.WinlostDate.ToString("MM/dd/yyyy")).<br />
+    <br />
+    Permintaan pembayaran Anda sebesar @(Model.Amount)
+    telah dibatalkan.
+    <br />
+    <br />
+    Ini adalah sistem yang dihasilkan otomatis email, harap jangan balas email ini secara
+    langsung.
+    <br />
+    Jangan ragu untuk menghubungi kami jika Anda memiliki pertanyaan atau komentar di
+    <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a><br />
+    <br />
+    Salam Sejahtera,
+    <br />
+    <br />
+    Tim di @(Model.SystemName)
+    Afiliasi<br />
+    <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a>
+</div>

@@ -1,0 +1,68 @@
+﻿@using Fanex.AffiliateAdmin.Core.Configurations
+@model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+<table width="100%">
+    <tr>
+        <td valign="top" align="center" background="@Model.AdminSiteUrl/Content/_Sites/@AppSettings.Layout/images/emailBg.jpg">
+            <table width="588" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td height="77" background="@Model.AdminSiteUrl/Content/_Sites/@AppSettings.Layout/images/emailBanner.jpg">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="3">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" bgcolor="@Model.HeaderBgColor" height="30">
+                        &nbsp;&nbsp;<strong><font style="color: @Model.HeaderFontColor; font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
+                            text-transform: uppercase;">Informasi Afiliasi Anda</font></strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" bgcolor="@Model.ContentBgColor">
+                        <table width="100%" border="0">
+                            <tr>
+                                <td style="background-color:@Model.ContentBgColor !important; padding: 20px 15px;">
+                                    <font style=" color: @Model.ContentFontColor; font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
+                                        <strong>Yang terhormat @Model.FirstName,</strong><br />
+                                        <br />
+                                        Selamat, permohonan Anda untuk menjadi Afiliasi @Model.SystemName telah disetujui! <br /><br />
+
+                                        Kami sangat senang Anda sebagai bagian dari keluarga Afiliasi kami dan kami berharap untuk membangun hubungan bisnis yang menguntungkan dengan Anda. Harap gunakan informasi di bawah ini untuk masuk ke akun afiliasi @Model.SystemName Anda:<br /><br />
+
+                                        Teks link: <a href="@Model.AffiliateSiteUrl">@Model.AffiliateSiteUrl</a><br />
+                                        Username: @Model.Username<br />
+                                        Password: @Model.Password<br />
+                                        <br />
+
+                                        Dalam account Anda akan menemukan URL pelacakan afiliasi serta spanduk dan materi promosi. Kirim lalu lintas dan mulailah mendapatkan penghasilan today!<br /><br />
+
+                                        Jika Anda memiliki pertanyaan dan memerlukan bantuan sila menghubungi pihak kami.<br /><br />
+
+                                        Hormat kami, <br /><br />
+
+                                        Tim Afiliasi @Model.SystemName Anda<br />
+                                        <a href="mailto:@Model.MailContact">@Model.MailContact</a> </font>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" bgcolor="@Model.CopyrightBgColor" height="25" style="padding-right: 15px">
+                        <font style="font-size: 11px; color: @Model.CopyrightFontColor; font-family: Verdana,Arial,Helvetica,sans-serif;">
+                            © Hak Cipta @Model.CopyrightYear <a href="@Model.MemberSiteUrl">@Model.MemberSiteDomain</a>
+                        </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" bgcolor="@Model.FooterBgColor" height="40">
+                        <font style="font-size: 12px; color: @Model.FooterFontColor; font-family: Verdana,Arial,Helvetica,sans-serif;">
+                            Ini adalah sistem yang dihasilkan otomatis email, harap jangan balas email ini secara langsung.
+                        </font>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = Lang.CurrOnlineList;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Fanex.AffiliateAdmin.Core.Utilities
+
+@model Fanex.AffiliateAdmin.Models.HomeViewModel
+@section iconcss{
+    home
+}
+
+@section submenu{
+    @RazorHelper.ListSubmenu(SubMenu.Home, 1)
+}
+
+<div class="search-panel search-online-user">
+    <div class="ic-reload" title="@Lang.RefreshPage">
+    </div>
+</div>
+
+<div id="gridId" class="freegrid">
+</div>
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/site/OnlineList.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        var affiliateUrl = AFFILIATE.getAbsoluteUrl("AffiliateInfo?username=");
+
+        var gridOption = {
+            language: '@AppSession.Language',
+            showTitle: true,
+            timeZone: AFFILIATE.TimeZone,
+            titleInfo:
+            {
+                text: "@Lang.CurrOnlineList"
+            },
+            columns: [
+                { HeaderText: "#", Width: 30, Name: "No", CellAlign: "center" },
+                {
+                    HeaderText: "@Lang.Username",
+                    Width: 120,
+                    Name: "Username",
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        if (record.Role === 'Affiliate') {
+                            return '<a href="{0}{1}">{1}</a>'.format(affiliateUrl, record.Username);
+                        }
+                        
+                        return record.Username;
+                    }
+                },
+                { HeaderText: "@Lang.LoggedIn", Width: 130, Name: "LoggedIn", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+                { HeaderText: "@Lang.LastRequest ", Width: 130, Name: "LastRequest", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+                { HeaderText: "@Lang.IP", Width: 100, Name: "Ip", CellAlign: "center" },
+                { HeaderText: "@Lang.Role", Width: 100, Name: "Role", CellAlign: "center" }
+            ],
+            showPager: true,
+            customPager: true,
+            gridExpandHeight: 290,
+            showNumberColumn: true
+        };
+    </script>
+}

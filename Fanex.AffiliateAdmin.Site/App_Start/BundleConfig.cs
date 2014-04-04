@@ -43,8 +43,7 @@ namespace Fanex.AffiliateAdmin.Site
                 "~/Scripts/libraries/jquery.blockUI.js").Include(
                 "~/Scripts/libraries/jquery.placeholder.js").Include(
                 "~/Scripts/site/Login.js").Include(
-                "~/Scripts/site/_Global.js").Include(
-                "~/Scripts/site/RecheckIn.js"));
+                "~/Scripts/site/_Global.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/headjs").Include("~/Scripts/libraries/head.js"));
 

@@ -1,7 +1,7 @@
 ﻿var CommissionReport = function ($) {
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = 1;
-    var GROUP_BY_MONTH = 0;
+    var GROUP_BY_MONTH = "0";
     var MONTH_COL = 1, COMMGROUP_COL = 4;
     var DEDUCTION_PERCENT_COL = 9;
     var DEDUCTION_AMOUNT_COL = 10;
@@ -16,7 +16,7 @@
 
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     function initProductColumnsForGridOption() {
-        var hasGroupByMonth = $("#GroupBy").val() == GROUP_BY_MONTH;
+        var hasGroupByMonth = $("#GroupBy").val() === GROUP_BY_MONTH;
         var mergeColNumber = hasGroupByMonth ? 7 : 5;
 
         if (HasCashbackDeduction) {
@@ -207,7 +207,7 @@
             columns = _indexProductColumns.clone();
         }
 
-        if ($("#GroupBy").val() == GROUP_BY_MONTH) {
+        if ($("#GroupBy").val() === GROUP_BY_MONTH) {
             $("#gridId").fanexGrid("hideColumns", _gridOption, columns);
         }
         else {
@@ -215,7 +215,7 @@
             $("#gridId").fanexGrid("hideColumns", _gridOption, columns);
         }
 
-        var hasGroupByMonth = submitOptions.GroupBy == GROUP_BY_MONTH;
+        var hasGroupByMonth = submitOptions.GroupBy === GROUP_BY_MONTH;
 
         if ((_isSimpleMode && !HasCashbackDeduction) || (_isSimpleMode && HasCashbackDeduction && !hasGroupByMonth))
             $("#gridId table:lt(4) th div").height(30);

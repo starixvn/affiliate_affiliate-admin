@@ -3,8 +3,8 @@
     var MEMBER_CURRENCY_OPTION = '0';
     var SYS_CURRENCY_OPTION = '1';
     var AFF_CURRENCY_OPTION = '2';
-    var GROUP_BY_DATE = 0;
-    var GROUP_BY_MONTH = 1;
+    var GROUP_BY_DATE = "0";
+    var GROUP_BY_MONTH = "1";
     var EXRATE_INDEX = 2;
     // number of all common columns (except product columns).
     var _freezeColumnCount = 3;
@@ -21,7 +21,7 @@
     function initProductColumnsForGridOption() {
         var startTurnoverPosition = turnoverPosition;
 
-        if ($("#GroupBy").val() == GROUP_BY_MONTH) {
+        if ($("#GroupBy").val() === GROUP_BY_MONTH) {
             // remove exchange rate column.
             _gridOption.groupHeaderRows[0].Columns.splice(exRatePosition, 1);
             _gridOption.columns.splice(exRatePosition, 1);
@@ -259,7 +259,7 @@
             if (idx == 0) {
                 columns.push({ Value: MSG.Total + suffix, Name: "WinlostDate", MergeRowNumber: memberCurrencyCount });
 
-                if (groupBy == GROUP_BY_DATE) {
+                if (groupBy === GROUP_BY_DATE) {
                     if (baseCurrency == MEMBER_CURRENCY_OPTION) {
                         columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 1 });
                         startIndex += 1;
@@ -329,7 +329,7 @@
                     columns.push({ Value: MSG.TotalAll, Name: "WinlostDate", MergeRowNumber: memberCurrencyCount, TdClass: realSubTotalclass });
                 }
 
-                if (groupBy == GROUP_BY_DATE) {
+                if (groupBy === GROUP_BY_DATE) {
                     if (baseCurrency == MEMBER_CURRENCY_OPTION) {
                         columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 1 });
                         startIndex += 1;

@@ -17,8 +17,8 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
     using System.Text;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
-    using Fanex.AffiliateAdmin.Core.Utilities;
     using System.Web.Routing;
+    using Fanex.AffiliateAdmin.Core.Utilities;
 
     /// <summary>
     /// Implement html extension.
@@ -529,8 +529,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
             string action,
             string controller,
             object routeValues,
-            object htmlAttributes
-        )
+            object htmlAttributes)
         {
             var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
             var anchor = new TagBuilder("a");
@@ -578,7 +577,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
 
             str.Append("</select>");
             return str;
-        } 
+        }
 
         #endregion
     }

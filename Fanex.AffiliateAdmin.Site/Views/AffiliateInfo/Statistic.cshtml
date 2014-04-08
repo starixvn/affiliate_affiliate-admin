@@ -75,14 +75,14 @@
         <tr>
             <td class="col-label">@Lang.TotalDeposit</td>
             <td class="col-data">
-                @Html.ActionLink(FormaterCurrency.Format(Model.Statistic.TotalDeposit), "PlayerWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
+                @Html.ActionLinkForRawLinkText(FormaterCurrency.Format(Model.Statistic.TotalDeposit), "PlayerWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
             </td>
             <td class="col-data">@MvcHtmlString.Create(FormaterCurrency.Format(Model.Statistic.TotalDepositUp))</td>
         </tr>
         <tr>
             <td class="col-label">@Lang.TotalTurnover</td>
             <td class="col-data">
-                @Html.ActionLink(FormaterCurrency.Format(Model.Statistic.TotalTurnover), "PlayerWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
+                @Html.ActionLinkForRawLinkText(FormaterCurrency.Format(Model.Statistic.TotalTurnover), "PlayerWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
             </td>
             <td class="col-data">@MvcHtmlString.Create(FormaterCurrency.Format(Model.Statistic.TotalTurnoverUp))</td>
         </tr>

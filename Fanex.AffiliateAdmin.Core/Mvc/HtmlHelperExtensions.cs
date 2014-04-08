@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
     using Fanex.AffiliateAdmin.Core.Utilities;
+    using System.Web.Routing;
 
     /// <summary>
     /// Implement html extension.
@@ -520,6 +521,23 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
             var metaData = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
             var currentYear = (int)metaData.Model;
             return html.YearPicker(metaData.PropertyName, startYear, currentYear, htmlAttributes);
+        }
+
+        public static MvcHtmlString ActionLinkForRawLinkText(
+            this HtmlHelper htmlHelper,
+            string linkText,
+            string action,
+            string controller,
+            object routeValues,
+            object htmlAttributes
+        )
+        {
+            var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
+            var anchor = new TagBuilder("a");
+            anchor.InnerHtml = linkText;
+            anchor.Attributes["href"] = urlHelper.Action(action, controller, routeValues);
+            anchor.MergeAttributes(new RouteValueDictionary(htmlAttributes));
+            return MvcHtmlString.Create(anchor.ToString());
         }
 
         #region Helpers

@@ -211,7 +211,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
                 date = maxDate;
             }
 
-            var value = date.HasValue ? date.Value.ToString("dd MMM yyyy") : string.Empty;
+            var value = date.HasValue ? date.Value.ToString("dd MMM yyyy", CultureInfo.InvariantCulture) : string.Empty;
 
             attributes.AddOrAppend("class", "datepicker");
             attributes.AddOrAppend("data-mindate", minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy/MM/dd", CultureInfo.InvariantCulture) : "null");

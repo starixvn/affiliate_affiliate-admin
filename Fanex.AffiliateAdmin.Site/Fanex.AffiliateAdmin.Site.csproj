@@ -378,6 +378,7 @@
     <Content Include="Content\_Sites\allbetclub\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\allbetclub\images\notify.png" />
     <Content Include="Content\_Sites\allbetclub\images\panel.png" />
+    <Content Include="Content\_Sites\livebet365\images\favicon.jpg" />
     <Content Include="Content\_Sites\mgm88\images\banner_top.png" />
     <Content Include="Content\_Sites\mgm88\images\best-browsers.png" />
     <Content Include="Content\_Sites\mgm88\images\bodybg.jpg" />
@@ -403,6 +404,7 @@
     <Content Include="Content\_Sites\royalebet\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\royalebet\images\notify.png" />
     <Content Include="Content\_Sites\royalebet\images\panel.png" />
+    <Content Include="Content\_Sites\wawabet\images\favicon.jpg" />
     <Content Include="Content\_Sites\winner99\images\banner_top.png" />
     <Content Include="Content\_Sites\winner99\images\best-browsers.png" />
     <Content Include="Content\_Sites\winner99\images\bodybg.jpg" />

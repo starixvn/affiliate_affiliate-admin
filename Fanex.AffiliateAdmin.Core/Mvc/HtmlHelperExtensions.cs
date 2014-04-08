@@ -197,6 +197,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
           bool disabled = false,
           object htmlAttributes = null)
         {
+            var culture = new CultureInfo("en-US");
             var attributes = htmlAttributes == null ? new Dictionary<string, object>() : htmlAttributes.ToDictionary();
 
             // check the constraint [mindate - maxdate]
@@ -213,8 +214,8 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
             var value = date.HasValue ? date.Value.ToString("dd MMM yyyy") : string.Empty;
 
             attributes.AddOrAppend("class", "datepicker");
-            attributes.AddOrAppend("data-mindate", minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy/MM/dd", CultureInfo.InvariantCulture) : "null");
-            attributes.AddOrAppend("data-maxdate", maxDate != null && maxDate != DateTime.MaxValue ? ((DateTime)maxDate).ToString("yyyy/MM/dd", CultureInfo.InvariantCulture) : "null");
+            attributes.AddOrAppend("data-mindate", minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy/MM/dd", culture) : "null");
+            attributes.AddOrAppend("data-maxdate", maxDate != null && maxDate != DateTime.MaxValue ? ((DateTime)maxDate).ToString("yyyy/MM/dd", culture) : "null");
             attributes.AddOrAppend("data-value", date.HasValue ? date.Value.ToString("yyyy/MM/dd") : null);
             attributes.AddOrAppend("readonly", "true");
 

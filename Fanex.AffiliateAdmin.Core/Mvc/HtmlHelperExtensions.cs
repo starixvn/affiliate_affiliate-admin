@@ -214,8 +214,8 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
             var value = date.HasValue ? date.Value.ToString("dd MMM yyyy", CultureInfo.InvariantCulture) : string.Empty;
 
             attributes.AddOrAppend("class", "datepicker");
-            attributes.AddOrAppend("data-mindate", minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy/MM/dd", CultureInfo.InvariantCulture) : "null");
-            attributes.AddOrAppend("data-maxdate", maxDate != null && maxDate != DateTime.MaxValue ? ((DateTime)maxDate).ToString("yyyy/MM/dd", CultureInfo.InvariantCulture) : "null");
+            attributes.AddOrAppend("data-mindate", GetMinDateString(minDate));
+            attributes.AddOrAppend("data-maxdate", GetMaxDateString(maxDate));
             attributes.AddOrAppend("data-value", date.HasValue ? date.Value.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture) : null);
             attributes.AddOrAppend("readonly", "true");
 
@@ -578,6 +578,26 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
 
             str.Append("</select>");
             return str;
+        }
+
+        /// <summary>
+        /// Get max date string.
+        /// </summary>
+        /// <param name="maxDate">Max date input.</param>
+        /// <returns>Max date string.</returns>
+        private static string GetMaxDateString(DateTime? maxDate)
+        {
+            return maxDate != null && maxDate != DateTime.MaxValue ? ((DateTime)maxDate).ToString("yyyy/MM/dd", CultureInfo.InvariantCulture) : "null";
+        }
+
+        /// <summary>
+        /// Get min date string.
+        /// </summary>
+        /// <param name="minDate">Min date input.</param>
+        /// <returns>Min date string.</returns>
+        private static string GetMinDateString(DateTime? minDate)
+        {
+            return minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy/MM/dd", CultureInfo.InvariantCulture) : "null";
         }
 
         #endregion

@@ -529,32 +529,60 @@ namespace Fanex.AffiliateAdmin.Controller
             if (xml.Element("ReturnCode").Value != "0")
             {
                 message = xml.Element("ReturnMessage").Value;
-            }
-            else
-            {
-                var insertCriteria = new InsertMemberCriteria()
-                {
-                    AffUserName = criteria.AffName,
-                    Username = criteria.MemberName,
-                    Currency = xml.Element("Currency").Value,
-                    IBCCustID = 0,
-                    IBCUserName = xml.Element("IBCusername").Value,
-                    AgentID = 0,
-                    AffAffectedDate = DateTime.Now,
-                    Btag = xml.Element("btag").Value,
-                    Language = AppSession.Language,
-                    FirstName = xml.Element("FirstName").Value,
-                    LastName = xml.Element("LastName").Value,
-                    Phone = xml.Element("Phone").Value,
-                    Address = xml.Element("Address").Value,
-                    Email = xml.Element("Email").Value,
-                    IP = Remote.GetClientIPAddress()
-                };
 
-                GetMoreCustomerInfo(xml, insertCriteria);
-                _service.InsertMember(insertCriteria);
-                errorCode = insertCriteria.ErrCode;
+                return;
             }
+
+            if (!HasFirstDepositDate(xml))
+            {
+                message = string.Format(Lang.MemberNotDepositOnMemberSite, criteria.MemberName);
+                return;
+            }
+
+            var insertCriteria = new InsertMemberCriteria()
+            {
+                AffUserName = criteria.AffName,
+                Username = criteria.MemberName,
+                Currency = xml.Element("Currency").Value,
+                IBCCustID = 0,
+                IBCUserName = xml.Element("IBCusername").Value,
+                AgentID = 0,
+                AffAffectedDate = DateTime.Now,
+                Btag = xml.Element("btag").Value,
+                Language = AppSession.Language,
+                FirstName = xml.Element("FirstName").Value,
+                LastName = xml.Element("LastName").Value,
+                Phone = xml.Element("Phone").Value,
+                Address = xml.Element("Address").Value,
+                Email = xml.Element("Email").Value,
+                IP = Remote.GetClientIPAddress()
+            };
+
+            GetMoreCustomerInfo(xml, insertCriteria);
+            _service.InsertMember(insertCriteria);
+            errorCode = insertCriteria.ErrCode;
+        }
+
+        /// <summary>
+        /// Check whether the member has already deposited on member site.
+        /// </summary>
+        /// <param name="customerInfo"></param>
+        /// <returns></returns>
+        private bool HasFirstDepositDate(XElement customerInfo) 
+        {
+            if (customerInfo.Element("FirstDepositDate").Value.Equals("N/A"))
+            {
+                if (!string.IsNullOrEmpty(customerInfo.Element("IBCusername").Value))
+                {
+                    var customer = _service.GetCustomer(new CustomerSelByUserNameCriteria { UserName = customerInfo.Element("IBCusername").Value });
+
+                    return customer.CreatedDate.HasValue;
+                }
+
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

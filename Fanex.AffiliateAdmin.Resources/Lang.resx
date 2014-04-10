@@ -2513,4 +2513,7 @@
   <data name="DontEnterSpecialCharacters" xml:space="preserve">
     <value>Please don't enter special characters, such as ~!#$%^&amp;*();&lt;&gt;{}[]| in text box.</value>
   </data>
+  <data name="MemberNotDepositOnMemberSite" xml:space="preserve">
+    <value>Sorry. This member {0} has not deposited on the member site.</value>
+  </data>
 </root>

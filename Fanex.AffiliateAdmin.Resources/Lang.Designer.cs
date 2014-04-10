@@ -4448,6 +4448,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry. This member {0} has not deposited on the member site..
+        /// </summary>
+        public static string MemberNotDepositOnMemberSite {
+            get {
+                return ResourceManager.GetString("MemberNotDepositOnMemberSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member Page.
         /// </summary>
         public static string MemberPage {

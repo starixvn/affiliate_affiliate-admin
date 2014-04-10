@@ -372,39 +372,39 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult AssignMember(CheckMemberExistCriteria criteria)
         {
             _service.CheckMemberExist(criteria);
+            var result = new ResultViewModel();
+
+            if (!IsValidAffiliate(criteria, ref result) || !IsValidMember(criteria, ref result))
+            {
+                ViewBag.Result = result;
+
+                return AssignMember(new AssignMemberViewModel
+                {
+                    MemberName = criteria.MemberName,
+                    AffName = criteria.AffName,
+                    ByAffiliate = criteria.ByAffiliate
+                });
+            }
+
             var message = string.Empty;
             var errorCode = 0;
-            if (criteria.AffID < 1)
+
+            if (AppSettings.LocalTest)
             {
-                message = Lang.AffNotExist;
-            }
-            else if (!string.IsNullOrEmpty(criteria.AffStatus) && !criteria.AffStatus.Equals("approved", StringComparison.CurrentCultureIgnoreCase))
-            {
-                message = GetMessageFromAffiliateStatus(criteria.AffStatus);
+                errorCode = TestInsertMember(criteria.AffID, criteria.AffName, criteria.MemberName);
             }
             else
             {
-                if (criteria.IsMemberExist)
+                if (criteria.MemberAffID > 0)
                 {
-                    message = Lang.MemberExist;
-                }
-                else if (AppSettings.Environment != "Local Development")
-                {
-                    if (criteria.MemberAffID > 0)
-                    {
-                        errorCode = AssignOldMemberToAffiliate(criteria);
-                    }
-                    else
-                    {
-                        AssignNewMemberToAffiliate(criteria, ref message, ref errorCode);
-                    }
-
-                    ServiceWrapper.UpdateBtage(AppSettings.SystemName, criteria.MemberName, string.Format("{0}_{1}_0", AppSettings.LicenseeID, criteria.AffID));
+                    errorCode = AssignOldMemberToAffiliate(criteria);
                 }
                 else
                 {
-                    errorCode = TestInsertMember(criteria.AffID, criteria.AffName, criteria.MemberName);
+                    AssignNewMemberToAffiliate(criteria, ref message, ref errorCode);
                 }
+
+                ServiceWrapper.UpdateBtage(AppSettings.SystemName, criteria.MemberName, string.Format("{0}_{1}_0", AppSettings.LicenseeID, criteria.AffID));
             }
 
             ViewBag.Result = errorCode == 0 ? GetResultViewModel(string.IsNullOrEmpty(message) ? 0 : 1, null, message) : GetResultViewModel(errorCode);
@@ -566,8 +566,8 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Check whether the member has already deposited on member site.
         /// </summary>
-        /// <param name="customerInfo"></param>
-        /// <returns></returns>
+        /// <param name="customerInfo">Customer information.</param>
+        /// <returns>Has first deposit.</returns>
         private bool HasFirstDepositDate(XElement customerInfo) 
         {
             if (customerInfo.Element("FirstDepositDate").Value.Equals("N/A"))
@@ -628,6 +628,51 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.ClickID = clickid;
             criteria.CreatedDate = createdate;
             criteria.RegisterDate = registerDate;
+        }
+
+        /// <summary>
+        /// Is valid member.
+        /// </summary>
+        /// <param name="criteria">Check member exist criteria.</param>
+        /// <param name="result">Result view model.</param>
+        /// <returns>Valid or invalid member.</returns>
+        private bool IsValidMember(CheckMemberExistCriteria criteria, ref ResultViewModel result)
+        {
+            if (criteria.IsMemberExist)
+            {
+                result = GetResultViewModel(1, null, Lang.MemberExist);
+
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Is valid affiliate.
+        /// </summary>
+        /// <param name="criteria">Check member exist criteria.</param>
+        /// <param name="result">Result view model.</param>
+        /// <returns>Valid or invalid affiliate.</returns>
+        private bool IsValidAffiliate(CheckMemberExistCriteria criteria, ref ResultViewModel result)
+        {
+            if (criteria.AffID < 1)
+            {
+                result = GetResultViewModel(1, null, Lang.AffNotExist);
+
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(criteria.AffStatus) && !criteria.AffStatus.Equals("approved", StringComparison.CurrentCultureIgnoreCase))
+            {
+                var message = GetMessageFromAffiliateStatus(criteria.AffStatus);
+
+                result = GetResultViewModel(1, null, message);
+
+                return false;
+            }
+
+            return true;
         }
 
         #endregion

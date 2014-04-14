@@ -265,13 +265,6 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                     {
                         return string.Format(Lang.CouldNotFindPath, oldBannerPath.Replace("\\", "/"));
                     }
-
-                    if (System.IO.File.Exists(oldThumbnailPath))
-                    {
-                        Common.MoveFile(oldBannerPath, BannerPath);
-                    }
-
-                    return string.Empty;
                 }
 
                 if (System.IO.File.Exists(oldBannerPath))

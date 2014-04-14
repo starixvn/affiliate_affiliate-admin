@@ -1,6 +1,5 @@
-**/Content/bootstrap/js
-**/Content/bootstrap/js/tests
 **/Scripts/libraries
+**/Scripts/libraries/Language
 **/Scripts/site/_Global.js
 **/Scripts/site/Adjustment.js
 **/Scripts/site/AffiliateEdit.js

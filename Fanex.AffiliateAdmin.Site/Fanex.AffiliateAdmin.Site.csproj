@@ -209,39 +209,6 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
-    <Content Include="Content\bootstrap\js\bootstrap-affix.js" />
-    <Content Include="Content\bootstrap\js\bootstrap-alert.js" />
-    <Content Include="Content\bootstrap\js\bootstrap-button.js" />
-    <Content Include="Content\bootstrap\js\bootstrap-carousel.js" />
-    <Content Include="Content\bootstrap\js\bootstrap-collapse.js" />
-    <Content Include="Content\bootstrap\js\bootstrap-dropdown.js" />
-    <Content Include="Content\bootstrap\js\bootstrap-modal.js" />
-    <Content Include="Content\bootstrap\js\bootstrap-popover.js" />
-    <Content Include="Content\bootstrap\js\bootstrap-scrollspy.js" />
-    <Content Include="Content\bootstrap\js\bootstrap-tab.js" />
-    <Content Include="Content\bootstrap\js\bootstrap-tooltip.js" />
-    <Content Include="Content\bootstrap\js\bootstrap-transition.js" />
-    <Content Include="Content\bootstrap\js\bootstrap-typeahead.js" />
-    <Content Include="Content\bootstrap\js\tests\index.html" />
-    <Content Include="Content\bootstrap\js\tests\phantom.js" />
-    <Content Include="Content\bootstrap\js\tests\server.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-affix.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-alert.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-button.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-carousel.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-collapse.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-dropdown.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-modal.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-phantom.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-popover.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-scrollspy.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-tab.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-tooltip.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-transition.js" />
-    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-typeahead.js" />
-    <Content Include="Content\bootstrap\js\tests\vendor\jquery.js" />
-    <Content Include="Content\bootstrap\js\tests\vendor\qunit.css" />
-    <Content Include="Content\bootstrap\js\tests\vendor\qunit.js" />
     <Content Include="Content\bootstrap\less\tests\buttons.html" />
     <Content Include="Content\bootstrap\less\tests\css-tests.css" />
     <Content Include="Content\bootstrap\less\tests\css-tests.html" />
@@ -664,6 +631,7 @@
     <Content Include="Views\Domain\DomainControl.cshtml" />
     <Content Include="Views\Domain\DomainControlUpd.cshtml" />
     <Content Include="Views\Domain\DomainControlAdd.cshtml" />
+    <None Include=".jshintignore" />
     <None Include="Content\_Sites\athena\Login.less" />
     <None Include="Content\_Sites\athena\Notify.less" />
     <Content Include="Content\_Sites\mymbet\Login.less" />
@@ -821,7 +789,6 @@
     <None Include="BundleTransformer.Configuration.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Content\bootstrap\js\.jshintrc" />
     <Content Include="Content\bootstrap\less\accordion.less" />
     <Content Include="Content\bootstrap\less\alerts.less" />
     <Content Include="Content\bootstrap\less\bootstrap.less" />
@@ -1020,7 +987,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

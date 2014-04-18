@@ -82,9 +82,9 @@ home
             },
             columns: [                        
                         { HeaderText: "#", Width: 30, Name: "b", HeaderAlign: "center", CellAlign: "center" },
-                        { HeaderText: "@Lang.Sender", Width: 182, Name: "Sender", HeaderAlign: "center" },
-                        { HeaderText: "@Lang.Affiliate", Width: 70, Name: "Affname", HeaderAlign: "center" },
-                        { HeaderText: "@Lang.Subject", Width: 150, Name: "Subject", HeaderAlign: "center",
+                        { HeaderText: "@Lang.Sender", Width: 180, Name: "Sender", HeaderAlign: "center" },
+                        { HeaderText: "@Lang.Affiliate", Width: 150, Name: "Affname", HeaderAlign: "center" },
+                        { HeaderText: "@Lang.Subject", Width: 250, Name: "Subject", HeaderAlign: "center",
                             Formatter: function (rowIndex, rowData, cell, cellFormated)
                             { return "<a href='#' data-mid='" + rowData.Mid + "' class='subject'>" + cellFormated + "</a>"; }
                         },
@@ -101,7 +101,7 @@ home
                    ],
             showPager: true,
             customPager: true,
-            allowTruncate: false,
+            allowTruncate: true,
             gridExpandHeight: 360,
             showNumberColumn: true,
             indexNumberColumn: 0

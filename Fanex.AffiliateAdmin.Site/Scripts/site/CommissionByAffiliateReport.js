@@ -188,7 +188,6 @@
                 params.AffName = $(this).data("affname");
                 params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
                 params["SortBy"] = $('#SortBy').val();
-                params.PlayerCurrencies = params.Currencies;
                 delete params.Currencies;
 
                 window.location = AFFILIATE.getAbsoluteUrl("Report/CompanyWinloss?") + jQuery.param(params);

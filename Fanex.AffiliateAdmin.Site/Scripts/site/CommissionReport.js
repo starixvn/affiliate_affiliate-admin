@@ -252,7 +252,6 @@
                 params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
                 params["SortBy"] = $('#SortBy').val();
                 params["GroupBy"] = 1;
-                params.PlayerCurrencies = params.Currencies;
                 delete params.Currencies;
 
                 params["FromDate"] = '01 ' + params["FromDate"];
@@ -310,7 +309,6 @@
                 if (parent.AFFILIATE.currentOpenDialog)
                     parent.AFFILIATE.currentOpenDialog.dialog("close");
             });
-
         },
 
         checkRangeTime: function () {

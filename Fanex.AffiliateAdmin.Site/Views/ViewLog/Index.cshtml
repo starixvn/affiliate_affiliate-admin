@@ -71,12 +71,12 @@ affiliate-info
                         }
                       },
                       { HeaderText: "@Lang.Date", Width: 120, Name: "LoggedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
-                      { HeaderText: "@Lang.UpdatedBy", Width: 100, Name: "UpdatedDate", CellAlign: "center", Formatter:
+                      { HeaderText: "@Lang.UpdatedBy", Width: 80, Name: "UpdatedDate", CellAlign: "center", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
                             return rowData.UserName + "<br/>(" + rowData.AffId + ")";
                         }
                       },
-                      { HeaderText: "@Lang.Action", Width: 175, Name: "Action", CellAlign: "center", Formatter:
+                      { HeaderText: "@Lang.Action", Width: 200, Name: "Action", CellAlign: "center", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
                             return rowData.Description + "<br/>(" + rowData.SpName + ")";
                         }

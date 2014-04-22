@@ -12,9 +12,9 @@
                     AFFILIATE.PreHandleAjaxResult(data);
                     
                     if (!data.Success) {
-                        AFFILIATE.showUpdateStatus(data.ErrorCode, data.Message, parent.ME.ReRenderAfterPaged);
+                        AFFILIATE.showUpdateStatus(data.ErrorCode, data.Message, parent.EmailHistory.ReRenderAfterPaged);
                     } else {
-                        AFFILIATE.showUpdateStatus(data.ErrorCode, data.Message, parent.ME.ReRenderAfterPaged,1000);
+                        AFFILIATE.showUpdateStatus(data.ErrorCode, data.Message, parent.EmailHistory.ReRenderAfterPaged, 1000);
                     }
                 }
             });

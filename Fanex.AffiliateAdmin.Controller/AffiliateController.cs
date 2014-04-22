@@ -404,7 +404,10 @@ namespace Fanex.AffiliateAdmin.Controller
                     AssignNewMemberToAffiliate(criteria, ref message, ref errorCode);
                 }
 
-                ServiceWrapper.UpdateBtage(AppSettings.SystemName, criteria.MemberName, string.Format("{0}_{1}_0", AppSettings.LicenseeID, criteria.AffID));
+                if (errorCode == 0 && string.IsNullOrEmpty(message))
+                {
+                    ServiceWrapper.UpdateBtage(AppSettings.SystemName, criteria.MemberName, string.Format("{0}_{1}_0", AppSettings.LicenseeID, criteria.AffID));
+                }
             }
 
             ViewBag.Result = errorCode == 0 ? GetResultViewModel(string.IsNullOrEmpty(message) ? 0 : 1, null, message) : GetResultViewModel(errorCode);

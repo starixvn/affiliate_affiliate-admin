@@ -18,15 +18,6 @@ namespace Fanex.AffiliateAdmin.Criterias
     public class MemberListCriteria : CriteriaBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MemberListCriteria" /> class.
-        /// </summary>
-        public MemberListCriteria()
-        {
-            PageSize = 10;
-            PageIndex = 1;
-        }
-
-        /// <summary>
         /// Gets or sets UserId.
         /// </summary>
         /// <value>Id of current Admin.</value>

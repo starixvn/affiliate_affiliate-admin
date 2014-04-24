@@ -20,7 +20,7 @@ namespace Fanex.AffiliateAdmin.Services.Impl
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ReportService : QueryService, IReportService
+    public sealed class ReportService : QueryService, IReportService
     {
         private readonly IReportDataAccess _reportDataAccess;
 

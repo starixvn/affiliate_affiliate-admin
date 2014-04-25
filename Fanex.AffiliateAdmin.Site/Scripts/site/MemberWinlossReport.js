@@ -299,11 +299,6 @@
                 return false;
             });
 
-            $('#btnCancel').click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
-
             $('#gridId').on('click', '.toggle-indicator', function () {
                 subTotalStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS;
                 AFFILIATE.resetToggleIndicator(_gridOption);

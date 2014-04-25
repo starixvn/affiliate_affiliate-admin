@@ -32,10 +32,6 @@
                     return;
                 deleteMessage($("#Mid").val());
             });
-            $("#btnCancel").click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
         },
         openMail: function (url) {
             window.open(url, "_blank");

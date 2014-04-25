@@ -10,10 +10,6 @@
                 Policy.ReCheckAll();
             }
 
-            $("#btnCancel").click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
             $("#btnUpdate").click(function () {
                 var irs = $("[name=IndividualRead]");
                 var ihs = $("[name=IndividualHost]");

@@ -32,11 +32,6 @@
                 $("#FromDate, #ToDate").prop("disabled", this.value == 0);
             });
 
-            $("#btnCancel").click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
-
             $('#gridId').on('click', '#chkAll', function () {
                 var checked = $(this).prop('checked');
                 $('.chkItem').prop('checked', checked);

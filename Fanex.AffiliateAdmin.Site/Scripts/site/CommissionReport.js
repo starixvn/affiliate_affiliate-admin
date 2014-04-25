@@ -304,11 +304,6 @@
                 CommissionReport.submitRequest();
                 return false;
             });
-
-            $('#btnCancel').click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
         },
 
         checkRangeTime: function () {

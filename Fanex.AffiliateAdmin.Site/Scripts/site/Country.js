@@ -20,11 +20,6 @@
                 AFFILIATE.trimBeforeSubmit();
             });
 
-            $('#btnCancel').click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
-
             if ($('#DisplayOrder').length > 0) {
                 $("#DisplayOrder").keyup(function () {
                 }).ForceIntegerOnly();

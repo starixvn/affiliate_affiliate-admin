@@ -15,11 +15,6 @@
                 return false;
             });
 
-            $("#btnCancel").click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
-
             $(".popup").on("click", ".icon-assign-permission-to-multi-user", function () {
                 Management.updatePolicy();
             });

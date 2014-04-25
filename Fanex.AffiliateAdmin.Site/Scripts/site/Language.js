@@ -16,14 +16,8 @@
                 Language.addLanguage();
             });
 
-
             $('.form-popup').submit(function () {
                 AFFILIATE.trimBeforeSubmit();
-            });
-
-            $('#btnCancel').click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
             });
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {

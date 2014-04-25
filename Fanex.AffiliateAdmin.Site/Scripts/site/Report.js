@@ -9,12 +9,7 @@
             if ($('#gridId').length > 0) {
                 REPORT.ReRenderAfterPaged(0, 10);
             }
-
-            $("#btnCancel").click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
-            $("#abc").createSearchPanel("abc");
+           
             /*
             $("#dialog").dialog({
             autoOpen: false,

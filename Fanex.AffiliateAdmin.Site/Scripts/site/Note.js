@@ -5,11 +5,6 @@
                 NOTE.addNote();
             });
 
-            $("#btnCancel").click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
-
             NOTE.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {

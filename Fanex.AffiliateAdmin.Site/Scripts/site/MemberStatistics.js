@@ -85,11 +85,6 @@
                 var isChecked = $(this).prop('checked');
                 $('#FromDate, #ToDate').prop('disabled', !isChecked);
             });
-
-            $("#btnCancel").click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
         },
         changeGroupBy: function (value) {
             var disable = value === "0";

@@ -84,10 +84,6 @@
 var POPUP = function ($) {
     return {
         init: function () {
-            $("#btnCancel").click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
             $("form").submit(function () {
                 var data = $(".popup-content input").serializeData();
                 if (!data.MemberName) {

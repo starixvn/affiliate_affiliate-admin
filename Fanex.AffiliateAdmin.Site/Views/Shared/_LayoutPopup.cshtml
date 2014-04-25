@@ -19,7 +19,8 @@
         </div>
     </div>
     @Scripts.Render("~/bundles/js")
-    
+    <script src="@Url.Content("~/Scripts/site/CloseDialog.js")" type="text/javascript"></script>
+
     <script type="text/ecmascript">
         $.unblockUI();
 
@@ -38,6 +39,7 @@
 
         AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
     </script>
+    
     
     @RenderSection("scripts", required: false)
 

@@ -11,11 +11,6 @@
             $(".main-content").on("click", ".icon-add-group", function () {
                 Management.addGroup();
             });
-
-            $("#btnCancel").click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid

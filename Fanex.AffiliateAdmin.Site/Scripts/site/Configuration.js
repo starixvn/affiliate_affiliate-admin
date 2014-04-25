@@ -27,11 +27,6 @@
             $('#btnAddConfiguration').click(function () {
                 Configuration.addConfiguration();
             });
-
-            $('#btnCancel').click(function () {
-                if (parent.AFFILIATE.currentOpenDialog)
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-            });
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid

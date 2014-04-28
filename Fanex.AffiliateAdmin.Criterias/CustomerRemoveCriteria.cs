@@ -39,6 +39,8 @@ namespace Fanex.AffiliateAdmin.Criterias
         /// <value>Error Code.</value>
         public int ErrCode { get; set; }
 
+        public string ErrMsg { get; set; }
+
         public long RefNo { get; set; }
 
         /// <summary>

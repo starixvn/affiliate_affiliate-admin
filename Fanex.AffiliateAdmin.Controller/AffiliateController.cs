@@ -98,7 +98,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         TotalMembers = result.CurrencyList.ToList().Sum(t => t.TotalMembers)
                     },
                 HasShowSubTotalRow = hasShowSubTotalRow,
-                HideTotalRows = hideTotalRows,                
+                HideTotalRows = hideTotalRows,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows
@@ -178,7 +178,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.Ip = Remote.GetClientIPAddress();
                 criteria.UserId = SessionManager.CurrentSession.CustID;
                 _service.ChangeAccountType(criteria);
-                ViewBag.Result = GetResultViewModel(criteria.ErrCode);                
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
             else
             {
@@ -192,7 +192,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return ChangeAccountType(new ChangeAccountTypeViewModel
                 {
-                    AffIds = criteria.AffIds, 
+                    AffIds = criteria.AffIds,
                     Usernames = criteria.Usernames,
                     TestLevel = criteria.TestLevel
                 });
@@ -350,6 +350,13 @@ namespace Fanex.AffiliateAdmin.Controller
                                             };
             _service.CustomerRemove(criteria);
 
+            var model = GetResultViewModel(criteria.ErrCode);
+
+            if(!model.Success)
+            {
+                model.Message = model.Message ?? criteria.ErrMsg;
+            }
+
             return Json(GetResultViewModel(criteria.ErrCode));
         }
 
@@ -478,13 +485,13 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="customerName">Member Name.</param>      
         /// <returns>Error code.</returns>
         private int TestInsertMember(int affid, string affname, string customerName)
-        {            
+        {
             var insertCriteria = new InsertMemberCriteria()
             {
                 AffUserName = affname,
                 Username = customerName,
                 Currency = AppSettings.BaseExchange.Code,
-                IBCCustID = 0,                
+                IBCCustID = 0,
                 AgentID = 0,
                 Btag = string.Format("{0}_{1}_0", AppSettings.LicenseeID, affid),
                 CreatedDate = DateTime.Now,
@@ -571,7 +578,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="customerInfo">Customer information.</param>
         /// <returns>Has first deposit.</returns>
-        private bool HasFirstDepositDate(XElement customerInfo) 
+        private bool HasFirstDepositDate(XElement customerInfo)
         {
             if (customerInfo.Element("FirstDepositDate").Value.Equals("N/A"))
             {

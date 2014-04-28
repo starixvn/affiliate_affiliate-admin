@@ -2516,4 +2516,7 @@
   <data name="MemberNotDepositOnMemberSite" xml:space="preserve">
     <value>Sorry. This member {0} has not deposited on the member site.</value>
   </data>
+  <data name="OccurMonthlyTransferError" xml:space="preserve">
+    <value>Occur the error when running monthly transfer.</value>
+  </data>
 </root>

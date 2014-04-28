@@ -5051,6 +5051,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Occur the error when running monthly transfer..
+        /// </summary>
+        public static string OccurMonthlyTransferError {
+            get {
+                return ResourceManager.GetString("OccurMonthlyTransferError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Oct.
         /// </summary>
         public static string Oct {

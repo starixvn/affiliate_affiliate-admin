@@ -296,6 +296,9 @@
                             alert(data.Message);
                         }
                     },
+                    error: function(){
+                        alert(MSG.OccurMonthlyTransferError);
+                    },
                     complete: function () {
                         $.unblockUI();
                     }

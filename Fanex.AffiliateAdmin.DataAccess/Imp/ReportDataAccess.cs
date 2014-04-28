@@ -169,20 +169,26 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
         private IEnumerable<MemberWinloss> GetMemberWinlossList(IDataReader reader, MemberWinlossReportCriteria criteria)
         {
             var result = new List<MemberWinloss>();
+            const byte GroupByDate = 0;
 
             while (reader.Read())
             {
                 var memberWinloss = new MemberWinloss
                 {
-                    WinlostDate = reader.ToDateTime("WinlostDate"),
                     Username = reader.ToString("Username"),
                     Currency = reader.ToString("Currency"),
                     PlayerUsername = reader.ToString("PlayerUsername"),
                     PlayerCurrency = reader.ToString("PlayerCurrency"),
-                    ExRate = reader.ToDouble("ExRate"),
-                    AffExRate = reader.ToDouble("AffExRate"),
+
                     BetCount = reader.ToInt("BetCount")
                 };
+
+                if (criteria.GroupBy == GroupByDate)
+                {
+                    memberWinloss.WinlostDate = reader.ToDateTime("WinlostDate");
+                    memberWinloss.ExRate = reader.ToDouble("ExRate");
+                    memberWinloss.AffExRate = reader.ToDouble("AffExRate");
+                }
 
                 GetMemberWinlossColumnsBasedOnBaseCurrency(criteria, reader, memberWinloss);
 

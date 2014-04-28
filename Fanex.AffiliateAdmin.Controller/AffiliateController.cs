@@ -352,7 +352,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var model = GetResultViewModel(criteria.ErrCode);
 
-            if(!model.Success)
+            if (!model.Success)
             {
                 model.Message = model.Message ?? criteria.ErrMsg;
             }

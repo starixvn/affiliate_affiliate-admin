@@ -266,7 +266,6 @@
                 params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
                 params["SortBy"] = $('#SortBy').val();
                 params["GroupBy"] = 0;
-                params.PlayerCurrencies = params.Currencies;
                 delete params.Currencies;
 
                 var winlostDateObj = moment($(this).attr('data-winlostdate'));

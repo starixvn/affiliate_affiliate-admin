@@ -462,6 +462,14 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
+        public static int PastNthMonth
+        {
+            get
+            {
+                return int.Parse(GetValue("PastNthMonth"));
+            }
+        }
+
         /// <summary>
         /// Get key value of resource.
         /// </summary>
@@ -498,14 +506,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         public static IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)
         {
             return _SystemSetting.GetCommGroups(criteria);
-        }
-
-        public static int PastNthMonth 
-        {
-            get
-            {
-                return int.Parse(GetValue("PastNthMonth"));
-            }
         }
     }
 }

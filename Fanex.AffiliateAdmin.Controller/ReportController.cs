@@ -398,10 +398,10 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult CommissionByAffiliate(CommissionReportCriteria criteria)
         {
             criteria.AffName = CurrentSession.Affiliate.Username;
-            criteria.AffTypes = CurrentSession.Affiliate.AffType.ToString();
-            criteria.CommGroups = CurrentSession.Affiliate.GroupID.ToString();
+            criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
+            criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
+            criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
             criteria.Currencies = CurrentSession.Affiliate.CurrencyID.ToString();
-            criteria.PreferLanguages = CurrentSession.Affiliate.PrefferredLanguage;
             criteria.GroupBy = 0;
 
             return Commission(criteria);

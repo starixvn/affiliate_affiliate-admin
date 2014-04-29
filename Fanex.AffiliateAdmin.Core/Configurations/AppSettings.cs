@@ -499,5 +499,13 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             return _SystemSetting.GetCommGroups(criteria);
         }
+
+        public static int PastNthMonth 
+        {
+            get
+            {
+                return int.Parse(GetValue("PastNthMonth"));
+            }
+        }
     }
 }

@@ -262,7 +262,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (SessionManager.CurrentSession.RoleAccess.HasPolicy("[MonthlyTransfer]", 1))
             {
-                var lastMonth = DateTime.Now.AddMonths(-1);
+                var lastMonth = DateTime.Now.AddMonths(-AppSettings.PastNthMonth);
 
                 var criteria = new IsMonthlyTransferCriteria { MonthDate = lastMonth.Date };
 

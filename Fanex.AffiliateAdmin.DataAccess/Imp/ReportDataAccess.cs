@@ -154,9 +154,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                     }
                 }
             }
-        } 
+        }
 
-        #endregion
+        #endregion Common helpers
 
         #region Helpers for member win-loss
 
@@ -210,15 +210,11 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             const byte SystemCurrency = 1;
             const byte AffiliateCurrency = 2;
 
+            GetMemberWinlossColumnsInSystemCurrency(reader, memberWinloss);
+          
             if (criteria.BaseCurrency == MemberCurrency)
             {
                 GetMemberWinlossColumnsInMemberCurrency(reader, memberWinloss);
-                return;
-            }
-
-            if (criteria.BaseCurrency == SystemCurrency)
-            {
-                GetMemberWinlossColumnsInSystemCurrency(reader, memberWinloss);
                 return;
             }
 
@@ -347,7 +343,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             }
         }
 
-        #endregion
+        #endregion Helpers for member win-loss
 
         #region Helpers for company win-loss
 
@@ -450,15 +446,11 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             const byte SystemCurrency = 1;
             const byte AffiliateCurrency = 2;
 
+            GetCompanyWinlossColumnsInSystemCurrency(reader, companyWinloss);
+
             if (criteria.BaseCurrency == MemberCurrency)
             {
                 GetCompanyWinlossColumnsInMemberCurrency(reader, companyWinloss);
-                return;
-            }
-
-            if (criteria.BaseCurrency == SystemCurrency)
-            {
-                GetCompanyWinlossColumnsInSystemCurrency(reader, companyWinloss);
                 return;
             }
 
@@ -541,7 +533,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             }
         }
 
-        #endregion
+        #endregion Helpers for company win-loss
 
         #region Helpers for commission
 
@@ -767,6 +759,6 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             }
         }
 
-        #endregion
+        #endregion Helpers for commission
     }
 }

@@ -258,8 +258,6 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                     if (System.IO.File.Exists(oldBannerPath))
                     {
                         Common.MoveFile(oldThumbnailPath, ThumbnailPath);
-
-                        return string.Empty;
                     }
                     else
                     {

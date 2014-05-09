@@ -20,7 +20,7 @@ namespace Fanex.AffiliateAdmin.Models
     /// <summary>
     /// Affiliate List View Model.
     /// </summary>
-    public class PlayerWinlossViewModel
+    public class MemberWinlossViewModel
     {
         #region Fields
 
@@ -32,7 +32,7 @@ namespace Fanex.AffiliateAdmin.Models
 
         #endregion
 
-        public PlayerWinlossViewModel()
+        public MemberWinlossViewModel()
         {
             ExcludeTest = true;
         }

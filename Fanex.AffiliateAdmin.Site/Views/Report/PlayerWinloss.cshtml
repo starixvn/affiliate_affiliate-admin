@@ -37,7 +37,7 @@ report
 
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Mvc
-@model Fanex.AffiliateAdmin.Models.PlayerWinlossViewModel
+@model Fanex.AffiliateAdmin.Models.MemberWinlossViewModel
 <div class="search-panel search-company-winloss">
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
@@ -203,20 +203,17 @@ report
             showFooter: true,
             customizeHeader: true,
             showDistinctRow: false,
-            numberOfFrozenColumn: 6            
+            numberOfFrozenColumn: 6
         };
 
         var cardinalHeaderCol = { HeaderText: "#", Name: "WinlostDate", MergeRowNumber: 2 };
         var cardinalCol = { HeaderText: "#", Width: 30, Name: "WinlostDate", CellAlign: "center" };
-        var sampleTotalTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-        var sampleTotalWinlostCol = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Width: 110, Name: "TotalWinlost", NameCache: "TotalWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleWinlostCol = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Width: 110, Name: "TotalWinlost", NameCache: "TotalWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
         
 
-        var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Name: "SportsbookTurnover", NameCache: "SportsbookTurnover", MergeColNumber: 5 };
+        var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Name: "TotalTurnover", NameCache: "TotalTurnover", MergeColNumber: 5 };
         var sampleCompanyWLHeader = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Name: "SportsbookWinlost", NameCache: "SportsbookWinlost", MergeColNumber: 5 };
-        
-        var exRatePosition = 5;
-        var turnoverPosition = 11;
     </script>
     
     <script src="@Url.Content("~/Scripts/site/MemberWinlossReport.js")" type="text/javascript"></script>

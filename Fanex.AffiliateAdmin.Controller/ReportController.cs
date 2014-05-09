@@ -166,7 +166,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="model">Model input.</param>
         /// <returns>Player Win loss page.</returns>
-        public ActionResult PlayerWinloss(PlayerWinlossViewModel model)
+        public ActionResult PlayerWinloss(MemberWinlossViewModel model)
         {
             var serializer = new JavaScriptSerializer();
 

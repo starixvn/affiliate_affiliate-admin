@@ -201,16 +201,18 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var data = _reportService.GetMemberWinloss(criteria);
 
-            var hasShowSubTotalRow = data.MemberWinlossList.GroupBy(t => t.PlayerCurrency)
+            var hasCurrencyOverTwoRows = data.MemberWinlossList.GroupBy(t => t.PlayerCurrency)
                                            .Select(t => new { PlayerCurrency = t.Key, RowCount = t.Count() })
                                            .Any(t => t.RowCount > 1);
+
+
 
             return Json(new
             {
                 List = data.MemberWinlossList,
                 TotalRowData = data.TotalMemberWinlossInSystemCurrency,
                 SubTotalData = data.TotalMemberWinlossInMemberCurrencies,
-                HasShowSubTotalRow = hasShowSubTotalRow,
+                HasCurrencyOverTwoRows = hasCurrencyOverTwoRows,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows,
@@ -227,7 +229,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult PlayerWinlossByAffiliate(PlayerWLByAffiliateViewModel model)
         {
-            var baseCurrencyList = new List<SelectListItem>();
+            List<SelectListItem> baseCurrencyList;
 
             if (CurrentSession.Affiliate.Currency.Equals(AppSettings.BaseExchange.Code))
             {

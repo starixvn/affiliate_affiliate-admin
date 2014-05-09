@@ -13,7 +13,6 @@
     var AFFILIATE_COL_INDEX = 1;
 
     // number of all common columns (except product columns).
-    var freezeColumnCount = 4;
     var gridOption = {};
 
     var changeGridOptionWhenGroupByMember = function () {
@@ -46,6 +45,7 @@
                 gridOption.hiddenColumns = byAffiliate ? [EXRATE_COL_INDEX - 2] : [EXRATE_COL_INDEX];
                 break;
             case AFF_CURRENCY_OPTION:
+                // TODO: more
                 gridOption.groupHeaderRows[0].Columns[EXRATE_COL_INDEX].HeaderText = window.MSG.UnitPerBaseCurrency.format($('#BaseCurrency option:selected').text());
                 gridOption.groupHeaderRows[0].Columns[EXRATE_COL_INDEX].Name = "AffExRate";
                 gridOption.columns[EXRATE_COL_INDEX].Name = "AffExRate";
@@ -96,11 +96,11 @@
     var addTurnoverColumnsForProducts = function (products, startIndex) {
         var productCount = products.length;
 
-        if (productCount == 0) {
+        if (productCount === 0) {
             return;
         }
 
-        if (productCount == 1) {
+        if (productCount === 1) {
             addTurnoverColumnsWhenOnlyOneProduct(startIndex);
         } else {
             addTurnoverColumnsWhenOverTwoProducts(products, startIndex);
@@ -172,6 +172,7 @@
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     var customizeGridOption = function (sampleGridOption) {
         var startTurnoverPosition = TURNOVER_COL_INDEX;
+        // TODO: more
         var byAffiliate = $('#ByAffiliate').length > 0;
 
         gridOption = $.extend(true, {}, sampleGridOption);
@@ -235,111 +236,151 @@
         }
     };
 
-    var getMergeCols = function (numberOfFrozenColumn, groupBy) {
-        if (groupBy == GROUP_BY_MEMBER) {
-            return numberOfFrozenColumn - 1;
+    var getMergeColCountForFirstColumnOfFooterRows = function () {
+
+        if (submitOptions.GroupBy === GROUP_BY_MEMBER) {
+            return gridOption.numberOfFrozenColumn - 1;
         }
-        else {
-            return numberOfFrozenColumn - 2;
-        }
+
+        return gridOption.numberOfFrozenColumn - 2;
     };
 
+    var getPseudoSubTotalRow = function (pseudoSubTotalclass) {
+        var columns = [];
+        var mergeCols = getMergeColCountForFirstColumnOfFooterRows();
+        var startIndex = getStartIndexForFooterRows();
 
+        columns.push({ Value: window.MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
 
-    function getFooterRows(subTotalData, totalRowData, hasShowSubTotalData) {
-        var groupBy = $("#GroupBy").val();
-        var mergeCols = getMergeCols(gridOption.numberOfFrozenColumn, groupBy);
-        var subTotalRowCount = subTotalData.length;
-        var footerRows = [];
-        var baseCurrency = $('#BaseCurrency').val();
-
-        var startIndex = (groupBy == GROUP_BY_MEMBER) || (groupBy != GROUP_BY_MEMBER && baseCurrency == MEMBER_CURRENCY_OPTION) ? mergeCols + 1 : mergeCols + 2;
-
-        if (hasShowSubTotalData === true) {
-            if (hasShowSubTotalRows(subTotalRowCount, subTotalData[0].PlayerCurrency, baseCurrency)) {
-                var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
-                var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
-                subTotalStatus = subTotalRowCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
-
-                $.each(subTotalData, function (idx, item) {
-                    var columns = [];
-
-                    if (idx == 0) {
-                        columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });
-                    }
-
-                    if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
-                        columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 1 });
-                    } else {
-                        if ($('#BaseCurrency').val() != MEMBER_CURRENCY_OPTION) {
-                            columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 2 });
-                        } else {
-                            columns.push({ Value: item['PlayerCurrency'], Name: "PlayerCurrency", MergeColNumber: 1 });
-                        }
-                    }
-
-                    for (var i = startIndex; i < gridOption.columns.length; i++) {
-                        var col = gridOption.columns[i];
-                        columns.push({ Value: item[col.Name], Name: col.Name });
-                    }
-
-                    footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
-                });
-
-                // pseudo sub total row.
-                var columns = [];
-                columns.push({ Value: MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
-                if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
-                    columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 1 });
-                } else {
-                    if ($('#BaseCurrency').val() != MEMBER_CURRENCY_OPTION) {
-                        columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 2 });
-                    } else {
-                        columns.push({ Value: '', Name: "PlayerCurrency", MergeColNumber: 1 });
-                    }
-                }
-
-                for (var i = startIndex; i < gridOption.columns.length; i++) {
-                    var col = gridOption.columns[i];
-                    columns.push({ Value: '', Name: col.Name });
-                }
-
-                footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
-            }
-        }
-
-        // Total row
-        var totalColums = [];
-        totalColums.push({ Value: "<div align='center'>" + MSG.Total + "</div>", Name: "WinlostDate", MergeColNumber: mergeCols });
-
-        if ($("#GroupBy").val() == GROUP_BY_MEMBER) {
-            totalColums.push({ Value: System.Currency, Name: "PlayerCurrency", MergeColNumber: 1 });
-        } else {
-            if ($('#BaseCurrency').val() != MEMBER_CURRENCY_OPTION) {
-                totalColums.push({ Value: System.Currency, Name: "PlayerCurrency", MergeColNumber: 2 });
-            } else {
-                totalColums.push({ Value: System.Currency, Name: "PlayerCurrency", MergeColNumber: 1 });
-            }
-        }
+        createPlayerCurrencyColumn(columns);
 
         for (var i = startIndex; i < gridOption.columns.length; i++) {
             var col = gridOption.columns[i];
-            var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-
-            totalColums.push({ Value: totalRowData[colName], Name: col.Name });
+            columns.push({ Value: '', Name: col.Name });
         }
 
-        footerRows.push({ Columns: totalColums, CssClass: 'total-whole-range' });
+        return [{ Columns: columns, CssClass: "pseudo-subtotal"}];
+    };
 
-        return footerRows;
-    }
+    var createPlayerCurrencyColumn = function (columns, value) {
+        value = typeof value !== "undefined" ? value : '';
 
-    function hasShowSubTotalRows(subTotalRowCount, firstPlayCurrency, selectedBaseCurrency) {
+        if (submitOptions.GroupBy === GROUP_BY_MEMBER) {
+            columns.push({ Value: value, Name: "PlayerCurrency", MergeColNumber: 1 });
+            return;
+        }
+
+        if (submitOptions.BaseCurrency === MEMBER_CURRENCY_OPTION) {
+            
+            columns.push({ Value: value, Name: "PlayerCurrency", MergeColNumber: 1 });
+            return;
+        }
+
+        columns.push({ Value: value, Name: "PlayerCurrency", MergeColNumber: 2 });
+    };
+
+    var getActualSubTotalRows = function (subTotalData, realSubTotalclass) {
+        var mergeCols = getMergeColCountForFirstColumnOfFooterRows();
+        var subTotalRowCount = subTotalData.length;
+        var startIndex = getStartIndexForFooterRows();
+        var actualSubTotalRows = [];
+
+        $.each(subTotalData, function (idx, item) {
+            var columns = [];
+
+            if (idx === 0) {
+                columns.push({ Value: window.MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });
+            }
+
+            createPlayerCurrencyColumn(columns, item['PlayerCurrency']);
+
+            for (var i = startIndex; i < gridOption.columns.length; i++) {
+                var col = gridOption.columns[i];
+                columns.push({ Value: item[col.Name], Name: col.Name });
+            }
+
+            actualSubTotalRows.push({ Columns: columns, CssClass: "real-subtotal" });
+        });
+
+        return actualSubTotalRows;
+    };
+
+    var getSubTotalRows = function (subTotalData, hasCurrencyOverTwoRows) {
+        var subTotalRows = [];
+
+        if (hasShowSubTotalRows(subTotalData, hasCurrencyOverTwoRows)) {
+            var subTotalRowCount = subTotalData.length;
+            var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
+            var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
+
+            var actualSubTotalRows = getActualSubTotalRows(subTotalData, realSubTotalclass);
+            var pseudoSubTotalRow = getPseudoSubTotalRow(pseudoSubTotalclass);
+
+            subTotalRows = actualSubTotalRows.concat(pseudoSubTotalRow);
+        }
+
+        return subTotalRows;
+    };
+
+    var getStartIndexForFooterRows = function () {
+        var mergeCols = getMergeColCountForFirstColumnOfFooterRows();
+
+        if (submitOptions.GroupBy === GROUP_BY_MEMBER) {
+            return mergeCols + 1;
+        }
+
+        if (submitOptions.BaseCurrency === MEMBER_CURRENCY_OPTION) {
+            return mergeCols + 1;
+        }
+
+        return mergeCols + 2;
+
+        //return gridOption.numberOfFrozenColumn;
+    };
+
+    var getFooterRows = function (subTotalData, totalRowData, hasCurrencyOverTwoRows) {
+
+        window.subTotalStatus = subTotalData.length > 1 ? window.subTotalStatus : window.EXPAND_SUBTOTAL_STATUS;
+
+        var subTotalRows = getSubTotalRows(subTotalData, hasCurrencyOverTwoRows);
+
+        var totalRow = getTotalRow(totalRowData);
+
+        return subTotalRows.concat(totalRow);
+    };
+
+    var getTotalRow = function (totalRowData) {
+        var mergeCols = getMergeColCountForFirstColumnOfFooterRows();
+        var startIndex = getStartIndexForFooterRows();
+        var columns = [];
+
+        columns.push({ Value: "<div align='center'>" + window.MSG.Total + "</div>", Name: "WinlostDate", MergeColNumber: mergeCols });
+
+        createPlayerCurrencyColumn(columns, window.System.Currency);
+
+        var length = gridOption.columns.length;
+        for (var i = startIndex; i < length; i++) {
+            var col = gridOption.columns[i];
+            var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
+
+            columns.push({ Value: totalRowData[colName], Name: col.Name });
+        }
+
+        return [{ Columns: columns, CssClass: 'total-whole-range'}];
+    };
+
+    function hasShowSubTotalRows(subTotalData, hasCurrencyOverTwoRows) {
+        var subTotalRowCount = subTotalData.length;
+
+        if (subTotalRowCount <= 0 || hasCurrencyOverTwoRows === false) {
+            return false;
+        }
+
         if (subTotalRowCount > 1) {
             return true;
         }
 
-        return subTotalRowCount === 1 && firstPlayCurrency !== System.Currency && selectedBaseCurrency !== SYS_CURRENCY_OPTION;
+        return subTotalData[0].PlayerCurrency !== window.System.Currency && submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION;
     }
 
     var getSymbolCurrency = function (baseCurrency) {
@@ -360,13 +401,12 @@
         return symbolCurrency;
     };
 
-
     var changeHeaderCaptions = function (baseCurrency) {
         var symbolCurrency = getSymbolCurrency(baseCurrency);
         var i, col;
         var length = gridOption.columns.length;
-        
-        for(i = 0; i < length; i++) {
+
+        for (i = 0; i < length; i++) {
             col = gridOption.columns[i];
             if (col.IsCurrency) {
                 col.HeaderText = col.HeaderCaption + symbolCurrency;
@@ -380,7 +420,7 @@
                 col.HeaderText = col.HeaderCaption + symbolCurrency;
         }
     };
-    
+
     function nomalizeProductName(name) {
         return name.replace(/ /g, "");
     }
@@ -405,6 +445,7 @@
                 AFFILIATE.resetToggleIndicator(gridOption);
             });
         },
+
         checkRangeTime: function () {
             $('#FromDate, #ToDate').removeClass('input-validation-error');
 
@@ -415,14 +456,14 @@
             var toYear = toDate.year();
             var diffYear = toYear - fromYear;
 
-            if (diffYear < 0 || diffYear > 1){
+            if (diffYear < 0 || diffYear > 1) {
                 return false;
             }
 
             var fromMonth = fromDate.month();
             var toMonth = toDate.month();
             var diffMonth;
-            
+
             if (fromDate.year() === toDate.year()) {
                 diffMonth = toMonth - fromMonth;
                 if (diffMonth < 0 || diffMonth > 2) {
@@ -486,7 +527,7 @@
 
                     if (data.TotalItem > 0) {
                         gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
-                        gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasShowSubTotalRow);
+                        gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasCurrencyOverTwoRows);
                     }
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);

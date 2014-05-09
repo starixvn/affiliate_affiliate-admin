@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Kaden.Trinh" date="2013.07.05">Created</change>
 // </history>
+
 namespace Fanex.AffiliateAdmin.Core.Filter
 {
     using System.Web.Mvc;

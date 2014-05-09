@@ -10,13 +10,24 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
+    using System.Web.Security;
     using Core.Services;
+    using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.Services.Interface;
 
     /// <summary>
     /// Notify Controller class.
     /// </summary>
     public class NotifyController : Controller
     {
+        private readonly IAccountService _accountService;
+
+        public NotifyController(IAccountService accountService)
+        {
+            _accountService = accountService;
+        }
+
         /// <summary>
         /// Under maintenance.
         /// </summary>
@@ -27,15 +38,15 @@ namespace Fanex.AffiliateAdmin.Controller
 
             if (UnderMaintenanceService.GetDownTime(ref startTime, ref endTime))
             {
+                LogOutWhenUMTime();
+
                 ViewBag.StartTime = startTime;
                 ViewBag.EndTime = endTime;
 
                 return View();
             }
-            else
-            {
-                return RedirectPermanent("/");
-            }
+
+            return RedirectPermanent(Url.Content("~/"));
         }
 
         /// <summary>
@@ -63,6 +74,23 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult AccessDenied()
         {
             return View();
+        }
+
+        /// <summary>
+        /// Log out when maintenance.
+        /// </summary>
+        private void LogOutWhenUMTime()
+        {
+            if (SessionManager.CurrentSession != null)
+            {
+                _accountService.UserLogOut(new LogOutCriteria
+                {
+                    OnUserId = SessionManager.CurrentSession.OnUserID
+                });
+
+                FormsAuthentication.SignOut();
+                SessionManager.ClearAll();
+            }
         }
     }
 }

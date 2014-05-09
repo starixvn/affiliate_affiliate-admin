@@ -55,11 +55,11 @@ report
                     @Html.DropDownCheckList("AffTypes", Model.AffTypeOptionList, true, false, new { @class = "width-140" })
                 </div>
                 <div class="cell">
-                    <label for="CommGroups" class="txt auto">@Lang.CommissionGroup</label>
+                    <label for="CommGroups" class="txt">@Lang.CommissionGroup</label>
                     @Html.DropDownCheckList("CommGroups", Model.CommissionGroupOptionList, true, false, new { @class = "width-140" })
                 </div>
                 <div class="cell">
-                    <label for="PreferLanguages" class="txt auto">@Lang.Language</label>
+                    <label for="PreferLanguages" class="txt">@Lang.Language</label>
                     @Html.DropDownCheckList("PreferLanguages", Model.PreferLanguageOptionList, true, false, new { @class = "width-140" })
                 </div>
             </div>
@@ -73,11 +73,11 @@ report
                     @Html.DropDownCheckList("GroupBy", Model.GroupByOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
                 <div class="cell">
-                    <label for="FromDate" class="txt width-90">@Lang.From</label>
+                    <label for="FromDate" class="txt">@Lang.From</label>
                     @Html.DatePicker("FromDate", fromDate, AppSettings.SystemStartDate, now, false)
                 </div>
                 <div class="cell">
-                    <label for="ToDate" class="txt auto text-left">@Lang.To</label>
+                    <label for="ToDate" class="txt">@Lang.To</label>
                     @Html.DatePicker("ToDate", toDate, AppSettings.SystemStartDate, now, false)
                 </div>
             </div>
@@ -94,7 +94,11 @@ report
                     <label for="BaseCurrency" class="txt">@Lang.DrawFilter</label>
                     @Html.DropDownCheckList("DrawFilter", Model.DrawFilterOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
-                <div class="cell checkbox">
+                <div class="cell">
+                    <label for="Products" class="txt">@Lang.Product</label>
+                    @Html.DropDownCheckList("Products", Model.ProductOptionList, true, false, new { @class = "width-140" })
+                </div>
+                <div class="cell width-140">
                     <label for="ExcludeTest">
                         @Html.CheckBoxFor(m => m.ExcludeTest)
                         @Lang.ExcludeTestAccounts

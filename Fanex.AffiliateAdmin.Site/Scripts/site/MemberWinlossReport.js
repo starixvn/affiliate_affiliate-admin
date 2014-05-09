@@ -53,9 +53,20 @@
         }
     };
 
+    var getSelectProducts = function (products) {
+        var selectedProducts = $.map(submitOptions.Products.split(','), function (item) {
+            return parseInt(item, 10);
+        });
+
+        return $.grep(products, function (item) {
+            return $.inArray(item.Id, selectedProducts) >= 0 ? true : false;
+        });
+    };
+
     //#region columns based on products
 
     var addTurnoverColumnsWhenOnlyOneProduct = function (startIndex) {
+
         var turnoverHeader = $.extend(true, {}, window.sampleTurnoverHeader);
         var turnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
 
@@ -69,7 +80,7 @@
         var productCount = products.length;
 
         for (var i = 0; i < productCount; i++) {
-            var name = nomalizeProductName(window.PRODUCTS[i].Name);
+            var name = nomalizeProductName(products[i].Name);
 
             if (i === 0) {
                 var turnoverHeader = $.extend(true, {}, window.sampleTurnoverHeader);
@@ -189,9 +200,11 @@
 
         //window.PRODUCTS = [{ Id: 1, Name: "Sportsbook"}];
 
-        addTurnoverColumnsForProducts(window.PRODUCTS, startTurnoverPosition);
+        var products = getSelectProducts(window.PRODUCTS);
 
-        addWinlostColumnsForProducts(window.PRODUCTS, gridOption.groupHeaderRows[0].Columns.length, gridOption.columns.length);
+        addTurnoverColumnsForProducts(products, startTurnoverPosition);
+
+        addWinlostColumnsForProducts(products, gridOption.groupHeaderRows[0].Columns.length, gridOption.columns.length);
 
         removeRedundantColumnsWhenViewInAffInfo(byAffiliate);
     };
@@ -271,7 +284,7 @@
         }
 
         if (submitOptions.BaseCurrency === MEMBER_CURRENCY_OPTION) {
-            
+
             columns.push({ Value: value, Name: "PlayerCurrency", MergeColNumber: 1 });
             return;
         }
@@ -511,9 +524,9 @@
 
                     customizeGridOption(window.sampleGridOption);
 
-                    renameCurrencyColumns(baseCurrency);
+                    //renameCurrencyColumns(baseCurrency);
 
-                    changeHeaderCaptions(baseCurrency);
+                    //changeHeaderCaptions(baseCurrency);
 
                     gridOption.pagerOption = {
                         itemsPerPage: data.ItemsPerPage,

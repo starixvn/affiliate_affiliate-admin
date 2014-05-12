@@ -15,6 +15,8 @@
     // number of all common columns (except product columns).
     var gridOption = {};
 
+    //#region change custom grid option.
+
     var changeGridOptionWhenGroupByMember = function () {
         replaceWinlostDateColWithCardinalColToGridOption();
 
@@ -63,14 +65,19 @@
         });
     };
 
+    //#endregion
+
     //#region columns based on products
 
-    var addTurnoverColumnsWhenOnlyOneProduct = function (startIndex) {
+    var addTurnoverColumnsWhenOnlyOneProduct = function (product, startIndex) {
+        var name = nomalizeProductName(product.Name);
 
         var turnoverHeader = $.extend(true, {}, window.sampleTurnoverHeader);
-        var turnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
-
+        turnoverHeader.Name = name + "Turnover";
         gridOption.groupHeaderRows[0].Columns.splice(startIndex, 0, turnoverHeader);
+
+        var turnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
+        turnoverCol.Name = turnoverCol.NameCache = name + "Turnover";
         gridOption.columns.splice(startIndex, 0, turnoverCol);
 
         gridOption.customizeHeader = false;
@@ -112,17 +119,21 @@
         }
 
         if (productCount === 1) {
-            addTurnoverColumnsWhenOnlyOneProduct(startIndex);
+            addTurnoverColumnsWhenOnlyOneProduct(products[0], startIndex);
         } else {
             addTurnoverColumnsWhenOverTwoProducts(products, startIndex);
         }
     };
 
-    var addWinlostColumnsWhenOnlyOneProduct = function (startHeaderIndex, startColumnIndex) {
-        var companyWLHeader = $.extend(true, {}, window.sampleCompanyWLHeader);
-        var winlostCol = $.extend(true, {}, window.sampleWinlostCol);
+    var addWinlostColumnsWhenOnlyOneProduct = function (product, startHeaderIndex, startColumnIndex) {
+        var name = nomalizeProductName(product.Name);
 
+        var companyWLHeader = $.extend(true, {}, window.sampleCompanyWLHeader);
+        companyWLHeader.Name = name + "Winlost";
         gridOption.groupHeaderRows[0].Columns.splice(startHeaderIndex, 0, companyWLHeader);
+
+        var winlostCol = $.extend(true, {}, window.sampleWinlostCol);
+        winlostCol.Name = winlostCol.NameCache = name + "Winlost";
         gridOption.columns.splice(startColumnIndex, 0, winlostCol);
     };
 
@@ -162,7 +173,7 @@
         }
 
         if (productCount === 1) {
-            addWinlostColumnsWhenOnlyOneProduct(startHeaderIndex, startColumnIndex);
+            addWinlostColumnsWhenOnlyOneProduct(products[0], startHeaderIndex, startColumnIndex);
         } else {
             addWinlostColumnsWhenOverTwoProducts(products, startHeaderIndex, startColumnIndex);
         }
@@ -347,8 +358,6 @@
         }
 
         return mergeCols + 2;
-
-        //return gridOption.numberOfFrozenColumn;
     };
 
     var getFooterRows = function (subTotalData, totalRowData, hasCurrencyOverTwoRows) {
@@ -495,16 +504,34 @@
                 return true;
             }
         },
+        
+        checkAtLeastOneSelectedProduct: function() {
+            var selectedProducts = $('#Products').val();
+            
+            if (selectedProducts === null || selectedProducts === undefined || selectedProducts.length === 0) {
+                return false;
+            }
+
+            return true;
+        },
 
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
+
+
             if (!MemberWinlossReport.checkRangeTime()) {
                 alert(window.MSG.RangeTime3Months);
-            } else {
-                submitOptions = $('form').serializeObject2();
-                submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
-                MemberWinlossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+                return;
             }
+            
+            if (!MemberWinlossReport.checkAtLeastOneSelectedProduct()) {
+                alert(MSG.ChooseAtLeastOneProduct);
+                return;
+            }
+            
+            submitOptions = $('form').serializeObject2();
+            submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
+            MemberWinlossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
@@ -524,9 +551,9 @@
 
                     customizeGridOption(window.sampleGridOption);
 
-                    //renameCurrencyColumns(baseCurrency);
+                    renameCurrencyColumns(baseCurrency);
 
-                    //changeHeaderCaptions(baseCurrency);
+                    changeHeaderCaptions(baseCurrency);
 
                     gridOption.pagerOption = {
                         itemsPerPage: data.ItemsPerPage,
@@ -558,7 +585,8 @@
                     $.unblockUI();
                 }
             });
-        }
+        },
+        
     };
 } (jQuery);
 

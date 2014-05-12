@@ -49,6 +49,8 @@ namespace Fanex.AffiliateAdmin.Models
 
         public DateTime? ToDate { get; set; }
 
+        public string Products { get; set; }
+
         public IEnumerable<SelectListItem> PlayerCurrencyOptionList
         {
             get
@@ -91,6 +93,22 @@ namespace Fanex.AffiliateAdmin.Models
                 }
 
                 return new SelectList(BaseCurrencyList, "Value", "Text");
+            }
+        }
+
+        public MultiSelectList ProductOptionList
+        {
+            get
+            {
+                var productList = string.IsNullOrEmpty(Products)
+                                      ? new List<byte>()
+                                      : Products.Split(',').Select(byte.Parse);
+
+                var selectedValues = string.IsNullOrEmpty(Products)
+                                         ? AppSettings.Products.Select(t => t.ProductID)
+                                         : productList;
+
+                return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);
             }
         }
     }

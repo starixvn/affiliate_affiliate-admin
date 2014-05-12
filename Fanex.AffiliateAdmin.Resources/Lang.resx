@@ -2519,4 +2519,7 @@
   <data name="OccurMonthlyTransferError" xml:space="preserve">
     <value>Occur the error when running monthly transfer.</value>
   </data>
+  <data name="ChooseAtLeastOneProduct" xml:space="preserve">
+    <value>Please choose at least one product!</value>
+  </data>
 </root>

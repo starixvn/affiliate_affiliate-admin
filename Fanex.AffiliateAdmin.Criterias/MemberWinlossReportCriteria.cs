@@ -56,6 +56,9 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int Duration { get; set; }
 
+        [SpParam(Ignored = true)]
+        public string Products { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_PlayerWinlossReport";

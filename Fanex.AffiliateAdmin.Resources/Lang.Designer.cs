@@ -1307,6 +1307,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please choose at least one product!.
+        /// </summary>
+        public static string ChooseAtLeastOneProduct {
+            get {
+                return ResourceManager.GetString("ChooseAtLeastOneProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please choose another group (not old group)!.
         /// </summary>
         public static string ChooseGroup {

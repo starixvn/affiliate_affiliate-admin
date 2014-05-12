@@ -205,8 +205,6 @@ namespace Fanex.AffiliateAdmin.Controller
                                            .Select(t => new { PlayerCurrency = t.Key, RowCount = t.Count() })
                                            .Any(t => t.RowCount > 1);
 
-
-
             return Json(new
             {
                 List = data.MemberWinlossList,

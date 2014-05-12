@@ -48,7 +48,7 @@
                     @Html.DatePicker("ToDate", toDate, AppSettings.SystemStartDate, now)
                 </div>
             </div>
-            <div class="row-fluid row-form end-search">
+            <div class="row-fluid row-form">
                 <div class="cell">
                     <label for="BaseCurrency" class="txt">@Lang.Currency</label>
                     @Html.DropDownCheckList("PlayerCurrencies", Model.PlayerCurrencyOptionList, true, true, new { @class = "width-140" })
@@ -60,6 +60,12 @@
                 <div class="cell">
                     <label for="BaseCurrency" class="txt">@Lang.DrawFilter</label>
                     @Html.DropDownCheckList("DrawFilter", Model.DrawFilterOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
+                </div>
+            </div>
+            <div class="row-fluid row-form end-search">
+                <div class="cell">
+                    <label for="Products" class="txt">@Lang.Product</label>
+                    @Html.DropDownCheckList("Products", Model.ProductOptionList, true, false, new { @class = "width-140" })
                 </div>
             </div>
             <div class="row-fluid row-form btn-action">
@@ -100,7 +106,8 @@
             Total: "@Lang.Total",
             SubTotal: "@Lang.SubTotal",
             RangeTime3Months: "@Lang.RangeTime3Months",
-            MemberWinloss: "@Lang.MemberWinloss"
+            MemberWinloss: "@Lang.MemberWinloss",
+            ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct'
         };
 
         var PRODUCTS = @(Html.Raw(ViewBag.Products));

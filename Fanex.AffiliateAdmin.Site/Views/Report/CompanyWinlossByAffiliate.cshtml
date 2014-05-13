@@ -55,6 +55,11 @@
                     <label for="BaseCurrency" class="txt">@Lang.BaseCurrency</label>
                     @Html.DropDownCheckList("BaseCurrency", Model.BaseCurrencyOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
+                <div class="cell">
+                    <label for="Products" class="txt">@Lang.Product</label>
+                    @Html.DropDownCheckList("Products", Model.ProductOptionList, true, false, new { @class = "width-140" })
+                </div>
+
             </div>
             <div class="row-fluid row-form btn-action">
                 <div class="span12">
@@ -95,7 +100,8 @@
             RNGCasino: "@Lang.RNGCasino",     
             RangeTime3Months: "@Lang.RangeTime3Months",
             CompanyWinlossTitle: "@Lang.CompanyWinloss",
-            ToggleSubTotal: '@Lang.ToggleSubTotal'
+            ToggleSubTotal: '@Lang.ToggleSubTotal',
+            ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct'
         };
         
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
@@ -150,8 +156,8 @@
             numberOfFrozenColumn: 3
         };
         
-        var sampleTotalTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-        var sampleTotalWinlostCol = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Width: 110, Name: "TotalCompanyWinlost", NameCache: "TotalCompanyWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleWinlostCol = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Width: 110, Name: "TotalCompanyWinlost", NameCache: "TotalCompanyWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
 
         var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Name: "TotalTurnover", NameCache: "TotalTurnover",  MergeColNumber: 5 };
         var sampleCompanyWLHeader = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Name: "TotalCompanyWinlost", NameCache: "TotalCompanyWinlost", MergeColNumber: 5 };

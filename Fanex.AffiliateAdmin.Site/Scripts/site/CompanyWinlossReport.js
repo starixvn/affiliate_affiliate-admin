@@ -3,124 +3,222 @@
     var MEMBER_CURRENCY_OPTION = '0';
     var SYS_CURRENCY_OPTION = '1';
     var AFF_CURRENCY_OPTION = '2';
+
     var GROUP_BY_DATE = "0";
     var GROUP_BY_MONTH = "1";
-    var EXRATE_INDEX = 2;
+
+
     // number of all common columns (except product columns).
     var _freezeColumnCount = 3;
-    var _gridOption = {};
+    var gridOption = {};
     var _currencyThreshold = 1;
 
-    if ($('#ByAffiliate').length > 0) {
-        var _playerWinlossUrl = AFFILIATE.getAbsoluteUrl("Report/PlayerWinlossByAffiliate");
-    } else {
-        var _playerWinlossUrl = AFFILIATE.getAbsoluteUrl("Report/PlayerWinloss");
-    }
+    var EXRATE_COL_INDEX = 2;
+    var TURNOVER_COL_INDEX = 8;
+    var playerWinlossUrl;
+
+
+    var removeExchangeRateCol = function () {
+        gridOption.groupHeaderRows[0].Columns.splice(EXRATE_COL_INDEX, 1);
+        gridOption.columns.splice(EXRATE_COL_INDEX, 1);
+    };
+
+    var changeHeaderOfWinlostDateColumn = function () {
+        gridOption.groupHeaderRows[0].Columns[0].HeaderText = window.MSG.Month;
+        gridOption.columns[0].HeaderText = window.MSG.Month;
+        gridOption.columns[0].FormatDateTime = AFFILIATE.DATE_FORMAT_MONTH;
+    };
+
+    var changeHeaderOfExchangeRateColumn = function () {
+        gridOption.groupHeaderRows[0].Columns[EXRATE_COL_INDEX].HeaderText = window.MSG.UnitPerBaseCurrency.format($('#BaseCurrency option:selected').text());
+        gridOption.groupHeaderRows[0].Columns[EXRATE_COL_INDEX].Name = "AffExRate";
+        gridOption.columns[EXRATE_COL_INDEX].Name = "AffExRate";
+    };
+
+    var changeGridOptionWhenGroupByMonth = function () {
+
+        removeExchangeRateCol();
+
+        changeHeaderOfWinlostDateColumn();
+
+        gridOption.numberOfFrozenColumn = 2;
+
+        return TURNOVER_COL_INDEX - 1;
+    };
+
+    var changeGridOptionWhenGroupByDate = function () {
+
+        switch (submitOptions.BaseCurrency) {
+            case MEMBER_CURRENCY_OPTION:
+                removeExchangeRateCol();
+
+                gridOption.numberOfFrozenColumn = 2;
+
+                return TURNOVER_COL_INDEX - 1;
+
+            case AFF_CURRENCY_OPTION:
+                changeHeaderOfExchangeRateColumn();
+
+                return TURNOVER_COL_INDEX;
+
+            default:
+                return TURNOVER_COL_INDEX;
+        }
+    };
+
+    var addTurnoverColumnsWhenOnlyOneProduct = function (product, startIndex) {
+        var name = nomalizeProductName(product.Name);
+
+        var turnoverHeader = $.extend(true, {}, window.sampleTurnoverHeader);
+        turnoverHeader.Name = turnoverHeader.NameCache = name + "Turnover";
+        gridOption.groupHeaderRows[0].Columns.splice(startIndex, 0, turnoverHeader);
+
+        var turnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
+        turnoverCol.Name = turnoverCol.NameCache = name + "Turnover";
+        gridOption.columns.splice(startIndex, 0, turnoverCol);
+
+        gridOption.customizeHeader = false;
+    };
+
+
+    var addTurnoverColumnsWhenOverTwoProducts = function (products, startIndex) {
+        var productCount = products.length;
+
+        for (var i = 0; i < productCount; i++) {
+            var name = nomalizeProductName(products[i].Name);
+
+            if (i == 0) {
+                var turnoverHeader = $.extend(true, {}, window.sampleTurnoverHeader);
+                turnoverHeader.Name = name + "Turnover";
+                turnoverHeader.NameCache = name + "Turnover";
+                turnoverHeader.MergeColNumber = productCount + 1;
+                gridOption.groupHeaderRows[0].Columns.splice(startIndex, 0, turnoverHeader);
+            }
+
+            var turnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
+            turnoverCol.HeaderText = turnoverCol.HeaderCaption = window.MSG[name];
+            turnoverCol.Name = turnoverCol.NameCache = name + "Turnover";
+            delete turnoverCol.IsCurrency;
+            gridOption.columns.splice(startIndex + i, 0, turnoverCol);
+        }
+
+
+        // add total turnover column.
+        var totalTurnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
+        totalTurnoverCol.HeaderCaption = window.MSG['Total'];
+        totalTurnoverCol.HeaderText = window.MSG['Total'];
+        delete totalTurnoverCol.IsCurrency;
+        gridOption.columns.splice(startIndex + productCount, 0, totalTurnoverCol);
+    };
+
+    var addTurnoverColumnsForProducts = function (products, startIndex) {
+        var productCount = products.length;
+
+        if (productCount === 0) {
+            return;
+        }
+
+        if (productCount === 1) {
+            addTurnoverColumnsWhenOnlyOneProduct(products[0], startIndex);
+        } else {
+            addTurnoverColumnsWhenOverTwoProducts(products, startIndex);
+        }
+    };
+
+    var getSelectProducts = function (products) {
+        var selectedProducts = $.map(submitOptions.Products.split(','), function (item) {
+            return parseInt(item, 10);
+        });
+
+        return $.grep(products, function (item) {
+            return $.inArray(item.Id, selectedProducts) >= 0 ? true : false;
+        });
+    };
+
+    var addWinlostColumnsWhenOnlyOneProduct = function (product, startHeaderIndex, startColumnIndex) {
+        var name = nomalizeProductName(product.Name);
+
+        var companyWLHeader = $.extend(true, {}, window.sampleCompanyWLHeader);
+        companyWLHeader.Name = companyWLHeader.NameCache = name + "Winlost";
+        gridOption.groupHeaderRows[0].Columns.splice(startHeaderIndex, 0, companyWLHeader);
+
+        var winlostCol = $.extend(true, {}, window.sampleWinlostCol);
+        winlostCol.Name = winlostCol.NameCache = name + "Winlost";
+        gridOption.columns.splice(startColumnIndex, 0, winlostCol);
+    };
+
+    var addWinlostColumnsWhenOverTwoProducts = function (products, startHeaderIndex, startColumnIndex) {
+        var productCount = products.length;
+
+        for (var i = 0; i < productCount; i++) {
+            var name = nomalizeProductName(products[i].Name);
+
+            if (i === 0) {
+                // for header
+                var companyWLHeader = $.extend(true, {}, window.sampleCompanyWLHeader);
+                companyWLHeader.Name = companyWLHeader.NameCache = name + "Winlost";
+                companyWLHeader.MergeColNumber = productCount + 1;
+                gridOption.groupHeaderRows[0].Columns.splice(startHeaderIndex, 0, companyWLHeader);
+            }
+
+            var winlostCol = $.extend(true, {}, window.sampleWinlostCol);
+            winlostCol.HeaderCaption = winlostCol.HeaderText = window.MSG[name];
+            winlostCol.Name = winlostCol.NameCache = name + "Winlost";
+            delete winlostCol.IsCurrency;
+            gridOption.columns.splice(startColumnIndex + i, 0, winlostCol);
+        }
+
+        var totalWinlostCol = $.extend(true, {}, window.sampleWinlostCol);
+        totalWinlostCol.HeaderCaption = window.MSG['Total'];
+        totalWinlostCol.HeaderText = window.MSG['Total'];
+        delete totalWinlostCol.IsCurrency;
+        gridOption.columns.splice(startColumnIndex + productCount, 0, totalWinlostCol);
+    };
+
+    var addWinlostColumnsForProducts = function (products, startHeaderIndex, startColumnIndex) {
+        var productCount = products.length;
+
+        if (productCount === 0) {
+            return;
+        }
+
+        if (productCount === 1) {
+            addWinlostColumnsWhenOnlyOneProduct(products[0], startHeaderIndex, startColumnIndex);
+        } else {
+            addWinlostColumnsWhenOverTwoProducts(products, startHeaderIndex, startColumnIndex);
+        }
+    };
 
     // isUseBaseCurrency: add postfix "Base" to all currency columns
-    function initProductColumnsForGridOption() {
-        var startTurnoverPosition = turnoverPosition;
+    var customizeGridOption = function (sampleGridOption) {
 
-        if ($("#GroupBy").val() === GROUP_BY_MONTH) {
-            // remove exchange rate column.
-            _gridOption.groupHeaderRows[0].Columns.splice(exRatePosition, 1);
-            _gridOption.columns.splice(exRatePosition, 1);
+        gridOption = $.extend(true, {}, sampleGridOption);
+        var byAffiliate = $('#ByAffiliate').length > 0;
+        playerWinlossUrl = byAffiliate ? AFFILIATE.getAbsoluteUrl("Report/PlayerWinlossByAffiliate") : AFFILIATE.getAbsoluteUrl("Report/PlayerWinloss");
 
-            // update the position of turnover column.
-            startTurnoverPosition = startTurnoverPosition - 1;
-            _gridOption.numberOfFrozenColumn = 2;
+        var startTurnoverPosition = TURNOVER_COL_INDEX;
 
-            _gridOption.groupHeaderRows[0].Columns[0].HeaderText = MSG.Month;
-            _gridOption.columns[0].HeaderText = MSG.Month;
-            _gridOption.columns[0].FormatDateTime = AFFILIATE.DATE_FORMAT_MONTH;
-        } else {
-            switch ($('#BaseCurrency').val()) {
-                case MEMBER_CURRENCY_OPTION:
-                    _gridOption.groupHeaderRows[0].Columns.splice(EXRATE_INDEX, 1);
-                    _gridOption.columns.splice(EXRATE_INDEX, 1);
+        switch (submitOptions.GroupBy) {
+            case GROUP_BY_MONTH:
+                startTurnoverPosition = changeGridOptionWhenGroupByMonth();
 
-                    startTurnoverPosition = startTurnoverPosition - 1;
-                    _gridOption.numberOfFrozenColumn = 2;
-
-                    break;
-                case AFF_CURRENCY_OPTION:
-                    _gridOption.groupHeaderRows[0].Columns[exRatePosition].HeaderText = MSG.UnitPerBaseCurrency.format($('#BaseCurrency option:selected').text());
-                    _gridOption.groupHeaderRows[0].Columns[exRatePosition].Name = "AffExRate";
-                    _gridOption.columns[exRatePosition].Name = "AffExRate";
-                    break;
-            }
+                break;
+            case GROUP_BY_DATE:
+                startTurnoverPosition = changeGridOptionWhenGroupByDate(byAffiliate);
+                break;
         }
 
-        // generarte turnover/winlost columns based on products
-        var productCount = PRODUCTS.length;
+        var products = getSelectProducts(window.PRODUCTS);
 
-        // for turnover cols
-        if (productCount > 1) {
-            for (var i = 0; i < productCount; i++) {
-                var name = nomalizeProductName(PRODUCTS[i].Name);
+        //var products = window.PRODUCTS;
 
-                if (i == 0) {
-                    var turnoverHeader = $.extend(true, {}, sampleTurnoverHeader);
-                    turnoverHeader.Name = name + "Turnover";
-                    turnoverHeader.NameCache = name + "Turnover";
-                    turnoverHeader.MergeColNumber = productCount + 1;
-                    _gridOption.groupHeaderRows[0].Columns.splice(startTurnoverPosition, 0, turnoverHeader);
-                }
+        addTurnoverColumnsForProducts(products, startTurnoverPosition);
 
-                var turnoverCol = { HeaderCaption: MSG[name], HeaderText: MSG[name], Width: 110, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true };
-                _gridOption.columns.splice(startTurnoverPosition + i, 0, turnoverCol);
-            }
-        }
+        addWinlostColumnsForProducts(products, gridOption.groupHeaderRows[0].Columns.length, gridOption.columns.length);
+    };
 
-        var totalTurnoverCol = $.extend(true, {}, sampleTotalTurnoverCol);
-
-        if (productCount > 1) {
-            totalTurnoverCol.HeaderCaption = MSG['Total'];
-            totalTurnoverCol.HeaderText = MSG['Total'];
-            delete totalTurnoverCol.IsCurrency;
-            _gridOption.columns.splice(startTurnoverPosition + productCount, 0, totalTurnoverCol);
-
-        } else {
-            _gridOption.columns.splice(startTurnoverPosition + productCount, 0, totalTurnoverCol);
-        }
-
-        // for win-loss cols
-        if (productCount > 2) {
-            for (var i = 0; i < productCount; i++) {
-                var name = nomalizeProductName(PRODUCTS[i].Name);
-
-                if (i == 0) {
-                    var companyWLHeader = $.extend(true, {}, sampleCompanyWLHeader);
-                    companyWLHeader.Name = name + "Winlost";
-                    companyWLHeader.NameCache = name + "Winlost";
-                    companyWLHeader.MergeColNumber = productCount + 1;
-                    _gridOption.groupHeaderRows[0].Columns.push(companyWLHeader);
-                }
-
-                var winlostCol = { HeaderCaption: MSG[name], HeaderText: MSG[name], Width: 110, Name: name + "Winlost", NameCache: name + "Winlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true };
-                _gridOption.columns.push(winlostCol);
-            }
-        }
-
-        var totalWinlostCol = $.extend(true, {}, sampleTotalWinlostCol);
-
-        if (productCount > 1) {
-            totalWinlostCol.HeaderCaption = MSG['Total'];
-            totalWinlostCol.HeaderText = MSG['Total'];
-            delete totalWinlostCol.IsCurrency;
-            _gridOption.columns.splice(_gridOption.columns.length, 0, totalWinlostCol);
-
-        } else {
-            _gridOption.columns.splice(_gridOption.columns.length, 0, totalWinlostCol);
-        }
-
-        if (productCount == 1) {
-            _gridOption.customizeHeader = false;
-        }
-    }
-
-    function renameCurrencyColumns(baseCurrency) {
-        var suffix = '';
+    var getColumnSuffix = function (baseCurrency) {
+        var suffix;
 
         switch (baseCurrency) {
             case SYS_CURRENCY_OPTION:
@@ -129,30 +227,41 @@
             case AFF_CURRENCY_OPTION:
                 suffix = '_Aff';
                 break;
+            default:
+                suffix = '';
+                break;
         }
 
-        _freezeColumnCount = _gridOption.numberOfFrozenColumn;
-        for (var i = _freezeColumnCount; i < _gridOption.columns.length; i++) {
-            var col = _gridOption.columns[i];
+        return suffix;
+    };
+
+    var renameCurrencyColumns = function (baseCurrency) {
+        var suffix = getColumnSuffix(baseCurrency);
+        var startIndex = gridOption.numberOfFrozenColumn;
+        var col;
+        var i;
+
+        for (i = startIndex; i < gridOption.columns.length; i++) {
+            col = gridOption.columns[i];
             if (col.NameCache) {
                 col.Name = col.NameCache + suffix;
             }
         }
 
-        for (var i = _freezeColumnCount; i < _gridOption.groupHeaderRows[0].Columns.length; i++) {
-            var col = _gridOption.groupHeaderRows[0].Columns[i];
+        for (i = startIndex; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
+            col = gridOption.groupHeaderRows[0].Columns[i];
             if (col.NameCache) {
                 col.Name = col.NameCache + suffix;
             }
         }
-    }
+    };
 
     function getBodyRows(groups, sampleRequest) {
         if (groups.length == 0)
             return [];
 
         var bodyRows = [];
-        var mergeCols = _gridOption.numberOfFrozenColumn;
+        var mergeCols = gridOption.numberOfFrozenColumn;
 
         var groupBy = $("#GroupBy").val();
         var groupByText = $.trim($("#GroupBy option:selected").text());
@@ -166,6 +275,7 @@
             var firstMemberCurrency = companyWinlossInMemberCurrencies[0].Currency;
 
             if ((groupBy == 0 && groupByText == group.Level) || (groupBy == 1 && groupByText == group.Level)) {
+
                 $.each(companyWinlossInMemberCurrencies, function (idx, item) {
                     var columns = [];
                     if (idx == 0) {
@@ -193,7 +303,7 @@
                                 request.ToDate = toDate;
 
                                 // get paras for request object
-                                var url = _playerWinlossUrl + "?" + jQuery.param(request);
+                                var url = playerWinlossUrl + "?" + jQuery.param(request);
 
                                 return "<a href={0}>".format(url) + obj.format(formatDateTime) + "</a>";
 
@@ -201,8 +311,8 @@
                         });
                     }
 
-                    for (var i = 1; i < _gridOption.columns.length; i++) {
-                        var col = _gridOption.columns[i];
+                    for (var i = 1; i < gridOption.columns.length; i++) {
+                        var col = gridOption.columns[i];
                         columns.push({ Value: item[col.Name], Name: col.Name });
                     }
 
@@ -214,8 +324,8 @@
                     totalColums.push({ Value: MSG.SubTotalIn.format(System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
                     var startIndex = mergeCols;
 
-                    for (var i = startIndex; i < _gridOption.columns.length; i++) {
-                        var col = _gridOption.columns[i];
+                    for (var i = startIndex; i < gridOption.columns.length; i++) {
+                        var col = gridOption.columns[i];
                         var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
 
                         totalColums.push({ Value: companyWinlossInSystemCurrency[colName], Name: col.Name });
@@ -224,7 +334,7 @@
                     bodyRows.push({ Columns: totalColums, CssClass: "sub-total-group" });
                 }
             } else {
-                renderSubTotal(bodyRows, group);
+                renderSubTotalInBodyReport(bodyRows, group);
             }
         });
         return bodyRows;
@@ -235,18 +345,21 @@
             return true;
         }
 
-        if (firstMemberCurrency !== System.Currency && selectedBaseCurrency !== SYS_CURRENCY_OPTION) {
+        if (firstMemberCurrency !== window.System.Currency && selectedBaseCurrency !== SYS_CURRENCY_OPTION) {
             return true;
         }
 
         return false;
     }
 
-    function renderSubTotal(bodyRows, group) {
+    function renderSubTotalInBodyReport(group) {
+        var subTotalRows = [];
+
         var companyWinlossInMemberCurrencies = group.CompanyWinlossInMemberCurrencies;
         var companyWinlossInSystemCurrency = group.CompanyWinlossInSystemCurrency;
         var memberCurrencyCount = companyWinlossInMemberCurrencies.length;
-        var mergeCols = _gridOption.numberOfFrozenColumn;
+
+        var mergeCols = gridOption.numberOfFrozenColumn;
         var groupBy = $("#GroupBy").val();
         var baseCurrency = $('#BaseCurrency').val();
         var firstMemberCurrency = companyWinlossInMemberCurrencies[0].Currency;
@@ -273,27 +386,29 @@
                     }
                 }
 
-                for (var i = startIndex; i < _gridOption.columns.length; i++) {
-                    var col = _gridOption.columns[i];
+                for (var i = startIndex; i < gridOption.columns.length; i++) {
+                    var col = gridOption.columns[i];
                     columns.push({ Value: item[col.Name], Name: col.Name });
                 }
 
-                bodyRows.push({ Columns: columns, CssClass: 'currency-range' });
+                subTotalRows.push({ Columns: columns, CssClass: 'currency-range' });
             });
+
+            return subTotalRows;
         }
 
         var totalColums = [];
         totalColums.push({ Value: MSG.TotalRangeIn.format(suffix, System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
         var startIndex = mergeCols;
 
-        for (var i = startIndex; i < _gridOption.columns.length; i++) {
-            var col = _gridOption.columns[i];
+        for (var i = startIndex; i < gridOption.columns.length; i++) {
+            var col = gridOption.columns[i];
             var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
 
             totalColums.push({ Value: companyWinlossInSystemCurrency[colName], Name: col.Name });
         }
 
-        bodyRows.push({ Columns: totalColums, CssClass: 'total-range' });
+        subTotalRows.push({ Columns: totalColums, CssClass: 'total-range' });
     }
 
     function getSuffix(group, groupBy) {
@@ -309,7 +424,7 @@
     }
 
     function getFooterRows(totalData, hasShowSubTotalRow) {
-        var mergeCols = _gridOption.numberOfFrozenColumn;
+        var mergeCols = gridOption.numberOfFrozenColumn;
         var companyWinlossInMemberCurrencies = totalData.CompanyWinlossInMemberCurrencies;
         var memberCurrencyCount = companyWinlossInMemberCurrencies.length;
         var groupBy = $("#GroupBy").val();
@@ -342,8 +457,8 @@
                     startIndex += 1;
                 }
 
-                for (var i = startIndex; i < _gridOption.columns.length; i++) {
-                    var col = _gridOption.columns[i];
+                for (var i = startIndex; i < gridOption.columns.length; i++) {
+                    var col = gridOption.columns[i];
                     columns.push({ Value: item[col.Name], Name: col.Name });
                 }
 
@@ -369,8 +484,8 @@
                 columns.push({ Value: '', Name: "Currency", MergeColNumber: 1 });
             }
 
-            for (var i = startIndex; i < _gridOption.columns.length; i++) {
-                var col = _gridOption.columns[i];
+            for (var i = startIndex; i < gridOption.columns.length; i++) {
+                var col = gridOption.columns[i];
                 columns.push({ Value: '', Name: col.Name });
             }
 
@@ -384,49 +499,58 @@
         totalColums.push({ Value: MSG.TotalAllIn.format(System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
         var startIndex = mergeCols;
 
-        for (var i = startIndex; i < _gridOption.columns.length; i++) {
-            var col = _gridOption.columns[i];
+        for (var i = startIndex; i < gridOption.columns.length; i++) {
+            var col = gridOption.columns[i];
             var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
 
             totalColums.push({ Value: companyWinlossInSystemCurrency[colName], Name: col.Name });
         }
 
         footerRows.push({ Columns: totalColums, CssClass: 'total-whole-range' });
-        
+
 
         return footerRows;
     }
 
-    function changeHeaderCaptions(baseCurrency) {
-        var text;
+    var getSymbolCurrency = function (baseCurrency) {
+        var symbolCurrency;
 
         switch (baseCurrency) {
             case SYS_CURRENCY_OPTION:
-                text = " (" + System.Prefix + ")";
+                symbolCurrency = " (" + window.System.Prefix + ")";
                 break;
             case AFF_CURRENCY_OPTION:
-                text = " (" + $('#AffiliateCurrencySymbol').val() + ")";
+                symbolCurrency = " (" + $('#AffiliateCurrencySymbol').val() + ")";
                 break;
             default:
-                text = "";
+                symbolCurrency = "";
                 break;
         }
 
-        for (var i = 0; i < _gridOption.columns.length; i++) {
-            var col = _gridOption.columns[i];
+        return symbolCurrency;
+    };
+
+    var changeHeaderCaptions = function (baseCurrency) {
+        var text = getSymbolCurrency(baseCurrency);
+        var i;
+        var col;
+
+        for (i = 0; i < gridOption.columns.length; i++) {
+            col = gridOption.columns[i];
             if (col.IsCurrency)
                 col.HeaderText = col.HeaderCaption + text;
         }
 
-        for (var i = 0; i < _gridOption.groupHeaderRows[0].Columns.length; i++) {
-            var col = _gridOption.groupHeaderRows[0].Columns[i];
+        for (i = 0; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
+            col = gridOption.groupHeaderRows[0].Columns[i];
             if (col.IsCurrency)
                 col.HeaderText = col.HeaderCaption + text;
         }
-    }
-    function nomalizeProductName(name) {
+    };
+
+    var nomalizeProductName = function (name) {
         return name.replace(/ /g, "");
-    }
+    };
 
     return {
         init: function () {
@@ -464,15 +588,15 @@
                         fromDate = '01 ' + fromDate;
 
                         if (AFFILIATE.compareDate(minDate, fromDate) === 1) {
-                            fromDate = moment(minDate).format(format);
+                            fromDate = window.moment(minDate).format(format);
                         }
 
                         // get the last day of month
-                        var obj = moment('01 ' + toDate);
+                        var obj = window.moment('01 ' + toDate);
                         toDate = obj.add('months', 1).add('days', -1).format(format);
 
                         if (AFFILIATE.compareDate(maxDate, toDate) === -1) {
-                            toDate = moment(maxDate).format(format);
+                            toDate = window.moment(maxDate).format(format);
                         }
                     }
 
@@ -492,11 +616,11 @@
             });
 
             $('#gridId').on('click', '.toggle-indicator', function () {
-                subTotalStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS;
-                AFFILIATE.resetToggleIndicator(_gridOption);
+                window.subTotalStatus = window.subTotalStatus == window.COLLAPSE_SUBTOTAL_STATUS ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
+                AFFILIATE.resetToggleIndicator(gridOption);
             });
-
         },
+
         checkRangeTime: function () {
             $('#FromDate, #ToDate').removeClass('input-validation-error');
 
@@ -543,20 +667,35 @@
             }
         },
 
+        checkAtLeastOneSelectedProduct: function () {
+            var selectedProducts = $('#Products').val();
+
+            if (selectedProducts === null || selectedProducts === undefined || selectedProducts.length === 0) {
+                return false;
+            }
+
+            return true;
+        },
+
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
             if (!CompanyWinlossReport.checkRangeTime()) {
-                alert(MSG.RangeTime3Months);
-            } else {
-                submitOptions = $('form').serializeObject2();
-                submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
-                submitOptions["SortBy"] = $('#SortBy').val();
-                CompanyWinlossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+                alert(window.MSG.RangeTime3Months);
+                return;
             }
+
+            if (!CompanyWinlossReport.checkAtLeastOneSelectedProduct()) {
+                alert(window.MSG.ChooseAtLeastOneProduct);
+                return;
+            }
+
+            submitOptions = $('form').serializeObject2();
+            submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
+            submitOptions["SortBy"] = $('#SortBy').val();
+            CompanyWinlossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
-            var baseCurrency = $("#BaseCurrency").val();
 
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Report/CompanyWinloss"),
@@ -567,14 +706,14 @@
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    _gridOption = $.extend(true, {}, sampleGridOption);
-                    _commonColumnCount = _gridOption.columns.length;
-                    initProductColumnsForGridOption();
 
-                    renameCurrencyColumns(baseCurrency);
-                    changeHeaderCaptions(baseCurrency);
+                    customizeGridOption(window.sampleGridOption);
 
-                    _gridOption.pagerOption = {
+                    //renameCurrencyColumns(submitOptions.BaseCurrency);
+
+                    //changeHeaderCaptions(submitOptions.BaseCurrency);
+
+                    gridOption.pagerOption = {
                         itemsPerPage: data.ItemsPerPage,
                         itemsPerPageArray: AFFILIATE.pageSizes,
                         currentPage: data.CurrentPage,
@@ -582,20 +721,20 @@
                         pagerSelectCallBack: CompanyWinlossReport.ReRenderAfterPaged
                     };
 
-                    _gridOption.titleInfo.text = MSG.CompanyWinlossTitle + ' [{0}]'.format(data.TotalItem);
+                    gridOption.titleInfo.text = window.MSG.CompanyWinlossTitle + ' [{0}]'.format(data.TotalItem);
 
                     if (data.TotalItem > 0) {
-                        _gridOption.bodyRows = getBodyRows(data.Groups, submitOptions);
-                        _gridOption.footerRows = getFooterRows(data.TotalData, data.HasShowSubTotalRow);
+                        gridOption.bodyRows = getBodyRows(data.Groups, submitOptions);
+                        gridOption.footerRows = getFooterRows(data.TotalData, data.HasShowSubTotalRow);
                     }
 
-                    $('#gridId').removeClass("noinfo").fanexGrid(_gridOption);
+                    $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 
                     if (data.TotalItem == 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
                     } else {
-                        AFFILIATE.resetToggleIndicator(_gridOption);
+                        AFFILIATE.resetToggleIndicator(gridOption);
                     }
 
                     AFFILIATE.updateSearchPanel($('#gridId'));

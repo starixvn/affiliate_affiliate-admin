@@ -518,7 +518,6 @@
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
 
-
             if (!MemberWinlossReport.checkRangeTime()) {
                 alert(window.MSG.RangeTime3Months);
                 return;
@@ -585,8 +584,7 @@
                     $.unblockUI();
                 }
             });
-        },
-        
+        }
     };
 } (jQuery);
 

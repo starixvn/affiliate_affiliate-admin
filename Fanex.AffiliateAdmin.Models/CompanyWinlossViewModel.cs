@@ -7,6 +7,8 @@
 //   <change who="Brian.Dinh" date="2013.10.16">Created</change>
 // </history>
 
+using System.Linq;
+
 namespace Fanex.AffiliateAdmin.Models
 {
     using System.Collections.Generic;
@@ -54,6 +56,8 @@ namespace Fanex.AffiliateAdmin.Models
         public int GroupId { get; set; }
 
         public bool ExcludeTest { get; set; }
+
+        public string Products { get; set; }
 
         public MultiSelectList AffTypeOptionList
         {
@@ -128,6 +132,22 @@ namespace Fanex.AffiliateAdmin.Models
                 }
 
                 return _baseCurrencyOptionList;
+            }
+        }
+
+        public MultiSelectList ProductOptionList
+        {
+            get
+            {
+                var productList = string.IsNullOrEmpty(Products)
+                                      ? new List<byte>()
+                                      : Products.Split(',').Select(byte.Parse);
+
+                var selectedValues = string.IsNullOrEmpty(Products)
+                                         ? AppSettings.Products.Select(t => t.ProductID)
+                                         : productList;
+
+                return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);
             }
         }
     }

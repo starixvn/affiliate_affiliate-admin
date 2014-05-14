@@ -4,6 +4,10 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
@@ -25,6 +29,9 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public DateTime MonthDate { get; set; }
 
+        [SpParam(SqlParamName = "ProductIds")]
+        public string Products { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_QualifiedMembersReport";
@@ -32,7 +39,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public override bool IsValid()
         {
-            return true;
+            return !string.IsNullOrEmpty(Products);
         }
     }
 }

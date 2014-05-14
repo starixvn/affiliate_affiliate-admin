@@ -569,6 +569,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Affiliate Commission.
+        /// </summary>
+        public static string AffiliateCommission {
+            get {
+                return ResourceManager.GetString("AffiliateCommission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate Domains.
         /// </summary>
         public static string AffiliateDomains {

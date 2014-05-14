@@ -50,6 +50,8 @@ namespace Fanex.AffiliateAdmin.Models
         public CommissionReportViewModel()
         {
             ExcludeTest = true;
+            FromDate = new DateTime(2013, 10, 1);
+            ToDate = new DateTime(2013, 12, 1);
         }
 
         public string Affiliate { get; set; }
@@ -67,6 +69,8 @@ namespace Fanex.AffiliateAdmin.Models
         public DateTime? FromDate { get; set; }
 
         public DateTime? ToDate { get; set; }
+
+        public string Products { get; set; }
 
         public IEnumerable<SelectListItem> AffTypeOptionList
         {
@@ -196,6 +200,22 @@ namespace Fanex.AffiliateAdmin.Models
                 }
 
                 return _sortByOptionList;
+            }
+        }
+
+        public MultiSelectList ProductOptionList
+        {
+            get
+            {
+                var productList = string.IsNullOrEmpty(Products)
+                                      ? new List<byte>()
+                                      : Products.Split(',').Select(byte.Parse);
+
+                var selectedValues = string.IsNullOrEmpty(Products)
+                                         ? AppSettings.Products.Select(t => t.ProductID)
+                                         : productList;
+
+                return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);
             }
         }
     }

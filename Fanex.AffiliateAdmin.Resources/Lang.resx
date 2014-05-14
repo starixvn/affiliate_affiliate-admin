@@ -2525,4 +2525,7 @@
   <data name="PlaytechCasino" xml:space="preserve">
     <value>Playtech Casino</value>
   </data>
+  <data name="AffiliateCommission" xml:space="preserve">
+    <value>Affiliate Commission</value>
+  </data>
 </root>

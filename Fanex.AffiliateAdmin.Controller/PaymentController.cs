@@ -18,7 +18,6 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Entities;
     using Core.Enumerations;
     using Core.Filter;
-    using Core.Services.Interface;
     using Core.Session;
     using Core.Utilities;
     using Criterias;
@@ -41,8 +40,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// Initializes a new instance of the <see cref="PaymentController" /> class.
         /// </summary>
         /// <param name="service">Payment service.</param>
-        /// <param name="systemSetting">System settings service.</param>
-        public PaymentController(IPaymentService service, ISystemSettingService systemSetting)
+        public PaymentController(IPaymentService service)
         {
             _paymentService = service;
         }
@@ -64,7 +62,7 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         /// <summary>
-        /// Payment list.
+        /// Payment list. 
         /// </summary>
         /// <param name="criteria">Payment Criteria.</param>
         /// <returns>Action Result.</returns>
@@ -73,29 +71,29 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             criteria.IsITAdmin = SessionManager.CurrentSession.IsIT;
 
-            var data = _paymentService.GetPayments(criteria);
+            var data = _paymentService.GetPayments(criteria).ToList();
 
-            var subTotalRow = 
+            var subTotalRow =
                 from p in data
                 group p by p.Currency into g
                 select new { Currency = g.Key, Amt = g.Sum(p => p.Amt), ConvertedAmt = g.Sum(p => p.ConvertedAmt) };
 
             var totalRow = from x in data
-                        group x by 1
-                        into g
-                        select new
-                        {
-                            Currency = AppSettings.BaseExchange.Code,
-                            Amt = g.Sum(y => y.ConvertedAmt),
-                            ConvertedAmt = g.Sum(p => p.ConvertedAmt)
-                        };
+                           group x by 1
+                               into g
+                               select new
+                               {
+                                   Currency = AppSettings.BaseExchange.Code,
+                                   Amt = g.Sum(y => y.ConvertedAmt),
+                                   ConvertedAmt = g.Sum(p => p.ConvertedAmt)
+                               };
 
             return Json(new
             {
                 List = data,
                 SubTotal = subTotalRow,
                 Total = totalRow
-            });
+            }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -153,7 +151,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 UpdatePayment(criteria, paymentDetail.AffId, paymentDetail.RefId, paymentDetail.TransferAmount);
                 model.PaymentDetail = paymentDetail;
-                
+
                 if (criteria.ErrCode == 0)
                 {
                     var emailType = criteria.Status.ToLower() == "approved" ? EmailTemplateType.PaymentApprove : EmailTemplateType.PaymentCancel;
@@ -242,12 +240,12 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             _paymentService.UpdateCashBack(criteria);
 
-             var result = new ResultViewModel
-             {
-                 Success = criteria.ErrCode == 0,
-                 ErrorCode = criteria.ErrCode,
-                 Message = criteria.ErrCode == 0 ? string.Empty : ErrorMessage(criteria.ErrCode)
-             };
+            var result = new ResultViewModel
+            {
+                Success = criteria.ErrCode == 0,
+                ErrorCode = criteria.ErrCode,
+                Message = criteria.ErrCode == 0 ? string.Empty : ErrorMessage(criteria.ErrCode)
+            };
 
             return Json(result);
         }
@@ -423,7 +421,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 _paymentService.UpdatePayment(criteria);
             }
-        } 
+        }
 
         #endregion
     }

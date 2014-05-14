@@ -7,6 +7,8 @@
 //   <change who="Leo.Vo" date="2013.8.21">Created</change>
 // </history>
 
+using System.Collections.Generic;
+
 namespace Fanex.AffiliateAdmin.Models
 {
     using System.ComponentModel.DataAnnotations;
@@ -46,6 +48,8 @@ namespace Fanex.AffiliateAdmin.Models
 
         [Display(Name = "BaseCurrency", ResourceType = typeof(Lang))]
         public string BaseCurrency { get; set; }
+
+        public string Products { get; set; }
 
         public MultiSelectList AffTypeOptionList
         {
@@ -91,5 +95,21 @@ namespace Fanex.AffiliateAdmin.Models
 
         [Display(Name = "ExcludeTestAccounts", ResourceType = typeof(Lang))]
         public bool ExcludeTest { get; set; }
+
+        public MultiSelectList ProductOptionList
+        {
+            get
+            {
+                var productList = string.IsNullOrEmpty(Products)
+                                      ? new List<byte>()
+                                      : Products.Split(',').Select(byte.Parse);
+
+                var selectedValues = string.IsNullOrEmpty(Products)
+                                         ? AppSettings.Products.Select(t => t.ProductID)
+                                         : productList;
+
+                return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);
+            }
+        }
     }
 }

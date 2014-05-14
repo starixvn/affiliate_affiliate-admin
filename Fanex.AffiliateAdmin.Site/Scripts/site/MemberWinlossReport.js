@@ -1,4 +1,6 @@
 ﻿var MemberWinlossReport = function ($) {
+    "use strict";
+    
     var submitOptions = {};
 
     var MEMBER_CURRENCY_OPTION = '0';
@@ -55,7 +57,7 @@
         }
     };
 
-    var getSelectProducts = function (products) {
+    var getSelectedProducts = function (products) {
         var selectedProducts = $.map(submitOptions.Products.split(','), function (item) {
             return parseInt(item, 10);
         });
@@ -211,7 +213,7 @@
 
         //window.PRODUCTS = [{ Id: 1, Name: "Sportsbook"}];
 
-        var products = getSelectProducts(window.PRODUCTS);
+        var products = getSelectedProducts(window.PRODUCTS);
 
         addTurnoverColumnsForProducts(products, startTurnoverPosition);
 
@@ -463,7 +465,7 @@
             });
 
             $('#gridId').on('click', '.toggle-indicator', function () {
-                window.subTotalStatus = window.subTotalStatus == window.COLLAPSE_SUBTOTAL_STATUS ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
+                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
                 AFFILIATE.resetToggleIndicator(gridOption);
             });
         },
@@ -504,10 +506,10 @@
                 return true;
             }
         },
-        
-        checkAtLeastOneSelectedProduct: function() {
+
+        checkAtLeastOneSelectedProduct: function () {
             var selectedProducts = $('#Products').val();
-            
+
             if (selectedProducts === null || selectedProducts === undefined || selectedProducts.length === 0) {
                 return false;
             }
@@ -522,12 +524,12 @@
                 alert(window.MSG.RangeTime3Months);
                 return;
             }
-            
+
             if (!MemberWinlossReport.checkAtLeastOneSelectedProduct()) {
                 alert(MSG.ChooseAtLeastOneProduct);
                 return;
             }
-            
+
             submitOptions = $('form').serializeObject2();
             submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
             MemberWinlossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
@@ -589,5 +591,6 @@
 } (jQuery);
 
 $(function () {
+    "use strict";
     MemberWinlossReport.init();
 });

@@ -1,80 +1,95 @@
-﻿var Payment = function ($) {
+﻿var Payment = (function ($) {
+    "use strict";
+    
     var gridOption = {};
+    var submitOptions = {};
 
     return {
-        init: function () {
+        init: function() {
 
-            $("#gridId").resize(function () {
+            $("#gridId").resize(function() {
                 $(".search-panel").width($(this).width());
             });
 
-            $("#GetAll").click(function () {
+            $("#GetAll").click(function() {
                 var isChecked = $(this).is(':checked');
                 Payment.toggleGetAllChecked(isChecked);
             });
 
-            $('#btnSubmit').click(function () {
-                Payment.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            //            $('#btnSubmit').click(function () {
+            //                Payment.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            //                return false;
+            //            });
+
+            $('form').submit(function() {
+                Payment.submitRequest();
                 return false;
             });
 
-            $('#DateOption').change(function () {
+            $('#DateOption').change(function() {
                 if ($('#DateOption').val() == "0") {
                     $("#FromDate").attr("disabled", "disabled");
                     $("#ToDate").attr("disabled", "disabled");
-                }
-                else {
+                } else {
                     $("#FromDate").removeAttr("disabled");
                     $("#ToDate").removeAttr("disabled");
                 }
             }).change();
 
             if ($('#gridId').length > 0) {
-                Payment.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+                //Payment.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+                Payment.submitRequest();
             }
 
-            $('#gridId').on('click', '.toggle-indicator', function () {
-                subTotalStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS;
+            $('#gridId').on('click', '.toggle-indicator', function() {
+                window.subTotalStatus = window.subTotalStatus == window.COLLAPSE_SUBTOTAL_STATUS ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
                 AFFILIATE.resetToggleIndicator(gridOption);
             });
 
         },
-        toggleGetAllChecked: function (isChecked) {
+        toggleGetAllChecked: function(isChecked) {
             if (isChecked) {
                 $("#Status").attr("disabled", "disabled");
                 $("#FromDate").attr("disabled", "disabled");
                 $("#ToDate").attr("disabled", "disabled");
-            }
-            else {
+            } else {
                 $("#Status").removeAttr("disabled", "disabled");
                 $("#FromDate").removeAttr("disabled", "disabled");
                 $("#ToDate").removeAttr("disabled", "disabled");
             }
         },
-        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
+
+        submitRequest: function() {
+            AFFILIATE.trimBeforeSubmit();
+
+            submitOptions = $('form').serializeObject2();
+            submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
+            Payment.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+        },
+
+        ReRenderAfterPaged: function(currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = $.extend(true, {}, sampleGridOption);
+            gridOption = $.extend(true, {}, window.sampleGridOption);
             gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
 
             AFFILIATE.trimBeforeSubmit();
+            var url = AFFILIATE.getAbsoluteUrl("Payment/DataList");
 
-            $.ajax({ url: AFFILIATE.getAbsoluteUrl("Payment/DataList"),
+            $.ajax({
+                url: url,
                 type: 'post',
-                data: "Username=" + $("#Username").val() + "&Status=" + $("#Status").val() + "&AffType=" + $("#AffType").val()
-                     + "&PreferredLanguage=" + $("#PreferredLanguage").val() + "&Currency=" + $("#Currency").val() + "&DateOption=" + $("#DateOption").val()
-                      + "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&BaseCurrency=" + $("#BaseCurrency").val()
-                      + "&SortBy=" + $("#SortBy").val() + "&ExcludeTest=" + $("#ExcludeTest").is(":checked"),
-                beforeSend: function () {
+                data: jQuery.param(submitOptions),
+                beforeSend: function() {
                     $.blockUI();
                 },
-                success: function (data) {
+                success: function(data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     $('#gridId').show();
                     //To define header has prefix "$" or not
-                    var headerColumns = columnsBase.slice(0);
-                    var colAmt = columnAmount;
-                    colAmt.HeaderText = $("#BaseCurrency").val() != "0" ? HeaderText + " (" + System.Prefix + ")" : HeaderText;
+                    var headerColumns = window.columnsBase.slice(0);
+                    var colAmt = window.columnAmount;
+                    colAmt.HeaderText = $("#BaseCurrency").val() != "0" ? HeaderText + " (" + window.System.Prefix + ")" : HeaderText;
                     colAmt.Name = $("#BaseCurrency").val() != "0" ? "ConvertedAmt" : "Amt";
 
                     headerColumns.push(colAmt);
@@ -97,59 +112,59 @@
 
                     if (data.List.length == 0) {
                         $('.status').hide();
-                        AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
+                        AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;
                     } else {
                         AFFILIATE.resetToggleIndicator(gridOption);
                         $('.status').show();
                     }
                 },
-                complete: function () {
+                complete: function() {
                     $.unblockUI();
                 }
             });
         },
 
-        genOneRow: function (columns, record, dataRow, startColIdx) {
+        genOneRow: function(columns, record, dataRow, startColIdx) {
             startColIdx = startColIdx == undefined ? 0 : startColIdx;
             dataRow = dataRow == undefined ? [] : dataRow;
 
             for (var i = startColIdx; i < columns.length; i++) {
-                (function () {
+                (function() {
                     var colName = columns[i].Name;
                     var col = columns[i];
                     dataRow.push({
                         Name: colName,
                         Value: record[colName],
-                        CustomCellRender: function (cell, cellFormated) {
+                        CustomCellRender: function(cell, cellFormated) {
                             if (col.Formatter) {
                                 return col.Formatter(record, cell, cellFormated);
                             } else
                                 return cellFormated;
                         }
                     });
-                } ());
+                }());
             }
 
             return dataRow;
         },
 
-        genFooterRow: function (gridOption, listSubTotalRows, colSpanSub, totalRow, colSpanTotal) {
+        genFooterRow: function(gridOption, listSubTotalRows, colSpanSub, totalRow, colSpanTotal) {
             var columns = gridOption.columns;
             var footerRows = [];
             var subRowLength = listSubTotalRows.length;
             var subRowCurrency = listSubTotalRows[0];
 
-            if (subRowLength > 1 || (subRowLength == 1 && subRowCurrency["Currency"] != System.Currency)) {
+            if (subRowLength > 1 || (subRowLength == 1 && subRowCurrency["Currency"] != window.System.Currency)) {
                 var realSubTotalclass = subRowLength > 1 ? 'cell-subtotal real-cell' : '';
                 var pseudoSubTotalclass = subRowLength > 1 ? 'cell-subtotal pseudo-cell' : '';
-                subTotalStatus = subRowLength > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
+                window.subTotalStatus = subRowLength > 1 ? window.subTotalStatus : window.EXPAND_SUBTOTAL_STATUS;
 
-                $.each(listSubTotalRows, function (idx, item) {
+                $.each(listSubTotalRows, function(idx, item) {
                     var colSubTotal = [];
 
                     if (idx == 0) {
-                        colSubTotal.push({ Value: Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: subRowLength, TdClass: realSubTotalclass });
+                        colSubTotal.push({ Value: window.Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: subRowLength, TdClass: realSubTotalclass });
                     }
 
                     colSubTotal = Payment.genOneRow(columns, item, colSubTotal, colSpanSub);
@@ -158,7 +173,7 @@
 
                 // pseudo sub total row
                 var colSubTotal = [];
-                colSubTotal.push({ Value: Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
+                colSubTotal.push({ Value: window.Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
                 colSubTotal.push({ Value: "", Name: "Currency" });
                 colSubTotal.push({ Value: "", Name: $("#BaseCurrency").val() != "0" ? "ConvertedAmt" : "Amt" });
                 footerRows.push({ Columns: colSubTotal, CssClass: "pseudo-subtotal" });
@@ -167,18 +182,18 @@
 
             //Total Row
             var colTotal = [];
-            colTotal.push({ Value: Lang.Total, Name: "RowID", MergeColNumber: colSpanTotal });
+            colTotal.push({ Value: window.Lang.Total, Name: "RowID", MergeColNumber: colSpanTotal });
             colTotal = Payment.genOneRow(columns, totalRow[0], colTotal, colSpanSub);
             footerRows.push({ Columns: colTotal, CssClass: "total" });
 
             return footerRows;
         },
 
-        updatePayment: function (transId) {
+        updatePayment: function(transId) {
             AFFILIATE.openDialogFrame("Payment/UpdatePayment?transId=" + transId, "Trxn.ID " + transId, { width: 500, height: 572 });
         }
-    }
-} (jQuery);
+    };
+}) (jQuery);
 
 $(function () {
     Payment.init();

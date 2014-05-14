@@ -36,6 +36,9 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public bool IsITAdmin { get; set; }
 
+        [SpParam(SqlParamName = "ProductIds")]
+        public string Products { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_CommissionSettle";

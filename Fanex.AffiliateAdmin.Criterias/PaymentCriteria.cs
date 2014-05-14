@@ -39,6 +39,9 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public bool ExcludeTest { get; set; }
 
+        [SpParam(SqlParamName = "ProductIds")]
+        public string Products { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_PaymentRequestSelList";

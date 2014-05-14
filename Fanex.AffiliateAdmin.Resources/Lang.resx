@@ -2522,4 +2522,7 @@
   <data name="ChooseAtLeastOneProduct" xml:space="preserve">
     <value>Please choose at least one product!</value>
   </data>
+  <data name="PlaytechCasino" xml:space="preserve">
+    <value>Playtech Casino</value>
+  </data>
 </root>

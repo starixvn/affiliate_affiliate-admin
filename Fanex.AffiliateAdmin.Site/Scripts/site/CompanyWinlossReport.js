@@ -17,7 +17,6 @@
     var TURNOVER_COL_INDEX = 8;
     var playerWinlossUrl;
 
-
     var removeExchangeRateCol = function () {
         gridOption.groupHeaderRows[0].Columns.splice(EXRATE_COL_INDEX, 1);
         gridOption.columns.splice(EXRATE_COL_INDEX, 1);
@@ -80,7 +79,6 @@
         gridOption.customizeHeader = false;
     };
 
-
     var addTurnoverColumnsWhenOverTwoProducts = function (products, startIndex) {
         var productCount = products.length;
 
@@ -101,7 +99,6 @@
             delete turnoverCol.IsCurrency;
             gridOption.columns.splice(startIndex + i, 0, turnoverCol);
         }
-
 
         // add total turnover column.
         var totalTurnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
@@ -709,9 +706,9 @@
 
                     customizeGridOption(window.sampleGridOption);
 
-                    //renameCurrencyColumns(submitOptions.BaseCurrency);
+                    renameCurrencyColumns(submitOptions.BaseCurrency);
 
-                    //changeHeaderCaptions(submitOptions.BaseCurrency);
+                    changeHeaderCaptions(submitOptions.BaseCurrency);
 
                     gridOption.pagerOption = {
                         itemsPerPage: data.ItemsPerPage,

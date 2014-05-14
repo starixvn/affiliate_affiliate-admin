@@ -442,7 +442,6 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
         private void GetCompanyWinlossColumnsBasedOnBaseCurrency(CompanyWinlossReportCriteria criteria, IDataReader reader, CompanyWinloss companyWinloss)
         {
             const byte MemberCurrency = 0;
-            const byte SystemCurrency = 1;
             const byte AffiliateCurrency = 2;
 
             GetCompanyWinlossColumnsInSystemCurrency(reader, companyWinloss);
@@ -456,7 +455,6 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             if (criteria.BaseCurrency == AffiliateCurrency)
             {
                 GetCompanyWinlossColumnsInAffiliateCurrency(reader, companyWinloss);
-                return;
             }
         }
 

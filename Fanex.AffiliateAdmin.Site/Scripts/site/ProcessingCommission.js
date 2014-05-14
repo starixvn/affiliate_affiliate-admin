@@ -1,4 +1,7 @@
-﻿var ProcessingCommission = function ($) {
+﻿/*global AFFILIATE,numeral*/
+var ProcessingCommission = (function ($) {
+    "use strict";
+
     var submitOptions = {};
 
     var SYS_CURRENCY_OPTION = 1;
@@ -6,42 +9,68 @@
 
     var gridOption = {};
 
+    var getSelectedProducts = function (products) {
+        var selectedProducts = $.map(submitOptions.Products.split(','), function (item) {
+            return parseInt(item, 10);
+        });
+
+        return $.grep(products, function (item) {
+            return $.inArray(item.Id, selectedProducts) >= 0 ? true : false;
+        });
+    };
+
+    var addProductColumns = function () {
+
+    };
+
     function customizeGridOption(hasCashbackDeduction) {
-        for (var i = 0; i < PRODUCTS.length; i++) {
-            var name = nomalizeProductName(PRODUCTS[i].Name);
+
+        gridOption = $.extend(true, {}, window.sampleGridOption);
+
+
+        addProductColumns();
+        var products = getSelectedProducts(window.PRODUCTS);
+
+        var productCount = products.length;
+
+        for (var i = 0; i < productCount; i++) {
+            var name = nomalizeProductName(products[i].Name);
 
             gridOption.groupHeaderRows[0].Columns.push(
-                { HeaderCaption: MSG[name], HeaderText: MSG[name], IsCurrency: true, Name: name + "Winloss", NameCache: name + "Winloss", MergeColNumber: 4 }
+                { HeaderCaption: window.MSG[name], HeaderText: window.MSG[name], IsCurrency: true, Name: name + "Winloss", NameCache: name + "Winloss", MergeColNumber: 4 }
             );
 
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: MSG.Winloss, HeaderText: MSG.Winloss, Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
+                { IsCurrency: true, HeaderCaption: window.MSG.Winloss, HeaderText: window.MSG.Winloss, Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
             gridOption.columns.push(
-                { IsCurrency: false, HeaderCaption: MSG.QM, HeaderText: MSG.QM, Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
+                { IsCurrency: false, HeaderCaption: window.MSG.QM, HeaderText: window.MSG.QM, Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
                     Formatter: function (rIndex, record, cell, cellFormated) {
-                        var actualBaseCurreny = $('#BaseCurrency').val() == "0" ? "2" : "1";
-                        var currency = actualBaseCurreny == "1" ? System.Currency : record.Currency;
+                        var actualBaseCurreny = $('#BaseCurrency').val() === "0" ? "2" : "1";
+                        var currency = actualBaseCurreny === "1" ? window.System.Currency : record.Currency;
 
-                        if (cellFormated)
-                            return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)'>{5}</a>".format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, cellFormated);
+                        if (cellFormated) {
+                            return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)'>{5}</a>".format(currency, record.Username, record.AffId, window.moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, cellFormated);
+                        }
+
                         return 0;
                     }
                 }
             );
             gridOption.columns.push(
-                { IsCurrency: false, HeaderCaption: MSG.CommPercent, HeaderText: MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER }
+                { IsCurrency: false, HeaderCaption: window.MSG.CommPercent, HeaderText: window.MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER }
             );
 
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: MSG.Commission, HeaderText: MSG.Commission, Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
+                { IsCurrency: true, HeaderCaption: window.MSG.Commission, HeaderText: window.MSG.Commission, Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
         }
 
         addCashbackColumns(hasCashbackDeduction);
 
-        gridOption.groupHeaderRows[0].Columns.push(totalPaymentHeader);
-        gridOption.columns.push(totalPaymentCol);
+        gridOption.groupHeaderRows[0].Columns.push(window.totalPaymentHeader);
+
+        gridOption.columns.push(window.totalPaymentCol);
     }
 
     function addCashbackColumns(hasCashbackDeduction) {
@@ -49,21 +78,22 @@
         if (hasCashbackDeduction) {
 
             gridOption.groupHeaderRows[0].Columns.push(
-                { HeaderCaption: MSG.Cashback, HeaderText: MSG.Cashback, IsCurrency: true, Name: "CashbackPercent", MergeColNumber: 2 }
+                { HeaderCaption: window.MSG.Cashback, HeaderText: window.MSG.Cashback, IsCurrency: true, Name: "CashbackPercent", MergeColNumber: 2 }
             );
 
             gridOption.columns.push(
-                { IsCurrency: false, HeaderCaption: MSG.DeductionPercent, HeaderText: MSG.DeductionPercent, Width: 80, Name: "CashbackPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER }
+                { IsCurrency: false, HeaderCaption: window.MSG.DeductionPercent, HeaderText: window.MSG.DeductionPercent, Width: 80, Name: "CashbackPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER }
             );
 
             gridOption.columns.push(
                 {
-                    IsCurrency: true, HeaderCaption: MSG.Amount, HeaderText: MSG.Amount, Width: 100, Name: "CashbackAmount", NameCache: "CashbackAmount", HeaderAlign: "center", CellAlign: "left", FormatNumber: AFFILIATE.FORMATNUMBER,
-                    Formatter: function (rIndex, record, cell, cellFormated) {
+                    IsCurrency: true, HeaderCaption: window.MSG.Amount, HeaderText: window.MSG.Amount, Width: 100, Name: "CashbackAmount", NameCache: "CashbackAmount", HeaderAlign: "center", CellAlign: "left", FormatNumber: AFFILIATE.FORMATNUMBER,
+                    Formatter: function (rIndex, record) {
                         var currentValue = record.CashbackAmount;
 
-                        if (isNaN(currentValue) || currentValue === '' || currentValue === null)
+                        if (isNaN(currentValue) || currentValue === '' || currentValue === null) {
                             return '';
+                        }
 
                         if (currentValue < 0) {
                             currentValue = -1 * currentValue;
@@ -76,7 +106,7 @@
                             currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
                         }
 
-                        var winlostdate = moment(record.WinlostDate).format(AFFILIATE.DATE_FORMAT);
+                        var winlostdate = window.moment(record.WinlostDate).format(AFFILIATE.DATE_FORMAT);
 
                         if (!record.EnableCashback) {
                             return '<div style="text-align: right;">' + currentValue + '</div>';
@@ -93,56 +123,71 @@
         }
     }
 
-    function renameCurrencyColumns(isUseBaseCurrency) {
-        for (var i = _freezeColumnCount; i < gridOption.columns.length; i++) {
-            var col = gridOption.columns[i];
+    var renameCurrencyColumns = function (isUseBaseCurrency) {
+        var i;
+        var col;
+        var name;
+
+        // for Normal columns
+        for (i = _freezeColumnCount; i < gridOption.columns.length; i++) {
+            col = gridOption.columns[i];
             if (col.NameCache) {
-                var name = col.NameCache;
-                if (isUseBaseCurrency)
+                name = col.NameCache;
+                if (isUseBaseCurrency) {
                     name += "Base";
+                }
+
                 col.Name = name;
             }
         }
 
-        for (var i = _freezeColumnCount; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
-            var col = gridOption.groupHeaderRows[0].Columns[i];
+        // for Header columns
+        for (i = _freezeColumnCount; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
+            col = gridOption.groupHeaderRows[0].Columns[i];
             if (col.NameCache) {
-                var name = col.NameCache;
-                if (isUseBaseCurrency)
+                name = col.NameCache;
+                if (isUseBaseCurrency) {
                     name += "Base";
+                }
                 col.Name = name;
             }
         }
-    }
+    };
 
-    function changeHeaderCaptions(showCurrencySymbol) {
-        var text = showCurrencySymbol ? " (" + System.Prefix + ")" : "";
-        for (var i = 0; i < gridOption.columns.length; i++) {
-            var col = gridOption.columns[i];
-            if (col.IsCurrency)
+    var changeHeaderCaptions = function (showCurrencySymbol) {
+        var text = showCurrencySymbol ? " (" + window.System.Prefix + ")" : "";
+        var i;
+        var col;
+
+        for (i = 0; i < gridOption.columns.length; i++) {
+            col = gridOption.columns[i];
+            if (col.IsCurrency) {
                 col.HeaderText = col.HeaderCaption + text;
+            }
         }
 
-        for (var i = 0; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
-            var col = gridOption.groupHeaderRows[0].Columns[i];
-            if (col.IsCurrency)
+        for (i = 0; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
+            col = gridOption.groupHeaderRows[0].Columns[i];
+            if (col.IsCurrency) {
                 col.HeaderText = col.HeaderCaption + text;
+            }
         }
-    }
+    };
 
-    function nomalizeProductName(name) {
+    var nomalizeProductName = function (name) {
         return name.replace(/ /g, "");
-    }
+    };
 
     return {
         init: function () {
+
             $('.search-panel form').submit(function () {
-                ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+                ProcessingCommission.submitRequest();
                 return false;
             });
 
             if ($('#gridId').length > 0) {
-                ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+                ProcessingCommission.submitRequest();
             }
 
             var mainContentObject = $('.main-content');
@@ -179,8 +224,8 @@
                     basecurrency: $(this).data("basecurrency"),
                     currency: $(this).data("currency")
                 };
-                var title = MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
-                title = title.replace("{1}", param.monthdate) + " - " + MSG.Currency + ": " + $(this).data("currency");
+                var title = window.MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
+                title = title.replace("{1}", param.monthdate) + " - " + window.MSG.Currency + ": " + $(this).data("currency");
                 parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });
             });
 
@@ -189,15 +234,34 @@
                     groupid: $(this).data('groupid'),
                     date: $(this).data('date')
                 };
-                AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommGroupSettingFor.replace("{0}", '"' + $(this).html() + '" ' + $(this).data("date")), { width: 1000, height: 450 });
+                AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), window.MSG.CommGroupSettingFor.replace("{0}", '"' + $(this).html() + '" ' + $(this).data("date")), { width: 1000, height: 450 });
             });
         },
 
-        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
+        checkAtLeastOneSelectedProduct: function () {
+            var selectedProducts = $('#Products').val();
 
+            if (selectedProducts === null || selectedProducts === undefined || selectedProducts.length === 0) {
+                return false;
+            }
+
+            return true;
+        },
+
+        submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
+
+            if (!ProcessingCommission.checkAtLeastOneSelectedProduct()) {
+                alert(window.MSG.ChooseAtLeastOneProduct);
+                return;
+            }
+
             submitOptions = $('form').serializeObject2();
             submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
+            ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+        },
+
+        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
 
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Payment/ProcessingCommission"),
@@ -212,13 +276,13 @@
                     var gridObject = $('#gridId');
                     gridObject.show();
 
-                    gridOption = $.extend(true, {}, sampleGridOption);
-
                     customizeGridOption(data.HasCashbackDeduction);
 
                     var baseCurrency = $("#BaseCurrency").val();
-                    renameCurrencyColumns(baseCurrency == SYS_CURRENCY_OPTION);
-                    changeHeaderCaptions(baseCurrency == SYS_CURRENCY_OPTION);
+
+                    renameCurrencyColumns(baseCurrency === SYS_CURRENCY_OPTION);
+
+                    changeHeaderCaptions(baseCurrency === SYS_CURRENCY_OPTION);
 
                     gridOption.pagerOption = {
                         itemsPerPage: data.ItemsPerPage,
@@ -228,21 +292,21 @@
                         pagerSelectCallBack: ProcessingCommission.ReRenderAfterPaged
                     };
 
-                    gridOption.titleInfo.text = MSG.ProcessingCommissionTitle + ' [{0}]'.format(data.TotalItem);
+                    gridOption.titleInfo.text = window.MSG.ProcessingCommissionTitle + ' [{0}]'.format(data.TotalItem);
 
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
                     gridObject.removeClass("noinfo").fanexGrid(gridOption);
 
-                    if (data.List.length == 0) {
+                    if (data.List.length === 0) {
                         $('.status').hide();
-                        AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
+                        AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;
                     } else {
                         $('.status').show();
                     }
 
-                    AFFILIATE.updateSearchPanel(gridObject);
+                    //AFFILIATE.updateSearchPanel(gridObject);
                 },
                 complete: function () {
                     $.unblockUI();
@@ -279,7 +343,7 @@
                 }
             });
         },
-        MonthlyTransfer: function (input) {
+        MonthlyTransfer: function () {
             if (confirm("Do you want to transfer all?")) {
                 $.ajax({
                     url: AFFILIATE.getAbsoluteUrl("Payment/MonthlyTransfer"),
@@ -296,8 +360,8 @@
                             alert(data.Message);
                         }
                     },
-                    error: function(){
-                        alert(MSG.OccurMonthlyTransferError);
+                    error: function () {
+                        alert(window.MSG.OccurMonthlyTransferError);
                     },
                     complete: function () {
                         $.unblockUI();
@@ -309,11 +373,13 @@
             var param = {
                 groupid: groupId
             };
-            parent.AFFILIATE.openDialogFrame(AFFILIATE.getAbsoluteUrl("CommGroup/ViewSetting?") + jQuery.param(param), MSG.CommissionGroup, { width: 1000, height: 450 });
+            parent.AFFILIATE.openDialogFrame(AFFILIATE.getAbsoluteUrl("CommGroup/ViewSetting?") + jQuery.param(param), window.MSG.CommissionGroup, { width: 1000, height: 450 });
         }
     };
-} (jQuery);
+})(jQuery);
 
 $(function () {
+    "use strict";
+    
     ProcessingCommission.init();
 });

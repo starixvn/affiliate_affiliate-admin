@@ -18,7 +18,6 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Filter;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
-    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
@@ -33,7 +32,7 @@ namespace Fanex.AffiliateAdmin.Controller
     {
         private readonly IReportService _reportService;
 
-        public ReportController(IReportService reportService, ISystemSettingService systemSettingService)
+        public ReportController(IReportService reportService)
         {
             _reportService = reportService;
         }

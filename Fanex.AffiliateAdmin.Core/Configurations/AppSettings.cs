@@ -95,9 +95,9 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             {
                 if (_products == null)
                 {
-                    const int playtechCasinoId = 5;
+                    const int PlaytechCasinoId = 5;
                     _products = _SystemSetting.GetProductList(new ProductSelectCriteria());
-                    _products = _products.Where(t => t.ProductID != playtechCasinoId);
+                    _products = _products.Where(t => t.ProductID != PlaytechCasinoId);
                 }
 
                 return _products;

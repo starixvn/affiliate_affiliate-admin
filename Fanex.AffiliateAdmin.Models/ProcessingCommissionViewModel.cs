@@ -7,10 +7,9 @@
 //   <change who="Leo.Vo" date="2013.8.21">Created</change>
 // </history>
 
-using System.Collections.Generic;
-
 namespace Fanex.AffiliateAdmin.Models
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Web.Mvc;

@@ -88,12 +88,14 @@ namespace Fanex.AffiliateAdmin.Controller
                                    ConvertedAmt = g.Sum(p => p.ConvertedAmt)
                                };
 
-            return Json(new
-            {
-                List = data,
-                SubTotal = subTotalRow,
-                Total = totalRow
-            }, JsonRequestBehavior.AllowGet);
+            return Json(
+                new
+                    {
+                        List = data,
+                        SubTotal = subTotalRow,
+                        Total = totalRow
+                    }, 
+            JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

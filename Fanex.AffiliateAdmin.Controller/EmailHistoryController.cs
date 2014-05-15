@@ -61,6 +61,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="viewModel">Default view model.</param>
         /// <returns>List of email.</returns>
+        [HttpPost]
         public ActionResult EmailHistory(EmailHistoryViewModel viewModel)
         {
             viewModel.SearchText = viewModel.SearchText.OrDefault();

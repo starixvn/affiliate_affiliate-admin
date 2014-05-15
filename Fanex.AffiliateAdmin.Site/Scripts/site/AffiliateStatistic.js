@@ -25,7 +25,9 @@
 
             $('#slProduct').change(function () {
                 $("#spProduct").html($("#slProduct").val());
+                var product = $("#slProduct").find(":selected").attr('data-product');
                 $("a.qm").text($("#slProduct option:selected").attr("data-qualified"));
+                $("a.qm").attr("data-product", product);
                 $("#spProduct").show();
                 $(this).hide();
             });
@@ -49,9 +51,10 @@
                     affid: $(this).data("affid"),
                     monthdate: $(this).data("date"),
                     basecurrency: $(this).data("basecurrency"),
-                    currency: $(this).data("currency")
+                    currency: $(this).data("currency"),
+                    products: $(this).attr("data-product")
                 };
-                
+
                 var title = MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
                 title = title.replace("{1}", param.monthdate) + " - " + MSG.Currency + ": " + $(this).data("currency");
                 parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });

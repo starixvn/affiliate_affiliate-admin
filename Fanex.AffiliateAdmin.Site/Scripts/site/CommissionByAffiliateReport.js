@@ -218,6 +218,25 @@
 
                 window.location = AFFILIATE.getAbsoluteUrl("Report/CompanyWinloss?") + jQuery.param(params);
             });
+
+            $maincontent.on("click", "a.monthlink", function () {
+                var params = $('form').serializeObject2();
+                params.AffName = $(this).data("affname");
+                params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
+                params["SortBy"] = $('#SortBy').val();
+                params["GroupBy"] = 0;
+                delete params.Currencies;
+
+                var winlostDateObj = window.moment($(this).attr('data-winlostdate'));
+                var firstDayObj = winlostDateObj.date(1);
+                var firstDay = firstDayObj.format("DD MMM YYYY");
+                var lastDay = firstDayObj.add("months", 1).add("days", -1).format("DD MMM YYYY");
+
+                params["FromDate"] = firstDay;
+                params["ToDate"] = lastDay;
+                window.location = AFFILIATE.getAbsoluteUrl("Report/PlayerWinlossByAffiliate?") + jQuery.param(params);
+            });
+
             $maincontent.on("click", "a.qm", function () {
                 var param = {
                     affid: $(this).data("affid"),

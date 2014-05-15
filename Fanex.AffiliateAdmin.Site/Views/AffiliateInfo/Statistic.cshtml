@@ -65,7 +65,7 @@
             </td>
             <td class="col-data" id="dataqualified">
                 <a href="javascript:void(0)" data-date="@Model.FullDateTime.ToString("MMM yyyy")" 
-                   data-affid="@Model.AffId" data-affname="@Model.AffName"  data-basecurrency="2" data-currency="@Model.AffCurrency" class="qm" >
+                   data-affid="@Model.AffId" data-affname="@Model.AffName"  data-basecurrency="2" data-currency="@Model.AffCurrency" class="qm" data-product="@Model.Products.FirstOrDefault().ProductID">
                     @Model.Products.FirstOrDefault().TotalQualifiedMembers
                 </a>
             </td>

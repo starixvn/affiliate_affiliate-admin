@@ -56,7 +56,7 @@
     };
 
     var changeFormatterOfMonthColumn = function () {
-        gridOption.columns[MONTH_COL_INDEX].Formatter = function () {
+        gridOption.columns[MONTH_COL_INDEX].Formatter = function (rIndex, record, cell, cellFormated) {
             return "<a class='monthlink' data-affname='{0}' href='javascript:void(0)' data-winlostdate='{1}'>{2}</a>"
                 .format(record.Username, record.WinlostDate, cellFormated);
         };
@@ -306,6 +306,7 @@
                 params["ToDate"] = lastDateObj.format("DD MMM YYYY");
                 window.location = AFFILIATE.getAbsoluteUrl("Report/PlayerWinloss?") + jQuery.param(params);
             });
+            
             $maincontent.on("click", "a.monthlink", function () {
                 var params = $('form').serializeObject2();
                 params.AffName = $(this).data("affname");

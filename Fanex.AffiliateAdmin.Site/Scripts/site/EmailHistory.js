@@ -73,7 +73,7 @@
 
             if (gridOption && gridOption.pagerOption) {
                 currentPage = currentPage >= 0 ? currentPage : gridOption.pagerOption.currentPage;
-                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage
+                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage;
             }
 
             $.ajax({

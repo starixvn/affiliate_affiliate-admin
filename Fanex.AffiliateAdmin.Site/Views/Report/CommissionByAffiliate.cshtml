@@ -145,17 +145,20 @@ report
                     HeaderAlign: "center",
                     CellAlign: "center",
                     FormatDateTime: AFFILIATE.DATE_FORMAT_MONTH,
-                    Formatter: function(rIndex, record, cell, cellFormated) {
-                        var href = AFFILIATE.getAbsoluteUrl("Report/PlayerWinlossByAffiliate");
-                        var obj = moment(record.WinlostDate);
-                        var firstDay = obj.date(1);
-                        var fromDate = firstDay.format(AFFILIATE.DATE_FORMAT);
+//                    Formatter: function(rIndex, record, cell, cellFormated) {
+//                        var href = AFFILIATE.getAbsoluteUrl("Report/PlayerWinlossByAffiliate");
+//                        var obj = moment(record.WinlostDate);
+//                        var firstDay = obj.date(1);
+//                        var fromDate = firstDay.format(AFFILIATE.DATE_FORMAT);
 
-                        var lastDay = firstDay.add('months', 1).add('days', -1);
-                        var toDate = lastDay.format(AFFILIATE.DATE_FORMAT); 
-                        href += "?FromDate=" + fromDate + "&ToDate=" + toDate;
-                        
-                        return "<a href=\"{0}\">".format(href) + obj.format(AFFILIATE.DATE_FORMAT_MONTH) + "</a>";
+//                        var lastDay = firstDay.add('months', 1).add('days', -1);
+//                        var toDate = lastDay.format(AFFILIATE.DATE_FORMAT); 
+//                        href += "?FromDate=" + fromDate + "&ToDate=" + toDate;
+//                        
+//                        return "<a href=\"{0}\">".format(href) + obj.format(AFFILIATE.DATE_FORMAT_MONTH) + "</a>";
+//                    },
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(record.WinlostDate) + cellFormated + "</a>";
                     }
                 },
                 {

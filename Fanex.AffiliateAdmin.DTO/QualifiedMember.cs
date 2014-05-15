@@ -34,5 +34,9 @@ namespace Fanex.AffiliateAdmin.DTO
         public double RNGCasinoTurnoverBase { get; set; }
 
         public double RNGCasinoTurnover { get; set; }
+
+        public double PlaytechCasinoTurnoverBase { get; set; }
+
+        public double PlaytechCasinoTurnover { get; set; }
     }
 }

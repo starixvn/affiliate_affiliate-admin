@@ -21,6 +21,11 @@
     var selectedProducts = AppSettings.Products
                                       .Where(t => selectedProductIds.Any(p => p == t.ProductID))
                                       .ToList();
+    var turnoverTitle = selectedProducts.Count > 1
+                            ? string.Format("{0} ({1})", Lang.Turnover, ViewBag.SymbolCurrency)
+                            : string.Format("{0} {1} ({2})", selectedProducts[0].ProductName, Lang.Turnover, ViewBag.SymbolCurrency);
+    var rowSpan = selectedProducts.Count > 1 ? 2 : 1;
+       
 }
 
 <div id="gridId" class="freegrid" colheight="200" expheight="350" style="width: 1249px;">
@@ -31,18 +36,21 @@
         <table class="grid-fixed-table col_header_content" style="width: 100%">
             <thead>
                 <tr style="height: 24px">
-                    <th rowspan="2" width="60px">#</th>
-                    <th rowspan="2" width="150px">@Lang.Member</th>
-                    <th rowspan="2" width="100px">@Lang.MemberCurrency</th>
-                    <th rowspan="2">@Lang.QualifiedAmount (@ViewBag.SymbolCurrency)</th>        
-                    <th colspan="@(selectedProducts.Count())">@Lang.Turnover  (@ViewBag.SymbolCurrency)</th>
+                    <th rowspan="@rowSpan" width="60px">#</th>
+                    <th rowspan="@rowSpan" width="150px">@Lang.Member</th>
+                    <th rowspan="@rowSpan" width="100px">@Lang.MemberCurrency</th>
+                    <th rowspan="@rowSpan">@Lang.QualifiedAmount (@ViewBag.SymbolCurrency)</th>        
+                    <th colspan="@(selectedProducts.Count())">@turnoverTitle</th>
                 </tr>
-                <tr style="height: 24px">
+                @if (selectedProducts.Count > 1)
+                {
+                    <tr style="height: 24px">
                     @foreach (var product in selectedProducts)
                     {
                         <th>@product.ProductName</th>
                     }        
-                </tr>
+                    </tr>    
+                }
             </thead>
             <tbody>
                 @if (Model == null || !Model.Any())
@@ -55,7 +63,7 @@
                 else
                 {
                     var count = 1;
-                    var className = "";
+                    var className = string.Empty;
                     var totalData = new Dictionary<int, int>();
 
                     foreach (QualifiedMember member in Model)
@@ -80,7 +88,7 @@
                                 else
                                     totalData[product.ProductID] += isQualified ? 1 : 0;
 
-                                <td class="" width="100px" align="right" @style >
+                                <td class="" width="@(selectedProducts.Count > 1 ? "100px" : "160px")" align="right" @style >
                                     @(ViewBag.BaseCurrency == 2 ? turnover.ToString("N", CultureInfo.InvariantCulture) : turnoverBase.ToString("N", CultureInfo.InvariantCulture))
                                 </td>
                             }

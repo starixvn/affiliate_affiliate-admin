@@ -418,7 +418,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             ViewBag.SymbolCurrency = FormaterCurrency.GetCurrencySymbol(criteria.Currency);
             ViewBag.BaseCurrency = criteria.BaseCurrency;
-            ViewBag.SelectedProducts = criteria.Products;
+            ViewBag.Products = criteria.Products;
 
             return View(members);
         }

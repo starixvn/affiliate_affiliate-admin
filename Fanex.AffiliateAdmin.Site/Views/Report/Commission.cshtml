@@ -190,10 +190,7 @@ report
                     Name: "WinlostDate",
                     HeaderAlign: "center",
                     CellAlign: "center",
-                    FormatDateTime: AFFILIATE.DATE_FORMAT_MONTH,
-                    Formatter: function(rIndex, record, cell, cellFormated) {
-                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(record.WinlostDate) + cellFormated + "</a>";
-                    }
+                    FormatDateTime: AFFILIATE.DATE_FORMAT_MONTH
                 },
                 { HeaderText: "@Lang.AffType", Width: 80, Name: "AffType", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.Language", Width: 80, Name: "Language", HeaderAlign: "center" },

@@ -50,7 +50,8 @@ var ProcessingCommission = (function ($) {
                         var currency = actualBaseCurreny === "1" ? window.System.Currency : record.Currency;
 
                         if (cellFormated) {
-                            return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)'>{5}</a>".format(currency, record.Username, record.AffId, window.moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, cellFormated);
+                            return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}'>{6}</a>"
+                                .format(currency, record.Username, record.AffId, window.moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, cellFormated);
                         }
 
                         return 0;
@@ -222,7 +223,8 @@ var ProcessingCommission = (function ($) {
                     affid: $(this).data("affid"),
                     monthdate: $(this).data("date"),
                     basecurrency: $(this).data("basecurrency"),
-                    currency: $(this).data("currency")
+                    currency: $(this).data("currency"),
+                    products: $(this).data("products")
                 };
                 var title = window.MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
                 title = title.replace("{1}", param.monthdate) + " - " + window.MSG.Currency + ": " + $(this).data("currency");

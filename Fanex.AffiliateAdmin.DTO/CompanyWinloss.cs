@@ -44,6 +44,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal RNGCasinoTurnover { get; set; }
 
+        public decimal PlaytechCasinoTurnover { get; set; }
+
         public decimal TotalTurnover { get; set; }
 
         public int BetCount { get; set; }
@@ -59,6 +61,8 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal LiveCasinoWinlost { get; set; }
 
         public decimal RNGCasinoWinlost { get; set; }
+
+        public decimal PlaytechCasinoWinlost { get; set; }
 
         public decimal TotalCompanyWinlost 
         { 
@@ -86,6 +90,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal RNGCasinoTurnoverBase { get; set; }
 
+        public decimal PlaytechCasinoTurnoverBase { get; set; }
+
         public decimal TotalTurnoverBase { get; set; }
 
         public decimal TotalMemberWinlostBase { get; set; }
@@ -97,6 +103,8 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal LiveCasinoWinlostBase { get; set; }
 
         public decimal RNGCasinoWinlostBase { get; set; }
+
+        public decimal PlaytechCasinoWinlostBase { get; set; }
 
         public decimal TotalCompanyWinlostBase 
         { 
@@ -126,6 +134,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal RNGCasinoTurnover_Aff { get; set; }
 
+        public decimal PlaytechCasinoTurnover_Aff { get; set; }
+
         public decimal TotalMemberWinlost_Aff { get; set; }
 
         public decimal SportsbookWinlost_Aff { get; set; }
@@ -135,6 +145,8 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal LiveCasinoWinlost_Aff { get; set; }
 
         public decimal RNGCasinoWinlost_Aff { get; set; }
+
+        public decimal PlaytechCasinoWinlost_Aff { get; set; }
 
         public decimal TotalCompanyWinlost_Aff 
         { 

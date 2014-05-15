@@ -27,10 +27,21 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             return property.GetValue(obj, null);
         }
 
+        public static object GetDefaultValue(this Type t)
+        {
+            if (t.IsValueType && Nullable.GetUnderlyingType(t) == null)
+            {
+                return Activator.CreateInstance(t);
+            }
+
+            return null;
+        }
+
         public static void SetPropertyValue(this object obj, string propertyName, object value)
         {
             var type = obj.GetType();
             var property = type.GetProperty(propertyName);
+            value = value ?? property.PropertyType.GetDefaultValue();
             property.SetValue(obj, Convert.ChangeType(value, property.PropertyType), null);
         }
 

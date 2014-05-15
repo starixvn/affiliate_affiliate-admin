@@ -135,6 +135,26 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal RNGCasinoCommissionPercent { get; set; }
 
+        public int PlaytechCasinoActivePlayers { get; set; }
+
+        public int PlaytechCasinoBetCount { get; set; }
+
+        public decimal PlaytechCasinoTurnover { get; set; }
+
+        public decimal PlaytechCasinoWinloss { get; set; }
+
+        public decimal PlaytechCasinoCommission { get; set; }
+
+        public decimal PlaytechCasinoTurnoverBase { get; set; }
+
+        public decimal PlaytechCasinoWinlossBase { get; set; }
+
+        public decimal PlaytechCasinoCommissionBase { get; set; }
+
+        public int PlaytechCasinoQM { get; set; }
+
+        public decimal PlaytechCasinoCommissionPercent { get; set; }
+
         public decimal DeductedPercentage { get; set; }
 
         public decimal Cashback { get; set; }

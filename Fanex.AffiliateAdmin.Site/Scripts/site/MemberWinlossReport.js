@@ -148,7 +148,7 @@
             if (i === 0) {
                 // for header
                 var companyWLHeader = $.extend(true, {}, window.sampleCompanyWLHeader);
-                companyWLHeader.Name = name + "Winlost";
+                companyWLHeader.Name = companyWLHeader.NameCache = name + "Winlost";
                 companyWLHeader.MergeColNumber = productCount + 1;
                 gridOption.groupHeaderRows[0].Columns.splice(startHeaderIndex, 0, companyWLHeader);
             }

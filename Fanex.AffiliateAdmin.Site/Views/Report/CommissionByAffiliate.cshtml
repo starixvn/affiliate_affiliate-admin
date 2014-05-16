@@ -35,13 +35,11 @@ report
             <div class="row-fluid row-form">                
                 <div class="cell">
                     <label for="FromDate" class="txt">@Lang.From</label>
-                    @*@Html.MonthPicker("FromDate", fromDate, AppSettings.SystemStartDate, now, null)*@
-                    @Html.MonthPicker("FromDate", Model.FromDate, AppSettings.SystemStartDate, now, null)
+                    @Html.MonthPicker("FromDate", fromDate, AppSettings.SystemStartDate, now, null)
                 </div>
                 <div class="cell">
                     <label for="ToDate" class="txt">@Lang.To</label>
-                    @*@Html.MonthPicker("ToDate", toDate, AppSettings.SystemStartDate, now, null)*@
-                    @Html.MonthPicker("ToDate", Model.ToDate, AppSettings.SystemStartDate, now, null)
+                    @Html.MonthPicker("ToDate", toDate, AppSettings.SystemStartDate, now, null)
                 </div>            
                 <div class="cell">
                     <label for="BaseCurrency" class="txt">@Lang.BaseCurrency</label>

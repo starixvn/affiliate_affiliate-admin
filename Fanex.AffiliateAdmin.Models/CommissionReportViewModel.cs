@@ -50,8 +50,6 @@ namespace Fanex.AffiliateAdmin.Models
         public CommissionReportViewModel()
         {
             ExcludeTest = true;
-            FromDate = new DateTime(2013, 10, 1);
-            ToDate = new DateTime(2013, 12, 1);
         }
 
         public string Affiliate { get; set; }

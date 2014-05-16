@@ -21,10 +21,8 @@
     var selectedProducts = AppSettings.Products
                                       .Where(t => selectedProductIds.Any(p => p == t.ProductID))
                                       .ToList();
-    var turnoverTitle = selectedProducts.Count > 1
-                            ? string.Format("{0} ({1})", Lang.Turnover, ViewBag.SymbolCurrency)
-                            : string.Format("{0} {1} ({2})", selectedProducts[0].ProductName, Lang.Turnover, ViewBag.SymbolCurrency);
-    var rowSpan = selectedProducts.Count > 1 ? 2 : 1;
+    var productCount = selectedProducts.Count;
+    var rowSpan = productCount > 1 ? 2 : 1;
        
 }
 
@@ -39,10 +37,17 @@
                     <th rowspan="@rowSpan" width="60px">#</th>
                     <th rowspan="@rowSpan" width="150px">@Lang.Member</th>
                     <th rowspan="@rowSpan" width="100px">@Lang.MemberCurrency</th>
-                    <th rowspan="@rowSpan">@Lang.QualifiedAmount (@ViewBag.SymbolCurrency)</th>        
-                    <th colspan="@(selectedProducts.Count())">@turnoverTitle</th>
+                    <th rowspan="@rowSpan">@Lang.QualifiedAmount (@ViewBag.SymbolCurrency)</th>     
+                    @if (productCount > 0)
+                    {
+                        var turnoverTitle = productCount > 1
+                            ? string.Format("{0} ({1})", Lang.Turnover, ViewBag.SymbolCurrency)
+                            : string.Format("{0} {1} ({2})", selectedProducts[0].ProductName, Lang.Turnover, ViewBag.SymbolCurrency);
+                        
+                        <th colspan="@(selectedProducts.Count())">@turnoverTitle</th>
+                    }
                 </tr>
-                @if (selectedProducts.Count > 1)
+                @if (productCount > 1)
                 {
                     <tr style="height: 24px">
                     @foreach (var product in selectedProducts)
@@ -55,7 +60,7 @@
             <tbody>
                 @if (Model == null || !Model.Any())
                 {
-                    var colspan = 4 + selectedProducts.Count();
+                    var colspan = 4 + productCount;
                     <tr>
                         <td class="noinfo" colspan="@colspan">@Lang.NoInfo</td>
                     </tr>

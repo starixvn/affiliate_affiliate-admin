@@ -90,6 +90,18 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal? RNGCasinoCommissionBase { get; set; }
 
+        public decimal? PlaytechCasinoWinloss { get; set; }
+
+        public int? PlaytechCasinoQM { get; set; }
+
+        public decimal? PlaytechCasinoCommissionPercent { get; set; }
+
+        public decimal? PlaytechCasinoCommission { get; set; }
+
+        public decimal? PlaytechCasinoWinlossBase { get; set; }
+
+        public decimal? PlaytechCasinoCommissionBase { get; set; }
+
         public long? RowNo { get; set; }
 
         public bool EnableCashback { get; set; }

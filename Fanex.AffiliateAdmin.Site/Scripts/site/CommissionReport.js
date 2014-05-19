@@ -55,19 +55,10 @@
         });
     };
 
-    var changeFormatterOfMonthColumn = function () {
-        gridOption.columns[MONTH_COL_INDEX].Formatter = function (rIndex, record, cell, cellFormated) {
-            return "<a class='monthlink' data-affname='{0}' href='javascript:void(0)' data-winlostdate='{1}'>{2}</a>"
-                .format(record.Username, record.WinlostDate, cellFormated);
-        };
-    };
-
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     function initProductColumnsForGridOption() {
         var mergeColNumber = getMergeColNumberForProducColumn();
         var hasGroupByMonth = $("#GroupBy").val() === GROUP_BY_MONTH;
-
-        //changeFormatterOfMonthColumn();
 
         addCashbackColumn();
 
@@ -113,8 +104,8 @@
                             var currency = record.Currency;
 
                             if (cellFormated)
-                                return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}'>{6}</a>"
-                                    .format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, cellFormated);
+                                return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}' data-groupid='{6}'>{7}</a>"
+                                    .format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, record.GroupID, cellFormated);
                             return 0;
                         }
                     }
@@ -331,7 +322,8 @@
                     monthdate: $(this).data("date"),
                     basecurrency: $(this).data("basecurrency"),
                     currency: $(this).data("currency"),
-                    products: $(this).data("products")
+                    products: $(this).data("products"),
+                    groupid: $(this).data("groupid")
                 };
                 var title = MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
                 title = title.replace("{1}", param.monthdate) + " - " + MSG.Currency + ": " + $(this).data("currency");

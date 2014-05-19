@@ -7,6 +7,8 @@
 //   <change who="Brian.Dinh" date="2013.10.15">Created</change>
 // </history>
 
+using System.Globalization;
+
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
@@ -32,9 +34,12 @@ namespace Fanex.AffiliateAdmin.Controller
     {
         private readonly IReportService _reportService;
 
-        public ReportController(IReportService reportService)
+        private readonly ICommGroupService _commGroupService;
+
+        public ReportController(IReportService reportService, ICommGroupService commGroupService)
         {
             _reportService = reportService;
+            _commGroupService = commGroupService;
         }
 
         #region Company Winloss Report
@@ -413,14 +418,28 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>Action Result.</returns>
         public ActionResult QualifiedMembers(QualifiedMembersReportCriteria criteria)
         {
+            var products = GetProductsForCommGroup(criteria.GroupId, criteria.MonthDate, criteria.Products);
             criteria.UserId = CurrentSession.CustID;
+            criteria.Products = string.Join(",", products);
             var members = _reportService.GetQualifiedMembers(criteria);
 
             ViewBag.SymbolCurrency = FormaterCurrency.GetCurrencySymbol(criteria.Currency);
             ViewBag.BaseCurrency = criteria.BaseCurrency;
-            ViewBag.Products = criteria.Products;
+            ViewBag.Products = products;
 
             return View(members);
+        }
+
+        private IList<byte> GetProductsForCommGroup(int groupId, DateTime month, string selectedProducts)
+        {
+            var selectedProductList = string.IsNullOrEmpty(selectedProducts)
+                                  ? new List<byte>()
+                                  : selectedProducts.Split(',').Select(byte.Parse);
+
+            var detailCriteria = new CommGroupDetailCriteria { GroupIDList = groupId.ToString(CultureInfo.InvariantCulture), Date = month };
+            var productListInCommGroup = _commGroupService.GetGroupDetails(detailCriteria).Select(t => t.ProductID).Distinct();
+
+            return selectedProductList.Intersect(productListInCommGroup).ToList();
         }
 
         #endregion

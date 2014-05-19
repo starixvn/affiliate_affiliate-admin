@@ -14,12 +14,9 @@
 
 
 @{
-    var products = ViewBag.Products as string;
-    var selectedProductIds = string.IsNullOrEmpty(products)
-                               ? new List<byte>()
-                               : products.Split(',').Select(byte.Parse);
-    var selectedProducts = AppSettings.Products
-                                      .Where(t => selectedProductIds.Any(p => p == t.ProductID))
+    var products = ViewBag.Products as List<byte>;
+    var selectedProducts =  AppSettings.Products
+                                      .Where(t => products.Any(p => p == t.ProductID))
                                       .ToList();
     var productCount = selectedProducts.Count;
     var rowSpan = productCount > 1 ? 2 : 1;

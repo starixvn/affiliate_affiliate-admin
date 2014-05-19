@@ -28,6 +28,9 @@ namespace Fanex.AffiliateAdmin.Criterias
         [SpParam(SqlParamName = "ProductIds")]
         public string Products { get; set; }
 
+        [SpParam(Ignored = true)]
+        public int GroupId { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_QualifiedMembersReport";

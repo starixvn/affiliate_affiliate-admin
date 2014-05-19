@@ -49,6 +49,9 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int NRows { get; set; }
 
+        [SpParam(SqlParamName = "ProductIds")]
+        public string Products { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_CommissionReport";

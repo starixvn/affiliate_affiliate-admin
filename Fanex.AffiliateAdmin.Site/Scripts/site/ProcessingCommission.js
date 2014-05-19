@@ -4,7 +4,7 @@ var ProcessingCommission = (function ($) {
 
     var submitOptions = {};
 
-    var SYS_CURRENCY_OPTION = 1;
+    var SYS_CURRENCY_OPTION = "1";
     var _freezeColumnCount = 5;
 
     var gridOption = {};
@@ -19,16 +19,10 @@ var ProcessingCommission = (function ($) {
         });
     };
 
-    var addProductColumns = function () {
-
-    };
-
     function customizeGridOption(hasCashbackDeduction) {
 
         gridOption = $.extend(true, {}, window.sampleGridOption);
-
-
-        addProductColumns();
+       
         var products = getSelectedProducts(window.PRODUCTS);
 
         var productCount = products.length;

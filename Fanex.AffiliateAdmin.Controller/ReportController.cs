@@ -436,6 +436,11 @@ namespace Fanex.AffiliateAdmin.Controller
                                   ? new List<byte>()
                                   : selectedProducts.Split(',').Select(byte.Parse);
 
+            if (groupId == 0)
+            {
+                return selectedProductList.ToList();
+            }
+
             var detailCriteria = new CommGroupDetailCriteria { GroupIDList = groupId.ToString(CultureInfo.InvariantCulture), Date = month };
             var productListInCommGroup = _commGroupService.GetGroupDetails(detailCriteria).Select(t => t.ProductID).Distinct();
 

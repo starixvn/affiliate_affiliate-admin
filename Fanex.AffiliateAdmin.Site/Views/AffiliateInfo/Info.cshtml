@@ -9,6 +9,8 @@
 
 @model Fanex.AffiliateAdmin.Models.AffiliateInfoViewModel
 
+
+
 @Styles.Render("~/bundles/css")
 <div id="left_show" class="left_show">
     <div class="left-show-d">
@@ -26,13 +28,14 @@
                     <tr> 
                         <th class="col-left">@Lang.Affiliate</th>
                         <th class="col-right">
-                            @if (Model.AffiliateInfo.IsClosed)
+                            
+                            @if(Model.AffiliateInfo.Status.Equals("approved", StringComparison.OrdinalIgnoreCase) && !Model.AffiliateInfo.IsClosed)
                             {
-                                <span id="spUN">@Model.AffiliateInfo.Username</span>
+                                <a href="@Html.Raw(Model.ExternalLoginUrl)" id="lnkUN" target="_blank" class="upper b" title="@Lang.ViewAffiliateWebsite">@Model.AffiliateInfo.Username</a>
                             }
                             else
                             {
-                                <a href="@Html.Raw(Model.ExternalLoginUrl)" id="lnkUN" target="_blank" class="upper b" title="@Lang.ViewAffiliateWebsite">@Model.AffiliateInfo.Username</a>
+                                <span id="spUN">@Model.AffiliateInfo.Username</span>
                             }
                             &nbsp;[<span id="affID">@Model.AffiliateInfo.AffId</span>]
                         </th>
@@ -154,7 +157,8 @@
         };
     </script>
     
-    @if(ViewBag.IsLoadOtherPage != "1"){
+    @if (ViewBag.IsLoadOtherPage != "1")
+    {
         <script type="text/javascript">
             parent.AFFMASTER.loadPages("@Model.AffiliateInfo.Status");
         </script>

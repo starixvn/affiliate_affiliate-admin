@@ -7,12 +7,11 @@
 //   <change who="Brian.Dinh" date="2013.10.15">Created</change>
 // </history>
 
-using System.Globalization;
-
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Reflection;
     using System.Web.Mvc;
@@ -32,9 +31,9 @@ namespace Fanex.AffiliateAdmin.Controller
     [FunctionAuth(Function = "[AffReport]")]
     public class ReportController : BaseController
     {
-        private readonly IReportService _reportService;
-
         private readonly ICommGroupService _commGroupService;
+
+        private readonly IReportService _reportService;
 
         public ReportController(IReportService reportService, ICommGroupService commGroupService)
         {
@@ -43,15 +42,6 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         #region Company Winloss Report
-
-        /// <summary>
-        /// Index Page.
-        /// </summary>
-        /// <returns>Redirect to another action.</returns>
-        public ActionResult Index()
-        {
-            return RedirectToAction("CompanyWinloss");
-        }
 
         /// <summary>
         /// Company Win loss Report.
@@ -100,7 +90,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(new
             {
                 Groups = companyWinlossByGroups,
-                TotalData = new CompanyWinlossByLevel 
+                TotalData = new CompanyWinlossByLevel
                 {
                     GroupInfo = Lang.TotalAll,
                     Level = "All",
@@ -161,7 +151,15 @@ namespace Fanex.AffiliateAdmin.Controller
             return View("CompanyWinlossByAffiliate", model);
         }
 
-        #endregion
+        /// <summary>
+        /// Index Page.
+        /// </summary>
+        /// <returns>Redirect to another action.</returns>
+        public ActionResult Index()
+        {
+            return RedirectToAction("CompanyWinloss");
+        }
+        #endregion Company Winloss Report
 
         #region Player Winloss Report
 
@@ -266,7 +264,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return View("PlayerWinlossByAffiliate", model);
         }
 
-        #endregion
+        #endregion Player Winloss Report
 
         #region Member Statistics
 
@@ -315,7 +313,7 @@ namespace Fanex.AffiliateAdmin.Controller
             });
         }
 
-        #endregion
+        #endregion Member Statistics
 
         #region Commission Report
 
@@ -341,7 +339,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Get data for report.
         /// </summary>
-        /// <param name="criteria">Input criteria.</param>        
+        /// <param name="criteria">Input criteria.</param>
         /// <returns>Report data.</returns>
         [HttpPost]
         public ActionResult Commission(CommissionReportCriteria criteria)
@@ -370,7 +368,7 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         /// <summary>
-        /// Commission By Affiliate. 
+        /// Commission By Affiliate.
         /// </summary>
         /// <param name="model">Model Input.</param>
         /// <returns>Commission By Affiliate Result.</returns>
@@ -418,7 +416,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>Action Result.</returns>
         public ActionResult QualifiedMembers(QualifiedMembersReportCriteria criteria)
         {
-            var products = GetProductsForCommGroup(criteria.GroupId, criteria.MonthDate, criteria.Products);
+            var products = GetValidProducts(criteria.GroupId, criteria.MonthDate, criteria.Products);
             criteria.UserId = CurrentSession.CustID;
             criteria.Products = string.Join(",", products);
             var members = _reportService.GetQualifiedMembers(criteria);
@@ -430,7 +428,18 @@ namespace Fanex.AffiliateAdmin.Controller
             return View(members);
         }
 
-        private IList<byte> GetProductsForCommGroup(int groupId, DateTime month, string selectedProducts)
+        #endregion Commission Report
+
+        #region Helpers
+
+        /// <summary>
+        /// Get valid products.
+        /// </summary>
+        /// <param name="groupId">Commission Group.</param>
+        /// <param name="month">Selected Month.</param>
+        /// <param name="selectedProducts">Selected Products.</param>
+        /// <returns>Valid Product List.</returns>
+        private IList<byte> GetValidProducts(int groupId, DateTime month, string selectedProducts)
         {
             var selectedProductList = string.IsNullOrEmpty(selectedProducts)
                                   ? new List<byte>()
@@ -446,10 +455,6 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return selectedProductList.Intersect(productListInCommGroup).ToList();
         }
-
-        #endregion
-
-        #region Helpers
 
         #region Company win-loss report
 
@@ -511,92 +516,6 @@ namespace Fanex.AffiliateAdmin.Controller
             }
 
             return companyWinlossByGroups;
-        }
-
-        /// <summary>
-        /// Group Data For Company Win loss.
-        /// </summary>
-        /// <param name="companyWinlosses">Company Win loss List.</param>
-        /// <param name="companyWinlossByGroups">Company Win loss Groups.</param>
-        private void GroupDataForCompanyWinloss(IEnumerable<CompanyWinloss> companyWinlosses, List<CompanyWinlossByLevel> companyWinlossByGroups)
-        {
-            var properties = typeof(CompanyWinloss).GetProperties().Where(p => IsPropertyAbleSumUp(p)).ToList();
-            var groupByYears = companyWinlosses.GroupBy(t => t.WinlostDate.Year).ToList();
-
-            foreach (var groupByYear in groupByYears)
-            {
-                var groupByMonths = groupByYear.GroupBy(t => t.WinlostDate.Month).ToList();
-
-                foreach (var groupByMonth in groupByMonths)
-                {
-                    GroupDataByDate(companyWinlossByGroups, groupByMonth, properties, groupByYear.Key);
-
-                    var companyWlInMemberCurrenciesByMonth = GetCompanyWinlossInMemberCurrencies(groupByMonth.ToList(), properties);
-
-                    companyWinlossByGroups.Add(new CompanyWinlossByLevel
-                        {
-                            GroupInfo = string.Format("{0}/{1}/{2}", groupByMonth.Key, 1, groupByYear.Key),
-                            Level = "Month",
-                            CompanyWinlossInMemberCurrencies = companyWlInMemberCurrenciesByMonth,
-                            CompanyWinlossInSystemCurrency = GetCompanyWinlossInSystemCurrency(companyWlInMemberCurrenciesByMonth, properties)
-                        });
-                }
-
-                var companyWlInMemberCurrenciesByYear = GetCompanyWinlossInMemberCurrencies(groupByYear.ToList(), properties);
-                companyWinlossByGroups.Add(new CompanyWinlossByLevel
-                {
-                    GroupInfo = string.Format("{0}/{1}/{2}", 1, 1, groupByYear.Key),
-                    Level = "Year",
-                    CompanyWinlossInMemberCurrencies = companyWlInMemberCurrenciesByYear,
-                    CompanyWinlossInSystemCurrency = GetCompanyWinlossInSystemCurrency(companyWlInMemberCurrenciesByYear, properties)
-                });
-            }
-        }
-
-        /// <summary>
-        /// Group data by date.
-        /// </summary>
-        /// <param name="companyWinlossByGroups">Company win-loss by level.</param>
-        /// <param name="groupByMonth">Data group by month.</param>
-        /// <param name="properties">Property list.</param>
-        /// <param name="year">Year input.</param>
-        private void GroupDataByDate(
-            List<CompanyWinlossByLevel> companyWinlossByGroups, 
-            IGrouping<int, CompanyWinloss> groupByMonth, 
-            List<PropertyInfo> properties,  
-            int year)
-        {
-            var groupByDates = groupByMonth.GroupBy(t => t.WinlostDate.Day).ToList();
-
-            foreach (var groupByDate in groupByDates)
-            {
-                companyWinlossByGroups.Add(new CompanyWinlossByLevel
-                {
-                    GroupInfo = string.Format("{0}/{1}/{2}", groupByMonth.Key, groupByDate.Key, year),
-                    Level = "Date",
-                    CompanyWinlossInMemberCurrencies = groupByDate.ToList(),
-                    CompanyWinlossInSystemCurrency = GetCompanyWinlossInSystemCurrency(groupByDate.ToList(), properties)
-                });
-            }
-        }
-
-        /// <summary>
-        /// Check property can sum up or not.
-        /// </summary>
-        /// <param name="p">Property Input.</param>
-        /// <returns>Can/Can not sum up.</returns>
-        private bool IsPropertyAbleSumUp(PropertyInfo p)
-        {
-            var uncalculatedPropertyList = new List<string> { "ExRate", "AffExRate" };
-
-            if (uncalculatedPropertyList.Any(t => t.Equals(p.Name, StringComparison.OrdinalIgnoreCase)))
-            {
-                return false;
-            }
-
-            var typeList = new List<Type> { typeof(int), typeof(decimal), typeof(double) };
-
-            return typeList.Any(t => t == p.PropertyType);
         }
 
         /// <summary>
@@ -676,8 +595,93 @@ namespace Fanex.AffiliateAdmin.Controller
             return totalCompanlyWinloss;
         }
 
-        #endregion
+        /// <summary>
+        /// Group data by date.
+        /// </summary>
+        /// <param name="companyWinlossByGroups">Company win-loss by level.</param>
+        /// <param name="groupByMonth">Data group by month.</param>
+        /// <param name="properties">Property list.</param>
+        /// <param name="year">Year input.</param>
+        private void GroupDataByDate(
+            List<CompanyWinlossByLevel> companyWinlossByGroups,
+            IGrouping<int, CompanyWinloss> groupByMonth,
+            List<PropertyInfo> properties,
+            int year)
+        {
+            var groupByDates = groupByMonth.GroupBy(t => t.WinlostDate.Day).ToList();
 
-        #endregion
+            foreach (var groupByDate in groupByDates)
+            {
+                companyWinlossByGroups.Add(new CompanyWinlossByLevel
+                {
+                    GroupInfo = string.Format("{0}/{1}/{2}", groupByMonth.Key, groupByDate.Key, year),
+                    Level = "Date",
+                    CompanyWinlossInMemberCurrencies = groupByDate.ToList(),
+                    CompanyWinlossInSystemCurrency = GetCompanyWinlossInSystemCurrency(groupByDate.ToList(), properties)
+                });
+            }
+        }
+
+        /// <summary>
+        /// Group Data For Company Win loss.
+        /// </summary>
+        /// <param name="companyWinlosses">Company Win loss List.</param>
+        /// <param name="companyWinlossByGroups">Company Win loss Groups.</param>
+        private void GroupDataForCompanyWinloss(IEnumerable<CompanyWinloss> companyWinlosses, List<CompanyWinlossByLevel> companyWinlossByGroups)
+        {
+            var properties = typeof(CompanyWinloss).GetProperties().Where(p => IsPropertyAbleSumUp(p)).ToList();
+            var groupByYears = companyWinlosses.GroupBy(t => t.WinlostDate.Year).ToList();
+
+            foreach (var groupByYear in groupByYears)
+            {
+                var groupByMonths = groupByYear.GroupBy(t => t.WinlostDate.Month).ToList();
+
+                foreach (var groupByMonth in groupByMonths)
+                {
+                    GroupDataByDate(companyWinlossByGroups, groupByMonth, properties, groupByYear.Key);
+
+                    var companyWlInMemberCurrenciesByMonth = GetCompanyWinlossInMemberCurrencies(groupByMonth.ToList(), properties);
+
+                    companyWinlossByGroups.Add(new CompanyWinlossByLevel
+                        {
+                            GroupInfo = string.Format("{0}/{1}/{2}", groupByMonth.Key, 1, groupByYear.Key),
+                            Level = "Month",
+                            CompanyWinlossInMemberCurrencies = companyWlInMemberCurrenciesByMonth,
+                            CompanyWinlossInSystemCurrency = GetCompanyWinlossInSystemCurrency(companyWlInMemberCurrenciesByMonth, properties)
+                        });
+                }
+
+                var companyWlInMemberCurrenciesByYear = GetCompanyWinlossInMemberCurrencies(groupByYear.ToList(), properties);
+                companyWinlossByGroups.Add(new CompanyWinlossByLevel
+                {
+                    GroupInfo = string.Format("{0}/{1}/{2}", 1, 1, groupByYear.Key),
+                    Level = "Year",
+                    CompanyWinlossInMemberCurrencies = companyWlInMemberCurrenciesByYear,
+                    CompanyWinlossInSystemCurrency = GetCompanyWinlossInSystemCurrency(companyWlInMemberCurrenciesByYear, properties)
+                });
+            }
+        }
+
+        /// <summary>
+        /// Check property can sum up or not.
+        /// </summary>
+        /// <param name="p">Property Input.</param>
+        /// <returns>Can/Can not sum up.</returns>
+        private bool IsPropertyAbleSumUp(PropertyInfo p)
+        {
+            var uncalculatedPropertyList = new List<string> { "ExRate", "AffExRate" };
+
+            if (uncalculatedPropertyList.Any(t => t.Equals(p.Name, StringComparison.OrdinalIgnoreCase)))
+            {
+                return false;
+            }
+
+            var typeList = new List<Type> { typeof(int), typeof(decimal), typeof(double) };
+
+            return typeList.Any(t => t == p.PropertyType);
+        }
+        #endregion Company win-loss report
+
+        #endregion Helpers
     }
 }

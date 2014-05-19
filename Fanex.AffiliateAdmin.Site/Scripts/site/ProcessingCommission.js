@@ -35,7 +35,7 @@ var ProcessingCommission = (function ($) {
             );
 
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: window.MSG.Winloss, HeaderText: window.MSG.Winloss, Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
+                { IsCurrency: true, HeaderCaption: window.MSG.Winloss, HeaderText: window.MSG.Winloss, Width: 100, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
             gridOption.columns.push(
                 { IsCurrency: false, HeaderCaption: window.MSG.QM, HeaderText: window.MSG.QM, Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
@@ -57,7 +57,7 @@ var ProcessingCommission = (function ($) {
             );
 
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: window.MSG.Commission, HeaderText: window.MSG.Commission, Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
+                { IsCurrency: true, HeaderCaption: window.MSG.Commission, HeaderText: window.MSG.Commission, Width: 100, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
         }
 

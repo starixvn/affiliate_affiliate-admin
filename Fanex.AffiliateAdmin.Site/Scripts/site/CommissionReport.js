@@ -109,8 +109,8 @@
                         HeaderAlign: "center",
                         CellAlign: "right",
                         Formatter: function (rIndex, record, cell, cellFormated) {
-                            var actualBaseCurreny = $('#BaseCurrency').val() == "0" ? "2" : "1";
-                            var currency = actualBaseCurreny == "1" ? window.System.Currency : record.Currency;
+                            var actualBaseCurreny = 2;
+                            var currency = record.Currency;
 
                             if (cellFormated)
                                 return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}'>{6}</a>"

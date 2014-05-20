@@ -20,13 +20,30 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     /// </summary>
     public static class Extensions
     {
+        /// <summary>
+        /// Get property value.
+        /// </summary>
+        /// <param name="obj">Extended object.</param>
+        /// <param name="propertyName">Property name.</param>
+        /// <returns>Property value.</returns>
         public static object GetPropertyValue(this object obj, string propertyName)
         {
             var type = obj.GetType();
             var property = type.GetProperty(propertyName);
-            return property.GetValue(obj, null);
+
+            if (property != null)
+            {
+                return property.GetValue(obj, null);
+            }
+
+            return null;
         }
 
+        /// <summary>
+        /// Get default value of any type.
+        /// </summary>
+        /// <param name="t">Extended type.</param>
+        /// <returns>Default value.</returns>
         public static object GetDefaultValue(this Type t)
         {
             if (t.IsValueType && Nullable.GetUnderlyingType(t) == null)
@@ -37,12 +54,22 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             return null;
         }
 
+        /// <summary>
+        /// Set property value.
+        /// </summary>
+        /// <param name="obj">Extended object.</param>
+        /// <param name="propertyName">Property name.</param>
+        /// <param name="value">Value for property.</param>
         public static void SetPropertyValue(this object obj, string propertyName, object value)
         {
             var type = obj.GetType();
             var property = type.GetProperty(propertyName);
-            value = value ?? property.PropertyType.GetDefaultValue();
-            property.SetValue(obj, Convert.ChangeType(value, property.PropertyType), null);
+
+            if (property != null)
+            {
+                value = value ?? property.PropertyType.GetDefaultValue();
+                property.SetValue(obj, Convert.ChangeType(value, property.PropertyType), null);
+            }
         }
 
         public static IDictionary<string, object> AddProperty(this object obj, string name, object value)

@@ -234,7 +234,7 @@
 
                 params["FromDate"] = firstDay;
                 params["ToDate"] = lastDay;
-                window.location = AFFILIATE.getAbsoluteUrl("Report/PlayerWinlossByAffiliate?") + jQuery.param(params);
+                window.location = AFFILIATE.getAbsoluteUrl("Report/MemberWinlossByAffiliate?") + jQuery.param(params);
             });
 
             $maincontent.on("click", "a.qm", function () {

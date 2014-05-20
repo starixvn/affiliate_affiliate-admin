@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="PlayerWLByAffiliateViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MemberWinlossByAffiliateViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -20,7 +20,7 @@ namespace Fanex.AffiliateAdmin.Models
     /// <summary>
     /// Affiliate List View Model.
     /// </summary>
-    public class PlayerWLByAffiliateViewModel
+    public class MemberWinlossByAffiliateViewModel
     {
         private readonly IList<SelectListItem> _groupByList = new List<SelectListItem> 
         {
@@ -28,7 +28,7 @@ namespace Fanex.AffiliateAdmin.Models
                 new SelectListItem { Text = Lang.Member, Value = "1" }
         };
 
-        public PlayerWLByAffiliateViewModel()
+        public MemberWinlossByAffiliateViewModel()
         {
             ExcludeTest = true;
         }

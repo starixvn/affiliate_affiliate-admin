@@ -191,7 +191,7 @@
 
         gridOption = $.extend(true, {}, sampleGridOption);
         var byAffiliate = $('#ByAffiliate').length > 0;
-        playerWinlossUrl = byAffiliate ? AFFILIATE.getAbsoluteUrl("Report/PlayerWinlossByAffiliate") : AFFILIATE.getAbsoluteUrl("Report/PlayerWinloss");
+        playerWinlossUrl = byAffiliate ? AFFILIATE.getAbsoluteUrl("Report/MemberWinlossByAffiliate") : AFFILIATE.getAbsoluteUrl("Report/MemberWinloss");
 
         var startTurnoverPosition = TURNOVER_COL_INDEX;
 

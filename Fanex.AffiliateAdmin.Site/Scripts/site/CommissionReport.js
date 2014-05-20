@@ -295,7 +295,7 @@
                 var toDateObj = moment('01 ' + params["ToDate"]);
                 var lastDateObj = toDateObj.add("months", 1).add("days", -1);
                 params["ToDate"] = lastDateObj.format("DD MMM YYYY");
-                window.location = AFFILIATE.getAbsoluteUrl("Report/PlayerWinloss?") + jQuery.param(params);
+                window.location = AFFILIATE.getAbsoluteUrl("Report/MemberWinloss?") + jQuery.param(params);
             });
             
             $maincontent.on("click", "a.monthlink", function () {
@@ -313,7 +313,7 @@
 
                 params["FromDate"] = firstDay;
                 params["ToDate"] = lastDay;
-                window.location = AFFILIATE.getAbsoluteUrl("Report/PlayerWinloss?") + jQuery.param(params);
+                window.location = AFFILIATE.getAbsoluteUrl("Report/MemberWinloss?") + jQuery.param(params);
             });
 
             $maincontent.on("click", "a.qm", function () {

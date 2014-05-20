@@ -161,14 +161,14 @@ namespace Fanex.AffiliateAdmin.Controller
         }
         #endregion Company Winloss Report
 
-        #region Player Winloss Report
+        #region Member Winloss Report
 
         /// <summary>
-        /// Player Win loss Report.
+        /// Member Win loss Report.
         /// </summary>
         /// <param name="model">Model input.</param>
-        /// <returns>Player Win loss page.</returns>
-        public ActionResult PlayerWinloss(MemberWinlossViewModel model)
+        /// <returns>Member Win loss page.</returns>
+        public ActionResult MemberWinloss(MemberWinlossViewModel model)
         {
             var serializer = new JavaScriptSerializer();
 
@@ -178,16 +178,16 @@ namespace Fanex.AffiliateAdmin.Controller
                 Name = x.ProductName
             }));
 
-            return View("PlayerWinloss", model);
+            return View("MemberWinloss", model);
         }
 
         /// <summary>
-        /// Player win loss action.
+        /// Member win loss action.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        /// <returns>Player win loss result.</returns>
+        /// <returns>Member win loss result.</returns>
         [HttpPost]
-        public ActionResult PlayerWinloss(MemberWinlossReportCriteria criteria)
+        public ActionResult MemberWinloss(MemberWinlossReportCriteria criteria)
         {
             if (criteria.ByAffiliate)
             {
@@ -222,12 +222,12 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         /// <summary>
-        /// Player Win loss Report for specific affiliate.
+        /// Member Win loss Report for specific affiliate.
         /// </summary>
         /// <param name="model">Model input.</param>
-        /// <returns>Player win loss page.</returns>
+        /// <returns>Member win loss page.</returns>
         [HttpGet]
-        public ActionResult PlayerWinlossByAffiliate(PlayerWLByAffiliateViewModel model)
+        public ActionResult MemberWinlossByAffiliate(MemberWinlossByAffiliateViewModel model)
         {
             List<SelectListItem> baseCurrencyList;
 
@@ -261,10 +261,10 @@ namespace Fanex.AffiliateAdmin.Controller
 
             ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(CurrentSession.Affiliate.Currency);
 
-            return View("PlayerWinlossByAffiliate", model);
+            return View("MemberWinlossByAffiliate", model);
         }
 
-        #endregion Player Winloss Report
+        #endregion Member Winloss Report
 
         #region Member Statistics
 

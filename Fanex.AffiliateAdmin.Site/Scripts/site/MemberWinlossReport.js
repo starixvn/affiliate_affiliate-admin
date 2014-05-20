@@ -541,7 +541,7 @@
             submitOptions["pageSize"] = itemsPerPage;
 
             $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Report/PlayerWinloss"),
+                url: AFFILIATE.getAbsoluteUrl("Report/MemberWinloss"),
                 type: 'post',
                 data: jQuery.param(submitOptions),
                 beforeSend: function () {

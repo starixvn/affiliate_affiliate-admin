@@ -42,7 +42,7 @@
                     @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), AppSettings.SystemStartDate, now, false)
                 </div>
                 <div class="cell width-160">
-                    <label for="ToDate" class="txt auto text-left">@Lang.To</label>
+                    <label for="ToDate" class="txt" style="min-width: 50px;">@Lang.To</label>
                     @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, false)
                 </div>
             </div>

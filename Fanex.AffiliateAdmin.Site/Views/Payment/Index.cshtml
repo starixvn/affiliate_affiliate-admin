@@ -46,7 +46,7 @@ payment
                     @Html.DropDownCheckList("Status", (string.IsNullOrEmpty(Model.Status) ? PaymentSettings.ListStatus : Model.ListStatus), true, false, new {@class = "width-140"})
                 </div>
                 <div class="cell">
-                    @Html.LabelFor(m => m.PreferredLanguage, new {@class = "txt auto"})
+                    @Html.LabelFor(m => m.PreferredLanguage, new {@class = "txt"})
                     @Html.DropDownCheckList("PreferredLanguage", new SelectList(AppSettings.AffSupportLanguages, "LanguageID", "LanguageName"), true, true, new {@class = "width-140"})
                 </div>
             </div>
@@ -64,7 +64,7 @@ payment
                     @Html.DatePicker("FromDate", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), AppSettings.SystemStartDate, DateTime.Now, false)
                 </div>
                 <div class="cell">
-                    @Html.LabelFor(m => m.ToDate)
+                    @Html.LabelFor(m => m.ToDate, new { @class = "txt" })
                     @Html.DatePicker("ToDate", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, false)
                 </div>
             </div>

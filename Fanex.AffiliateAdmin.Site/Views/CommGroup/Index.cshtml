@@ -19,15 +19,15 @@ commgroup
     <div class="span12 search-form">
         <div class="row-fluid row-form end-search">
             <div class="cell">
-                <label for="groupname">@Lang.GroupName</label>
+                <label for="groupname" class="txt">@Lang.GroupName</label>
                 <input type="text" maxlength = "100" value="@ViewBag.GroupName" class="form-control width-140" id="groupname" name="groupname" placeholder="@Lang.All">
             </div>
             <div class="cell">
-                <label for="Currencies">@Lang.Currency</label>
+                <label for="Currencies" class="txt">@Lang.Currency</label>
                 @Html.DropDownCheckList("Currencies", new SelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode"), true, true, new { @class = "width-140" })
             </div>
             <div class="cell">
-                <label for="Date" class="">@Lang.Month</label>
+                <label for="Date" class="txt">@Lang.Month</label>
                 @Html.MonthPicker("Date", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, new { @class = "width-140" })                
             </div>
         </div>

@@ -25,11 +25,11 @@ affiliate-info
                 @Html.DropDownCheckList("LogType", Model.LogTypeListItem, false, false, new { @class = "width-140" })
             </div>
             <div class="cell width-160">
-                @Html.LabelFor(m => m.DateFrom)
+                @Html.LabelFor(m => m.DateFrom, new { @class = "txt" })
                 @Html.DatePicker("DateFrom", Model.DateFrom, (AppSettings.SystemStartDate > Model.DateFrom) ? AppSettings.SystemStartDate : Model.DateFrom, DateTime.Now)
             </div>
             <div class="cell width-160">
-                @Html.LabelFor(m => m.DateTo)
+                @Html.LabelFor(m => m.DateTo, new { @class = "txt" })
                 @Html.DatePicker("DateTo", Model.DateTo, (AppSettings.SystemStartDate > Model.DateFrom) ? AppSettings.SystemStartDate : Model.DateFrom, DateTime.Now)
             </div>
         </div>

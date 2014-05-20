@@ -37,7 +37,7 @@
                     <label for="DateOption" class="txt">@Lang.GroupBy</label>
                     @Html.DropDownCheckList("GroupBy", Model.GroupByOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
-                <div class="cell width-160">
+                <div class="cell">
                     <label for="FromDate" class="txt">@Lang.From</label>
                     @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), AppSettings.SystemStartDate, now, false)
                 </div>

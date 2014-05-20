@@ -48,7 +48,7 @@ affiliate-info
                     @Html.DatePicker("FromDate", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), AppSettings.SystemStartDate, DateTime.Now, true)
                 </div>
                 <div class="cell">
-                    @Html.LabelFor(m => m.ToDate)
+                    @Html.LabelFor(m => m.ToDate, new { @class = "txt" })
                     @Html.DatePicker("ToDate", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, true)
                 </div>
             </div>

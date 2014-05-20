@@ -35,50 +35,57 @@ report
                 </div>
             </div>
              <div class="row-fluid row-form">
+                 <div class="cell">
+                     @Html.Label("GroupBy", Lang.GroupBy, new { @class = "txt" })
+                    
+                     <select id="GroupBy" class="width-140 single-select dropdownchecklist">
+                         <option value="0">@Lang.All</option>
+                         <option value="1">@Lang.Date</option>
+                         <option value="2" selected>@Lang.Month</option>                    
+                     </select>
+                 </div>
+                 <div class="hide" id="dateSearch">
+                     <div class="cell">
+                         @Html.Label("FromDate", Lang.From, new { @class = "txt" })
+                         @Html.DatePicker("FromDate", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), AppSettings.SystemStartDate, DateTime.Now, false)
+                     </div>
+                     <div class="cell" >
+                         @Html.Label("ToDate", Lang.To, new { @class = "txt" })
+                         @Html.DatePicker("ToDate", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, false)                                        
+                     </div>
+                </div>
+                 <div id="monthSearch" >
+                     <div class="cell" >
+                         @Html.Label("FromMonth", Lang.From, new { @class = "txt" })
+                         @Html.MonthPicker("FromMonth", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now)
+                     </div>
+                     <div class="cell" >
+                         @Html.Label("ToMonth", Lang.To, new { @class = "txt" })
+                         @Html.MonthPicker("ToMonth", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now)
+                     </div>
+                </div>
+                 <input type="hidden" name="PreviousGroupBy" id="PreviousGroupBy" value="2"/>
+            </div>
+            <div class="row-fluid row-form end-search">
                 <div class="cell">
                     @Html.Label(Lang.Currency, new { @class = "txt", @for="Currencies" })
                     @Html.DropDownCheckList("Currencies", new SelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode"), true, true, new { @class = "width-140" })
                 </div>
                 <div class="cell">
-                    @Html.Label("GroupBy", Lang.GroupBy, new { @class = "txt" })
-                    
-                    <select id="GroupBy" class="width-140 single-select dropdownchecklist">
-                        <option value="0">@Lang.All</option>
-                        <option value="1">@Lang.Date</option>
-                        <option value="2" selected>@Lang.Month</option>                    
+                    @Html.Label("SortBy", Lang.SortBy, new { @class = "txt" })                    
+                    <select id="SortBy" class="width-140 single-select dropdownchecklist">
+                        <option value="0">@Lang.Affiliate</option>
+                        <option value="1" selected>@Lang.SignUp</option>
+                        <option value="2">@Lang.Active</option>                    
                     </select>
                 </div>
-                <div class="cell hide" id="dateSearch">
-                    @Html.Label("FromDate", Lang.From, new { @class = "txt" })
-                    @Html.DatePicker("FromDate", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), AppSettings.SystemStartDate, DateTime.Now, false)
-                    @Html.Label("ToDate", Lang.To, new { style = "padding-left: 20px" })
-                    @Html.DatePicker("ToDate", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, false)                                        
+                <div class="cell checkbox">                
+                    <label for="ExcludeTest">
+                        <input type="checkbox" id="ExcludeTest" name="ExcludeTest" checked/>
+                        @Lang.ExcludeTestAccounts
+                    </label>
                 </div>
-                 <div class="cell" id="monthSearch" >
-                     @Html.Label("FromMonth", Lang.From, new { @class = "txt" })
-                     @Html.MonthPicker("FromMonth", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now)
-                    
-                     @Html.Label("ToMonth", Lang.To, new { style = "padding-left: 20px" })
-                     @Html.MonthPicker("ToMonth", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now)
-                 </div>
-                 <input type="hidden" name="PreviousGroupBy" id="PreviousGroupBy" value="2"/>
             </div>
-            <div class="row-fluid row-form end-search">
-            <div class="cell">
-                 @Html.Label("SortBy", Lang.SortBy, new { @class = "txt" })                    
-                <select id="SortBy" class="width-140 single-select dropdownchecklist">
-                    <option value="0">@Lang.Affiliate</option>
-                    <option value="1" selected>@Lang.SignUp</option>
-                    <option value="2">@Lang.Active</option>                    
-                </select>
-            </div>
-            <div class="cell checkbox">                
-                 <label for="ExcludeTest">
-                    <input type="checkbox" id="ExcludeTest" name="ExcludeTest" checked/>
-                    @Lang.ExcludeTestAccounts
-                </label>
-            </div>
-        </div>
             <div class="row-fluid row-form btn-action">
                 <div class="span12">
                     <button type="submit" class="btn" id="btnSubmit">

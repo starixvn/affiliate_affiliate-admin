@@ -31,12 +31,12 @@
     @RazorHelper.SearchPanel(".search-form", "Information text", false, false)
     <div class="span12 search-form">
         <div class="row-fluid row-form end-search">
-            <div class="cell width-160">
-                @Html.LabelFor(m => m.FromDate)
+            <div class="cell">
+                @Html.LabelFor(m => m.FromDate, new { @class = "txt", style = "min-width: 50px;" })
                 @Html.DatePicker("FromDate", fromDate, AppSettings.SystemStartDate, DateTime.Now)
             </div>
-            <div class="cell width-160">
-                @Html.LabelFor(m => m.ToDate)
+            <div class="cell">
+                @Html.LabelFor(m => m.ToDate, new { @class="txt", style = "min-width: 50px;" })
                 @Html.DatePicker("ToDate", toDate, AppSettings.SystemStartDate, DateTime.Now)
             </div>
         </div>

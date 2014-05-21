@@ -19,6 +19,8 @@ namespace Fanex.AffiliateAdmin.Models
 
         public AffiliateStatistic Statistic { get; set; }
 
+        public CommGroupInfo CommGroupInfo { get; set; }
+
         public int Month { get; set; }
 
         public int Year { get; set; }

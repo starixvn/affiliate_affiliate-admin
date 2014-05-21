@@ -131,13 +131,13 @@ namespace Fanex.AffiliateAdmin.Models
                     new SelectListItem()
                     {
                         Text = Lang.Month,
-                        Value = "0"
+                        Value = "0",
+                        Selected = true
                     },
                     new SelectListItem()
                     {
                         Text = Lang.Affiliate,
-                        Value = "1",
-                        Selected = true
+                        Value = "1"
                     }
                 };                
             }

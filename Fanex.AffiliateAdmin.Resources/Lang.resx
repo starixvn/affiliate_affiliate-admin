@@ -338,8 +338,8 @@
     <value>This affiliate does not exist.</value>
   </data>
   <data name="AffQualifiedMemReportDetailFor" xml:space="preserve">
-    <value>{0}'s Qualified members report details for {1}</value>
-    <comment>{0}: affiliate name, {1}: month - year</comment>
+    <value>{0}'s Qualified members report details for {1} - Currency: {2}, Commission Group: {3}</value>
+    <comment>{0}: affiliate name, {1}: month - year, {2} - currency code, {3}: commission group name</comment>
   </data>
   <data name="AffStatisticsAll" xml:space="preserve">
     <value>Affiliate statistics (up to now)</value>

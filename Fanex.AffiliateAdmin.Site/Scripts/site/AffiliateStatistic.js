@@ -52,11 +52,10 @@
                     monthdate: $(this).data("date"),
                     basecurrency: $(this).data("basecurrency"),
                     currency: $(this).data("currency"),
-                    products: $(this).attr("data-product")
+                    products: $(this).attr("data-product"),
+                    groupid: $(this).data("groupid")
                 };
-
-                var title = MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
-                title = title.replace("{1}", param.monthdate) + " - " + MSG.Currency + ": " + $(this).data("currency");
+                var title = MSG.AffQualifiedMemReportDetailFor.format($(this).data("affname"), param.monthdate, $(this).data("currency"), $(this).data("commgroup"));
                 parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });
             });
 

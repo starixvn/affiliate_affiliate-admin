@@ -95,7 +95,11 @@ namespace Fanex.AffiliateAdmin.DataAccess.Impl
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var param = criteria.GetSpParams();
-                    affiliateStatistic.Products = objectDb.Query<Product>(param) as List<Product>;
+                    var reader = objectDb.ExecuteReader(param);
+
+                    affiliateStatistic.Products = GetProductList(reader);
+
+                    affiliateStatistic.CommGroupInfo = GetCommGroup(reader);
 
                     affiliateStatistic.Statistic = new AffiliateStatistic
                     {
@@ -275,6 +279,49 @@ namespace Fanex.AffiliateAdmin.DataAccess.Impl
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Get Commission Group Information.
+        /// </summary>
+        /// <param name="reader">Data reader.</param>
+        /// <returns>Commission Group Information.</returns>
+        private CommGroupInfo GetCommGroup(IDataReader reader)
+        {
+            var commGroup = new CommGroupInfo();
+            if (reader.NextResult())
+            {
+                while (reader.Read())
+                {
+                    commGroup.GroupID = reader.ToInt("GroupId");
+                    commGroup.GroupName = reader.ToString("CommGroupName");
+                    break;
+                }
+            }
+
+            return commGroup;
+        }
+
+        /// <summary>
+        /// Get Product List.
+        /// </summary>
+        /// <param name="reader">Data reader.</param>
+        /// <returns>Product List.</returns>
+        private IList<Product> GetProductList(IDataReader reader)
+        {
+            var productList = new List<Product>();
+
+            while (reader.Read())
+            {
+                productList.Add(new Product
+                {
+                    ProductID = reader.ToByte("ProductID"),
+                    ProductName = reader.ToString("ProductName"),
+                    TotalQualifiedMembers = reader.ToInt("TotalQualifiedMembers")
+                });
+            }
+
+            return productList;
         }
 
         #endregion

@@ -44,8 +44,8 @@ var ProcessingCommission = (function ($) {
                         var currency = record.Currency;
 
                         if (cellFormated) {
-                            return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}' data-groupid='{6}'>{7}</a>"
-                                .format(currency, record.Username, record.AffId, window.moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, record.GroupID, cellFormated);
+                            return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}' data-groupid='{6}' data-commgroup='{7}'>{8}</a>"
+                                    .format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, record.GroupID, record.GroupName, cellFormated);
                         }
 
                         return 0;
@@ -84,7 +84,7 @@ var ProcessingCommission = (function ($) {
                 {
                     IsCurrency: true, HeaderCaption: window.MSG.Amount, HeaderText: window.MSG.Amount, Width: 100, Name: "CashbackAmount", NameCache: "CashbackAmount", HeaderAlign: "center", CellAlign: "left", FormatNumber: AFFILIATE.FORMATNUMBER,
                     Formatter: function (rIndex, record) {
-                        var currentValue = record.CashbackAmount;
+                        var currentValue = submitOptions.BaseCurrency === SYS_CURRENCY_OPTION ? record.CashbackAmountBase : record.CashbackAmount;
 
                         if (isNaN(currentValue) || currentValue === '' || currentValue === null) {
                             return '';
@@ -221,8 +221,8 @@ var ProcessingCommission = (function ($) {
                     products: $(this).data("products"),
                     groupid: $(this).data("groupid")
                 };
-                var title = window.MSG.AffQualifiedMemReportDetailFor.replace("{0}", $(this).data("affname"));
-                title = title.replace("{1}", param.monthdate) + " - " + window.MSG.Currency + ": " + $(this).data("currency");
+                
+                var title = MSG.AffQualifiedMemReportDetailFor.format($(this).data("affname"), param.monthdate, $(this).data("currency"), $(this).data("commgroup"));
                 parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });
             });
 

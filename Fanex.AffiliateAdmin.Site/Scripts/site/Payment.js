@@ -16,12 +16,7 @@
                 Payment.toggleGetAllChecked(isChecked);
             });
 
-            //            $('#btnSubmit').click(function () {
-            //                Payment.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
-            //                return false;
-            //            });
-
-            $('form').submit(function() {
+            $('#btnSubmit').click(function () {
                 Payment.submitRequest();
                 return false;
             });

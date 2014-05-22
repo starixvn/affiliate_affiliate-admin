@@ -179,7 +179,6 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                     Currency = reader.ToString("Currency"),
                     PlayerUsername = reader.ToString("PlayerUsername"),
                     PlayerCurrency = reader.ToString("PlayerCurrency"),
-
                     BetCount = reader.ToInt("BetCount")
                 };
 
@@ -240,7 +239,8 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                 {
                     var memberWinloss = new MemberWinloss
                     {
-                        PlayerCurrency = reader.ToString("PlayerCurrency")
+                        PlayerCurrency = reader.ToString("PlayerCurrency"),
+                        BetCount = reader.ToInt("BetCount")
                     };
 
                     GetMemberWinlossColumnsBasedOnBaseCurrency(criteria, reader, memberWinloss);
@@ -264,6 +264,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             if (reader.NextResult())
             {
                 reader.Read();
+                playerWinloss.BetCount = reader.ToInt("BetCount");
                 GetMemberWinlossColumnsInSystemCurrency(reader, playerWinloss);
             }
 

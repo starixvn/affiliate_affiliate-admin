@@ -1,7 +1,4 @@
-﻿@{
-    var currentSession = Fanex.AffiliateAdmin.Core.Session.SessionManager.CurrentSession;
-}
-@using Fanex.AffiliateAdmin.Core.Configurations
+﻿@using Fanex.AffiliateAdmin.Core.Configurations
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,7 +19,7 @@
                 return '@Url.Content("~/")' + relativeUrl;
             };
 
-            AFFILIATE.TimeZone = '@Fanex.AffiliateAdmin.Core.Configurations.AppSettings.ServerTimeZone';
+            AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
         </script>
     </body>
 </html>

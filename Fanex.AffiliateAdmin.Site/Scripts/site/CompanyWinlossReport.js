@@ -564,7 +564,6 @@
 
             $('#btnSubmit').click(function () {
                 CompanyWinlossReport.submitRequest();
-                return false;
             });
 
             $("#GroupBy").change(function () {

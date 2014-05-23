@@ -7,6 +7,8 @@
 //   <change who="Johnny.Trinh" date="2013.8.2">Created</change>
 // </history>
 
+using Fanex.AffiliateAdmin.Core.Filter;
+
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
@@ -19,6 +21,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Notify Controller class.
     /// </summary>
+    [Undermaintenance]
     public class NotifyController : Controller
     {
         private readonly IAccountService _accountService;

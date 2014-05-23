@@ -7,6 +7,8 @@
 //   <change who="Kaden.Trinh" date="2013.07.05">Created</change>
 // </history>
 
+using System;
+
 namespace Fanex.AffiliateAdmin.Core.Filter
 {
     using System.Web.Mvc;
@@ -24,7 +26,8 @@ namespace Fanex.AffiliateAdmin.Core.Filter
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             string startTime = string.Empty, endTime = string.Empty;
-            if (UnderMaintenanceService.GetDownTime(ref startTime, ref endTime))
+
+            if (UnderMaintenanceService.GetDownTime(ref startTime, ref endTime) && !IsUnderMaintenancePage(filterContext))
             {
                 if (!filterContext.HttpContext.Response.IsRequestBeingRedirected)
                 {
@@ -33,6 +36,20 @@ namespace Fanex.AffiliateAdmin.Core.Filter
             }
 
             base.OnActionExecuting(filterContext);
+        }
+
+        /// <summary>
+        /// Whether or not on the Under-maintenance page.
+        /// </summary>
+        /// <param name="filterContext">Filter context.</param>
+        /// <returns></returns>
+        private bool IsUnderMaintenancePage(ActionExecutingContext filterContext)
+        {
+            var currentAcction = filterContext.Controller.ControllerContext.RouteData.GetRequiredString("action");
+            var currentController = filterContext.Controller.ControllerContext.RouteData.GetRequiredString("controller");
+
+            return currentController.Equals("notify", StringComparison.OrdinalIgnoreCase)
+                   && currentAcction.Equals("index", StringComparison.OrdinalIgnoreCase);
         }
     }
 }

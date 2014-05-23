@@ -16,7 +16,6 @@
 }
 
 @Styles.Render("~/bundles/css")
-
 <table id="top_panel" class="top_panel">
     <colgroup>
         <col width="40%" />
@@ -64,10 +63,17 @@
                 </select>)
             </td>
             <td class="col-data" id="dataqualified">
-                <a href="javascript:void(0)" data-date="@Model.FullDateTime.ToString("MMM yyyy")" 
-                   data-affid="@Model.AffId" data-affname="@Model.AffName"  data-basecurrency="2" data-currency="@Model.AffCurrency" class="qm" data-product="@Model.Products.FirstOrDefault().ProductID" data-groupid="@Model.CommGroupInfo.GroupID" data-commgroup="@Model.CommGroupInfo.GroupName">
+                @{
+                    const string hideClass = "class='qm hidden'";
+                    const string noHideClass = "class='qm'";
+                }
+                <a @Html.Raw(Model.Products.FirstOrDefault().TotalQualifiedMembers > 0 ? noHideClass : hideClass) href="javascript:void(0)" data-date="@Model.FullDateTime.ToString("MMM yyyy")" 
+                   data-affid="@Model.AffId" data-affname="@Model.AffName"  data-basecurrency="2" 
+                   data-currency="@Model.AffCurrency"  data-product="@Model.Products.FirstOrDefault().ProductID" 
+                   data-groupid="@Model.CommGroupInfo.GroupID" data-commgroup="@Model.CommGroupInfo.GroupName">
                     @Model.Products.FirstOrDefault().TotalQualifiedMembers
                 </a>
+                <span @Html.Raw(Model.Products.FirstOrDefault().TotalQualifiedMembers > 0 ? hideClass : noHideClass)>0</span>
             </td>
             <td class="col-data">@Lang.NotAvaliable</td>
         </tr>

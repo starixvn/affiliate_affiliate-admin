@@ -25,11 +25,21 @@
 
             $('#slProduct').change(function () {
                 $("#spProduct").html($("#slProduct").val());
+                var qm = parseInt($("#slProduct option:selected").attr("data-qualified"));
                 var product = $("#slProduct").find(":selected").attr('data-product');
                 $("a.qm").text($("#slProduct option:selected").attr("data-qualified"));
                 $("a.qm").attr("data-product", product);
                 $("#spProduct").show();
+
                 $(this).hide();
+
+                if (qm > 0) {
+                    $("a.qm").removeClass('hidden');
+                    $("span.qm").addClass('hidden');
+                } else {
+                    $("a.qm").addClass('hidden');
+                    $("span.qm").removeClass('hidden');
+                }
             });
 
             $('#slProduct').blur(function () {

@@ -565,6 +565,12 @@
 
                 }
             }
+        },
+        getBaseUrl: function () {
+            var protocol = location.protocol;
+            var host = location.host;
+
+            return "{0}://{1}".format(protocol, host);    
         }
     };
 })(jQuery);

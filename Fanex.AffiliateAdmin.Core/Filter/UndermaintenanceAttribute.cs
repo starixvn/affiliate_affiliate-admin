@@ -7,10 +7,9 @@
 //   <change who="Kaden.Trinh" date="2013.07.05">Created</change>
 // </history>
 
-using System;
-
 namespace Fanex.AffiliateAdmin.Core.Filter
 {
+    using System;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Services;
 
@@ -42,7 +41,7 @@ namespace Fanex.AffiliateAdmin.Core.Filter
         /// Whether or not on the Under-maintenance page.
         /// </summary>
         /// <param name="filterContext">Filter context.</param>
-        /// <returns></returns>
+        /// <returns>Be true if on under-maintenance page.</returns>
         private bool IsUnderMaintenancePage(ActionExecutingContext filterContext)
         {
             var currentAcction = filterContext.Controller.ControllerContext.RouteData.GetRequiredString("action");

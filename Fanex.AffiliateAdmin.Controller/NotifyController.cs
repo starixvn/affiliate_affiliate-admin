@@ -7,13 +7,12 @@
 //   <change who="Johnny.Trinh" date="2013.8.2">Created</change>
 // </history>
 
-using Fanex.AffiliateAdmin.Core.Filter;
-
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
     using System.Web.Security;
     using Core.Services;
+    using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Services.Interface;

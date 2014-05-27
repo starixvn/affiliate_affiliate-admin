@@ -1,4 +1,4 @@
-﻿var CommissionReport = function ($) {
+﻿var CommissionReport = (function ($) {
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = 1;
     var GROUP_BY_MONTH = "0";
@@ -338,7 +338,7 @@
                 CommissionReport.submitRequest();
             }
 
-            $('form').submit(function () {
+            $('#btnSubmit').click(function () {
                 CommissionReport.submitRequest();
                 return false;
             });
@@ -417,7 +417,6 @@
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             var baseCurrency = $("#BaseCurrency").val();
-
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Report/Commission"),
                 type: 'post',
@@ -478,8 +477,9 @@
             });
         }
     };
-} (jQuery);
+}) (jQuery);
 
 $(function () {
+    
     CommissionReport.init();
 });

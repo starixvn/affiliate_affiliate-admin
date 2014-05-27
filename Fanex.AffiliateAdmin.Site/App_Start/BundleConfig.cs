@@ -30,12 +30,7 @@ namespace Fanex.AffiliateAdmin.Site
             "SP2101:MethodMustNotContainMoreLinesThan", Justification = "This is OK here.")]
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new Bundle("~/bundles/login")
-            {
-                Transforms = { new CssTransformer(), new CssMinify() },
-                Orderer = new NullOrderer()
-            }.Include(string.Format("~/Content/_Sites/{0}/Login.less", AppSettings.Layout))
-            .Include("~/Content/themes/base/AffiliateAdmin.css"));
+            bundles.Add(GetBundleForLoginCss());
 
             bundles.Add(new Bundle("~/bundles/notify").Include(string.Format("~/Content/_Sites/{0}/Notify.less", AppSettings.Layout)));
 
@@ -89,6 +84,16 @@ namespace Fanex.AffiliateAdmin.Site
                 "~/Scripts/libraries/date.min.js").Include(
                 "~/Scripts/libraries/daterangepicker.js").Include(
                 "~/Scripts/libraries/monpickr.js"));
+        }
+
+        private static Bundle GetBundleForLoginCss()
+        {
+            return new Bundle("~/bundles/login")
+                {
+                    Transforms = { new CssTransformer(), new CssMinify() },
+                    Orderer = new NullOrderer()
+                }.Include(string.Format("~/Content/_Sites/{0}/Login.less", AppSettings.Layout))
+                 .Include("~/Content/themes/base/AffiliateAdmin.css");
         }
     }
 

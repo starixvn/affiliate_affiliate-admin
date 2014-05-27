@@ -255,7 +255,7 @@
                 CommissionReport.submitRequest();
             }
 
-            $('form').submit(function () {
+            $('#btnSubmit').submit(function () {
                 CommissionReport.submitRequest();
                 return false;
             });

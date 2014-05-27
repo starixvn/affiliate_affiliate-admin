@@ -348,6 +348,19 @@
     <Content Include="Content\_Sites\allbetclub\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\allbetclub\images\notify.png" />
     <Content Include="Content\_Sites\allbetclub\images\panel.png" />
+    <Content Include="Content\_Sites\28bet\images\banner_top.png" />
+    <Content Include="Content\_Sites\28bet\images\best-browsers.png" />
+    <Content Include="Content\_Sites\28bet\images\bodybg.jpg" />
+    <Content Include="Content\_Sites\28bet\images\btbg.png" />
+    <Content Include="Content\_Sites\28bet\images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\28bet\images\emailBg.jpg" />
+    <Content Include="Content\_Sites\28bet\images\favicon.jpg" />
+    <Content Include="Content\_Sites\28bet\images\headerbg.jpg" />
+    <Content Include="Content\_Sites\28bet\images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\28bet\images\logo.jpg" />
+    <Content Include="Content\_Sites\28bet\images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\28bet\images\notify.png" />
+    <Content Include="Content\_Sites\28bet\images\panel.png" />
     <Content Include="Content\_Sites\thbet\images\banner_top.png" />
     <Content Include="Content\_Sites\thbet\images\best-browsers.png" />
     <Content Include="Content\_Sites\thbet\images\bodybg.jpg" />
@@ -684,6 +697,8 @@
     <Content Include="Content\_Sites\m8bola\Notify.less" />
     <Content Include="Content\_Sites\thbet\Login.less" />
     <Content Include="Content\_Sites\thbet\Notify.less" />
+    <Content Include="Content\_Sites\28bet\Login.less" />
+    <Content Include="Content\_Sites\28bet\Notify.less" />
     <None Include="Content\_Sites\royalebet\Login.less" />
     <None Include="Content\_Sites\royalebet\Notify.less" />
     <None Include="Content\_Sites\macaubet\Login.less" />
@@ -1019,7 +1034,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

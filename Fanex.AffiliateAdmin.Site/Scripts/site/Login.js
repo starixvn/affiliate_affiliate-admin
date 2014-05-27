@@ -46,9 +46,7 @@
                             $("#Password").val("");
                         }
                         else {
-                            var url = AFFILIATE.getBaseUrl + AFFILIATE.getAbsoluteUrl("Home");
-                            location.href = url;
-
+                            window.top.location = AFFILIATE.getAbsoluteUrl("Home");
                         }
                     },
                     error: function () {

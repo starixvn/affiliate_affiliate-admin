@@ -131,7 +131,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                 {
                     var criteria = new AccountCriteria();
                     criteria.UserId = SessionManager.CurrentSession.CustID;
-                    _affSystemSupportedCurrencies = _SystemSetting.GetAffSystemSupportedCurrencyList(criteria);                    
+                    _affSystemSupportedCurrencies = _SystemSetting.GetAffSystemSupportedCurrencyList(criteria);
                 }
 
                 return _affSystemSupportedCurrencies;
@@ -152,7 +152,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                 return _affSystemAllSupportedCurrencies;
             }
         }
-       
+
         public static IEnumerable<Currency> PlayerCurrencies
         {
             get
@@ -167,9 +167,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_baseCurrencyInAffiliate == null)
-                {
-                    _baseCurrencyInAffiliate = new List<SelectListItem> 
+                return new List<SelectListItem> 
                     {
                         new SelectListItem 
                         {
@@ -182,9 +180,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                             Value = "1"
                         }
                     };
-                }
-
-                return _baseCurrencyInAffiliate;
             }
         }
 
@@ -192,24 +187,19 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_baseCurrencyInMember == null)
-                {
-                    _baseCurrencyInMember = new List<SelectListItem> 
+                return new List<SelectListItem>
                     {
-                        new SelectListItem 
-                        {
-                            Text = Lang.Member,
-                            Value = "0"
-                        },
                         new SelectListItem
-                        {
-                            Text = BaseExchange.Code,
-                            Value = "1"
-                        }
+                            {
+                                Text = Lang.Member,
+                                Value = "0"
+                            },
+                        new SelectListItem
+                            {
+                                Text = BaseExchange.Code,
+                                Value = "1"
+                            }
                     };
-                }
-
-                return _baseCurrencyInMember;
             }
         }
 
@@ -236,7 +226,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                 return Convert.ToInt32(GetValue("ServerID"));
             }
         }
-        
+
         public static string DefaultLanguage
         {
             get
@@ -404,7 +394,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                 return Convert.ToDecimal(GetValue("MinimumWithdrawalAmount"));
             }
         }
-        
+
         public static string SystemName
         {
             get

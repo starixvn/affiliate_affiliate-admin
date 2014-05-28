@@ -7,7 +7,6 @@
     var GROUP_BY_DATE = "0";
     var GROUP_BY_MONTH = "1";
 
-
     // number of all common columns (except product columns).
     var _freezeColumnCount = 3;
     var gridOption = {};
@@ -16,6 +15,8 @@
     var EXRATE_COL_INDEX = 2;
     var TURNOVER_COL_INDEX = 8;
     var playerWinlossUrl;
+
+    var levels = ["Date", "Month"];
 
     var removeExchangeRateCol = function () {
         gridOption.groupHeaderRows[0].Columns.splice(EXRATE_COL_INDEX, 1);
@@ -261,7 +262,7 @@
         var mergeCols = gridOption.numberOfFrozenColumn;
 
         var groupBy = $("#GroupBy").val();
-        var groupByText = $.trim($("#GroupBy option:selected").text());
+        var groupByText = levels[parseInt(groupBy, 10)];
         var baseCurrency = $('#BaseCurrency').val();
         var formatDateTime = groupBy == 1 ? AFFILIATE.DATE_FORMAT_MONTH : AFFILIATE.DATE_FORMAT;
 
@@ -561,7 +562,7 @@
                 CompanyWinlossReport.submitRequest();
             }
 
-            $('form').submit(function () {
+            $('#btnSubmit').click(function () {
                 CompanyWinlossReport.submitRequest();
                 return false;
             });

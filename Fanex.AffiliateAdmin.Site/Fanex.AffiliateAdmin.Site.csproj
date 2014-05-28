@@ -550,24 +550,15 @@
     <Content Include="Scripts\libraries\Fanex.Grid.js" />
     <Content Include="Scripts\libraries\Fanex.Pagination.js" />
     <Content Include="Scripts\libraries\head.js" />
-    <Content Include="Scripts\libraries\head.min.js" />
-    <Content Include="Scripts\libraries\jquery-1.10.1.js" />
-    <Content Include="Scripts\libraries\jquery-1.10.1.min.js" />
-    <Content Include="Scripts\libraries\jquery-ui-1.10.3.js" />
     <Content Include="Scripts\libraries\jquery.ba-resize.min.js" />
     <Content Include="Scripts\libraries\jquery.blockUI.js" />
     <Content Include="Scripts\libraries\jquery.formattyping.js" />
     <Content Include="Scripts\libraries\jquery.multiselect.js" />
-    <Content Include="Scripts\libraries\jquery.multiselect.min.js" />
     <Content Include="Scripts\libraries\jquery.numeric.js" />
     <Content Include="Scripts\libraries\jquery.placeholder.js" />
-    <Content Include="Scripts\libraries\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\libraries\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\libraries\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\libraries\jquery.validate.js" />
-    <Content Include="Scripts\libraries\jquery.validate.min.js" />
     <Content Include="Scripts\libraries\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\libraries\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\libraries\Language\Fanex.Grid.Lang.zh-TW.js" />
     <Content Include="Scripts\libraries\Language\Fanex.Grid.Lang.en-US.js" />
     <Content Include="Scripts\libraries\Language\Fanex.Grid.Lang.ja-JP.js" />
@@ -789,7 +780,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\libraries\_references.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

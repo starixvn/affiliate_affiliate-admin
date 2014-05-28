@@ -22,6 +22,10 @@ namespace Fanex.AffiliateAdmin.Site
     /// </summary>
     public class BundleConfig
     {
+        private static CssMinify _cssMinify = new CssMinify();
+        private static CssTransformer _cssTransformer = new CssTransformer();
+        private static NullOrderer _nullOrderer = new NullOrderer();
+
         /// <summary>
         /// Register Bundles.
         /// </summary>
@@ -32,53 +36,15 @@ namespace Fanex.AffiliateAdmin.Site
         {
             bundles.Add(GetBundleForLoginCss());
 
-            bundles.Add(new Bundle("~/bundles/notify").Include(string.Format("~/Content/_Sites/{0}/Notify.less", AppSettings.Layout)));
+            bundles.Add(GetBundleForNotifyCss());
 
-            bundles.Add(new ScriptBundle("~/bundles/loginJs").Include(
-                "~/Scripts/libraries/jquery.blockUI.js").Include(
-                "~/Scripts/libraries/jquery.placeholder.js").Include(
-                "~/Scripts/site/Login.js").Include(
-                "~/Scripts/site/_Global.js"));
+            bundles.Add(GetBundleForLoginJs());
 
-            bundles.Add(new ScriptBundle("~/bundles/headjs").Include("~/Scripts/libraries/head.js"));
+            bundles.Add(GetBundleForHeadJs());
 
-            bundles.Add(new Bundle("~/bundles/css")
-            {
-                Transforms = { new CssTransformer(), new CssMinify() },
-                Orderer = new NullOrderer()
-            }.Include("~/Content/themes/base/jquery.ui.all.css")
-            .Include("~/Content/themes/base/jquery.multiselect.css")
-            .Include("~/Content/themes/base/daterangepicker.css")
-            .Include("~/Content/themes/base/monpickr.css")
-            .Include("~/Content/themes/base/Fanex.Grid.css")
-            .Include("~/Content/themes/base/Fanex.Pagination.css")
-            .Include("~/Content/themes/Default/index.less")
-            .Include("~/Content/themes/base/AffiliateAdmin.css"));            
-            bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                "~/Scripts/libraries/jquery.blockUI.js").Include(
-                "~/Scripts/libraries/jquery.validate.js").Include(
-                "~/Scripts/libraries/jquery.validate.unobtrusive.js").Include(
-                "~/Scripts/libraries/Fanex.Grid.js").Include(
-                "~/Scripts/libraries/Fanex.Pagination.js").Include(
-                "~/Scripts/libraries/Language/Fanex.Grid.Lang.en-US.js").Include(
-                "~/Scripts/libraries/Language/Fanex.Grid.Lang.ja-JP.js").Include(
-                "~/Scripts/libraries/Language/Fanex.Grid.Lang.ko-KR.js").Include(
-                "~/Scripts/libraries/Language/Fanex.Grid.Lang.th-TH.js").Include(
-                "~/Scripts/libraries/Language/Fanex.Grid.Lang.vi-VN.js").Include(
-                "~/Scripts/libraries/Language/Fanex.Grid.Lang.zh-CN.js").Include(
-                "~/Scripts/libraries/Language/Fanex.Grid.Lang.zh-TW.js").Include(
-                "~/Scripts/libraries/moment.js").Include(
-                "~/Scripts/libraries/numeral.js").Include(
-                "~/Scripts/libraries/jquery.placeholder.js").Include(
-                "~/Scripts/libraries/jquery.mtz.monthpicker.seph.custom.js").Include(
-                "~/Scripts/libraries/jquery.multiselect.js").Include(
-                "~/Scripts/libraries/jquery.formattyping.js").Include(
-                "~/Scripts/libraries/jquery.numeric.js").Include(
-                "~/Scripts/libraries/jquery.ba-resize.min.js").Include(
-                "~/Scripts/site/Query.string.js").Include(
-                "~/Scripts/site/Paging.js").Include(
-                "~/Scripts/site/_Global.js").Include(
-                "~/Scripts/site/RecheckIn.js"));
+            bundles.Add(GetBundleForCommonCss());   
+         
+            bundles.Add(GetBundleForCommonJs());
 
             bundles.Add(new ScriptBundle("~/bundles/daterange").Include(
                 "~/Scripts/libraries/date.min.js").Include(
@@ -86,15 +52,81 @@ namespace Fanex.AffiliateAdmin.Site
                 "~/Scripts/libraries/monpickr.js"));
         }
 
+        private static Bundle GetBundleForCommonJs()
+        {
+            var bundle = new ScriptBundle("~/bundles/js");
+            
+            bundle.IncludeDirectory("~/Scripts/libraries", "jquery*.js")
+                  .IncludeDirectory("~/Scripts/libraries", "Fanex*.js")
+                  .IncludeDirectory("~/Scripts/libraries/Language", "*.js")
+                  .Include("~/Scripts/libraries/head.js")
+                  .Include("~/Scripts/libraries/moment.js")
+                  .Include("~/Scripts/libraries/monpickr.js")
+                  .Include("~/Scripts/libraries/numeral.js")
+                  .Include("~/Scripts/libraries/placeholder_fixer.js")
+                  .Include("~/Scripts/libraries/ui.dropdownchecklist.js")
+                  //.Include("~/Scripts/libraries/date.min.js")
+                  //.Include("~/Scripts/libraries/daterangepicker.js")
+
+                  .Include("~/Scripts/site/Query.string.js")
+                  .Include("~/Scripts/site/Paging.js")
+                  .Include("~/Scripts/site/_Global.js")
+                  .Include("~/Scripts/site/RecheckIn.js");
+
+            return bundle;
+        }
+
+        private static Bundle GetBundleForCommonCss()
+        {
+            var bundle = new Bundle("~/bundles/css")
+                {
+                    Transforms = { _cssTransformer, _cssMinify },
+                    Orderer = _nullOrderer
+                };
+
+            bundle.IncludeDirectory("~/Content/themes/base", "*.css")
+                  .Include("~/Content/themes/Default/index.less");
+                 
+            return bundle;
+        }
+
+        private static Bundle GetBundleForHeadJs()
+        {
+            return new ScriptBundle("~/bundles/headjs").Include("~/Scripts/libraries/head.js");
+        }
+
+        private static Bundle GetBundleForLoginJs()
+        {
+            var bundle = new ScriptBundle("~/bundles/loginJs");
+            bundle.Include("~/Scripts/libraries/jquery.blockUI.js")
+                  .Include("~/Scripts/libraries/jquery.placeholder.js")
+                  .Include("~/Scripts/site/Login.js")
+                  .Include("~/Scripts/site/_Global.js");
+
+            return bundle;
+        }
+
+        private static Bundle GetBundleForNotifyCss()
+        {
+            return new Bundle("~/bundles/notify")
+                    .Include(string.Format("~/Content/_Sites/{0}/Notify.less", AppSettings.Layout));
+        }
+
         private static Bundle GetBundleForLoginCss()
         {
-            return new Bundle("~/bundles/login")
-                {
-                    Transforms = { new CssTransformer(), new CssMinify() },
-                    Orderer = new NullOrderer()
-                }.Include(string.Format("~/Content/_Sites/{0}/Login.less", AppSettings.Layout))
-                 .Include("~/Content/themes/base/AffiliateAdmin.css");
+            var bundle = new Bundle("~/bundles/login");
+            bundle.Transforms.Add(_cssTransformer);
+            bundle.Transforms.Add(_cssMinify);
+            bundle.Orderer = _nullOrderer;
+            
+            bundle.Include(string.Format("~/Content/_Sites/{0}/Login.less", AppSettings.Layout))
+                  .Include("~/Content/themes/base/AffiliateAdmin.css");
+
+            return bundle;
         }
+
+
+
     }
 
     /// <summary>

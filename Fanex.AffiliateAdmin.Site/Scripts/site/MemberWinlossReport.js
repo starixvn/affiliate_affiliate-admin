@@ -459,7 +459,7 @@
                 MemberWinlossReport.submitRequest();
             }
 
-            $('#btnSubmit').submit(function () {
+            $('#btnSubmit').click(function () {
                 MemberWinlossReport.submitRequest();
                 return false;
             });

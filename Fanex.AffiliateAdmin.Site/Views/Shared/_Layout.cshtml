@@ -9,7 +9,6 @@
     <title>@ViewBag.Title</title>
     <link href="@Url.Content(string.Format("~/Content/_Sites/{0}/images/favicon.jpg", AppSettings.Layout))" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-    @Scripts.Render("~/bundles/headjs")
     @Styles.Render("~/bundles/css")
     @RenderSection("css", required: false)
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -43,28 +42,31 @@
     @Scripts.Render("~/bundles/js")
 
     <script type="text/javascript">
-        $.unblockUI();
+        var System = {
+            Currency: '@AppSettings.BaseExchange.Code',
+            Prefix: '@AppSettings.BaseExchange.Prefix'
+        };
+
         var Lang = {
             NoDataInfo: '@Html.Raw(Lang.NoInfo)',
             SubTotal: '@Lang.SubTotal',
             Total: '@Lang.Total',
             TotalBaseCurrency: '@Lang.Total (@AppSettings.BaseExchange.Prefix)'
         };
+        
+        $(document).ready(function () {
+            $.unblockUI();
+            
+            AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
+                return '@Url.Content("~/")' + relativeUrl;
+            };
 
-        var System = {
-            Currency: '@AppSettings.BaseExchange.Code',
-            Prefix: '@AppSettings.BaseExchange.Prefix'
-        };
+            AFFILIATE.baseUrl = '@Url.Content("~/")';
 
-        AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
-            return '@Url.Content("~/")' + relativeUrl;
-        };
-
-        AFFILIATE.baseUrl = '@Url.Content("~/")';
-
-        AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
+            AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
+        });
     </script>
 
-    @RenderSection("scripts", required: false)       
+    @RenderSection("scripts", required: false)  
 </body>
 </html>

@@ -51,6 +51,8 @@ namespace Fanex.AffiliateAdmin.Models
 
         public string Products { get; set; }
 
+        public int BaseCurrency { get; set; }
+
         public IEnumerable<SelectListItem> PlayerCurrencyOptionList
         {
             get
@@ -92,7 +94,7 @@ namespace Fanex.AffiliateAdmin.Models
                     BaseCurrencyList.RemoveAt(1);
                 }
 
-                return new SelectList(BaseCurrencyList, "Value", "Text");
+                return new SelectList(BaseCurrencyList, "Value", "Text", BaseCurrency.ToString());
             }
         }
 

@@ -46,7 +46,7 @@
         <tr>
             <td class="col-label">@Lang.TotalActive</td>
             <td class="col-data">
-                @Html.ActionLink(Model.Statistic.TotalActivePlayer.ToString(), "MemberWinlossByAffiliate", "Report", new { GroupBy = 1, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
+                @Html.ActionLink(Model.Statistic.TotalActivePlayer.ToString(), "MemberWinlossByAffiliate", "Report", new { GroupBy = 1, FromDate = fromDate, ToDate = toDate, BaseCurrency = 2, TimeStamp = DateTime.Now.Ticks  }, new { @class = "link" })
             </td>
             <td class="col-data">@Lang.NotAvaliable</td>
         </tr>
@@ -81,21 +81,21 @@
         <tr>
             <td class="col-label">@Lang.TotalDeposit</td>
             <td class="col-data">
-                @Html.ActionLinkForRawLinkText(FormaterCurrency.Format(Model.Statistic.TotalDeposit), "MemberWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
+                @Html.ActionLinkForRawLinkText(FormaterCurrency.Format(Model.Statistic.TotalDeposit), "MemberWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate, BaseCurrency = 2, TimeStamp = DateTime.Now.Ticks  }, new { @class = "link" })
             </td>
             <td class="col-data">@MvcHtmlString.Create(FormaterCurrency.Format(Model.Statistic.TotalDepositUp))</td>
         </tr>
         <tr>
             <td class="col-label">@Lang.TotalTurnover</td>
             <td class="col-data">
-                @Html.ActionLinkForRawLinkText(FormaterCurrency.Format(Model.Statistic.TotalTurnover), "MemberWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
+                @Html.ActionLinkForRawLinkText(FormaterCurrency.Format(Model.Statistic.TotalTurnover), "MemberWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate, BaseCurrency = 2, TimeStamp = DateTime.Now.Ticks  }, new { @class = "link" })
             </td>
             <td class="col-data">@MvcHtmlString.Create(FormaterCurrency.Format(Model.Statistic.TotalTurnoverUp))</td>
         </tr>
         <tr>
             <td class="col-label">@Lang.TotalWinlost</td>
             <td class="col-data">
-                <a href="@Url.Action("MemberWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate })" class="link">@Html.Raw(FormaterCurrency.Format(Model.Statistic.TotalWinlost))</a>
+                <a href="@Url.Action("MemberWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate, BaseCurrency = 2, TimeStamp = DateTime.Now.Ticks  })" class="link">@Html.Raw(FormaterCurrency.Format(Model.Statistic.TotalWinlost))</a>
             </td>
             <td class="col-data">@Html.Raw(FormaterCurrency.Format(Model.Statistic.TotalWinlostUp))</td>
         </tr>
@@ -113,9 +113,9 @@
 @section scripts{
     <script type="text/javascript">
         var MSG = {
-                AffQualifiedMemReportDetailFor: "@Html.Raw(Lang.AffQualifiedMemReportDetailFor)",
-                Currency: "@Lang.Currency"
-            };
+            AffQualifiedMemReportDetailFor: "@Html.Raw(Lang.AffQualifiedMemReportDetailFor)",
+            Currency: "@Lang.Currency"
+        };
     </script>
     <script src="~/Scripts/site/AffiliateStatistic.js" type="text/javascript"></script>
 }

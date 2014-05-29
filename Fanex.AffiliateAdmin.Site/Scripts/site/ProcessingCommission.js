@@ -303,7 +303,7 @@ var ProcessingCommission = (function ($) {
                         $('.status').show();
                     }
 
-                    //AFFILIATE.updateSearchPanel(gridObject);
+                    AFFILIATE.updateSearchPanel(gridObject);
                 },
                 complete: function () {
                     $.unblockUI();

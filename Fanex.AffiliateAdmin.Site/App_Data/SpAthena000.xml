@@ -51,7 +51,7 @@
     <Setting Key="AffAdmin_CheckMemberExist" SpName="AffAdmin_CheckMemberExist" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CustomerInsMemberManually" SpName="AffAdmin_CustomerInsMemberManually" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateUpdAccountType" SpName="AffAdmin_AffiliateUpdAccountType" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="Aff_CustomerSelByUserName" SpName="Aff_CustomerSelByUserName" DbName="DBACC.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_CustomerSelByUserName" SpName="Aff_CustomerSelByUserName" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="System Settings">
     <Setting Key="AffAdmin_SystemAllSupportedCurrencies" SpName="AffAdmin_SystemAllSupportedCurrencies" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
@@ -100,7 +100,7 @@
     <Setting Key="AffAdmin_CashBackUpdate" SpName="AffAdmin_CashBackUpdate" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="Task_Aff_MonthlyTransfer" SpName="Task_Aff_MonthlyTransfer" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_IsMonthlyTransfer" SpName="AffAdmin_IsMonthlyTransfer" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="Aff_DummyAccID" SpName="Aff_DummyAccID" DbName="DBACC.bodb02.bodbAdminNet" Plain="0"/>
+    <Setting Key="Aff_DummyAccID" SpName="Aff_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0"/>
   </Function>
   <Function Name="Message">
     <Setting Key="AffAdmin_HotNewsSel" SpName="AffAdmin_HotNewsSel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />

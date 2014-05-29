@@ -1,0 +1,67 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+}
+a.no-underline
+{
+    text-decoration: none;
+}
+.header {
+    background: url(images/headerbg_notify.png) repeat-x;
+    width: 100%;
+    
+    .logo {
+        background: url(images/logoNotify.jpg) no-repeat center center;
+        color: #ffffff;
+        font-family: Oswald, sans-serif, Arial;
+        font-size: 28px;
+        height: 180px;
+        text-align: center;
+        line-height: 310px;
+    }
+    .seperator {
+        border-bottom: #491e00 solid 2px;
+    }
+}
+.content {
+    height: 300px;
+    width: 690px;
+    margin: auto;
+    padding-top: 40px;
+    .icon {
+        background: url(Images/notify.png) no-repeat;
+        float: left;
+        width: 230px;
+        height: 210px;
+        &.um {
+            background-position: -270px -50px;
+        }
+        &.error {
+            background-position: left -50px;
+        }
+        &.notfound {
+            background-position: -490px -50px;
+        }
+    }    
+    .text {
+        font-size: 13px;
+        font-family: Tahoma, Geneva, sans-serif;
+        padding-left: 30px;
+        color:#252525;
+        float: left;
+        width: 430px;
+        
+        ul {
+            list-style: none outside none;
+            li {
+                border-bottom: 1px dotted #006600;
+                list-style-type: none;
+                padding: 10px 0 5px 0;
+                
+                &.end {
+                    border: none;
+                }
+            }
+        } 
+    }
+}

@@ -1,6 +1,6 @@
-﻿var LOGIN = function ($) {
+﻿var LOGIN = (function ($) {
     return {
-        init: function () {
+        init: function() {
             if ($("#Username").val() == "") {
                 $("#Username").focus();
             } else {
@@ -8,24 +8,23 @@
             }
 
             // Event click login
-            $("#btnlogin").click(function () {
+            $("#btnlogin").click(function() {
                 LOGIN.submitForm();
             });
 
-            $('.login input').bind('keypress', function (e) {
+            $('.login input').bind('keypress', function(e) {
                 if (e.keyCode == 13) {
                     LOGIN.submitForm();
                 }
             });
         },
-        submitForm: function () {
+        submitForm: function() {
             var username = $("#Username").val(),
-				password = $("#Password").val();
+                password = $("#Password").val();
 
             if (username == "" || password == "") {
                 alert("Please input username and password.");
-            }
-            else {
+            } else {
                 $.blockUI();
                 var param = {
                     "Username": username,
@@ -38,27 +37,26 @@
                     contentType: "application/json",
                     dataType: "json",
                     data: JSON.stringify(param),
-                    success: function (result) {
+                    success: function(result) {
                         AFFILIATE.PreHandleAjaxResult(result);
 
                         if (!result.Success) {
                             alert(result.Message);
                             $("#Password").val("");
-                        }
-                        else {
+                        } else {
                             window.top.location = AFFILIATE.getAbsoluteUrl("Home");
                         }
                     },
-                    error: function () {
+                    error: function() {
                     },
-                    complete: function () {
+                    complete: function() {
                         $.unblockUI();
                     }
                 });
             }
         }
-    }
-} (jQuery);
+    };
+}) (jQuery);
 $(function () {
 	LOGIN.init();
 });

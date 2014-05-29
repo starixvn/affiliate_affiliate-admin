@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Joseph.Pham" date="2013.8.1">Created</change>
 // </history>
+
 namespace Fanex.AffiliateAdmin.DataAccess.Impl
 {
     using System;
@@ -17,6 +18,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Impl
     using Criterias;
     using Data;
     using DTO;
+    using Fanex.AffiliateAdmin.Core.Utilities;
     using Interface;
     using Models;
     
@@ -101,23 +103,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Impl
 
                     affiliateStatistic.CommGroupInfo = GetCommGroup(reader);
 
-                    affiliateStatistic.Statistic = new AffiliateStatistic
-                    {
-                        TotalActivePlayer = Convert.ToInt32(param["totalactiveplayer"]),
-                        TotalPlayerDepUp = Convert.ToInt32(param["totalplayerdepup"]),
-                        NewSignUpDep = Convert.ToInt32(param["newsignupdep"]),
-                        NewSignUp = Convert.ToInt32(param["newsignup"]),
-                        TotalPlayer = Convert.ToInt32(param["totalplayer"]),
-                        BalBroughtforward = Convert.ToDecimal(param["balbroughtforward"]),
-                        TotalDeposit = Convert.ToDecimal(param["totaldeposit"]),
-                        TotalDepositUp = Convert.ToDecimal(param["totaldepositup"]),
-                        TotalTurnover = Convert.ToDecimal(param["totalturnover"]),
-                        TotalTurnoverUp = Convert.ToDecimal(param["totalturnoverup"]),
-                        TotalWinlostUp = Convert.ToDecimal(param["totalwinlostup"]),
-                        TotalWinlost = Convert.ToDecimal(param["totalwinlost"]),
-                        TotalUniqueClicks = Convert.ToInt32(param["totaluniqueclicks"]),
-                        TotalClicks = Convert.ToInt32(param["totalclicks"])
-                    };
+                    reader.Close();
+
+                    affiliateStatistic.Statistic = GetAffiliateStatistic(objectDb);
                 }
             }
 
@@ -322,6 +310,33 @@ namespace Fanex.AffiliateAdmin.DataAccess.Impl
             }
 
             return productList;
+        }
+
+        /// <summary>
+        /// Get affiliate statistics.
+        /// </summary>
+        /// <param name="objectDb">Object database.</param>
+        /// <returns>Affiliate statistics.</returns>
+        private AffiliateStatistic GetAffiliateStatistic(ObjectDb objectDb)
+        {
+            var outputParams = objectDb.GetOuputParams();
+
+            var statistics = new AffiliateStatistic();
+
+            var properties = statistics.GetType().GetProperties();
+
+            foreach (string outputParam in outputParams.Keys)
+            {
+                foreach (var property in properties)
+                {
+                    if (property.CanWrite && property.Name.ToLower() == outputParam)
+                    {
+                        statistics.SetPropertyValue(property.Name, outputParams[outputParam]);
+                    }
+                }
+            }
+
+            return statistics;
         }
 
         #endregion

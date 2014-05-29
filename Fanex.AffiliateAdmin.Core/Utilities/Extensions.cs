@@ -67,7 +67,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
 
             if (property != null)
             {
-                value = value ?? property.PropertyType.GetDefaultValue();
+                value = value is DBNull || value == null ? property.PropertyType.GetDefaultValue() : value;
                 property.SetValue(obj, Convert.ChangeType(value, property.PropertyType), null);
             }
         }

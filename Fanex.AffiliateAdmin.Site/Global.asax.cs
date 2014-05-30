@@ -43,6 +43,7 @@ namespace Fanex.AffiliateAdmin.Site
 
             //BundleTable.EnableOptimizations = true;
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            BundleTable.EnableOptimizations = true;
         }
 
         /// <summary>

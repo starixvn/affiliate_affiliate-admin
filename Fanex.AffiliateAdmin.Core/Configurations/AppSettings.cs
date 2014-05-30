@@ -458,6 +458,14 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
+        public static bool EnableTransformer
+        {
+            get
+            {
+                return int.Parse(GetValue("EnableTransformer")) == 1;
+            }
+        }
+
         /// <summary>
         /// Get key value of resource.
         /// </summary>

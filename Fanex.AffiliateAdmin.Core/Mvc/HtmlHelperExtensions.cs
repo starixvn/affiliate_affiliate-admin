@@ -197,7 +197,6 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
           bool disabled = false,
           object htmlAttributes = null)
         {
-            var culture = new CultureInfo("en-US");
             var attributes = htmlAttributes == null ? new Dictionary<string, object>() : htmlAttributes.ToDictionary();
 
             // check the constraint [mindate - maxdate]
@@ -349,12 +348,12 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
           object htmlAttributes = null)
         {
             var attributes = htmlAttributes == null ? new Dictionary<string, object>() : htmlAttributes.ToDictionary();
-            var value = date.HasValue ? date.Value.ToString("yyyy/MM/dd") : string.Empty;
+            var value = date.HasValue ? date.Value.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture) : string.Empty;
             attributes.AddOrAppend("class", " monthpicker");
 
             if (minDate.HasValue)
             {
-                attributes["data-mindate"] = minDate.Value.ToString("yyyy/MM/dd");
+                attributes["data-mindate"] = minDate.Value.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture);
             }
 
             if (!maxDate.HasValue)
@@ -362,7 +361,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
                 maxDate = DateTime.Now;
             }
 
-            attributes["data-maxdate"] = maxDate.Value.ToString("yyyy/MM/dd");
+            attributes["data-maxdate"] = maxDate.Value.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture);
             attributes["data-value"] = value;
             attributes["readonly"] = true;
 

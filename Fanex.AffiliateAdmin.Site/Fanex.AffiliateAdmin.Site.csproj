@@ -586,7 +586,6 @@
     <Content Include="Scripts\site\CompanyWinlossReport.js" />
     <Content Include="Scripts\site\MemberWinlossReport.js" />
     <Content Include="Scripts\site\TestWebService.js" />
-    <Content Include="Scripts\site\QualifiedMember.js" />
     <Content Include="Scripts\site\ProcessingCommission.js" />
     <Content Include="Scripts\site\MemberStatistics.js" />
     <Content Include="Scripts\site\Note.js" />
@@ -612,7 +611,6 @@
     <Content Include="Scripts\libraries\numeral.js" />
     <Content Include="Scripts\site\GroupManagement.js" />
     <Content Include="Scripts\site\TextList.js" />
-    <Content Include="Scripts\site\Report.js" />
     <Content Include="Scripts\site\GroupPolicy.js" />
     <Content Include="Scripts\site\UserManagement.js" />
     <Content Include="Scripts\site\Message.js" />
@@ -1039,7 +1037,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

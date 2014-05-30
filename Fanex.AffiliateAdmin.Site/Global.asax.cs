@@ -37,12 +37,12 @@ namespace Fanex.AffiliateAdmin.Site
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            //BundleTable.EnableOptimizations = true;
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-
             //// Register my types, for instance:
             SimpleInjectorInitializer.Initialize();
             ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
+
+            //BundleTable.EnableOptimizations = true;
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
         /// <summary>

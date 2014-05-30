@@ -78,34 +78,48 @@ home
             timeZone: AFFILIATE.TimeZone,
             titleInfo:
             {
-                text: "@Lang.EmailHistory"                
+                text: "@Lang.EmailHistory"
             },
-            columns: [                        
-                        { HeaderText: "#", Width: 30, Name: "b", HeaderAlign: "center", CellAlign: "center" },
-                        { HeaderText: "@Lang.Sender", Width: 180, Name: "Sender", HeaderAlign: "center" },
-                        { HeaderText: "@Lang.Affiliate", Width: 150, Name: "Affname", HeaderAlign: "center" },
-                        { HeaderText: "@Lang.Subject", Width: 250, Name: "Subject", HeaderAlign: "center",
-                            Formatter: function (rowIndex, rowData, cell, cellFormated)
-                            { return "<a href='#' data-mid='" + rowData.Mid + "' class='subject'>" + cellFormated + "</a>"; }
-                        },
-                        { HeaderText: "@Lang.Email", Width: 200, Name: "Email", HeaderAlign: "center",
-                            Formatter: function (rowIndex, rowData, cell, cellFormated)
-                            { return "<a href='mailto:" + cellFormated + "'>" + cellFormated + "</a>"; }
-                        },
-                        { HeaderText: "@Lang.SentDate", Width: 100, Name: "CreateDate", HeaderAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
-                        { HeaderText: "@Lang.Remove", Width: 50, Name: "Remove", CellAlign: "center",
-                            Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return "<a href=\"javascript:EmailHistory.deleteEmail(" + rowData.Mid + ")\"><i class=\"icon-remove\"></i></a>";
-                            }
-                        }
-                   ],
+            columns: [
+                { HeaderText: "#", Width: 30, Name: "b", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.Sender", Width: 180, Name: "Sender", HeaderAlign: "center" },
+                { HeaderText: "@Lang.Affiliate", Width: 150, Name: "Affname", HeaderAlign: "center" },
+                {
+                    HeaderText: "@Lang.Subject",
+                    Width: 250,
+                    Name: "Subject",
+                    HeaderAlign: "center",
+                    Formatter: function(rowIndex, rowData, cell, cellFormated) {
+                        return "<a href='#' data-mid='" + rowData.Mid + "' class='subject'>" + cellFormated + "</a>";
+                    }
+                },
+                {
+                    HeaderText: "@Lang.Email",
+                    Width: 200,
+                    Name: "Email",
+                    HeaderAlign: "center",
+                    Formatter: function(rowIndex, rowData, cell, cellFormated) {
+                        return "<a href='mailto:" + cellFormated + "'>" + cellFormated + "</a>";
+                    }
+                },
+                { HeaderText: "@Lang.SentDate", Width: 100, Name: "CreateDate", HeaderAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+                {
+                    HeaderText: "@Lang.Remove",
+                    Width: 50,
+                    Name: "Remove",
+                    CellAlign: "center",
+                    Formatter: function(rowIndex, rowData, cell, cellFormated) {
+                        return "<a href=\"javascript:EmailHistory.deleteEmail(" + rowData.Mid + ")\"><i class=\"icon-remove\"></i></a>";
+                    }
+                }
+            ],
             showPager: true,
             customPager: true,
             allowTruncate: true,
             gridExpandHeight: 360,
             showNumberColumn: true,
             indexNumberColumn: 0
-        }
+        };
     </script>
-    <script src="@Url.Content("~/Scripts/site/EmailHistory.js")" type="text/javascript"></script>
+    @Scripts.Render("~/scripts/emailhistory")
 }

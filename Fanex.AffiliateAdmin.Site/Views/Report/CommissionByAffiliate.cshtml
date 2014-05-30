@@ -186,6 +186,6 @@ report
         var sampleAmountCol ={ HeaderCaption: "@Lang.Amount", HeaderText: "@Lang.Amount", Width: 80, IsCurrency: true, Name: "Cashback", NameCache: "Cashback", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true };
 
     </script>
-    <script src="@Url.Content("~/Scripts/site/CommissionByAffiliateReport.js")" type="text/javascript"></script>
+    @Scripts.Render("~/scripts/commissionbyaffiliatereport")
 }
 

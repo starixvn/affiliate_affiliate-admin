@@ -35,23 +35,38 @@ management
                 customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddNewGroup" class="btnAdd icon-add-group" id="btnAddgridId">'
             },
             columns: [
-                      { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
-                      { HeaderText: "@Lang.GroupName", Width: 100, Name: "GroupName" },
-                      { HeaderText: "@Lang.NoOfUser", Width: 60, Name: "NoUser", CellAlign: "center", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) {
+                { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.GroupName", Width: 100, Name: "GroupName" },
+                {
+                    HeaderText: "@Lang.NoOfUser",
+                    Width: 60,
+                    Name: "NoUser",
+                    CellAlign: "center",
+                    Formatter:
+                        function(rowIndex, rowData, cell, cellFormated) {
                             if (cell.Value > 0)
                                 return '<a href="javascript:Management.viewGroup(' + rowData.GroupId + ",'" + rowData.GroupName + '\')">' + cell.Value + '</a>';
                             return cell.Value;
                         }
-                      },
-                      { HeaderText: "@Lang.Description", Width: 120, Name: "GroupDesc" },
-                      { HeaderText: "@Lang.RolePolicy", Width: 80, Name: "RolePolicy", CellAlign: "center", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) {
+                },
+                { HeaderText: "@Lang.Description", Width: 120, Name: "GroupDesc" },
+                {
+                    HeaderText: "@Lang.RolePolicy",
+                    Width: 80,
+                    Name: "RolePolicy",
+                    CellAlign: "center",
+                    Formatter:
+                        function(rowIndex, rowData, cell, cellFormated) {
                             return '<a href="javascript:Management.editRolePolicy(' + rowData.GroupId + ",'" + rowData.GroupName + '\')">@Lang.RolePolicy</a>';
                         }
-                      },
-                      { HeaderText: "@Lang.Action", Width: 80, Name: "Update", CellAlign: "center", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) {
+                },
+                {
+                    HeaderText: "@Lang.Action",
+                    Width: 80,
+                    Name: "Update",
+                    CellAlign: "center",
+                    Formatter:
+                        function(rowIndex, rowData, cell, cellFormated) {
                             var html = '<a href="javascript:Management.editGroup(' + rowData.GroupId + ",'" + rowData.GroupName + '\')"><i class=\"icon-edit\"></i></a>&nbsp;&nbsp;';
                             if (rowData.GroupName != 'None')
                                 html += "<a href=\"javascript:Management.deleteGroup(" + rowData.GroupId + ",'" + rowData.GroupName + "\')\"><i class=\"icon-remove\"></i></a>";
@@ -59,12 +74,12 @@ management
                                 html += "<a><i class=\"icon-\"></i></a>";
                             return html;
                         }
-                      }
-                   ],
+                }
+            ],
             showPager: true,
             gridExpandHeight: 290,
             showNumberColumn: true
-        }
+        };
     </script>
-    <script src="~/Scripts/site/GroupManagement.js" type="text/javascript"></script>
+    @Scripts.Render("~/scripts/groupmanagement")
 }

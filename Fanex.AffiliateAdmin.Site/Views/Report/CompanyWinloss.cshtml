@@ -179,8 +179,8 @@ report
 
         var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", HeaderAlign: "center", IsCurrency: true, Name: "TotalTurnover", NameCache: "TotalTurnover" };
         var sampleCompanyWLHeader = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", HeaderAlign: "center", IsCurrency: true, Name: "TotalCompanyWinlost", NameCache: "TotalCompanyWinlost" };
-        
     </script>
-    <script src="@Url.Content("~/Scripts/site/CompanyWinlossReport.js")" type="text/javascript"></script>
+    
+    @Scripts.Render("~/scripts/companywinlossreport")
 }
 

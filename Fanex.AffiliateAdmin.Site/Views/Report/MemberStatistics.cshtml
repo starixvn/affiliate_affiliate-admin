@@ -113,7 +113,7 @@ report
             RangeTime3Months: "@Lang.RangeTime3Months",
             MemberStatisticsTitle: "@Lang.MemberStatistics"                
         };
-        var affInfoUrl = AFFILIATE.getAbsoluteUrl("AffiliateInfo?username=");
+        
         var gridOption = {
             language: '@AppSession.Language',
             showTitle: true,
@@ -127,6 +127,8 @@ report
                 { HeaderText: "@Lang.Date", Width: 80, Name: "DateClick", HeaderAlign: "center", CellAlign: "center" },                
                 { HeaderText: "@Lang.Affiliate", Width: 80, Name: "Username", HeaderAlign: "center",
                     Formatter: function (rIndex, record, cell, cellFormated) {
+                        var affInfoUrl = AFFILIATE.getAbsoluteUrl("AffiliateInfo?username=");
+                        
                         return "<a href='" + affInfoUrl + record.Username + "'>" + cellFormated + "</a>";
                     } 
                 },
@@ -145,11 +147,10 @@ report
             allowTruncate: false,
             showNumberColumn: true,
             showFooter: true,
-            //showDistinctRow: true,
             rowCssClass: function (rowIndex, rowData) {
                 return rowData.Status.toLowerCase();
             }
         };   
     </script>
-    <script src="~/Scripts/site/MemberStatistics.js" type="text/javascript"></script>
+    @Scripts.Render("~/scripts/memberstatistics")
 }

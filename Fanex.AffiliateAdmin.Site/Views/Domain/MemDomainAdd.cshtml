@@ -28,7 +28,7 @@
 
 
 @section scripts{ 
-    <script src="~/Scripts/site/DomainMem.js" type="text/javascript"></script>
+    @Scripts.Render("~/scripts/domainmem")
     @if (ViewBag.Result != null){
         var result = (ResultViewModel)ViewBag.Result;
         <script type="text/javascript">

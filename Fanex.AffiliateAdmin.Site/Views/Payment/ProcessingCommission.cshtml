@@ -192,5 +192,5 @@ payment
         var totalPaymentCol = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true };
 
     </script>
-    <script src="~/Scripts/site/ProcessingCommission.js" type="text/javascript"></script>
+    @Scripts.Render("~/scripts/processingcommission")
 }

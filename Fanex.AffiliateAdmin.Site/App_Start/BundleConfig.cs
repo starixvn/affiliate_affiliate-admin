@@ -50,6 +50,8 @@ namespace Fanex.AffiliateAdmin.Site
                 "~/Scripts/libraries/date.min.js").Include(
                 "~/Scripts/libraries/daterangepicker.js").Include(
                 "~/Scripts/libraries/monpickr.js"));
+
+            GetBundleForEachScriptFile(bundles);
         }
 
         private static Bundle GetBundleForCommonJs()
@@ -65,9 +67,6 @@ namespace Fanex.AffiliateAdmin.Site
                   .Include("~/Scripts/libraries/numeral.js")
                   .Include("~/Scripts/libraries/placeholder_fixer.js")
                   .Include("~/Scripts/libraries/ui.dropdownchecklist.js")
-                  //.Include("~/Scripts/libraries/date.min.js")
-                  //.Include("~/Scripts/libraries/daterangepicker.js")
-
                   .Include("~/Scripts/site/Query.string.js")
                   .Include("~/Scripts/site/Paging.js")
                   .Include("~/Scripts/site/_Global.js")
@@ -125,108 +124,22 @@ namespace Fanex.AffiliateAdmin.Site
             return bundle;
         }
 
-
-
-    }
-
-    /// <summary>
-    /// My Extensions class.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage(
-             "Microsoft.StyleCop.CSharp.MaintainabilityRules",
-             "SA1402:FileMayOnlyContainASingleClass",
-             Justification = "Splitting this file into classes would get too confusing.")]
-    internal static class MyExtensions
-    {
-        public static void AddAndInclude(this BundleCollection bundles, string bundleVirtualPath, params string[] virtualPaths)
+        private static void GetBundleForEachScriptFile(BundleCollection bundles)
         {
-            bundles.Add(new Bundle(bundleVirtualPath)
+            const string relativeScriptPath = "/Scripts/site";
+            var absoluteScriptPath = HttpRuntime.AppDomainAppPath + relativeScriptPath;
+            var scriptDir = new DirectoryInfo(absoluteScriptPath);
+            var scriptFiles = scriptDir.GetFiles("*.js");
+
+            foreach (var scriptFile in scriptFiles)
             {
-                Transforms = { new CssTransformer(), new CssMinify() },
-                Orderer = new NullOrderer()
-            }.Include(virtualPaths));
-        }
+                var fileName = scriptFile.Name;
+                var fileNameWithouExtension = fileName.Substring(0, fileName.LastIndexOf(scriptFile.Extension, System.StringComparison.OrdinalIgnoreCase));
 
-        public static string RelativeFromAbsolutePath(this HttpContextBase context, string path)
-        {
-            var request = context.Request;
-            var applicationPath = request.PhysicalApplicationPath;
-            var virtualDir = request.ApplicationPath;
-            virtualDir = virtualDir == "/" ? virtualDir : (virtualDir + "/");
-            return path.Replace(applicationPath, virtualDir).Replace(@"\", "/");
-        }
-    }
-
-    #region StyleImagePathBundle (use this when StyleBundle does not resolve images)
-
-    /// <summary>
-    /// Style Image Path Bundle (use this when StyleBundle does not resolve images).
-    /// </summary>
-    internal class StyleImagePathBundle : Bundle
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StyleImagePathBundle" /> class.
-        /// </summary>
-        /// <param name="virtualPath">Virtual Path.</param>
-        public StyleImagePathBundle(string virtualPath) : base(virtualPath)
-        {
-            Transforms.Add(new StyleRelativePathTransform());
-            Transforms.Add(new CssMinify());
-        }
-    }
-
-    /// <summary>
-    /// Style Relative Path Transform class.
-    /// </summary>
-    internal class StyleRelativePathTransform : IBundleTransform
-    {
-        /// <summary>
-        /// Function Process.
-        /// </summary>
-        /// <param name="context">Bundle Context.</param>
-        /// <param name="response">Bundle Response.</param>
-        public void Process(BundleContext context, BundleResponse response)
-        {
-            response.Content = string.Empty;
-
-            var pattern = new Regex(@"url\s*\(\s*([""']?)([^:)]+)\1\s*\)", RegexOptions.IgnoreCase);
-            //// open each of the files
-            foreach (FileInfo cssFileInfo in response.Files)
-            {
-                if (cssFileInfo.Exists)
-                {
-                    // apply the RegEx to the file (to change relative paths)
-                    string contents = File.ReadAllText(cssFileInfo.FullName);
-                    MatchCollection matches = pattern.Matches(contents);
-
-                    // Ignore the file if no match
-                    if (matches.Count > 0)
-                    {
-                        string cssFilePath = cssFileInfo.DirectoryName;
-                        string cssVirtualPath = context.HttpContext.RelativeFromAbsolutePath(cssFilePath);
-                        foreach (Match match in matches)
-                        {
-                            // this is a path that is relative to the CSS file
-                            string relativeToCSS = match.Groups[2].Value;
-
-                            // combine the relative path to the cssAbsolute
-                            string absoluteToUrl = Path.GetFullPath(Path.Combine(cssFilePath, relativeToCSS));
-
-                            // make this server relative
-                            string serverRelativeUrl = context.HttpContext.RelativeFromAbsolutePath(absoluteToUrl);
-
-                            string quote = match.Groups[1].Value;
-                            string replace = string.Format("url({0}{1}{0})", quote, serverRelativeUrl);
-                            contents = contents.Replace(match.Groups[0].Value, replace);
-                        }
-                    }
-
-                    // copy the result into the response.
-                    response.Content = string.Format("{0}\r\n{1}", response.Content, contents);
-                }
+                var bundle = new Bundle(string.Format("~/scripts/{0}", fileNameWithouExtension.ToLower()));
+                bundle.Include(string.Format("~{0}/{1}", relativeScriptPath, fileName));
+                bundles.Add(bundle);
             }
         }
     }
-
-    #endregion StyleImagePathBundle (use this when StyleBundle does not resolve images)
 }

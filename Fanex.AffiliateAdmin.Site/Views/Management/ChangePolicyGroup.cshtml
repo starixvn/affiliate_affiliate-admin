@@ -51,7 +51,7 @@
             hideYBackGroundScroller: true
         }
     </script>
-    <script src="~/Scripts/site/GroupPolicy.js" type="text/javascript"></script>
+    @Scripts.Render("~/scripts/grouppolicy")
     @if (ViewBag.Result != null)
     {
         var result = (ResultViewModel)ViewBag.Result;

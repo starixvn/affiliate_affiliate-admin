@@ -26,7 +26,9 @@
                 AFFINFO.lockedOut();
             });
             $('#spStatus').click(function () {
-                $('#slStatus').val($('#spStatus').text());
+                var value = $('#slStatus option').filter(function () { return $(this).html() === $('#spStatus').text(); }).val();
+
+                $('#slStatus').val(value);
                 $("#slStatus").show();
                 $(this).hide();
             });
@@ -53,7 +55,7 @@
                         },
                         success: function (data) {
                             AFFILIATE.PreHandleAjaxResult(data);
-                            
+
                             if (data.Success) {
                                 alert(data.Message);
                                 $("#spLanguage").html($("#slLanguage").find(":selected").text());
@@ -114,7 +116,11 @@
 
 
             $('#spPassword').click(function () {
-                parent.AFFMASTER.changePassword($("#lnkUN").html());
+                var username = $("#lnkUN").html();
+                if (username === undefined) {
+                    username = $("#spUN").html();
+                }
+                parent.AFFMASTER.changePassword(username);
             });
 
             $('#spEdit').click(function () {
@@ -156,7 +162,7 @@
                     },
                     success: function (data) {
                         AFFILIATE.PreHandleAjaxResult(data);
-                        
+
                         if (data.Success) {
                             alert(data.Message);
                             document.location.reload();
@@ -225,7 +231,11 @@
                 $("#slStatus").focus();
 
                 if (setValue) {
-                    $("#slStatus").val($("#spStatus").html());
+                    var value = $('#slStatus option').filter(function () {
+                        return $(this).html() === $('#spStatus').text();
+                    }).val();
+
+                    $("#slStatus").val(value);
                 }
             }
             else {
@@ -288,7 +298,8 @@
             }
         },
         setStatus: function (status) {
-            $("#spStatus").html($("#slStatus").val());
+            var value = $('#slStatus option:selected').html();
+            $("#spStatus").html(value);
             AFFINFO.changeStatus(false, false);
         },
         refreshPage: function () {

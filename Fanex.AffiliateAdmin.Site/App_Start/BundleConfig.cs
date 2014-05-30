@@ -13,6 +13,7 @@ namespace Fanex.AffiliateAdmin.Site
     using System.Text.RegularExpressions;
     using System.Web;
     using System.Web.Optimization;
+    using BundleTransformer.Core.Orderers;
     using BundleTransformer.Core.Transformers;
     using Fanex.AffiliateAdmin.Core.Configurations;
 
@@ -21,15 +22,16 @@ namespace Fanex.AffiliateAdmin.Site
     /// </summary>
     public class BundleConfig
     {
-        private static readonly CssMinify _cssMinify = new CssMinify();
-        private static readonly CssTransformer _cssTransformer = new CssTransformer();
-        private static readonly JsMinify _jsMinify = new JsMinify();
-        private static readonly JsTransformer _jsTransformer = new JsTransformer();
+        private static CssMinify _cssMinify = new CssMinify();
+        private static CssTransformer _cssTransformer = new CssTransformer();
+        private static NullOrderer _nullOrderer = new NullOrderer();
 
         /// <summary>
         /// Register Bundles.
         /// </summary>
         /// <param name="bundles">Bundle Collection.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", 
+            "SP2101:MethodMustNotContainMoreLinesThan", Justification = "This is OK here.")]
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(GetBundleForLoginCss());
@@ -44,30 +46,18 @@ namespace Fanex.AffiliateAdmin.Site
          
             bundles.Add(GetBundleForCommonJs());
 
-            bundles.Add(GetBundleForDataRangeJs());
+            bundles.Add(new ScriptBundle("~/bundles/daterange").Include(
+                "~/Scripts/libraries/date.min.js").Include(
+                "~/Scripts/libraries/daterangepicker.js").Include(
+                "~/Scripts/libraries/monpickr.js"));
 
             GetBundleForEachScriptFile(bundles);
-        }
-
-        private static Bundle GetBundleForDataRangeJs()
-        {
-            var bundle = new ScriptBundle("~/bundles/daterange");
-
-            AddTransformerForJavascript(bundle);
-
-            bundle.Include("~/Scripts/libraries/date.min.js")
-                  .Include("~/Scripts/libraries/daterangepicker.js")
-                  .Include("~/Scripts/libraries/monpickr.js");
-
-            return bundle;
         }
 
         private static Bundle GetBundleForCommonJs()
         {
             var bundle = new ScriptBundle("~/bundles/js");
-
-            AddTransformerForJavascript(bundle);
-
+            
             bundle.IncludeDirectory("~/Scripts/libraries", "jquery*.js")
                   .IncludeDirectory("~/Scripts/libraries", "Fanex*.js")
                   .IncludeDirectory("~/Scripts/libraries/Language", "*.js")
@@ -87,9 +77,11 @@ namespace Fanex.AffiliateAdmin.Site
 
         private static Bundle GetBundleForCommonCss()
         {
-            var bundle = new Bundle("~/bundles/css");
-
-            AddTransformerForCss(bundle);
+            var bundle = new Bundle("~/bundles/css")
+                {
+                    Transforms = { _cssTransformer, _cssMinify },
+                    Orderer = _nullOrderer
+                };
 
             bundle.IncludeDirectory("~/Content/themes/base", "*.css")
                   .Include("~/Content/themes/Default/index.less");
@@ -99,21 +91,12 @@ namespace Fanex.AffiliateAdmin.Site
 
         private static Bundle GetBundleForHeadJs()
         {
-            var bundle = new ScriptBundle("~/bundles/headjs");
-
-            AddTransformerForJavascript(bundle);
-
-            bundle.Include("~/Scripts/libraries/head.js");
-
-            return bundle;
+            return new ScriptBundle("~/bundles/headjs").Include("~/Scripts/libraries/head.js");
         }
 
         private static Bundle GetBundleForLoginJs()
         {
             var bundle = new ScriptBundle("~/bundles/loginJs");
-
-            AddTransformerForJavascript(bundle);
-
             bundle.Include("~/Scripts/libraries/jquery.blockUI.js")
                   .Include("~/Scripts/libraries/jquery.placeholder.js")
                   .Include("~/Scripts/site/Login.js")
@@ -124,20 +107,16 @@ namespace Fanex.AffiliateAdmin.Site
 
         private static Bundle GetBundleForNotifyCss()
         {
-            var bundle = new Bundle("~/bundles/notify");
-
-            AddTransformerForCss(bundle);
-
-            bundle.Include(string.Format("~/Content/_Sites/{0}/Notify.less", AppSettings.Layout));
-
-            return bundle;
+            return new Bundle("~/bundles/notify")
+                    .Include(string.Format("~/Content/_Sites/{0}/Notify.less", AppSettings.Layout));
         }
 
         private static Bundle GetBundleForLoginCss()
         {
             var bundle = new Bundle("~/bundles/login");
-
-            AddTransformerForCss(bundle);
+            bundle.Transforms.Add(_cssTransformer);
+            bundle.Transforms.Add(_cssMinify);
+            bundle.Orderer = _nullOrderer;
             
             bundle.Include(string.Format("~/Content/_Sites/{0}/Login.less", AppSettings.Layout))
                   .Include("~/Content/themes/base/AffiliateAdmin.css");
@@ -158,29 +137,8 @@ namespace Fanex.AffiliateAdmin.Site
                 var fileNameWithouExtension = fileName.Substring(0, fileName.LastIndexOf(scriptFile.Extension, System.StringComparison.OrdinalIgnoreCase));
 
                 var bundle = new Bundle(string.Format("~/scripts/{0}", fileNameWithouExtension.ToLower()));
-
-                AddTransformerForJavascript(bundle);
-
                 bundle.Include(string.Format("~{0}/{1}", relativeScriptPath, fileName));
                 bundles.Add(bundle);
-            }
-        }
-
-        private static void AddTransformerForCss(Bundle bundle)
-        {
-            if (AppSettings.EnableTransformer)
-            {
-                bundle.Transforms.Add(_cssMinify);
-                bundle.Transforms.Add(_cssTransformer);
-            }
-        }
-
-        private static void AddTransformerForJavascript(Bundle bundle)
-        {
-            if (AppSettings.EnableTransformer)
-            {
-                bundle.Transforms.Add(_jsMinify);
-                bundle.Transforms.Add(_jsTransformer);
             }
         }
     }

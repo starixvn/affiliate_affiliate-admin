@@ -64,36 +64,59 @@ affiliate-info
                 text: "@Lang.LogList"
             },
             columns: [
-                      { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
-                      { HeaderText: "@Lang.ID", Width: 80, Name: "ID", CellAlign: "center", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) {
+                { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
+                {
+                    HeaderText: "@Lang.ID",
+                    Width: 80,
+                    Name: "ID",
+                    CellAlign: "center",
+                    Formatter:
+                        function(rowIndex, rowData, cell, cellFormated) {
                             return rowData.RefNo;
                         }
-                      },
-                      { HeaderText: "@Lang.Date", Width: 120, Name: "LoggedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
-                      { HeaderText: "@Lang.UpdatedBy", Width: 80, Name: "UpdatedDate", CellAlign: "center", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) {
+                },
+                { HeaderText: "@Lang.Date", Width: 120, Name: "LoggedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+                {
+                    HeaderText: "@Lang.UpdatedBy",
+                    Width: 80,
+                    Name: "UpdatedDate",
+                    CellAlign: "center",
+                    CanResize: true,
+                    Formatter:
+                        function(rowIndex, rowData, cell, cellFormated) {
                             return rowData.UserName + "<br/>(" + rowData.AffId + ")";
                         }
-                      },
-                      { HeaderText: "@Lang.Action", Width: 200, Name: "Action", CellAlign: "center", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) {
+                },
+                {
+                    HeaderText: "@Lang.Action",
+                    Width: 200,
+                    Name: "Action",
+                    CellAlign: "center",
+                    Formatter:
+                        function(rowIndex, rowData, cell, cellFormated) {
                             return rowData.Description + "<br/>(" + rowData.SpName + ")";
                         }
-                      },
-                      { HeaderText: "@Lang.Description", Width: 250, Name: "Description" },
-                      { HeaderText: "@Lang.IP", Width: 110, Name: "Ip", CellAlign: "center", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) {
+                },
+                { HeaderText: "@Lang.Description", Width: 250, Name: "Description" },
+                {
+                    HeaderText: "@Lang.IP",
+                    Width: 110,
+                    Name: "Ip",
+                    CellAlign: "center",
+                    CanResize: true,
+                    Formatter:
+                        function(rowIndex, rowData, cell, cellFormated) {
                             return "<a href=\"" + ipCheckUrl.replace("{0}", cell.Value) + "\" target=\"_blank\" >" + cell.Value + "</a>";
                         }
-                      }
-                   ],
+                }
+            ],
             showPager: true,
             customPager: true,
             allowTruncate: false,
             gridExpandHeight: 250,
-            showNumberColumn: true
-        }
+            showNumberColumn: true,
+            autoResizeColumn: true
+        };
     </script>
     <script src="~/Scripts/site/ViewLog.js" type="text/javascript"></script>
 }

@@ -2,6 +2,7 @@
     ViewBag.Title = Lang.Statistics;
     Layout = "~/Views/Shared/_LayoutFrameNoHeader.cshtml";
 }
+@using System.Globalization
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
@@ -11,8 +12,8 @@
 
 @{
     var lastDay = Model.FullDateTime.AddMonths(1).AddDays(-1);
-    var fromDate = Model.FullDateTime > AppSettings.SystemStartDate ? Model.FullDateTime.ToString("dd MMM yyyy") : AppSettings.SystemStartDate.ToString("dd MMM yyyy");
-    var toDate = lastDay < DateTime.Now ? lastDay.ToString("dd MMM yyyy") : DateTime.Now.ToString("dd MMM yyyy");
+    var fromDate = Model.FullDateTime > AppSettings.SystemStartDate ? Model.FullDateTime.ToString("MMM dd yyyy", CultureInfo.InvariantCulture) : AppSettings.SystemStartDate.ToString("MMM dd yyyy", CultureInfo.InvariantCulture);
+    var toDate = lastDay < DateTime.Now ? lastDay.ToString("MMM dd yyyy", CultureInfo.InvariantCulture) : DateTime.Now.ToString("MMM dd yyyy", CultureInfo.InvariantCulture);
 }
 
 @Styles.Render("~/bundles/css")
@@ -35,10 +36,10 @@
         <tr>
             <td class="col-label">@Lang.NewSignup/@Lang.FDM</td>
             <td class="col-data">
-                @Html.ActionLink(Model.Statistic.NewSignUp.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 1, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })/@Html.ActionLink(Model.Statistic.NewSignUpDep.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 2, FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
+                @Html.ActionLink(Model.Statistic.NewSignUp.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 1, FromDate = fromDate, ToDate = toDate, TimeStamp = DateTime.Now.Ticks }, new { @class = "link" })/@Html.ActionLink(Model.Statistic.NewSignUpDep.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 2, FromDate = fromDate, ToDate = toDate, TimeStamp = DateTime.Now.Ticks }, new { @class = "link" })
             </td>
             <td class="col-data">
-                @Html.ActionLink(Model.Statistic.TotalPlayer.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 0 }, new { @class = "link" })/@Model.Statistic.TotalPlayerDepUp
+                @Html.ActionLink(Model.Statistic.TotalPlayer.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 0, TimeStamp = DateTime.Now.Ticks }, new { @class = "link" })/@Model.Statistic.TotalPlayerDepUp
             </td>
         </tr>
         @if (Model.Statistic.TotalActivePlayer != 0 && Model.FullDateTime.CompareTo(AppSettings.SystemStartDate) >= 0)
@@ -102,7 +103,7 @@
         <tr>
             <td class="col-label">@Lang.TrackingRate</td>
             <td class="col-data">
-                @Html.ActionLink(Model.Statistic.TotalUniqueClicks.ToString(), "Referrer", "TrackingStatistic", new { FromDate = fromDate, ToDate = toDate }, new { @class = "link" })/@Html.ActionLink(Model.Statistic.TotalClicks.ToString(), "Referrer", "TrackingStatistic", new { FromDate = fromDate, ToDate = toDate }, new { @class = "link" })
+                @Html.ActionLink(Model.Statistic.TotalUniqueClicks.ToString(), "Referrer", "TrackingStatistic", new { FromDate = fromDate, ToDate = toDate, TimeStamp = DateTime.Now.Ticks }, new { @class = "link" })/@Html.ActionLink(Model.Statistic.TotalClicks.ToString(), "Referrer", "TrackingStatistic", new { FromDate = fromDate, ToDate = toDate, TimeStamp = DateTime.Now.Ticks }, new { @class = "link" })
             </td>
             <td class="col-data">@Lang.NotAvaliable</td>
         </tr>

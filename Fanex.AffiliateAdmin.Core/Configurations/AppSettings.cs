@@ -43,8 +43,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         private static IEnumerable<Currency> _affSystemAllSupportedCurrencies;
         private static IEnumerable<Currency> _playerCurrencies;
         private static DateTime _systemStartDate;
-        private static List<SelectListItem> _baseCurrencyInAffiliate;
-        private static List<SelectListItem> _baseCurrencyInMember;
         private static IEnumerable<DeductionType> _deductionTypes;
         private static IEnumerable<Product> _products;
         private static Exchange _baseExchange;

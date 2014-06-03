@@ -1,4 +1,4 @@
-﻿var POPUP = function ($) {
+﻿var CommGroupPopup = function ($) {
     function formatInt(value) {
         return numeral(value).format(AFFILIATE.FORMAT_INT_NUMBER);
     }
@@ -169,9 +169,12 @@
             });
             $tabheader.find(".product_header").click(function () {
                 var $tab = $(this).closest(".tab_header");
+
                 if ($tab.data("disabled"))
                     return;
+
                 $tab.next(".tab_content").toggle();
+                
                 $(this).closest("li").toggleClass("expand collapse");
             });
 

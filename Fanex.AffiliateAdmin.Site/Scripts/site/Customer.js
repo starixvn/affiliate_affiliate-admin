@@ -1,4 +1,5 @@
 ﻿var CUSTOMER = function ($) {
+    
     var submitOptions = {};
 
     return {
@@ -81,7 +82,7 @@
 
 /////// ASSIGN MEMBER TO AFFILIATE //////////////////////
 
-var POPUP = function ($) {
+var AssignMemberPopup = function ($) {
     return {
         init: function () {
             $("form").submit(function () {

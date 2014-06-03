@@ -111,57 +111,60 @@ customer
 	        showTitle: true,
 	        timeZone: AFFILIATE.TimeZone,
 	        titleInfo:
-			{
-			    text: "@Lang.MemberList",
-			    showButtonsWhenNoData: true,
-			    customButtons: "<input type='button' name='btnAssign' value='' title='@Lang.AssignMemToAff' class='btnAdd btnAssign' id='btnAssign'>"
-			},
+	        {
+	            text: "@Lang.MemberList",
+	            showButtonsWhenNoData: true,
+	            customButtons: "<input type='button' name='btnAssign' value='' title='@Lang.AssignMemToAff' class='btnAdd btnAssign' id='btnAssign'>"
+	        },
 	        columns: [
-						{ HeaderText: "#", Width: 30, Name: "No", CellAlign: "center" },
-						{ HeaderText: "@Lang.Username", Width: 70, Name: "UserName" },
-						{ HeaderText: "@Lang.FirstName", Width: 100, Name: "FirstName" },
-						{ HeaderText: "@Lang.LastName", Width: 100, Name: "LastName" },
-						{ HeaderText: "@Lang.Email", Width: 120, Name: "Email",
-						    Formatter: function (rowIndex, rowData, cell, cellFormated) {
-						        return cellFormated ? "<a href='mailto:" + cellFormated + "'>" + cellFormated + "</a>" : "";
-						    }
-						},
-						{ HeaderText: "@Lang.Phone", Width: 90, Name: "Phone" },
-						{ HeaderText: "@Lang.Address", Width: 90, Name: "Address" },
-						{ HeaderText: "@Lang.Country", Width: 80, Name: "Country" },
-						{ HeaderText: "@Lang.RegisterDate", Width: 100, Name: "RegisteredDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
-						{ HeaderText: "@Lang.FirstDepositDate", Width: 90, Name: "CreatedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
-                        { HeaderText: "@Lang.AffectedDate", Width: 100, Name: "AffAffectedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
-						{ HeaderText: "@Lang.Currency", Width: 60, Name: "Currency", CellAlign: "center" },
-						{
-						    HeaderText: "@Lang.Remove",
-						    Width: 70,
-						    Name: "Remove",
-						    CellAlign: "center",
-						    Formatter: function (rowIndex, rowData, cell, cellFormated) {
-						        if (rowData.IsRemoved) {
-						            var obj = rowData.RemovedDate;
+	            { HeaderText: "#", Width: 30, Name: "No", CellAlign: "center" },
+	            { HeaderText: "@Lang.Username", Width: 70, Name: "UserName" },
+	            { HeaderText: "@Lang.FirstName", Width: 100, Name: "FirstName" },
+	            { HeaderText: "@Lang.LastName", Width: 100, Name: "LastName" },
+	            {
+	                HeaderText: "@Lang.Email",
+	                Width: 120,
+	                Name: "Email",
+	                Formatter: function(rowIndex, rowData, cell, cellFormated) {
+	                    return cellFormated ? "<a href='mailto:" + cellFormated + "'>" + cellFormated + "</a>" : "";
+	                }
+	            },
+	            { HeaderText: "@Lang.Phone", Width: 90, Name: "Phone" },
+	            { HeaderText: "@Lang.Address", Width: 90, Name: "Address" },
+	            { HeaderText: "@Lang.Country", Width: 80, Name: "Country" },
+	            { HeaderText: "@Lang.RegisterDate", Width: 100, Name: "RegisteredDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+	            { HeaderText: "@Lang.FirstDepositDate", Width: 90, Name: "CreatedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+	            { HeaderText: "@Lang.AffectedDate", Width: 100, Name: "AffAffectedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+	            { HeaderText: "@Lang.Currency", Width: 60, Name: "Currency", CellAlign: "center" },
+	            {
+	                HeaderText: "@Lang.Remove",
+	                Width: 70,
+	                Name: "Remove",
+	                CellAlign: "center",
+	                Formatter: function(rowIndex, rowData, cell, cellFormated) {
+	                    if (rowData.IsRemoved) {
+	                        var obj = rowData.RemovedDate;
 
-						            if (typeof obj !== "undefined" && obj != null && moment(obj).isValid()) {
-						                return moment(obj).format(AFFILIATE.DATE_FORMAT);
-						            }
+	                        if (typeof obj !== "undefined" && obj != null && moment(obj).isValid()) {
+	                            return moment(obj).format(AFFILIATE.DATE_FORMAT);
+	                        }
 
-						            return '';
-						        }
+	                        return '';
+	                    }
 
-						        return "<a href=\"javascript:CUSTOMER.Remove('" + rowData.UserName + "')\"><i class=\"icon-remove\"></i></a>";
-						    }
-						}
-				   ],
+	                    return "<a href=\"javascript:CUSTOMER.Remove('" + rowData.UserName + "')\"><i class=\"icon-remove\"></i></a>";
+	                }
+	            }
+	        ],
 	        showPager: true,
 	        customPager: true,
 	        gridExpandHeight: 350,
 	        showNumberColumn: true,
 	        allowTruncate: true,
-	        rowCssClass: function (rowIndex, rowData) {
+	        rowCssClass: function(rowIndex, rowData) {
 	            return rowData.IsRemoved ? "removed" : "approved";
 	        }
-	    }
+	    };
 	    $(function () {
 	        CUSTOMER.init();
 	    });

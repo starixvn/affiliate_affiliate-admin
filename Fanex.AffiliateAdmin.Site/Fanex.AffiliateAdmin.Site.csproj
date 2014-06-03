@@ -221,7 +221,6 @@
     <Content Include="Content\themes\base\monpickr.css" />
     <Content Include="Content\themes\base\ui.dropdownchecklist.standalone.css" />
     <Content Include="Content\themes\base\daterangepicker.css" />
-    <Content Include="Content\themes\Default\affiliateinfo.less" />
     <Content Include="Content\themes\Default\images\arrow_left.jpg" />
     <Content Include="Content\themes\Default\images\arrow_left_out.jpg" />
     <Content Include="Content\themes\Default\images\arrUpDown.png" />
@@ -630,9 +629,6 @@
     <Content Include="Views\Notify\Message.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Message\AddMessage.cshtml" />
-    <Content Include="Content\themes\Default\affiliatelist.less" />
-    <Content Include="Content\themes\Default\media.less" />
-    <Content Include="Content\themes\Default\message.less" />
     <Content Include="Views\Domain\AffDomain.cshtml" />
     <Content Include="Views\Domain\AffDomainAdd.cshtml" />
     <Content Include="Views\Message\EditMessage.cshtml" />
@@ -652,7 +648,6 @@
     <Content Include="Views\Management\UserInGroup.cshtml" />
     <Content Include="Content\_Sites\itcbet\Login.less" />
     <Content Include="Views\Configuration\ConfigurationDetail.cshtml" />
-    <Content Include="Content\themes\Default\configuration.less" />
     <Content Include="Views\Configuration\AddConfiguration.cshtml" />
     <Content Include="Views\Management\ChangeCurrencyUser.cshtml" />
     <Content Include="Content\themes\Default\commgroup.less" />
@@ -703,6 +698,7 @@
     <Content Include="Content\_Sites\28bet\Notify.less" />
     <Content Include="Content\_Sites\krlivebet365\Login.less" />
     <Content Include="Content\_Sites\krlivebet365\Notify.less" />
+    <Content Include="Content\themes\Default\main.less" />
     <None Include="Content\_Sites\royalebet\Login.less" />
     <None Include="Content\_Sites\royalebet\Notify.less" />
     <None Include="Content\_Sites\macaubet\Login.less" />
@@ -777,7 +773,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -881,7 +876,6 @@
     <Content Include="Content\bootstrap\less\variables.less" />
     <Content Include="Content\bootstrap\less\wells.less" />
     <Content Include="Content\themes\common.less" />
-    <Content Include="Content\themes\Default\calendar.less" />
     <Content Include="Content\themes\Default\header.less" />
     <Content Include="Content\themes\Default\index.less" />
     <Content Include="Content\themes\Default\mixins.less" />

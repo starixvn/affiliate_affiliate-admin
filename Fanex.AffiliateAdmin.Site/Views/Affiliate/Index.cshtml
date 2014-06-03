@@ -5,7 +5,7 @@
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Configurations
-@section iconcss{
+@section iconcss {
 aff-list
 }
 @section submenu{
@@ -32,7 +32,7 @@ aff-list
                     @Html.DropDownCheckList("AffTypes", new SelectList(AppSettings.AffTypes, "TypeID", "Name"), true, true, new { @class = "width-140" })
                 </div>
                 <div class="cell">
-                    <label for="CommGroups" class="txt auto">@Lang.CommissionGroup</label>
+                    <label for="CommGroups" class="txt">@Lang.CommissionGroup</label>
                     @Html.DropDownCheckList("CommGroups", Model.CommissionGroupOptionList, true, true, new { @class = "width-140" })
                 </div>
                 <div class="cell">

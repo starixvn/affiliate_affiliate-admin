@@ -7,14 +7,13 @@
 //   <change who="Kaden.Trinh" date="2013.05.30">Created</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.Site
+using BundleTransformer.Core.Transformers;
+
+namespace Fanex.AffiliateAdmin.Site.App_Start
 {
     using System.IO;
-    using System.Text.RegularExpressions;
     using System.Web;
     using System.Web.Optimization;
-    using BundleTransformer.Core.Orderers;
-    using BundleTransformer.Core.Transformers;
     using Fanex.AffiliateAdmin.Core.Configurations;
 
     /// <summary>
@@ -22,112 +21,136 @@ namespace Fanex.AffiliateAdmin.Site
     /// </summary>
     public class BundleConfig
     {
-        private static CssMinify _cssMinify = new CssMinify();
-        private static CssTransformer _cssTransformer = new CssTransformer();
-        private static NullOrderer _nullOrderer = new NullOrderer();
-
         /// <summary>
         /// Register Bundles.
         /// </summary>
         /// <param name="bundles">Bundle Collection.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", 
-            "SP2101:MethodMustNotContainMoreLinesThan", Justification = "This is OK here.")]
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(GetBundleForLoginCss());
+            GetBundleForHeadJs(bundles);
 
-            bundles.Add(GetBundleForNotifyCss());
+            GetBundleForLogin(bundles);
 
-            bundles.Add(GetBundleForLoginJs());
+            GetBundleForNotify(bundles);
 
-            bundles.Add(GetBundleForHeadJs());
+            GetBundleForCommonCss(bundles);
 
-            bundles.Add(GetBundleForCommonCss());   
-         
-            bundles.Add(GetBundleForCommonJs());
+            GetBundleForCommonJs(bundles);
 
-            bundles.Add(new ScriptBundle("~/bundles/daterange").Include(
-                "~/Scripts/libraries/date.min.js").Include(
-                "~/Scripts/libraries/daterangepicker.js").Include(
-                "~/Scripts/libraries/monpickr.js"));
+            GetBundleForDataRangeJs(bundles);
 
             GetBundleForEachScriptFile(bundles);
+
+            GetBundleForCommissionGroup(bundles);
         }
 
-        private static Bundle GetBundleForCommonJs()
+        /// <summary>
+        /// Get bundle for login.
+        /// </summary>
+        /// <param name="bundles">Bundle collection.</param>
+        private static void GetBundleForLogin(BundleCollection bundles)
         {
-            var bundle = new ScriptBundle("~/bundles/js");
-            
-            bundle.IncludeDirectory("~/Scripts/libraries", "jquery*.js")
-                  .IncludeDirectory("~/Scripts/libraries", "Fanex*.js")
-                  .IncludeDirectory("~/Scripts/libraries/Language", "*.js")
-                  .Include("~/Scripts/libraries/head.js")
-                  .Include("~/Scripts/libraries/moment.js")
-                  .Include("~/Scripts/libraries/monpickr.js")
-                  .Include("~/Scripts/libraries/numeral.js")
-                  .Include("~/Scripts/libraries/placeholder_fixer.js")
-                  .Include("~/Scripts/libraries/ui.dropdownchecklist.js")
-                  .Include("~/Scripts/site/Query.string.js")
-                  .Include("~/Scripts/site/Paging.js")
-                  .Include("~/Scripts/site/_Global.js")
-                  .Include("~/Scripts/site/RecheckIn.js");
+            bundles.Add(new LessBundle("~/bundles/login")
+                    .Include(
+                        string.Format("~/Content/_Sites/{0}/Login.less", AppSettings.Layout),
+                        "~/Content/themes/base/AffiliateAdmin.css"));
 
-            return bundle;
+            bundles.Add(new ScriptBundle("~/bundles/loginJs").Include(
+                "~/Scripts/libraries/jquery.blockUI.js",
+                "~/Scripts/libraries/jquery.placeholder.js",
+                "~/Scripts/site/Login.js",
+                "~/Scripts/site/_Global.js"));
         }
 
-        private static Bundle GetBundleForCommonCss()
+        private static void GetBundleForNotify(BundleCollection bundles)
         {
-            var bundle = new Bundle("~/bundles/css")
-                {
-                    Transforms = { _cssTransformer, _cssMinify },
-                    Orderer = _nullOrderer
-                };
-
-            bundle.IncludeDirectory("~/Content/themes/base", "*.css")
-                  .Include("~/Content/themes/Default/index.less");
-                 
-            return bundle;
+            bundles.Add(new LessBundle("~/bundles/notify")
+                .Include(string.Format("~/Content/_Sites/{0}/Notify.less", AppSettings.Layout)));
         }
 
-        private static Bundle GetBundleForHeadJs()
+        /// <summary>
+        /// Get bundle for head.
+        /// </summary>
+        /// <param name="bundles">Bundle collection.</param>
+        private static void GetBundleForHeadJs(BundleCollection bundles)
         {
-            return new ScriptBundle("~/bundles/headjs").Include("~/Scripts/libraries/head.js");
+            bundles.Add(new ScriptBundle("~/bundles/headjs")
+                .Include("~/Scripts/libraries/head.js"));
         }
 
-        private static Bundle GetBundleForLoginJs()
+        /// <summary>
+        /// Get bundle for common style.
+        /// </summary>
+        /// <param name="bundles">Bundle collection.</param>
+        private static void GetBundleForCommonCss(BundleCollection bundles)
         {
-            var bundle = new ScriptBundle("~/bundles/loginJs");
-            bundle.Include("~/Scripts/libraries/jquery.blockUI.js")
-                  .Include("~/Scripts/libraries/jquery.placeholder.js")
-                  .Include("~/Scripts/site/Login.js")
-                  .Include("~/Scripts/site/_Global.js");
-
-            return bundle;
+            bundles.Add(new LessBundle("~/bundles/css")
+                            .Include(
+                                "~/Content/themes/base/jquery.ui.core.css",
+                                "~/Content/themes/base/jquery.ui.resizable.css",
+                                "~/Content/themes/base/jquery.ui.selectable.css",
+                                "~/Content/themes/base/jquery.ui.accordion.css",
+                                "~/Content/themes/base/jquery.ui.autocomplete.css",
+                                "~/Content/themes/base/jquery.ui.button.css",
+                                "~/Content/themes/base/jquery.ui.dialog.css",
+                                "~/Content/themes/base/jquery.ui.slider.css",
+                                "~/Content/themes/base/jquery.ui.tabs.css",
+                                "~/Content/themes/base/jquery.ui.datepicker.css",
+                                "~/Content/themes/base/jquery.ui.progressbar.css",
+                                "~/Content/themes/base/jquery.ui.theme.css",
+                                "~/Content/themes/base/jquery.multiselect.css",
+                                "~/Content/themes/base/daterangepicker.css",
+                                "~/Content/themes/base/monpickr.css",
+                                "~/Content/themes/base/Fanex.Grid.css",
+                                "~/Content/themes/base/Fanex.Pagination.css",
+                                "~/Content/themes/base/AffiliateAdmin.css")
+                            .Include("~/Content/themes/Default/index.less"));
         }
 
-        private static Bundle GetBundleForNotifyCss()
+        /// <summary>
+        /// Get bundle for common java-script.
+        /// </summary>
+        /// <param name="bundles">Bundle collection.</param>
+        private static void GetBundleForCommonJs(BundleCollection bundles)
         {
-            return new Bundle("~/bundles/notify")
-                    .Include(string.Format("~/Content/_Sites/{0}/Notify.less", AppSettings.Layout));
+            bundles.Add(new ScriptBundle("~/bundles/js")
+                            .IncludeDirectory("~/Scripts/libraries", "jquery*")
+                            .IncludeDirectory("~/Scripts/libraries", "Fanex*")
+                            .IncludeDirectory("~/Scripts/libraries/Language", "Fanex*")
+                            .Include(
+                                  "~/Scripts/libraries/head.js",
+                                  "~/Scripts/libraries/moment.js",
+                                  "~/Scripts/libraries/monpickr.js",
+                                  "~/Scripts/libraries/numeral.js",
+                                  "~/Scripts/libraries/placeholder_fixer.js",
+                                  "~/Scripts/libraries/ui.dropdownchecklist.js",
+                                  "~/Scripts/site/Query.string.js",
+                                  "~/Scripts/site/Paging.js",
+                                  "~/Scripts/site/_Global.js",
+                                  "~/Scripts/site/RecheckIn.js"));
         }
 
-        private static Bundle GetBundleForLoginCss()
+        /// <summary>
+        /// Get bundle for data range.
+        /// </summary>
+        /// <param name="bundles">Bundle collection.</param>
+        private static void GetBundleForDataRangeJs(BundleCollection bundles)
         {
-            var bundle = new Bundle("~/bundles/login");
-            bundle.Transforms.Add(_cssTransformer);
-            bundle.Transforms.Add(_cssMinify);
-            bundle.Orderer = _nullOrderer;
-            
-            bundle.Include(string.Format("~/Content/_Sites/{0}/Login.less", AppSettings.Layout))
-                  .Include("~/Content/themes/base/AffiliateAdmin.css");
-
-            return bundle;
+            bundles.Add(new ScriptBundle("~/bundles/daterange")
+            .Include(
+                    "~/Scripts/libraries/date.min.js",
+                    "~/Scripts/libraries/daterangepicker.js",
+                    "~/Scripts/libraries/monpickr.js"));
         }
 
+        /// <summary>
+        /// Get bundle for each script file.
+        /// </summary>
+        /// <param name="bundles">Bundle collection.</param>
         private static void GetBundleForEachScriptFile(BundleCollection bundles)
         {
-            const string relativeScriptPath = "/Scripts/site";
-            var absoluteScriptPath = HttpRuntime.AppDomainAppPath + relativeScriptPath;
+            const string RelativeScriptPath = "/Scripts/site";
+            var absoluteScriptPath = HttpRuntime.AppDomainAppPath + RelativeScriptPath;
             var scriptDir = new DirectoryInfo(absoluteScriptPath);
             var scriptFiles = scriptDir.GetFiles("*.js");
 
@@ -136,10 +159,20 @@ namespace Fanex.AffiliateAdmin.Site
                 var fileName = scriptFile.Name;
                 var fileNameWithouExtension = fileName.Substring(0, fileName.LastIndexOf(scriptFile.Extension, System.StringComparison.OrdinalIgnoreCase));
 
-                var bundle = new Bundle(string.Format("~/scripts/{0}", fileNameWithouExtension.ToLower()));
-                bundle.Include(string.Format("~{0}/{1}", relativeScriptPath, fileName));
+                var bundle = new ScriptBundle(string.Format("~/scripts/{0}", fileNameWithouExtension.ToLower()));
+                bundle.Include(string.Format("~{0}/{1}", RelativeScriptPath, fileName));
                 bundles.Add(bundle);
             }
+        }
+
+        /// <summary>
+        /// Get bundle for each script file.
+        /// </summary>
+        /// <param name="bundles">Bundle collection.</param>
+        private static void GetBundleForCommissionGroup(BundleCollection bundles)
+        {
+            bundles.Add(new LessBundle("~/bundles/commgroup")
+                .Include("~/Content/themes/Default/commgroup.less"));
         }
     }
 }

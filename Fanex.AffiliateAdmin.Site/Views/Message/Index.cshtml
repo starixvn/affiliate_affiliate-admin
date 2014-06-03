@@ -13,7 +13,7 @@ message
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.Message, 0, "message")
 }
-<div class="search-panel search-message">
+<div class="search-panel">
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
     @RazorHelper.SearchPanel(".search-form", "Information text", false, false)
@@ -23,7 +23,8 @@ message
             <div class="row-fluid row-form end-search">
                 <div class="cell">
                     @Html.LabelFor(m => m.SearchBy)
-                    @Html.DropDownListFor(m => m.SearchBy, MessageSettings.ListSearchBy, new { @class = "width-140" })
+                    @*@Html.DropDownListFor(m => m.SearchBy, MessageSettings.ListSearchBy, new { @class = "width-140" })*@
+                    @Html.DropDownCheckList("SearchBy", MessageSettings.ListSearchBy, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
                 <div class="cell">
                     &nbsp;&nbsp;
@@ -77,13 +78,14 @@ message
                 { HeaderText: "@Lang.PostDate", Width: 160, Name: "PostedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
                 { HeaderText: "@Lang.Message", Width: 400, Name: "Message_en", HeaderAlign: "center", Formatter: formatMessage },
                 { HeaderText: "@Lang.Important", Width: 70, Name: "Important", HeaderAlign: "center", Formatter: formatImportant },
-                { HeaderText: "@Lang.UpdatedBy", Width: 70, Name: "UpdateName", HeaderAlign: "center" },
-                { HeaderText: "@Lang.UpdateDate", Width: 160, Name: "UpdatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+                { HeaderText: "@Lang.UpdatedBy", Width: 70, Name: "UpdateName", HeaderAlign: "center", CanResize: true },
+                { HeaderText: "@Lang.UpdateDate", Width: 160, Name: "UpdatedDate", HeaderAlign: "center", CellAlign: "center",  FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
                 {
                     HeaderText: "@Lang.Action",
                     Width: 70,
                     Name: "Update",
                     CellAlign: "center",
+                    CanResize: true,
                     Formatter: function(rIndex, record, cell, cellFormated) {
                         return "<a href='javascript:Message.editMessage({0})' title='{1}'><i class='icon-edit'></i>".format(record.Msgid, MSG.Edit) +
                             "</a>&nbsp;&nbsp;<a href='javascript:Message.deleteMessage({0});' title='{1}'><i class='icon-remove'></i></a>".format(record.Msgid, MSG.Remove);
@@ -94,7 +96,8 @@ message
             customPager: true,
             gridExpandHeight: 360,
             allowTruncate: true,
-            indexNumberColumn: 0
+            indexNumberColumn: 0,
+            autoResizeColumn: true
         };
 
         function formatImportant(rIndex, record, cell, cellFormated) {

@@ -15,7 +15,7 @@ customer
 @{
     var now = DateTime.Now;
 }
-<div class="search-panel search-custList">
+<div class="search-panel">
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
     @RazorHelper.SearchPanel(".search-form", "Information text", false, false)
@@ -120,13 +120,14 @@ customer
             },
             columns: [
                 { HeaderText: "#", Width: 30, Name: "No", CellAlign: "center" },
-                { HeaderText: "@Lang.Username", Width: 70, Name: "UserName" },
+                { HeaderText: "@Lang.Username", Width: 70, Name: "UserName", canResize: true },
                 { HeaderText: "@Lang.FirstName", Width: 100, Name: "FirstName" },
                 { HeaderText: "@Lang.LastName", Width: 100, Name: "LastName" },
                 {
                     HeaderText: "@Lang.Email",
                     Width: 110,
                     Name: "Email",
+                    canResize: true,
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return cellFormated ? "<a href='mailto:" + cellFormated + "'>" + cellFormated + "</a>" : "";
                     }
@@ -171,6 +172,7 @@ customer
             gridExpandHeight: 360,
             showNumberColumn: true,
             allowTruncate: true,
+            autoResizeColumn: true,
             rowCssClass: function (rowIndex, rowData) {
                 return rowData.IsRemoved ? "removed" : "approved";
             }

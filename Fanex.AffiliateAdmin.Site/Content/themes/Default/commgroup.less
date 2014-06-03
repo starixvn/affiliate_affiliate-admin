@@ -73,9 +73,10 @@ table select{
 }
 .tab_title li{
 	display:block;
+	height: 19px;
 }
 .tab_title span{
-	float:left;
+	display: inline-block;
 	background:url('images/popup_menu02.jpg') no-repeat left top;
 	margin-right:3px;
 	padding-left:3px;
@@ -83,28 +84,28 @@ table select{
 }
 .tab_title span span{
 	text-transform:uppercase;	
-	float:left;
+	display: inline-block;
 	display:block;
 	width:120px;
+	
 	background:url('images/popup_menu01.jpg') no-repeat right top;
 	padding: 0px 25px 0px 8px;
 }
-/*.tab_title .expand a{
-	background-position:0 -21px;
-}*/
+
 .tab_title .expand span span{
+	background:url('images/popup_menu01.jpg') no-repeat right top;
 	background-position:100% -21px;	
 }
+
 .tab_title .collapse span span{
+	background:url('images/popup_menu01.jpg') no-repeat right top;
 	background-position:100% 0px;	
 }
-/*.tab_title a:hover{
-	background-position:0% -21px;
-}*/
+
 .tab_title span:hover span{
 	background-position:100% -21px;
+	line-height: 19px;
 }
-
 
 .tab_content{
 	padding:2px 10px 10px 10px;

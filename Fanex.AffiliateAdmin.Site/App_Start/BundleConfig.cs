@@ -7,8 +7,6 @@
 //   <change who="Kaden.Trinh" date="2013.05.30">Created</change>
 // </history>
 
-using BundleTransformer.Core.Transformers;
-
 namespace Fanex.AffiliateAdmin.Site.App_Start
 {
     using System.IO;

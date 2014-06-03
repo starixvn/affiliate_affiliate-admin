@@ -7,8 +7,6 @@
 //   <change who="Kaden.Trinh" date="2013.05.30">Created</change>
 // </history>
 
-using Fanex.AffiliateAdmin.Site.App_Start;
-
 namespace Fanex.AffiliateAdmin.Site
 {
     using System;
@@ -16,8 +14,9 @@ namespace Fanex.AffiliateAdmin.Site
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
+    using Core.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
-    using Fanex.AffiliateAdmin.Core.Mvc;
+    using Fanex.AffiliateAdmin.Site.App_Start;
     using Fanex.Data.Configuration;
     using Fanex.Logging;
 
@@ -43,7 +42,6 @@ namespace Fanex.AffiliateAdmin.Site
             SimpleInjectorInitializer.Initialize();
             ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
 
-            //BundleTable.EnableOptimizations = true;
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 

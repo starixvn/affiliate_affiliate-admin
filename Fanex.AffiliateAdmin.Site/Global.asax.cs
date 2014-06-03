@@ -7,6 +7,8 @@
 //   <change who="Kaden.Trinh" date="2013.05.30">Created</change>
 // </history>
 
+using Fanex.AffiliateAdmin.Site.App_Start;
+
 namespace Fanex.AffiliateAdmin.Site
 {
     using System;

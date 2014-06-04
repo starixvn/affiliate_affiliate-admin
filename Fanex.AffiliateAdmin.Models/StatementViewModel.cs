@@ -19,6 +19,14 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class StatementViewModel
     {
+        #region Fields
+
+        private IList<SelectListItem> _baseCurrencyList;
+
+        private IList<TransType> _transTypeList;
+
+        #endregion
+
         public int AffId { get; set; }
 
         [Display(Name = "TransType", ResourceType = typeof(Lang))]
@@ -39,15 +47,21 @@ namespace Fanex.AffiliateAdmin.Models
         [Display(Name = "To", ResourceType = typeof(Lang))]
         public DateTime ToDate { get; set; }
 
-        public IList<TransType> TransTypeList { get; set; }
+        public IList<TransType> TransTypeList
+        {
+            get
+            {
+                return _transTypeList;
+            }
+        }
 
         public IEnumerable<SelectListItem> TransTypeListItem
         {
             get
             {
-                TransTypeList.Insert(0, new TransType { TypeId = 0, TypeName = Lang.All });
+                _transTypeList.Insert(0, new TransType { TypeId = 0, TypeName = Lang.All });
 
-                return TransTypeList.Select(trans => new SelectListItem
+                return _transTypeList.Select(trans => new SelectListItem
                 {
                     Value = trans.TypeId != 0 ? trans.TypeId.ToString() : string.Empty,
                     Text = trans.TypeName
@@ -55,18 +69,24 @@ namespace Fanex.AffiliateAdmin.Models
             }
         }
 
-        public IList<SelectListItem> BaseCurrencyList { get; set; }
+        public IList<SelectListItem> BaseCurrencyList
+        {
+            get
+            {
+                return _baseCurrencyList;
+            }
+        }
 
         public IEnumerable<SelectListItem> BaseCurrencyListItem
         {
             get
             {
-                if (BaseCurrencyList.Count == 2 && BaseCurrencyList[0].Text == BaseCurrencyList[1].Text)
+                if (_baseCurrencyList.Count == 2 && _baseCurrencyList[0].Text == _baseCurrencyList[1].Text)
                 {
-                    BaseCurrencyList.RemoveAt(1);
+                    _baseCurrencyList.RemoveAt(1);
                 }
 
-                return new SelectList(BaseCurrencyList, "Value", "Text");
+                return new SelectList(_baseCurrencyList, "Value", "Text");
             }
         }
 
@@ -75,5 +95,19 @@ namespace Fanex.AffiliateAdmin.Models
         public int PageIndex { get; set; }
 
         public int TotalPages { get; set; }
+
+        #region Methods
+
+        public void AddBaseCurrencyList(IList<SelectListItem> baseCurrencyList)
+        {
+            _baseCurrencyList = baseCurrencyList;
+        }
+
+        public void AddTransTypeList(IList<TransType> transTypeList)
+        {
+            _transTypeList = transTypeList;
+        }
+
+        #endregion
     }
 }

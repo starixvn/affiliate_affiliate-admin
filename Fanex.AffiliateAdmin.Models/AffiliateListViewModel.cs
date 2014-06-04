@@ -41,6 +41,27 @@ namespace Fanex.AffiliateAdmin.Models
             new SelectListItem { Value = "2", Text = Lang.ApprovalDate }
         };
 
+        private readonly List<SelectListItem> _sortByOptionList = new List<SelectListItem> 
+                {
+                    new SelectListItem 
+                    {
+                        Text = Lang.Affiliate,
+                        Value = "0"
+                    },
+                    new SelectListItem
+                    {
+                        Text = Lang.BF,
+                        Value = "1"
+                    },
+                    new SelectListItem
+                    {
+                        Text = Lang.Member,
+                        Value = "2"
+                    }
+                };
+
+        private readonly SelectList _baseCurrencyOptionList = new SelectList(AppSettings.BaseCurrencyInAffiliate, "Value", "Text");
+
         public AffiliateListViewModel()
         {
             IsFavorite = false;
@@ -71,7 +92,7 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                return new SelectList(AppSettings.BaseCurrencyInAffiliate, "Value", "Text");
+                return _baseCurrencyOptionList;
             }
         }
 
@@ -79,26 +100,7 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                var selectItemList = new List<SelectListItem> 
-                {
-                    new SelectListItem 
-                    {
-                        Text = Lang.Affiliate,
-                        Value = "0"
-                    },
-                    new SelectListItem
-                    {
-                        Text = Lang.BF,
-                        Value = "1"
-                    },
-                    new SelectListItem
-                    {
-                        Text = Lang.Member,
-                        Value = "2"
-                    }
-                };
-
-                return selectItemList;
+                return _sortByOptionList;
             }
         }
 

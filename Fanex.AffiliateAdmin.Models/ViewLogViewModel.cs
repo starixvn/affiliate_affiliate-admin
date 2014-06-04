@@ -20,6 +20,12 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class ViewLogViewModel
     {
+        #region Fields
+
+        private IEnumerable<LogType> _logTypeList;
+
+        #endregion
+
         public ViewLogViewModel()
         {
             var dateFrom = DateTime.Now.AddMonths(AppSettings.ViewLogBackMonth);
@@ -34,7 +40,13 @@ namespace Fanex.AffiliateAdmin.Models
         [Display(Name = "To", ResourceType = typeof(Lang))]
         public DateTime DateTo { get; set; }
 
-        public IList<LogType> LogTypeList { get; set; }
+        public IEnumerable<LogType> LogTypeList
+        {
+            get
+            {
+                return _logTypeList;
+            }
+        }
 
         [Display(Name = "LogType", ResourceType = typeof(Lang))]
         public string LogType { get; set; }
@@ -43,14 +55,24 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                LogTypeList.Insert(0, new LogType { TypeId = 0, TypeName = Lang.All });
+                var actualLogTypeList = _logTypeList.ToList();
+                actualLogTypeList.Insert(0, new LogType { TypeId = 0, TypeName = Lang.All });
 
-                return LogTypeList.Select(log => new SelectListItem
+                return actualLogTypeList.Select(log => new SelectListItem
                 {
                     Value = log.TypeId.ToString(),
                     Text = log.TypeName
                 }).ToList();
             }
-        } 
+        }
+
+        #region Methods
+
+        public void AddLogTypeList(IEnumerable<LogType> logTypeList)
+        {
+            _logTypeList = logTypeList;
+        }
+
+        #endregion
     }
 }

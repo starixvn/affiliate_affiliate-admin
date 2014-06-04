@@ -85,7 +85,10 @@ namespace Fanex.AffiliateAdmin.Controller
                 Type = "CustomerPage"
             });
 
-            return View(new TrackingStatisticViewModel { CustomerPages = customerPages.ToList() });
+            var model = new TrackingStatisticViewModel();
+            model.AddCustomerPageList(customerPages.ToList());
+
+            return View(model);
         }
 
         /// <summary>

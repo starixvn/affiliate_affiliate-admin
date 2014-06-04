@@ -24,130 +24,7 @@ namespace Fanex.AffiliateAdmin.Models
     {
         #region Fields
 
-        private readonly IEnumerable<SelectListItem> _sortByList = new List<SelectListItem>
-            {
-                    new SelectListItem { Text = Lang.Commission, Value = "0" },
-                     new SelectListItem { Text = Lang.ActiveMembers, Value = "1" },
-                     new SelectListItem { Text = Lang.BetCount, Value = "2" },
-                     new SelectListItem { Text = Lang.Deposit, Value = "3" },
-                     new SelectListItem { Text = Lang.Withdrawal, Value = "4" },
-                     new SelectListItem { Text = Lang.Turnover, Value = "5" },
-                    new SelectListItem { Text = Lang.Winloss, Value = "6" }
-            };
-
-        private SelectList _commissionGroupOptionList;
-
-        private SelectList _preferLanguageOptionList;
-
-        private SelectList _affTypeOptionList;
-
-        private SelectList _currencyOptionList;
-
-        private SelectList _sortByOptionList;
-
-        #endregion
-
-        public CommissionReportViewModel()
-        {
-            ExcludeTest = true;
-        }
-
-        public string Affiliate { get; set; }
-
-        public int DateOption { get; set; }
-
-        public int DrawFilter { get; set; }
-
-        public string Status { get; set; }
-
-        public int GroupId { get; set; }
-
-        public bool ExcludeTest { get; set; }
-
-        public DateTime? FromDate { get; set; }
-
-        public DateTime? ToDate { get; set; }
-
-        public string Products { get; set; }
-
-        public IEnumerable<SelectListItem> AffTypeOptionList
-        {
-            get
-            {
-                if (_affTypeOptionList == null)
-                {
-                    _affTypeOptionList = new SelectList(AppSettings.AffTypes, "TypeID", "Name");
-                }
-
-                return _affTypeOptionList;
-            }
-        }
-
-        public SelectList CommissionGroupOptionList
-        {
-            get
-            {
-                if (_commissionGroupOptionList == null)
-                {
-                    _commissionGroupOptionList = new SelectList(AppSettings.GetCommGroups(null), "GroupID", "GroupName");
-                }
-
-                return _commissionGroupOptionList;
-            }
-        }
-
-        public SelectList PreferLanguageOptionList
-        {
-            get
-            {
-                if (_preferLanguageOptionList == null)
-                {
-                    _preferLanguageOptionList = new SelectList(AppSettings.AffSupportLanguages, "LanguageID", "LanguageName");
-                }
-
-                return _preferLanguageOptionList;
-            }
-        }
-
-        public IEnumerable<SelectListItem> CurrencyOptionList
-        {
-            get
-            {
-                if (_currencyOptionList == null)
-                {
-                    _currencyOptionList = new SelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode");
-                }
-
-                return _currencyOptionList;
-            }
-        }
-
-        public IEnumerable<SelectListItem> GroupByOptionList
-        {
-            get
-            {
-                return new List<SelectListItem>
-                {
-                    new SelectListItem()
-                    {
-                        Text = Lang.Month,
-                        Value = "0",
-                        Selected = true
-                    },
-                    new SelectListItem()
-                    {
-                        Text = Lang.Affiliate,
-                        Value = "1"
-                    }
-                };                
-            }
-        }
-
-        public IEnumerable<SelectListItem> DrawFilterOptionList
-        {
-            get
-            {
-                return new List<SelectListItem>
+        private readonly List<SelectListItem> _drawFilterOptions = new List<SelectListItem>
                 {
                     new SelectListItem
                     {
@@ -165,39 +42,152 @@ namespace Fanex.AffiliateAdmin.Models
                         Value = "2"
                     }
                 };
+
+        private readonly List<SelectListItem> _groupdByOptions = new List<SelectListItem>
+                {
+                    new SelectListItem()
+                    {
+                        Text = Lang.Month,
+                        Value = "0",
+                        Selected = true
+                    },
+                    new SelectListItem()
+                    {
+                        Text = Lang.Affiliate,
+                        Value = "1"
+                    }
+                };
+
+        private readonly IEnumerable<SelectListItem> _sortByList = new List<SelectListItem>
+            {
+                    new SelectListItem { Text = Lang.Commission, Value = "0" },
+                     new SelectListItem { Text = Lang.ActiveMembers, Value = "1" },
+                     new SelectListItem { Text = Lang.BetCount, Value = "2" },
+                     new SelectListItem { Text = Lang.Deposit, Value = "3" },
+                     new SelectListItem { Text = Lang.Withdrawal, Value = "4" },
+                     new SelectListItem { Text = Lang.Turnover, Value = "5" },
+                    new SelectListItem { Text = Lang.Winloss, Value = "6" }
+            };
+
+        private SelectList _affTypeOptionList;
+
+        private IList<SelectListItem> _baseCurrencyList;
+
+        private SelectList _commissionGroupOptionList;
+
+        private SelectList _currencyOptionList;
+
+        private SelectList _preferLanguageOptionList;
+
+        private SelectList _sortByOptionList;
+
+        #endregion Fields
+
+        public CommissionReportViewModel()
+        {
+            ExcludeTest = true;
+        }
+
+        public string Affiliate { get; set; }
+
+        public IEnumerable<SelectListItem> AffTypeOptionList
+        {
+            get
+            {
+                if (_affTypeOptionList == null)
+                {
+                    _affTypeOptionList = new SelectList(AppSettings.AffTypes, "TypeID", "Name");
+                }
+
+                return _affTypeOptionList;
             }
         }
 
-        public IList<SelectListItem> BaseCurrencyList { get; set; }
+        public IList<SelectListItem> BaseCurrencyList
+        {
+            get
+            {
+                return _baseCurrencyList;
+            }
+        }
 
         public SelectList BaseCurrencyOptionList
         {
             get
             {
-                if (BaseCurrencyList != null)
+                if (_baseCurrencyList != null)
                 {
-                    if (BaseCurrencyList.Count == 2 && BaseCurrencyList[0].Text == BaseCurrencyList[1].Text)
+                    if (_baseCurrencyList.Count == 2 && _baseCurrencyList[0].Text == _baseCurrencyList[1].Text)
                     {
-                        BaseCurrencyList.RemoveAt(1);
+                        _baseCurrencyList.RemoveAt(1);
                     }
 
-                    return new SelectList(BaseCurrencyList, "Value", "Text");
+                    return new SelectList(_baseCurrencyList, "Value", "Text");
                 }
 
                 return new SelectList(AppSettings.BaseCurrencyInAffiliate, "Value", "Text");
             }
         }
 
-        public SelectList SortByOptionList
+        public SelectList CommissionGroupOptionList
         {
             get
             {
-                if (_sortByOptionList == null)
+                if (_commissionGroupOptionList == null)
                 {
-                    _sortByOptionList = new SelectList(_sortByList.OrderBy(t => t.Text), "Value", "Text", "0");
+                    _commissionGroupOptionList = new SelectList(AppSettings.GetCommGroups(null), "GroupID", "GroupName");
                 }
 
-                return _sortByOptionList;
+                return _commissionGroupOptionList;
+            }
+        }
+
+        public IEnumerable<SelectListItem> CurrencyOptionList
+        {
+            get
+            {
+                if (_currencyOptionList == null)
+                {
+                    _currencyOptionList = new SelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode");
+                }
+
+                return _currencyOptionList;
+            }
+        }
+
+        public int DateOption { get; set; }
+
+        public int DrawFilter { get; set; }
+
+        public IEnumerable<SelectListItem> DrawFilterOptionList
+        {
+            get
+            {
+                return _drawFilterOptions;
+            }
+        }
+
+        public bool ExcludeTest { get; set; }
+
+        public DateTime? FromDate { get; set; }
+
+        public IEnumerable<SelectListItem> GroupByOptionList
+        {
+            get { return _groupdByOptions; }
+        }
+
+        public int GroupId { get; set; }
+
+        public SelectList PreferLanguageOptionList
+        {
+            get
+            {
+                if (_preferLanguageOptionList == null)
+                {
+                    _preferLanguageOptionList = new SelectList(AppSettings.AffSupportLanguages, "LanguageID", "LanguageName");
+                }
+
+                return _preferLanguageOptionList;
             }
         }
 
@@ -216,5 +206,33 @@ namespace Fanex.AffiliateAdmin.Models
                 return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);
             }
         }
+
+        public string Products { get; set; }
+
+        public SelectList SortByOptionList
+        {
+            get
+            {
+                if (_sortByOptionList == null)
+                {
+                    _sortByOptionList = new SelectList(_sortByList.OrderBy(t => t.Text), "Value", "Text", "0");
+                }
+
+                return _sortByOptionList;
+            }
+        }
+
+        public string Status { get; set; }
+
+        public DateTime? ToDate { get; set; }
+
+        #region Methods
+
+        public void AddBaseCurrencyList(IList<SelectListItem> baseCurrencyList)
+        {
+            _baseCurrencyList = baseCurrencyList;
+        }
+
+        #endregion Methods
     }
-} 
+}

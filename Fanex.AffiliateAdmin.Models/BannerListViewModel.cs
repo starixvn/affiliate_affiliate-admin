@@ -21,6 +21,14 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class BannerListViewModel : TextListViewModel
     {
+        #region Fields
+
+        private IEnumerable<SelectListItem> _bannerTypeList;
+
+        private IEnumerable<SelectListItem> _bannerSizeList;
+
+        #endregion
+
         [Display(Name = "ImageType", ResourceType = typeof(Lang))]
         public short? ImageType { get; set; }
 
@@ -51,16 +59,20 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                var selectItemList = MediaSettings.BannerTypes.Select(t => new SelectListItem
+                if (_bannerTypeList == null)
                 {
-                    Text = t.Value,
-                    Value = t.TypeId.ToString(),
-                    Selected = ImageType.HasValue ? t.TypeId == ImageType.Value : false
-                }).ToList();
+                    var selectItemList = MediaSettings.BannerTypes.Select(t => new SelectListItem
+                    {
+                        Text = t.Value,
+                        Value = t.TypeId.ToString(),
+                        Selected = ImageType.HasValue ? t.TypeId == ImageType.Value : false
+                    }).ToList();
 
-                selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
+                    selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
+                    _bannerTypeList = selectItemList;
+                }
 
-                return selectItemList;
+                return _bannerTypeList;
             }
         }
 
@@ -68,17 +80,21 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                var selectItemList = MediaSettings.BannerSizes.Select(t => new SelectListItem
+                if (_bannerSizeList == null)
                 {
-                    Text = t.Value,
-                    Value = t.TypeId.ToString()
-                }).ToList();
+                    var selectItemList = MediaSettings.BannerSizes.Select(t => new SelectListItem
+                    {
+                        Text = t.Value,
+                        Value = t.TypeId.ToString()
+                    }).ToList();
 
-                selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
+                    selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
+                    _bannerSizeList = selectItemList;
+                }
 
-                return selectItemList;
+                return _bannerSizeList;
             }
-        } 
+        }
 
         #endregion
     }

@@ -17,6 +17,12 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class HomeViewModel
     {
+        #region Fields
+
+        private IList<UserOnline> _onlineList;
+
+        #endregion
+
         public int PaymentReqNum { get; set; }
 
         public int AffInProAllNum { get; set; }
@@ -99,6 +105,21 @@ namespace Fanex.AffiliateAdmin.Models
 
         public int NonDepositMemMonthNum { get; set; }
 
-        public List<UserOnline> OnlineList { get; set; }
+        public IList<UserOnline> OnlineList
+        {
+            get
+            {
+                return _onlineList;
+            }
+        } 
+
+        #region Methods
+
+        public void AddOnlineList(IList<UserOnline> onlineList)
+        {
+            _onlineList = onlineList;
+        }
+
+        #endregion
     }
 }

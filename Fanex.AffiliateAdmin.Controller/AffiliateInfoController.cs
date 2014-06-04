@@ -78,7 +78,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return View(new AffiliateMasterViewModel
             {
-                SiteDomainUrl = siteDomainInfo.AdminSiteUrl,
+                SiteDomainUrl = new Uri(siteDomainInfo.AdminSiteUrl),
                 UserName = userName
             });
         }
@@ -107,8 +107,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     UpdateAffiliateSession(model.AffiliateInfo);
                     
                     FormaterCurrency.SetDefaultCurrency(model.AffiliateInfo.CurrencyCode);
-
-                    model.ExternalLoginUrl = ExternalLogin.ExternalLoginUrl(new ExternalLoginInfo
+                  
+                    model.ExternalLoginUrl = new Uri(ExternalLogin.ExternalLoginUrl(new ExternalLoginInfo
                         {
                             Controller = this,
                             Username = CurrentSession.Affiliate.Username,
@@ -116,7 +116,7 @@ namespace Fanex.AffiliateAdmin.Controller
                             OnUserID = CurrentSession.OnUserID,
                             SessionID = Session.SessionID,
                             AffTypeName = CurrentSession.Affiliate.AffTypeName
-                        });
+                        }));
 
                     ViewBag.IsLoadOtherPage = Request["IsLoadOtherPage"];
 
@@ -282,10 +282,12 @@ namespace Fanex.AffiliateAdmin.Controller
                         AffMinMoneyBookers = criteria.AffMinMoneyBookers,
                         AffMinNeteller = criteria.AffMinNeteller,
                         AffMinPlayer = criteria.AffMinPlayer,
-                        AffMinWire = criteria.AffMinWire,
-                        Countries = _countryService.GetAll(new CountryCriteria()),
-                        PaymentMethods = this._systemSettingService.GetPaymentMethod(new PaymentMethodCriteria()).ToList()
+                        AffMinWire = criteria.AffMinWire
                     };
+
+                model.AddCountries(_countryService.GetAll(new CountryCriteria()));
+
+                model.AddPaymentMethods(_systemSettingService.GetPaymentMethod(new PaymentMethodCriteria()));
 
                 model.Affiliate.HtmlDecode();
             }
@@ -424,7 +426,7 @@ namespace Fanex.AffiliateAdmin.Controller
             affiliate.CountryId = criteria.Country;
             affiliate.Currency = short.Parse(criteria.Currency);
             affiliate.MailOption = criteria.MailOption;
-            affiliate.SiteURL = criteria.SiteUrl;
+            affiliate.SiteLink = criteria.SiteLink;
             affiliate.MoreSiteURLs = criteria.MoreSiteUrls;
             affiliate.PreferredPayment = criteria.PreferredPayment;
             affiliate.Player_Username = criteria.PlayerUserName;
@@ -436,10 +438,12 @@ namespace Fanex.AffiliateAdmin.Controller
                 AffMinMoneyBookers = selectCriteria.AffMinMoneyBookers,
                 AffMinNeteller = selectCriteria.AffMinNeteller,
                 AffMinPlayer = selectCriteria.AffMinPlayer,
-                AffMinWire = selectCriteria.AffMinWire,
-                Countries = _countryService.GetAll(new CountryCriteria()),
-                PaymentMethods = _systemSettingService.GetPaymentMethod(new PaymentMethodCriteria()).ToList()
+                AffMinWire = selectCriteria.AffMinWire
             };
+
+            model.AddCountries(_countryService.GetAll(new CountryCriteria()));
+
+            model.AddPaymentMethods(_systemSettingService.GetPaymentMethod(new PaymentMethodCriteria()));
 
             return model;
         }

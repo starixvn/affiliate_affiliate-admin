@@ -106,7 +106,7 @@ namespace Fanex.AffiliateAdmin.DTO
         public string Postal { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrSiteUrl")]
-        public string SiteURL { get; set; }
+        public string SiteLink { get; set; }
 
         public string MoreSiteURLs { get; set; }
 
@@ -116,7 +116,7 @@ namespace Fanex.AffiliateAdmin.DTO
         [DisplayName("PlayerUsername")]
         public string Player_Username { get; set; }
 
-        [Display(Name = "PlayerCurrency", ResourceType = typeof(Lang))]
+        [Display(Name = "MemberCurrency", ResourceType = typeof(Lang))]
         public string PlayerCurrency { get; set; }
 
         public string Question { get; set; }

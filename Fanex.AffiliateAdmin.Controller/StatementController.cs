@@ -58,11 +58,9 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var transTypeList = _transTypeService.GetTransTypes(new TransTypeCriteria());
 
-            var model = new StatementViewModel
-            {
-                BaseCurrencyList = baseCurrencyList,
-                TransTypeList = transTypeList.ToList()
-            };
+            var model = new StatementViewModel();
+            model.AddBaseCurrencyList(baseCurrencyList);
+            model.AddTransTypeList(transTypeList.ToList());
 
             ViewBag.AffCurrencySymbol = CurrentSession.Affiliate.Prefix;
             

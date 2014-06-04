@@ -725,6 +725,9 @@
 	<data name="Currency" xml:space="preserve">
     <value>Currency</value>
   </data>
+  <data name="CurrencyCode" xml:space="preserve">
+    <value>Currency Code</value>
+  </data>
 	<data name="CurrencyFieldIsRequired" xml:space="preserve">
     <value>The Currency field is required.</value>
   </data>

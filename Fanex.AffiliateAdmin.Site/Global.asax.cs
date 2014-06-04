@@ -53,7 +53,6 @@ namespace Fanex.AffiliateAdmin.Site
         protected void Application_Error(object sender, EventArgs e)
         {
             var exception = Server.GetLastError();
-            var currentPath = HttpContext.Current.Request.Url.AbsolutePath.ToLower();
 
             ////Send error email to list user in bcc email
             var message = exception.Message + Environment.NewLine + exception.StackTrace;
@@ -63,28 +62,6 @@ namespace Fanex.AffiliateAdmin.Site
             {
                 throw exception;
             }
-        }
-
-        /// <summary>
-        /// Handle Begin Request.
-        /// </summary>
-        protected void Application_BeginRequest()
-        {
-            ////if (Request.IsLocal)
-            ////{
-            ////    MiniProfiler.Start();
-            ////}
-        }
-       
-        /// <summary>
-        /// Handle End Request.
-        /// </summary>
-        protected void Application_EndRequest()
-        {
-            ////if (Request.IsLocal)
-            ////{
-            ////    MiniProfiler.Stop();
-            ////}
         }
     }
 }

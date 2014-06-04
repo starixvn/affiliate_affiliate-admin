@@ -43,7 +43,7 @@ payment
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.Status, new {@class = "txt"})
-                    @Html.DropDownCheckList("Status", (string.IsNullOrEmpty(Model.Status) ? PaymentSettings.ListStatus : Model.ListStatus), true, false, new {@class = "width-140"})
+                    @Html.DropDownCheckList("Status", (string.IsNullOrEmpty(Model.Status) ? PaymentSettings.ListStatus : Model.StatusList), true, false, new {@class = "width-140"})
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.PreferredLanguage, new {@class = "txt"})

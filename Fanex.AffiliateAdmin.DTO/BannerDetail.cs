@@ -42,9 +42,12 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime? LastRequest { get; set; }
 
-        public short GetCategory()
+        public short GetCategory
         {
-            return Category != null ? Category.Value : ParentID.Value;
+            get
+            {
+                return Category != null ? Category.Value : ParentID.Value;
+            }
         }
     }
 }

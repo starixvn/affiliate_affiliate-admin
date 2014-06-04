@@ -23,21 +23,23 @@ namespace Fanex.AffiliateAdmin.Models
     {
         #region Fields
 
-        private readonly IList<SelectListItem> _groupByList = new List<SelectListItem> 
+        private readonly IList<SelectListItem> _groupByList = new List<SelectListItem>
         {
                 new SelectListItem { Text = Lang.Date, Value = "0" },
                 new SelectListItem { Text = Lang.Month, Value = "1" }
         };
 
-        private MultiSelectList _commissionGroupOptionList;
-
-        private MultiSelectList _preferLanguageOptionList;
-
         private MultiSelectList _affTypeOptionList;
 
         private SelectList _baseCurrencyOptionList;
 
-        #endregion
+        private MultiSelectList _commissionGroupOptionList;
+
+        private MultiSelectList _preferLanguageOptionList;
+
+        private MultiSelectList _playerCurrencyOptionList;
+
+        #endregion Fields
 
         public CompanyWinlossViewModel()
         {
@@ -45,18 +47,6 @@ namespace Fanex.AffiliateAdmin.Models
         }
 
         public string Affiliate { get; set; }
-
-        public int DateOption { get; set; }
-
-        public int DrawFilter { get; set; }
-
-        public string Status { get; set; }
-
-        public int GroupId { get; set; }
-
-        public bool ExcludeTest { get; set; }
-
-        public string Products { get; set; }
 
         public MultiSelectList AffTypeOptionList
         {
@@ -68,6 +58,19 @@ namespace Fanex.AffiliateAdmin.Models
                 }
 
                 return _affTypeOptionList;
+            }
+        }
+
+        public SelectList BaseCurrencyOptionList
+        {
+            get
+            {
+                if (_baseCurrencyOptionList == null)
+                {
+                    _baseCurrencyOptionList = new SelectList(AppSettings.BaseCurrencyInMember, "Value", "Text");
+                }
+
+                return _baseCurrencyOptionList;
             }
         }
 
@@ -84,6 +87,43 @@ namespace Fanex.AffiliateAdmin.Models
             }
         }
 
+        public int DateOption { get; set; }
+
+        public int DrawFilter { get; set; }
+
+        public SelectList DrawFilterOptionList
+        {
+            get
+            {
+                return new SelectList(OptionManager.DrawFilters, "Value", "Text", DrawFilter.ToString());
+            }
+        }
+
+        public bool ExcludeTest { get; set; }
+
+        public SelectList GroupByOptionList
+        {
+            get
+            {
+                return new SelectList(_groupByList, "Value", "Text", DateOption.ToString());
+            }
+        }
+
+        public int GroupId { get; set; }
+
+        public MultiSelectList PlayerCurrencyOptionList
+        {
+            get
+            {
+                if (_playerCurrencyOptionList == null)
+                {
+                    _playerCurrencyOptionList = new MultiSelectList(AppSettings.PlayerCurrencies, "CurrencyID", "CurrencyCode");    
+                }
+                
+                return _playerCurrencyOptionList;
+            }
+        }
+
         public MultiSelectList PreferLanguageOptionList
         {
             get
@@ -94,43 +134,6 @@ namespace Fanex.AffiliateAdmin.Models
                 }
 
                 return _preferLanguageOptionList;
-            }
-        }
-
-        public MultiSelectList PlayerCurrencyOptionList
-        {
-            get
-            {
-                return new MultiSelectList(AppSettings.PlayerCurrencies, "CurrencyID", "CurrencyCode");
-            }
-        }
-
-        public SelectList GroupByOptionList
-        {
-            get
-            {
-                return new SelectList(_groupByList, "Value", "Text", DateOption.ToString());
-            }
-        }
-
-        public SelectList DrawFilterOptionList
-        {
-            get
-            {
-                return new SelectList(OptionManager.DrawFilters, "Value", "Text", DrawFilter.ToString());
-            }
-        }
-
-        public SelectList BaseCurrencyOptionList
-        {
-            get
-            {
-                if (_baseCurrencyOptionList == null)
-                {
-                    _baseCurrencyOptionList = new SelectList(AppSettings.BaseCurrencyInMember, "Value", "Text");
-                }
-
-                return _baseCurrencyOptionList;
             }
         }
 
@@ -149,5 +152,9 @@ namespace Fanex.AffiliateAdmin.Models
                 return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);
             }
         }
+
+        public string Products { get; set; }
+
+        public string Status { get; set; }
     }
 }

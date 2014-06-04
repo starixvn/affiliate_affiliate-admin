@@ -6,6 +6,8 @@
 
 namespace Fanex.AffiliateAdmin.DTO
 {
+    using System;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -13,7 +15,7 @@ namespace Fanex.AffiliateAdmin.DTO
     {
         public long TheCount { get; set; }
 
-        public string UrlReferrer { get; set; }
+        public Uri UrlReferrer { get; set; }
 
         public int TotalClick { get; set; }
 

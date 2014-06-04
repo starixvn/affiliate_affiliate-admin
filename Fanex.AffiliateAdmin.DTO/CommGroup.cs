@@ -17,6 +17,18 @@ namespace Fanex.AffiliateAdmin.DTO
     /// </summary>
     public class CommGroup
     {
+        #region Fields
+
+        private Dictionary<string, decimal> _generalDeductions;
+
+        private Dictionary<string, object> _products;
+
+        private IEnumerable<CommGroupDetail> _details;
+
+        #endregion
+
+        #region Properties
+
         public int GroupID { get; set; }
 
         public string GroupName { get; set; }
@@ -39,10 +51,49 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal Deduction { get; set; }
 
-        public Dictionary<string, decimal> GeneralDeductions { get; set; }
+        public Dictionary<string, decimal> GeneralDeductions
+        {
+            get
+            {
+                return _generalDeductions;
+            }
+        }
 
-        public Dictionary<string, object> Products { get; set; }
+        public Dictionary<string, object> Products
+        {
+            get
+            {
+                return _products;
+            }
+        }
 
-        public IEnumerable<CommGroupDetail> Details { get; set; }
+        public IEnumerable<CommGroupDetail> Details
+        {
+            get
+            {
+                return _details;
+            }
+        } 
+
+        #endregion
+
+        #region Methods
+
+        public void AddGeneralDeductions(Dictionary<string, decimal> deductions)
+        {
+            _generalDeductions = deductions;
+        }
+
+        public void AddProducts(Dictionary<string, object> products)
+        {
+            _products = products;
+        }
+
+        public void AddDetails(IEnumerable<CommGroupDetail> details)
+        {
+            _details = details;
+        }
+
+        #endregion
     }
 }

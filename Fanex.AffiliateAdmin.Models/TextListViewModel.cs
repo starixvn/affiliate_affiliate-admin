@@ -21,14 +21,24 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class TextListViewModel
     {
+        #region Fields
+        
+        private IEnumerable<SelectListItem> _bannerCategoryOptions;
+
+        private IEnumerable<SelectListItem> _memberSiteSupportedLanguageOptions;
+
+        private IEnumerable<SelectListItem> _playerCurrencyOptions;
+
+        #endregion
+
         [Display(Name = "Category", ResourceType = typeof(Lang))]
         public short? Category { get; set; }
 
-        [Display(Name = "Language", ResourceType = typeof(Lang))]
-        public string Language { get; set; }
-
         [Display(Name = "Currency", ResourceType = typeof(Lang))]
         public short? Currency { get; set; }
+
+        [Display(Name = "Language", ResourceType = typeof(Lang))]
+        public string Language { get; set; }
 
         public int PageIndex { get; set; }
 
@@ -40,15 +50,19 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                var selectItemList = MediaSettings.BannerCategories.Select(t => new SelectListItem
+                if (_bannerCategoryOptions == null)
                 {
-                    Text = t.Value,
-                    Value = t.TypeId.ToString()
-                }).ToList();
+                    var selectItemList = MediaSettings.BannerCategories.Select(t => new SelectListItem
+                    {
+                        Text = t.Value,
+                        Value = t.TypeId.ToString()
+                    }).ToList();
 
-                selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
+                    selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
+                    _bannerCategoryOptions = selectItemList;
+                }
 
-                return selectItemList;
+                return _bannerCategoryOptions;
             }
         }
 
@@ -56,15 +70,19 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                var selectItemList = AppSettings.MemberSiteSiteSupportedLanguages.Select(t => new SelectListItem
+                if (_memberSiteSupportedLanguageOptions == null)
                 {
-                    Text = t.LanguageName,
-                    Value = t.LanguageID
-                }).ToList();
+                    var selectItemList = AppSettings.MemberSiteSiteSupportedLanguages.Select(t => new SelectListItem
+                        {
+                            Text = t.LanguageName,
+                            Value = t.LanguageID
+                        }).ToList();
 
-                selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
+                    selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
+                    _memberSiteSupportedLanguageOptions = selectItemList;
+                }
 
-                return selectItemList;
+                return _memberSiteSupportedLanguageOptions;
             }
         }
 
@@ -72,17 +90,21 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                var selectItemList = AppSettings.PlayerCurrencies.Select(t => new SelectListItem
+                if (_playerCurrencyOptions == null)
                 {
-                    Text = t.CurrencyCode,
-                    Value = t.CurrencyID.ToString()
-                }).ToList();
+                    var selectItemList = AppSettings.PlayerCurrencies.Select(t => new SelectListItem
+                        {
+                            Text = t.CurrencyCode,
+                            Value = t.CurrencyID.ToString()
+                        }).ToList();
 
-                selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
+                    selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
+                    _playerCurrencyOptions = selectItemList;
+                }
 
-                return selectItemList;
+                return _playerCurrencyOptions;
             }
-        } 
+        }
 
         #endregion
     }

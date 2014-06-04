@@ -143,10 +143,9 @@ namespace Fanex.AffiliateAdmin.Controller
 
             ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(CurrentSession.Affiliate.Currency);
 
-            var model = new CompanyWLByAffiliateViewModel
-                {
-                    BaseCurrencyList = baseCurrencyList
-                };
+            var model = new CompanyWLByAffiliateViewModel();
+
+            model.AddBaseCurrencyList(baseCurrencyList);
 
             return View("CompanyWinlossByAffiliate", model);
         }
@@ -249,7 +248,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     };
             }
 
-            model.BaseCurrencyList = baseCurrencyList;
+            model.AddBaseCurrencyList(baseCurrencyList);
 
             var serializer = new JavaScriptSerializer();
 
@@ -391,7 +390,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 new SelectListItem { Value = "1",  Text = AppSettings.BaseExchange.Code },
             };
 
-            model.BaseCurrencyList = baseCurrencyList;
+            model.AddBaseCurrencyList(baseCurrencyList);
 
             return View(model);
         }

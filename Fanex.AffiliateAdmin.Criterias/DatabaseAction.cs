@@ -12,6 +12,11 @@ namespace Fanex.AffiliateAdmin.Criterias
     public enum DatabaseAction : int
     {
         /// <summary>
+        /// None (Default value).
+        /// </summary>
+        None,
+
+        /// <summary>
         /// Select Data.
         /// </summary>
         Select = 1,

@@ -17,6 +17,8 @@ namespace Fanex.AffiliateAdmin.DTO
     /// </summary>
     public class MessageDetail
     {
+        private Dictionary<string, string> _langMessages;
+
         public int Creator { get; set; }
 
         public DateTime PostedDate { get; set; }
@@ -29,6 +31,17 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public int ResourceKey { get; set; }
 
-        public Dictionary<string, string> LangMessages { get; set; }
+        public Dictionary<string, string> LangMessages
+        {
+            get
+            {
+                return _langMessages;
+            }
+        }
+
+        public void AddLangMessage(Dictionary<string, string> langMessages)
+        {
+            _langMessages = langMessages;
+        }
     }
 }

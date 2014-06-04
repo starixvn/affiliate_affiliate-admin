@@ -52,15 +52,18 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                                 langMessages[language.LanguageID] = Convert.ToString(reader[language.LanguageID]);
                             }
 
-                            return new MessageDetail
+                            var messageDetail = new MessageDetail
                             {
                                 Creator = creator,
                                 PostedDate = postedDate,
                                 MsgId = msgId,
                                 Important = important,
-                                CreatorName = creatorName,
-                                LangMessages = langMessages
+                                CreatorName = creatorName
                             };
+
+                            messageDetail.AddLangMessage(langMessages);
+
+                            return messageDetail;
                         }
                     }
                 }

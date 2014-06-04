@@ -27,7 +27,7 @@
         <div class="row-fluid row-form">
             <div class="cell">
                 @Html.LabelFor(m => m.CustomerPage, new { @class = "txt" })
-                @Html.DropDownCheckList("CustomerPage", Model.CustomerPageListItem, true, true, new { @class = "width-140" })
+                @Html.DropDownCheckList("CustomerPage", Model.CustomerPageOptionList, true, true, new { @class = "width-140" })
             </div>
             <div class="cell">
                 @Html.LabelFor(m => m.BaseLanguage, new { @class = "txt" })

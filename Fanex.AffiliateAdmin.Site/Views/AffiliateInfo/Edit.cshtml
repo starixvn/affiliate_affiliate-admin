@@ -251,12 +251,12 @@
                     <col width="*" />
                 </colgroup>
                 <tr>
-                    <td>@Html.LabelFor(m => m.Affiliate.SiteURL, Lang.SiteUrl, new { @class = "control-label" })
+                    <td>@Html.LabelFor(m => m.Affiliate.SiteLink, Lang.SiteUrl, new { @class = "control-label" })
                     </td>
                     <td class="required">
                         *
                     </td>
-                    <td>@Html.TextBoxFor(m => m.Affiliate.SiteURL, new { Name = "SiteURL", @class = "control-text sites", maxlength = "50" })
+                    <td>@Html.TextBoxFor(m => m.Affiliate.SiteLink, new { Name = "SiteLink", @class = "control-text sites", maxlength = "50" })
                     </td>
                     <td>
                         <button type="button" id="btnAddSite" class="btn btn-default" style="vertical-align: top">@Lang.AddUrl</button>

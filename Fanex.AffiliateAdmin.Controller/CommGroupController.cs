@@ -297,8 +297,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
 
                 group.IsAllowedToDelete = group.NoOfAffiliate == 0 && group.CurrencyID != 0;
-                group.Products = products.ToDictionary(x => x.Key, x => x.Value);
-                group.Details = details.ToList();
+                group.AddProducts(products.ToDictionary(x => x.Key, x => x.Value));
+                group.AddDetails(details.ToList());
                 if (hasGeneralDeduction != null)
                 {
                     var deduction = new Dictionary<string, decimal>();
@@ -314,7 +314,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         }
                     }
 
-                    group.GeneralDeductions = deduction;
+                    group.AddGeneralDeductions(deduction);
                 }
             }
         }

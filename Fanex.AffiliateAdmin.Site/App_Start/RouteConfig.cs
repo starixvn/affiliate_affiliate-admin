@@ -15,7 +15,7 @@ namespace Fanex.AffiliateAdmin.Site
     /// <summary>
     /// Route Config.
     /// </summary>
-    public class RouteConfig
+    public static class RouteConfig
     {
         /// <summary>
         /// Register Routes.

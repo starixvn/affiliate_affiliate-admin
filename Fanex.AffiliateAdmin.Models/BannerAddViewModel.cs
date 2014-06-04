@@ -108,14 +108,17 @@ namespace Fanex.AffiliateAdmin.Models
             }
         }
 
-        public short GetCategory()
+        public short GetCategory
         {
-            if (SubCategory != null)
+            get
             {
-                return SubCategory.Value;
-            }
+                if (SubCategory != null)
+                {
+                    return SubCategory.Value;
+                }
 
-            return Category;
+                return Category;
+            }
         }
 
         #endregion

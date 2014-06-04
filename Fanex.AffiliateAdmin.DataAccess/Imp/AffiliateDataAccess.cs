@@ -58,7 +58,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Impl
                             Email = reader.ToString("email"),
                             Phone = reader.ToString("phone"),
                             MobilePhone = reader.ToString("mobilephone"),
-                            SiteURL = reader.ToString("siteurl"),
+                            SiteLink = reader.ToString("siteurl"),
                             LastLoginDate = reader.ToDateTime("lastlogindate"),
                             LastLoginIp = reader.ToString("lastloginip"),
                             PreferredLanguage = reader.ToString("PreferredLanguage"),
@@ -99,7 +99,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Impl
                     var param = criteria.GetSpParams();
                     var reader = objectDb.ExecuteReader(param);
 
-                    affiliateStatistic.Products = GetProductList(reader);
+                    affiliateStatistic.AddProducts(GetProductList(reader));
 
                     affiliateStatistic.CommGroupInfo = GetCommGroup(reader);
 
@@ -156,10 +156,10 @@ namespace Fanex.AffiliateAdmin.DataAccess.Impl
                 var reader = objectDb.ExecuteReader(criteria.GetSpParams());
 
                 // Read Currency Statistics.
-                result.CurrencyList = GetCurrencyList(reader);
+                result.AddCurrencyList(GetCurrencyList(reader));
 
                 // Read Affiliate List.
-                result.AffiliateList = GetAffiliateList(reader);
+                result.AddAffiliateList(GetAffiliateList(reader));
 
                 // Close reader before read output.
                 if (!reader.IsClosed)

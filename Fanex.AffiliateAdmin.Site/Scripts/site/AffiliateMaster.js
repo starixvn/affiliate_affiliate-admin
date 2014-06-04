@@ -19,11 +19,11 @@
         },
         loadPages: function (status) {
             if (status == 'approved') {
-                $("#ifStatistic").attr("src", domain + "/AffiliateInfo/Statistic");
-                $("#ifReport").attr("src", domain + "/Statement");
+                $("#ifStatistic").attr("src", domain + "AffiliateInfo/Statistic");
+                $("#ifReport").attr("src", domain + "Statement");
                 $("#ifStatistic").attr("class", "statistic-exp");
             } else {
-                $("#ifReport").attr("src", domain + "/AffiliateInfo/Edit");
+                $("#ifReport").attr("src", domain + "AffiliateInfo/Edit");
                 $("#ifStatistic").attr("class", "statistic-hide");
             }
         },

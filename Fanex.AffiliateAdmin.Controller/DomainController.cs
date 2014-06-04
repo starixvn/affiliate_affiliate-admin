@@ -328,15 +328,18 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var model = new DomainControlViewModel
             {
-                CountryList = _systemSettingService.GetCountryList(new CountrySelectCriteria
+                Status = true
+            };
+
+            model.AddCountryList(_systemSettingService.GetCountryList(new CountrySelectCriteria
                 {
                     PageSize = 300,
                     PageIndex = 1
-                }).ToList(),
-                AffDomainList = _domainService.AffDomainList(new DomainAffCriteria()).ToList(),
-                MemberDomainList = _domainService.MemDomainList(new DomainMemCriteria()).ToList(),
-                Status = true
-            };
+                }).ToList());
+
+            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffCriteria()).ToList());
+            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemCriteria()).ToList());
+
             return View(model);
         }
 
@@ -384,21 +387,26 @@ namespace Fanex.AffiliateAdmin.Controller
                 DBAction = DatabaseAction.Detail
             });
 
-            return View(new DomainControlViewModel 
+            var model = new DomainControlViewModel 
             {
                 ID = result.ID,
                 Status = result.Status,
-                CountryList = _systemSettingService.GetCountryList(new CountrySelectCriteria
-                {
-                    PageSize = 300,
-                    PageIndex = 1
-                }).ToList(),
-                AffDomainList = _domainService.AffDomainList(new DomainAffCriteria()).ToList(),
-                MemberDomainList = _domainService.MemDomainList(new DomainMemCriteria()).ToList(),
                 Country = result.CountryId,
                 MemberDomain = result.MemberDomainId,
                 AffDomain = result.AffDomainId
-            });
+            };
+
+            model.AddCountryList(_systemSettingService.GetCountryList(new CountrySelectCriteria
+            {
+                PageSize = 300,
+                PageIndex = 1
+            }).ToList());
+
+            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffCriteria()).ToList());
+
+            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemCriteria()).ToList());
+
+            return View(model);
         }
 
         /// <summary>

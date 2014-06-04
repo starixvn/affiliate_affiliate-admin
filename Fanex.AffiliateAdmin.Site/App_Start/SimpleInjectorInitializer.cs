@@ -22,7 +22,7 @@ namespace Fanex.AffiliateAdmin.Site
     /// <summary>
     /// Simple Injector Initializer.
     /// </summary>
-    public class SimpleInjectorInitializer
+    public static class SimpleInjectorInitializer
     {
         /// <summary>
         /// Initialize application.

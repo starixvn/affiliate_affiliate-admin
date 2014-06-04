@@ -16,11 +16,33 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class AffiliateEditViewModel
     {
+        #region Fields
+
+        private IEnumerable<Country> _countries;
+
+        private IEnumerable<SystemSetting> _paymentMethods;
+
+        #endregion
+
+        #region Properties
+
         public Affiliate Affiliate { get; set; }
 
-        public IEnumerable<Country> Countries { get; set; }
+        public IEnumerable<Country> Countries
+        {
+            get
+            {
+                return _countries;
+            }
+        }
 
-        public IList<SystemSetting> PaymentMethods { get; set; }
+        public IEnumerable<SystemSetting> PaymentMethods
+        {
+            get
+            {
+                return _paymentMethods;
+            }
+        }
 
         public decimal AffMinWire { get; set; }
 
@@ -43,6 +65,22 @@ namespace Fanex.AffiliateAdmin.Models
                     Selected = Affiliate.PreferredPayment == payment.SName
                 }).ToList();
             }
+        } 
+
+        #endregion
+
+        #region Methods
+
+        public void AddCountries(IEnumerable<Country> countries)
+        {
+            _countries = countries;
         }
+
+        public void AddPaymentMethods(IEnumerable<SystemSetting> paymentMethods)
+        {
+            _paymentMethods = paymentMethods;
+        }
+
+        #endregion
     }
 }

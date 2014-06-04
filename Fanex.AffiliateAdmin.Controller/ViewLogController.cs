@@ -44,7 +44,10 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new ViewLogViewModel { LogTypeList = this._viewLogService.GetLogTypes(new LogTypeCriteria()).ToList() });
+            var model = new ViewLogViewModel();
+            model.AddLogTypeList(_viewLogService.GetLogTypes(new LogTypeCriteria()).ToList());
+
+            return View(model);
         }
 
         /// <summary>

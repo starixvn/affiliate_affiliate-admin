@@ -6,6 +6,8 @@
 
 namespace Fanex.AffiliateAdmin.DTO
 {
+    using System;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -13,7 +15,7 @@ namespace Fanex.AffiliateAdmin.DTO
     {
         public string DomainReferrer { get; set; }
 
-        public string WebsiteUrl { get; set; }
+        public Uri WebsiteUrl { get; set; }
 
         public string SportCode { get; set; }
 

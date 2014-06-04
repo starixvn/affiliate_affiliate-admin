@@ -22,11 +22,15 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class MemberWinlossByAffiliateViewModel
     {
-        private readonly IList<SelectListItem> _groupByList = new List<SelectListItem> 
+        private readonly IList<SelectListItem> _groupByList = new List<SelectListItem>
         {
                 new SelectListItem { Text = Lang.Date, Value = "0" },
                 new SelectListItem { Text = Lang.Member, Value = "1" }
         };
+
+        private IList<SelectListItem> _baseCurrencyList;
+
+        private IEnumerable<SelectListItem> _playerCurrencyOptions;
 
         public MemberWinlossByAffiliateViewModel()
         {
@@ -35,45 +39,30 @@ namespace Fanex.AffiliateAdmin.Models
 
         public string Affiliate { get; set; }
 
-        public int GroupBy { get; set; }
-
-        public int DrawFilter { get; set; }
-
-        public string Status { get; set; }
-
-        public int GroupId { get; set; }
-
-        public bool ExcludeTest { get; set; }
-
-        public DateTime? FromDate { get; set; }
-
-        public DateTime? ToDate { get; set; }
-
-        public string Products { get; set; }
-
         public int BaseCurrency { get; set; }
 
-        public IEnumerable<SelectListItem> PlayerCurrencyOptionList
+        public IList<SelectListItem> BaseCurrencyList
         {
             get
             {
-                var selectItemList = AppSettings.PlayerCurrencies.Select(t => new SelectListItem
-                {
-                    Text = t.CurrencyCode,
-                    Value = t.CurrencyID.ToString()
-                }).ToList();
-
-                return selectItemList;
-            }
-        } 
-
-        public SelectList GroupByOptionList
-        {
-            get
-            {
-                return new SelectList(_groupByList, "Value", "Text", GroupBy.ToString());
+                return _baseCurrencyList;
             }
         }
+
+        public IEnumerable<SelectListItem> BaseCurrencyOptionList
+        {
+            get
+            {
+                if (_baseCurrencyList.Count == 2 && _baseCurrencyList[0].Text == _baseCurrencyList[1].Text)
+                {
+                    _baseCurrencyList.RemoveAt(1);
+                }
+
+                return new SelectList(_baseCurrencyList, "Value", "Text");
+            }
+        }
+
+        public int DrawFilter { get; set; }
 
         public IEnumerable<SelectListItem> DrawFilterOptionList
         {
@@ -83,18 +72,36 @@ namespace Fanex.AffiliateAdmin.Models
             }
         }
 
-        public IList<SelectListItem> BaseCurrencyList { get; set; }
+        public bool ExcludeTest { get; set; }
 
-        public IEnumerable<SelectListItem> BaseCurrencyOptionList
+        public DateTime? FromDate { get; set; }
+
+        public int GroupBy { get; set; }
+
+        public SelectList GroupByOptionList
         {
             get
             {
-                if (BaseCurrencyList.Count == 2 && BaseCurrencyList[0].Text == BaseCurrencyList[1].Text)
+                return new SelectList(_groupByList, "Value", "Text", GroupBy.ToString());
+            }
+        }
+
+        public int GroupId { get; set; }
+
+        public IEnumerable<SelectListItem> PlayerCurrencyOptionList
+        {
+            get
+            {
+                if (_playerCurrencyOptions == null)
                 {
-                    BaseCurrencyList.RemoveAt(1);
+                    _playerCurrencyOptions = AppSettings.PlayerCurrencies.Select(t => new SelectListItem
+                        {
+                            Text = t.CurrencyCode,
+                            Value = t.CurrencyID.ToString()
+                        }).ToList();
                 }
 
-                return new SelectList(BaseCurrencyList, "Value", "Text", BaseCurrency.ToString());
+                return _playerCurrencyOptions;
             }
         }
 
@@ -113,5 +120,20 @@ namespace Fanex.AffiliateAdmin.Models
                 return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);
             }
         }
+
+        public string Products { get; set; }
+
+        public string Status { get; set; }
+
+        public DateTime? ToDate { get; set; }
+
+        #region Methods
+
+        public void AddBaseCurrencyList(IList<SelectListItem> baseCurrencyList)
+        {
+            _baseCurrencyList = baseCurrencyList;
+        }
+
+        #endregion Methods
     }
 }

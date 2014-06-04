@@ -6,23 +6,25 @@
 
 namespace Fanex.AffiliateAdmin.Models
 {
+    using System;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class AffiliateMasterViewModel
     {
-        public string SiteDomainUrl { get; set; }
+        public Uri SiteDomainUrl { get; set; }
 
         public string UserName { get; set; }
 
-        public string GetUrl(string controllerName, string actionName)
+        public Uri GetUrl(string controllerName, string actionName)
         {
             if (string.IsNullOrEmpty(this.UserName))
             {
-                return string.Format("{0}/{1}/{2}", this.SiteDomainUrl, controllerName, actionName);
+                return new Uri(string.Format("{0}{1}/{2}", this.SiteDomainUrl, controllerName, actionName));
             }
 
-            return string.Format("{0}/{1}/{2}?UserName={3}", this.SiteDomainUrl, controllerName, actionName, this.UserName);
+            return new Uri(string.Format("{0}{1}/{2}?UserName={3}", this.SiteDomainUrl, controllerName, actionName, this.UserName));
         }
     }
 }

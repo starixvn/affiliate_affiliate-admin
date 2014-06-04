@@ -6,6 +6,7 @@
 
 namespace Fanex.AffiliateAdmin.Models
 {
+    using System;
     using System.Collections.Generic;
     using DTO;
 
@@ -14,15 +15,35 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class AffiliateInfoViewModel
     {
-        public AffiliateInfoViewModel()
-        {
-            OnUsers = new List<AffiliateOnUser>();
-        }
+        #region Fields
 
-        public IList<AffiliateOnUser> OnUsers { get; set; }
+        private IList<AffiliateOnUser> _onlineUsers = new List<AffiliateOnUser>();
+
+        #endregion Fields
+
+        #region Properties
+
+        public IList<AffiliateOnUser> OnUsers
+        {
+            get
+            {
+                return _onlineUsers;
+            }
+        }
 
         public Affiliate AffiliateInfo { get; set; }
 
-        public string ExternalLoginUrl { get; set; }
+        public Uri ExternalLoginUrl { get; set; }
+
+        #endregion Properties
+
+        #region Methods
+
+        public void AddOnlineUsers(IList<AffiliateOnUser> onlineUsers)
+        {
+            _onlineUsers = onlineUsers;
+        }
+
+        #endregion Methods
     }
 }

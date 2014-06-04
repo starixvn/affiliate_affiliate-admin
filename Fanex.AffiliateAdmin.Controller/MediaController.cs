@@ -152,7 +152,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var model = new TextEditViewModel
             {
                 Content = HttpUtility.HtmlDecode(bannerDetail.Content),
-                Category = bannerDetail.GetCategory(),
+                Category = bannerDetail.GetCategory,
                 Language = bannerDetail.Language,
                 Currency = bannerDetail.Currency.Value,
                 BannerId = id
@@ -303,7 +303,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 {
                     var criteria = new BannerInsCriteria
                         {
-                            Category = model.GetCategory(),
+                            Category = model.GetCategory,
                             Currency = model.Currency,
                             AffType = model.AffType,
                             ImageType = model.ImageType,
@@ -398,7 +398,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     var criteria = new BannerUpdateCriteria
                         {
                             BannerId = bannerDetail.BannerID,
-                            Category = model.GetCategory(),
+                            Category = model.GetCategory,
                             Currency = model.Currency,
                             Language = model.Language,
                             AffType = model.AffType,

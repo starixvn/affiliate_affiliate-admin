@@ -15,7 +15,19 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class AffiliateStatisticViewModel
     {
-        public IList<Product> Products { get; set; }
+        #region Fields
+
+        private IList<Product> _products;
+
+        #endregion
+
+        public IList<Product> Products
+        {
+            get
+            {
+                return _products;
+            }
+        }
 
         public AffiliateStatistic Statistic { get; set; }
 
@@ -45,6 +57,11 @@ namespace Fanex.AffiliateAdmin.Models
                 Month = value.Month;
                 Year = value.Year;
             }
+        }
+
+        public void AddProducts(IList<Product> products)
+        {
+            _products = products;
         }
     }
 }

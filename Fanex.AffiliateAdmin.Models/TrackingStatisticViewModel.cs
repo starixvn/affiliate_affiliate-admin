@@ -19,6 +19,12 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class TrackingStatisticViewModel
     {
+        #region Fields
+
+        private IEnumerable<SystemSetting> _customerPageList;
+
+        #endregion
+
         [Display(Name = "From", ResourceType = typeof(Lang))]
         public DateTime FromDate { get; set; }
 
@@ -31,18 +37,33 @@ namespace Fanex.AffiliateAdmin.Models
         [Display(Name = "MemberPage", ResourceType = typeof(Lang))]
         public string CustomerPage { get; set; }
 
-        public IList<SystemSetting> CustomerPages { get; set; }
-
-        public IEnumerable<SelectListItem> CustomerPageListItem
+        public IEnumerable<SystemSetting> CustomerPageList
         {
             get
             {
-                return CustomerPages.Select(custPage => new SelectListItem
+                return _customerPageList;
+            }
+        }
+
+        public IEnumerable<SelectListItem> CustomerPageOptionList
+        {
+            get
+            {
+                return _customerPageList.Select(custPage => new SelectListItem
                 {
                     Value = custPage.SValue,
                     Text = custPage.SValue
                 }).ToList();
             }
         }
+
+        #region Methods
+
+        public void AddCustomerPageList(IEnumerable<SystemSetting> customerPageList)
+        {
+            _customerPageList = customerPageList;
+        }
+
+        #endregion
     }
 }

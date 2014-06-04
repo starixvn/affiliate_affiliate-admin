@@ -20,13 +20,29 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class DomainControlViewModel
     {
+        #region Fields
+
+        private IEnumerable<Country> _countryList;
+
+        private IEnumerable<Domain> _affDomainList;
+
+        private IEnumerable<Domain> _memberDomainList;
+
+        #endregion
+
         public int ID { get; set; }
 
         [Display(Name = "Market", ResourceType = typeof(Resources.Lang))]
         [Required]
         public string Country { get; set; }
 
-        public List<Country> CountryList { get; set; }
+        public IEnumerable<Country> CountryList
+        {
+            get
+            {
+                return _countryList;
+            }
+        }
 
         public IEnumerable<SelectListItem> CountryListSelectItem
         {
@@ -46,7 +62,13 @@ namespace Fanex.AffiliateAdmin.Models
         [Required]
         public int AffDomain { get; set; }
 
-        public List<Domain> AffDomainList { get; set; }
+        public IEnumerable<Domain> AffDomainList
+        {
+            get
+            {
+                return _affDomainList;
+            }
+        }
 
         public IEnumerable<SelectListItem> AffDomainListSelectItem
         {
@@ -66,7 +88,13 @@ namespace Fanex.AffiliateAdmin.Models
         [Required]
         public int MemberDomain { get; set; }
 
-        public List<Domain> MemberDomainList { get; set; }
+        public IEnumerable<Domain> MemberDomainList
+        {
+            get
+            {
+                return _memberDomainList;
+            }
+        }
 
         public IEnumerable<SelectListItem> MemberDomainListSelectItem
         {
@@ -85,5 +113,24 @@ namespace Fanex.AffiliateAdmin.Models
         [Display(Name = "Status", ResourceType = typeof(Resources.Lang))]
         [Required]
         public bool Status { get; set; }
+
+        #region Methods
+
+        public void AddCountryList(IEnumerable<Country> countryList)
+        {
+            _countryList = countryList;
+        }
+
+        public void AddAffDomainList(IEnumerable<Domain> affDomainList)
+        {
+            _affDomainList = affDomainList;
+        }
+
+        public void AddMemberDomainList(IEnumerable<Domain> memberDomainList)
+        {
+            _memberDomainList = memberDomainList;
+        }
+
+        #endregion
     }
 }

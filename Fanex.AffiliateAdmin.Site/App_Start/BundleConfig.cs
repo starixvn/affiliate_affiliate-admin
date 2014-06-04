@@ -17,7 +17,7 @@ namespace Fanex.AffiliateAdmin.Site.App_Start
     /// <summary>
     /// Bundle Config.
     /// </summary>
-    public class BundleConfig
+    public static class BundleConfig
     {
         /// <summary>
         /// Register Bundles.

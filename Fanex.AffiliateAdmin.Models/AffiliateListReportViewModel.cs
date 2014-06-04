@@ -17,14 +17,46 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class AffiliateListReportViewModel
     {
-        public AffiliateListReportViewModel()
+        #region Fields
+
+        private IList<AffiliateInfo> _affiliateList = new List<AffiliateInfo>();
+
+        private IList<CurrencyStatistics> _currencyList = new List<CurrencyStatistics>();
+
+        #endregion
+
+        #region Properties
+
+        public IList<AffiliateInfo> AffiliateList
         {
-            AffiliateList = new List<AffiliateInfo>();
-            CurrencyList = new List<CurrencyStatistics>();
+            get
+            {
+                return _affiliateList;
+            }
         }
 
-        public List<AffiliateInfo> AffiliateList { get; set; }
+        public IList<CurrencyStatistics> CurrencyList
+        {
+            get
+            {
+                return _currencyList;
+            }
+        }
 
-        public List<CurrencyStatistics> CurrencyList { get; set; }
+        #endregion
+
+        #region Methods
+
+        public void AddAffiliateList(IList<AffiliateInfo> affiliateList)
+        {
+            _affiliateList = affiliateList;
+        }
+
+        public void AddCurrencyList(IList<CurrencyStatistics> currencyList)
+        {
+            _currencyList = currencyList;
+        }
+
+        #endregion
     }
 }

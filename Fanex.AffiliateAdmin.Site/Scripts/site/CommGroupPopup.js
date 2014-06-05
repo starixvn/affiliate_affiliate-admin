@@ -1,4 +1,5 @@
-﻿var CommGroupPopup = function ($) {
+﻿var CommGroupPopup = (function ($) {
+    "use strict";
     function formatInt(value) {
         return numeral(value).format(AFFILIATE.FORMAT_INT_NUMBER);
     }
@@ -468,5 +469,5 @@
             });
         }
     };
-} (jQuery);
+}) (jQuery);
 

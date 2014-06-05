@@ -1,4 +1,7 @@
-﻿var BannerList = function ($) {
+﻿/*global AFFILIATE,gridOption,MSG*/
+var BannerList = (function ($) {
+    "use strict";
+    
     var submitOptions = {};
 
     return {
@@ -65,7 +68,7 @@
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption); // jshint ignore:line
 
             AFFILIATE.trimBeforeSubmit();
             submitOptions = $('form').serializeObject();
@@ -86,11 +89,12 @@
                 }
             });
         },
-        viewImage: function (imgElement, width, height) {
+        viewImage: function (imgElement) {
             var imgUrl = $(imgElement).attr('alt');
             AFFILIATE.openDialogUrl(imgUrl, "Orginal View", { width: 800, height: 600 });
         },
 
+        /*jshint ignore:start */
         createFlashHtml: function (url, width, height) {
             var htmlContent = "<object width='{1}' height='{2}' codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0'>"
                 + "<param name='movie' value='{0}'>"
@@ -101,7 +105,8 @@
 
             return htmlContent.format(url, width, height);
         },
-
+        /*jshint ignore:end */
+        
         viewFlash: function (element, width, height) {
             var url = $(element).attr('alt');
             var htmlContent = BannerList.createFlashHtml(url, width, height);
@@ -113,11 +118,11 @@
             var temp = fullFilename.split("\\");
             var fileName = temp[temp.length - 1];
 
-            if (fileName != "") {
+            if (fileName !== "") {
                 var ext = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length).toLowerCase();
                 var allowedExtensions = ["jpg", "jpeg", "png", "gif", "swf"];
 
-                if (allowedExtensions.indexOf(ext) == -1) {
+                if (allowedExtensions.indexOf(ext) === -1) {
                     alert(MSG.errFileExtension);
                     $("#FileName").val("");
                     $('#btnUpload').attr("disabled", "disabled");
@@ -126,7 +131,7 @@
                 } else {
 
                     $("#FileName").val(fileName);
-                    if (ext == "swf") {
+                    if (ext === "swf") {
                         $('#ImageType').val("2");
                     } else {
                         $('#ImageType').val("1");
@@ -178,8 +183,9 @@
             }
         }
     };
-} (jQuery);
+}) (jQuery);
 
 $(function () {
+    "use strict";
     BannerList.init();
 });

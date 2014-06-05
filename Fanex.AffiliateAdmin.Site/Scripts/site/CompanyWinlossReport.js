@@ -1,4 +1,6 @@
-﻿var CompanyWinlossReport = function ($) {
+﻿/*global AFFILIATE,MSG,moment,System,subTotalStatus,Lang,EXPAND_SUBTOTAL_STATUS,moment*/
+var CompanyWinlossReport = (function ($) {
+    "use strict";
     var submitOptions = {};
     var MEMBER_CURRENCY_OPTION = '0';
     var SYS_CURRENCY_OPTION = '1';
@@ -8,9 +10,7 @@
     var GROUP_BY_MONTH = "1";
 
     // number of all common columns (except product columns).
-    var _freezeColumnCount = 3;
     var gridOption = {};
-    var _currencyThreshold = 1;
 
     var EXRATE_COL_INDEX = 2;
     var TURNOVER_COL_INDEX = 8;
@@ -86,7 +86,7 @@
         for (var i = 0; i < productCount; i++) {
             var name = nomalizeProductName(products[i].Name);
 
-            if (i == 0) {
+            if (i === 0) {
                 var turnoverHeader = $.extend(true, {}, window.sampleTurnoverHeader);
                 turnoverHeader.Name = name + "Turnover";
                 turnoverHeader.NameCache = name + "Turnover";
@@ -255,8 +255,9 @@
     };
 
     function getBodyRows(groups, sampleRequest) {
-        if (groups.length == 0)
+        if (groups.length === 0) {
             return [];
+        }
 
         var bodyRows = [];
         var mergeCols = gridOption.numberOfFrozenColumn;
@@ -264,7 +265,7 @@
         var groupBy = $("#GroupBy").val();
         var groupByText = levels[parseInt(groupBy, 10)];
         var baseCurrency = $('#BaseCurrency').val();
-        var formatDateTime = groupBy == 1 ? AFFILIATE.DATE_FORMAT_MONTH : AFFILIATE.DATE_FORMAT;
+        var formatDateTime = groupBy === 1 ? AFFILIATE.DATE_FORMAT_MONTH : AFFILIATE.DATE_FORMAT;
 
         $.each(groups, function (idx, group) {
             var companyWinlossInMemberCurrencies = group.CompanyWinlossInMemberCurrencies;
@@ -272,29 +273,30 @@
             var memberCurrencyCount = companyWinlossInMemberCurrencies.length;
             var firstMemberCurrency = companyWinlossInMemberCurrencies[0].Currency;
 
-            if ((groupBy == 0 && groupByText == group.Level) || (groupBy == 1 && groupByText == group.Level)) {
+            if ((groupBy === 0 && groupByText === group.Level) || (groupBy === 1 && groupByText === group.Level)) {
 
                 $.each(companyWinlossInMemberCurrencies, function (idx, item) {
                     var columns = [];
-                    if (idx == 0) {
+                    if (idx === 0) {
                         columns.push({
                             Value: group.GroupInfo,
                             Name: "WinlostDate",
                             MergeRowNumber: memberCurrencyCount,
-                            CustomCellRender: function (cell, cellFormated) {
+                            CustomCellRender: function (cell) {
                                 var obj = moment(cell.Value);
                                 // create request object to redirect to player winloss report
                                 var request = $.extend(true, {}, sampleRequest);
+                                var fromDate;
+                                var toDate;
 
-                                if (groupBy == 0) {
-                                    var fromDate = obj.format(AFFILIATE.DATE_FORMAT);
-                                    var toDate = obj.format(AFFILIATE.DATE_FORMAT);
+                                if (groupBy === 0) {
+                                    fromDate = obj.format(AFFILIATE.DATE_FORMAT);
+                                    toDate = obj.format(AFFILIATE.DATE_FORMAT);
                                 } else {
                                     var firstDay = obj.date(1);
-                                    var fromDate = firstDay.format(AFFILIATE.DATE_FORMAT);
-
+                                    fromDate = firstDay.format(AFFILIATE.DATE_FORMAT);
                                     var lastDay = firstDay.add('months', 1).add('days', -1);
-                                    var toDate = lastDay.format(AFFILIATE.DATE_FORMAT);
+                                    toDate = lastDay.format(AFFILIATE.DATE_FORMAT);
                                 }
 
                                 request.FromDate = fromDate;
@@ -367,11 +369,11 @@
             $.each(companyWinlossInMemberCurrencies, function (idx, item) {
                 var columns = [];
                 var startIndex = 1;
-                if (idx == 0) {
+                if (idx === 0) {
                     columns.push({ Value: MSG.Total + suffix, Name: "WinlostDate", MergeRowNumber: memberCurrencyCount });
 
                     if (groupBy === GROUP_BY_DATE) {
-                        if (baseCurrency == MEMBER_CURRENCY_OPTION) {
+                        if (baseCurrency === MEMBER_CURRENCY_OPTION) {
                             columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 1 });
                             startIndex += 1;
                         } else {
@@ -429,21 +431,22 @@
         var baseCurrency = $('#BaseCurrency').val();
         var firstMemberCurrency = companyWinlossInMemberCurrencies[0].Currency;
         var footerRows = [];
-
+        var col, i;
+        var startIndex;
         if (hasShowSubTotalRow === true && hasShowSubTotalRows(memberCurrencyCount, firstMemberCurrency, baseCurrency)) {
             var realSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal real-cell' : '';
             var pseudoSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal pseudo-cell' : '';
-            subTotalStatus = memberCurrencyCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
+            subTotalStatus = memberCurrencyCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;  // jshint ignore:line
 
             $.each(companyWinlossInMemberCurrencies, function (idx, item) {
                 var columns = [];
                 var startIndex = 1;
-                if (idx == 0) {
+                if (idx === 0) {
                     columns.push({ Value: MSG.TotalAll, Name: "WinlostDate", MergeRowNumber: memberCurrencyCount, TdClass: realSubTotalclass });
                 }
 
                 if (groupBy === GROUP_BY_DATE) {
-                    if (baseCurrency == MEMBER_CURRENCY_OPTION) {
+                    if (baseCurrency === MEMBER_CURRENCY_OPTION) {
                         columns.push({ Value: item["Currency"], Name: "Currency", MergeColNumber: 1 });
                         startIndex += 1;
                     } else {
@@ -465,11 +468,11 @@
 
             // pseudo sub total row
             var columns = [];
-            var startIndex = 1;
+            startIndex = 1;
             columns.push({ Value: MSG.TotalAll, Name: "WinlostDate", MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
 
             if (groupBy === GROUP_BY_DATE) {
-                if (baseCurrency == MEMBER_CURRENCY_OPTION) {
+                if (baseCurrency === MEMBER_CURRENCY_OPTION) {
                     columns.push({ Value: '', Name: "Currency", MergeColNumber: 1 });
                     startIndex += 1;
                 }
@@ -482,8 +485,8 @@
                 columns.push({ Value: '', Name: "Currency", MergeColNumber: 1 });
             }
 
-            for (var i = startIndex; i < gridOption.columns.length; i++) {
-                var col = gridOption.columns[i];
+            for (i = startIndex; i < gridOption.columns.length; i++) {
+                col = gridOption.columns[i];
                 columns.push({ Value: '', Name: col.Name });
             }
 
@@ -491,14 +494,12 @@
         }
 
         // Total row in system 
-        var firstCurrency = companyWinlossInMemberCurrencies[0].Currency;
         var totalColums = [];
         var companyWinlossInSystemCurrency = totalData.CompanyWinlossInSystemCurrency;
         totalColums.push({ Value: MSG.TotalAllIn.format(System.Currency), Name: "WinlostDate", MergeColNumber: mergeCols });
-        var startIndex = mergeCols;
-
-        for (var i = startIndex; i < gridOption.columns.length; i++) {
-            var col = gridOption.columns[i];
+        startIndex = mergeCols;
+        for (i = startIndex; i < gridOption.columns.length; i++) {
+            col = gridOption.columns[i];
             var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
 
             totalColums.push({ Value: companyWinlossInSystemCurrency[colName], Name: col.Name });
@@ -530,19 +531,20 @@
 
     var changeHeaderCaptions = function (baseCurrency) {
         var text = getSymbolCurrency(baseCurrency);
-        var i;
-        var col;
+        var i, col;
 
         for (i = 0; i < gridOption.columns.length; i++) {
             col = gridOption.columns[i];
-            if (col.IsCurrency)
+            if (col.IsCurrency) {
                 col.HeaderText = col.HeaderCaption + text;
+            }
         }
 
         for (i = 0; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
             col = gridOption.groupHeaderRows[0].Columns[i];
-            if (col.IsCurrency)
+            if (col.IsCurrency) {
                 col.HeaderText = col.HeaderCaption + text;
+            }
         }
     };
 
@@ -580,7 +582,7 @@
                     var fromDate = $('#FromDate').val();
                     var toDate = $('#ToDate').val();
 
-                    if (fromDate.split(' ').length == 2) {
+                    if (fromDate.split(' ').length === 2) {
                         // get the first day of month;
                         fromDate = '01 ' + fromDate;
 
@@ -613,7 +615,8 @@
             });
 
             $('#gridId').on('click', '.toggle-indicator', function () {
-                window.subTotalStatus = window.subTotalStatus == window.COLLAPSE_SUBTOTAL_STATUS ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
+                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS 
+                    ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
                 AFFILIATE.resetToggleIndicator(gridOption);
             });
         },
@@ -622,28 +625,30 @@
             $('#FromDate, #ToDate').removeClass('input-validation-error');
 
             var value = $('#GroupBy').val();
-            if (value == 1) {
-                var fromDate = moment('01 ' + $('#FromDate').val());
-                var toDate = moment('01 ' + $('#ToDate').val());
+            var fromDate;
+            var toDate;
+
+            if (value === 1) {
+                fromDate = moment('01 ' + $('#FromDate').val());
+                toDate = moment('01 ' + $('#ToDate').val());
             } else {
-                var fromDate = moment($('#FromDate').val());
-                var toDate = moment($('#ToDate').val());
+                fromDate = moment($('#FromDate').val());
+                toDate = moment($('#ToDate').val());
             }
 
             var fromYear = fromDate.year();
             var toYear = toDate.year();
             var diffYear = toYear - fromYear;
 
-            if (diffYear < 0 || diffYear > 1)
+            if (diffYear < 0 || diffYear > 1) {
                 return false;
+            }
 
             var fromMonth = fromDate.month();
             var toMonth = toDate.month();
-
+            var diffMonth;
             if (fromDate.year() === toDate.year()) {
-
-                var diffMonth = toMonth - fromMonth;
-
+                diffMonth = toMonth - fromMonth;
                 if (diffMonth < 0 || diffMonth > 2) {
                     $('#FromDate, #ToDate').addClass('input-validation-error');
                     return false;
@@ -653,8 +658,8 @@
 
             } else {
 
-                var diffMonth = (toMonth + 12) - fromMonth;
-
+                diffMonth = (toMonth + 12) - fromMonth;
+                
                 if (diffMonth < 0 || diffMonth > 2) {
                     $('#FromDate, #ToDate').addClass('input-validation-error');
                     return false;
@@ -727,7 +732,7 @@
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 
-                    if (data.TotalItem == 0) {
+                    if (data.TotalItem === 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
                     } else {
@@ -742,8 +747,9 @@
             });
         }
     };
-} (jQuery);
+}) (jQuery);
 
 $(function () {
+    "use strict";
     CompanyWinlossReport.init();
 });

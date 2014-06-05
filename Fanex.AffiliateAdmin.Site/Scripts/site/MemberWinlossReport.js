@@ -1,6 +1,7 @@
-﻿var MemberWinlossReport = function ($) {
+﻿/*global AFFILIATE,MSG*/
+var MemberWinlossReport = (function ($) {
     "use strict";
-    
+
     var submitOptions = {};
 
     var MEMBER_CURRENCY_OPTION = '0';
@@ -49,8 +50,8 @@
                 gridOption.hiddenColumns = byAffiliate ? [EXRATE_COL_INDEX - 2] : [EXRATE_COL_INDEX];
                 break;
             case AFF_CURRENCY_OPTION:
-                // TODO: more
-                gridOption.groupHeaderRows[0].Columns[EXRATE_COL_INDEX].HeaderText = window.MSG.UnitPerBaseCurrency.format($('#BaseCurrency option:selected').text());
+                gridOption.groupHeaderRows[0].Columns[EXRATE_COL_INDEX].HeaderText 
+                    = window.MSG.UnitPerBaseCurrency.format($('#BaseCurrency option:selected').text());
                 gridOption.groupHeaderRows[0].Columns[EXRATE_COL_INDEX].Name = "AffExRate";
                 gridOption.columns[EXRATE_COL_INDEX].Name = "AffExRate";
                 break;
@@ -315,7 +316,8 @@
             var columns = [];
 
             if (idx === 0) {
-                columns.push({ Value: window.MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });
+                columns.push({ Value: window.MSG.SubTotal, Name: "WinlostDate", 
+                    MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });
             }
 
             createPlayerCurrencyColumn(columns, item['PlayerCurrency']);
@@ -440,8 +442,9 @@
         length = gridOption.groupHeaderRows[0].Columns.length;
         for (i = 0; i < length; i++) {
             col = gridOption.groupHeaderRows[0].Columns[i];
-            if (col.IsCurrency)
+            if (col.IsCurrency) {
                 col.HeaderText = col.HeaderCaption + symbolCurrency;
+            }
         }
     };
 
@@ -465,7 +468,8 @@
             });
 
             $('#gridId').on('click', '.toggle-indicator', function () {
-                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
+                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS 
+                    ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
                 AFFILIATE.resetToggleIndicator(gridOption);
             });
         },
@@ -573,7 +577,7 @@
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 
-                    if (data.TotalItem == 0) {
+                    if (data.TotalItem === 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;
                     } else {
@@ -588,7 +592,7 @@
             });
         }
     };
-} (jQuery);
+}) (jQuery);
 
 $(function () {
     "use strict";

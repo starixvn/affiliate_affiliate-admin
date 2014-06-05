@@ -1,17 +1,18 @@
-﻿var Payment = (function ($) {
+﻿/*global AFFILIATE,HeaderText*/
+var Payment = (function ($) {
     "use strict";
-    
+
     var gridOption = {};
     var submitOptions = {};
 
     return {
-        init: function() {
+        init: function () {
 
-            $("#gridId").resize(function() {
+            $("#gridId").resize(function () {
                 $(".search-panel").width($(this).width());
             });
 
-            $("#GetAll").click(function() {
+            $("#GetAll").click(function () {
                 var isChecked = $(this).is(':checked');
                 Payment.toggleGetAllChecked(isChecked);
             });
@@ -21,8 +22,8 @@
                 return false;
             });
 
-            $('#DateOption').change(function() {
-                if ($('#DateOption').val() == "0") {
+            $('#DateOption').change(function () {
+                if ($('#DateOption').val() === "0") {
                     $("#FromDate").attr("disabled", "disabled");
                     $("#ToDate").attr("disabled", "disabled");
                 } else {
@@ -32,17 +33,17 @@
             }).change();
 
             if ($('#gridId').length > 0) {
-                //Payment.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
                 Payment.submitRequest();
             }
 
-            $('#gridId').on('click', '.toggle-indicator', function() {
-                window.subTotalStatus = window.subTotalStatus == window.COLLAPSE_SUBTOTAL_STATUS ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
+            $('#gridId').on('click', '.toggle-indicator', function () {
+                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS
+                    ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
                 AFFILIATE.resetToggleIndicator(gridOption);
             });
 
         },
-        toggleGetAllChecked: function(isChecked) {
+        toggleGetAllChecked: function (isChecked) {
             if (isChecked) {
                 $("#Status").attr("disabled", "disabled");
                 $("#FromDate").attr("disabled", "disabled");
@@ -54,7 +55,7 @@
             }
         },
 
-        submitRequest: function() {
+        submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
 
             submitOptions = $('form').serializeObject2();
@@ -62,7 +63,7 @@
             Payment.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
 
-        ReRenderAfterPaged: function(currentPage, itemsPerPage) {
+        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
             gridOption = $.extend(true, {}, window.sampleGridOption);
             gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
@@ -73,19 +74,19 @@
             $.ajax({
                 url: url,
                 type: 'post',
-                data: jQuery.param(submitOptions),
-                beforeSend: function() {
+                data: $.param(submitOptions),
+                beforeSend: function () {
                     $.blockUI();
                 },
-                success: function(data) {
+                success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
 
                     $('#gridId').show();
                     //To define header has prefix "$" or not
                     var headerColumns = window.columnsBase.slice(0);
                     var colAmt = window.columnAmount;
-                    colAmt.HeaderText = $("#BaseCurrency").val() != "0" ? HeaderText + " (" + window.System.Prefix + ")" : HeaderText;
-                    colAmt.Name = $("#BaseCurrency").val() != "0" ? "ConvertedAmt" : "Amt";
+                    colAmt.HeaderText = $("#BaseCurrency").val() !== "0" ? HeaderText + " (" + window.System.Prefix + ")" : HeaderText;
+                    colAmt.Name = $("#BaseCurrency").val() !== "0" ? "ConvertedAmt" : "Amt";
 
                     headerColumns.push(colAmt);
                     gridOption.columns = headerColumns;
@@ -105,7 +106,7 @@
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 
-                    if (data.List.length == 0) {
+                    if (data.List.length === 0) {
                         $('.status').hide();
                         AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;
@@ -114,52 +115,56 @@
                         $('.status').show();
                     }
                 },
-                complete: function() {
+                complete: function () {
                     $.unblockUI();
                 }
             });
         },
 
-        genOneRow: function(columns, record, dataRow, startColIdx) {
-            startColIdx = startColIdx == undefined ? 0 : startColIdx;
-            dataRow = dataRow == undefined ? [] : dataRow;
+        /*jshint ignore:start */
+        genOneRow: function (columns, record, dataRow, startColIdx) {
+            startColIdx = startColIdx === undefined ? 0 : startColIdx;
+            dataRow = dataRow === undefined ? [] : dataRow;
 
             for (var i = startColIdx; i < columns.length; i++) {
-                (function() {
+                (function () {
                     var colName = columns[i].Name;
                     var col = columns[i];
                     dataRow.push({
                         Name: colName,
                         Value: record[colName],
-                        CustomCellRender: function(cell, cellFormated) {
+                        CustomCellRender: function (cell, cellFormated) {
                             if (col.Formatter) {
                                 return col.Formatter(record, cell, cellFormated);
-                            } else
+                            } else {
                                 return cellFormated;
+                            }
                         }
                     });
-                }());
+                } ());
             }
 
             return dataRow;
         },
-
-        genFooterRow: function(gridOption, listSubTotalRows, colSpanSub, totalRow, colSpanTotal) {
+        /*jshint ignore:end */
+        
+        genFooterRow: function (gridOption, listSubTotalRows, colSpanSub, totalRow, colSpanTotal) {
             var columns = gridOption.columns;
             var footerRows = [];
             var subRowLength = listSubTotalRows.length;
             var subRowCurrency = listSubTotalRows[0];
 
-            if (subRowLength > 1 || (subRowLength == 1 && subRowCurrency["Currency"] != window.System.Currency)) {
+            if (subRowLength > 1 || (subRowLength === 1 && subRowCurrency["Currency"] !== window.System.Currency)) {
                 var realSubTotalclass = subRowLength > 1 ? 'cell-subtotal real-cell' : '';
                 var pseudoSubTotalclass = subRowLength > 1 ? 'cell-subtotal pseudo-cell' : '';
                 window.subTotalStatus = subRowLength > 1 ? window.subTotalStatus : window.EXPAND_SUBTOTAL_STATUS;
 
-                $.each(listSubTotalRows, function(idx, item) {
+                $.each(listSubTotalRows, function (idx, item) {
                     var colSubTotal = [];
 
-                    if (idx == 0) {
-                        colSubTotal.push({ Value: window.Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: subRowLength, TdClass: realSubTotalclass });
+                    if (idx === 0) {
+                        colSubTotal.push({ Value: window.Lang.SubTotal, Name: "RowID", 
+                            MergeColNumber: colSpanSub, MergeRowNumber: subRowLength, TdClass: realSubTotalclass });
                     }
 
                     colSubTotal = Payment.genOneRow(columns, item, colSubTotal, colSpanSub);
@@ -170,9 +175,8 @@
                 var colSubTotal = [];
                 colSubTotal.push({ Value: window.Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
                 colSubTotal.push({ Value: "", Name: "Currency" });
-                colSubTotal.push({ Value: "", Name: $("#BaseCurrency").val() != "0" ? "ConvertedAmt" : "Amt" });
+                colSubTotal.push({ Value: "", Name: $("#BaseCurrency").val() !== "0" ? "ConvertedAmt" : "Amt" });
                 footerRows.push({ Columns: colSubTotal, CssClass: "pseudo-subtotal" });
-
             }
 
             //Total Row
@@ -184,12 +188,13 @@
             return footerRows;
         },
 
-        updatePayment: function(transId) {
+        updatePayment: function (transId) {
             AFFILIATE.openDialogFrame("Payment/UpdatePayment?transId=" + transId, "Trxn.ID " + transId, { width: 500, height: 572 });
         }
     };
-}) (jQuery);
+})(jQuery);
 
 $(function () {
+    "use strict";
     Payment.init();
 });

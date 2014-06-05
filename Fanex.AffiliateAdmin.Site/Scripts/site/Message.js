@@ -1,4 +1,6 @@
-﻿var Message = function ($) {
+﻿/*global AFFILIATE,gridOption,MSG*/
+var Message = (function ($) {
+    "use strict";
     var submitOptions = {};
 
     return {
@@ -36,7 +38,7 @@
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);  // jshint ignore:line
 
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Message/DataList"),
@@ -92,8 +94,9 @@
             AFFILIATE.openDialogFrame(url, MSG.EditMessage, { width: 580, height: 600 });
         }
     };
-} (jQuery);
+}) (jQuery);
 
 $(function () {
+    "use strict";
     Message.init();
 });

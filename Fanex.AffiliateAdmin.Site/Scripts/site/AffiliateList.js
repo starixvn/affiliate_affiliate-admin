@@ -1,13 +1,12 @@
-﻿var AffiliateList = function ($) {
+﻿/*global AFFILIATE,MSG,COLLAPSE_SUBTOTAL_STATUS,EXPAND_SUBTOTAL_STATUS,subTotalStatus,Lang,System,sampleGridOption*/
+var AffiliateList = (function ($) {
+    "use strict";
+
     var submitOptions = {};
     var gridOption = {};
     var COMMGROUP_COL = 12, BF_COL = 14, MEMBER_COL = 15;
-    var AFFILIATE_CURRENCY = "0";
     var SYSTEM_CURRENCY = "1";
-    var BF_COLUMN_NAME = "BF";
-
     var _hideColums = [COMMGROUP_COL, BF_COL, MEMBER_COL];
-    var _widthCellSubtotal = -1;
 
     return {
         init: function () {
@@ -29,7 +28,7 @@
             });
 
             $("#DateOption").change(function () {
-                $("#FromDate, #ToDate").prop("disabled", this.value == 0);
+                $("#FromDate, #ToDate").prop("disabled", this.value === "0");
             });
 
             $('#gridId').on('click', '#chkAll', function () {
@@ -51,7 +50,7 @@
             });
 
             $('#gridId').on('click', '.toggle-indicator', function () {
-                subTotalStatus = subTotalStatus == COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS;
+                subTotalStatus = subTotalStatus === COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS; // jshint ignore:line
                 AFFILIATE.resetToggleIndicator(gridOption);
             });
 
@@ -135,7 +134,7 @@
                         gridObject.fanexGrid("hideColumns", gridOption, _hideColums);
                     }
 
-                    if (data.TotalItem == 0) {
+                    if (data.TotalItem === 0) {
                         gridObject.addClass("noinfo").html(Lang.NoDataInfo);
                         legendObject.hide();
                     } else if (!data.HideTotalRows) {
@@ -153,18 +152,19 @@
         getFooterRows: function (subTotalData, totalData, colspan, hasShowSubTotalRow) {
             var subTotalRowCount = subTotalData.length;
             var footerRows = [];
+            var columns = [];
 
             if (hasShowSubTotalRow === true) {
-                if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].CurrencyCode !== System.Currency)) {
+                if (subTotalRowCount > 1 || (subTotalRowCount === 1 && subTotalData[0].CurrencyCode !== System.Currency)) {
                     var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
                     var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
-                    subTotalStatus = subTotalRowCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;
+                    subTotalStatus = subTotalRowCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS; // jshint ignore:line
 
                     $.each(subTotalData, function (idx, item) {
-                        var columns = [];
+                        columns = [];
 
-                        if (idx == 0) {
-                            columns.push({ Value: Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });
+                        if (idx === 0) {
+                            columns.push({ Value: Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });  // jshint ignore:line
                         }
 
                         columns.push({ Value: item.CurrencyCode, Name: "Currency" });
@@ -173,7 +173,7 @@
                         footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
                     });
 
-                    var columns = [];
+                    columns = [];
                     columns.push({ Value: Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
                     columns.push({ Value: "", Name: "Currency" });
                     columns.push({ Value: "", Name: "BF" });
@@ -182,7 +182,7 @@
                 }
             }
 
-            var columns = [];
+            columns = [];
             columns.push({ Value: Lang.Total, Name: "ROW", MergeColNumber: colspan });
             columns.push({ Value: totalData.CurrencyCode, Name: "Currency" });
             columns.push({ Value: totalData.Currency, Name: "BF" });
@@ -198,7 +198,7 @@
         },
         changeAccountTypeOnMultiAff: function () {
             var checkedCount = $('.chkItem:checked').length;
-            if (checkedCount == 0) {
+            if (checkedCount === 0) {
                 alert(MSG.SelectAtLeastOneAffiliate);
                 return;
             }
@@ -223,7 +223,7 @@
         },
         changeCommissionGroupOnMultiAff: function () {
             var checkedCount = $('.chkItem:checked').length;
-            if (checkedCount == 0) {
+            if (checkedCount === 0) {
                 alert(MSG.SelectAtLeastOneAffiliate);
                 return;
             }
@@ -237,7 +237,7 @@
             // get aff id list, username list
             var affList = [], usernameList = [], groupIdList = [], currency;
             var singleCurrency = true;
-            $.each($('.chkItem:checked'), function (idx, value) {
+            $.each($('.chkItem:checked'), function (idx) {
                 var self = $(this);
                 affList.push(self.attr('data-affid'));
                 usernameList.push(self.attr('data-username'));
@@ -345,9 +345,9 @@
             });
         }
     };
-
-} (jQuery);
+})(jQuery);
 
 $(function () {
+    "use strict";
     AffiliateList.init();
 });

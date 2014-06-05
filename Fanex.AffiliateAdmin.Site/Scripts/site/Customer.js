@@ -1,5 +1,6 @@
-﻿var CUSTOMER = function ($) {
-    
+﻿/*global AFFILIATE,gridOption,MSG*/
+var CUSTOMER = (function ($) {
+    "use strict";
     var submitOptions = {};
 
     return {
@@ -22,7 +23,7 @@
             });
 
             $("#DateOption").change(function () {
-                $("#FromDate, #ToDate").prop("disabled", this.value == 0);
+                $("#FromDate, #ToDate").prop("disabled", this.value === '0');
             });
 
             $("#gridId").parent().on("click", "#btnAssign", function () {
@@ -43,7 +44,7 @@
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid            
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);  // jshint ignore:line
 
             AFFILIATE.trimBeforeSubmit();
             submitOptions = $('form').serializeObject2();
@@ -78,14 +79,16 @@
             }
         }
     };
-} (jQuery);
+}) (jQuery);
 
 /////// ASSIGN MEMBER TO AFFILIATE //////////////////////
 
-var AssignMemberPopup = function ($) {
+/*jshint ignore:start */
+var AssignMemberPopup = (function ($) {
+    "use strict";
     return {
-        init: function () {
-            $("form").submit(function () {
+        init: function() {
+            $("form").submit(function() {
                 var data = $(".popup-content input").serializeData();
                 if (!data.MemberName) {
                     AFFILIATE.showErrorMsg(MSG.InputMem);
@@ -97,5 +100,6 @@ var AssignMemberPopup = function ($) {
                 }
             });
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
+/*jshint ignore:end */

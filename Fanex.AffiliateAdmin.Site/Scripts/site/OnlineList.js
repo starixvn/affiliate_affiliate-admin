@@ -1,33 +1,38 @@
-﻿var ONLINELIST = function ($) {
+﻿/*global AFFILIATE,gridOption*/
+var ONLINELIST = (function ($) {
+    "use strict";
+    
     return {
-        init: function () {
+        init: function() {
             ONLINELIST.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
-        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
+        ReRenderAfterPaged: function(currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption); // jshint ignore:line
 
-            $.ajax({ url: AFFILIATE.getAbsoluteUrl("Home/UserOnlineList"),
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Home/UserOnlineList"),
                 type: 'post',
                 data: {
                     pageIndex: (currentPage + 1),
                     pageSize: itemsPerPage
                 },
-                beforeSend: function () {
+                beforeSend: function() {
                     $.blockUI();
                 },
-                success: function (data) {
+                success: function(data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, ONLINELIST.ReRenderAfterPaged);
                 },
-                complete: function () {
+                complete: function() {
                     $.unblockUI();
                 }
             });
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
 $(function () {
+    "use strict";
     ONLINELIST.init();
 });

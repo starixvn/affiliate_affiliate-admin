@@ -1,4 +1,6 @@
-﻿var AFFMASTER = function ($) {
+﻿/*global AFFILIATE,domain*/
+var AFFMASTER = (function ($) {
+    "use strict";
     return {
         WIDTH_AFFINFO: 256,
         init: function () {
@@ -18,7 +20,7 @@
             });
         },
         loadPages: function (status) {
-            if (status == 'approved') {
+            if (status === 'approved') {
                 $("#ifStatistic").attr("src", domain + "AffiliateInfo/Statistic");
                 $("#ifReport").attr("src", domain + "Statement");
                 $("#ifStatistic").attr("class", "statistic-exp");
@@ -79,13 +81,14 @@
             if ($("#ifAffInfo").attr("src").indexOf("IsLoadOtherPage") >= 0) {
                 $("#ifAffInfo").attr("src", $("#ifAffInfo").attr("src"));
             } else {
-                var url = $("#ifAffInfo").attr("src") + ($("#ifAffInfo").attr("src").indexOf("?") >= 0 ? "&IsLoadOtherPage=1" : "?IsLoadOtherPage=1")
+                var url = $("#ifAffInfo").attr("src") + ($("#ifAffInfo").attr("src").indexOf("?") >= 0 ? "&IsLoadOtherPage=1" : "?IsLoadOtherPage=1");
                 $("#ifAffInfo").attr("src", url);
             }
         }
     };
-} (jQuery);
+})(jQuery);
 
 $(function () {
+    "use strict";
     AFFMASTER.init();
 });

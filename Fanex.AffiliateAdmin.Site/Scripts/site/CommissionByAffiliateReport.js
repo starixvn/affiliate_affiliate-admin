@@ -1,13 +1,14 @@
-﻿var CommissionReport = function ($) {
+﻿/*global AFFILIATE,MSG,moment,System*/
+var CommissionReport = (function ($) {
+    "use strict";
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = 1;
     var DEPOSIT_COL = 6;
     var _commonColumnCount = 0;
     var _freezeColumnCount = 3;
-    var _hideColumns = [];
     var _indexProductColumns = [];
     var _isSimpleMode = false;
-    
+
     var gridOption = {};
 
     var getSelectedProducts = function (products) {
@@ -21,8 +22,8 @@
     };
 
     var addProductColumns = function (products) {
-        
         var productCount = products.length;
+
         for (var i = 0; i < productCount; i++) {
             var name = nomalizeProductName(products[i].Name);
 
@@ -36,37 +37,53 @@
                 { HeaderText: window.MSG.BetCount, Width: 60, Name: name + "BetCount", HeaderAlign: "center", CellAlign: "right" }
             );
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: window.MSG.Turnover, HeaderText: window.MSG.Turnover, Width: 80, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
+                { IsCurrency: true, HeaderCaption: window.MSG.Turnover, HeaderText: window.MSG.Turnover,
+                    Width: 80, Name: name + "Turnover", NameCache: name + "Turnover", HeaderAlign: "center",
+                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
+                }
             );
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: window.MSG.Winloss, HeaderText: window.MSG.Winloss, Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
+                { IsCurrency: true, HeaderCaption: window.MSG.Winloss, HeaderText: window.MSG.Winloss,
+                    Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center",
+                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
+                }
             );
+            
+            /*jshint ignore:start */
             gridOption.columns.push(
-                { IsCurrency: false, HeaderCaption: window.MSG.QM, HeaderText: window.MSG.QM, Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
+                { IsCurrency: false, HeaderCaption: window.MSG.QM, HeaderText: window.MSG.QM,
+                    Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
                     Formatter: function (rIndex, record, cell, cellFormated) {
                         var actualBaseCurreny = "2";
                         var currency = record.Currency;
 
-                        if (cellFormated)
+                        if (cellFormated) {
                             return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}' data-groupid='{6}' data-commgroup='{7}'>{8}</a>"
-                                    .format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, record.GroupID, record.GroupName, cellFormated);
+                                .format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, record.GroupID, record.GroupName, cellFormated);
+                        }
+
                         return 0;
                     }
                 }
             );
-
+            /*jshint ignore:end */
+            
             gridOption.columns.push(
-                { IsCurrency: false, IsPercent: true, HeaderCaption: window.MSG.CommPercent, HeaderText: window.MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
+                { IsCurrency: false, IsPercent: true, HeaderCaption: window.MSG.CommPercent,
+                    HeaderText: window.MSG.CommPercent, Width: 80, Name: name + "CommissionPercent",
+                    HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, 
+                    FormatNegative: '($)', IsAbs: true }
             );
-
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: window.MSG.Commission, HeaderText: window.MSG.Commission, Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
+                { IsCurrency: true, HeaderCaption: window.MSG.Commission, HeaderText: window.MSG.Commission,
+                    Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", 
+                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
         }
     };
 
     function initProductColumnsForGridOption() {
-        
+
         addCashbackColumn();
 
         _indexProductColumns.clear();
@@ -74,7 +91,7 @@
         _commonColumnCount = gridOption.columns.length;
 
         var products = getSelectedProducts(window.PRODUCTS);
-        
+
         addProductColumns(products);
     }
 
@@ -94,8 +111,10 @@
             col = gridOption.columns[i];
             if (col.NameCache) {
                 name = col.NameCache;
-                if (isUseBaseCurrency)
+                if (isUseBaseCurrency) {
                     name += "Base";
+                }
+
                 col.Name = name;
             }
         }
@@ -104,8 +123,9 @@
             col = gridOption.groupHeaderRows[0].Columns[i];
             if (col.NameCache) {
                 name = col.NameCache;
-                if (isUseBaseCurrency)
+                if (isUseBaseCurrency) {
                     name += "Base";
+                }
                 col.Name = name;
             }
         }
@@ -118,12 +138,14 @@
         var footerRows = [];
 
         if (hasShowSubTotalRow === true && totalItem > 1) {
-            if (subTotalRowCount > 1 || (subTotalRowCount == 1 && subTotalData[0].Currency != window.System.Currency && $('#BaseCurrency').val() != SYS_CURRENCY_OPTION)) {
+            if (subTotalRowCount > 1 
+                ||(subTotalRowCount === 1 && subTotalData[0].Currency !== window.System.Currency 
+                    && $('#BaseCurrency').val() !== SYS_CURRENCY_OPTION)) {
                 $.each(subTotalData, function (idx, item) {
 
                     var columns = [];
 
-                    if (idx == 0) {
+                    if (idx === 0) {
                         columns.push({ Value: window.MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
                     }
 
@@ -144,7 +166,11 @@
 
         // Total row
         var totalColums = [];
-        totalColums.push({ Value: "<div align='center'>" + MSG.Total + "</div>", Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount });
+        totalColums.push({ 
+            Value: "<div align='center'>" + MSG.Total + "</div>",
+            Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount
+        });
+        
         for (var i = mergeCols; i < gridOption.columns.length; i++) {
             var col = gridOption.columns[i];
             var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
@@ -162,16 +188,20 @@
     }
     function changeHeaderCaptions(showCurrencySymbol) {
         var text = showCurrencySymbol ? " (" + System.Prefix + ")" : "";
-        for (var i = 0; i < gridOption.columns.length; i++) {
-            var col = gridOption.columns[i];
-            if (col.IsCurrency)
+        var col, i;
+        
+        for (i = 0; i < gridOption.columns.length; i++) {
+            col = gridOption.columns[i];
+            if (col.IsCurrency) {
                 col.HeaderText = col.HeaderCaption + text;
+            }
         }
 
-        for (var i = 0; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
-            var col = gridOption.groupHeaderRows[0].Columns[i];
-            if (col.IsCurrency)
+        for (i = 0; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
+            col = gridOption.groupHeaderRows[0].Columns[i];
+            if (col.IsCurrency) {
                 col.HeaderText = col.HeaderCaption + text;
+            }
         }
     }
     function nomalizeProductName(name) {
@@ -201,13 +231,15 @@
 
                 hideColumns();
             });
-            
+
             // Comm group link event
             $maincontent.on("click", ".commgroup", function () {
                 var param = {
                     groupid: $(this).data("groupid")
                 };
-                parent.AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommGroupSettingFor.replace("{0}", '"' + $(this).html() + '" ' + $(this).data("date")), { width: 900, height: 450 });
+                parent.AFFILIATE.openDialogFrame("CommGroup/ViewSetting?"
+                    + jQuery.param(param), MSG.CommGroupSettingFor.replace("{0}", '"' 
+                    + $(this).html() + '" ' + $(this).data("date")), { width: 900, height: 450 });
             });
             $maincontent.on("click", "a.afflink", function () {
                 var params = $('form').serializeObject2();
@@ -247,7 +279,8 @@
                     groupid: $(this).data("groupid")
                 };
 
-                var title = MSG.AffQualifiedMemReportDetailFor.format($(this).data("affname"), param.monthdate, $(this).data("currency"), $(this).data("commgroup"));
+                var title = MSG.AffQualifiedMemReportDetailFor
+                    .format($(this).data("affname"), param.monthdate, $(this).data("currency"), $(this).data("commgroup"));
                 parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });
             });
 
@@ -275,15 +308,16 @@
             var toYear = toDate.year();
             var diffYear = toYear - fromYear;
 
-            if (diffYear < 0 || diffYear > 1)
+            if (diffYear < 0 || diffYear > 1) {
                 return false;
+            }
 
             var fromMonth = fromDate.month();
             var toMonth = toDate.month();
+            var diffMonth;
+            
             if (fromDate.year() === toDate.year()) {
-
-                var diffMonth = toMonth - fromMonth;
-
+                diffMonth = toMonth - fromMonth;
                 if (diffMonth < 0 || diffMonth > 2) {
                     $('#FromDate, #ToDate').addClass('input-validation-error');
                     return false;
@@ -292,9 +326,8 @@
                 return true;
 
             } else {
-
-                var diffMonth = (toMonth + 11) - fromMonth;
-
+                diffMonth = (toMonth + 11) - fromMonth;
+                
                 if (diffMonth < 0 || diffMonth > 2) {
                     $('#FromDate, #ToDate').addClass('input-validation-error');
                     return false;
@@ -353,8 +386,8 @@
                         _indexProductColumns.push(i);
                     }
 
-                    renameCurrencyColumns(baseCurrency == SYS_CURRENCY_OPTION);
-                    changeHeaderCaptions(baseCurrency == SYS_CURRENCY_OPTION);
+                    renameCurrencyColumns(baseCurrency === SYS_CURRENCY_OPTION);
+                    changeHeaderCaptions(baseCurrency === SYS_CURRENCY_OPTION);
 
                     gridOption.pagerOption = {
                         itemsPerPage: itemsPerPage,
@@ -369,7 +402,7 @@
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 
-                    if (data.List.length == 0) {
+                    if (data.List.length === 0) {
                         $('.status').hide();
                         AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;
@@ -385,8 +418,9 @@
             });
         }
     };
-} (jQuery);
+})(jQuery);
 
 $(function () {
+    "use strict";
     CommissionReport.init();
 });

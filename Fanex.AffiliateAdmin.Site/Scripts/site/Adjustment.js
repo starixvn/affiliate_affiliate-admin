@@ -1,4 +1,6 @@
-﻿var ADJUST = function ($) {
+﻿/*global AFFILIATE*/
+var ADJUST = (function ($) {
+    "use strict";
     return {
         init: function () {
             $("#btnSubmit").click(function () {
@@ -15,9 +17,10 @@
         hideMsg: function () {
             setTimeout(AFFILIATE.hideMsg, 3000);
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
 
 $(function () {
+    "use strict";
     ADJUST.init();
 });

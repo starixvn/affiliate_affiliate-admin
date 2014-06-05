@@ -1,23 +1,26 @@
-﻿var EmailHistory = function ($) {
+﻿/*global AFFILIATE,gridOption,MSG*/
+var EmailHistory = (function ($) {
+    "use strict";
     return {
-        init: function() {
+        init: function () {
 
-            $("#SearchOption").change(function() {
+            $("#SearchOption").change(function () {
 
-                if (this.value >= 0)
+                if (this.value >= 0) {
                     $("#SearchText").show();
-                else
+                } else {
                     $("#SearchText").hide();
+                }
 
                 $("#SearchText").val("").focus();
             });
 
-            $("#IsAll").change(function() {
+            $("#IsAll").change(function () {
 
                 $("#FromDate, #ToDate").attr("disabled", this.checked);
             });
 
-            $("#gridId").on("click", "table a.subject", function() {
+            $("#gridId").on("click", "table a.subject", function () {
                 var param = {
                     id: $(this).attr("data-mid")
                 };
@@ -31,24 +34,28 @@
 
             EmailHistory.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
 
-            $('#btnSubmit').click(function() {
+            $('#btnSubmit').click(function () {
                 EmailHistory.submitRequest();
                 return false;
             });
         },
-        deleteEmail: function(id) {
+        deleteEmail: function (id) {
             try {
-                if (!id || id < 1)
+                if (!id || id < 1) {
                     return;
-                if (!confirm(MSG.ConfirmDeleteEmail))
+                }
+
+                if (!confirm(MSG.ConfirmDeleteEmail)) {
                     return;
+                }
+                
                 $.ajax({
                     url: AFFILIATE.getAbsoluteUrl("EmailHistory/Delete"),
                     type: 'post',
                     data: {
                         listID: id
                     },
-                    success: function(data) {
+                    success: function (data) {
                         AFFILIATE.PreHandleAjaxResult(data);
 
                         if (!data.Success) {
@@ -59,17 +66,17 @@
                     }
                 });
 
-            } catch(e) {
+            } catch (e) {
                 alert(e);
             }
         },
-        submitRequest: function() {
+        submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
             EmailHistory.ReRenderAfterPaged();
         },
-        ReRenderAfterPaged: function(currentPage, itemsPerPage) {
+        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);  // jshint ignore:line
 
             if (gridOption && gridOption.pagerOption) {
                 currentPage = currentPage >= 0 ? currentPage : gridOption.pagerOption.currentPage;
@@ -80,17 +87,18 @@
                 url: AFFILIATE.getAbsoluteUrl("EmailHistory/EmailHistory"),
                 type: 'post',
                 data: $('#SearchForm').find('select,input').serialize() + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
-                success: function(data) {
+                success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, EmailHistory.ReRenderAfterPaged);
                 },
-                error: function(data) {
+                error: function () {
                     alert("Occur the error when requesting email history.");
                 }
             });
         }
     };
-} (jQuery);
+})(jQuery);
 $(function () {
+    "use strict";
     EmailHistory.init();
 });

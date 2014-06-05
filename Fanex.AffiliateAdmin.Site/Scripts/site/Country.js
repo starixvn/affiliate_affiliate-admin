@@ -1,4 +1,6 @@
-﻿var Country = function ($) {
+﻿/*global AFFILIATE,gridOption,MSG*/
+var Country = (function ($) {
+    "use strict";
     var submitOptions = {};
 
     return {
@@ -27,7 +29,7 @@
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption); // jshint ignore:line
 
             AFFILIATE.trimBeforeSubmit();
             submitOptions = $('form').serializeObject();
@@ -91,8 +93,9 @@
             AFFILIATE.openDialogFrame(url, MSG.UpdateCountry, { width: 580, height: 450 });
         }
     };
-} (jQuery);
+}) (jQuery);
 
 $(function () {
+    "use strict";
     Country.init();
 });

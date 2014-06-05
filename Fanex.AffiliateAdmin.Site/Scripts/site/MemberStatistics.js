@@ -1,4 +1,6 @@
-﻿var Report = function ($) {
+﻿/*global AFFILIATE,gridOption,MSG,Lang,moment*/
+var Report = (function ($) {
+    "use strict";
     var submitOptions = {};
     var DATE_COL = 1;
 
@@ -31,15 +33,17 @@
         var toYear = toDateObj.year();
         var diffYear = toYear - fromYear;
 
-        if (diffYear < 0 || diffYear > 1)
+        if (diffYear < 0 || diffYear > 1) {
             return false;
+        }
 
         var fromMonth = fromDateObj.month();
         var toMonth = toDateObj.month();
+        var diffMonth = 0;
 
         if (fromDateObj.year() === toDateObj.year()) {
 
-            var diffMonth = toMonth - fromMonth;
+            diffMonth = toMonth - fromMonth;
 
             if (diffMonth < 0 || diffMonth > 2) {
                 $input.addClass('input-validation-error');
@@ -49,7 +53,7 @@
             return true;
         } else {
 
-            var diffMonth = (toMonth + 11) - fromMonth;
+            diffMonth = (toMonth + 11) - fromMonth;
 
             if (diffMonth < 0 || diffMonth > 2) {
                 $input.addClass('input-validation-error');
@@ -96,16 +100,19 @@
 
             switch (value) {
                 case "1":
-                    if (previous == "2") {
-                        var format = "DD MMM YYYY";
+                    var format = "";
+                    var fromDate, toDate;
+                    
+                    if (previous === "2") {
+                        format = "DD MMM YYYY";
 
                         var minDate = $('#FromDate').attr('data-mindate');
                         var maxDate = $('#FromDate').attr('data-maxdate');
 
-                        var fromDate = $('#FromMonth').val();
-                        var toDate = $('#ToMonth').val();
+                        fromDate = $('#FromMonth').val();
+                        toDate = $('#ToMonth').val();
 
-                        if (fromDate.split(' ').length == 2) {
+                        if (fromDate.split(' ').length === 2) {
                             // get the first day of month;
                             fromDate = '01 ' + fromDate;
 
@@ -134,11 +141,11 @@
                     $('#PreviousGroupBy').val("1");
                     break;
                 case "2":
-                    if (previous == "1") {
-                        var format = "MMM YYYY";
+                    if (previous === "1") {
+                        format = "MMM YYYY";
 
-                        var fromDate = $('#FromDate').val();
-                        var toDate = $('#ToDate').val();
+                        fromDate = $('#FromDate').val();
+                        toDate = $('#ToDate').val();
 
                         $('#FromMonth').val(moment(fromDate).format(format));
                         $('#FromMonth').attr('data-value', fromDate);
@@ -158,12 +165,12 @@
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);  // jshint ignore:line
             var postdata = $('.search-form').find('input, select').serializeData();
             postdata.pageIndex = currentPage + 1;
             postdata.pageSize = itemsPerPage;
 
-            if (postdata.GroupBy == 2) { // month
+            if (postdata.GroupBy === 2) { // month
                 postdata.FromDate = "1 " + postdata.FromMonth;
                 postdata.ToDate = "1 " + postdata.ToMonth;
             }
@@ -184,11 +191,12 @@
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
-                    if (data.TotalItem == 0)
+
+                    if (data.TotalItem === 0) {
                         $('.legend').hide();
-                    else
+                    } else {
                         $('.legend').show();
+                    }
 
                     gridOption.pagerOption = {
                         itemsPerPage: itemsPerPage,
@@ -199,13 +207,13 @@
 
                     gridOption.titleInfo.text = MSG.MemberStatisticsTitle + ' [{0}]'.format(data.TotalItem);
 
-                    gridOption.columns[DATE_COL].FormatDateTime = postdata.GroupBy == 1 ? "MM/DD/YYYY" : "MM/YYYY";
+                    gridOption.columns[DATE_COL].FormatDateTime = postdata.GroupBy === 1 ? "MM/DD/YYYY" : "MM/YYYY";
                     gridOption.footerRows = genTotalRow(data.SubTotal);
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 
-                    if (data.List.length == 0) {
+                    if (data.List.length === 0) {
                         $('.status').hide();
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
@@ -213,7 +221,7 @@
                         $('.status').show();
                     }
 
-                    if (postdata.GroupBy == 0) // All
+                    if (postdata.GroupBy === 0) // All
                     {
                         $("#gridId").fanexGrid("hideColumns", gridOption, [DATE_COL]);
                         // show hidden column in total row
@@ -221,7 +229,7 @@
                     }
                     else {
                         $("#gridId").fanexGrid("hideColumns", gridOption, []);
-                        $(".header-container table tr th:eq(1) div").html(postdata.GroupBy == 1 ? "Date" : "Month");
+                        $(".header-container table tr th:eq(1) div").html(postdata.GroupBy === 1 ? "Date" : "Month");
 
                     }
 
@@ -233,10 +241,10 @@
                 }
             });
         }
-
     };
-} (jQuery);
+})(jQuery);
 
 $(function () {
+    "use strict";
     Report.init();
 });

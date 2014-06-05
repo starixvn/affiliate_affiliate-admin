@@ -1,6 +1,7 @@
-﻿var TestWebService = function ($) {
-    var submitOptions = {};
-
+﻿/*global AFFILIATE*/
+var TestWebService = (function ($) {
+    "use strict";
+    
     function showHide(selectedValue) {
         $("#form1 tr.tab").hide().find("input").attr("disabled", true);
         $("#form1 tr.tab[id=" + selectedValue + "]").show().find("input").removeAttr("disabled");
@@ -15,24 +16,25 @@
 
             });
 
-            $('#submit').click(function () {
+            $('#submit').click(function() {
                 var paras = $('form').serialize();
 
                 $.ajax({
                     url: AFFILIATE.getAbsoluteUrl("TestWebService/CallWebSerive"),
                     type: 'post',
                     data: paras,
-                    success: function (result) {
+                    success: function(result) {
                         AFFILIATE.PreHandleAjaxResult(result);
-                        
+
                         $('#result').text(result);
                     }
                 });
-            })
+            });
         }
     };
-} (jQuery);
+}) (jQuery);
 
 $(function () {
+    "use strict";
     TestWebService.init();
 });

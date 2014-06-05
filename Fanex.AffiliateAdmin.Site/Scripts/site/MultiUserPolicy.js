@@ -1,4 +1,6 @@
-﻿var Policy = function ($) {
+﻿/*global AFFILIATE,gridOption*/
+var Policy = (function ($) {
+    "use strict";
     return {
         init: function () {
             Policy.ReRenderAfterPaged();
@@ -32,11 +34,9 @@
 
             if ($(IndividualHosts[index]).prop("checked")) {
                 permission = 3;
-            }
-            else if ($(IndividualReads[index]).prop("checked")) {
+            } else if ($(IndividualReads[index]).prop("checked")) {
                 permission = 1;
-            }
-            else {
+            } else {
                 permission = 0;
             }
 
@@ -46,12 +46,11 @@
             $(".p-check").change(function () {
                 var funcId = $(this).attr("id").split("_")[1];
                 if ($(this).prop("checked")) {
-                    if ($(this).attr("name") == "IndividualHost") {
+                    if ($(this).attr("name") === "IndividualHost") {
                         $("#ir_" + funcId).prop("checked", true);
                     }
-                }
-                else {
-                    if ($(this).attr("name") == "IndividualRead") {
+                } else {
+                    if ($(this).attr("name") === "IndividualRead") {
                         $("#ih_" + funcId).prop("checked", false);
                     }
                 }
@@ -59,12 +58,14 @@
         },
         ReRenderAfterPaged: function () {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption); // jshint ignore:line
 
             var param = {
                 custIds: $("#CustIds").val()
-            }
-            $.ajax({ url: AFFILIATE.getAbsoluteUrl("Management/ListPolicyMultiUser"),
+            };
+            
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Management/ListPolicyMultiUser"),
                 type: 'post',
                 data: param,
                 beforeSend: function () {
@@ -72,7 +73,7 @@
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     gridOption.pagerOption = {
                         itemsPerPage: 100,
                         itemsPerPageArray: [100],
@@ -91,9 +92,10 @@
                 }
             });
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
 
 $(function () {
+    "use strict";
     Policy.init();
 });

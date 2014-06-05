@@ -1,28 +1,31 @@
-﻿var DOMAINCONTROL = function ($) {
+﻿/*global AFFILIATE,gridOption,MSG,lang*/
+var DOMAINCONTROL = (function ($) {
+    "use strict";
     return {
-        init: function () {
+        init: function() {
             // Event click login
-            $("#addDomain").click(function () {
+            $("#addDomain").click(function() {
                 DOMAINCONTROL.Insert();
             });
             if ($('#gridId').length > 0) {
                 DOMAINCONTROL.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             }
 
-            $(".main-content").on("click", ".icon-add-affDomain", function () {
+            $(".main-content").on("click", ".icon-add-affDomain", function() {
                 DOMAINCONTROL.Insert();
             });
         },
-        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
+        ReRenderAfterPaged: function(currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption); // jshint ignore:line
 
-            $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/DomainControlList"),
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Domain/DomainControlList"),
                 type: 'post',
-                success: function (data) {
+                success: function(data) {
                     AFFILIATE.PreHandleAjaxResult(data);
 
-                    if (data.List.length == 0) {
+                    if (data.List.length === 0) {
                         $('#gridId').addClass("noinfo").html(MSG.NoInfo);
                         return;
                     }
@@ -39,32 +42,33 @@
                 }
             });
         },
-        Insert: function () {
+        Insert: function() {
             AFFILIATE.openDialogFrame("Domain/DomainControlAdd", lang.AddDomain, { width: 500, height: 370 });
         },
-        ShowUpdate: function (id) {
+        ShowUpdate: function(id) {
             AFFILIATE.openDialogFrame("Domain/DomainControlUpd/" + id, lang.EditDomain, { width: 500, height: 370 });
         },
-        Remove: function (id) {
+        Remove: function(id) {
             if (confirm(lang.DeleteDomain)) {
-                $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/DomainControlRemove/" + id),
+                $.ajax({
+                    url: AFFILIATE.getAbsoluteUrl("Domain/DomainControlRemove/" + id),
                     type: 'post',
-                    success: function (result) {
+                    success: function(result) {
                         AFFILIATE.PreHandleAjaxResult(result);
-                        
+
                         if (!result.Success) {
                             alert(result.Message);
-                        }
-                        else {
+                        } else {
                             DOMAINCONTROL.ReRenderAfterPaged(0, $("#itemperpage").val());
                         }
                     }
                 });
             }
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
 
 $(function () {
+    "use strict";
     DOMAINCONTROL.init();
 });

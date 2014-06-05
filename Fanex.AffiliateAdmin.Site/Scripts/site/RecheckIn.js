@@ -1,7 +1,9 @@
-﻿var RECHECKIN = function ($) {
+﻿/*global AFFILIATE*/
+var RECHECKIN = (function ($) {
+    "use strict";
     return {
         init: function () {
-            setInterval("RECHECKIN.ReCheckIn()", 60000);
+            setInterval(function () { RECHECKIN.ReCheckIn(); }, 60000);
         },
         ReCheckIn: function () {
             $.ajax({
@@ -13,12 +15,12 @@
                     AFFILIATE.PreHandleAjaxResult(result);
 
                     if (result.Success) {
-                        if (result.ErrorMessage == "Expired") {
+                        if (result.ErrorMessage === "Expired") {
                             alert(result.Message);
                             top.location.href = AFFILIATE.getAbsoluteUrl("Account/Login");
                         }
 
-                        if (result.ErrorMessage == "UM") {
+                        if (result.ErrorMessage === "UM") {
                             top.location.href = AFFILIATE.getAbsoluteUrl("Notify");
                         }
                     }
@@ -29,8 +31,10 @@
                 }
             });
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
+
 $(function () {
+    "use strict";
     RECHECKIN.init();
 });

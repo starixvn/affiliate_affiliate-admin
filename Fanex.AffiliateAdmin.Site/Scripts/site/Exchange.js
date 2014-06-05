@@ -1,9 +1,11 @@
-﻿var EXCHANGE = function ($) {
+﻿/*global AFFILIATE,sampleGridOption,MSG*/
+var EXCHANGE = (function ($) {
+    "use strict";
     var _gridOption = {};
     var CHECKBOX_COLUMN = 0;
 
     var editExchangeRateFormatter = function (rowIndex, rowData, cell, cellFormated) {
-        var className = cell.Name == rowData.Code ? "c" : "linkpopup";
+        var className = cell.Name === rowData.Code ? "c" : "linkpopup";
         return "<div class='" + className + "' data-exchangeid='" + rowData.ExchangeID +
                 "' data-codefrom='" + rowData.Code +
                 "' data-codeto='" + cell.Name +
@@ -18,7 +20,7 @@
 
     function initExRateColumns(data) {
         var currencies = data.Currencies;
-        var isToday = data.IsToday
+        var isToday = data.IsToday;
 
         for (var i = 0; i < currencies.length; i++) {
             var currency = currencies[i];
@@ -85,12 +87,14 @@
             $("#gridId").parent().on("click", "#btnCopy", function () {
 
                 var listChk = $("#gridId table input.check:checked");
-                if (listChk.length == 0) {
+                if (listChk.length === 0) {
                     alert(MSG.SelRate);
                     return;
                 }
-                if (!confirm(MSG.ConfirmCopyRate))
+                if (!confirm(MSG.ConfirmCopyRate)) {
                     return;
+                }
+
                 var listID = "";
                 for (var j = 0; j < listChk.length; j++) {
                     var mid = $(listChk[j]).attr("data-mid");
@@ -111,8 +115,9 @@
 
                         if (!data.Success) {
                             alert(data.Message);
-                        } else
+                        } else {
                             EXCHANGE.ReRenderAfterPaged();
+                        }
                     }
                 });
             });
@@ -158,12 +163,12 @@
                     AFFILIATE.PreHandleAjaxResult(data);
 
 
-
                     if (data.Notification) {
                         $("#notification-header").show();
                         $("#notification").html(data.Notification);
-                    } else
+                    } else {
                         $("#notification-header").hide();
+                    }
 
                     _gridOption = $.extend(true, {}, sampleGridOption);
 
@@ -185,7 +190,7 @@
 
                     $('#gridId').removeClass("noinfo").fanexGrid(_gridOption);
 
-                    if (data.List.length == 0) {
+                    if (data.List.length === 0) {
                         $('#gridId').addClass("noinfo").html(MSG.NoInfo);
                         return;
                     }
@@ -196,8 +201,9 @@
             });
         }
     };
-} (jQuery);
+})(jQuery);
 
 $(function () {
+    "use strict";  
     EXCHANGE.init();
 });

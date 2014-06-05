@@ -1,5 +1,6 @@
-﻿var DETAIL = function ($) {
-
+﻿/*global AFFILIATE,MSG*/
+var DETAIL = (function ($) {
+    "use strict";
     function deleteMessage(msgList) {
         try {
 
@@ -10,7 +11,7 @@
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     if (!data.Success) {
                         AFFILIATE.showUpdateStatus(data.ErrorCode, data.Message, parent.EmailHistory.ReRenderAfterPaged);
                     } else {
@@ -28,16 +29,20 @@
     return {
         init: function () {
             $("#btnDelete").click(function () {
-                if (!confirm(MSG.ConfirmDeleteEmail))
+                if (!confirm(MSG.ConfirmDeleteEmail)) {
                     return;
+                }
+                
                 deleteMessage($("#Mid").val());
             });
         },
         openMail: function (url) {
             window.open(url, "_blank");
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
+
 $(function () {
+    "use strict";
     DETAIL.init();
 });

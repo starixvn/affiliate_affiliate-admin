@@ -1,29 +1,32 @@
-﻿var DOMAIN = function ($) {
+﻿/*global AFFILIATE,gridOption,MSG,lang*/
+var DOMAIN = (function ($) {
+    "use strict";
     return {
-        init: function () {
+        init: function() {
             // Event click login
-            $("#addDomain").click(function () {
+            $("#addDomain").click(function() {
                 DOMAIN.Insert();
             });
             if ($('#gridId').length > 0) {
                 DOMAIN.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             }
 
-            $(".main-content").on("click", ".icon-add-affDomain", function () {
+            $(".main-content").on("click", ".icon-add-affDomain", function() {
                 DOMAIN.Insert();
             });
         },
-        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
+        ReRenderAfterPaged: function(currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);  // jshint ignore:line
 
-            $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/MemDomainList"),
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Domain/MemDomainList"),
                 type: 'post',
                 //data: "pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
-                success: function (data) {
+                success: function(data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
-                    if (data.List.length == 0) {
+
+                    if (data.List.length === 0) {
                         $('#gridId').addClass("noinfo").html(MSG.NoInfo);
                         return;
                     }
@@ -41,32 +44,33 @@
                 }
             });
         },
-        Insert: function () {
+        Insert: function() {
             AFFILIATE.openDialogFrame("Domain/MemDomainAdd", lang.AddDomain, { width: 450, height: 230 });
         },
-        ShowUpdate: function (id) {
+        ShowUpdate: function(id) {
             AFFILIATE.openDialogFrame("Domain/MemDomainUpd/" + id, lang.EditDomain, { width: 450, height: 230 });
         },
-        Remove: function (id) {
+        Remove: function(id) {
             if (confirm(lang.DeleteDomain)) {
-                $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/MemDomainRemove/" + id),
+                $.ajax({
+                    url: AFFILIATE.getAbsoluteUrl("Domain/MemDomainRemove/" + id),
                     type: 'post',
-                    success: function (result) {
+                    success: function(result) {
                         AFFILIATE.PreHandleAjaxResult(result);
-                        
+
                         if (!result.Success) {
                             alert(result.Message);
-                        }
-                        else {
+                        } else {
                             DOMAIN.ReRenderAfterPaged(0, $("#itemperpage").val());
                         }
                     }
                 });
             }
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
 
 $(function () {
+    "use strict";
     DOMAIN.init();
 });

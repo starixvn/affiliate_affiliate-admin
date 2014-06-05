@@ -1,4 +1,6 @@
-﻿var Policy = function ($) {
+﻿/*global AFFILIATE,gridOption*/
+var Policy = (function ($) {
+    "use strict";
     return {
         init: function () {
             Policy.ReRenderAfterPaged();
@@ -16,11 +18,9 @@
 
                     if ($(ghs[index]).prop("checked")) {
                         policys[index] = $("#GroupId").val() + ',' + funcId + ',' + 3;
-                    }
-                    else if ($(grs[index]).prop("checked")) {
+                    } else if ($(grs[index]).prop("checked")) {
                         policys[index] = $("#GroupId").val() + ',' + funcId + ',' + 1;
-                    }
-                    else {
+                    } else {
                         policys[index] = $("#GroupId").val() + ',' + funcId + ',' + 0;
                     }
                 }
@@ -32,12 +32,11 @@
             $(".p-check").change(function () {
                 var funcId = $(this).attr("id").split("_")[1];
                 if ($(this).prop("checked")) {
-                    if ($(this).attr("name") == "GroupHost") {
+                    if ($(this).attr("name") === "GroupHost") {
                         $("#gr_" + funcId).prop("checked", true);
                     }
-                }
-                else {
-                    if ($(this).attr("name") == "GroupRead") {
+                } else {
+                    if ($(this).attr("name") === "GroupRead") {
                         $("#gh_" + funcId).prop("checked", false);
                     }
                 }
@@ -45,12 +44,14 @@
         },
         ReRenderAfterPaged: function () {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption); // jshint ignore:line
 
             var param = {
                 groupId: $("#GroupId").val()
-            }
-            $.ajax({ url: AFFILIATE.getAbsoluteUrl("Management/ListPolicyGroup"),
+            };
+            
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Management/ListPolicyGroup"),
                 type: 'post',
                 data: param,
                 beforeSend: function () {
@@ -58,7 +59,7 @@
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     gridOption.pagerOption = {
                         itemsPerPage: 100,
                         itemsPerPageArray: [100],
@@ -77,9 +78,10 @@
                 }
             });
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
 
 $(function () {
+    "use strict";  
     Policy.init();
 });

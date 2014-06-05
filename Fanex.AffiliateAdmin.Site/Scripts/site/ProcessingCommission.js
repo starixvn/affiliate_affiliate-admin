@@ -1,12 +1,10 @@
-﻿/*global AFFILIATE,numeral*/
+﻿/*global AFFILIATE*/
 var ProcessingCommission = (function ($) {
     "use strict";
 
     var submitOptions = {};
-
     var SYS_CURRENCY_OPTION = "1";
     var _freezeColumnCount = 5;
-
     var gridOption = {};
 
     var getSelectedProducts = function (products) {
@@ -31,33 +29,47 @@ var ProcessingCommission = (function ($) {
             var name = nomalizeProductName(products[i].Name);
 
             gridOption.groupHeaderRows[0].Columns.push(
-                { HeaderCaption: window.MSG[name], HeaderText: window.MSG[name], IsCurrency: true, Name: name + "Winloss", NameCache: name + "Winloss", MergeColNumber: 4 }
+                { HeaderCaption: window.MSG[name], HeaderText: window.MSG[name], IsCurrency: true, 
+                    Name: name + "Winloss", NameCache: name + "Winloss", MergeColNumber: 4 }
             );
 
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: window.MSG.Winloss, HeaderText: window.MSG.Winloss, Width: 100, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
+                { IsCurrency: true, HeaderCaption: window.MSG.Winloss, HeaderText: window.MSG.Winloss,
+                    Width: 100, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center", 
+                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
+            
+            /*jshint ignore:start */
             gridOption.columns.push(
-                { IsCurrency: false, HeaderCaption: window.MSG.QM, HeaderText: window.MSG.QM, Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
+                { IsCurrency: false, HeaderCaption: window.MSG.QM, HeaderText: window.MSG.QM, 
+                    Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
                     Formatter: function (rIndex, record, cell, cellFormated) {
                         var actualBaseCurreny = "2";
                         var currency = record.Currency;
 
+                        
                         if (cellFormated) {
                             return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}' data-groupid='{6}' data-commgroup='{7}'>{8}</a>"
                                     .format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, record.GroupID, record.GroupName, cellFormated);
                         }
-
+                        
+                        
                         return 0;
                     }
                 }
             );
+            /*jshint ignore:end */
+            
             gridOption.columns.push(
-                { IsCurrency: false, HeaderCaption: window.MSG.CommPercent, HeaderText: window.MSG.CommPercent, Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER }
+                { IsCurrency: false, HeaderCaption: window.MSG.CommPercent, HeaderText: window.MSG.CommPercent,
+                    Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right", 
+                    FormatNumber: AFFILIATE.FORMATNUMBER }
             );
 
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: window.MSG.Commission, HeaderText: window.MSG.Commission, Width: 100, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
+                { IsCurrency: true, HeaderCaption: window.MSG.Commission, HeaderText: window.MSG.Commission,
+                    Width: 100, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", 
+                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
             );
         }
 
@@ -77,12 +89,17 @@ var ProcessingCommission = (function ($) {
             );
 
             gridOption.columns.push(
-                { IsCurrency: false, HeaderCaption: window.MSG.DeductionPercent, HeaderText: window.MSG.DeductionPercent, Width: 80, Name: "CashbackPercent", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER }
+                { IsCurrency: false, HeaderCaption: window.MSG.DeductionPercent, HeaderText: window.MSG.DeductionPercent,
+                    Width: 80, Name: "CashbackPercent", HeaderAlign: "center", CellAlign: "right", 
+                    FormatNumber: AFFILIATE.FORMATNUMBER }
             );
 
+            /*jshint ignore:start */
             gridOption.columns.push(
                 {
-                    IsCurrency: true, HeaderCaption: window.MSG.Amount, HeaderText: window.MSG.Amount, Width: 100, Name: "CashbackAmount", NameCache: "CashbackAmount", HeaderAlign: "center", CellAlign: "left", FormatNumber: AFFILIATE.FORMATNUMBER,
+                    IsCurrency: true, HeaderCaption: window.MSG.Amount, HeaderText: window.MSG.Amount,
+                    Width: 100, Name: "CashbackAmount", NameCache: "CashbackAmount", HeaderAlign: "center", 
+                    CellAlign: "left", FormatNumber: AFFILIATE.FORMATNUMBER,
                     Formatter: function (rIndex, record) {
                         var currentValue = submitOptions.BaseCurrency === SYS_CURRENCY_OPTION ? record.CashbackAmountBase : record.CashbackAmount;
 
@@ -107,14 +124,17 @@ var ProcessingCommission = (function ($) {
                             return '<div style="text-align: right;">' + currentValue + '</div>';
                         }
 
+                        
                         var html = '<div class="amount-region"><div class="amount-info" style="text-align: right;">' + currentValue + '&nbsp;&nbsp; <i class="icon-edit"></i></div>';
                         html += '<div class="amount-edit" style="display: none;"><input type="text" value="{0}" data-affid="{1}" data-winlostdate="{2}"  style="display:inline-block; width: 40px; margin-right: 5px;"><i class="icon-ok"></i>&nbsp;&nbsp;<i class="icon-remove"></i><div class="edit-amount">'.format(record.CashbackAmount, record.AffId, winlostdate);
                         html += '</div>';
 
                         return html;
+                        
                     }
                 }
             );
+            /*jshint ignore:end */
         }
     }
 
@@ -212,6 +232,7 @@ var ProcessingCommission = (function ($) {
                 ProcessingCommission.MonthlyTransfer();
             });
 
+            /*jshint ignore:start */
             mainContentObject.on("click", "a.qm", function () {
                 var param = {
                     affid: $(this).data("affid"),
@@ -223,15 +244,18 @@ var ProcessingCommission = (function ($) {
                 };
                 
                 var title = MSG.AffQualifiedMemReportDetailFor.format($(this).data("affname"), param.monthdate, $(this).data("currency"), $(this).data("commgroup"));
-                parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });
+                parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + $.param(param), title, { width: 900, height: 450 });
             });
+            /*jshint ignore:end */
 
             mainContentObject.on("click", "a.commgroup", function () {
                 var param = {
                     groupid: $(this).data('groupid'),
                     date: $(this).data('date')
                 };
-                AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), window.MSG.CommGroupSettingFor.replace("{0}", '"' + $(this).html() + '" ' + $(this).data("date")), { width: 1000, height: 450 });
+                AFFILIATE.openDialogFrame("CommGroup/ViewSetting?"
+                    + $.param(param), window.MSG.CommGroupSettingFor.replace("{0}", '"' 
+                    + $(this).html() + '" ' + $(this).data("date")), { width: 1000, height: 450 });
             });
         },
 
@@ -323,7 +347,7 @@ var ProcessingCommission = (function ($) {
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Payment/UpdateCashBack"),
                 type: 'post',
-                data: jQuery.param(data),
+                data: $.param(data),
                 beforeSend: function () {
                     $.blockUI();
                 },
@@ -332,8 +356,7 @@ var ProcessingCommission = (function ($) {
 
                     if (data.Success) {
                         ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
-                    } else {
-                    }
+                    } 
                 },
                 complete: function () {
                     $.unblockUI();
@@ -370,7 +393,8 @@ var ProcessingCommission = (function ($) {
             var param = {
                 groupid: groupId
             };
-            parent.AFFILIATE.openDialogFrame(AFFILIATE.getAbsoluteUrl("CommGroup/ViewSetting?") + jQuery.param(param), window.MSG.CommissionGroup, { width: 1000, height: 450 });
+            parent.AFFILIATE.openDialogFrame(AFFILIATE.getAbsoluteUrl("CommGroup/ViewSetting?") 
+                + $.param(param), window.MSG.CommissionGroup, { width: 1000, height: 450 });
         }
     };
 })(jQuery);

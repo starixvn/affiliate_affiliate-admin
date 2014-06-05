@@ -1,4 +1,6 @@
-﻿var Policy = function ($) {
+﻿/*global AFFILIATE,gridOption*/
+var Policy = (function ($) {
+    "use strict";
     return {
         init: function () {
 
@@ -21,11 +23,9 @@
 
                     if ($(ihs[index]).prop("checked")) {
                         policys[index] = $("#CustId").val() + ',' + funcId + ',' + 3;
-                    }
-                    else if ($(irs[index]).prop("checked")) {
+                    } else if ($(irs[index]).prop("checked")) {
                         policys[index] = $("#CustId").val() + ',' + funcId + ',' + 1;
-                    }
-                    else {
+                    } else {
                         policys[index] = $("#CustId").val() + ',' + funcId + ',' + 0;
                     }
                 }
@@ -55,8 +55,7 @@
             $("[name=chkCurrency]").change(function () {
                 if (!$(this).prop("checked")) {
                     $("#chkAll").prop("checked", "");
-                }
-                else {
+                } else {
                     Policy.ReCheckAll();
                 }
             });
@@ -65,12 +64,11 @@
             $(".p-check").change(function () {
                 var funcId = $(this).attr("id").split("_")[1];
                 if ($(this).prop("checked")) {
-                    if ($(this).attr("name") == "IndividualHost") {
+                    if ($(this).attr("name") === "IndividualHost") {
                         $("#ir_" + funcId).prop("checked", true);
                     }
-                }
-                else {
-                    if ($(this).attr("name") == "IndividualRead") {
+                } else {
+                    if ($(this).attr("name") === "IndividualRead") {
                         $("#ih_" + funcId).prop("checked", false);
                     }
                 }
@@ -78,13 +76,15 @@
         },
         ReRenderAfterPaged: function () {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption); // jshint ignore:line
 
             var param = {
                 custId: $("#CustId").val(),
                 groupId: $("#GroupId").val()
-            }
-            $.ajax({ url: AFFILIATE.getAbsoluteUrl("Management/ListPolicyUser"),
+            };
+            
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Management/ListPolicyUser"),
                 type: 'post',
                 data: param,
                 beforeSend: function () {
@@ -92,7 +92,7 @@
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     gridOption.pagerOption = {
                         itemsPerPage: 100,
                         itemsPerPageArray: [100],
@@ -121,13 +121,15 @@
                     counter++;
                 }
             }
-            if (counter == number) {
+
+            if (counter === number) {
                 $("#chkAll").prop("checked", "checked");
             }
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
 
 $(function () {
+    "use strict";
     Policy.init();
 });

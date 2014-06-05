@@ -1,4 +1,6 @@
 ﻿var QueryString = (function ($) {
+    "use strict";
+
     var parseQueryString = function (queryString) {
         var args = queryString.split('&');
         var argsList = {};
@@ -6,7 +8,7 @@
         for (var i = 0; i < args.length; i++) {
             var arg = unescape(args[i]);
             if (arg.length > 0) {
-                if (arg.indexOf('=') == -1) {
+                if (arg.indexOf('=') === -1) {
                     argsList[$.trim(arg.toLowerCase())] = null;
                 }
                 else {
@@ -37,16 +39,18 @@
             var queryString = getQueryString(url);
             var args = parseQueryString(queryString);
 
-            if (name == null || name == undefined) {
+            if (name === null || name === undefined) {
                 return url;
             }
 
             // Update value
             var found = false;
-            for (var key in args) {
-                if (key != null && key != undefined && key.toLowerCase() == name.toLowerCase()) {
+            var key;
+            
+            for (key in args) {
+                if (key.toLowerCase() === name.toLowerCase()) {
                     // Does not update data if value = undefined
-                    if (value != undefined) {
+                    if (value !== undefined) {
                         args[key] = value;
                     }
                     found = true;
@@ -60,8 +64,8 @@
             var queryArray = [];
 
             // Rebuild query string, ignore null value
-            for (var key in args) {
-                if (args[key] != null && args[key] != undefined) {
+            for (key in args) {
+                if (args[key] !== null && args[key] !== undefined) {
                     queryArray.push(key.toLowerCase() + "=" + args[key]);
                 }
             }
@@ -73,7 +77,7 @@
             var args = parseQueryString(queryString);
 
             for (var key in args) {
-                if (key != null && key.toLowerCase() == name.toLowerCase()) {
+                if (key.toLowerCase() === name.toLowerCase()) {
                     return args[key];
                 }
             }

@@ -1,4 +1,7 @@
-﻿var TextList = function ($) {
+﻿/*global AFFILIATE,gridOption,MSG*/
+var TextList = (function ($) {
+    "use strict";
+    
     var submitOptions = {};
     return {
         init: function () {
@@ -22,7 +25,7 @@
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption); // jshint ignore:line
 
             AFFILIATE.trimBeforeSubmit();
             submitOptions = $('form').serializeObject();
@@ -83,8 +86,9 @@
             }
         }
     };
-} (jQuery);
+}) (jQuery);
 
 $(function () {
+    "use strict";
     TextList.init();
 });

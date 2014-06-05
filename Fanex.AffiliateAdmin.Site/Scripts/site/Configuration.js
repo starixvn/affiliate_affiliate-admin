@@ -1,4 +1,6 @@
-﻿var Configuration = function ($) {
+﻿/*global AFFILIATE,gridOption,MSG*/
+var Configuration = (function ($) {
+    "use strict";
     var submitOptions = {};
 
     return {
@@ -30,7 +32,7 @@
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = parent.AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = parent.AFFILIATE.resizeHeightDataGrid(gridOption); // jshint ignore:line
 
             AFFILIATE.trimBeforeSubmit();
             submitOptions = $('form').serializeObject();
@@ -90,8 +92,9 @@
             AFFILIATE.openDialogFrame(url, MSG.UpdateConfiguration, { width: 560, height: 480 });
         }
     };
-} (jQuery);
+}) (jQuery);
 
 $(function () {
+    "use strict";
     Configuration.init();
 });

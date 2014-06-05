@@ -1,27 +1,30 @@
-﻿var DOMAIN = function ($) {
+﻿/*global AFFILIATE,gridOption,lang*/
+var DOMAIN = (function ($) {
+    "use strict";  
     return {
-        init: function () {
+        init: function() {
             // Event click login
-            $("#addDomain").click(function () {
+            $("#addDomain").click(function() {
                 DOMAIN.Insert();
             });
             if ($('#gridId').length > 0) {
                 DOMAIN.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             }
 
-            $(".main-content").on("click", ".icon-add-affDomain", function () {
+            $(".main-content").on("click", ".icon-add-affDomain", function() {
                 DOMAIN.Insert();
             });
         },
-        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
+        ReRenderAfterPaged: function(currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);  // jshint ignore:line
 
-            $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/AffDomainList"),
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Domain/AffDomainList"),
                 type: 'post',
-                success: function (data) {
+                success: function(data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     gridOption.pagerOption = {
                         itemsPerPage: itemsPerPage,
                         itemsPerPageArray: AFFILIATE.pageSizes,
@@ -35,32 +38,33 @@
                 }
             });
         },
-        Insert: function () {
+        Insert: function() {
             AFFILIATE.openDialogFrame("Domain/AffDomainAdd", lang.AddDomain, { width: 550, height: 230 });
         },
-        ShowUpdate: function (id) {
+        ShowUpdate: function(id) {
             AFFILIATE.openDialogFrame("Domain/AffDomainUpd/" + id, lang.EditDomain, { width: 550, height: 230 });
         },
-        Remove: function (id) {
+        Remove: function(id) {
             if (confirm(lang.DeleteDomain)) {
-                $.ajax({ url: AFFILIATE.getAbsoluteUrl("Domain/AffDomainRemove/" + id),
+                $.ajax({
+                    url: AFFILIATE.getAbsoluteUrl("Domain/AffDomainRemove/" + id),
                     type: 'post',
-                    success: function (result) {
+                    success: function(result) {
                         AFFILIATE.PreHandleAjaxResult(result);
-                        
+
                         if (!result.Success) {
                             alert(result.Message);
-                        }
-                        else {
+                        } else {
                             DOMAIN.ReRenderAfterPaged(0, $("#itemperpage").val());
                         }
                     }
                 });
             }
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
 
 $(function () {
+    "use strict";  
     DOMAIN.init();
 });

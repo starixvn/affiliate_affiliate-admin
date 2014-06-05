@@ -1,10 +1,12 @@
-﻿var AFFEDIT = function ($) {
+﻿/*global AFFILIATE,MSG*/
+var AFFEDIT = (function ($) {
+    "use strict";
     var inValidEle = null;
 
     function isValidTextBox(text) {
         var regex = new RegExp("[~!#$%^&*();\\[\\]<>{}\\|]", "g");
 
-        if (match = regex.test(text)) {
+        if (regex.test(text)) {
             return false;
         }
 
@@ -22,11 +24,11 @@
     }
 
     return {
-        init: function () {
-            $('#btnAddSite').click(function () {
+        init: function() {
+            $('#btnAddSite').click(function() {
                 AFFEDIT.addUrl();
             });
-            $('#btnSubmit').click(function () {
+            $('#btnSubmit').click(function() {
                 if (!AFFEDIT.validateTextBox()) {
                     showErrorMessage(MSG.DontEnterSpecialCharacters);
                     return false;
@@ -36,10 +38,10 @@
             });
         },
 
-        validateTextBox: function () {
+        validateTextBox: function() {
             var isValidURL = true;
 
-            $("input[type=text]").each(function () {
+            $("input[type=text]").each(function() {
                 var value = $.trim($(this).val());
                 isValidURL = isValidTextBox(value);
 
@@ -52,10 +54,11 @@
             return isValidURL;
         },
         addUrl: function () {
+            /*jshint ignore:start */
             var sites = $(".sites");
             var numberSite = sites.length;
             if (sites[numberSite - 1]) {
-                if ($(sites[numberSite - 1]).val() == '') {
+                if ($(sites[numberSite - 1]).val() === '') {
                     alert(MSG.MoreSite + numberSite);
                     sites[numberSite - 1].focus();
                     return;
@@ -74,13 +77,14 @@
             if ($("#more_" + numberSite)) {
                 $("#more_" + numberSite).focus();
             }
+            /*jshint ignore:end */
         },
-        delUrl: function (obj) {
+        delUrl: function(obj) {
             var index = $(obj).parents("tr").attr("id").replace("site_", "");
             $("#site_" + index).remove();
             AFFEDIT.reOrderRows();
         },
-        reOrderRows: function () {
+        reOrderRows: function() {
             var rows = $("#siteinfo").find("tr");
             for (var rowIndex = 1; rowIndex < rows.length; rowIndex++) {
                 var index = (rowIndex + 1);
@@ -91,26 +95,28 @@
                 $(rows[rowIndex]).find("input[type='text']").filter(":first").attr("id", "Affiliate_SiteURL_" + index);
             }
         },
-        submitForm: function () {
+        submitForm: function() {
             // find disabled inputs
             var inputs = $('form').find(':disabled');
             // enable them
             inputs.prop('disabled', false);
 
             var moreSiteUrls = '';
-            $(".more-site").each(function () {
-                if (moreSiteUrls != '')
+            $(".more-site").each(function() {
+                if (moreSiteUrls !== '') {
                     moreSiteUrls += ';';
+                }
                 moreSiteUrls += $.trim($(this).val());
             });
             $("#moreSiteUrls").val(moreSiteUrls);
         },
-        hideMsg: function () {
+        hideMsg: function() {
             setTimeout(AFFILIATE.hideMsg, 3000);
         }
-    }
-} (jQuery);
+    };
+}) (jQuery);
 
 $(function () {
+    "use strict";
     AFFEDIT.init();
 });

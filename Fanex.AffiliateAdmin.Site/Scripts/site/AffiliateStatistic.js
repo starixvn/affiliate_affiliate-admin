@@ -1,5 +1,7 @@
-﻿var AFFSTATISTIC = function ($) {
-    var timeOut;
+﻿/*global AFFILIATE,moment,MSG,status*/
+var AFFSTATISTIC = (function ($) {
+    "use strict";
+
     return {
         init: function () {
 
@@ -57,6 +59,8 @@
             });
 
             $('a.qm').click(function () {
+                
+
                 var param = {
                     affid: $(this).data("affid"),
                     monthdate: $(this).data("date"),
@@ -65,17 +69,19 @@
                     products: $(this).attr("data-product"),
                     groupid: $(this).data("groupid")
                 };
-                var title = MSG.AffQualifiedMemReportDetailFor.format($(this).data("affname"), param.monthdate, $(this).data("currency"), $(this).data("commgroup"));
+                var title = MSG.AffQualifiedMemReportDetailFor.format($(this).data("affname"), 
+                    param.monthdate, $(this).data("currency"), $(this).data("commgroup"));
                 parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });
+                
+                
             });
 
             $('#spStatistic').click(function () {
-                if ($(this).attr("class") == 'statistic-show') {
+                if ($(this).attr("class") === 'statistic-show') {
                     $(this).attr("class", 'statistic-hide');
                     $("#stContent").hide();
                     parent.AFFMASTER.colContent();
-                }
-                else {
+                } else {
                     $(this).attr("class", 'statistic-show');
                     $("#stContent").show();
                     parent.AFFMASTER.expContent();
@@ -84,21 +90,19 @@
         },
         setMonthTimeOut: function (isShow) {
             clearTimeout(AFFSTATISTIC.timeOut);
-            status = null;
+            status = null;  // jshint ignore:line
             if (!isShow) {
-                AFFSTATISTIC.timeOut = setTimeout("AFFSTATISTIC.changeMonth(false, 0);", 4000);
-            }
-            else {
-                AFFSTATISTIC.timeOut = setTimeout("AFFSTATISTIC.changeMonth(true, 0);", 4000);
+                AFFSTATISTIC.timeOut = setTimeout(function () { AFFSTATISTIC.changeMonth(false, 0); }, 4000);
+            } else {
+                AFFSTATISTIC.timeOut = setTimeout(function () { AFFSTATISTIC.changeMonth(true, 0); }, 4000);
             }
         },
-        changeMonth: function (isChange, setValue) {
+        changeMonth: function (isChange) {
             if (isChange) {
                 $("#monthyear").show();
                 $("#spMonth").hide();
                 $("#monthyear").focus();
-            }
-            else {
+            } else {
                 $("#monthyear").hide();
                 $("#spMonth").show();
             }
@@ -106,21 +110,20 @@
         },
         setProductTimeOut: function (isShow) {
             clearTimeout(AFFSTATISTIC.timeOut);
-            status = null;
+            status = null; // jshint ignore:line
+
             if (!isShow) {
-                AFFSTATISTIC.timeOut = setTimeout("AFFSTATISTIC.changeProduct(false, 0);", 4000);
-            }
-            else {
-                AFFSTATISTIC.timeOut = setTimeout("AFFSTATISTIC.changeProduct(true, 0);", 4000);
+                AFFSTATISTIC.timeOut = setTimeout(function () { AFFSTATISTIC.changeProduct(false, 0); }, 4000);
+            } else {
+                AFFSTATISTIC.timeOut = setTimeout(function() { AFFSTATISTIC.changeProduct(true, 0); }, 4000);
             }
         },
-        changeProduct: function (isChange, setValue) {
+        changeProduct: function (isChange) {
             if (isChange) {
                 $("#slProduct").show();
                 $("#spProduct").hide();
                 $("#slProduct").focus();
-            }
-            else {
+            } else {
                 $("#slProduct").hide();
                 $("#spProduct").show();
             }
@@ -131,11 +134,12 @@
                 month: date.format("MM"),
                 year: date.format("YYYY")
             };
-            location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic") + "?" + jQuery.param(param);
+            location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic") + "?" + $.param(param);
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
 
 $(function () {
+    "use strict";
     AFFSTATISTIC.init();
 });

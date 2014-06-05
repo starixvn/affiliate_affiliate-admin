@@ -1,4 +1,5 @@
 ﻿var DASHBOARD = (function ($) {
+    "use strict";
     return {
         init: function() {
             $("#btnAlert").click(function() {
@@ -28,5 +29,6 @@
     };
 }) (jQuery);
 $(function () {
+    "use strict";
     DASHBOARD.init();
 });

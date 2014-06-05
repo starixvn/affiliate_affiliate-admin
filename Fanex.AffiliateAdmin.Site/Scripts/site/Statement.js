@@ -1,6 +1,8 @@
-﻿var STATEMENT = function ($) {
+﻿/*global AFFILIATE,gridOption,MSG,Lang,System*/
+var STATEMENT = (function ($) {
+    "use strict";
+    
     var submitOptions = {};
-
     return {
         init: function () {
             if ($('#gridId').length > 0) {
@@ -8,7 +10,7 @@
             }
 
             $('#DateOption').change(function () {
-                if ($('#DateOption').val() == "0") {
+                if ($('#DateOption').val() === "0") {
                     $("#FromDate").attr("disabled", "disabled");
                     $("#ToDate").attr("disabled", "disabled");
                 } else {
@@ -24,7 +26,7 @@
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption); // jshint ignore:line
 
             AFFILIATE.trimBeforeSubmit();
             submitOptions = $('.search-panel form').serializeObject2();
@@ -49,7 +51,7 @@
                         totalItem: data.List.length
                     };
 
-                    var symbolCurrency = $("#BaseCurrency").val() == "1" ? " (" + System.Prefix + ")" : '';
+                    var symbolCurrency = $("#BaseCurrency").val() === "1" ? " (" + System.Prefix + ")" : '';
 
                     gridOption.columns[3].HeaderText = MSG.Amount + symbolCurrency;
 
@@ -57,7 +59,7 @@
 
                     gridObject.removeClass("noinfo").fanexGrid(gridOption);
 
-                    if (data.List.length == 0) {
+                    if (data.List.length === 0) {
                         gridObject.addClass("noinfo").html(Lang.NoDataInfo);
                     }
 
@@ -72,8 +74,9 @@
             AFFILIATE.openDialogFrame("Payment/UpdatePayment?transId=" + transId + "&fromStatement=true", "Trxn.ID " + transId, { width: 500, height: 572 });
         }
     };
-} (jQuery);
+}) (jQuery);
 
 $(function () {
+    "use strict";
     STATEMENT.init();
 });

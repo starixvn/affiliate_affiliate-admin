@@ -113,26 +113,6 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult CompanyWinlossByAffiliate()
         {
-            List<SelectListItem> baseCurrencyList;
-
-            if (CurrentSession.Affiliate.Currency.Equals(AppSettings.BaseExchange.Code))
-            {
-                baseCurrencyList = new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "0", Text = Lang.Member },
-                        new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
-                    };
-            }
-            else
-            {
-                baseCurrencyList = new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "0", Text = Lang.Member },
-                        new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
-                        new SelectListItem { Value = "2", Text = CurrentSession.Affiliate.Currency }
-                    };
-            }
-
             var serializer = new JavaScriptSerializer();
 
             ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
@@ -144,7 +124,7 @@ namespace Fanex.AffiliateAdmin.Controller
             ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(CurrentSession.Affiliate.Currency);
 
             var model = new CompanyWLByAffiliateViewModel();
-
+            var baseCurrencyList = GetBaseCurrencyList();
             model.AddBaseCurrencyList(baseCurrencyList);
 
             return View("CompanyWinlossByAffiliate", model);
@@ -158,6 +138,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             return RedirectToAction("CompanyWinloss");
         }
+
         #endregion Company Winloss Report
 
         #region Member Winloss Report
@@ -228,25 +209,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult MemberWinlossByAffiliate(MemberWinlossByAffiliateViewModel model)
         {
-            List<SelectListItem> baseCurrencyList;
-
-            if (CurrentSession.Affiliate.Currency.Equals(AppSettings.BaseExchange.Code))
-            {
-                baseCurrencyList = new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "0", Text = Lang.Member },
-                        new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
-                    };
-            }
-            else
-            {
-                baseCurrencyList = new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "0", Text = Lang.Member },
-                        new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
-                        new SelectListItem { Value = "2", Text = CurrentSession.Affiliate.Currency }
-                    };
-            }
+            var baseCurrencyList = GetBaseCurrencyList();
 
             model.AddBaseCurrencyList(baseCurrencyList);
 
@@ -430,6 +393,30 @@ namespace Fanex.AffiliateAdmin.Controller
         #endregion Commission Report
 
         #region Helpers
+
+        private List<SelectListItem> GetBaseCurrencyList()
+        {
+            List<SelectListItem> baseCurrencyList;
+
+            if (CurrentSession.Affiliate.Currency.Equals(AppSettings.BaseExchange.Code))
+            {
+                baseCurrencyList = new List<SelectListItem>
+                    {
+                        new SelectListItem {Value = "0", Text = Lang.Member},
+                        new SelectListItem {Value = "1", Text = AppSettings.BaseExchange.Code},
+                    };
+            }
+            else
+            {
+                baseCurrencyList = new List<SelectListItem>
+                    {
+                        new SelectListItem {Value = "0", Text = Lang.Member},
+                        new SelectListItem {Value = "1", Text = AppSettings.BaseExchange.Code},
+                        new SelectListItem {Value = "2", Text = CurrentSession.Affiliate.Currency}
+                    };
+            }
+            return baseCurrencyList;
+        }
 
         /// <summary>
         /// Get valid products.

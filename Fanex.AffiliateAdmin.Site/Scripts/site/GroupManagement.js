@@ -1,4 +1,7 @@
-﻿var Management = function ($) {
+﻿/*global AFFILIATE,gridOption,PageVar*/
+
+var Management = (function ($) {
+    "use strict";
     var submitOptions = {};
     return {
         init: function () {
@@ -14,14 +17,15 @@
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);  // jshint ignore:line
 
             if (gridOption && gridOption.pagerOption) {
                 currentPage = currentPage >= 0 ? currentPage : gridOption.pagerOption.currentPage;
-                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage
+                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage;
             }
 
-            $.ajax({ url: AFFILIATE.getAbsoluteUrl("Management/GroupDataList"),
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Management/GroupDataList"),
                 type: 'post',
                 data: jQuery.param(submitOptions),
                 beforeSend: function () {
@@ -30,7 +34,7 @@
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
 
-                    if (data.List.length == 0) {
+                    if (data.List.length === 0) {
                         $('#gridId').addClass("noinfo").html(PageVar.NoInfo);
                         return;
                     }
@@ -80,7 +84,8 @@
                     groupId: groupId
                 };
 
-                $.ajax({ url: AFFILIATE.getAbsoluteUrl("Management/DeleteGroup"),
+                $.ajax({
+                    url: AFFILIATE.getAbsoluteUrl("Management/DeleteGroup"),
                     type: 'post',
                     data: jQuery.param(param),
                     beforeSend: function () {
@@ -106,7 +111,8 @@
                 closed: status
             };
 
-            $.ajax({ url: AFFILIATE.getAbsoluteUrl("Management/ChangeStatus"),
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Management/ChangeStatus"),
                 type: 'post',
                 data: jQuery.param(param),
                 beforeSend: function () {
@@ -116,7 +122,7 @@
                     AFFILIATE.PreHandleAjaxResult(data);
 
                     Management.showMsg(data);
-                    if (data.ErrorCode != 0) {
+                    if (data.ErrorCode !== 0) {
                         return false;
                     }
                 },
@@ -127,17 +133,17 @@
             return true;
         },
         showMsg: function (data) {
-            if (data.ErrorCode != 0) {
+            if (data.ErrorCode !== 0) {
                 AFFILIATE.showErrorMsg(data.Message);
                 setTimeout(AFFILIATE.hideMsg, 3000);
-            }
-            else {
+            } else {
                 Management.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             }
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
 
 $(function () {
+    "use strict";
     Management.init();
 });

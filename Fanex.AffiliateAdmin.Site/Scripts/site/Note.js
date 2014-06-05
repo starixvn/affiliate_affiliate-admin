@@ -1,4 +1,7 @@
-﻿var NOTE = function ($) {
+﻿/*global AFFILIATE,gridOption,MSG*/
+var NOTE = (function ($) {
+    "use strict";
+
     return {
         init: function () {
             $(".main-content").on("click", ".icon-add-note", function () {
@@ -9,14 +12,15 @@
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);  // jshint ignore:line
 
             if (gridOption && gridOption.pagerOption) {
                 currentPage = currentPage >= 0 ? currentPage : gridOption.pagerOption.currentPage;
-                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage
+                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage;
             }
 
-            $.ajax({ url: AFFILIATE.getAbsoluteUrl("Note/ListNote"),
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("Note/ListNote"),
                 type: 'post',
                 beforeSend: function () {
                     $.blockUI();
@@ -40,9 +44,10 @@
             AFFILIATE.openDialogFrame("Note/EditNote?noteId=" + noteId, "Edit Note", { width: 600, height: 220 });
             return false;
         }
-    }
-} (jQuery);
+    };
+})(jQuery);
 
 $(function () {
+    "use strict";
     NOTE.init();
 });

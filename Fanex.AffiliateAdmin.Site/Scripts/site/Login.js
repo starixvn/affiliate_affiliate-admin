@@ -1,7 +1,9 @@
-﻿var LOGIN = (function ($) {
+﻿/*global AFFILIATE*/
+var LOGIN = (function ($) {
+    "use strict";
     return {
         init: function() {
-            if ($("#Username").val() == "") {
+            if ($("#Username").val() === "") {
                 $("#Username").focus();
             } else {
                 $("#Password").focus();
@@ -13,7 +15,7 @@
             });
 
             $('.login input').bind('keypress', function(e) {
-                if (e.keyCode == 13) {
+                if (e.keyCode === 13) {
                     LOGIN.submitForm();
                 }
             });
@@ -22,7 +24,7 @@
             var username = $("#Username").val(),
                 password = $("#Password").val();
 
-            if (username == "" || password == "") {
+            if (username === "" || password === "") {
                 alert("Please input username and password.");
             } else {
                 $.blockUI();
@@ -58,5 +60,6 @@
     };
 }) (jQuery);
 $(function () {
+    "use strict";
 	LOGIN.init();
 });

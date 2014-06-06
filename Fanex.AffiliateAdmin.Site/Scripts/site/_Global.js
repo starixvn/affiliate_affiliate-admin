@@ -1,4 +1,6 @@
-﻿var AFFILIATE = (function ($) {
+﻿/*global MSG,moment,subTotalStatus,Lang,moment,COLLAPSE_SUBTOTAL_STATUS*/
+var AFFILIATE = (function ($) {
+    "use strict";
     return {
         pageSizes: [20, 50, 100],
         DATE_FORMAT: "MM/DD/YYYY",
@@ -15,61 +17,6 @@
             var datePickers = $('.datepicker');
 
             if (datePickers.length > 0) {
-                var isValidDate = function (dateString) {
-                    // Parse the date parts to integers
-                    var parts = dateString.split("/");
-                    var day = parseInt(parts[1], 10);
-                    var month = parseInt(parts[0], 10);
-                    var year = parseInt(parts[2], 10);
-
-                    // Check the ranges of month and year
-                    if (year < 1000 || year > 3000 || month === 0 || month > 12) {
-                        return false;
-                    }
-
-                    var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-                    // Adjust for leap years
-                    if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)) {
-                        monthLength[1] = 29;
-                    }
-
-                    // Check the range of the day
-                    return day > 0 && day <= monthLength[month - 1];
-                };
-                var validateDate = function (target) {
-                    var minDate = target.datepicker("option", "minDate");
-                    var maxDate = target.datepicker("option", "maxDate");
-                    var inputDate = target.val(); // the visible value on screen
-                    var currentDate = target.datepicker("getDate");
-                    var errMsg = '';
-
-                    // if selected date is invalid
-                    if (!isValidDate(inputDate)) {
-                        errMsg = ApoRes.InvalidDate;
-                    }
-
-                    if (errMsg.length === 0 && currentDate < minDate) {
-                        errMsg = ApoRes.DateIsOutOfRange;
-                    }
-
-                    if (errMsg.length === 0 && maxDate < currentDate) {
-                        errMsg = ApoRes.DateIsOutOfRange;
-                    }
-
-                    target.attr('title', errMsg).tooltip({
-                        position: { my: "left top+2", at: "left bottom" },
-                        tooltipClass: "warning"
-                    });
-
-                    if (errMsg.length > 0) {
-                        target.tooltip('open');
-                        return false;
-                    }
-
-                    target.tooltip('destroy');
-                    target.removeAttr('title');
-                };
                 var limitDate = function (target, limit) { // limit: mindate/maxdate
                     var _limit = target.attr(limit);
 
@@ -85,14 +32,6 @@
 
                     return null;
                 };
-                var shiftDate = function (target, increment) {
-                    var currDate = target.datepicker('getDate');
-                    var d = currDate.getDate() + increment;
-                    var m = currDate.getMonth();
-                    var y = currDate.getFullYear();
-
-                    target.datepicker('setDate', new Date(y, m, d));
-                };
 
                 datePickers.each(function () {
                     var $this = $(this);
@@ -102,10 +41,10 @@
                         dateFormat: "dd M yy",
                         minDate: limitDate($this, "data-mindate"),
                         maxDate: limitDate($this, "data-maxdate"),
-                        beforeShow: function (input, inst) {
+                        beforeShow: function () {
                             //inst.dpDiv.css({ marginTop: '2px' });
                         },
-                        onSelect: function (dateText, inst) {
+                        onSelect: function (dateText) {
                             $(this).attr('data-value', dateText);
                         }
                     });
@@ -256,6 +195,7 @@
             return true;
         },
 
+        /*jshint ignore:start */
         //Clock 
         clock: function () {
             sysSecond++;
@@ -304,6 +244,9 @@
             }
             $('#lblDateTime').html(strHrs + ":" + strMin + ":" + strSec + " " + sysDay + "-" + sysMonthName[sysMonth - 1] + "-" + sysYear + sysGmt);
         },
+        /*jshint ignore:end */
+
+        /*jshint ignore:start */
         genGridRows: function (list, options) {
             var columns = options.columns;
             var rowCssClass = options.rowCssClass; // custom option
@@ -320,7 +263,7 @@
                 var dataRow = [];
 
                 for (var j = 0; j < columns.length; j++) {
-
+                    
                     (function () {
                         var rIndex = rowIndex;
                         var rowData = record;
@@ -352,6 +295,9 @@
             return bodyRows;
         },
 
+        /*jshint ignore:end */
+
+        /*jshint ignore:start */
         genGridData: function (columns, list, rowCssClass) {
             var bodyRows = [];
             var len = list.length;
@@ -385,7 +331,7 @@
             }
             return bodyRows;
         },
-
+        /*jshint ignore:end */
         showUpdateStatus: function (errCode, msg, callback, timeout) {
             if (errCode === 0) {
                 AFFILIATE.showSuccessMsg(msg);
@@ -394,7 +340,7 @@
                     callback(0, parent.$("#itemperpage").val()); //Refresh parent page
                 }
 
-                setTimeout("AFFILIATE.refreshParent()", timeout || 3000);
+                setTimeout(function () { AFFILIATE.refreshParent(); }, timeout || 3000);
             }
             else {
                 AFFILIATE.showErrorMsg(msg);
@@ -471,11 +417,11 @@
             return gridOption;
         },
         setWidthOfFormSearch: function () {
-            var search_panel = $('.search-panel'), dataGrid = $('.freegrid');
+            var searchPanel = $('.search-panel'), dataGrid = $('.freegrid');
             // Set default width for form search with width of datagrid
-            if (search_panel !== undefined && dataGrid !== undefined) {
-                if (dataGrid.width() > search_panel.width()) {
-                    search_panel.width(dataGrid.width());
+            if (searchPanel !== undefined && dataGrid !== undefined) {
+                if (dataGrid.width() > searchPanel.width()) {
+                    searchPanel.width(dataGrid.width());
                 }
             }
         },
@@ -496,7 +442,7 @@
                     startYear: minDate.getFullYear(),
                     finalYear: maxDate.getFullYear(),
                     month: date.getMonth(),
-                    'monthpicker-hide': function (p1, p2, p3) {
+                    'monthpicker-hide': function () {
                         alert('aba');
                     }
                 });
@@ -570,13 +516,13 @@
             var protocol = location.protocol;
             var host = location.host;
 
-            return "{0}://{1}".format(protocol, host);    
+            return "{0}://{1}".format(protocol, host);
         }
     };
 })(jQuery);
 
 $(function () {
-
+    "use strict";
     $(".ic-reload").click(function () {
         if ($("form :submit").length > 0) {
             $("form :submit").click();
@@ -591,7 +537,7 @@ $(function () {
             parent.AFFMASTER.openNewWindow(location.href);
         }
     });
-    
+
     if ($(".ic-open-window") && parent.AFFMASTER === undefined) {
         $(".ic-open-window").hide();
     }
@@ -609,7 +555,7 @@ $(function () {
     //clock
     if ($("#lblDateTime").length > 0) {
         AFFILIATE.clock();
-        setInterval("AFFILIATE.clock();", 1000);
+        setInterval(function() { AFFILIATE.clock(); }, 1000);
     }
     // Show or Hide language Box
     $('#language').mouseover(function () {
@@ -625,50 +571,48 @@ $(function () {
         AFFILIATE.changeLanguage($(this).attr('class'));
     });
 
-    $("form").submit(function (event) {
+    $("form").submit(function () {
         AFFILIATE.trimBeforeSubmit();
     });
-
-    // Resize browser when datagrid has the horizontal scroll
-    //    $(window).resize(function () {
-    //        var searchPanel = $('.search-panel');
-    //        if (searchPanel !== undefined) {
-    //            if ($(window).width() > AFFILIATE.MIN_CONTENT_WIDTH) {
-    //                searchPanel.width($('.freegrid').width());
-    //            } else {
-    //                searchPanel.width("auto");
-    //            }
-    //        }
-    //    });
 });
 
-Date.prototype.toShortDate = function() {
+/*jshint ignore:start */
+
+Date.prototype.toShortDate = function () {
+    "use strict";
     return (this.getMonth() + 1) + "/" + this.getDate() + "/" + this.getFullYear();
 };
 
-String.prototype.isNumber = function() {
+String.prototype.isNumber = function () {
+    "use strict";
     var regs = new RegExp(/^-?\d+(\.\d+)?\s*$/);
     return (regs.test(this));
 };
 
-String.prototype.removeLast = function(count) {
-    if(!count) 
+String.prototype.removeLast = function (count) {
+    "use strict";
+    if (!count) {
         count = 1;
-    return this.substring(0,this.length - count);    
+    }
+    return this.substring(0, this.length - count);
 };
 
 if (!Array.prototype.indexOf) {
     Array.prototype.indexOf = function (obj, start) {
+        "use strict";
         for (var i = (start || 0), j = this.length; i < j; i++) {
-            if (this[i] === obj) { return i; }
+            if (this[i] === obj) {
+                return i;
+            }
         }
         return -1;
-    }
+    };
 }
 
 // First, checks if it isn't implemented yet.
 if (!String.prototype.format) {
     String.prototype.format = function () {
+        "use strict";
         var args = arguments;
         return this.replace(/{(\d+)}/g, function (match, number) {
             return typeof args[number] !== 'undefined'
@@ -679,21 +623,25 @@ if (!String.prototype.format) {
     };
 }
 if (!String.prototype.trim) {
-    String.prototype.trim = function () {
+    String.prototype.trim = function() {
+        "use strict";
         return this.replace(/^\s+|\s+$/g, '');
-    }
+    };
 }
 if (!String.prototype.endsWith) {
     String.prototype.endsWith = function (suffix) {
+        "use strict";
         return this.indexOf(suffix, this.length - suffix.length) !== -1;
     };
 }
 if (!Array.prototype.clone) {
     Array.prototype.clone = function () {
+        "use strict";
         return this.slice(0);
     };
 }
 $.fn.serializeObject = function () {
+    "use strict";
     var o = {};
     // find disabled inputs
     var inputs = this.find(':disabled');
@@ -706,15 +654,24 @@ $.fn.serializeObject = function () {
     inputs.prop('disabled', true);
 
     $.each(a, function () {
-        if (o[this.name] !== undefined) {            
-        } else {
+        if (o[this.name] === undefined || o[this.name] === null) {
             o[this.name] = this.value || '';
         }
     });
     return o;
 };
 
+Array.prototype.clear = function () {
+    "use strict";
+    while (this.length > 0) {
+        this.pop();
+    }
+};
+
+/*jshint ignore:end */
+
 $.fn.serializeObject2 = function () {
+    "use strict";
     var o = {};
     // find disabled inputs
     var inputs = this.find(':disabled');
@@ -738,6 +695,7 @@ $.fn.serializeObject2 = function () {
 };
 
 $.fn.serializeData = function () {
+    "use strict";
     var o = {};
 
     $.each(this, function () {
@@ -756,7 +714,8 @@ $.fn.serializeData = function () {
     return o;
 };
 
-$.fn.createDropdownchecklist = function () {    
+$.fn.createDropdownchecklist = function () {
+    "use strict";
     $(this).each(function (index, element) {
         var $el = $(element);
         if ($el.hasClass('single-select')) {
@@ -795,6 +754,7 @@ $.fn.createDropdownchecklist = function () {
 };
 
 $.fn.createSearchPanel = function () {
+    "use strict";
     $(this).each(function (index, element) {
         var $el = $(element);
         var $dialog = $el.find("#info-dialog").dialog({
@@ -837,16 +797,13 @@ $.fn.createSearchPanel = function () {
     });
 };
 
-$.fn.pVal = function() {
+$.fn.pVal = function () {
+    "use strict";
     var $this = $(this),
         val = $this.eq(0).val();
-    if (val === $this.attr('placeholder'))
+    if (val === $this.attr('placeholder')) {
         return '';
-    else
+    } else {
         return val;
-};
-Array.prototype.clear = function () {
-    while (this.length > 0) {
-        this.pop();
     }
 };

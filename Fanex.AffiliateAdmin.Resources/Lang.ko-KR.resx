@@ -307,7 +307,7 @@
     <value>이 가맹자는 존재하지 않습니다.</value>
   </data>
 	<data name="AffQualifiedMemReportDetailFor" xml:space="preserve">
-    <value>{0}'s Qualified members report detail for {1}</value>
+    <value>{0}'s Qualified members report details for {1} - Currency: {2}, Commission Group: {3}</value>
   </data>
 	<data name="AffStatisticsAll" xml:space="preserve">
     <value>가맹자 통계 (현재까지)</value>
@@ -2382,4 +2382,7 @@
 	<data name="RemoveFromMyFavorite" xml:space="preserve">
     <value>Remove from My Favorite</value>
   </data>
+	<data name="EffectiveDate" xml:space="preserve">
+		<value>Effective Date</value>
+	</data>
 </root>

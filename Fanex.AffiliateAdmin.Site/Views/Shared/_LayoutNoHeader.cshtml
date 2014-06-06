@@ -7,6 +7,7 @@
         <link href="@Url.Content(string.Format("~/Content/_Sites/{0}/images/favicon.jpg", AppSettings.Layout))" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         <meta http-equiv="refresh" content="60" />
+        @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/headjs")    
         @RenderSection("css", required: false)
     </head>

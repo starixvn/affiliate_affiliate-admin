@@ -533,15 +533,6 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Affected Date.
-        /// </summary>
-        public static string AffectedDate {
-            get {
-                return ResourceManager.GetString("AffectedDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Affiliate.
         /// </summary>
         public static string Affiliate {
@@ -2509,6 +2500,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string EditUser {
             get {
                 return ResourceManager.GetString("EditUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Effective Date.
+        /// </summary>
+        public static string EffectiveDate {
+            get {
+                return ResourceManager.GetString("EffectiveDate", resourceCulture);
             }
         }
         

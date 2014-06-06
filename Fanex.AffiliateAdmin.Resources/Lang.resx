@@ -277,8 +277,8 @@
 	<data name="AffDomainNameNotContainChar" xml:space="preserve">
     <value>Affiliate Domain name can not contain this character.</value>
   </data>
-	<data name="AffectedDate" xml:space="preserve">
-    <value>Affected Date</value>
+	<data name="EffectiveDate" xml:space="preserve">
+    <value>Effective Date</value>
   </data>
 	<data name="Affiliate" xml:space="preserve">
     <value>Affiliate</value>
@@ -725,7 +725,7 @@
 	<data name="Currency" xml:space="preserve">
     <value>Currency</value>
   </data>
-  <data name="CurrencyCode" xml:space="preserve">
+	<data name="CurrencyCode" xml:space="preserve">
     <value>Currency Code</value>
   </data>
 	<data name="CurrencyFieldIsRequired" xml:space="preserve">

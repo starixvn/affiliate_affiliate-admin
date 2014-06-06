@@ -25,6 +25,8 @@ namespace Fanex.AffiliateAdmin.Site.App_Start
         /// <param name="bundles">Bundle Collection.</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
+            GetBundleForJquery(bundles);
+
             GetBundleForHeadJs(bundles);
 
             GetBundleForLogin(bundles);
@@ -77,6 +79,18 @@ namespace Fanex.AffiliateAdmin.Site.App_Start
         }
 
         /// <summary>
+        /// Get bundle for head.
+        /// </summary>
+        /// <param name="bundles">Bundle collection.</param>
+        private static void GetBundleForJquery(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/jquery")
+                            .Include("~/Scripts/libraries/jquery-1.10.1.js")
+                            .Include("~/Scripts/libraries/jquery-ui-1.10.3.js")
+                            .Include("~/Scripts/libraries/jquery.blockUI.js"));
+        }
+
+        /// <summary>
         /// Get bundle for common style.
         /// </summary>
         /// <param name="bundles">Bundle collection.</param>
@@ -112,8 +126,14 @@ namespace Fanex.AffiliateAdmin.Site.App_Start
         private static void GetBundleForCommonJs(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/js")
-                            .IncludeDirectory("~/Scripts/libraries", "jquery*")
-                            .IncludeDirectory("~/Scripts/libraries", "Fanex*")
+                            .Include("~/Scripts/libraries/jquery.mtz.monthpicker.seph.custom.js")
+                            .Include("~/Scripts/libraries/jquery.multiselect.js")
+                            .Include("~/Scripts/libraries/jquery.numeric.js")
+                            .Include("~/Scripts/libraries/jquery.placeholder.js")
+                            .Include("~/Scripts/libraries/jquery.ba-resize.min.js")
+                            .Include("~/Scripts/libraries/Fanex.Grid.js")
+                            .Include("~/Scripts/libraries/Fanex.Pagination.js")
+                            .Include("~/Scripts/libraries/Fanex.Grid.Convert.js")
                             .IncludeDirectory("~/Scripts/libraries/Language", "Fanex*")
                             .Include(
                                   "~/Scripts/libraries/head.js",

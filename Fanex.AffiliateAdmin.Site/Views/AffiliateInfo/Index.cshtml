@@ -22,13 +22,15 @@
 
 @section scripts{
     @Scripts.Render("~/scripts/affiliatemaster")
-
+    
+    
     <script type="text/javascript">
         var domain = "@Model.SiteDomainUrl";
-        
-        window.Mgmt = {
-            ifStatistic: $('iframe#ifStatistic'),
-            ifReport: $('iframe#ifReport')
-        };
+        $(document).ready(function() {
+            window.Mgmt = {
+                ifStatistic: $('iframe#ifStatistic'),
+                ifReport: $('iframe#ifReport')
+            };
+        });
     </script>
 }

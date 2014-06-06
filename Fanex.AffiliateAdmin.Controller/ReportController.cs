@@ -394,6 +394,10 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Helpers
 
+        /// <summary>
+        /// Get base currency list.
+        /// </summary>
+        /// <returns>Base currency list.</returns>
         private List<SelectListItem> GetBaseCurrencyList()
         {
             List<SelectListItem> baseCurrencyList;
@@ -402,19 +406,20 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 baseCurrencyList = new List<SelectListItem>
                     {
-                        new SelectListItem {Value = "0", Text = Lang.Member},
-                        new SelectListItem {Value = "1", Text = AppSettings.BaseExchange.Code},
+                        new SelectListItem { Value = "0", Text = Lang.Member },
+                        new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
                     };
             }
             else
             {
                 baseCurrencyList = new List<SelectListItem>
                     {
-                        new SelectListItem {Value = "0", Text = Lang.Member},
-                        new SelectListItem {Value = "1", Text = AppSettings.BaseExchange.Code},
-                        new SelectListItem {Value = "2", Text = CurrentSession.Affiliate.Currency}
+                        new SelectListItem { Value = "0", Text = Lang.Member },
+                        new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
+                        new SelectListItem { Value = "2", Text = CurrentSession.Affiliate.Currency }
                     };
             }
+
             return baseCurrencyList;
         }
 
@@ -666,6 +671,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return typeList.Any(t => t == p.PropertyType);
         }
+
         #endregion Company win-loss report
 
         #endregion Helpers

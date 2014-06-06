@@ -85,9 +85,10 @@ namespace Fanex.AffiliateAdmin.Site.App_Start
         private static void GetBundleForJquery(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery")
-                            .Include("~/Scripts/libraries/jquery-1.10.1.js")
-                            .Include("~/Scripts/libraries/jquery-ui-1.10.3.js")
-                            .Include("~/Scripts/libraries/jquery.blockUI.js"));
+                            .Include(
+                            "~/Scripts/libraries/jquery-1.10.1.js",
+                            "~/Scripts/libraries/jquery-ui-1.10.3.js",
+                            "~/Scripts/libraries/jquery.blockUI.js"));
         }
 
         /// <summary>
@@ -126,22 +127,21 @@ namespace Fanex.AffiliateAdmin.Site.App_Start
         private static void GetBundleForCommonJs(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/js")
-                            .Include("~/Scripts/libraries/jquery.mtz.monthpicker.seph.custom.js")
-                            .Include("~/Scripts/libraries/jquery.multiselect.js")
-                            .Include("~/Scripts/libraries/jquery.numeric.js")
-                            .Include("~/Scripts/libraries/jquery.placeholder.js")
-                            .Include("~/Scripts/libraries/jquery.ba-resize.min.js")
-                            .Include("~/Scripts/libraries/Fanex.Grid.js")
-                            .Include("~/Scripts/libraries/Fanex.Pagination.js")
-                            .Include("~/Scripts/libraries/Fanex.Grid.Convert.js")
+                            .Include(
+                                "~/Scripts/libraries/moment.js",
+                                "~/Scripts/libraries/numeral.js",
+                                "~/Scripts/libraries/jquery.placeholder.js",
+                                "~/Scripts/libraries/jquery.mtz.monthpicker.seph.custom.js",
+                                "~/Scripts/libraries/jquery.multiselect.js",
+                                "~/Scripts/libraries/jquery.formattyping.js",
+                                "~/Scripts/libraries/jquery.numeric.js",
+                                "~/Scripts/libraries/jquery.ba-resize.min.js",
+                                "~/Scripts/libraries/Fanex.Grid.js",
+                                "~/Scripts/libraries/Fanex.Pagination.js",
+                                "~/Scripts/libraries/Fanex.Grid.Convert.js")
                             .IncludeDirectory("~/Scripts/libraries/Language", "Fanex*")
                             .Include(
                                   "~/Scripts/libraries/head.js",
-                                  "~/Scripts/libraries/moment.js",
-                                  "~/Scripts/libraries/monpickr.js",
-                                  "~/Scripts/libraries/numeral.js",
-                                  "~/Scripts/libraries/placeholder_fixer.js",
-                                  "~/Scripts/libraries/ui.dropdownchecklist.js",
                                   "~/Scripts/site/Query.string.js",
                                   "~/Scripts/site/Paging.js",
                                   "~/Scripts/site/_Global.js",

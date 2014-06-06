@@ -258,9 +258,6 @@
 	<data name="Answer" xml:space="preserve">
     <value>回答</value>
   </data>
-	<data name="approvaldate" xml:space="preserve">
-    <value>核准日期</value>
-  </data>
 	<data name="Approve" xml:space="preserve">
     <value>核准</value>
   </data>

@@ -195,9 +195,10 @@ var AFFILIATE = (function ($) {
             return true;
         },
 
-        /*jshint ignore:start */
+        
         //Clock 
         clock: function () {
+            
             sysSecond++;
             if (sysSecond === 60) {
                 sysSecond = 0;
@@ -213,12 +214,16 @@ var AFFILIATE = (function ($) {
                 sysMinute = 0;
                 sysDay++;
             }
+            
+            var strMin;
             if (sysMinute < 10) {
                 strMin = "0" + sysMinute;
             }
             else {
                 strMin = sysMinute;
             }
+
+            var strSec;
             if (sysSecond < 10) {
                 strSec = "0" + sysSecond;
             }
@@ -235,7 +240,8 @@ var AFFILIATE = (function ($) {
                 sysMonth = 1;
                 sysDay = 1;
             }
-
+            
+            var strHrs;
             if (sysHour < 10) {
                 strHrs = "0" + sysHour;
             }
@@ -244,7 +250,7 @@ var AFFILIATE = (function ($) {
             }
             $('#lblDateTime').html(strHrs + ":" + strMin + ":" + strSec + " " + sysDay + "-" + sysMonthName[sysMonth - 1] + "-" + sysYear + sysGmt);
         },
-        /*jshint ignore:end */
+        
 
         /*jshint ignore:start */
         genGridRows: function (list, options) {

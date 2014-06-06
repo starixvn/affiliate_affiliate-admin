@@ -9,7 +9,7 @@
 }
 <div class="header">
     <a href="@Url.Content("~/Home")" class="no-underline">
-        <div class="logo">PAGE NOT FOUND</div>
+        <div class="logo">404: PAGE NOT FOUND!!</div>
     </a>
     <div class="seperator">
     </div>
@@ -56,7 +56,12 @@
                         對不起，您要找的頁面已被移動，刪除或不存在. 
                     </span>
                     break;
-                default:
+                 case "ko-KR":
+                    <span>
+                        죄송합니다, 찾으시는 페이지가 이동, 삭제, 또는 존재하지 않습니다.
+                    </span>
+                    break;
+                 default:
                     <span>
                         Mohon maaf, halaman yang anda cari telah di pindahkan atau telah di hapus.
                     </span>

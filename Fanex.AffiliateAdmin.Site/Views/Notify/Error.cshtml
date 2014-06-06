@@ -10,7 +10,7 @@
 
 <div class="header">
     <a href="@Url.Content("~/Home")" class="no-underline">
-        <div class="logo">ERROR</div>
+        <div class="logo">SORRY! THE SYSTEM IS NOT AVAILABLE</div>
     </a>
     <div class="seperator">
     </div>
@@ -60,13 +60,19 @@
                         非常抱歉，本司服務器正在維護中，請稍後嘗試登陸或聯繫在線客服.
                         </span>
                         break;
+                    case "ko-KR":
+                        <span>
+                        죄송합니다. 시스템을 현재 사용할 수 없습니다. 
+                        나중에 다시 시도하시거나 관리자에게 연락을 주시기 바랍니다
+                        </span>
+                        break;
                     default:
                         <span>
                     	    We are sorry. The system is currently unavailable.<br />
 						    Please try again later or contact administrator.
                         </span>
                         break;
-            }
+                }
             </li>
             }       
         </ul>     

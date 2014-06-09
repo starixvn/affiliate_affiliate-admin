@@ -5078,6 +5078,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Occur the error when calling web API! :(.
+        /// </summary>
+        public static string OccurErrorWhenCallWebAPI {
+            get {
+                return ResourceManager.GetString("OccurErrorWhenCallWebAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Occur the error when running monthly transfer..
         /// </summary>
         public static string OccurMonthlyTransferError {

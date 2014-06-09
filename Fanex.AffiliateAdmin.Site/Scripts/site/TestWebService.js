@@ -29,7 +29,7 @@ var TestWebService = (function ($) {
                         $('#result').text(result);
                     },
                     error: function () {
-                        alert("Occur error when calling web API! :(");
+                        alert(MSG.OccurErrorWhenCallWebAPI);
                     }
                 });
             });

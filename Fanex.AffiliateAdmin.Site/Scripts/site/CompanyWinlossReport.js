@@ -273,7 +273,7 @@ var CompanyWinlossReport = (function ($) {
             var memberCurrencyCount = companyWinlossInMemberCurrencies.length;
             var firstMemberCurrency = companyWinlossInMemberCurrencies[0].Currency;
 
-            if ((groupBy === 0 && groupByText === group.Level) || (groupBy === 1 && groupByText === group.Level)) {
+            if ((groupBy === "0" && groupByText === group.Level) || (groupBy === "1" && groupByText === group.Level)) {
 
                 $.each(companyWinlossInMemberCurrencies, function (idx, item) {
                     var columns = [];
@@ -289,7 +289,7 @@ var CompanyWinlossReport = (function ($) {
                                 var fromDate;
                                 var toDate;
 
-                                if (groupBy === 0) {
+                                if (groupBy === "0") {
                                     fromDate = obj.format(AFFILIATE.DATE_FORMAT);
                                     toDate = obj.format(AFFILIATE.DATE_FORMAT);
                                 } else {

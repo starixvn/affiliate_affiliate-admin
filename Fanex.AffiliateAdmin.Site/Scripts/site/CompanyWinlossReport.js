@@ -1,4 +1,5 @@
-﻿/*global AFFILIATE,MSG,moment,System,subTotalStatus,Lang,EXPAND_SUBTOTAL_STATUS,moment*/
+﻿/*global AFFILIATE,MSG,moment,System,subTotalStatus,Lang,EXPAND_SUBTOTAL_STATUS,
+    moment,sampleNetGamingCol,samplePlaytechCasinoHeader,samplePShareCol,samplePWinCol*/
 var CompanyWinlossReport = (function ($) {
     "use strict";
     var submitOptions = {};
@@ -187,6 +188,31 @@ var CompanyWinlossReport = (function ($) {
         }
     };
 
+    var addPlaytechCasinoColumns = function (products) {
+
+        var hasPlaytechCasino = false;
+
+        $.each(products, function () {
+            if (this.Name === "Playtech Casino") {
+                hasPlaytechCasino = true;
+                return;
+            }
+        });
+
+        if (hasPlaytechCasino === true) {
+            if (products.length > 1) {
+                gridOption.groupHeaderRows[0].Columns.push(samplePlaytechCasinoHeader);
+                gridOption.columns.push(samplePShareCol);
+                gridOption.columns.push(samplePWinCol);
+                gridOption.columns.push(sampleNetGamingCol);
+            } else {
+                gridOption.columns.push(samplePShareCol);
+                gridOption.columns.push(samplePWinCol);
+                gridOption.columns.push(sampleNetGamingCol);
+            }
+        }
+    };
+
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     var customizeGridOption = function (sampleGridOption) {
 
@@ -208,11 +234,11 @@ var CompanyWinlossReport = (function ($) {
 
         var products = getSelectProducts(window.PRODUCTS);
 
-        //var products = window.PRODUCTS;
-
         addTurnoverColumnsForProducts(products, startTurnoverPosition);
 
         addWinlostColumnsForProducts(products, gridOption.groupHeaderRows[0].Columns.length, gridOption.columns.length);
+
+        addPlaytechCasinoColumns(products);
     };
 
     var getColumnSuffix = function (baseCurrency) {
@@ -274,7 +300,6 @@ var CompanyWinlossReport = (function ($) {
             var firstMemberCurrency = companyWinlossInMemberCurrencies[0].Currency;
 
             if ((groupBy === "0" && groupByText === group.Level) || (groupBy === "1" && groupByText === group.Level)) {
-
                 $.each(companyWinlossInMemberCurrencies, function (idx, item) {
                     var columns = [];
                     if (idx === 0) {
@@ -302,7 +327,7 @@ var CompanyWinlossReport = (function ($) {
                                 request.FromDate = fromDate;
                                 request.ToDate = toDate;
 
-                                // get paras for request object
+                                // get paras for request object.
                                 var url = playerWinlossUrl + "?" + jQuery.param(request);
 
                                 return "<a href={0}>".format(url) + obj.format(formatDateTime) + "</a>";
@@ -615,7 +640,7 @@ var CompanyWinlossReport = (function ($) {
             });
 
             $('#gridId').on('click', '.toggle-indicator', function () {
-                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS 
+                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS
                     ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
                 AFFILIATE.resetToggleIndicator(gridOption);
             });
@@ -659,7 +684,7 @@ var CompanyWinlossReport = (function ($) {
             } else {
 
                 diffMonth = (toMonth + 12) - fromMonth;
-                
+
                 if (diffMonth < 0 || diffMonth > 2) {
                     $('#FromDate, #ToDate').addClass('input-validation-error');
                     return false;
@@ -747,7 +772,7 @@ var CompanyWinlossReport = (function ($) {
             });
         }
     };
-}) (jQuery);
+})(jQuery);
 
 $(function () {
     "use strict";

@@ -21,7 +21,7 @@ report
 <div class="search-panel search-company-winloss">
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
-    @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
+    @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, true)
     @using (Html.BeginForm("CompanyWinloss", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
     {            
         <div class="span12 search-form">
@@ -104,7 +104,7 @@ report
             Adjustment: "@Lang.Adjustment",
             PSP: "@Lang.PSP",
             Turnover: "@Lang.Turnover",
-            CustomerWL: "@Lang.CustomerWL",
+            CustomerWL: "@Lang.MemberWL",
             CompanyWL: "@Lang.CompanyWL",
             SubTotalIn: "@Lang.SubTotalIn",
             Total: "@Lang.Total",
@@ -137,17 +137,19 @@ report
             groupHeaderRows: [
                 {
                     Columns: [
-                        { HeaderText: "@Lang.Date", Name: "WinlostDate", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Name: "ExRate", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Date", HeaderText: "@Lang.Date", Name: "WinlostDate", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Currency",HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
+                        { HeaderCaptioin: "@Lang.UnitPerBaseCurrency".format(System.Currency), HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Name: "ExRate", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Name: "Deposit", NameCache: "Deposit", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Withdrawal", HeaderText: "@Lang.Withdrawal", IsCurrency: true, Name: "Withdrawal", NameCache: "Withdrawal", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Name: "Bonus", NameCache: "Bonus", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Name: "Adjustment", NameCache: "Adjustment", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.PSP", HeaderText: "@Lang.PSP", IsCurrency: true, Name: "PSP", NameCache: "PSP", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.ActiveMembers", Name: "ActivePlayer", MergeRowNumber: 2 },
-                        { HeaderCaption: "@Lang.CustomerWL", HeaderText: "@Lang.CustomerWL", IsCurrency: true, Name: "TotalMemberWinlost", NameCache: "TotalMemberWinlost", MergeRowNumber: 2 }
+                        { HeaderCaption: "@Lang.BetCount", HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.ActiveMembers", HeaderText: "@Lang.ActiveMembers", Name: "ActivePlayer", MergeRowNumber: 2 },
+                        { HeaderCaption: "<span title='@Lang.MemberWinloss'>@Lang.MemberWL</span>", 
+                          HeaderText: "<span title='@Lang.MemberWinloss'>@Lang.MemberWL</span>",   
+                            IsCurrency: true, Name: "TotalMemberWinlost", NameCache: "TotalMemberWinlost", MergeRowNumber: 2 }
                     ]
                 }
             ],
@@ -162,7 +164,9 @@ report
                 { HeaderCaption: "@Lang.PSP", HeaderText: "@Lang.PSP", IsCurrency: true, Width: 90, Name: "PSP", NameCache: "PSP", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
                 { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },                
                 { HeaderText: "@Lang.ActiveMembers", Width: 110, Name: "ActivePlayer", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderCaption: "@Lang.CustomerWL", HeaderText: "@Lang.CustomerWL", IsCurrency: true, Width: 110, Name: "TotalMemberWinlost", NameCache: "TotalMemberWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true }
+                { HeaderCaption: "<span title='@Lang.MemberWinloss'>@Lang.MemberWL</span>",
+                    HeaderText:  "<span title='@Lang.MemberWinloss'>@Lang.MemberWL</span>", 
+                    IsCurrency: true, Width: 110, Name: "TotalMemberWinlost", NameCache: "TotalMemberWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true }
             ],            
             showPager: true,
             customPager: true,
@@ -174,11 +178,26 @@ report
             numberOfFrozenColumn: 3
         };
         
-        var sampleTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-        var sampleWinlostCol = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Width: 110, Name: "TotalCompanyWinlost", NameCache: "TotalCompanyWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-
         var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", HeaderAlign: "center", IsCurrency: true, Name: "TotalTurnover", NameCache: "TotalTurnover" };
-        var sampleCompanyWLHeader = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", HeaderAlign: "center", IsCurrency: true, Name: "TotalCompanyWinlost", NameCache: "TotalCompanyWinlost" };
+        var sampleCompanyWLHeader = { 
+            HeaderCaption: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
+            HeaderText: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
+            HeaderAlign: "center", IsCurrency: true, Name: "TotalCompanyWinlost", NameCache: "TotalCompanyWinlost" };
+        
+        var sampleTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleWinlostCol = {
+            HeaderCaption: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
+            HeaderText: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
+            IsCurrency: true, Width: 110, Name: "TotalCompanyWinlost", NameCache: "TotalCompanyWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true
+        };
+
+        var samplePlaytechCasinoHeader = { HeaderCaption: "@Lang.PlaytechCasino", HeaderAlign: "center", IsCurrency: true, Name: "PShare", NameCache: "PShare", MergeColNumber: 3 };
+        var samplePShareCol = { HeaderCaption: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
+            IsCurrency: true, Width: 110, Name: "PShare", NameCache: "PShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var samplePWinCol= { HeaderCaption: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
+            IsCurrency: true, Width: 110, Name: "PWin", NameCache: "PWin", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleNetGamingCol = { HeaderCaption: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
+            IsCurrency: true, Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
     </script>
     
     @Scripts.Render("~/scripts/companywinlossreport")

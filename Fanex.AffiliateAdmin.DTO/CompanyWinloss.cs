@@ -155,5 +155,23 @@ namespace Fanex.AffiliateAdmin.DTO
                 return -TotalMemberWinlost_Aff; 
             } 
         }
+
+        public decimal PShare { get; set; }
+
+        public decimal PWin { get; set; }
+
+        public decimal NetGaming { get; set; }
+
+        public decimal PShare_Aff { get; set; }
+
+        public decimal PWin_Aff { get; set; }
+
+        public decimal NetGaming_Aff { get; set; }
+
+        public decimal PShareBase { get; set; }
+
+        public decimal PWinBase { get; set; }
+
+        public decimal NetGamingBase { get; set; }
     }
 }

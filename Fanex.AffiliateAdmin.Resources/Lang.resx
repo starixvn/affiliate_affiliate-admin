@@ -749,7 +749,7 @@
   <data name="Customer" xml:space="preserve">
     <value>Customer</value>
   </data>
-  <data name="CustomerWL" xml:space="preserve">
+  <data name="MemberWL" xml:space="preserve">
     <value>Member W/L</value>
   </data>
   <data name="DailyEarnings" xml:space="preserve">
@@ -1594,9 +1594,6 @@
   </data>
   <data name="MemberWinloss" xml:space="preserve">
     <value>Member Winloss</value>
-  </data>
-  <data name="MemberWinlost" xml:space="preserve">
-    <value>Members Win/Loss</value>
   </data>
   <data name="MemDomainNameNotContainChar" xml:space="preserve">
     <value>Member domain name can not contain this character.</value>
@@ -2533,6 +2530,27 @@
   </data>
   <data name="OccurErrorWhenCallWebAPI" xml:space="preserve">
     <value>Occur the error when calling web API! :(</value>
+  </data>
+  <data name="PCNetGaming" xml:space="preserve">
+    <value>PC.Net Gaming</value>
+  </data>
+  <data name="PShare" xml:space="preserve">
+    <value>P.Share</value>
+  </data>
+  <data name="PWin" xml:space="preserve">
+    <value>P.Win</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Member Winloss</value>
+  </data>
+  <data name="PlaytechCasinoNetGaming" xml:space="preserve">
+    <value>Playtech Casino Net Gaming</value>
+  </data>
+  <data name="ProgressiveShare" xml:space="preserve">
+    <value>Progressive Share</value>
+  </data>
+  <data name="ProgressiveWin" xml:space="preserve">
+    <value>Progressive Win</value>
   </data>
   <data name="ErrConfirmPasswordRequired" xml:space="preserve">
     <value>Confirm password is required</value>

@@ -195,8 +195,10 @@ var AFFILIATE = (function ($) {
             return true;
         },
 
-        
+
         //Clock 
+        /*jshint ignore:start */
+        
         clock: function () {
             
             sysSecond++;
@@ -251,8 +253,6 @@ var AFFILIATE = (function ($) {
             $('#lblDateTime').html(strHrs + ":" + strMin + ":" + strSec + " " + sysDay + "-" + sysMonthName[sysMonth - 1] + "-" + sysYear + sysGmt);
         },
         
-
-        /*jshint ignore:start */
         genGridRows: function (list, options) {
             var columns = options.columns;
             var rowCssClass = options.rowCssClass; // custom option
@@ -763,16 +763,20 @@ $.fn.createSearchPanel = function () {
     "use strict";
     $(this).each(function (index, element) {
         var $el = $(element);
-        var $dialog = $el.find("#info-dialog").dialog({
-            autoOpen: false
-        });
+        var $dialog = $el.find("#info-dialog").hide();
         $el.find("#info").click(function (e) {
             e.stopPropagation();
-            $dialog.dialog("open");
+            $dialog.show();
+        });
+
+        $dialog.find("#info-close").click(function (e) {
+            e.stopPropagation();
+            $dialog.hide();
         });
 
         $el.find("#excel").click(function (e) {
             e.stopPropagation();
+
             alert("excel click");
         });
 
@@ -792,7 +796,7 @@ $.fn.createSearchPanel = function () {
 
                 $contentPanel.stop().slideToggle(function () {
                     if ($(".search-form").is(":visible")) {
-                        collapse.removeClass("expand");                        
+                        collapse.removeClass("expand");
                     } else {
                         // resize height of datagrid
                         $("#gridId").fanexGrid('resizeHeight', colHeight);
@@ -800,6 +804,10 @@ $.fn.createSearchPanel = function () {
                 });
             });
         }
+
+        $dialog.click(function (e) {
+            e.stopPropagation();
+        });
     });
 };
 

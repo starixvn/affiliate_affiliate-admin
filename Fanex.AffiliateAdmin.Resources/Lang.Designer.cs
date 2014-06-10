@@ -1964,15 +1964,6 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Member W/L.
-        /// </summary>
-        public static string CustomerWL {
-            get {
-                return ResourceManager.GetString("CustomerWL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Daily Earnings.
         /// </summary>
         public static string DailyEarnings {
@@ -4538,11 +4529,11 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Members Win/Loss.
+        ///   Looks up a localized string similar to Member W/L.
         /// </summary>
-        public static string MemberWinlost {
+        public static string MemberWL {
             get {
-                return ResourceManager.GetString("MemberWinlost", resourceCulture);
+                return ResourceManager.GetString("MemberWL", resourceCulture);
             }
         }
         
@@ -5312,6 +5303,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PC.Net Gaming.
+        /// </summary>
+        public static string PCNetGaming {
+            get {
+                return ResourceManager.GetString("PCNetGaming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pending.
         /// </summary>
         public static string Pending {
@@ -5380,6 +5380,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string PlaytechCasino {
             get {
                 return ResourceManager.GetString("PlaytechCasino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Playtech Casino Net Gaming.
+        /// </summary>
+        public static string PlaytechCasinoNetGaming {
+            get {
+                return ResourceManager.GetString("PlaytechCasinoNetGaming", resourceCulture);
             }
         }
         
@@ -5492,11 +5501,47 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Progressive Share.
+        /// </summary>
+        public static string ProgressiveShare {
+            get {
+                return ResourceManager.GetString("ProgressiveShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Progressive Win.
+        /// </summary>
+        public static string ProgressiveWin {
+            get {
+                return ResourceManager.GetString("ProgressiveWin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to P.Share.
+        /// </summary>
+        public static string PShare {
+            get {
+                return ResourceManager.GetString("PShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PSP.
         /// </summary>
         public static string PSP {
             get {
                 return ResourceManager.GetString("PSP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to P.Win.
+        /// </summary>
+        public static string PWin {
+            get {
+                return ResourceManager.GetString("PWin", resourceCulture);
             }
         }
         
@@ -6190,6 +6235,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member Winloss.
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

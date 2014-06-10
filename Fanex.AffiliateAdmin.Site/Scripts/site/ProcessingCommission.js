@@ -53,7 +53,6 @@ var ProcessingCommission = (function ($) {
                                     .format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, record.GroupID, record.GroupName, cellFormated);
                         }
                         
-                        
                         return 0;
                     }
                 }

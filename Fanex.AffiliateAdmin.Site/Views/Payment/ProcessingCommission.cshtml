@@ -36,7 +36,7 @@ payment
 <div class="search-panel search-processing-commission">
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
-    @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
+    @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, true)
     @using (Html.BeginForm("ProcessingCommission", "Payment", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
     {
         <div class="span12 search-form">
@@ -138,7 +138,9 @@ payment
             CommissionGroup: "@Lang.CommGroup",
             ProcessingCommissionTitle: "@Lang.ProcessingCommission",
             OccurMonthlyTransferError: "@Lang.OccurMonthlyTransferError",
-            ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct'
+            ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct',
+            QualifiedMembers: "@Lang.QualifiedMembers"
+            
         };
 
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
@@ -175,7 +177,7 @@ payment
                     Name: "GroupName",
                     HeaderAlign: "center",
                     CellAlign: "left",
-                    Formatter: function(rIndex, record, cell, cellFormated) {
+                    Formatter: function(rIndex, record) {
                         return '<a href="javascript:void(0)" data-groupid={0} data-date="{1}" class="commgroup">{2}</a>'.format(record.GroupID, moment(record.WinlostDate).format(AFFILIATE.DATE_FORMAT_MONTH), record.GroupName);
                     }
                 },
@@ -190,6 +192,19 @@ payment
 
         var totalPaymentHeader = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Name: "Commission", NameCache: "Commission", MergeRowNumber: 2 };
         var totalPaymentCol = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true };
+        
+        var samplePShareCol = { 
+            HeaderCaption: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
+            HeaderText: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
+            IsCurrency: true, Width: 110, Name: "PShare", NameCache: "PShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var samplePWinCol= { 
+            HeaderCaption: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
+            HeaderText: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
+            IsCurrency: true, Width: 110, Name: "PWin", NameCache: "PWin", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleNetGamingCol = { 
+            HeaderCaption: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
+            HeaderText: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
+            IsCurrency: true, Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
 
     </script>
     @Scripts.Render("~/scripts/processingcommission")

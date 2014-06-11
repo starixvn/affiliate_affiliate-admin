@@ -50,7 +50,7 @@ var MemberWinlossReport = (function ($) {
                 gridOption.hiddenColumns = byAffiliate ? [EXRATE_COL_INDEX - 2] : [EXRATE_COL_INDEX];
                 break;
             case AFF_CURRENCY_OPTION:
-                gridOption.groupHeaderRows[0].Columns[EXRATE_COL_INDEX].HeaderText 
+                gridOption.groupHeaderRows[0].Columns[EXRATE_COL_INDEX].HeaderText
                     = window.MSG.UnitPerBaseCurrency.format($('#BaseCurrency option:selected').text());
                 gridOption.groupHeaderRows[0].Columns[EXRATE_COL_INDEX].Name = "AffExRate";
                 gridOption.columns[EXRATE_COL_INDEX].Name = "AffExRate";
@@ -194,6 +194,40 @@ var MemberWinlossReport = (function ($) {
         }
     };
 
+    var addPlaytechCasinoColumns = function (products) {
+
+        var hasPlaytechCasino = false;
+
+        $.each(products, function () {
+            if (this.Name === "Playtech Casino") {
+                hasPlaytechCasino = true;
+                return;
+            }
+        });
+
+        if (hasPlaytechCasino === true) {
+            if (products.length > 1) {
+                gridOption.groupHeaderRows[0].Columns.push(samplePlaytechCasinoHeader);
+
+                var pShareCol = $.extend(true, {}, samplePShareCol);
+                var pWinCol = $.extend(true, {}, samplePWinCol);
+                var netGamingCol = $.extend(true, {}, sampleNetGamingCol);
+
+                delete pShareCol["IsCurrency"];
+                delete pWinCol["IsCurrency"];
+                delete netGamingCol["IsCurrency"];
+
+                gridOption.columns.push(pShareCol);
+                gridOption.columns.push(pWinCol);
+                gridOption.columns.push(netGamingCol);
+            } else {
+                gridOption.columns.push(samplePShareCol);
+                gridOption.columns.push(samplePWinCol);
+                gridOption.columns.push(sampleNetGamingCol);
+            }
+        }
+    };
+
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     var customizeGridOption = function (sampleGridOption) {
         var startTurnoverPosition = TURNOVER_COL_INDEX;
@@ -212,8 +246,6 @@ var MemberWinlossReport = (function ($) {
                 break;
         }
 
-        //window.PRODUCTS = [{ Id: 1, Name: "Sportsbook"}];
-
         var products = getSelectedProducts(window.PRODUCTS);
 
         addTurnoverColumnsForProducts(products, startTurnoverPosition);
@@ -221,6 +253,8 @@ var MemberWinlossReport = (function ($) {
         addWinlostColumnsForProducts(products, gridOption.groupHeaderRows[0].Columns.length, gridOption.columns.length);
 
         removeRedundantColumnsWhenViewInAffInfo(byAffiliate);
+
+        addPlaytechCasinoColumns(products);
     };
 
     var getColumnSuffix = function (baseCurrency) {
@@ -316,8 +350,9 @@ var MemberWinlossReport = (function ($) {
             var columns = [];
 
             if (idx === 0) {
-                columns.push({ Value: window.MSG.SubTotal, Name: "WinlostDate", 
-                    MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });
+                columns.push({ Value: window.MSG.SubTotal, Name: "WinlostDate",
+                    MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass
+                });
             }
 
             createPlayerCurrencyColumn(columns, item['PlayerCurrency']);
@@ -468,7 +503,7 @@ var MemberWinlossReport = (function ($) {
             });
 
             $('#gridId').on('click', '.toggle-indicator', function () {
-                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS 
+                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS
                     ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
                 AFFILIATE.resetToggleIndicator(gridOption);
             });
@@ -592,7 +627,7 @@ var MemberWinlossReport = (function ($) {
             });
         }
     };
-}) (jQuery);
+})(jQuery);
 
 $(function () {
     "use strict";

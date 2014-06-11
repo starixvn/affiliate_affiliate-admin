@@ -105,5 +105,17 @@ namespace Fanex.AffiliateAdmin.DTO
         public long? RowNo { get; set; }
 
         public bool EnableCashback { get; set; }
+
+        public decimal PShare { get; set; }
+
+        public decimal PWin { get; set; }
+
+        public decimal NetGaming { get; set; }
+
+        public decimal PShareBase { get; set; }
+
+        public decimal PWinBase { get; set; }
+
+        public decimal NetGamingBase { get; set; }
     }
 }

@@ -202,9 +202,18 @@ var CompanyWinlossReport = (function ($) {
         if (hasPlaytechCasino === true) {
             if (products.length > 1) {
                 gridOption.groupHeaderRows[0].Columns.push(samplePlaytechCasinoHeader);
-                gridOption.columns.push(samplePShareCol);
-                gridOption.columns.push(samplePWinCol);
-                gridOption.columns.push(sampleNetGamingCol);
+
+                var pShareCol = $.extend(true, {}, samplePShareCol);
+                var pWinCol = $.extend(true, {}, samplePWinCol);
+                var netGamingCol = $.extend(true, {}, sampleNetGamingCol);
+
+                delete pShareCol["IsCurrency"];
+                delete pWinCol["IsCurrency"];
+                delete netGamingCol["IsCurrency"];
+
+                gridOption.columns.push(pShareCol);
+                gridOption.columns.push(pWinCol);
+                gridOption.columns.push(netGamingCol);
             } else {
                 gridOption.columns.push(samplePShareCol);
                 gridOption.columns.push(samplePWinCol);

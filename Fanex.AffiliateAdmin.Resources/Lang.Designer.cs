@@ -5762,6 +5762,21 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;ul&gt;
+        ///                &lt;li&gt;Company W/L: Sum of selected products&apos; winloss&lt;/li&gt;
+        ///                &lt;li&gt;PC. Net Gaming: - Customer W/L - P.Share&lt;/li&gt;
+        ///                &lt;li&gt;QM (Qualified Member): Total number of members whose accumulated stake in that month is greater than or equal to a defined amount&lt;/li&gt;
+        ///                &lt;li&gt;Member W/L: Win loss amount of affiliate&apos;s members in a month on a product&lt;/li&gt;
+        ///                &lt;li&gt;%Comm follow tier setting of commission group&lt;/li&gt;
+        ///                &lt;li&gt;PSP (Payment Service Pr [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ReportInfo {
+            get {
+                return ResourceManager.GetString("ReportInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, the adjustment amount is invalid..
         /// </summary>
         public static string RequiredAmount {

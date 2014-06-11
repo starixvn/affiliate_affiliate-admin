@@ -650,13 +650,7 @@
     <Content Include="Views\Notify\Message.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Message\AddMessage.cshtml" />
-    <Content Include="Views\EmailHistory\Domain\AffDomain.cshtml" />
-    <Content Include="Views\EmailHistory\Domain\AffDomainAdd.cshtml" />
     <Content Include="Views\Message\EditMessage.cshtml" />
-    <Content Include="Views\EmailHistory\Domain\AffDomainUpd.cshtml" />
-    <Content Include="Views\EmailHistory\Domain\MemDomain.cshtml" />
-    <Content Include="Views\EmailHistory\Domain\MemDomainUpd.cshtml" />
-    <Content Include="Views\EmailHistory\Domain\MemDomainAdd.cshtml" />
     <Content Include="Views\Media\BannerList.cshtml" />
     <Content Include="Views\Media\TextList.cshtml" />
     <Content Include="Views\Media\AddBanner.cshtml" />
@@ -687,9 +681,6 @@
     <Content Include="Views\AffiliateInfo\Statistic.cshtml" />
     <Content Include="Views\AffiliateInfo\_Commission.cshtml" />
     <Content Include="Views\Media\EditBanner.cshtml" />
-    <Content Include="Views\EmailHistory\Domain\DomainControl.cshtml" />
-    <Content Include="Views\EmailHistory\Domain\DomainControlUpd.cshtml" />
-    <Content Include="Views\EmailHistory\Domain\DomainControlAdd.cshtml" />
     <None Include=".jshintignore" />
     <Content Include="Content\_Sites\athena\Login.less" />
     <Content Include="Content\_Sites\athena\Notify.less" />
@@ -786,7 +777,15 @@
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.WithdrawalEmail.vi-VN.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.WithdrawalEmail.zh-TW.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Shared\Email\AffiliateApprove\Html\Body.ApprovalEmail.en-US.cshtml" />
+    <Content Include="Views\Domain\AffDomain.cshtml" />
+    <Content Include="Views\Domain\AffDomainAdd.cshtml" />
+    <Content Include="Views\Domain\AffDomainUpd.cshtml" />
+    <Content Include="Views\Domain\DomainControl.cshtml" />
+    <Content Include="Views\Domain\DomainControlAdd.cshtml" />
+    <Content Include="Views\Domain\DomainControlUpd.cshtml" />
+    <Content Include="Views\Domain\MemDomain.cshtml" />
+    <Content Include="Views\Domain\MemDomainAdd.cshtml" />
+    <Content Include="Views\Domain\MemDomainUpd.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1055,7 +1054,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -160,5 +160,17 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal Cashback { get; set; }
 
         public decimal CashbackBase { get; set; }
+
+        public decimal PShare { get; set; }
+
+        public decimal PWin { get; set; }
+
+        public decimal NetGaming { get; set; }
+
+        public decimal PShareBase { get; set; }
+
+        public decimal PWinBase { get; set; }
+
+        public decimal NetGamingBase { get; set; }
     }
 }

@@ -23,12 +23,16 @@ var CommissionReport = (function ($) {
 
     var addProductColumns = function (products) {
         var productCount = products.length;
+        var mergeColNumber = 7;
+        var threeNewCol = 3;
 
         for (var i = 0; i < productCount; i++) {
             var name = nomalizeProductName(products[i].Name);
+            var isPlaytechCasino = products[i].Name === "Playtech Casino";
+            mergeColNumber = isPlaytechCasino ? mergeColNumber + threeNewCol : mergeColNumber;
 
             gridOption.groupHeaderRows[0].Columns.push(
-                { HeaderText: window.MSG[name], Name: name + "ActivePlayers", MergeColNumber: 7 }
+                { HeaderText: window.MSG[name], Name: name + "ActivePlayers", MergeColNumber: mergeColNumber }
             );
             gridOption.columns.push(
                 { HeaderText: window.MSG.ActivePlayers, Width: 90, Name: name + "ActivePlayers", HeaderAlign: "center", CellAlign: "right" }
@@ -51,7 +55,10 @@ var CommissionReport = (function ($) {
 
             /*jshint ignore:start */
             gridOption.columns.push(
-                { IsCurrency: false, HeaderCaption: window.MSG.QM, HeaderText: window.MSG.QM,
+                {
+                    HeaderCaption: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM),
+                    HeaderText: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM), 
+                    IsCurrency: false, 
                     Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
                     Formatter: function (rIndex, record, cell, cellFormated) {
                         var actualBaseCurreny = "2";
@@ -81,6 +88,12 @@ var CommissionReport = (function ($) {
                     CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
                 }
             );
+
+            if (isPlaytechCasino === true) {
+                gridOption.columns.push(samplePShareCol);
+                gridOption.columns.push(samplePWinCol);
+                gridOption.columns.push(sampleNetGamingCol);
+            }
         }
     };
 

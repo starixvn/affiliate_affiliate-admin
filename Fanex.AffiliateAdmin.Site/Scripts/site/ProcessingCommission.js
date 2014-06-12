@@ -1,4 +1,4 @@
-﻿/*global AFFILIATE*/
+﻿/*global AFFILIATE,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
 var ProcessingCommission = (function ($) {
     "use strict";
 
@@ -343,6 +343,9 @@ var ProcessingCommission = (function ($) {
 
                     AFFILIATE.updateSearchPanel(gridObject);
                 },
+                error: function () {
+                    alert("Occur the error when requesting processing commission report :(");
+                },
                 complete: function () {
                     $.unblockUI();
                 }
@@ -371,6 +374,9 @@ var ProcessingCommission = (function ($) {
                     if (data.Success) {
                         ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
                     }
+                },
+                error: function () {
+                    alert("Occur the error when updating the cashback :(");
                 },
                 complete: function () {
                     $.unblockUI();

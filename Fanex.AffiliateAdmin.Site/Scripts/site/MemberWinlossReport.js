@@ -1,4 +1,4 @@
-﻿/*global AFFILIATE,MSG*/
+﻿/*global AFFILIATE,MSG,samplePlaytechCasinoHeader,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
 var MemberWinlossReport = (function ($) {
     "use strict";
 
@@ -620,6 +620,9 @@ var MemberWinlossReport = (function ($) {
                     }
 
                     AFFILIATE.updateSearchPanel($('#gridId'));
+                },
+                error: function () {
+                    alert("Occur the error when requesting the Member Winloss report! :(");
                 },
                 complete: function () {
                     $.unblockUI();

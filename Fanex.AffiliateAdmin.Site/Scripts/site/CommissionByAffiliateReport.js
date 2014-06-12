@@ -1,4 +1,4 @@
-﻿/*global AFFILIATE,MSG,moment,System*/
+﻿/*global AFFILIATE,MSG,moment,System,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
 var CommissionReport = (function ($) {
     "use strict";
     var submitOptions = {};
@@ -426,6 +426,9 @@ var CommissionReport = (function ($) {
                     }
 
                     AFFILIATE.updateSearchPanel($('#gridId'));
+                },
+                error: function () {
+                    alert("Occur the error when requesting the Affiliate Commission report! :(");
                 },
                 complete: function () {
                     $.unblockUI();

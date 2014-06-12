@@ -179,7 +179,8 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                     Currency = reader.ToString("Currency"),
                     PlayerUsername = reader.ToString("PlayerUsername"),
                     PlayerCurrency = reader.ToString("PlayerCurrency"),
-                    BetCount = reader.ToInt("BetCount")
+                    BetCount = reader.ToInt("BetCount"),
+
                 };
 
                 if (criteria.GroupBy == GroupByDate)
@@ -285,6 +286,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             memberWinloss.PSP = reader.ToDecimal("PSP");
             memberWinloss.TotalTurnover = reader.ToDecimal("TotalTurnover");
             memberWinloss.TotalWinlost = reader.ToDecimal("TotalWinlost");
+            memberWinloss.PShare = reader.ToDecimal("PShare");
+            memberWinloss.PWin = reader.ToDecimal("PWin");
+            memberWinloss.NetGaming = reader.ToDecimal("NetGaming");
 
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
 
@@ -309,6 +313,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             memberWinloss.PSPBase = reader.ToDouble("PSPBase");
             memberWinloss.TotalTurnoverBase = reader.ToDouble("TotalTurnoverBase");
             memberWinloss.TotalWinlostBase = reader.ToDouble("TotalWinlostBase");
+            memberWinloss.PShareBase = reader.ToDecimal("PShareBase");
+            memberWinloss.PWinBase = reader.ToDecimal("PWinBase");
+            memberWinloss.NetGamingBase = reader.ToDecimal("NetGamingBase");
 
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
 
@@ -333,6 +340,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             memberWinloss.PSP_Aff = reader.ToDouble("PSP_Aff");
             memberWinloss.TotalTurnover_Aff = reader.ToDouble("TotalTurnover_Aff");
             memberWinloss.TotalWinlost_Aff = reader.ToDouble("TotalWinlost_Aff");
+            memberWinloss.PShare_Aff = reader.ToDecimal("PShare_Aff");
+            memberWinloss.PWin_Aff = reader.ToDecimal("PWin_Aff");
+            memberWinloss.NetGaming_Aff = reader.ToDecimal("NetGaming_Aff");
 
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
 
@@ -473,6 +483,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             companyWinloss.PSP_Aff = reader.ToDecimal("PSP_Aff");
             companyWinloss.TotalTurnover_Aff = reader.ToDecimal("TotalTurnover_Aff");
             companyWinloss.TotalMemberWinlost_Aff = reader.ToDecimal("TotalWinlost_Aff");
+            companyWinloss.PShare_Aff = reader.ToDecimal("PShare_Aff");
+            companyWinloss.PWin_Aff = reader.ToDecimal("PWin_Aff");
+            companyWinloss.NetGaming_Aff = reader.ToDecimal("NetGaming_Aff");
 
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
 
@@ -497,6 +510,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             companyWinloss.PSPBase = reader.ToDecimal("PSPBase");
             companyWinloss.TotalTurnoverBase = reader.ToDecimal("TotalTurnoverBase");
             companyWinloss.TotalMemberWinlostBase = reader.ToDecimal("TotalWinlostBase");
+            companyWinloss.PShareBase = reader.ToDecimal("PShareBase");
+            companyWinloss.PWinBase = reader.ToDecimal("PWinBase");
+            companyWinloss.NetGamingBase = reader.ToDecimal("NetGamingBase");
 
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
 
@@ -521,6 +537,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             companyWinloss.PSP = reader.ToDecimal("PSP");
             companyWinloss.TotalTurnover = reader.ToDecimal("TotalTurnover");
             companyWinloss.TotalMemberWinlost = reader.ToDecimal("TotalWinlost");
+            companyWinloss.PShare = reader.ToDecimal("PShare");
+            companyWinloss.PWin = reader.ToDecimal("PWin");
+            companyWinloss.NetGaming = reader.ToDecimal("NetGaming");
 
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
 
@@ -704,6 +723,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             commission.Turnover = reader.ToDecimal("Turnover");
             commission.Winloss = reader.ToDecimal("Winloss");
             commission.Cashback = reader.ToDecimal("Cashback");
+            commission.PShareBase = reader.ToDecimal("PShare");
+            commission.PWinBase = reader.ToDecimal("PWin");
+            commission.NetGamingBase = reader.ToDecimal("NetGaming");
 
             // Columns by product.
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
@@ -729,6 +751,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             commission.TurnoverBase = reader.ToDecimal("TurnoverBase");
             commission.WinlossBase = reader.ToDecimal("WinlossBase");
             commission.CashbackBase = reader.ToDecimal("CashbackBase");
+            commission.PShareBase = reader.ToDecimal("PShareBase");
+            commission.PWinBase = reader.ToDecimal("PWinBase");
+            commission.NetGamingBase = reader.ToDecimal("NetGamingBase");
 
             // Columns by product.
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));

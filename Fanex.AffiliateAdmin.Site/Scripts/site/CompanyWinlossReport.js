@@ -775,6 +775,9 @@ var CompanyWinlossReport = (function ($) {
 
                     AFFILIATE.updateSearchPanel($('#gridId'));
                 },
+                error: function () {
+                    alert("Occur the error when requesting the Company Winloss report! :(");
+                },
                 complete: function () {
                     $.unblockUI();
                 }

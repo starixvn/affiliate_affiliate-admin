@@ -1,4 +1,5 @@
-﻿/*global AFFILIATE,MSG,moment,System,COLLAPSE_SUBTOTAL_STATUS,EXPAND_SUBTOTAL_STATUS,HasCashbackDeduction,subTotalStatus,Lang*/
+﻿/*global AFFILIATE,MSG,moment,System,COLLAPSE_SUBTOTAL_STATUS,EXPAND_SUBTOTAL_STATUS,
+    HasCashbackDeduction,subTotalStatus,Lang,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
 var CommissionReport = (function ($) {
     "use strict";
     var submitOptions = {};
@@ -511,6 +512,9 @@ var CommissionReport = (function ($) {
                     }
 
                     AFFILIATE.updateSearchPanel($('#gridId'));
+                },
+                error: function () {
+                    alert("Occur the error when requesting the Affiliate Commission report! :(");
                 },
                 complete: function () {
                     $.unblockUI();

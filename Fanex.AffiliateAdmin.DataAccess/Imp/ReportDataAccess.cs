@@ -180,7 +180,6 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                     PlayerUsername = reader.ToString("PlayerUsername"),
                     PlayerCurrency = reader.ToString("PlayerCurrency"),
                     BetCount = reader.ToInt("BetCount"),
-
                 };
 
                 if (criteria.GroupBy == GroupByDate)

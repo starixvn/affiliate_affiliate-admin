@@ -1,0 +1,93 @@
+﻿@import "../../bootstrap/less/bootstrap.less";
+@import "../../themes/Default/mixins.less";
+
+body{
+	background: url(images/bodybg.jpg) repeat top;
+}
+.login 
+{
+    background: url(images/bodybg.jpg) repeat top;
+	margin: auto;
+	
+	#header 
+	{
+	    background:url(images/headerbg.jpg) repeat-x;
+        .setWidthHeight(100%, 320px);
+	    margin: auto;
+	
+	    .logo
+	    {
+	        background:url(images/logo.jpg) no-repeat;
+            .setWidthHeight(770px, 318px);
+	        margin: auto;
+        }
+        
+        .seperator 
+        {
+            .setWidthHeight(100%, 2px);
+	        border-bottom: 2px solid #b7b7b7;
+        }
+    }
+    
+    #container 
+    {
+        .panel 
+        {
+            background:url(images/panel.png) no-repeat;
+            .setWidthHeight(400px, 240px);
+	        margin: auto;
+	        margin-top: -120px;
+	        padding: 23px 24px 0 22px;
+        }
+
+		.input-prepend{
+			margin-bottom: 10px;
+
+			input {
+				background-color: transparent;
+				color: #a0a0a0;
+				font-weight: bold;
+				.border-radius(2px);
+				height: 22px;
+				padding: 13px;
+				width: 290px;				
+				padding-right: 51px;
+				&:hover, &:focus{
+					border-color: rgba(18, 124, 200, 0.6);
+				}
+			}
+		}
+
+		#btnlogin{
+			padding: 12px 20px;
+			font-weight: bold;
+		}	
+
+		.browser{
+			width: 400px;
+			margin: auto;
+			height: 21px;
+			line-height: 21px;
+
+			.ie{
+				margin-left: 12px;
+				background:url(images/best-browsers.png) no-repeat 0 0;
+				height: 21px;
+				display: inline-block;
+				width: 50px;
+			}
+
+			.firefox{
+				.ie;
+				background-position: -50px 0;
+				width: 75px;
+			}
+
+			.chrome{
+				.ie;
+				background-position: -125px 0;
+				width: 117px;
+			}
+		}
+    }
+}

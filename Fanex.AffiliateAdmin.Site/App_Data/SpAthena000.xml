@@ -158,7 +158,7 @@
   
   <Function name="AffiliateInfo">
     <Setting Key="AffAdmin_AffiliateSelGeneralInfo" SpName="AffAdmin_AffiliateSelGeneralInfo" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_StatisticsSel" SpName="AffAdmin_StatisticsSel_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_StatisticsSel" SpName="AffAdmin_StatisticsSel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CountrySelAll" SpName="AffAdmin_CountrySelAll" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateUpdStatus" SpName="AffAdmin_AffiliateUpdStatus" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateUpdClosedStatus" SpName="AffAdmin_AffiliateUpdClosedStatus" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />

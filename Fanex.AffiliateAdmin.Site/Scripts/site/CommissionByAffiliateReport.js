@@ -2,7 +2,7 @@
 var CommissionReport = (function ($) {
     "use strict";
     var submitOptions = {};
-    var SYS_CURRENCY_OPTION = 1;
+    var SYS_CURRENCY_OPTION = "1";
     var DEPOSIT_COL = 6;
     var _commonColumnCount = 0;
     var _freezeColumnCount = 3;

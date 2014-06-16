@@ -2,7 +2,7 @@
 var CommissionReport = (function ($) {
     "use strict";
     var submitOptions = {};
-    var SYS_CURRENCY_OPTION = 1;
+    var SYS_CURRENCY_OPTION = "1";
     var GROUP_BY_MONTH = "0";
     var MONTH_COL = 1, COMMGROUP_COL = 4;
     var DEDUCTION_PERCENT_COL = 9;

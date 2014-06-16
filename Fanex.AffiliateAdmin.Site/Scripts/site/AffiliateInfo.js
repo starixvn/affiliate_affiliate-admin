@@ -99,11 +99,9 @@ var AFFINFO = (function ($) {
                             if (!data.Success) {
                                 alert(data.Message);
                             } else {
-                                $("#spAffType").html($("#slAffType").find(":selected").text());
-                                $("#slAffType").hide();
-                                $("#spAffType").show();
+                                $("#AffiliateInfo_Username").val($.trim($("#AffiliateInfo_Username").val()));
+                                window.top.location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo") + "?Username=" + $("#AffiliateInfo_Username").val();
                             }
-                            $('#slAffType').blur();
                         },
                         complete: function () {
                             $.unblockUI();

@@ -4,7 +4,7 @@ var ADJUST = (function ($) {
     return {
         init: function () {
             $("#btnSubmit").click(function () {
-                if (Math.abs(parseFloat($("#Amount").val())) > parseFloat($("#MaxAmount").val())) {
+                if (isNaN(Math.abs(parseFloat($("#Amount").val()))) || Math.abs(parseFloat($("#Amount").val())) > parseFloat($("#MaxAmount").val())) {
                     ADJUST.showErrMsg($("#InvalidAmount").val());
                     return false;
                 }

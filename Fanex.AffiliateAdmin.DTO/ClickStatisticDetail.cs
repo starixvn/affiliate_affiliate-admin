@@ -15,7 +15,7 @@ namespace Fanex.AffiliateAdmin.DTO
     {
         public long TheCount { get; set; }
 
-        public Uri UrlReferrer { get; set; }
+        public string ReferrerLink { get; set; }
 
         public int TotalClick { get; set; }
 

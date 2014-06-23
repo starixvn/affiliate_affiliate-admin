@@ -175,7 +175,9 @@
 
   <Function name="AffiliateEdit">
     <Setting Key="AffAdmin_AffiliatePaymentMethodSel" SpName="AffAdmin_AffiliatePaymentMethodSel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_AffiliateSelEditInfo" SpName="AffAdmin_AffiliateSelEditInfo" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSelEditInfo" SpName="AffAdmin_AffiliateSelEditInfo" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0">
+      <Mapping DataField="SiteURL" ObjectProperty="SiteLink"></Mapping>
+    </Setting> 
     <Setting Key="AffAdmin_AffiliateUpdInfo" SpName="AffAdmin_AffiliateUpdInfo" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
   </Function>
 
@@ -199,7 +201,9 @@
   <Function name="ClickStatistic">
     <Setting Key="AffAdmin_ClickStatisticsSelByPage" SpName="AffAdmin_ClickStatisticsSelByPage" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_ClickStatisticsSelBySite" SpName="AffAdmin_ClickStatisticsSelBySite" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_ClickStatisticsDetail" SpName="AffAdmin_ClickStatisticsDetail" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ClickStatisticsDetail" SpName="AffAdmin_ClickStatisticsDetail" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0">
+      <Mapping DataField="UrlReferrer" ObjectProperty="ReferrerLink"></Mapping>
+    </Setting>
   </Function>
 
   <Function name="Reports">

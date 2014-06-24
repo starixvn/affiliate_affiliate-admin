@@ -78,10 +78,15 @@ var AFFMASTER = (function ($) {
             window.open(url);
         },
         reloadAffInfo: function () {
+            var url = '';
+            var date = new Date();
             if ($("#ifAffInfo").attr("src").indexOf("IsLoadOtherPage") >= 0) {
-                $("#ifAffInfo").attr("src", $("#ifAffInfo").attr("src"));
+                url = $("#ifAffInfo").attr("src");
+                url = url.substring(0, url.indexOf("&timestamp")) + "&timestamp=" + date.getTime();
+                $("#ifAffInfo").attr("src", url);
             } else {
-                var url = $("#ifAffInfo").attr("src") + ($("#ifAffInfo").attr("src").indexOf("?") >= 0 ? "&IsLoadOtherPage=1" : "?IsLoadOtherPage=1");
+                url = $("#ifAffInfo").attr("src") + ($("#ifAffInfo").attr("src").indexOf("?") >= 0 ? "&IsLoadOtherPage=1" : "?IsLoadOtherPage=1");
+                url += "&timestamp=" + date.getTime();
                 $("#ifAffInfo").attr("src", url);
             }
         }

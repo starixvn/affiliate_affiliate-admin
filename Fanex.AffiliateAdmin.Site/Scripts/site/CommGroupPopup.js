@@ -143,9 +143,11 @@
             $("#QualifiedAmount").numeric();
             $("#QualifiedAmount").blur(function () {
                 var value = parseInt(this.value.replace(/,/g, ""));
-                if (value > 100000000000000)
-                    value = 100000000000000;
-                this.value = formatInt(value);
+                if (!isNaN(value)) {
+                    if (value > 100000000000000)
+                        value = 100000000000000;
+                    this.value = formatInt(value);
+                }
             });
             $tabcontent.find("input[type=text]").numeric();
 
@@ -175,7 +177,7 @@
                     return;
 
                 $tab.next(".tab_content").toggle();
-                
+
                 $(this).closest("li").toggleClass("expand collapse");
             });
 
@@ -341,12 +343,12 @@
                     return;
                 }
                 var amount = $("#QualifiedAmount").val().replace(/,/g, "");
-                if (amount == "" || amount <= 0) {
+                if (amount === "" || amount <= 0) {
                     alert(MSG.ValidQualifiedAmount);
                     return;
                 }
                 var groupid = $("#GroupID").val();
-                if (groupid == "")
+                if (groupid === "")
                     groupid = undefined;
                 var products = PRODUCTS.slice(0);
                 var data = {
@@ -358,9 +360,9 @@
                     CopyForAllProducts: PRODUCTS.length > 1 && $("div.tab_title input.copy:checked").length > 0
                 };
 
-                var tierList = minAmountList = maxAmountList =
-                        minQMList = maxQMList = commissionList = deductionList = deductedPercentageList = "";
-
+                var tierList, minAmountList, maxAmountList, minQMList, maxQMList, commissionList, deductionList, deductedPercentageList;
+                tierList = minAmountList = maxAmountList = minQMList = maxQMList = commissionList = deductionList = deductedPercentageList = "";
+                
                 // get Cashback deduction 
                 var $deductions = $("#tab_content0 .deductions:first input[type=checkbox]:checked");
 
@@ -469,5 +471,5 @@
             });
         }
     };
-}) (jQuery);
+})(jQuery);
 

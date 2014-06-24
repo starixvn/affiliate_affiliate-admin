@@ -41,7 +41,6 @@ namespace Fanex.AffiliateAdmin.Models
         public DateTime CreateDate { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrDepartmentChoose")]
-        [Display(ResourceType = typeof(Resources.Lang), Name = "GroupID")]
         public int GroupID { get; set; }
 
         public string GroupName { get; set; }

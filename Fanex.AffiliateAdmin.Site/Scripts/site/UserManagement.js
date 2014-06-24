@@ -139,7 +139,7 @@ var Management = (function ($) {
             };
 
             AFFILIATE.openDialogFrame("Management/ChangePassword?" + jQuery.param(param), userName 
-                + ' - Change Password', { width: 500, height: 250 });
+                + ' - Change Password', { width: 500, height: 350 });
         },
         getStatus: function (obj, custId) {
             //var className = $(obj).find("i:first").attr("class");

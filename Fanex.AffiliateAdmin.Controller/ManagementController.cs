@@ -107,7 +107,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var accountInfo = _accountService.GetAccountInfo(criteria);
             var groupList = _groupService.GetListGroup(new GroupListCriteria { IsIt = SessionManager.CurrentSession.IsIT });
 
-            return View(new AccountViewModel
+            return View(new EditUserViewModel
             {
                 Username = accountInfo.Username,
                 FirstName = accountInfo.FirstName,
@@ -124,13 +124,20 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Account Criteria.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
-        public ActionResult EditUser(AccountCriteria criteria)
+        public ActionResult EditUser(EditUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                criteria.UserId = SessionManager.CurrentSession.CustID;
-                criteria.Ip = Remote.GetClientIPAddress();
-                criteria.Type = "Edit";
+                var criteria = new AccountCriteria
+                    {
+                        CustId = model.CustID,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        GroupId = model.GroupID,
+                        UserId = SessionManager.CurrentSession.CustID,
+                        Ip = Remote.GetClientIPAddress(),
+                        Type = "Edit"
+                    };
 
                 _accountService.AccountUpdate(criteria);
 
@@ -141,7 +148,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 };
             }
 
-            return EditUser(criteria.CustId);
+            return EditUser(model.CustID);
         }
         #endregion Edit User
 
@@ -160,14 +167,23 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Account Criteria.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
-        public ActionResult AddUser(AccountCriteria criteria)
+        public ActionResult AddUser(AccountViewModel model)
         {
             if (ModelState.IsValid)
             {
-                criteria.UserId = SessionManager.CurrentSession.CustID;
-                criteria.Ip = Remote.GetClientIPAddress();
-                criteria.Type = "Add";
-                criteria.Password = Cryptography.CfsEnCode(criteria.Password);
+                var criteria = new AccountCriteria
+                    {
+                        UserId = SessionManager.CurrentSession.CustID,
+                        Ip = Remote.GetClientIPAddress(),
+                        Type = "Add",
+                        Password = Cryptography.CfsEnCode(model.Password),
+                        CustId = model.CustID,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Username = model.Username,
+                        GroupId = model.GroupID
+                    };
+                
 
                 _accountService.AccountInsert(criteria);
 
@@ -341,13 +357,18 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Change Password Criteria.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordCriteria criteria)
+        public ActionResult ChangePassword(PasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
-                criteria.UserId = SessionManager.CurrentSession.CustID;
-                criteria.Ip = Remote.GetClientIPAddress();
-                criteria.Password = Cryptography.CfsEnCode(criteria.Password);
+                var criteria = new ChangePasswordCriteria
+                    {
+                        CustId = model.CustId,
+                        UserName = model.UserName,
+                        UserId = SessionManager.CurrentSession.CustID,
+                        Ip = Remote.GetClientIPAddress(),
+                        Password = Cryptography.CfsEnCode(model.Password)
+                    };
 
                 _accountService.AccountUpdatePassword(criteria);
 
@@ -358,7 +379,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 };
             }
 
-            return ChangePassword(criteria.CustId, criteria.UserName);
+            return ChangePassword(model.CustId, model.UserName);
         }
         #endregion Change Password
 
@@ -381,7 +402,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult GroupDataList()
         {
-            GroupListCriteria criteria = new GroupListCriteria
+            var criteria = new GroupListCriteria
             {
                 IsIt = SessionManager.CurrentSession.IsIT
             };

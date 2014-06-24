@@ -109,7 +109,9 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                var status = string.IsNullOrEmpty(Status) ? null : Status.ToLower();
+                var statusList = string.IsNullOrEmpty(Status) 
+                    ? new List<string>() 
+                    : Status.ToLower().Split(',').ToList();
 
                 if (IsFavorite)
                 {
@@ -121,9 +123,9 @@ namespace Fanex.AffiliateAdmin.Models
                         Text = t.Text,
                         Value = t.Value,
                         Selected =
-                            string.IsNullOrEmpty(status)
+                                statusList.Count == 0
                                 ? _defaultStatusList.Contains(t.Value.ToLower())
-                                : t.Value.ToLower().Equals(status)
+                                : statusList.Contains(t.Value.ToLower())
                     });
                 }
 
@@ -132,9 +134,9 @@ namespace Fanex.AffiliateAdmin.Models
                         Text = t.Text,
                         Value = t.Value,
                         Selected =
-                            string.IsNullOrEmpty(status)
+                            statusList.Count == 0
                                 ? _defaultStatusList.Contains(t.Value.ToLower())
-                                : t.Value.ToLower().Equals(status)
+                                : statusList.Contains(t.Value.ToLower())
                     });
             }
         }

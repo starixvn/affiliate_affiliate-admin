@@ -2783,6 +2783,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm password is required.
+        /// </summary>
+        public static string ErrConfirmPasswordRequired {
+            get {
+                return ResourceManager.GetString("ErrConfirmPasswordRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact Number is empty. Please check!.
         /// </summary>
         public static string ErrContactNumber {

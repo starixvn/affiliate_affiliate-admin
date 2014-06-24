@@ -48,7 +48,7 @@ var CommissionReport = (function ($) {
                     CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
                 }
             );
-            
+
             /*jshint ignore:start */
             gridOption.columns.push(
                 { IsCurrency: false, HeaderCaption: window.MSG.QM, HeaderText: window.MSG.QM,
@@ -67,17 +67,19 @@ var CommissionReport = (function ($) {
                 }
             );
             /*jshint ignore:end */
-            
+
             gridOption.columns.push(
                 { IsCurrency: false, IsPercent: true, HeaderCaption: window.MSG.CommPercent,
                     HeaderText: window.MSG.CommPercent, Width: 80, Name: name + "CommissionPercent",
-                    HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, 
-                    FormatNegative: '($)', IsAbs: true }
+                    HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER,
+                    FormatNegative: '($)', IsAbs: true
+                }
             );
             gridOption.columns.push(
                 { IsCurrency: true, HeaderCaption: window.MSG.Commission, HeaderText: window.MSG.Commission,
-                    Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center", 
-                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
+                    Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center",
+                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
+                }
             );
         }
     };
@@ -138,8 +140,8 @@ var CommissionReport = (function ($) {
         var footerRows = [];
 
         if (hasShowSubTotalRow === true && totalItem > 1) {
-            if (subTotalRowCount > 1 
-                ||(subTotalRowCount === 1 && subTotalData[0].Currency !== window.System.Currency 
+            if (subTotalRowCount > 1
+                || (subTotalRowCount === 1 && subTotalData[0].Currency !== window.System.Currency
                     && $('#BaseCurrency').val() !== SYS_CURRENCY_OPTION)) {
                 $.each(subTotalData, function (idx, item) {
 
@@ -166,11 +168,11 @@ var CommissionReport = (function ($) {
 
         // Total row
         var totalColums = [];
-        totalColums.push({ 
+        totalColums.push({
             Value: "<div align='center'>" + MSG.Total + "</div>",
             Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount
         });
-        
+
         for (var i = mergeCols; i < gridOption.columns.length; i++) {
             var col = gridOption.columns[i];
             var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
@@ -189,7 +191,7 @@ var CommissionReport = (function ($) {
     function changeHeaderCaptions(showCurrencySymbol) {
         var text = showCurrencySymbol ? " (" + System.Prefix + ")" : "";
         var col, i;
-        
+
         for (i = 0; i < gridOption.columns.length; i++) {
             col = gridOption.columns[i];
             if (col.IsCurrency) {
@@ -238,7 +240,7 @@ var CommissionReport = (function ($) {
                     groupid: $(this).data("groupid")
                 };
                 parent.AFFILIATE.openDialogFrame("CommGroup/ViewSetting?"
-                    + jQuery.param(param), MSG.CommGroupSettingFor.replace("{0}", '"' 
+                    + jQuery.param(param), MSG.CommGroupSettingFor.replace("{0}", '"'
                     + $(this).html() + '" ' + $(this).data("date")), { width: 900, height: 450 });
             });
             $maincontent.on("click", "a.afflink", function () {
@@ -288,7 +290,7 @@ var CommissionReport = (function ($) {
                 CommissionReport.submitRequest();
             }
 
-            $('#btnSubmit').submit(function () {
+            $('#btnSubmit').click(function () {
                 CommissionReport.submitRequest();
                 return false;
             });
@@ -315,7 +317,7 @@ var CommissionReport = (function ($) {
             var fromMonth = fromDate.month();
             var toMonth = toDate.month();
             var diffMonth;
-            
+
             if (fromDate.year() === toDate.year()) {
                 diffMonth = toMonth - fromMonth;
                 if (diffMonth < 0 || diffMonth > 2) {
@@ -327,7 +329,7 @@ var CommissionReport = (function ($) {
 
             } else {
                 diffMonth = (toMonth + 11) - fromMonth;
-                
+
                 if (diffMonth < 0 || diffMonth > 2) {
                     $('#FromDate, #ToDate').addClass('input-validation-error');
                     return false;

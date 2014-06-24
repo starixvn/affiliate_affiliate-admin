@@ -40,7 +40,9 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public override bool IsValid()
         {
-            return Id > 0 && !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(ConfirmPassword) && Password.Equals(ConfirmPassword);
+            return Id > 0 && !string.IsNullOrEmpty(Password) 
+                && !string.IsNullOrEmpty(ConfirmPassword) 
+                && Password.Equals(ConfirmPassword);
         }
     }
 }

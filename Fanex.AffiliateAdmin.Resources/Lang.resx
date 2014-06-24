@@ -2534,4 +2534,7 @@
   <data name="OccurErrorWhenCallWebAPI" xml:space="preserve">
     <value>Occur the error when calling web API! :(</value>
   </data>
+  <data name="ErrConfirmPasswordRequired" xml:space="preserve">
+    <value>Confirm password is required</value>
+  </data>
 </root>

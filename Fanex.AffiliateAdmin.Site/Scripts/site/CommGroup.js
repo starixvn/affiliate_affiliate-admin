@@ -108,8 +108,8 @@ var COMMGROUP = function ($) {
                                 value = editButton + deleteButton;
                             } else if (colName == "NoOfAffiliate") {
                                 var date = $("#Date").monthpicker("getDate");
-                                if (date.getMonth() == (new Date()).getMonth()) {
-                                    value = "<a href='" + AFFILIATE.baseUrl + "Affiliate?ExcludeTest=false&groupid=" + data.GroupID + "'>" + data[colName] + "</a>";
+                                if (date.getMonth() === (new Date()).getMonth()) {
+                                    value = "<a href='" + AFFILIATE.baseUrl + "Affiliate?ExcludeTest=false&Status=approved,closed,lockedOut&groupid=" + data.GroupID + "'>" + data[colName] + "</a>";
                                 } else {
                                     value = data[colName];
                                 }

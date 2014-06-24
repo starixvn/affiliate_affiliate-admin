@@ -134,29 +134,25 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Input Criteria.</param>
         /// <returns>Change Password Result.</returns>
         [HttpPost]
-        public ActionResult ChangePassword(ChangeAffPasswordCriteria criteria)
+        public ActionResult ChangePassword(ChangeAffPasswordViewModel model)
         {
-            if (criteria.IsValid())
+            if(ModelState.IsValid)
             {
-                // Cheat sp.
-                criteria.Password = null;
-                criteria.Ip = Remote.GetClientIPAddress();
-                criteria.UserId = SessionManager.CurrentSession.CustID;
-                criteria.ConfirmPassword = Cryptography.CfsEnCode(criteria.ConfirmPassword);
+                var criteria = new ChangeAffPasswordCriteria
+                    {
+                        Id = model.Id,
+                        Username = model.Username,
+                        Password = null,
+                        Ip = Remote.GetClientIPAddress(),
+                        UserId = SessionManager.CurrentSession.CustID,
+                        ConfirmPassword = Cryptography.CfsEnCode(model.ConfirmPassword)
+                    };
+                
                 _service.ChangePassword(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
-            else
-            {
-                ViewBag.Result = new ResultViewModel
-                    {
-                        ErrorCode = 16,
-                        Success = false,
-                        Message = "Invalid Request"
-                    };
-            }
-
-            return ChangePassword(criteria.Id, criteria.Username);
+         
+            return ChangePassword(model.Id, model.Username);
         }
 
         [HttpGet]

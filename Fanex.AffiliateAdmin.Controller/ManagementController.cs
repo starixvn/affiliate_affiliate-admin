@@ -184,7 +184,6 @@ namespace Fanex.AffiliateAdmin.Controller
                         GroupId = model.GroupID
                     };
                 
-
                 _accountService.AccountInsert(criteria);
 
                 ViewBag.Result = new ResultViewModel
@@ -423,13 +422,19 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Group Criteria.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
-        public ActionResult AddGroup(GroupCriteria criteria)
+        public ActionResult AddGroup(GroupViewModel model)
         {
             if (ModelState.IsValid)
             {
-                criteria.UserId = SessionManager.CurrentSession.CustID;
-                criteria.Ip = Remote.GetClientIPAddress();
-                criteria.Type = "Add";
+                var criteria = new GroupCriteria
+                    {
+                        GroupName = model.GroupName,
+                        Description = model.Description,
+                        UserId = SessionManager.CurrentSession.CustID,
+                        Ip = Remote.GetClientIPAddress(),
+                        Type = "Add"
+                    };
+                
 
                 _groupService.GroupInsert(criteria);
 

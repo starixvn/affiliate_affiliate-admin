@@ -118,13 +118,17 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="id">Affiliate Id.</param>
         /// <param name="username">Affiliate's username.</param>
+        /// <param name="password">Affiliate's password.</param>
+        /// <param name="confirmPassword">Affiliate's confirm password.</param>
         /// <returns>Change Password Page.</returns>
-        public ActionResult ChangePassword(int id, string username)
+        public ActionResult ChangePassword(int id, string username, string password, string confirmPassword)
         {
             return View(new ChangeAffPasswordViewModel
                 {
                     Id = id,
-                    Username = username
+                    Username = username,
+                    Password = password,
+                    ConfirmPassword = confirmPassword
                 });
         }
 
@@ -152,7 +156,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
          
-            return ChangePassword(model.Id, model.Username);
+            return ChangePassword(model.Id, model.Username, model.Password, model.ConfirmPassword);
         }
 
         [HttpGet]

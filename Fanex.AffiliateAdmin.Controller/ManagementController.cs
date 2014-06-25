@@ -154,11 +154,16 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Add User
         [HttpGet]
-        public ActionResult AddUser()
+        public ActionResult AddUser(string password, int groupId = 0)
         {
             var groupList = _groupService.GetListGroup(new GroupListCriteria { IsIt = SessionManager.CurrentSession.IsIT });
 
-            return View(new AccountViewModel { GroupList = groupList });
+            return View(new AccountViewModel
+                {
+                    Password = password,
+                    GroupID = groupId,
+                    GroupList = groupList
+                });
         }
 
         /// <summary>
@@ -193,7 +198,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 };
             }
 
-            return AddUser();
+            return AddUser(model.Password, model.GroupID);
         }
         #endregion Add User
 
@@ -344,10 +349,17 @@ namespace Fanex.AffiliateAdmin.Controller
         #endregion Change Policy
 
         #region Change Password
+
         [HttpGet]
-        public ActionResult ChangePassword(int custId, string userName)
+        public ActionResult ChangePassword(int custId, string userName, string password, string confirmPassword)
         {
-            return View(new PasswordViewModel { CustId = custId, UserName = userName });
+            return View(new PasswordViewModel
+                {
+                    CustId = custId, 
+                    UserName = userName,
+                    Password = password,
+                    ConfirmPass = confirmPassword
+                });
         }
 
         /// <summary>
@@ -378,8 +390,9 @@ namespace Fanex.AffiliateAdmin.Controller
                 };
             }
 
-            return ChangePassword(model.CustId, model.UserName);
+            return ChangePassword(model.CustId, model.UserName, model.Password, model.ConfirmPass);
         }
+
         #endregion Change Password
 
         [HttpGet]

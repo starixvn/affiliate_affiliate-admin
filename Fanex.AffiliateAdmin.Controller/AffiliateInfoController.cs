@@ -136,12 +136,14 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult ChangePassword()
+        public ActionResult ChangePassword(string password, string confirmPassword)
         {
             return View(new PasswordViewModel
                 {
                     CustId = CurrentSession.Affiliate.AffiliateId,
                     UserName = CurrentSession.Affiliate.Username,
+                    Password = password,
+                    ConfirmPass = confirmPassword
                 });
         }
 
@@ -169,7 +171,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.ResetPassSuccess);
             }
 
-            return ChangePassword(); 
+            return ChangePassword(model.Password, model.ConfirmPass); 
         }
 
         /// <summary>

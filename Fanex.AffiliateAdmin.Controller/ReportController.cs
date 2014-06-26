@@ -148,6 +148,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="model">Model input.</param>
         /// <returns>Member Win loss page.</returns>
+        [HttpGet]
         public ActionResult MemberWinloss(MemberWinlossViewModel model)
         {
             var serializer = new JavaScriptSerializer();

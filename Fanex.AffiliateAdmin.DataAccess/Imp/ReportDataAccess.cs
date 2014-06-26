@@ -42,13 +42,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                 {
                     var param = criteria.GetSpParams();
 
-                    var stopwatch = Stopwatch.StartNew();
-
                     var reader = objectDb.ExecuteReader(param);
-
-                    stopwatch.Stop();
-
-                    memberWinlossReport.Duration = stopwatch.ElapsedMilliseconds;
 
                     memberWinlossReport.MemberWinlossList = GetMemberWinlossList(reader, criteria);
                     memberWinlossReport.TotalMemberWinlossInMemberCurrencies = GetTotalMemberWinlossInMemberCurrency(reader, criteria);
@@ -77,14 +71,7 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var param = criteria.GetSpParams();
-
-                    var stopwatch = Stopwatch.StartNew();
-
                     var reader = objectDb.ExecuteReader(param);
-
-                    stopwatch.Stop();
-
-                    companyWinlossReport.Duration = stopwatch.ElapsedMilliseconds;
 
                     companyWinlossReport.CompanyWinlossList = GetCompanyWinlossList(reader, criteria);
                     companyWinlossReport.TotalCompanyWinlossInMemberCurrencies = GetTotalCompanyWinlossInMemberCurrency(reader, criteria);

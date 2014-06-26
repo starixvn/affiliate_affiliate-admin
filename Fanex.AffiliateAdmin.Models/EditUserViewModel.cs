@@ -1,16 +1,15 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="AffiliateViewModel.cs" company="Microsoft">
+// <copyright file="EditUserViewModel.cs" company="Microsoft">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Fanex.AffiliateAdmin.DTO;
-
 namespace Fanex.AffiliateAdmin.Models
 {
     using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using Fanex.AffiliateAdmin.DTO;
 
     /// <summary>
     /// TODO: Update summary.

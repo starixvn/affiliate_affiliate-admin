@@ -121,7 +121,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Edit User Info.
         /// </summary>
-        /// <param name="criteria">Account Criteria.</param>
+        /// <param name="model">Edit user view model.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
         public ActionResult EditUser(EditUserViewModel model)
@@ -169,7 +169,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Add User information.
         /// </summary>
-        /// <param name="criteria">Account Criteria.</param>
+        /// <param name="model">Account view model.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
         public ActionResult AddUser(AccountViewModel model)
@@ -365,7 +365,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Change user password.
         /// </summary>
-        /// <param name="criteria">Change Password Criteria.</param>
+        /// <param name="model">Password view model.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
         public ActionResult ChangePassword(PasswordViewModel model)
@@ -432,7 +432,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Add Group user.
         /// </summary>
-        /// <param name="criteria">Group Criteria.</param>
+        /// <param name="model">Group view model.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
         public ActionResult AddGroup(GroupViewModel model)
@@ -448,7 +448,6 @@ namespace Fanex.AffiliateAdmin.Controller
                         Type = "Add"
                     };
                 
-
                 _groupService.GroupInsert(criteria);
 
                 ViewBag.Result = new ResultViewModel

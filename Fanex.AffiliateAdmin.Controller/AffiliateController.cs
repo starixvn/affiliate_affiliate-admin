@@ -135,12 +135,12 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Update Password.
         /// </summary>
-        /// <param name="criteria">Input Criteria.</param>
+        /// <param name="model">Password view model.</param>
         /// <returns>Change Password Result.</returns>
         [HttpPost]
         public ActionResult ChangePassword(ChangeAffPasswordViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var criteria = new ChangeAffPasswordCriteria
                     {
@@ -151,11 +151,11 @@ namespace Fanex.AffiliateAdmin.Controller
                         UserId = SessionManager.CurrentSession.CustID,
                         ConfirmPassword = Cryptography.CfsEnCode(model.ConfirmPassword)
                     };
-                
+
                 _service.ChangePassword(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
-         
+
             return ChangePassword(model.Id, model.Username, model.Password, model.ConfirmPassword);
         }
 

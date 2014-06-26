@@ -105,9 +105,9 @@ namespace Fanex.AffiliateAdmin.Controller
                 if (model != null && model.AffiliateInfo != null)
                 {
                     UpdateAffiliateSession(model.AffiliateInfo);
-                    
+
                     FormaterCurrency.SetDefaultCurrency(model.AffiliateInfo.CurrencyCode);
-                  
+
                     model.ExternalLoginUrl = new Uri(ExternalLogin.ExternalLoginUrl(new ExternalLoginInfo
                         {
                             Controller = this,
@@ -134,6 +134,8 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Get view change password.
         /// </summary>
+        /// <param name="password">New password.</param>
+        /// <param name="confirmPassword">Confirm password.</param>
         /// <returns>View model.</returns>
         [HttpGet]
         public ActionResult ChangePassword(string password, string confirmPassword)
@@ -150,7 +152,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Change user password.
         /// </summary>
-        /// <param name="criteria">Change Password Criteria.</param>
+        /// <param name="model">Password view model.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
         public ActionResult ChangePassword(PasswordViewModel model)
@@ -171,7 +173,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.ResetPassSuccess);
             }
 
-            return ChangePassword(model.Password, model.ConfirmPass); 
+            return ChangePassword(model.Password, model.ConfirmPass);
         }
 
         /// <summary>
@@ -188,7 +190,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.AffId = CurrentSession.Affiliate.AffiliateId;
             criteria.Ip = Remote.GetClientIPAddress();
             criteria.Type = "Status";
-            criteria.Password = Cryptography.CfsEnCode(password); 
+            criteria.Password = Cryptography.CfsEnCode(password);
 
             this._affiliateService.ChangeAffiliateStatus(criteria);
 
@@ -310,7 +312,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var model = CacheUserInput(criteria);
             criteria.HtmlEncode();
-            
+
             if (ModelState.IsValid)
             {
                 criteria.Ip = Remote.GetClientIPAddress();

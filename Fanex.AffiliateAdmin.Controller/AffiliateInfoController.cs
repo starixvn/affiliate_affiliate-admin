@@ -76,9 +76,16 @@ namespace Fanex.AffiliateAdmin.Controller
                 userName = this.CurrentSession.Affiliate.Username;
             }
 
+            var baseUrl = siteDomainInfo.AdminSiteUrl;
+
+            if (baseUrl.LastIndexOf('/') != baseUrl.Length - 1)
+            {
+                baseUrl = baseUrl + "/";
+            }
+
             return View(new AffiliateMasterViewModel
             {
-                SiteDomainUrl = new Uri(siteDomainInfo.AdminSiteUrl),
+                SiteDomainUrl = new Uri(baseUrl),
                 UserName = userName
             });
         }

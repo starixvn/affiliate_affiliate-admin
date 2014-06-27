@@ -709,9 +709,9 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
             commission.Turnover = reader.ToDecimal("Turnover");
             commission.Winloss = reader.ToDecimal("Winloss");
             commission.Cashback = reader.ToDecimal("Cashback");
-            commission.PShareBase = reader.ToDecimal("PShare");
-            commission.PWinBase = reader.ToDecimal("PWin");
-            commission.NetGamingBase = reader.ToDecimal("NetGaming");
+            commission.PShare = reader.ToDecimal("PShare");
+            commission.PWin = reader.ToDecimal("PWin");
+            commission.NetGaming = reader.ToDecimal("NetGaming");
 
             // Columns by product.
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));

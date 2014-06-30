@@ -4,6 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
@@ -52,6 +54,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public bool Gender { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public string Ip { get; set; }
 
         public string Language { get; set; }

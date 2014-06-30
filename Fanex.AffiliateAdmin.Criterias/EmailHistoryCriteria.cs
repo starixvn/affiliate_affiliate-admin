@@ -10,6 +10,7 @@
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -23,6 +24,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string IP { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public int? MID { get; set; }
 
         public string SenderName { get; set; }
@@ -43,6 +45,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int NRows { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public string ListMID { get; set; }
 
         public int ErrCode { get; set; }

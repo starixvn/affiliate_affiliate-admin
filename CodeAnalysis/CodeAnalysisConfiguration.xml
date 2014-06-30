@@ -2,8 +2,8 @@
 <CodeAnalysisConfiguration Version="2.0" Enable="true">
   <EnableSearchGAC Override="false" Value="true" />
   <IgnoreGeneratedCode Override="false" Value="true" />
-  <Timeout Override="false" Value="60" />
-  <RuleSet Override="false" Value="Bundled;BasicDesignGuidelineRules.ruleset" />
+  <Timeout Override="false" Value="76.5" />
+  <RuleSet Override="false" Value="Bundled;FanexRules.ruleset" />
   <FilterPatterns Override="inherit">
     <FilterPattern Value="^.+\.[Dd]esigner\.[^\.]+$" />
     <FilterPattern Value="^.+\.[Gg]enerated\.[^\.]+$" />

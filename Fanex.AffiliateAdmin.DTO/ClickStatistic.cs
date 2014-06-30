@@ -6,6 +6,7 @@
 
 namespace Fanex.AffiliateAdmin.DTO
 {
+    using System.Diagnostics.CodeAnalysis;
     using System;
 
     /// <summary>
@@ -29,6 +30,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public int Signups { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public int FDM { get; set; }
     }
 }

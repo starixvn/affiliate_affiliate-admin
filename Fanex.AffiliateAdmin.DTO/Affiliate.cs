@@ -6,11 +6,13 @@
 // <history>
 //   <change who="Joseph.Pham" date="2013.8.1">Created</change>
 // </history>
+
 namespace Fanex.AffiliateAdmin.DTO
 {
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Diagnostics.CodeAnalysis;
     using Resources;
 
     /// <summary>
@@ -112,6 +114,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string PreferredPayment { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrUserNamePlayer")]
         [DisplayName("PlayerUsername")]
         public string Player_Username { get; set; }

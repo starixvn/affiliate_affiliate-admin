@@ -7,6 +7,8 @@
 //   <change who="Leo.Vo" date="2013.8.30">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using Fanex.NAP.Framework.Data;
@@ -21,9 +23,11 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int ErrCode { get; set; }
 
-        public int UserID { get; set; }
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+        public int UserId { get; set; }
 
-        public string IP { get; set; }
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+        public string Ip { get; set; }
 
         public override string GetSettingKey()
         {

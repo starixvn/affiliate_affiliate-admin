@@ -6,8 +6,11 @@
 // <history>
 //   <change who="Kaden.Trinh" date="2013.06.10">Created</change>
 // </history>
+
 namespace Fanex.AffiliateAdmin.DTO
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// System Setting class.
     /// </summary>
@@ -15,6 +18,7 @@ namespace Fanex.AffiliateAdmin.DTO
     {
         public int SId { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         public string Type { get; set; }
 
         public string SName { get; set; }

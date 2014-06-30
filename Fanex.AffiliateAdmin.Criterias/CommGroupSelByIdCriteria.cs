@@ -4,6 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
@@ -14,6 +16,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class CommGroupSelByIdCriteria : CriteriaBase
     {
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public int GroupID { get; set; }
 
         public int UserId { get; set; }

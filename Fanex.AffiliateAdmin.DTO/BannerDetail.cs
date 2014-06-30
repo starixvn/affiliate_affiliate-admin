@@ -9,6 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.DTO
 {
+    using System.Diagnostics.CodeAnalysis;
     using System;
 
     /// <summary>
@@ -34,6 +35,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public short? Currency { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         public byte? Type { get; set; }
 
         public int? Version { get; set; }

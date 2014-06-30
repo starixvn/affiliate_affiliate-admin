@@ -10,6 +10,7 @@
 namespace Fanex.AffiliateAdmin.DTO
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// TODO: Update summary.
@@ -18,6 +19,7 @@ namespace Fanex.AffiliateAdmin.DTO
     {
         public DateTime DatabaseDateTime { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public string GMTOffSet { get; set; }
     }
 }

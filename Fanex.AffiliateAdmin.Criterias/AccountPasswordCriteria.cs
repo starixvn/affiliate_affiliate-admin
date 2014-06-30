@@ -4,6 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using NAP.Framework.Data;
@@ -19,6 +21,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string NewPassword { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public string Ip { get; set; }
 
         public int ErrCode { get; set; }

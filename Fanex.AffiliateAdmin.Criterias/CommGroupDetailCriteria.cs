@@ -7,6 +7,8 @@
 //   <change who="Joseph.Pham" date="2013.9.10">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
@@ -17,6 +19,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class CommGroupDetailCriteria : CriteriaBase
     {
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public string GroupIDList { get; set; }
 
         public DateTime? Date { get; set; }

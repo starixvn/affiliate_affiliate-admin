@@ -1,8 +1,11 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ViewLog.cs" company="Microsoft">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="ViewLog.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2014.6.30">Created</change>
+// </history>
 
 namespace Fanex.AffiliateAdmin.DTO
 {

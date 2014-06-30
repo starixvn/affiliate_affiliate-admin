@@ -7,6 +7,8 @@
 //   <change who="Joseph.Pham" date="2013.9.13">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using Fanex.NAP.Framework.Data;
@@ -18,6 +20,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     {
         public int GroupId { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public int AffID { get; set; }
 
         public override string GetSettingKey()

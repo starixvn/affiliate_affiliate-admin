@@ -10,6 +10,7 @@
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -17,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class ExchangeRateCriteria : CriteriaBase
     {
+        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         [SpParam(Ignored = true)]
         public CriteriaType Type { get; set; }
 

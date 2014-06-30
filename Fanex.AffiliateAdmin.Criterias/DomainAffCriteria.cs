@@ -7,6 +7,8 @@
 //   <change who="Johnny.Trinh" date="2013.8.16">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using Fanex.NAP.Framework.Data;
@@ -20,6 +22,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string DomainName { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public int UserID { get; set; }
 
         public string IP { get; set; }

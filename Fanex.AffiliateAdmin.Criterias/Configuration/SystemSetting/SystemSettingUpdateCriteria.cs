@@ -7,6 +7,8 @@
 //   <change who="Brian.Dinh" date="2013.9.9">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
 {
     using System.ComponentModel.DataAnnotations;
@@ -24,6 +26,7 @@ namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
         [Required]
         public string Value { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         public string Type { get; set; }
 
         public string Description { get; set; }

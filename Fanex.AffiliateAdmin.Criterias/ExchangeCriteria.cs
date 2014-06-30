@@ -6,8 +6,10 @@
 // <history>
 //   <change who="Kaden.Trinh" date="2013.06.14">Created</change>
 // </history>
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -20,6 +22,7 @@ namespace Fanex.AffiliateAdmin.Criterias
             this.Type = "Affiliate";
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         [SpParam(Ignored = true)]
         public string Type { get; set; }
 

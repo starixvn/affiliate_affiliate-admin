@@ -6,13 +6,16 @@
 // <history>
 //   <change who="Kaden.Trinh" date="2013.06.07">Created</change>
 // </history>
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Re-CheckIn Criteria.
     /// </summary>
+    [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
     public class ReCheckInCriteria : CriteriaBase
     {
         public int OnUserID { get; set; }

@@ -7,6 +7,8 @@
 //   <change who="Joseph.Pham" date="2013.9.9">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
@@ -24,7 +26,8 @@ namespace Fanex.AffiliateAdmin.Criterias
         public DateTime Date { get; set; }
 
         public int UserId { get; set; }
-        
+
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public string GroupIDList { get; set; }
 
         public int TotalNoneGroup { get; set; }

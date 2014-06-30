@@ -146,7 +146,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var bannerDetail = _mediaService.GetBannerDetail(new BannerDetailCriteria
             {
-                BannerID = id
+                BannerId = id
             });
 
             var model = new TextEditViewModel
@@ -199,8 +199,8 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid && criteria.IsValid())
             {
-                criteria.UserID = SessionManager.CurrentSession.CustID;
-                criteria.IP = Remote.GetClientIPAddress();
+                criteria.UserId = SessionManager.CurrentSession.CustID;
+                criteria.Ip = Remote.GetClientIPAddress();
 
                 _mediaService.DeleteBanner(criteria);
 
@@ -340,7 +340,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var bannerDetail = _mediaService.GetBannerDetail(new BannerDetailCriteria
             {
-                BannerID = id
+                BannerId = id
             });
 
             if (bannerDetail.Type != null && bannerDetail.Currency != null && bannerDetail.ImageType != null)
@@ -386,7 +386,7 @@ namespace Fanex.AffiliateAdmin.Controller
             if (ModelState.IsValid)
             {
                 string errorMessage;
-                var bannerDetail = _mediaService.GetBannerDetail(new BannerDetailCriteria { BannerID = model.BannerId });
+                var bannerDetail = _mediaService.GetBannerDetail(new BannerDetailCriteria { BannerId = model.BannerId });
                 var bannerStorage = UpdateBannerFile(model, bannerDetail, out errorMessage);
 
                 if (!string.IsNullOrEmpty(errorMessage))
@@ -438,8 +438,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 var criteria = new BannerDeleteCriteria
                 {
                     BannerIds = model.BannerIds,
-                    UserID = SessionManager.CurrentSession.CustID,
-                    IP = Remote.GetClientIPAddress()
+                    UserId = SessionManager.CurrentSession.CustID,
+                    Ip = Remote.GetClientIPAddress()
                 };
 
                 _mediaService.DeleteBanner(criteria);

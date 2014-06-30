@@ -9,6 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
 {
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -16,6 +17,7 @@ namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
     /// </summary>
     public class SystemSettingSelectCriteria : CriteriaBase
     {
+        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         public string Type { get; set; }
 
         public string Key { get; set; }

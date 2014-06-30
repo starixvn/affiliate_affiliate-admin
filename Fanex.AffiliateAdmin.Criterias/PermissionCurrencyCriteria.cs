@@ -6,6 +6,7 @@
 
 namespace Fanex.AffiliateAdmin.Criterias
 {
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -15,6 +16,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     {
         public int UserId { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public string CurrencyXML { get; set; }
 
         public int ModifyBy { get; set; }
@@ -27,6 +29,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string ErrMsg { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         public CriteriaType Type { get; set; }
 
         /// <summary>

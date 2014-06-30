@@ -7,6 +7,8 @@
 //   <change who="Johnny.Trinh" date="2013.11.12">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
@@ -21,6 +23,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int AffId { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public string Ip { get; set; }
 
         public int ErrCode { get; set; }

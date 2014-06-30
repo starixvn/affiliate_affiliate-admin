@@ -7,6 +7,8 @@
 //   <change who="Joseph.Pham" date="2013.9.20">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using Fanex.NAP.Framework.Data;
@@ -33,6 +35,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string Description { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public string ProductIDList { get; set; }
 
         public string DeductionList { get; set; }

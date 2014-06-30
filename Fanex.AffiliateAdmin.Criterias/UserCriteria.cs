@@ -7,6 +7,7 @@
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -70,6 +71,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int? PageSize { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         public string Type { get; set; }
 
         /// <summary>

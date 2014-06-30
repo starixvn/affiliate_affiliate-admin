@@ -9,6 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.DTO
 {
+    using System.Diagnostics.CodeAnalysis;
     using System;
 
     /// <summary>
@@ -16,6 +17,8 @@ namespace Fanex.AffiliateAdmin.DTO
     /// </summary>
     public class Message
     {
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public string Message_en { get; set; }
 
         public int Creator { get; set; }

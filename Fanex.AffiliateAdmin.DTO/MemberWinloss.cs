@@ -7,6 +7,8 @@
 //   <change who="Brian.Dinh" date="2013.11.6">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.DTO
 {
     using System;
@@ -110,43 +112,61 @@ namespace Fanex.AffiliateAdmin.DTO
             get { return -TotalWinlostBase;  }
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double CustomerWinlost_Aff
         {
             get { return -TotalWinlost_Aff; }
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double Deposit_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double Withdrawal_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double Bonus_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double Adjustment_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double PSP_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double SportsbookTurnover_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double NumberGameTurnover_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double LiveCasinoTurnover_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double RNGCasinoTurnover_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double PlaytechCasinoTurnover_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double TotalTurnover_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double SportsbookWinlost_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double NumberGameWinlost_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double LiveCasinoWinlost_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double RNGCasinoWinlost_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double PlaytechCasinoWinlost_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public double TotalWinlost_Aff { get; set; }
 
         public decimal PShare { get; set; }
@@ -155,10 +175,13 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal NetGaming { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public decimal PShare_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public decimal PWin_Aff { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public decimal NetGaming_Aff { get; set; }
 
         public decimal PShareBase { get; set; }

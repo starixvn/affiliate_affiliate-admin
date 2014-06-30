@@ -220,10 +220,18 @@ report
         var cardinalHeaderCol = { HeaderText: "#", Name: "WinlostDate", MergeRowNumber: 2 };
         var cardinalCol = { HeaderText: "#", Width: 30, Name: "WinlostDate", CellAlign: "center" };
         var sampleTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-        var sampleWinlostCol = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Width: 110, Name: "TotalWinlost", NameCache: "TotalWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleWinlostCol = {
+            HeaderCaption: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
+            HeaderText: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
+            IsCurrency: true, Width: 110, Name: "TotalWinlost", NameCache: "TotalWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true
+        };
 
         var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Name: "TotalTurnover", NameCache: "TotalTurnover", MergeColNumber: 5 };
-        var sampleCompanyWLHeader = { HeaderCaption: "@Lang.CompanyWL", HeaderText: "@Lang.CompanyWL", IsCurrency: true, Name: "SportsbookWinlost", NameCache: "SportsbookWinlost", MergeColNumber: 5 };
+        var sampleCompanyWLHeader = {
+             HeaderCaption: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
+             HeaderText: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>",
+             IsCurrency: true, Name: "SportsbookWinlost", NameCache: "SportsbookWinlost", MergeColNumber: 5
+        };
         
         var samplePlaytechCasinoHeader = { HeaderCaption: "@Lang.PlaytechCasino", HeaderAlign: "center", IsCurrency: true, Name: "PShare", NameCache: "PShare", MergeColNumber: 3 };
         var samplePShareCol = { 

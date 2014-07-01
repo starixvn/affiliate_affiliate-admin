@@ -7,11 +7,10 @@
 //   <change who="Johnny.Trinh" date="2013.9.3">Created</change>
 // </history>
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

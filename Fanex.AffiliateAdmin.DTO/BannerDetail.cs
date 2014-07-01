@@ -9,8 +9,8 @@
 
 namespace Fanex.AffiliateAdmin.DTO
 {
-    using System.Diagnostics.CodeAnalysis;
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// TODO: Update summary.

@@ -10,7 +10,7 @@
 namespace Fanex.AffiliateAdmin.Site
 {
     using System;
-    using System.Web;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
@@ -28,6 +28,7 @@ namespace Fanex.AffiliateAdmin.Site
         /// <summary>
         /// Application start.
         /// </summary>
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         protected void Application_Start()
         {
             // Start setting connect to DB

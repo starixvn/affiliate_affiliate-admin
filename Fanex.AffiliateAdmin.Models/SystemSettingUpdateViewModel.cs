@@ -11,6 +11,7 @@ namespace Fanex.AffiliateAdmin.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using DTO;
@@ -23,6 +24,7 @@ namespace Fanex.AffiliateAdmin.Models
     {
         public int SId { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         public string Type { get; set; }
 
         public string SName { get; set; }

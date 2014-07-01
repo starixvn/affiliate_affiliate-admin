@@ -4,10 +4,9 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace Fanex.AffiliateAdmin.Criterias
 {
+    using System.Diagnostics.CodeAnalysis;
     using NAP.Framework.Data;
 
     /// <summary>

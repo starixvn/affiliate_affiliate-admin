@@ -7,6 +7,7 @@
 namespace Fanex.AffiliateAdmin.Models
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// TODO: Update summary.
@@ -85,6 +86,7 @@ namespace Fanex.AffiliateAdmin.Models
 
         public string PreferredPayment { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public string Player_Username { get; set; }
 
         public string PlayerCurrency { get; set; }

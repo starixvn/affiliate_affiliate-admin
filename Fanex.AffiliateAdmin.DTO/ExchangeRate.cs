@@ -14,6 +14,7 @@ namespace Fanex.AffiliateAdmin.DTO
     /// <summary>
     /// Exchange Rate class.
     /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public class ExchangeRate
     {
         public short ExchangeID { get; set; }

@@ -7,11 +7,10 @@
 //   <change who="Brian.Dinh" date="2013.11.6">Created</change>
 // </history>
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace Fanex.AffiliateAdmin.DTO
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Player win loss class.

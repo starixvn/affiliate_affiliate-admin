@@ -10,6 +10,7 @@
 namespace Fanex.AffiliateAdmin.DTO
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Function policy info.
@@ -39,6 +40,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public byte GPolicy { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public byte Actual_Policy { get; set; }
 
         public DateTime CreateDate { get; set; }

@@ -40,7 +40,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public byte GPolicy { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public byte Actual_Policy { get; set; }
 
         public DateTime CreateDate { get; set; }

@@ -22,7 +22,6 @@ namespace Fanex.AffiliateAdmin.Criterias
             this.Type = "Affiliate";
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         [SpParam(Ignored = true)]
         public string Type { get; set; }
 

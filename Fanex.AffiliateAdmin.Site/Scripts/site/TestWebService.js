@@ -1,4 +1,4 @@
-﻿/*global AFFILIATE*/
+﻿/*global AFFILIATE,MSG*/
 var TestWebService = (function ($) {
     "use strict";
 

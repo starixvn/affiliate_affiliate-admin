@@ -19,7 +19,6 @@ namespace Fanex.AffiliateAdmin.Criterias
     {
         public int GroupId { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public int AffID { get; set; }
 
         public override string GetSettingKey()

@@ -17,7 +17,6 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class BannerDetailCriteria : CriteriaBase
     {
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public int BannerId { get; set; }
 
         public override string GetSettingKey()

@@ -114,7 +114,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string PreferredPayment { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Allow underscores")]
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrUserNamePlayer")]
         [DisplayName("PlayerUsername")]
         public string Player_Username { get; set; }

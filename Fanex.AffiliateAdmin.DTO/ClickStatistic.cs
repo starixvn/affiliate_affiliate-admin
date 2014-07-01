@@ -30,7 +30,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public int Signups { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "Allow FMD abbreviation")]
         public int FDM { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace Fanex.AffiliateAdmin.Models
     {
         public int SId { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
+[SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Allow Type Property")]
         public string Type { get; set; }
 
         public string SName { get; set; }

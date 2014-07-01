@@ -15,7 +15,6 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class CommGroupSelByIdCriteria : CriteriaBase
     {
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public int GroupID { get; set; }
 
         public int UserId { get; set; }

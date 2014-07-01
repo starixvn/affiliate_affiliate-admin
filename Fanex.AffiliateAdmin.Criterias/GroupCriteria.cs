@@ -31,7 +31,6 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string ErrMsg { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         public string Type { get; set; }
 
         /// <summary>

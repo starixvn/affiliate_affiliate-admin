@@ -19,7 +19,7 @@ namespace Fanex.AffiliateAdmin.DTO
     {
         public DateTime DatabaseDateTime { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "Accept GMT abbreviation")]
         public string GMTOffSet { get; set; }
     }
 }

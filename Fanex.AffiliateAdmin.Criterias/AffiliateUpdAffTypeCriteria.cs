@@ -23,7 +23,6 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public short AffType { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public string Ip { get; set; }
 
         public string Language { get; set; }

@@ -26,7 +26,6 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int UserId { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public string Ip { get; set; }
 
         public int ErrCode { get; set; }

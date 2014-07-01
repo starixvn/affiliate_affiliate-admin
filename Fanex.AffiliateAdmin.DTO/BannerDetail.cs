@@ -35,7 +35,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public short? Currency { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
+        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Allow Type Property")]
         public byte? Type { get; set; }
 
         public int? Version { get; set; }

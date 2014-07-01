@@ -20,7 +20,6 @@ namespace Fanex.AffiliateAdmin.Criterias
     {
         public int ID { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public int AffDomainID { get; set; }
 
         public int MemberDomainID { get; set; }

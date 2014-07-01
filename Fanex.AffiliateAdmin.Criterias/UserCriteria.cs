@@ -71,7 +71,6 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int? PageSize { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         public string Type { get; set; }
 
         /// <summary>

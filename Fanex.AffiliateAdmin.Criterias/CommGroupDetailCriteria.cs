@@ -18,7 +18,6 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class CommGroupDetailCriteria : CriteriaBase
     {
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public string GroupIDList { get; set; }
 
         public DateTime? Date { get; set; }

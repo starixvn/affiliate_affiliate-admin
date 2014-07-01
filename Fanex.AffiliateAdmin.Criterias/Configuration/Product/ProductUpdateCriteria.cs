@@ -27,7 +27,6 @@ namespace Fanex.AffiliateAdmin.Criterias.Configuration.Product
 
         public string BettypeList { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public int? API_ProductID { get; set; }
 
         public string IP { get; set; }

@@ -25,7 +25,7 @@ namespace Fanex.AffiliateAdmin.DTO
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "NameFieldIsRequired")]
         public string ProductName { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         [Range(0, Int32.MaxValue, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "APIProductIDRange")]
         public int? API_ProductID { get; set; }
 

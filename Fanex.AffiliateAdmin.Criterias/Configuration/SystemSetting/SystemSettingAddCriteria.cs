@@ -23,7 +23,6 @@ namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
 
         public string Value { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         public string Type { get; set; }
 
         public string Description { get; set; }

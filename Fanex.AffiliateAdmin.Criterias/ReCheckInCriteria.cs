@@ -15,7 +15,6 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// <summary>
     /// Re-CheckIn Criteria.
     /// </summary>
-    [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
     public class ReCheckInCriteria : CriteriaBase
     {
         public int OnUserID { get; set; }

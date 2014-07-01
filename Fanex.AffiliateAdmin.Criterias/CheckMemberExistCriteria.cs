@@ -22,10 +22,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string AffStatus { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public int AffID { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public int MemberAffID { get; set; }
 
         [SpParam(Ignored = true)]

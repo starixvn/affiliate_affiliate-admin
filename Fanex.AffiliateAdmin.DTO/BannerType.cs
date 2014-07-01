@@ -18,7 +18,7 @@ namespace Fanex.AffiliateAdmin.DTO
     {
         public short TypeID { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
+        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Allow Type Property")]
         public string Type { get; set; }
 
         public string Value { get; set; }

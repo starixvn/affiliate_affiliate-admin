@@ -80,13 +80,15 @@ namespace Fanex.AffiliateAdmin.Models
 
         public bool EmailFormat { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "Allow URL")]
         public Uri SiteURL { get; set; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "Allow URL")]
         public string MoreSiteURLs { get; set; }
 
         public string PreferredPayment { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public string Player_Username { get; set; }
 
         public string PlayerCurrency { get; set; }

@@ -14,15 +14,15 @@ namespace Fanex.AffiliateAdmin.DTO
     /// </summary>
     public class AffiliateOnUser
     {
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Allow underscores")]
         public int On_UserId { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Allow underscores")]
         public int On_SessionId { get; set; }
 
         public int CustId { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Allow underscores")]
         public DateTime Reload_Time { get; set; }
 
         public int ServerID { get; set; }

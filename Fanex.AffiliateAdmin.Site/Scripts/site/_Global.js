@@ -1,6 +1,18 @@
-﻿/*global MSG,moment,subTotalStatus,Lang,moment,COLLAPSE_SUBTOTAL_STATUS*/
+﻿/*global MSG,moment,subTotalStatus,Lang,moment,COLLAPSE_SUBTOTAL_STATUS,sysGmt,sysYear,sysMonth,sysDay,sysHour,sysMinute,sysSecond,sysMonthName*/
 var AFFILIATE = (function ($) {
     "use strict";
+
+    if (window.sysGmt !== undefined) {
+        var systemGmt = window.sysGmt;
+        var systemYear = window.sysYear;
+        var systemMonth = window.sysMonth;
+        var systemDay = window.sysDay;
+        var systemHour = window.sysHour;
+        var systemMinute = window.sysMinute;
+        var systemSecond = window.sysSecond;
+        var systemMonthName = window.sysMonthName;
+    }
+
     return {
         pageSizes: [20, 50, 100],
         DATE_FORMAT: "MM/DD/YYYY",
@@ -195,64 +207,62 @@ var AFFILIATE = (function ($) {
             return true;
         },
 
-
         //Clock 
-        /*jshint ignore:start */
-        
         clock: function () {
-            
-            sysSecond++;
-            if (sysSecond === 60) {
-                sysSecond = 0;
-                sysMinute++;
+            systemSecond++;
+            if (systemSecond === 60) {
+                systemSecond = 0;
+                systemMinute++;
             }
-            if (sysMinute === 60) {
-                sysMinute = 0;
-                sysHour++;
+            if (systemMinute === 60) {
+                systemMinute = 0;
+                systemHour++;
             }
-            if (sysHour === 24) {
-                sysHour = 0;
-                sysSecond = 0;
-                sysMinute = 0;
-                sysDay++;
+            if (systemHour === 24) {
+                systemHour = 0;
+                systemSecond = 0;
+                systemMinute = 0;
+                systemDay++;
             }
-            
+
             var strMin;
-            if (sysMinute < 10) {
-                strMin = "0" + sysMinute;
+            if (systemMinute < 10) {
+                strMin = "0" + systemMinute;
             }
             else {
-                strMin = sysMinute;
+                strMin = systemMinute;
             }
 
             var strSec;
-            if (sysSecond < 10) {
-                strSec = "0" + sysSecond;
+            if (systemSecond < 10) {
+                strSec = "0" + systemSecond;
             }
             else {
-                strSec = sysSecond;
+                strSec = systemSecond;
             }
 
-            if (!AFFILIATE.isValidDate(sysYear, sysMonth, sysDay)) {
-                sysMonth++;
-                sysDay = 1;
+            if (!AFFILIATE.isValidDate(systemYear, systemMonth, systemDay)) {
+                systemMonth++;
+                systemDay = 1;
             }
-            if (!AFFILIATE.isValidDate(sysYear, sysMonth, sysDay)) {
-                sysYear++;
-                sysMonth = 1;
-                sysDay = 1;
+            if (!AFFILIATE.isValidDate(systemYear, systemMonth, systemDay)) {
+                systemYear++;
+                systemMonth = 1;
+                systemDay = 1;
             }
-            
+
             var strHrs;
-            if (sysHour < 10) {
-                strHrs = "0" + sysHour;
+            if (systemHour < 10) {
+                strHrs = "0" + systemHour;
             }
             else {
-                strHrs = sysHour;
+                strHrs = systemHour;
             }
-            $('#lblDateTime').html(strHrs + ":" + strMin + ":" + strSec + " " + sysDay + "-" + sysMonthName[sysMonth - 1] + "-" + sysYear + sysGmt);
+            $('#lblDateTime').html(strHrs + ":" + strMin + ":" + strSec + " " + systemDay 
+                + "-" + systemMonthName[systemMonth - 1] + "-" + systemYear + systemGmt);
         },
-        
+
+        /*jshint ignore:start */
         genGridRows: function (list, options) {
             var columns = options.columns;
             var rowCssClass = options.rowCssClass; // custom option
@@ -269,7 +279,7 @@ var AFFILIATE = (function ($) {
                 var dataRow = [];
 
                 for (var j = 0; j < columns.length; j++) {
-                    
+
                     (function () {
                         var rIndex = rowIndex;
                         var rowData = record;

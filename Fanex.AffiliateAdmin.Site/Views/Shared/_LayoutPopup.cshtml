@@ -31,16 +31,17 @@
         var Lang = {
             NoDataInfo: '@Html.Raw(Lang.NoInfo)'
         };
+        
+        $(document).ready(function () {
+            AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
+                return '@Url.Content("~/")' + relativeUrl;
+            };
 
-        AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
-            return '@Url.Content("~/")' + relativeUrl;
-        };
-
-        AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
+            AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
+        });
     </script>
     
     
     @RenderSection("scripts", required: false)
-
 </body>
 </html>

@@ -17,11 +17,13 @@
         @Scripts.Render("~/bundles/js")
         @RenderSection("scripts", required: false)
         <script type="text/javascript">
-            AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
-                return '@Url.Content("~/")' + relativeUrl;
-            };
+            $(document).ready(function() {
+                AFFILIATE.getAbsoluteUrl = function(relativeUrl) {
+                    return '@Url.Content("~/")' + relativeUrl;
+                };
 
-            AFFILIATE.TimeZone = '@Fanex.AffiliateAdmin.Core.Configurations.AppSettings.ServerTimeZone';
+                AFFILIATE.TimeZone = '@Fanex.AffiliateAdmin.Core.Configurations.AppSettings.ServerTimeZone';
+            });
         </script>
     </body>
 </html>

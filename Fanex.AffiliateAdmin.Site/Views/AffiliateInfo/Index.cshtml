@@ -9,20 +9,22 @@
     <div id="l-panel" class="l-panel">
         <iframe id="ifAffInfo" frameborder="0" scrolling="auto" class="span12 affInfo" src="@(Model.GetUrl("AffiliateInfo", "Info"))"></iframe>    
     </div>
-    <div id="c-panel" class="c-panel">
-        <div class="span12 t-panel">
-            <iframe id="ifStatistic" frameborder="0" scrolling="no" class="span12 statistic-exp"></iframe>
+    @if (!string.IsNullOrEmpty(Model.UserName))
+    {
+        <div id="c-panel" class="c-panel">
+            <div class="span12 t-panel">
+                <iframe id="ifStatistic" src="javascript:false;" frameborder="0" scrolling="no" class="span12 statistic-exp" ></iframe>
+            </div>
+            <div class="span12 b-panel">
+                <iframe id="ifReport" src="javascript:false;" frameborder="0" class="span12 report" scrolling="auto" style="overflow-x: hidden;"></iframe>    
+            </div>
         </div>
-        <div class="span12 b-panel">
-            <iframe id="ifReport" frameborder="0" class="span12 report" scrolling="auto" style="overflow-x: hidden;"></iframe>    
-        </div>
-    </div>
+    }
 </div>
 
 
 @section scripts{
     @Scripts.Render("~/scripts/affiliatemaster")
-    
     
     <script type="text/javascript">
         var domain = "@Model.SiteDomainUrl";

@@ -56,10 +56,9 @@ namespace Fanex.AffiliateAdmin.Site.App_Start
                         "~/Content/themes/base/AffiliateAdmin.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/loginJs").Include(
-                "~/Scripts/libraries/jquery.blockUI.js",
                 "~/Scripts/libraries/jquery.placeholder.js",
-                "~/Scripts/site/Login.js",
-                "~/Scripts/site/_Global.js"));
+                "~/Scripts/site/_Global.js",
+                "~/Scripts/site/Login.js"));
         }
 
         private static void GetBundleForNotify(BundleCollection bundles)

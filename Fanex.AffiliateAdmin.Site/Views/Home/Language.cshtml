@@ -25,14 +25,13 @@ else
 {
     <div class="langSelectLink"></div>
 }
-<script type="text/javascript">
-    
+<script type="text/javascript">    
     var sysGmt = '@systemDate.GMTOffSet';
-    var sysYear = @systemDate.DatabaseDateTime.Year.ToString();
-    var sysMonth = @systemDate.DatabaseDateTime.Month.ToString();
-    var sysDay = @systemDate.DatabaseDateTime.Day.ToString();
-    var sysHour = @systemDate.DatabaseDateTime.Hour.ToString();
-    var sysMinute = @systemDate.DatabaseDateTime.Minute.ToString();
-    var sysSecond = @systemDate.DatabaseDateTime.Second.ToString();
+    var sysYear = @systemDate.DatabaseDateTime.Year;
+    var sysMonth = @systemDate.DatabaseDateTime.Month;
+    var sysDay = @systemDate.DatabaseDateTime.Day;
+    var sysHour = @systemDate.DatabaseDateTime.Hour;
+    var sysMinute = @systemDate.DatabaseDateTime.Minute;
+    var sysSecond = @systemDate.DatabaseDateTime.Second;
     var sysMonthName = ['@Lang.Jan', '@Lang.Feb', '@Lang.Mar', '@Lang.Apr', '@Lang.May', '@Lang.Jun', '@Lang.Jul', '@Lang.Aug', '@Lang.Sep', '@Lang.Oct', '@Lang.Nov', '@Lang.Dec'];
 </script>

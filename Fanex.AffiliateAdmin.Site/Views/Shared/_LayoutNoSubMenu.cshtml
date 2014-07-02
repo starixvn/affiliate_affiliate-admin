@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
-    <link href="@Url.Content(string.Format("~/Content/_Sites/{0}/images/favicon.jpg", AppSettings.Layout))" rel="shortcut icon" type="image/x-icon" />
+    <link href="@Url.Content(string.Format("~/Content/_Sites/{0}/images/favicon.jpg?{1}", AppSettings.Layout, DateTime.Now.Ticks))" rel="shortcut icon" type="image/jpg" />
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/bundles/css")
     @RenderSection("css", required: false)
@@ -32,13 +32,15 @@
     
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
-        $.unblockUI();
-        AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
-            return '@Url.Content("~/")' + relativeUrl;
-        };
+        $(document).ready(function() {
+            $.unblockUI();
+            AFFILIATE.getAbsoluteUrl = function(relativeUrl) {
+                return '@Url.Content("~/")' + relativeUrl;
+            };
 
-        AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
-        $("#affiliateInfo").addClass("active");
+            AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
+            $("#affiliateInfo").addClass("active");
+        });
     </script>
 </body>
 </html>

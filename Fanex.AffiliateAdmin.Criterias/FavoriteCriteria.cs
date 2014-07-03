@@ -9,7 +9,6 @@
 
 namespace Fanex.AffiliateAdmin.Criterias
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

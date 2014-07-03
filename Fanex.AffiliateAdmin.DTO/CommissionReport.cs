@@ -6,7 +6,6 @@
 
 namespace Fanex.AffiliateAdmin.DTO
 {
-    using System;
     using System.Collections.Generic;
 
     /// <summary>

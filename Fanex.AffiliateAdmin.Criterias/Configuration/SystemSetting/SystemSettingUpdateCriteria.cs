@@ -10,7 +10,6 @@
 namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
 {
     using System.ComponentModel.DataAnnotations;
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

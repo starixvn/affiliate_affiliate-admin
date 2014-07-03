@@ -9,7 +9,6 @@
 
 namespace Fanex.AffiliateAdmin.Criterias.Configuration.Product
 {
-    using System.Diagnostics.CodeAnalysis;
     using NAP.Framework.Data;
 
     /// <summary>

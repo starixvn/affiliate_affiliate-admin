@@ -19,7 +19,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     {
         public void Init(HttpApplication application)
         {
-            application.PostReleaseRequestState += new EventHandler(ApplicationPostReleaseRequestState);
+            application.PostReleaseRequestState += ApplicationPostReleaseRequestState;
         }
 
         public void Dispose()

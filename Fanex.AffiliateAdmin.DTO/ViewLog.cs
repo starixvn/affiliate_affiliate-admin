@@ -28,7 +28,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime LoggedDate { get; set; }
 
-        public string SpName { get; set; }
+        public string SPName { get; set; }
 
         public string Details { get; set; }
 

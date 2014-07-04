@@ -7,16 +7,16 @@
 
 <div class="panel">
     <div id="l-panel" class="l-panel">
-        <iframe id="ifAffInfo" frameborder="0" scrolling="auto" class="span12 affInfo" src="@(Model.GetUrl("AffiliateInfo", "Info"))"></iframe>    
+        <iframe id="ifAffInfo" scrolling="auto" class="span12 affInfo" src="@(Model.GetUrl("AffiliateInfo", "Info"))"></iframe>    
     </div>
     @if (!string.IsNullOrEmpty(Model.UserName))
     {
         <div id="c-panel" class="c-panel">
             <div class="span12 t-panel">
-                <iframe id="ifStatistic" src="javascript:false;" frameborder="0" scrolling="no" class="span12 statistic-exp" ></iframe>
+                <iframe id="ifStatistic" src="javascript:false;" scrolling="no" class="span12 statistic-exp" ></iframe>
             </div>
             <div class="span12 b-panel">
-                <iframe id="ifReport" src="javascript:false;" frameborder="0" class="span12 report" scrolling="auto" style="overflow-x: hidden;"></iframe>    
+                <iframe id="ifReport" src="javascript:false;" class="span12 report" scrolling="auto" style="overflow-x: hidden;"></iframe>    
             </div>
         </div>
     }

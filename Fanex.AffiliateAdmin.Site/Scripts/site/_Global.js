@@ -784,6 +784,11 @@ $.fn.createSearchPanel = function () {
             $dialog.hide();
         });
 
+        $dialog.on("click", "#info-close", function (e) {
+            e.stopPropagation();
+            $dialog.hide();
+        });
+
         $el.find("#excel").click(function (e) {
             e.stopPropagation();
 
@@ -804,7 +809,7 @@ $.fn.createSearchPanel = function () {
                     $("#gridId").fanexGrid('resizeHeight', expHeight);
                 }
 
-                $contentPanel.stop().slideToggle(function () {
+                $contentPanel.stop().slideToggle(function() {
                     if ($(".search-form").is(":visible")) {
                         collapse.removeClass("expand");
                     } else {

@@ -3,7 +3,7 @@
   <Words>
     <Recognized>
       <Word>Username</Word>
-      <Word>username</Word>
+      <Word>VIP</Word>
       <Word>Ip</Word>
       <Word>IBC</Word>
       <Word>Re</Word>
@@ -27,11 +27,29 @@
       <Word>En</Word>
       <Word>GMT</Word>
       <Word>SPName</Word>
+      <Word>Un</Word>
+      <Word>FgLg</Word>
+      <Word>Fg</Word>
+      <Word>Lg</Word>
+      <Word>Ht</Word>
+      <Word>Ft</Word>
+      <Word>SSO</Word>
+      <Word>ABT</Word>
+      <Word>Ag</Word>
+      <Word>Cc</Word>
+      <Word>DBA</Word>
+      <Word>Eu</Word>
+      <Word>MHC</Word>
+      <Word>MSN</Word>
+      <Word>ID</Word>
+      <Word>IPVN</Word>
+      <Word>Qa</Word>
+      <Word>SubAccId</Word>
     </Recognized>
     <Unrecognized />
     <Deprecated>
       <Term>Username</Term>
-      <Term>username</Term>
+      <Term>VIP</Term>
       <Term>Ip</Term>
       <Term>IBC</Term>
       <Term>Re</Term>
@@ -55,10 +73,28 @@
       <Term>En</Term>
       <Term>GMT</Term>
       <Term>SPName</Term>
+      <Term>Un</Term>
+      <Term>FgLg</Term>
+      <Term>Fg</Term>
+      <Term>Lg</Term>
+      <Term>Ht</Term>
+      <Term>Ft</Term>
+      <Term>SSO</Term>
+      <Term>ABT</Term>
+      <Term>Ag</Term>
+      <Term>Cc</Term>
+      <Term>DBA</Term>
+      <Term>Eu</Term>
+      <Term>MHC</Term>
+      <Term>MSN</Term>
+      <Term>ID</Term>
+      <Term>IPVN</Term>
+      <Term>Qa</Term>
+      <Term>SubAccId</Term>
     </Deprecated>
     <Compound>
       <Term>Username</Term>
-      <Term>username</Term>
+      <Term>VIP</Term>
       <Term>Ip</Term>
       <Term>IBC</Term>
       <Term>Re</Term>
@@ -82,11 +118,28 @@
       <Term>En</Term>
       <Term>GMT</Term>
       <Term>SPName</Term>
-
+      <Term>Un</Term>
+      <Term>FgLg</Term>
+      <Term>Fg</Term>
+      <Term>Lg</Term>
+      <Term>Ht</Term>
+      <Term>Ft</Term>
+      <Term>SSO</Term>
+      <Term>ABT</Term>
+      <Term>Ag</Term>
+      <Term>Cc</Term>
+      <Term>DBA</Term>
+      <Term>Eu</Term>
+      <Term>MHC</Term>
+      <Term>MSN</Term>
+      <Term>ID</Term>
+      <Term>IPVN</Term>
+      <Term>Qa</Term>
+      <Term>SubAccId</Term>
     </Compound>
     <DiscreteExceptions>
       <Term>Username</Term>
-      <Term>username</Term>
+      <Term>VIP</Term>
       <Term>Ip</Term>
       <Term>IBC</Term>
       <Term>Re</Term>
@@ -110,12 +163,30 @@
       <Term>En</Term>
       <Term>GMT</Term>
       <Term>SPName</Term>
+      <Term>Un</Term>
+      <Term>FgLg</Term>
+      <Term>Fg</Term>
+      <Term>Lg</Term>
+      <Term>Ht</Term>
+      <Term>Ft</Term>
+      <Term>SSO</Term>
+      <Term>ABT</Term>
+      <Term>Ag</Term>
+      <Term>Cc</Term>
+      <Term>DBA</Term>
+      <Term>Eu</Term>
+      <Term>MHC</Term>
+      <Term>MSN</Term>
+      <Term>ID</Term>
+      <Term>IPVN</Term>
+      <Term>Qa</Term>
+      <Term>SubAccId</Term>
     </DiscreteExceptions>
   </Words>
   <Acronyms>
     <CasingExceptions>
       <Acronym>Username</Acronym>
-      <Acronym>username</Acronym>
+      <Acronym>VIP</Acronym>
       <Acronym>Ip</Acronym>
       <Acronym>IBC</Acronym>
       <Acronym>Re</Acronym>
@@ -139,6 +210,24 @@
       <Acronym>En</Acronym>
       <Acronym>GMT</Acronym>
       <Acronym>SPName</Acronym>
+      <Acronym>Un</Acronym>
+      <Acronym>FgLg</Acronym>
+      <Acronym>Fg</Acronym>
+      <Acronym>Lg</Acronym>
+      <Acronym>Ht</Acronym>
+      <Acronym>Ft</Acronym>
+      <Acronym>SSO</Acronym>
+      <Acronym>ABT</Acronym>
+      <Acronym>Ag</Acronym>
+      <Acronym>Cc</Acronym>
+      <Acronym>DBA</Acronym>
+      <Acronym>Eu</Acronym>
+      <Acronym>MHC</Acronym>
+      <Acronym>MSN</Acronym>
+      <Acronym>ID</Acronym>
+      <Acronym>IPVN</Acronym>
+      <Acronym>Qa</Acronym>
+      <Acronym>SubAccId</Acronym>
     </CasingExceptions>
   </Acronyms>
 </Dictionary>

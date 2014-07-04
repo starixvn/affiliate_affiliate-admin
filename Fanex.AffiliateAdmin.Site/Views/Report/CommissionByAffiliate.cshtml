@@ -103,8 +103,7 @@ report
             ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct',
             QualifiedMembers: "@Lang.QualifiedMembers"
         };
-        var affiliateUrl = AFFILIATE.getAbsoluteUrl("AffiliateInfo?username=");
-        var commGroupUrl = AFFILIATE.getAbsoluteUrl("CommGroup?groupname=");
+        
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
         var HasCashbackDeduction = @(ViewBag.HasCashbackDeduction ? "true" : "false");
         var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;

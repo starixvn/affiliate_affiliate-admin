@@ -250,7 +250,8 @@ var CommissionReport = (function ($) {
             // Comm group link event
             $maincontent.on("click", ".commgroup", function () {
                 var param = {
-                    groupid: $(this).data("groupid")
+                    groupid: $(this).data("groupid"),
+                    date: $(this).data("date")
                 };
                 parent.AFFILIATE.openDialogFrame("CommGroup/ViewSetting?"
                     + jQuery.param(param), MSG.CommGroupSettingFor.replace("{0}", '"'

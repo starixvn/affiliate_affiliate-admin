@@ -3,6 +3,7 @@ var Report = (function ($) {
     "use strict";
     var submitOptions = {};
     var DATE_COL = 1;
+    var gridOption = {};
 
     function genTotalRow(data) {
         var footerRows = [];
@@ -20,6 +21,7 @@ var Report = (function ($) {
         });
         return footerRows;
     }
+
     function checkRangeTime(fromDate, toDate) {
         var groupBy = $('#GroupBy').val();
         var inputSelector = groupBy === "2" ? "#FromMonth, #ToMonth" : "#FromDate, #ToDate";
@@ -63,6 +65,18 @@ var Report = (function ($) {
             return true;
         }
     }
+
+    function getDateFormat(groupBy) {
+        switch (groupBy) {
+            case "1":
+                return AFFILIATE.DATE_FORMAT;
+            case "2":
+                return AFFILIATE.DATE_FORMAT_MONTH;
+            default:
+                return "";
+        }
+    }
+
     return {
         init: function () {
 
@@ -102,7 +116,7 @@ var Report = (function ($) {
                 case "1":
                     var format = "";
                     var fromDate, toDate;
-                    
+
                     if (previous === "2") {
                         format = "DD MMM YYYY";
 
@@ -165,20 +179,21 @@ var Report = (function ($) {
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
+            gridOption = $.extend(true, {}, window.sampleGridOption);
             gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);  // jshint ignore:line
             var postdata = $('.search-form').find('input, select').serializeData();
             postdata.pageIndex = currentPage + 1;
             postdata.pageSize = itemsPerPage;
 
-            if (postdata.GroupBy === 2) { // month
+            if (postdata.GroupBy === "2") { // month
                 postdata.FromDate = "1 " + postdata.FromMonth;
                 postdata.ToDate = "1 " + postdata.ToMonth;
             }
             postdata.FromMonth = undefined;
             postdata.ToMonth = undefined;
 
-            if (!checkRangeTime(postdata.FromDate, postdata.ToDate)) {
-                alert(MSG.RangeTime3Months);
+            if (postdata.GroupBy !== "0" && !checkRangeTime(postdata.FromDate, postdata.ToDate)) {
+                alert(window.MSG.RangeTime3Months);
                 return;
             }
 
@@ -205,9 +220,13 @@ var Report = (function ($) {
                         totalItem: data.List.length
                     };
 
-                    gridOption.titleInfo.text = MSG.MemberStatisticsTitle + ' [{0}]'.format(data.TotalItem);
+                    gridOption.titleInfo.text = window.MSG.MemberStatisticsTitle + ' [{0}]'.format(data.TotalItem);
+                    gridOption.columns[DATE_COL].FormatDateTime = getDateFormat(postdata.GroupBy);
 
-                    gridOption.columns[DATE_COL].FormatDateTime = postdata.GroupBy === 1 ? "MM/DD/YYYY" : "MM/YYYY";
+                    if (postdata.GroupBy === "0") {
+                        gridOption.columns.splice(DATE_COL, 1);
+                    }
+
                     gridOption.footerRows = genTotalRow(data.SubTotal);
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 

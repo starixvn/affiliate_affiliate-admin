@@ -27,7 +27,6 @@ var CompanyWinlossReport = (function ($) {
     var changeHeaderOfWinlostDateColumn = function () {
         gridOption.groupHeaderRows[0].Columns[0].HeaderText = window.MSG.Month;
         gridOption.columns[0].HeaderText = window.MSG.Month;
-        gridOption.columns[0].FormatDateTime = AFFILIATE.DATE_FORMAT_MONTH;
     };
 
     var changeHeaderOfExchangeRateColumn = function () {
@@ -300,7 +299,7 @@ var CompanyWinlossReport = (function ($) {
         var groupBy = $("#GroupBy").val();
         var groupByText = levels[parseInt(groupBy, 10)];
         var baseCurrency = $('#BaseCurrency').val();
-        var formatDateTime = groupBy === 1 ? AFFILIATE.DATE_FORMAT_MONTH : AFFILIATE.DATE_FORMAT;
+        var formatDateTime = groupBy === "1" ? AFFILIATE.DATE_FORMAT_MONTH : AFFILIATE.DATE_FORMAT;
 
         $.each(groups, function (idx, group) {
             var companyWinlossInMemberCurrencies = group.CompanyWinlossInMemberCurrencies;
@@ -324,13 +323,13 @@ var CompanyWinlossReport = (function ($) {
                                 var toDate;
 
                                 if (groupBy === "0") {
-                                    fromDate = obj.format(AFFILIATE.DATE_FORMAT);
-                                    toDate = obj.format(AFFILIATE.DATE_FORMAT);
+                                    fromDate = obj.format(formatDateTime);
+                                    toDate = obj.format(formatDateTime);
                                 } else {
                                     var firstDay = obj.date(1);
-                                    fromDate = firstDay.format(AFFILIATE.DATE_FORMAT);
+                                    fromDate = firstDay.format(formatDateTime);
                                     var lastDay = firstDay.add('months', 1).add('days', -1);
-                                    toDate = lastDay.format(AFFILIATE.DATE_FORMAT);
+                                    toDate = lastDay.format(formatDateTime);
                                 }
 
                                 request.FromDate = fromDate;
@@ -662,7 +661,7 @@ var CompanyWinlossReport = (function ($) {
             var fromDate;
             var toDate;
 
-            if (value === 1) {
+            if (value === "1") {
                 fromDate = moment('01 ' + $('#FromDate').val());
                 toDate = moment('01 ' + $('#ToDate').val());
             } else {

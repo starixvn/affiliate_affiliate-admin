@@ -38,7 +38,7 @@ report
                  <div class="cell">
                      @Html.Label("GroupBy", Lang.GroupBy, new { @class = "txt" })
                     
-                     <select id="GroupBy" class="width-140 single-select dropdownchecklist">
+                     <select id="GroupBy" name="GroupBy" class="width-140 single-select dropdownchecklist">
                          <option value="0">@Lang.All</option>
                          <option value="1">@Lang.Date</option>
                          <option value="2" selected>@Lang.Month</option>                    
@@ -57,11 +57,11 @@ report
                  <div id="monthSearch" >
                      <div class="cell" >
                          @Html.Label("FromMonth", Lang.From, new { @class = "txt" })
-                         @Html.MonthPicker("FromMonth", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now)
+                         @Html.MonthPicker("FromMonth", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, new { id = "FromMonth" })
                      </div>
                      <div class="cell" >
                          @Html.Label("ToMonth", Lang.To, new { @class = "txt" })
-                         @Html.MonthPicker("ToMonth", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now)
+                         @Html.MonthPicker("ToMonth", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, new { id = "ToMonth" })
                      </div>
                 </div>
                  <input type="hidden" name="PreviousGroupBy" id="PreviousGroupBy" value="2"/>
@@ -110,6 +110,8 @@ report
 @section scripts{
     <script type="text/javascript">
         var MSG = {
+            Date: "@Lang.Date",
+            Month: "@Lang.Month",
             RangeTime3Months: "@Lang.RangeTime3Months",
             MemberStatisticsTitle: "@Lang.MemberStatistics"                
         };

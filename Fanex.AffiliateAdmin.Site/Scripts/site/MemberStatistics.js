@@ -3,9 +3,13 @@ var Report = (function ($) {
     "use strict";
     var submitOptions = {};
     var DATE_COL = 1;
+    var GROUP_BY_ALL = "0";
+    var GROUP_BY_DATE = "1";
+    var GROUP_BY_MONTH = "2";
     var gridOption = {};
 
     function genTotalRow(data) {
+
         var footerRows = [];
         footerRows.push({
             Columns: [
@@ -19,6 +23,12 @@ var Report = (function ($) {
             ],
             CssClass: 'total-whole-range'
         });
+
+        if (submitOptions.GroupBy === GROUP_BY_ALL) {
+            footerRows.Columns.splice(DATE_COL, 1);
+            footerRows.Columns[0].MergeColNumber = footerRows.Columns[0].MergeColNumber - 1;
+        }
+
         return footerRows;
     }
 
@@ -68,14 +78,40 @@ var Report = (function ($) {
 
     function getDateFormat(groupBy) {
         switch (groupBy) {
-            case "1":
+            case GROUP_BY_DATE:
                 return AFFILIATE.DATE_FORMAT;
-            case "2":
+            case GROUP_BY_MONTH:
                 return AFFILIATE.DATE_FORMAT_MONTH;
             default:
                 return "";
         }
     }
+
+    var handleDateColumn = function (groupBy) {
+        if (groupBy === GROUP_BY_ALL) {
+            gridOption.columns.splice(DATE_COL, 1);
+            return;
+        }
+
+        gridOption.columns[DATE_COL].FormatDateTime = getDateFormat(groupBy);
+        gridOption.columns[DATE_COL].HeaderText = groupBy === GROUP_BY_DATE ? MSG.Date : MSG.Month;
+    };
+
+    var toggleRangeTime = function (value) {
+        var disabled = value === GROUP_BY_ALL;
+
+        if (disabled) {
+            $("#FromDate").attr("disabled", "disabled");
+            $("#ToDate").attr("disabled", "disabled");
+            $("#FromMonth").attr("disabled", "disabled");
+            $("#ToMonth").attr("disabled", "disabled");
+        } else {
+            $("#FromDate").removeAttr("disabled");
+            $("#ToDate").removeAttr("disabled");
+            $("#FromMonth").removeAttr("disabled");
+            $("#ToMonth").removeAttr("disabled");
+        }
+    };
 
     return {
         init: function () {
@@ -104,20 +140,17 @@ var Report = (function ($) {
                 $('#FromDate, #ToDate').prop('disabled', !isChecked);
             });
         },
+
         changeGroupBy: function (value) {
-            var disable = value === "0";
-            $("#FromDate").prop("disabled", disable);
-            $("#ToDate").prop("disabled", disable);
-            $("#FromMonth").prop("disabled", disable);
-            $("#ToMonth").prop("disabled", disable);
             var previous = $('#PreviousGroupBy').val();
+            toggleRangeTime(value);
 
             switch (value) {
-                case "1":
+                case GROUP_BY_DATE:
                     var format = "";
                     var fromDate, toDate;
 
-                    if (previous === "2") {
+                    if (previous === GROUP_BY_MONTH) {
                         format = "DD MMM YYYY";
 
                         var minDate = $('#FromDate').attr('data-mindate');
@@ -154,8 +187,8 @@ var Report = (function ($) {
 
                     $('#PreviousGroupBy').val("1");
                     break;
-                case "2":
-                    if (previous === "1") {
+                case GROUP_BY_MONTH:
+                    if (previous === GROUP_BY_DATE) {
                         format = "MMM YYYY";
 
                         fromDate = $('#FromDate').val();
@@ -174,33 +207,34 @@ var Report = (function ($) {
         },
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
-            submitOptions = $('form').serializeObject();
+            submitOptions = $('form').serializeObject2();
+
+            if (submitOptions.GroupBy === GROUP_BY_MONTH) { // month
+                submitOptions.FromDate = "1 " + submitOptions.FromMonth;
+                submitOptions.ToDate = "1 " + submitOptions.ToMonth;
+            }
+
+            delete submitOptions.FromMonth;
+            delete submitOptions.ToMonth;
+
+            if (submitOptions.GroupBy !== GROUP_BY_ALL && !checkRangeTime(submitOptions.FromDate, submitOptions.ToDate)) {
+                alert(window.MSG.RangeTime3Months);
+                return;
+            }
+
             Report.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
             gridOption = $.extend(true, {}, window.sampleGridOption);
             gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);  // jshint ignore:line
-            var postdata = $('.search-form').find('input, select').serializeData();
-            postdata.pageIndex = currentPage + 1;
-            postdata.pageSize = itemsPerPage;
-
-            if (postdata.GroupBy === "2") { // month
-                postdata.FromDate = "1 " + postdata.FromMonth;
-                postdata.ToDate = "1 " + postdata.ToMonth;
-            }
-            postdata.FromMonth = undefined;
-            postdata.ToMonth = undefined;
-
-            if (postdata.GroupBy !== "0" && !checkRangeTime(postdata.FromDate, postdata.ToDate)) {
-                alert(window.MSG.RangeTime3Months);
-                return;
-            }
+            submitOptions.pageIndex = currentPage + 1;
+            submitOptions.pageSize = itemsPerPage;
 
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Report/MemberStatistics"),
                 type: 'post',
-                data: postdata,
+                data: submitOptions,
                 beforeSend: function () {
                     $.blockUI();
                 },
@@ -221,39 +255,18 @@ var Report = (function ($) {
                     };
 
                     gridOption.titleInfo.text = window.MSG.MemberStatisticsTitle + ' [{0}]'.format(data.TotalItem);
-                    gridOption.columns[DATE_COL].FormatDateTime = getDateFormat(postdata.GroupBy);
-
-                    if (postdata.GroupBy === "0") {
-                        gridOption.columns.splice(DATE_COL, 1);
-                    }
+                    handleDateColumn(submitOptions.GroupBy);
 
                     gridOption.footerRows = genTotalRow(data.SubTotal);
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 
-                    if (data.List.length === 0) {
-                        $('.status').hide();
+                    if (data.TotalItem === 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
-                        return;
-                    } else {
-                        $('.status').show();
-                    }
-
-                    if (postdata.GroupBy === 0) // All
-                    {
-                        $("#gridId").fanexGrid("hideColumns", gridOption, [DATE_COL]);
-                        // show hidden column in total row
-                        $(".footer-container table th").show();
-                    }
-                    else {
-                        $("#gridId").fanexGrid("hideColumns", gridOption, []);
-                        $(".header-container table tr th:eq(1) div").html(postdata.GroupBy === 1 ? "Date" : "Month");
-
                     }
 
                     AFFILIATE.updateSearchPanel($('#gridId'));
-
                 },
                 complete: function () {
                     $.unblockUI();

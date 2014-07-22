@@ -94,7 +94,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         List = data,
                         SubTotal = subTotalRow,
                         Total = totalRow
-                    }, 
+                    },
             JsonRequestBehavior.AllowGet);
         }
 
@@ -133,13 +133,14 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult UpdatePayment(PaymentUpdateViewModel model)
         {
+            var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria
+            {
+                TransId = model.TransId
+            });
+            model.PaymentDetail = paymentDetail;
+
             if (ModelState.IsValid)
             {
-                var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria
-                {
-                    TransId = model.TransId
-                });
-
                 var criteria = new PaymentUpdateCriteria
                 {
                     TransId = model.TransId,
@@ -152,7 +153,6 @@ namespace Fanex.AffiliateAdmin.Controller
                 };
 
                 UpdatePayment(criteria, paymentDetail.AffId, paymentDetail.RefId, paymentDetail.TransferAmount);
-                model.PaymentDetail = paymentDetail;
 
                 if (criteria.ErrCode == 0)
                 {

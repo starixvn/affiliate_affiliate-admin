@@ -16,7 +16,6 @@ namespace Fanex.AffiliateAdmin.Site
     using System.Web.Routing;
     using Core.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
-    using Fanex.AffiliateAdmin.Site.App_Start;
     using Fanex.Data.Configuration;
     using Fanex.Logging;
 

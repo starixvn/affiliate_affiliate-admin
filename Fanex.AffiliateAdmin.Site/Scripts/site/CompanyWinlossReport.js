@@ -322,14 +322,14 @@ var CompanyWinlossReport = (function ($) {
                                 var fromDate;
                                 var toDate;
 
-                                if (groupBy === "0") {
-                                    fromDate = obj.format(formatDateTime);
-                                    toDate = obj.format(formatDateTime);
+                                if (groupBy === GROUP_BY_DATE) {
+                                    fromDate = obj.format(AFFILIATE.DATE_FORMAT);
+                                    toDate = obj.format(AFFILIATE.DATE_FORMAT);
                                 } else {
                                     var firstDay = obj.date(1);
-                                    fromDate = firstDay.format(formatDateTime);
-                                    var lastDay = firstDay.add('months', 1).add('days', -1);
-                                    toDate = lastDay.format(formatDateTime);
+                                    fromDate = firstDay.format(AFFILIATE.DATE_FORMAT);
+                                    var lastDay = obj.add('months', 1).add('days', -1);
+                                    toDate = lastDay.format(AFFILIATE.DATE_FORMAT);
                                 }
 
                                 request.FromDate = fromDate;

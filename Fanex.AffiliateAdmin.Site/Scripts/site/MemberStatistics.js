@@ -25,8 +25,7 @@ var Report = (function ($) {
         });
 
         if (submitOptions.GroupBy === GROUP_BY_ALL) {
-            footerRows.Columns.splice(DATE_COL, 1);
-            footerRows.Columns[0].MergeColNumber = footerRows.Columns[0].MergeColNumber - 1;
+            footerRows[0].Columns[0].MergeColNumber = footerRows[0].Columns[0].MergeColNumber - 1;
         }
 
         return footerRows;

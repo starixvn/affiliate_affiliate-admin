@@ -16,11 +16,12 @@ report
 
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Mvc
+@using Fanex.AffiliateAdmin.Core.Utilities
 @model Fanex.AffiliateAdmin.Models.CommissionReportViewModel
 <div class="search-panel search-company-winloss" style="min-width: 1100px" >
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
-    @RazorHelper.SearchPanel("#SearchForm .search-form", Lang.ReportInfo, false, true)
+    @RazorHelper.SearchPanel("#SearchForm .search-form", Common.GetReportInfo(), false, true)
     @using (Html.BeginForm("Commission", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
     {            
         <div class="span12 search-form search-company-winloss">

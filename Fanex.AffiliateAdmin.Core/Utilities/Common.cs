@@ -13,8 +13,10 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     using System;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Resources;
     using System.Text;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.MailDeliver.MailClient.API;
     using RazorEngine;
@@ -322,6 +324,16 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 FormaterCurrency.Format(sampleValue, currencycode),
                 FormaterCurrency.Format(sampleValue * multipliedby, currencycode));
             return s.Append("</p>").ToString();
+        }
+
+        /// <summary>
+        /// Get report info.
+        /// </summary>
+        /// <returns>Report info.</returns>
+        public static string GetReportInfo()
+        {
+            var hasPlayCasino = AppSettings.Products.Any(t => t.ProductName.Equals("Playtech Casino"));
+            return string.Format(Lang.ReportInfo, hasPlayCasino ? Lang.PCNetGamingInfo : string.Empty);
         }
     }
 }

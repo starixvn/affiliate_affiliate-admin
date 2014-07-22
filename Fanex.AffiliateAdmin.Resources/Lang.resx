@@ -2557,12 +2557,14 @@
   </data>
   <data name="ReportInfo" xml:space="preserve">
     <value>&lt;ul&gt;
-                &lt;li&gt;Company W/L: Sum of selected products' winloss&lt;/li&gt;
-                &lt;li&gt;PC. Net Gaming: - Customer W/L - P.Share&lt;/li&gt;
+                &lt;li&gt;Company W/L: Sum of selected products' winloss&lt;/li&gt;{0}
                 &lt;li&gt;QM (Qualified Member): Total number of members whose accumulated stake in that month is greater than or equal to a defined amount&lt;/li&gt;
                 &lt;li&gt;Member W/L: Win loss amount of affiliate's members in a month on a product&lt;/li&gt;
                 &lt;li&gt;%Comm follow tier setting of commission group&lt;/li&gt;
                 &lt;li&gt;PSP (Payment Service Provider Fee) = 0.03 * Deposit + 0.03 * Withdrawal&lt;/li&gt;
             &lt;/ul&gt;</value>
+  </data>
+  <data name="PCNetGamingInfo" xml:space="preserve">
+    <value>&lt;li&gt;PC. Net Gaming: - Customer W/L - P.Share&lt;/li&gt;</value>
   </data>
 </root>

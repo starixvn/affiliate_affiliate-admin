@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fanex.AffiliateAdmin.Resources
-{
-
-
+namespace Fanex.AffiliateAdmin.Resources {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -5312,6 +5312,15 @@ namespace Fanex.AffiliateAdmin.Resources
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;PC. Net Gaming: - Customer W/L - P.Share&lt;/li&gt;.
+        /// </summary>
+        public static string PCNetGamingInfo {
+            get {
+                return ResourceManager.GetString("PCNetGamingInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pending.
         /// </summary>
         public static string Pending {
@@ -5763,12 +5772,12 @@ namespace Fanex.AffiliateAdmin.Resources
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
-        ///                &lt;li&gt;Company W/L: Sum of selected products&apos; winloss&lt;/li&gt;
-        ///                &lt;li&gt;PC. Net Gaming: - Customer W/L - P.Share&lt;/li&gt;
+        ///                &lt;li&gt;Company W/L: Sum of selected products&apos; winloss&lt;/li&gt;{0}
         ///                &lt;li&gt;QM (Qualified Member): Total number of members whose accumulated stake in that month is greater than or equal to a defined amount&lt;/li&gt;
         ///                &lt;li&gt;Member W/L: Win loss amount of affiliate&apos;s members in a month on a product&lt;/li&gt;
         ///                &lt;li&gt;%Comm follow tier setting of commission group&lt;/li&gt;
-        ///                &lt;li&gt;PSP (Payment Serv [rest of string was truncated]&quot;;.
+        ///                &lt;li&gt;PSP (Payment Service Provider Fee) = 0.03 * Deposit + 0.03 * Withdrawal&lt;/li&gt;
+        ///    [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ReportInfo {
             get {

@@ -367,9 +367,10 @@ var CompanyWinlossReport = (function ($) {
                     bodyRows.push({ Columns: totalColums, CssClass: "sub-total-group" });
                 }
             } else {
-                renderSubTotalInBodyReport(bodyRows, group);
+                bodyRows = bodyRows.concat(renderSubTotalInBodyReport(group));
             }
         });
+
         return bodyRows;
     }
 
@@ -426,8 +427,6 @@ var CompanyWinlossReport = (function ($) {
 
                 subTotalRows.push({ Columns: columns, CssClass: 'currency-range' });
             });
-
-            return subTotalRows;
         }
 
         var totalColums = [];
@@ -442,6 +441,8 @@ var CompanyWinlossReport = (function ($) {
         }
 
         subTotalRows.push({ Columns: totalColums, CssClass: 'total-range' });
+
+        return subTotalRows;
     }
 
     function getSuffix(group, groupBy) {

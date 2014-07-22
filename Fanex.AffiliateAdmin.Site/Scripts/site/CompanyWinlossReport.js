@@ -1,4 +1,4 @@
-﻿/*global AFFILIATE,MSG,moment,System,subTotalStatus,Lang,EXPAND_SUBTOTAL_STATUS,
+﻿/*global AFFILIATE,MSG,moment,System,Lang,EXPAND_SUBTOTAL_STATUS,
     moment,sampleNetGamingCol,samplePlaytechCasinoHeader,samplePShareCol,samplePWinCol*/
 var CompanyWinlossReport = (function ($) {
     "use strict";
@@ -194,7 +194,7 @@ var CompanyWinlossReport = (function ($) {
         $.each(products, function () {
             if (this.Name === "Playtech Casino") {
                 hasPlaytechCasino = true;
-                return;
+                return false;
             }
         });
 
@@ -469,7 +469,7 @@ var CompanyWinlossReport = (function ($) {
         if (hasShowSubTotalRow === true && hasShowSubTotalRows(memberCurrencyCount, firstMemberCurrency, baseCurrency)) {
             var realSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal real-cell' : '';
             var pseudoSubTotalclass = memberCurrencyCount > 1 ? 'cell-subtotal pseudo-cell' : '';
-            subTotalStatus = memberCurrencyCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS;  // jshint ignore:line
+            window.subTotalStatus = memberCurrencyCount > 1 ? window.subTotalStatus : window.EXPAND_SUBTOTAL_STATUS;  // jshint ignore:line
 
             $.each(companyWinlossInMemberCurrencies, function (idx, item) {
                 var columns = [];

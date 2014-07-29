@@ -53,19 +53,21 @@
         $table.find(".icon-remove:last").addClass("icon-white").prop("disabled", true);
         $table[0].appendChild(newTierRow(newTierID, minAM, maxAM, minQM, maxQM, commission));
     }
+
     function enableProduct(productID, value, changeIcon, showConfirm) {
 
         var $tab = $(productID == null ? ".tab_header" : "#tab_header" + productID);
-        if (value == false && $tab.data("disabled") && !$tab.find("#header_icon").hasClass("icon-ok-circle"))
+        if (value == false && $tab.data("disabled") && !$tab.find("#header_icon" + productID).hasClass("icon-ok-circle")) {
             return;
+        }
 
         if (value) {
             $(productID == null ? ".tab_content" : "#tab_content" + productID).show();
             if ($tab.data("disabled"))
-                $tab.find("#product_header").css("color", "").addClass("header_hightlight");
+                $tab.find("#product_header" + productID).css("color", "").addClass("header_hightlight");
         }
         else {
-            $tab.find("#product_header").removeClass("header_hightlight");
+            $tab.find("#product_header" + productID).removeClass("header_hightlight");
             if (showConfirm) {
                 var productname = $("#tab_header" + productID).data("productname");
                 var msg = MSG.ConfirmRemoveFromGroup.replace("{item}", productname);
@@ -77,18 +79,19 @@
             } else {
                 $(!productID ? ".tab_content" : "#tab_content" + productID).hide();
             }
-
         }
+
         $tab.find("#" + productID).prop("disabled", !value);
 
-        $tab.data("disabled", !value).find("#product_header").css("color", !value ? "gray" : "black");
+        $tab.data("disabled", !value).find("#product_header" + productID).css("color", !value ? "gray" : "black");
 
         if (changeIcon) {
             if (typeof (changeIcon) == "string")
-                $tab.find("#header_icon").removeClass().addClass(changeIcon);
+                $tab.find("#header_icon" + productID).removeClass().addClass(changeIcon);
             else
-                $tab.find("#header_icon").removeClass().addClass(value ? "icon-ok-circle" : "icon-ban-circle");
+                $tab.find("#header_icon" + productID).removeClass().addClass(value ? "icon-ok-circle" : "icon-ban-circle");
         }
+
         return true;
     }
 
@@ -160,10 +163,10 @@
 
 
             disableCopyCheckboxes();
-            $tabheader.find("#header_icon").click(function (e) {
+            $tabheader.find(".header_icon").click(function (e) {
                 e.stopPropagation();
                 var productid = $(this).closest(".tab_header").data("productid");
-                enableProduct(productid, !$(this).closest(".tab_header").find("#header_icon").hasClass("icon-ok-circle"), true, true);
+                enableProduct(productid, !$(this).closest(".tab_header").find(".header_icon").hasClass("icon-ok-circle"), true, true);
 
                 disableCopyCheckboxes();
             });
@@ -202,9 +205,15 @@
 
             $("#ActiveAll").change(function () {
 
-                if (this.checked)
-                    enableProduct(null, true, true);
-                else {
+                if (this.checked) {
+                    enableProduct(0, true, true);
+
+                    // unactive specific deduction by product
+                    for (var i = 0; i < PRODUCTS.length; i++) {
+                        enableProduct(PRODUCTS[i], true, true);
+                    }
+                    
+                } else {
                     var all = true;
 
                     // unactive general deduction
@@ -215,7 +224,6 @@
 
                     // unactive specific deduction by product
                     for (var i = 0; i < PRODUCTS.length; i++) {
-                        var productid = PRODUCTS[i];
                         if (enableProduct(PRODUCTS[i], false, true, true))
                             all = false;
                     }
@@ -237,7 +245,6 @@
                     else
                         enableProduct(PRODUCTS[i], true, true, false);
                 }
-
             });
 
             $tabcontent.find("button.addtier").click(function () {
@@ -362,7 +369,7 @@
 
                 var tierList, minAmountList, maxAmountList, minQMList, maxQMList, commissionList, deductionList, deductedPercentageList;
                 tierList = minAmountList = maxAmountList = minQMList = maxQMList = commissionList = deductionList = deductedPercentageList = "";
-                
+
                 // get Cashback deduction 
                 var $deductions = $("#tab_content0 .deductions:first input[type=checkbox]:checked");
 
@@ -383,7 +390,7 @@
                     var isdisabled = $tab.data("disabled");
 
                     if (isdisabled) {
-                        var iscopy = $tab.find("#header_icon").hasClass("icon-ok-circle");
+                        var iscopy = $tab.find(".header_icon").hasClass("icon-ok-circle");
                         if (!iscopy) {
                             var index = products.indexOf(productid);
                             products.splice(index, 1);
@@ -420,10 +427,10 @@
 
                     $tr.each(function () {
                         var $this = $(this);
-                        var minAM = $this.find("#minAM").val().replace(/,/g, "");
-                        var maxAM = $this.find("#maxAM").val().replace(/,/g, "");
-                        var minQM = $this.find("#minQM").val().replace(/,/g, "");
-                        var maxQM = $this.find("#maxQM").val().replace(/,/g, "");
+                        var minAM = $this.find(".minAM").val().replace(/,/g, "");
+                        var maxAM = $this.find(".maxAM").val().replace(/,/g, "");
+                        var minQM = $this.find(".minQM").val().replace(/,/g, "");
+                        var maxQM = $this.find(".maxQM").val().replace(/,/g, "");
                         if (maxAM == '∞')
                             maxAM = MAXAM;
                         if (maxQM == '∞')

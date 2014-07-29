@@ -74,10 +74,8 @@ payment
                     @Html.DropDownCheckList("BaseCurrency", Model.BaseCurrencyListSelectItem, false, false, new {@class = "width-140"})
                 </div>
                 <div class="cell">
-                    <label class="checkbox txt">
-                        @Html.CheckBoxFor(m => m.ExcludeTest)
-                        @Html.LabelFor(m => m.ExcludeTest)
-                    </label>
+                    @Html.CheckBoxFor(m => m.ExcludeTest)
+                    @Html.LabelFor(m => m.ExcludeTest)
                 </div>
             </div>
             <div class="row-fluid row-form btn-action">
@@ -91,7 +89,7 @@ payment
     }
 </div>
 <div class="grid-status">
-    <div id="gridId" class="freegrid" colheight="230" expheight="380"></div>
+    <div id="gridId" class="freegrid"></div>
     <ul class="unstyled inline status">
         <li><span class="approved"></span>@Lang.Approved</li>
         <li><span class="rejected"></span>@Lang.Rejected</li>

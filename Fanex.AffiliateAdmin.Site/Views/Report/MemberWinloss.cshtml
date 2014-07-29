@@ -66,11 +66,11 @@ report
             </div>
             <div class="row-fluid row-form">
                 <div class="cell">
-                    <label for="Currencies" class="txt">@Lang.Member</label>
+                    <label for="PlayerName" class="txt">@Lang.Member</label>
                     <input type="text" class="form-control width-140" id="PlayerName" name="PlayerName" placeholder="@Lang.All" maxlength="100"/>
                 </div>
                 <div class="cell">
-                    <label for="DateOption" class="txt">@Lang.GroupBy</label>
+                    <label for="GroupBy" class="txt">@Lang.GroupBy</label>
                     @Html.DropDownCheckList("GroupBy", Model.GroupByOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
                 <div class="cell">
@@ -100,8 +100,8 @@ report
                     @Html.DropDownCheckList("Products", Model.ProductOptionList, true, false, new { @class = "width-140" })
                 </div>
                 <div class="cell width-140">
+                    @Html.CheckBoxFor(m => m.ExcludeTest)
                     <label for="ExcludeTest">
-                        @Html.CheckBoxFor(m => m.ExcludeTest)
                         @Lang.ExcludeTestAccounts
                     </label>
                 </div>
@@ -114,7 +114,7 @@ report
         </div>
     }
 </div>
-<div id="gridId" class="freegrid" colheight="200" expheight="350">
+<div id="gridId" class="freegrid">
 </div>
 @section scripts{
     <script type="text/javascript">

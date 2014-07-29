@@ -49,7 +49,7 @@ report
                     @Html.DropDownCheckList("Currencies", Model.CurrencyOptionList, true, true, new { @class = "width-140" })
                 </div>
                 <div class="cell">
-                    <label for="DateOption" class="txt">@Lang.GroupBy</label>
+                    <label for="GroupBy" class="txt">@Lang.GroupBy</label>
                     @Html.DropDownCheckList("GroupBy", Model.GroupByOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
                 <div class="cell">
@@ -79,8 +79,8 @@ report
                     @Html.DropDownCheckList("Products", Model.ProductOptionList, true, false, new { @class = "width-140" })
                 </div>
                 <div class="cell checkbox width-160">
+                    @Html.CheckBoxFor(m => m.ExcludeTest)
                     <label for="ExcludeTest">
-                        @Html.CheckBoxFor(m => m.ExcludeTest)
                         @Lang.ExcludeTestAccounts
                     </label>
                 </div>
@@ -93,7 +93,7 @@ report
         </div>
     }
 </div>
-<div id="gridId" class="freegrid" colheight="200" expheight="350">
+<div id="gridId" class="freegrid">
 </div>
 <div class="content legend">
     <div class="row-fluid">

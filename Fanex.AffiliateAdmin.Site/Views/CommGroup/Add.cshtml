@@ -13,7 +13,7 @@
     currencyDropDownAttr.Add("class", "width-140 dropdownchecklist single-select");
     if (Model != null)
     {
-        currencyDropDownAttr.Add("disabled", "true");
+        currencyDropDownAttr.Add("disabled", "disabled");
         if (Model.Currency == 0)
         {
             isNoCommissionGroup = true;
@@ -111,7 +111,7 @@
                     <ul>
                         <li class="expand">				
                             <span>
-                                <span id="product_header" class="product_header header_hightlight" style="cursor: pointer"> 
+                                <span class="product_header header_hightlight" style="cursor: pointer"> 
                                     @Lang.Deduction
                                 </span>
                             </span>
@@ -152,8 +152,8 @@
                     <ul>
                         <li class="expand">				
                             <span>
-                                <span id="product_header" class="product_header header_hightlight" style="cursor: pointer"> 
-                                    <i id="header_icon" class="icon-ok-circle"></i>			      
+                                <span id="product_header@(product.ProductID)" class="product_header header_hightlight" style="cursor: pointer"> 
+                                    <i id="header_icon@(product.ProductID)" class="header_icon icon-ok-circle"></i>			      
                                     @product.ProductName
                                 </span>
                             </span>
@@ -188,9 +188,9 @@
                                     var d = check ? Model.DeductionSettings.Where(x => x.DeductionID == item.DTypeID).FirstOrDefault() : null;
                                     var percent = d == null ? (decimal)item.DeductedPercentage : d.DeductedPercentage;
                 
-                                    <div class="cell span3" style="min-width:160px">            
-                                        <label for="exclude-test" title="@(Lang.ResourceManager.GetString("Deduction" + item.DTypeName.Replace(" ", string.Empty)))">
-                                            <input type="checkbox" class="deduction" @(check ? "checked=checked" : "") data-id="@item.DTypeID" data-percent="@item.DeductedPercentage">
+                                    <div class="cell span3" style="min-width:160px">
+                                        <input type="checkbox" class="deduction" @(check ? "checked=checked" : "") data-id="@item.DTypeID" data-percent="@item.DeductedPercentage" />            
+                                        <label title="@(Lang.ResourceManager.GetString("Deduction" + item.DTypeName.Replace(" ", string.Empty)))">
                                             @item.DTypeName
                                         </label>
                                         <select style="margin-left:10px; width: 70px" class="deductionlist nopadding" @(check ? null : "disabled")>
@@ -209,71 +209,73 @@
                     }
                 }
                 <div class="fieldset">
-                    <div class="legend">@Lang.TierSetting</div><br>
-                        <table width="100%" cellspacing="1" cellpadding="0" border="0" bgcolor="#90b3ce" id="tblTier@(product.ProductID)">
-                            <thead><tr>
-                                        <td width="55" class="theader">Tier</td>
-                                        <td width="110" title="@Lang.MinimumWinlossAmount" class="theader">@Lang.MinAmount</td>
-                                        <td width="165" title="@Lang.MaximumWinlossAmount" class="theader">@Lang.MaxAmount</td>
-                                        <td width="110" title="@Lang.MinimumQualifiedMembers" class="theader">@Lang.MinQM</td>
-                                        <td width="165" title="@Lang.MaximumQualifiedMembers" class="theader">@Lang.MaxQM</td>
-                                        <td width="80" class="theader">@Lang.Commission</td>
-                                        <td width="80" class="theader">@Lang.Action</td>
-                                    </tr>
-                            </thead>
-                            <tbody>   
-                                @if (!hasTier)
-                                {
-                                    <tr class="rnormal"><td class="c" colspan="7">@Lang.NoInfo</td></tr>
-                                }
-                                else
-                                {
-                                    var settings = Model.GroupSettings.Where(x => x.ProductID == product.ProductID);
+                    <div class="legend">@Lang.TierSetting</div>
+                    <div style="clear:left;"></div>
+                    <table id="tblTier@(product.ProductID)">
+                        <thead><tr>
+                                   <td style="width: 55px;" class="theader">Tier</td>
+                                   <td style="width: 110px;" title="@Lang.MinimumWinlossAmount" class="theader">@Lang.MinAmount</td>
+                                   <td style="width: 165px;" title="@Lang.MaximumWinlossAmount" class="theader">@Lang.MaxAmount</td>
+                                   <td style="width: 110px;" title="@Lang.MinimumQualifiedMembers" class="theader">@Lang.MinQM</td>
+                                   <td style="width: 165px;" title="@Lang.MaximumQualifiedMembers" class="theader">@Lang.MaxQM</td>
+                                   <td style="width: 80px;" class="theader">@Lang.Commission</td>
+                                   <td style="width: 80px;" class="theader">@Lang.Action</td>
+                               </tr>
+                        </thead>
+                        <tbody>   
+                            @if (!hasTier)
+                            {
+                                <tr class="rnormal"><td class="c" colspan="7">@Lang.NoInfo</td></tr>
+                            }
+                            else
+                            {
+                                var settings = Model.GroupSettings.Where(x => x.ProductID == product.ProductID);
 
-                                    var count = settings.Count();
-                                    for (int j = 0; j < count; j++)
-                                    {
-                                        var tier = settings.ElementAt(j);
-                                        var ismax = tier.MaxAmount == MAXAM;
-                                        var isLast = j == count - 1;
-                                        <tr class="tier">          
-                                            <td>@(j + 1)</td>
-                                            <td>
-                                                <input type="text" id="minAM" disabled class="minAM" value="@(((long)tier.MinAmount).ToString("#,0"))"  maxlength="19" /></td>
-                                            <td class="for_form">
-                                                <input type="text" id="maxAM" @(ismax ? "disabled" : null) class="maxAM" value="@(ismax ? "∞" : ((long)tier.MaxAmount).ToString("#,0"))" maxlength="19" />
-                                                <input type="checkbox" @(!isLast ? "disabled" : null) @(ismax ? "checked" : null)/>∞
-                                            </td>
-                                            <td>
-                                                <input type="text" id="minQM" disabled class="minQM" value="@tier.MinQM.ToString("#,0")" maxlength="13"  />
-                                            </td>
-                                            <td class="for_form">
-                                                <input type="text" id="maxQM" @(ismax ? "disabled" : null)  class="maxQM" value="@(ismax ? "∞" : tier.MaxQM.ToString("#,0"))" maxlength="13" />
-                                                <input type="checkbox"  @(!isLast ? "disabled" : null) @(ismax ? "checked" : null) />∞
-                                            </td>
-                                            <td style="max-width: 100px">
-                                                <select style="" class="commission">
-                                                    <!--SelectOption-->
-                                                    @*@Html.DropDownList("commission" + tier.GroupID + tier.TierID, AppSettings.Commissions)*@
-                                                    @for (int i = 0; i < 100; i++)
-                                                    {
-                                                        var num = Convert.ToDecimal(i) / 100;
-                                                        var val = string.Format("{0:0.00}", num);
-                                                        <option value="@val" @(num == tier.Commission ? "selected" : null)>@val</option> 
-                                                    }
-                                                    <!--/SelectOption-->              
-                                                </select>
-                                            </td>            
-                                            <td>              
-                                                <a href="javascript:void(0);" class="icon-remove  @(!isLast ? "icon-white" : null)" @(!isLast ? "disabled='disabled'" : "disabled")></a>
-                                            </td>
-                                        </tr>
-                                    }
+                                var count = settings.Count();
+                                for (int j = 0; j < count; j++)
+                                {
+                                    var tier = settings.ElementAt(j);
+                                    var ismax = tier.MaxAmount == MAXAM;
+                                    var isLast = j == count - 1;
+                                    <tr class="tier">          
+                                        <td>@(j + 1)</td>
+                                        <td>
+                                            <input type="text" disabled class="minAM" value="@(((long)tier.MinAmount).ToString("#,0"))"  maxlength="19" /></td>
+                                        <td class="for_form">
+                                            <input type="text" @(ismax ? "disabled" : null) class="maxAM" value="@(ismax ? "∞" : ((long)tier.MaxAmount).ToString("#,0"))" maxlength="19" />
+                                            <input type="checkbox" @(!isLast ? "disabled" : null) @(ismax ? "checked" : null)/>∞
+                                        </td>
+                                        <td>
+                                            <input type="text" disabled class="minQM" value="@tier.MinQM.ToString("#,0")" maxlength="13"  />
+                                        </td>
+                                        <td class="for_form">
+                                            <input type="text" @(ismax ? "disabled" : null)  class="maxQM" value="@(ismax ? "∞" : tier.MaxQM.ToString("#,0"))" maxlength="13" />
+                                            <input type="checkbox"  @(!isLast ? "disabled" : null) @(ismax ? "checked" : null) />∞
+                                        </td>
+                                        <td style="max-width: 100px">
+                                            <select style="" class="commission">
+                                                <!--SelectOption-->
+                                                @*@Html.DropDownList("commission" + tier.GroupID + tier.TierID, AppSettings.Commissions)*@
+                                                @for (int i = 0; i < 100; i++)
+                                                {
+                                                    var num = Convert.ToDecimal(i) / 100;
+                                                    var val = string.Format("{0:0.00}", num);
+                                                    <option value="@val" @(num == tier.Commission ? "selected" : null)>@val</option> 
+                                                }
+                                                <!--/SelectOption-->              
+                                            </select>
+                                        </td>            
+                                        <td>
+                                            <a href="javascript:void(0);" class="icon-remove  @(!isLast ? "icon-white" : string.Empty)"></a>
+                                        </td>
+                                    </tr>
                                 }
-                            </tbody>
-                        </table>
-                        <button id="btnAddTier@(product.ProductID)" style="margin-top: 5px" type="button" @(Model == null || Model.GroupSettings.Where(x => x.ProductID == product.ProductID).Count() == 0 ? null : "disabled") class="btn btn-default addtier" style="vertical-align: top" data-productid="@product.ProductID" >@Lang.AddTier</button>
-                </div></div>
+                            }
+                        </tbody>
+                    </table>
+                    <button id="btnAddTier@(product.ProductID)" style="margin-top: 5px; vertical-align: top;" type="button" @(Model == null || Model.GroupSettings.Where(x => x.ProductID == product.ProductID).Count() == 0 ? null : "disabled") class="btn btn-default addtier" data-productid="@product.ProductID" >@Lang.AddTier</button>
+                </div>
+                </div>
         }
     </div>
    <div class="clear"></div>

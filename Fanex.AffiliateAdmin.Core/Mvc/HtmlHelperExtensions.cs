@@ -216,7 +216,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
             attributes.AddOrAppend("data-mindate", GetMinDateString(minDate));
             attributes.AddOrAppend("data-maxdate", GetMaxDateString(maxDate));
             attributes.AddOrAppend("data-value", date.HasValue ? date.Value.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture) : null);
-            attributes.AddOrAppend("readonly", "true");
+            attributes.AddOrAppend("readonly", "readonly");
 
             if (disabled)
             {
@@ -236,8 +236,10 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
                 {
                     id = attr.Value.ToString();
                 }
-
-                builder.AppendFormat(" {0}=\"{1}\" ", attr.Key, attr.Value);
+                else
+                {
+                    builder.AppendFormat(" {0}=\"{1}\" ", attr.Key, attr.Value);    
+                }
             }
 
             builder.AppendFormat(" id=\"{0}\" />", id);
@@ -363,7 +365,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
 
             attributes["data-maxdate"] = maxDate.Value.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture);
             attributes["data-value"] = value;
-            attributes["readonly"] = true;
+            attributes["readonly"] = "readonly";
 
             var builder = new StringBuilder();
             string id = name;
@@ -377,8 +379,10 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
                 {
                     id = attr.Value.ToString();
                 }
-
-                builder.AppendFormat(" {0}=\"{1}\" ", attr.Key, attr.Value);
+                else
+                {
+                    builder.AppendFormat(" {0}=\"{1}\" ", attr.Key, attr.Value);
+                }
             }
 
             builder.AppendFormat(" id=\"{0}\" />", id);

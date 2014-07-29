@@ -72,8 +72,8 @@ aff-list
                     @Html.DropDownCheckList("SortBy", Model.SortByOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
                 <div class="cell checkbox">
-                    <label for="ExcludeTest">
-                        @Html.CheckBoxFor(m => m.ExcludeTest)
+                    @Html.CheckBoxFor(m => m.ExcludeTest)
+                    <label for="ExcludeTest">                        
                         @Lang.ExcludeTestAccounts
                     </label>
                 </div>
@@ -86,7 +86,7 @@ aff-list
         </div>
     }
 </div>
-<div id="gridId" class="freegrid" colheight="200" expheight="350">
+<div id="gridId" class="freegrid">
 </div>
 <div class="content legend">
     <div class="row-fluid">

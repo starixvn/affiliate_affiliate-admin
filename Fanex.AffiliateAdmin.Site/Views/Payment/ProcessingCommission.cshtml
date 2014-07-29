@@ -43,24 +43,25 @@ payment
             <div class="row-fluid row-form">
                 <div class="cell">
                     @Html.LabelFor(m => m.Username, new {@class = "txt"})
-                    @Html.TextBoxFor(m => m.Username, new {placeholder = Lang.All, @class = "width-140", maxlength = "100", Name = "AffName"})
+                    <input type="text" placeholder="All" name="AffName" maxlength="100" id="Username" class="width-140">
                 </div>
                 <div class="cell">
-                    @Html.LabelFor(m => m.AffType, new {@class = "txt"})
+                    @Html.LabelFor(m => m.AffType, new { @class = "txt", @for = "AffTypes"})
+                    
                     @Html.DropDownCheckList("AffTypes", new SelectList(AppSettings.AffTypes, "TypeID", "Name"), true, true, new {@class = "width-140"})
                 </div>
                 <div class="cell">
-                    @Html.LabelFor(m => m.CommGroup, new {@class = "txt"})
+                    @Html.LabelFor(m => m.CommGroup, new { @class = "txt", @for = "CommGroups" })
                     @Html.DropDownCheckList("CommGroups", Model.CommissionGroupOptionList, true, true, new {@class = "width-140"})
                 </div>
                 <div class="cell">
-                    @Html.LabelFor(m => m.Language, new {@class = "txt"})
+                    @Html.LabelFor(m => m.Language, new { @class = "txt", @for = "PreferLanguages" })
                     @Html.DropDownCheckList("PreferLanguages", Model.PreferLanguageOptionList, true, true, new {@class = "width-140"})
                 </div>
             </div>
             <div class="row-fluid row-form end-search">
                 <div class="cell">
-                    @Html.LabelFor(m => m.Currency, new {@class = "txt"})
+                    @Html.LabelFor(m => m.Currency, new { @class = "txt", @for = "Currencies" })
                     @Html.DropDownCheckList("Currencies", Model.AffiliateCurrencyOptionList, true, true, new {@class = "width-140"})
                 </div>
                 <div class="cell">
@@ -79,10 +80,8 @@ payment
                     @Html.DropDownCheckList("Products", Model.ProductOptionList, true, false, new { @class = "width-140" })
                 </div>
                 <div class="cell checkbox width-160">
-                    <label class="checkbox auto">
-                        @Html.CheckBoxFor(m => m.ExcludeTest)
-                        @Html.LabelFor(m => m.ExcludeTest)
-                    </label>
+                    @Html.CheckBoxFor(m => m.ExcludeTest)
+                    @Html.LabelFor(m => m.ExcludeTest)
                 </div>
             </div>
             <div class="row-fluid row-form btn-action">
@@ -97,16 +96,6 @@ payment
 </div>
 
 <div id="gridId" class="freegrid">
-</div>
-
-<div class="grid-status">
-    <div class="freegrid" colheight="230" expheight="380"></div>
-    <ul class="unstyled inline status">
-        <li><span class="approved"></span>@Lang.Approved</li>
-        <li><span class="rejected"></span>@Lang.Rejected</li>
-        <li><span class="pending"></span>@Lang.Processing</li>
-        <li><span class="cancelled"></span>@Lang.Cancelled</li>
-    </ul>
 </div>
 @section scripts{
     <script type="text/javascript">

@@ -100,7 +100,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (!string.IsNullOrEmpty(userName))
             {
-                this.CurrentSession.Affiliate = null;
+                CurrentSession.Affiliate = null;
                 var model = _affiliateService.GetAffiliateGeneralInfo(new AffiliateInfoCriteria
                 {
                     Username = userName,

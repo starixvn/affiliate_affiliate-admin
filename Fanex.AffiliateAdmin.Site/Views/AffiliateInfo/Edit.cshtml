@@ -22,10 +22,29 @@
     {
         @RazorHelper.ListSubmenu(SubMenu.AffiliateNotApprove, 0)
     }
+
     <div class="line line-statement">
         <div class="ic-open-window" title="@Lang.FullScreen"></div>
     </div>
 }
+
+@{
+    Model.Affiliate.FirstName = HttpUtility.HtmlDecode(Model.Affiliate.FirstName);
+    Model.Affiliate.LastName = HttpUtility.HtmlDecode(Model.Affiliate.LastName);
+    Model.Affiliate.Email = HttpUtility.HtmlDecode(Model.Affiliate.Email);
+    Model.Affiliate.Phone = HttpUtility.HtmlDecode(Model.Affiliate.Phone);
+    Model.Affiliate.MobilePhone = HttpUtility.HtmlDecode(Model.Affiliate.MobilePhone);
+    Model.Affiliate.Address = HttpUtility.HtmlDecode(Model.Affiliate.Address);
+    Model.Affiliate.City = HttpUtility.HtmlDecode(Model.Affiliate.City);
+    Model.Affiliate.State = HttpUtility.HtmlDecode(Model.Affiliate.State);
+    Model.Affiliate.Postal = HttpUtility.HtmlDecode(Model.Affiliate.Postal);
+    Model.Affiliate.Question = HttpUtility.HtmlDecode(Model.Affiliate.Question);
+    Model.Affiliate.Answer = HttpUtility.HtmlDecode(Model.Affiliate.Answer);
+    Model.Affiliate.SiteLink = HttpUtility.HtmlDecode(Model.Affiliate.SiteLink);
+    Model.Affiliate.MoreSiteURLs = HttpUtility.HtmlDecode(Model.Affiliate.MoreSiteURLs);
+    Model.Affiliate.Player_Username = HttpUtility.HtmlDecode(Model.Affiliate.Player_Username);
+}
+
 @Html.ValidationSummary()
 
 @using (Html.BeginForm("Edit", "AffiliateInfo", FormMethod.Post, new { @class = "iframe-content" }))

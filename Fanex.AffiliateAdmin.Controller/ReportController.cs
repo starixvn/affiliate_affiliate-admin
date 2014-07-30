@@ -22,8 +22,8 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
+    using Fanex.AffiliateAdmin.Services;
     using Models;
-    using Services.Interface;
 
     /// <summary>
     /// Report Controller.
@@ -555,7 +555,7 @@ namespace Fanex.AffiliateAdmin.Controller
             // Sub total by date, in system currency.
             foreach (var property in properties)
             {
-                if (property.Name.EndsWith("Base"))
+                if (property.Name.EndsWith("Base",StringComparison.OrdinalIgnoreCase))
                 {
                     var value = companyWinlosses.Sum(g =>
                     {
@@ -569,7 +569,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     }
                 }
 
-                if (property.Name.EndsWith("ActivePlayers") || property.Name.EndsWith("BetCount"))
+                if (property.Name.EndsWith("ActivePlayers", StringComparison.OrdinalIgnoreCase) || property.Name.EndsWith("BetCount", StringComparison.OrdinalIgnoreCase))
                 {
                     var value = companyWinlosses.Sum(g =>
                     {

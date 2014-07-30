@@ -26,8 +26,8 @@ management
                     <input type="text" class="form-control" id="username" name="UserName" placeholder="@Lang.All" maxlength="100"/>
                 </div>
                 <div class="cell">
-                    <label for="">@Lang.FirstLetter</label>
-                    @RazorHelper.ListAlPhabet(Model.FirstLetter, new Dictionary<string, object> { { "name", "FirstChar" } })
+                    <label for="FirstChar">@Lang.FirstLetter</label>
+                    @RazorHelper.ListAlPhabet(Model.FirstLetter, new Dictionary<string, object> { { "name", "FirstChar" }, { "id", "FirstChar" } })
                 </div>
             </div>
             <div class="row-fluid row-form btn-action">
@@ -39,7 +39,7 @@ management
     }
 </div>
 
-<div id="gridId" class="freegrid content-grid" colheight="200" expheight="290">
+<div id="gridId" class="freegrid content-grid">
 
 </div>
 @section scripts{

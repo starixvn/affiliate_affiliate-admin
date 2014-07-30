@@ -20,9 +20,9 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Services;
     using Models;
     using Resources;
-    using Services.Interface;
 
     /// <summary>
     /// TODO: Update summary.

@@ -23,6 +23,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
     /// <summary>
     /// Implement html extension.
     /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public static class HtmlHelperExtensions
     {
         /// <summary>
@@ -161,7 +162,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
         /// <param name="url">Url of hyperlink.</param>
         /// <param name="linkText">Text of link.</param>
         /// <returns>Return hyperlink.</returns>
-        public static MvcHtmlString Hyperlink(this HtmlHelper helper, string url, string linkText)
+        public static MvcHtmlString Hyperlink(this HtmlHelper helper, Uri url, string linkText)
         {
             return MvcHtmlString.Create(string.Format("<a href='{0}'>{1}</a>", url, linkText));
         }
@@ -172,9 +173,9 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
         /// <param name="helper">Helper of html.</param>
         /// <param name="url">Url of link.</param>
         /// <returns>Return hyperlink.</returns>
-        public static MvcHtmlString Hyperlink(this HtmlHelper helper, string url)
+        public static MvcHtmlString Hyperlink(this HtmlHelper helper, Uri url)
         {
-            return Hyperlink(helper, url, url);
+            return Hyperlink(helper, url, url.ToString());
         }
 
         /// <summary>
@@ -458,9 +459,6 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
             this HtmlHelper<TModel> html,
             Expression<Func<TModel, TValue>> expression,
             int selectedMonth,
-            ////int? currentYear,
-            ////DateTime? minDate = null,
-            ////DateTime? maxDate = null,
             object htmlAttributes = null)
         {
             var metaData = ModelMetadata.FromLambdaExpression(expression, html.ViewData);

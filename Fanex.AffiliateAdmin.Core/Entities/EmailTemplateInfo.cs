@@ -63,17 +63,17 @@ namespace Fanex.AffiliateAdmin.Core.Entities
 
         public string MemberSiteDomain { get; set; }
 
-        public string MemberSiteUrl { get; set; }
+        public Uri MemberSiteUrl { get; set; }
 
-        public string AdminSiteUrl { get; set; }
+        public Uri AdminSiteUrl { get; set; }
 
-        public string AffiliateSiteUrl { get; set; }
+        public Uri AffiliateSiteUrl { get; set; }
 
-        public string HeaderBgColor
+        public string HeaderBGColor
         {
             get
             {
-                return EmailColorPalette.EmailHeaderBgColor;
+                return EmailColorPalette.EmailHeaderBGColor;
             }
         }
 
@@ -85,11 +85,11 @@ namespace Fanex.AffiliateAdmin.Core.Entities
             }
         }
 
-        public string ContentBgColor
+        public string ContentBGColor
         {
             get
             {
-                return EmailColorPalette.EmailContentBgColor;
+                return EmailColorPalette.EmailContentBGColor;
             }
         }
 
@@ -101,11 +101,11 @@ namespace Fanex.AffiliateAdmin.Core.Entities
             }
         }
 
-        public string CopyrightBgColor
+        public string CopyrightBGColor
         {
             get
             {
-                return EmailColorPalette.EmailCopyrightBgColor;
+                return EmailColorPalette.EmailCopyrightBGColor;
             }
         }
 
@@ -117,11 +117,11 @@ namespace Fanex.AffiliateAdmin.Core.Entities
             }
         }
 
-        public string FooterBgColor
+        public string FooterBGColor
         {
             get
             {
-                return EmailColorPalette.EmailFooterBgColor;
+                return EmailColorPalette.EmailFooterBGColor;
             }
         }
 

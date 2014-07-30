@@ -4,13 +4,12 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Fanex.AffiliateAdmin.Services.Impl
+namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
-    using Fanex.AffiliateAdmin.Services.Interface;
     using Fanex.Common.Helper;
 
     /// <summary>

@@ -6,16 +6,15 @@
 // <history>
 //   <change who="Joseph.Pham" date="2013.8.1">Created</change>
 // </history>
-namespace Fanex.AffiliateAdmin.Services.Impl
+
+namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using Common.Helper;
     using Core.Services;
     using Criterias;
-    using DataAccess.Impl;
-    using DataAccess.Interface;
     using DTO;
-    using Interface;
+    using Fanex.AffiliateAdmin.DataAccess;
     using Models;
 
     /// <summary>

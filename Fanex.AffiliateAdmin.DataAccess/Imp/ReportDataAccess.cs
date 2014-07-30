@@ -7,7 +7,7 @@
 //   <change who="Brian.Dinh" date="2014.3.26">Created</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.DataAccess.Imp
+namespace Fanex.AffiliateAdmin.DataAccess
 {
     using System.Collections.Generic;
     using System.Data;
@@ -15,11 +15,10 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
     using Common.Extensions;
     using Criterias;
     using Data;
-    using Fanex.AffiliateAdmin.Core.Configurations;
-    using Fanex.AffiliateAdmin.Core.Utilities;
-    using Fanex.AffiliateAdmin.DTO;
+    using Core.Configurations;
+    using Core.Utilities;
+    using DTO;
     using Fanex.NAP.Framework.Data;
-    using Interface;
 
     /// <summary>
     /// Account data access.

@@ -7,14 +7,13 @@
 //   <change who="Leo.Vo" date="2013.7.31">Created</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.Services.Impl
+namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using System.Linq;
     using Core.Services;
     using Criterias;
     using DTO;
-    using Interface;
 
     /// <summary>
     /// TODO: Update summary.

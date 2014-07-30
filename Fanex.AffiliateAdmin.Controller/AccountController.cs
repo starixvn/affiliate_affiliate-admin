@@ -21,9 +21,9 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Utilities;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Services;
     using Models;
     using Resources;
-    using Services.Interface;
 
     /// <summary>
     /// Account controller.

@@ -13,7 +13,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Criterias;
-    using Fanex.AffiliateAdmin.Services.Impl;
+    using Fanex.AffiliateAdmin.Services;
 
     [FunctionAuth(Function = "[SystemSettings]")]
     public class TestWebServiceController : BaseController

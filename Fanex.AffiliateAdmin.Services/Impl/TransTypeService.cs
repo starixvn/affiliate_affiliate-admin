@@ -4,15 +4,14 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Fanex.AffiliateAdmin.Services.Impl
+namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using Common.Helper;
     using Core.Services;
     using Criterias;
     using DTO;
-    using Interface;
-    
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

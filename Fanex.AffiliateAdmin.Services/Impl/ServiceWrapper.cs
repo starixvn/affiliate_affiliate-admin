@@ -7,7 +7,7 @@
 //   <change who="Kaden.Trinh" date="2013.07.04">Created</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.Services.Impl
+namespace Fanex.AffiliateAdmin.Services
 {
     using System;
     using System.Xml.Linq;
@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Services.Impl
     /// <summary>
     /// Service Wrapper.
     /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public class ServiceWrapper
     {
         private static MemberSiteService.ServiceSoapClient _client;

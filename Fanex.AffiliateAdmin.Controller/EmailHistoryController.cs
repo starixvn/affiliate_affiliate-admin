@@ -17,8 +17,8 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Resources;
+    using Fanex.AffiliateAdmin.Services;
     using Models;
-    using Services.Interface;
 
     /// <summary>
     /// Email History Controller.
@@ -129,7 +129,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 UserId = SessionManager.CurrentSession.CustID,
                 IP = Remote.GetClientIPAddress()
             };
-            _service.ExecuteSp(criteria);            
+            _service.ExecuteSP(criteria);            
 
             return Json(GetResultViewModel(criteria.ErrCode, Lang.DeleteSucc));
         }

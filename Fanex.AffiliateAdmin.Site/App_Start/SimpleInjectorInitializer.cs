@@ -14,8 +14,7 @@ namespace Fanex.AffiliateAdmin.Site
     using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
-    using Fanex.AffiliateAdmin.Services.Impl;
-    using Fanex.AffiliateAdmin.Services.Interface;
+    using Fanex.AffiliateAdmin.Services;
     using SimpleInjector;
     using SimpleInjector.Integration.Web.Mvc;
 

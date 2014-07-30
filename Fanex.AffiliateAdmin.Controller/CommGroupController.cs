@@ -21,7 +21,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using DTO;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Resources;
-    using Services.Interface;
+    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Commission group Controller.

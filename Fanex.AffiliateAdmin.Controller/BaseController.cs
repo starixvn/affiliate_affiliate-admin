@@ -7,6 +7,8 @@
 //   <change who="Johnny.Trinh" date="2013.07.12">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Linq;
@@ -65,6 +67,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// Get Error message.
         /// </summary>
         /// <returns>Error message string.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         protected string GetModelErrorMessage()
         {
             foreach (ModelState modelState in ViewData.ModelState.Values)

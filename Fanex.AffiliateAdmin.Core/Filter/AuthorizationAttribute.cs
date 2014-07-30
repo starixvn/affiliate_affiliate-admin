@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AuthorizationAttribute.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="= _mediaSettingService.GetBannerSizes();.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,6 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Core.Filter
 {
+    using System;
     using System.Web;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -16,7 +17,8 @@ namespace Fanex.AffiliateAdmin.Core.Filter
     /// <summary>
     /// Authorization Attribute class.
     /// </summary>
-    public class AuthorizationAttribute : AuthorizeAttribute
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class AuthorizationAttribute : AuthorizeAttribute
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {

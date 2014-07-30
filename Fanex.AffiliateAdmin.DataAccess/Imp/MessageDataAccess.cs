@@ -7,7 +7,7 @@
 //   <change who="Leo.Vo" date="2013.7.31">Created</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.DataAccess.Imp
+namespace Fanex.AffiliateAdmin.DataAccess
 {
     using System;
     using System.Collections.Generic;
@@ -17,7 +17,6 @@ namespace Fanex.AffiliateAdmin.DataAccess.Imp
     using Criterias;
     using Data;
     using DTO;
-    using Interface;
 
     /// <summary>
     /// TODO: Update summary.

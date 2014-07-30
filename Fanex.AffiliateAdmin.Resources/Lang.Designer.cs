@@ -6947,6 +6947,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update exchange rate.
+        /// </summary>
+        public static string UpdateExRate {
+            get {
+                return ResourceManager.GetString("UpdateExRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update language.
         /// </summary>
         public static string UpdateLanguage {

@@ -7,7 +7,7 @@
 //   <change who="Leo.Vo" date="2013.7.31">Created</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.Services.Interface
+namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using Criterias;

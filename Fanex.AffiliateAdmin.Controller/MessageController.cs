@@ -17,10 +17,9 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Session;
     using Core.Utilities;
     using Criterias;
+    using Fanex.AffiliateAdmin.Services;
     using Models;
     using Resources;
-    using Services.Impl;
-    using Services.Interface;
 
     /// <summary>
     /// TODO: Update summary.

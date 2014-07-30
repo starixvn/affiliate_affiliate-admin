@@ -14,9 +14,9 @@ namespace Fanex.AffiliateAdmin.Core.Mailinator
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class EmailColorPalette
+    public static class EmailColorPalette
     {
-        public static string EmailHeaderBgColor
+        public static string EmailHeaderBGColor
         {
             get
             {
@@ -32,7 +32,7 @@ namespace Fanex.AffiliateAdmin.Core.Mailinator
             }
         }
 
-        public static string EmailContentBgColor
+        public static string EmailContentBGColor
         {
             get
             {
@@ -48,7 +48,7 @@ namespace Fanex.AffiliateAdmin.Core.Mailinator
             }
         }
 
-        public static string EmailCopyrightBgColor
+        public static string EmailCopyrightBGColor
         {
             get
             {
@@ -64,7 +64,7 @@ namespace Fanex.AffiliateAdmin.Core.Mailinator
             }
         }
 
-        public static string EmailFooterBgColor
+        public static string EmailFooterBGColor
         {
             get
             {

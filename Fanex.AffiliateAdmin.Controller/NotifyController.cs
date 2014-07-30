@@ -15,7 +15,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Criterias;
-    using Fanex.AffiliateAdmin.Services.Interface;
+    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Notify Controller class.

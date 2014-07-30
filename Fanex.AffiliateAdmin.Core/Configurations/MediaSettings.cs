@@ -22,18 +22,10 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     public static class MediaSettings
     {
         private static IMediaSettingService _mediaSettingService = new MediaSettingService();
-
-        private static IEnumerable<MediaType> _bannerCategories;
-        private static IEnumerable<MediaType> _bannerTypes;
-        private static IEnumerable<MediaType> _bannerSizes;
-
-        static MediaSettings()
-        {
-            _bannerCategories = _mediaSettingService.GetBannerCategories();
-            _bannerTypes = _mediaSettingService.GetBannerTypes();
-            _bannerSizes = _mediaSettingService.GetBannerSizes();
-        }
-
+        private static IEnumerable<MediaType> _bannerCategories = _mediaSettingService.GetBannerCategories();
+        private static IEnumerable<MediaType> _bannerTypes = _mediaSettingService.GetBannerTypes();
+        private static IEnumerable<MediaType> _bannerSizes = _mediaSettingService.GetBannerSizes();
+        
         public static IEnumerable<MediaType> BannerCategories
         {
             get
@@ -71,16 +63,16 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        public static string BannerScriptUrl
+        public static Uri BannerScriptUrl
         {
             get
             {
-                return AppSettings.GetSettingValue(new SystemSettingDetailCriteria
+                return new Uri(AppSettings.GetSettingValue(new SystemSettingDetailCriteria
                 {
                     Name = "BannerScriptUrl",
                     Type = "Meta",
                     SearchBy = SearchByType.ByName
-                });
+                }));
             }
         }
 

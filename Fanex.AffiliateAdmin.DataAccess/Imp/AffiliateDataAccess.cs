@@ -7,7 +7,7 @@
 //   <change who="Joseph.Pham" date="2013.8.1">Created</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.DataAccess.Impl
+namespace Fanex.AffiliateAdmin.DataAccess
 {
     using System;
     using System.Collections.Generic;
@@ -19,7 +19,6 @@ namespace Fanex.AffiliateAdmin.DataAccess.Impl
     using Data;
     using DTO;
     using Fanex.AffiliateAdmin.Core.Utilities;
-    using Interface;
     using Models;
     
     /// <summary>

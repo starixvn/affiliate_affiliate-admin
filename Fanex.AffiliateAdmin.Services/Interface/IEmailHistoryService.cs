@@ -7,7 +7,7 @@
 //   <change who="Joseph.Pham" date="2013.8.2">Created</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.Services.Interface
+namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using Criterias;
@@ -29,6 +29,6 @@ namespace Fanex.AffiliateAdmin.Services.Interface
         /// Execute store procedure.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        void ExecuteSp(EmailHistoryCriteria criteria);
+        void ExecuteSP(EmailHistoryCriteria criteria);
     }
 }

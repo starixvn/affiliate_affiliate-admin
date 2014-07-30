@@ -9,6 +9,8 @@
 //   <change who="Kaden.Trinh" date="2013.06.25">Load all setting default from DB</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Core.Configurations
 {
     using System;
@@ -257,11 +259,11 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        public static string LBUrl
+        public static Uri LBUrl
         {
             get
             {
-                return GetValue("LBUrl");
+                return string.IsNullOrEmpty(GetValue("LBUrl")) ? null : new Uri(GetValue("LBUrl"));
             }
         }
 
@@ -289,6 +291,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public static DateTime UM_StartTime
         {
             get
@@ -297,6 +300,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         public static DateTime UM_EndTime
         {
             get
@@ -401,27 +405,27 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        public static string IPCheckerURL
+        public static Uri IPCheckerUrl
         {
             get
             {
-                return GetValue("IPCheckerURL");
+                return new Uri(GetValue("IPCheckerURL"));
             }
         }
 
-        public static string InternalURL
+        public static Uri InternalUrl
         {
             get
             {
-                return GetValue("InternalURL");
+                return new Uri(GetValue("InternalURL"));
             }
         }
 
-        public static string InternalURLKiosk
+        public static Uri InternalUrlKiosk
         {
             get
             {
-                return GetValue("InternalURL_Kiosk");
+                return new Uri(GetValue("InternalURL_Kiosk"));
             }
         }
 

@@ -67,7 +67,6 @@
     <Compile Include="Imp\AffiliateDataAccess.cs" />
     <Compile Include="Imp\MessageDataAccess.cs" />
     <Compile Include="Imp\ReportDataAccess.cs" />
-    <Compile Include="Interface\IGroupDataAccess.cs" />
     <Compile Include="Interface\IAffiliateDataAccess.cs" />
     <Compile Include="Interface\IAccountDataAccess.cs" />
     <Compile Include="Interface\IMessageDataAccess.cs" />
@@ -93,9 +92,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
@@ -116,6 +112,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CodeAnalysis\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

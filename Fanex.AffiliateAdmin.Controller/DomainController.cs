@@ -19,9 +19,9 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias.Configuration.Country;
     using DTO;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Services;
     using Models;
     using Resources;
-    using Services.Interface;
 
     /// <summary>
     /// Domain Controller.

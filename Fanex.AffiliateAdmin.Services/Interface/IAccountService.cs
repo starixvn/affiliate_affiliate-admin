@@ -8,7 +8,7 @@
 //   <change who="Kaden.Trinh" date="2013.06.11">Implement funcion get Current Commission Setting</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.Services.Interface
+namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using Criterias;

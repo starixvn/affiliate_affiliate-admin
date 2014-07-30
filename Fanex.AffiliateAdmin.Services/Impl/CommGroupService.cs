@@ -6,14 +6,13 @@
 // <history>
 //   <change who="Joseph.Pham" date="2013.9.9">Created</change>
 // </history>
-namespace Fanex.AffiliateAdmin.Services.Impl
+namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using Common.Helper;
     using Core.Services;
     using Criterias;
     using DTO;
-    using Interface;
     using NAP.Framework.Data;
 
     /// <summary>

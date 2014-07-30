@@ -15,7 +15,7 @@ namespace Fanex.AffiliateAdmin.Core.Session
     /// <summary>
     /// App Session.
     /// </summary>
-    public class AppSession
+    public static class AppSession
     {
         #region Const
         /// <summary>

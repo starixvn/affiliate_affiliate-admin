@@ -11,6 +11,10 @@ namespace Fanex.AffiliateAdmin.Core.Enumerations
     public enum ErrorCode : int
     {
         /// <summary>
+        /// Unknown error.
+        /// </summary>
+        None,
+        /// <summary>
         /// Wrong username or password.
         /// </summary>
         WrongUserOrPassword = 1001,

@@ -20,7 +20,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Models;
-    using Services.Interface;
+    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Currency Rate Controller.

@@ -7,7 +7,8 @@
 //   <change who="Kaden.Trinh" date="2013.05.30">Created</change>
 //   <change who="Kaden.Trinh" date="2013.06.11">Implement funcion get Current Commission Setting</change>
 // </history>
-namespace Fanex.AffiliateAdmin.Services.Impl
+
+namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -15,10 +16,8 @@ namespace Fanex.AffiliateAdmin.Services.Impl
     using Common.Helper;
     using Core.Services;
     using Criterias;
-    using DataAccess.Impl;
-    using DataAccess.Interface;
     using DTO;
-    using Interface;
+    using Fanex.AffiliateAdmin.DataAccess;
 
     /// <summary>
     /// Account Service.

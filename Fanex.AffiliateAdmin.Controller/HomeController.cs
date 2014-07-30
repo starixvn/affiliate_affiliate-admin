@@ -17,7 +17,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Session;
     using Core.Utilities;
     using Criterias;
-    using Services.Interface;
+    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Home Controller class.

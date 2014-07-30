@@ -6,14 +6,13 @@
 // <history>
 //   <change who="Joseph.Pham" date="2013.8.2">Created</change>
 // </history>
-namespace Fanex.AffiliateAdmin.Services.Impl
+namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using Common.Helper;
     using Core.Services;
     using Criterias;
     using DTO;
-    using Interface;
 
     /// <summary>
     /// Email History Service.
@@ -51,7 +50,7 @@ namespace Fanex.AffiliateAdmin.Services.Impl
         /// Execute store procedure.
         /// </summary>
         /// <param name="criteria">Email history criteria.</param>        
-        public void ExecuteSp(EmailHistoryCriteria criteria)
+        public void ExecuteSP(EmailHistoryCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");            
             ExecuteOutput(criteria);           

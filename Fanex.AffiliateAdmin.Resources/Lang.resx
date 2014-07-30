@@ -2567,4 +2567,7 @@
   <data name="PCNetGamingInfo" xml:space="preserve">
     <value>&lt;li&gt;PC. Net Gaming: - Customer W/L - P.Share&lt;/li&gt;</value>
   </data>
+  <data name="UpdateExRate" xml:space="preserve">
+    <value>Update exchange rate</value>
+  </data>
 </root>

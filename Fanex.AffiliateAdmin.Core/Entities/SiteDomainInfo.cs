@@ -21,11 +21,11 @@ namespace Fanex.AffiliateAdmin.Core.Entities
     {
         public string MemberSiteDomain { get; set; }
 
-        public string MemberSiteUrl { get; set; }
+        public Uri MemberSiteUrl { get; set; }
 
-        public string AdminSiteUrl { get; set; }
+        public Uri AdminSiteUrl { get; set; }
 
-        public string AffiliateSiteUrl { get; set; }
+        public Uri AffiliateSiteUrl { get; set; }
 
         /// <summary>
         /// Parse site domain information.
@@ -50,7 +50,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
 
             var adminSitePath = controller.Url.Content("~/");
 
-            if (adminSitePath.EndsWith("/"))
+            if (adminSitePath.EndsWith("/", StringComparison.OrdinalIgnoreCase))
             {
                 adminSitePath = adminSitePath.Remove(adminSitePath.Length - 1);
             }
@@ -67,9 +67,9 @@ namespace Fanex.AffiliateAdmin.Core.Entities
                     return new SiteDomainInfo
                     {
                         MemberSiteDomain = string.Format("www.{0}.{1}", words[1], words[2]),
-                        MemberSiteUrl = string.Format("{0}://www.{1}.{2}/vender.aspx", scheme, words[1], words[2]),
-                        AffiliateSiteUrl = string.Format("{0}://{1}.{2}.{3}", scheme, isKiosk ? "agt" : "affiliate", words[1], words[2]),
-                        AdminSiteUrl = string.Format("{0}://{1}.{2}.{3}", scheme, "affadmin", words[1], words[2])
+                        MemberSiteUrl =  new Uri(string.Format("{0}://www.{1}.{2}/vender.aspx", scheme, words[1], words[2])),
+                        AffiliateSiteUrl = new Uri(string.Format("{0}://{1}.{2}.{3}", scheme, isKiosk ? "agt" : "affiliate", words[1], words[2])),
+                        AdminSiteUrl = new Uri(string.Format("{0}://{1}.{2}.{3}", scheme, "affadmin", words[1], words[2]))
                     };
                 }
             }
@@ -77,9 +77,9 @@ namespace Fanex.AffiliateAdmin.Core.Entities
             return new SiteDomainInfo
             {
                 MemberSiteDomain = memberSiteDomain,
-                MemberSiteUrl = memberSiteUrl,
-                AffiliateSiteUrl = isKiosk ? AppSettings.InternalURLKiosk : AppSettings.InternalURL,
-                AdminSiteUrl = adminSiteUrl
+                MemberSiteUrl = new Uri(memberSiteUrl),
+                AffiliateSiteUrl = isKiosk ? AppSettings.InternalUrlKiosk : AppSettings.InternalUrl,
+                AdminSiteUrl = new Uri(adminSiteUrl)
             };
         }
     }

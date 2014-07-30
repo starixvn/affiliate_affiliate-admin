@@ -65,14 +65,16 @@
         string[] alphas = { "0-9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
         var name = string.Empty;
         var style = string.Empty;
+        var id = string.Empty;
         if (htmlAttributies != null)
         {
             name = htmlAttributies.ContainsKey("name") ? "name=\"" + htmlAttributies["name"] + "\"" : string.Empty;
+            id = htmlAttributies.ContainsKey("id") ? "id=\"" + htmlAttributies["id"] + "\"" : string.Empty;
             style = htmlAttributies.ContainsKey("style") ? "style=\"" + htmlAttributies["style"] + "\"" : string.Empty;
         }
 
-    <select @( new HtmlString(name)) @(new HtmlString(style)) class="width-140 dropdownchecklist single-select">
-        <option value="" @(string.IsNullOrEmpty(selectedValue) ? "selected=\"selected\"" : string.Empty)>@Fanex.AffiliateAdmin.Resources.Lang.All</option>
+    <select @(new HtmlString(name)) @(new HtmlString(id)) @(new HtmlString(style)) class="width-140 dropdownchecklist single-select">
+        <option value="" @(string.IsNullOrEmpty(selectedValue) ? "selected=\"selected\"" : string.Empty)>@Lang.All</option>
         @foreach (var item in alphas)
         {
             <option value="@item" @(item == selectedValue ? "selected=\"selected\"" : string.Empty)>@item</option>

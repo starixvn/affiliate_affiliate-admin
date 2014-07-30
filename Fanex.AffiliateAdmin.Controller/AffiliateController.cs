@@ -19,11 +19,10 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Session;
     using Core.Utilities;
     using Criterias;
+    using Fanex.AffiliateAdmin.Services;
     using Fanex.Common;
     using Models;
     using Resources;
-    using Services.Impl;
-    using Services.Interface;
 
     /// <summary>
     /// Affiliate Controller.

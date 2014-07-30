@@ -16,7 +16,8 @@ namespace Fanex.AffiliateAdmin.Core.Filter
     /// <summary>
     /// Attribute for under maintenance service.
     /// </summary>
-    public class UndermaintenanceAttribute : ActionFilterAttribute
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class UndermaintenanceAttribute : ActionFilterAttribute
     {
         /// <summary>
         /// Action filter for under maintenance service.

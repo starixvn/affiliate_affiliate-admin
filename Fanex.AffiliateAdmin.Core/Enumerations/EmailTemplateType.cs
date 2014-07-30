@@ -15,6 +15,10 @@ namespace Fanex.AffiliateAdmin.Core.Enumerations
     public enum EmailTemplateType : int
     {
         /// <summary>
+        /// Affiliate none.
+        /// </summary>
+        None,
+        /// <summary>
         /// Affiliate approve.
         /// </summary>
         AffiliateApprove = 1,

@@ -8,7 +8,7 @@
 //   <change who="Kaden.Trinh" date="2013.06.10">Implement funcion get statistics overview account</change>
 //   <change who="Kaden.Trinh" date="2013.06.11">Implement funcion get Current Commission Setting</change>
 // </history>
-namespace Fanex.AffiliateAdmin.DataAccess.Impl
+namespace Fanex.AffiliateAdmin.DataAccess
 {
     using System;
     using Common;
@@ -16,7 +16,6 @@ namespace Fanex.AffiliateAdmin.DataAccess.Impl
     using Criterias;
     using Data;
     using DTO;
-    using Interface;
 
     /// <summary>
     /// Account data access.

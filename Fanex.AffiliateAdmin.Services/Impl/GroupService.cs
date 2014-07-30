@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Fanex.AffiliateAdmin.Services.Impl
+namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -12,7 +12,6 @@ namespace Fanex.AffiliateAdmin.Services.Impl
     using Core.Services;
     using Criterias;
     using DTO;
-    using Interface;
 
     /// <summary>
     /// TODO: Update summary.

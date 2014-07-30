@@ -12,7 +12,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
-    using Fanex.AffiliateAdmin.Services.Interface;
+    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// TODO: Update summary.

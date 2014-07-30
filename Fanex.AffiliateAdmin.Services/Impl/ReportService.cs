@@ -7,15 +7,13 @@
 //   <change who="Brian.Dinh" date="2013.10.16">Created</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.Services.Impl
+namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using Core.Services;
     using Criterias;
     using DTO;
-    using Fanex.AffiliateAdmin.DataAccess.Imp;
-    using Fanex.AffiliateAdmin.DataAccess.Interface;
-    using Interface;
+    using Fanex.AffiliateAdmin.DataAccess;
 
     /// <summary>
     /// TODO: Update summary.

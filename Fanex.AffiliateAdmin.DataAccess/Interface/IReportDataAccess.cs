@@ -7,7 +7,7 @@
 //   <change who="Brian.Dinh" date="2014.3.26">Created</change>
 // </history>
 
-namespace Fanex.AffiliateAdmin.DataAccess.Interface
+namespace Fanex.AffiliateAdmin.DataAccess
 {
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;

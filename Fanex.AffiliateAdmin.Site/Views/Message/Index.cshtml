@@ -22,15 +22,12 @@ message
         <div class="span12 search-form">
             <div class="row-fluid row-form end-search">
                 <div class="cell">
-                    @Html.LabelFor(m => m.SearchBy)
-                    @*@Html.DropDownListFor(m => m.SearchBy, MessageSettings.ListSearchBy, new { @class = "width-140" })*@
+                    @Html.LabelFor(m => m.SearchBy)                    
                     @Html.DropDownCheckList("SearchBy", MessageSettings.ListSearchBy, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
                 <div class="cell">
                     &nbsp;&nbsp;
-                    <label class="checkbox t">
-                        @Html.CheckBoxFor(m => m.DateChecked)
-                    </label>
+                    @Html.CheckBoxFor(m => m.DateChecked)
                     @Html.LabelFor(m => m.FromDate)
                     @Html.DatePicker("FromDate", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), AppSettings.SystemStartDate, DateTime.Now, true)
                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -48,7 +45,7 @@ message
         </div>
     }
 </div>
-<div id="gridId" class="freegrid" colheight="200" expheight="290">
+<div id="gridId" class="freegrid">
 </div>
 @section scripts{
     <script type="text/javascript">

@@ -18,7 +18,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
     /// <summary>
     /// Under Maintenance Service.
     /// </summary>
-    public class UnderMaintenanceService
+    public static class UnderMaintenanceService
     {
         /// <summary>
         /// Time Cache in Seconds.
@@ -53,7 +53,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
                 return true;
             }
 
-            if (string.IsNullOrEmpty(AppSettings.LBUrl))
+            if (AppSettings.LBUrl == null)
             {
                 return false;
             }
@@ -64,16 +64,10 @@ namespace Fanex.AffiliateAdmin.Core.Services
 
             if (_memoryCache["IsUM"] == null)
             {
-                try
-                {
-                    underMaintenance = maintenanceController.isUnderMaintainence(Sites.Affiliate, AppSettings.LBUrl, ref startTime, ref endTime);
-                    _memoryCache.Add("IsUM", underMaintenance, DateTime.Now.AddSeconds(_TimeCacheUM));
-                    _memoryCache.Add("StartTime", startTime, DateTime.Now.AddSeconds(_TimeCacheUM));
-                    _memoryCache.Add("EndTime", endTime, DateTime.Now.AddSeconds(_TimeCacheUM));
-                }
-                catch
-                {
-                }
+                underMaintenance = maintenanceController.isUnderMaintainence(Sites.Affiliate, AppSettings.LBUrl.ToString(), ref startTime, ref endTime);
+                _memoryCache.Add("IsUM", underMaintenance, DateTime.Now.AddSeconds(_TimeCacheUM));
+                _memoryCache.Add("StartTime", startTime, DateTime.Now.AddSeconds(_TimeCacheUM));
+                _memoryCache.Add("EndTime", endTime, DateTime.Now.AddSeconds(_TimeCacheUM));
             }
             else
             {

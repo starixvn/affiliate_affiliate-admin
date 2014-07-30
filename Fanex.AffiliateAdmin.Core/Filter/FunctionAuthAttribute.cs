@@ -9,13 +9,15 @@
 
 namespace Fanex.AffiliateAdmin.Core.Filter
 {
+    using System;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Session;
 
     /// <summary>
     /// Authorization Attribute class.
     /// </summary>
-    public class FunctionAuthAttribute : ActionFilterAttribute
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class FunctionAuthAttribute : ActionFilterAttribute
     {
         public string Function { get; set; }
 
@@ -25,8 +27,6 @@ namespace Fanex.AffiliateAdmin.Core.Filter
         /// <param name="filterContext">Filter Context.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var response = filterContext.HttpContext.Response;
-           
             if (SessionManager.CurrentSession != null && 
                 (SessionManager.CurrentSession.CurrencyList.Count == 0 || !SessionManager.CurrentSession.RoleAccess.HasPolicy(Function)))
             {

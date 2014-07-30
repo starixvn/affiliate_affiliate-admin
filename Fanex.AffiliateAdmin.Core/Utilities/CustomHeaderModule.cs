@@ -17,9 +17,9 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     /// </summary>
     public class CustomHeaderModule : IHttpModule
     {
-        public void Init(HttpApplication application)
+        public void Init(HttpApplication context)
         {
-            application.PostReleaseRequestState += ApplicationPostReleaseRequestState;
+            context.PostReleaseRequestState += ApplicationPostReleaseRequestState;
         }
 
         public void Dispose()

@@ -16,7 +16,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     /// Get value of application settings.
     /// </summary>
     /// <typeparam name="T">A generic type.</typeparam>
-    public class GetAppSettings<T>
+    public static class GetAppSettings<T>
     {
         public static T GetValue(string key)
         {

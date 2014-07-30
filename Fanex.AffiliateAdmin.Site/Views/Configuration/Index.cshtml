@@ -27,7 +27,7 @@ settings
                     @Html.TextBoxFor(m => m.Value, new { @class = "form-control width-140", placeholder = Lang.All, maxlength = "100" })
                 </div>
                 <div class="cell">
-                    @Html.LabelFor(m => m.TypeList, Lang.Type)
+                    @Html.LabelFor(m => m.TypeList, Lang.Type, new { @for = "Type" })
                     @Html.DropDownList("Type", Model.TypeOptionList, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
             </div>
@@ -41,7 +41,7 @@ settings
         </div>
     }
 </div>
-<div id="gridId" class="freegrid content-grid" colheight="200" expheight="290">
+<div id="gridId" class="freegrid content-grid">
 </div>
 @section scripts{
     <script type="text/javascript">

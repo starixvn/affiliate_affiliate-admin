@@ -11,6 +11,7 @@
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -109,6 +110,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// </summary>
         /// <param name="status">Status need to translate.</param>
         /// <returns>Return status.</returns>
+        [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
         public static string Status(string status)
         {
             switch (status.ToLower())
@@ -330,6 +332,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// Get report info.
         /// </summary>
         /// <returns>Report info.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public static string GetReportInfo()
         {
             var hasPlayCasino = AppSettings.Products.Any(t => t.ProductName.Equals("Playtech Casino"));

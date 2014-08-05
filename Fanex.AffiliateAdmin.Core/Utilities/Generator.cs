@@ -14,7 +14,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class Generator
+    public static class Generator
     {
         /// <summary>
         /// Get random string.

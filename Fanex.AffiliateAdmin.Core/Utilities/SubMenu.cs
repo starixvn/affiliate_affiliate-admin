@@ -16,7 +16,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     /// <summary>
     /// SubMenu class.
     /// </summary>
-    public class SubMenu
+    public static class SubMenu
     {
         /// <summary>
         /// Gets the Home Menu link.

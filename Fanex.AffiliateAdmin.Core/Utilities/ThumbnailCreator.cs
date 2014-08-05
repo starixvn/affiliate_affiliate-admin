@@ -16,36 +16,25 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ThumbnailCreator
+    public static class ThumbnailCreator
     {
         /// <summary>
         /// Create banner thumbnail.
         /// </summary>
-        /// <param name="bmp">The banner image.</param>
+        /// <param name="image">The banner image.</param>
         /// <param name="filePath">The thumbnail file path.</param>
-        public static void CreateThumbnailFromImage(Bitmap bmp, string filePath)
+        public static void CreateThumbnailFromImage(Image image, string filePath)
         {
             // Get thumbnail size.
-            var size = GetThumbnailSize(bmp.Width, bmp.Height);
+            var size = GetThumbnailSize(image.Width, image.Height);
             var result = new Bitmap(size.Width, size.Height);
 
             using (var graphics = Graphics.FromImage(result))
             {
-                graphics.DrawImage(bmp, 0, 0, size.Width, size.Height);
+                graphics.DrawImage(image, 0, 0, size.Width, size.Height);
             }
 
             result.Save(filePath);
-        }
-
-        /// <summary>
-        /// Use the SWFToImage library to create thumbnail from flash file.
-        /// From website BYTESCOUT.COM.
-        /// </summary>
-        /// <param name="swfInfo">The flash info object.</param>
-        /// <param name="imageFilePath">The thumbnail file path.</param>
-        public static void CreateThumbnailFromFlash(SwfInfo swfInfo, string imageFilePath)
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>

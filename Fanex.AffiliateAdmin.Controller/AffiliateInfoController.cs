@@ -76,7 +76,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 userName = this.CurrentSession.Affiliate.Username;
             }
 
-            var baseUrl = siteDomainInfo.AdminSiteUrl;
+            var baseUrl = siteDomainInfo.AdminSiteUrl.ToString();
 
             if (baseUrl.LastIndexOf('/') != baseUrl.Length - 1)
             {
@@ -115,7 +115,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                     FormaterCurrency.SetDefaultCurrency(model.AffiliateInfo.CurrencyCode);
 
-                    model.ExternalLoginUrl = new Uri(ExternalLogin.ExternalLoginUrl(new ExternalLoginInfo
+                    model.ExternalLoginUrl = ExternalLogin.ExternalLoginUrl(new ExternalLoginInfo
                         {
                             Controller = this,
                             Username = CurrentSession.Affiliate.Username,
@@ -123,7 +123,7 @@ namespace Fanex.AffiliateAdmin.Controller
                             OnUserID = CurrentSession.OnUserID,
                             SessionID = Session.SessionID,
                             AffTypeName = CurrentSession.Affiliate.AffTypeName
-                        }));
+                        });
 
                     ViewBag.IsLoadOtherPage = Request["IsLoadOtherPage"];
 

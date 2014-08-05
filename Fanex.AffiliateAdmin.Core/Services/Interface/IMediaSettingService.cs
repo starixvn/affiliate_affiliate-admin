@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public interface IMediaSettingService
     {
         IEnumerable<MediaType> GetBannerCategories();

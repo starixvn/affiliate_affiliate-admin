@@ -81,7 +81,7 @@
                     <tr>
                         <td>@Lang.SiteUrl</td>
                         <td class="col-right">
-                            <a href="@string.Format(AppSettings.IPCheckerURL, Model.AffiliateInfo.SiteLink)" target="_blank" title="@Model.AffiliateInfo.SiteLink">@Model.AffiliateInfo.SiteLink.LeftString(AppSettings.LeftString)</a>
+                            <a href="@string.Format(AppSettings.IPCheckerUrl.ToString(), Model.AffiliateInfo.SiteLink)" target="_blank" title="@Model.AffiliateInfo.SiteLink">@Model.AffiliateInfo.SiteLink.LeftString(AppSettings.LeftString)</a>
                         </td>
                     </tr>
                     <tr>
@@ -90,7 +90,7 @@
                     </tr>
                     <tr>
                         <td>@Lang.LastLoginIP</td>
-                        <td class="col-right"><a href="@string.Format(AppSettings.IPCheckerURL, Model.AffiliateInfo.LastLoginIp)" target="_blank" title="@Lang.CheckIp">@Model.AffiliateInfo.LastLoginIp</a></td>
+                        <td class="col-right"><a href="@string.Format(AppSettings.IPCheckerUrl.ToString(), Model.AffiliateInfo.LastLoginIp)" target="_blank" title="@Lang.CheckIp">@Model.AffiliateInfo.LastLoginIp</a></td>
                     </tr>
                     @if (Model.AffiliateInfo.Status.Equals(AffiliateStatus.Approved.ToString(), StringComparison.CurrentCultureIgnoreCase))
                     {

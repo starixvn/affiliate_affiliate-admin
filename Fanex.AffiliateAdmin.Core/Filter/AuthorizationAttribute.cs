@@ -17,7 +17,7 @@ namespace Fanex.AffiliateAdmin.Core.Filter
     /// <summary>
     /// Authorization Attribute class.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class AuthorizationAttribute : AuthorizeAttribute
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)

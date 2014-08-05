@@ -134,6 +134,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             LoadSwf(filename);
         }
 
+        [SuppressMessage("Microsoft.Usage", "CA2201:DoNotRaiseReservedExceptionTypes")]
         public void LoadSwf(string filename)
         {
             _filename = filename;
@@ -150,7 +151,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 }
 
                 // Compression
-                _isCompressed = _magicBytes.StartsWith("C");
+                _isCompressed = _magicBytes.StartsWith("C", StringComparison.OrdinalIgnoreCase);
 
                 // Version
                 _version = Convert.ToInt16(reader.ReadByte());

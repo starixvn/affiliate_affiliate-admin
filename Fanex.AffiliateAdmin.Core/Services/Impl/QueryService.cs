@@ -6,10 +6,12 @@
 // <history>
 //   <change who="Johnny.Trinh" date="2013.08.22">Created</change>
 // </history>
+
 namespace Fanex.AffiliateAdmin.Core.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
@@ -51,6 +53,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// <param name="criteria">Input criteria.</param>
         /// <param name="totalPages">Total page.</param>
         /// <returns>The list of founded entities and total page.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference")]
         public IEnumerable<T> GetData<T>(ICriteria criteria, ref int totalPages)
         {
             Check.Argument.IsNotNull(criteria, "criteria");

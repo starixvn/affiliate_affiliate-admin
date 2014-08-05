@@ -31,7 +31,7 @@
                         
                             <tr>
                                 <td class="text-c">@counter</td>
-                                <td class="text-c"><a target="_blank" href="@string.Format(AppSettings.IPCheckerURL, onUser.Ip)">@onUser.Ip</a></td>
+                                <td class="text-c"><a target="_blank" href="@string.Format(AppSettings.IPCheckerUrl.ToString(), onUser.Ip)">@onUser.Ip</a></td>
                                 <td class="text-c">@string.Format(FormatType.FULL_DATETIME_SPLASH_FORMAT.GetStringValue(), onUser.Reload_Time)</td>
                             </tr>
                         }

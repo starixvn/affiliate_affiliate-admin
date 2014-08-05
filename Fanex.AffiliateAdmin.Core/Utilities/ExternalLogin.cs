@@ -6,13 +6,14 @@
 
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
+    using System;
     using System.Web.Security;
     using Fanex.AffiliateAdmin.Core.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ExternalLogin
+    public static class ExternalLogin
     {
         private const int PASSWORDLENGTH = 6;
 
@@ -21,7 +22,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// </summary>
         /// <param name="loginInfo">External Login Info.</param>
         /// <returns>Return URL link.</returns>
-        public static string ExternalLoginUrl(ExternalLoginInfo loginInfo)
+        public static Uri ExternalLoginUrl(ExternalLoginInfo loginInfo)
         {
             var chalengeStr = Generator.GetRandomString(PASSWORDLENGTH);
 
@@ -31,7 +32,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
 
             var siteInfo = SiteDomainInfo.Parse(loginInfo.Controller, loginInfo.IsKiosk());
 
-            return string.Format(LINKFORMAT, siteInfo.AffiliateSiteUrl, chalengeStr, accKey, loginInfo.Username, loginInfo.CustId, loginInfo.OnUserID);
+            return new Uri(string.Format(LINKFORMAT, siteInfo.AffiliateSiteUrl, chalengeStr, accKey, loginInfo.Username, loginInfo.CustId, loginInfo.OnUserID));
         }
     }
 }

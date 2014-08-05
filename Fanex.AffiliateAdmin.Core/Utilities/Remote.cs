@@ -14,7 +14,8 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class Remote
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
+    public static class Remote
     {
         /// <summary>
         /// Contains all operating system mapping.

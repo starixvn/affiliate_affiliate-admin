@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public static class Extensions
     {
         /// <summary>

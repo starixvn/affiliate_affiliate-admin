@@ -11,6 +11,7 @@
 namespace Fanex.AffiliateAdmin.Core.Services
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Caching;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Sunplus.UMControllerLibrary;
@@ -36,6 +37,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// <param name="startTime">Start Time of Down time.</param>
         /// <param name="endTime">End Time of Down time.</param>
         /// <returns>Return down time.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference")]
         public static bool GetDownTime(ref string startTime, ref string endTime)
         {
             startTime = endTime = null;

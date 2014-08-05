@@ -63,19 +63,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        public static Uri BannerScriptUrl
-        {
-            get
-            {
-                return new Uri(AppSettings.GetSettingValue(new SystemSettingDetailCriteria
-                {
-                    Name = "BannerScriptUrl",
-                    Type = "Meta",
-                    SearchBy = SearchByType.ByName
-                }));
-            }
-        }
-
         public static string BannerDirectory
         {
             get

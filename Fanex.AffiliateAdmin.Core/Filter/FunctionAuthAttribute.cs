@@ -16,7 +16,7 @@ namespace Fanex.AffiliateAdmin.Core.Filter
     /// <summary>
     /// Authorization Attribute class.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class FunctionAuthAttribute : ActionFilterAttribute
     {
         public string Function { get; set; }

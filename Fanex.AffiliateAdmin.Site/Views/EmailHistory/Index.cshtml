@@ -82,15 +82,19 @@ home
             },
             columns: [
                 { HeaderText: "#", Width: 30, Name: "b", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "@Lang.Sender", Width: 180, Name: "Sender", HeaderAlign: "center" },
+                { HeaderText: "@Lang.Sender", Width: 180, Name: "Sender", HeaderAlign: "center",
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        return decodeURI(cellFormated);
+                    }
+                },
                 { HeaderText: "@Lang.Affiliate", Width: 150, Name: "Affname", HeaderAlign: "center" },
                 {
                     HeaderText: "@Lang.Subject",
                     Width: 250,
                     Name: "Subject",
                     HeaderAlign: "center",
-                    Formatter: function(rowIndex, rowData, cell, cellFormated) {
-                        return "<a href='#' data-mid='" + rowData.Mid + "' class='subject'>" + cellFormated + "</a>";
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
+                        return "<a href='#' data-mid='" + rowData.Mid + "' class='subject'>" + decodeURI(cellFormated) + "</a>";
                     }
                 },
                 {
@@ -98,7 +102,7 @@ home
                     Width: 200,
                     Name: "Email",
                     HeaderAlign: "center",
-                    Formatter: function(rowIndex, rowData, cell, cellFormated) {
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return "<a href='mailto:" + cellFormated + "'>" + cellFormated + "</a>";
                     }
                 },
@@ -108,7 +112,7 @@ home
                     Width: 50,
                     Name: "Remove",
                     CellAlign: "center",
-                    Formatter: function(rowIndex, rowData, cell, cellFormated) {
+                    Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         return "<a href=\"javascript:EmailHistory.deleteEmail(" + rowData.Mid + ")\"><i class=\"icon-remove\"></i></a>";
                     }
                 }

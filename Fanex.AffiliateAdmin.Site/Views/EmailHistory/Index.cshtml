@@ -84,7 +84,8 @@ home
                 { HeaderText: "#", Width: 30, Name: "b", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Sender", Width: 180, Name: "Sender", HeaderAlign: "center",
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return decodeURI(cellFormated);
+                        var decoded = $('<div/>').html(cellFormated).text();
+                        return decoded;
                     }
                 },
                 { HeaderText: "@Lang.Affiliate", Width: 150, Name: "Affname", HeaderAlign: "center" },
@@ -94,7 +95,8 @@ home
                     Name: "Subject",
                     HeaderAlign: "center",
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return "<a href='#' data-mid='" + rowData.Mid + "' class='subject'>" + decodeURI(cellFormated) + "</a>";
+                        var decoded = $('<div/>').html(cellFormated).text();
+                        return "<a href='#' data-mid='" + rowData.Mid + "' class='subject'>" + decoded + "</a>";
                     }
                 },
                 {

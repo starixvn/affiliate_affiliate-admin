@@ -18,11 +18,11 @@ else
 <div class="popup-content">  
     <div class="control-group">
         <label for="Subject" class="control-label">@Lang.Subject</label>
-        <div class="controls">@HttpUtility.HtmlDecode(Model.Subject)</div>             
+        <div class="controls">@HttpUtility.HtmlDecode(Model.Subject.Replace("&amp;", "&"))</div>             
     </div>
 <div class="control-group">
     <label for="Subject" class="control-label">@Lang.From</label>
-    <div class="controls">@HttpUtility.HtmlDecode(Model.Sender)&nbsp;(<a href="javascript:DETAIL.openMail('mailto:@Model.Email')">@Model.Email</a>) </div>             
+    <div class="controls">@HttpUtility.HtmlDecode(Model.Sender.Replace("&amp;", "&")) &nbsp;(<a href="javascript:DETAIL.openMail('mailto:@Model.Email')">@Model.Email</a>) </div>             
 </div>
 <div class="control-group">
     <label for="Subject" class="control-label">@Lang.SentDate</label>
@@ -30,7 +30,7 @@ else
 </div>
 <div class="control-group">
     <label for="Subject" class="control-label"> @Lang.Content</label>
-    <div class="controls"><textarea style="width: 300px; height: 128px;" id="txtContent" readonly="readonly">@HttpUtility.HtmlDecode(Model.Content)</textarea> </div>             
+    <div class="controls"><textarea style="width: 300px; height: 128px;" id="txtContent" readonly="readonly">@HttpUtility.HtmlDecode(Model.Content.Replace("&amp;", "&"))</textarea> </div>             
 </div>
 </div>
 <div class="popup-footer">

@@ -74,10 +74,10 @@
         }
 
     <select @(new HtmlString(name)) @(new HtmlString(id)) @(new HtmlString(style)) class="width-140 dropdownchecklist single-select">
-        <option value="" @(string.IsNullOrEmpty(selectedValue) ? "selected=\"selected\"" : string.Empty)>@Lang.All</option>
+        <option value="" @(string.IsNullOrEmpty(selectedValue) ? "selected" : string.Empty)>@Lang.All</option>
         @foreach (var item in alphas)
         {
-            <option value="@item" @(item == selectedValue ? "selected=\"selected\"" : string.Empty)>@item</option>
+            <option value="@item" @(item == selectedValue ? "selected" : string.Empty)>@item</option>
         }
     </select>
 }
@@ -93,7 +93,7 @@
     <select @( new HtmlString(name)) @(new HtmlString(style)) class="width-140 dropdownchecklist single-select">
         @foreach (var item in list)
         {
-            <option value="@item.GroupId" @(item.GroupId == selectedValue ? "selected=\"selected\"" : string.Empty)>@item.GroupName</option>
+            <option value="@item.GroupId" @(item.GroupId == selectedValue ? "selected" : string.Empty)>@item.GroupName</option>
         }
     </select>
 }

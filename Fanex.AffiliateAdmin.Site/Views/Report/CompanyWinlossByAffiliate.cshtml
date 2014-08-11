@@ -34,7 +34,7 @@
                     @Html.DropDownCheckList("PlayerCurrencies", Model.PlayerCurrencyOptionList, true, true, new { @class = "width-140" })
                 </div>
                 <div class="cell">
-                    <label for="DateOption" class="txt">@Lang.GroupBy</label>
+                    <label for="GroupBy" class="txt">@Lang.GroupBy</label>
                     @Html.DropDownCheckList("GroupBy", Model.GroupByOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
                 <div class="cell">
@@ -72,7 +72,7 @@
     }
 </div>
 
-<div id="gridId" class="freegrid" colheight="200" expheight="350" >
+<div id="gridId" class="freegrid">
 </div>
 
 @section scripts{

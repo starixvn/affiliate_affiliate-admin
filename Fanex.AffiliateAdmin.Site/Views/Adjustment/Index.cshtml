@@ -31,20 +31,20 @@
                 <div class="clearfix"></div>
                     <table>
                         <colgroup>
-                            <col width="160"/>
-                            <col width="*"/>
+                            <col style="width: 160px;"/>
+                            <col />
                         </colgroup>
                         <tr>
-                            <td>@Html.LabelFor(m => m.Adjustment.BalBroughtForward, Lang.BalanceForward, new { @class = "control-label" }) </td>
+                            <td><label class="control-label">@Lang.BalanceForward</label></td>
                             <td>@MvcHtmlString.Create(FormaterCurrency.Format(Model.Adjustment.BalBroughtForward, Model.Currency.CurrencyCode))</td>
                         </tr>
                         <tr>
                             <td>@Html.LabelFor(m => m.Amount, Lang.Adjustment, new { @class = "control-label" }) </td>
-                            <td>@Html.TextBox("Amount", string.Empty, new { Name = "Amount", @class = "control-text text-r" })</td>
+                            <td>@Html.TextBox("Amount", string.Empty, new { @class = "control-text text-r" })</td>
                         </tr>
                         <tr>
                             <td>@Html.LabelFor(m => m.Description, Lang.Description, new { @class = "control-label" }) </td>
-                            <td>@Html.TextAreaFor(m => m.Description, new { Name = "Description", @class = "small-textarea" })</td>
+                            <td>@Html.TextAreaFor(m => m.Description, new { @class = "small-textarea" })</td>
                         </tr>
                         <tr>
                             <td colspan="2" class="required">

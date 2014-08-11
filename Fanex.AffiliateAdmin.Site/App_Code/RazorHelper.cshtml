@@ -295,7 +295,7 @@
     <select @( new HtmlString(name)) @(new HtmlString(style)) class="width-140 dropdownchecklist single-select">
         @foreach (var item in list)
         {
-            <option value="@item.CountryID" @(item.CountryID == selectedValue ? "selected=\"selected\"" : string.Empty)>@item.CountryName</option>
+            <option value="@item.CountryID" @(item.CountryID == selectedValue ? "selected" : string.Empty)>@item.CountryName</option>
         }
     </select>
 }

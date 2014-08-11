@@ -8,8 +8,10 @@
 @using Fanex.AffiliateAdmin.Core.Enumerations
 
 @model Fanex.AffiliateAdmin.Models.AffiliateInfoViewModel
-
-
+@{
+    Model.AffiliateInfo.FirstName = HttpUtility.HtmlDecode(Model.AffiliateInfo.FirstName);
+    Model.AffiliateInfo.LastName = HttpUtility.HtmlDecode(Model.AffiliateInfo.LastName);
+}
 
 @Styles.Render("~/bundles/css")
 <div id="left_show" class="left_show">

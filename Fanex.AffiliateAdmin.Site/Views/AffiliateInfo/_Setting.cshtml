@@ -23,7 +23,7 @@
                             <select id="slAffType" name="slAffType" style="display: none;" class="width-ex-70 nopadding">
                                 @foreach (var type in AppSettings.AffTypes)
                                 {
-                                <option value="@type.TypeID" @(type.TypeID == Model.AffiliateInfo.AffType ? "selected='selected'" : string.Empty) >@type.Name</option>
+                                <option value="@type.TypeID" @(type.TypeID == Model.AffiliateInfo.AffType ? "selected" : string.Empty) >@type.Name</option>
                                 }
                             </select>   
                             @if (AppSettings.AffTypes.Count() > 1)

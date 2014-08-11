@@ -12,8 +12,6 @@
     Model.AffiliateInfo.FirstName = HttpUtility.HtmlDecode(Model.AffiliateInfo.FirstName);
     Model.AffiliateInfo.LastName = HttpUtility.HtmlDecode(Model.AffiliateInfo.LastName);
 }
-
-@Styles.Render("~/bundles/css")
 <div id="left_show" class="left_show">
     <div class="left-show-d">
         <div class="l-panel-row l-panel-top"></div>
@@ -21,8 +19,8 @@
             <div class="left-search">
                 @using (Html.BeginForm("Index", "AffiliateInfo", FormMethod.Get, new { target = "_top" }))
                 {
-                   @Html.TextBoxFor(m => m.AffiliateInfo.Username, new { Name = "Username" })
-                    <button id="btnAdd" name="btnAdd" class="btn btn-default" type="submit">@Lang.Submit</button>
+                   @Html.TextBox("Username", Model.AffiliateInfo.Username, new { id = "AffiliateInfo_Username" })
+                   <button id="btnAdd" name="btnAdd" class="btn btn-default" type="submit">@Lang.Submit</button>
                 }
             </div>
             <table class="left-info">
@@ -30,7 +28,6 @@
                     <tr> 
                         <th class="col-left">@Lang.Affiliate</th>
                         <th class="col-right">
-                            
                             @if(Model.AffiliateInfo.Status.Equals("approved", StringComparison.OrdinalIgnoreCase) && !Model.AffiliateInfo.IsClosed)
                             {
                                 <a href="@Html.Raw(Model.ExternalLoginUrl)" id="lnkUN" target="_blank" class="upper b" title="@Lang.ViewAffiliateWebsite">@Model.AffiliateInfo.Username</a>
@@ -70,7 +67,7 @@
                             <select id="slLanguage" name="slLanguage" style="display: none;" class="width-ex-100 nopadding">
                                 @foreach (var lang in AppSettings.AffSupportLanguages)
                                 {
-                                <option value="@lang.LanguageID" @(lang.LanguageID == Model.AffiliateInfo.PreferredLanguage ? "selected='selected'" : string.Empty) >@lang.LanguageName</option>
+                                <option value="@lang.LanguageID" @(lang.LanguageID == Model.AffiliateInfo.PreferredLanguage ? "selected" : string.Empty) >@lang.LanguageName</option>
                                 }
                             </select>
                             

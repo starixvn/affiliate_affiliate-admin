@@ -57,25 +57,24 @@
             </div>
             <table>
                 <colgroup>
-                    <col width="100" />
-                    <col width="10" />
-                    <col width="*" />
+                    <col style="width: 100px;" />
+                    <col style="width: 10px;" />
+                    <col />
                 </colgroup>
                 <tr>
                     <td>@Html.LabelFor(m => m.Affiliate.Username, Lang.Username, new { @class = "control-label" })
                     </td>
                     <td>
                     </td>
-                    <td>@Html.LabelForModel(Model.Affiliate.Username)
+                    <td>@Html.Label(Model.Affiliate.Username)
                     </td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(m => m.Affiliate.FirstName, Lang.FirstName, new { @class = "control-label" })
                     </td>
-                    <td class="required">
-                        *
-                    </td>
-                    <td>@Html.TextBoxFor(m => m.Affiliate.FirstName, new { Name = "FirstName", @class = "control-text", maxlength = "50" })
+                    <td class="required">*</td>
+                    <td>
+                        @Html.TextBox("FirstName", Model.Affiliate.FirstName, new { id = "Affiliate_FirstName", @class = "control-text", maxlength = "50" })
                     </td>
                 </tr>
                 <tr>
@@ -84,7 +83,8 @@
                     <td class="required">
                         *
                     </td>
-                    <td>@Html.TextBoxFor(m => m.Affiliate.LastName, new { Name = "LastName", @class = "control-text", maxlength = "50" })
+                    <td>
+                        @Html.TextBox("LastName", Model.Affiliate.LastName, new { id = "Affiliate_LastName", @class = "control-text", maxlength = "50" })
                     </td>
                 </tr>
                 <tr>
@@ -95,9 +95,10 @@
                         *
                     </td>
                     <td>
-                        @Html.RadioButtonFor(m => m.Affiliate.Gender, "false", new { Name = "Gender" })
-                        @Lang.Female
-                        @Html.RadioButtonFor(m => m.Affiliate.Gender, "true", new { Name = "Gender" }) @Lang.Male
+                         @Html.RadioButtonFor(m => m.Affiliate.Gender, "false", new { name = "Gender", id = "Female" })
+                        <label for="Female">@Lang.Female</label>
+                        @Html.RadioButtonFor(m => m.Affiliate.Gender, "true", new { name = "Gender", id="Male" })
+                        <label for="Male">@Lang.Male</label>
                     </td>
                 </tr>
                 <tr>

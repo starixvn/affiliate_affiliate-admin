@@ -15,12 +15,11 @@
     var toDate = lastDay < DateTime.Now ? lastDay.ToString("MMM dd yyyy", CultureInfo.InvariantCulture) : DateTime.Now.ToString("MMM dd yyyy", CultureInfo.InvariantCulture);
 }
 
-@Styles.Render("~/bundles/css")
 <table id="top_panel" class="top_panel">
     <colgroup>
-        <col width="40%" />
-        <col width="30%" />
-        <col width="30%" />
+        <col style="width: 40%;"/>
+        <col style="width: 30%;" />
+        <col style="width: 30%;" />
     </colgroup>
     <thead>
         <tr>

@@ -7,20 +7,37 @@
 
 <div class="panel">
     <div id="l-panel" class="l-panel">
-        <iframe id="ifAffInfo" scrolling="auto" class="span12 affInfo" src="@(Model.GetUrl("AffiliateInfo", "Info"))" frameborder="0"></iframe>    
+        <!--[if IE]>
+            <iframe id="ifAffInfo" frameborder="0" class="span12 affInfo" src="@(Model.GetUrl("AffiliateInfo", "Info"))" ></iframe>
+        <![endif]-->
+        <!--[if !IE]>-->
+           <iframe id="ifAffInfo" seamless="seamless" style="border: none;" class="span12 affInfo" src="@(Model.GetUrl("AffiliateInfo", "Info"))" ></iframe>
+        <!-- <![endif]-->
     </div>
     @if (!string.IsNullOrEmpty(Model.UserName))
     {
         <div id="c-panel" class="c-panel">
-            <div class="span12 t-panel">
-                <iframe id="ifStatistic" scrolling="no" class="span12 statistic-exp" frameborder="0"></iframe>
-            </div>
-            <div class="span12 b-panel">
-                <iframe id="ifReport" class="span12 report" scrolling="auto" style="overflow-x: hidden;" frameborder="0"></iframe>    
-            </div>
+            <!--[if IE]>
+                <div class="span12 t-panel">
+                    <iframe id="ifStatistic" scrolling="no" class="span12 statistic-exp" frameborder="0"></iframe>
+                </div>
+                <div class="span12 b-panel">
+                    <iframe id="ifReport" class="span12 report" style="overflow-x: hidden;" frameborder="0"></iframe>    
+                </div>
+            <![endif]-->
+            <!--[if !IE]>-->
+               <div class="span12 t-panel">                
+                    <iframe id="ifStatistic" class="span12 statistic-exp" seamless="seamless" style="border: none;"></iframe>
+                </div>
+                <div class="span12 b-panel">
+                    <iframe id="ifReport" class="span12 report" seamless="seamless" style="border: none; overflow-x: hidden;"></iframe>    
+                </div>
+            <!-- <![endif]-->
         </div>
     }
 </div>
+
+
 
 
 @section scripts{

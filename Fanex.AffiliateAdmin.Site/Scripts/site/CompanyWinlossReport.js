@@ -517,6 +517,7 @@ var CompanyWinlossReport = (function ($) {
 
             } else {
                 columns.push({ Value: '', Name: "Currency", MergeColNumber: 1 });
+				startIndex += 1;
             }
 
             for (i = startIndex; i < gridOption.columns.length; i++) {

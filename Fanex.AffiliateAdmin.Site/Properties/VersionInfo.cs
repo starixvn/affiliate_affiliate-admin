@@ -14,5 +14,5 @@ using System.Reflection;
 // by using the '*' as shown below:
 
 [assembly: CLSCompliant(false)]
-[assembly: AssemblyVersion("1.1.6.0")]
-[assembly: AssemblyFileVersion("1.1.6.0")]
+[assembly: AssemblyVersion("1.1.6.1")]
+[assembly: AssemblyFileVersion("1.1.6.1")]

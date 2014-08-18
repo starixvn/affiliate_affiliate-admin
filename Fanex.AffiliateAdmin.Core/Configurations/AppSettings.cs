@@ -503,5 +503,10 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             return _SystemSetting.GetCommGroups(criteria);
         }
+
+        public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
+        {
+            return _SystemSetting.GetActiveCommGroups(criteria);
+        }
     }
 }

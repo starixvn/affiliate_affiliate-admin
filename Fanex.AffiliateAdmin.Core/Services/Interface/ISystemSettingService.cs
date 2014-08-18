@@ -162,6 +162,8 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
 
         IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria);
 
+        IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria);
+
         Exchange GetSystemBaseExchange(SystemSettingExchangeCriteria criteria);
 
         /// <summary>

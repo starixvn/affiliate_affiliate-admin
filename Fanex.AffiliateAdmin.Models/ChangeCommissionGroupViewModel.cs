@@ -36,7 +36,7 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                var comGroups = AppSettings.GetCommGroups(new CommGroupCurrencyCriteria
+                var comGroups = AppSettings.GetActiveCommGroups(new CommGroupSelActiveListCriteria
                     {
                         UserId = UserId,
                         Currency = Currency

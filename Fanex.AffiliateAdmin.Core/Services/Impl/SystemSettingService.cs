@@ -315,6 +315,11 @@ namespace Fanex.AffiliateAdmin.Core.Services
             return GetData<CommGroup>(criteria);            
         }
 
+        public IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
+        {
+            return GetData<CommGroup>(criteria);
+        }
+
         public Exchange GetSystemBaseExchange(SystemSettingExchangeCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");

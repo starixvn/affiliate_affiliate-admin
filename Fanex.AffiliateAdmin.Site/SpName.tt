@@ -1,0 +1,237 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".txt" #>
+<#@ import namespace="Fanex.AffiliateAdmin.Core.ConfigModelReaders" #>
+<#@ parameter name="Site" type="Fanex.AffiliateAdmin.Core.ConfigModelReaders.SiteInfo" #>
+
+<# 
+if(Site != null)
+{
+var reader = new WebConfigModelReader 
+			{
+				Environment = Site.Environment,
+				XmlFile = Host.ResolvePath(Site.WebConnectionStringModel)
+			};
+reader.LoadXml();  
+var dbDict = reader.GetSettingsOfNode("connectionstrings");
+#>  
+
+<?xml version="1.0" encoding="utf-8" ?>
+<Functions>
+  <Function Name="Core">
+    <Setting Key="AffAdmin_Login" SpName="AffAdmin_Login" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AdminUpdPwd" SpName="AffAdmin_AdminUpdPwd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>  
+  <Function Name="ExchangeRate">
+    <Setting Key="AffAdmin_ExchangeSel" SpName="AffAdmin_ExchangeSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_ExchangeAutoRefreshUpd" SpName="AffAdmin_ExchangeAutoRefreshUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_ExchangeUpdate" SpName="AffAdmin_ExchangeUpdate" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CopyRateFromMarket" SpName="AffAdmin_CopyRateFromMarket" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+  <Function Name="Aff-Account">
+    <Setting Key="AffAdmin_Login" SpName="AffAdmin_Login" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+  <Function Name="Home Function">
+    <Setting Key="AffAdmin_HomeGeneralInfo" SpName="AffAdmin_HomeGeneralInfo" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_UserOnlineList" SpName="AffAdmin_UserOnlineList" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+  <Function Name="Commission Group">
+    <Setting Key="AffAdmin_CommGroupSelListNormal" SpName="AffAdmin_CommGroupSelListNormal" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupSel" SpName="AffAdmin_CommGroupSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DeductionTypeSel" SpName="AffAdmin_DeductionTypeSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DeductionSettingSel" SpName="AffAdmin_DeductionSettingSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupDetailSel" SpName="AffAdmin_CommGroupDetailSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupSelDetail" SpName="AffAdmin_CommGroupSelDetail" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupIns" SpName="AffAdmin_CommGroupIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupUpd" SpName="AffAdmin_CommGroupUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_GroupSettingSel" SpName="AffAdmin_GroupSettingSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupDel" SpName="AffAdmin_CommGroupDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupAssign" SpName="AffAdmin_CommGroupAssign" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupSelByID" SpName="AffAdmin_CommGroupSelByID" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+	<Setting Key="AffAdmin_CommGroup_SelActiveList" SpName="AffAdmin_CommGroup_SelActiveList" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />    
+  </Function>
+  <Function Name="Affiliate">
+    <Setting Key="AffAdmin_AffiliateUpdPwd" SpName="AffAdmin_AffiliateUpdPwd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_FavoriteDel" SpName="AffAdmin_FavoriteDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_FavoriteIns" SpName="AffAdmin_FavoriteIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSel" SpName="AffAdmin_AffiliateSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSelFavorite" SpName="AffAdmin_AffiliateSelFavorite" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_EmailHistorySel" SpName="AffAdmin_EmailHistorySel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_EmailHistoryDel" SpName="AffAdmin_EmailHistoryDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_MemberListSel" SpName="AffAdmin_MemberListSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_MemberDel" SpName="AffAdmin_MemberDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AccountTypeSel" SpName="AffAdmin_AccountTypeSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CheckMemberExist" SpName="AffAdmin_CheckMemberExist" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CustomerInsMemberManually" SpName="AffAdmin_CustomerInsMemberManually" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateUpdAccountType" SpName="AffAdmin_AffiliateUpdAccountType" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="Aff_CustomerSelByUserName" SpName="Aff_CustomerSelByUserName" DbName="<#= dbDict.GetValue("bodb02-name") #>" Plain="0" />
+  </Function>
+  <Function Name="System Settings">
+    <Setting Key="AffAdmin_SystemAllSupportedCurrencies" SpName="AffAdmin_SystemAllSupportedCurrencies" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_SystemSupportedCurrencies" SpName="AffAdmin_SystemSupportedCurrencies" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateCurrenciesSel" SpName="AffAdmin_AffiliateCurrenciesSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_LanguageSel" SpName="AffAdmin_LanguageSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSelDBTime" SpName="AffAdmin_AffiliateSelDBTime" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AdminSupportedLanguagesSel" SpName="AffAdmin_AdminSupportedLanguagesSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsSelByName" SpName="AffAdmin_SystemSettingsSelByName" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsSelByType" SpName="AffAdmin_SystemSettingsSelByType" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsSelByID" SpName="AffAdmin_SystemSettingsSelByID" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsIns" SpName="AffAdmin_SystemSettingsIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsUpd" SpName="AffAdmin_SystemSettingsUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsDel" SpName="AffAdmin_SystemSettingsDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsSelAll" SpName="AffAdmin_SystemSettingsSelAll" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CountrySelAll" SpName="AffAdmin_CountrySelAll" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CountryUpd" SpName="AffAdmin_CountryUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CountryIns" SpName="AffAdmin_CountryIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CountryDel" SpName="AffAdmin_CountryDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CountrySelByID" SpName="AffAdmin_CountrySelByID" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_ProductSelAll" SpName="AffAdmin_ProductSelAll" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_ProductUpd" SpName="AffAdmin_ProductUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_ProductIns" SpName="AffAdmin_ProductIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_ProductDel" SpName="AffAdmin_ProductDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_ProductSelByID" SpName="AffAdmin_ProductSelByID" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_LanguageSelAll" SpName="AffAdmin_LanguageSelAll" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_LanguageUpd" SpName="AffAdmin_LanguageUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_LanguageIns" SpName="AffAdmin_LanguageIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_LanguageDel" SpName="AffAdmin_LanguageDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_LanguageSelByID" SpName="AffAdmin_LanguageSelByID" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeSelAll" SpName="AffAdmin_AffTypeSelAll" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeUpd" SpName="AffAdmin_AffTypeUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeIns" SpName="AffAdmin_AffTypeIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeDel" SpName="AffAdmin_AffTypeDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeSelByID" SpName="AffAdmin_AffTypeSelByID" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsExchange" SpName="AffAdmin_SystemSettingsExchange" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_MemberSupportedLanguagesSel" SpName="AffAdmin_MemberSupportedLanguagesSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_PlayersCurrenciesSel" SpName="AffAdmin_PlayersCurrenciesSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+  <Function Name="Payment">
+    <Setting Key="AffAdmin_PaymentRequestSelList" SpName="AffAdmin_PaymentRequestSelList" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_PaymentRequestSelDetail" SpName="AffAdmin_PaymentRequestSelDetail" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_PlayerPayoutInfoSel" SpName="AffAdmin_PlayerPayoutInfoSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_PaymentRequestUpd" SpName="AffAdmin_PaymentRequestUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CommissionSettle" SpName="AffAdmin_CommissionSettle" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CashBackUpdate" SpName="AffAdmin_CashBackUpdate" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="Task_Aff_MonthlyTransfer" SpName="Task_Aff_MonthlyTransfer" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_IsMonthlyTransfer" SpName="AffAdmin_IsMonthlyTransfer" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="Aff_DummyAccID" SpName="Aff_DummyAccID" DbName="<#= dbDict.GetValue("bodb02-name") #>" Plain="0"/>
+  </Function>
+  <Function Name="Message">
+    <Setting Key="AffAdmin_HotNewsSel" SpName="AffAdmin_HotNewsSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_HotNewsIns" SpName="AffAdmin_HotNewsIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_HotNewsDetail" SpName="AffAdmin_HotNewsDetail" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_HotNewsUpd" SpName="AffAdmin_HotNewsUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_HotNewsDel" SpName="AffAdmin_HotNewsDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+  <Function Name="Domain">
+    <Setting Key="AffAdmin_DomainAffSel" SpName="AffAdmin_DomainAffSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainAffUpd" SpName="AffAdmin_DomainAffUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainAffIns" SpName="AffAdmin_DomainAffIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainAffDel" SpName="AffAdmin_DomainAffDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainAffSelById" SpName="AffAdmin_DomainAffSelById" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainMemSel" SpName="AffAdmin_DomainMemSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainMemUpd" SpName="AffAdmin_DomainMemUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainMemIns" SpName="AffAdmin_DomainMemIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainMemDel" SpName="AffAdmin_DomainMemDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainMemSelById" SpName="AffAdmin_DomainMemSelById" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainControlSel" SpName="AffAdmin_DomainControlSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainControlUpd" SpName="AffAdmin_DomainControlUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainControlIns" SpName="AffAdmin_DomainControlIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainControlDel" SpName="AffAdmin_DomainControlDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_DomainControlSelById" SpName="AffAdmin_DomainControlSelById" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+  <Function Name="Management">
+    <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_AccountUpd" SpName="AffAdmin_Con_AccountUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_AccountIns" SpName="AffAdmin_Con_AccountIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_AccountUpdClosed" SpName="AffAdmin_Con_AccountUpdClosed" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AccountUpdPwd" SpName="AffAdmin_AccountUpdPwd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoIns" SpName="AffAdmin_Con_GroupInfoIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoUpd" SpName="AffAdmin_Con_GroupInfoUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoDel" SpName="AffAdmin_Con_GroupInfoDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupPolicyUpd" SpName="AffAdmin_Con_GroupPolicyUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupPolicySel" SpName="AffAdmin_Con_GroupPolicySel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_Con_Batch_PolicySel" SpName="AffAdmin_Con_Batch_PolicySel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_UserCurrencySel" SpName="AffAdmin_UserCurrencySel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_UserCurrencyIns" SpName="AffAdmin_UserCurrencyIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+  <Function Name="Media">
+    <Setting Key="AffAdmin_BannerSelType" SpName="AffAdmin_BannerSelType" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_BannerSel" SpName="AffAdmin_BannerSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeSel" SpName="AffAdmin_AffTypeSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_BannerSelDetail" SpName="AffAdmin_BannerSelDetail" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_BannerIns" SpName="AffAdmin_BannerIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_BannerUpd" SpName="AffAdmin_BannerUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_BannerDel" SpName="AffAdmin_BannerDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_BannerTypeSel" SpName="AffAdmin_BannerTypeSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+  
+  <Function name="AffiliateInfo">
+    <Setting Key="AffAdmin_AffiliateSelGeneralInfo" SpName="AffAdmin_AffiliateSelGeneralInfo" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_StatisticsSel" SpName="AffAdmin_StatisticsSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CountrySelAll" SpName="AffAdmin_CountrySelAll" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateUpdStatus" SpName="AffAdmin_AffiliateUpdStatus" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateUpdClosedStatus" SpName="AffAdmin_AffiliateUpdClosedStatus" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_PreferLangUpd" SpName="AffAdmin_PreferLangUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateUnlock" SpName="AffAdmin_AffiliateUnlock" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSupportedLanguagesSel" SpName="AffAdmin_AffiliateSupportedLanguagesSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_UpdAffType" SpName="AffAdmin_UpdAffType" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />    
+  </Function>
+
+  <Function name="AffiliateStatement">
+    <Setting Key="AffAdmin_TransTypeSel" SpName="AffAdmin_TransTypeSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_StatementHistorySel" SpName="AffAdmin_StatementHistorySel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+
+  <Function name="AffiliateEdit">
+    <Setting Key="AffAdmin_AffiliatePaymentMethodSel" SpName="AffAdmin_AffiliatePaymentMethodSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSelEditInfo" SpName="AffAdmin_AffiliateSelEditInfo" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0">
+      <Mapping DataField="SiteURL" ObjectProperty="SiteLink"></Mapping>
+    </Setting> 
+    <Setting Key="AffAdmin_AffiliateUpdInfo" SpName="AffAdmin_AffiliateUpdInfo" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+
+  <Function name="AffiliateNotes">
+    <Setting Key="AffAdmin_NoteSel" SpName="AffAdmin_NoteSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_NoteIns" SpName="AffAdmin_NoteIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_NoteUpd" SpName="AffAdmin_NoteUpd" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_NoteDel" SpName="AffAdmin_NoteDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+
+  <Function name="ViewLog">
+    <Setting Key="AffAdmin_AffiliateSelLogType" SpName="AffAdmin_AffiliateSelLogType" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSelLog" SpName="AffAdmin_AffiliateSelLog" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+
+  <Function name="Adjustment">
+    <Setting Key="AffAdmin_CustomerSelBalBF" SpName="AffAdmin_CustomerSelBalBF" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_AdjustmentIns" SpName="AffAdmin_AdjustmentIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+
+  <Function name="ClickStatistic">
+    <Setting Key="AffAdmin_ClickStatisticsSelByPage" SpName="AffAdmin_ClickStatisticsSelByPage" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_ClickStatisticsSelBySite" SpName="AffAdmin_ClickStatisticsSelBySite" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_ClickStatisticsDetail" SpName="AffAdmin_ClickStatisticsDetail" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0">
+      <Mapping DataField="UrlReferrer" ObjectProperty="ReferrerLink"></Mapping>
+    </Setting>
+  </Function>
+
+  <Function name="Reports">
+    <Setting Key="AffAdmin_CompanyWinlossReport" SpName="AffAdmin_CompanyWinlossReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_MemberStatisticsReport" SpName="AffAdmin_MemberStatisticsReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_CommissionReport" SpName="AffAdmin_CommissionReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_PlayerWinlossReport" SpName="AffAdmin_PlayerWinlossReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_QualifiedMembersReport" SpName="AffAdmin_QualifiedMembersReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />    
+  </Function>
+</Functions>
+<#
+}
+#>

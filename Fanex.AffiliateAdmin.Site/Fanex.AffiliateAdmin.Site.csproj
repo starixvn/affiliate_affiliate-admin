@@ -156,9 +156,23 @@
     <Compile Include="Properties\VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SPAthena000.xml">
+    <Content Include="App_Data\SpName.ATHENA.LOCAL.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="ConfigManager.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="ConfigModels\SiteConfigModels\SiteConfigModel.xml" />
+    <Content Include="ConfigModels\WebAppSettingModels\WebAppSettingModel.athena.xml" />
+    <Content Include="ConfigModels\WebAppSettingModels\WebAppSettingModel.mymbet.xml" />
+    <Content Include="ConfigModels\WebConfigModels\WebConfigModel.xml" />
+    <Content Include="ConfigModels\WebConnectionStringModels\WebConnectionStringModel.athena.xml" />
+    <Content Include="ConfigModels\WebConnectionStringModels\WebConnectionStringModel.mymbet.xml" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\themes\base\AffiliateAdmin.css" />
     <Content Include="Content\themes\base\Fanex.Grid.css" />
@@ -670,6 +684,11 @@
     <Content Include="Scripts\site\Query.string.js" />
     <Content Include="Scripts\site\ViewLog.js" />
     <Content Include="Scripts\site\_Global.js" />
+    <Content Include="SpName.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpName.tt</DependentUpon>
+    </Content>
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.en-US.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.th-TH.cshtml" />
@@ -744,6 +763,11 @@
     <Content Include="Content\_Sites\be7\Notify.less" />
     <Content Include="Content\_Sites\goobet\Login.less" />
     <Content Include="Content\_Sites\goobet\Notify.less" />
+    <None Include="App_Data\ConfigManager.txt4" />
+    <None Include="ConfigManager.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ConfigManager.txt</LastGenOutput>
+    </None>
     <None Include="Content\_Sites\q8bola\Login.less" />
     <None Include="Content\_Sites\q8bola\Notify.less" />
     <None Include="Content\_Sites\royalebet\Login.less" />
@@ -819,8 +843,23 @@
     <Content Include="Views\Domain\MemDomain.cshtml" />
     <Content Include="Views\Domain\MemDomainAdd.cshtml" />
     <Content Include="Views\Domain\MemDomainUpd.cshtml" />
+    <Content Include="Web.AppSettings.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.AppSettings.tt</DependentUpon>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Config.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.ConnectionString.tt</DependentUpon>
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -855,6 +894,31 @@
     <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.ko-KR.cshtml" />
     <Content Include="Views\TestWebService\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <None Include="SpName.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SpName.txt</LastGenOutput>
+    </None>
+    <Content Include="Web.AppSettings.ATHENA.LOCAL.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <None Include="Web.AppSettings.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.AppSettings.txt</LastGenOutput>
+    </None>
+    <Content Include="Web.ATHENA.LOCAL.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <None Include="Web.Config.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.Config.txt</LastGenOutput>
+    </None>
+    <Content Include="Web.ConnectionString.ATHENA.LOCAL.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <None Include="Web.ConnectionString.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.ConnectionString.txt</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1059,7 +1123,9 @@
     <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.en-US.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Text\Body.ApprovalEmail.en-US.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -1087,7 +1153,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

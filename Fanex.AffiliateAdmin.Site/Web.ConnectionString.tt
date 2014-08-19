@@ -1,0 +1,23 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".txt" #>
+<#@ import namespace="Fanex.AffiliateAdmin.Core.ConfigModelReaders" #>
+<#@ parameter name="Site" type="Fanex.AffiliateAdmin.Core.ConfigModelReaders.SiteInfo" #>
+<# 
+if(Site != null)
+{
+  var reader = new WebAppSettingsModelReader 
+			  {
+				  Environment = Site.Environment,
+				  XmlFile = Host.ResolvePath(Site.WebConnectionStringModel)
+			  };
+  reader.LoadXml();  
+  var dbDict = reader.GetSettingsOfSite();
+#>  
+  
+<connectionStrings>
+  <add name="<#= dbDict.GetValue("affilatedb-name") #>" connectionString="<#= dbDict.GetValue("affilatedb-connectionstring") #>" providerName="System.Data.SqlClient" />
+  <add name="<#= dbDict.GetValue("bodb02-name") #>" connectionString="<#= dbDict.GetValue("bodb02-connectionstring") #>" providerName="System.Data.SqlClient" />
+</connectionStrings>
+<#
+}
+#>

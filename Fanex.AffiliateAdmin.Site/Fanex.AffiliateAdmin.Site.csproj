@@ -154,9 +154,27 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
+    <Compile Include="Web.Debug.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.Debug.config</DependentUpon>
+    </Compile>
+    <Compile Include="Web.Release.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.Release.config</DependentUpon>
+    </Compile>
+    <Compile Include="Web.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.config</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SpName.ATHENA.LOCAL.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.ATHENA.SANDBOX.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.xml">
@@ -848,9 +866,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Web.AppSettings.tt</DependentUpon>
     </Content>
-    <Content Include="Web.config">
+    <None Include="Web.config">
       <SubType>Designer</SubType>
-    </Content>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.cs</LastGenOutput>
+    </None>
     <Content Include="Web.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -861,12 +881,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Web.ConnectionString.tt</DependentUpon>
     </Content>
-    <Content Include="Web.Debug.config">
+    <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.Debug.cs</LastGenOutput>
+    </None>
+    <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
-    </Content>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.Release.cs</LastGenOutput>
+    </None>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -901,6 +925,9 @@
     <Content Include="Web.AppSettings.ATHENA.LOCAL.config">
       <DependentUpon>ConfigManager.tt</DependentUpon>
     </Content>
+    <Content Include="Web.AppSettings.ATHENA.SANDBOX.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
     <None Include="Web.AppSettings.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.AppSettings.txt</LastGenOutput>
@@ -908,11 +935,17 @@
     <Content Include="Web.ATHENA.LOCAL.config">
       <DependentUpon>ConfigManager.tt</DependentUpon>
     </Content>
+    <Content Include="Web.ATHENA.SANDBOX.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
     <None Include="Web.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.Config.txt</LastGenOutput>
     </None>
     <Content Include="Web.ConnectionString.ATHENA.LOCAL.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.ATHENA.SANDBOX.config">
       <DependentUpon>ConfigManager.tt</DependentUpon>
     </Content>
     <None Include="Web.ConnectionString.tt">

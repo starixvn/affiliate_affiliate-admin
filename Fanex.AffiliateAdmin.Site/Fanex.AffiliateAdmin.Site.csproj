@@ -156,8 +156,7 @@
     <Compile Include="Properties\VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SpName.xml">
-      <SubType>Designer</SubType>
+    <Content Include="App_Data\SpName.athena.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="ConfigManager.txt">
@@ -888,22 +887,22 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SpName.txt</LastGenOutput>
     </None>
-    <Content Include="Web.AppSettings.config">
+    <Content Include="Views\CommGroup\Add.cshtml" />
+    <Content Include="Web.AppSettings.athena.local.config">
       <DependentUpon>ConfigManager.tt</DependentUpon>
     </Content>
-    <Content Include="Views\CommGroup\Add.cshtml" />
     <None Include="Web.AppSettings.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.AppSettings.txt</LastGenOutput>
     </None>
-    <Content Include="Web.config">
+    <Content Include="Web.athena.local.config">
       <DependentUpon>ConfigManager.tt</DependentUpon>
     </Content>
     <None Include="Web.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.Config.txt</LastGenOutput>
     </None>
-    <Content Include="Web.ConnectionString.config">
+    <Content Include="Web.ConnectionString.athena.local.config">
       <DependentUpon>ConfigManager.tt</DependentUpon>
     </Content>
     <None Include="Web.ConnectionString.tt">
@@ -1138,7 +1137,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

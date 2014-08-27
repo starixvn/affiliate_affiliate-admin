@@ -42,18 +42,12 @@ namespace Fanex.AffiliateAdmin.Services
         /// <returns>List data.</returns>
         public IEnumerable<ExchangeRate> GetList(ExchangeRateCriteria criteria)
         {
-            Check.Argument.IsNotNull(criteria, "criteria");
             return GetDataOutput<ExchangeRate>(criteria);
         }
 
-        /// <summary>
-        /// Execute store procedure.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>        
-        public void ExecuteOutput(ExchangeRateCriteria criteria)
+        public PspExchange GetDefaultPspExchange(GetDefaultPspExchangeCriteria criteria)
         {
-            Check.Argument.IsNotNull(criteria, "criteria");            
-            base.ExecuteOutput(criteria);           
+            return GetEntity<PspExchange>(criteria);
         }
     }
 }

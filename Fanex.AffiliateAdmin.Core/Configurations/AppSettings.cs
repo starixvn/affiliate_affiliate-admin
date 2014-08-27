@@ -496,7 +496,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 
         public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
         {
-            return _SystemSetting.GetActiveCommGroups(criteria);
+            return _systemSetting.GetActiveCommGroups(criteria);
         }
     }
 }

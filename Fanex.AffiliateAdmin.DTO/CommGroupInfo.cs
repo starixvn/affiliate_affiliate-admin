@@ -38,5 +38,11 @@ namespace Fanex.AffiliateAdmin.DTO
         public IEnumerable<GroupSetting> GroupSettings { get; set; }
 
         public IEnumerable<DeductionSetting> DeductionSettings { get; set; }
+
+        public int HasCashback { get; set; }
+
+        public double DepositPercent { get; set; }
+
+        public double WithdrawalPercent { get; set; }
     }
 }

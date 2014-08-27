@@ -23,7 +23,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public override string GetSettingKey()
         {
-            return "AffAdmin_CommGroupDetailSel";
+            return "AffAdmin_CommGroupList_SettingDetail";
         }
 
         public override bool IsValid()

@@ -107,6 +107,10 @@
     <Compile Include="CompanyWinlossReportCriteria.cs" />
     <Compile Include="CashBackUpdateCriteria.cs" />
     <Compile Include="CommGroupSelActiveListCriteria.cs" />
+    <Compile Include="CommGroupInsertCriteria.cs" />
+    <Compile Include="CommGroupDeleteCriteria.cs" />
+    <Compile Include="CommGroupUpdateCriteria.cs" />
+    <Compile Include="GetDefaultPSPExchangeCriteria.cs" />
     <Compile Include="TestWebServiceCriteria.cs" />
     <Compile Include="CustomerSelByUserNameCriteria.cs" />
     <Compile Include="IsMonthlyTransferCriteria.cs" />

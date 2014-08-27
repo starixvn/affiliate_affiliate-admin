@@ -46,5 +46,7 @@ namespace Fanex.AffiliateAdmin.DTO
         public string BettypeList { get; set; }
 
         public int TotalQualifiedMembers { get; set; }
+
+        public bool IsEnabled { get; set; }
     }
 }

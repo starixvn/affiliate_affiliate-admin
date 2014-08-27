@@ -7,7 +7,6 @@
 <#@ assembly name="$(SolutionDir)\Fanex.AffiliateAdmin.Site\bin\Fanex.AffiliateAdmin.Core.dll" #>
 <#@ import namespace="Fanex.AffiliateAdmin.Core.ConfigModelReaders" #>
 <#@ include file="$(SolutionDir)\_Dependencies\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
-
 <# 
 	var fileManager = TemplateFileManager.Create(this);
 	fileManager.IsAutoIndentEnabled = true;
@@ -27,6 +26,7 @@
     var globalWebConfigModel = manager.GetGlobalWebConfigModel();
     var environments = manager.GetSupportedEnvironmentList();
     var sites = manager.GetSupportedSiteList();
+	var transform = manager.GetTransformStatus();
 	
 	foreach(var site in sites)
 	{
@@ -40,24 +40,37 @@
 				{
 					site.Environment = environment;
 					session["Site"] = site;
+
+					var webconfigName = string.Format("Web.{0}.{1}.config", site.Name.ToUpper(), site.Environment.ToUpper());
+					var appSettingName = string.Format("Web.AppSettings.{0}.{1}.config", site.Name.ToUpper(), site.Environment.ToUpper());
+					var connectionStringName = string.Format("Web.ConnectionString.{0}.{1}.config", site.Name.ToUpper(), site.Environment.ToUpper());
+					var spName = string.Format("SpName.{0}.{1}.xml", site.Name.ToUpper(), site.Environment.ToUpper());
+
+					if(!transform)
+					{
+						webconfigName = "Web.config";
+						appSettingName = "Web.AppSettings.config";
+						connectionStringName = "Web.ConnectionString.config";
+						spName = "SpName.xml";
+					}
 										
 					// for web config
-					fileManager.StartNewFile(string.Format("Web.{0}.{1}.config", site.Name.ToUpper(), site.Environment.ToUpper()));
+					fileManager.StartNewFile(webconfigName);					
 					var webConfigOutput = paramTmpl.TransformText("Web.Config.tt", session);
 					this.Write(webConfigOutput);
 
 					// for app settings
-					fileManager.StartNewFile(string.Format("Web.AppSettings.{0}.{1}.config", site.Name.ToUpper(), site.Environment.ToUpper()));
+					fileManager.StartNewFile(string.Format(appSettingName, site.Name.ToUpper(), site.Environment.ToUpper()));					
 					var webAppSettingsOutput = paramTmpl.TransformText("Web.AppSettings.tt", session);
 					this.Write(webAppSettingsOutput);
 
 					// for connection strings
-					fileManager.StartNewFile(string.Format("Web.ConnectionString.{0}.{1}.config", site.Name.ToUpper(), site.Environment.ToUpper()));
+					fileManager.StartNewFile(connectionStringName);
 					var connectionStringOutput = paramTmpl.TransformText("Web.ConnectionString.tt", session);
 					this.Write(connectionStringOutput);
 
 					// for spname
-					fileManager.StartNewFile(string.Format("SpName.{0}.{1}.xml", site.Name.ToUpper(), site.Environment.ToUpper()), folderName:"App_Data");
+					fileManager.StartNewFile(spName, folderName:"App_Data");
 					var spNameOutput = paramTmpl.TransformText("SpName.tt", session);
 					this.Write(spNameOutput);
 				}

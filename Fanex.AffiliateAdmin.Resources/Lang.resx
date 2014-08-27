@@ -2570,4 +2570,7 @@
   <data name="UpdateExRate" xml:space="preserve">
     <value>Update exchange rate</value>
   </data>
+  <data name="SharingFee" xml:space="preserve">
+    <value>Sharing Fee</value>
+  </data>
 </root>

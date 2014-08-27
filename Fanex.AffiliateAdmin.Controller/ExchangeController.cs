@@ -7,6 +7,8 @@
 //   <change who="Joseph.Pham" date="2013.8.29">Created</change>
 // </history>
 
+using Fanex.AffiliateAdmin.Core.Services;
+
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
@@ -36,7 +38,9 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Service used to work with database.
         /// </summary>
-        private readonly IExchangeRateService _service;
+        private readonly IExchangeRateService _exchangeService;
+
+        private readonly QueryService _service;
 
         #endregion Services
 
@@ -48,7 +52,8 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="service">Email History service.</param>        
         public ExchangeController(IExchangeRateService service)
         {
-            _service = service;
+            _exchangeService = service;
+            _service = new QueryService();
         }
         #endregion Constructor
 
@@ -89,7 +94,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 isToday = true;
             }
 
-            var result = _service.GetList(criteria);
+            var result = _exchangeService.GetList(criteria);
 
             foreach (var item in result)
             {

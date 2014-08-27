@@ -200,7 +200,6 @@
                     $tr.find("input[type=checkbox]").prop("disabled", false);
                     $tr.find(".icon-remove:last").removeClass("icon-white").prop("disabled", false);
                 }
-
             });
 
             $("#ActiveAll").change(function () {
@@ -212,7 +211,7 @@
                     for (var i = 0; i < PRODUCTS.length; i++) {
                         enableProduct(PRODUCTS[i], true, true);
                     }
-                    
+
                 } else {
                     var all = true;
 
@@ -465,9 +464,10 @@
                 data.MaxQMList = maxQMList;
                 data.CommissionList = commissionList;
                 data.ProductIDList = products.toString().replace(/,/g, ";");
+                data.DepositPercent = 0.03;
+                data.WithdrawalPercent = 0.03;
 
-
-                $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/Add"),
+                $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/Edit"),
                     type: 'post',
                     data: data,
                     success: function (data) {

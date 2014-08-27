@@ -7,6 +7,8 @@
 //   <change who="Joseph.Pham" date="2013.9.9">Created</change>
 // </history>
 
+using System;
+
 namespace Fanex.AffiliateAdmin.DTO
 {
     /// <summary>
@@ -23,5 +25,7 @@ namespace Fanex.AffiliateAdmin.DTO
         public string DTypeDesc { get; set; }
 
         public double DeductedPercentage { get; set; }
+
+        public DateTime? RemovedDate { get; set; }
     }
 }

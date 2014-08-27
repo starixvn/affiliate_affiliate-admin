@@ -7,6 +7,8 @@
 //   <change who="Joseph.Pham" date="2013.9.9">Created</change>
 // </history>
 
+using System.Globalization;
+
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
@@ -33,7 +35,9 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Service used to work with database.
         /// </summary>
-        private readonly ICommGroupService _service;
+        private readonly ICommGroupService _commGroupService;
+
+        private readonly IExchangeRateService _exchangeRateService;
 
         #endregion Services
 
@@ -42,10 +46,11 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Initializes a new instance of the <see cref="CommGroupController" /> class.
         /// </summary>
-        /// <param name="service">Commission group service.</param>        
-        public CommGroupController(ICommGroupService service)
+        /// <param name="commGroupService">Commission group service.</param>        
+        public CommGroupController(ICommGroupService commGroupService, IExchangeRateService exchangeRateService)
         {
-            _service = service;
+            _commGroupService = commGroupService;
+            _exchangeRateService = exchangeRateService;
         }
         #endregion Constructor
 
@@ -70,6 +75,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public string GetCurrencyNotification(int currencyid)
         {            
             var currency = SessionManager.CurrentSession.CurrencyList.Where(x => x.CurrencyID == currencyid).FirstOrDefault();
+
             if (currency == null || currency.MultipliedBy == 1)
             {
                 return string.Empty;
@@ -97,14 +103,14 @@ namespace Fanex.AffiliateAdmin.Controller
                 CurrentPage = criteria.PageIndex,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows,
-                HasCashBackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0)
+                HasCashBackDeduction = groups.Any(t => t.HasCashback > 0)
             });
         }
 
         public ActionResult ViewSetting(CommGroupSelByIdCriteria criteria)
         {
             criteria.UserId = CurrentSession.CustID;
-            var groups = _service.GetById(criteria);
+            var groups = _commGroupService.GetById(criteria);
             var date = criteria.Date == null ? DateTime.Now : criteria.Date.Value;
             BuildGroupData(groups, date, criteria.GroupID.ToString());
             ViewBag.HasCashBackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
@@ -116,45 +122,48 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="groupid">ID of group.</param>
         /// <returns>Group Information.</returns>
-        public ActionResult Add(int? groupid)
+        public ActionResult Add()
         {
             var serializer = new JavaScriptSerializer();
-            ViewBag.ProductIDList = serializer.Serialize(AppSettings.Products.Select(x => x.ProductID).ToArray());
-            ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
+            ViewBag.ProductIDList = serializer.Serialize(AppSettings.Products.Where(t => t.IsEnabled).Select(x => x.ProductID).ToArray());
+            ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0 
+                && x.RemovedDate.HasValue && x.RemovedDate.Value > DateTime.Now  );
 
-            if (groupid.HasValue)
-            {
-                var group = _service.GetListData<CommGroupInfo>(new CommGroupInfoCriteria()
+            var currency = SessionManager.CurrentSession.CurrencyList.First();
+
+            var criteria = new GetDefaultPspExchangeCriteria
                 {
-                    GroupId = groupid.Value
-                }).First();
+                    CurrencyCode = currency.CurrencyCode
+                };
 
-                group.GroupSettings = _service.GetListData<GroupSetting>(new GroupSettingCriteria()
+            var defaultPspExchange = _exchangeRateService.GetDefaultPspExchange(criteria);
+
+            var model = new CommGroupInfo
                 {
-                    GroupId = groupid.Value
-                });
+                    DepositPercent =
+                        (double) (defaultPspExchange.DepositPercent.HasValue ? defaultPspExchange.DepositPercent : 0),
+                    WithdrawalPercent =
+                        (double) (defaultPspExchange.WithdrawalPercent.HasValue ? defaultPspExchange.WithdrawalPercent : 0)
+                };
 
-                group.DeductionSettings = _service.GetListData<DeductionSetting>(new DeductionSettingCriteria()
-                {
-                    GroupIDList = groupid.Value.ToString()
-                });
+            return View(model);
+        }
 
-                return View(group);
-            }
-
-            return View();
+        public ActionResult GetDefaultPspExchange(GetDefaultPspExchangeCriteria criteria)
+        {
+            return Json(_exchangeRateService.GetDefaultPspExchange(criteria), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
-        /// Add or update commission group.
+        /// Update commission group.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Return error message (if any).</returns>
         [HttpPost]
-        public ActionResult Add(CommGroupActionCriteria criteria)
+        public ActionResult Add(CommGroupInsertCriteria criteria)
         {
-            criteria.CriteriaType = criteria.GroupId.HasValue ? CriteriaType.Update : CriteriaType.Insert;
             var productCount = AppSettings.Products.Count();
+
             if (criteria.CopyForAllProducts)
             {
                 criteria.MinAmountList = string.Concat(Enumerable.Repeat(criteria.MinAmountList, productCount));
@@ -168,7 +177,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.IP = Remote.GetClientIPAddress();
 
-            _service.ExecuteOutput(criteria);
+            _commGroupService.ExecuteOutput(criteria);
 
             var errorMsg = string.Empty;
             if (criteria.ErrCode == 9999)
@@ -180,11 +189,81 @@ namespace Fanex.AffiliateAdmin.Controller
                 errorMsg = Common.GetErrorMsg(criteria.ErrCode);
                 if (errorMsg.Contains("{0}"))
                 {
-                    errorMsg = string.Format(errorMsg, string.IsNullOrEmpty(criteria.ErrMsg) ? (criteria.GroupId ?? 0).ToString() : criteria.ErrMsg);
+                    errorMsg = string.Format(errorMsg, string.IsNullOrEmpty(criteria.ErrMsg) ? criteria.GroupId.ToString() : criteria.ErrMsg);
                 }
             }
 
-            return Json(GetResultViewModel(criteria.ErrCode, criteria.CriteriaType == CriteriaType.Insert ? Lang.AddSucc : Lang.UpdateSucc, errorMsg));
+            return Json(GetResultViewModel(criteria.ErrCode, Lang.UpdateSucc, errorMsg));
+        }
+
+        /// <summary>
+        /// Edit commission group.
+        /// </summary>
+        /// <param name="groupid">ID of group.</param>
+        /// <returns>Group Information.</returns>
+        public ActionResult Edit(int groupid)
+        {
+            var serializer = new JavaScriptSerializer();
+            ViewBag.ProductIDList = serializer.Serialize(AppSettings.Products.Select(x => x.ProductID).ToArray());
+            
+            var group = _commGroupService.GetListData<CommGroupInfo>(new CommGroupInfoCriteria()
+            {
+                GroupId = groupid
+            }).First();
+
+            group.GroupSettings = _commGroupService.GetListData<GroupSetting>(new GroupSettingCriteria()
+            {
+                GroupId = groupid
+            });
+
+            group.DeductionSettings = _commGroupService.GetListData<DeductionSetting>(new DeductionSettingCriteria()
+            {
+                GroupIDList = groupid.ToString(CultureInfo.InvariantCulture)
+            });
+
+            return View("Edit", group);
+        }
+
+        /// <summary>
+        /// Update commission group.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>Return error message (if any).</returns>
+        [HttpPost]
+        public ActionResult Edit(CommGroupUpdateCriteria criteria)
+        {
+            var productCount = AppSettings.Products.Count();
+
+            if (criteria.CopyForAllProducts)
+            {
+                criteria.MinAmountList = string.Concat(Enumerable.Repeat(criteria.MinAmountList, productCount));
+                criteria.MaxAmountList = string.Concat(Enumerable.Repeat(criteria.MaxAmountList, productCount));
+                criteria.MinQMList = string.Concat(Enumerable.Repeat(criteria.MinQMList, productCount));
+                criteria.MaxQMList = string.Concat(Enumerable.Repeat(criteria.MaxQMList, productCount));
+                criteria.TierList = string.Concat(Enumerable.Repeat(criteria.TierList, productCount));
+                criteria.CommissionList = string.Concat(Enumerable.Repeat(criteria.CommissionList, productCount));
+            }
+
+            criteria.UserId = SessionManager.CurrentSession.CustID;
+            criteria.IP = Remote.GetClientIPAddress();
+
+            _commGroupService.ExecuteOutput(criteria);
+
+            var errorMsg = string.Empty;
+            if (criteria.ErrCode == 9999)
+            {
+                errorMsg = criteria.ErrMsg;
+            }
+            else if (criteria.ErrCode != 0)
+            {
+                errorMsg = Common.GetErrorMsg(criteria.ErrCode);
+                if (errorMsg.Contains("{0}"))
+                {
+                    errorMsg = string.Format(errorMsg, string.IsNullOrEmpty(criteria.ErrMsg) ? criteria.GroupId.ToString() : criteria.ErrMsg);
+                }
+            }
+
+            return Json(GetResultViewModel(criteria.ErrCode, Lang.UpdateSucc, errorMsg));
         }
 
         /// <summary>
@@ -194,15 +273,14 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>Error message (if any).</returns>
         public string Delete(int groupid)
         {            
-            var criteria = new CommGroupActionCriteria
+            var criteria = new CommGroupDeleteCriteria
             {
-                CriteriaType = CriteriaType.Delete,
                 GroupId = groupid,
                 UserId = SessionManager.CurrentSession.CustID,
                 IP = Remote.GetClientIPAddress(),
             };
             
-            _service.ExecuteOutput(criteria);
+            _commGroupService.ExecuteOutput(criteria);
             var errmsg = Common.GetErrorMsg(criteria.ErrCode);
             if (errmsg.Contains("{0}"))
             {
@@ -250,7 +328,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>List Commission Group.</returns>
         private IEnumerable<CommGroup> GetGridData(CommGroupCriteria criteria)
         {
-            var groups = _service.GetListData<CommGroup>(criteria);
+            var groups = _commGroupService.GetListData<CommGroup>(criteria);
             
             if (criteria.GroupIDList.IndexOf(',') == 0)
             {
@@ -272,8 +350,8 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var detailCriteria = new CommGroupDetailCriteria { GroupIDList = groupIDList, Date = date };
             var settingCriteria = new DeductionSettingCriteria { GroupIDList = groupIDList, Date = date };
-            var groupDetails = _service.GetGroupDetails(detailCriteria);
-            var deductionSettings = _service.GetDeductionSettings(settingCriteria);
+            var groupDetails = _commGroupService.GetGroupDetails(detailCriteria);
+            var deductionSettings = _commGroupService.GetDeductionSettings(settingCriteria);
             var allDeductions = AppSettings.DeductionTypes;
             var hasGeneralDeduction = AppSettings.DeductionTypes.FirstOrDefault(x => x.ProductID == 0);
             foreach (var group in groups)
@@ -299,7 +377,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 group.IsAllowedToDelete = group.NoOfAffiliate == 0 && group.CurrencyID != 0;
                 group.AddProducts(products.ToDictionary(x => x.Key, x => x.Value));
                 group.AddDetails(details.ToList());
-                if (hasGeneralDeduction != null)
+                if (group.HasCashback > 0)
                 {
                     var deduction = new Dictionary<string, decimal>();
                     var deductions = allDeductions.Where(x => x.ProductID == 0);

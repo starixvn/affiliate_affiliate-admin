@@ -174,7 +174,7 @@ var COMMGROUP = function ($) {
 
             $("#gridId").on("click", "a.edit", function () {
                 var groupid = $(this).data("groupid");
-                var url = "CommGroup/Add?groupid=" + groupid;
+                var url = "CommGroup/Edit?groupid=" + groupid;
 
                 AFFILIATE.openDialogFrame(url, "Edit Commission Group", { width: 900, height: 700 });
             });

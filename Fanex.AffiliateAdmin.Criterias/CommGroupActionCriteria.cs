@@ -59,6 +59,10 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string ErrMsg { get; set; }
 
+        public decimal DepositPercent { get; set; }
+
+        public decimal WithdrawalPercent { get; set; }
+
         /// <summary>
         /// Get Setting Key.
         /// </summary>

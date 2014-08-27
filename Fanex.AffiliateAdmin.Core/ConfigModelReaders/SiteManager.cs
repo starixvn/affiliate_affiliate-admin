@@ -25,6 +25,19 @@ namespace Fanex.AffiliateAdmin.Core.ConfigModelReaders
 
         public string XmlFile { get; set; }
 
+        public bool GetTransformStatus()
+        {
+           
+            var node = _document.Descendants().FirstOrDefault();
+
+            if (node == null)
+            {
+                return false;
+            }
+
+            return GetNodeValue(node.Element("transform")).Equals("1", StringComparison.OrdinalIgnoreCase);
+        }
+
         /// <summary>
         /// Get global web configuration model.
         /// </summary>

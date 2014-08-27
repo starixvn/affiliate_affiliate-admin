@@ -7,14 +7,14 @@
 @using Fanex.AffiliateAdmin.Core.Enumerations
 
 @helper ListSubmenu(List<Menu> list, int selectedMenu, string activeMenu = "home", int selectedSubMenu = -1)
-{
+    {
     var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
     <ul>
         @for (var i = 0; i < list.Count; i++)
         {
             var item = list[i];
             string activeText = (i == selectedMenu ? "class=\"current\"" : string.Empty);
-            
+
             if (item.SubMenu == null || item.SubMenu.Count == 0)
             {
                 <li @(new HtmlString(activeText))>
@@ -23,7 +23,7 @@
             }
             else
             {
-                var link = (i == selectedMenu && selectedSubMenu != -1) ? item.SubMenu[selectedSubMenu].Link: item.Link;
+                var link = (i == selectedMenu && selectedSubMenu != -1) ? item.SubMenu[selectedSubMenu].Link : item.Link;
                 
                 <li @(new HtmlString(activeText))>
                     <a href="@(url.Content(link))"><span>@item.Text</span></a>
@@ -46,6 +46,7 @@
         $("#@(activeMenu)").addClass("active");
     </script>
 }
+
 @helper PageSizeDropdownList(int selectedPageSize = 10, string id = "pageSize", string postAction = "")
     {
     <div class="pagesize">
@@ -60,6 +61,7 @@
         </span>
     </div>
 }
+
 @helper ListAlPhabet(string selectedValue, IDictionary<string, object> htmlAttributies = null)
     {
         string[] alphas = { "0-9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
@@ -81,6 +83,7 @@
         }
     </select>
 }
+
 @helper DropDownListGroup(List<GroupInfo> list, int selectedValue, IDictionary<string, object> htmlAttributies = null)
     {
         var name = string.Empty;
@@ -333,3 +336,34 @@
         </p>
         }
 }
+
+@helper PercentageDropDownList(decimal percent, decimal step, string className, string disabled)
+{
+    decimal num = 0;
+    <select style="margin-left: 10px; width: 70px" class="@className" @disabled>
+        @while (num <= (decimal) 1.00)
+        {                        
+            var val = string.Format("{0:0.00}", num);
+            <option value="@val" @(num == percent ? "selected" : null)>@val</option>
+            num += step;
+        }while()
+    </select>
+}
+
+@helper AdditionalSharingFee(string deductionName, decimal percentDeposit, decimal percentWithdrawl, string disabled)
+{
+    if (deductionName.Equals("Marketing", StringComparison.OrdinalIgnoreCase) || deductionName.Equals("Odds Fee", StringComparison.OrdinalIgnoreCase))
+    {
+        <span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;WinLoss</span>
+    }
+    
+    if (deductionName.Equals("PSP"))
+    {
+        <span>&nbsp;&nbsp;&nbsp;* 
+        ( Total Deposit * @PercentageDropDownList(percentDeposit, (decimal)0.01, "totaldeposit", disabled)
+      + Total Withdrawal * @PercentageDropDownList(percentWithdrawl, (decimal)0.01, "totalwithdrawal", disabled) )
+        </span>
+    }
+}
+
+

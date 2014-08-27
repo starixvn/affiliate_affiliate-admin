@@ -6110,6 +6110,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sharing Fee.
+        /// </summary>
+        public static string SharingFee {
+            get {
+                return ResourceManager.GetString("SharingFee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign Up.
         /// </summary>
         public static string SignUp {

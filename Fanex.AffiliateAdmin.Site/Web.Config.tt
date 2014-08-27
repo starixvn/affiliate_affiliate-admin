@@ -2,7 +2,6 @@
 <#@ output extension=".txt" #>
 <#@ import namespace="Fanex.AffiliateAdmin.Core.ConfigModelReaders" #>
 <#@ parameter name="Site" type="Fanex.AffiliateAdmin.Core.ConfigModelReaders.SiteInfo" #>
-
 <# 
 if(Site != null)
 {
@@ -19,7 +18,8 @@ if(Site != null)
 	var compilations = reader.GetSettingsOfNode("compilation");
 	var customErrors = reader.GetSettingsOfNode("customErrors");
 #>
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
+
 <!--
   For more information on how to configure your ASP.NET application, please visit
   http://go.microsoft.com/fwlink/?LinkId=169433

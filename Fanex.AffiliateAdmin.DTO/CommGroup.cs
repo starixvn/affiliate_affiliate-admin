@@ -51,6 +51,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal Deduction { get; set; }
 
+        public int HasCashback { get; set; }
+
         public Dictionary<string, decimal> GeneralDeductions
         {
             get

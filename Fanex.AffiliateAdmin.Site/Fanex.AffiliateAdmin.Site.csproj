@@ -154,31 +154,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
-    <Compile Include="Web.Debug.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Web.Debug.config</DependentUpon>
-    </Compile>
-    <Compile Include="Web.Release.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Web.Release.config</DependentUpon>
-    </Compile>
-    <Compile Include="Web.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Web.config</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SpName.ATHENA.LOCAL.xml">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpName.ATHENA.SANDBOX.xml">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
     <Content Include="App_Data\SpName.xml">
       <SubType>Designer</SubType>
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="ConfigManager.txt">
       <AutoGen>True</AutoGen>
@@ -665,6 +645,7 @@
     <Content Include="Scripts\site\CommissionReport.js" />
     <Content Include="Scripts\site\CommissionByAffiliateReport.js" />
     <Content Include="Scripts\site\CompanyWinlossReport.js" />
+    <Content Include="Scripts\site\AddCommGroup.js" />
     <Content Include="Scripts\site\MemberWinlossReport.js" />
     <Content Include="Scripts\site\TestWebService.js" />
     <Content Include="Scripts\site\ProcessingCommission.js" />
@@ -808,7 +789,7 @@
     <Content Include="Views\Configuration\AffTypeDetail.cshtml" />
     <Content Include="Views\Configuration\AddAffType.cshtml" />
     <Content Include="Views\Home\UserOnlineList.cshtml" />
-    <Content Include="Views\CommGroup\Add.cshtml" />
+    <Content Include="Views\CommGroup\Edit.cshtml" />
     <Content Include="Views\AffiliateInfo\Edit.cshtml" />
     <Content Include="Views\Note\Index.cshtml" />
     <Content Include="Views\AffiliateInfo\_Setting.cshtml" />
@@ -866,11 +847,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Web.AppSettings.tt</DependentUpon>
     </Content>
-    <None Include="Web.config">
-      <SubType>Designer</SubType>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Web.cs</LastGenOutput>
-    </None>
     <Content Include="Web.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -881,16 +857,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Web.ConnectionString.tt</DependentUpon>
     </Content>
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Web.Debug.cs</LastGenOutput>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Web.Release.cs</LastGenOutput>
-    </None>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -922,30 +888,22 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SpName.txt</LastGenOutput>
     </None>
-    <Content Include="Web.AppSettings.ATHENA.LOCAL.config">
+    <Content Include="Web.AppSettings.config">
       <DependentUpon>ConfigManager.tt</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.ATHENA.SANDBOX.config">
-      <DependentUpon>ConfigManager.tt</DependentUpon>
-    </Content>
+    <Content Include="Views\CommGroup\Add.cshtml" />
     <None Include="Web.AppSettings.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.AppSettings.txt</LastGenOutput>
     </None>
-    <Content Include="Web.ATHENA.LOCAL.config">
-      <DependentUpon>ConfigManager.tt</DependentUpon>
-    </Content>
-    <Content Include="Web.ATHENA.SANDBOX.config">
+    <Content Include="Web.config">
       <DependentUpon>ConfigManager.tt</DependentUpon>
     </Content>
     <None Include="Web.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.Config.txt</LastGenOutput>
     </None>
-    <Content Include="Web.ConnectionString.ATHENA.LOCAL.config">
-      <DependentUpon>ConfigManager.tt</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.ATHENA.SANDBOX.config">
+    <Content Include="Web.ConnectionString.config">
       <DependentUpon>ConfigManager.tt</DependentUpon>
     </Content>
     <None Include="Web.ConnectionString.tt">
@@ -1033,12 +991,6 @@
     <Content Include="Content\themes\Default\index.less" />
     <Content Include="Content\themes\Default\mixins.less" />
     <Content Include="Content\themes\Default\variables.less" />
-    <Content Include="Web.AppSettings.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.ConnectionString.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Shared\_LayoutNoHeader.cshtml" />
     <Content Include="Views\Affiliate\Index.cshtml" />

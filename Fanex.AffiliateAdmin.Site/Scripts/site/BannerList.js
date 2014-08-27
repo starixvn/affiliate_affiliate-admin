@@ -157,7 +157,7 @@ var BannerList = (function ($) {
                 alert(MSG.InvalidBanner);
             } else {
                 var totalReq = parseInt(totalRequest, 10);
-                if (!isNaN(totalReq) && totalReq >= 0) {
+                if (!isNaN(totalReq) && totalReq > 0) {
                     return;
                 }
 

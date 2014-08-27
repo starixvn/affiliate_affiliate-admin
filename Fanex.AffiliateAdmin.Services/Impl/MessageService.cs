@@ -20,7 +20,7 @@ namespace Fanex.AffiliateAdmin.Services
     /// </summary>
     public class MessageService : QueryService, IMessageService
     {
-        private IMessageDataAccess _messageDataAccess = new MessageDataAccess();
+        private readonly IMessageDataAccess _messageDataAccess = new MessageDataAccess();
 
         public IEnumerable<Message> GetMessages(MessageCriteria criteria)
         {

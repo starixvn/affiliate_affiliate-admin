@@ -41,10 +41,10 @@
 					site.Environment = environment;
 					session["Site"] = site;
 
-					var webconfigName = string.Format("Web.{0}.{1}.config", site.Name.ToUpper(), site.Environment.ToUpper());
-					var appSettingName = string.Format("Web.AppSettings.{0}.{1}.config", site.Name.ToUpper(), site.Environment.ToUpper());
-					var connectionStringName = string.Format("Web.ConnectionString.{0}.{1}.config", site.Name.ToUpper(), site.Environment.ToUpper());
-					var spName = string.Format("SpName.{0}.{1}.xml", site.Name.ToUpper(), site.Environment.ToUpper());
+					var webconfigName = string.Format("Web.{0}.{1}.config", site.Name.ToLower(), site.Environment.ToLower());
+					var appSettingName = string.Format("Web.AppSettings.{0}.{1}.config", site.Name.ToLower(), site.Environment.ToLower());
+					var connectionStringName = string.Format("Web.ConnectionString.{0}.{1}.config", site.Name.ToLower(), site.Environment.ToLower());
+					var spName = string.Format("SpName.{0}.{1}.xml", site.Name.ToLower(), site.Environment.ToLower());
 
 					if(!transform)
 					{
@@ -60,7 +60,7 @@
 					this.Write(webConfigOutput);
 
 					// for app settings
-					fileManager.StartNewFile(string.Format(appSettingName, site.Name.ToUpper(), site.Environment.ToUpper()));					
+					fileManager.StartNewFile(appSettingName);					
 					var webAppSettingsOutput = paramTmpl.TransformText("Web.AppSettings.tt", session);
 					this.Write(webAppSettingsOutput);
 

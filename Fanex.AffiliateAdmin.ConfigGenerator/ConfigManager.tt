@@ -4,8 +4,8 @@
 <#@ assembly name="System.Xml.Linq" #>
 <#@ assembly name="System.Data" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(SolutionDir)\Fanex.AffiliateAdmin.Site\bin\Fanex.AffiliateAdmin.Core.dll" #>
-<#@ import namespace="Fanex.AffiliateAdmin.Core.ConfigModelReaders" #>
+<#@ assembly name="$(SolutionDir)\Fanex.AffiliateAdmin.ConfigGenerator\bin\Debug\Fanex.AffiliateAdmin.ConfigGenerator.dll" #>
+<#@ import namespace="Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders" #>
 <#@ include file="$(SolutionDir)\_Dependencies\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
 <# 
 	var fileManager = TemplateFileManager.Create(this);
@@ -27,7 +27,10 @@
     var environments = manager.GetSupportedEnvironmentList();
     var sites = manager.GetSupportedSiteList();
 	var transform = manager.GetTransformStatus();
-	
+
+	var webProject = "Fanex.AffiliateAdmin.Site";
+	var appDataFolder = "App_Data";
+
 	foreach(var site in sites)
 	{
 		if(site.Status)
@@ -55,22 +58,22 @@
 					}
 										
 					// for web config
-					fileManager.StartNewFile(webconfigName);					
+					fileManager.StartNewFile(webconfigName, webProject);					
 					var webConfigOutput = paramTmpl.TransformText("Web.Config.tt", session);
 					this.Write(webConfigOutput);
 
 					// for app settings
-					fileManager.StartNewFile(appSettingName);					
+					fileManager.StartNewFile(appSettingName, webProject);					
 					var webAppSettingsOutput = paramTmpl.TransformText("Web.AppSettings.tt", session);
 					this.Write(webAppSettingsOutput);
 
 					// for connection strings
-					fileManager.StartNewFile(connectionStringName);
+					fileManager.StartNewFile(connectionStringName, webProject);
 					var connectionStringOutput = paramTmpl.TransformText("Web.ConnectionString.tt", session);
 					this.Write(connectionStringOutput);
 
 					// for spname
-					fileManager.StartNewFile(spName, folderName:"App_Data");
+					fileManager.StartNewFile(spName, webProject, appDataFolder);
 					var spNameOutput = paramTmpl.TransformText("SpName.tt", session);
 					this.Write(spNameOutput);
 				}

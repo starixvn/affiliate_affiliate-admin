@@ -1,8 +1,8 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ output extension=".txt" #>
-<#@ import namespace="Fanex.AffiliateAdmin.Core.ConfigModelReaders" #>
-<#@ parameter name="Site" type="Fanex.AffiliateAdmin.Core.ConfigModelReaders.SiteInfo" #>
-<# 
+<#@ import namespace="Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders" #>
+<#@ parameter name="Site" type="Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders.SiteInfo" #>
+<#
 if(Site != null)
 {
 	var reader = new WebConfigModelReader 

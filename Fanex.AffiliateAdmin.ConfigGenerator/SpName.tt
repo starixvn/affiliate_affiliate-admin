@@ -1,20 +1,19 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ output extension=".txt" #>
-<#@ import namespace="Fanex.AffiliateAdmin.Core.ConfigModelReaders" #>
-<#@ parameter name="Site" type="Fanex.AffiliateAdmin.Core.ConfigModelReaders.SiteInfo" #>
-<# 
+<#@ import namespace="Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders" #>
+<#@ parameter name="Site" type="Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders.SiteInfo" #>
+<#
 if(Site != null)
 {
-var reader = new WebConfigModelReader 
-			{
-				Environment = Site.Environment,
-				XmlFile = Host.ResolvePath(Site.WebConnectionStringModel)
-			};
-reader.LoadXml();  
-var dbDict = reader.GetSettingsOfNode("connectionstrings");
-#>  
+	var reader = new WebConfigModelReader 
+				{
+					Environment = Site.Environment,
+					XmlFile = Host.ResolvePath(Site.WebConnectionStringModel)
+				};
+	reader.LoadXml();  
+	var dbDict = reader.GetSettingsOfNode("connectionstrings");
+#>
 <?xml version="1.0" encoding="utf-8" ?>
-
 <Functions>
   <Function Name="Core">
     <Setting Key="AffAdmin_Login" SpName="AffAdmin_Login" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />

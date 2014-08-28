@@ -1,21 +1,24 @@
 ﻿var CommGroupPopup = (function ($) {
     "use strict";
+
+    var MaxTier = 50;
+
     function formatInt(value) {
         return numeral(value).format(AFFILIATE.FORMAT_INT_NUMBER);
     }
+
     function newTierRow(tier, minAM, maxAM, minQM, maxQM, commission) {
-        var $tr = $("#tierRow tr").clone();
-        $tr.find("#tier").html(tier);
-        $tr.find("#minAM").val(formatInt(minAM || 0));
-        $tr.find("#maxAM").val(formatInt(maxAM || 0));
-        $tr.find("#minQM").val(formatInt(minQM || 0));
-        $tr.find("#maxQM").val(formatInt(maxQM || 0));
-        $tr.find(".commission option").html(commission || "0.00");
-        window.setTimeout(function () {
-            var dropdown = $("#commissionlist select").clone();
-            dropdown.val(commission || "0.00");
-            $tr.find("td#commission").html(dropdown);
-        }, 1);
+        var $tr = $("#sampleTierRow tr").clone();
+        $tr.find(".tierOrder").html(tier);
+        $tr.find(".minAM").val(formatInt(minAM || 0));
+        $tr.find(".maxAM").val(formatInt(maxAM || 0));
+        $tr.find(".minQM").val(formatInt(minQM || 0));
+        $tr.find(".maxQM").val(formatInt(maxQM || 0));
+
+        var dropdown = $("#sampleCommissionList select").clone();
+        dropdown.val(commission || "0.00");
+        $tr.find(".commissionCol").html(dropdown);
+
         return $tr[0];
     }
 
@@ -23,11 +26,13 @@
         var $table = $("#tab_content" + productID + " #tblTier" + productID + ">tbody");
         var noTier = $table.find("tr.tier").length;
 
-        if (noTier >= 50) {
+
+        if (noTier >= MaxTier) {
             var productname = $("#tab_header" + productID).data("productname");
             alert(MSG.InvalidSettingFor.replace("{item}", productname) + " " + MSG.MaxTierAllow);
             return;
         }
+
         var minAM, maxAM, minQM, maxQM, commission, newTierID;
 
         if ($table.find("tr.tier").length == 0) { // noinfo row        
@@ -39,9 +44,9 @@
         else {
             var $lastRow = $table.find("tr:last");
             $lastRow.find("input[type=checkbox]").prop("disabled", true);
-            minAM = parseInt($lastRow.find("#maxAM").val().replace(/,/g, "")) + 1;
+            minAM = parseInt($lastRow.find(".maxAM").val().replace(/,/g, "")) + 1;
             maxAM = minAM;
-            minQM = parseInt($lastRow.find("#maxQM").val().replace(/,/g, "")) + 1;
+            minQM = parseInt($lastRow.find(".maxQM").val().replace(/,/g, "")) + 1;
             maxQM = minQM;
 
             if (minAM >= MAXAM - 1 || minQM >= MAXQM - 1) {
@@ -54,51 +59,83 @@
         $table[0].appendChild(newTierRow(newTierID, minAM, maxAM, minQM, maxQM, commission));
     }
 
-    function enableProduct(productID, value, changeIcon, showConfirm) {
+    function disableProduct(productId) {
+        var $tab = $("#tab_header" + productId);
 
-        var $tab = $(productID == null ? ".tab_header" : "#tab_header" + productID);
-        if (value == false && $tab.data("disabled") && !$tab.find("#header_icon" + productID).hasClass("icon-ok-circle")) {
-            return;
+        var productname = $tab.data("productname");
+
+        if ($tab.find("#" + productId).prop("checked")) {
+            alert("Please uncheck copy all tier settings on the " + productname + " product");
+            return false;
         }
 
-        if (value) {
-            $(productID == null ? ".tab_content" : "#tab_content" + productID).show();
-            if ($tab.data("disabled"))
-                $tab.find("#product_header" + productID).css("color", "").addClass("header_hightlight");
-        }
-        else {
-            $tab.find("#product_header" + productID).removeClass("header_hightlight");
-            if (showConfirm) {
-                var productname = $("#tab_header" + productID).data("productname");
-                var msg = MSG.ConfirmRemoveFromGroup.replace("{item}", productname);
-                if (confirm(msg)) {
-                    $(productID == null ? ".tab_content" : "#tab_content" + productID).hide();
-                }
-                else
-                    return false;
-            } else {
-                $(!productID ? ".tab_content" : "#tab_content" + productID).hide();
-            }
+        var msg = window.MSG.ConfirmRemoveFromGroup.replace("{item}", productname);
+
+        if (!confirm(msg)) {
+            return false;
         }
 
-        $tab.find("#" + productID).prop("disabled", !value);
+        $("#tab_content" + productId).hide();
 
-        $tab.data("disabled", !value).find("#product_header" + productID).css("color", !value ? "gray" : "black");
+        $tab.find("#" + productId).prop("disabled", true);
 
-        if (changeIcon) {
-            if (typeof (changeIcon) == "string")
-                $tab.find("#header_icon" + productID).removeClass().addClass(changeIcon);
-            else
-                $tab.find("#header_icon" + productID).removeClass().addClass(value ? "icon-ok-circle" : "icon-ban-circle");
-        }
+        $tab.data("disabled", true);
+
+        $tab.find("#product_header" + productId).removeClass("enabled").addClass("disabled");
+
+        $tab.find("#header_icon" + productId).removeClass("icon-ok-circle").addClass("icon-ban-circle");
 
         return true;
     }
 
+    function enableProduct(productId) {
+        var $tab = $("#tab_header" + productId);
+
+        $("#tab_content" + productId).show();
+
+        $tab.find("#" + productId).prop("disabled", false);
+
+        $tab.data("disabled", false);
+
+        $tab.find("#product_header" + productId).removeClass("disabled").addClass("enabled");
+
+        $tab.find("#header_icon" + productId).removeClass("icon-ban-circle").addClass("icon-ok-circle");
+    }
+
+    function copyTierSettings(productId) {
+        var $tab = $("#tab_header" + productId);
+
+        if ($tab.data("disabled"))
+            return;
+
+        $("#fieldsetTier" + productId).hide();
+
+        $tab.find("#" + productId).prop("disabled", true);
+
+        $tab.data("copied", true);
+
+        $tab.find("#product_header" + productId).removeClass("enabled").addClass("copied");
+    }
+
+    function uncopyTierSettings(productId) {
+        var $tab = $("#tab_header" + productId);
+
+        $tab.data("copied", false);
+
+        if (!$tab.data("disabled")) {
+
+            $("#fieldsetTier" + productId).show();
+
+            $tab.find("#" + productId).prop("disabled", false);
+
+            $tab.find("#product_header" + productId).removeClass("copied").addClass("enabled");
+        }
+    }
+
     function disableCopyCheckboxes() {
         var enabledIds = [];
-        for (var i = 0; i < PRODUCTS.length; i++) {
-            var productid = PRODUCTS[i];
+        for (var i = 0; i < window.PRODUCTS.length; i++) {
+            var productid = window.PRODUCTS[i];
             var $tab = $("#tab_header" + productid);
             if (!$tab.data("disabled")) {
                 enabledIds.push(productid);
@@ -111,55 +148,355 @@
             for (var i = 0; i < enabledIds.length; i++) {
                 $("#" + enabledIds[i]).prop("disabled", false);
             }
-
         }
 
-        $("#ActiveAll").prop("checked", enabledIds.length == PRODUCTS.length);
+        $("#ActiveAll").prop("checked", enabledIds.length == window.PRODUCTS.length);
     }
+
+    var changeCommissionOnTierSetting = function () {
+        var $this = $(this);
+        var $tr = $this.closest("tr");
+        var value = this.value;
+        var $pre = $tr.prev("tr").find(".commission:first");
+        if ($pre.length > 0) {
+            var preValue = $pre[0].value;
+            if (preValue > value) {
+                this.value = preValue;
+                return;
+            }
+        }
+
+        window.setTimeout(function () {
+            var $next = $tr.nextAll("tr").find(".commission");
+            $next.each(function () {
+                if (this.value < value)
+                    this.value = value;
+            });
+        }, 1);
+    };
+
+    var changeInfiniteCheckbox = function () {
+        var $this = $(this);
+        var $tr = $this.closest("tr");
+
+        if (this.checked === true) {
+            $tr.find(".maxAM, .maxQM").prop("disabled", true).val("∞");
+            $tr.find("input[type=checkbox]").prop("checked", true);
+            $tr.closest("div.tab_content").find("button").prop("disabled", true);
+        } else {
+            $tr.find(".maxAM, .maxQM").prop("disabled", false);
+            var minAM = $tr.find(".minAM").val();
+            var minQM = $tr.find(".minQM").val();
+            $tr.find(".maxAM").val(minAM);
+            $tr.find(".maxQM").val(minQM);
+
+            var disableButton = false;
+            if (minAM >= MAXAM - 1 && minQM >= MAXQM - 1) {
+                disableButton = true;
+            }
+
+            $tr.find("input[type=checkbox]").prop("checked", false);
+            $tr.closest("div.tab_content").find("button").prop("disabled", disableButton);
+        }
+    };
+
+    var changeMaxAMTAndMaxQM = function () {
+        var $this = $(this);
+        var className = $this.hasClass("maxAM") ? "maxAM" : "maxQM";
+        var maxvalue = $this.hasClass("maxAM") ? MAXAM : MAXQM;
+
+        var value = parseInt(this.value.replace(/,/g, ""));
+
+        if (value === maxvalue) {
+            value = maxvalue - 1;
+        }
+
+        var $button = $this.closest(".tab_content").find("button:first");
+
+        if (!$this.closest("tbody").find("tr:last input[type=checkbox]").prop("checked")) {
+            $button.prop("disabled", value >= maxvalue);
+        }
+
+        this.value = formatInt(value);
+
+        var $preInput = $this.closest("tr").prev("tr").find("." + className);
+
+        if ($preInput.length > 0) {
+            var preValue = $preInput.val();
+            preValue = parseInt(preValue.replace(/,/g, ""));
+
+            if (preValue >= value) {
+                value = preValue + 1;
+                this.value = formatInt(value);
+
+                if (value >= maxvalue)
+                    $button.prop("disabled", true);
+                return;
+            }
+        }
+
+        value++;
+
+        var $tr = $this.closest("tr").nextAll("tr");
+        var maxClassName = "." + className;
+        var minClassName = maxClassName.replace("max", "min");
+
+        if (value + $tr.length >= maxvalue) {
+            value = maxvalue - $tr.length;
+            this.value = formatInt(value - 1);
+        }
+
+        $tr.each(function () {
+            var $self = $(this);
+            var minTextBox = $self.find(minClassName)[0];
+            var maxTextBox = $self.find(maxClassName)[0];
+
+            var v = maxTextBox.value.replace(/,/g, "");
+            minTextBox.value = formatInt(value);
+
+            if (v <= value) {
+                maxTextBox.value = formatInt(value);
+            }
+
+            value = parseInt(maxTextBox.value.replace(/,/g, "")) + 1;
+        });
+    };
+
+    var checkRequiredFields = function () {
+        var groupname = $("#GroupName").val().trim();
+        if (groupname === "") {
+            alert(window.MSG.GroupNameEmpty);
+            return false;
+        }
+
+        var amount = $("#QualifiedAmount").val().replace(/,/g, "");
+        if (amount === "" || amount <= 0) {
+            alert(window.MSG.ValidQualifiedAmount);
+            return false;
+        }
+
+        return true;
+    };
+
+    var getEnabledProducts = function () {
+        var products = window.PRODUCTS.slice(0);
+
+        // get deductions for each Product
+        for (var i = 0; i < window.PRODUCTS.length; i++) {
+            var productid = window.PRODUCTS[i];
+            var $tab = $("#tab_header" + productid);
+
+            if ($tab.data("disabled")) {
+                var index = products.indexOf(productid);
+                products.splice(index, 1);
+                continue;
+            }
+        }
+
+        return products;
+    };
+
+    var isCopiedProduct = function (productid) {
+        var $tab = $("#tab_header" + productid);
+
+        return $tab.data("copied");
+    };
+
+    var checkTierSettings = function (products) {
+        var msg;
+
+        for (var i = 0; i < products.length; i++) {
+            var productid = products[i];
+            var $tab = $("#tab_header" + productid);
+            var productname = $tab.data("productname");
+
+            if (isCopiedProduct(productid)) {
+                continue;
+            }
+
+            var $tr = $("#tblTier" + productid).find("tr.tier");
+
+            if ($tr.length == 0) {
+                msg = window.MSG.InvalidSettingFor.replace("{item}", productname) + " " + window.MSG.TierSettingAtLeastTier;
+                alert(msg);
+                return false;
+            }
+
+            if ($tr.last().find("input[type=checkbox]:first").is(":checked") == false) {
+                msg = window.MSG.InvalidSettingFor.replace("{item}", productname) + " " + window.MSG.LastTierSettingHaveMaxValue;
+                alert(msg);
+                return false;
+            }
+        }
+
+        return true;
+    };
+
+    var getCashbackDeductionSettings = function (deductionList, deductedPercentageList) {
+
+        var $deductions = $("#tab_content0 .deductions input[type=checkbox]:checked");
+
+        $deductions.each(function () {
+            deductionList += $(this).data("id") + ",";
+
+            var percent = $(this).closest("tr").find("select.deductionlist").val();
+
+            deductedPercentageList += percent + ",";
+        });
+    };
+
+    var collectDeductionSettings = function (products) {
+        var settings = {};
+
+        var deductionList = "", deductedPercentageList = "";
+
+        getCashbackDeductionSettings(deductionList, deductedPercentageList);
+
+        // get deduction settings for each Product
+        for (var i = 0; i < products.length; i++) {
+            var productid = products[i];
+
+            var $deductions = $("#tab_content" + productid + " .deductions input[type=checkbox]:checked");
+
+            $deductions.each(function () {
+                var percent = $(this).closest("tr").find("select.deductionlist").val();
+
+                deductionList += $(this).data("id") + ",";
+
+                deductedPercentageList += percent + ",";
+            });
+        }
+
+        settings.deductionList = deductionList;
+
+        settings.deductedPercentageList = deductedPercentageList;
+
+        return settings;
+    };
+
+    var collectTierSettings = function (products) {
+
+        var settings = {};
+
+        var tierList, minAmountList, maxAmountList, minQMList, maxQMList, commissionList;
+        tierList = minAmountList = maxAmountList = minQMList = maxQMList = commissionList = "";
+
+        // get deductions for each Product
+        for (var i = 0; i < products.length; i++) {
+            var productid = products[i];
+
+            if (isCopiedProduct(productid)) {
+                continue;
+            }
+
+            var $tr = $("#tblTier" + productid).find("tr.tier");
+
+            tierList += $tr.length + ";";
+
+            $tr.each(function () {
+                var $this = $(this);
+                var minAM = $this.find(".minAM").val().replace(/,/g, "");
+                var maxAM = $this.find(".maxAM").val().replace(/,/g, "");
+                var minQM = $this.find(".minQM").val().replace(/,/g, "");
+                var maxQM = $this.find(".maxQM").val().replace(/,/g, "");
+
+                if (maxAM === '∞') {
+                    maxAM = MAXAM;
+                }
+
+                if (maxQM === '∞') {
+                    maxQM = MAXQM;
+                }
+
+                var commission = $this.find(".commission").val();
+
+                minAmountList += minAM + ",";
+                maxAmountList += maxAM + ",";
+                minQMList += minQM + ",";
+                maxQMList += maxQM + ",";
+                commissionList += commission + "@";
+            });
+
+            minAmountList = minAmountList.removeLast() + ";";
+            maxAmountList = maxAmountList.removeLast() + ";";
+            minQMList = minQMList.removeLast() + ";";
+            maxQMList = maxQMList.removeLast() + ";";
+            commissionList = commissionList.removeLast() + ";";
+        }
+
+        settings.tierList = tierList;
+        settings.minAmountList = minAmountList;
+        settings.maxAmountList = maxAmountList;
+        settings.minQMList = minQMList;
+        settings.maxQMList = maxQMList;
+        settings.commissionList = commissionList;
+
+        return settings;
+    };
+
+    var changeCurrency = function (currencyId, currencyCode) {
+        $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/GetCurrencyNotification"),
+            type: 'post',
+            data: {
+                currencyid: currencyId
+            },
+            success: function (data) {
+                AFFILIATE.PreHandleAjaxResult(data);
+
+                if (data === "") {
+                    $("#currNotify").hide();
+                }
+                else {
+                    $("#currNotify").html(data).show();
+                }
+            }
+        });
+
+        $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/GetDefaultPspExchange"),
+            type: 'post',
+            data: {
+                CurrencyCode: currencyCode
+            },
+            success: function (data) {
+                AFFILIATE.PreHandleAjaxResult(data);
+                $('.totaldeposit').val(data.DepositPercent);
+                $('.totalwithdrawal').val(data.WithdrawalPercent);
+            }
+        });
+    };
+
+    var collectCommGroupInfo = function (products) {
+        return {
+            GroupName: $("#GroupName").val().trim(),
+            Description: $("#Description").val().trim(),
+            QualifiedAmount: $("#QualifiedAmount").val().replace(/,/g, ""),
+            Currency: $("#Currency").val(),
+            CopyForAllProducts: $("div.tab_title input.copy:checked").length > 0,
+
+            ProductIDList: products.toString().replace(/,/g, ";"),
+            DepositPercent: $(".totaldeposit").val(),
+            WithdrawalPercent: $(".totalwithdrawal").val()
+        };
+    };
 
     return {
         init: function () {
+
             $("#Currency").change(function () {
+                changeCurrency(this.value, $(this).find(":selected").text());
+            });
 
-                $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/GetCurrencyNotification"),
-                    type: 'post',
-                    data: {
-                        currencyid: this.value
-                    },
-                    success: function (data) {
-                        AFFILIATE.PreHandleAjaxResult(data);
-
-                        if (data === "") {
-                            $("#currNotify").hide();
-                        }
-                        else {
-                            $("#currNotify").html(data).show();
-                        }
-                    }
-                });
-
-                $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/GetDefaultPspExchange"),
-                    type: 'post',
-                    data: {
-                        CurrencyCode: $(this).find(":selected").text()
-                    },
-                    success: function (data) {
-                        AFFILIATE.PreHandleAjaxResult(data);
-
-                        $('.totaldeposit').val(data.DepositPercent);
-                        $('.totalwithdrawal').val(data.WithdrawalPercent);
-                    }
-                });
-
-
-            }).change();
             var $tabcontent = $(".tab_content");
+
             var $tabheader = $(".tab_header");
 
-            $tabcontent.find("input.deduction").change(function () {
-                $(this).closest("div").find("select.deductionlist:first").prop("disabled", !this.checked);
+            $tabcontent.find("input.deduction").change(function (e) {
+                e.stopPropagation();
+                $(this).closest("tr").find("select").prop("disabled", !this.checked);
             });
+
             $("#QualifiedAmount").numeric();
+
             $("#QualifiedAmount").blur(function () {
                 var value = parseInt(this.value.replace(/,/g, ""));
                 if (!isNaN(value)) {
@@ -168,36 +505,33 @@
                     this.value = formatInt(value);
                 }
             });
+
             $tabcontent.find("input[type=text]").numeric();
 
-            $tabheader.each(function () {
-                if ($(this).data("disabled")) {
-                    enableProduct($(this).data("productid"), false, true, false);
-
-                }
-            });
-
-
             disableCopyCheckboxes();
+
             $tabheader.find(".header_icon").click(function (e) {
                 e.stopPropagation();
                 var productid = $(this).closest(".tab_header").data("productid");
-                enableProduct(productid, !$(this).closest(".tab_header").find(".header_icon").hasClass("icon-ok-circle"), true, true);
+                var status = $(this).closest(".tab_header").find("#header_icon" + productid).hasClass("icon-ok-circle");
+                if (status) {
+                    disableProduct(productid);
+                } else {
+                    enableProduct(productid);
+                }
 
                 disableCopyCheckboxes();
             });
-            $tabheader.find(".product_header").mouseout(function (e) {
-                $(this).removeClass("header_hightlight");
-            });
+
             $tabheader.find(".product_header").click(function () {
                 var $tab = $(this).closest(".tab_header");
 
-                if ($tab.data("disabled"))
+                if ($tab.data("disabled") || $tab.data("copied"))
                     return;
 
                 $tab.next(".tab_content").toggle();
 
-                $(this).closest("li").toggleClass("expand collapse");
+                $(this).closest("div").toggleClass("expand collapse");
             });
 
             $tabcontent.on("click", ".icon-remove", function () {
@@ -219,46 +553,41 @@
             });
 
             $("#ActiveAll").change(function () {
-
                 if (this.checked) {
-                    enableProduct(0, true, true);
-
-                    // unactive specific deduction by product
                     for (var i = 0; i < PRODUCTS.length; i++) {
-                        enableProduct(PRODUCTS[i], true, true);
+                        enableProduct(PRODUCTS[i]);
                     }
 
                 } else {
                     var all = true;
 
-                    // unactive general deduction
-                    if (HasCashbackDeduction) {
-                        if (enableProduct(0, false, true, true))
-                            all = false;
-                    }
-
-                    // unactive specific deduction by product
                     for (var i = 0; i < PRODUCTS.length; i++) {
-                        if (enableProduct(PRODUCTS[i], false, true, true))
+                        if (disableProduct(PRODUCTS[i])) {
                             all = false;
+                        }
                     }
 
-                    if (all)
+                    if (all) {
                         this.checked = true;
+                    }
                 }
 
                 disableCopyCheckboxes();
             });
 
-            // Checkbox CopyTierSetting event
             $tabheader.on("change", "input[type=checkbox]", function () {
-                var productid = this.id;
+                var productid = parseInt(this.id, 10);
+
                 for (var i = 0; i < PRODUCTS.length; i++) {
                     var id = PRODUCTS[i];
-                    if (this.checked)
-                        enableProduct(PRODUCTS[i], productid == id, "icon-ok-circle", false);
-                    else
-                        enableProduct(PRODUCTS[i], true, true, false);
+
+                    if (productid !== id) {
+                        if (this.checked) {
+                            copyTierSettings(id);
+                        } else {
+                            uncopyTierSettings(id);
+                        }
+                    }
                 }
             });
 
@@ -267,228 +596,49 @@
                 addTier(productID);
             });
 
-            // Checkbox maxAM/QM event
-            $tabcontent.on("change", "input[type=checkbox]", function () {
-                var $this = $(this);
-                var $tr = $this.closest("tr");
-                $tr.find("#maxAM, #maxQM").prop("disabled", this.checked).val("∞");
-                $tr.find("input[type=checkbox]").prop("checked", this.checked);
+            $tabcontent.on("change", "input[type=checkbox]", changeInfiniteCheckbox);
 
-                var disableButton = this.checked;
-                if (disableButton == false && $tr.find("#minAM").val() >= MAXAM - 1 && $tr.find("#minQM").val() >= MAXQM - 1)
-                    disableButton = true;
-                $tr.closest("div.tab_content").find("button").prop("disabled", disableButton);
+            $tabcontent.on("change", "select.commission", changeCommissionOnTierSetting);
 
-                if (!this.checked) {
-                    var minAM = $tr.find("#minAM").val();
-                    var minQM = $tr.find("#minQM").val();
-                    $tr.find("#maxAM").val(minAM);
-                    $tr.find("#maxQM").val(minQM);
-                }
-            });
-
-            // Dropdown Commission event
-            $tabcontent.on("change", "select.commission", function () {
-                var $this = $(this);
-                var $tr = $this.closest("tr");
-                var value = this.value;
-                var $pre = $tr.prev("tr").find(".commission:first");
-                if ($pre.length > 0) {
-                    var preValue = $pre[0].value;
-                    if (preValue > value) {
-                        this.value = preValue;
-                        return;
-                    }
-                }
-                window.setTimeout(function () {
-                    var $next = $tr.nextAll("tr").find(".commission");
-                    $next.each(function () {
-                        if (this.value < value)
-                            this.value = value;
-                    });
-                }, 1);
-            });
-            $tabcontent.on("blur", "input.maxAM, input.maxQM", function () {
-                var $this = $(this);
-                var maxvalue = this.id.indexOf("AM") > -1 ? MAXAM : MAXQM;
-
-                var value = parseInt(this.value.replace(/,/g, ""));
-
-                if (value == maxvalue)
-                    value = maxvalue - 1;
-                var $button = $this.closest(".tab_content").find("button:first");
-
-                if (!$this.closest("tbody").find("tr:last input[type=checkbox]").prop("checked"))
-                    $button.prop("disabled", value >= maxvalue);
-                this.value = formatInt(value);
-                var $preInput = $this.closest("tr").prev("tr").find("#" + this.id);
-
-                var preValue = $preInput.val();
-                if (preValue)
-                    preValue = parseInt(preValue.replace(/,/g, ""));
-
-                if (preValue >= value) {
-                    value = preValue + 1;
-                    $this.val(formatInt(value));
-                    if (value >= maxvalue)
-                        $button.prop("disabled", true);
-                    return;
-                }
-                value++;
-                var $tr = $this.closest("tr").nextAll("tr"); //.find("input." + this.id);
-                var maxid = "#" + this.id;
-                var minid = maxid.replace("max", "min");
-
-                if (value + $tr.length >= maxvalue) {
-                    value = maxvalue - $tr.length;
-                    this.value = formatInt(value - 1);
-                }
-
-                $tr.each(function () {
-                    var $self = $(this);
-                    var min = $self.find(minid)[0];
-                    var max = $self.find(maxid)[0];
-                    var v = max.value.replace(/,/g, "");
-                    min.value = formatInt(value);
-                    if (v <= value) {
-                        max.value = formatInt(value);
-                    }
-                    value = parseInt(max.value.replace(/,/g, "")) + 1;
-
-                });
-            });
+            $tabcontent.on("blur", "input.maxAM, input.maxQM", changeMaxAMTAndMaxQM);
 
             $("#btnSubmit").click(function () {
-                var groupname = $("#GroupName").val().trim();
-                if (groupname == "") {
-                    alert(MSG.GroupNameEmpty);
+
+                if (!checkRequiredFields()) {
                     return;
                 }
-                var amount = $("#QualifiedAmount").val().replace(/,/g, "");
-                if (amount === "" || amount <= 0) {
-                    alert(MSG.ValidQualifiedAmount);
-                    return;
-                }
-                var groupid = $("#GroupID").val();
-                if (groupid === "")
-                    groupid = undefined;
-                var products = PRODUCTS.slice(0);
-                var data = {
-                    GroupID: groupid,
-                    GroupName: $("#GroupName").val().trim(),
-                    Description: $("#Description").val().trim(),
-                    QualifiedAmount: amount,
-                    Currency: $("#Currency").val(),
-                    CopyForAllProducts: PRODUCTS.length > 1 && $("div.tab_title input.copy:checked").length > 0
-                };
 
-                var tierList, minAmountList, maxAmountList, minQMList, maxQMList, commissionList, deductionList, deductedPercentageList;
-                tierList = minAmountList = maxAmountList = minQMList = maxQMList = commissionList = deductionList = deductedPercentageList = "";
+                var products = getEnabledProducts();
 
-                // get Cashback deduction 
-                var $deductions = $("#tab_content0 .deductions:first input[type=checkbox]:checked");
-
-                $deductions.each(function () {
-                    deductionList += $(this).data("id") + ",";
-
-                    var percent = $(this).closest("div").find("select.deductionlist:first").val();
-
-                    deductedPercentageList += percent + ",";
-                });
-
-                // get deductions for each Product
-                for (var i = 0; i < PRODUCTS.length; i++) {
-                    var productid = PRODUCTS[i];
-                    var $tab = $("#tab_header" + productid);
-                    var productname = $tab.data("productname");
-
-                    var isdisabled = $tab.data("disabled");
-
-                    if (isdisabled) {
-                        var iscopy = $tab.find(".header_icon").hasClass("icon-ok-circle");
-                        if (!iscopy) {
-                            var index = products.indexOf(productid);
-                            products.splice(index, 1);
-                        }
-                        continue;
-                    }
-                    var $tr = $("#tblTier" + productid).find("tr.tier");
-
-                    // check for invalid setting
-                    if ($tr.length == 0) {
-                        var msg = MSG.InvalidSettingFor.replace("{item}", productname) + " " + MSG.TierSettingAtLeastTier;
-                        alert(msg);
-                        return;
-                    }
-
-                    if ($tr.last().find("input[type=checkbox]:first").is(":checked") == false) {
-                        var msg = MSG.InvalidSettingFor.replace("{item}", productname) + " " + MSG.LastTierSettingHaveMaxValue;
-                        alert(msg);
-                        return;
-                    }
-
-                    var $deductions = $("#tab_content" + productid + " .deductions:first input[type=checkbox]:checked");
-
-                    $deductions.each(function () {
-                        deductionList += $(this).data("id") + ",";
-
-                        var percent = $(this).closest("div").find("select.deductionlist:first").val();
-
-                        deductedPercentageList += percent + ",";
-                    });
-
-
-                    tierList += $tr.length + ";";
-
-                    $tr.each(function () {
-                        var $this = $(this);
-                        var minAM = $this.find(".minAM").val().replace(/,/g, "");
-                        var maxAM = $this.find(".maxAM").val().replace(/,/g, "");
-                        var minQM = $this.find(".minQM").val().replace(/,/g, "");
-                        var maxQM = $this.find(".maxQM").val().replace(/,/g, "");
-                        if (maxAM == '∞')
-                            maxAM = MAXAM;
-                        if (maxQM == '∞')
-                            maxQM = MAXQM;
-
-                        var commission = $this.find(".commission").val();
-
-                        minAmountList += minAM + ",";
-                        maxAmountList += maxAM + ",";
-                        minQMList += minQM + ",";
-                        maxQMList += maxQM + ",";
-                        commissionList += commission + "@";
-
-                    });
-                    minAmountList = minAmountList.removeLast() + ";";
-                    maxAmountList = maxAmountList.removeLast() + ";";
-                    minQMList = minQMList.removeLast() + ";";
-                    maxQMList = maxQMList.removeLast() + ";";
-                    commissionList = commissionList.removeLast() + ";";
-                }
                 if (products.length == 0) {
-                    alert(MSG.EnableProduct);
+                    alert(window.MSG.EnableProduct);
                     return;
                 }
 
-                data.DeductionList = deductionList;
-                data.DeductedPercentageList = deductedPercentageList;
-                data.TierList = tierList;
-                data.MinAmountList = minAmountList;
-                data.MaxAmountList = maxAmountList;
-                data.MinQMList = minQMList;
-                data.MaxQMList = maxQMList;
-                data.CommissionList = commissionList;
-                data.ProductIDList = products.toString().replace(/,/g, ";");
-                data.DepositPercent = 0.03;
-                data.WithdrawalPercent = 0.03;
+                if (!checkTierSettings(products)) {
+                    return;
+                }
 
-                $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/Edit"),
+                var data = collectCommGroupInfo(products);
+
+                var deductionSettings = collectDeductionSettings(products);
+
+                var tierSettings = collectTierSettings(products);
+
+                data = $.extend(true, data, deductionSettings, tierSettings);
+
+                if ($("#GroupID").val()) {
+                    data.GroupID = $("#GroupID").val();
+                }
+
+                var action = $("#CommGroupSettingsForm").attr("action");
+                $.ajax({
+                    url: action,
                     type: 'post',
                     data: data,
-                    success: function (data) {
-                        AFFILIATE.PreHandleAjaxResult(data);
-                        AFFILIATE.showUpdateStatus(data.ErrorCode, data.Message, (parent.COMMGROUP ? parent.COMMGROUP.ReRenderAfterPaged : undefined));
+                    success: function (result) {
+                        AFFILIATE.PreHandleAjaxResult(result);
+                        AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, (parent.COMMGROUP ? parent.COMMGROUP.ReRenderAfterPaged : undefined));
                     }
                 });
             });

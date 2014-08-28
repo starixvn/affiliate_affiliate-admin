@@ -34,17 +34,17 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     {
         #region Define variable
 
-        private static readonly ISystemSettingService _systemSetting = new SystemSettingService();
-        private static IEnumerable<Language> _baseLanguage = _systemSetting.GetLanguageList(new LanguageCriteria { Type = "Affiliate" });
-        private static IEnumerable<Language> _affLanguage = _systemSetting.GetAffLanguageList(new AffLanguageCriteria());
-        private static IEnumerable<Language> _affSupportLanguage = _systemSetting.GetAffSupportLanguageList(new AffiliateLanguageCriteria());
-        private static IEnumerable<Language> _memberSiteSupportedLanguage = _systemSetting.GetMemberSiteSupportedLanguageList(new MemberSiteLanguageCriteria
+        private static readonly ISystemSettingService SystemSetting = new SystemSettingService();
+        private static IEnumerable<Language> _baseLanguage = SystemSetting.GetLanguageList(new LanguageCriteria { Type = "Affiliate" });
+        private static IEnumerable<Language> _affLanguage = SystemSetting.GetAffLanguageList(new AffLanguageCriteria());
+        private static IEnumerable<Language> _affSupportLanguage = SystemSetting.GetAffSupportLanguageList(new AffiliateLanguageCriteria());
+        private static IEnumerable<Language> _memberSiteSupportedLanguage = SystemSetting.GetMemberSiteSupportedLanguageList(new MemberSiteLanguageCriteria
             {
                 Environment = Environment
             });
-        private static IEnumerable<Exchange> _affiliateCurrencies = _systemSetting.GetExchangeList(new ExchangeCriteria { Type = "Affiliate" });
-        private static IEnumerable<AffType> _affType = _systemSetting.GetAffTypeList(new AffTypeCriteria());
-        private static Exchange _baseExchange = _systemSetting.GetSystemBaseExchange(new SystemSettingExchangeCriteria());
+        private static IEnumerable<Exchange> _affiliateCurrencies = SystemSetting.GetExchangeList(new ExchangeCriteria { Type = "Affiliate" });
+        private static IEnumerable<AffType> _affType = SystemSetting.GetAffTypeList(new AffTypeCriteria());
+        private static Exchange _baseExchange = SystemSetting.GetSystemBaseExchange(new SystemSettingExchangeCriteria());
         private static IEnumerable<Currency> _affSystemSupportedCurrencies;
         private static IEnumerable<Currency> _affSystemAllSupportedCurrencies;
         private static IEnumerable<Currency> _playerCurrencies;
@@ -61,7 +61,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             {
                 if (_licenseeId == null)
                 {
-                    var licensee = _systemSetting.GetSystemSetting(new SystemSettingDetailCriteria()
+                    var licensee = SystemSetting.GetSystemSetting(new SystemSettingDetailCriteria()
                     {
                         Name = "LicenseeID",
                         Type = "Meta",
@@ -77,14 +77,14 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 
         public static IEnumerable<Product> Products
         {
-            get { return _products ?? (_products = _systemSetting.GetProductList(new ProductSelectCriteria())); }
+            get { return _products ?? (_products = SystemSetting.GetProductList(new ProductSelectCriteria())); }
         }
 
         public static IEnumerable<DeductionType> DeductionTypes
         {
             get
             {
-                return _deductionTypes ?? (_deductionTypes = _systemSetting.GetDeductionTypes(new DeductionTypeCriteria()));
+                return _deductionTypes ?? (_deductionTypes = SystemSetting.GetDeductionTypes(new DeductionTypeCriteria()));
             }
         }
 
@@ -94,7 +94,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             {
                 if (_systemStartDate == null)
                 {
-                    var systemSetting = _systemSetting.GetSystemSetting(new SystemSettingDetailCriteria
+                    var systemSetting = SystemSetting.GetSystemSetting(new SystemSettingDetailCriteria
                         {
                             SearchBy = SearchByType.ByName,
                             Name = "SystemStartDate"
@@ -117,7 +117,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                 {
                     var criteria = new AccountCriteria();
                     criteria.UserId = SessionManager.CurrentSession.CustID;
-                    _affSystemSupportedCurrencies = _systemSetting.GetAffSystemSupportedCurrencyList(criteria);
+                    _affSystemSupportedCurrencies = SystemSetting.GetAffSystemSupportedCurrencyList(criteria);
                 }
 
                 return _affSystemSupportedCurrencies;
@@ -132,7 +132,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                 {
                     var criteria = new AccountCriteria();
                     criteria.UserId = SessionManager.CurrentSession.CustID;
-                    _affSystemAllSupportedCurrencies = _systemSetting.GetAffSystemAllSupportedCurrencyList(criteria);
+                    _affSystemAllSupportedCurrencies = SystemSetting.GetAffSystemAllSupportedCurrencyList(criteria);
                 }
 
                 return _affSystemAllSupportedCurrencies;
@@ -143,7 +143,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                _playerCurrencies = _playerCurrencies ?? _systemSetting.GetPlayerCurrencyList(new PlayerCurrencyCriteria());
+                _playerCurrencies = _playerCurrencies ?? SystemSetting.GetPlayerCurrencyList(new PlayerCurrencyCriteria());
 
                 return _playerCurrencies;
             }
@@ -474,7 +474,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         public static string GetSettingValue(SystemSettingDetailCriteria detailCriteria)
         {
             string value = string.Empty;
-            var systemSettings = _systemSetting.GetSystemSettingList(detailCriteria) as List<SystemSetting>;
+            var systemSettings = SystemSetting.GetSystemSettingList(detailCriteria) as List<SystemSetting>;
 
             if (systemSettings != null && systemSettings.Count > 0)
             {
@@ -491,12 +491,12 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 
         public static IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)
         {
-            return _systemSetting.GetCommGroups(criteria);
+            return SystemSetting.GetCommGroups(criteria);
         }
 
         public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
         {
-            return _systemSetting.GetActiveCommGroups(criteria);
+            return SystemSetting.GetActiveCommGroups(criteria);
         }
     }
 }

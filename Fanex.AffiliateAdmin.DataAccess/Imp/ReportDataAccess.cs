@@ -13,10 +13,10 @@ namespace Fanex.AffiliateAdmin.DataAccess
     using System.Data;
     using System.Linq;
     using Common.Extensions;
-    using Criterias;
-    using Data;
     using Core.Configurations;
     using Core.Utilities;
+    using Criterias;
+    using Data;
     using DTO;
     using Fanex.NAP.Framework.Data;
 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <root>
   <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel.xml</webconfigmodel>
-  <transform>1</transform>
+  <transform>0</transform>
   <environments>
     <environment enable="1">local</environment>
     <environment enable="0">sandbox</environment>

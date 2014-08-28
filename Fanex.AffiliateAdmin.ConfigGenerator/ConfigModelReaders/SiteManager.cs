@@ -25,6 +25,10 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
 
         public string XmlFile { get; set; }
 
+        /// <summary>
+        /// Get Transform Status.
+        /// </summary>
+        /// <returns>Transform Status.</returns>
         public bool GetTransformStatus()
         {
            

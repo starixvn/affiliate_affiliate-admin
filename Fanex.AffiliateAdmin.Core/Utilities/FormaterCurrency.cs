@@ -21,7 +21,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     {
         public const string DecimalFormat20 = "{0:#,##0.00}";
         private const string _Minus = "<span style='color: red'>{0}</span>";
-        private static readonly Dictionary<string, CultureInfo> _symbolsByCode = new Dictionary<string, CultureInfo>();
+        private static readonly Dictionary<string, CultureInfo> SymbolsByCode = new Dictionary<string, CultureInfo>();
         private static CultureInfo _defaultCulture = Thread.CurrentThread.CurrentCulture;
 
         /// <summary>
@@ -36,17 +36,17 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 return _defaultCulture.NumberFormat.CurrencySymbol;
             }
 
-            if (_symbolsByCode.Count == 0)
+            if (SymbolsByCode.Count == 0)
             {
                 InitCurrencyCodeMapper();
             }
 
-            if (_symbolsByCode.ContainsKey(currencyCode))
+            if (SymbolsByCode.ContainsKey(currencyCode))
             {
-                return _symbolsByCode[currencyCode].NumberFormat.CurrencySymbol;
+                return SymbolsByCode[currencyCode].NumberFormat.CurrencySymbol;
             }
 
-            return _symbolsByCode["USD"].NumberFormat.CurrencySymbol;
+            return SymbolsByCode["USD"].NumberFormat.CurrencySymbol;
         }
 
         /// <summary>
@@ -74,22 +74,22 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// <returns>Return culture info.</returns>
         public static CultureInfo GetCulture(string currencyCode)
         {
-            if (_symbolsByCode.Count == 0)
+            if (SymbolsByCode.Count == 0)
             {
                 InitCurrencyCodeMapper();
             }
 
             if (string.IsNullOrEmpty(currencyCode))
             {
-                return _symbolsByCode["MYR"];
+                return SymbolsByCode["MYR"];
             }
 
             if (currencyCode.ToUpper() == "UUS")
             {
-                return _symbolsByCode["USD"];
+                return SymbolsByCode["USD"];
             }
 
-            return _symbolsByCode[currencyCode];
+            return SymbolsByCode[currencyCode];
         }
 
         /// <summary>
@@ -158,11 +158,11 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             {
                 var key = new RegionInfo(item.LCID).ISOCurrencySymbol;
 
-                if (!_symbolsByCode.ContainsKey(key))
+                if (!SymbolsByCode.ContainsKey(key))
                 {
                     item.NumberFormat.CurrencyDecimalDigits = 2;
 
-                    _symbolsByCode.Add(key, item);
+                    SymbolsByCode.Add(key, item);
                 }
             }
         }

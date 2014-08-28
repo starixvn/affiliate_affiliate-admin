@@ -13,11 +13,11 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     /// </summary>
     public static class Formater
     {
-        private static readonly CultureInfo info = new CultureInfo("en-US");
+        private static readonly CultureInfo Info = new CultureInfo("en-US");
        
         public static string FormatObject(object value, FormatType type)
         {
-            return string.Format(info, type.GetStringValue(), value);
+            return string.Format(Info, type.GetStringValue(), value);
         }
     }
 }

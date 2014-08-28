@@ -162,24 +162,16 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult Add(CommGroupInsertCriteria criteria)
         {
-            var productCount = AppSettings.Products.Count();
-
-            if (criteria.CopyForAllProducts)
-            {
-                criteria.MinAmountList = string.Concat(Enumerable.Repeat(criteria.MinAmountList, productCount));
-                criteria.MaxAmountList = string.Concat(Enumerable.Repeat(criteria.MaxAmountList, productCount));
-                criteria.MinQMList = string.Concat(Enumerable.Repeat(criteria.MinQMList, productCount));
-                criteria.MaxQMList = string.Concat(Enumerable.Repeat(criteria.MaxQMList, productCount));
-                criteria.TierList = string.Concat(Enumerable.Repeat(criteria.TierList, productCount));
-                criteria.CommissionList = string.Concat(Enumerable.Repeat(criteria.CommissionList, productCount));
-            }
+            CopySettingsForAllProducts(criteria);
 
             criteria.UserId = SessionManager.CurrentSession.CustID;
+
             criteria.IP = Remote.GetClientIPAddress();
 
             _commGroupService.ExecuteOutput(criteria);
 
             var errorMsg = string.Empty;
+
             if (criteria.ErrCode == 9999)
             {
                 errorMsg = criteria.ErrMsg;
@@ -194,6 +186,21 @@ namespace Fanex.AffiliateAdmin.Controller
             }
 
             return Json(GetResultViewModel(criteria.ErrCode, Lang.UpdateSucc, errorMsg));
+        }
+
+        private void CopySettingsForAllProducts(CommGroupInsertCriteria criteria)
+        {
+            var productCount = AppSettings.Products.Count();
+
+            if (criteria.CopyForAllProducts)
+            {
+                criteria.MinAmountList = string.Concat(Enumerable.Repeat(criteria.MinAmountList, productCount));
+                criteria.MaxAmountList = string.Concat(Enumerable.Repeat(criteria.MaxAmountList, productCount));
+                criteria.MinQMList = string.Concat(Enumerable.Repeat(criteria.MinQMList, productCount));
+                criteria.MaxQMList = string.Concat(Enumerable.Repeat(criteria.MaxQMList, productCount));
+                criteria.TierList = string.Concat(Enumerable.Repeat(criteria.TierList, productCount));
+                criteria.CommissionList = string.Concat(Enumerable.Repeat(criteria.CommissionList, productCount));
+            }
         }
 
         /// <summary>
@@ -245,6 +252,7 @@ namespace Fanex.AffiliateAdmin.Controller
             }
 
             criteria.UserId = SessionManager.CurrentSession.CustID;
+
             criteria.IP = Remote.GetClientIPAddress();
 
             _commGroupService.ExecuteOutput(criteria);
@@ -298,7 +306,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="group">Commission Group.</param>
         /// <param name="detail">Commission Group Detail.</param>
         /// <returns>Deduction settings.</returns>
-        private static Dictionary<string, decimal> GetDeductionSettings(
+        private Dictionary<string, decimal> GetDeductionSettings(
             IEnumerable<DeductionSetting> deductionSettings, 
             IEnumerable<DeductionType> allDeductions, 
             CommGroup group, 

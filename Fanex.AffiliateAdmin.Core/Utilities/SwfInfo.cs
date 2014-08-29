@@ -134,7 +134,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             LoadSwf(filename);
         }
 
-        [SuppressMessage("Microsoft.Usage", "CA2201:DoNotRaiseReservedExceptionTypes")]
+        [SuppressMessage("Microsoft.Usage", "CA2201:DoNotRaiseReservedExceptionTypes", Justification = "Accept this method")]
         public void LoadSwf(string filename)
         {
             _filename = filename;

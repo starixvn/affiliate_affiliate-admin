@@ -25,7 +25,7 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
         /// </summary>
         /// <param name="xname">Element name.</param>
         /// <returns>Settings of node.</returns>
-        [SuppressMessage("Microsoft.Globalization", "CA1309:UseOrdinalStringComparison")]
+        [SuppressMessage("Microsoft.Globalization", "CA1309:UseOrdinalStringComparison", Justification = "Accept this method")]
         public Dictionary<string, string> GetSettingsOfNode(string xname)
         {
             var dict = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);

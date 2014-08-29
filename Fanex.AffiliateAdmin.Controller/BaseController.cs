@@ -54,7 +54,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// Get Error message.
         /// </summary>
         /// <returns>Error message string.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept this method")]
         protected string GetModelErrorMessage()
         {
             foreach (ModelState modelState in ViewData.ModelState.Values)

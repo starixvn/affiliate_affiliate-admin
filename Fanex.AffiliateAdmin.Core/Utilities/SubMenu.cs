@@ -249,7 +249,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 {
                     new Menu { Text = Lang.CompanyWinloss, Link = "~/Report/CompanyWinloss" },
                     new Menu { Text = Lang.MemberStatistics, Link = "~/Report/MemberStatistics" },
-                    new Menu { Text = Lang.AffiliateCommission, Link = "~/Report/Commission" },
+                    new Menu { Text = Lang.AffiliateWinLoss, Link = "~/Report/AffiliateWinLoss" },
                     new Menu { Text = Lang.MemberWinloss, Link = "~/Report/MemberWinloss" },
                 };
             }

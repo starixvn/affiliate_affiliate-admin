@@ -37,7 +37,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// <param name="startTime">Start Time of Down time.</param>
         /// <param name="endTime">End Time of Down time.</param>
         /// <returns>Return down time.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference")]
+        [SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", Justification = "Accept type reference")]
         public static bool GetDownTime(ref string startTime, ref string endTime)
         {
             startTime = endTime = null;
@@ -48,10 +48,10 @@ namespace Fanex.AffiliateAdmin.Core.Services
                 return false;
             }
 
-            if (now >= AppSettings.UM_StartTime && now <= AppSettings.UM_EndTime)
+            if (now >= AppSettings.UMStartTime && now <= AppSettings.UMEndTime)
             {
-                startTime = AppSettings.UM_StartTime.ToString("hh:mm tt");
-                endTime = AppSettings.UM_EndTime.ToString("hh:mm tt");
+                startTime = AppSettings.UMStartTime.ToString("hh:mm tt");
+                endTime = AppSettings.UMEndTime.ToString("hh:mm tt");
                 return true;
             }
 

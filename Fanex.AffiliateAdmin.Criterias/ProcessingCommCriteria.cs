@@ -41,7 +41,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public override string GetSettingKey()
         {
-            return "AffAdmin_CommissionSettle";
+            return "AffAdmin_AffiliateCommissionReport";
         }
 
         public override bool IsValid()

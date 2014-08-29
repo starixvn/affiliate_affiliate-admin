@@ -596,6 +596,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Affiliate, Month.
+        /// </summary>
+        public static string AffiliateMonth {
+            get {
+                return ResourceManager.GetString("AffiliateMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate Note.
         /// </summary>
         public static string AffiliateNote {
@@ -646,6 +655,24 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string AffiliateUserName {
             get {
                 return ResourceManager.GetString("AffiliateUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affiliate Win Loss.
+        /// </summary>
+        public static string AffiliateWinLoss {
+            get {
+                return ResourceManager.GetString("AffiliateWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affiliate Win Loss Report.
+        /// </summary>
+        public static string AffiliateWinLossReport {
+            get {
+                return ResourceManager.GetString("AffiliateWinLossReport", resourceCulture);
             }
         }
         
@@ -5362,6 +5389,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string PlainText {
             get {
                 return ResourceManager.GetString("PlainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player Comm..
+        /// </summary>
+        public static string PlayerComm {
+            get {
+                return ResourceManager.GetString("PlayerComm", resourceCulture);
             }
         }
         

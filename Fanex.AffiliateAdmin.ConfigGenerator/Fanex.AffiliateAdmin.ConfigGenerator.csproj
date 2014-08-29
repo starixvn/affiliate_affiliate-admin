@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Fanex.AffiliateAdmin.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="ConfigModelReaders\DictionaryExtension.cs" />
     <Compile Include="ConfigModelReaders\ModelReader.cs" />
     <Compile Include="ConfigModelReaders\SiteInfo.cs" />

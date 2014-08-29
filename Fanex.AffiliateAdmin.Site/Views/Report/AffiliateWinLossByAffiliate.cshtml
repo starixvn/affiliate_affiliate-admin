@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = Lang.CommissionReport;
+    ViewBag.Title = Lang.AffiliateWinLossReport;
     Layout = "~/Views/Shared/_LayoutFrame.cshtml";
 }
 
@@ -29,7 +29,7 @@ report
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
     @RazorHelper.SearchPanel("#SearchForm .search-form", Common.GetReportInfo(), false, true)
-    @using (Html.BeginForm("Commission", "Report", FormMethod.Post, new {id = "SearchForm", @class = "row-fluid"}))
+    @using (Html.BeginForm("AffiliateWinLossByAffiliate", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
     {
         <div class="span12 search-form  end-search">
             <div class="row-fluid row-form">                

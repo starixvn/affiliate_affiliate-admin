@@ -385,7 +385,7 @@ var CommissionReport = (function ($) {
             var baseCurrency = $("#BaseCurrency").val();
 
             $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Report/CommissionByAffiliate"),
+                url: $('#SearchForm').attr("action"),
                 type: 'post',
                 data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 beforeSend: function () {

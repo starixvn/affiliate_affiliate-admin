@@ -158,6 +158,7 @@
   <ItemGroup>
     <Content Include="App_Data\SpName.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\themes\base\AffiliateAdmin.css" />
@@ -789,10 +790,10 @@
     <Content Include="Views\Report\CompanyWinloss.cshtml" />
     <Content Include="Views\Report\MemberStatistics.cshtml" />
     <Content Include="Views\Report\CompanyWinlossByAffiliate.cshtml" />
-    <Content Include="Views\Report\Commission.cshtml" />
+    <Content Include="Views\Report\AffiliateWinLoss.cshtml" />
     <Content Include="Views\Report\MemberWinloss.cshtml" />
     <Content Include="Views\Report\MemberWinlossByAffiliate.cshtml" />
-    <Content Include="Views\Report\CommissionByAffiliate.cshtml" />
+    <Content Include="Views\Report\AffiliateWinLossByAffiliate.cshtml" />
     <Content Include="Views\Report\QualifiedMembers.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.ko-KR.cshtml" />
     <Content Include="Views\Payment\ProcessingCommission.cshtml" />
@@ -1076,7 +1077,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52629</DevelopmentServerPort>
+          <DevelopmentServerPort>59507</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

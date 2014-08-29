@@ -36,7 +36,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public int BetCount { get; set; }
 
-        public decimal Commission { get; set; }
+        public decimal PlayerComm { get; set; }
 
         public decimal Deposit { get; set; }
 
@@ -46,7 +46,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal Winloss { get; set; }
 
-        public decimal CommissionBase { get; set; }
+        public decimal PlayerCommBase { get; set; }
 
         public decimal DepositBase { get; set; }
 
@@ -64,17 +64,13 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal SportsbookWinloss { get; set; }
 
-        public decimal SportsbookCommission { get; set; }
+        public decimal SportsbookPlayerComm { get; set; }
 
         public decimal SportsbookTurnoverBase { get; set; }
 
         public decimal SportsbookWinlossBase { get; set; }
 
-        public decimal SportsbookCommissionBase { get; set; }
-
-        public int SportsbookQM { get; set; }
-
-        public decimal SportsbookCommissionPercent { get; set; }
+        public decimal SportsbookPlayerCommBase { get; set; }
 
         public int NumberGameActivePlayers { get; set; }
 
@@ -84,17 +80,13 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal NumberGameWinloss { get; set; }
 
-        public decimal NumberGameCommission { get; set; }
+        public decimal NumberGamePlayerComm { get; set; }
 
         public decimal NumberGameTurnoverBase { get; set; }
 
         public decimal NumberGameWinlossBase { get; set; }
 
-        public decimal NumberGameCommissionBase { get; set; }
-
-        public int NumberGameQM { get; set; }
-
-        public decimal NumberGameCommissionPercent { get; set; }
+        public decimal NumberGamePlayerCommBase { get; set; }
 
         public int LiveCasinoActivePlayers { get; set; }
 
@@ -104,17 +96,13 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal LiveCasinoWinloss { get; set; }
 
-        public decimal LiveCasinoCommission { get; set; }
+        public decimal LiveCasinoPlayerComm { get; set; }
 
         public decimal LiveCasinoTurnoverBase { get; set; }
 
         public decimal LiveCasinoWinlossBase { get; set; }
 
-        public decimal LiveCasinoCommissionBase { get; set; }
-
-        public int LiveCasinoQM { get; set; }
-
-        public decimal LiveCasinoCommissionPercent { get; set; }
+        public decimal LiveCasinoPlayerCommBase { get; set; }
 
         public int RNGCasinoActivePlayers { get; set; }
 
@@ -124,17 +112,13 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal RNGCasinoWinloss { get; set; }
 
-        public decimal RNGCasinoCommission { get; set; }
+        public decimal RNGCasinoPlayerComm { get; set; }
 
         public decimal RNGCasinoTurnoverBase { get; set; }
 
         public decimal RNGCasinoWinlossBase { get; set; }
 
-        public decimal RNGCasinoCommissionBase { get; set; }
-
-        public int RNGCasinoQM { get; set; }
-
-        public decimal RNGCasinoCommissionPercent { get; set; }
+        public decimal RNGCasinoPlayerCommBase { get; set; }
 
         public int PlaytechCasinoActivePlayers { get; set; }
 
@@ -144,17 +128,13 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal PlaytechCasinoWinloss { get; set; }
 
-        public decimal PlaytechCasinoCommission { get; set; }
+        public decimal PlaytechCasinoPlayerComm { get; set; }
 
         public decimal PlaytechCasinoTurnoverBase { get; set; }
 
         public decimal PlaytechCasinoWinlossBase { get; set; }
 
-        public decimal PlaytechCasinoCommissionBase { get; set; }
-
-        public int PlaytechCasinoQM { get; set; }
-
-        public decimal PlaytechCasinoCommissionPercent { get; set; }
+        public decimal PlaytechCasinoPlayerCommBase { get; set; }
 
         public decimal DeductedPercentage { get; set; }
 
@@ -173,5 +153,21 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal PWinBase { get; set; }
 
         public decimal NetGamingBase { get; set; }
+
+        public int VirtualSportActivePlayers { get; set; }
+
+        public int VirtualSportBetCount { get; set; }
+
+        public decimal VirtualSportTurnover { get; set; }
+
+        public decimal VirtualSportWinloss { get; set; }
+
+        public decimal VirtualSportPlayerComm { get; set; }
+
+        public decimal VirtualSportTurnoverBase { get; set; }
+
+        public decimal VirtualSportWinlossBase { get; set; }
+
+        public decimal VirtualSportPlayerCommBase { get; set; }
     }
 }

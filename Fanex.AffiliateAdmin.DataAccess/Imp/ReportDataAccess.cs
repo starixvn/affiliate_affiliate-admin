@@ -102,7 +102,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
 
                     commissionReport.CommissionList = GetCommissionList(reader, criteria);
                     commissionReport.CommissionInAffiliateCurrency = GetTotalCommissionInAffiliateCurrency(reader, criteria);
-                    commissionReport.CommissionInSystemCurrency = GetTotalCommissionInSystemCurrency(reader, criteria);
+                    commissionReport.CommissionInSystemCurrency = GetTotalCommissionInSystemCurrency(reader);
 
                     reader.Close();
 
@@ -570,8 +570,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
                     commission.WinlostDate = reader.ToDateTime("WinlostDate");
                     commission.GroupID = reader.ToInt("GroupID");
                     commission.GroupName = reader.ToString("GroupName");
-
-                    GetAdditionalCommissionInfo(reader, commission);
                 }
 
                 result.Add(commission);
@@ -600,11 +598,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
 
                     GetCommissionColumnsBasedOnBaseCurrency(criteria, reader, commission);
 
-                    if (IsGroupByMonth(criteria))
-                    {
-                        GetAdditionalCommissionInfo(reader, commission);
-                    }
-
                     result.Add(commission);
                 }
             }
@@ -616,9 +609,8 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// Get total commission in system currency.
         /// </summary>
         /// <param name="reader">Data reader.</param>
-        /// <param name="criteria">Criteria input.</param>
         /// <returns>Total commission.</returns>
-        private CommissionItem GetTotalCommissionInSystemCurrency(IDataReader reader, CommissionReportCriteria criteria)
+        private CommissionItem GetTotalCommissionInSystemCurrency(IDataReader reader)
         {
             var commission = new CommissionItem();
 
@@ -629,11 +621,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
                 GetCommissionColumnsNotRelatedToCurrency(reader, commission);
 
                 GetCommissionColumnsInSystemCurrency(reader, commission);
-
-                if (IsGroupByMonth(criteria))
-                {
-                    GetAdditionalCommissionInfo(reader, commission);
-                }
             }
 
             return commission;
@@ -701,7 +688,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="commission">Commission object.</param>
         private void GetCommissionColumnsInAffiliateCurrency(IDataReader reader, CommissionItem commission)
         {
-            commission.Commission = reader.ToDecimal("Commission");
+            // commission.PlayerComm = reader.ToDecimal("PlayerComm");
             commission.Deposit = reader.ToDecimal("Deposit");
             commission.Withdrawal = reader.ToDecimal("Withdrawal");
             commission.Turnover = reader.ToDecimal("Turnover");
@@ -717,7 +704,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             foreach (var product in products)
             {
                 commission.SetPropertyValue(string.Format("{0}Winloss", product), reader.ToDecimal(string.Format("{0}Winloss", product)));
-                commission.SetPropertyValue(string.Format("{0}Commission", product), reader.ToDecimal(string.Format("{0}Commission", product)));
+                commission.SetPropertyValue(string.Format("{0}PlayerComm", product), reader.ToDecimal(string.Format("{0}PlayerComm", product)));
                 commission.SetPropertyValue(string.Format("{0}Turnover", product), reader.ToDecimal(string.Format("{0}Turnover", product)));
             }
         }
@@ -729,7 +716,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="commission">Commission object.</param>
         private void GetCommissionColumnsInSystemCurrency(IDataReader reader, CommissionItem commission)
         {
-            commission.CommissionBase = reader.ToDecimal("CommissionBase");
+            // commission.PlayerCommBase = reader.ToDecimal("PlayerCommBase");
             commission.DepositBase = reader.ToDecimal("DepositBase");
             commission.WithdrawalBase = reader.ToDecimal("WithdrawalBase");
             commission.TurnoverBase = reader.ToDecimal("TurnoverBase");
@@ -745,24 +732,8 @@ namespace Fanex.AffiliateAdmin.DataAccess
             foreach (var product in products)
             {
                 commission.SetPropertyValue(string.Format("{0}WinlossBase", product), reader.ToDecimal(string.Format("{0}WinlossBase", product)));
-                commission.SetPropertyValue(string.Format("{0}CommissionBase", product), reader.ToDecimal(string.Format("{0}CommissionBase", product)));
+                commission.SetPropertyValue(string.Format("{0}PlayerCommBase", product), reader.ToDecimal(string.Format("{0}PlayerCommBase", product)));
                 commission.SetPropertyValue(string.Format("{0}TurnoverBase", product), reader.ToDecimal(string.Format("{0}TurnoverBase", product)));
-            }
-        }
-
-        /// <summary>
-        /// Get additional commission info.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="commission">Commission object.</param>
-        private void GetAdditionalCommissionInfo(IDataReader reader, CommissionItem commission)
-        {
-            var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
-
-            foreach (var product in products)
-            {
-                commission.SetPropertyValue(string.Format("{0}QM", product), reader.ToInt(string.Format("{0}QM", product)));
-                commission.SetPropertyValue(string.Format("{0}CommissionPercent", product), reader.ToDecimal(string.Format("{0}CommissionPercent", product)));
             }
         }
 

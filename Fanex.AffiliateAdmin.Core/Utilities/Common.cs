@@ -110,8 +110,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// </summary>
         /// <param name="status">Status need to translate.</param>
         /// <returns>Return status.</returns>
-        [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-        public static string Status(string status)
+        public static string GetStatus(string status)
         {
             switch (status.ToLower())
             {
@@ -332,7 +331,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// Get report info.
         /// </summary>
         /// <returns>Report info.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept this function")]
         public static string GetReportInfo()
         {
             var hasPlayCasino = AppSettings.Products.Any(t => t.ProductName.Equals("Playtech Casino"));

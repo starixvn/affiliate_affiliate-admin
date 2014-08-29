@@ -2573,4 +2573,16 @@
   <data name="SharingFee" xml:space="preserve">
     <value>Sharing Fee</value>
   </data>
+  <data name="AffiliateWinLoss" xml:space="preserve">
+    <value>Affiliate Win Loss</value>
+  </data>
+  <data name="AffiliateWinLossReport" xml:space="preserve">
+    <value>Affiliate Win Loss Report</value>
+  </data>
+  <data name="PlayerComm" xml:space="preserve">
+    <value>Player Comm.</value>
+  </data>
+  <data name="AffiliateMonth" xml:space="preserve">
+    <value>Affiliate, Month</value>
+  </data>
 </root>

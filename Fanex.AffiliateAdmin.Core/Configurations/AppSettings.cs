@@ -351,7 +351,16 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 
         public static IEnumerable<Product> Products
         {
-            get { return _products ?? (_products = SystemSetting.GetProductList(new ProductSelectCriteria())); }
+            get
+            {
+                if (_products == null)
+                {
+                    _products = SystemSetting.GetProductList(new ProductSelectCriteria());
+                    _products = _products.Where(t => t.ProductID != 6);
+                }
+
+                return _products;
+            }
         }
 
         public static int ServerId
@@ -432,8 +441,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
-        public static DateTime UM_EndTime
+        public static DateTime UMEndTime
         {
             get
             {
@@ -441,8 +449,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
-        public static DateTime UM_StartTime
+        public static DateTime UMStartTime
         {
             get
             {

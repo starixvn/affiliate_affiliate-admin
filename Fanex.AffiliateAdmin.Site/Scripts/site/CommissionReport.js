@@ -16,31 +16,8 @@ var CommissionReport = (function ($) {
     var gridOption = {};
 
     var getMergeColNumberForProducColumn = function () {
-        var hasGroupByMonth = $("#GroupBy").val() === GROUP_BY_MONTH;
-        var mergeColNumber = hasGroupByMonth ? 7 : 5;
-
+        var mergeColNumber = 5;
         return mergeColNumber;
-    };
-
-    var addCashbackColumn = function () {
-
-        var hasGroupByMonth = $("#GroupBy").val() === GROUP_BY_MONTH;
-
-        if (window.HasCashbackDeduction) {
-            if (hasGroupByMonth) {
-                gridOption.groupHeaderRows[0].Columns.splice(DEDUCTION_PERCENT_COL, 0, window.sampleCashbackHeader);
-                gridOption.columns.splice(DEDUCTION_PERCENT_COL, 0, window.sampleDeductedPercentageCol, window.sampleAmountCol);
-            } else {
-                var cashbackHeader = $.extend(true, {}, window.sampleCashbackHeader);
-                cashbackHeader.Name = cashbackHeader.NameCache = "Cashback";
-                cashbackHeader.MergeColNumber = 1;
-                cashbackHeader.MergeRowNumber = 2;
-                cashbackHeader.IsCurrency = true;
-
-                gridOption.groupHeaderRows[0].Columns.splice(DEDUCTION_PERCENT_COL, 0, cashbackHeader);
-                gridOption.columns.splice(DEDUCTION_PERCENT_COL, 0, window.sampleAmountCol);
-            }
-        }
     };
 
     var getSelectedProducts = function (products) {
@@ -56,10 +33,6 @@ var CommissionReport = (function ($) {
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     function initProductColumnsForGridOption() {
         var mergeColNumber = getMergeColNumberForProducColumn();
-        var threeNewCol = 3;
-        var hasGroupByMonth = $("#GroupBy").val() === GROUP_BY_MONTH;
-
-        addCashbackColumn();
 
         _indexProductColumns.clear();
         _commonColumnCount = gridOption.columns.length;
@@ -69,8 +42,6 @@ var CommissionReport = (function ($) {
 
         for (var i = 0; i < productCount; i++) {
             var name = nomalizeProductName(products[i].Name);
-            var isPlaytechCasino = products[i].Name === "Playtech Casino";
-            mergeColNumber = isPlaytechCasino ? mergeColNumber + threeNewCol : mergeColNumber;
 
             gridOption.groupHeaderRows[0].Columns.push(
                 { HeaderText: window.MSG[name], Name: name + "ActivePlayers", MergeColNumber: mergeColNumber }
@@ -87,63 +58,20 @@ var CommissionReport = (function ($) {
                     CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
                 }
             );
+
+            gridOption.columns.push(
+                { IsCurrency: true, HeaderCaption: window.MSG.PlayerComm, HeaderText: window.MSG.PlayerComm,
+                    Width: 80, Name: name + "PlayerComm", NameCache: name + "PlayerComm", HeaderAlign: "center",
+                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
+                }
+            );
+            
             gridOption.columns.push(
                 { IsCurrency: true, HeaderCaption: window.MSG.Winloss, HeaderText: window.MSG.Winloss,
                     Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center",
                     CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
                 }
             );
-
-            // add QM column to hidden list
-            if (hasGroupByMonth) {
-
-                /*jshint ignore:start */
-                gridOption.columns.push(
-                    {
-                        IsCurrency: false,
-                        HeaderCaption: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM),
-                        HeaderText: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM), 
-                        Width: 80,
-                        Name: name + "QM",
-                        HeaderAlign: "center",
-                        CellAlign: "right",
-                        Formatter: function (rIndex, record, cell, cellFormated) {
-                            var actualBaseCurreny = 2;
-                            var currency = record.Currency;
-
-                            if (cellFormated) {
-                                return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}' data-groupid='{6}' data-commgroup='{7}'>{8}</a>"
-                                    .format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, record.GroupID, record.GroupName, cellFormated);
-                            }
-
-                            return 0;
-                        }
-                    }
-                );
-                /*jshint ignore:end */
-
-                // add CommPercent column to hidden list
-                gridOption.columns.push(
-                    { IsCurrency: false, IsPercent: true, HeaderCaption: window.MSG.CommPercent,
-                        HeaderText: window.MSG.CommPercent, Width: 80, Name: name + "CommissionPercent",
-                        HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER,
-                        FormatNegative: '($)', IsAbs: true
-                    }
-                );
-            }
-
-            gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: window.MSG.Commission, HeaderText: window.MSG.Commission,
-                    Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center",
-                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
-                }
-            );
-            
-            if (isPlaytechCasino === true) {
-                gridOption.columns.push(samplePShareCol);
-                gridOption.columns.push(samplePWinCol);
-                gridOption.columns.push(sampleNetGamingCol);
-            }
         }
     }
 
@@ -459,8 +387,9 @@ var CommissionReport = (function ($) {
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             var baseCurrency = $("#BaseCurrency").val();
+            
             $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Report/Commission"),
+                url: $('#SearchForm').attr("action"),
                 type: 'post',
                 data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 beforeSend: function () {
@@ -487,9 +416,10 @@ var CommissionReport = (function ($) {
                         pagerSelectCallBack: CommissionReport.ReRenderAfterPaged
                     };
 
-                    gridOption.titleInfo.text = MSG.CommissionTitle + ' [{0}]'.format(data.TotalItem);
+                    gridOption.titleInfo.text = MSG.AffiliateWinLossTitle + ' [{0}]'.format(data.TotalItem);
 
                     gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.TotalItem, data.hasShowSubTotalRow);
+                    
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);

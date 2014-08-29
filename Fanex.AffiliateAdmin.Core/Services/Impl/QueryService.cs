@@ -53,7 +53,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// <param name="criteria">Input criteria.</param>
         /// <param name="totalPages">Total page.</param>
         /// <returns>The list of founded entities and total page.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference")]
+        [SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", Justification = "Accept type reference")]
         public IEnumerable<T> GetData<T>(ICriteria criteria, ref int totalPages)
         {
             Check.Argument.IsNotNull(criteria, "criteria");

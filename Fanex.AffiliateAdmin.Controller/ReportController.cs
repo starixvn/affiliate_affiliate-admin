@@ -278,14 +278,14 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #endregion Member Statistics
 
-        #region Commission Report
+        #region Affiliate Win Loss Report
 
         /// <summary>
         /// Commission Report.
         /// </summary>
         /// <returns>Commission Report Page.</returns>
         [HttpGet]
-        public ActionResult Commission()
+        public ActionResult AffiliateWinLoss()
         {
             var serializer = new JavaScriptSerializer();
             ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
@@ -305,7 +305,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Report data.</returns>
         [HttpPost]
-        public ActionResult Commission(CommissionReportCriteria criteria)
+        public ActionResult AffiliateWinLoss(CommissionReportCriteria criteria)
         {
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
@@ -336,7 +336,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="model">Model Input.</param>
         /// <returns>Commission By Affiliate Result.</returns>
         [HttpGet]
-        public ActionResult CommissionByAffiliate(CommissionReportViewModel model)
+        public ActionResult AffiliateWinLossByAffiliate(CommissionReportViewModel model)
         {
             var serializer = new JavaScriptSerializer();
 
@@ -360,7 +360,7 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         [HttpPost]
-        public ActionResult CommissionByAffiliate(CommissionReportCriteria criteria)
+        public ActionResult AffiliateWinLossByAffiliate(CommissionReportCriteria criteria)
         {
             criteria.AffName = CurrentSession.Affiliate.Username;
             criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
@@ -369,7 +369,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.Currencies = CurrentSession.Affiliate.CurrencyID.ToString();
             criteria.GroupBy = 0;
 
-            return Commission(criteria);
+            return AffiliateWinLoss(criteria);
         }
 
         /// <summary>

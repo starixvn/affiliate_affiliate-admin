@@ -30,7 +30,7 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
         /// Get global web configuration model.
         /// </summary>
         /// <returns>Model path.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept this method")]
         public string GetGlobalWebConfigModel()
         {
             if (string.IsNullOrEmpty(_globalWebConfigModel))
@@ -52,7 +52,7 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
         /// Get supported environment list.
         /// </summary>
         /// <returns>Environment list.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept this method")]
         public Dictionary<string, bool> GetSupportedEnvironmentList()
         {
             var environments = new Dictionary<string, bool>();
@@ -80,7 +80,7 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
         /// Get supported site list.
         /// </summary>
         /// <returns>Site list.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept this method")]
         public IList<SiteInfo> GetSupportedSiteList()
         {
             var siteList = new List<SiteInfo>();
@@ -115,7 +115,7 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
         /// Get Transform Status.
         /// </summary>
         /// <returns>Transform Status.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept this method")]
         public bool GetTransformStatus()
         {
             var node = _document.Descendants().FirstOrDefault();

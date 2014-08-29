@@ -99,7 +99,6 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// <param name="culture">Culture format number.</param>
         /// <param name="checkMinus">Has Check Minus.</param>
         /// <returns>Return number after format.</returns>
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
         public static string Format(object value, CultureInfo culture, bool checkMinus)
         {
             double d;

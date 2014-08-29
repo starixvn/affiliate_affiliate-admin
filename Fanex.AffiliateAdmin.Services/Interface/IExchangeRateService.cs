@@ -26,10 +26,10 @@ namespace Fanex.AffiliateAdmin.Services
         IEnumerable<ExchangeRate> GetList(ExchangeRateCriteria criteria);
 
         /// <summary>
-        /// Get default psp exchange.
+        /// Get default transaction fee.
         /// </summary>
-        /// <param name="criteria">Default psp Exchange Criteria.</param>
-        /// <returns>Psp Exchange.</returns>
+        /// <param name="criteria">Default transaction fee.</param>
+        /// <returns>Transaction Fee.</returns>
         PspExchange GetDefaultPspExchange(GetDefaultPspExchangeCriteria criteria);
     }
 }

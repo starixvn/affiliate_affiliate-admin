@@ -7,10 +7,9 @@
 //   <change who="Johnny.Trinh" date="2013.07.12">Created</change>
 // </history>
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace Fanex.AffiliateAdmin.Controller
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Core;
@@ -41,26 +40,14 @@ namespace Fanex.AffiliateAdmin.Controller
             get { return SessionManager.CurrentSession; }
         }
 
-        protected ActionResult ErrorPage(string message)
-        {
-            return View("~/Views/Notify/Message.cshtml", (object)message);
-        }
-
         protected string ErrorMessage(int errCode)
         {
             return ErrorMsg.ResourceManager.GetString("Msg" + errCode);
         }
 
-        protected ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
-        {            
-            return new ResultViewModel
-            {
-                ErrorCode = errCode,
-                Message = errCode == 0 ?
-                    (string.IsNullOrEmpty(messageSuccess) ? Lang.UpdateSucc : messageSuccess) : 
-                    (string.IsNullOrEmpty(errorMessage) ? ErrorMessage(errCode) : errorMessage),
-                Success = errCode == 0
-            };
+        protected ActionResult ErrorPage(string message)
+        {
+            return View("~/Views/Notify/Message.cshtml", (object)message);
         }
 
         /// <summary>
@@ -84,6 +71,18 @@ namespace Fanex.AffiliateAdmin.Controller
         protected string[] GetModelErrorMessages()
         {
             return ModelState.Values.SelectMany(v => v.Errors).Select(x => x.ErrorMessage).ToArray();
+        }
+
+        protected ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
+        {
+            return new ResultViewModel
+            {
+                ErrorCode = errCode,
+                Message = errCode == 0 ?
+                    (string.IsNullOrEmpty(messageSuccess) ? Lang.UpdateSucc : messageSuccess) :
+                    (string.IsNullOrEmpty(errorMessage) ? ErrorMessage(errCode) : errorMessage),
+                Success = errCode == 0
+            };
         }
 
         protected JsonResult InvalidModelResult()

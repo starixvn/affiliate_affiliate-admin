@@ -332,32 +332,29 @@
         return true;
     };
 
-    var getCashbackDeductionSettings = function (deductionList, deductedPercentageList) {
-
-        var $deductions = $("#tab_content0 .deductions input[type=checkbox]:checked");
-
-        $deductions.each(function () {
-            deductionList += $(this).data("id") + ",";
-
-            var percent = $(this).closest("tr").find("select.deductionlist").val();
-
-            deductedPercentageList += percent + ",";
-        });
-    };
-
     var collectDeductionSettings = function (products) {
         var settings = {};
 
         var deductionList = "", deductedPercentageList = "";
+        var $deductions;
+        
+        if (window.HasCashback === true) {
+            $deductions = $("#tab_content0 .deductions input[type=checkbox]:checked");
+            
+            $deductions.each(function () {
+                deductionList += $(this).data("id") + ",";
 
-        getCashbackDeductionSettings(deductionList, deductedPercentageList);
+                var percent = $(this).closest("tr").find("select.deductionlist").val();
+
+                deductedPercentageList += percent + ",";
+            });
+        }
 
         // get deduction settings for each Product
         for (var i = 0; i < products.length; i++) {
             var productid = products[i];
-
-            var $deductions = $("#tab_content" + productid + " .deductions input[type=checkbox]:checked");
-
+            $deductions = $("#tab_content" + productid + " .deductions input[type=checkbox]:checked");
+            
             $deductions.each(function () {
                 var percent = $(this).closest("tr").find("select.deductionlist").val();
 
@@ -646,3 +643,6 @@
     };
 })(jQuery);
 
+$(function () {
+    CommGroupPopup.init();
+});

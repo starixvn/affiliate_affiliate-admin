@@ -52,7 +52,7 @@
     <div class="control-group red" id="currNotify" style="display:none;margin: 5px 5px 15px 25px">    
     </div>
     
-    @if (true)
+    @if (Model.HasCashback > 0)
     {
         var deduction = AppSettings.DeductionTypes.FirstOrDefault(x => x.ProductID == 0);
         if (deduction != null)
@@ -72,15 +72,15 @@
             <div class="tab_content" id="tab_content0">
                 <!--DeductionOption-->
                 <div class="row-fluid row-form deductions">
-                    <table>
+                    <table style="margin-top: 10px;">
                         <tr>
-                            <td style="text-align: left;"><input type="checkbox" class="deduction" data-id="@deduction.DTypeID" data-percent="@deduction.DeductedPercentage" />            
+                            <td style="text-align: left; background-color: white;"><input type="checkbox" class="deduction" data-id="@deduction.DTypeID" data-percent="@deduction.DeductedPercentage" />            
                                 <label title="@(Lang.ResourceManager.GetString("Deduction" + deduction.DTypeName.Replace(" ", string.Empty)))">
                                     @Lang.Deduction
                                 </label></td>
-                            <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList((decimal)deduction.DeductedPercentage, (decimal)0.01, "deductionlist nopadding", "disabled")
+                            <td style="text-align: left; background-color: white;"> = @RazorHelper.PercentageDropDownList((decimal)deduction.DeductedPercentage, (decimal)0.01, "deductionlist nopadding", "disabled")
                             </td>                                    
-                            <td style="text-align: left;">
+                            <td style="text-align: left; background-color: white;">
                             </td>
                         </tr>
                     </table>                    
@@ -236,11 +236,7 @@
         };
 
         var PRODUCTS = JSON.parse("@(ViewBag.ProductIDList)");
-        var HasCashbackDeduction = @(ViewBag.HasCashbackDeduction ? "true" : "false");
-
-        $(function(){
-            CommGroupPopup.init();
-        });
+        var HasCashback = @(Model.HasCashback > 0 ? "true" : "false");
     </script>
 
     @Scripts.Render("~/scripts/addcommgroup")

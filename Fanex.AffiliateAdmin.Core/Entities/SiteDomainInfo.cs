@@ -67,7 +67,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
                     return new SiteDomainInfo
                     {
                         MemberSiteDomain = string.Format("www.{0}.{1}", words[1], words[2]),
-                        MemberSiteUrl =  new Uri(string.Format("{0}://www.{1}.{2}/vender.aspx", scheme, words[1], words[2])),
+                        MemberSiteUrl = new Uri(string.Format("{0}://www.{1}.{2}/vender.aspx", scheme, words[1], words[2])),
                         AffiliateSiteUrl = new Uri(string.Format("{0}://{1}.{2}.{3}", scheme, isKiosk ? "agt" : "affiliate", words[1], words[2])),
                         AdminSiteUrl = new Uri(string.Format("{0}://{1}.{2}.{3}", scheme, "affadmin", words[1], words[2]))
                     };

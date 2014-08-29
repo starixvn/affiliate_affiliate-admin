@@ -19,7 +19,7 @@
   <!--0: disable monthly transfer; 1: enable monthly transfer-->
   <!--Used to determine which month is transfered, default value: 1 (last month). 0: Current month; 1: last month; 2: past 2nd month;-->
   <PastNthMonth>1</PastNthMonth>
-  
+
   <EmailHeaderBgColor>#0058DA</EmailHeaderBgColor>
   <EmailHeaderFontColor>#fff</EmailHeaderFontColor>
   <EmailContentBgColor>#fff</EmailContentBgColor>
@@ -41,7 +41,7 @@
     <uat>athena000@elinkaa.com</uat>
     <production>athena000@elinkaa.com</production>
   </MailContact>
-  
+
   <SkipCheckUMTime>
     <local>1</local>
     <sandbox>1</sandbox>
@@ -50,7 +50,7 @@
   </SkipCheckUMTime>
   <UM_StartTime>01 May 2013 02:30 PM</UM_StartTime>
   <UM_EndTime>02 Jun 2013 04:00 PM</UM_EndTime>
-  
+
   <InternalURL>
     <local>http://10.18.200.209:5001/User</local>
     <sandbox>http://10.18.200.209:5001/User</sandbox>

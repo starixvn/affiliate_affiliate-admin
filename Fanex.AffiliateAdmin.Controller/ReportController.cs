@@ -555,7 +555,7 @@ namespace Fanex.AffiliateAdmin.Controller
             // Sub total by date, in system currency.
             foreach (var property in properties)
             {
-                if (property.Name.EndsWith("Base",StringComparison.OrdinalIgnoreCase))
+                if (property.Name.EndsWith("Base", StringComparison.OrdinalIgnoreCase))
                 {
                     var value = companyWinlosses.Sum(g =>
                     {

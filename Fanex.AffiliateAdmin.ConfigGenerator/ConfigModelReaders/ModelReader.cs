@@ -19,7 +19,7 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
     /// </summary>
     public class ModelReader
     {
-        protected XDocument xdocument;
+        public XDocument Xdocument { get; set; }
 
         public string Environment { get; set; }
 
@@ -59,7 +59,7 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
         {
             if (!string.IsNullOrEmpty(XmlFile))
             {
-                xdocument = XDocument.Load(XmlFile);
+                Xdocument = XDocument.Load(XmlFile);
             }
         }
 

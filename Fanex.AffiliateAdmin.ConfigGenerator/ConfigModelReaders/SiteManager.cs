@@ -26,23 +26,6 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
         public string XmlFile { get; set; }
 
         /// <summary>
-        /// Get Transform Status.
-        /// </summary>
-        /// <returns>Transform Status.</returns>
-        public bool GetTransformStatus()
-        {
-           
-            var node = _document.Descendants().FirstOrDefault();
-
-            if (node == null)
-            {
-                return false;
-            }
-
-            return GetNodeValue(node.Element("transform")).Equals("1", StringComparison.OrdinalIgnoreCase);
-        }
-
-        /// <summary>
         /// Get global web configuration model.
         /// </summary>
         /// <returns>Model path.</returns>
@@ -122,6 +105,22 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
             }
 
             return siteList;
+        }
+
+        /// <summary>
+        /// Get Transform Status.
+        /// </summary>
+        /// <returns>Transform Status.</returns>
+        public bool GetTransformStatus()
+        {
+            var node = _document.Descendants().FirstOrDefault();
+
+            if (node == null)
+            {
+                return false;
+            }
+
+            return GetNodeValue(node.Element("transform")).Equals("1", StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>

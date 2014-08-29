@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Core.Enumerations
         /// Affiliate none.
         /// </summary>
         None,
+
         /// <summary>
         /// Affiliate approve.
         /// </summary>

@@ -7,12 +7,11 @@
 //   <change who="Joseph.Pham" date="2013.9.9">Created</change>
 // </history>
 
-using System.Globalization;
-
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
@@ -32,6 +31,7 @@ namespace Fanex.AffiliateAdmin.Controller
     public partial class CommGroupController : BaseController
     {
         #region Services
+
         /// <summary>
         /// Service used to work with database.
         /// </summary>
@@ -46,89 +46,26 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Initializes a new instance of the <see cref="CommGroupController" /> class.
         /// </summary>
-        /// <param name="commGroupService">Commission group service.</param>        
+        /// <param name="commGroupService">Commission group service.</param>
+        /// <param name="exchangeRateService">Exchange rate service.</param>
         public CommGroupController(ICommGroupService commGroupService, IExchangeRateService exchangeRateService)
         {
             _commGroupService = commGroupService;
             _exchangeRateService = exchangeRateService;
         }
+
         #endregion Constructor
 
         /// <summary>
-        /// Index action.
-        /// </summary>        
-        /// <param name="groupName">Group name.</param>
-        /// <returns>Default model.</returns>
-        [HttpGet]
-        public ActionResult Index(string groupName)
-        {
-            ViewBag.IsIT = SessionManager.CurrentSession.IsIT;
-            ViewBag.GroupName = groupName;
-            return View();  
-        }
-
-        /// <summary>
-        /// Get currency notification if multiplied > 1.
+        /// Add commission group.
         /// </summary>
-        /// <param name="currencyid">Currency ID.</param>
-        /// <returns>Notification Message.</returns>
-        public string GetCurrencyNotification(int currencyid)
-        {            
-            var currency = SessionManager.CurrentSession.CurrencyList.Where(x => x.CurrencyID == currencyid).FirstOrDefault();
-
-            if (currency == null || currency.MultipliedBy == 1)
-            {
-                return string.Empty;
-            }
-
-            return Common.GetCurrencyNotification(currency.CurrencyCode, currency.MultipliedBy);
-        }
-
-        /// <summary>
-        /// Load data.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>List of data.</returns>
-        public ActionResult GetList(CommGroupCriteria criteria)
-        {
-            criteria.UserId = SessionManager.CurrentSession.CustID;
-            criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
-
-            var groups = GetGridData(criteria);
-
-            return Json(new
-            {                
-                List = groups,
-                CurrentPage = criteria.PageIndex,
-                ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.NRows,
-                HasCashBackDeduction = groups.Any(t => t.HasCashback > 0)
-            });
-        }
-
-        public ActionResult ViewSetting(CommGroupSelByIdCriteria criteria)
-        {
-            criteria.UserId = CurrentSession.CustID;
-            var groups = _commGroupService.GetById(criteria);
-            var date = criteria.Date == null ? DateTime.Now : criteria.Date.Value;
-            BuildGroupData(groups, date, criteria.GroupID.ToString());
-            ViewBag.HasCashBackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
-            return View(groups.FirstOrDefault());
-        }
-
-        /// <summary>
-        /// View of Add/Update commission group.
-        /// </summary>
-        /// <param name="groupid">ID of group.</param>
         /// <returns>Group Information.</returns>
         public ActionResult Add()
         {
             var serializer = new JavaScriptSerializer();
             ViewBag.ProductIDList = serializer.Serialize(AppSettings.Products.Where(t => t.IsEnabled).Select(x => x.ProductID).ToArray());
-            ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0 
-                && x.RemovedDate.HasValue && x.RemovedDate.Value > DateTime.Now  );
-
+            var hasCashback = AppSettings.DeductionTypes.Any(x => x.ProductID == 0
+                && x.RemovedDate.HasValue && x.RemovedDate.Value > DateTime.Now);
             var currency = SessionManager.CurrentSession.CurrencyList.First();
 
             var criteria = new GetDefaultPspExchangeCriteria
@@ -140,18 +77,14 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var model = new CommGroupInfo
                 {
+                    HasCashback = hasCashback ? 1 : 0,
                     DepositPercent =
-                        (double) (defaultPspExchange.DepositPercent.HasValue ? defaultPspExchange.DepositPercent : 0),
+                        (double)(defaultPspExchange.DepositPercent.HasValue ? defaultPspExchange.DepositPercent : 0),
                     WithdrawalPercent =
-                        (double) (defaultPspExchange.WithdrawalPercent.HasValue ? defaultPspExchange.WithdrawalPercent : 0)
+                        (double)(defaultPspExchange.WithdrawalPercent.HasValue ? defaultPspExchange.WithdrawalPercent : 0)
                 };
 
             return View(model);
-        }
-
-        public ActionResult GetDefaultPspExchange(GetDefaultPspExchangeCriteria criteria)
-        {
-            return Json(_exchangeRateService.GetDefaultPspExchange(criteria), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -162,7 +95,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult Add(CommGroupInsertCriteria criteria)
         {
-            CopySettingsForAllProducts(criteria);
+            CopyTierSettingsForAllProducts(criteria);
 
             criteria.UserId = SessionManager.CurrentSession.CustID;
 
@@ -188,31 +121,40 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(GetResultViewModel(criteria.ErrCode, Lang.UpdateSucc, errorMsg));
         }
 
-        private void CopySettingsForAllProducts(CommGroupInsertCriteria criteria)
+        /// <summary>
+        /// Delete a group.
+        /// </summary>
+        /// <param name="groupid">ID of group.</param>
+        /// <returns>Error message (if any).</returns>
+        public string Delete(int groupid)
         {
-            var productCount = AppSettings.Products.Count();
-
-            if (criteria.CopyForAllProducts)
+            var criteria = new CommGroupDeleteCriteria
             {
-                criteria.MinAmountList = string.Concat(Enumerable.Repeat(criteria.MinAmountList, productCount));
-                criteria.MaxAmountList = string.Concat(Enumerable.Repeat(criteria.MaxAmountList, productCount));
-                criteria.MinQMList = string.Concat(Enumerable.Repeat(criteria.MinQMList, productCount));
-                criteria.MaxQMList = string.Concat(Enumerable.Repeat(criteria.MaxQMList, productCount));
-                criteria.TierList = string.Concat(Enumerable.Repeat(criteria.TierList, productCount));
-                criteria.CommissionList = string.Concat(Enumerable.Repeat(criteria.CommissionList, productCount));
+                GroupId = groupid,
+                UserId = SessionManager.CurrentSession.CustID,
+                IP = Remote.GetClientIPAddress(),
+            };
+
+            _commGroupService.ExecuteOutput(criteria);
+            var errmsg = Common.GetErrorMsg(criteria.ErrCode);
+            if (errmsg.Contains("{0}"))
+            {
+                errmsg = string.Format(errmsg, criteria.GroupId);
             }
+
+            return errmsg;
         }
 
         /// <summary>
         /// Edit commission group.
         /// </summary>
-        /// <param name="groupid">ID of group.</param>
+        /// <param name="groupid">Commission group Id.</param>
         /// <returns>Group Information.</returns>
         public ActionResult Edit(int groupid)
         {
             var serializer = new JavaScriptSerializer();
             ViewBag.ProductIDList = serializer.Serialize(AppSettings.Products.Select(x => x.ProductID).ToArray());
-            
+
             var group = _commGroupService.GetListData<CommGroupInfo>(new CommGroupInfoCriteria()
             {
                 GroupId = groupid
@@ -275,77 +217,71 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         /// <summary>
-        /// Delete a group.
+        /// Get currency notification if multiplied > 1.
         /// </summary>
-        /// <param name="groupid">ID of group.</param>
-        /// <returns>Error message (if any).</returns>
-        public string Delete(int groupid)
-        {            
-            var criteria = new CommGroupDeleteCriteria
-            {
-                GroupId = groupid,
-                UserId = SessionManager.CurrentSession.CustID,
-                IP = Remote.GetClientIPAddress(),
-            };
-            
-            _commGroupService.ExecuteOutput(criteria);
-            var errmsg = Common.GetErrorMsg(criteria.ErrCode);
-            if (errmsg.Contains("{0}"))
-            {
-                errmsg = string.Format(errmsg, criteria.GroupId);
-            }
-
-            return errmsg;     
-        }        
-
-        /// <summary>
-        /// Get Deduction Settings.
-        /// </summary>
-        /// <param name="deductionSettings">Deduction Setting.</param>
-        /// <param name="allDeductions">Deduction Type.</param>
-        /// <param name="group">Commission Group.</param>
-        /// <param name="detail">Commission Group Detail.</param>
-        /// <returns>Deduction settings.</returns>
-        private Dictionary<string, decimal> GetDeductionSettings(
-            IEnumerable<DeductionSetting> deductionSettings, 
-            IEnumerable<DeductionType> allDeductions, 
-            CommGroup group, 
-            CommGroupDetail detail)
+        /// <param name="currencyid">Currency ID.</param>
+        /// <returns>Notification Message.</returns>
+        public string GetCurrencyNotification(int currencyid)
         {
-            var deduction = new Dictionary<string, decimal>();
-            var deductions = allDeductions.Where(x => x.ProductID == detail.ProductID);
+            var currency = SessionManager.CurrentSession.CurrencyList.Where(x => x.CurrencyID == currencyid).FirstOrDefault();
 
-            if (deductions.Count() > 0)
+            if (currency == null || currency.MultipliedBy == 1)
             {
-                var settings = deductionSettings.Where(x => x.GroupID == group.GroupID);
-
-                foreach (var item in deductions)
-                {
-                    var setting = settings.Where(x => x.DeductionID == item.DTypeID).FirstOrDefault();
-                    deduction.Add(item.DTypeName, setting == null ? -1 : setting.DeductedPercentage);
-                }
+                return string.Empty;
             }
-            
-            return deduction;
+
+            return Common.GetCurrencyNotification(currency.CurrencyCode, currency.MultipliedBy);
+        }
+
+        public ActionResult GetDefaultPspExchange(GetDefaultPspExchangeCriteria criteria)
+        {
+            return Json(_exchangeRateService.GetDefaultPspExchange(criteria), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
-        /// Get Grid Data.
+        /// Load data.
         /// </summary>
-        /// <param name="criteria">Input Criteria.</param>
-        /// <returns>List Commission Group.</returns>
-        private IEnumerable<CommGroup> GetGridData(CommGroupCriteria criteria)
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>List of data.</returns>
+        public ActionResult GetList(CommGroupCriteria criteria)
         {
-            var groups = _commGroupService.GetListData<CommGroup>(criteria);
-            
-            if (criteria.GroupIDList.IndexOf(',') == 0)
+            criteria.UserId = SessionManager.CurrentSession.CustID;
+            criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
+            criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
+
+            var groups = GetGridData(criteria);
+
+            return Json(new
             {
-                criteria.GroupIDList = criteria.GroupIDList.Substring(1);
-            }
+                List = groups,
+                CurrentPage = criteria.PageIndex,
+                ItemsPerPage = criteria.PageSize,
+                TotalItem = criteria.NRows,
+                HasCashBackDeduction = groups.Any(t => t.HasCashback > 0)
+            });
+        }
 
-            BuildGroupData(groups, criteria.Date, criteria.GroupIDList);
+        /// <summary>
+        /// Index action.
+        /// </summary>
+        /// <param name="groupName">Group name.</param>
+        /// <returns>Default model.</returns>
+        [HttpGet]
+        public ActionResult Index(string groupName)
+        {
+            ViewBag.IsIT = SessionManager.CurrentSession.IsIT;
+            ViewBag.GroupName = groupName;
+            return View();
+        }
 
-            return groups;
+        public ActionResult ViewSetting(CommGroupSelByIdCriteria criteria)
+        {
+            criteria.UserId = CurrentSession.CustID;
+            var groups = _commGroupService.GetById(criteria);
+            var date = criteria.Date == null ? DateTime.Now : criteria.Date.Value;
+            BuildGroupData(groups, date, criteria.GroupID.ToString());
+            ViewBag.HasCashBackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
+            return View(groups.FirstOrDefault());
         }
 
         /// <summary>
@@ -403,6 +339,75 @@ namespace Fanex.AffiliateAdmin.Controller
                     group.AddGeneralDeductions(deduction);
                 }
             }
+        }
+
+        /// <summary>
+        /// Copy Tier Settings For All Enabled Products.
+        /// </summary>
+        /// <param name="criteria">Criteria input.</param>
+        private void CopyTierSettingsForAllProducts(CommGroupInsertCriteria criteria)
+        {
+            var productCount = AppSettings.Products.Count();
+
+            if (criteria.CopyForAllProducts)
+            {
+                criteria.MinAmountList = string.Concat(Enumerable.Repeat(criteria.MinAmountList, productCount));
+                criteria.MaxAmountList = string.Concat(Enumerable.Repeat(criteria.MaxAmountList, productCount));
+                criteria.MinQMList = string.Concat(Enumerable.Repeat(criteria.MinQMList, productCount));
+                criteria.MaxQMList = string.Concat(Enumerable.Repeat(criteria.MaxQMList, productCount));
+                criteria.TierList = string.Concat(Enumerable.Repeat(criteria.TierList, productCount));
+                criteria.CommissionList = string.Concat(Enumerable.Repeat(criteria.CommissionList, productCount));
+            }
+        }
+
+        /// <summary>
+        /// Get Deduction Settings.
+        /// </summary>
+        /// <param name="deductionSettings">Deduction Setting.</param>
+        /// <param name="allDeductions">Deduction Type.</param>
+        /// <param name="group">Commission Group.</param>
+        /// <param name="detail">Commission Group Detail.</param>
+        /// <returns>Deduction settings.</returns>
+        private Dictionary<string, decimal> GetDeductionSettings(
+            IEnumerable<DeductionSetting> deductionSettings,
+            IEnumerable<DeductionType> allDeductions,
+            CommGroup group,
+            CommGroupDetail detail)
+        {
+            var deduction = new Dictionary<string, decimal>();
+            var deductions = allDeductions.Where(x => x.ProductID == detail.ProductID);
+
+            if (deductions.Count() > 0)
+            {
+                var settings = deductionSettings.Where(x => x.GroupID == group.GroupID);
+
+                foreach (var item in deductions)
+                {
+                    var setting = settings.Where(x => x.DeductionID == item.DTypeID).FirstOrDefault();
+                    deduction.Add(item.DTypeName, setting == null ? -1 : setting.DeductedPercentage);
+                }
+            }
+
+            return deduction;
+        }
+
+        /// <summary>
+        /// Get Grid Data.
+        /// </summary>
+        /// <param name="criteria">Input Criteria.</param>
+        /// <returns>List Commission Group.</returns>
+        private IEnumerable<CommGroup> GetGridData(CommGroupCriteria criteria)
+        {
+            var groups = _commGroupService.GetListData<CommGroup>(criteria);
+
+            if (criteria.GroupIDList.IndexOf(',') == 0)
+            {
+                criteria.GroupIDList = criteria.GroupIDList.Substring(1);
+            }
+
+            BuildGroupData(groups, criteria.Date, criteria.GroupIDList);
+
+            return groups;
         }
     }
 }

@@ -17,10 +17,10 @@
   <EmailCopyrightFontColor>#333</EmailCopyrightFontColor>
   <EmailFooterBgColor>#0058DA</EmailFooterBgColor>
   <EmailFooterFontColor>#fff</EmailFooterFontColor>
-  
+
   <app_mail_id>34</app_mail_id>
   <MailContact>affiliate@28betonline.com</MailContact>
-  
+
   <SkipCheckUMTime>
     <local>1</local>
     <sandbox>1</sandbox>
@@ -29,7 +29,7 @@
   </SkipCheckUMTime>
   <UM_StartTime>01 May 2013 02:30 PM</UM_StartTime>
   <UM_EndTime>02 Jun 2013 04:00 PM</UM_EndTime>
-  
+
   <InternalURL>
     <local>Local Developement</local>
     <sandbox>Sandbox</sandbox>

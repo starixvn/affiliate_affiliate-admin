@@ -96,17 +96,17 @@
                 <div class="tab_content" id="tab_content0">
                     <!--DeductionOption-->
                     <div class="row-fluid row-form deductions">
-                        <table>
+                        <table style="margin-top: 10px;">
                             <tr>
-                                <td style="text-align: left;">
+                                <td style="text-align: left; background-color: white;">
                                     <input type="checkbox" class="deduction" @(check ? "checked=checked" : string.Empty) data-id="@deduction.DTypeID" data-percent="@deduction.DeductedPercentage" />            
                                     <label title="@(Lang.ResourceManager.GetString("Deduction" + deduction.DTypeName.Replace(" ", string.Empty)))">
                                         @Lang.Deduction
                                     </label>
                                 </td>
-                                <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList((decimal)percent, (decimal)0.01, "deductionlist nopadding", check ? string.Empty: "disabled")
+                                <td style="text-align: left; background-color: white; "> = @RazorHelper.PercentageDropDownList((decimal)percent, (decimal)0.01, "deductionlist nopadding", check ? string.Empty: "disabled")
                                 </td>                                    
-                                <td style="text-align: left;">
+                                <td style="text-align: left;background-color: white; ">
                                 </td>
                             </tr>
                         </table>                    
@@ -311,11 +311,7 @@
         };
 
         var PRODUCTS = JSON.parse("@(ViewBag.ProductIDList)");
-        var HasCashbackDeduction = @(Model.HasCashback > 0 ? "true" : "false");
-
-        $(function(){
-            CommGroupPopup.init();
-        });
+        var HasCashback = @(Model.HasCashback > 0 ? "true" : "false");
     </script>
 
     @Scripts.Render("~/scripts/addcommgroup")

@@ -7,8 +7,6 @@
 //   <change who="Joseph.Pham" date="2013.8.29">Created</change>
 // </history>
 
-using Fanex.AffiliateAdmin.Core.Services;
-
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
@@ -21,6 +19,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Utilities;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
 
@@ -35,6 +34,7 @@ namespace Fanex.AffiliateAdmin.Controller
         private static StringBuilder _strNotify = new StringBuilder();
 
         #region Services
+
         /// <summary>
         /// Service used to work with database.
         /// </summary>
@@ -49,35 +49,23 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Initializes a new instance of the <see cref="ExchangeController" /> class.
         /// </summary>
-        /// <param name="service">Email History service.</param>        
+        /// <param name="service">Email History service.</param>
         public ExchangeController(IExchangeRateService service)
         {
             _exchangeService = service;
             _service = new QueryService();
         }
+
         #endregion Constructor
 
-        /// <summary>
-        /// Index action.
-        /// </summary>        
-        /// <returns>Default model.</returns>
-        [HttpGet]
-        public ActionResult Index()
+        public ActionResult CopyRate(ExchangeRateCriteria criteria)
         {
-            if (_multipliedCurrencies.Count == 0)
-            {
-                foreach (var obj in AppSettings.AffSystemAllSupportedCurrencies)
-                {
-                    if (obj.MultipliedBy > 1)
-                    {
-                        _strNotify.Append(Common.GetCurrencyNotification(obj.CurrencyCode, obj.MultipliedBy));
-                        _multipliedCurrencies.Add(obj.CurrencyCode, obj.MultipliedBy);
-                    }
-                }
-            }
-            
-            return View();
-        }        
+            criteria.Type = CriteriaType.Update;
+            criteria.UserId = SessionManager.CurrentSession.CustID;
+            criteria.Ip = Remote.GetClientIPAddress();
+            _service.ExecuteOutput(criteria);
+            return Json(GetResultViewModel(criteria.ErrCode));
+        }
 
         /// <summary>
         /// Load data.
@@ -114,8 +102,30 @@ namespace Fanex.AffiliateAdmin.Controller
             });
         }
 
+        /// <summary>
+        /// Index action.
+        /// </summary>
+        /// <returns>Default model.</returns>
+        [HttpGet]
+        public ActionResult Index()
+        {
+            if (_multipliedCurrencies.Count == 0)
+            {
+                foreach (var obj in AppSettings.AffSystemAllSupportedCurrencies)
+                {
+                    if (obj.MultipliedBy > 1)
+                    {
+                        _strNotify.Append(Common.GetCurrencyNotification(obj.CurrencyCode, obj.MultipliedBy));
+                        _multipliedCurrencies.Add(obj.CurrencyCode, obj.MultipliedBy);
+                    }
+                }
+            }
+
+            return View();
+        }
+
         public ActionResult ToggleAutoUpdate(ExchangeRateCriteria criteria)
-        {   
+        {
             criteria.Type = CriteriaType.Update;
             criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.Ip = Remote.GetClientIPAddress();
@@ -139,7 +149,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             criteria.Type = CriteriaType.Update;
             criteria.UserId = SessionManager.CurrentSession.CustID;
-            criteria.Ip = Remote.GetClientIPAddress();            
+            criteria.Ip = Remote.GetClientIPAddress();
             _service.ExecuteOutput(criteria);
 
             ViewBag.Result = GetResultViewModel(criteria.ErrCode);
@@ -151,15 +161,6 @@ namespace Fanex.AffiliateAdmin.Controller
                     CodeFrom = criteria.FromCurrency,
                     CodeTo = criteria.ToCurrency
                 });
-        }
-
-        public ActionResult CopyRate(ExchangeRateCriteria criteria)
-        {
-            criteria.Type = CriteriaType.Update;
-            criteria.UserId = SessionManager.CurrentSession.CustID;
-            criteria.Ip = Remote.GetClientIPAddress();
-            _service.ExecuteOutput(criteria);
-            return Json(GetResultViewModel(criteria.ErrCode));
         }
     }
 }

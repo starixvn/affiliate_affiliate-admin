@@ -22,11 +22,11 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
         /// Get settings of site.
         /// </summary>
         /// <returns>Setting list.</returns>
-         public Dictionary<string, string> GetSettingsOfSite()
-         {
-             var dict = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+        public Dictionary<string, string> GetSettingsOfSite()
+        {
+            var dict = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
 
-             var node = xdocument.Descendants().FirstOrDefault();
+            var node = Xdocument.Descendants().FirstOrDefault();
 
             if (node == null)
             {
@@ -34,23 +34,23 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
             }
 
             var elements = node.Elements();
-             
-             foreach (var element in elements)
-             {
-                 if (IsNormalNode(element))
-                 {
-                     var setting = GetSettingAtNormalNode(element);
-                     dict.Add(setting.Key, setting.Value);
-                 }
 
-                 if (IsNodeBasedOnEnvironment(element))
-                 {
-                     var setting = GetSettingAtNodeBasedOnEnvironment(element);
-                     dict.Add(setting.Key, setting.Value);
-                 }
-             }
+            foreach (var element in elements)
+            {
+                if (IsNormalNode(element))
+                {
+                    var setting = GetSettingAtNormalNode(element);
+                    dict.Add(setting.Key, setting.Value);
+                }
 
-             return dict;
-         }
+                if (IsNodeBasedOnEnvironment(element))
+                {
+                    var setting = GetSettingAtNodeBasedOnEnvironment(element);
+                    dict.Add(setting.Key, setting.Value);
+                }
+            }
+
+            return dict;
+        }
     }
 }

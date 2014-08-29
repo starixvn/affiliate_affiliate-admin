@@ -28,7 +28,7 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
         {
             var dict = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
 
-            var node = xdocument.Descendants(xname).FirstOrDefault();
+            var node = Xdocument.Descendants(xname).FirstOrDefault();
 
             if (node == null)
             {

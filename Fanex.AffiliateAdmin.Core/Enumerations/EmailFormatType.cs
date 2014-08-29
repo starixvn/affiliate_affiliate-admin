@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Core.Enumerations
         /// None format.
         /// </summary>
         None = 0,
+
         /// <summary>
         /// Email text only.
         /// </summary>

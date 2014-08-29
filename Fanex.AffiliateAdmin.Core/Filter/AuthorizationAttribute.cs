@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="= _mediaSettingService.GetBannerSizes();.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AuthorizationAttribute.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Kaden.Trinh" date="2013.07.05">Created</change>
+//   <change who="Brian.Dinh" date="2014.8.29">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.Core.Filter

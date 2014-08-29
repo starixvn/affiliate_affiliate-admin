@@ -14,6 +14,7 @@ namespace Fanex.AffiliateAdmin.Core.Enumerations
         /// Unknown error.
         /// </summary>
         None,
+
         /// <summary>
         /// Wrong username or password.
         /// </summary>
@@ -23,7 +24,7 @@ namespace Fanex.AffiliateAdmin.Core.Enumerations
         /// The A/C is closed due to 5 wrong password attempts.
         /// </summary>
         LoginFailedFiveTimes = 1002,
-        
+
         /// <summary>
         /// Your account is closed.
         /// </summary>

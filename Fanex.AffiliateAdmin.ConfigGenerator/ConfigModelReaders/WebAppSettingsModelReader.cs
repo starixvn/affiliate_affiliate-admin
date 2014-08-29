@@ -11,6 +11,7 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     /// <summary>
@@ -22,6 +23,8 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
         /// Get settings of site.
         /// </summary>
         /// <returns>Setting list.</returns>
+        [SuppressMessage("Microsoft.Globalization", "CA1309:UseOrdinalStringComparison")]
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public Dictionary<string, string> GetSettingsOfSite()
         {
             var dict = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);

@@ -103,7 +103,7 @@ var COMMGROUP = function ($) {
                                             "<a class='remove' data-groupname='" + record.GroupName + "' data-groupid='" + data.GroupId + "' href='#' title='{0}'><i class='icon-remove'></i></a>".format(MSG.Remove)
                                             : "<a title='{0}'><i class='icon-remove icon-white'></i></a>".format(MSG.Remove);
                                 var editButton = (IS_IT || record.CurrencyID != 0) ?
-                                            "<a class='edit'  title='{0}' href='#' data-groupid='".format(MSG.Edit) + data.GroupId + "'><i class='icon-edit'></i></a>"
+                                            "<a class='edit'  title='{0}' href='javascript:void(0);' data-groupid='".format(MSG.Edit) + data.GroupId + "'><i class='icon-edit'></i></a>"
                                             : "<a title='{0}'><i class='icon-edit icon-white'></i></a>".format(MSG.Edit);
                                 value = editButton + deleteButton;
                             } else if (colName == "NoOfAffiliate") {

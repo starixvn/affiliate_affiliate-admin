@@ -63,14 +63,14 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
             }
         }
 
-        protected bool IsNodeBasedOnEnvironment(XElement element)
+        protected bool IsNodeBasedOnEnvironment(XContainer element)
         {
             var child = element.Element("local");
 
             return child != null;
         }
 
-        protected bool IsNormalNode(XElement element)
+        protected bool IsNormalNode(XContainer element)
         {
             var children = element.Elements();
 

@@ -297,7 +297,6 @@ namespace Fanex.AffiliateAdmin.Controller
             var groupDetails = _commGroupService.GetGroupDetails(detailCriteria);
             var deductionSettings = _commGroupService.GetDeductionSettings(settingCriteria);
             var allDeductions = AppSettings.DeductionTypes;
-            var hasGeneralDeduction = AppSettings.DeductionTypes.FirstOrDefault(x => x.ProductID == 0);
             foreach (var group in groups)
             {
                 var details = groupDetails.Where(x => x.GroupId == group.GroupID).ToList();

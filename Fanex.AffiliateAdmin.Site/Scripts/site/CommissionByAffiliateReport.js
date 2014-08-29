@@ -1,9 +1,8 @@
-﻿/*global AFFILIATE,MSG,moment,System,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
+﻿/*global AFFILIATE,MSG,moment,System*/
 var CommissionReport = (function ($) {
     "use strict";
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = "1";
-    var DEPOSIT_COL = 6;
     var _commonColumnCount = 0;
     var _freezeColumnCount = 3;
     var _indexProductColumns = [];
@@ -23,13 +22,10 @@ var CommissionReport = (function ($) {
 
     var addProductColumns = function (products) {
         var productCount = products.length;
-        var mergeColNumber = 7;
-        var threeNewCol = 3;
+        var mergeColNumber = 5;
 
         for (var i = 0; i < productCount; i++) {
             var name = nomalizeProductName(products[i].Name);
-            var isPlaytechCasino = products[i].Name === "Playtech Casino";
-            mergeColNumber = isPlaytechCasino ? mergeColNumber + threeNewCol : mergeColNumber;
 
             gridOption.groupHeaderRows[0].Columns.push(
                 { HeaderText: window.MSG[name], Name: name + "ActivePlayers", MergeColNumber: mergeColNumber }
@@ -46,60 +42,24 @@ var CommissionReport = (function ($) {
                     CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
                 }
             );
+
+            gridOption.columns.push(
+                { IsCurrency: true, HeaderCaption: window.MSG.PlayerComm, HeaderText: window.MSG.PlayerComm,
+                    Width: 80, Name: name + "PlayerComm", NameCache: name + "PlayerComm", HeaderAlign: "center",
+                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
+                }
+            );
+            
             gridOption.columns.push(
                 { IsCurrency: true, HeaderCaption: window.MSG.Winloss, HeaderText: window.MSG.Winloss,
                     Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center",
                     CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
                 }
             );
-
-            /*jshint ignore:start */
-            gridOption.columns.push(
-                {
-                    HeaderCaption: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM),
-                    HeaderText: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM), 
-                    IsCurrency: false, 
-                    Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
-                    Formatter: function (rIndex, record, cell, cellFormated) {
-                        var actualBaseCurreny = "2";
-                        var currency = record.Currency;
-
-                        if (cellFormated) {
-                            return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}' data-groupid='{6}' data-commgroup='{7}'>{8}</a>"
-                                .format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, record.GroupID, record.GroupName, cellFormated);
-                        }
-
-                        return 0;
-                    }
-                }
-            );
-            /*jshint ignore:end */
-
-            gridOption.columns.push(
-                { IsCurrency: false, IsPercent: true, HeaderCaption: window.MSG.CommPercent,
-                    HeaderText: window.MSG.CommPercent, Width: 80, Name: name + "CommissionPercent",
-                    HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER,
-                    FormatNegative: '($)', IsAbs: true
-                }
-            );
-            gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: window.MSG.Commission, HeaderText: window.MSG.Commission,
-                    Width: 80, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center",
-                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
-                }
-            );
-
-            if (isPlaytechCasino === true) {
-                gridOption.columns.push(samplePShareCol);
-                gridOption.columns.push(samplePWinCol);
-                gridOption.columns.push(sampleNetGamingCol);
-            }
         }
     };
 
     function initProductColumnsForGridOption() {
-
-        addCashbackColumn();
 
         _indexProductColumns.clear();
 
@@ -108,13 +68,6 @@ var CommissionReport = (function ($) {
         var products = getSelectedProducts(window.PRODUCTS);
 
         addProductColumns(products);
-    }
-
-    function addCashbackColumn() {
-        if (window.HasCashbackDeduction) {
-            gridOption.groupHeaderRows[0].Columns.splice(DEPOSIT_COL, 0, window.sampleCashbackHeader);
-            gridOption.columns.splice(DEPOSIT_COL, 0, window.sampleDeductedPercentageCol, window.sampleAmountCol);
-        }
     }
 
     var renameCurrencyColumns = function (isUseBaseCurrency) {
@@ -403,6 +356,7 @@ var CommissionReport = (function ($) {
                     }
 
                     renameCurrencyColumns(baseCurrency === SYS_CURRENCY_OPTION);
+                    
                     changeHeaderCaptions(baseCurrency === SYS_CURRENCY_OPTION);
 
                     gridOption.pagerOption = {
@@ -412,7 +366,7 @@ var CommissionReport = (function ($) {
                         totalItem: data.TotalItem
                     };
 
-                    gridOption.titleInfo.text = window.MSG.CommissionTitle + ' [{0}]'.format(data.TotalItem);
+                    gridOption.titleInfo.text = window.MSG.AffiliateWinLossTitle + ' [{0}]'.format(data.TotalItem);
                     gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.TotalItem, data.hasShowSubTotalData);
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 

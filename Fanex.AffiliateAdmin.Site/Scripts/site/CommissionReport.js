@@ -1,12 +1,10 @@
-﻿/*global AFFILIATE,MSG,moment,System,COLLAPSE_SUBTOTAL_STATUS,EXPAND_SUBTOTAL_STATUS,
-    HasCashbackDeduction,subTotalStatus,Lang,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
+﻿/*global AFFILIATE,MSG,moment,System,COLLAPSE_SUBTOTAL_STATUS,EXPAND_SUBTOTAL_STATUS,subTotalStatus,Lang*/
 var CommissionReport = (function ($) {
     "use strict";
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = "1";
     var GROUP_BY_MONTH = "0";
     var MONTH_COL = 1, COMMGROUP_COL = 4;
-    var DEDUCTION_PERCENT_COL = 9;
     // number of all common columns (except product columns).
     var _commonColumnCount = 0;
     var _hideColumns = [MONTH_COL, COMMGROUP_COL];
@@ -220,7 +218,7 @@ var CommissionReport = (function ($) {
 
         var hasGroupByMonth = submitOptions.GroupBy === GROUP_BY_MONTH;
 
-        if ((_isSimpleMode && !HasCashbackDeduction) || (_isSimpleMode && HasCashbackDeduction && !hasGroupByMonth)) {
+        if ((_isSimpleMode) || (_isSimpleMode && !hasGroupByMonth)) {
             $("#gridId table:lt(4) th div").height(30);
         }
     }

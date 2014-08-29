@@ -18,7 +18,10 @@ report
 @{
     var now = DateTime.Now;
     var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : now;
-    var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now; 
+    var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now;
+
+    fromDate = new DateTime(2014, 1, 1);
+    toDate = new DateTime(2014, 3, 1);
 }
 
 @using Fanex.AffiliateAdmin.Core.Configurations
@@ -35,11 +38,11 @@ report
             <div class="row-fluid row-form">                
                 <div class="cell">
                     <label for="FromDate" class="txt">@Lang.From</label>
-                    @Html.MonthPicker("FromDate", fromDate, AppSettings.SystemStartDate, now, null)
+                    @Html.MonthPicker("FromDate", fromDate, AppSettings.SystemStartDate, now)
                 </div>
                 <div class="cell">
                     <label for="ToDate" class="txt">@Lang.To</label>
-                    @Html.MonthPicker("ToDate", toDate, AppSettings.SystemStartDate, now, null)
+                    @Html.MonthPicker("ToDate", toDate, AppSettings.SystemStartDate, now)
                 </div>            
                 <div class="cell">
                     <label for="BaseCurrency" class="txt">@Lang.BaseCurrency</label>
@@ -80,7 +83,7 @@ report
             BetCount: "@Lang.BetCount",
             Turnover: "@Lang.Turnover",
             Winloss: "@Lang.Winloss",
-            Commission: "@Lang.Commission",
+            PlayerComm: "@Lang.PlayerComm",
             SubTotalIn: "@Lang.SubTotalIn",
             Total: "@Lang.Total",
             TotalAll: "@Lang.TotalAll",
@@ -90,22 +93,21 @@ report
             RNGCasino: "@Lang.RNGCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
             SubTotal: "@Lang.SubTotal",
-            Total: "@Lang.Total",
             RangeTime3Months: "@Lang.RangeTime3Months",
             CommPercent: "@Lang.CommPercent",
             QM: "@Lang.QM",
             CommGroupSettingFor: "@Lang.CommGroupSettingFor",
             AffQualifiedMemReportDetailFor: "@Html.Raw(Lang.AffQualifiedMemReportDetailFor)",
             Currency: "@Lang.Currency",
+            AffiliateWinLossTitle: "@Lang.AffiliateWinLoss",
             NA: "@Lang.NA",
-            CommissionTitle: "@Lang.Commission",
+            Amount: "@Lang.Amount",
             ToggleSubTotal: '@Lang.ToggleSubTotal',
             ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct',
             QualifiedMembers: "@Lang.QualifiedMembers"
         };
         
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
-        var HasCashbackDeduction = @(ViewBag.HasCashbackDeduction ? "true" : "false");
         var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
         var subTotalStatus = COLLAPSE_SUBTOTAL_STATUS;
         
@@ -115,7 +117,7 @@ report
             timeZone: AFFILIATE.TimeZone,
             titleInfo:
             {
-                text: "@Lang.Commission",
+                text: "@Lang.AffiliateWinLoss",
                 showButtonsWhenNoData: false,
                 customButtons: "<i title='Simple Mode' id='btnChangeViewMode' style='cursor: pointer' class='icon-circle-arrow-left'></i>"
             },
@@ -128,10 +130,10 @@ report
                         { HeaderText: "@Lang.ActiveMembers", Name: "ActivePlayers", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Deposit", IsCurrency: true, HeaderText: "@Lang.Deposit", Name: "Deposit", NameCache: "Deposit", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.PlayerComm", IsCurrency: true, HeaderText: "@Lang.PlayerComm", Name: "PlayerComm", NameCache: "PlayerComm", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Withdrawal", IsCurrency: true, HeaderText: "@Lang.Withdrawal", Name: "Withdrawal", NameCache: "Withdrawal", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Turnover", IsCurrency: true, HeaderText: "@Lang.Turnover", Name: "Turnover", NameCache: "Turnover", MergeRowNumber: 2 },
-                        { HeaderCaption: "@Lang.Winloss", IsCurrency: true, HeaderText: "@Lang.Winloss", Name: "Winloss", NameCache: "Winloss", MergeRowNumber: 2 },
-                        { HeaderCaption: "@Lang.Commission", IsCurrency: true, HeaderText: "@Lang.Commission", Name: "Commission", NameCache: "Commission", MergeRowNumber: 2 }
+                        { HeaderCaption: "@Lang.Winloss", IsCurrency: true, HeaderText: "@Lang.Winloss", Name: "Winloss", NameCache: "Winloss", MergeRowNumber: 2 }
                     ]
                 }
             ],
@@ -162,10 +164,10 @@ report
                 { HeaderText: "@Lang.ActiveMembers", Width: 80, Name: "ActivePlayers", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.BetCount", Width: 80, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.Deposit", Width: 110, Name: "Deposit", NameCache: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
+                { HeaderText: "@Lang.PlayerComm", Width: 110, Name: "PlayerComm", NameCache: "PlayerComm", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderText: "@Lang.Withdrawal", Width: 70, Name: "Withdrawal", NameCache: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
                 { HeaderText: "@Lang.Turnover", Width: 110, Name: "Turnover", NameCache: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
-                { HeaderText: "@Lang.Winloss", Width: 110, Name: "Winloss", NameCache: "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true },
-                { HeaderText: "@Lang.Commission", Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true }
+                { HeaderText: "@Lang.Winloss", Width: 110, Name: "Winloss", NameCache: "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true }
             ],
             showPager: true,
             customPager: true,
@@ -180,24 +182,7 @@ report
                 return rowData.Status.toLowerCase();
             }
         };
-
-        var sampleCashbackHeader = { HeaderCaption: "@Lang.Cashback", HeaderText: "@Lang.Cashback", Name: "DeductedPercentage", MergeColNumber: 2 };
-        var sampleDeductedPercentageCol = { HeaderText: "@Lang.DeductionPercent", IsPercent: true, Width: 80, Name: "DeductedPercentage", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER };
-        var sampleAmountCol ={ HeaderCaption: "@Lang.Amount", HeaderText: "@Lang.Amount", Width: 80, IsCurrency: true, Name: "Cashback", NameCache: "Cashback", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true };
         
-        var samplePShareCol = { 
-            HeaderCaption: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
-            HeaderText: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
-            IsCurrency: true, Width: 110, Name: "PShare", NameCache: "PShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-        var samplePWinCol= { 
-            HeaderCaption: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
-            HeaderText: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
-            IsCurrency: true, Width: 110, Name: "PWin", NameCache: "PWin", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-        var sampleNetGamingCol = { 
-            HeaderCaption: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
-            HeaderText: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
-            IsCurrency: true, Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-
     </script>
     @Scripts.Render("~/scripts/commissionbyaffiliatereport")
 }

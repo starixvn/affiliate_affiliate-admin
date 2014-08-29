@@ -138,7 +138,6 @@ report
         };
 
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
-        var HasCashbackDeduction = @(ViewBag.HasCashbackDeduction ? "true" : "false");
         var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
         var subTotalStatus = COLLAPSE_SUBTOTAL_STATUS;
 
@@ -215,7 +214,6 @@ report
                 { HeaderText: "@Lang.Withdrawal", Width: 70, Name: "Withdrawal", NameCache: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderText: "@Lang.Turnover", Width: 110, Name: "Turnover", NameCache: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderText: "@Lang.Winloss", Width: 110, Name: "Winloss", NameCache: "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
-                
             ],
             showPager: true,
             customPager: true,

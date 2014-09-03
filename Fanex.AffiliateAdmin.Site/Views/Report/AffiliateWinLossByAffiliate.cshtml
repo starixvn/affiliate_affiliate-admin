@@ -183,7 +183,20 @@ report
             }
         };
         
+        var samplePShareCol = { 
+            HeaderCaption: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
+            HeaderText: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
+            IsCurrency: true, Width: 110, Name: "PShare", NameCache: "PShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var samplePWinCol= { 
+            HeaderCaption: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
+            HeaderText: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
+            IsCurrency: true, Width: 110, Name: "PWin", NameCache: "PWin", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleNetGamingCol = { 
+            HeaderCaption: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
+            HeaderText: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
+            IsCurrency: true, Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        
     </script>
-    @Scripts.Render("~/scripts/commissionbyaffiliatereport")
+    @Scripts.Render("~/scripts/affiliatewinlossreportbyaffiliate")
 }
 

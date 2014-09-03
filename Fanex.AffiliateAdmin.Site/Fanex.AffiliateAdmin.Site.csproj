@@ -630,13 +630,13 @@
     <Content Include="Scripts\site\AffType.js" />
     <Content Include="Scripts\libraries\jquery.mtz.monthpicker.seph.custom.js" />
     <Content Include="Scripts\site\AffiliateMaster.js" />
-    <Content Include="Scripts\site\CommissionReport.js" />
-    <Content Include="Scripts\site\CommissionByAffiliateReport.js" />
+    <Content Include="Scripts\site\AffiliateWinLossReport.js" />
+    <Content Include="Scripts\site\AffiliateWinLossReportByAffiliate.js" />
     <Content Include="Scripts\site\CompanyWinlossReport.js" />
     <Content Include="Scripts\site\CommGroupPopup.js" />
     <Content Include="Scripts\site\MemberWinlossReport.js" />
     <Content Include="Scripts\site\TestWebService.js" />
-    <Content Include="Scripts\site\ProcessingCommission.js" />
+    <Content Include="Scripts\site\AffiliateCommissionReport.js" />
     <Content Include="Scripts\site\MemberStatistics.js" />
     <Content Include="Scripts\site\Note.js" />
     <Content Include="Scripts\site\OnlineList.js" />
@@ -796,7 +796,7 @@
     <Content Include="Views\Report\AffiliateWinLossByAffiliate.cshtml" />
     <Content Include="Views\Report\QualifiedMembers.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.ko-KR.cshtml" />
-    <Content Include="Views\Payment\ProcessingCommission.cshtml" />
+    <Content Include="Views\Report\AffiliateCommission.cshtml" />
     <Content Include="Views\Management\ChangePolicyMultiUser.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.Approved.en-US.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.Approved.zh-TW.cshtml" />
@@ -1088,7 +1088,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

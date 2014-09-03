@@ -1,5 +1,5 @@
-﻿/*global AFFILIATE,MSG,moment,System*/
-var CommissionReport = (function ($) {
+﻿/*global AFFILIATE,MSG,moment,System,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
+var AffiliateWinLossReport = (function ($) {
     "use strict";
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = "1";
@@ -23,9 +23,12 @@ var CommissionReport = (function ($) {
     var addProductColumns = function (products) {
         var productCount = products.length;
         var mergeColNumber = 5;
+        var extraThreeColForPlayTech = 3;
 
         for (var i = 0; i < productCount; i++) {
             var name = nomalizeProductName(products[i].Name);
+            var isPlaytechCasino = products[i].Name === "Playtech Casino";
+            mergeColNumber = isPlaytechCasino ? mergeColNumber + extraThreeColForPlayTech : mergeColNumber;
 
             gridOption.groupHeaderRows[0].Columns.push(
                 { HeaderText: window.MSG[name], Name: name + "ActivePlayers", MergeColNumber: mergeColNumber }
@@ -56,6 +59,12 @@ var CommissionReport = (function ($) {
                     CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
                 }
             );
+
+            if (isPlaytechCasino === true) {
+                gridOption.columns.push(samplePShareCol);
+                gridOption.columns.push(samplePWinCol);
+                gridOption.columns.push(sampleNetGamingCol);
+            }
         }
     };
 
@@ -254,11 +263,11 @@ var CommissionReport = (function ($) {
             });
 
             if ($('#gridId').length > 0) {
-                CommissionReport.submitRequest();
+                AffiliateWinLossReport.submitRequest();
             }
 
             $('#btnSubmit').click(function () {
-                CommissionReport.submitRequest();
+                AffiliateWinLossReport.submitRequest();
                 return false;
             });
 
@@ -318,12 +327,12 @@ var CommissionReport = (function ($) {
 
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
-            if (!CommissionReport.checkRangeTime()) {
+            if (!AffiliateWinLossReport.checkRangeTime()) {
                 alert(window.MSG.RangeTime3Months);
                 return;
             }
 
-            if (!CommissionReport.checkAtLeastOneSelectedProduct()) {
+            if (!AffiliateWinLossReport.checkAtLeastOneSelectedProduct()) {
                 alert(window.MSG.ChooseAtLeastOneProduct);
                 return;
             }
@@ -331,7 +340,7 @@ var CommissionReport = (function ($) {
             submitOptions = $('form').serializeObject2();
             submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
             submitOptions["SortBy"] = $('#SortBy').val();
-            CommissionReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            AffiliateWinLossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
@@ -395,5 +404,5 @@ var CommissionReport = (function ($) {
 
 $(function () {
     "use strict";
-    CommissionReport.init();
+    AffiliateWinLossReport.init();
 });

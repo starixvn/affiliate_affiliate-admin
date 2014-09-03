@@ -7,6 +7,9 @@
 //   <change who="Leo.Vo" date="2013.8.21">Created</change>
 // </history>
 
+using System;
+using System.Net.Mime;
+
 namespace Fanex.AffiliateAdmin.Models
 {
     using System.Collections.Generic;
@@ -22,6 +25,19 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class ProcessingCommissionViewModel
     {
+        private readonly IList<SelectListItem> _transferStatusList = new List<SelectListItem>
+        {
+                new SelectListItem { Text = Lang.All, Value = "0"},
+                new SelectListItem { Text = Lang.Processing, Value = "1" },
+                new SelectListItem { Text = Lang.Transfered, Value = "2" }
+        };
+
+        private readonly IList<SelectListItem> _groupByList = new List<SelectListItem>
+        {
+                new SelectListItem { Text = Lang.Affiliate, Value = "0" },
+                new SelectListItem { Text = Lang.AffiliateMonth, Value = "1" }
+        };
+
         private MultiSelectList _affiliateCurrencyOptions;
 
         private MultiSelectList _affTypeOptions;
@@ -31,6 +47,10 @@ namespace Fanex.AffiliateAdmin.Models
         private MultiSelectList _commissionGroupOptions;
 
         private MultiSelectList _preferLanguageOptions;
+
+        private SelectList _transferStatusOptions;
+
+        private SelectList _groupByOptions;
 
         public ProcessingCommissionViewModel()
         {
@@ -145,5 +165,40 @@ namespace Fanex.AffiliateAdmin.Models
 
         [Display(Name = "Affiliate", ResourceType = typeof(Lang))]
         public string Username { get; set; }
+
+        public DateTime FromDate { get; set; }
+
+        public DateTime ToDate { get; set; }
+
+        [Display(Name = "TransferState", ResourceType = typeof(Lang))]
+        public byte TransferStatus { get; set; }
+
+        public SelectList TransferStatusOptionList
+        {
+            get
+            {
+                if (_transferStatusOptions == null)
+                {
+                    _transferStatusOptions = new SelectList(_transferStatusList, "Value", "Text", TransferStatus);
+                }
+
+                return _transferStatusOptions;
+            }
+        }
+
+        public byte GroupBy { get; set; }
+
+        public SelectList GroupByOptionList
+        {
+            get
+            {
+                if (_groupByOptions == null)
+                {
+                    _groupByOptions = new SelectList(_groupByList, "Value", "Text", GroupBy);
+                }
+
+                return _groupByOptions;
+            }
+        }
     }
 }

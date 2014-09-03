@@ -7,6 +7,8 @@
 //   <change who="Brian.Dinh" date="2013.12.10">Created</change>
 // </history>
 
+using System;
+
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using Fanex.NAP.Framework.Data;
@@ -38,6 +40,14 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         [SpParam(SqlParamName = "ProductIds")]
         public string Products { get; set; }
+
+        public DateTime FromDate { get; set; }
+
+        public DateTime ToDate { get; set; }
+
+        public byte TransferStatus { get; set; }
+
+        public byte GroupBy { get; set; }
 
         public override string GetSettingKey()
         {

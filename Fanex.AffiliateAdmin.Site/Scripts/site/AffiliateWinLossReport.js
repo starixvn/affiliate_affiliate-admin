@@ -1,5 +1,5 @@
-﻿/*global AFFILIATE,MSG,moment,System,COLLAPSE_SUBTOTAL_STATUS,EXPAND_SUBTOTAL_STATUS,subTotalStatus,Lang*/
-var CommissionReport = (function ($) {
+﻿/*global AFFILIATE,MSG,moment,System,COLLAPSE_SUBTOTAL_STATUS,EXPAND_SUBTOTAL_STATUS,subTotalStatus,Lang,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
+var AffiliateWinLossReport = (function ($) {
     "use strict";
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = "1";
@@ -13,7 +13,7 @@ var CommissionReport = (function ($) {
 
     var gridOption = {};
 
-    var getMergeColNumberForProducColumn = function () {
+    var getMergeColNumberForProductColumn = function () {
         var mergeColNumber = 5;
         return mergeColNumber;
     };
@@ -30,9 +30,11 @@ var CommissionReport = (function ($) {
 
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     function initProductColumnsForGridOption() {
-        var mergeColNumber = getMergeColNumberForProducColumn();
+        var mergeColNumber = getMergeColNumberForProductColumn();
+        var extraThreeColForPlayTech = 3;
 
         _indexProductColumns.clear();
+        
         _commonColumnCount = gridOption.columns.length;
 
         var products = getSelectedProducts(window.PRODUCTS);
@@ -40,6 +42,8 @@ var CommissionReport = (function ($) {
 
         for (var i = 0; i < productCount; i++) {
             var name = nomalizeProductName(products[i].Name);
+            var isPlaytechCasino = products[i].Name === "Playtech Casino";
+            mergeColNumber = isPlaytechCasino ? mergeColNumber + extraThreeColForPlayTech : mergeColNumber;
 
             gridOption.groupHeaderRows[0].Columns.push(
                 { HeaderText: window.MSG[name], Name: name + "ActivePlayers", MergeColNumber: mergeColNumber }
@@ -63,13 +67,19 @@ var CommissionReport = (function ($) {
                     CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
                 }
             );
-            
+
             gridOption.columns.push(
                 { IsCurrency: true, HeaderCaption: window.MSG.Winloss, HeaderText: window.MSG.Winloss,
                     Width: 80, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center",
                     CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
                 }
             );
+
+            if (isPlaytechCasino === true) {
+                gridOption.columns.push(samplePShareCol);
+                gridOption.columns.push(samplePWinCol);
+                gridOption.columns.push(sampleNetGamingCol);
+            }
         }
     }
 
@@ -199,9 +209,11 @@ var CommissionReport = (function ($) {
             }
         }
     }
+
     function nomalizeProductName(name) {
         return name.replace(/ /g, "");
     }
+
     function hideColumns() {
         var columns = [];
         if (_isSimpleMode) {
@@ -222,6 +234,7 @@ var CommissionReport = (function ($) {
             $("#gridId table:lt(4) th div").height(30);
         }
     }
+
     return {
         init: function () {
             $("#gridId").resize(function () {
@@ -229,6 +242,7 @@ var CommissionReport = (function ($) {
             });
 
             AFFILIATE.initMonthPicker();
+
             var $maincontent = $(".main-content");
 
             // change view mode event
@@ -308,11 +322,11 @@ var CommissionReport = (function ($) {
             });
 
             if ($('#gridId').length > 0) {
-                CommissionReport.submitRequest();
+                AffiliateWinLossReport.submitRequest();
             }
 
             $('#btnSubmit').click(function () {
-                CommissionReport.submitRequest();
+                AffiliateWinLossReport.submitRequest();
                 return false;
             });
         },
@@ -367,12 +381,12 @@ var CommissionReport = (function ($) {
 
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
-            if (!CommissionReport.checkRangeTime()) {
+            if (!AffiliateWinLossReport.checkRangeTime()) {
                 alert(window.MSG.RangeTime3Months);
                 return;
             }
 
-            if (!CommissionReport.checkAtLeastOneSelectedProduct()) {
+            if (!AffiliateWinLossReport.checkAtLeastOneSelectedProduct()) {
                 alert(window.MSG.ChooseAtLeastOneProduct);
                 return;
             }
@@ -380,12 +394,12 @@ var CommissionReport = (function ($) {
             submitOptions = $('form').serializeObject2();
             submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
             submitOptions["SortBy"] = $('#SortBy').val();
-            CommissionReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            AffiliateWinLossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             var baseCurrency = $("#BaseCurrency").val();
-            
+
             $.ajax({
                 url: $('#SearchForm').attr("action"),
                 type: 'post',
@@ -411,13 +425,13 @@ var CommissionReport = (function ($) {
                         itemsPerPageArray: AFFILIATE.pageSizes,
                         currentPage: data.CurrentPage,
                         totalItem: data.TotalItem,
-                        pagerSelectCallBack: CommissionReport.ReRenderAfterPaged
+                        pagerSelectCallBack: AffiliateWinLossReport.ReRenderAfterPaged
                     };
 
                     gridOption.titleInfo.text = MSG.AffiliateWinLossTitle + ' [{0}]'.format(data.TotalItem);
 
                     gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.TotalItem, data.hasShowSubTotalRow);
-                    
+
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
@@ -438,11 +452,9 @@ var CommissionReport = (function ($) {
                         $('.status').show();
                         AFFILIATE.resetToggleIndicator(gridOption);
                     }
-
-                    AFFILIATE.updateSearchPanel($('#gridId'));
                 },
                 error: function () {
-                    alert("Occur the error when requesting the Affiliate Commission report! :(");
+                    alert("Occur the error when requesting the Affiliate Win Loss report! :(");
                 },
                 complete: function () {
                     $.unblockUI();
@@ -454,5 +466,5 @@ var CommissionReport = (function ($) {
 
 $(function () {
     "use strict";
-    CommissionReport.init();
+    AffiliateWinLossReport.init();
 });

@@ -2585,4 +2585,10 @@
   <data name="AffiliateMonth" xml:space="preserve">
     <value>Affiliate, Month</value>
   </data>
+  <data name="Transfered" xml:space="preserve">
+    <value>Transfered</value>
+  </data>
+  <data name="TransferState" xml:space="preserve">
+    <value>Transfer State</value>
+  </data>
 </root>

@@ -1,11 +1,16 @@
 ﻿/*global AFFILIATE,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
-var ProcessingCommission = (function ($) {
+var AffiliateCommissionReport = (function ($) {
+    
     "use strict";
 
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = "1";
     var _freezeColumnCount = 5;
     var gridOption = {};
+    var MONTH_COL = 2, COMMGROUP_COL = 3;
+    var GROUP_BY_AFFILIATE = '0';
+
+    var _hideColumns = [MONTH_COL, COMMGROUP_COL];
 
     var getSelectedProducts = function (products) {
         var selectedProducts = $.map(submitOptions.Products.split(','), function (item) {
@@ -17,18 +22,26 @@ var ProcessingCommission = (function ($) {
         });
     };
 
-    function customizeGridOption(hasCashbackDeduction) {
+    var getMergeColNumberForProductColumn = function () {
+        var mergeColNumber = 4;
+        return mergeColNumber;
+    };
 
-        gridOption = $.extend(true, {}, window.sampleGridOption);
+    var removeRedundantColumns = function () {
+        if ($("#GroupBy").val() === GROUP_BY_AFFILIATE) {
+            gridOption.groupHeaderRows[0].Columns.slice(MONTH_COL, 2);
+            gridOption.columns.slice(MONTH_COL, 2);
+        }
+    };
 
-        var products = getSelectedProducts(window.PRODUCTS);
-
+    var initProductColumnsForGridOption = function (products) {
         var productCount = products.length;
-
+        var mergeColNumber = getMergeColNumberForProductColumn();
+        
         for (var i = 0; i < productCount; i++) {
             var name = nomalizeProductName(products[i].Name);
             var isPlaytechCasino = products[i].Name === "Playtech Casino";
-            var mergeColNumber = isPlaytechCasino ? 7 : 4;
+            mergeColNumber = isPlaytechCasino ? mergeColNumber + extraThreeColForPlayTech : mergeColNumber;
 
             gridOption.groupHeaderRows[0].Columns.push(
                 { HeaderCaption: window.MSG[name], HeaderText: window.MSG[name], IsCurrency: true,
@@ -47,12 +60,11 @@ var ProcessingCommission = (function ($) {
             gridOption.columns.push(
                 { IsCurrency: false,
                     HeaderCaption: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM),
-                    HeaderText: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM), 
+                    HeaderText: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM),
                     Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
                     Formatter: function (rIndex, record, cell, cellFormated) {
                         var actualBaseCurreny = "2";
                         var currency = record.Currency;
-
 
                         if (cellFormated) {
                             return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}' data-groupid='{6}' data-commgroup='{7}'>{8}</a>"
@@ -85,71 +97,21 @@ var ProcessingCommission = (function ($) {
                 gridOption.columns.push(sampleNetGamingCol);
             }
         }
+    };
 
-        addCashbackColumns(hasCashbackDeduction);
+    function customizeGridOption() {
+
+        gridOption = $.extend(true, {}, window.sampleGridOption);
+
+        var products = getSelectedProducts(window.PRODUCTS);
+
+        removeRedundantColumns();
+
+        initProductColumnsForGridOption(products);
 
         gridOption.groupHeaderRows[0].Columns.push(window.totalPaymentHeader);
 
         gridOption.columns.push(window.totalPaymentCol);
-    }
-
-    function addCashbackColumns(hasCashbackDeduction) {
-
-        if (hasCashbackDeduction) {
-
-            gridOption.groupHeaderRows[0].Columns.push(
-                { HeaderCaption: window.MSG.Cashback, HeaderText: window.MSG.Cashback, IsCurrency: true, Name: "CashbackPercent", MergeColNumber: 2 }
-            );
-
-            gridOption.columns.push(
-                { IsCurrency: false, HeaderCaption: window.MSG.DeductionPercent, HeaderText: window.MSG.DeductionPercent,
-                    Width: 80, Name: "CashbackPercent", HeaderAlign: "center", CellAlign: "right",
-                    FormatNumber: AFFILIATE.FORMATNUMBER
-                }
-            );
-
-            /*jshint ignore:start */
-            gridOption.columns.push(
-                {
-                    IsCurrency: true, HeaderCaption: window.MSG.Amount, HeaderText: window.MSG.Amount,
-                    Width: 100, Name: "CashbackAmount", NameCache: "CashbackAmount", HeaderAlign: "center",
-                    CellAlign: "left", FormatNumber: AFFILIATE.FORMATNUMBER,
-                    Formatter: function (rIndex, record) {
-                        var currentValue = submitOptions.BaseCurrency === SYS_CURRENCY_OPTION ? record.CashbackAmountBase : record.CashbackAmount;
-
-                        if (isNaN(currentValue) || currentValue === '' || currentValue === null) {
-                            return '';
-                        }
-
-                        if (currentValue < 0) {
-                            currentValue = -1 * currentValue;
-                        }
-
-                        currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
-
-
-                        if (record.CashbackAmount.Amount < 0) {
-                            currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
-                        }
-
-                        var winlostdate = window.moment(record.WinlostDate).format(AFFILIATE.DATE_FORMAT);
-
-                        if (!record.EnableCashback) {
-                            return '<div style="text-align: right;">' + currentValue + '</div>';
-                        }
-
-
-                        var html = '<div class="amount-region"><div class="amount-info" style="text-align: right;">' + currentValue + '&nbsp;&nbsp; <i class="icon-edit"></i></div>';
-                        html += '<div class="amount-edit" style="display: none;"><input type="text" value="{0}" data-affid="{1}" data-winlostdate="{2}"  style="display:inline-block; width: 40px; margin-right: 5px;"><i class="icon-ok"></i>&nbsp;&nbsp;<i class="icon-remove"></i><div class="edit-amount">'.format(record.CashbackAmount, record.AffId, winlostdate);
-                        html += '</div>';
-
-                        return html;
-
-                    }
-                }
-            );
-            /*jshint ignore:end */
-        }
     }
 
     var renameCurrencyColumns = function (isUseBaseCurrency) {
@@ -211,12 +173,14 @@ var ProcessingCommission = (function ($) {
         init: function () {
 
             $('.search-panel form').submit(function () {
-                ProcessingCommission.submitRequest();
+                AffiliateCommissionReport.submitRequest();
                 return false;
             });
 
+            AFFILIATE.initMonthPicker();
+
             if ($('#gridId').length > 0) {
-                ProcessingCommission.submitRequest();
+                AffiliateCommissionReport.submitRequest();
             }
 
             var mainContentObject = $('.main-content');
@@ -229,21 +193,11 @@ var ProcessingCommission = (function ($) {
                 $parent.find("input").ForceDecimalOnly();
             });
 
-            mainContentObject.on("click", ".icon-ok", function () {
-                var parent = $(this).parents(".amount-region").get(0);
-                var $parent = $(parent);
-                ProcessingCommission.UpdateCashBack($parent.find("input"));
-            });
-
             mainContentObject.on("click", ".icon-remove", function () {
                 var parent = $(this).parents(".amount-region").get(0);
                 var $parent = $(parent);
                 $parent.find(".amount-info").show();
                 $parent.find(".amount-edit").hide();
-            });
-
-            mainContentObject.on("click", "#transferAll", function () {
-                ProcessingCommission.MonthlyTransfer();
             });
 
             /*jshint ignore:start */
@@ -286,20 +240,20 @@ var ProcessingCommission = (function ($) {
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
 
-            if (!ProcessingCommission.checkAtLeastOneSelectedProduct()) {
+            if (!AffiliateCommissionReport.checkAtLeastOneSelectedProduct()) {
                 alert(window.MSG.ChooseAtLeastOneProduct);
                 return;
             }
 
             submitOptions = $('form').serializeObject2();
             submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
-            ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            AffiliateCommissionReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
 
             $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Payment/ProcessingCommission"),
+                url: AFFILIATE.getAbsoluteUrl("Report/AffiliateCommission"),
                 type: 'post',
                 data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 beforeSend: function () {
@@ -324,10 +278,10 @@ var ProcessingCommission = (function ($) {
                         itemsPerPageArray: AFFILIATE.pageSizes,
                         currentPage: data.CurrentPage,
                         totalItem: data.TotalItem,
-                        pagerSelectCallBack: ProcessingCommission.ReRenderAfterPaged
+                        pagerSelectCallBack: AffiliateCommissionReport.ReRenderAfterPaged
                     };
 
-                    gridOption.titleInfo.text = window.MSG.ProcessingCommissionTitle + ' [{0}]'.format(data.TotalItem);
+                    gridOption.titleInfo.text = window.MSG.AffiliateCommissionTitle + ' [{0}]'.format(data.TotalItem);
 
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
@@ -352,63 +306,6 @@ var ProcessingCommission = (function ($) {
             });
         },
 
-        UpdateCashBack: function (input) {
-            var self = $(input);
-
-            var data = {
-                AffId: self.data("affid"),
-                MonthDate: self.data("winlostdate"),
-                Amount: self.val()
-            };
-
-            $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Payment/UpdateCashBack"),
-                type: 'post',
-                data: $.param(data),
-                beforeSend: function () {
-                    $.blockUI();
-                },
-                success: function (data) {
-                    AFFILIATE.PreHandleAjaxResult(data);
-
-                    if (data.Success) {
-                        ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
-                    }
-                },
-                error: function () {
-                    alert("Occur the error when updating the cashback :(");
-                },
-                complete: function () {
-                    $.unblockUI();
-                }
-            });
-        },
-        MonthlyTransfer: function () {
-            if (confirm("Do you want to transfer all?")) {
-                $.ajax({
-                    url: AFFILIATE.getAbsoluteUrl("Payment/MonthlyTransfer"),
-                    type: 'post',
-                    beforeSend: function () {
-                        $.blockUI();
-                    },
-                    success: function (data) {
-                        AFFILIATE.PreHandleAjaxResult(data);
-
-                        if (data.Success) {
-                            ProcessingCommission.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
-                        } else {
-                            alert(data.Message);
-                        }
-                    },
-                    error: function () {
-                        alert(window.MSG.OccurMonthlyTransferError);
-                    },
-                    complete: function () {
-                        $.unblockUI();
-                    }
-                });
-            }
-        },
         showCommGroup: function (groupId) {
             var param = {
                 groupid: groupId
@@ -422,5 +319,5 @@ var ProcessingCommission = (function ($) {
 $(function () {
     "use strict";
     
-    ProcessingCommission.init();
+    AffiliateCommissionReport.init();
 });

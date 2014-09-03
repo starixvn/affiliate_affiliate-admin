@@ -6785,6 +6785,24 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transfered.
+        /// </summary>
+        public static string Transfered {
+            get {
+                return ResourceManager.GetString("Transfered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer State.
+        /// </summary>
+        public static string TransferState {
+            get {
+                return ResourceManager.GetString("TransferState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transfer To.
         /// </summary>
         public static string TransferTo {

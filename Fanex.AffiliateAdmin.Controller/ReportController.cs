@@ -35,10 +35,13 @@ namespace Fanex.AffiliateAdmin.Controller
 
         private readonly IReportService _reportService;
 
-        public ReportController(IReportService reportService, ICommGroupService commGroupService)
+        private readonly IPaymentService _paymentService;
+
+        public ReportController(IReportService reportService, ICommGroupService commGroupService, IPaymentService paymentService)
         {
             _reportService = reportService;
             _commGroupService = commGroupService;
+            _paymentService = paymentService;
         }
 
         #region Company Winloss Report
@@ -392,6 +395,49 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         #endregion Commission Report
+
+        #region Affiliate Commission Report
+
+        /// <summary>
+        /// Processing Commission.
+        /// </summary>
+        /// <returns>Processing Commission Page.</returns>
+        public ActionResult AffiliateCommission()
+        {
+            var serializer = new JavaScriptSerializer();
+
+            ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
+            {
+                Id = x.ProductID,
+                Name = x.ProductName
+            }));
+
+            return View(new ProcessingCommissionViewModel());
+        }
+
+        /// <summary>
+        /// Processing Commission.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>Processing Commission Result.</returns>
+        [HttpPost]
+        public ActionResult AffiliateCommission(ProcessingCommCriteria criteria)
+        {
+            criteria.UserId = CurrentSession.CustID;
+            criteria.IsITAdmin = CurrentSession.IsIT;
+
+            var data = _paymentService.GetProcessingCommissions(criteria);
+
+            return Json(new
+            {
+                List = data,
+                ItemsPerPage = data.Count(),
+                TotalItem = data.Count(),
+                HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0)
+            });
+        }
+
+        #endregion
 
         #region Helpers
 

@@ -13,7 +13,6 @@ namespace Fanex.AffiliateAdmin.Controller
     using System;
     using System.Linq;
     using System.Web.Mvc;
-    using System.Web.Script.Serialization;
     using Core.Configurations;
     using Core.Entities;
     using Core.Enumerations;
@@ -21,7 +20,6 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Session;
     using Core.Utilities;
     using Criterias;
-    using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Models;
 

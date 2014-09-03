@@ -6,7 +6,7 @@
 <#@ assembly name="System.Core" #>
 <#@ assembly name="$(SolutionDir)\Fanex.AffiliateAdmin.ConfigGenerator\bin\Debug\Fanex.AffiliateAdmin.ConfigGenerator.dll" #>
 <#@ import namespace="Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders" #>
-<#@ include file="$(SolutionDir)\_Dependencies\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
+<#@ include file="$(SolutionDir)\packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
 <# 
 	var fileManager = TemplateFileManager.Create(this);
 	fileManager.IsAutoIndentEnabled = true;

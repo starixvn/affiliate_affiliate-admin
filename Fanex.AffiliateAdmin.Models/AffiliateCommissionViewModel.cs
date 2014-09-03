@@ -1,17 +1,15 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ProcessingCommissionViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AffiliateCommissionViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Leo.Vo" date="2013.8.21">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.3">Created</change>
 // </history>
-
-using System;
-using System.Net.Mime;
 
 namespace Fanex.AffiliateAdmin.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
@@ -23,11 +21,11 @@ namespace Fanex.AffiliateAdmin.Models
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ProcessingCommissionViewModel
+    public class AffiliateCommissionViewModel
     {
         private readonly IList<SelectListItem> _transferStatusList = new List<SelectListItem>
         {
-                new SelectListItem { Text = Lang.All, Value = "0"},
+                new SelectListItem { Text = Lang.All, Value = "0" },
                 new SelectListItem { Text = Lang.Processing, Value = "1" },
                 new SelectListItem { Text = Lang.Transfered, Value = "2" }
         };
@@ -52,7 +50,7 @@ namespace Fanex.AffiliateAdmin.Models
 
         private SelectList _groupByOptions;
 
-        public ProcessingCommissionViewModel()
+        public AffiliateCommissionViewModel()
         {
             ExcludeTest = true;
         }

@@ -1,22 +1,21 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ProcessingCommCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AffiliateCommissionCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2013.12.10">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.3">Created</change>
 // </history>
-
-using System;
 
 namespace Fanex.AffiliateAdmin.Criterias
 {
+    using System;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Commission group criteria class.
     /// </summary>
-    public class ProcessingCommCriteria : CriteriaBase
+    public class AffiliateCommissionCriteria : CriteriaBase
     {
         public int UserId { get; set; }
 

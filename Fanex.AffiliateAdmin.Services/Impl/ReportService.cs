@@ -47,9 +47,14 @@ namespace Fanex.AffiliateAdmin.Services
             return GetData<QualifiedMember>(criteria);
         }
 
-        CommissionReport IReportService.GetCommission(CommissionReportCriteria criteria)
+        CommissionReport IReportService.GetCommission(AffiliateWinLossCriteria criteria)
         {
             return _reportDataAccess.GetCommission(criteria);
+        }
+
+        public IEnumerable<ProcessingComm> GetProcessingCommissions(AffiliateCommissionCriteria criteria)
+        {
+            return GetDataOutput<ProcessingComm>(criteria);
         }
     }
 }

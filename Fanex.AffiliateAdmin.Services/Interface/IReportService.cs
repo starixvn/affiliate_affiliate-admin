@@ -22,10 +22,12 @@ namespace Fanex.AffiliateAdmin.Services
 
         IEnumerable<MemberStatistic> GetMemberStatistics(MemberStatisticReportCriteria criteria);
 
-        CommissionReport GetCommission(CommissionReportCriteria criteria);
+        CommissionReport GetCommission(AffiliateWinLossCriteria criteria);
 
         MemberWinlossReport GetMemberWinloss(MemberWinlossReportCriteria criteria);
 
         IEnumerable<QualifiedMember> GetQualifiedMembers(QualifiedMembersReportCriteria criteria);
+
+        IEnumerable<ProcessingComm> GetProcessingCommissions(AffiliateCommissionCriteria criteria);
     }
 }

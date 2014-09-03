@@ -10,7 +10,6 @@
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Threading;
 

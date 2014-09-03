@@ -14,7 +14,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     using System;
     using System.Collections.Generic;
     using System.Configuration;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Criterias;

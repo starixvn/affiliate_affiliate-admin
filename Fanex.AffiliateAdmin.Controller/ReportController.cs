@@ -35,13 +35,10 @@ namespace Fanex.AffiliateAdmin.Controller
 
         private readonly IReportService _reportService;
 
-        private readonly IPaymentService _paymentService;
-
-        public ReportController(IReportService reportService, ICommGroupService commGroupService, IPaymentService paymentService)
+        public ReportController(IReportService reportService, ICommGroupService commGroupService)
         {
             _reportService = reportService;
             _commGroupService = commGroupService;
-            _paymentService = paymentService;
         }
 
         #region Company Winloss Report
@@ -299,7 +296,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
 
-            return View(new CommissionReportViewModel());
+            return View(new AffiliateWinLossViewModel());
         }
 
         /// <summary>
@@ -308,7 +305,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Report data.</returns>
         [HttpPost]
-        public ActionResult AffiliateWinLoss(CommissionReportCriteria criteria)
+        public ActionResult AffiliateWinLoss(AffiliateWinLossCriteria criteria)
         {
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
@@ -339,7 +336,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="model">Model Input.</param>
         /// <returns>Commission By Affiliate Result.</returns>
         [HttpGet]
-        public ActionResult AffiliateWinLossByAffiliate(CommissionReportViewModel model)
+        public ActionResult AffiliateWinLossByAffiliate(AffiliateWinLossViewModel model)
         {
             var serializer = new JavaScriptSerializer();
 
@@ -363,7 +360,7 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         [HttpPost]
-        public ActionResult AffiliateWinLossByAffiliate(CommissionReportCriteria criteria)
+        public ActionResult AffiliateWinLossByAffiliate(AffiliateWinLossCriteria criteria)
         {
             criteria.AffName = CurrentSession.Affiliate.Username;
             criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
@@ -412,7 +409,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 Name = x.ProductName
             }));
 
-            return View(new ProcessingCommissionViewModel());
+            return View(new AffiliateCommissionViewModel());
         }
 
         /// <summary>
@@ -421,12 +418,12 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Processing Commission Result.</returns>
         [HttpPost]
-        public ActionResult AffiliateCommission(ProcessingCommCriteria criteria)
+        public ActionResult AffiliateCommission(AffiliateCommissionCriteria criteria)
         {
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
 
-            var data = _paymentService.GetProcessingCommissions(criteria);
+            var data = _reportService.GetProcessingCommissions(criteria);
 
             return Json(new
             {

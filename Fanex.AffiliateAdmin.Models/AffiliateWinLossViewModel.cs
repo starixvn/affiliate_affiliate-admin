@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="CommissionReportViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AffiliateWinLossViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2013.10.16">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.3">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.Models
@@ -20,7 +20,7 @@ namespace Fanex.AffiliateAdmin.Models
     /// <summary>
     /// Affiliate List View Model.
     /// </summary>
-    public class CommissionReportViewModel
+    public class AffiliateWinLossViewModel
     {
         #region Fields
 
@@ -85,7 +85,7 @@ namespace Fanex.AffiliateAdmin.Models
 
         #endregion Fields
 
-        public CommissionReportViewModel()
+        public AffiliateWinLossViewModel()
         {
             ExcludeTest = true;
         }

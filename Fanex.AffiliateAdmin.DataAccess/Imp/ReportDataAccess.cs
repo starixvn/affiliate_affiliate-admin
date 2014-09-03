@@ -89,7 +89,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="criteria">Criteria input.</param>
         /// <returns>Commission report.</returns>
-        public CommissionReport GetCommission(CommissionReportCriteria criteria)
+        public CommissionReport GetCommission(AffiliateWinLossCriteria criteria)
         {
             var commissionReport = new CommissionReport();
 
@@ -544,7 +544,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="reader">Data reader.</param>
         /// <param name="criteria">Criteria input.</param>
         /// <returns>Commission list.</returns>
-        private IEnumerable<CommissionItem> GetCommissionList(IDataReader reader, CommissionReportCriteria criteria)
+        private IEnumerable<CommissionItem> GetCommissionList(IDataReader reader, AffiliateWinLossCriteria criteria)
         {
             var result = new List<CommissionItem>();
 
@@ -584,7 +584,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="reader">Data reader.</param>
         /// <param name="criteria">Criteria input.</param>
         /// <returns>Total commission list.</returns>
-        private IEnumerable<CommissionItem> GetTotalCommissionInAffiliateCurrency(IDataReader reader, CommissionReportCriteria criteria)
+        private IEnumerable<CommissionItem> GetTotalCommissionInAffiliateCurrency(IDataReader reader, AffiliateWinLossCriteria criteria)
         {
             var result = new List<CommissionItem>();
 
@@ -631,7 +631,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="criteria">Commission report criteria.</param>
         /// <returns>True if grouped by month.</returns>
-        private bool IsGroupByMonth(CommissionReportCriteria criteria)
+        private bool IsGroupByMonth(AffiliateWinLossCriteria criteria)
         {
             const int GroupByMonth = 0;
 
@@ -663,7 +663,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="criteria">Criteria input.</param>
         /// <param name="reader">Data reader.</param>
         /// <param name="commission">Commission object.</param>
-        private void GetCommissionColumnsBasedOnBaseCurrency(CommissionReportCriteria criteria, IDataReader reader, CommissionItem commission)
+        private void GetCommissionColumnsBasedOnBaseCurrency(AffiliateWinLossCriteria criteria, IDataReader reader, CommissionItem commission)
         {
             const byte AffiliateCurrency = 0;
             const byte SystemCurrency = 1;

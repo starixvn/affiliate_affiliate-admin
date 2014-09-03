@@ -27,13 +27,5 @@ namespace Fanex.AffiliateAdmin.Services
         int GetCustIDByUsername(DummyAccIdCriteria criteria);
 
         void UpdatePayment(PaymentUpdateCriteria criteria);
-
-        IEnumerable<ProcessingComm> GetProcessingCommissions(ProcessingCommCriteria criteria);
-
-        void UpdateCashBack(CashBackUpdateCriteria criteria);
-
-        string MonthlyTransfer(MonthlyTransferCriteria criteria);
-
-        void CheckMonthlyTransfer(IsMonthlyTransferCriteria criteria);
     }
 }

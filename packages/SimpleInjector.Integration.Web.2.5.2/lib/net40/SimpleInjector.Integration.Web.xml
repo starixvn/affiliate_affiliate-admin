@@ -19,13 +19,6 @@
             ]]></code>
             </example>
         </member>
-        <member name="F:SimpleInjector.Integration.Web.WebRequestLifestyle.WithDisposal">
-            <summary>
-            A default <see cref="T:SimpleInjector.Integration.Web.WebRequestLifestyle"/> instance that can be used for registering components
-            per web request. This instance will ensure created instance get disposed after the web request
-            ends.
-            </summary>
-        </member>
         <member name="M:SimpleInjector.Integration.Web.WebRequestLifestyle.#ctor">
             <summary>Initializes a new instance of the <see cref="T:SimpleInjector.Integration.Web.WebRequestLifestyle"/> class. The instance
             will ensure that created and cached instance will be disposed after the execution of the web
@@ -38,29 +31,34 @@
             request ended and when the created object implements <see cref="T:System.IDisposable"/>. 
             </param>
         </member>
-        <member name="M:SimpleInjector.Integration.Web.WebRequestLifestyle.CreateRegistrationCore``2(SimpleInjector.Container)">
+        <member name="M:SimpleInjector.Integration.Web.WebRequestLifestyle.WhenCurrentRequestEnds(SimpleInjector.Container,System.Action)">
             <summary>
-            Creates a new <see cref="T:SimpleInjector.Registration"/> instance defining the creation of the
-            specified <typeparamref name="TImplementation"/> with the caching as specified by this lifestyle.
+            Allows registering an <paramref name="action"/> delegate that will be called when the scope ends,
+            but before the scope disposes any instances.
             </summary>
-            <typeparam name="TService">The interface or base type that can be used to retrieve the instances.</typeparam>
-            <typeparam name="TImplementation">The concrete type that will be registered.</typeparam>
-            <param name="container">The <see cref="T:SimpleInjector.Container"/> instance for which a 
-            <see cref="T:SimpleInjector.Registration"/> must be created.</param>
-            <returns>A new <see cref="T:SimpleInjector.Registration"/> instance.</returns>
+            <param name="container">The <see cref="T:SimpleInjector.Container"/> instance.</param>
+            <param name="action">The delegate to run when the scope ends.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when one of the arguments is a null reference
+            (Nothing in VB).</exception>
+            <exception cref="T:System.InvalidOperationException">Will be thrown when the current thread isn't running
+            in the context of a web request.</exception>
         </member>
-        <member name="M:SimpleInjector.Integration.Web.WebRequestLifestyle.CreateRegistrationCore``1(System.Func{``0},SimpleInjector.Container)">
+        <member name="M:SimpleInjector.Integration.Web.WebRequestLifestyle.GetCurrentScopeCore(SimpleInjector.Container)">
             <summary>
-            Creates a new <see cref="T:SimpleInjector.Registration"/> instance defining the creation of the
-            specified <typeparamref name="TService"/> using the supplied <paramref name="instanceCreator"/> 
-            with the caching as specified by this lifestyle.
+            Returns the current <see cref="T:SimpleInjector.Scope"/> for this lifestyle and the given 
+            <paramref name="container"/>, or null when this method is executed outside the context of a scope.
             </summary>
-            <typeparam name="TService">The interface or base type that can be used to retrieve the instances.</typeparam>
-            <param name="instanceCreator">A delegate that will create a new instance of 
-            <typeparamref name="TService"/> every time it is called.</param>
-            <param name="container">The <see cref="T:SimpleInjector.Container"/> instance for which a 
-            <see cref="T:SimpleInjector.Registration"/> must be created.</param>
-            <returns>A new <see cref="T:SimpleInjector.Registration"/> instance.</returns>
+            <param name="container">The container instance that is related to the scope to return.</param>
+            <returns>A <see cref="T:SimpleInjector.Scope"/> instance or null when there is no scope active in this context.</returns>
+        </member>
+        <member name="M:SimpleInjector.Integration.Web.WebRequestLifestyle.CreateCurrentScopeProvider(SimpleInjector.Container)">
+            <summary>
+            Creates a delegate that that upon invocation return the current <see cref="T:SimpleInjector.Scope"/> for this
+            lifestyle and the given <paramref name="container"/>, or null when the delegate is executed outside
+            the context of such scope.
+            </summary>
+            <param name="container">The container for which the delegate gets created.</param>
+            <returns>A <see cref="T:System.Func`1"/> delegate. This method never returns null.</returns>
         </member>
         <member name="P:SimpleInjector.Integration.Web.WebRequestLifestyle.Length">
             <summary>Gets the length of the lifestyle.</summary>

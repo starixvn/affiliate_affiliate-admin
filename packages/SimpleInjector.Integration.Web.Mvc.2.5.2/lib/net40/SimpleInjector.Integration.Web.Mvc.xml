@@ -20,7 +20,7 @@
                      // container.Register<IUserRepository, SqlUserRepository>();
              
                      container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
-                     container.RegisterMvcAttributeFilterProvider();
+                     container.RegisterMvcIntegratedFilterProvider();
             
                      // Create a new SimpleInjectorDependencyResolver that wraps the,
                      // container, and register that resolver in MVC.
@@ -37,7 +37,7 @@
              ]]></code>
              The previous example show the use of the 
              <see cref="M:SimpleInjector.SimpleInjectorMvcExtensions.RegisterMvcControllers(SimpleInjector.Container,System.Reflection.Assembly[])">RegisterMvcControllers</see> and
-             <see cref="M:SimpleInjector.SimpleInjectorMvcExtensions.RegisterMvcAttributeFilterProvider(SimpleInjector.Container)">RegisterMvcAttributeFilterProvider</see>
+             <see cref="M:SimpleInjector.SimpleInjectorMvcExtensions.RegisterMvcIntegratedFilterProvider(SimpleInjector.Container)">RegisterMvcIntegratedFilterProvider</see>
              extension methods and how the <b>SimpleInjectorDependencyResolver</b> can be used to set the created
              <see cref="P:SimpleInjector.Integration.Web.Mvc.SimpleInjectorDependencyResolver.Container"/> instance as default dependency resolver in MVC.
              </example>
@@ -72,6 +72,18 @@
         <member name="M:SimpleInjector.SimpleInjectorMvcExtensions.RegisterMvcAttributeFilterProvider(SimpleInjector.Container)">
             <summary>Registers a <see cref="T:System.Web.Mvc.IFilterProvider"/> that allows implicit property injection into
             the filter attributes that are returned from the provider.</summary>
+            <param name="container">The container that should be used for injecting properties into attributes
+            that the MVC framework uses.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when the <paramref name="container"/> is a null reference.</exception>
+        </member>
+        <member name="M:SimpleInjector.SimpleInjectorMvcExtensions.RegisterMvcIntegratedFilterProvider(SimpleInjector.Container)">
+            <summary>Registers a <see cref="T:System.Web.Mvc.IFilterProvider"/> that allows filter attributes to go through the
+            Simple Injector pipeline (https://bit.ly/MEau5L). This allows any registered property to be 
+            injected if a custom <see cref="T:SimpleInjector.Advanced.IPropertySelectionBehavior"/> in configured in the container, and 
+            allows any<see cref="M:SimpleInjector.Container.RegisterInitializer(System.Action{SimpleInjector.Advanced.InstanceInitializationData},System.Predicate{SimpleInjector.Advanced.InitializationContext})">initializers</see> to be called on those 
+            attributes.
+            </summary>
             <param name="container">The container that should be used for injecting properties into attributes
             that the MVC framework uses.</param>
             <exception cref="T:System.ArgumentNullException">

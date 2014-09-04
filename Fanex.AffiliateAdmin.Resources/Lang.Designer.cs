@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fanex.AffiliateAdmin.Resources
-{
-
-
+namespace Fanex.AffiliateAdmin.Resources {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -1451,7 +1451,7 @@ namespace Fanex.AffiliateAdmin.Resources
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company Winloss.
+        ///   Looks up a localized string similar to Company Win Loss.
         /// </summary>
         public static string CompanyWinloss {
             get {
@@ -4547,7 +4547,7 @@ namespace Fanex.AffiliateAdmin.Resources
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Member Winloss.
+        ///   Looks up a localized string similar to Member Win Loss.
         /// </summary>
         public static string MemberWinloss {
             get {

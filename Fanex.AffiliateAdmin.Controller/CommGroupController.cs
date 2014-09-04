@@ -292,52 +292,74 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="groupIDList">List group id.</param>
         private void BuildGroupData(IEnumerable<CommGroup> groups, DateTime date, string groupIDList)
         {
-            var detailCriteria = new CommGroupDetailCriteria { GroupIDList = groupIDList, Date = date };
+            var detailCriteria = new TierSettingCriteria { GroupIDList = groupIDList, Date = date };
+
             var settingCriteria = new DeductionSettingCriteria { GroupIDList = groupIDList, Date = date };
-            var groupDetails = _commGroupService.GetGroupDetails(detailCriteria);
+
+            var tierSettings = _commGroupService.GetTierSettings(detailCriteria);
+
             var deductionSettings = _commGroupService.GetDeductionSettings(settingCriteria);
-            var allDeductions = AppSettings.DeductionTypes;
 
             foreach (var group in groups)
             {
-                var details = groupDetails.Where(x => x.GroupId == group.GroupID).ToList();
+                var details = tierSettings.Where(x => x.GroupId == group.GroupID).ToList();
+
                 var products = new Dictionary<string, object>();
 
-                foreach (var detail in details)
+                GetCommGroupSettings(details, products, group, deductionSettings);
+            }
+        }
+
+        /// <summary>
+        /// Get commission group settings.
+        /// </summary>
+        /// <param name="tierSettings">Tier settings.</param>
+        /// <param name="products">Product list.</param>
+        /// <param name="group">Commission group.</param>
+        /// <param name="deductionSettings">Deduction setting.</param>
+        private void GetCommGroupSettings(
+            List<CommGroupTierSetting> tierSettings, 
+            Dictionary<string, object> products, 
+            CommGroup group, 
+            IEnumerable<DeductionSetting> deductionSettings)
+        {
+            var allDeductions = AppSettings.DeductionTypes;
+
+            foreach (var detail in tierSettings)
+            {
+                var id = detail.ProductID.ToString();
+                if (!products.ContainsKey(id))
                 {
-                    var id = detail.ProductID.ToString();
-                    if (!products.ContainsKey(id))
-                    {
-                        products.Add(
-                            id,
-                            new
+                    products.Add(
+                        id,
+                        new
                             {
-                                NumOfItems = details.Count(x => x.GroupId == group.GroupID && x.ProductID == detail.ProductID),
-                                Deductions = GetDeductionSettings(deductionSettings, allDeductions, group, detail)
+                                NumOfItems = tierSettings.Count(x => x.GroupId == @group.GroupID && x.ProductID == detail.ProductID),
+                                Deductions = GetDeductionSettings(deductionSettings, allDeductions, @group, detail)
                             });
-                    }
                 }
+            }
 
-                group.IsAllowedToDelete = group.NoOfAffiliate == 0 && group.CurrencyID != 0;
-                group.AddProducts(products.ToDictionary(x => x.Key, x => x.Value));
-                group.AddDetails(details.ToList());
-                if (group.HasCashback > 0)
+            @group.IsAllowedToDelete = @group.NoOfAffiliate == 0 && @group.CurrencyID != 0;
+            @group.AddProducts(products.ToDictionary(x => x.Key, x => x.Value));
+            @group.AddDetails(tierSettings.ToList());
+
+            if (@group.HasCashback > 0)
+            {
+                var deduction = new Dictionary<string, decimal>();
+                var deductions = allDeductions.Where(x => x.ProductID == 0);
+                if (deductions.Count() > 0)
                 {
-                    var deduction = new Dictionary<string, decimal>();
-                    var deductions = allDeductions.Where(x => x.ProductID == 0);
-                    if (deductions.Count() > 0)
+                    var settings = deductionSettings.Where(x => x.GroupID == @group.GroupID).ToList();
+
+                    foreach (var item in deductions)
                     {
-                        var settings = deductionSettings.Where(x => x.GroupID == group.GroupID).ToList();
-
-                        foreach (var item in deductions)
-                        {
-                            var setting = settings.Where(x => x.DeductionID == item.DTypeID).FirstOrDefault();
-                            deduction.Add(item.DTypeName, setting == null ? -1 : setting.DeductedPercentage);
-                        }
+                        var setting = settings.Where(x => x.DeductionID == item.DTypeID).FirstOrDefault();
+                        deduction.Add(item.DTypeName, setting == null ? -1 : setting.DeductedPercentage);
                     }
-
-                    group.AddGeneralDeductions(deduction);
                 }
+
+                @group.AddGeneralDeductions(deduction);
             }
         }
 
@@ -372,7 +394,7 @@ namespace Fanex.AffiliateAdmin.Controller
             IEnumerable<DeductionSetting> deductionSettings,
             IEnumerable<DeductionType> allDeductions,
             CommGroup group,
-            CommGroupDetail detail)
+            CommGroupTierSetting detail)
         {
             var deduction = new Dictionary<string, decimal>();
             var deductions = allDeductions.Where(x => x.ProductID == detail.ProductID);

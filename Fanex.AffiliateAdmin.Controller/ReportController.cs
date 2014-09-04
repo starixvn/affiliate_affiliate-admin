@@ -41,7 +41,7 @@ namespace Fanex.AffiliateAdmin.Controller
             _commGroupService = commGroupService;
         }
 
-        #region Company Winloss Report
+        #region Company Win Loss Report
 
         /// <summary>
         /// Company Win loss Report.
@@ -141,7 +141,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #endregion Company Winloss Report
 
-        #region Member Winloss Report
+        #region Member Win Loss Report
 
         /// <summary>
         /// Member Win loss Report.
@@ -485,8 +485,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 return selectedProductList.ToList();
             }
 
-            var detailCriteria = new CommGroupDetailCriteria { GroupIDList = groupId.ToString(CultureInfo.InvariantCulture), Date = month };
-            var productListInCommGroup = _commGroupService.GetGroupDetails(detailCriteria).Select(t => t.ProductID).Distinct();
+            var detailCriteria = new TierSettingCriteria { GroupIDList = groupId.ToString(CultureInfo.InvariantCulture), Date = month };
+            var productListInCommGroup = _commGroupService.GetTierSettings(detailCriteria).Select(t => t.ProductID).Distinct();
 
             return selectedProductList.Intersect(productListInCommGroup).ToList();
         }

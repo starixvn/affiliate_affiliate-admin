@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="CommGroupDetail.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CommGroupTierSetting.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Joseph.Pham" date="2013.9.10">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.4">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.DTO
@@ -12,7 +12,7 @@ namespace Fanex.AffiliateAdmin.DTO
     /// <summary>
     /// Commission Group Detail Class.
     /// </summary>
-    public class CommGroupDetail
+    public class CommGroupTierSetting
     {
         public int GroupId { get; set; }
 

@@ -37,7 +37,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List data.</returns>
-        IEnumerable<CommGroupDetail> GetGroupDetails(CommGroupDetailCriteria criteria);
+        IEnumerable<CommGroupTierSetting> GetTierSettings(TierSettingCriteria criteria);
 
         /// <summary>
         /// Get list data.

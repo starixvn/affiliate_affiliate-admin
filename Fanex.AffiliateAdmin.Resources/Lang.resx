@@ -570,7 +570,7 @@
     <value>%Comm</value>
   </data>
   <data name="CompanyWinloss" xml:space="preserve">
-    <value>Company Winloss</value>
+    <value>Company Win Loss</value>
   </data>
   <data name="CompanyWL" xml:space="preserve">
     <value>Company W/L</value>
@@ -1593,7 +1593,7 @@
     <value>Member Type</value>
   </data>
   <data name="MemberWinloss" xml:space="preserve">
-    <value>Member Winloss</value>
+    <value>Member Win Loss</value>
   </data>
   <data name="MemDomainNameNotContainChar" xml:space="preserve">
     <value>Member domain name can not contain this character.</value>

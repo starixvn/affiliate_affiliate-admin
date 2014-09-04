@@ -52,10 +52,10 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List data.</returns>
-        public IEnumerable<CommGroupDetail> GetGroupDetails(CommGroupDetailCriteria criteria)
+        public IEnumerable<CommGroupTierSetting> GetTierSettings(TierSettingCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return GetDataOutput<CommGroupDetail>(criteria);        
+            return GetDataOutput<CommGroupTierSetting>(criteria);        
         }
         
         /// <summary>

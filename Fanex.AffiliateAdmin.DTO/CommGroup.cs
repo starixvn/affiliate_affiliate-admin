@@ -23,7 +23,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         private Dictionary<string, object> _products;
 
-        private IEnumerable<CommGroupDetail> _details;
+        private IEnumerable<CommGroupTierSetting> _details;
 
         #endregion
 
@@ -69,7 +69,7 @@ namespace Fanex.AffiliateAdmin.DTO
             }
         }
 
-        public IEnumerable<CommGroupDetail> Details
+        public IEnumerable<CommGroupTierSetting> Details
         {
             get
             {
@@ -91,7 +91,7 @@ namespace Fanex.AffiliateAdmin.DTO
             _products = products;
         }
 
-        public void AddDetails(IEnumerable<CommGroupDetail> details)
+        public void AddDetails(IEnumerable<CommGroupTierSetting> details)
         {
             _details = details;
         }

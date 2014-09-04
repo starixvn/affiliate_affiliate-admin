@@ -3,11 +3,10 @@ var AffiliateWinLossReport = (function ($) {
     "use strict";
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = "1";
-    var GROUP_BY_MONTH = "0";
+    var GROUP_BY_MONTH = "1";
+    var GROUP_BY_AFFILIATE = "0";
     var MONTH_COL = 1, COMMGROUP_COL = 4;
-    // number of all common columns (except product columns).
     var _commonColumnCount = 0;
-    var _hideColumns = [MONTH_COL, COMMGROUP_COL];
     var _indexProductColumns = [];
     var _isSimpleMode = false;
 
@@ -16,6 +15,10 @@ var AffiliateWinLossReport = (function ($) {
     var getMergeColNumberForProductColumn = function () {
         var mergeColNumber = 5;
         return mergeColNumber;
+    };
+
+    var byAffiliate = function () {
+        return $('#ByAffiliate').length > 0;
     };
 
     var getSelectedProducts = function (products) {
@@ -28,26 +31,40 @@ var AffiliateWinLossReport = (function ($) {
         });
     };
 
+    var removeRedundantColumns = function () {
+        if (!byAffiliate() && submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
+            gridOption.groupHeaderRows[0].Columns.splice(MONTH_COL, 1);
+            gridOption.columns.splice(MONTH_COL, 1);
+
+            gridOption.groupHeaderRows[0].Columns.splice(COMMGROUP_COL - 1, 1);
+            gridOption.columns.splice(COMMGROUP_COL - 1, 1);
+        }
+    };
+
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     function initProductColumnsForGridOption() {
-        var mergeColNumber = getMergeColNumberForProductColumn();
         var extraThreeColForPlayTech = 3;
 
+        removeRedundantColumns();
+
         _indexProductColumns.clear();
-        
+
         _commonColumnCount = gridOption.columns.length;
 
         var products = getSelectedProducts(window.PRODUCTS);
+
         var productCount = products.length;
 
         for (var i = 0; i < productCount; i++) {
             var name = nomalizeProductName(products[i].Name);
             var isPlaytechCasino = products[i].Name === "Playtech Casino";
+            var mergeColNumber = getMergeColNumberForProductColumn();
             mergeColNumber = isPlaytechCasino ? mergeColNumber + extraThreeColForPlayTech : mergeColNumber;
 
             gridOption.groupHeaderRows[0].Columns.push(
                 { HeaderText: window.MSG[name], Name: name + "ActivePlayers", MergeColNumber: mergeColNumber }
             );
+
             gridOption.columns.push(
                 { HeaderText: window.MSG.ActivePlayers, Width: 90, Name: name + "ActivePlayers", HeaderAlign: "center", CellAlign: "right" }
             );
@@ -112,9 +129,30 @@ var AffiliateWinLossReport = (function ($) {
         }
     }
 
+    var getMergeColNumberOfTotalRow = function () {
+        if (byAffiliate()) {
+            return 2;
+        }
+
+        if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
+            return 3;
+        }
+        return 5;
+    };
+
+    var getFistColumNameForTotalRow = function () {
+        if (byAffiliate()) {
+            return "WinlostDate";
+        }
+
+        return "Username";
+    };
+
     function getFooterRows(subTotalData, totalRowData, totalItem, hasShowSubTotalRow) {
-        var mergeCols = 5;
+        var mergeCols = getMergeColNumberOfTotalRow();
         var subTotalRowCount = subTotalData.length;
+
+        var fistColumName = getFistColumNameForTotalRow();
 
         var footerRows = [];
         var col, i;
@@ -129,7 +167,7 @@ var AffiliateWinLossReport = (function ($) {
                     var columns = [];
 
                     if (idx === 0) {
-                        columns.push({ Value: MSG.SubTotal, Name: "Username", HeaderAlign: "center",
+                        columns.push({ Value: MSG.SubTotal, Name: fistColumName, HeaderAlign: "center",
                             CellAlign: "center", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount,
                             TdClass: realSubTotalclass
                         });
@@ -155,7 +193,7 @@ var AffiliateWinLossReport = (function ($) {
 
                 // pseudo sub total row.
                 var columns = [];
-                columns.push({ Value: MSG.SubTotal, Name: "Username", HeaderAlign: "center",
+                columns.push({ Value: MSG.SubTotal, Name: fistColumName, HeaderAlign: "center",
                     CellAlign: "center", MergeColNumber: mergeCols, MergeRowNumber: 1,
                     TdClass: pseudoSubTotalclass
                 });
@@ -172,7 +210,7 @@ var AffiliateWinLossReport = (function ($) {
         // Total row
         var totalColums = [];
         totalColums.push({ Value: "<div align='center'>" + MSG.Total + "</div>",
-            Name: "Username", MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount
+            Name: fistColumName, MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount
         });
 
         for (i = mergeCols; i < gridOption.columns.length; i++) {
@@ -220,13 +258,7 @@ var AffiliateWinLossReport = (function ($) {
             columns = _indexProductColumns.clone();
         }
 
-        if ($("#GroupBy").val() === GROUP_BY_MONTH) {
-            $("#gridId").fanexGrid("hideColumns", gridOption, columns);
-        }
-        else {
-            columns = columns.concat(_hideColumns.clone());
-            $("#gridId").fanexGrid("hideColumns", gridOption, columns);
-        }
+        $("#gridId").fanexGrid("hideColumns", gridOption, columns);
 
         var hasGroupByMonth = submitOptions.GroupBy === GROUP_BY_MONTH;
 
@@ -310,6 +342,7 @@ var AffiliateWinLossReport = (function ($) {
                     products: $(this).data("products"),
                     groupid: $(this).data("groupid")
                 };
+
                 var title = MSG.AffQualifiedMemReportDetailFor
                     .format($(this).data("affname"), param.monthdate,
                             $(this).data("currency"), $(this).data("commgroup"));

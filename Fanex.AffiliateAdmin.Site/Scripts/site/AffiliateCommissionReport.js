@@ -1,16 +1,13 @@
 ﻿/*global AFFILIATE,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
 var AffiliateCommissionReport = (function ($) {
-    
+
     "use strict";
 
     var submitOptions = {};
     var SYS_CURRENCY_OPTION = "1";
-    var _freezeColumnCount = 5;
     var gridOption = {};
-    var MONTH_COL = 2, COMMGROUP_COL = 3;
-    var GROUP_BY_AFFILIATE = '0';
-
-    var _hideColumns = [MONTH_COL, COMMGROUP_COL];
+    var MONTH_COL = 2;
+    var GROUP_BY_AFFILIATE = "0";
 
     var getSelectedProducts = function (products) {
         var selectedProducts = $.map(submitOptions.Products.split(','), function (item) {
@@ -28,19 +25,28 @@ var AffiliateCommissionReport = (function ($) {
     };
 
     var removeRedundantColumns = function () {
-        if ($("#GroupBy").val() === GROUP_BY_AFFILIATE) {
-            gridOption.groupHeaderRows[0].Columns.slice(MONTH_COL, 2);
-            gridOption.columns.slice(MONTH_COL, 2);
+        if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
+            gridOption.groupHeaderRows[0].Columns.splice(MONTH_COL, 2);
+            gridOption.columns.splice(MONTH_COL, 2);
         }
+    };
+
+    var getNumberOfFrozenColumn = function () {
+        if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
+            return 3;
+        }
+
+        return 5;
     };
 
     var initProductColumnsForGridOption = function (products) {
         var productCount = products.length;
-        var mergeColNumber = getMergeColNumberForProductColumn();
-        
+        var extraThreeColForPlayTech = 3;
+
         for (var i = 0; i < productCount; i++) {
             var name = nomalizeProductName(products[i].Name);
             var isPlaytechCasino = products[i].Name === "Playtech Casino";
+            var mergeColNumber = getMergeColNumberForProductColumn();
             mergeColNumber = isPlaytechCasino ? mergeColNumber + extraThreeColForPlayTech : mergeColNumber;
 
             gridOption.groupHeaderRows[0].Columns.push(
@@ -50,7 +56,7 @@ var AffiliateCommissionReport = (function ($) {
             );
 
             gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: window.MSG.Winloss, HeaderText: window.MSG.Winloss,
+                { IsCurrency: true, HeaderCaption: window.MSG.NetWinloss, HeaderText: window.MSG.NetWinloss,
                     Width: 100, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center",
                     CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
                 }
@@ -107,6 +113,8 @@ var AffiliateCommissionReport = (function ($) {
 
         removeRedundantColumns();
 
+        gridOption.numberOfFrozenColumn = getNumberOfFrozenColumn();
+
         initProductColumnsForGridOption(products);
 
         gridOption.groupHeaderRows[0].Columns.push(window.totalPaymentHeader);
@@ -119,8 +127,10 @@ var AffiliateCommissionReport = (function ($) {
         var col;
         var name;
 
+        var freezeColumnCount = getNumberOfFrozenColumn();
+
         // for Normal columns
-        for (i = _freezeColumnCount; i < gridOption.columns.length; i++) {
+        for (i = freezeColumnCount; i < gridOption.columns.length; i++) {
             col = gridOption.columns[i];
             if (col.NameCache) {
                 name = col.NameCache;
@@ -133,7 +143,7 @@ var AffiliateCommissionReport = (function ($) {
         }
 
         // for Header columns
-        for (i = _freezeColumnCount; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
+        for (i = freezeColumnCount; i < gridOption.groupHeaderRows[0].Columns.length; i++) {
             col = gridOption.groupHeaderRows[0].Columns[i];
             if (col.NameCache) {
                 name = col.NameCache;
@@ -255,7 +265,7 @@ var AffiliateCommissionReport = (function ($) {
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Report/AffiliateCommission"),
                 type: 'post',
-                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
+                data: jQuery.param(submitOptions) + "&pageCurrent=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 beforeSend: function () {
                     $.blockUI();
                 },
@@ -318,6 +328,6 @@ var AffiliateCommissionReport = (function ($) {
 
 $(function () {
     "use strict";
-    
+
     AffiliateCommissionReport.init();
 });

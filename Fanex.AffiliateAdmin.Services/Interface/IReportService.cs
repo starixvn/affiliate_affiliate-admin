@@ -28,6 +28,6 @@ namespace Fanex.AffiliateAdmin.Services
 
         IEnumerable<QualifiedMember> GetQualifiedMembers(QualifiedMembersReportCriteria criteria);
 
-        IEnumerable<ProcessingComm> GetProcessingCommissions(AffiliateCommissionCriteria criteria);
+        IEnumerable<AffiliateCommission> GetAffiliateCommission(AffiliateCommissionCriteria criteria);
     }
 }

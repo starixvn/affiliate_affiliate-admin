@@ -47,14 +47,13 @@ namespace Fanex.AffiliateAdmin.Models
                 {
                     new SelectListItem()
                     {
-                        Text = Lang.AffiliateMonth,
+                        Text = Lang.Affiliate,
                         Value = "0",
                     },
                     new SelectListItem()
                     {
-                        Text = Lang.Affiliate,
-                        Value = "1",
-                        Selected = true
+                        Text = Lang.AffiliateMonth,
+                        Value = "1"
                     }
                 };
 
@@ -202,7 +201,7 @@ namespace Fanex.AffiliateAdmin.Models
                                       : Products.Split(',').Select(byte.Parse);
 
                 var selectedValues = string.IsNullOrEmpty(Products)
-                                         ? AppSettings.Products.Select(t => t.ProductID)
+                                         ? AppSettings.Products.Where(t => t.IsEnabled).Select(t => t.ProductID)
                                          : productList;
 
                 return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);

@@ -688,7 +688,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="commission">Commission object.</param>
         private void GetCommissionColumnsInAffiliateCurrency(IDataReader reader, CommissionItem commission)
         {
-            // commission.PlayerComm = reader.ToDecimal("PlayerComm");
+            commission.PlayerComm = reader.ToDecimal("PlayerComm");
             commission.Deposit = reader.ToDecimal("Deposit");
             commission.Withdrawal = reader.ToDecimal("Withdrawal");
             commission.Turnover = reader.ToDecimal("Turnover");
@@ -716,7 +716,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="commission">Commission object.</param>
         private void GetCommissionColumnsInSystemCurrency(IDataReader reader, CommissionItem commission)
         {
-            // commission.PlayerCommBase = reader.ToDecimal("PlayerCommBase");
+            commission.PlayerCommBase = reader.ToDecimal("PlayerCommBase");
             commission.DepositBase = reader.ToDecimal("DepositBase");
             commission.WithdrawalBase = reader.ToDecimal("WithdrawalBase");
             commission.TurnoverBase = reader.ToDecimal("TurnoverBase");

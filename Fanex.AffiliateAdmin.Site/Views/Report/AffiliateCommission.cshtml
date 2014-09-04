@@ -57,10 +57,7 @@ report
                 </div>
                 <div class="cell">
                     <label for="SortBy" class="txt">@Lang.SortBy</label>
-                    <select id="SortBy" name="SortBy" class="width-140 single-select dropdownchecklist">
-                        <option value="0">@Lang.Affiliate</option>
-                        <option value="1">@Lang.TotalPayment</option>
-                    </select>
+                    @Html.DropDownCheckList("SortBy", Model.SortByOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
                 <div class="cell">
                     <label for="Products" class="txt">@Lang.Product</label>
@@ -110,7 +107,7 @@ report
             ActivePlayers: "@Lang.ActiveMembers",
             BetCount: "@Lang.BetCount",
             Turnover: "@Lang.Turnover",
-            Winloss: "@Lang.Winloss",
+            NetWinloss: "@Lang.NetWinloss",
             Commission: "@Lang.Commission",
             SubTotalIn: "@Lang.SubTotalIn",
             Total: "@Lang.Total",
@@ -120,6 +117,7 @@ report
             LiveCasino: "@Lang.LiveCasino",
             RNGCasino: "@Lang.RNGCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
+            VirtualSport: "@Lang.VirtualSport",
             SubTotal: "@Lang.SubTotal",
             CommPercent: "@Lang.CommPercent",
             QM: "@Lang.QM",
@@ -179,8 +177,7 @@ report
             allowTruncate: true,
             gridExpandHeight: 360,
             customizeHeader: true,
-            indexNumberColumn: 0,
-            numberOfFrozenColumn: 5
+            indexNumberColumn: 0
         };
 
         var totalPaymentHeader = { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Name: "Commission", NameCache: "Commission", MergeRowNumber: 2 };

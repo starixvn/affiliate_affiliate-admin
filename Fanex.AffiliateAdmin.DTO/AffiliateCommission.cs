@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ProcessingComm.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AffiliateCommission.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2013.12.10">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.4">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.DTO
@@ -14,7 +14,7 @@ namespace Fanex.AffiliateAdmin.DTO
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ProcessingComm
+    public class AffiliateCommission
     {
         public int? AffId { get; set; }
 
@@ -34,13 +34,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal? Commission { get; set; }
 
-        public decimal? CommissionBase { get; set; }
-
-        public decimal? CashbackPercent { get; set; }
-
-        public decimal? CashbackAmount { get; set; }
-
-        public decimal? CashbackAmountBase { get; set; }
+        public double? CommissionBase { get; set; }
 
         public decimal? SportsbookWinloss { get; set; }
 
@@ -50,9 +44,9 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal? SportsbookCommission { get; set; }
 
-        public decimal? SportsbookWinlossBase { get; set; }
+        public double? SportsbookWinlossBase { get; set; }
 
-        public decimal? SportsbookCommissionBase { get; set; }
+        public double? SportsbookCommissionBase { get; set; }
 
         public decimal? NumberGameWinloss { get; set; }
 
@@ -62,9 +56,9 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal? NumberGameCommission { get; set; }
 
-        public decimal? NumberGameWinlossBase { get; set; }
+        public double? NumberGameWinlossBase { get; set; }
 
-        public decimal? NumberGameCommissionBase { get; set; }
+        public double? NumberGameCommissionBase { get; set; }
 
         public decimal? LiveCasinoWinloss { get; set; }
 
@@ -74,9 +68,9 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal? LiveCasinoCommission { get; set; }
 
-        public decimal? LiveCasinoWinlossBase { get; set; }
+        public double? LiveCasinoWinlossBase { get; set; }
 
-        public decimal? LiveCasinoCommissionBase { get; set; }
+        public double? LiveCasinoCommissionBase { get; set; }
 
         public decimal? RNGCasinoWinloss { get; set; }
 
@@ -86,9 +80,9 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal? RNGCasinoCommission { get; set; }
 
-        public decimal? RNGCasinoWinlossBase { get; set; }
+        public double? RNGCasinoWinlossBase { get; set; }
 
-        public decimal? RNGCasinoCommissionBase { get; set; }
+        public double? RNGCasinoCommissionBase { get; set; }
 
         public decimal? PlaytechCasinoWinloss { get; set; }
 
@@ -98,13 +92,23 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal? PlaytechCasinoCommission { get; set; }
 
-        public decimal? PlaytechCasinoWinlossBase { get; set; }
+        public double? PlaytechCasinoWinlossBase { get; set; }
 
-        public decimal? PlaytechCasinoCommissionBase { get; set; }
+        public double? PlaytechCasinoCommissionBase { get; set; }
+
+        public decimal? VirtualSportWinloss { get; set; }
+
+        public int? VirtualSportQM { get; set; }
+
+        public decimal? VirtualSportCommissionPercent { get; set; }
+
+        public decimal? VirtualSportCommission { get; set; }
+
+        public double? VirtualSportWinlossBase { get; set; }
+
+        public double? VirtualSportCommissionBase { get; set; }
 
         public long? RowNo { get; set; }
-
-        public bool EnableCashback { get; set; }
 
         public decimal PShare { get; set; }
 
@@ -112,10 +116,10 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal NetGaming { get; set; }
 
-        public decimal PShareBase { get; set; }
+        public double PShareBase { get; set; }
 
-        public decimal PWinBase { get; set; }
+        public double PWinBase { get; set; }
 
-        public decimal NetGamingBase { get; set; }
+        public double NetGamingBase { get; set; }
     }
 }

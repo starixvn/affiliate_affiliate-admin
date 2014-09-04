@@ -355,7 +355,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                 if (_products == null)
                 {
                     _products = SystemSetting.GetProductList(new ProductSelectCriteria());
-                    _products = _products.Where(t => t.ProductID != 6);
                 }
 
                 return _products;

@@ -4853,6 +4853,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Net Win Loss.
+        /// </summary>
+        public static string NetWinloss {
+            get {
+                return ResourceManager.GetString("NetWinloss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Never.
         /// </summary>
         public static string Never {
@@ -7321,6 +7330,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string ViewOriginalSize {
             get {
                 return ResourceManager.GetString("ViewOriginalSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virtual Sport.
+        /// </summary>
+        public static string VirtualSport {
+            get {
+                return ResourceManager.GetString("VirtualSport", resourceCulture);
             }
         }
         

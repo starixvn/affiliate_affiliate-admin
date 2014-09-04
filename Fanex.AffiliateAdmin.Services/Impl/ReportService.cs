@@ -52,9 +52,9 @@ namespace Fanex.AffiliateAdmin.Services
             return _reportDataAccess.GetCommission(criteria);
         }
 
-        public IEnumerable<ProcessingComm> GetProcessingCommissions(AffiliateCommissionCriteria criteria)
+        public IEnumerable<AffiliateCommission> GetAffiliateCommission(AffiliateCommissionCriteria criteria)
         {
-            return GetDataOutput<ProcessingComm>(criteria);
+            return GetDataOutput<AffiliateCommission>(criteria);
         }
     }
 }

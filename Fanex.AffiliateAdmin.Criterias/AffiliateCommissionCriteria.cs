@@ -48,6 +48,12 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public byte GroupBy { get; set; }
 
+        public int PageCurrent { get; set; }
+
+        public int PageSize { get; set; }
+
+        public int NRows { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_AffiliateCommissionReport";

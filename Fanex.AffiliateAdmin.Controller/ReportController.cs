@@ -423,7 +423,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
 
-            var data = _reportService.GetProcessingCommissions(criteria);
+            var data = _reportService.GetAffiliateCommission(criteria);
 
             return Json(new
             {

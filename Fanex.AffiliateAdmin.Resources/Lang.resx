@@ -2591,4 +2591,10 @@
   <data name="TransferState" xml:space="preserve">
     <value>Transfer State</value>
   </data>
+  <data name="VirtualSport" xml:space="preserve">
+    <value>Virtual Sport</value>
+  </data>
+  <data name="NetWinloss" xml:space="preserve">
+    <value>Net Win Loss</value>
+  </data>
 </root>

@@ -32,8 +32,15 @@ namespace Fanex.AffiliateAdmin.Models
 
         private readonly IList<SelectListItem> _groupByList = new List<SelectListItem>
         {
+            new SelectListItem { Text = Lang.Affiliate, Value = "0" },
+            new SelectListItem { Text = Lang.AffiliateMonth, Value = "1" }
+        };
+
+        private readonly IEnumerable<SelectListItem> _sortByList = new List<SelectListItem>
+        {
                 new SelectListItem { Text = Lang.Affiliate, Value = "0" },
-                new SelectListItem { Text = Lang.AffiliateMonth, Value = "1" }
+                new SelectListItem { Text = Lang.TotalPayment, Value = "1" },
+                new SelectListItem { Text = Lang.Month, Value = "2" }
         };
 
         private MultiSelectList _affiliateCurrencyOptions;
@@ -49,6 +56,8 @@ namespace Fanex.AffiliateAdmin.Models
         private SelectList _transferStatusOptions;
 
         private SelectList _groupByOptions;
+
+        private SelectList _sortByOptions;
 
         public AffiliateCommissionViewModel()
         {
@@ -152,7 +161,7 @@ namespace Fanex.AffiliateAdmin.Models
                                       : Products.Split(',').Select(byte.Parse);
 
                 var selectedValues = string.IsNullOrEmpty(Products)
-                                         ? AppSettings.Products.Select(t => t.ProductID)
+                                         ? AppSettings.Products.Where(t => t.IsEnabled).Select(t => t.ProductID)
                                          : productList;
 
                 return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);
@@ -192,10 +201,23 @@ namespace Fanex.AffiliateAdmin.Models
             {
                 if (_groupByOptions == null)
                 {
-                    _groupByOptions = new SelectList(_groupByList, "Value", "Text", GroupBy);
+                    _groupByOptions = new SelectList(_groupByList, "Value", "Text");
                 }
 
                 return _groupByOptions;
+            }
+        }
+
+        public SelectList SortByOptionList
+        {
+            get
+            {
+                if (_sortByOptions == null)
+                {
+                    _sortByOptions = new SelectList(_sortByList.OrderBy(t => t.Text), "Value", "Text", "0");
+                }
+
+                return _sortByOptions;
             }
         }
     }

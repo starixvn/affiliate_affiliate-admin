@@ -66,6 +66,7 @@ report
             <div class="row-fluid row-form btn-action">
                 <div class="span12">
                     <button id="btnSubmit" type="button" class="btn btn-default">@Lang.Submit</button>
+                    <input type="hidden" name="ByAffiliate" id="ByAffiliate" value="true" />
                 </div>
             </div>
         </div>
@@ -92,6 +93,7 @@ report
             LiveCasino: "@Lang.LiveCasino",
             RNGCasino: "@Lang.RNGCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
+            VirtualSport: "@Lang.VirtualSport",
             SubTotal: "@Lang.SubTotal",
             RangeTime3Months: "@Lang.RangeTime3Months",
             CommPercent: "@Lang.CommPercent",
@@ -197,6 +199,6 @@ report
             IsCurrency: true, Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
         
     </script>
-    @Scripts.Render("~/scripts/affiliatewinlossreportbyaffiliate")
+    @Scripts.Render("~/scripts/affiliatewinlossreport")
 }
 

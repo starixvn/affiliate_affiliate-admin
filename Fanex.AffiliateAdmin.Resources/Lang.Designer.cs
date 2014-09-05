@@ -569,11 +569,32 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;ul&gt;
+        ///	&lt;li&gt;QM (Qualified Member): Total number of members whose accumulated stake in that month is greater than or equal to a defined amount&lt;/li&gt;
+        ///	&lt;li&gt;%Comm follow tier setting of commission group&lt;/li&gt;	
+        ///&lt;/ul&gt;.
+        /// </summary>
+        public static string AffiliateCommissionReportInfo {
+            get {
+                return ResourceManager.GetString("AffiliateCommissionReportInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate Domains.
         /// </summary>
         public static string AffiliateDomains {
             get {
                 return ResourceManager.GetString("AffiliateDomains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affiliate Feedback.
+        /// </summary>
+        public static string AffiliateFeedback {
+            get {
+                return ResourceManager.GetString("AffiliateFeedback", resourceCulture);
             }
         }
         
@@ -673,6 +694,18 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string AffiliateWinLossReport {
             get {
                 return ResourceManager.GetString("AffiliateWinLossReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;ul&gt;
+        ///	&lt;li&gt;Win Loss = Sum of selected products&apos; win loss&lt;/li&gt;
+        ///	{0}
+        ///&lt;/ul&gt;.
+        /// </summary>
+        public static string AffiliateWinLossReportInfo {
+            get {
+                return ResourceManager.GetString("AffiliateWinLossReportInfo", resourceCulture);
             }
         }
         
@@ -1456,6 +1489,19 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string CompanyWinloss {
             get {
                 return ResourceManager.GetString("CompanyWinloss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;ul&gt;
+        ///                &lt;li&gt;Company W/L: Sum of selected products&apos; winloss&lt;/li&gt;{0}                
+        ///                &lt;li&gt;Member W/L: Win loss amount of affiliate&apos;s members in a month on a product&lt;/li&gt;
+        ///                &lt;li&gt;PSP (Payment Service Provider Fee) = Deposit * Deposit PSP + Withdrawal * Withdrawal PSP&lt;/li&gt;
+        ///            &lt;/ul&gt;.
+        /// </summary>
+        public static string CompanyWinLossReportInfo {
+            get {
+                return ResourceManager.GetString("CompanyWinLossReportInfo", resourceCulture);
             }
         }
         
@@ -2554,15 +2600,6 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string EmailFormat {
             get {
                 return ResourceManager.GetString("EmailFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Email History.
-        /// </summary>
-        public static string EmailHistory {
-            get {
-                return ResourceManager.GetString("EmailHistory", resourceCulture);
             }
         }
         
@@ -5411,6 +5448,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Player Commmission.
+        /// </summary>
+        public static string PlayerCommission {
+            get {
+                return ResourceManager.GetString("PlayerCommission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member Detail.
         /// </summary>
         public static string PlayersDetail {
@@ -5812,21 +5858,6 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string ReportDetails {
             get {
                 return ResourceManager.GetString("ReportDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;ul&gt;
-        ///                &lt;li&gt;Company W/L: Sum of selected products&apos; winloss&lt;/li&gt;{0}
-        ///                &lt;li&gt;QM (Qualified Member): Total number of members whose accumulated stake in that month is greater than or equal to a defined amount&lt;/li&gt;
-        ///                &lt;li&gt;Member W/L: Win loss amount of affiliate&apos;s members in a month on a product&lt;/li&gt;
-        ///                &lt;li&gt;%Comm follow tier setting of commission group&lt;/li&gt;
-        ///                &lt;li&gt;PSP (Payment Service Provider Fee) = 0.03 * Deposit + 0.03 * Withdrawal&lt;/li&gt;
-        ///    [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string ReportInfo {
-            get {
-                return ResourceManager.GetString("ReportInfo", resourceCulture);
             }
         }
         

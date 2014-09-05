@@ -309,7 +309,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
-            var data = _reportService.GetCommission(criteria);
+            var data = _reportService.GetAffiliateWinLoss(criteria);
 
             var totalCommission = data.CommissionInSystemCurrency;
             totalCommission.Currency = AppSettings.BaseExchange.Code;

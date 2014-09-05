@@ -227,7 +227,7 @@ if(Site != null)
     <Setting Key="AffAdmin_CompanyWinlossReport" SpName="AffAdmin_CompanyWinlossReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
     <Setting Key="AffAdmin_MemberStatisticsReport" SpName="AffAdmin_MemberStatisticsReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
     <Setting Key="AffAdmin_AffiliateWinLossReport" SpName="AffAdmin_AffiliateWinLossReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
-    <Setting Key="AffAdmin_PlayerWinlossReport" SpName="AffAdmin_PlayerWinlossReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_MemberWinLossReport" SpName="AffAdmin_MemberWinLossReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
     <Setting Key="AffAdmin_QualifiedMembersReport" SpName="AffAdmin_QualifiedMembersReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />    
   </Function>
 </Functions>

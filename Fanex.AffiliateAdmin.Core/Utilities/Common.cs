@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     using System.Resources;
     using System.Text;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Enumerations;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.MailDeliver.MailClient.API;
     using RazorEngine;
@@ -328,14 +329,27 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         }
 
         /// <summary>
-        /// Get report info.
+        /// Get report information.
         /// </summary>
-        /// <returns>Report info.</returns>
+        /// <param name="reportType">Report type.</param>
+        /// <returns>Report information.</returns>
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept this function")]
-        public static string GetReportInfo()
+        public static string GetReportInfo(ReportType reportType)
         {
             var hasPlayCasino = AppSettings.Products.Any(t => t.ProductName.Equals("Playtech Casino"));
-            return string.Format(Lang.ReportInfo, hasPlayCasino ? Lang.PCNetGamingInfo : string.Empty);
+
+            switch (reportType)
+            {
+                case ReportType.CompanyWinLoss:
+                case ReportType.MemberWinLoss:
+                    return string.Format(Lang.CompanyWinLossReportInfo, hasPlayCasino ? Lang.PCNetGamingInfo : string.Empty);
+                case ReportType.AffiliateWinLoss:
+                    return string.Format(Lang.AffiliateWinLossReportInfo, hasPlayCasino ? Lang.PCNetGamingInfo : string.Empty);
+                case ReportType.AffiliateCommission:
+                    return Lang.AffiliateCommissionReportInfo;
+                default:
+                    return string.Empty;
+            }
         }
     }
 }

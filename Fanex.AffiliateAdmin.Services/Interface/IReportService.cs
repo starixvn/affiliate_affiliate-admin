@@ -22,9 +22,9 @@ namespace Fanex.AffiliateAdmin.Services
 
         IEnumerable<MemberStatistic> GetMemberStatistics(MemberStatisticReportCriteria criteria);
 
-        CommissionReport GetCommission(AffiliateWinLossCriteria criteria);
+        AffiliateWinLossReport GetAffiliateWinLoss(AffiliateWinLossCriteria criteria);
 
-        MemberWinlossReport GetMemberWinloss(MemberWinlossReportCriteria criteria);
+        MemberWinLossReport GetMemberWinloss(MemberWinlossReportCriteria criteria);
 
         IEnumerable<QualifiedMember> GetQualifiedMembers(QualifiedMembersReportCriteria criteria);
 

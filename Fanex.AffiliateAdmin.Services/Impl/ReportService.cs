@@ -37,7 +37,7 @@ namespace Fanex.AffiliateAdmin.Services
             return GetData<MemberStatistic>(criteria);
         }
         
-        public MemberWinlossReport GetMemberWinloss(MemberWinlossReportCriteria criteria)
+        public MemberWinLossReport GetMemberWinloss(MemberWinlossReportCriteria criteria)
         {
             return _reportDataAccess.GetMemberWinloss(criteria);
         }
@@ -47,7 +47,7 @@ namespace Fanex.AffiliateAdmin.Services
             return GetData<QualifiedMember>(criteria);
         }
 
-        CommissionReport IReportService.GetCommission(AffiliateWinLossCriteria criteria)
+        AffiliateWinLossReport IReportService.GetAffiliateWinLoss(AffiliateWinLossCriteria criteria)
         {
             return _reportDataAccess.GetCommission(criteria);
         }

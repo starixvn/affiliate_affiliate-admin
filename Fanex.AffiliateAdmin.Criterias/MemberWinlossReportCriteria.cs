@@ -61,7 +61,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public override string GetSettingKey()
         {
-            return "AffAdmin_PlayerWinlossReport";
+            return "AffAdmin_MemberWinLossReport";
         }
 
         public override bool IsValid()

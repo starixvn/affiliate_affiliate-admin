@@ -1,5 +1,4 @@
-﻿/*global AFFILIATE,MSG,moment,System,Lang,EXPAND_SUBTOTAL_STATUS,
-    moment,sampleNetGamingCol,samplePlaytechCasinoHeader,samplePShareCol,samplePWinCol*/
+﻿/*global AFFILIATE,MSG,moment,System,Lang,moment,sampleNetGamingCol,samplePlaytechCasinoHeader,samplePShareCol,samplePWinCol*/
 var CompanyWinlossReport = (function ($) {
     "use strict";
     var submitOptions = {};
@@ -19,9 +18,19 @@ var CompanyWinlossReport = (function ($) {
 
     var levels = ["Date", "Month"];
 
+    var startIndexOfTurnoverHeader = TURNOVER_COL_INDEX;
+    var startIndexOfTurnoverCol = TURNOVER_COL_INDEX;
+
+    var startIndexOfPlayerCommHeader;
+    var startIndexOfPlayerCommCol;
+
     var removeExchangeRateCol = function () {
         gridOption.groupHeaderRows[0].Columns.splice(EXRATE_COL_INDEX, 1);
         gridOption.columns.splice(EXRATE_COL_INDEX, 1);
+
+        startIndexOfTurnoverHeader = TURNOVER_COL_INDEX - 1;
+
+        startIndexOfTurnoverCol = TURNOVER_COL_INDEX - 1;
     };
 
     var changeHeaderOfWinlostDateColumn = function () {
@@ -42,84 +51,23 @@ var CompanyWinlossReport = (function ($) {
         changeHeaderOfWinlostDateColumn();
 
         gridOption.numberOfFrozenColumn = 2;
-
-        return TURNOVER_COL_INDEX - 1;
     };
 
     var changeGridOptionWhenGroupByDate = function () {
 
         switch (submitOptions.BaseCurrency) {
             case MEMBER_CURRENCY_OPTION:
+
                 removeExchangeRateCol();
 
                 gridOption.numberOfFrozenColumn = 2;
 
-                return TURNOVER_COL_INDEX - 1;
-
+                break;
             case AFF_CURRENCY_OPTION:
+
                 changeHeaderOfExchangeRateColumn();
 
-                return TURNOVER_COL_INDEX;
-
-            default:
-                return TURNOVER_COL_INDEX;
-        }
-    };
-
-    var addTurnoverColumnsWhenOnlyOneProduct = function (product, startIndex) {
-        var name = nomalizeProductName(product.Name);
-
-        var turnoverHeader = $.extend(true, {}, window.sampleTurnoverHeader);
-        turnoverHeader.Name = turnoverHeader.NameCache = name + "Turnover";
-        gridOption.groupHeaderRows[0].Columns.splice(startIndex, 0, turnoverHeader);
-
-        var turnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
-        turnoverCol.Name = turnoverCol.NameCache = name + "Turnover";
-        gridOption.columns.splice(startIndex, 0, turnoverCol);
-
-        gridOption.customizeHeader = false;
-    };
-
-    var addTurnoverColumnsWhenOverTwoProducts = function (products, startIndex) {
-        var productCount = products.length;
-
-        for (var i = 0; i < productCount; i++) {
-            var name = nomalizeProductName(products[i].Name);
-
-            if (i === 0) {
-                var turnoverHeader = $.extend(true, {}, window.sampleTurnoverHeader);
-                turnoverHeader.Name = name + "Turnover";
-                turnoverHeader.NameCache = name + "Turnover";
-                turnoverHeader.MergeColNumber = productCount + 1;
-                gridOption.groupHeaderRows[0].Columns.splice(startIndex, 0, turnoverHeader);
-            }
-
-            var turnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
-            turnoverCol.HeaderText = turnoverCol.HeaderCaption = window.MSG[name];
-            turnoverCol.Name = turnoverCol.NameCache = name + "Turnover";
-            delete turnoverCol.IsCurrency;
-            gridOption.columns.splice(startIndex + i, 0, turnoverCol);
-        }
-
-        // add total turnover column.
-        var totalTurnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
-        totalTurnoverCol.HeaderCaption = window.MSG['Total'];
-        totalTurnoverCol.HeaderText = window.MSG['Total'];
-        delete totalTurnoverCol.IsCurrency;
-        gridOption.columns.splice(startIndex + productCount, 0, totalTurnoverCol);
-    };
-
-    var addTurnoverColumnsForProducts = function (products, startIndex) {
-        var productCount = products.length;
-
-        if (productCount === 0) {
-            return;
-        }
-
-        if (productCount === 1) {
-            addTurnoverColumnsWhenOnlyOneProduct(products[0], startIndex);
-        } else {
-            addTurnoverColumnsWhenOverTwoProducts(products, startIndex);
+                break;
         }
     };
 
@@ -132,6 +80,133 @@ var CompanyWinlossReport = (function ($) {
             return $.inArray(item.Id, selectedProducts) >= 0 ? true : false;
         });
     };
+
+    var getStartIndex = function (products) {
+        var length = products.length;
+
+        if (length === 1) {
+            startIndexOfPlayerCommHeader = startIndexOfTurnoverHeader + 1;
+            startIndexOfPlayerCommCol = startIndexOfTurnoverCol + 1;
+        } else {
+            startIndexOfPlayerCommHeader = startIndexOfTurnoverHeader + 1;
+            startIndexOfPlayerCommCol = startIndexOfTurnoverCol + length + 1;
+        }
+    };
+
+    var addTurnoverColumnsWhenOnlyOneProduct = function (product, startIndexOfHeader, startIndexOfCol) {
+        var name = nomalizeProductName(product.Name);
+
+        var turnoverHeader = $.extend(true, {}, window.sampleTurnoverHeader);
+        turnoverHeader.Name = turnoverHeader.NameCache = name + "Turnover";
+        gridOption.groupHeaderRows[0].Columns.splice(startIndexOfHeader, 0, turnoverHeader);
+
+        var turnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
+        turnoverCol.Name = turnoverCol.NameCache = name + "Turnover";
+        gridOption.columns.splice(startIndexOfCol, 0, turnoverCol);
+
+        gridOption.customizeHeader = false;
+    };
+
+    var addTurnoverColumnsWhenOverTwoProducts = function (products, startIndexOfHeader, startIndexOfCol) {
+        var productCount = products.length;
+
+        for (var i = 0; i < productCount; i++) {
+            var name = nomalizeProductName(products[i].Name);
+
+            if (i === 0) {
+                var turnoverHeader = $.extend(true, {}, window.sampleTurnoverHeader);
+                turnoverHeader.Name = name + "Turnover";
+                turnoverHeader.NameCache = name + "Turnover";
+                turnoverHeader.MergeColNumber = productCount + 1;
+                gridOption.groupHeaderRows[0].Columns.splice(startIndexOfHeader, 0, turnoverHeader);
+            }
+
+            var turnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
+            turnoverCol.HeaderText = turnoverCol.HeaderCaption = window.MSG[name];
+            turnoverCol.Name = turnoverCol.NameCache = name + "Turnover";
+            delete turnoverCol.IsCurrency;
+            gridOption.columns.splice(startIndexOfCol + i, 0, turnoverCol);
+        }
+
+        // add total turnover column.
+        var totalTurnoverCol = $.extend(true, {}, window.sampleTurnoverCol);
+        totalTurnoverCol.HeaderCaption = window.MSG['Total'];
+        totalTurnoverCol.HeaderText = window.MSG['Total'];
+        delete totalTurnoverCol.IsCurrency;
+        gridOption.columns.splice(startIndexOfCol + productCount, 0, totalTurnoverCol);
+    };
+
+    var addTurnoverColumnsForProducts = function (products, startIndexOfHeader, startIndexOfCol) {
+        var productCount = products.length;
+
+        if (productCount === 0) {
+            return;
+        }
+
+        if (productCount === 1) {
+            addTurnoverColumnsWhenOnlyOneProduct(products[0], startIndexOfHeader, startIndexOfCol);
+        } else {
+            addTurnoverColumnsWhenOverTwoProducts(products, startIndexOfHeader, startIndexOfCol);
+        }
+    };
+
+    var addPlayerCommColumnsWhenOnlyOneProduct = function (product, startIndexOfHeader, startIndexOfCol) {
+        var name = nomalizeProductName(product.Name);
+
+        var playerCommHeader = $.extend(true, {}, window.samplePlayerCommHeader);
+        playerCommHeader.Name = playerCommHeader.NameCache = name + "PlayerComm";
+        gridOption.groupHeaderRows[0].Columns.splice(startIndexOfHeader, 0, playerCommHeader);
+
+        var playerCommCol = $.extend(true, {}, window.samplePlayerCommCol);
+        playerCommCol.Name = playerCommCol.NameCache = name + "PlayerComm";
+        gridOption.columns.splice(startIndexOfCol, 0, playerCommCol);
+
+        gridOption.customizeHeader = false;
+    };
+
+    var addPlayerCommColumnsWhenOverTwoProducts = function (products, startIndexOfHeader, startIndexOfCol) {
+        var productCount = products.length;
+
+        for (var i = 0; i < productCount; i++) {
+            var name = nomalizeProductName(products[i].Name);
+
+            if (i === 0) {
+                var playerCommHeader = $.extend(true, {}, window.samplePlayerCommHeader);
+                playerCommHeader.Name = playerCommHeader.NameCache = name + "PlayerComm";
+                playerCommHeader.MergeColNumber = productCount + 1;
+                gridOption.groupHeaderRows[0].Columns.splice(startIndexOfHeader, 0, playerCommHeader);
+            }
+
+            var playerCommCol = $.extend(true, {}, window.samplePlayerCommCol);
+            playerCommCol.HeaderCaption = playerCommCol.HeaderText = window.MSG[name];
+            playerCommCol.Name = playerCommCol.NameCache = name + "PlayerComm";
+            delete playerCommCol.IsCurrency;
+            gridOption.columns.splice(startIndexOfCol + i, 0, playerCommCol);
+        }
+
+        // add total playerComm column.
+        var totalPlayerCommCol = $.extend(true, {}, window.samplePlayerCommCol);
+        totalPlayerCommCol.HeaderCaption = window.MSG['Total'];
+        totalPlayerCommCol.HeaderText = window.MSG['Total'];
+        delete totalPlayerCommCol.IsCurrency;
+        gridOption.columns.splice(startIndexOfCol + productCount, 0, totalPlayerCommCol);
+    };
+
+    var addPlayerCommColumnsForProducts = function (products, startIndexOfHeader, startIndexOfCol) {
+        var productCount = products.length;
+
+        if (productCount === 0) {
+            return;
+        }
+
+        if (productCount === 1) {
+            addPlayerCommColumnsWhenOnlyOneProduct(products[0], startIndexOfHeader, startIndexOfCol);
+        } else {
+            addPlayerCommColumnsWhenOverTwoProducts(products, startIndexOfHeader, startIndexOfCol);
+        }
+    };
+
+
 
     var addWinlostColumnsWhenOnlyOneProduct = function (product, startHeaderIndex, startColumnIndex) {
         var name = nomalizeProductName(product.Name);
@@ -228,21 +303,22 @@ var CompanyWinlossReport = (function ($) {
         var byAffiliate = $('#ByAffiliate').length > 0;
         playerWinlossUrl = byAffiliate ? AFFILIATE.getAbsoluteUrl("Report/MemberWinlossByAffiliate") : AFFILIATE.getAbsoluteUrl("Report/MemberWinloss");
 
-        var startTurnoverPosition = TURNOVER_COL_INDEX;
-
         switch (submitOptions.GroupBy) {
             case GROUP_BY_MONTH:
-                startTurnoverPosition = changeGridOptionWhenGroupByMonth();
-
+                changeGridOptionWhenGroupByMonth();
                 break;
             case GROUP_BY_DATE:
-                startTurnoverPosition = changeGridOptionWhenGroupByDate(byAffiliate);
+                changeGridOptionWhenGroupByDate(byAffiliate);
                 break;
         }
 
         var products = getSelectProducts(window.PRODUCTS);
 
-        addTurnoverColumnsForProducts(products, startTurnoverPosition);
+        getStartIndex(products);
+
+        addTurnoverColumnsForProducts(products, startIndexOfTurnoverHeader, startIndexOfTurnoverCol);
+
+        addPlayerCommColumnsForProducts(products, startIndexOfPlayerCommHeader, startIndexOfPlayerCommCol);
 
         addWinlostColumnsForProducts(products, gridOption.groupHeaderRows[0].Columns.length, gridOption.columns.length);
 
@@ -517,7 +593,7 @@ var CompanyWinlossReport = (function ($) {
 
             } else {
                 columns.push({ Value: '', Name: "Currency", MergeColNumber: 1 });
-				startIndex += 1;
+                startIndex += 1;
             }
 
             for (i = startIndex; i < gridOption.columns.length; i++) {

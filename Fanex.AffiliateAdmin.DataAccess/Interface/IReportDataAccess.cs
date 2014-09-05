@@ -17,10 +17,10 @@ namespace Fanex.AffiliateAdmin.DataAccess
     /// </summary>
     public interface IReportDataAccess
     {
-        MemberWinlossReport GetMemberWinloss(MemberWinlossReportCriteria criteria);
+        MemberWinLossReport GetMemberWinloss(MemberWinlossReportCriteria criteria);
 
         CompanyWinlossReport GetCompanyWinloss(CompanyWinlossReportCriteria criteria);
 
-        CommissionReport GetCommission(AffiliateWinLossCriteria criteria);
+        AffiliateWinLossReport GetCommission(AffiliateWinLossCriteria criteria);
     }
 }

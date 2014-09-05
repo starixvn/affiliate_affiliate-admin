@@ -1,8 +1,11 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="CommissionItem.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AffiliateWinLoss.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2014.9.5">Created</change>
+// </history>
 
 namespace Fanex.AffiliateAdmin.DTO
 {
@@ -12,7 +15,7 @@ namespace Fanex.AffiliateAdmin.DTO
     /// TODO: Update summary.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
-    public class CommissionItem
+    public class AffiliateWinLoss
     {
         public int AffId { get; set; }
 

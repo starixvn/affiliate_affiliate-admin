@@ -45,7 +45,7 @@ report
 <div class="search-panel search-company-winloss">
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
-    @RazorHelper.SearchPanel("#SearchForm .search-form", Common.GetReportInfo(), false, true)
+    @RazorHelper.SearchPanel("#SearchForm .search-form", Common.GetReportInfo(ReportType.MemberWinLoss), false, true)
     @using (Html.BeginForm("MemberWinloss", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
     {            
         <div class="span12 search-form">
@@ -139,6 +139,7 @@ report
             LiveCasino: "@Lang.LiveCasino",
             RNGCasino: "@Lang.RNGCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
+            VirtualSport: "@Lang.VirtualSport",
             TotalTransactions: "@Lang.TotalTransactions",
             CustomerWL: "@Lang.MemberWL",
             CompanyWL: "@Lang.CompanyWL",
@@ -222,35 +223,53 @@ report
         };
 
         var cardinalHeaderCol = { HeaderText: "#", Name: "WinlostDate", MergeRowNumber: 2 };
+        
         var cardinalCol = { HeaderText: "#", Width: 30, Name: "WinlostDate", CellAlign: "center" };
+        
         var sampleTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        
         var sampleWinlostCol = {
             HeaderCaption: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
             HeaderText: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
             IsCurrency: true, Width: 110, Name: "TotalWinlost", NameCache: "TotalWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true
         };
+        
+        var samplePlayerCommCol = {
+            HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>", 
+            HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>", 
+            IsCurrency: true, Width: 110, Name: "PlayerComm", NameCache: "PlayerComm", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true
+        };
 
         var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Name: "TotalTurnover", NameCache: "TotalTurnover", MergeColNumber: 5 };
+        
         var sampleCompanyWLHeader = {
              HeaderCaption: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
              HeaderText: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>",
              IsCurrency: true, Name: "SportsbookWinlost", NameCache: "SportsbookWinlost", MergeColNumber: 5
         };
         
+        var samplePlayerCommHeader = {
+             HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>", 
+             HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
+             IsCurrency: true, Name: "SportsbookPlayerComm", NameCache: "SportsbookPlayerComm", MergeColNumber: 5
+        };
+        
         var samplePlaytechCasinoHeader = { HeaderCaption: "@Lang.PlaytechCasino", HeaderAlign: "center", IsCurrency: true, Name: "PShare", NameCache: "PShare", MergeColNumber: 3 };
+        
         var samplePShareCol = { 
             HeaderCaption: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
             HeaderText: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
-            IsCurrency: true, Width: 110, Name: "PShare", NameCache: "PShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+            Width: 110, Name: "PShare", NameCache: "PShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        
         var samplePWinCol= { 
             HeaderCaption: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
             HeaderText: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
-            IsCurrency: true, Width: 110, Name: "PWin", NameCache: "PWin", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+            Width: 110, Name: "PWin", NameCache: "PWin", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        
         var sampleNetGamingCol = { 
             HeaderCaption: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
             HeaderText: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
-            IsCurrency: true, Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-
+            Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
     </script>
     
     @Scripts.Render("~/scripts/memberwinlossreport")

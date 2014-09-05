@@ -935,8 +935,8 @@
   <data name="EmailFormat" xml:space="preserve">
     <value>Email Format</value>
   </data>
-  <data name="EmailHistory" xml:space="preserve">
-    <value>Email History</value>
+  <data name="AffiliateFeedback" xml:space="preserve">
+    <value>Affiliate Feedback</value>
   </data>
   <data name="EmailPref" xml:space="preserve">
     <value>Email Format Preference</value>
@@ -2555,13 +2555,11 @@
   <data name="ErrConfirmPasswordRequired" xml:space="preserve">
     <value>Confirm password is required</value>
   </data>
-  <data name="ReportInfo" xml:space="preserve">
+  <data name="CompanyWinLossReportInfo" xml:space="preserve">
     <value>&lt;ul&gt;
-                &lt;li&gt;Company W/L: Sum of selected products' winloss&lt;/li&gt;{0}
-                &lt;li&gt;QM (Qualified Member): Total number of members whose accumulated stake in that month is greater than or equal to a defined amount&lt;/li&gt;
+                &lt;li&gt;Company W/L: Sum of selected products' winloss&lt;/li&gt;{0}                
                 &lt;li&gt;Member W/L: Win loss amount of affiliate's members in a month on a product&lt;/li&gt;
-                &lt;li&gt;%Comm follow tier setting of commission group&lt;/li&gt;
-                &lt;li&gt;PSP (Payment Service Provider Fee) = 0.03 * Deposit + 0.03 * Withdrawal&lt;/li&gt;
+                &lt;li&gt;PSP (Payment Service Provider Fee) = Deposit * Deposit PSP + Withdrawal * Withdrawal PSP&lt;/li&gt;
             &lt;/ul&gt;</value>
   </data>
   <data name="PCNetGamingInfo" xml:space="preserve">
@@ -2582,6 +2580,9 @@
   <data name="PlayerComm" xml:space="preserve">
     <value>Player Comm.</value>
   </data>
+  <data name="PlayerCommission" xml:space="preserve">
+    <value>Player Commmission</value>
+  </data>
   <data name="AffiliateMonth" xml:space="preserve">
     <value>Affiliate, Month</value>
   </data>
@@ -2596,5 +2597,17 @@
   </data>
   <data name="NetWinloss" xml:space="preserve">
     <value>Net Win Loss</value>
+  </data>
+  <data name="AffiliateCommissionReportInfo" xml:space="preserve">
+    <value>&lt;ul&gt;
+	&lt;li&gt;QM (Qualified Member): Total number of members whose accumulated stake in that month is greater than or equal to a defined amount&lt;/li&gt;
+	&lt;li&gt;%Comm follow tier setting of commission group&lt;/li&gt;	
+&lt;/ul&gt;</value>
+  </data>
+  <data name="AffiliateWinLossReportInfo" xml:space="preserve">
+    <value>&lt;ul&gt;
+	&lt;li&gt;Win Loss = Sum of selected products' win loss&lt;/li&gt;
+	{0}
+&lt;/ul&gt;</value>
   </data>
 </root>

@@ -55,7 +55,7 @@
     <Compile Include="..\Fanex.AffiliateAdmin.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
-    <Compile Include="CommissionItem.cs" />
+    <Compile Include="AffiliateWinLoss.cs" />
     <Compile Include="CompanyWinlossByLevel.cs" />
     <Compile Include="Account.cs" />
     <Compile Include="AccountType.cs" />
@@ -69,7 +69,7 @@
     <Compile Include="BannerDetail.cs" />
     <Compile Include="BannerType.cs" />
     <Compile Include="ClickStatisticDetail.cs" />
-    <Compile Include="CommissionReport.cs" />
+    <Compile Include="AffiliateWinLossReport.cs" />
     <Compile Include="CompanyWinloss.cs" />
     <Compile Include="CompanyWinlossReport.cs" />
     <Compile Include="PSPExchange.cs" />

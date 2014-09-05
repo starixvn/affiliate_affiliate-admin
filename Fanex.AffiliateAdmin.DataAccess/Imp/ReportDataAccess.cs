@@ -30,9 +30,9 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="criteria">Criteria input.</param>
         /// <returns>Member win-loss.</returns>
-        public MemberWinlossReport GetMemberWinloss(MemberWinlossReportCriteria criteria)
+        public MemberWinLossReport GetMemberWinloss(MemberWinlossReportCriteria criteria)
         {
-            var memberWinlossReport = new MemberWinlossReport();
+            var memberWinlossReport = new MemberWinLossReport();
 
             if (criteria.IsValid())
             {
@@ -89,9 +89,9 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="criteria">Criteria input.</param>
         /// <returns>Commission report.</returns>
-        public CommissionReport GetCommission(AffiliateWinLossCriteria criteria)
+        public AffiliateWinLossReport GetCommission(AffiliateWinLossCriteria criteria)
         {
-            var commissionReport = new CommissionReport();
+            var commissionReport = new AffiliateWinLossReport();
 
             if (criteria.IsValid())
             {
@@ -151,14 +151,14 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="reader">Data reader.</param>
         /// <param name="criteria">Criteria input.</param>
         /// <returns>Member win-loss list.</returns>
-        private IEnumerable<MemberWinloss> GetMemberWinlossList(IDataReader reader, MemberWinlossReportCriteria criteria)
+        private IEnumerable<MemberWinLoss> GetMemberWinlossList(IDataReader reader, MemberWinlossReportCriteria criteria)
         {
-            var result = new List<MemberWinloss>();
+            var result = new List<MemberWinLoss>();
             const byte GroupByDate = 0;
 
             while (reader.Read())
             {
-                var memberWinloss = new MemberWinloss
+                var memberWinloss = new MemberWinLoss
                 {
                     Username = reader.ToString("Username"),
                     Currency = reader.ToString("Currency"),
@@ -188,7 +188,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="criteria">Criteria input.</param>
         /// <param name="reader">Data reader.</param>
         /// <param name="memberWinloss">Member win-loss.</param>
-        private void GetMemberWinlossColumnsBasedOnBaseCurrency(MemberWinlossReportCriteria criteria, IDataReader reader, MemberWinloss memberWinloss)
+        private void GetMemberWinlossColumnsBasedOnBaseCurrency(MemberWinlossReportCriteria criteria, IDataReader reader, MemberWinLoss memberWinloss)
         {
             const byte MemberCurrency = 0;
             const byte AffiliateCurrency = 2;
@@ -214,15 +214,15 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="reader">Data reader.</param>
         /// <param name="criteria">Criteria input.</param>
         /// <returns>Total member win-loss list.</returns>
-        private IEnumerable<MemberWinloss> GetTotalMemberWinlossInMemberCurrency(IDataReader reader, MemberWinlossReportCriteria criteria)
+        private IEnumerable<MemberWinLoss> GetTotalMemberWinlossInMemberCurrency(IDataReader reader, MemberWinlossReportCriteria criteria)
         {
-            var result = new List<MemberWinloss>();
+            var result = new List<MemberWinLoss>();
 
             if (reader.NextResult())
             {
                 while (reader.Read())
                 {
-                    var memberWinloss = new MemberWinloss
+                    var memberWinloss = new MemberWinLoss
                     {
                         PlayerCurrency = reader.ToString("PlayerCurrency"),
                         BetCount = reader.ToInt("BetCount")
@@ -242,9 +242,9 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <returns>Total member win-loss.</returns>
-        private MemberWinloss GetTotalMemberWinlossInSystemCurrency(IDataReader reader)
+        private MemberWinLoss GetTotalMemberWinlossInSystemCurrency(IDataReader reader)
         {
-            var playerWinloss = new MemberWinloss();
+            var playerWinloss = new MemberWinLoss();
 
             if (reader.NextResult())
             {
@@ -261,7 +261,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <param name="memberWinloss">Member win-loss.</param>
-        private void GetMemberWinlossColumnsInMemberCurrency(IDataReader reader, MemberWinloss memberWinloss)
+        private void GetMemberWinlossColumnsInMemberCurrency(IDataReader reader, MemberWinLoss memberWinloss)
         {
             memberWinloss.Deposit = reader.ToDecimal("Deposit");
             memberWinloss.Withdrawal = reader.ToDecimal("Withdrawal");
@@ -273,6 +273,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             memberWinloss.PShare = reader.ToDecimal("PShare");
             memberWinloss.PWin = reader.ToDecimal("PWin");
             memberWinloss.NetGaming = reader.ToDecimal("NetGaming");
+            memberWinloss.PlayerComm = reader.ToDecimal("PlayerComm");
 
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
 
@@ -280,6 +281,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             {
                 memberWinloss.SetPropertyValue(string.Format("{0}Turnover", product), reader.ToDecimal(string.Format("{0}Turnover", product)));
                 memberWinloss.SetPropertyValue(string.Format("{0}Winlost", product), reader.ToDecimal(string.Format("{0}Winlost", product)));
+                memberWinloss.SetPropertyValue(string.Format("{0}PlayerComm", product), reader.ToDecimal(string.Format("{0}PlayerComm", product)));
             }
         }
 
@@ -288,7 +290,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <param name="memberWinloss">Member win-loss.</param>
-        private void GetMemberWinlossColumnsInSystemCurrency(IDataReader reader, MemberWinloss memberWinloss)
+        private void GetMemberWinlossColumnsInSystemCurrency(IDataReader reader, MemberWinLoss memberWinloss)
         {
             memberWinloss.DepositBase = reader.ToDouble("DepositBase");
             memberWinloss.WithdrawalBase = reader.ToDouble("WithdrawalBase");
@@ -300,6 +302,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             memberWinloss.PShareBase = reader.ToDecimal("PShareBase");
             memberWinloss.PWinBase = reader.ToDecimal("PWinBase");
             memberWinloss.NetGamingBase = reader.ToDecimal("NetGamingBase");
+            ////memberWinloss.PlayerCommBase = reader.ToDecimal("PlayerCommBase");
 
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
 
@@ -307,6 +310,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             {
                 memberWinloss.SetPropertyValue(string.Format("{0}TurnoverBase", product), reader.ToDouble(string.Format("{0}TurnoverBase", product)));
                 memberWinloss.SetPropertyValue(string.Format("{0}WinlostBase", product), reader.ToDouble(string.Format("{0}WinlostBase", product)));
+                ////memberWinloss.SetPropertyValue(string.Format("{0}PlayerCommBase", product), reader.ToDouble(string.Format("{0}PlayerCommBase", product)));
             }
         }
 
@@ -315,7 +319,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <param name="memberWinloss">Member win-loss.</param>
-        private void GetMemberWinlossColumnsInAffiliateCurrency(IDataReader reader, MemberWinloss memberWinloss)
+        private void GetMemberWinlossColumnsInAffiliateCurrency(IDataReader reader, MemberWinLoss memberWinloss)
         {
             memberWinloss.Deposit_Aff = reader.ToDouble("Deposit_Aff");
             memberWinloss.Withdrawal_Aff = reader.ToDouble("Withdrawal_Aff");
@@ -327,6 +331,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             memberWinloss.PShare_Aff = reader.ToDecimal("PShare_Aff");
             memberWinloss.PWin_Aff = reader.ToDecimal("PWin_Aff");
             memberWinloss.NetGaming_Aff = reader.ToDecimal("NetGaming_Aff");
+            ////memberWinloss.PlayerComm_Aff = reader.ToDecimal("PlayerComm_Aff");
 
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
 
@@ -334,6 +339,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             {
                 memberWinloss.SetPropertyValue(string.Format("{0}Turnover_Aff", product), reader.ToDouble(string.Format("{0}Turnover_Aff", product)));
                 memberWinloss.SetPropertyValue(string.Format("{0}Winlost_Aff", product), reader.ToDouble(string.Format("{0}Winlost_Aff", product)));
+                ////memberWinloss.SetPropertyValue(string.Format("{0}PlayerComm_Aff", product), reader.ToDouble(string.Format("{0}PlayerComm_Aff", product)));
             }
         }
 
@@ -470,6 +476,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             companyWinloss.PShare_Aff = reader.ToDecimal("PShare_Aff");
             companyWinloss.PWin_Aff = reader.ToDecimal("PWin_Aff");
             companyWinloss.NetGaming_Aff = reader.ToDecimal("NetGaming_Aff");
+            companyWinloss.PlayerComm_Aff = reader.ToDecimal("PlayerComm_Aff");
 
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
 
@@ -477,6 +484,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             {
                 companyWinloss.SetPropertyValue(string.Format("{0}Turnover_Aff", product), reader.ToDecimal(string.Format("{0}Turnover_Aff", product)));
                 companyWinloss.SetPropertyValue(string.Format("{0}Winlost_Aff", product), reader.ToDecimal(string.Format("{0}Winlost_Aff", product)));
+                companyWinloss.SetPropertyValue(string.Format("{0}PlayerComm_Aff", product), reader.ToDecimal(string.Format("{0}PlayerComm_Aff", product)));
             }
         }
 
@@ -497,6 +505,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             companyWinloss.PShareBase = reader.ToDecimal("PShareBase");
             companyWinloss.PWinBase = reader.ToDecimal("PWinBase");
             companyWinloss.NetGamingBase = reader.ToDecimal("NetGamingBase");
+            companyWinloss.PlayerCommBase = reader.ToDecimal("PlayerCommBase");
 
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
 
@@ -504,6 +513,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             {
                 companyWinloss.SetPropertyValue(string.Format("{0}TurnoverBase", product), reader.ToDecimal(string.Format("{0}TurnoverBase", product)));
                 companyWinloss.SetPropertyValue(string.Format("{0}WinlostBase", product), reader.ToDecimal(string.Format("{0}WinlostBase", product)));
+                companyWinloss.SetPropertyValue(string.Format("{0}PlayerCommBase", product), reader.ToDecimal(string.Format("{0}PlayerCommBase", product)));
             }
         }
 
@@ -524,6 +534,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             companyWinloss.PShare = reader.ToDecimal("PShare");
             companyWinloss.PWin = reader.ToDecimal("PWin");
             companyWinloss.NetGaming = reader.ToDecimal("NetGaming");
+            companyWinloss.PlayerComm = reader.ToDecimal("PlayerComm");
 
             var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
 
@@ -531,6 +542,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             {
                 companyWinloss.SetPropertyValue(string.Format("{0}Turnover", product), reader.ToDecimal(string.Format("{0}Turnover", product)));
                 companyWinloss.SetPropertyValue(string.Format("{0}Winlost", product), reader.ToDecimal(string.Format("{0}Winlost", product)));
+                companyWinloss.SetPropertyValue(string.Format("{0}PlayerComm", product), reader.ToDecimal(string.Format("{0}PlayerComm", product)));
             }
         }
 
@@ -544,13 +556,13 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="reader">Data reader.</param>
         /// <param name="criteria">Criteria input.</param>
         /// <returns>Commission list.</returns>
-        private IEnumerable<CommissionItem> GetCommissionList(IDataReader reader, AffiliateWinLossCriteria criteria)
+        private IEnumerable<AffiliateWinLoss> GetCommissionList(IDataReader reader, AffiliateWinLossCriteria criteria)
         {
-            var result = new List<CommissionItem>();
+            var result = new List<AffiliateWinLoss>();
 
             while (reader.Read())
             {
-                var commission = new CommissionItem
+                var commission = new AffiliateWinLoss
                 {
                     AffId = reader.ToInt("AffId"),
                     Status = reader.ToString("STATUS"),
@@ -584,15 +596,15 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="reader">Data reader.</param>
         /// <param name="criteria">Criteria input.</param>
         /// <returns>Total commission list.</returns>
-        private IEnumerable<CommissionItem> GetTotalCommissionInAffiliateCurrency(IDataReader reader, AffiliateWinLossCriteria criteria)
+        private IEnumerable<AffiliateWinLoss> GetTotalCommissionInAffiliateCurrency(IDataReader reader, AffiliateWinLossCriteria criteria)
         {
-            var result = new List<CommissionItem>();
+            var result = new List<AffiliateWinLoss>();
 
             if (reader.NextResult())
             {
                 while (reader.Read())
                 {
-                    var commission = new CommissionItem { Currency = reader.ToString("Currency") };
+                    var commission = new AffiliateWinLoss { Currency = reader.ToString("Currency") };
 
                     GetCommissionColumnsNotRelatedToCurrency(reader, commission);
 
@@ -610,9 +622,9 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <returns>Total commission.</returns>
-        private CommissionItem GetTotalCommissionInSystemCurrency(IDataReader reader)
+        private AffiliateWinLoss GetTotalCommissionInSystemCurrency(IDataReader reader)
         {
-            var commission = new CommissionItem();
+            var commission = new AffiliateWinLoss();
 
             if (reader.NextResult())
             {
@@ -643,7 +655,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <param name="commission">Commission object.</param>
-        private void GetCommissionColumnsNotRelatedToCurrency(IDataReader reader, CommissionItem commission)
+        private void GetCommissionColumnsNotRelatedToCurrency(IDataReader reader, AffiliateWinLoss commission)
         {
             commission.BetCount = reader.ToInt("BetCount");
             commission.ActivePlayers = reader.ToInt("ActivePlayers");
@@ -663,7 +675,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="criteria">Criteria input.</param>
         /// <param name="reader">Data reader.</param>
         /// <param name="commission">Commission object.</param>
-        private void GetCommissionColumnsBasedOnBaseCurrency(AffiliateWinLossCriteria criteria, IDataReader reader, CommissionItem commission)
+        private void GetCommissionColumnsBasedOnBaseCurrency(AffiliateWinLossCriteria criteria, IDataReader reader, AffiliateWinLoss commission)
         {
             const byte AffiliateCurrency = 0;
             const byte SystemCurrency = 1;
@@ -686,7 +698,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <param name="commission">Commission object.</param>
-        private void GetCommissionColumnsInAffiliateCurrency(IDataReader reader, CommissionItem commission)
+        private void GetCommissionColumnsInAffiliateCurrency(IDataReader reader, AffiliateWinLoss commission)
         {
             commission.PlayerComm = reader.ToDecimal("PlayerComm");
             commission.Deposit = reader.ToDecimal("Deposit");
@@ -714,7 +726,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <param name="commission">Commission object.</param>
-        private void GetCommissionColumnsInSystemCurrency(IDataReader reader, CommissionItem commission)
+        private void GetCommissionColumnsInSystemCurrency(IDataReader reader, AffiliateWinLoss commission)
         {
             commission.PlayerCommBase = reader.ToDecimal("PlayerCommBase");
             commission.DepositBase = reader.ToDecimal("DepositBase");

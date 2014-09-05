@@ -47,7 +47,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                         new Menu { Text = Lang.MyFavorite, Link = "~/Affiliate/Index?isfavorite=true" },
                         new Menu { Text = Lang.Affiliate, Link = "~/Affiliate/Index" },
                         new Menu { Text = Lang.Member, Link = "~/Affiliate/MemberList" },
-                        new Menu { Text = Lang.EmailHistory, Link = "~/EmailHistory" }
+                        new Menu { Text = Lang.AffiliateFeedback, Link = "~/EmailHistory" }
                     };
             }
         }

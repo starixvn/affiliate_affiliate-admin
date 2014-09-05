@@ -48,6 +48,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal PlaytechCasinoTurnover { get; set; }
 
+        public decimal VirtualSportTurnover { get; set; }
+
         public decimal TotalTurnover { get; set; }
 
         public int BetCount { get; set; }
@@ -65,6 +67,8 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal RNGCasinoWinlost { get; set; }
 
         public decimal PlaytechCasinoWinlost { get; set; }
+
+        public decimal VirtualSportWinlost { get; set; }
 
         public decimal TotalCompanyWinlost 
         { 
@@ -94,6 +98,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal PlaytechCasinoTurnoverBase { get; set; }
 
+        public decimal VirtualSportTurnoverBase { get; set; }
+
         public decimal TotalTurnoverBase { get; set; }
 
         public decimal TotalMemberWinlostBase { get; set; }
@@ -107,6 +113,8 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal RNGCasinoWinlostBase { get; set; }
 
         public decimal PlaytechCasinoWinlostBase { get; set; }
+
+        public decimal VirtualSportWinlostBase { get; set; }
 
         public decimal TotalCompanyWinlostBase 
         { 
@@ -150,6 +158,9 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal PlaytechCasinoTurnover_Aff { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
+        public decimal VirtualSportTurnover_Aff { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal TotalMemberWinlost_Aff { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
@@ -166,6 +177,9 @@ namespace Fanex.AffiliateAdmin.DTO
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal PlaytechCasinoWinlost_Aff { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
+        public decimal VirtualSportWinlost_Aff { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal TotalCompanyWinlost_Aff 
@@ -196,5 +210,54 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal PWinBase { get; set; }
 
         public decimal NetGamingBase { get; set; }
+
+        public decimal PlayerComm { get; set; }
+
+        public decimal PlayerCommBase { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
+        public decimal PlayerComm_Aff { get; set; }
+
+        public decimal SportsbookPlayerComm { get; set; }
+
+        public decimal NumberGamePlayerComm { get; set; }
+
+        public decimal LiveCasinoPlayerComm { get; set; }
+
+        public decimal RNGCasinoPlayerComm { get; set; }
+
+        public decimal PlaytechCasinoPlayerComm { get; set; }
+
+        public decimal VirtualSportPlayerComm { get; set; }
+
+        public decimal SportsbookPlayerCommBase { get; set; }
+
+        public decimal NumberGamePlayerCommBase { get; set; }
+
+        public decimal LiveCasinoPlayerCommBase { get; set; }
+
+        public decimal RNGCasinoPlayerCommBase { get; set; }
+
+        public decimal PlaytechCasinoPlayerCommBase { get; set; }
+
+        public decimal VirtualSportPlayerCommBase { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
+        public decimal SportsbookPlayerComm_Aff { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
+        public decimal NumberGamePlayerComm_Aff { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
+        public decimal LiveCasinoPlayerComm_Aff { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
+        public decimal RNGCasinoPlayerComm_Aff { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
+        public decimal PlaytechCasinoPlayerComm_Aff { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
+        public decimal VirtualSportPlayerComm_Aff { get; set; }
     }
 }

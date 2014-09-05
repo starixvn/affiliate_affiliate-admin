@@ -15,7 +15,10 @@
 @{
     var now = DateTime.Now;
     var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : new DateTime(now.Year, now.Month, 1);
-    var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now; 
+    var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now;
+
+    fromDate = new DateTime(2014, 1, 1);
+    toDate = new DateTime(2014, 3, 1);
 }
 
 @section submenu{
@@ -26,7 +29,7 @@
     </div>
 }
 <div class="search-panel search-company-winloss no-border">
-    @RazorHelper.SearchPanel(".search-form", Common.GetReportInfo(), false, true)
+    @RazorHelper.SearchPanel(".search-form", Common.GetReportInfo(ReportType.MemberWinLoss), false, true)
     @using (Html.BeginForm("MemberWinloss", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
     {            
         <div class="span12 search-form">
@@ -102,16 +105,18 @@
             LiveCasino: "@Lang.LiveCasino",
             RNGCasino: "@Lang.RNGCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
+            VirtualSport: "@Lang.VirtualSport",
+            TotalTransactions: "@Lang.TotalTransactions",
             CustomerWL: "@Lang.MemberWL",
             CompanyWL: "@Lang.CompanyWL",
             Total: "@Lang.Total",
             SubTotal: "@Lang.SubTotal",
-            RangeTime3Months: "@Lang.RangeTime3Months",
+            RangeTime3Months: "@Lang.RangeTime3Months", 
             MemberWinloss: "@Lang.MemberWinloss",
+            ToggleSubTotal: '@Lang.ToggleSubTotal',
             ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct'
         };
 
-        var PRODUCTS = @(Html.Raw(ViewBag.Products));
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
         var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
         var subTotalStatus = COLLAPSE_SUBTOTAL_STATUS;
@@ -180,33 +185,54 @@
         };
 
         var cardinalHeaderCol = { HeaderText: "#", Name: "WinlostDate", MergeRowNumber: 2 };
+        
         var cardinalCol = { HeaderText: "#", Width: 30, Name: "WinlostDate", CellAlign: "center" };
+        
         var sampleTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-        var sampleWinlostCol = { 
+        
+        var sampleWinlostCol = {
             HeaderCaption: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
             HeaderText: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
-            IsCurrency: true, Width: 110, Name: "TotalWinlost", NameCache: "TotalWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+            IsCurrency: true, Width: 110, Name: "TotalWinlost", NameCache: "TotalWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true
+        };
+        
+        var samplePlayerCommCol = {
+            HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>", 
+            HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>", 
+            IsCurrency: true, Width: 110, Name: "PlayerComm", NameCache: "PlayerComm", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true
+        };
 
         var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Name: "TotalTurnover", NameCache: "TotalTurnover", MergeColNumber: 5 };
+        
         var sampleCompanyWLHeader = {
              HeaderCaption: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
-             HeaderText: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
+             HeaderText: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>",
              IsCurrency: true, Name: "SportsbookWinlost", NameCache: "SportsbookWinlost", MergeColNumber: 5
         };
         
+        var samplePlayerCommHeader = {
+             HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>", 
+             HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
+             IsCurrency: true, Name: "SportsbookPlayerComm", NameCache: "SportsbookPlayerComm", MergeColNumber: 5
+        };
+        
         var samplePlaytechCasinoHeader = { HeaderCaption: "@Lang.PlaytechCasino", HeaderAlign: "center", IsCurrency: true, Name: "PShare", NameCache: "PShare", MergeColNumber: 3 };
+
         var samplePShareCol = { 
             HeaderCaption: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
             HeaderText: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
-            IsCurrency: true, Width: 110, Name: "PShare", NameCache: "PShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+            Width: 110, Name: "PShare", NameCache: "PShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+
         var samplePWinCol= { 
             HeaderCaption: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
             HeaderText: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
-            IsCurrency: true, Width: 110, Name: "PWin", NameCache: "PWin", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+            Width: 110, Name: "PWin", NameCache: "PWin", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+
         var sampleNetGamingCol = { 
             HeaderCaption: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
             HeaderText: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
-            IsCurrency: true, Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+            Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+
     </script>
 
     @Scripts.Render("~/scripts/memberwinlossreport")

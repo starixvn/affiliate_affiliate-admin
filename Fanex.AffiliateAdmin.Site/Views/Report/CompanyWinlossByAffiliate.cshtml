@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = Lang.EarningsHistory;
+    ViewBag.Title = Lang.CompanyWinloss;
     Layout = "~/Views/Shared/_LayoutFrame.cshtml";
 }
 @using Fanex.AffiliateAdmin.Core.Configurations
@@ -14,6 +14,12 @@
 
 @{
     var now = DateTime.Now;
+
+    var fromDate = new DateTime(now.Year, now.Month, 1);
+    var toDate = now;
+
+    fromDate = new DateTime(2014, 1, 1);
+    toDate = new DateTime(2014, 3, 1);
 }
 
 @section submenu{
@@ -24,7 +30,7 @@
     </div>
 }
 <div class="search-panel search-company-winloss no-border">
-    @RazorHelper.SearchPanel(".search-form", Common.GetReportInfo(), false, true)
+    @RazorHelper.SearchPanel(".search-form", Common.GetReportInfo(ReportType.CompanyWinLoss), false, true)
     @using (Html.BeginForm("CompanyWinloss", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
     {            
         <div class="span12 search-form">
@@ -39,11 +45,11 @@
                 </div>
                 <div class="cell">
                     <label for="FromDate" class="txt">@Lang.From</label>
-                    @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), AppSettings.SystemStartDate, now, false)
+                    @Html.DatePicker("FromDate", fromDate, AppSettings.SystemStartDate, now, false)
                 </div>
                 <div class="cell width-160">
                     <label for="ToDate" class="txt" style="min-width: 50px;">@Lang.To</label>
-                    @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, false)
+                    @Html.DatePicker("ToDate", toDate, AppSettings.SystemStartDate, now, false)
                 </div>
             </div>
             <div class="row-fluid row-form end-search">
@@ -97,8 +103,9 @@
             Sportsbook: "@Lang.Sportsbook",
             NumberGame: "@Lang.NumberGame",
             LiveCasino: "@Lang.LiveCasino",
-            RNGCasino: "@Lang.RNGCasino",  
+            RNGCasino: "@Lang.RNGCasino",     
             PlaytechCasino: "@Lang.PlaytechCasino",
+            VirtualSport: "@Lang.VirtualSport",
             RangeTime3Months: "@Lang.RangeTime3Months",
             CompanyWinlossTitle: "@Lang.CompanyWinloss",
             ToggleSubTotal: '@Lang.ToggleSubTotal',
@@ -162,35 +169,49 @@
         };
         
         var sampleTurnoverHeader = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", HeaderAlign: "center", IsCurrency: true, Name: "TotalTurnover", NameCache: "TotalTurnover" };
+        
         var sampleCompanyWLHeader = { 
             HeaderCaption: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
             HeaderText: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
             HeaderAlign: "center", IsCurrency: true, Name: "TotalCompanyWinlost", NameCache: "TotalCompanyWinlost" };
         
+          var samplePlayerCommHeader = {
+             HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>", 
+             HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
+             IsCurrency: true, Name: "SportsbookPlayerComm", NameCache: "SportsbookPlayerComm", MergeColNumber: 5
+        };
+        
         var sampleTurnoverCol = { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        
+        var samplePlayerCommCol = {
+            HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>", 
+            HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>", 
+            IsCurrency: true, Width: 110, Name: "PlayerComm", NameCache: "PlayerComm", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true
+        };
+        
         var sampleWinlostCol = {
             HeaderCaption: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
             HeaderText: "<span title='@Lang.CompanyWinloss'>@Lang.CompanyWL</span>", 
             IsCurrency: true, Width: 110, Name: "TotalCompanyWinlost", NameCache: "TotalCompanyWinlost", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true
         };
 
-                var samplePlaytechCasinoHeader = { HeaderCaption: "@Lang.PlaytechCasino", HeaderAlign: "center", IsCurrency: true, Name: "PShare", NameCache: "PShare", MergeColNumber: 3 };
+        var samplePlaytechCasinoHeader = { HeaderCaption: "@Lang.PlaytechCasino", HeaderAlign: "center", IsCurrency: true, Name: "PShare", NameCache: "PShare", MergeColNumber: 3 };
+        
         var samplePShareCol = { 
             HeaderCaption: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
             HeaderText: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
-            IsCurrency: true, Width: 110, Name: "PShare", NameCache: "PShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+            Width: 110, Name: "PShare", NameCache: "PShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        
         var samplePWinCol= { 
             HeaderCaption: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
             HeaderText: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
-            IsCurrency: true, Width: 110, Name: "PWin", NameCache: "PWin", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+            Width: 110, Name: "PWin", NameCache: "PWin", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        
         var sampleNetGamingCol = { 
             HeaderCaption: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
             HeaderText: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
-            IsCurrency: true, Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+            Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
 
-
-        var exRatePosition = 2;
-        var turnoverPosition = 8;
     </script>
     @Scripts.Render("~/scripts/companywinlossreport")
 }

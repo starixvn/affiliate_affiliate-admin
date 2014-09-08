@@ -1,16 +1,30 @@
 ﻿
-Error processing file SpName.athena.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> SpName.athena.local.xml
-Error processing file Web.AppSettings.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+Error processing file SpName.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.xml
+
 //-> Web.AppSettings.athena.local.config
-Error processing file Web.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
+//-> Web.AppSettings.config
+
 //-> Web.athena.local.config
-Error processing file Web.ConnectionString.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
+//-> Web.config
+
 //-> Web.ConnectionString.athena.local.config
+
+//-> Web.ConnectionString.config
+
+//-> Web.config
 // Generated helper templates
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\ConfigManager.txt4
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\ConfigManager.txt4
 // Generated items
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.athena.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.athena.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.athena.local.config

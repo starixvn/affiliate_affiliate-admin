@@ -48,22 +48,14 @@
 					var appSettingName = string.Format("Web.AppSettings.{0}.{1}.config", site.Name.ToLower(), site.Environment.ToLower());
 					var connectionStringName = string.Format("Web.ConnectionString.{0}.{1}.config", site.Name.ToLower(), site.Environment.ToLower());
 					var spName = string.Format("SpName.{0}.{1}.xml", site.Name.ToLower(), site.Environment.ToLower());
-
-					if(!transform)
-					{
-						webconfigName = "Web.config";
-						appSettingName = "Web.AppSettings.config";
-						connectionStringName = "Web.ConnectionString.config";
-						spName = "SpName.xml";
-					}
-										
+					
 					// for web config
-					fileManager.StartNewFile(webconfigName, webProject);					
+					fileManager.StartNewFile(webconfigName, webProject);
 					var webConfigOutput = paramTmpl.TransformText("Web.Config.tt", session);
 					this.Write(webConfigOutput);
 
 					// for app settings
-					fileManager.StartNewFile(appSettingName, webProject);					
+					fileManager.StartNewFile(appSettingName, webProject);
 					var webAppSettingsOutput = paramTmpl.TransformText("Web.AppSettings.tt", session);
 					this.Write(webAppSettingsOutput);
 
@@ -76,6 +68,34 @@
 					fileManager.StartNewFile(spName, webProject, appDataFolder);
 					var spNameOutput = paramTmpl.TransformText("SpName.tt", session);
 					this.Write(spNameOutput);
+                    
+					if(site.Name.Equals("Athena", StringComparison.OrdinalIgnoreCase))
+                    {
+						webconfigName = "Web.config";
+						appSettingName = "Web.AppSettings.config";
+						connectionStringName = "Web.ConnectionString.config";
+						spName = "SpName.xml";
+					
+						// for web config
+						fileManager.StartNewFile(webconfigName, webProject);
+						var webConfigOutput2 = paramTmpl.TransformText("Web.Config.tt", session);
+						this.Write(webConfigOutput2);
+
+						// for app settings
+						fileManager.StartNewFile(appSettingName, webProject);
+						var webAppSettingsOutput2 = paramTmpl.TransformText("Web.AppSettings.tt", session);
+						this.Write(webAppSettingsOutput2);
+
+						// for connection strings
+						fileManager.StartNewFile(connectionStringName, webProject);
+						var connectionStringOutput2 = paramTmpl.TransformText("Web.ConnectionString.tt", session);
+						this.Write(connectionStringOutput2);
+
+						// for spname
+						fileManager.StartNewFile(spName, webProject, appDataFolder);
+						var spNameOutput2 = paramTmpl.TransformText("SpName.tt", session);
+						this.Write(spNameOutput2);
+					}
 				}
 			}
 		}

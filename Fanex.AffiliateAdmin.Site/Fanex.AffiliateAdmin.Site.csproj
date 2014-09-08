@@ -205,6 +205,9 @@
     <Content Include="App_Data\SpName.athena.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpName.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\themes\base\AffiliateAdmin.css" />
     <Content Include="Content\themes\base\Fanex.Grid.css" />
@@ -902,6 +905,15 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="Web.athena.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
   </ItemGroup>

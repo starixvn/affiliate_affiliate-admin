@@ -7,6 +7,8 @@
 //   <change who="Joseph.Pham" date="2013.8.2">Created</change>
 // </history>
 
+using System;
+
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Linq;
@@ -130,7 +132,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 IP = Remote.GetClientIPAddress()
             };
             _service.ExecuteSP(criteria);            
-
+            
             return Json(GetResultViewModel(criteria.ErrCode, Lang.DeleteSucc));
         }
     }

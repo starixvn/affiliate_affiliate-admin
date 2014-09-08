@@ -112,6 +112,23 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders
         }
 
         /// <summary>
+        /// Get Transform Status.
+        /// </summary>
+        /// <returns>Transform Status.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept this method")]
+        public string GetDemoSite()
+        {
+            var node = _document.Descendants().FirstOrDefault();
+
+            if (node == null)
+            {
+                return string.Empty;
+            }
+
+            return GetNodeValue(node.Element("demoSite"));
+        }
+
+        /// <summary>
         /// Load xml file.
         /// </summary>
         public void LoadXml()

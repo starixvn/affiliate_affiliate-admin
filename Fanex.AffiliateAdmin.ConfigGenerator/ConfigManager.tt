@@ -26,7 +26,7 @@
     var globalWebConfigModel = manager.GetGlobalWebConfigModel();
     var environments = manager.GetSupportedEnvironmentList();
     var sites = manager.GetSupportedSiteList();
-	var transform = manager.GetTransformStatus();
+	var demoSite = manager.GetDemoSite();
 
 	var webProject = @"Fanex.AffiliateAdmin.Site";
 	var appDataFolder = @"App_Data";
@@ -69,7 +69,7 @@
 					var spNameOutput = paramTmpl.TransformText("SpName.tt", session);
 					this.Write(spNameOutput);
                     
-					if(site.Name.Equals("Athena", StringComparison.OrdinalIgnoreCase))
+					if(site.Name.Equals(demoSite, StringComparison.OrdinalIgnoreCase))
                     {
 						webconfigName = "Web.config";
 						appSettingName = "Web.AppSettings.config";

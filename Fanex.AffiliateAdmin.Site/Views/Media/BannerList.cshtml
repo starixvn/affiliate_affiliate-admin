@@ -8,7 +8,7 @@
 @{
     ViewBag.Title = Lang.BannerList;
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var profiler = StackExchange.Profiling.MiniProfiler.Current; // it's ok if this is null
+    var profiler = MiniProfiler.Current; // it's ok if this is null
 }
 @section iconcss{
 marketing-tools
@@ -28,52 +28,31 @@ marketing-tools
             <div class="row-fluid row-form">
                 <div class="cell">
                     @Html.LabelFor(m => m.Currency, Lang.Category, new { @class = "txt" })
-                    
-                    @using (profiler.Step("Render Banners"))
-                    {
-                        @Html.DropDownCheckList("Category", Model.BannerCategoryOptionList, false, false, new { @class = "width-140" })
-                    }
-                    
+                    @Html.DropDownCheckList("Category", Model.BannerCategoryOptionList, false, false, new { @class = "width-140" })
                 </div>
                 <div class="cell" style="display: none" id="divSubCategories">
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.Language, new { @class = "txt" })
-                    @using (profiler.Step("Render Languages"))
-                    {
-                        @Html.DropDownCheckList("Language", Model.MemberSiteSupportedLanguageOptionList, false, false, new { @class = "width-140" })
-                    }
-                    
+                    @Html.DropDownCheckList("Language", Model.MemberSiteSupportedLanguageOptionList, false, false, new { @class = "width-140" })
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.Currency, new { @class = "txt" })
-                    @using (profiler.Step("Render Currencies"))
-                    {
-                        @Html.DropDownCheckList("Currency", Model.PlayerCurrencyOptionList, false, false, new { @class = "width-140" })
-                    }
+                    @Html.DropDownCheckList("Currency", Model.PlayerCurrencyOptionList, false, false, new { @class = "width-140" })
                 </div>
             </div>
             <div class="row-fluid row-form  end-search">
                 <div class="cell">
                     @Html.LabelFor(m => m.AffType, new { @class = "txt" })
-                    @using (profiler.Step("Render AffTypes"))
-                    {
-                        @Html.DropDownCheckList("AffType", Model.AffiliateTypeOptionList, false, false, new { @class = "width-140" })
-                    }
+                    @Html.DropDownCheckList("AffType", Model.AffiliateTypeOptionList, false, false, new { @class = "width-140" })
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.ImageType, new { @class = "txt" })
-                    @using (profiler.Step("Render ImageTypes"))
-                    {
-                        @Html.DropDownCheckList("ImageType", Model.BannerTypeOptionList, false, false, new { @class = "width-140" })
-                    }
+                    @Html.DropDownCheckList("ImageType", Model.BannerTypeOptionList, false, false, new { @class = "width-140" })
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.Size, new { @class = "txt" })
-                    @using (profiler.Step("Render Sizes"))
-                    {
-                        @Html.DropDownCheckList("Size", Model.BannerSizeOptionList, false, false, new { @class = "width-140" })
-                    }
+                    @Html.DropDownCheckList("Size", Model.BannerSizeOptionList, false, false, new { @class = "width-140" })
                 </div>
             </div>
             <div class="row-fluid row-form btn-action">

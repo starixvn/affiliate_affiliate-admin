@@ -7,6 +7,7 @@
     <environment enable="0">uat</environment>
     <environment enable="0">production</environment>
   </environments>
+  <demoSite>Athena</demoSite>
   <sites>
     <site>
       <name>Athena</name>

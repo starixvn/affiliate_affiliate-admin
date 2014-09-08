@@ -69,6 +69,10 @@ var AffiliateCommissionReport = (function ($) {
                     HeaderText: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM),
                     Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
                     Formatter: function (rIndex, record, cell, cellFormated) {
+                        if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
+                            return cellFormated;
+                        }
+
                         var actualBaseCurreny = "2";
                         var currency = record.Currency;
 

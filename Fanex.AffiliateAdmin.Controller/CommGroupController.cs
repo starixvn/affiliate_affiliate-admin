@@ -279,8 +279,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             var groups = _commGroupService.GetById(criteria);
             var date = criteria.Date == null ? DateTime.Now : criteria.Date.Value;
-            BuildGroupData(groups, date, criteria.GroupID.ToString());
-            ViewBag.HasCashBackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
+            BuildGroupData(groups, date, criteria.GroupID.ToString());            
             return View(groups.FirstOrDefault());
         }
 

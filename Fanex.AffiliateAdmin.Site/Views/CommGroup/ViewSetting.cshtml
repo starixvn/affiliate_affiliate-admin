@@ -7,8 +7,7 @@
 @model CommGroup
 @{
     long MAXAM = 100000000000000;
-    var MAXQM = 1000000000;
-    var hasCashBackDeduction = ViewBag.HasCashBackDeduction is bool && (bool)ViewBag.HasCashBackDeduction;
+    var MAXQM = 1000000000;    
 }
 
 @if (Model != null)
@@ -26,7 +25,7 @@
             <th rowspan="2" width="50px">@Lang.QualifiedAmount</th>
             <th rowspan="2">@Lang.Currency</th>
             <th colspan="8">@Lang.Policy</th>        
-            @if (hasCashBackDeduction)
+            @if (Model.GeneralDeductions != null)
             {
                 <th rowspan="2" width="120px">@Lang.Deduction</th>    
             }
@@ -98,7 +97,7 @@
                     </td>
                         prevProductID = detail.ProductID;
                 }
-                @if (i == 0 && hasCashBackDeduction)
+                @if (i == 0 && Model.GeneralDeductions != null)
                 {
                     var generalDeductions = Model.GeneralDeductions;
                     

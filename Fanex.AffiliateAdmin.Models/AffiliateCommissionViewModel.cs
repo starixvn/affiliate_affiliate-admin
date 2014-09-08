@@ -25,9 +25,9 @@ namespace Fanex.AffiliateAdmin.Models
     {
         private readonly IList<SelectListItem> _transferStatusList = new List<SelectListItem>
         {
-                new SelectListItem { Text = Lang.All, Value = "0" },
-                new SelectListItem { Text = Lang.Processing, Value = "1" },
-                new SelectListItem { Text = Lang.Transfered, Value = "2" }
+            new SelectListItem { Text = Lang.All, Value = "0" },
+            new SelectListItem { Text = Lang.Processing, Value = "1" },
+            new SelectListItem { Text = Lang.Transfered, Value = "2" }
         };
 
         private readonly IList<SelectListItem> _groupByList = new List<SelectListItem>
@@ -38,9 +38,9 @@ namespace Fanex.AffiliateAdmin.Models
 
         private readonly IEnumerable<SelectListItem> _sortByList = new List<SelectListItem>
         {
-                new SelectListItem { Text = Lang.Affiliate, Value = "0" },
-                new SelectListItem { Text = Lang.TotalPayment, Value = "1" },
-                new SelectListItem { Text = Lang.Month, Value = "2" }
+            new SelectListItem { Text = Lang.Affiliate, Value = "0" },
+            new SelectListItem { Text = Lang.Month, Value = "1" },
+            new SelectListItem { Text = Lang.TotalPayment, Value = "2" }
         };
 
         private MultiSelectList _affiliateCurrencyOptions;

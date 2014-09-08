@@ -594,6 +594,10 @@ var MemberWinlossReport = (function ($) {
                     ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
                 AFFILIATE.resetToggleIndicator(gridOption);
             });
+
+            $('#gridId').on('click', '.member-info', function () {
+                AFFILIATE.openDialogFrame("Member", "Member INfo", { width: 580, height: 500 });
+            });
         },
 
         checkRangeTime: function () {

@@ -45,29 +45,21 @@ namespace Fanex.AffiliateAdmin.Models
 
         private readonly List<SelectListItem> _groupdByOptions = new List<SelectListItem>
                 {
-                    new SelectListItem()
-                    {
-                        Text = Lang.Affiliate,
-                        Value = "0",
-                    },
-                    new SelectListItem()
-                    {
-                        Text = Lang.AffiliateMonth,
-                        Value = "1"
-                    }
+                    new SelectListItem { Text = Lang.Affiliate, Value = "0" },
+                    new SelectListItem { Text = Lang.AffiliateMonth, Value = "1" }
                 };
 
         private readonly IEnumerable<SelectListItem> _sortByList = new List<SelectListItem>
             {
-                    ////new SelectListItem { Text = Lang.Commission, Value = "0" },
-                     new SelectListItem { Text = Lang.ActiveMembers, Value = "1" },
+                     new SelectListItem { Text = Lang.ActiveMembers, Value = "0" },
+                     new SelectListItem { Text = Lang.Affiliate, Value = "1" },
                      new SelectListItem { Text = Lang.BetCount, Value = "2" },
-                     new SelectListItem { Text = Lang.Deposit, Value = "3" },
-                     new SelectListItem { Text = Lang.Withdrawal, Value = "4" },
-                     new SelectListItem { Text = Lang.Turnover, Value = "5" },
-                    new SelectListItem { Text = Lang.Winloss, Value = "6" },
-                    new SelectListItem { Text = Lang.Affiliate, Value = "7" },
-                    new SelectListItem { Text = Lang.Month, Value = "8" }
+                     new SelectListItem { Text = Lang.PlayerComm, Value = "3" },
+                     new SelectListItem { Text = Lang.Deposit, Value = "4" },
+                     new SelectListItem { Text = Lang.Month, Value = "5" },
+                     new SelectListItem { Text = Lang.Turnover, Value = "6" },
+                     new SelectListItem { Text = Lang.Winloss, Value = "7" },
+                     new SelectListItem { Text = Lang.Withdrawal, Value = "8" }
             };
 
         private SelectList _affTypeOptionList;
@@ -216,7 +208,7 @@ namespace Fanex.AffiliateAdmin.Models
             {
                 if (_sortByOptionList == null)
                 {
-                    _sortByOptionList = new SelectList(_sortByList.OrderBy(t => t.Text), "Value", "Text", "7");
+                    _sortByOptionList = new SelectList(_sortByList.OrderBy(t => t.Text), "Value", "Text", "3");
                 }
 
                 return _sortByOptionList;

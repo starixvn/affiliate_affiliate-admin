@@ -33,9 +33,6 @@
 
 	foreach(var site in sites)
 	{
-		var block = new Block
-		{
-		};
 		if(site.Status)
 		{
 			site.WebConfigModel = string.IsNullOrEmpty(site.WebConfigModel) ? globalWebConfigModel : site.WebConfigModel;	

@@ -33,8 +33,6 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int PageIndex { get; set; } 
 
-        public int TotalPages { get; set; }
-
         public int NRows { get; set; }
 
         public override string GetSettingKey()

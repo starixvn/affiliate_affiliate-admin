@@ -596,7 +596,8 @@ var MemberWinlossReport = (function ($) {
             });
 
             $('#gridId').on('click', '.member-info', function () {
-                AFFILIATE.openDialogFrame("Member", "Member INfo", { width: 580, height: 500 });
+                var member = $(this).data('member');
+                AFFILIATE.openDialogFrame("Member?UserName={0}".format(member), MSG.MemberInfo, { width: 350, height: 500 });
             });
         },
 

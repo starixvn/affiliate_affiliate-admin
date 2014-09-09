@@ -149,7 +149,8 @@ report
             RangeTime3Months: "@Lang.RangeTime3Months",
             MemberWinloss: "@Lang.MemberWinloss",
             ToggleSubTotal: '@Lang.ToggleSubTotal',
-            ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct'
+            ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct',
+            MemberInfo: '@Lang.MemberInformation'
         };
 
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
@@ -212,7 +213,7 @@ report
                     CellAlign: "left",
                     CanResize: true,
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        return "<a href='javascript:void(0);' class='member-info' data-affiliate={0} data-member={1} >{1}</a>".format(record.Username, record.PlayerUsername);
+                        return "<a href='javascript:void(0);' class='member-info' data-member={0} >{0}</a>".format(record.PlayerUsername);
                     }
                 },
                 { HeaderText: "@Lang.MemberCurrency", Width: 80, Name: "PlayerCurrency", HeaderAlign: "center", CellAlign: "center" },

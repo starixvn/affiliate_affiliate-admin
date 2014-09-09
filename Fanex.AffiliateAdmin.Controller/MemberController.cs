@@ -11,16 +11,37 @@ namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [FunctionAuth(Function = "[Affiliate]")]
+    [FunctionAuth(Function = "[AffReport]")]
     public class MemberController : BaseController
     {
-        public ActionResult Index()
+        #region Services
+
+        private readonly IMemberService _service;
+
+        #endregion Services
+
+         #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MemberController" /> class.
+        /// </summary>
+        /// <param name="service">Member Service.</param>
+        public MemberController(IMemberService service)
         {
-            return this.View();
+            _service = service;
+        }
+
+        #endregion Constructor
+
+        public ActionResult Index(GetMemberDetailCriteria criteria)
+        {
+            return View(_service.GetMemberDetail(criteria));
         }
     }
 }

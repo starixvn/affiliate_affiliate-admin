@@ -60,15 +60,15 @@ if(Site != null)
     <Setting Key="AffAdmin_FavoriteIns" SpName="AffAdmin_FavoriteIns" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
     <Setting Key="AffAdmin_AffiliateSel" SpName="AffAdmin_AffiliateSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
     <Setting Key="AffAdmin_AffiliateSelFavorite" SpName="AffAdmin_AffiliateSelFavorite" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
-    <Setting Key="AffAdmin_EmailHistorySel" SpName="AffAdmin_EmailHistorySel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
-    <Setting Key="AffAdmin_EmailHistoryDel" SpName="AffAdmin_EmailHistoryDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="AffAdmin_EmailHistorySel" SpName="AffAdmin_EmailHistorySel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />    
     <Setting Key="AffAdmin_MemberListSel" SpName="AffAdmin_MemberListSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+	<Setting Key="AffAdmin_GetMemberDetail" SpName="AffAdmin_GetMemberDetail" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
     <Setting Key="AffAdmin_MemberDel" SpName="AffAdmin_MemberDel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
     <Setting Key="AffAdmin_AccountTypeSel" SpName="AffAdmin_AccountTypeSel" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
     <Setting Key="AffAdmin_CheckMemberExist" SpName="AffAdmin_CheckMemberExist" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
     <Setting Key="AffAdmin_CustomerInsMemberManually" SpName="AffAdmin_CustomerInsMemberManually" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
     <Setting Key="AffAdmin_AffiliateUpdAccountType" SpName="AffAdmin_AffiliateUpdAccountType" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
-    <Setting Key="Aff_CustomerSelByUserName" SpName="Aff_CustomerSelByUserName" DbName="<#= dbDict.GetValue("bodb02-name") #>" Plain="0" />
+    <Setting Key="Aff_CustomerSelByUserName" SpName="Aff_CustomerSelByUserName" DbName="<#= dbDict.GetValue("bodb02-name") #>" Plain="0" />	
   </Function>
   <Function Name="System Settings">
     <Setting Key="AffAdmin_SystemAllSupportedCurrencies" SpName="AffAdmin_SystemAllSupportedCurrencies" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />

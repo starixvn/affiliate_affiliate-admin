@@ -67,6 +67,7 @@
     <Compile Include="Impl\AdjustmentService.cs" />
     <Compile Include="Impl\AffiliateService.cs" />
     <Compile Include="Impl\CommGroupService.cs" />
+    <Compile Include="Impl\MemberService.cs" />
     <Compile Include="Impl\ReportService.cs" />
     <Compile Include="Impl\CountryService.cs" />
     <Compile Include="Impl\ExchangeRateService.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Impl\TrackingStatisticService.cs" />
     <Compile Include="Impl\TransTypeService.cs" />
     <Compile Include="Impl\ViewLogService.cs" />
+    <Compile Include="Interface\IMemberService.cs" />
     <Compile Include="Interface\IReportService.cs" />
     <Compile Include="Interface\IAdjustmentService.cs" />
     <Compile Include="Interface\ICommGroupService.cs" />
@@ -188,7 +190,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

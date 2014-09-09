@@ -4,7 +4,7 @@
   <DefaultLanguage>en-US</DefaultLanguage>
   <AffiliateName>Athena000</AffiliateName>
   <Environment>
-    <local>Local Developement</local>
+    <local>Local Development</local>
     <sandbox>Sandbox</sandbox>
     <uat>UAT</uat>
     <production>Production</production>

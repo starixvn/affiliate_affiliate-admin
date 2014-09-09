@@ -2610,4 +2610,10 @@
 	{0}
 &lt;/ul&gt;</value>
   </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="MemberInformation" xml:space="preserve">
+    <value>Member Information</value>
+  </data>
 </root>

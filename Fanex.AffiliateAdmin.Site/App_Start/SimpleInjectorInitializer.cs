@@ -72,8 +72,9 @@ namespace Fanex.AffiliateAdmin.Site
             container.Register<IViewLogService, ViewLogService>();
             container.Register<IAdjustmentService, AdjustmentService>();
             container.Register<ITrackingStatisticService, TrackingStatisticService>();
-            container.Register<IReportService, ReportService>();           
-            container.Register<IMessageService, MessageService>();            
+            container.Register<IReportService, ReportService>();
+            container.Register<IMessageService, MessageService>();
+            container.Register<IMemberService, MemberService>();
         }
     }
 }

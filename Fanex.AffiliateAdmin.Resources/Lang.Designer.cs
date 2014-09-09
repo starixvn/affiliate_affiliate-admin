@@ -2586,6 +2586,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email Address.
+        /// </summary>
+        public static string EmailAddress {
+            get {
+                return ResourceManager.GetString("EmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email Detail.
         /// </summary>
         public static string EmailDetail {
@@ -4526,6 +4535,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string MemberExist {
             get {
                 return ResourceManager.GetString("MemberExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member Information.
+        /// </summary>
+        public static string MemberInformation {
+            get {
+                return ResourceManager.GetString("MemberInformation", resourceCulture);
             }
         }
         

@@ -3,13 +3,24 @@
   <Layout>athena</Layout>
   <DefaultLanguage>en-US</DefaultLanguage>
   <AffiliateName>Athena000</AffiliateName>
+  <Environment>
+    <local>Local Development</local>
+    <sandbox>Sandbox</sandbox>
+    <uat>UAT</uat>
+    <production>Production</production>
+  </Environment>
   <TransferDay>8</TransferDay>
-  <TestMonthlyTransfer>0</TestMonthlyTransfer>
+  <TestMonthlyTransfer>
+    <local>1</local>
+    <sandbox>1</sandbox>
+    <uat>1</uat>
+    <production>0</production>
+  </TestMonthlyTransfer>
   <!--0: disable monthly transfer; 1: enable monthly transfer-->
   <!--Used to determine which month is transfered, default value: 1 (last month). 0: Current month; 1: last month; 2: past 2nd month;-->
   <PastNthMonth>1</PastNthMonth>
 
-  <EmailHeaderBgColor>#0058da</EmailHeaderBgColor>
+  <EmailHeaderBgColor>#0058DA</EmailHeaderBgColor>
   <EmailHeaderFontColor>#fff</EmailHeaderFontColor>
   <EmailContentBgColor>#fff</EmailContentBgColor>
   <EmailContentFontColor>#000</EmailContentFontColor>
@@ -18,8 +29,18 @@
   <EmailFooterBgColor>#0058DA</EmailFooterBgColor>
   <EmailFooterFontColor>#fff</EmailFooterFontColor>
 
-  <app_mail_id>34</app_mail_id>
-  <MailContact>affiliate@28betonline.com</MailContact>
+  <app_mail_id>
+    <local>31</local>
+    <sandbox>31</sandbox>
+    <uat>17</uat>
+    <production>17</production>
+  </app_mail_id>
+  <MailContact>
+    <local>affliate_anpha@nexcel.vn</local>
+    <sandbox>affliate_anpha@nexcel.vn</sandbox>
+    <uat>athena000@elinkaa.com</uat>
+    <production>athena000@elinkaa.com</production>
+  </MailContact>
 
   <SkipCheckUMTime>
     <local>1</local>
@@ -31,15 +52,15 @@
   <UM_EndTime>02 Jun 2013 04:00 PM</UM_EndTime>
 
   <InternalURL>
-    <local>Local Developement</local>
-    <sandbox>Sandbox</sandbox>
-    <uat>UAT</uat>
-    <production>Production</production>
+    <local>http://10.18.200.209:5001/User</local>
+    <sandbox>http://10.18.200.209:5001/User</sandbox>
+    <uat>http://affiliate.athena000.com/</uat>
+    <production>http://affiliate.athena000.com/</production>
   </InternalURL>
   <InternalURL_Kiosk>
-    <local>Local Developement</local>
-    <sandbox>Sandbox</sandbox>
-    <uat>UAT</uat>
-    <production>Production</production>
+    <local>http://10.18.200.209:5001/User</local>
+    <sandbox>http://10.18.200.209:5001/User</sandbox>
+    <uat>http://affiliate.athena000.com/</uat>
+    <production>http://affiliate.athena000.com/</production>
   </InternalURL_Kiosk>
 </settings>

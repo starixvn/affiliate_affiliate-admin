@@ -2,17 +2,85 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
-<div class="popup-content">
-    <div class="control-group">
-        @Html.Label("Username", new { @class = "control-label" })
-        <div class="controls">
-            qwe1234
+@model MemberDetail
+@{
+    var dateFormat = "MM/dd/yyyy";
+}
+
+@using (Html.BeginForm("AddBanner", "Media", FormMethod.Post, new {id = "ActionBannerForm", @class = "form-horizontal form-popup", enctype = "multipart/form-data"}))
+{
+    if (Model != null && !string.IsNullOrEmpty(Model.UserName))
+    {
+        <div class="popup-content">
+            <div class="control-group">
+                @Html.Label(Lang.Username, new {@class = "control-label"})
+                <div class="controls view-row">
+                    @Model.UserName
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.Label(Lang.FirstName, new {@class = "control-label"})
+                <div class="controls view-row">
+                    @Model.FirstName
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.Label(Lang.LastName, new {@class = "control-label"})
+                <div class="controls view-row">
+                    @Model.LastName
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.Label(Lang.EmailAddress, new {@class = "control-label"})
+                <div class="controls view-row">
+                    @Model.Email
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.Label(Lang.Phone, new {@class = "control-label"})
+                <div class="controls view-row">
+                    @Model.Phone
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.Label(Lang.Country, new {@class = "control-label"})
+                <div class="controls view-row">
+                    @Model.Country
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.Label(Lang.RegisterDate, new {@class = "control-label"})
+                <div class="controls view-row">
+                    @(Model.RegisteredDate.HasValue ? Model.RegisteredDate.Value.ToString(dateFormat) : string.Empty)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.Label(Lang.FirstDepositDate, new {@class = "control-label"})
+                <div class="controls view-row">
+                    @(Model.CreatedDate.HasValue ? Model.CreatedDate.Value.ToString(dateFormat) : string.Empty)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.Label(Lang.EffectiveDate, new {@class = "control-label"})
+                <div class="controls view-row">
+                    @(Model.AffAffectedDate.HasValue ? Model.AffAffectedDate.Value.ToString(dateFormat) : string.Empty)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.Label(Lang.Currency, new {@class = "control-label"})
+                <div class="controls view-row">
+                    @Model.Currency
+                </div>
+            </div>
+            @if (Model.IsRemoved)
+            {
+                <div class="control-group bold">
+                    @Html.Label(Lang.Status, new {@class = "control-label"})
+                    <div class="controls view-row">
+                        @Lang.Removed (@(Model.RemovedDate.HasValue ? Model.RemovedDate.Value.ToString(dateFormat) : string.Empty))
+                    </div>
+                </div>
+            }
         </div>
-    </div>
-    <div class="control-group">
-        @Html.Label("Firstname", new { @class = "control-label" })
-        <div class="controls">
-            Dinh Trung
-        </div>
-    </div>
-</div>
+    }
+}

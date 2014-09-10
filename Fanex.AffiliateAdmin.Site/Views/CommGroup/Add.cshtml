@@ -124,6 +124,7 @@
                             <div class="clear"></div>
                             <!--DeductionOption-->
                             <div class="row-fluid row-form deductions">
+                                @RazorHelper.SharingFeeInfoPanel(product.ProductName)
                                 <table>
                                     @foreach (var item in deductions)
                                     {

@@ -2578,7 +2578,7 @@
     <value>Affiliate Win Loss Report</value>
   </data>
   <data name="PlayerComm" xml:space="preserve">
-    <value>Player Comm.</value>
+    <value>Member Comm.</value>
   </data>
   <data name="PlayerCommission" xml:space="preserve">
     <value>Player Commmission</value>
@@ -2618,5 +2618,17 @@
   </data>
   <data name="Available" xml:space="preserve">
     <value>Available</value>
+  </data>
+  <data name="OtherProductSharingFeeInfo" xml:space="preserve">
+    <value>&lt;ul&gt;
+	&lt;li&gt;Net Win Loss = - Member Win Loss - (Deduction)&lt;/li&gt;
+	&lt;li&gt;Affiliate Commission (3rd Party Product) = Net Win Loss * Commission%&lt;/li&gt;	
+    &lt;/ul&gt;</value>
+  </data>
+  <data name="SportsbookSharingFeeInfo" xml:space="preserve">
+    <value>&lt;ul&gt;
+	&lt;li&gt;Net Win Loss = - Member Win Loss - Marketing - PSP - PSP - Odds Fee - Member Commission&lt;/li&gt;           
+	&lt;li&gt;Affiliate Commission = (Net Win Loss * Commission%) - (Bonus * Bonus%)&lt;/li&gt;
+    &lt;/ul&gt;</value>
   </data>
 </root>

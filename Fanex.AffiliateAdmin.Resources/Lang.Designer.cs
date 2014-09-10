@@ -5268,6 +5268,18 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;ul&gt;
+        ///	&lt;li&gt;Net Win Loss = - Member Win Loss - (Deduction)&lt;/li&gt;
+        ///	&lt;li&gt;Affiliate Commission (3rd Party Product) = Net Win Loss * Commission%&lt;/li&gt;	
+        ///    &lt;/ul&gt;.
+        /// </summary>
+        public static string OtherProductSharingFeeInfo {
+            get {
+                return ResourceManager.GetString("OtherProductSharingFeeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Others.
         /// </summary>
         public static string Others {
@@ -5466,7 +5478,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Player Comm..
+        ///   Looks up a localized string similar to Member Comm..
         /// </summary>
         public static string PlayerComm {
             get {
@@ -6326,6 +6338,18 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string Sportsbook {
             get {
                 return ResourceManager.GetString("Sportsbook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;ul&gt;
+        ///	&lt;li&gt;Net Win Loss = - Member Win Loss - Marketing - PSP - PSP - Odds Fee - Member Commission&lt;/li&gt;           
+        ///	&lt;li&gt;Affiliate Commission = (Net Win Loss * Commission%) - (Bonus * Bonus%)&lt;/li&gt;
+        ///    &lt;/ul&gt;.
+        /// </summary>
+        public static string SportsbookSharingFeeInfo {
+            get {
+                return ResourceManager.GetString("SportsbookSharingFeeInfo", resourceCulture);
             }
         }
         

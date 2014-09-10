@@ -78,6 +78,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// <typeparam name="T">General type.</typeparam>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>The list of found entities and output values.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Temporarily, accept it")]
         public IEnumerable<T> GetDataOutput<T>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");

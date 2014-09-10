@@ -242,7 +242,7 @@
     </div>
 }
 @helper SearchPanel(string contentSelector, string information, bool hasExport = true, bool hasInfo = true)
-    {
+{
     <div class="span12 search-title" data-selector="@contentSelector"  title="@Lang.CollapseExpand">
         <div class="expand collapse">&nbsp;</div><label>@Lang.Search</label>
         <div class="more">
@@ -259,6 +259,17 @@
             <p id="info-close">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
             @MvcHtmlString.Create(information)
         </div>
+    </div>
+}
+
+@helper SharingFeeInfoPanel(string product)
+{
+    <div class="more">
+        <span id="info" title="Information" class="info"></span>
+    </div>
+    <div id="info-dialog">
+        <p id="info-close">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        @MvcHtmlString.Create(product.Equals("Sportsbook", StringComparison.OrdinalIgnoreCase) ? Lang.SportsbookSharingFeeInfo : Lang.OtherProductSharingFeeInfo)
     </div>
 }
 

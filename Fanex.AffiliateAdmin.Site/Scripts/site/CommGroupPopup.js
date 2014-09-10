@@ -683,4 +683,6 @@ var CommGroupPopup = (function ($) {
 $(function () {
     "use strict";
     CommGroupPopup.init();
+
+    $(".deductions").createSearchPanel();
 });

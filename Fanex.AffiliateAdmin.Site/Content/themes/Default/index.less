@@ -110,7 +110,6 @@ body {
 				.info {
 					.setIcon(-145px, -413px, 20px, 18px);
 				}
-
 			}
 
 			#info-dialog{
@@ -433,6 +432,53 @@ body {
 
 					.controls-row {
 						color: #0B7DD5;
+					}
+				}
+			}
+
+			.deductions{
+				position: relative;
+
+				.more {
+					float: right;
+					position: relative;
+					right: -9px;
+					top: -15px;
+					.info {
+						.setIcon(-145px, -413px, 20px, 18px);
+						height: 19px;
+						margin-right: 3px;
+						width: 19px;
+					}
+				}
+
+				#info-dialog{
+					background-color: #454545; 
+					color: #fff; 
+					.border-radius(3px); 
+					font-size: 11px; 
+					font-weight: normal; 
+					display: none; 
+					width: 490px; 
+					right: 12px; 
+					top: 0; 
+					padding: 10px; 
+					position: absolute;
+					z-index: 9999; 
+					cursor: default;
+				 
+					#info-close{
+						.setIcon(-203px, -413px, 20px, 18px);
+						float: right; 
+						margin-right: -5px;
+						margin-top: -5px;
+						width: 18px;
+						height: 20px;
+						cursor: pointer;
+					}
+
+					ul{
+						margin: 0px 0px 0px 16px;
 					}
 				}
 			}

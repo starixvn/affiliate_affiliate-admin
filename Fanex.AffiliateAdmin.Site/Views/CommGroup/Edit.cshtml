@@ -105,7 +105,7 @@
                                     </label>
                                 </td>
                                 <td style="text-align: left; background-color: white; "> = @RazorHelper.PercentageDropDownList((decimal)percent, (decimal)0.01, "deductionlist nopadding", check ? string.Empty: "disabled")
-                                </td>                                    
+                                </td>
                                 <td style="text-align: left;background-color: white; ">
                                 </td>
                             </tr>
@@ -149,39 +149,40 @@
 
         if (deductions.Any())
         {
-                        <!--Deduction-->
-                        <div class="fieldset">
-                            <div class="legend">@Lang.SharingFee</div>
-                            <div class="clear"></div>
-                            <!--DeductionOption-->
-                            <div class="row-fluid row-form deductions">
-                                <table>
-                                    @foreach (var item in deductions)
-                                    {
-                                        var check = Model.DeductionSettings.Any(x => x.DeductionID == item.DTypeID);
-                                        var d = check ? Model.DeductionSettings.FirstOrDefault(x => x.DeductionID == item.DTypeID) : null;
-                                        var percent = d == null ? (decimal)item.DeductedPercentage : d.DeductedPercentage;
+                <!--Deduction-->
+                <div class="fieldset">
+                    <div class="legend">@Lang.SharingFee</div>
+                    <div class="clear"></div>
+                    <!--DeductionOption-->
+                    <div class="row-fluid row-form deductions">
+                        @RazorHelper.SharingFeeInfoPanel(product.ProductName)
+                        <table>
+                            @foreach (var item in deductions)
+                            {
+                                var check = Model.DeductionSettings.Any(x => x.DeductionID == item.DTypeID);
+                                var d = check ? Model.DeductionSettings.FirstOrDefault(x => x.DeductionID == item.DTypeID) : null;
+                                var percent = d == null ? (decimal)item.DeductedPercentage : d.DeductedPercentage;
                                         
-                                        <tr>
-                                            <td style="text-align: left;">
-                                                <input type="checkbox" class="deduction" data-id="@item.DTypeID" data-percent="@item.DeductedPercentage" @(check ? "checked" : string.Empty) />            
-                                                <label title="@(Lang.ResourceManager.GetString("Deduction" + item.DTypeName.Replace(" ", string.Empty)))">
-                                                    @item.DTypeName
-                                                </label>
-                                            </td>
-                                            <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList(percent, (decimal)0.01, "deductionlist nopadding", check ? string.Empty : "disabled")
-                                            </td>                                    
-                                            <td style="text-align: left;">
-                                                @RazorHelper.AdditionalSharingFee(item.DTypeName, (decimal)Model.DepositPercent, (decimal)Model.WithdrawalPercent, check ? string.Empty : "disabled")
-                                            </td>
-                                        </tr>
-                                    }
-                                </table>                    
-                            </div>          
-                            <!--/DeductionOption--></div>
-                        <!--/Deduction-->
+                                <tr>
+                                    <td style="text-align: left;">
+                                        <input type="checkbox" class="deduction" data-id="@item.DTypeID" data-percent="@item.DeductedPercentage" @(check ? "checked" : string.Empty) />            
+                                        <label title="@(Lang.ResourceManager.GetString("Deduction" + item.DTypeName.Replace(" ", string.Empty)))">
+                                            @item.DTypeName
+                                        </label>
+                                    </td>
+                                    <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList(percent, (decimal)0.01, "deductionlist nopadding", check ? string.Empty : "disabled")
+                                    </td>                                    
+                                    <td style="text-align: left;">
+                                        @RazorHelper.AdditionalSharingFee(item.DTypeName, (decimal)Model.DepositPercent, (decimal)Model.WithdrawalPercent, check ? string.Empty : "disabled")
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <!--/DeductionOption--></div>
+                <!--/Deduction-->
         }
-                }
+        }
                 <div class="fieldset" id="fieldsetTier@(product.ProductID)">
                     <div class="legend">@Lang.TierSetting</div>
                     <div style="clear:left;"></div>

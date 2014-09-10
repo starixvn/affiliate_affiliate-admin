@@ -254,7 +254,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(new
             {
                 List = groups,
-                CurrentPage = criteria.PageIndex,
+                CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows,
                 HasCashBackDeduction = groups.Any(t => t.HasCashback > 0)
@@ -421,7 +421,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var groups = _commGroupService.GetListData<CommGroup>(criteria);
 
-            if (criteria.GroupIDList.IndexOf(',') == 0)
+            if (!string.IsNullOrEmpty(criteria.GroupIDList) && criteria.GroupIDList.IndexOf(',') == 0)
             {
                 criteria.GroupIDList = criteria.GroupIDList.Substring(1);
             }

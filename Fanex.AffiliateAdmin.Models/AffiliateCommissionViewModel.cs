@@ -201,7 +201,7 @@ namespace Fanex.AffiliateAdmin.Models
             {
                 if (_groupByOptions == null)
                 {
-                    _groupByOptions = new SelectList(_groupByList, "Value", "Text");
+                    _groupByOptions = new SelectList(_groupByList, "Value", "Text", "1");
                 }
 
                 return _groupByOptions;

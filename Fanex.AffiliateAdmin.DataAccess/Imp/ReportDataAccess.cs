@@ -30,7 +30,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="criteria">Criteria input.</param>
         /// <returns>Member win-loss.</returns>
-        public MemberWinLossReport GetMemberWinloss(MemberWinlossReportCriteria criteria)
+        public MemberWinLossReport GetMemberWinLoss(MemberWinlossReportCriteria criteria)
         {
             var memberWinlossReport = new MemberWinLossReport();
 
@@ -60,7 +60,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="criteria">Criteria input.</param>
         /// <returns>Company win-loss report.</returns>
-        public CompanyWinlossReport GetCompanyWinloss(CompanyWinlossReportCriteria criteria)
+        public CompanyWinlossReport GetCompanyWinLoss(CompanyWinlossReportCriteria criteria)
         {
             var companyWinlossReport = new CompanyWinlossReport();
 
@@ -89,7 +89,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="criteria">Criteria input.</param>
         /// <returns>Commission report.</returns>
-        public AffiliateWinLossReport GetCommission(AffiliateWinLossCriteria criteria)
+        public AffiliateWinLossReport GetAffiliateWinLoss(AffiliateWinLossCriteria criteria)
         {
             var commissionReport = new AffiliateWinLossReport();
 
@@ -645,7 +645,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <returns>True if grouped by month.</returns>
         private bool IsGroupByMonth(AffiliateWinLossCriteria criteria)
         {
-            const int GroupByMonth = 0;
+            const int GroupByMonth = 1;
 
             return criteria.GroupBy == GroupByMonth;
         }

@@ -115,7 +115,8 @@
             RangeTime3Months: "@Lang.RangeTime3Months", 
             MemberWinloss: "@Lang.MemberWinloss",
             ToggleSubTotal: '@Lang.ToggleSubTotal',
-            ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct'
+            ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct',
+            MemberInfo: '@Lang.MemberInformation'
         };
 
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
@@ -158,8 +159,7 @@
                 { HeaderText: "@Lang.Currency", Width: 70, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Member", Width: 100, Name: "PlayerUsername", HeaderAlign: "center", CellAlign: "left", CanResize: true,
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        var url = AFFILIATE.getAbsoluteUrl("Affiliate/MemberListByAffiliate?Username={0}".format(record.PlayerUsername));
-                        return "<a href='{0}'>{1}</a>".format(url, record.PlayerUsername);
+                        return "<a href='javascript:void(0);' class='member-info' data-member={0} >{0}</a>".format(record.PlayerUsername);
                     }
                 },
                 { HeaderText: "@Lang.MemberCurrency", Width: 80, Name: "PlayerCurrency", HeaderAlign: "center", CellAlign: "center" },

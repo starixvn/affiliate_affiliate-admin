@@ -85,7 +85,16 @@ namespace Fanex.AffiliateAdmin.Core.Services
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 var param = criteria.GetSpParams();
-                var list = objectDb.Query<T>(param);
+                IEnumerable<T> list = new List<T>();
+
+                try
+                {
+                    list = objectDb.Query<T>(param);
+                }
+                catch (Exception)
+                {
+                }
+
                 var outputParams = objectDb.GetOuputParams();
                 if (outputParams != null)
                 {

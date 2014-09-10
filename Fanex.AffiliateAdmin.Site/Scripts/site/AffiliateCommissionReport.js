@@ -33,10 +33,10 @@ var AffiliateCommissionReport = (function ($) {
 
     var getNumberOfFrozenColumn = function () {
         if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
-            return 3;
+            return 4;
         }
 
-        return 5;
+        return 6;
     };
 
     var initProductColumnsForGridOption = function (products) {
@@ -120,10 +120,6 @@ var AffiliateCommissionReport = (function ($) {
         gridOption.numberOfFrozenColumn = getNumberOfFrozenColumn();
 
         initProductColumnsForGridOption(products);
-
-        gridOption.groupHeaderRows[0].Columns.push(window.totalPaymentHeader);
-
-        gridOption.columns.push(window.totalPaymentCol);
     }
 
     var renameCurrencyColumns = function (isUseBaseCurrency) {

@@ -359,15 +359,21 @@ namespace Fanex.AffiliateAdmin.Controller
             return View(model);
         }
 
+        /// <summary>
+        /// Affiliate Win Loss By Affiliate.
+        /// </summary>
+        /// <param name="criteria">Affiliate Win Loss Criteria.</param>
+        /// <returns>Action Result.</returns>
         [HttpPost]
         public ActionResult AffiliateWinLossByAffiliate(AffiliateWinLossCriteria criteria)
         {
+            const int GroupByMonth = 1;
             criteria.AffName = CurrentSession.Affiliate.Username;
             criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
             criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
             criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
             criteria.Currencies = CurrentSession.Affiliate.CurrencyID.ToString();
-            criteria.GroupBy = 0;
+            criteria.GroupBy = GroupByMonth;
 
             return AffiliateWinLoss(criteria);
         }

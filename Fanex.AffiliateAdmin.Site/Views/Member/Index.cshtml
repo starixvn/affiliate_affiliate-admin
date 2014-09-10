@@ -72,15 +72,22 @@
                     @Model.Currency
                 </div>
             </div>
-            @if (Model.IsRemoved)
-            {
+            
                 <div class="control-group bold">
                     @Html.Label(Lang.Status, new {@class = "control-label"})
                     <div class="controls view-row">
-                        @Lang.Removed (@(Model.RemovedDate.HasValue ? Model.RemovedDate.Value.ToString(dateFormat) : string.Empty))
+                        @if (Model.IsRemoved)
+                        {
+                            @Lang.Removed @(Model.RemovedDate.HasValue ? string.Format(" ({0})", Model.RemovedDate.Value.ToString(dateFormat)) : string.Empty)
+                        }
+                        else
+                        {
+                            @Lang.Available
+                        }
+                                              
                     </div>
                 </div>
-            }
+            
         </div>
     }
 }

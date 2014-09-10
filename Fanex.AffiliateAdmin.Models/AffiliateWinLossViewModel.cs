@@ -43,7 +43,7 @@ namespace Fanex.AffiliateAdmin.Models
                     }
                 };
 
-        private readonly List<SelectListItem> _groupdByOptions = new List<SelectListItem>
+        private readonly IList<SelectListItem> _groupByList = new List<SelectListItem>
                 {
                     new SelectListItem { Text = Lang.Affiliate, Value = "0" },
                     new SelectListItem { Text = Lang.AffiliateMonth, Value = "1" }
@@ -73,6 +73,8 @@ namespace Fanex.AffiliateAdmin.Models
         private SelectList _preferLanguageOptionList;
 
         private SelectList _sortByOptionList;
+
+        private SelectList _groupByOptionList;
 
         #endregion Fields
 
@@ -166,7 +168,15 @@ namespace Fanex.AffiliateAdmin.Models
 
         public IEnumerable<SelectListItem> GroupByOptionList
         {
-            get { return _groupdByOptions; }
+            get
+            {
+                if (_groupByOptionList == null)
+                {
+                    _groupByOptionList = new SelectList(_groupByList, "Value", "Text", "1");
+                }
+
+                return _groupByOptionList;
+            }
         }
 
         public int GroupId { get; set; }

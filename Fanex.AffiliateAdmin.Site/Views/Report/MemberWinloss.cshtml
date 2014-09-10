@@ -201,7 +201,7 @@ report
                     CellAlign: "left",
                     Formatter: function(rIndex, record) {
                         var url = AFFILIATE.getAbsoluteUrl("AffiliateInfo?UserName={0}".format(record.Username));
-                        return "<a href='{0}'>{1}</a>".format(url, record.Username);
+                        return "<a href='{0}' target='_blank'>{1}</a>".format(url, record.Username);
                     }
                 },
                 { HeaderText: "@Lang.Currency", Width: 70, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },

@@ -1,26 +1,58 @@
 ﻿
-
+Error processing file SpName.athena.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.athena.local.xml
+Error processing file SpName.athena.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.athena.production.xml
+Error processing file SpName.athena.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.athena.uat.xml
 Error processing file SpName.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.xml
-
+Error processing file Web.AppSettings.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.athena.local.config
-
+Error processing file Web.AppSettings.athena.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.athena.production.config
+Error processing file Web.AppSettings.athena.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.athena.uat.config
+Error processing file Web.AppSettings.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.config
-
+Error processing file Web.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.athena.local.config
-
+Error processing file Web.athena.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.athena.production.config
+Error processing file Web.athena.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.athena.uat.config
+Error processing file Web.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.config
-
+Error processing file Web.ConnectionString.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.athena.local.config
-
+Error processing file Web.ConnectionString.athena.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.athena.production.config
+Error processing file Web.ConnectionString.athena.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.athena.uat.config
+Error processing file Web.ConnectionString.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.config
-
+Error processing file Web.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.config
 // Generated helper templates
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\ConfigManager.txt4
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\ConfigManager.txt4
 // Generated items
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.athena.production.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.athena.production.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.athena.production.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.athena.production.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.athena.uat.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.athena.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.athena.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.athena.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config

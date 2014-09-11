@@ -205,6 +205,12 @@
     <Content Include="App_Data\SpName.athena.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpName.athena.production.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.athena.uat.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpName.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -916,6 +922,24 @@
     <Content Include="Web.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="Web.ConnectionString.athena.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.athena.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.athena.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.athena.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.athena.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.athena.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1145,7 +1169,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

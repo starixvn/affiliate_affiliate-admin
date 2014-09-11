@@ -73,11 +73,14 @@ namespace Fanex.AffiliateAdmin.DataAccess
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var param = criteria.GetSpParams();
+
                     var reader = objectDb.ExecuteReader(param);
 
                     companyWinlossReport.CompanyWinlossList = GetCompanyWinlossList(reader, criteria);
+
                     companyWinlossReport.TotalCompanyWinlossInMemberCurrencies = GetTotalCompanyWinlossInMemberCurrency(reader, criteria);
-                    companyWinlossReport.TotalCompanyWinlossInSystemCurrency = GetTotalCompanyWinlossInSystemCurrency(reader);
+
+                    companyWinlossReport.TotalCompanyWinlossInSystemCurrency = GetTotalCompanyWinlossInSystemCurrency(reader, criteria);
 
                     reader.Close();
 
@@ -421,8 +424,9 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// Get total company win-loss in system currency.
         /// </summary>
         /// <param name="reader">Data reader.</param>
+        /// <param name="criteria">Criteria Input.</param>
         /// <returns>Total company win-loss.</returns>
-        private CompanyWinloss GetTotalCompanyWinlossInSystemCurrency(IDataReader reader)
+        private CompanyWinloss GetTotalCompanyWinlossInSystemCurrency(IDataReader reader, CompanyWinlossReportCriteria criteria)
         {
             var companyWinloss = new CompanyWinloss();
 
@@ -432,7 +436,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
                 companyWinloss.BetCount = reader.ToInt("BetCount");
                 companyWinloss.ActivePlayer = reader.ToInt("ActivePlayer");
 
-                GetCompanyWinlossColumnsInSystemCurrency(reader, companyWinloss);
+                GetCompanyWinlossColumns(reader, companyWinloss, SysColSuffix, criteria.ViewMode);
             }
 
             return companyWinloss;
@@ -449,46 +453,17 @@ namespace Fanex.AffiliateAdmin.DataAccess
             const byte MemberCurrency = 0;
             const byte AffiliateCurrency = 2;
 
-            GetCompanyWinlossColumnsInSystemCurrency(reader, companyWinloss);
+            GetCompanyWinlossColumns(reader, companyWinloss, SysColSuffix, criteria.ViewMode);
 
             if (criteria.BaseCurrency == MemberCurrency)
             {
-                GetCompanyWinlossColumnsInMemberCurrency(reader, companyWinloss);
+                GetCompanyWinlossColumns(reader, companyWinloss, string.Empty, criteria.ViewMode);
                 return;
             }
 
             if (criteria.BaseCurrency == AffiliateCurrency)
             {
-                GetCompanyWinlossColumnsInAffiliateCurrency(reader, companyWinloss);
-            }
-        }
-
-        /// <summary>
-        /// Get company win-loss columns in affiliate currency.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="companyWinloss">Company win-loss.</param>
-        private void GetCompanyWinlossColumnsInAffiliateCurrency(IDataReader reader, CompanyWinloss companyWinloss)
-        {
-            companyWinloss.Deposit_Aff = reader.ToDecimal("Deposit_Aff");
-            companyWinloss.Withdrawal_Aff = reader.ToDecimal("Withdrawal_Aff");
-            companyWinloss.Bonus_Aff = reader.ToDecimal("Bonus_Aff");
-            companyWinloss.Adjustment_Aff = reader.ToDecimal("Adjustment_Aff");
-            companyWinloss.PSP_Aff = reader.ToDecimal("PSP_Aff");
-            companyWinloss.TotalTurnover_Aff = reader.ToDecimal("TotalTurnover_Aff");
-            companyWinloss.TotalMemberWinlost_Aff = reader.ToDecimal("TotalWinlost_Aff");
-            companyWinloss.PShare_Aff = reader.ToDecimal("PShare_Aff");
-            companyWinloss.PWin_Aff = reader.ToDecimal("PWin_Aff");
-            companyWinloss.NetGaming_Aff = reader.ToDecimal("NetGaming_Aff");
-            companyWinloss.PlayerComm_Aff = reader.ToDecimal("PlayerComm_Aff");
-
-            var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
-
-            foreach (var product in products)
-            {
-                companyWinloss.SetPropertyValue(string.Format("{0}Turnover_Aff", product), reader.ToDecimal(string.Format("{0}Turnover_Aff", product)));
-                companyWinloss.SetPropertyValue(string.Format("{0}Winlost_Aff", product), reader.ToDecimal(string.Format("{0}Winlost_Aff", product)));
-                companyWinloss.SetPropertyValue(string.Format("{0}PlayerComm_Aff", product), reader.ToDecimal(string.Format("{0}PlayerComm_Aff", product)));
+                GetCompanyWinlossColumns(reader, companyWinloss, AffColSuffix, criteria.ViewMode);
             }
         }
 
@@ -497,72 +472,32 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <param name="companyWinloss">Company win-loss.</param>
+        /// <param name="colSuffix">Column suffix.</param>
+        /// <param name="viewMode">View mode.</param>
         private void GetCompanyWinlossColumns(IDataReader reader, CompanyWinloss companyWinloss, string colSuffix, int viewMode)
         {
-            const byte overviewMode = 0;
+            const byte OverviewMode = 0;
 
-            if (viewMode == overviewMode)
+            if (viewMode == OverviewMode)
             {
-                companyWinloss.DepositBase = reader.ToDecimal(string.Format("Deposit{0}", colSuffix));
-                companyWinloss.WithdrawalBase = reader.ToDecimal(string.Format("Withdrawal{0}", colSuffix));
-                companyWinloss.BonusBase = reader.ToDecimal(string.Format("Bonus{0}", colSuffix));
-                companyWinloss.AdjustmentBase = reader.ToDecimal(string.Format("Adjustment{0}", colSuffix));
-                companyWinloss.PSPBase = reader.ToDecimal(string.Format("PSP{0}", colSuffix));
+                SetPropertyValue(reader, companyWinloss, string.Format("Deposit{0}", colSuffix));
+                SetPropertyValue(reader, companyWinloss, string.Format("Withdrawal{0}", colSuffix));
+                SetPropertyValue(reader, companyWinloss, string.Format("Bonus{0}", colSuffix));
+                SetPropertyValue(reader, companyWinloss, string.Format("Adjustment{0}", colSuffix));
+                SetPropertyValue(reader, companyWinloss, string.Format("PSP{0}", colSuffix));
             }
 
-            companyWinloss.TotalTurnoverBase = reader.ToDecimal(string.Format("TotalTurnover{0}", colSuffix));
-            companyWinloss.TotalMemberWinlostBase = reader.ToDecimal("TotalWinlostBase");
-            companyWinloss.PlayerCommBase = reader.ToDecimal("PlayerCommBase");
-            companyWinloss.PShareBase = reader.ToDecimal("PShareBase");
-            companyWinloss.PWinBase = reader.ToDecimal("PWinBase");
-            companyWinloss.NetGamingBase = reader.ToDecimal("NetGamingBase");
+            SetPropertyValue(reader, companyWinloss, string.Format("TotalTurnover{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("TotalWinlost{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("PlayerComm{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("PShare{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("PWin{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("NetGaming{0}", colSuffix));
         }
 
-        /// <summary>
-        /// Get company win-loss columns in member currency.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="companyWinloss">Company win-loss.</param>
-        private void GetCompanyWinlossColumnsInMemberCurrency(IDataReader reader, CompanyWinloss companyWinloss)
+        private void SetPropertyValue(IDataReader reader, object obj, string propertyName)
         {
-            const byte overviewMode = 0;
-
-            if (viewMode == overviewMode)
-            {
-                companyWinloss.DepositBase = reader.ToDecimal("DepositBase");
-                companyWinloss.WithdrawalBase = reader.ToDecimal("WithdrawalBase");
-                companyWinloss.BonusBase = reader.ToDecimal("BonusBase");
-                companyWinloss.AdjustmentBase = reader.ToDecimal("AdjustmentBase");
-                companyWinloss.PSPBase = reader.ToDecimal("PSPBase");
-            }
-
-            companyWinloss.TotalTurnoverBase = reader.ToDecimal("TotalTurnoverBase");
-            companyWinloss.TotalMemberWinlostBase = reader.ToDecimal("TotalWinlostBase");
-            companyWinloss.PlayerCommBase = reader.ToDecimal("PlayerCommBase");
-            companyWinloss.PShareBase = reader.ToDecimal("PShareBase");
-            companyWinloss.PWinBase = reader.ToDecimal("PWinBase");
-            companyWinloss.NetGamingBase = reader.ToDecimal("NetGamingBase");
-
-            companyWinloss.Deposit = reader.ToDecimal("Deposit");
-            companyWinloss.Withdrawal = reader.ToDecimal("Withdrawal");
-            companyWinloss.Bonus = reader.ToDecimal("Bonus");
-            companyWinloss.Adjustment = reader.ToDecimal("Adjustment");
-            companyWinloss.PSP = reader.ToDecimal("PSP");
-            companyWinloss.TotalTurnover = reader.ToDecimal("TotalTurnover");
-            companyWinloss.TotalMemberWinlost = reader.ToDecimal("TotalWinlost");
-            companyWinloss.PShare = reader.ToDecimal("PShare");
-            companyWinloss.PWin = reader.ToDecimal("PWin");
-            companyWinloss.NetGaming = reader.ToDecimal("NetGaming");
-            companyWinloss.PlayerComm = reader.ToDecimal("PlayerComm");
-
-            var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
-
-            foreach (var product in products)
-            {
-                companyWinloss.SetPropertyValue(string.Format("{0}Turnover", product), reader.ToDecimal(string.Format("{0}Turnover", product)));
-                companyWinloss.SetPropertyValue(string.Format("{0}Winlost", product), reader.ToDecimal(string.Format("{0}Winlost", product)));
-                companyWinloss.SetPropertyValue(string.Format("{0}PlayerComm", product), reader.ToDecimal(string.Format("{0}PlayerComm", product)));
-            }
+            obj.SetPropertyValue(propertyName, reader.ToDecimal(propertyName));
         }
 
         #endregion Helpers for company win-loss

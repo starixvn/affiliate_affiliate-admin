@@ -70,6 +70,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult CompanyWinloss(CompanyWinlossReportCriteria criteria)
         {
             AddMoreParameterForCompanyWinlossReportCriteria(criteria);
+            criteria.ViewMode = 0;
 
             var data = _reportService.GetCompanyWinloss(criteria);
 
@@ -565,7 +566,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="companyWinlosses">Company Win loss List.</param>
         /// <param name="properties">Property List.</param>
         /// <returns>Company Win loss List in Member Currencies.</returns>
-        private IList<CompanyWinloss> GetCompanyWinlossInMemberCurrencies(IList<CompanyWinloss> companyWinlosses, IEnumerable<PropertyInfo> properties)
+        private IList<CompanyWinloss> GetCompanyWinlossInMemberCurrencies(IEnumerable<CompanyWinloss> companyWinlosses, IEnumerable<PropertyInfo> properties)
         {
             var companyWinlossInCurrenciesList = new List<CompanyWinloss>();
             var groupByCurrencies = companyWinlosses.GroupBy(t => t.Currency).ToList();

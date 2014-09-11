@@ -1,15 +1,15 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="Class1.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="CompanyWinlossByCurrency.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2014.9.11">Created</change>
+// </history>
 
 namespace Fanex.AffiliateAdmin.DTO
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -18,8 +18,8 @@ namespace Fanex.AffiliateAdmin.DTO
     {
         public string Currency { get; set; }
 
-        public IEnumerable<CompanyWinloss> CompanyWinlossByProductList;
+        public IEnumerable<CompanyWinloss> CompanyWinlossByProductList { get; set; }
 
-        public CompanyWinloss TotalCompanyWinlossByProduct;
+        public CompanyWinloss TotalCompanyWinlossByProduct { get; set; }
     }
 }

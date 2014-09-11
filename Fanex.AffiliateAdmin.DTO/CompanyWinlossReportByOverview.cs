@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="CompanyWinlossByLevel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CompanyWinlossReportByOverview.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2013.12.18">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.11">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.DTO
@@ -14,7 +14,7 @@ namespace Fanex.AffiliateAdmin.DTO
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class CompanyWinlossByLevel
+    public class CompanyWinlossReportByOverview
     {
         public string GroupInfo { get; set; }
 

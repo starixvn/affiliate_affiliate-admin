@@ -28,6 +28,10 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public double AffExRate { get; set; }
 
+        public int ProductID { get; set; }
+
+        public string ProductName { get; set; }
+
         public int BetCount { get; set; }
 
         public int ActivePlayer { get; set; }

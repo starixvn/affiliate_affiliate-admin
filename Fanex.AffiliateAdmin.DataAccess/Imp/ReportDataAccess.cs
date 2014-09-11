@@ -364,6 +364,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         {
             var result = new List<CompanyWinloss>();
             const int GroupByDate = 0;
+            const int OverviewMode = 0;
 
             while (reader.Read())
             {
@@ -375,6 +376,12 @@ namespace Fanex.AffiliateAdmin.DataAccess
                     BetCount = reader.ToInt("BetCount"),
                     ActivePlayer = reader.ToInt("ActivePlayer")
                 };
+
+                if (criteria.ViewMode != OverviewMode)
+                {
+                    companyWinloss.ProductID = reader.ToInt("ProductID");
+                    companyWinloss.ProductName = reader.ToString("ProductName");
+                }
 
                 GetCompanyWinlossColumnsBasedOnBaseCurrency(criteria, reader, companyWinloss);
 
@@ -398,6 +405,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <returns>Total company win-loss list.</returns>
         private IEnumerable<CompanyWinloss> GetTotalCompanyWinlossInMemberCurrency(IDataReader reader, CompanyWinlossReportCriteria criteria)
         {
+            const int OverviewMode = 0;
             var result = new List<CompanyWinloss>();
 
             if (reader.NextResult())
@@ -410,6 +418,12 @@ namespace Fanex.AffiliateAdmin.DataAccess
                         BetCount = reader.ToInt("BetCount"),
                         ActivePlayer = reader.ToInt("ActivePlayer")
                     };
+
+                    if (criteria.ViewMode != OverviewMode)
+                    {
+                        companyWinloss.ProductID = reader.ToInt("ProductID");
+                        companyWinloss.ProductName = reader.ToString("ProductName");
+                    }
 
                     GetCompanyWinlossColumnsBasedOnBaseCurrency(criteria, reader, companyWinloss);
 

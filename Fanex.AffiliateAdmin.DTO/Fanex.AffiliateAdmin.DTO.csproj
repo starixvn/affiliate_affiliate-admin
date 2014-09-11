@@ -57,7 +57,7 @@
     </Compile>
     <Compile Include="AffiliateWinLoss.cs" />
     <Compile Include="CompanyWinlossByCurrency.cs" />
-    <Compile Include="CompanyWinlossByLevel.cs" />
+    <Compile Include="CompanyWinlossReportByOverview.cs" />
     <Compile Include="Account.cs" />
     <Compile Include="AccountType.cs" />
     <Compile Include="Adjustment.cs" />

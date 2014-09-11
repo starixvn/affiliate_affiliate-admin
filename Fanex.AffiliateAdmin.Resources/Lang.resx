@@ -2627,8 +2627,19 @@
   </data>
   <data name="SportsbookSharingFeeInfo" xml:space="preserve">
     <value>&lt;ul&gt;
-	&lt;li&gt;Net Win Loss = - Member Win Loss - Marketing - PSP - PSP - Odds Fee - Member Commission&lt;/li&gt;           
-	&lt;li&gt;Affiliate Commission = (Net Win Loss * Commission%) - (Bonus * Bonus%)&lt;/li&gt;
+	&lt;li&gt;Net Win Loss = - Member Win Loss - Marketing - PSP - PSP - Odds Fee - Member Commission&lt;/li&gt;
+	&lt;li&gt;Affiliate Commission = (Net Win Loss - Bonus * Bonus%) * Commission%&lt;/li&gt;
     &lt;/ul&gt;</value>
+  </data>
+  <data name="AffiliateListInfo" xml:space="preserve">
+    <value>&lt;ul&gt;
+	&lt;li&gt;BF: Current Affiliate Balance Brought Forward&lt;/li&gt;
+    &lt;/ul&gt;</value>
+  </data>
+  <data name="Marketing" xml:space="preserve">
+    <value>Marketing</value>
+  </data>
+  <data name="OddsFee" xml:space="preserve">
+    <value>Odds Fee</value>
   </data>
 </root>

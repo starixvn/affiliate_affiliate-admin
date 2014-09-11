@@ -6,7 +6,7 @@
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Configurations
 @section iconcss {
-aff-list
+    aff-list
 }
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.Affiliate, Model.IsFavorite ? 0 : 1, "affiliate")
@@ -17,7 +17,7 @@ aff-list
 @model Fanex.AffiliateAdmin.Models.AffiliateListViewModel
 <div class="search-panel search-afflist">
     <div class="ic-reload" title="@Lang.RefreshPage"></div>
-    @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
+    @RazorHelper.SearchPanel("#SearchForm .search-form", Lang.AffiliateListInfo, false, true)
     @using (Html.BeginForm("AffiliateList", "Affiliate", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
     {    
         @Html.HiddenFor(t => t.IsFavorite)

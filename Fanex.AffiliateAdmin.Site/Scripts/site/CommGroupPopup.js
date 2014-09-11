@@ -27,7 +27,6 @@ var CommGroupPopup = (function ($) {
         var $table = $("#tab_content" + productID + " #tblTier" + productID + ">tbody");
         var noTier = $table.find("tr.tier").length;
 
-
         if (noTier >= MaxTier) {
             var productname = $("#tab_header" + productID).data("productname");
             alert(MSG.InvalidSettingFor.replace("{item}", productname) + " " + MSG.MaxTierAllow);
@@ -36,7 +35,7 @@ var CommGroupPopup = (function ($) {
 
         var minAM, maxAM, minQM, maxQM, commission, newTierID;
 
-        if ($table.find("tr.tier").length === 0) { // noinfo row        
+        if ($table.find("tr.tier").length === 0) { // noinfo row
             minAM = maxAM = minQM = maxQM = 0;
             commission = "0.00";
             newTierID = 1;
@@ -635,6 +634,16 @@ var CommGroupPopup = (function ($) {
             $tabcontent.on("change", "select.commission", changeCommissionOnTierSetting);
 
             $tabcontent.on("blur", "input.maxAM, input.maxQM", changeMaxAMTAndMaxQM);
+
+            $tabcontent.on("change", ".psp-deduction", function () {
+                if ($(this).val() === "0.00") {
+                    $('.totaldeposit').prop("disabled", true);
+                    $('.totalwithdrawal').prop("disabled", true);
+                } else {
+                    $('.totaldeposit').prop("disabled", false);
+                    $('.totalwithdrawal').prop("disabled", false);
+                }
+            });
 
             $("#btnSubmit").click(function () {
 

@@ -480,7 +480,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="month">Selected Month.</param>
         /// <param name="selectedProducts">Selected Products.</param>
         /// <returns>Valid Product List.</returns>
-        private IList<byte> GetValidProducts(int groupId, DateTime month, string selectedProducts)
+        private IEnumerable<byte> GetValidProducts(int groupId, DateTime month, string selectedProducts)
         {
             var selectedProductList = string.IsNullOrEmpty(selectedProducts)
                                   ? new List<byte>()
@@ -517,8 +517,8 @@ namespace Fanex.AffiliateAdmin.Controller
             if (criteria.GroupBy == 1)
             {
                 // If group by is month, we need to first day and last day of month.
-                criteria.FromDate = Core.Utilities.Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate, DateTime.Now);
-                criteria.ToDate = Core.Utilities.Common.GetLastDayOfMonth(criteria.ToDate, AppSettings.SystemStartDate, DateTime.Now);
+                criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate, DateTime.Now);
+                criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, AppSettings.SystemStartDate, DateTime.Now);
             }
 
             criteria.UserId = CurrentSession.CustID;

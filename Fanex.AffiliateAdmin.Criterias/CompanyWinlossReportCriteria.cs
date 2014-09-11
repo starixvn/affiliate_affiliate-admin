@@ -57,6 +57,8 @@ namespace Fanex.AffiliateAdmin.Criterias
         [SpParam(SqlParamName = "ProductIds")]
         public string Products { get; set; }
 
+        public byte ViewMode { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_CompanyWinlossReport";

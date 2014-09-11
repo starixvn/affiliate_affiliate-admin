@@ -617,6 +617,17 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;ul&gt;
+        ///	&lt;li&gt;BF: Current Affiliate Balance Brought Forward&lt;/li&gt;
+        ///    &lt;/ul&gt;.
+        /// </summary>
+        public static string AffiliateListInfo {
+            get {
+                return ResourceManager.GetString("AffiliateListInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate, Month.
         /// </summary>
         public static string AffiliateMonth {
@@ -4386,6 +4397,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Marketing.
+        /// </summary>
+        public static string Marketing {
+            get {
+                return ResourceManager.GetString("Marketing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Marketing Tools.
         /// </summary>
         public static string MarketingTools {
@@ -5201,6 +5221,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string Oct {
             get {
                 return ResourceManager.GetString("Oct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odds Fee.
+        /// </summary>
+        public static string OddsFee {
+            get {
+                return ResourceManager.GetString("OddsFee", resourceCulture);
             }
         }
         
@@ -6343,8 +6372,8 @@ namespace Fanex.AffiliateAdmin.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
-        ///	&lt;li&gt;Net Win Loss = - Member Win Loss - Marketing - PSP - PSP - Odds Fee - Member Commission&lt;/li&gt;           
-        ///	&lt;li&gt;Affiliate Commission = (Net Win Loss * Commission%) - (Bonus * Bonus%)&lt;/li&gt;
+        ///	&lt;li&gt;Net Win Loss = - Member Win Loss - Marketing - PSP - PSP - Odds Fee - Member Commission&lt;/li&gt;
+        ///	&lt;li&gt;Affiliate Commission = (Net Win Loss - Bonus * Bonus%) * Commission%&lt;/li&gt;
         ///    &lt;/ul&gt;.
         /// </summary>
         public static string SportsbookSharingFeeInfo {

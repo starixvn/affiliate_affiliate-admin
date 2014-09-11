@@ -48,7 +48,7 @@
         </div>
     </div>
      <div class="control-group">
-        @Html.LabelFor(m => m.Currency, Lang.Currency, new { @class = "control-label" })      
+        @Html.LabelFor(m => m.Currency, Lang.Currency, new { @class = "control-label" })
         <div class="controls">        
         @if (isNoCommissionGroup)
         {
@@ -69,7 +69,7 @@
         </div>
     </div>
  
-    <div class="control-group red" id="currNotify" style="display:none;margin: 5px 5px 15px 25px">    
+    <div class="control-group red" id="currNotify" style="display:none;margin: 5px 5px 15px 25px">
     </div>
         @if (Model.HasCashback > 0)
         {
@@ -109,8 +109,8 @@
                                 <td style="text-align: left;background-color: white; ">
                                 </td>
                             </tr>
-                        </table>                    
-                    </div>          
+                        </table>
+                    </div>
                 <!--/DeductionOption-->
                 </div>
             </div>
@@ -162,16 +162,16 @@
                                 var check = Model.DeductionSettings.Any(x => x.DeductionID == item.DTypeID);
                                 var d = check ? Model.DeductionSettings.FirstOrDefault(x => x.DeductionID == item.DTypeID) : null;
                                 var percent = d == null ? (decimal)item.DeductedPercentage : d.DeductedPercentage;
-                                        
+                                var className = item.DTypeName.Equals("PSP", StringComparison.OrdinalIgnoreCase) ? "deductionlist nopadding psp-deduction" : "deductionlist nopadding";
                                 <tr>
                                     <td style="text-align: left;">
-                                        <input type="checkbox" class="deduction" data-id="@item.DTypeID" data-percent="@item.DeductedPercentage" @(check ? "checked" : string.Empty) />            
+                                        <input type="checkbox" class="deduction" data-id="@item.DTypeID" data-percent="@item.DeductedPercentage" @(check ? "checked" : string.Empty) />
                                         <label title="@(Lang.ResourceManager.GetString("Deduction" + item.DTypeName.Replace(" ", string.Empty)))">
                                             @item.DTypeName
                                         </label>
                                     </td>
-                                    <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList(percent, (decimal)0.01, "deductionlist nopadding", check ? string.Empty : "disabled")
-                                    </td>                                    
+                                    <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList(percent, (decimal)0.01, className, check ? string.Empty : "disabled")
+                                    </td>
                                     <td style="text-align: left;">
                                         @RazorHelper.AdditionalSharingFee(item.DTypeName, (decimal)Model.DepositPercent, (decimal)Model.WithdrawalPercent, check ? string.Empty : "disabled")
                                     </td>

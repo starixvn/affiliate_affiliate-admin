@@ -128,20 +128,21 @@
                                 <table>
                                     @foreach (var item in deductions)
                                     {
+                                        var className = item.DTypeName.Equals("PSP", StringComparison.OrdinalIgnoreCase) ? "deductionlist nopadding psp-deduction" : "deductionlist nopadding";
                                         <tr>
-                                            <td style="text-align: left;"><input type="checkbox" class="deduction" data-id="@item.DTypeID" data-percent="@item.DeductedPercentage" />            
+                                            <td style="text-align: left;"><input type="checkbox" class="deduction" data-id="@item.DTypeID" data-percent="@item.DeductedPercentage" />
                                                 <label title="@(Lang.ResourceManager.GetString("Deduction" + item.DTypeName.Replace(" ", string.Empty)))">
-                                                    @item.DTypeName
+                                                    @(Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)))
                                                 </label></td>
-                                            <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList((decimal)item.DeductedPercentage, (decimal)0.01, "deductionlist nopadding", "disabled")
-                                            </td>                                    
+                                            <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList((decimal)item.DeductedPercentage, (decimal)0.01, className, "disabled")
+                                            </td>
                                             <td style="text-align: left;">
                                                 @RazorHelper.AdditionalSharingFee(item.DTypeName, (decimal)Model.DepositPercent, (decimal)Model.WithdrawalPercent, "disabled")
                                             </td>
                                         </tr>
                                     }
-                                </table>                    
-                            </div>          
+                                </table>
+                            </div>
                             <!--/DeductionOption--></div>
                         <!--/Deduction-->
                     }
@@ -150,15 +151,16 @@
                     <div class="legend">@Lang.TierSetting</div>
                     <div style="clear:left;"></div>
                     <table id="tblTier@(product.ProductID)">
-                        <thead><tr>
-                                    <td style="width: 55px;" class="theader">Tier</td>
-                                    <td style="width: 110px;" title="@Lang.MinimumWinlossAmount" class="theader">@Lang.MinAmount</td>
-                                    <td style="width: 165px;" title="@Lang.MaximumWinlossAmount" class="theader">@Lang.MaxAmount</td>
-                                    <td style="width: 110px;" title="@Lang.MinimumQualifiedMembers" class="theader">@Lang.MinQM</td>
-                                    <td style="width: 165px;" title="@Lang.MaximumQualifiedMembers" class="theader">@Lang.MaxQM</td>
-                                    <td style="width: 80px;" class="theader">@Lang.Commission</td>
-                                    <td style="width: 80px;" class="theader">@Lang.Action</td>
-                                </tr>
+                        <thead>
+                            <tr>
+                                <td style="width: 55px;" class="theader">Tier</td>
+                                <td style="width: 110px;" title="@Lang.MinimumWinlossAmount" class="theader">@Lang.MinAmount</td>
+                                <td style="width: 165px;" title="@Lang.MaximumWinlossAmount" class="theader">@Lang.MaxAmount</td>
+                                <td style="width: 110px;" title="@Lang.MinimumQualifiedMembers" class="theader">@Lang.MinQM</td>
+                                <td style="width: 165px;" title="@Lang.MaximumQualifiedMembers" class="theader">@Lang.MaxQM</td>
+                                <td style="width: 80px;" class="theader">@Lang.Commission</td>
+                                <td style="width: 80px;" class="theader">@Lang.Action</td>
+                            </tr>
                         </thead>
                         <tbody>   
                             <tr class="rnormal"><td class="c" colspan="7">@Lang.NoInfo</td></tr>

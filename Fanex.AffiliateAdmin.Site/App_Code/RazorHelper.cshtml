@@ -353,11 +353,11 @@
     decimal num = 0;
     <select style="margin-left: 10px; width: 70px" class="@className" @disabled>
         @while (num <= (decimal) 1.00)
-        {                        
+        {
             var val = string.Format("{0:0.00}", num);
             <option value="@val" @(num == percent ? "selected" : null)>@val</option>
             num += step;
-        }while()
+        }
     </select>
 }
 

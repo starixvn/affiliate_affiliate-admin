@@ -354,7 +354,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     foreach (var item in deductions)
                     {
                         var setting = settings.Where(x => x.DeductionID == item.DTypeID).FirstOrDefault();
-                        deduction.Add(item.DTypeName, setting == null ? -1 : setting.DeductedPercentage);
+                        deduction.Add(Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)), setting == null ? -1 : setting.DeductedPercentage);
                     }
                 }
 
@@ -405,7 +405,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 foreach (var item in deductions)
                 {
                     var setting = settings.Where(x => x.DeductionID == item.DTypeID).FirstOrDefault();
-                    deduction.Add(item.DTypeName, setting == null ? -1 : setting.DeductedPercentage);
+                    deduction.Add(Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)), setting == null ? -1 : setting.DeductedPercentage);
                 }
             }
 

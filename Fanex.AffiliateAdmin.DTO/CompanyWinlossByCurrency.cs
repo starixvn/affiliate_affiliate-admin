@@ -7,11 +7,10 @@
 //   <change who="Brian.Dinh" date="2014.9.11">Created</change>
 // </history>
 
-using System.Linq;
-
 namespace Fanex.AffiliateAdmin.DTO
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// TODO: Update summary.
@@ -20,8 +19,8 @@ namespace Fanex.AffiliateAdmin.DTO
     {
         public string Currency { get; set; }
 
-        public int MergeRowNumber 
-        { 
+        public int MergeRowNumber
+        {
             get
             {
                 var count = CompanyWinlossByProductList.Count();
@@ -36,7 +35,5 @@ namespace Fanex.AffiliateAdmin.DTO
         public IEnumerable<CompanyWinloss> CompanyWinlossByProductList { get; set; }
 
         public CompanyWinloss TotalCompanyWinlossByProduct { get; set; }
-
-
     }
 }

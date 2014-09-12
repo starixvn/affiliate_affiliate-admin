@@ -687,6 +687,7 @@
     <Content Include="Scripts\site\AffiliateWinLossReport.js" />
     <Content Include="Scripts\site\CompanyWinlossReport.js" />
     <Content Include="Scripts\site\CommGroupPopup.js" />
+    <Content Include="Scripts\site\CompanyWinlossReportByProduct.js" />
     <Content Include="Scripts\site\MemberWinlossReport.js" />
     <Content Include="Scripts\site\TestWebService.js" />
     <Content Include="Scripts\site\AffiliateCommissionReport.js" />

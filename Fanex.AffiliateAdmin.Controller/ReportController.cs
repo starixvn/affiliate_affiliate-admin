@@ -69,6 +69,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult CompanyWinloss(CompanyWinlossReportCriteria criteria)
         {
+            criteria.ViewMode = 1;
             AddMoreParameterForCompanyWinlossReportCriteria(criteria);
             
             var data = _reportService.GetCompanyWinloss(criteria);
@@ -81,9 +82,9 @@ namespace Fanex.AffiliateAdmin.Controller
                 Name = x.ProductName
             }));
 
-            var companyWinlossByGroups = FilterGroupDataCompanyWinlossByOverview(criteria, data.CompanyWinlossList);
+            ////var companyWinlossByGroups = FilterGroupDataCompanyWinlossByOverview(criteria, data.CompanyWinlossList);
 
-            ////var companyWinlossByProduct = FilterGroupDataCompanyWinlossByProduct(criteria, data.CompanyWinlossList);
+            var companyWinlossByProduct = FilterGroupDataCompanyWinlossByProduct(criteria, data.CompanyWinlossList);
 
             var hasShowSubTotalRow = data.CompanyWinlossList.GroupBy(t => t.Currency)
                                          .Select(t => new { Currency = t.Key, RowCount = t.Count() })
@@ -91,7 +92,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return Json(new
             {
-                Groups = companyWinlossByGroups,
+                Groups = companyWinlossByProduct,
                 TotalData = new CompanyWinlossReportByOverview
                 {
                     GroupInfo = Lang.TotalAll,
@@ -856,9 +857,12 @@ namespace Fanex.AffiliateAdmin.Controller
 
             foreach (var groupByCurrency in groupByCurrencies)
             {
+                var firstItem = groupByCurrency.First();
                 var currency = new CompanyWinlossByCurrency
                     {
                         Currency = groupByCurrency.Key,
+                        AffExRate = firstItem.AffExRate,
+                        ExRate = firstItem.ExRate,
                         CompanyWinlossByProductList = groupByCurrency.ToList(),
                         TotalCompanyWinlossByProduct = GetTotalCompanyWinloss(groupByCurrency.ToList(), properties)
                     };

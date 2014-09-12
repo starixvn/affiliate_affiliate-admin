@@ -16,7 +16,6 @@ var CompanyWinlossReport = (function ($) {
     var playerWinlossUrl;
 
     var levels = ["Date", "Month"];
- 
 
     var removeExchangeRateCol = function () {
         gridOption.groupHeaderRows[0].Columns.splice(EXRATE_COL_INDEX, 1);
@@ -127,7 +126,6 @@ var CompanyWinlossReport = (function ($) {
         var products = getSelectProducts(window.PRODUCTS);
 
         addPlaytechCasinoColumns(products);
-
     };
 
     var getColumnSuffix = function (baseCurrency) {

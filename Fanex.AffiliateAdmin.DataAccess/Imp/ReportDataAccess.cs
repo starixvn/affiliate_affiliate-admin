@@ -25,9 +25,9 @@ namespace Fanex.AffiliateAdmin.DataAccess
     /// </summary>
     public class ReportDataAccess : IReportDataAccess
     {
-        private const string AffColSuffix = "_Aff";
+        protected const string AffColSuffix = "_Aff";
 
-        private const string SysColSuffix = "Base";
+        protected const string SysColSuffix = "Base";
 
         /// <summary>
         /// Get data for member win-loss.
@@ -59,37 +59,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             return memberWinlossReport;
         }
 
-        /// <summary>
-        /// Get data for company win-loss.
-        /// </summary>
-        /// <param name="criteria">Criteria input.</param>
-        /// <returns>Company win-loss report.</returns>
-        public CompanyWinlossReport GetCompanyWinLoss(CompanyWinlossReportCriteria criteria)
-        {
-            var companyWinlossReport = new CompanyWinlossReport();
-
-            if (criteria.IsValid())
-            {
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var param = criteria.GetSpParams();
-
-                    var reader = objectDb.ExecuteReader(param);
-
-                    companyWinlossReport.CompanyWinlossList = GetCompanyWinlossList(reader, criteria);
-
-                    companyWinlossReport.TotalCompanyWinlossInMemberCurrencies = GetTotalCompanyWinlossInMemberCurrency(reader, criteria);
-
-                    companyWinlossReport.TotalCompanyWinlossInSystemCurrency = GetTotalCompanyWinlossInSystemCurrency(reader, criteria);
-
-                    reader.Close();
-
-                    GetOutputParams(criteria, objectDb);
-                }
-            }
-
-            return companyWinlossReport;
-        }
+      
 
         /// <summary>
         /// Get data for commission report.
@@ -127,7 +97,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="criteria">Criteria input.</param>
         /// <param name="objectDb">Object database.</param>
-        private void GetOutputParams(ICriteria criteria, ObjectDb objectDb)
+        protected void GetOutputParams(ICriteria criteria, ObjectDb objectDb)
         {
             var outputParams = objectDb.GetOuputParams();
 
@@ -351,170 +321,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
         }
 
         #endregion Helpers for member win-loss
-
-        #region Helpers for company win-loss
-
-        /// <summary>
-        /// Get simple company win-loss.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="criteria">Criteria input.</param>
-        /// <returns>Company win-loss list.</returns>
-        private IEnumerable<CompanyWinloss> GetCompanyWinlossList(IDataReader reader, CompanyWinlossReportCriteria criteria)
-        {
-            var result = new List<CompanyWinloss>();
-            const int GroupByDate = 0;
-            const int OverviewMode = 0;
-
-            while (reader.Read())
-            {
-                var companyWinloss = new CompanyWinloss
-                {
-                    WinlostDate = reader.ToDateTime("WinlostDate"),
-                    Currency = reader.ToString("Currency"),
-                    CurrencyId = reader.ToShort("CurrencyId"),
-                    BetCount = reader.ToInt("BetCount"),
-                    ActivePlayer = reader.ToInt("ActivePlayer")
-                };
-
-                if (criteria.ViewMode != OverviewMode)
-                {
-                    companyWinloss.ProductID = reader.ToInt("ProductID");
-                    companyWinloss.ProductName = reader.ToString("ProductName");
-                }
-
-                GetCompanyWinlossColumnsBasedOnBaseCurrency(criteria, reader, companyWinloss);
-
-                if (criteria.GroupBy == GroupByDate)
-                {
-                    companyWinloss.ExRate = reader.ToDouble("ExRate");
-                    companyWinloss.AffExRate = reader.ToDouble("AffExRate");
-                }
-
-                result.Add(companyWinloss);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get total company win-loss in member currency.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="criteria">Criteria input.</param>
-        /// <returns>Total company win-loss list.</returns>
-        private IEnumerable<CompanyWinloss> GetTotalCompanyWinlossInMemberCurrency(IDataReader reader, CompanyWinlossReportCriteria criteria)
-        {
-            const int OverviewMode = 0;
-            var result = new List<CompanyWinloss>();
-
-            if (reader.NextResult())
-            {
-                while (reader.Read())
-                {
-                    var companyWinloss = new CompanyWinloss
-                    {
-                        Currency = reader.ToString("Currency"),
-                        BetCount = reader.ToInt("BetCount"),
-                        ActivePlayer = reader.ToInt("ActivePlayer")
-                    };
-
-                    if (criteria.ViewMode != OverviewMode)
-                    {
-                        companyWinloss.ProductID = reader.ToInt("ProductID");
-                        companyWinloss.ProductName = reader.ToString("ProductName");
-                    }
-
-                    GetCompanyWinlossColumnsBasedOnBaseCurrency(criteria, reader, companyWinloss);
-
-                    result.Add(companyWinloss);
-                }
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get total company win-loss in system currency.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="criteria">Criteria Input.</param>
-        /// <returns>Total company win-loss.</returns>
-        private CompanyWinloss GetTotalCompanyWinlossInSystemCurrency(IDataReader reader, CompanyWinlossReportCriteria criteria)
-        {
-            var companyWinloss = new CompanyWinloss();
-
-            if (reader.NextResult())
-            {
-                reader.Read();
-                companyWinloss.BetCount = reader.ToInt("BetCount");
-                companyWinloss.ActivePlayer = reader.ToInt("ActivePlayer");
-
-                GetCompanyWinlossColumns(reader, companyWinloss, SysColSuffix, criteria.ViewMode);
-            }
-
-            return companyWinloss;
-        }
-
-        /// <summary>
-        /// Get company win-loss columns based on base currency.
-        /// </summary>
-        /// <param name="criteria">Criteria input.</param>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="companyWinloss">Company win-loss.</param>
-        private void GetCompanyWinlossColumnsBasedOnBaseCurrency(CompanyWinlossReportCriteria criteria, IDataReader reader, CompanyWinloss companyWinloss)
-        {
-            const byte MemberCurrency = 0;
-            const byte AffiliateCurrency = 2;
-
-            GetCompanyWinlossColumns(reader, companyWinloss, SysColSuffix, criteria.ViewMode);
-
-            if (criteria.BaseCurrency == MemberCurrency)
-            {
-                GetCompanyWinlossColumns(reader, companyWinloss, string.Empty, criteria.ViewMode);
-                return;
-            }
-
-            if (criteria.BaseCurrency == AffiliateCurrency)
-            {
-                GetCompanyWinlossColumns(reader, companyWinloss, AffColSuffix, criteria.ViewMode);
-            }
-        }
-
-        /// <summary>
-        /// Get company win-loss columns in system currency.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="companyWinloss">Company win-loss.</param>
-        /// <param name="colSuffix">Column suffix.</param>
-        /// <param name="viewMode">View mode.</param>
-        private void GetCompanyWinlossColumns(IDataReader reader, CompanyWinloss companyWinloss, string colSuffix, int viewMode)
-        {
-            const byte OverviewMode = 0;
-
-            if (viewMode == OverviewMode)
-            {
-                SetPropertyValue(reader, companyWinloss, string.Format("Deposit{0}", colSuffix));
-                SetPropertyValue(reader, companyWinloss, string.Format("Withdrawal{0}", colSuffix));
-                SetPropertyValue(reader, companyWinloss, string.Format("Bonus{0}", colSuffix));
-                SetPropertyValue(reader, companyWinloss, string.Format("Adjustment{0}", colSuffix));
-                SetPropertyValue(reader, companyWinloss, string.Format("PSP{0}", colSuffix));
-            }
-
-            SetPropertyValue(reader, companyWinloss, string.Format("TotalTurnover{0}", colSuffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("TotalWinlost{0}", colSuffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("PlayerComm{0}", colSuffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("PShare{0}", colSuffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("PWin{0}", colSuffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("NetGaming{0}", colSuffix));
-        }
-
-        private void SetPropertyValue(IDataReader reader, object obj, string propertyName)
-        {
-            obj.SetPropertyValue(propertyName, reader.ToDecimal(propertyName));
-        }
-
-        #endregion Helpers for company win-loss
 
         #region Helpers for commission
 

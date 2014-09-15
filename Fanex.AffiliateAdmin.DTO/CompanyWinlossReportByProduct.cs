@@ -31,6 +31,6 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public IEnumerable<CompanyWinlossByCurrency> CompanyWinlossInMemberCurrencies { get; set; }
 
-        public CompanyWinloss CompanyWinlossInSystemCurrency { get; set; }
+        public CompanyWinlossByCurrency CompanyWinlossInSystemCurrency { get; set; }
     }
 }

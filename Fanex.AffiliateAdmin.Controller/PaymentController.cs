@@ -134,6 +134,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 TransId = model.TransId
             });
+
             model.PaymentDetail = paymentDetail;
 
             if (ModelState.IsValid)

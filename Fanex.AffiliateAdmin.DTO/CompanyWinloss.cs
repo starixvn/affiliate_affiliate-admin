@@ -50,13 +50,13 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal TotalTurnoverBase { get; set; }
 
-        public decimal TotalMemberWinlost { get; set; }
+        public decimal TotalWinlost { get; set; }
 
         public decimal TotalCompanyWinlost
         { 
             get
             {
-                return -TotalMemberWinlost;
+                return -TotalWinlost;
             }
         }
 
@@ -70,13 +70,13 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal PSPBase { get; set; }
 
-        public decimal TotalMemberWinlostBase { get; set; }
+        public decimal TotalWinlostBase { get; set; }
 
         public decimal TotalCompanyWinlostBase 
         {
             get
             {
-                return -TotalMemberWinlostBase;
+                return -TotalWinlostBase;
             }
         }
 
@@ -99,14 +99,14 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal TotalTurnover_Aff { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
-        public decimal TotalMemberWinlost_Aff { get; set; }
+        public decimal TotalWinlost_Aff { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal TotalCompanyWinlost_Aff 
         {
             get
             {
-                return -TotalMemberWinlost_Aff;
+                return -TotalWinlost_Aff;
             }
         }
 

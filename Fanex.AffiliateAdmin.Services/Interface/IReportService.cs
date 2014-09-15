@@ -18,7 +18,9 @@ namespace Fanex.AffiliateAdmin.Services
     /// </summary>
     public interface IReportService
     {
-        CompanyWinlossReport GetCompanyWinloss(CompanyWinlossReportCriteria criteria);
+        CompanyWinlossByProductResult GetCompanyWinlossByProduct(CompanyWinlossReportCriteria criteria);
+
+        CompanyWinlossOverviewResult GetCompanyWinlossOverview(CompanyWinlossReportCriteria criteria);
 
         IEnumerable<MemberStatistic> GetMemberStatistics(MemberStatisticReportCriteria criteria);
 

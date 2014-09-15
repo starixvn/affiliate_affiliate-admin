@@ -7,6 +7,9 @@
 //   <change who="Brian.Dinh" date="2014.9.11">Created</change>
 // </history>
 
+using System;
+using System.Reflection;
+
 namespace Fanex.AffiliateAdmin.DTO
 {
     using System.Collections.Generic;
@@ -34,6 +37,77 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public IEnumerable<CompanyWinloss> CompanyWinlossByProductList { get; set; }
 
-        public CompanyWinloss TotalCompanyWinlossByProduct { get; set; }
+        public CompanyWinloss TotalCompanyWinlossByProduct
+        {
+            get
+            {
+                return GetTotalCompanyWinloss();
+            }
+        }
+
+        /// <summary>
+        /// Get Total Company Win loss In System Currency.
+        /// </summary>
+        /// <param name="companyWinlosses">Company Win loss List.</param>
+        /// <param name="properties">Property List.</param>
+        /// <returns>Company Win loss In System Currency.</returns>
+        private CompanyWinloss GetTotalCompanyWinloss()
+        {
+            var properties = typeof(CompanyWinloss).GetProperties().Where(IsPropertyAbleSumUp).ToList();
+
+            var totalCompanlyWinloss = new CompanyWinloss();
+
+            // Sub total by date, in system currency.
+            foreach (var property in properties)
+            {
+                if (property.Name.EndsWith("ActivePlayers", StringComparison.OrdinalIgnoreCase) || property.Name.EndsWith("BetCount", StringComparison.OrdinalIgnoreCase))
+                {
+                    var value1 = CompanyWinlossByProductList.Sum(g =>
+                    {
+                        var changeType = Convert.ChangeType(property.GetValue(g, null).ToString(), TypeCode.Int32);
+                        return changeType != null ? (int)changeType : 0;
+                    });
+
+                    if (property.CanWrite)
+                    {
+                        property.SetValue(totalCompanlyWinloss, Convert.ChangeType(value1, property.PropertyType), null);
+                    }
+
+                    continue;
+                }
+
+                var value = CompanyWinlossByProductList.Sum(g =>
+                {
+                    var changeType = Convert.ChangeType(property.GetValue(g, null), TypeCode.Decimal);
+                    return changeType != null ? (decimal)changeType : 0;
+                });
+
+                if (property.CanWrite)
+                {
+                    property.SetValue(totalCompanlyWinloss, Convert.ChangeType(value, property.PropertyType), null);
+                }
+            }
+
+            return totalCompanlyWinloss;
+        }
+
+        /// <summary>
+        /// Check property can sum up or not.
+        /// </summary>
+        /// <param name="p">Property Input.</param>
+        /// <returns>Can/Can not sum up.</returns>
+        private bool IsPropertyAbleSumUp(PropertyInfo p)
+        {
+            var uncalculatedPropertyList = new List<string> { "ExRate", "AffExRate" };
+
+            if (uncalculatedPropertyList.Any(t => t.Equals(p.Name, StringComparison.OrdinalIgnoreCase)))
+            {
+                return false;
+            }
+
+            var typeList = new List<Type> { typeof(int), typeof(decimal), typeof(double), typeof(float), typeof(byte) };
+
+            return typeList.Any(t => t == p.PropertyType);
+        }
     }
 }

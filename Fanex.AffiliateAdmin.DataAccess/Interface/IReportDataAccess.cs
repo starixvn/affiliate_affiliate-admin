@@ -19,8 +19,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
     {
         MemberWinLossReport GetMemberWinLoss(MemberWinlossReportCriteria criteria);
 
-        CompanyWinlossReport GetCompanyWinLoss(CompanyWinlossReportCriteria criteria);
-
         AffiliateWinLossReport GetAffiliateWinLoss(AffiliateWinLossCriteria criteria);
     }
 }

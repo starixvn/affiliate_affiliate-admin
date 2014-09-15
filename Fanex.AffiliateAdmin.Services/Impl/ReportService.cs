@@ -22,16 +22,29 @@ namespace Fanex.AffiliateAdmin.Services
     {
         private readonly IReportDataAccess _reportDataAccess;
 
+        private readonly ICompanyWinLossByProductDataAccess _companyWinLossByProductDataAccess;
+
+        private readonly ICompanyWinLossOverviewDataAccess _companyWinLossOverviewDataAccess;
+
         public ReportService()
         {
             _reportDataAccess = new ReportDataAccess();
+
+            _companyWinLossByProductDataAccess = new CompanyWinLossByProductDataAccess();
+
+            _companyWinLossOverviewDataAccess = new CompanyWinLossOverviewDataAccess();
         }
 
-        public CompanyWinlossReport GetCompanyWinloss(CompanyWinlossReportCriteria criteria)
+        public CompanyWinlossByProductResult GetCompanyWinlossByProduct(CompanyWinlossReportCriteria criteria)
         {
-            return _reportDataAccess.GetCompanyWinLoss(criteria);
+            return _companyWinLossByProductDataAccess.GetCompanyWinLossByProduct(criteria);
         }
-        
+
+        public CompanyWinlossOverviewResult GetCompanyWinlossOverview(CompanyWinlossReportCriteria criteria)
+        {
+            return _companyWinLossOverviewDataAccess.GetCompanyWinLossOverview(criteria);
+        }
+
         public IEnumerable<MemberStatistic> GetMemberStatistics(MemberStatisticReportCriteria criteria)
         {
             return GetData<MemberStatistic>(criteria);

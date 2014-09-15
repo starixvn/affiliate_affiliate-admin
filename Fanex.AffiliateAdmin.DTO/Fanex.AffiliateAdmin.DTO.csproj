@@ -72,8 +72,9 @@
     <Compile Include="ClickStatisticDetail.cs" />
     <Compile Include="AffiliateWinLossReport.cs" />
     <Compile Include="CompanyWinloss.cs" />
-    <Compile Include="CompanyWinlossReport.cs" />
+    <Compile Include="CompanyWinlossProductResult.cs" />
     <Compile Include="CompanyWinlossReportByProduct.cs" />
+    <Compile Include="CompanyWinlossOverviewResult.cs" />
     <Compile Include="MemberDetail.cs" />
     <Compile Include="PSPExchange.cs" />
     <Compile Include="MemberWinlossReport.cs" />
@@ -153,7 +154,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

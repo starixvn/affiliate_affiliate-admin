@@ -1,15 +1,18 @@
 ﻿/*global AFFILIATE,MSG,moment,System,Lang,moment,sampleNetGamingCol,samplePlaytechCasinoHeader,samplePShareCol,samplePWinCol*/
-var CompanyWinlossReport = (function ($) {
+var CompanyWinlossByProduct = (function ($) {
     "use strict";
     var submitOptions = {};
+
     var MEMBER_CURRENCY_OPTION = '0';
+
     var SYS_CURRENCY_OPTION = '1';
+
     var AFF_CURRENCY_OPTION = '2';
 
     var GROUP_BY_DATE = "0";
+
     var GROUP_BY_MONTH = "1";
 
-    // number of all common columns (except product columns).
     var gridOption = {};
 
     var EXRATE_COL_INDEX = 2;
@@ -17,8 +20,6 @@ var CompanyWinlossReport = (function ($) {
     var PRODUCT_COL_INDEX = 3;
 
     var playerWinlossUrl;
-
-    var levels = ["Date", "Month"];
 
     var removeExchangeRateCol = function () {
         gridOption.groupHeaderRows[0].Columns.splice(EXRATE_COL_INDEX, 1);
@@ -124,7 +125,7 @@ var CompanyWinlossReport = (function ($) {
 
         var products = getSelectProducts(window.PRODUCTS);
 
-        //addPlaytechCasinoColumns(products);
+        addPlaytechCasinoColumns(products);
 
     };
 
@@ -263,31 +264,19 @@ var CompanyWinlossReport = (function ($) {
         });
     };
 
-    var getBodyRows = function(groups) {
+    var getBodyRows = function (groups) {
         if (groups.length === 0) {
             return [];
         }
 
         var bodyRows = [];
 
-        $.each(groups, function(idxLevel1, itemLevel1) {
+        $.each(groups, function (idxLevel1, itemLevel1) {
             getRowsOfGroup(bodyRows, itemLevel1);
         });
 
         return bodyRows;
     };
-
-    function getSuffix(group, groupBy) {
-        var suffix = " ";
-
-        if (groupBy === "0") {
-            suffix += moment(group.GroupInfo).format(AFFILIATE.DATE_FORMAT_MONTH);
-        } else {
-            suffix += moment(group.GroupInfo).format(AFFILIATE.DATE_FORMAT_YEAR);
-        }
-
-        return suffix;
-    }
 
     var getTotalAllRowsOfGroup = function (rows, itemLevel1, sampleDateColumn) {
 
@@ -434,148 +423,11 @@ var CompanyWinlossReport = (function ($) {
     };
 
     return {
-        init: function () {
-            $('#FromDate, #ToDate').addClass("datepicker monthpicker");
+        submitRequest: function (dataRequest) {
 
-            //            $("#gridId").resize(function () {
-            //                $(".search-panel").width($(this).width());
-            //            });
-
-            if ($('#gridId').length > 0) {
-                CompanyWinlossReport.submitRequest();
-            }
-
-            $('#btnSubmit').click(function () {
-                CompanyWinlossReport.submitRequest();
-            });
-
-            $("#GroupBy").change(function () {
-                if (this.value === "0") {
-                    if ($(".datepicker").hasClass("mtz-monthpicker-widgetcontainer")) {
-                        $(".datepicker").monthpicker('destroy');
-                    }
-
-                    var format = "DD MMM YYYY";
-
-                    var minDate = $('#FromDate').attr('data-mindate');
-                    var maxDate = $('#FromDate').attr('data-maxdate');
-
-                    var fromDate = $('#FromDate').val();
-                    var toDate = $('#ToDate').val();
-
-                    if (fromDate.split(' ').length === 2) {
-                        // get the first day of month;
-                        fromDate = '01 ' + fromDate;
-
-                        if (AFFILIATE.compareDate(minDate, fromDate) === 1) {
-                            fromDate = window.moment(minDate).format(format);
-                        }
-
-                        // get the last day of month
-                        var obj = window.moment('01 ' + toDate);
-                        toDate = obj.add('months', 1).add('days', -1).format(format);
-
-                        if (AFFILIATE.compareDate(maxDate, toDate) === -1) {
-                            toDate = window.moment(maxDate).format(format);
-                        }
-                    }
-
-                    $('#FromDate').val(fromDate);
-                    $('#FromDate').attr('data-value', fromDate);
-                    $('#ToDate').val(toDate);
-                    $('#ToDate').attr('data-value', toDate);
-
-                    AFFILIATE.initDatePicker();
-                } else {
-                    if ($(".datepicker").hasClass("hasDatepicker")) {
-                        $(".datepicker").datepicker('destroy');
-                    }
-
-                    AFFILIATE.initMonthPicker();
-                }
-            });
-
-            $('#gridId').on('click', '.toggle-indicator', function () {
-                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS
-                    ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
-                AFFILIATE.resetToggleIndicator(gridOption);
-            });
-        },
-
-        checkRangeTime: function () {
-            $('#FromDate, #ToDate').removeClass('input-validation-error');
-
-            var value = $('#GroupBy').val();
-            var fromDate;
-            var toDate;
-
-            if (value === "1") {
-                fromDate = moment('01 ' + $('#FromDate').val());
-                toDate = moment('01 ' + $('#ToDate').val());
-            } else {
-                fromDate = moment($('#FromDate').val());
-                toDate = moment($('#ToDate').val());
-            }
-
-            var fromYear = fromDate.year();
-            var toYear = toDate.year();
-            var diffYear = toYear - fromYear;
-
-            if (diffYear < 0 || diffYear > 1) {
-                return false;
-            }
-
-            var fromMonth = fromDate.month();
-            var toMonth = toDate.month();
-            var diffMonth;
-            if (fromDate.year() === toDate.year()) {
-                diffMonth = toMonth - fromMonth;
-                if (diffMonth < 0 || diffMonth > 2) {
-                    $('#FromDate, #ToDate').addClass('input-validation-error');
-                    return false;
-                }
-
-                return true;
-
-            } else {
-
-                diffMonth = (toMonth + 12) - fromMonth;
-
-                if (diffMonth < 0 || diffMonth > 2) {
-                    $('#FromDate, #ToDate').addClass('input-validation-error');
-                    return false;
-                }
-
-                return true;
-            }
-        },
-
-        checkAtLeastOneSelectedProduct: function () {
-            var selectedProducts = $('#Products').val();
-
-            if (selectedProducts === null || selectedProducts === undefined || selectedProducts.length === 0) {
-                return false;
-            }
-
-            return true;
-        },
-
-        submitRequest: function () {
-            AFFILIATE.trimBeforeSubmit();
-            if (!CompanyWinlossReport.checkRangeTime()) {
-                alert(window.MSG.RangeTime3Months);
-                return;
-            }
-
-            if (!CompanyWinlossReport.checkAtLeastOneSelectedProduct()) {
-                alert(window.MSG.ChooseAtLeastOneProduct);
-                return;
-            }
-
-            submitOptions = $('form').serializeObject2();
-            submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
-            submitOptions["SortBy"] = $('#SortBy').val();
-            CompanyWinlossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            $.extend(true, submitOptions, dataRequest);
+            
+            CompanyWinlossByProduct.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
@@ -601,7 +453,7 @@ var CompanyWinlossReport = (function ($) {
                         itemsPerPageArray: AFFILIATE.pageSizes,
                         currentPage: data.CurrentPage,
                         totalItem: data.TotalItem,
-                        pagerSelectCallBack: CompanyWinlossReport.ReRenderAfterPaged
+                        pagerSelectCallBack: CompanyWinlossByProduct.ReRenderAfterPaged
                     };
 
                     gridOption.titleInfo.text = window.MSG.CompanyWinlossTitle + ' [{0}]'.format(data.TotalItem);
@@ -630,8 +482,3 @@ var CompanyWinlossReport = (function ($) {
         }
     };
 })(jQuery);
-
-$(function () {
-    "use strict";
-    CompanyWinlossReport.init();
-});

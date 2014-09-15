@@ -687,7 +687,7 @@
     <Content Include="Scripts\site\AffiliateWinLossReport.js" />
     <Content Include="Scripts\site\CompanyWinlossReport.js" />
     <Content Include="Scripts\site\CommGroupPopup.js" />
-    <Content Include="Scripts\site\CompanyWinlossReportByProduct.js" />
+    <Content Include="Scripts\site\CompanyWinlossByProduct.js" />
     <Content Include="Scripts\site\MemberWinlossReport.js" />
     <Content Include="Scripts\site\TestWebService.js" />
     <Content Include="Scripts\site\AffiliateCommissionReport.js" />
@@ -1170,7 +1170,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

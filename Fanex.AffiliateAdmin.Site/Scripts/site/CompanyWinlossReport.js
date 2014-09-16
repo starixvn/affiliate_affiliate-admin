@@ -10,7 +10,11 @@ var CompanyWinlossReport = (function ($) {
             $('#FromDate, #ToDate').addClass("datepicker monthpicker");
 
             $("#gridId").resize(function () {
-                $(".search-panel").width($(this).width());
+                if ($(this).width() > 1100) {
+                    $(".search-panel").width($(this).width());
+                } else {
+                    $(".search-panel").width(1100);
+                }
             });
 
             if ($('#gridId').length > 0) {

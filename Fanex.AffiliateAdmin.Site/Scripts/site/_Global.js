@@ -494,14 +494,13 @@ var AFFILIATE = (function ($) {
             }
         },
         resetToggleIndicator: function (gridOption) {
-            var isCollapseStatus = subTotalStatus === COLLAPSE_SUBTOTAL_STATUS;
+            var isCollapseStatus = subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS;
             var width = 0;
 
             if (isCollapseStatus) {
                 $('.real-subtotal').hide();
                 $('.pseudo-subtotal').show();
                 width = $('.pseudo-subtotal .cell-subtotal').width();
-
             } else {
                 $('.real-subtotal').show();
                 $('.pseudo-subtotal').hide();

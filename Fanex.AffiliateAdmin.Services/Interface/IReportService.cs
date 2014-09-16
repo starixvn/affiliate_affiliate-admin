@@ -20,7 +20,7 @@ namespace Fanex.AffiliateAdmin.Services
     {
         CompanyWinlossByProductResult GetCompanyWinlossByProduct(CompanyWinlossReportCriteria criteria);
 
-        CompanyWinlossOverviewResult GetCompanyWinlossOverview(CompanyWinlossReportCriteria criteria);
+        CompanyWinlossByOverviewResult GetCompanyWinlossOverview(CompanyWinlossReportCriteria criteria);
 
         IEnumerable<MemberStatistic> GetMemberStatistics(MemberStatisticReportCriteria criteria);
 

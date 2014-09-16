@@ -3,6 +3,8 @@ var CompanyWinlossReport = (function ($) {
     "use strict";
     var submitOptions = {};
 
+    var gridOption = {};
+
     return {
         init: function () {
             $('#FromDate, #ToDate').addClass("datepicker monthpicker");
@@ -68,7 +70,17 @@ var CompanyWinlossReport = (function ($) {
             $('#gridId').on('click', '.toggle-indicator', function () {
                 window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS
                     ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
-                AFFILIATE.resetToggleIndicator(gridOption);
+                AFFILIATE.resetToggleIndicator(CompanyWinlossByOverview.GetGridOption());
+            });
+
+            $('.main-content').on('click', '.tab-title', function () {
+                if ($(this).hasClass('tag-overview')) {
+                    $('#ViewMode').val(0);
+                } else {
+                    $('#ViewMode').val(1);
+                }
+
+                CompanyWinlossReport.submitRequest();
             });
         },
 
@@ -80,11 +92,11 @@ var CompanyWinlossReport = (function ($) {
             var toDate;
 
             if (value === "1") {
-                fromDate = moment('01 ' + $('#FromDate').val());
-                toDate = moment('01 ' + $('#ToDate').val());
+                fromDate = window.moment('01 ' + $('#FromDate').val());
+                toDate = window.moment('01 ' + $('#ToDate').val());
             } else {
-                fromDate = moment($('#FromDate').val());
-                toDate = moment($('#ToDate').val());
+                fromDate = window.moment($('#FromDate').val());
+                toDate = window.moment($('#ToDate').val());
             }
 
             var fromYear = fromDate.year();
@@ -146,7 +158,11 @@ var CompanyWinlossReport = (function ($) {
             submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
             submitOptions["SortBy"] = $('#SortBy').val();
 
-            CompanyWinlossByProduct.submitRequest(submitOptions);
+            if (submitOptions.ViewMode === '0') {
+                CompanyWinlossByOverview.submitRequest(submitOptions);
+            } else {
+                CompanyWinlossByProduct.submitRequest(submitOptions);
+            }
         }
     };
 })(jQuery);

@@ -59,8 +59,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
             return memberWinlossReport;
         }
 
-      
-
         /// <summary>
         /// Get data for commission report.
         /// </summary>
@@ -96,10 +94,10 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// Get output parameters from database.
         /// </summary>
         /// <param name="criteria">Criteria input.</param>
-        /// <param name="objectDb">Object database.</param>
-        protected void GetOutputParams(ICriteria criteria, ObjectDb objectDb)
+        /// <param name="objectDB">Object database.</param>
+        protected void GetOutputParams(ICriteria criteria, ObjectDb objectDB)
         {
-            var outputParams = objectDb.GetOuputParams();
+            var outputParams = objectDB.GetOuputParams();
 
             if (outputParams != null)
             {
@@ -171,7 +169,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             const byte AffiliateCurrency = 2;
 
             GetMemberWinlossColumnsInSystemCurrency(reader, memberWinloss);
-          
+
             if (criteria.BaseCurrency == MemberCurrency)
             {
                 GetMemberWinlossColumnsInMemberCurrency(reader, memberWinloss);

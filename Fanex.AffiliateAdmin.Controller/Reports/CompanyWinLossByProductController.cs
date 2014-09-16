@@ -1,41 +1,39 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ReportController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CompanyWinLossByProductController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2013.10.15">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.16">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
     using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
-    using Core.Filter;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
-    using Models;
 
     /// <summary>
     /// Report Controller.
     /// </summary>
-    public class CompanyWinlossByProductController: ReportController
+    public class CompanyWinlossByProductController : ReportController
     {
         #region Company Win Loss Report
 
-        public CompanyWinlossByProductController(IReportService reportService, ICommGroupService commGroupService) : base(reportService, commGroupService)
+        public CompanyWinlossByProductController(IReportService reportService, ICommGroupService commGroupService)
+            : base(reportService, commGroupService)
         {
-            _reportService = reportService;
-            _commGroupService = commGroupService;
+            ReportService = reportService;
+            CommGroupService = commGroupService;
         }
 
         /// <summary>
@@ -50,7 +48,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             AddMoreParameterForCompanyWinlossReportCriteria(criteria);
 
-            var data = _reportService.GetCompanyWinlossByProduct(criteria);
+            var data = ReportService.GetCompanyWinlossByProduct(criteria);
 
             var serializer = new JavaScriptSerializer();
 
@@ -87,10 +85,10 @@ namespace Fanex.AffiliateAdmin.Controller
                 TotalItem = criteria.NRows,
             });
         }
-        
-        #endregion Company Winloss Report
 
-        #region Helpers 
+        #endregion Company Win Loss Report
+
+        #region Helpers
 
         /// <summary>
         /// Add more parameter for company win-loss report criteria.
@@ -159,8 +157,6 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var dateFormat = criteria.GroupBy == 0 ? "MM/dd/yyyy" : "MM/yyyy";
 
-            
-
             var groupByDates = companyWinlosses.GroupBy(t => t.WinlostDate.ToString(dateFormat)).ToList();
 
             foreach (var groupByDate in groupByDates)
@@ -202,6 +198,11 @@ namespace Fanex.AffiliateAdmin.Controller
             return typeList.Any(t => t == p.PropertyType);
         }
 
+        /// <summary>
+        /// Group Data By Products.
+        /// </summary>
+        /// <param name="groupByDate">Group By Date.</param>
+        /// <returns>Company Win Loss List.</returns>
         private IEnumerable<CompanyWinloss> GroupDataByProducts(IEnumerable<CompanyWinloss> groupByDate)
         {
             var properties = typeof(CompanyWinloss).GetProperties().Where(p => IsPropertyAbleSumUp(p)).ToList();
@@ -264,6 +265,6 @@ namespace Fanex.AffiliateAdmin.Controller
             return totalCompanlyWinloss;
         }
 
-        #endregion
+        #endregion Helpers
     }
 }

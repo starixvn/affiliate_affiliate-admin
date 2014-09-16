@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ReportDataAccess.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CompanyWinLossOverviewDataAccess.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2014.3.26">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.16">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.DataAccess
@@ -12,24 +12,56 @@ namespace Fanex.AffiliateAdmin.DataAccess
     using System.Data;
     using Criterias;
     using DTO;
+    using Fanex.Data;
 
     /// <summary>
     /// Account data access.
     /// </summary>
     public class CompanyWinLossOverviewDataAccess : CompanyWinLossDataAccess, ICompanyWinLossOverviewDataAccess
     {
-        public CompanyWinlossOverviewResult GetCompanyWinLossOverview(CompanyWinlossReportCriteria criteria)
+        /// <summary>
+        /// Get Company Win Loss Overview.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>Company Win Loss By Overview Result.</returns>
+        public CompanyWinlossByOverviewResult GetCompanyWinLossOverview(CompanyWinlossReportCriteria criteria)
         {
-            throw new System.NotImplementedException();
+            var companyWinlossReport = new CompanyWinlossByOverviewResult();
+
+            if (criteria.IsValid())
+            {
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+
+                    var reader = objectDb.ExecuteReader(param);
+
+                    companyWinlossReport.CompanyWinlossList = GetCompanyWinLossByProductList(reader, criteria);
+
+                    companyWinlossReport.TotalCompanyWinlossInMemberCurrencies = GetCompanyWinLossSumUpByMemberCurrency(reader, criteria);
+
+                    reader.Close();
+
+                    GetOutputParams(criteria, objectDb);
+                }
+            }
+
+            return companyWinlossReport;
         }
 
-        protected override void GetColumnExtra(IDataReader reader, CompanyWinloss companyWinloss, string suffix)
+        /// <summary>
+        /// Get Column Extra.
+        /// </summary>
+        /// <param name="reader">Data Reader.</param>
+        /// <param name="companyWinloss">Company Win Loss.</param>
+        /// <param name="colSuffix">Column Suffix.</param>
+        protected override void GetColumnExtra(IDataReader reader, CompanyWinloss companyWinloss, string colSuffix)
         {
-            SetPropertyValue(reader, companyWinloss, string.Format("Deposit{0}", suffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("Withdrawal{0}", suffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("Bonus{0}", suffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("Adjustment{0}", suffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("PSP{0}", suffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("Deposit{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("Withdrawal{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("Bonus{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("Adjustment{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("PSP{0}", colSuffix));
         }
     }
 }

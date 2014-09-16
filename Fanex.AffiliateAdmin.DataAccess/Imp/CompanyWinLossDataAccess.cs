@@ -1,14 +1,34 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using Fanex.AffiliateAdmin.Core.Utilities;
-using Fanex.AffiliateAdmin.Criterias;
-using Fanex.AffiliateAdmin.DTO;
-using Fanex.Common.Extensions;
+﻿// --------------------------------------------------------------------------
+// <copyright file="CompanyWinLossDataAccess.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2014.9.16">Created</change>
+// </history>
 
 namespace Fanex.AffiliateAdmin.DataAccess
 {
+    using System.Collections.Generic;
+    using System.Data;
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.DTO;
+    using Fanex.Common.Extensions;
+
+    /// <summary>
+    /// Company Win Loss Data Access.
+    /// </summary>
     public abstract class CompanyWinLossDataAccess : ReportDataAccess
     {
+        protected virtual void GetColumnExtra(IDataReader reader, CompanyWinloss companyWinloss)
+        {
+        }
+
+        protected virtual void GetColumnExtra(IDataReader reader, CompanyWinloss companyWinloss, string colSuffix)
+        {
+        }
+
         /// <summary>
         /// Get simple company win-loss.
         /// </summary>
@@ -47,14 +67,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
             return result;
         }
 
-        protected virtual void GetColumnExtra(IDataReader reader, CompanyWinloss companyWinloss)
-        {
-        }
-
-        protected virtual void GetColumnExtra(IDataReader reader, CompanyWinloss companyWinloss, string colSuffix)
-        {
-        }
-
         /// <summary>
         /// Get total company win-loss in member currency.
         /// </summary>
@@ -91,9 +103,8 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// Get total company win-loss in system currency.
         /// </summary>
         /// <param name="reader">Data reader.</param>
-        /// <param name="criteria">Criteria Input.</param>
         /// <returns>Total company win-loss.</returns>
-        protected IEnumerable<CompanyWinloss> GetCompanyWinLossSumUpBySystemCurrency(IDataReader reader, CompanyWinlossReportCriteria criteria)
+        protected IEnumerable<CompanyWinloss> GetCompanyWinLossSumUpBySystemCurrency(IDataReader reader)
         {
             var result = new List<CompanyWinloss>();
 
@@ -119,6 +130,35 @@ namespace Fanex.AffiliateAdmin.DataAccess
         }
 
         /// <summary>
+        /// Set Property Value.
+        /// </summary>
+        /// <param name="reader">Data Reader.</param>
+        /// <param name="value">Value Input.</param>
+        /// <param name="propertyName">Property Name.</param>
+        protected void SetPropertyValue(IDataReader reader, object value, string propertyName)
+        {
+            value.SetPropertyValue(propertyName, reader.ToDecimal(propertyName));
+        }
+
+        /// <summary>
+        /// Get company win-loss columns in system currency.
+        /// </summary>
+        /// <param name="reader">Data reader.</param>
+        /// <param name="companyWinloss">Company win-loss.</param>
+        /// <param name="colSuffix">Column suffix.</param>
+        private void GetCompanyWinlossColumns(IDataReader reader, CompanyWinloss companyWinloss, string colSuffix)
+        {
+            SetPropertyValue(reader, companyWinloss, string.Format("TotalTurnover{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("TotalWinlost{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("PlayerComm{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("PShare{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("PWin{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("NetGaming{0}", colSuffix));
+
+            GetColumnExtra(reader, companyWinloss, colSuffix);
+        }
+
+        /// <summary>
         /// Get company win-loss columns based on base currency.
         /// </summary>
         /// <param name="criteria">Criteria input.</param>
@@ -141,30 +181,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
             {
                 GetCompanyWinlossColumns(reader, companyWinloss, AffColSuffix);
             }
-        }
-
-        /// <summary>
-        /// Get company win-loss columns in system currency.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="companyWinloss">Company win-loss.</param>
-        /// <param name="colSuffix">Column suffix.</param>
-        /// <param name="viewMode">View mode.</param>
-        private void GetCompanyWinlossColumns(IDataReader reader, CompanyWinloss companyWinloss, string colSuffix)
-        {
-            SetPropertyValue(reader, companyWinloss, string.Format("TotalTurnover{0}", colSuffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("TotalWinlost{0}", colSuffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("PlayerComm{0}", colSuffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("PShare{0}", colSuffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("PWin{0}", colSuffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("NetGaming{0}", colSuffix));
-
-            GetColumnExtra(reader, companyWinloss, colSuffix);
-        }
-
-        protected void SetPropertyValue(IDataReader reader, object obj, string propertyName)
-        {
-            obj.SetPropertyValue(propertyName, reader.ToDecimal(propertyName));
         }
     }
 }

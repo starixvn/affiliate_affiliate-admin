@@ -11,16 +11,15 @@ namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
-    using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
     using Core.Filter;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Utilities;
-    using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Models;
@@ -31,15 +30,19 @@ namespace Fanex.AffiliateAdmin.Controller
     [FunctionAuth(Function = "[AffReport]")]
     public class ReportController : BaseController
     {
-        protected ICommGroupService _commGroupService;
+        private ICommGroupService _commGroupService;
 
-        protected IReportService _reportService;
+        private IReportService _reportService;
 
         public ReportController(IReportService reportService, ICommGroupService commGroupService)
         {
             _reportService = reportService;
             _commGroupService = commGroupService;
         }
+
+        public ICommGroupService CommGroupService { get; set; }
+
+        public IReportService ReportService { get; set; }
 
         #region Company Win Loss Report.
 

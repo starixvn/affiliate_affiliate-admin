@@ -1513,6 +1513,24 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company Win Loss By Product.
+        /// </summary>
+        public static string CompanyWinLossByProduct {
+            get {
+                return ResourceManager.GetString("CompanyWinLossByProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company Win Loss Overview.
+        /// </summary>
+        public static string CompanyWinLossOverview {
+            get {
+                return ResourceManager.GetString("CompanyWinLossOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
         ///                &lt;li&gt;Company W/L: Sum of selected products&apos; winloss&lt;/li&gt;{0}                
         ///                &lt;li&gt;Member W/L: Win loss amount of affiliate&apos;s members in a month on a product&lt;/li&gt;

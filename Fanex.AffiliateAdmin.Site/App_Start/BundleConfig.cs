@@ -42,6 +42,8 @@ namespace Fanex.AffiliateAdmin.Site
             GetBundleForEachScriptFile(bundles);
 
             GetBundleForCommissionGroup(bundles);
+
+            GetBundleForCompanyWinLossJs(bundles);
         }
 
         /// <summary>
@@ -75,6 +77,18 @@ namespace Fanex.AffiliateAdmin.Site
         {
             bundles.Add(new ScriptBundle("~/bundles/headjs")
                 .Include("~/Scripts/libraries/head.js"));
+        }
+
+        /// <summary>
+        /// Get bundle for head.
+        /// </summary>
+        /// <param name="bundles">Bundle collection.</param>
+        private static void GetBundleForCompanyWinLossJs(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/companywinloss")
+                .Include("~/Scripts/site/CompanyWinlossByOverview.js")
+                .Include("~/Scripts/site/CompanyWinlossByProduct.js")
+                .Include("~/Scripts/site/CompanyWinlossReport.js"));
         }
 
         /// <summary>

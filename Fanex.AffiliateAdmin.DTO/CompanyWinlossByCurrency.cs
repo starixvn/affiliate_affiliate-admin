@@ -7,13 +7,12 @@
 //   <change who="Brian.Dinh" date="2014.9.11">Created</change>
 // </history>
 
-using System;
-using System.Reflection;
-
 namespace Fanex.AffiliateAdmin.DTO
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
 
     /// <summary>
     /// TODO: Update summary.
@@ -46,11 +45,9 @@ namespace Fanex.AffiliateAdmin.DTO
         }
 
         /// <summary>
-        /// Get Total Company Win loss In System Currency.
+        /// Get Total Company Win Loss.
         /// </summary>
-        /// <param name="companyWinlosses">Company Win loss List.</param>
-        /// <param name="properties">Property List.</param>
-        /// <returns>Company Win loss In System Currency.</returns>
+        /// <returns>Total Company Win Loss.</returns>
         private CompanyWinloss GetTotalCompanyWinloss()
         {
             var properties = typeof(CompanyWinloss).GetProperties().Where(IsPropertyAbleSumUp).ToList();
@@ -60,7 +57,7 @@ namespace Fanex.AffiliateAdmin.DTO
             // Sub total by date, in system currency.
             foreach (var property in properties)
             {
-                if (property.Name.EndsWith("ActivePlayers", StringComparison.OrdinalIgnoreCase) || property.Name.EndsWith("BetCount", StringComparison.OrdinalIgnoreCase))
+                if (property.Name.EndsWith("ActivePlayer", StringComparison.OrdinalIgnoreCase) || property.Name.EndsWith("BetCount", StringComparison.OrdinalIgnoreCase))
                 {
                     var value1 = CompanyWinlossByProductList.Sum(g =>
                     {

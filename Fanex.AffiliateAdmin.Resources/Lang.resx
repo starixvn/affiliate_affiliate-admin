@@ -2642,4 +2642,10 @@
   <data name="OddsFee" xml:space="preserve">
     <value>Odds Fee</value>
   </data>
+  <data name="CompanyWinLossByProduct" xml:space="preserve">
+    <value>Company Win Loss By Product</value>
+  </data>
+  <data name="CompanyWinLossOverview" xml:space="preserve">
+    <value>Company Win Loss Overview</value>
+  </data>
 </root>

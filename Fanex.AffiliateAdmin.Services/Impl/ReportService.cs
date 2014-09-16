@@ -40,7 +40,7 @@ namespace Fanex.AffiliateAdmin.Services
             return _companyWinLossByProductDataAccess.GetCompanyWinLossByProduct(criteria);
         }
 
-        public CompanyWinlossOverviewResult GetCompanyWinlossOverview(CompanyWinlossReportCriteria criteria)
+        public CompanyWinlossByOverviewResult GetCompanyWinlossOverview(CompanyWinlossReportCriteria criteria)
         {
             return _companyWinLossOverviewDataAccess.GetCompanyWinLossOverview(criteria);
         }

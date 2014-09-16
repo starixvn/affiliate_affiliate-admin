@@ -1,4 +1,4 @@
-﻿/*global AFFILIATE,MSG,moment,System,Lang,moment,sampleNetGamingCol,samplePlaytechCasinoHeader,samplePShareCol,samplePWinCol*/
+﻿/*global AFFILIATE,MSG,Lang,sampleNetGamingCol,samplePlaytechCasinoHeader,samplePShareCol,samplePWinCol*/
 var CompanyWinlossByProduct = (function ($) {
     "use strict";
     var submitOptions = {};
@@ -169,11 +169,13 @@ var CompanyWinlossByProduct = (function ($) {
     };
 
     var hasRemoveExRateCol = function () {
-        if (submitOptions.GroupBy === GROUP_BY_MONTH)
+        if (submitOptions.GroupBy === GROUP_BY_MONTH) {
             return true;
+        }
 
-        if (submitOptions.BaseCurrency === MEMBER_CURRENCY_OPTION)
+        if (submitOptions.BaseCurrency === MEMBER_CURRENCY_OPTION) {
             return true;
+        }
 
         return false;
     };
@@ -183,8 +185,9 @@ var CompanyWinlossByProduct = (function ($) {
     };
 
     var getHeaderExRate = function () {
-        if (hasRemoveExRateCol())
+        if (hasRemoveExRateCol()) {
             return '';
+        }
 
         switch (submitOptions.BaseCurrency) {
             case SYS_CURRENCY_OPTION:
@@ -360,31 +363,6 @@ var CompanyWinlossByProduct = (function ($) {
         return footerRows;
     };
 
-    var getPseudoRow = function () {
-        // pseudo sub total row
-        var columns = [];
-        var startIndex = getProductColIndex();
-        var pseudoSubTotalclass = 'cell-subtotal pseudo-cell';
-
-        columns.push({
-            Value: MSG.TotalAll,
-            Name: "WinlostDate",
-            MergeRowNumber: 1,
-            TdClass: pseudoSubTotalclass
-        });
-
-        columns.push({ Value: '', Name: "Currency" });
-
-        columns.push({ Value: '', Name: "ProductName" });
-
-        for (var i = startIndex + 1; i < gridOption.columns.length; i++) {
-            var col = gridOption.columns[i];
-            columns.push({ Value: '', Name: col.Name });
-        }
-
-        return { Columns: columns, CssClass: "pseudo-subtotal" };
-    };
-
     var getSymbolCurrency = function (baseCurrency) {
         var symbolCurrency;
 
@@ -426,8 +404,12 @@ var CompanyWinlossByProduct = (function ($) {
         submitRequest: function (dataRequest) {
 
             $.extend(true, submitOptions, dataRequest);
-            
+
             CompanyWinlossByProduct.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+        },
+
+        GetGridOption: function () {
+            return gridOption;
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
@@ -456,7 +438,7 @@ var CompanyWinlossByProduct = (function ($) {
                         pagerSelectCallBack: CompanyWinlossByProduct.ReRenderAfterPaged
                     };
 
-                    gridOption.titleInfo.text = window.MSG.CompanyWinlossTitle + ' [{0}]'.format(data.TotalItem);
+                    gridOption.titleInfo.text = window.MSG.CompanyWinLossByProductTitle.format(data.TotalItem);
 
                     if (data.TotalItem > 0) {
                         gridOption.bodyRows = getBodyRows(data.Groups, submitOptions);
@@ -468,8 +450,6 @@ var CompanyWinlossByProduct = (function ($) {
                     if (data.TotalItem === 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
-                    } else {
-                        //AFFILIATE.resetToggleIndicator(gridOption);
                     }
                 },
                 error: function () {

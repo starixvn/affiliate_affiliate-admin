@@ -130,10 +130,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult UpdatePayment(PaymentUpdateViewModel model)
         {
-            var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria
-            {
-                TransId = model.TransId
-            });
+            var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria { TransId = model.TransId });
 
             model.PaymentDetail = paymentDetail;
 

@@ -33,9 +33,10 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// Get simple company win-loss.
         /// </summary>
         /// <param name="reader">Data reader.</param>
-        /// <param name="criteria">Criteria input.</param>
+        /// <param name="baseCurrency">Base Currency.</param>
+        /// <param name="groupBy">Group By Input.</param>
         /// <returns>Company win-loss list.</returns>
-        protected IEnumerable<CompanyWinloss> GetCompanyWinLossByProductList(IDataReader reader, CompanyWinlossReportCriteria criteria)
+        protected IEnumerable<CompanyWinloss> GetCompanyWinLossByProductList(IDataReader reader, byte baseCurrency, int groupBy)
         {
             var result = new List<CompanyWinloss>();
             const int GroupByDate = 0;
@@ -53,9 +54,9 @@ namespace Fanex.AffiliateAdmin.DataAccess
 
                 GetColumnExtra(reader, companyWinloss);
 
-                GetCompanyWinLossColumnsBasedOnBaseCurrency(criteria, reader, companyWinloss);
+                GetCompanyWinLossColumnsBasedOnBaseCurrency(baseCurrency, reader, companyWinloss);
 
-                if (criteria.GroupBy == GroupByDate)
+                if (groupBy == GroupByDate)
                 {
                     companyWinloss.ExRate = reader.ToDouble("ExRate");
                     companyWinloss.AffExRate = reader.ToDouble("AffExRate");
@@ -71,9 +72,9 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// Get total company win-loss in member currency.
         /// </summary>
         /// <param name="reader">Data reader.</param>
-        /// <param name="criteria">Criteria input.</param>
+        /// <param name="baseCurrency">Base Currency.</param>
         /// <returns>Total company win-loss list.</returns>
-        protected IEnumerable<CompanyWinloss> GetCompanyWinLossSumUpByMemberCurrency(IDataReader reader, CompanyWinlossReportCriteria criteria)
+        protected IEnumerable<CompanyWinloss> GetCompanyWinLossSumUpByMemberCurrency(IDataReader reader, byte baseCurrency)
         {
             var result = new List<CompanyWinloss>();
 
@@ -90,7 +91,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
 
                     GetColumnExtra(reader, companyWinloss);
 
-                    GetCompanyWinLossColumnsBasedOnBaseCurrency(criteria, reader, companyWinloss);
+                    GetCompanyWinLossColumnsBasedOnBaseCurrency(baseCurrency, reader, companyWinloss);
 
                     result.Add(companyWinloss);
                 }
@@ -161,23 +162,23 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <summary>
         /// Get company win-loss columns based on base currency.
         /// </summary>
-        /// <param name="criteria">Criteria input.</param>
+        /// <param name="baseCurrency">Criteria input.</param>
         /// <param name="reader">Data reader.</param>
         /// <param name="companyWinloss">Company win-loss.</param>
-        private void GetCompanyWinLossColumnsBasedOnBaseCurrency(CompanyWinlossReportCriteria criteria, IDataReader reader, CompanyWinloss companyWinloss)
+        private void GetCompanyWinLossColumnsBasedOnBaseCurrency(byte baseCurrency, IDataReader reader, CompanyWinloss companyWinloss)
         {
             const byte MemberCurrency = 0;
             const byte AffiliateCurrency = 2;
 
             GetCompanyWinlossColumns(reader, companyWinloss, SysColSuffix);
 
-            if (criteria.BaseCurrency == MemberCurrency)
+            if (baseCurrency == MemberCurrency)
             {
                 GetCompanyWinlossColumns(reader, companyWinloss, string.Empty);
                 return;
             }
 
-            if (criteria.BaseCurrency == AffiliateCurrency)
+            if (baseCurrency == AffiliateCurrency)
             {
                 GetCompanyWinlossColumns(reader, companyWinloss, AffColSuffix);
             }

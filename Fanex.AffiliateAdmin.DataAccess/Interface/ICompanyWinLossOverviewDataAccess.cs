@@ -17,6 +17,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
     /// </summary>
     public interface ICompanyWinLossOverviewDataAccess
     {
-        CompanyWinlossByOverviewResult GetCompanyWinLossOverview(CompanyWinlossReportCriteria criteria);
+        CompanyWinlossByOverviewResult GetCompanyWinLossOverview(CompanyWinlossOverviewCriteria criteria);
     }
 }

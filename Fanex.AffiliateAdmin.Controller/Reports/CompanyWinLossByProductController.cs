@@ -42,10 +42,8 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Company win loss result.</returns>
         [HttpPost]
-        public ActionResult GetData(CompanyWinlossReportCriteria criteria)
+        public ActionResult GetData(CompanyWinlossByProductCriteria criteria)
         {
-            criteria.ViewMode = 1;
-
             AddMoreParameterForCompanyWinlossReportCriteria(criteria);
 
             var data = ReportService.GetCompanyWinlossByProduct(criteria);
@@ -94,7 +92,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// Add more parameter for company win-loss report criteria.
         /// </summary>
         /// <param name="criteria">Criteria input.</param>
-        private void AddMoreParameterForCompanyWinlossReportCriteria(CompanyWinlossReportCriteria criteria)
+        private void AddMoreParameterForCompanyWinlossReportCriteria(CompanyWinlossByProductCriteria criteria)
         {
             if (criteria.ByAffiliate)
             {
@@ -151,7 +149,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="companyWinlosses">Company win loss.</param>
         /// <returns>Company Win Loss By Product.</returns>
         private List<CompanyWinlossReportByProduct> GroupDataCompanyWinlossByProduct(
-            CompanyWinlossReportCriteria criteria, IEnumerable<CompanyWinloss> companyWinlosses)
+            CompanyWinlossByProductCriteria criteria, IEnumerable<CompanyWinloss> companyWinlosses)
         {
             var companyWinlossByProducts = new List<CompanyWinlossReportByProduct>();
 

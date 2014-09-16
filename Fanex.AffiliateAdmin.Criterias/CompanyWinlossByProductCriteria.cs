@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="CompanyWinlossReportCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CompanyWinlossByProductCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2013.10.16">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.16">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.Criterias
@@ -15,7 +15,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// <summary>
     /// Company Win loss Report Criteria.
     /// </summary>
-    public class CompanyWinlossReportCriteria : CriteriaBase
+    public class CompanyWinlossByProductCriteria : CriteriaBase
     {
         public int UserId { get; set; }
 
@@ -57,11 +57,9 @@ namespace Fanex.AffiliateAdmin.Criterias
         [SpParam(SqlParamName = "ProductIds")]
         public string Products { get; set; }
 
-        public byte ViewMode { get; set; }
-
         public override string GetSettingKey()
         {
-            return "AffAdmin_CompanyWinlossReport";
+            return "AffAdmin_CompanyWinLossByProductReport";
         }
 
         public override bool IsValid()

@@ -24,7 +24,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Company Win Loss By Overview Result.</returns>
-        public CompanyWinlossByOverviewResult GetCompanyWinLossOverview(CompanyWinlossReportCriteria criteria)
+        public CompanyWinlossByOverviewResult GetCompanyWinLossOverview(CompanyWinlossOverviewCriteria criteria)
         {
             var companyWinlossReport = new CompanyWinlossByOverviewResult();
 
@@ -36,9 +36,9 @@ namespace Fanex.AffiliateAdmin.DataAccess
 
                     var reader = objectDb.ExecuteReader(param);
 
-                    companyWinlossReport.CompanyWinlossList = GetCompanyWinLossByProductList(reader, criteria);
+                    companyWinlossReport.CompanyWinlossList = GetCompanyWinLossByProductList(reader, criteria.BaseCurrency, criteria.GroupBy);
 
-                    companyWinlossReport.TotalCompanyWinlossInMemberCurrencies = GetCompanyWinLossSumUpByMemberCurrency(reader, criteria);
+                    companyWinlossReport.TotalCompanyWinlossInMemberCurrencies = GetCompanyWinLossSumUpByMemberCurrency(reader, criteria.BaseCurrency);
 
                     reader.Close();
 

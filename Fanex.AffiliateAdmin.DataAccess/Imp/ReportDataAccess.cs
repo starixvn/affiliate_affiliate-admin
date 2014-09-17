@@ -59,35 +59,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
             return memberWinlossReport;
         }
 
-        /// <summary>
-        /// Get data for commission report.
-        /// </summary>
-        /// <param name="criteria">Criteria input.</param>
-        /// <returns>Commission report.</returns>
-        public AffiliateWinLossReport GetAffiliateWinLoss(AffiliateWinLossCriteria criteria)
-        {
-            var commissionReport = new AffiliateWinLossReport();
-
-            if (criteria.IsValid())
-            {
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var param = criteria.GetSpParams();
-                    var reader = objectDb.ExecuteReader(param);
-
-                    commissionReport.CommissionList = GetCommissionList(reader, criteria);
-                    commissionReport.CommissionInAffiliateCurrency = GetTotalCommissionInAffiliateCurrency(reader, criteria);
-                    commissionReport.CommissionInSystemCurrency = GetTotalCommissionInSystemCurrency(reader);
-
-                    reader.Close();
-
-                    GetOutputParams(criteria, objectDb);
-                }
-            }
-
-            return commissionReport;
-        }
-
         #region Common helpers
 
         /// <summary>
@@ -114,6 +85,17 @@ namespace Fanex.AffiliateAdmin.DataAccess
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Set Property Value.
+        /// </summary>
+        /// <param name="reader">Data Reader.</param>
+        /// <param name="value">Value Input.</param>
+        /// <param name="propertyName">Property Name.</param>
+        protected void SetPropertyValue(IDataReader reader, object value, string propertyName)
+        {
+            value.SetPropertyValue(propertyName, reader.ToDecimal(propertyName));
         }
 
         #endregion Common helpers
@@ -319,208 +301,5 @@ namespace Fanex.AffiliateAdmin.DataAccess
         }
 
         #endregion Helpers for member win-loss
-
-        #region Helpers for commission
-
-        /// <summary>
-        /// Get simple commission list.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="criteria">Criteria input.</param>
-        /// <returns>Commission list.</returns>
-        private IEnumerable<AffiliateWinLoss> GetCommissionList(IDataReader reader, AffiliateWinLossCriteria criteria)
-        {
-            var result = new List<AffiliateWinLoss>();
-
-            while (reader.Read())
-            {
-                var commission = new AffiliateWinLoss
-                {
-                    AffId = reader.ToInt("AffId"),
-                    Status = reader.ToString("STATUS"),
-                    Username = reader.ToString("Username"),
-                    AffType = reader.ToString("AffType"),
-                    Language = reader.ToString("LANGUAGE"),
-                    Currency = reader.ToString("Currency"),
-                    DeductedPercentage = reader.ToDecimal("DeductedPercentage")
-                };
-
-                GetCommissionColumnsNotRelatedToCurrency(reader, commission);
-
-                GetCommissionColumnsBasedOnBaseCurrency(criteria, reader, commission);
-
-                if (IsGroupByMonth(criteria))
-                {
-                    commission.WinlostDate = reader.ToDateTime("WinlostDate");
-                    commission.GroupID = reader.ToInt("GroupID");
-                    commission.GroupName = reader.ToString("GroupName");
-                }
-
-                result.Add(commission);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get total commission in affiliate currency.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="criteria">Criteria input.</param>
-        /// <returns>Total commission list.</returns>
-        private IEnumerable<AffiliateWinLoss> GetTotalCommissionInAffiliateCurrency(IDataReader reader, AffiliateWinLossCriteria criteria)
-        {
-            var result = new List<AffiliateWinLoss>();
-
-            if (reader.NextResult())
-            {
-                while (reader.Read())
-                {
-                    var commission = new AffiliateWinLoss { Currency = reader.ToString("Currency") };
-
-                    GetCommissionColumnsNotRelatedToCurrency(reader, commission);
-
-                    GetCommissionColumnsBasedOnBaseCurrency(criteria, reader, commission);
-
-                    result.Add(commission);
-                }
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get total commission in system currency.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <returns>Total commission.</returns>
-        private AffiliateWinLoss GetTotalCommissionInSystemCurrency(IDataReader reader)
-        {
-            var commission = new AffiliateWinLoss();
-
-            if (reader.NextResult())
-            {
-                reader.Read();
-
-                GetCommissionColumnsNotRelatedToCurrency(reader, commission);
-
-                GetCommissionColumnsInSystemCurrency(reader, commission);
-            }
-
-            return commission;
-        }
-
-        /// <summary>
-        /// Whether commission report is group by month or not.
-        /// </summary>
-        /// <param name="criteria">Commission report criteria.</param>
-        /// <returns>True if grouped by month.</returns>
-        private bool IsGroupByMonth(AffiliateWinLossCriteria criteria)
-        {
-            const int GroupByMonth = 1;
-
-            return criteria.GroupBy == GroupByMonth;
-        }
-
-        /// <summary>
-        /// Get commission columns which not related to currency.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="commission">Commission object.</param>
-        private void GetCommissionColumnsNotRelatedToCurrency(IDataReader reader, AffiliateWinLoss commission)
-        {
-            commission.BetCount = reader.ToInt("BetCount");
-            commission.ActivePlayers = reader.ToInt("ActivePlayers");
-
-            var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
-
-            foreach (var product in products)
-            {
-                commission.SetPropertyValue(string.Format("{0}ActivePlayers", product), reader.ToInt(string.Format("{0}ActivePlayers", product)));
-                commission.SetPropertyValue(string.Format("{0}BetCount", product), reader.ToInt(string.Format("{0}BetCount", product)));
-            }
-        }
-
-        /// <summary>
-        /// Get commission columns based on base currency.
-        /// </summary>
-        /// <param name="criteria">Criteria input.</param>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="commission">Commission object.</param>
-        private void GetCommissionColumnsBasedOnBaseCurrency(AffiliateWinLossCriteria criteria, IDataReader reader, AffiliateWinLoss commission)
-        {
-            const byte AffiliateCurrency = 0;
-            const byte SystemCurrency = 1;
-
-            if (criteria.BaseCurrency == AffiliateCurrency)
-            {
-                GetCommissionColumnsInAffiliateCurrency(reader, commission);
-                return;
-            }
-
-            if (criteria.BaseCurrency == SystemCurrency)
-            {
-                GetCommissionColumnsInSystemCurrency(reader, commission);
-                return;
-            }
-        }
-
-        /// <summary>
-        /// Get commission columns in affiliate currency.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="commission">Commission object.</param>
-        private void GetCommissionColumnsInAffiliateCurrency(IDataReader reader, AffiliateWinLoss commission)
-        {
-            commission.PlayerComm = reader.ToDecimal("PlayerComm");
-            commission.Deposit = reader.ToDecimal("Deposit");
-            commission.Withdrawal = reader.ToDecimal("Withdrawal");
-            commission.Turnover = reader.ToDecimal("Turnover");
-            commission.Winloss = reader.ToDecimal("Winloss");
-            commission.Cashback = reader.ToDecimal("Cashback");
-            commission.PShare = reader.ToDecimal("PShare");
-            commission.PWin = reader.ToDecimal("PWin");
-            commission.NetGaming = reader.ToDecimal("NetGaming");
-
-            // Columns by product.
-            var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
-
-            foreach (var product in products)
-            {
-                commission.SetPropertyValue(string.Format("{0}Winloss", product), reader.ToDecimal(string.Format("{0}Winloss", product)));
-                commission.SetPropertyValue(string.Format("{0}PlayerComm", product), reader.ToDecimal(string.Format("{0}PlayerComm", product)));
-                commission.SetPropertyValue(string.Format("{0}Turnover", product), reader.ToDecimal(string.Format("{0}Turnover", product)));
-            }
-        }
-
-        /// <summary>
-        /// Get commission columns in system currency.
-        /// </summary>
-        /// <param name="reader">Data reader.</param>
-        /// <param name="commission">Commission object.</param>
-        private void GetCommissionColumnsInSystemCurrency(IDataReader reader, AffiliateWinLoss commission)
-        {
-            commission.PlayerCommBase = reader.ToDecimal("PlayerCommBase");
-            commission.DepositBase = reader.ToDecimal("DepositBase");
-            commission.WithdrawalBase = reader.ToDecimal("WithdrawalBase");
-            commission.TurnoverBase = reader.ToDecimal("TurnoverBase");
-            commission.WinlossBase = reader.ToDecimal("WinlossBase");
-            commission.CashbackBase = reader.ToDecimal("CashbackBase");
-            commission.PShareBase = reader.ToDecimal("PShareBase");
-            commission.PWinBase = reader.ToDecimal("PWinBase");
-            commission.NetGamingBase = reader.ToDecimal("NetGamingBase");
-
-            // Columns by product.
-            var products = AppSettings.Products.Select(t => t.ProductName.Replace(" ", string.Empty));
-
-            foreach (var product in products)
-            {
-                commission.SetPropertyValue(string.Format("{0}WinlossBase", product), reader.ToDecimal(string.Format("{0}WinlossBase", product)));
-                commission.SetPropertyValue(string.Format("{0}PlayerCommBase", product), reader.ToDecimal(string.Format("{0}PlayerCommBase", product)));
-                commission.SetPropertyValue(string.Format("{0}TurnoverBase", product), reader.ToDecimal(string.Format("{0}TurnoverBase", product)));
-            }
-        }
-
-        #endregion Helpers for commission
     }
 }

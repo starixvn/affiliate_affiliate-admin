@@ -131,17 +131,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
         }
 
         /// <summary>
-        /// Set Property Value.
-        /// </summary>
-        /// <param name="reader">Data Reader.</param>
-        /// <param name="value">Value Input.</param>
-        /// <param name="propertyName">Property Name.</param>
-        protected void SetPropertyValue(IDataReader reader, object value, string propertyName)
-        {
-            value.SetPropertyValue(propertyName, reader.ToDecimal(propertyName));
-        }
-
-        /// <summary>
         /// Get company win-loss columns in system currency.
         /// </summary>
         /// <param name="reader">Data reader.</param>

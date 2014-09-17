@@ -26,6 +26,8 @@ namespace Fanex.AffiliateAdmin.Services
 
         private readonly ICompanyWinLossOverviewDataAccess _companyWinLossOverviewDataAccess;
 
+        private readonly IAffiliateWinLossOverviewDataAccess _affiliateWinLossOverviewDataAccess;
+
         public ReportService()
         {
             _reportDataAccess = new ReportDataAccess();
@@ -33,6 +35,8 @@ namespace Fanex.AffiliateAdmin.Services
             _companyWinLossByProductDataAccess = new CompanyWinLossByProductDataAccess();
 
             _companyWinLossOverviewDataAccess = new CompanyWinLossOverviewDataAccess();
+
+            _affiliateWinLossOverviewDataAccess = new AffiliateWinLossOverviewDataAccess();
         }
 
         public CompanyWinlossByProductResult GetCompanyWinlossByProduct(CompanyWinlossByProductCriteria criteria)
@@ -49,7 +53,12 @@ namespace Fanex.AffiliateAdmin.Services
         {
             return GetData<MemberStatistic>(criteria);
         }
-        
+
+        public AffiliateWinLossByOverviewResult GetAffiliateWinLoss(AffiliateWinLossOverviewCriteria criteria)
+        {
+            return _affiliateWinLossOverviewDataAccess.GetAffiliateWinLossOverview(criteria);
+        }
+
         public MemberWinLossReport GetMemberWinloss(MemberWinlossReportCriteria criteria)
         {
             return _reportDataAccess.GetMemberWinLoss(criteria);
@@ -58,11 +67,6 @@ namespace Fanex.AffiliateAdmin.Services
         public IEnumerable<QualifiedMember> GetQualifiedMembers(QualifiedMembersReportCriteria criteria)
         {
             return GetData<QualifiedMember>(criteria);
-        }
-
-        AffiliateWinLossReport IReportService.GetAffiliateWinLoss(AffiliateWinLossCriteria criteria)
-        {
-            return _reportDataAccess.GetAffiliateWinLoss(criteria);
         }
 
         public IEnumerable<AffiliateCommission> GetAffiliateCommission(AffiliateCommissionCriteria criteria)

@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AffiliateWinLossReport.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AffiliateWinLossByOverviewResult.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2014.9.5">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.17">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.DTO
@@ -14,7 +14,7 @@ namespace Fanex.AffiliateAdmin.DTO
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class AffiliateWinLossReport
+    public class AffiliateWinLossByOverviewResult
     {
         public IEnumerable<AffiliateWinLoss> CommissionList { get; set; }
 

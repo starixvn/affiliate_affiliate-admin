@@ -68,11 +68,14 @@
     </Compile>
     <Compile Include="Imp\AccountDataAccess.cs" />
     <Compile Include="Imp\AffiliateDataAccess.cs" />
-    <Compile Include="Imp\CompanyWinLossByProductDataAccess.cs" />
-    <Compile Include="Imp\CompanyWinLossDataAccess.cs" />
-    <Compile Include="Imp\CompanyWinLossOverviewDataAccess.cs" />
+    <Compile Include="Imp\AffiliateWinLoss\AffiliateWinLossDataAccess.cs" />
+    <Compile Include="Imp\AffiliateWinLoss\AffiliateWinLossOverviewDataAccess.cs" />
+    <Compile Include="Imp\CompanyWinLoss\CompanyWinLossByProductDataAccess.cs" />
+    <Compile Include="Imp\CompanyWinLoss\CompanyWinLossDataAccess.cs" />
+    <Compile Include="Imp\CompanyWinLoss\CompanyWinLossOverviewDataAccess.cs" />
     <Compile Include="Imp\MessageDataAccess.cs" />
     <Compile Include="Imp\ReportDataAccess.cs" />
+    <Compile Include="Interface\IAffiliateWinLossOverviewDataAccess.cs" />
     <Compile Include="Interface\ICompanyWinLossOverviewDataAccess.cs" />
     <Compile Include="Interface\ICompanyWinLossByProductDataAccess.cs" />
     <Compile Include="Interface\IAffiliateDataAccess.cs" />
@@ -127,7 +130,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

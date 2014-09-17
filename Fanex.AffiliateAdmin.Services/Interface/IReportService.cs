@@ -24,7 +24,7 @@ namespace Fanex.AffiliateAdmin.Services
 
         IEnumerable<MemberStatistic> GetMemberStatistics(MemberStatisticReportCriteria criteria);
 
-        AffiliateWinLossReport GetAffiliateWinLoss(AffiliateWinLossCriteria criteria);
+        AffiliateWinLossByOverviewResult GetAffiliateWinLoss(AffiliateWinLossOverviewCriteria criteria);
 
         MemberWinLossReport GetMemberWinloss(MemberWinlossReportCriteria criteria);
 

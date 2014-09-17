@@ -423,8 +423,8 @@ var AFFILIATE = (function ($) {
             $('.search-panel').width(gridObject.width());
         },
         resizeHeightDataGrid: function (gridOption) {
-            var colHeight = $("#gridId").attr('colHeight'),
-                expHeight = $("#gridId").attr('expHeight');
+            var colHeight = $("#gridId").data('colheight'),
+                expHeight = $("#gridId").data('expheight');
             if ($(".search-form").is(":visible")) {
                 gridOption.gridExpandHeight = expHeight;
             } else {
@@ -798,8 +798,8 @@ $.fn.createSearchPanel = function () {
         if ($contentPanel.length > 0) {
             $el.click(function () {
                 var collapse = $(".search-title .collapse"),
-                    colHeight = $("#gridId").attr('colHeight'),
-                    expHeight = $("#gridId").attr('expHeight');
+                    colHeight = $("#gridId").data('colheight'),
+                    expHeight = $("#gridId").data('expheight');
                 collapse.addClass("expand");
 
                 // keep width of datagrid

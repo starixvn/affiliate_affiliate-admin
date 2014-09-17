@@ -70,7 +70,7 @@
     <Compile Include="BannerDetail.cs" />
     <Compile Include="BannerType.cs" />
     <Compile Include="ClickStatisticDetail.cs" />
-    <Compile Include="AffiliateWinLossReport.cs" />
+    <Compile Include="AffiliateWinLossByOverviewResult.cs" />
     <Compile Include="CompanyWinloss.cs" />
     <Compile Include="CompanyWinlossByProductResult.cs" />
     <Compile Include="CompanyWinlossReportByProduct.cs" />

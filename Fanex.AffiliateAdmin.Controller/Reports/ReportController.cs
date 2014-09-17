@@ -263,7 +263,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Report data.</returns>
         [HttpPost]
-        public ActionResult AffiliateWinLoss(AffiliateWinLossCriteria criteria)
+        public ActionResult AffiliateWinLoss(AffiliateWinLossOverviewCriteria criteria)
         {
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
@@ -323,7 +323,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Affiliate Win Loss Criteria.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
-        public ActionResult AffiliateWinLossByAffiliate(AffiliateWinLossCriteria criteria)
+        public ActionResult AffiliateWinLossByAffiliate(AffiliateWinLossOverviewCriteria criteria)
         {
             const int GroupByMonth = 1;
             criteria.AffName = CurrentSession.Affiliate.Username;

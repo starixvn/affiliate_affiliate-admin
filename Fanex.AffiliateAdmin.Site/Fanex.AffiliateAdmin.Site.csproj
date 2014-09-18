@@ -689,6 +689,8 @@
     <Content Include="Scripts\site\CommGroupPopup.js" />
     <Content Include="Scripts\site\CompanyWinlossByProduct.js" />
     <Content Include="Scripts\site\CompanyWinlossByOverview.js" />
+    <Content Include="Scripts\site\AffiliateWinLossByOverview.js" />
+    <Content Include="Scripts\site\AffiliateWinLossByProduct.js" />
     <Content Include="Scripts\site\MemberWinlossReport.js" />
     <Content Include="Scripts\site\TestWebService.js" />
     <Content Include="Scripts\site\AffiliateCommissionReport.js" />
@@ -1160,7 +1162,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>59507</DevelopmentServerPort>
+          <DevelopmentServerPort>57335</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

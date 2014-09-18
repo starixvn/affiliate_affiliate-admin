@@ -4,22 +4,15 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2014.9.16">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.18">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
     using System.Web.Mvc;
-    using System.Web.Script.Serialization;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
-    using Fanex.AffiliateAdmin.Core.Utilities;
-    using Fanex.AffiliateAdmin.DTO;
-    using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
@@ -27,7 +20,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// </summary>
     public class AffiliateWinLossByOverviewController : ReportController
     {
-        #region Company Win Loss Report
+        #region Affiliate Win Loss Report
 
         public AffiliateWinLossByOverviewController(IReportService reportService, ICommGroupService commGroupService)
             : base(reportService, commGroupService)
@@ -37,19 +30,23 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         /// <summary>
-        /// Company win loss action.
+        /// Affiliate win loss action.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        /// <returns>Company win loss result.</returns>
+        /// <returns>Affiliate win loss result.</returns>
         [HttpPost]
         public ActionResult GetData(AffiliateWinLossOverviewCriteria criteria)
         {
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
-            var data = ReportService.GetAffiliateWinLoss(criteria);
+            var data = ReportService.GetAffiliateWinLossOverview(criteria);
 
             var totalCommission = data.CommissionInSystemCurrency;
-            totalCommission.Currency = AppSettings.BaseExchange.Code;
+
+            if (totalCommission != null)
+            {
+                totalCommission.Currency = AppSettings.BaseExchange.Code;
+            }
 
             var hasMultipleCurrency = data.CommissionList.GroupBy(t => t.Currency)
                                            .Select(t => new { Currency = t.Key, RowCount = t.Count() })
@@ -67,94 +64,25 @@ namespace Fanex.AffiliateAdmin.Controller
             });
         }
 
-        #endregion Company Win Loss Report
-
-        #region Helpers
-
         /// <summary>
-        /// Add more parameter for company win-loss report criteria.
-        /// </summary>
-        /// <param name="criteria">Criteria input.</param>
-        private void AddMoreParameterForCompanyWinlossReportCriteria(CompanyWinlossOverviewCriteria criteria)
-        {
-            if (criteria.ByAffiliate)
-            {
-                criteria.AffName = CurrentSession.Affiliate.Username;
-                criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
-                criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
-                criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
-                criteria.ExcludeTest = false;
-            }
-
-            if (criteria.GroupBy == 1)
-            {
-                // If group by is month, we need to first day and last day of month.
-                criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate, DateTime.Now);
-                criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, AppSettings.SystemStartDate, DateTime.Now);
-            }
-
-            criteria.UserId = CurrentSession.CustID;
-            criteria.IsITAdmin = CurrentSession.IsIT;
-        }
-
-        /// <summary>
-        /// Group Data By Currency.
-        /// </summary>
-        /// <param name="groupByDate">Group by date.</param>
-        /// <returns>Company Win Loss By Currency.</returns>
-        private IEnumerable<CompanyWinlossByCurrency> GroupDataByCurrency(
-            IEnumerable<CompanyWinloss> groupByDate)
-        {
-            var list = new List<CompanyWinlossByCurrency>();
-            var groupByCurrencies = groupByDate.GroupBy(t => t.Currency);
-
-            foreach (var groupByCurrency in groupByCurrencies)
-            {
-                var firstItem = groupByCurrency.First();
-                var currency = new CompanyWinlossByCurrency
-                {
-                    Currency = groupByCurrency.Key,
-                    AffExRate = firstItem.AffExRate,
-                    ExRate = firstItem.ExRate,
-                    CompanyWinlossByProductList = groupByCurrency.ToList()
-                };
-
-                list.Add(currency);
-            }
-
-            return list;
-        }
-
-        /// <summary>
-        /// Filter Group Data Company Win Loss By Product.
+        /// Affiliate win loss action.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        /// <param name="companyWinlosses">Company win loss.</param>
-        /// <returns>Company Win Loss By Product.</returns>
-        private List<CompanyWinlossReportByOverview> GroupDataCompanyWinlossByOverview(
-            CompanyWinlossOverviewCriteria criteria, IEnumerable<CompanyWinloss> companyWinlosses)
+        /// <returns>Affiliate Win Loss result.</returns>
+        [HttpPost]
+        public ActionResult GetDataByAffiliate(AffiliateWinLossOverviewCriteria criteria)
         {
-            var companyWinlossByOverviews = new List<CompanyWinlossReportByOverview>();
+            const int GroupByMonth = 1;
+            criteria.AffName = CurrentSession.Affiliate.Username;
+            criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
+            criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
+            criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
+            criteria.Currencies = CurrentSession.Affiliate.CurrencyID.ToString();
+            criteria.GroupBy = GroupByMonth;
 
-            var dateFormat = criteria.GroupBy == 0 ? "MM/dd/yyyy" : "MM/yyyy";
-
-            var groupByDates = companyWinlosses.GroupBy(t => t.WinlostDate.ToString(dateFormat)).ToList();
-
-            foreach (var groupByDate in groupByDates)
-            {
-                var group = new CompanyWinlossReportByOverview
-                {
-                    GroupInfo = groupByDate.Key,
-                };
-
-                @group.CompanyWinlossInMemberCurrencies = groupByDate;
-
-                companyWinlossByOverviews.Add(@group);
-            }
-
-            return companyWinlossByOverviews;
+            return GetData(criteria);
         }
 
-        #endregion Helpers
+        #endregion Affiliate Win Loss Report
     }
 }

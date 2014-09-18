@@ -92,6 +92,7 @@
     <Compile Include="AffiliateWinLossOverviewCriteria.cs" />
     <Compile Include="Configuration\AffType\AffTypeSelectCriteria.cs" />
     <Compile Include="CompanyWinlossByProductCriteria.cs" />
+    <Compile Include="AffiliateWinLossByProductCriteria.cs" />
     <Compile Include="GetMemberDetailCriteria.cs" />
     <Compile Include="TierSettingCriteria.cs" />
     <Compile Include="AffiliateStatisticCriteria.cs" />

@@ -258,7 +258,7 @@ var AFFILIATE = (function ($) {
             else {
                 strHrs = systemHour;
             }
-            $('#lblDateTime').html(strHrs + ":" + strMin + ":" + strSec + " " + systemDay 
+            $('#lblDateTime').html(strHrs + ":" + strMin + ":" + strSec + " " + systemDay
                 + "-" + systemMonthName[systemMonth - 1] + "-" + systemYear + systemGmt);
         },
 
@@ -289,13 +289,7 @@ var AFFILIATE = (function ($) {
                         dataRow.push({
                             Name: colName,
                             Value: (indexNumberColumn === j) ? rIndex + 1 : record[colName],
-                            CustomCellRender: function (cell, cellFormated) {
-                                if (col.Formatter) {
-                                    return col.Formatter(rIndex, rowData, cell, cellFormated);
-                                }
-
-                                return cellFormated;
-                            }
+                            CustomCellRender: AFFILIATE.getCustomCellRender(rIndex, rowData, col)
                         });
                     } ());
                 }
@@ -313,6 +307,20 @@ var AFFILIATE = (function ($) {
 
         /*jshint ignore:end */
 
+        getCustomCellRender: function (rowIndex, rowData, col) {
+
+            var customCellRender = function (cell, cellFormated) {
+
+                if (col.Formatter) {
+                    return col.Formatter(rowIndex, rowData, cell, cellFormated);
+                }
+
+                return cellFormated;
+            };
+
+            return customCellRender;
+        },
+
         /*jshint ignore:start */
         genGridData: function (columns, list, rowCssClass) {
             var bodyRows = [];
@@ -322,23 +330,14 @@ var AFFILIATE = (function ($) {
                 var dataRow = [];
 
                 for (var j = 0; j < columns.length; j++) {
-                    (function () {
-                        var colName = columns[j].Name;
-                        var col = columns[j];
-                        dataRow.push({
-                            Name: colName,
-                            Value: record[colName],
-                            CustomCellRender: function (cell, cellFormated) {
-                                if (col.Formatter) {
-                                    return col.Formatter(record, cell, cellFormated);
-                                }
-
-                                return cellFormated;
-                            }
-                        });
-                    } ());
+                    var colName = columns[j].Name;
+                    var col = columns[j];
+                    dataRow.push({
+                        Name: colName,
+                        Value: record[colName],
+                        CustomCellRender: AFFILIATE.getCustomCellRender(0, record, col)
+                    });
                 }
-
 
                 bodyRows.push({
                     Columns: dataRow,
@@ -570,7 +569,7 @@ $(function () {
     //clock
     if ($("#lblDateTime").length > 0) {
         AFFILIATE.clock();
-        setInterval(function() { AFFILIATE.clock(); }, 1000);
+        setInterval(function () { AFFILIATE.clock(); }, 1000);
     }
     // Show or Hide language Box
     $('#language').mouseover(function () {
@@ -638,7 +637,7 @@ if (!String.prototype.format) {
     };
 }
 if (!String.prototype.trim) {
-    String.prototype.trim = function() {
+    String.prototype.trim = function () {
         "use strict";
         return this.replace(/^\s+|\s+$/g, '');
     };
@@ -808,7 +807,7 @@ $.fn.createSearchPanel = function () {
                     $("#gridId").fanexGrid('resizeHeight', expHeight);
                 }
 
-                $contentPanel.stop().slideToggle(function() {
+                $contentPanel.stop().slideToggle(function () {
                     if ($(".search-form").is(":visible")) {
                         collapse.removeClass("expand");
                     } else {

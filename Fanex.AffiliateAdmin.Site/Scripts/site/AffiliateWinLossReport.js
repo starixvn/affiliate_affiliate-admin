@@ -303,6 +303,16 @@ var AffiliateWinLossReport = (function ($) {
                 AffiliateWinLossReport.submitRequest();
                 return false;
             });
+
+            $('.main-content').on('click', '.tab-title', function () {
+                if ($(this).hasClass('tag-overview')) {
+                    $('#ViewMode').val(0);
+                } else {
+                    $('#ViewMode').val(1);
+                }
+
+                AffiliateWinLossReport.submitRequest();
+            });
         },
 
         checkRangeTime: function () {
@@ -368,7 +378,12 @@ var AffiliateWinLossReport = (function ($) {
             submitOptions = $('form').serializeObject2();
             submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
             submitOptions["SortBy"] = $('#SortBy').val();
-            AffiliateWinLossReport.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+
+            if (submitOptions.ViewMode === '0') {
+                AffiliateWinLossByOverview.submitRequest(submitOptions);
+            } else {
+                AffiliateWinLossByProduct.submitRequest(submitOptions);
+            }
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
@@ -383,7 +398,7 @@ var AffiliateWinLossReport = (function ($) {
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    gridOption = $.extend(true, {}, window.sampleGridOption);
+                    gridOption = $.extend(true, {}, window.sampleOverviewGridOption);
 
                     customGridOption();
 
@@ -402,7 +417,7 @@ var AffiliateWinLossReport = (function ($) {
                         pagerSelectCallBack: AffiliateWinLossReport.ReRenderAfterPaged
                     };
 
-                    gridOption.titleInfo.text = MSG.AffiliateWinLossTitle + ' [{0}]'.format(data.TotalItem);
+                    gridOption.titleInfo.text = window.MSG.AffiliateWinLossOverviewTitle.format(data.TotalItem);
 
                     gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.TotalItem, data.hasShowSubTotalRow);
 
@@ -410,10 +425,9 @@ var AffiliateWinLossReport = (function ($) {
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 
-
                     if (data.List.length === 0) {
                         $('.status').hide();
-                        AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
+                        AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;
                     } else {
                         $('.status').show();

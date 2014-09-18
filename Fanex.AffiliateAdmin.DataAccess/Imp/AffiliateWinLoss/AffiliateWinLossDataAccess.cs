@@ -34,7 +34,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// Get simple commission list.
         /// </summary>
         /// <param name="reader">Data reader.</param>
-        /// <param name="criteria">Criteria input.</param>
         /// <returns>Commission list.</returns>
         protected IEnumerable<AffiliateWinLoss> GetCommissionList(IDataReader reader)
         {
@@ -49,6 +48,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
                     Username = reader.ToString("Username"),
                     AffType = reader.ToString("AffType"),
                     Language = reader.ToString("LANGUAGE"),
+                    CurrencyId = reader.ToInt("CurrencyId"),
                     Currency = reader.ToString("Currency"),
                     BetCount = reader.ToInt("BetCount"),
                     ActivePlayers = reader.ToInt("ActivePlayers"),
@@ -56,6 +56,8 @@ namespace Fanex.AffiliateAdmin.DataAccess
                     GroupID = reader.ToInt("GroupID"),
                     GroupName = reader.ToString("GroupName")
                 };
+
+                GetColumnExtra(reader, commission);
 
                 GetCommissionColumns(reader, commission, string.Empty);
 
@@ -82,10 +84,13 @@ namespace Fanex.AffiliateAdmin.DataAccess
                 {
                     var commission = new AffiliateWinLoss
                         {
+                            CurrencyId = reader.ToInt("CurrencyId"),
                             Currency = reader.ToString("Currency"),
                             BetCount = reader.ToInt("BetCount"),
                             ActivePlayers = reader.ToInt("ActivePlayers")
                         };
+
+                    GetColumnExtra(reader, commission);
 
                     GetCommissionColumns(reader, commission, string.Empty);
 
@@ -103,22 +108,29 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <returns>Total commission.</returns>
-        protected AffiliateWinLoss GetTotalCommissionInSystemCurrency(IDataReader reader)
+        protected IEnumerable<AffiliateWinLoss> GetTotalCommissionInSystemCurrency(IDataReader reader)
         {
-            var commission = new AffiliateWinLoss();
+            var result = new List<AffiliateWinLoss>();
 
             if (reader.NextResult())
             {
-                reader.Read();
+                while (reader.Read())
+                {
+                    var commission = new AffiliateWinLoss
+                        {
+                            BetCount = reader.ToInt("BetCount"),
+                            ActivePlayers = reader.ToInt("ActivePlayers")
+                        };
 
-                commission.BetCount = reader.ToInt("BetCount");
+                    GetColumnExtra(reader, commission);
 
-                commission.ActivePlayers = reader.ToInt("ActivePlayers");
+                    GetCommissionColumns(reader, commission, SysColSuffix);
 
-                GetCommissionColumns(reader, commission, SysColSuffix);
+                    result.Add(commission);
+                }
             }
 
-            return commission;
+            return result;
         }
 
         /// <summary>

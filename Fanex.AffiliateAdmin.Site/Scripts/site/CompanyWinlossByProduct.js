@@ -238,7 +238,7 @@ var CompanyWinlossByProduct = (function ($) {
                 totalColumns.push({ Value: itemLevel2.TotalCompanyWinlossByProduct[col.Name], Name: col.Name });
             }
 
-            rows.push({ Columns: totalColumns, CssClass: "total-of-products" });
+            rows.push({ Columns: totalColumns, CssClass: "sub-total-group bold" });
         }
     };
 
@@ -326,7 +326,7 @@ var CompanyWinlossByProduct = (function ($) {
 
             totalColumns.push({
                 Name: "ProductName",
-                Value: MSG.Total
+                Value: window.MSG.Total
             });
 
             for (var i = startIndex + 1; i < gridOption.columns.length; i++) {
@@ -334,7 +334,7 @@ var CompanyWinlossByProduct = (function ($) {
                 totalColumns.push({ Value: itemLevel2.TotalCompanyWinlossByProduct[col.Name], Name: col.Name });
             }
 
-            rows.push({ Columns: totalColumns, CssClass: "real-subtotal total-of-currencies" });
+            rows.push({ Columns: totalColumns, CssClass: "real-subtotal total-of-currencies bold" });
         }
     };
 
@@ -352,7 +352,8 @@ var CompanyWinlossByProduct = (function ($) {
         var sampleDateColumn =
         {
             Value: MSG.TotalAll,
-            TdClass: "cell-subtotal real-cell"
+            TdClass: "cell-subtotal real-cell bold"
+            
         };
 
         getTotalAllRowsOfGroup(bodyRows, totaldata, sampleDateColumn);
@@ -394,7 +395,8 @@ var CompanyWinlossByProduct = (function ($) {
 
             for (var i = startIndex; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
-                columns.push({ Value: itemLevel3[col.Name], Name: col.Name });
+                var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
+                columns.push({ Value: itemLevel3[colName], Name: col.Name });
             }
 
             footerRows.push({ Columns: columns, CssClass: "total-whole-range" });
@@ -410,10 +412,11 @@ var CompanyWinlossByProduct = (function ($) {
 
             for (var i = startIndex + 1; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
-                totalColumns.push({ Value: itemLevel2.TotalCompanyWinlossByProduct[col.Name], Name: col.Name });
+                var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
+                totalColumns.push({ Value: itemLevel2.TotalCompanyWinlossByProduct[colName], Name: col.Name });
             }
 
-            footerRows.push({ Columns: totalColumns, CssClass: "total-whole-range" });
+            footerRows.push({ Columns: totalColumns, CssClass: "total-whole-range bold" });
         }
 
         return footerRows;

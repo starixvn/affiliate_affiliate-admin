@@ -2581,7 +2581,7 @@
     <value>Member Comm.</value>
   </data>
   <data name="PlayerCommission" xml:space="preserve">
-    <value>Player Commmission</value>
+    <value>Member Commmission</value>
   </data>
   <data name="AffiliateMonth" xml:space="preserve">
     <value>Affiliate, Month</value>
@@ -2647,5 +2647,11 @@
   </data>
   <data name="CompanyWinLossOverview" xml:space="preserve">
     <value>Company Win Loss Overview</value>
+  </data>
+  <data name="AffiliateWinLossByProduct" xml:space="preserve">
+    <value>Affiliate Win Loss By Product</value>
+  </data>
+  <data name="AffiliateWinLossOverview" xml:space="preserve">
+    <value>Affiliate Win Loss Overview</value>
   </data>
 </root>

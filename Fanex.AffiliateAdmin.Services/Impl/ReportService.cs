@@ -28,6 +28,8 @@ namespace Fanex.AffiliateAdmin.Services
 
         private readonly IAffiliateWinLossOverviewDataAccess _affiliateWinLossOverviewDataAccess;
 
+        private readonly IAffiliateWinLossByProductDataAccess _affiliateWinLossByProductDataAccess;
+
         public ReportService()
         {
             _reportDataAccess = new ReportDataAccess();
@@ -37,6 +39,8 @@ namespace Fanex.AffiliateAdmin.Services
             _companyWinLossOverviewDataAccess = new CompanyWinLossOverviewDataAccess();
 
             _affiliateWinLossOverviewDataAccess = new AffiliateWinLossOverviewDataAccess();
+
+            _affiliateWinLossByProductDataAccess = new AffiliateWinLossByProductDataAccess();
         }
 
         public CompanyWinlossByProductResult GetCompanyWinlossByProduct(CompanyWinlossByProductCriteria criteria)
@@ -54,9 +58,14 @@ namespace Fanex.AffiliateAdmin.Services
             return GetData<MemberStatistic>(criteria);
         }
 
-        public AffiliateWinLossByOverviewResult GetAffiliateWinLoss(AffiliateWinLossOverviewCriteria criteria)
+        public AffiliateWinLossByOverviewResult GetAffiliateWinLossOverview(AffiliateWinLossOverviewCriteria criteria)
         {
             return _affiliateWinLossOverviewDataAccess.GetAffiliateWinLossOverview(criteria);
+        }
+
+        public AffiliateWinLossByProductResult GetAffiliateWinLossByProduct(AffiliateWinLossByProductCriteria criteria)
+        {
+            return _affiliateWinLossByProductDataAccess.GetAffiliateWinLossByProduct(criteria);
         }
 
         public MemberWinLossReport GetMemberWinloss(MemberWinlossReportCriteria criteria)

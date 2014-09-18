@@ -10,6 +10,7 @@
 namespace Fanex.AffiliateAdmin.DataAccess
 {
     using System.Data;
+    using System.Linq;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.Data;
@@ -39,7 +40,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
 
                     commissionReport.CommissionInAffiliateCurrency = GetTotalCommissionInAffiliateCurrency(reader);
 
-                    commissionReport.CommissionInSystemCurrency = GetTotalCommissionInSystemCurrency(reader);
+                    commissionReport.CommissionInSystemCurrency = GetTotalCommissionInSystemCurrency(reader).FirstOrDefault();
 
                     reader.Close();
 

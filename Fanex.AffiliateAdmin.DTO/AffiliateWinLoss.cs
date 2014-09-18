@@ -33,7 +33,13 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime? WinlostDate { get; set; }
 
+        public int CurrencyId { get; set; }
+
         public string Currency { get; set; }
+
+        public int ProductId { get; set; }
+
+        public string ProductName { get; set; }
 
         public int ActivePlayers { get; set; }
 

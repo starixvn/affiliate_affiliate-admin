@@ -700,6 +700,24 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Affiliate Win Loss By Product.
+        /// </summary>
+        public static string AffiliateWinLossByProduct {
+            get {
+                return ResourceManager.GetString("AffiliateWinLossByProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affiliate Win Loss Overview.
+        /// </summary>
+        public static string AffiliateWinLossOverview {
+            get {
+                return ResourceManager.GetString("AffiliateWinLossOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate Win Loss Report.
         /// </summary>
         public static string AffiliateWinLossReport {
@@ -5534,7 +5552,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Player Commmission.
+        ///   Looks up a localized string similar to Member Commmission.
         /// </summary>
         public static string PlayerCommission {
             get {

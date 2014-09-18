@@ -258,37 +258,6 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         /// <summary>
-        /// Get data for report.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>Report data.</returns>
-        [HttpPost]
-        public ActionResult AffiliateWinLoss(AffiliateWinLossOverviewCriteria criteria)
-        {
-            criteria.UserId = CurrentSession.CustID;
-            criteria.IsITAdmin = CurrentSession.IsIT;
-            var data = _reportService.GetAffiliateWinLoss(criteria);
-
-            var totalCommission = data.CommissionInSystemCurrency;
-            totalCommission.Currency = AppSettings.BaseExchange.Code;
-
-            var hasShowSubTotalRow = data.CommissionList.GroupBy(t => t.Currency)
-                                           .Select(t => new { Currency = t.Key, RowCount = t.Count() })
-                                           .Any(t => t.RowCount > 1);
-
-            return Json(new
-            {
-                List = data.CommissionList,
-                TotalRowData = totalCommission,
-                SubTotalData = data.CommissionInAffiliateCurrency,
-                HasShowSubTotalRow = hasShowSubTotalRow,
-                CurrentPage = criteria.PageIndex - 1,
-                ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.NRows
-            });
-        }
-
-        /// <summary>
         /// Commission By Affiliate.
         /// </summary>
         /// <param name="model">Model Input.</param>
@@ -315,25 +284,6 @@ namespace Fanex.AffiliateAdmin.Controller
             model.AddBaseCurrencyList(baseCurrencyList);
 
             return View(model);
-        }
-
-        /// <summary>
-        /// Affiliate Win Loss By Affiliate.
-        /// </summary>
-        /// <param name="criteria">Affiliate Win Loss Criteria.</param>
-        /// <returns>Action Result.</returns>
-        [HttpPost]
-        public ActionResult AffiliateWinLossByAffiliate(AffiliateWinLossOverviewCriteria criteria)
-        {
-            const int GroupByMonth = 1;
-            criteria.AffName = CurrentSession.Affiliate.Username;
-            criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
-            criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
-            criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
-            criteria.Currencies = CurrentSession.Affiliate.CurrencyID.ToString();
-            criteria.GroupBy = GroupByMonth;
-
-            return AffiliateWinLoss(criteria);
         }
 
         /// <summary>

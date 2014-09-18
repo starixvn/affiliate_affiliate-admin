@@ -76,7 +76,7 @@ report
                     @Html.DropDownCheckList("DrawFilter", Model.DrawFilterOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
                 <div class="cell">
-                    @Html.Label("SortBy", Lang.SortBy, new { @class = "txt" })                    
+                    @Html.Label("SortBy", Lang.SortBy, new { @class = "txt" })
                     @Html.DropDownCheckList("SortBy", Model.SortByOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
                 <div class="cell">
@@ -93,13 +93,15 @@ report
             <div class="row-fluid row-form btn-action">
                 <div class="span12">
                     <button id="btnSubmit" type="button" class="btn btn-default">@Lang.Submit</button>
+                    <input type="hidden" name="ViewMode" id="ViewMode" value="0" />
                 </div>
             </div>
         </div>
     }
 </div>
-<div id="gridId" class="freegrid">
-</div>
+
+<div id="gridId" class="freegrid" data-colheight="200" data-expheight="350" />
+
 <div class="content legend">
     <div class="row-fluid">
         <ul class="unstyled inline status pull-right">
@@ -139,22 +141,22 @@ report
             Amount: "@Lang.Amount",
             ToggleSubTotal: '@Lang.ToggleSubTotal',
             ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct',
-            QualifiedMembers: "@Lang.QualifiedMembers"
+            QualifiedMembers: "@Lang.QualifiedMembers",
+            AffiliateWinLossOverviewTitle: "<span class='tab-title focus-tab-title tag-overview'>" + '@Lang.AffiliateWinLossOverview' +  " [{0}]</span><span class='tab-title tag-by-product'>" + '@Lang.AffiliateWinLossByProduct' + "</span>",
+            AffiliateWinLossByProductTitle: "<span class='tab-title tag-overview'>" + '@Lang.AffiliateWinLossOverview' +  "</span><span class='tab-title focus-tab-title tag-by-product'>" + '@Lang.AffiliateWinLossByProduct' + " [{0}]</span>"
         };
 
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
         var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
         var subTotalStatus = COLLAPSE_SUBTOTAL_STATUS;
 
-
-        var sampleGridOption = {
+        var sampleOverviewGridOption = {
             language: '@AppSession.Language',
             showTitle: true,
             timeZone: AFFILIATE.TimeZone,
             titleInfo:
             {
-                text: "@Lang.AffiliateWinLoss",
-                showButtonsWhenNoData: false
+                showButtonsWhenNoData: true
             },
             groupHeaderRows: [
                 {
@@ -250,29 +252,151 @@ report
             gridExpandHeight: 360,
             showFooter: true,
             customizeHeader: true,
-            showDistinctRow: true,
             numberOfFrozenColumn: 6,
             headerColumnHeight: 30,
-            
             rowCssClass: function (rowIndex, rowData) {
                 return rowData.Status.toLowerCase();
             }
         };
         
-        var samplePShareCol = { 
-            HeaderCaption: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
-            HeaderText: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
-            IsCurrency: true, Width: 110, Name: "PShare", NameCache: "PShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-        var samplePWinCol= { 
-            HeaderCaption: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
-            HeaderText: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
-            IsCurrency: true, Width: 110, Name: "PWin", NameCache: "PWin", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-        var sampleNetGamingCol = { 
-            HeaderCaption: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
-            HeaderText: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
-            IsCurrency: true, Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
+        var sampleProductGridOption = {
+            language: '@AppSession.Language',
+            showTitle: true,
+            timeZone: AFFILIATE.TimeZone,
+            titleInfo:
+            {
+                showButtonsWhenNoData: true
+            },
+            groupHeaderRows: [
+                {
+                    Columns: [
+                        { HeaderText: "@Lang.Affiliate", Name: "Username", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.Month", Name: "WinlostDate", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.AffType", Name: "AffType", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.Language", Name: "Language", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.CommGroup", Name: "GroupName", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Product", HeaderText: "@Lang.Product", Name: "ProductName", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.BetCount", HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.ActiveMembers", HeaderText: "@Lang.ActiveMembers", Name: "ActivePlayers", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", HeaderAlign: "center", IsCurrency: true, Name: "Turnover", NameCache: "Turnover", MergeRowNumber: 2 },
+                        {
+                            HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
+                            HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
+                            IsCurrency: true,
+                            Name: "PlayerComm",
+                            NameCache: "PlayerComm",
+                            MergeRowNumber: 2
+                        },
+                        { HeaderCaption: "@Lang.AffiliateWinLoss", IsCurrency: true, HeaderText: "@Lang.AffiliateWinLoss", Name: "Winloss", NameCache: "Winloss", MergeRowNumber: 2 }
+                    ]
+                }
+            ],
+            columns: [
+                {   HeaderText: "@Lang.Affiliate", Width: 80, Name: "Username", HeaderAlign: "center", CellAlign: "left", 
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        return "<a class='afflink' data-affname='" + record.Username + "' href='javascript:void(0)'>" + cellFormated + "</a>";
+                    }
+                },
+                {
+                    HeaderText: "@Lang.Month",
+                    Width: 80,
+                    Name: "WinlostDate",
+                    HeaderAlign: "center",
+                    CellAlign: "center",
+                    FormatDateTime: AFFILIATE.DATE_FORMAT_MONTH,
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(record.WinlostDate) + cellFormated + "</a>";
+                    }
+                },
+                { HeaderText: "@Lang.AffType", Width: 80, Name: "AffType", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.Language", Width: 80, Name: "Language", HeaderAlign: "center" },
+                {
+                    HeaderText: "@Lang.CommGroup",
+                    Width: 80,
+                    Name: "GroupName",
+                    HeaderAlign: "center",
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        if (cellFormated)
+                            return "<a class='commgroup' data-date='" + moment(record.WinlostDate).format("MMM-YYYY") + "' data-groupid='" + record.GroupID + "' href='javascript:void(0)'>" + cellFormated + "</a>";
+                        return null;
+                    }
+                },
+                { HeaderText: "@Lang.Currency", Width: 80, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.Product", Width: 110, Name: "ProductName", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "@Lang.ActiveMembers", Width: 110, Name: "ActivePlayers", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "Turnover", NameCache: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
+                {
+                    HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
+                    HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
+                    IsCurrency: true,
+                    Width: 110,
+                    Name: "PlayerComm",
+                    NameCache: "PlayerComm",
+                    HeaderAlign: "center",
+                    CellAlign: "right",
+                    FormatNumber: AFFILIATE.FORMATNUMBER,
+                    FormatNegative: '($)',
+                    IsAbs: true
+                },
+                { HeaderText: "@Lang.AffiliateWinLoss", Width: 110, Name: "Winloss", NameCache: "Winloss", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true }
+            ],
+            showPager: true,
+            customPager: true,
+            allowTruncate: false,
+            gridExpandHeight: 360,
+            showFooter: true,
+            customizeHeader: true,
+            numberOfFrozenColumn: 6,
+            headerColumnHeight: 30,
+            rowCssClass: function (rowIndex, rowData) {
+                return rowData.Status.toLowerCase();
+            }
+        };
+        
+        var samplePlaytechCasinoHeader = { HeaderCaption: "@Lang.PlaytechCasino", HeaderAlign: "center", IsCurrency: true, Name: "PShare", NameCache: "PShare", MergeColNumber: 3 };
+
+        var samplePShareCol = {
+            HeaderCaption: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>",
+            HeaderText: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>",
+            Width: 110,
+            Name: "PShare",
+            NameCache: "PShare",
+            HeaderAlign: "center",
+            CellAlign: "right",
+            FormatNumber: AFFILIATE.FORMATNUMBER,
+            FormatNegative: '($)',
+            IsAbs: true
+        };
+
+        var samplePWinCol = {
+            HeaderCaption: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>",
+            HeaderText: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>",
+            Width: 110,
+            Name: "PWin",
+            NameCache: "PWin",
+            HeaderAlign: "center",
+            CellAlign: "right",
+            FormatNumber: AFFILIATE.FORMATNUMBER,
+            FormatNegative: '($)',
+            IsAbs: true
+        };
+
+        var sampleNetGamingCol = {
+            HeaderCaption: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>",
+            HeaderText: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>",
+            Width: 110,
+            Name: "NetGaming",
+            NameCache: "NetGaming",
+            HeaderAlign: "center",
+            CellAlign: "right",
+            FormatNumber: AFFILIATE.FORMATNUMBER,
+            FormatNegative: '($)',
+            IsAbs: true
+        };
         
     </script>
-    @Scripts.Render("~/scripts/affiliatewinlossreport")
+    @Scripts.Render("~/bundles/affiliatewinloss")
 }
 

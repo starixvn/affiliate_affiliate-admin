@@ -285,29 +285,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return View(new AffiliateCommissionViewModel());
         }
-
-        /// <summary>
-        /// Processing Commission.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>Processing Commission Result.</returns>
-        [HttpPost]
-        public ActionResult AffiliateCommission(AffiliateCommissionCriteria criteria)
-        {
-            criteria.UserId = CurrentSession.CustID;
-            criteria.IsITAdmin = CurrentSession.IsIT;
-
-            var data = _reportService.GetAffiliateCommission(criteria);
-
-            return Json(new
-            {
-                List = data,
-                ItemsPerPage = data.Count(),
-                TotalItem = data.Count(),
-                HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0)
-            });
-        }
-
+        
         #endregion Affiliate Commission Report
 
         #region Helpers

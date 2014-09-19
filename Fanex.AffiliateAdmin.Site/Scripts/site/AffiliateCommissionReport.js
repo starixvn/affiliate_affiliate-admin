@@ -9,6 +9,10 @@ var AffiliateCommissionReport = (function ($) {
     var MONTH_COL = 2;
     var GROUP_BY_AFFILIATE = "0";
 
+    var QM_COL_INDEX = 7;
+
+    var PRODUCT_COL_INDEX = 5;
+
     var getSelectedProducts = function (products) {
         var selectedProducts = $.map(submitOptions.Products.split(','), function (item) {
             return parseInt(item, 10);
@@ -17,11 +21,6 @@ var AffiliateCommissionReport = (function ($) {
         return $.grep(products, function (item) {
             return $.inArray(item.Id, selectedProducts) >= 0 ? true : false;
         });
-    };
-
-    var getMergeColNumberForProductColumn = function () {
-        var mergeColNumber = 4;
-        return mergeColNumber;
     };
 
     var removeRedundantColumns = function () {
@@ -39,74 +38,42 @@ var AffiliateCommissionReport = (function ($) {
         return 6;
     };
 
-    var initProductColumnsForGridOption = function (products) {
-        var productCount = products.length;
-        var extraThreeColForPlayTech = 3;
-
-        for (var i = 0; i < productCount; i++) {
-            var name = nomalizeProductName(products[i].Name);
-            var isPlaytechCasino = products[i].Name === "Playtech Casino";
-            var mergeColNumber = getMergeColNumberForProductColumn();
-            mergeColNumber = isPlaytechCasino ? mergeColNumber + extraThreeColForPlayTech : mergeColNumber;
-
-            gridOption.groupHeaderRows[0].Columns.push(
-                { HeaderCaption: window.MSG[name], HeaderText: window.MSG[name], IsCurrency: true,
-                    Name: name + "Winloss", NameCache: name + "Winloss", MergeColNumber: mergeColNumber
-                }
-            );
-
-            gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: window.MSG.NetWinloss, HeaderText: window.MSG.NetWinloss,
-                    Width: 100, Name: name + "Winloss", NameCache: name + "Winloss", HeaderAlign: "center",
-                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
-                }
-            );
-
-            /*jshint ignore:start */
-            gridOption.columns.push(
-                { IsCurrency: false,
+    var insertQMColumn = function () {
+        gridOption.groupHeaderRows[0].Columns.splice(QM_COL_INDEX, 0,
+                {
                     HeaderCaption: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM),
                     HeaderText: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM),
-                    Width: 80, Name: name + "QM", HeaderAlign: "center", CellAlign: "right",
-                    Formatter: function (rIndex, record, cell, cellFormated) {
-                        if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
-                            return cellFormated;
-                        }
+                    IsCurrency: false,
+                    Name: "TotalQM",
+                    MergeRowNumber: 2
+                }
+            );
 
-                        var actualBaseCurreny = "2";
-                        var currency = record.Currency;
-
-                        if (cellFormated) {
-                            return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}' data-groupid='{6}' data-commgroup='{7}'>{8}</a>"
-                                    .format(currency, record.Username, record.AffId, moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, record.GroupID, record.GroupName, cellFormated);
-                        }
-
-                        return 0;
+        gridOption.columns.splice(QM_COL_INDEX, 0,
+            {
+                HeaderCaption: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM),
+                HeaderText: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM),
+                Name: "TotalQM",
+                IsCurrency: false,
+                Width: 80,
+                HeaderAlign: "center", CellAlign: "right",
+                Formatter: function (rIndex, record, cell, cellFormated) {
+                    if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
+                        return cellFormated;
                     }
-                }
-            );
-            /*jshint ignore:end */
 
-            gridOption.columns.push(
-                { IsCurrency: false, HeaderCaption: window.MSG.CommPercent, HeaderText: window.MSG.CommPercent,
-                    Width: 80, Name: name + "CommissionPercent", HeaderAlign: "center", CellAlign: "right",
-                    FormatNumber: AFFILIATE.FORMATNUMBER
-                }
-            );
+                    var actualBaseCurreny = "2";
+                    var currency = record.Currency;
 
-            gridOption.columns.push(
-                { IsCurrency: true, HeaderCaption: window.MSG.Commission, HeaderText: window.MSG.Commission,
-                    Width: 100, Name: name + "Commission", NameCache: name + "Commission", HeaderAlign: "center",
-                    CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true
-                }
-            );
+                    if (cellFormated) {
+                        return "<a class='qm' data-currency='{0}' data-affname='{1}' data-affid='{2}' data-date='{3}' data-basecurrency='{4}' href='javascript:void(0)' data-products='{5}' data-groupid='{6}' data-commgroup='{7}'>{8}</a>"
+                                .format(currency, record.Username, record.AffId, window.moment(record.WinlostDate).format("MMM YYYY"), actualBaseCurreny, submitOptions.Products, record.GroupID, record.GroupName, cellFormated);
+                    }
 
-            if (isPlaytechCasino) {
-                gridOption.columns.push(samplePShareCol);
-                gridOption.columns.push(samplePWinCol);
-                gridOption.columns.push(sampleNetGamingCol);
+                    return 0;
+                }
             }
-        }
+        );
     };
 
     function customizeGridOption() {
@@ -115,11 +82,11 @@ var AffiliateCommissionReport = (function ($) {
 
         var products = getSelectedProducts(window.PRODUCTS);
 
+        insertQMColumn();
+
         removeRedundantColumns();
 
         gridOption.numberOfFrozenColumn = getNumberOfFrozenColumn();
-
-        initProductColumnsForGridOption(products);
     }
 
     var renameCurrencyColumns = function (isUseBaseCurrency) {
@@ -175,8 +142,94 @@ var AffiliateCommissionReport = (function ($) {
         }
     };
 
-    var nomalizeProductName = function (name) {
-        return name.replace(/ /g, "");
+    var getProductColIndex = function () {
+        if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
+            return PRODUCT_COL_INDEX - 2;
+        }
+
+        return PRODUCT_COL_INDEX;
+    };
+
+    var getFirstColumns = function (columns, idxLevel1, itemLevel1, itemLevel2) {
+        var productColIdx = getProductColIndex();
+        var indexNumberColumn = gridOption.indexNumberColumn; // custom option
+
+        for (var i = 0; i < productColIdx; i++) {
+
+            var col = gridOption.columns[i];
+            columns.push({
+                Value: (indexNumberColumn === i) ? idxLevel1 + 1 : itemLevel2[col.Name],
+                Name: col.Name,
+                MergeRowNumber: itemLevel1.MergeRowNumber,
+                CustomCellRender: AFFILIATE.getCustomCellRender(0, itemLevel2, col)
+            });
+        }
+    };
+
+    var getRowsOfGroup = function (rows, idxLevel1, itemLevel1) {
+        var numProducts = itemLevel1.MergeRowNumber;
+        var productColIdx = getProductColIndex();
+        var rowCssClass = gridOption.rowCssClass; // custom option
+        var rowHeight = gridOption.RowHeight;
+
+        $.each(itemLevel1.AffiliateCommissionByProductList, function (idxLevel2, itemLevel2) {
+            var columns = [];
+
+            if (idxLevel2 === 0) {
+                getFirstColumns(columns, idxLevel1, itemLevel1, itemLevel2);
+            }
+
+            for (var i = productColIdx; i < gridOption.columns.length - 1; i++) {
+                var col = gridOption.columns[i];
+                columns.push({ Value: itemLevel2[col.Name], Name: col.Name });
+            }
+
+            if (idxLevel2 === 0) {
+                columns.push({
+                    Value: itemLevel2.TotalPayment,
+                    Name: "TotalPayment",
+                    MergeColNumber: 1,
+                    MergeRowNumber: itemLevel1.MergeRowNumber
+                });
+            }
+
+            rows.push({
+                Columns: columns,
+                CssClass: rowCssClass ? rowCssClass(0, itemLevel2) : undefined,
+                RowHeight: rowHeight ? rowHeight(0, itemLevel2) : undefined
+            });
+        });
+
+        if (numProducts > 1) {
+            var totalColumns = [];
+
+            totalColumns.push({
+                Name: "ProductName",
+                Value: window.MSG.Total
+            });
+
+            for (var i = productColIdx + 1; i < gridOption.columns.length - 1; i++) {
+                var col = gridOption.columns[i];
+                totalColumns.push({ Value: itemLevel1.TotalAffiliateCommissionByProduct[col.Name], Name: col.Name });
+            }
+
+            rows.push({ Columns: totalColumns, CssClass: "sub-total-group bold" });
+        }
+    };
+
+
+    var getBodyRows = function (groups) {
+        if (groups.length === 0) {
+            return [];
+        }
+
+        var bodyRows = [];
+
+        $.each(groups, function (idxLevel1, itemLevel1) {
+            getRowsOfGroup(bodyRows, idxLevel1, itemLevel1);
+        });
+
+        return bodyRows;
     };
 
     return {
@@ -263,7 +316,7 @@ var AffiliateCommissionReport = (function ($) {
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
 
             $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Report/AffiliateCommission"),
+                url: AFFILIATE.getAbsoluteUrl("AffiliateCommission/GetData"),
                 type: 'post',
                 data: jQuery.param(submitOptions) + "&pageCurrent=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 beforeSend: function () {
@@ -293,11 +346,12 @@ var AffiliateCommissionReport = (function ($) {
 
                     gridOption.titleInfo.text = window.MSG.AffiliateCommissionTitle + ' [{0}]'.format(data.TotalItem);
 
-                    gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
+                    gridOption.bodyRows = getBodyRows(data.Groups);
+                    //AFFILIATE.genGridRows(data.List, gridOption);
 
                     gridObject.removeClass("noinfo").fanexGrid(gridOption);
 
-                    if (data.List.length === 0) {
+                    if (data.TotalItem === 0) {
                         $('.status').hide();
                         AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;

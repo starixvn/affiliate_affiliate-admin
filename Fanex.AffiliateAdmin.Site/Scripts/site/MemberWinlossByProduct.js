@@ -350,7 +350,7 @@ var MemberWinLossByProduct = (function ($) {
         var rowCssClass = gridOption.rowCssClass; // custom option
         var rowHeight = gridOption.RowHeight;
 
-        $.each(itemLevel1.MemberWinLossByProductList, function (idxLevel2, itemLevel2) {
+        $.each(itemLevel1.TotalAffiliateCommissionByProduct, function (idxLevel2, itemLevel2) {
             var columns = [];
 
             if (idxLevel2 === 0) {

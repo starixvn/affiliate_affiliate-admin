@@ -159,7 +159,39 @@ report
                         { HeaderText: "@Lang.Month", Name: "WinlostDate", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.CommGroup", Name: "GroupName", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
-                        { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Name: "Commission", NameCache: "Commission", MergeRowNumber: 2 }
+                        { HeaderCaption: "@Lang.Product", HeaderText: "@Lang.Product", Name: "ProductName", MergeRowNumber: 2 },
+                        {
+                            HeaderCaption: "@Lang.NetWinloss",
+                            HeaderText: "@Lang.NetWinloss",
+                            IsCurrency: true,
+                            Name: "NetWinlost",
+                            NameCache: "NetWinlost",
+                            MergeRowNumber: 2
+                        },
+                        {
+                            HeaderCaption: "@Lang.CommPercent",
+                            HeaderText: "@Lang.CommPercent",
+                            IsCurrency: false,
+                            Name: "CommissionPercent",
+                            NameCache: "CommissionPercent",
+                            MergeRowNumber: 2
+                        },
+                        {
+                            HeaderCaption: "@Lang.Commission",
+                            HeaderText: "@Lang.Commission",
+                            IsCurrency: true,
+                            Name: "Commission",
+                            NameCache: "Commission",
+                            MergeRowNumber: 2
+                        },
+                        {
+                            HeaderCaption: "@Lang.TotalPayment", 
+                            HeaderText: "@Lang.TotalPayment", 
+                            IsCurrency: true, 
+                            Name: "TotalPayment", 
+                            NameCache: "TotalPayment",
+                            MergeRowNumber: 2
+                        }
                     ]
                 }
             ],
@@ -178,29 +210,64 @@ report
                     }
                 },
                 { HeaderText: "@Lang.Currency", Width: 90, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderCaption: "@Lang.TotalPayment", HeaderText: "@Lang.TotalPayment", IsCurrency: true, Width: 110, Name: "Commission", NameCache: "Commission", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true }
+                { HeaderText: "@Lang.Product", Width: 110, Name: "ProductName", HeaderAlign: "center", CellAlign: "left" },
+                {
+                    HeaderCaption: "@Lang.NetWinloss",
+                    HeaderText: "@Lang.NetWinloss",
+                    IsCurrency: true,
+                    Width: 110,
+                    Name: "NetWinlost",
+                    NameCache: "NetWinlost",
+                    HeaderAlign: "center",
+                    CellAlign: "right",
+                    FormatNumber: AFFILIATE.FORMATNUMBER,
+                    FormatNegative: '($)',
+                    IsAbs: true
+                },
+                { 
+                    HeaderCaption: '@Lang.CommPercent', 
+                    HeaderText: '@Lang.CommPercent',
+                    Name: "CommissionPercent", 
+                    IsCurrency: false, 
+                    Width: 80, 
+                    HeaderAlign: "center", CellAlign: "right",
+                    FormatNumber: AFFILIATE.FORMATNUMBER
+                },
+                { 
+                    HeaderCaption: '@Lang.Commission',
+                    HeaderText: '@Lang.Commission',
+                    Name: "Commission", 
+                    NameCache: "Commission", 
+                    IsCurrency: true,
+                    Width: 100, 
+                    HeaderAlign: "center",
+                    CellAlign: "right", 
+                    FormatNumber: AFFILIATE.FORMATNUMBER, 
+                    FormatNegative: '($)', 
+                    IsAbs: true
+                },
+                { 
+                    HeaderCaption: "@Lang.TotalPayment",
+                    HeaderText: "@Lang.TotalPayment",
+                    IsCurrency: true,
+                    Width: 110,
+                    Name: "TotalPayment",
+                    NameCache: "TotalPayment",
+                    HeaderAlign: "center",
+                    CellAlign: "right", 
+                    FormatNumber: AFFILIATE.FORMATNUMBER, 
+                    FormatNegative: '($)', 
+                    IsAbs: true 
+                }
             ],
+            showPager: true,
+            customPager: true,
+            showFooter: true,
             allowTruncate: true,
             gridExpandHeight: 360,
             customizeHeader: true,
             indexNumberColumn: 0
         };
-        
-        var samplePShareCol = { 
-            HeaderCaption: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
-            HeaderText: "<span title='@Lang.ProgressiveShare'>@Lang.PShare</span>", 
-            IsCurrency: true, Width: 110, Name: "PShare", NameCache: "PShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-        
-        var samplePWinCol= { 
-            HeaderCaption: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
-            HeaderText: "<span title='@Lang.ProgressiveWin'>@Lang.PWin</span>", 
-            IsCurrency: true, Width: 110, Name: "PWin", NameCache: "PWin", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-        
-        var sampleNetGamingCol = { 
-            HeaderCaption: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
-            HeaderText: "<span title='@Lang.PlaytechCasinoNetGaming'>@Lang.PCNetGaming</span>", 
-            IsCurrency: true, Width: 110, Name: "NetGaming", NameCache: "NetGaming", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)',  IsAbs: true };
-
     </script>
     @Scripts.Render("~/scripts/affiliatecommissionreport")
 }

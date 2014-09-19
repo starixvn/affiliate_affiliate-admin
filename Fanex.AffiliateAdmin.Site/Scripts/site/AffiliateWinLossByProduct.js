@@ -206,8 +206,8 @@ var AffiliateWinLossByProduct = (function ($) {
 
             if (idxLevel2 === 0) {
                 columns.push({
-                    Value: itemLevel1.PlayerCurrency,
-                    Name: "PlayerCurrency",
+                    Value: itemLevel1.Currency,
+                    Name: "Currency",
                     MergeRowNumber: itemLevel1.MergeRowNumber
                 });
             }

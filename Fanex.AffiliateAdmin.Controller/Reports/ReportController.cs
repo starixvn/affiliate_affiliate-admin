@@ -121,46 +121,6 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         /// <summary>
-        /// Member win loss action.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>Member win loss result.</returns>
-        [HttpPost]
-        public ActionResult MemberWinloss(MemberWinlossReportCriteria criteria)
-        {
-            if (criteria.ByAffiliate)
-            {
-                criteria.AffName = CurrentSession.Affiliate.Username;
-                criteria.ExcludeTest = false;
-                criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
-                criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
-                criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
-            }
-
-            criteria.UserId = CurrentSession.CustID;
-            criteria.IsITAdmin = CurrentSession.IsIT;
-
-            var data = _reportService.GetMemberWinloss(criteria);
-
-            var hasCurrencyOverTwoRows = data.MemberWinlossList.GroupBy(t => t.PlayerCurrency)
-                                           .Select(t => new { PlayerCurrency = t.Key, RowCount = t.Count() })
-                                           .Any(t => t.RowCount > 1);
-
-            return Json(new
-            {
-                List = data.MemberWinlossList,
-                TotalRowData = data.TotalMemberWinlossInSystemCurrency,
-                SubTotalData = data.TotalMemberWinlossInMemberCurrencies,
-                HasCurrencyOverTwoRows = hasCurrencyOverTwoRows,
-                CurrentPage = criteria.PageIndex - 1,
-                ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.NRows,
-                DurationDB = criteria.Duration,
-                DurationFanexData = data.Duration
-            });
-        }
-
-        /// <summary>
         /// Member Win loss Report for specific affiliate.
         /// </summary>
         /// <param name="model">Model input.</param>

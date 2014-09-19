@@ -20,11 +20,13 @@ namespace Fanex.AffiliateAdmin.Services
     /// </summary>
     public sealed class ReportService : QueryService, IReportService
     {
-        private readonly IReportDataAccess _reportDataAccess;
-
         private readonly ICompanyWinLossByProductDataAccess _companyWinLossByProductDataAccess;
 
         private readonly ICompanyWinLossOverviewDataAccess _companyWinLossOverviewDataAccess;
+
+        private readonly IMemberWinLossByProductDataAccess _memberWinLossByProductDataAccess;
+
+        private readonly IMemberWinLossOverviewDataAccess _memberWinLossOverviewDataAccess;
 
         private readonly IAffiliateWinLossOverviewDataAccess _affiliateWinLossOverviewDataAccess;
 
@@ -32,11 +34,13 @@ namespace Fanex.AffiliateAdmin.Services
 
         public ReportService()
         {
-            _reportDataAccess = new ReportDataAccess();
-
             _companyWinLossByProductDataAccess = new CompanyWinLossByProductDataAccess();
 
             _companyWinLossOverviewDataAccess = new CompanyWinLossOverviewDataAccess();
+
+            _memberWinLossByProductDataAccess = new MemberWinLossByProductDataAccess();
+
+            _memberWinLossOverviewDataAccess = new MemberWinLossOverviewDataAccess();
 
             _affiliateWinLossOverviewDataAccess = new AffiliateWinLossOverviewDataAccess();
 
@@ -68,9 +72,14 @@ namespace Fanex.AffiliateAdmin.Services
             return _affiliateWinLossByProductDataAccess.GetAffiliateWinLossByProduct(criteria);
         }
 
-        public MemberWinLossReport GetMemberWinloss(MemberWinlossReportCriteria criteria)
+        public MemberWinLossByProductResult GetMemberWinlossByProduct(MemberWinlossByProductCriteria criteria)
         {
-            return _reportDataAccess.GetMemberWinLoss(criteria);
+            return _memberWinLossByProductDataAccess.GetMemberWinLossByProduct(criteria);
+        }
+
+        public MemberWinLossByOverviewResult GetMemberWinlossOverview(MemberWinLossOverviewCriteria criteria)
+        {
+            return _memberWinLossOverviewDataAccess.GetMemberWinLossOverview(criteria);
         }
 
         public IEnumerable<QualifiedMember> GetQualifiedMembers(QualifiedMembersReportCriteria criteria)

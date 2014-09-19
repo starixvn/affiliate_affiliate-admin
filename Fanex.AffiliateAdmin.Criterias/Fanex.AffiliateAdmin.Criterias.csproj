@@ -94,6 +94,8 @@
     <Compile Include="CompanyWinlossByProductCriteria.cs" />
     <Compile Include="AffiliateWinLossByProductCriteria.cs" />
     <Compile Include="GetMemberDetailCriteria.cs" />
+    <Compile Include="MemberWinlossByProductCriteria.cs" />
+    <Compile Include="MemberWinlossOverviewCriteria.cs" />
     <Compile Include="TierSettingCriteria.cs" />
     <Compile Include="AffiliateStatisticCriteria.cs" />
     <Compile Include="Configuration\AffType\AffTypeUpdateCriteria.cs" />
@@ -119,7 +121,6 @@
     <Compile Include="IsMonthlyTransferCriteria.cs" />
     <Compile Include="MonthlyTransferCriteria.cs" />
     <Compile Include="AffiliateCommissionCriteria.cs" />
-    <Compile Include="MemberWinlossReportCriteria.cs" />
     <Compile Include="FavoriteCriteria.cs" />
     <Compile Include="CountryCriteria.cs" />
     <Compile Include="DeductionSettingCriteria.cs" />

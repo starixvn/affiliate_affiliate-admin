@@ -2654,4 +2654,10 @@
   <data name="AffiliateWinLossOverview" xml:space="preserve">
     <value>Affiliate Win Loss Overview</value>
   </data>
+  <data name="MemberWinLossByProduct" xml:space="preserve">
+    <value>Member Win Loss By Product</value>
+  </data>
+  <data name="MemberWinLossOverview" xml:space="preserve">
+    <value>Member Win Loss Overview</value>
+  </data>
 </root>

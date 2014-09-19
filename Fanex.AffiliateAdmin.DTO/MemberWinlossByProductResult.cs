@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="MemberWinlossReport.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MemberWinlossByProductResult.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2014.4.3">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.19">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.DTO
@@ -12,16 +12,14 @@ namespace Fanex.AffiliateAdmin.DTO
     using System.Collections.Generic;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Member Win Loss By Product Result.
     /// </summary>
-    public class MemberWinLossReport
+    public class MemberWinLossByProductResult
     {
         public IEnumerable<MemberWinLoss> MemberWinlossList { get; set; }
 
         public IEnumerable<MemberWinLoss> TotalMemberWinlossInMemberCurrencies { get; set; }
 
-        public MemberWinLoss TotalMemberWinlossInSystemCurrency { get; set; }
-
-        public long Duration { get; set; }
+        public IEnumerable<MemberWinLoss> TotalMemberWinlossInSystemCurrency { get; set; }
     }
 }

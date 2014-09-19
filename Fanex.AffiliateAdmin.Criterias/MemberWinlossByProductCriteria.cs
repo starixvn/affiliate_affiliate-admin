@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="MemberWinlossReportCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MemberWinlossByProductCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2014.4.3">Created</change>
+//   <change who="Brian.Dinh" date="2014.9.19">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.Criterias
@@ -13,9 +13,9 @@ namespace Fanex.AffiliateAdmin.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// Player Win loss Report Criteria.
+    /// TODO: Update summary.
     /// </summary>
-    public class MemberWinlossReportCriteria : CriteriaBase
+    public class MemberWinlossByProductCriteria : CriteriaBase
     {
         public bool ByAffiliate { get; set; }
 
@@ -61,7 +61,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public override string GetSettingKey()
         {
-            return "AffAdmin_MemberWinLossReport";
+            return "AffAdmin_MemberWinLossByProductReport";
         }
 
         public override bool IsValid()

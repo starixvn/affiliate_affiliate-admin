@@ -4676,6 +4676,24 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member Win Loss By Product.
+        /// </summary>
+        public static string MemberWinLossByProduct {
+            get {
+                return ResourceManager.GetString("MemberWinLossByProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member Win Loss Overview.
+        /// </summary>
+        public static string MemberWinLossOverview {
+            get {
+                return ResourceManager.GetString("MemberWinLossOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member W/L.
         /// </summary>
         public static string MemberWL {

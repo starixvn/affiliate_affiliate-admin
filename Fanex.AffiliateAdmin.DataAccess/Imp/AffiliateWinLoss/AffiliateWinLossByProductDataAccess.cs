@@ -37,11 +37,11 @@ namespace Fanex.AffiliateAdmin.DataAccess
 
                     var reader = objectDb.ExecuteReader(param);
 
-                    commissionReport.CommissionList = GetCommissionList(reader);
+                    commissionReport.AffiliateWinLossList = GetCommissionList(reader);
 
-                    commissionReport.CommissionInAffiliateCurrency = GetTotalCommissionInAffiliateCurrency(reader);
+                    commissionReport.AffiliateWinLossInAffiliateCurrency = GetTotalCommissionInAffiliateCurrency(reader);
 
-                    commissionReport.CommissionInSystemCurrency = GetTotalCommissionInSystemCurrency(reader);
+                    commissionReport.AffiliateWinLossInSystemCurrency = GetTotalCommissionInSystemCurrency(reader);
 
                     reader.Close();
 

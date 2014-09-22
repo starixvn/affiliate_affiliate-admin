@@ -20,34 +20,34 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public int? AffId { get; set; }
 
-        public DateTime? WinlostDate { get; set; }
-
         public string Username { get; set; }
 
-        public string Currency { get; set; }
+        public DateTime? WinlostDate { get; set; }
 
-        public int? GroupID { get; set; }
+        public int GroupID { get; set; }
 
         public string GroupName { get; set; }
 
-        public int? ProductId { get; set; }
+        public string Currency { get; set; }
+
+        public int ProductId { get; set; }
 
         public string ProductName { get; set; }
 
-        public decimal? NetWinlost { get; set; }
+        public decimal NetWinlost { get; set; }
 
         public double NetWinlostBase { get; set; }
 
-        public int? TotalQM { get; set; }
+        public int TotalQM { get; set; }
 
-        public decimal? CommissionPercent { get; set; }
+        public decimal CommissionPercent { get; set; }
 
-        public decimal? Commission { get; set; }
+        public decimal Commission { get; set; }
 
-        public double? CommissionBase { get; set; }
+        public double CommissionBase { get; set; }
 
-        public decimal? TotalPayment { get; set; }
+        public decimal TotalPayment { get; set; }
 
-        public double? TotalPaymentBase { get; set; }
+        public double TotalPaymentBase { get; set; }
     }
 }

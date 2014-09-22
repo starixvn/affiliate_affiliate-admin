@@ -43,18 +43,18 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.IsITAdmin = CurrentSession.IsIT;
             var data = ReportService.GetAffiliateWinLossByProduct(criteria);
 
-            var hasMultipleCurrency = data.CommissionList.GroupBy(t => t.Currency)
+            var hasMultipleCurrency = data.AffiliateWinLossList.GroupBy(t => t.Currency)
                                            .Select(t => new { Currency = t.Key, RowCount = t.Count() })
                                            .Any(t => t.RowCount > 1);
 
             return Json(new
             {
-                Groups = GroupDataByAffiliate(data.CommissionList),
-                SubTotalData = GroupDataByCurrency(data.CommissionInAffiliateCurrency),
+                Groups = GroupDataByAffiliate(data.AffiliateWinLossList),
+                SubTotalData = GroupDataByCurrency(data.AffiliateWinLossInAffiliateCurrency),
                 TotalRowData = new AffiliateWinLossByProduct
                     {
                         Currency = AppSettings.BaseExchange.Code,
-                        AffiliateWinLossByProductList = data.CommissionInSystemCurrency
+                        AffiliateWinLossByProductList = data.AffiliateWinLossInSystemCurrency
                     },
                 hasMultipleCurrency = hasMultipleCurrency,
                 CurrentPage = criteria.PageIndex - 1,

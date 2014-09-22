@@ -48,6 +48,8 @@ namespace Fanex.AffiliateAdmin.Site
             GetBundleForAffiliateWinLossJs(bundles);
 
             GetBundleForMemberWinLossJs(bundles);
+
+            GetBundleForAffiliateCommissionJs(bundles);
         }
 
         /// <summary>
@@ -109,6 +111,13 @@ namespace Fanex.AffiliateAdmin.Site
                 .Include("~/Scripts/site/affiliatewinlossbyoverview.js")
                 .Include("~/Scripts/site/affiliatewinlossbyproduct.js")
                 .Include("~/Scripts/site/affiliatewinlossreport.js"));
+        }
+
+        private static void GetBundleForAffiliateCommissionJs(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/affiliatecommission")
+                .Include("~/Scripts/site/affiliatecommissionbyproduct.js")
+                .Include("~/Scripts/site/affiliatecommissionreport.js"));
         }
 
         /// <summary>

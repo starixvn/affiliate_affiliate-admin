@@ -384,63 +384,6 @@ var AffiliateWinLossReport = (function ($) {
             } else {
                 AffiliateWinLossByProduct.submitRequest(submitOptions);
             }
-        },
-
-        ReRenderAfterPaged: function (currentPage, itemsPerPage) {
-            var baseCurrency = $("#BaseCurrency").val();
-
-            $.ajax({
-                url: $('#SearchForm').attr("action"),
-                type: 'post',
-                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
-                beforeSend: function () {
-                    $.blockUI();
-                },
-                success: function (data) {
-                    AFFILIATE.PreHandleAjaxResult(data);
-                    gridOption = $.extend(true, {}, window.sampleOverviewGridOption);
-
-                    customGridOption();
-
-                    for (var i = _commonColumnCount; i < gridOption.columns.length; i++) {
-                        _indexProductColumns.push(i);
-                    }
-
-                    renameCurrencyColumns(baseCurrency === SYS_CURRENCY_OPTION);
-                    changeHeaderCaptions(baseCurrency === SYS_CURRENCY_OPTION);
-
-                    gridOption.pagerOption = {
-                        itemsPerPage: data.ItemsPerPage,
-                        itemsPerPageArray: AFFILIATE.pageSizes,
-                        currentPage: data.CurrentPage,
-                        totalItem: data.TotalItem,
-                        pagerSelectCallBack: AffiliateWinLossReport.ReRenderAfterPaged
-                    };
-
-                    gridOption.titleInfo.text = window.MSG.AffiliateWinLossOverviewTitle.format(data.TotalItem);
-
-                    gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.TotalItem, data.hasShowSubTotalRow);
-
-                    gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
-
-                    $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
-
-                    if (data.List.length === 0) {
-                        $('.status').hide();
-                        AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
-                        return;
-                    } else {
-                        $('.status').show();
-                        AFFILIATE.resetToggleIndicator(gridOption);
-                    }
-                },
-                error: function () {
-                    alert("Occur the error when requesting the Affiliate Win Loss report! :(");
-                },
-                complete: function () {
-                    $.unblockUI();
-                }
-            });
         }
     };
 })(jQuery);

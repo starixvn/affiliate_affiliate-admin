@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Services;
@@ -44,11 +45,40 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return Json(new
             {
-                Groups = GroupByRowIndex(data),
+                Groups = GroupByRowIndex(data.AffiliateCommissionList),
+                SubTotalData = GroupDataByCurrency(data.AffiliateCommissionInAffiliateCurrency),
+                TotalRowData = new AffiliateCommissionByProduct
+                {
+                    Currency = AppSettings.BaseExchange.Code,
+                    AffiliateCommissionByProductList = data.AffiliateCommissionInSystemCurrency
+                },
                 CurrentPage = criteria.PageCurrent - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows
             });
+        }
+
+        /// <summary>
+        /// Group Data By Currency.
+        /// </summary>
+        /// <param name="affiliateCommissions">Affiliate Commissions.</param>
+        /// <returns>Affiliate Commission List.</returns>
+        private IEnumerable<AffiliateCommissionByProduct> GroupDataByCurrency(IEnumerable<AffiliateCommission> affiliateCommissions)
+        {
+            var list = new List<AffiliateCommissionByProduct>();
+
+            var groupByCurrencies = affiliateCommissions.GroupBy(t => t.Currency);
+
+            foreach (var groupByCurrency in groupByCurrencies)
+            {
+                list.Add(new AffiliateCommissionByProduct
+                {
+                    Currency = groupByCurrency.Key,
+                    AffiliateCommissionByProductList = groupByCurrency
+                });
+            }
+
+            return list;
         }
 
         /// <summary>

@@ -70,7 +70,7 @@ var AffiliateWinLossByProduct = (function ($) {
     };
 
     var getNumberOfFrozenColumn = function () {
-        return getMergeColNumberOfTotalCol() + 1;
+        return getProductColIndex() + 1;
     };
 
     function customGridOption() {
@@ -202,13 +202,6 @@ var AffiliateWinLossByProduct = (function ($) {
             }
 
             if (idxLevel2 === 0) {
-//                columns.push({
-//                     Value: "<div align='center'>{0}</div>".format(window.MSG.SubTotal),
-//                    Name: getFirstColumName(),
-//                    MergeRowNumber: itemLevel1.MergeRowNumber,
-//                    MergeColNumber: getMergeColNumberOfTotalCol()
-//                });
-
                 columns.push({
                     Value: itemLevel1.Currency,
                     Name: "Currency",
@@ -268,9 +261,9 @@ var AffiliateWinLossByProduct = (function ($) {
 
         var bodyRows = [];
 
-//        $.each(groups, function (idxLevel1, itemLevel1) {
-//            getRowsOfGroup(bodyRows, itemLevel1);
-//        });
+        $.each(groups, function (idxLevel1, itemLevel1) {
+            getRowsOfGroup(bodyRows, itemLevel1);
+        });
 
         getSubTotalRows(bodyRows, subTotalData);
 

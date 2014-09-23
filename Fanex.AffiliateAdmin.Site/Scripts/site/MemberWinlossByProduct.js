@@ -86,15 +86,7 @@ var MemberWinLossByProduct = (function ($) {
     };
 
     var getNumberOfFrozenColumn = function () {
-        if (byAffiliate()) {
-            return getMergeColNumberOfTotalCol() + 1;
-        }
-
-        if (submitOptions.GroupBy === GROUP_BY_DATE && submitOptions.BaseCurrency === SYS_CURRENCY_OPTION) {
-            return getMergeColNumberOfTotalCol() + 2;
-        }
-
-        return getMergeColNumberOfTotalCol() + 1;
+        return getProductColIndex() + 1;
     };
 
     var getMergeColNumberOfTotalCol = function () {
@@ -160,7 +152,7 @@ var MemberWinLossByProduct = (function ($) {
                 break;
         }
 
-        //gridOption.numberOfFrozenColumn = getNumberOfFrozenColumn();
+        gridOption.numberOfFrozenColumn = getNumberOfFrozenColumn();
 
         var products = getSelectedProducts(window.PRODUCTS);
 
@@ -347,10 +339,8 @@ var MemberWinLossByProduct = (function ($) {
     var getRowsOfGroup = function (rows, itemLevel1) {
         var numProducts = itemLevel1.MergeRowNumber;
         var productColIdx = getProductColIndex();
-        var rowCssClass = gridOption.rowCssClass; // custom option
-        var rowHeight = gridOption.RowHeight;
 
-        $.each(itemLevel1.TotalAffiliateCommissionByProduct, function (idxLevel2, itemLevel2) {
+        $.each(itemLevel1.MemberWinLossByProductList, function (idxLevel2, itemLevel2) {
             var columns = [];
 
             if (idxLevel2 === 0) {
@@ -362,11 +352,7 @@ var MemberWinLossByProduct = (function ($) {
                 columns.push({ Value: itemLevel2[col.Name], Name: col.Name });
             }
 
-            rows.push({
-                Columns: columns,
-                CssClass: rowCssClass ? rowCssClass(0, itemLevel2) : undefined,
-                RowHeight: rowHeight ? rowHeight(0, itemLevel2) : undefined
-            });
+            rows.push({ Columns: columns });
         });
 
         if (numProducts > 1) {

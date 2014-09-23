@@ -16,18 +16,35 @@ report
 
 @{
     var now = DateTime.Now;
-    var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : now.AddMonths(-1);
+    var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : new DateTime(now.Year, now.Month, 1).AddMonths(-1);
     var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now;
 
-    fromDate = new DateTime(2014, 1, 1);
-    toDate = new DateTime(2014, 3, 1);
+    if (fromDate < AppSettings.SystemStartDate)
+    {
+        fromDate = AppSettings.SystemStartDate;
+    }
+
+    if (toDate < AppSettings.SystemStartDate)
+    {
+        toDate = AppSettings.SystemStartDate;
+    }
+
+    if (fromDate > now)
+    {
+        fromDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1);
+    }
+
+    if (toDate > now)
+    {
+        toDate = now;
+    }
 }
 
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Enumerations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
-@model Fanex.AffiliateAdmin.Models.AffiliateWinLossViewModel
+@model Fanex.AffiliateAdmin.Models.AffiliateWLByAffiliateViewModel
 <div class="search-panel search-company-winloss" style="min-width: 800px" >
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
@@ -67,7 +84,7 @@ report
                 <div class="span12">
                     <button id="btnSubmit" type="button" class="btn btn-default">@Lang.Submit</button>
                     <input type="hidden" name="ByAffiliate" id="ByAffiliate" value="true" />
-                    <input type="hidden" name="ViewMode" id="ViewMode" value="0" />
+                    <input type="hidden" name="ViewMode" id="ViewMode" value="@Model.ViewMode" />
                 </div>
             </div>
         </div>

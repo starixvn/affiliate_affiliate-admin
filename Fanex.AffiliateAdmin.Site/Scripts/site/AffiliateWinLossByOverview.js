@@ -220,6 +220,10 @@ var AffiliateWinLossByOverview = (function ($) {
     };
 
     function getFooterRows(subTotalData, totalRowData, totalItem, hasMultipleCurrency) {
+        if (subTotalData.length == 0) {
+            return [];
+        }
+
         var mergeCols = getMergeColNumberOfTotalCol();
         var subTotalRowCount = subTotalData.length;
 
@@ -319,7 +323,7 @@ var AffiliateWinLossByOverview = (function ($) {
                     gridOption.titleInfo.text = MSG.AffiliateWinLossOverviewTitle.format(data.TotalItem);
 
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
-                    
+
                     gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.TotalItem, data.hasMultipleCurrency);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);

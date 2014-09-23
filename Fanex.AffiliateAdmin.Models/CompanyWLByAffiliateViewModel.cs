@@ -9,6 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -29,8 +30,6 @@ namespace Fanex.AffiliateAdmin.Models
 
         private IList<SelectListItem> _baseCurrencyList;
 
-        private MultiSelectList _playerCurrencyOptionList;
-
         public CompanyWLByAffiliateViewModel()
         {
             ExcludeTest = true;
@@ -46,6 +45,8 @@ namespace Fanex.AffiliateAdmin.Models
             }
         }
 
+        public byte BaseCurrency { get; set; }
+
         public SelectList BaseCurrencyOptionList
         {
             get
@@ -55,7 +56,7 @@ namespace Fanex.AffiliateAdmin.Models
                     _baseCurrencyList.RemoveAt(1);
                 }
 
-                return new SelectList(_baseCurrencyList, "Value", "Text");
+                return new SelectList(_baseCurrencyList, "Value", "Text", BaseCurrency.ToString());
             }
         }
 
@@ -83,16 +84,21 @@ namespace Fanex.AffiliateAdmin.Models
 
         public int GroupId { get; set; }
 
+        public string PlayerCurrencies { get; set; }
+
         public MultiSelectList PlayerCurrencyOptionList
         {
             get
             {
-                if (_playerCurrencyOptionList == null)
-                {
-                    _playerCurrencyOptionList = new MultiSelectList(AppSettings.PlayerCurrencies, "CurrencyID", "CurrencyCode");
-                }
+                var playerCurrencyList = string.IsNullOrEmpty(PlayerCurrencies)
+                                     ? new List<short>()
+                                     : PlayerCurrencies.Split(',').Select(short.Parse);
 
-                return _playerCurrencyOptionList;
+                var selectedValues = string.IsNullOrEmpty(Products)
+                                         ? AppSettings.PlayerCurrencies.Select(t => t.CurrencyID)
+                                         : playerCurrencyList;
+
+                return new MultiSelectList(AppSettings.PlayerCurrencies, "CurrencyID", "CurrencyCode", selectedValues);
             }
         }
 
@@ -114,7 +120,14 @@ namespace Fanex.AffiliateAdmin.Models
 
         public string Products { get; set; }
 
+        public DateTime? FromDate { get; set; }
+
+        public DateTime? ToDate { get; set; }
+
         public string Status { get; set; }
+
+        public int ViewMode { get; set; }
+
         #region Methods
 
         public void AddBaseCurrencyList(IList<SelectListItem> baseCurrencyList)

@@ -548,7 +548,11 @@ $(function () {
 
     $(".ic-open-window").click(function () {
         if (parent.AFFMASTER !== undefined) {
-            parent.AFFMASTER.openNewWindow(location.href);
+            var submitOptions = $('form').serializeObject2();
+            submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
+            var url = location.href + "?" + $.param(submitOptions);
+            
+            parent.AFFMASTER.openNewWindow(url);
         }
     });
 

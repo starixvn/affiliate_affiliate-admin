@@ -15,8 +15,28 @@
 
 @{
     var now = DateTime.Now;
-    var fromDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1);
-    var toDate = now;
+    var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : new DateTime(now.Year, now.Month, 1).AddMonths(-1);
+    var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now;
+
+    if (fromDate < AppSettings.SystemStartDate)
+    {
+        fromDate = AppSettings.SystemStartDate;
+    }
+
+    if (toDate < AppSettings.SystemStartDate)
+    {
+        toDate = AppSettings.SystemStartDate;
+    }
+
+    if (fromDate > now)
+    {
+        fromDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1);
+    }
+
+    if (toDate > now)
+    {
+        toDate = now;
+    }
 }
 
 @section submenu{
@@ -34,7 +54,7 @@
             <div class="row-fluid row-form">
                 <div class="cell ">
                     <label for="PlayerCurrencies" class="txt">@Lang.Currency</label>
-                    @Html.DropDownCheckList("PlayerCurrencies", Model.PlayerCurrencyOptionList, true, true, new { @class = "width-140" })
+                    @Html.DropDownCheckList("PlayerCurrencies", Model.PlayerCurrencyOptionList, true, false, new { @class = "width-140" })
                 </div>
                 <div class="cell">
                     <label for="GroupBy" class="txt">@Lang.GroupBy</label>
@@ -68,7 +88,7 @@
                 <div class="span12">
                     <input type="hidden" name="ByAffiliate" id="ByAffiliate" value="true" />
                     <input type="hidden" name="AffiliateCurrencySymbol" id="AffiliateCurrencySymbol" value="@ViewBag.AffiliateCurrencySymbol" />
-                    <input type="hidden" name="ViewMode" id="ViewMode" value="0" />
+                    <input type="hidden" name="ViewMode" id="ViewMode" value="@Model.ViewMode" />
                     <button id="btnSubmit" type="button" class="btn btn-default">@Lang.Submit</button>
                 </div>
             </div>

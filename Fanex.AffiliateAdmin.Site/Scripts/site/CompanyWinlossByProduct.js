@@ -105,6 +105,10 @@ var CompanyWinlossByProduct = (function ($) {
         }
     };
 
+    var getNumberOfFrozenColumn = function() {
+        return getProductColIndex() + 1;
+    };
+    
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     var customizeGridOption = function (sampleProductGridOption) {
 
@@ -123,10 +127,11 @@ var CompanyWinlossByProduct = (function ($) {
                 break;
         }
 
+        gridOption.numberOfFrozenColumn = getNumberOfFrozenColumn();
+
         var products = getSelectProducts(window.PRODUCTS);
 
         addPlaytechCasinoColumns(products);
-
     };
 
     var getColumnSuffix = function (baseCurrency) {
@@ -277,7 +282,7 @@ var CompanyWinlossByProduct = (function ($) {
                 MergeRowNumber: itemLevel1.MergeRowNumber
             }, sampleDateColumn);
 
-            $.each(itemLevel1.CompanyWinlossInMemberCurrencies, function(idxLevel2, itemLevel2) {
+            $.each(itemLevel1.CompanyWinlossInMemberCurrencies, function (idxLevel2, itemLevel2) {
                 var currencyColumn = {
                     Value: itemLevel2.Currency,
                     Name: "Currency",
@@ -353,7 +358,7 @@ var CompanyWinlossByProduct = (function ($) {
         {
             Value: MSG.TotalAll,
             TdClass: "cell-subtotal real-cell bold"
-            
+
         };
 
         getTotalAllRowsOfGroup(bodyRows, totaldata, sampleDateColumn);

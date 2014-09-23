@@ -1,4 +1,4 @@
-﻿/*global AFFILIATE,MSG,Lang*/
+﻿/*global AFFILIATE,MSG,Lang,samplePShareCol,samplePWinCol,samplePlaytechCasinoHeader,sampleNetGamingCol*/
 var AffiliateWinLossByProduct = (function ($) {
 
     "use strict";

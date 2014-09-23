@@ -67,9 +67,10 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Company Win loss Report for specific affiliate.
         /// </summary>
+        /// <param name="model">Company View Model.</param>
         /// <returns>Company win loss page.</returns>
         [HttpGet]
-        public ActionResult CompanyWinlossByAffiliate()
+        public ActionResult CompanyWinlossByAffiliate(CompanyWLByAffiliateViewModel model)
         {
             var serializer = new JavaScriptSerializer();
 
@@ -80,9 +81,9 @@ namespace Fanex.AffiliateAdmin.Controller
             }));
 
             ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(CurrentSession.Affiliate.Currency);
-
-            var model = new CompanyWLByAffiliateViewModel();
+            
             var baseCurrencyList = GetBaseCurrencyList();
+
             model.AddBaseCurrencyList(baseCurrencyList);
 
             return View("CompanyWinlossByAffiliate", model);
@@ -223,7 +224,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="model">Model Input.</param>
         /// <returns>Commission By Affiliate Result.</returns>
         [HttpGet]
-        public ActionResult AffiliateWinLossByAffiliate(AffiliateWinLossViewModel model)
+        public ActionResult AffiliateWinLossByAffiliate(AffiliateWLByAffiliateViewModel model)
         {
             var serializer = new JavaScriptSerializer();
 

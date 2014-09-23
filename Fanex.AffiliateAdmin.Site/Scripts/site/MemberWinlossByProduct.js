@@ -1,4 +1,4 @@
-﻿/*global AFFILIATE,MSG,samplePlaytechCasinoHeader,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
+﻿/*global AFFILIATE,samplePlaytechCasinoHeader,samplePShareCol,samplePWinCol,sampleNetGamingCol,MemberWinLossByOverview*/
 var MemberWinLossByProduct = (function ($) {
     "use strict";
 
@@ -263,20 +263,6 @@ var MemberWinLossByProduct = (function ($) {
             getSubTotalRowsOfGroup(rows, idxLevel1, itemLevel1, subTotalCol);
         });
     };
-
-    function hasShowSubTotalRows(subTotalData, hasCurrencyOverTwoRows) {
-        var subTotalRowCount = subTotalData.length;
-
-        if (subTotalRowCount <= 0 || hasCurrencyOverTwoRows === false) {
-            return false;
-        }
-
-        if (subTotalRowCount > 1) {
-            return true;
-        }
-
-        return subTotalData[0].PlayerCurrency !== window.System.Currency && submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION;
-    }
 
     var getSymbolCurrency = function (baseCurrency) {
         var symbolCurrency;

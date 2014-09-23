@@ -519,7 +519,7 @@ var MemberWinLossByProduct = (function ($) {
 
                 },
                 error: function () {
-                    alert("Occur the error when requesting the Member Winloss report! :(");
+                    alert("Occur the error when requesting the member win loss by product report!");
                 },
                 complete: function () {
                     $.unblockUI();

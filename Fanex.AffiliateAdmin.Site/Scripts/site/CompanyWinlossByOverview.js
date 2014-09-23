@@ -518,7 +518,7 @@ var CompanyWinlossByOverview = (function ($) {
                     }
                 },
                 error: function () {
-                    alert("Occur the error when requesting the Company Winloss report! :(");
+                    alert("Occur the error when requesting the company win loss overview report!");
                 },
                 complete: function () {
                     $.unblockUI();

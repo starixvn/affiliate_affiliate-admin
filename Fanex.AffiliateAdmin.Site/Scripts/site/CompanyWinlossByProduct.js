@@ -512,7 +512,7 @@ var CompanyWinlossByProduct = (function ($) {
                     }
                 },
                 error: function () {
-                    alert("Occur the error when requesting the Company Winloss report! :(");
+                    alert("Occur the error when requesting the company win loss by product report!");
                 },
                 complete: function () {
                     $.unblockUI();

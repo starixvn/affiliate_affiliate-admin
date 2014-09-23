@@ -418,7 +418,7 @@ var AffiliateCommissionByProduct = (function ($) {
                     AFFILIATE.updateSearchPanel(gridObject);
                 },
                 error: function () {
-                    alert("Occur the error when requesting processing commission report :(");
+                    alert("Occur the error when requesting affiliate commission report!");
                 },
                 complete: function () {
                     $.unblockUI();

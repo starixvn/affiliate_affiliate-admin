@@ -155,8 +155,6 @@ var AffiliateWinLossByProduct = (function ($) {
     var getRowsOfGroup = function (rows, itemLevel1) {
         var numProducts = itemLevel1.MergeRowNumber;
         var productColIdx = getProductColIndex();
-        var rowCssClass = gridOption.rowCssClass; // custom option
-        var rowHeight = gridOption.RowHeight;
 
         $.each(itemLevel1.AffiliateWinLossByProductList, function (idxLevel2, itemLevel2) {
             var columns = [];
@@ -172,8 +170,7 @@ var AffiliateWinLossByProduct = (function ($) {
 
             rows.push({
                 Columns: columns,
-                CssClass: rowCssClass ? rowCssClass(0, itemLevel2) : undefined,
-                RowHeight: rowHeight ? rowHeight(0, itemLevel2) : undefined
+                CssClass: itemLevel2.Status.toLowerCase()
             });
         });
 
@@ -205,6 +202,13 @@ var AffiliateWinLossByProduct = (function ($) {
             }
 
             if (idxLevel2 === 0) {
+//                columns.push({
+//                     Value: "<div align='center'>{0}</div>".format(window.MSG.SubTotal),
+//                    Name: getFirstColumName(),
+//                    MergeRowNumber: itemLevel1.MergeRowNumber,
+//                    MergeColNumber: getMergeColNumberOfTotalCol()
+//                });
+
                 columns.push({
                     Value: itemLevel1.Currency,
                     Name: "Currency",
@@ -264,9 +268,9 @@ var AffiliateWinLossByProduct = (function ($) {
 
         var bodyRows = [];
 
-        $.each(groups, function (idxLevel1, itemLevel1) {
-            getRowsOfGroup(bodyRows, itemLevel1);
-        });
+//        $.each(groups, function (idxLevel1, itemLevel1) {
+//            getRowsOfGroup(bodyRows, itemLevel1);
+//        });
 
         getSubTotalRows(bodyRows, subTotalData);
 

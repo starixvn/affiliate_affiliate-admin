@@ -5252,7 +5252,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Occur the error when calling web API! :(.
+        ///   Looks up a localized string similar to Occur the error when calling web API!.
         /// </summary>
         public static string OccurErrorWhenCallWebAPI {
             get {

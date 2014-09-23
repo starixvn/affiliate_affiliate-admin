@@ -447,7 +447,7 @@ var MemberWinLossByOverview = (function ($) {
 
                 },
                 error: function () {
-                    alert("Occur the error when requesting the Member Winloss report! :(");
+                    alert("Occur the error when requesting the member win loss overview report!");
                 },
                 complete: function () {
                     $.unblockUI();

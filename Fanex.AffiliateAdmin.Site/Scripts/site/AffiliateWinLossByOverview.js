@@ -335,7 +335,7 @@ var AffiliateWinLossByOverview = (function ($) {
                     }
                 },
                 error: function () {
-                    alert("Occur the error when requesting the Affiliate Win Loss report! :(");
+                    alert("Occur the error when requesting the affiliate win loss overview report!");
                 },
                 complete: function () {
                     $.unblockUI();

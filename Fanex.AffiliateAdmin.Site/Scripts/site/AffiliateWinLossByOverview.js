@@ -330,6 +330,10 @@ var AffiliateWinLossByOverview = (function ($) {
 
 
                     if (data.List.length === 0) {
+                        setTimeout(function () {
+                            AFFILIATE.resizeGridHeight();
+                        }, 200);
+                        
                         $('.status').hide();
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;

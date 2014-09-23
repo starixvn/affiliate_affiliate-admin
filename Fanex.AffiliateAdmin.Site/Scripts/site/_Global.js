@@ -531,6 +531,16 @@ var AFFILIATE = (function ($) {
             var host = location.host;
 
             return "{0}://{1}".format(protocol, host);
+        },
+        resizeGridHeight: function () {
+            var colHeight = $("#gridId").data('colheight'),
+            expHeight = $("#gridId").data('expheight');
+
+            if ($(".search-form").is(":visible")) {
+                $("#gridId").fanexGrid('resizeHeight', expHeight);
+            } else {
+                $("#gridId").fanexGrid('resizeHeight', colHeight);
+            }
         }
     };
 })(jQuery);
@@ -551,7 +561,7 @@ $(function () {
             var submitOptions = $('form').serializeObject2();
             submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
             var url = location.href + "?" + $.param(submitOptions);
-            
+
             parent.AFFMASTER.openNewWindow(url);
         }
     });
@@ -809,6 +819,7 @@ $.fn.createSearchPanel = function () {
                 if (!$(".search-form").is(":visible")) {
                     // resize height of datagrid
                     $("#gridId").fanexGrid('resizeHeight', expHeight);
+
                 }
 
                 $contentPanel.stop().slideToggle(function () {

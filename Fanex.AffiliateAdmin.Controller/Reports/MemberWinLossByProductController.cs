@@ -84,25 +84,30 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var list = new List<MemberWinLossByProduct>();
 
-            var groupByMembers = memberWinLosses.GroupBy(t => t.PlayerUsername);
+            var groupByRowIndexes = memberWinLosses.GroupBy(t => t.RowIdx);
 
-            foreach (var groupByMember in groupByMembers)
+            foreach (var groupByRowIndex in groupByRowIndexes)
             {
-                var first = groupByMember.First();
+                var groupByMembers = groupByRowIndex.GroupBy(t => t.PlayerUsername);
 
-                list.Add(new MemberWinLossByProduct
+                foreach (var groupByMember in groupByMembers)
                 {
-                    AffExRate = first.AffExRate,
-                    Currency = first.Currency,
-                    ExRate = first.ExRate,
-                    PlayerCurrency = first.PlayerCurrency,
-                    PlayerUsername = first.PlayerUsername,
-                    Username = first.Username,
-                    WinlostDate = first.WinlostDate,
-                    ProductId = first.ProductId,
-                    ProductName = first.ProductName,
-                    MemberWinLossByProductList = groupByMember
-                });
+                    var first = groupByMember.First();
+
+                    list.Add(new MemberWinLossByProduct
+                        {
+                            AffExRate = first.AffExRate,
+                            Currency = first.Currency,
+                            ExRate = first.ExRate,
+                            PlayerCurrency = first.PlayerCurrency,
+                            PlayerUsername = first.PlayerUsername,
+                            Username = first.Username,
+                            WinlostDate = first.WinlostDate,
+                            ProductId = first.ProductId,
+                            ProductName = first.ProductName,
+                            MemberWinLossByProductList = groupByMember
+                        });
+                }
             }
 
             return list;

@@ -486,6 +486,9 @@ var MemberWinLossByProduct = (function ($) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;
                     } else {
+                        setTimeout(function () {
+                            AFFILIATE.resizeGridHeight();
+                        }, 200);
                         AFFILIATE.resetToggleIndicator(gridOption);
                     }
 

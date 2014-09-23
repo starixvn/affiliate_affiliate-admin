@@ -511,9 +511,14 @@ var CompanyWinlossByOverview = (function ($) {
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 
                     if (data.TotalItem === 0) {
-                        AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
+                        AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;
                     } else {
+                        
+                        setTimeout(function () {
+                            AFFILIATE.resizeGridHeight();
+                        }, 200);
+                        
                         AFFILIATE.resetToggleIndicator(gridOption);
                     }
                 },

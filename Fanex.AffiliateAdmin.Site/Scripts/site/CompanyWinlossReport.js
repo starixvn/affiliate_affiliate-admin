@@ -3,19 +3,23 @@ var CompanyWinlossReport = (function ($) {
     "use strict";
     var submitOptions = {};
 
-    var gridOption = {};
+    var GROUP_BY_DATE = 0;
 
     return {
         init: function () {
             $('#FromDate, #ToDate').addClass("datepicker monthpicker");
 
-            $("#gridId").resize(function () {
-                if ($(this).width() > 1100) {
-                    $(".search-panel").width($(this).width());
-                } else {
-                    $(".search-panel").width(1100);
-                }
-            });
+            if ($('#GroupBy').val() === GROUP_BY_DATE) {
+                AFFILIATE.initDatePicker();
+            } else {
+                AFFILIATE.initMonthPicker();
+            }
+
+            // keep width of datagrid
+            if (!$(".search-form").is(":visible")) {
+                // resize height of datagrid
+                $("#gridId").fanexGrid('resizeHeight', expHeight);
+            }
 
             if ($('#gridId').length > 0) {
                 CompanyWinlossReport.submitRequest();

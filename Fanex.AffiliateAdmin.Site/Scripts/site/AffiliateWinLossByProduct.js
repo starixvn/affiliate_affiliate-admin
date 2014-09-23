@@ -404,6 +404,10 @@ var AffiliateWinLossByProduct = (function ($) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
                     } else {
+                        setTimeout(function () {
+                            AFFILIATE.resizeGridHeight();
+                        }, 200);
+                        
                         $('.status').show();
                         AFFILIATE.resetToggleIndicator(gridOption);
                     }

@@ -412,10 +412,15 @@ var AffiliateCommissionByProduct = (function ($) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;
                     } else {
+                        
+                        setTimeout(function () {
+                            AFFILIATE.resizeGridHeight();
+                        }, 200);
+                        
                         $('.status').show();
                     }
 
-                    AFFILIATE.updateSearchPanel(gridObject);
+                    //AFFILIATE.updateSearchPanel(gridObject);
                 },
                 error: function () {
                     alert("Occur the error when requesting affiliate commission report!");

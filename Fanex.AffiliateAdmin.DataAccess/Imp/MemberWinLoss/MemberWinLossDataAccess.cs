@@ -46,6 +46,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             {
                 var memberWinloss = new MemberWinLoss
                 {
+                    RowIdx = reader.ToLong("RowIDX"),
                     WinlostDate = reader.ToDateTime("WinlostDate"),
                     Username = reader.ToString("Username"),
                     Currency = reader.ToString("Currency"),

@@ -105,10 +105,10 @@ var CompanyWinlossByProduct = (function ($) {
         }
     };
 
-    var getNumberOfFrozenColumn = function() {
+    var getNumberOfFrozenColumn = function () {
         return getProductColIndex() + 1;
     };
-    
+
     // isUseBaseCurrency: add postfix "Base" to all currency columns
     var customizeGridOption = function (sampleProductGridOption) {
 
@@ -507,6 +507,10 @@ var CompanyWinlossByProduct = (function ($) {
                     if (data.TotalItem > 0) {
                         gridOption.bodyRows = getBodyRows(data.Groups, data.TotalData);
                         gridOption.footerRows = getFooterRows(data.TotalData, data.HasShowSubTotalRow);
+
+                        setTimeout(function () {
+                            AFFILIATE.resizeGridHeight();
+                        }, 200);
                     }
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);

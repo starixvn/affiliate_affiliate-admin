@@ -43,6 +43,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             {
                 var commission = new AffiliateWinLoss
                 {
+                    RowIdx = reader.ToLong("RowIDX"),
                     AffId = reader.ToInt("AffId"),
                     Status = reader.ToString("STATUS"),
                     Username = reader.ToString("Username"),

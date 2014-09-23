@@ -17,6 +17,8 @@ namespace Fanex.AffiliateAdmin.DTO
     /// </summary>
     public class MemberWinLoss
     {
+        public long RowIdx { get; set; }
+
         public DateTime WinlostDate { get; set; }
 
         public string Username { get; set; }

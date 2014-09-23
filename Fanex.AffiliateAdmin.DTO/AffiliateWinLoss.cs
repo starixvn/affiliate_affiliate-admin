@@ -17,6 +17,8 @@ namespace Fanex.AffiliateAdmin.DTO
     [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public class AffiliateWinLoss
     {
+        public long RowIdx { get; set; }
+
         public int AffId { get; set; }
 
         public string Username { get; set; }

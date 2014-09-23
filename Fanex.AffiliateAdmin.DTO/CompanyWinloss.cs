@@ -18,6 +18,8 @@ namespace Fanex.AffiliateAdmin.DTO
     [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public class CompanyWinloss
     {
+        public long RowIdx { get; set; }
+
         public DateTime WinlostDate { get; set; }
 
         public string Currency { get; set; }

@@ -274,13 +274,16 @@ var AffiliateWinLossByProduct = (function ($) {
         var footerRows = [];
         var numProducts = totalRowData.MergeRowNumber;
         var productColIdx = getProductColIndex();
+        var currency = "base-currency";
 
         var totalColumn = {
+            TdClass: "toggle-{0}".format(currency),
             Value: "<div align='center'>{0}</div>".format(window.MSG.Total),
             Name: getFirstColumName(),
             MergeColNumber: getMergeColNumberOfTotalCol(),
             MergeRowNumber: numProducts
         };
+
 
         var currencyColumn = {
             Value: totalRowData.Currency,
@@ -299,7 +302,11 @@ var AffiliateWinLossByProduct = (function ($) {
             for (var i = productColIdx; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-                columns.push({ Value: itemLevel2[colName], Name: col.Name });
+                columns.push({
+                    TdClass: currency,
+                    Value: itemLevel2[colName], 
+                    Name: col.Name
+                });
             }
 
             footerRows.push({ Columns: columns, CssClass: "total-whole-range" });
@@ -409,7 +416,7 @@ var AffiliateWinLossByProduct = (function ($) {
                         }, 200);
                         
                         $('.status').show();
-                        AFFILIATE.resetToggleIndicator(gridOption);
+                        //AFFILIATE.resetToggleIndicator2(gridOption);
                     }
                 },
                 error: function () {

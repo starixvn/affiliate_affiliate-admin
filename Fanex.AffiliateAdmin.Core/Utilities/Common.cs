@@ -61,22 +61,16 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// </summary>
         /// <param name="sampleDate">Sample Date.</param>
         /// <param name="minDate">The Min Date.</param>
-        /// <param name="maxDate">The Max Date.</param>
         /// <returns>The First Day of Month.</returns>
-        public static DateTime GetFirstDayOfMonth(DateTime sampleDate, DateTime minDate, DateTime maxDate)
+        public static DateTime GetFirstDayOfMonth(DateTime sampleDate, DateTime minDate)
         {
             var firstDay = new DateTime(sampleDate.Year, sampleDate.Month, 1);
 
             if (firstDay < minDate)
             {
-                firstDay = minDate;
+                 return minDate;
             }
-
-            if (firstDay > maxDate)
-            {
-                firstDay = maxDate;
-            }
-
+            
             return firstDay;
         }
 
@@ -84,23 +78,17 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// Get Last Day of Month.
         /// </summary>
         /// <param name="sampleDate">Sample Date.</param>
-        /// <param name="minDate">The Min Date.</param>
         /// <param name="maxDate">The Max Date.</param>
         /// <returns>The Last Day of Month.</returns>
-        public static DateTime GetLastDayOfMonth(DateTime sampleDate, DateTime minDate, DateTime maxDate)
+        public static DateTime GetLastDayOfMonth(DateTime sampleDate, DateTime maxDate)
         {
             var firstDay = new DateTime(sampleDate.Year, sampleDate.Month, 1);
 
             var lastDay = firstDay.AddMonths(1).AddDays(-1);
 
-            if (lastDay < minDate)
-            {
-                lastDay = minDate;
-            }
-
             if (lastDay > maxDate)
             {
-                lastDay = maxDate;
+                return maxDate;
             }
 
             return lastDay;

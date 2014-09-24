@@ -401,7 +401,11 @@ var CompanyWinlossByProduct = (function ($) {
             for (var i = startIndex; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-                columns.push({ Value: itemLevel3[colName], Name: col.Name });
+                columns.push({ 
+                    TdClass: 'hide',
+                    Value: itemLevel3[colName],
+                    Name: col.Name
+                     });
             }
 
             footerRows.push({ Columns: columns, CssClass: "total-whole-range" });

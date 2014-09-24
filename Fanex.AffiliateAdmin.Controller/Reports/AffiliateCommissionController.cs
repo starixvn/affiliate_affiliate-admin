@@ -9,10 +9,12 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Services;
@@ -40,6 +42,10 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
 
             criteria.IsITAdmin = CurrentSession.IsIT;
+
+            criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
+
+            criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, DateTime.Now);
 
             var data = ReportService.GetAffiliateCommission(criteria);
 

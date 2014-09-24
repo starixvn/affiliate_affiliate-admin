@@ -9,11 +9,13 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Services;
 
@@ -41,6 +43,9 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
+            criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
+            criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, DateTime.Now);
+
             var data = ReportService.GetAffiliateWinLossByProduct(criteria);
 
             var hasMultipleCurrency = data.AffiliateWinLossList.GroupBy(t => t.Currency)
@@ -110,7 +115,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         Status = first.Status,
                         WinlostDate = first.WinlostDate,
                         AffiliateWinLossByProductList = groupByAffiliate
-                    }); 
+                    });
             }
 
             return list;

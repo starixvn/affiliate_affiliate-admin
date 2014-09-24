@@ -9,10 +9,12 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
@@ -39,6 +41,9 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
+            criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
+            criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, DateTime.Now);
+
             var data = ReportService.GetAffiliateWinLossOverview(criteria);
 
             var totalCommission = data.CommissionInSystemCurrency;

@@ -507,11 +507,11 @@ var AFFILIATE = (function ($) {
             }
 
             if ($('.real-cell').find('.toggle-indicator').length === 0) {
-                $('.real-cell').prepend("<div class='toggle-indicator collapse' title='{0}'></div>".format(MSG.ToggleSubTotal));
+                $('.real-cell').prepend("<div class='toggle-indicator collapse' title='{0}'></div>".format(window.MSG.ToggleSubTotal));
             }
 
             if ($('.pseudo-cell').find('.toggle-indicator').length === 0) {
-                $('.pseudo-cell').prepend("<div class='toggle-indicator expand' title='{0}'></div>".format(MSG.ToggleSubTotal));
+                $('.pseudo-cell').prepend("<div class='toggle-indicator expand' title='{0}'></div>".format(window.MSG.ToggleSubTotal));
             }
 
             $('.toggle-indicator').css('left', width / 2 - 15 + 'px');

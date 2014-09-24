@@ -385,7 +385,7 @@ var CompanyWinlossByOverview = (function ($) {
 
             var sampleDateColumn =
             {
-                Value: window.MSG.TotalAll,
+                Value: window.MSG.Total,
                 TdClass: itemLevel1.MergeRowNumber > 1 ? "cell-subtotal real-cell" : ''
             };
 

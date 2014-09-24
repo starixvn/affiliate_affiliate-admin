@@ -170,8 +170,8 @@ namespace Fanex.AffiliateAdmin.Controller
             if (criteria.GroupBy == 2)
             {
                 // If group by is month, we need to first day and last day of month.
-                criteria.FromDate = Core.Utilities.Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate, DateTime.Now);
-                criteria.ToDate = Core.Utilities.Common.GetLastDayOfMonth(criteria.ToDate, AppSettings.SystemStartDate, DateTime.Now);
+                criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
+                criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, DateTime.Now);
             }
 
             var data = _reportService.GetMemberStatistics(criteria).ToList();

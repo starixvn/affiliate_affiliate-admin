@@ -101,9 +101,8 @@ report
             Turnover: "@Lang.Turnover",
             Winloss: "@Lang.Winloss",
             PlayerComm: "@Lang.PlayerComm",
-            SubTotalIn: "@Lang.SubTotalIn",
             Total: "@Lang.Total",
-            TotalAll: "@Lang.TotalAll",
+            TotalIn: "@Lang.TotalIn",
             Sportsbook: "@Lang.Sportsbook",
             NumberGame: "@Lang.NumberGame",
             LiveCasino: "@Lang.LiveCasino",
@@ -222,7 +221,8 @@ report
             headerColumnHeight: 30,
             rowCssClass: function (rowIndex, rowData) {
                 return rowData.Status.toLowerCase();
-            }
+            },
+            bodyRowHeight: 27
         };
         
         var sampleProductGridOption = {
@@ -308,7 +308,8 @@ report
             headerColumnHeight: 30,
             rowCssClass: function (rowIndex, rowData) {
                 return rowData.Status.toLowerCase();
-            }
+            },
+            bodyRowHeight: 27
         };
         
         var samplePlaytechCasinoHeader = { HeaderCaption: "@Lang.PlaytechCasino", HeaderAlign: "center", IsCurrency: true, Name: "PShare", NameCache: "PShare", MergeColNumber: 3 };

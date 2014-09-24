@@ -194,6 +194,7 @@ var AffiliateWinLossByProduct = (function ($) {
     var getSubTotalRowsOfGroup = function (rows, idxLevel1, itemLevel1, subTotalCol) {
         var numProducts = itemLevel1.MergeRowNumber;
         var productColIdx = getProductColIndex();
+        var currency = itemLevel1.Currency.toLowerCase();
 
         $.each(itemLevel1.AffiliateWinLossByProductList, function (idxLevel2, itemLevel2) {
             var columns = [];
@@ -203,6 +204,7 @@ var AffiliateWinLossByProduct = (function ($) {
 
             if (idxLevel2 === 0) {
                 columns.push({
+                    TdClass: "toggler toggle-{0}".format(currency),
                     Value: itemLevel1.Currency,
                     Name: "Currency",
                     MergeRowNumber: itemLevel1.MergeRowNumber
@@ -211,7 +213,11 @@ var AffiliateWinLossByProduct = (function ($) {
 
             for (var i = productColIdx; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
-                columns.push({ Value: itemLevel2[col.Name], Name: col.Name });
+                columns.push({
+                    TdClass: currency,
+                    Value: itemLevel2[col.Name],
+                    Name: col.Name
+                });
             }
 
             rows.push({ Columns: columns, CssClass: "total-of-currencies" });
@@ -242,7 +248,7 @@ var AffiliateWinLossByProduct = (function ($) {
         });
 
         var subTotalCol = {
-            Value: "<div align='center'>{0}</div>".format(window.MSG.SubTotal),
+            Value: "<div align='center'>{0}</div>".format(window.MSG.Total),
             Name: getFirstColumName(),
             MergeRowNumber: totalMergeRowNumber,
             MergeColNumber: getMergeColNumberOfTotalCol(),
@@ -277,17 +283,10 @@ var AffiliateWinLossByProduct = (function ($) {
         var currency = "base-currency";
 
         var totalColumn = {
-            TdClass: "toggle-{0}".format(currency),
-            Value: "<div align='center'>{0}</div>".format(window.MSG.Total),
+            TdClass: "toggler toggle-{0}".format(currency),
+            Value: "<div align='center'>{0}</div>".format(MSG.TotalIn.format(System.Currency)),
             Name: getFirstColumName(),
-            MergeColNumber: getMergeColNumberOfTotalCol(),
-            MergeRowNumber: numProducts
-        };
-
-
-        var currencyColumn = {
-            Value: totalRowData.Currency,
-            Name: "Currency",
+            MergeColNumber: getProductColIndex(),
             MergeRowNumber: numProducts
         };
 
@@ -296,7 +295,6 @@ var AffiliateWinLossByProduct = (function ($) {
 
             if (idxLevel2 === 0) {
                 columns.push(totalColumn);
-                columns.push(currencyColumn);
             }
 
             for (var i = productColIdx; i < gridOption.columns.length; i++) {
@@ -304,7 +302,7 @@ var AffiliateWinLossByProduct = (function ($) {
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
                 columns.push({
                     TdClass: currency,
-                    Value: itemLevel2[colName], 
+                    Value: itemLevel2[colName],
                     Name: col.Name
                 });
             }
@@ -397,7 +395,7 @@ var AffiliateWinLossByProduct = (function ($) {
                         pagerSelectCallBack: AffiliateWinLossByProduct.ReRenderAfterPaged
                     };
 
-                    gridOption.titleInfo.text = MSG.AffiliateWinLossByProductTitle.format(data.TotalItem);
+                    gridOption.titleInfo.text = window.MSG.AffiliateWinLossByProductTitle.format(data.TotalItem);
 
                     gridOption.bodyRows = getBodyRows(data.Groups, data.SubTotalData);
 
@@ -414,9 +412,9 @@ var AffiliateWinLossByProduct = (function ($) {
                         setTimeout(function () {
                             AFFILIATE.resizeGridHeight();
                         }, 200);
-                        
+
                         $('.status').show();
-                        //AFFILIATE.resetToggleIndicator2(gridOption);
+                        ToggleManager.InitForProduct();
                     }
                 },
                 error: function () {

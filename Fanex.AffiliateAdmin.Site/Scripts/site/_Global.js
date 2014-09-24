@@ -492,32 +492,6 @@ var AFFILIATE = (function ($) {
                 return 1;
             }
         },
-        resetToggleIndicator: function (gridOption) {
-            var isCollapseStatus = subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS;
-            var width = 0;
-
-            if (isCollapseStatus) {
-                $('.real-subtotal').hide();
-                $('.pseudo-subtotal').show();
-                width = $('.pseudo-subtotal .cell-subtotal').width();
-            } else {
-                $('.real-subtotal').show();
-                $('.pseudo-subtotal').hide();
-                width = $('.real-subtotal .cell-subtotal').width();
-            }
-
-            if ($('.real-cell').find('.toggle-indicator').length === 0) {
-                $('.real-cell').prepend("<div class='toggle-indicator collapse' title='{0}'></div>".format(window.MSG.ToggleSubTotal));
-            }
-
-            if ($('.pseudo-cell').find('.toggle-indicator').length === 0) {
-                $('.pseudo-cell').prepend("<div class='toggle-indicator expand' title='{0}'></div>".format(window.MSG.ToggleSubTotal));
-            }
-
-            $('.toggle-indicator').css('left', width / 2 - 15 + 'px');
-
-            $('#gridId').fanexGrid("resizeGrid", gridOption);
-        },
         PreHandleAjaxResult: function (data) {
             if (typeof data === "object") {
                 if (data.hasOwnProperty("Error") && data.hasOwnProperty("LogOnUrl")) {

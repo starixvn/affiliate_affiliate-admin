@@ -204,6 +204,7 @@ var MemberWinLossByProduct = (function ($) {
     var getSubTotalRowsOfGroup = function (rows, idxLevel1, itemLevel1, subTotalCol) {
         var numProducts = itemLevel1.MergeRowNumber;
         var productColIdx = getProductColIndex();
+        var currency = itemLevel1.PlayerCurrency.toLowerCase();
 
         $.each(itemLevel1.MemberWinLossByProductList, function (idxLevel2, itemLevel2) {
             var columns = [];
@@ -213,6 +214,7 @@ var MemberWinLossByProduct = (function ($) {
 
             if (idxLevel2 === 0) {
                 columns.push({
+                    TdClass: "toggler toggle-{0}".format(currency),
                     Value: itemLevel1.PlayerCurrency,
                     Name: "PlayerCurrency",
                     MergeRowNumber: itemLevel1.MergeRowNumber
@@ -221,7 +223,11 @@ var MemberWinLossByProduct = (function ($) {
 
             for (var i = productColIdx; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
-                columns.push({ Value: itemLevel2[col.Name], Name: col.Name });
+                columns.push({
+                    TdClass: currency,
+                    Value: itemLevel2[col.Name],
+                    Name: col.Name
+                });
             }
 
             rows.push({ Columns: columns, CssClass: "total-of-currencies" });
@@ -252,7 +258,7 @@ var MemberWinLossByProduct = (function ($) {
         });
 
         var subTotalCol = {
-            Value: "<div align='center'>{0}</div>".format(window.MSG.SubTotal),
+            Value: "<div align='center'>{0}</div>".format(window.MSG.Total),
             Name: "WinlostDate",
             MergeRowNumber: totalMergeRowNumber,
             MergeColNumber: getMergeColNumberOfTotalCol(),
@@ -374,21 +380,17 @@ var MemberWinLossByProduct = (function ($) {
         return bodyRows;
     };
 
-    var getFooterRows = function(totalRowData) {
+    var getFooterRows = function (totalRowData) {
         var footerRows = [];
         var numProducts = totalRowData.MergeRowNumber;
         var productColIdx = getProductColIndex();
+        var currency = 'base-currency';
 
         var totalColumn = {
-            Value: "<div align='center'>{0}</div>".format(window.MSG.Total),
+            TdClass: "toggler toggle-{0}".format(currency),
+            Value: "<div align='center'>{0}</div>".format(window.MSG.TotalIn.format(System.Currency)),
             Name: "WinlostDate",
-            MergeColNumber: getMergeColNumberOfTotalCol(),
-            MergeRowNumber: numProducts
-        };
-
-        var currencyColumn = {
-            Value: totalRowData.PlayerCurrency,
-            Name: "PlayerCurrency",
+            MergeColNumber: getMergeColNumberOfTotalCol() + 1,
             MergeRowNumber: numProducts
         };
 
@@ -397,13 +399,16 @@ var MemberWinLossByProduct = (function ($) {
 
             if (idxLevel2 === 0) {
                 columns.push(totalColumn);
-                columns.push(currencyColumn);
             }
 
             for (var i = productColIdx; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-                columns.push({ Value: itemLevel2[colName], Name: col.Name });
+                columns.push({
+                    TdClass: currency,
+                    Value: itemLevel2[colName],
+                    Name: col.Name
+                });
             }
 
             footerRows.push({ Columns: columns, CssClass: "total-whole-range" });
@@ -489,7 +494,8 @@ var MemberWinLossByProduct = (function ($) {
                         setTimeout(function () {
                             AFFILIATE.resizeGridHeight();
                         }, 200);
-                        AFFILIATE.resetToggleIndicator(gridOption);
+
+                        ToggleManager.InitForProduct();
                     }
 
                 },

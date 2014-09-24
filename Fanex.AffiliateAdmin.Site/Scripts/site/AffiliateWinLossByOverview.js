@@ -145,6 +145,11 @@ var AffiliateWinLossByOverview = (function ($) {
         return false;
     };
 
+    var getToggleStatus = function (numCurrencies) {
+        var collapseStatus = 0, expandStatus = 1;
+        return numCurrencies > 1 ? collapseStatus : expandStatus;
+    };
+
     var getSubTotalRows = function (footerRows, subTotalData, totalItem, hasMultipleCurrency) {
         var mergeCols = getMergeColNumberOfTotalCol();
         var numCurrencies = subTotalData.length;
@@ -153,9 +158,7 @@ var AffiliateWinLossByOverview = (function ($) {
 
         if (hasMultipleCurrency === true) {
             if (hasShowSubTotalRows(numCurrencies, firstCurrency, submitOptions.BaseCurrency)) {
-                var realSubTotalclass = numCurrencies > 1 ? 'cell-subtotal real-cell' : '';
-
-                window.subTotalStatus = numCurrencies > 1 ? window.subTotalStatus : window.EXPAND_SUBTOTAL_STATUS; // jshint ignore:line
+                var realSubTotalclass = numCurrencies > 1 ? 'subtotal-cell real-cell' : '';
 
                 $.each(subTotalData, function (idx, item) {
 
@@ -163,7 +166,7 @@ var AffiliateWinLossByOverview = (function ($) {
 
                     if (idx === 0) {
                         columns.push({
-                            Value: MSG.SubTotal,
+                            Value: window.MSG.Total,
                             Name: fistColumName,
                             HeaderAlign: "center",
                             CellAlign: "center",
@@ -177,7 +180,7 @@ var AffiliateWinLossByOverview = (function ($) {
                         var col = gridOption.columns[i];
                         var column = {};
                         if (col.IsPercent) {
-                            column = { Value: MSG.NA, Name: col.Name };
+                            column = { Value: window.MSG.NA, Name: col.Name };
                         } else {
                             column = { Value: item[col.Name], Name: col.Name };
                         }
@@ -188,7 +191,7 @@ var AffiliateWinLossByOverview = (function ($) {
                         columns.push(column);
                     }
 
-                    footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
+                    footerRows.push({ Columns: columns, CssClass: "real-row" });
                 });
 
                 getPseudoSubTotalRow(footerRows, numCurrencies);
@@ -197,12 +200,12 @@ var AffiliateWinLossByOverview = (function ($) {
     };
 
     var getPseudoSubTotalRow = function (footerRows, numCurrencies) {
-        var pseudoSubTotalclass = numCurrencies > 1 ? 'cell-subtotal pseudo-cell' : '';
+        var pseudoSubTotalclass = numCurrencies > 1 ? 'subtotal-cell pseudo-cell' : '';
         var mergeCols = getMergeColNumberOfTotalCol();
 
         var columns = [];
         columns.push({
-            Value: window.MSG.SubTotal,
+            Value: window.MSG.Total,
             Name: getFirstColumName(),
             HeaderAlign: "center",
             CellAlign: "center",
@@ -216,7 +219,7 @@ var AffiliateWinLossByOverview = (function ($) {
             columns.push({ Value: '', Name: col.Name });
         }
 
-        footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
+        footerRows.push({ Columns: columns, CssClass: "pseudo-row" });
     };
 
     function getFooterRows(subTotalData, totalRowData, totalItem, hasMultipleCurrency) {
@@ -235,11 +238,13 @@ var AffiliateWinLossByOverview = (function ($) {
 
         // Total row
         var totalColums = [];
-        totalColums.push({ Value: "<div align='center'>" + window.MSG.Total + "</div>",
-            Name: fistColumName, MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount
+        totalColums.push({ 
+            Value: "<div align='center'>" + window.MSG.TotalIn.format(window.System.Currency) + "</div>",
+            Name: fistColumName,
+            MergeColNumber: mergeCols + 1
         });
 
-        for (var i = mergeCols; i < gridOption.columns.length; i++) {
+        for (var i = mergeCols + 1; i < gridOption.columns.length; i++) {
             var col = gridOption.columns[i];
             var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
 
@@ -333,13 +338,13 @@ var AffiliateWinLossByOverview = (function ($) {
                         setTimeout(function () {
                             AFFILIATE.resizeGridHeight();
                         }, 200);
-                        
+
                         $('.status').hide();
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
                     } else {
                         $('.status').show();
-                        AFFILIATE.resetToggleIndicator(gridOption);
+                        ToggleManager.InitForOverview(getToggleStatus(data.SubTotalData.length));
                     }
                 },
                 error: function () {

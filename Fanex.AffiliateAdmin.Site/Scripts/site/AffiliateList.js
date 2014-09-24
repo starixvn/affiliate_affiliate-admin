@@ -8,6 +8,11 @@ var AffiliateList = (function ($) {
     var SYSTEM_CURRENCY = "1";
     var _hideColums = [COMMGROUP_COL, BF_COL, MEMBER_COL];
 
+    var getToggleStatus = function (numCurrencies) {
+        var collapseStatus = 0, expandStatus = 1;
+        return numCurrencies > 1 ? collapseStatus : expandStatus;
+    };
+
     return {
         init: function () {
             $("#gridId").resize(function () {
@@ -47,11 +52,6 @@ var AffiliateList = (function ($) {
                 if (chkCount === checkedCount) {
                     $('#chkAll').prop('checked', true);
                 }
-            });
-
-            $('#gridId').on('click', '.toggle-indicator', function () {
-                subTotalStatus = subTotalStatus === COLLAPSE_SUBTOTAL_STATUS ? EXPAND_SUBTOTAL_STATUS : COLLAPSE_SUBTOTAL_STATUS; // jshint ignore:line
-                AFFILIATE.resetToggleIndicator(gridOption);
             });
 
             // resize browser
@@ -138,7 +138,7 @@ var AffiliateList = (function ($) {
                         gridObject.addClass("noinfo").html(Lang.NoDataInfo);
                         legendObject.hide();
                     } else if (!data.HideTotalRows) {
-                        AFFILIATE.resetToggleIndicator(gridOption);
+                        ToggleManager.InitForOverview(getToggleStatus(data.SubTotal.length));
                     }
 
                     $(".btnEditAccountType").addClass("icon-edit-account-type").attr("title", MSG.ChangeAccountType);
@@ -156,8 +156,8 @@ var AffiliateList = (function ($) {
 
             if (hasShowSubTotalRow === true) {
                 if (subTotalRowCount > 1 || (subTotalRowCount === 1 && subTotalData[0].CurrencyCode !== System.Currency)) {
-                    var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
-                    var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
+                    var realSubTotalclass = subTotalRowCount > 1 ? 'subtotal-cell real-cell' : '';
+                    var pseudoSubTotalclass = subTotalRowCount > 1 ? 'subtotal-cell pseudo-cell' : '';
                     subTotalStatus = subTotalRowCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS; // jshint ignore:line
 
                     $.each(subTotalData, function (idx, item) {
@@ -170,7 +170,7 @@ var AffiliateList = (function ($) {
                         columns.push({ Value: item.CurrencyCode, Name: "Currency" });
                         columns.push({ Value: item.Total, Name: "BF" });
                         columns.push({ Value: item.TotalMembers, Name: "TotalMembers" });
-                        footerRows.push({ Columns: columns, CssClass: "real-subtotal" });
+                        footerRows.push({ Columns: columns, CssClass: "real-row" });
                     });
 
                     columns = [];
@@ -178,7 +178,7 @@ var AffiliateList = (function ($) {
                     columns.push({ Value: "", Name: "Currency" });
                     columns.push({ Value: "", Name: "BF" });
                     columns.push({ Value: "", Name: "TotalMembers" });
-                    footerRows.push({ Columns: columns, CssClass: "pseudo-subtotal" });
+                    footerRows.push({ Columns: columns, CssClass: "pseudo-row" });
                 }
             }
 

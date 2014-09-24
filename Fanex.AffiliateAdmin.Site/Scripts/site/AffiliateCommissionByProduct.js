@@ -1,6 +1,5 @@
 ﻿/*global AFFILIATE,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
 var AffiliateCommissionByProduct = (function ($) {
-
     "use strict";
 
     var submitOptions = {};
@@ -230,6 +229,7 @@ var AffiliateCommissionByProduct = (function ($) {
     var getSubTotalRowsOfGroup = function (rows, idxLevel1, itemLevel1, subTotalCol) {
         var numProducts = itemLevel1.MergeRowNumber;
         var productColIdx = getProductColIndex();
+        var currency = itemLevel1.Currency.toLowerCase();
 
         $.each(itemLevel1.AffiliateCommissionByProductList, function (idxLevel2, itemLevel2) {
             var columns = [];
@@ -239,6 +239,7 @@ var AffiliateCommissionByProduct = (function ($) {
 
             if (idxLevel2 === 0) {
                 columns.push({
+                    TdClass: "toggler toggle-{0}".format(currency),
                     Value: itemLevel1.Currency,
                     Name: "Currency",
                     MergeRowNumber: itemLevel1.MergeRowNumber
@@ -247,7 +248,11 @@ var AffiliateCommissionByProduct = (function ($) {
 
             for (var i = productColIdx; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
-                columns.push({ Value: itemLevel2[col.Name], Name: col.Name });
+                columns.push({
+                    TdClass: currency,
+                    Value: itemLevel2[col.Name], 
+                    Name: col.Name
+                });
             }
 
             rows.push({ Columns: columns, CssClass: "total-of-currencies" });
@@ -276,9 +281,9 @@ var AffiliateCommissionByProduct = (function ($) {
         $.each(subTotalData, function (idxLevel1, itemLevel1) {
             totalMergeRowNumber += itemLevel1.MergeRowNumber;
         });
-
         var subTotalCol = {
-            Value: "<div align='center'>{0}</div>".format(window.MSG.SubTotal),
+
+            Value: "<div align='center'>{0}</div>".format(window.MSG.Total),
             Name: "No",
             MergeRowNumber: totalMergeRowNumber,
             MergeColNumber: getMergeColNumberOfTotalCol(),
@@ -306,36 +311,35 @@ var AffiliateCommissionByProduct = (function ($) {
         return bodyRows;
     };
 
-    var getFooterRows = function(totalRowData) {
+    var getFooterRows = function (totalRowData) {
         var footerRows = [];
         var numProducts = totalRowData.MergeRowNumber;
         var productColIdx = getProductColIndex();
+        var currency = "base-currency";
 
         var totalColumn = {
-            Value: "<div align='center'>{0}</div>".format(window.MSG.Total),
+            TdClass: "toggler toggle-{0}".format(currency),
+            Value: "<div align='center'>{0}</div>".format(window.MSG.TotalIn.format(System.Currency)),
             Name: "No",
-            MergeColNumber: getMergeColNumberOfTotalCol(),
+            MergeColNumber: getMergeColNumberOfTotalCol() + 1,
             MergeRowNumber: numProducts
         };
 
-        var currencyColumn = {
-            Value: "",
-            Name: "Currency",
-            MergeRowNumber: numProducts
-        };
-
-        $.each(totalRowData.AffiliateCommissionByProductList, function(idxLevel2, itemLevel2) {
+        $.each(totalRowData.AffiliateCommissionByProductList, function (idxLevel2, itemLevel2) {
             var columns = [];
 
             if (idxLevel2 === 0) {
                 columns.push(totalColumn);
-                columns.push(currencyColumn);
             }
 
             for (var i = productColIdx; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-                columns.push({ Value: itemLevel2[colName], Name: col.Name });
+                columns.push({
+                    TdClass: currency,
+                    Value: itemLevel2[colName],
+                    Name: col.Name
+                });
             }
 
             footerRows.push({ Columns: columns, CssClass: "total-whole-range" });
@@ -412,15 +416,14 @@ var AffiliateCommissionByProduct = (function ($) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;
                     } else {
-                        
+
                         setTimeout(function () {
                             AFFILIATE.resizeGridHeight();
                         }, 200);
-                        
-                        $('.status').show();
-                    }
 
-                    //AFFILIATE.updateSearchPanel(gridObject);
+                        $('.status').show();
+                        ToggleManager.InitForProduct();
+                    }
                 },
                 error: function () {
                     alert("Occur the error when requesting affiliate commission report!");

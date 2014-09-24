@@ -92,6 +92,7 @@ namespace Fanex.AffiliateAdmin.Site
         private static void GetBundleForCompanyWinLossJs(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/companywinloss")
+                .Include("~/Scripts/site/togglemanager.js")
                 .Include("~/Scripts/site/companywinlossbyoverview.js")
                 .Include("~/Scripts/site/companywinlossbyproduct.js")
                 .Include("~/Scripts/site/companywinlossreport.js"));
@@ -100,6 +101,7 @@ namespace Fanex.AffiliateAdmin.Site
         private static void GetBundleForMemberWinLossJs(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/memberwinloss")
+                .Include("~/Scripts/site/togglemanager.js")
                 .Include("~/Scripts/site/memberwinlossbyoverview.js")
                 .Include("~/Scripts/site/memberwinlossbyproduct.js")
                 .Include("~/Scripts/site/memberwinlossreport.js"));
@@ -108,6 +110,7 @@ namespace Fanex.AffiliateAdmin.Site
         private static void GetBundleForAffiliateWinLossJs(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/affiliatewinloss")
+                .Include("~/Scripts/site/togglemanager.js")
                 .Include("~/Scripts/site/affiliatewinlossbyoverview.js")
                 .Include("~/Scripts/site/affiliatewinlossbyproduct.js")
                 .Include("~/Scripts/site/affiliatewinlossreport.js"));
@@ -116,6 +119,7 @@ namespace Fanex.AffiliateAdmin.Site
         private static void GetBundleForAffiliateCommissionJs(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/affiliatecommission")
+                            .Include("~/Scripts/site/togglemanager.js")
                 .Include("~/Scripts/site/affiliatecommissionbyproduct.js")
                 .Include("~/Scripts/site/affiliatecommissionreport.js"));
         }

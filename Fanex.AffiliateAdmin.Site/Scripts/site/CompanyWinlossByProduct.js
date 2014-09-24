@@ -283,7 +283,10 @@ var CompanyWinlossByProduct = (function ($) {
             }, sampleDateColumn);
 
             $.each(itemLevel1.CompanyWinlossInMemberCurrencies, function (idxLevel2, itemLevel2) {
+                var currency = itemLevel2.Currency.toLowerCase();
+
                 var currencyColumn = {
+                    TdClass: "toggler toggle-{0}".format(currency),
                     Value: itemLevel2.Currency,
                     Name: "Currency",
                     MergeRowNumber: itemLevel2.MergeRowNumber
@@ -295,12 +298,12 @@ var CompanyWinlossByProduct = (function ($) {
                     MergeRowNumber: itemLevel2.MergeRowNumber
                 };
 
-                getTotalAllRowsOfMemberCurrency(rows, idxLevel2, itemLevel2, dateColumn, currencyColumn, exRateColumn);
+                getTotalAllRowsOfMemberCurrency(rows, idxLevel2, itemLevel2, dateColumn, currencyColumn, exRateColumn, currency);
             });
         }
     };
 
-    var getTotalAllRowsOfMemberCurrency = function (rows, idxLevel2, itemLevel2, dateColumn, currencyColumn, exRateColumn) {
+    var getTotalAllRowsOfMemberCurrency = function (rows, idxLevel2, itemLevel2, dateColumn, currencyColumn, exRateColumn, currency) {
         var startIndex = getProductColIndex();
         var numProducts = itemLevel2.CompanyWinlossByProductList.length;
 
@@ -320,10 +323,14 @@ var CompanyWinlossByProduct = (function ($) {
 
             for (var i = startIndex; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
-                columns.push({ Value: itemLevel3[col.Name], Name: col.Name });
+                columns.push({
+                    TdClass: currency,
+                    Value: itemLevel3[col.Name],
+                    Name: col.Name
+                });
             }
 
-            rows.push({ Columns: columns, CssClass: "real-subtotal total-of-currencies" });
+            rows.push({ Columns: columns, CssClass: "total-of-currencies" });
         });
 
         if (numProducts > 1) {
@@ -339,7 +346,7 @@ var CompanyWinlossByProduct = (function ($) {
                 totalColumns.push({ Value: itemLevel2.TotalCompanyWinlossByProduct[col.Name], Name: col.Name });
             }
 
-            rows.push({ Columns: totalColumns, CssClass: "real-subtotal total-of-currencies bold" });
+            rows.push({ Columns: totalColumns, CssClass: "total-of-currencies bold" });
         }
     };
 
@@ -357,8 +364,7 @@ var CompanyWinlossByProduct = (function ($) {
         var sampleDateColumn =
         {
             Value: MSG.TotalAll,
-            TdClass: "cell-subtotal real-cell bold"
-
+            TdClass: "bold"
         };
 
         getTotalAllRowsOfGroup(bodyRows, totaldata, sampleDateColumn);
@@ -380,13 +386,14 @@ var CompanyWinlossByProduct = (function ($) {
 
     var getFooterRows = function (itemLevel1) {
         var footerRows = [];
-
         var startIndex = getProductColIndex();
         var itemLevel2 = itemLevel1.CompanyWinlossInSystemCurrency;
         var numProducts = itemLevel2.CompanyWinlossByProductList.length;
+        var currency = "base-currency";
 
         var dateColumn = {
-            Value: MSG.TotalAllIn.format(System.Currency),
+            TdClass: "toggler toggle-{0}".format(currency),
+            Value: MSG.TotalIn.format(System.Currency),
             Name: "WinlostDate",
             MergeRowNumber: itemLevel1.MergeRowNumber,
             MergeColNumber: startIndex
@@ -401,11 +408,11 @@ var CompanyWinlossByProduct = (function ($) {
             for (var i = startIndex; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-                columns.push({ 
-                    TdClass: 'hide',
+                columns.push({
+                    TdClass: currency,
                     Value: itemLevel3[colName],
                     Name: col.Name
-                     });
+                });
             }
 
             footerRows.push({ Columns: columns, CssClass: "total-whole-range" });
@@ -522,6 +529,8 @@ var CompanyWinlossByProduct = (function ($) {
                     if (data.TotalItem === 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;
+                    } else {
+                        ToggleManager.InitForProduct();
                     }
                 },
                 error: function () {

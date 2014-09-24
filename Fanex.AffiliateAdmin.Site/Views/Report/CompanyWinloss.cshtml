@@ -85,7 +85,7 @@ report
             <div class="row-fluid row-form btn-action">
                 <div class="span12">
                     <button id="btnSubmit" type="button" class="btn btn-default">@Lang.Submit</button>
-                    <input type="hidden" name="ViewMode" id="ViewMode" value="0" />
+                    <input type="hidden" name="ViewMode" id="ViewMode" value="1" />
                 </div>
             </div>
         </div>
@@ -110,8 +110,7 @@ report
             CompanyWL: "@Lang.CompanyWL",
             SubTotalIn: "@Lang.SubTotalIn",
             Total: "@Lang.Total",
-            TotalAllIn: "@Lang.TotalAllIn",
-            TotalAll: "@Lang.TotalAll",
+            TotalIn: "@Lang.TotalIn",
             RangeTime3Months: "@Lang.RangeTime3Months",
             ToggleSubTotal: '@Lang.ToggleSubTotal',
             ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct',
@@ -212,7 +211,8 @@ report
             showFooter: true,
             customizeHeader: true,
             showDistinctRow: false,
-            numberOfFrozenColumn: 3
+            numberOfFrozenColumn: 3,
+            bodyRowHeight: 27
         };
 
         var sampleProductGridOption = {
@@ -295,7 +295,8 @@ report
             gridExpandHeight: 360,
             showFooter: true,
             customizeHeader: true,
-            showDistinctRow: false
+            showDistinctRow: false,
+            bodyRowHeight: 27
         };
 
         var samplePlaytechCasinoHeader = { HeaderCaption: "@Lang.PlaytechCasino", HeaderAlign: "center", IsCurrency: true, Name: "PShare", NameCache: "PShare", MergeColNumber: 3 };

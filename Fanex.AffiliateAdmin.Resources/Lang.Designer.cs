@@ -6734,24 +6734,6 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total All.
-        /// </summary>
-        public static string TotalAll {
-            get {
-                return ResourceManager.GetString("TotalAll", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Total All in {0}.
-        /// </summary>
-        public static string TotalAllIn {
-            get {
-                return ResourceManager.GetString("TotalAllIn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Total Bonus.
         /// </summary>
         public static string TotalBonus {
@@ -6775,6 +6757,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string TotalDeposit {
             get {
                 return ResourceManager.GetString("TotalDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total in {0}.
+        /// </summary>
+        public static string TotalIn {
+            get {
+                return ResourceManager.GetString("TotalIn", resourceCulture);
             }
         }
         

@@ -310,7 +310,7 @@ var CompanyWinlossByOverview = (function ($) {
             Value: itemLevel1.GroupInfo,
             Name: "WinlostDate",
             MergeRowNumber: itemLevel1.MergeRowNumber,
-            TdClass: numCurrencies > 1 ? "cell-subtotal real-cell" : ''
+            TdClass: numCurrencies > 1 ? "subtotal-cell real-cell" : ''
         }, sampleDateColumn);
 
         $.each(itemLevel1.CompanyWinlossInMemberCurrencies, function (idxLevel2, itemLevel2) {
@@ -348,7 +348,7 @@ var CompanyWinlossByOverview = (function ($) {
             columns.push({ Value: itemLevel2[col.Name], Name: col.Name });
         }
 
-        rows.push({ Columns: columns, CssClass: "real-subtotal" });
+        rows.push({ Columns: columns, CssClass: "real-row" });
     };
 
     var getSubTotalAllRowsOfGroup = function (rows, itemLevel2) {
@@ -357,7 +357,7 @@ var CompanyWinlossByOverview = (function ($) {
         var columns = [];
 
         var dateColumn = {
-            Value: MSG.TotalAllIn.format(System.Currency),
+            Value: MSG.TotalIn.format(System.Currency),
             Name: "WinlostDate",
             MergeColNumber: startIndex
         };
@@ -386,7 +386,7 @@ var CompanyWinlossByOverview = (function ($) {
             var sampleDateColumn =
             {
                 Value: window.MSG.Total,
-                TdClass: itemLevel1.MergeRowNumber > 1 ? "cell-subtotal real-cell" : ''
+                TdClass: itemLevel1.MergeRowNumber > 1 ? "subtotal-cell real-cell" : ''
             };
 
             getTotalAllRowsOfGroup(footerRows, itemLevel1, sampleDateColumn);
@@ -403,7 +403,7 @@ var CompanyWinlossByOverview = (function ($) {
         // pseudo sub total row
         var columns = [];
         var startIndex = getProductColIndex();
-        var pseudoSubTotalclass = numCurrenies > 1 ? 'cell-subtotal pseudo-cell' : '';
+        var pseudoSubTotalclass = numCurrenies > 1 ? 'subtotal-cell pseudo-cell' : '';
 
         columns.push({
             Value: window.MSG.TotalAll,
@@ -423,7 +423,7 @@ var CompanyWinlossByOverview = (function ($) {
             columns.push({ Value: '', Name: col.Name });
         }
 
-        return { Columns: columns, CssClass: "pseudo-subtotal" };
+        return { Columns: columns, CssClass: "pseudo-row" };
     };
 
     var getSymbolCurrency = function (baseCurrency) {
@@ -461,6 +461,11 @@ var CompanyWinlossByOverview = (function ($) {
                 col.HeaderText = col.HeaderCaption + text;
             }
         }
+    };
+
+    var getToggleStatus = function (numCurrencies) {
+        var collapseStatus = 0, expandStatus = 1;
+        return numCurrencies > 1 ? collapseStatus : expandStatus;
     };
 
     return {
@@ -519,7 +524,7 @@ var CompanyWinlossByOverview = (function ($) {
                             AFFILIATE.resizeGridHeight();
                         }, 200);
                         
-                        AFFILIATE.resetToggleIndicator(gridOption);
+                        ToggleManager.InitForOverview(getToggleStatus());
                     }
                 },
                 error: function () {

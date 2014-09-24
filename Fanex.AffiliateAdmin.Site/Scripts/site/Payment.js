@@ -5,6 +5,11 @@ var Payment = (function ($) {
     var gridOption = {};
     var submitOptions = {};
 
+    var getToggleStatus = function (numCurrencies) {
+        var collapseStatus = 0, expandStatus = 1;
+        return numCurrencies > 1 ? collapseStatus : expandStatus;
+    };
+
     return {
         init: function () {
 
@@ -35,13 +40,6 @@ var Payment = (function ($) {
             if ($('#gridId').length > 0) {
                 Payment.submitRequest();
             }
-
-            $('#gridId').on('click', '.toggle-indicator', function () {
-                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS
-                    ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
-                AFFILIATE.resetToggleIndicator(gridOption);
-            });
-
         },
         toggleGetAllChecked: function (isChecked) {
             if (isChecked) {
@@ -111,7 +109,7 @@ var Payment = (function ($) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;
                     } else {
-                        AFFILIATE.resetToggleIndicator(gridOption);
+                        ToggleManager.InitForOverview(getToggleStatus(data.SubTotal.length));
                         $('.status').show();
                     }
                 },
@@ -147,7 +145,7 @@ var Payment = (function ($) {
             return dataRow;
         },
         /*jshint ignore:end */
-        
+
         genFooterRow: function (gridOption, listSubTotalRows, colSpanSub, totalRow, colSpanTotal) {
             var columns = gridOption.columns;
             var footerRows = [];
@@ -155,20 +153,21 @@ var Payment = (function ($) {
             var subRowCurrency = listSubTotalRows[0];
 
             if (subRowLength > 1 || (subRowLength === 1 && subRowCurrency["Currency"] !== window.System.Currency)) {
-                var realSubTotalclass = subRowLength > 1 ? 'cell-subtotal real-cell' : '';
-                var pseudoSubTotalclass = subRowLength > 1 ? 'cell-subtotal pseudo-cell' : '';
+                var realSubTotalclass = subRowLength > 1 ? 'subtotal-cell real-cell' : '';
+                var pseudoSubTotalclass = subRowLength > 1 ? 'subtotal-cell pseudo-cell' : '';
                 window.subTotalStatus = subRowLength > 1 ? window.subTotalStatus : window.EXPAND_SUBTOTAL_STATUS;
 
                 $.each(listSubTotalRows, function (idx, item) {
                     var colSubTotal = [];
 
                     if (idx === 0) {
-                        colSubTotal.push({ Value: window.Lang.SubTotal, Name: "RowID", 
-                            MergeColNumber: colSpanSub, MergeRowNumber: subRowLength, TdClass: realSubTotalclass });
+                        colSubTotal.push({ Value: window.Lang.SubTotal, Name: "RowID",
+                            MergeColNumber: colSpanSub, MergeRowNumber: subRowLength, TdClass: realSubTotalclass
+                        });
                     }
 
                     colSubTotal = Payment.genOneRow(columns, item, colSubTotal, colSpanSub);
-                    footerRows.push({ Columns: colSubTotal, CssClass: "real-subtotal" });
+                    footerRows.push({ Columns: colSubTotal, CssClass: "real-row" });
                 });
 
                 // pseudo sub total row
@@ -176,7 +175,7 @@ var Payment = (function ($) {
                 colSubTotal.push({ Value: window.Lang.SubTotal, Name: "RowID", MergeColNumber: colSpanSub, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
                 colSubTotal.push({ Value: "", Name: "Currency" });
                 colSubTotal.push({ Value: "", Name: $("#BaseCurrency").val() !== "0" ? "ConvertedAmt" : "Amt" });
-                footerRows.push({ Columns: colSubTotal, CssClass: "pseudo-subtotal" });
+                footerRows.push({ Columns: colSubTotal, CssClass: "pseudo-row" });
             }
 
             //Total Row

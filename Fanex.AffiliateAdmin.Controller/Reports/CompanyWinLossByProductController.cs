@@ -64,7 +64,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var total = new CompanyWinlossReportByProduct
                 {
-                    GroupInfo = Lang.TotalAll,
+                    GroupInfo = Lang.Total,
                     Level = "All",
                     CompanyWinlossInMemberCurrencies = GroupDataByCurrency(data.TotalCompanyWinlossInMemberCurrencies),
                     CompanyWinlossInSystemCurrency = new CompanyWinlossByCurrency

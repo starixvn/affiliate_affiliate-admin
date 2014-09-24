@@ -19,12 +19,6 @@ var MemberWinlossReport = (function ($) {
                 return false;
             });
 
-            $('#gridId').on('click', '.toggle-indicator', function () {
-                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS
-                    ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
-                AFFILIATE.resetToggleIndicator(gridOption);
-            });
-
             $('#gridId').on('click', '.member-info', function () {
                 var member = $(this).data('member');
                 AFFILIATE.openDialogFrame("Member?UserName={0}".format(member), MSG.MemberInfo, { width: 350, height: 470 });

@@ -214,7 +214,7 @@ var MemberWinLossByOverview = (function ($) {
         var mergeCols = getMergeColNumberOfTotalCol();
         var startIndex = getStartIndexForFooterRows();
 
-        columns.push({ Value: window.MSG.SubTotal, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
+        columns.push({ Value: window.MSG.Total, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
 
         createPlayerCurrencyColumn(columns);
 
@@ -223,7 +223,7 @@ var MemberWinLossByOverview = (function ($) {
             columns.push({ Value: '', Name: col.Name });
         }
 
-        return [{ Columns: columns, CssClass: "pseudo-subtotal"}];
+        return [{ Columns: columns, CssClass: "pseudo-row"}];
     };
 
     var createPlayerCurrencyColumn = function (columns, value) {
@@ -253,7 +253,7 @@ var MemberWinLossByOverview = (function ($) {
             var columns = [];
 
             if (idx === 0) {
-                columns.push({ Value: window.MSG.SubTotal, Name: "WinlostDate",
+                columns.push({ Value: window.MSG.Total, Name: "WinlostDate",
                     MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass
                 });
             }
@@ -265,7 +265,7 @@ var MemberWinLossByOverview = (function ($) {
                 columns.push({ Value: item[col.Name], Name: col.Name });
             }
 
-            actualSubTotalRows.push({ Columns: columns, CssClass: "real-subtotal" });
+            actualSubTotalRows.push({ Columns: columns, CssClass: "real-row" });
         });
 
         return actualSubTotalRows;
@@ -276,8 +276,8 @@ var MemberWinLossByOverview = (function ($) {
 
         if (hasShowSubTotalRows(subTotalData, hasCurrencyOverTwoRows)) {
             var subTotalRowCount = subTotalData.length;
-            var realSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal real-cell' : '';
-            var pseudoSubTotalclass = subTotalRowCount > 1 ? 'cell-subtotal pseudo-cell' : '';
+            var realSubTotalclass = subTotalRowCount > 1 ? 'subtotal-cell real-cell' : '';
+            var pseudoSubTotalclass = subTotalRowCount > 1 ? 'subtotal-cell pseudo-cell' : '';
 
             var actualSubTotalRows = getActualSubTotalRows(subTotalData, realSubTotalclass);
             var pseudoSubTotalRow = getPseudoSubTotalRow(pseudoSubTotalclass);
@@ -318,9 +318,11 @@ var MemberWinLossByOverview = (function ($) {
         var startIndex = getStartIndexForFooterRows();
         var columns = [];
 
-        columns.push({ Value: "<div align='center'>" + window.MSG.Total + "</div>", Name: "WinlostDate", MergeColNumber: mergeCols });
-
-        createPlayerCurrencyColumn(columns, window.System.Currency);
+        columns.push({
+            Value: "<div align='center'>" + window.MSG.TotalIn.format(System.Currency) + "</div>",
+            Name: "WinlostDate",
+            MergeColNumber: mergeCols + 1
+        });
 
         var length = gridOption.columns.length;
         for (var i = startIndex; i < length; i++) {
@@ -386,6 +388,11 @@ var MemberWinLossByOverview = (function ($) {
         }
     };
 
+    var getToggleStatus = function (numCurrencies) {
+        var collapseStatus = 0, expandStatus = 1;
+        return numCurrencies > 1 ? collapseStatus : expandStatus;
+    };
+
     return {
         submitRequest: function (dataRequest) {
 
@@ -445,7 +452,8 @@ var MemberWinLossByOverview = (function ($) {
                         setTimeout(function () {
                             AFFILIATE.resizeGridHeight();
                         }, 200);
-                        AFFILIATE.resetToggleIndicator(gridOption);
+                        
+                        ToggleManager.InitForOverview(getToggleStatus(data.SubTotalData.length));
                     }
 
                 },

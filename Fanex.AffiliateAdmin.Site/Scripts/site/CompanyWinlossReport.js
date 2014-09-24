@@ -15,12 +15,6 @@ var CompanyWinlossReport = (function ($) {
                 AFFILIATE.initMonthPicker();
             }
 
-            // keep width of datagrid
-            if (!$(".search-form").is(":visible")) {
-                // resize height of datagrid
-                $("#gridId").fanexGrid('resizeHeight', expHeight);
-            }
-
             if ($('#gridId').length > 0) {
                 CompanyWinlossReport.submitRequest();
             }
@@ -73,12 +67,6 @@ var CompanyWinlossReport = (function ($) {
 
                     AFFILIATE.initMonthPicker();
                 }
-            });
-
-            $('#gridId').on('click', '.toggle-indicator', function () {
-                window.subTotalStatus = window.subTotalStatus === window.COLLAPSE_SUBTOTAL_STATUS
-                    ? window.EXPAND_SUBTOTAL_STATUS : window.COLLAPSE_SUBTOTAL_STATUS;
-                AFFILIATE.resetToggleIndicator(CompanyWinlossByOverview.GetGridOption());
             });
 
             $('.main-content').on('click', '.tab-title', function () {

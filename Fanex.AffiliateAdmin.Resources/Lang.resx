@@ -2216,11 +2216,8 @@
   <data name="TotalAdjustment" xml:space="preserve">
     <value>Total Adjustment</value>
   </data>
-  <data name="TotalAll" xml:space="preserve">
-    <value>Total All</value>
-  </data>
-  <data name="TotalAllIn" xml:space="preserve">
-    <value>Total All in {0}</value>
+  <data name="TotalIn" xml:space="preserve">
+    <value>Total in {0}</value>
   </data>
   <data name="TotalBonus" xml:space="preserve">
     <value>Total Bonus</value>

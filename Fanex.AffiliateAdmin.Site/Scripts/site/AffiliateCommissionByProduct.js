@@ -81,7 +81,7 @@ var AffiliateCommissionByProduct = (function ($) {
 
         var products = getSelectedProducts(window.PRODUCTS);
 
-        insertQMColumn();
+        //insertQMColumn();
 
         removeRedundantColumns();
 
@@ -170,6 +170,7 @@ var AffiliateCommissionByProduct = (function ($) {
         var productColIdx = getProductColIndex();
         var rowCssClass = gridOption.rowCssClass; // custom option
         var rowHeight = gridOption.RowHeight;
+        var totalPayment = 0;
 
         $.each(itemLevel1.AffiliateCommissionByProductList, function (idxLevel2, itemLevel2) {
             var columns = [];
@@ -180,15 +181,20 @@ var AffiliateCommissionByProduct = (function ($) {
 
             for (var i = productColIdx; i < gridOption.columns.length - 1; i++) {
                 var col = gridOption.columns[i];
-                columns.push({ Value: itemLevel2[col.Name], Name: col.Name });
+                columns.push({
+                    Value: itemLevel2[col.Name], 
+                    Name: col.Name
+                });
             }
 
             if (idxLevel2 === 0) {
+                var idx = gridOption.columns.length - 1;
+                var col = gridOption.columns[idx];
+                totalPayment = itemLevel2[col.Name];
                 columns.push({
-                    Value: itemLevel2.TotalPayment,
-                    Name: "TotalPayment",
-                    MergeColNumber: 1,
-                    MergeRowNumber: itemLevel1.MergeRowNumber
+                    Value: totalPayment,
+                    Name: col.Name,
+                    MergeRowNumber: numProducts > 1 ? numProducts - 1 : numProducts
                 });
             }
 
@@ -209,13 +215,22 @@ var AffiliateCommissionByProduct = (function ($) {
 
             for (var i = productColIdx + 1; i < gridOption.columns.length - 1; i++) {
                 var col = gridOption.columns[i];
-                totalColumns.push({ Value: itemLevel1.TotalAffiliateCommissionByProduct[col.Name], Name: col.Name });
+                totalColumns.push({
+                    Value: col.IsPercent ? "N/A" : itemLevel1.TotalAffiliateCommissionByProduct[col.Name],
+                    Name: col.Name
+                });
             }
+
+            var idx = gridOption.columns.length - 1;
+            var col = gridOption.columns[idx];
+            totalColumns.push({
+                Value: totalPayment,
+                Name: col.Name
+            });
 
             rows.push({ Columns: totalColumns, CssClass: "sub-total-group bold" });
         }
     };
-
 
     var getMergeColNumberOfTotalCol = function () {
 
@@ -230,6 +245,7 @@ var AffiliateCommissionByProduct = (function ($) {
         var numProducts = itemLevel1.MergeRowNumber;
         var productColIdx = getProductColIndex();
         var currency = itemLevel1.Currency.toLowerCase();
+        var totalPayment = 0;
 
         $.each(itemLevel1.AffiliateCommissionByProductList, function (idxLevel2, itemLevel2) {
             var columns = [];
@@ -246,12 +262,24 @@ var AffiliateCommissionByProduct = (function ($) {
                 });
             }
 
-            for (var i = productColIdx; i < gridOption.columns.length; i++) {
+            for (var i = productColIdx; i < gridOption.columns.length - 1; i++) {
                 var col = gridOption.columns[i];
                 columns.push({
                     TdClass: currency,
-                    Value: itemLevel2[col.Name], 
+                    Value: itemLevel2[col.Name],
                     Name: col.Name
+                });
+            }
+
+            if (idxLevel2 === 0) {
+                var idx = gridOption.columns.length - 1;
+                var col = gridOption.columns[idx];
+                totalPayment = itemLevel2[col.Name];
+                columns.push({
+                    TdClass: currency,
+                    Value: itemLevel2[col.Name],
+                    Name: col.Name,
+                    MergeRowNumber: numProducts > 1 ? numProducts - 1 : numProducts
                 });
             }
 
@@ -266,10 +294,20 @@ var AffiliateCommissionByProduct = (function ($) {
                 Value: window.MSG.Total
             });
 
-            for (var i = productColIdx + 1; i < gridOption.columns.length; i++) {
+            for (var i = productColIdx + 1; i < gridOption.columns.length - 1; i++) {
                 var col = gridOption.columns[i];
-                totalColumns.push({ Value: itemLevel1.TotalAffiliateCommissionByProduct[col.Name], Name: col.Name });
+                totalColumns.push({
+                    Value: col.IsPercent ? "N/A" : itemLevel1.TotalAffiliateCommissionByProduct[col.Name],
+                    Name: col.Name
+                });
             }
+
+            var idx = gridOption.columns.length - 1;
+            var col = gridOption.columns[idx];
+            totalColumns.push({
+                Value: totalPayment,
+                Name: col.Name
+            });
 
             rows.push({ Columns: totalColumns, CssClass: "total-of-currencies bold" });
         }
@@ -316,7 +354,7 @@ var AffiliateCommissionByProduct = (function ($) {
         var numProducts = totalRowData.MergeRowNumber;
         var productColIdx = getProductColIndex();
         var currency = "base-currency";
-
+        var totalPayment = 0;
         var totalColumn = {
             TdClass: "toggler toggle-{0}".format(currency),
             Value: "<div align='center'>{0}</div>".format(window.MSG.TotalIn.format(System.Currency)),
@@ -332,13 +370,27 @@ var AffiliateCommissionByProduct = (function ($) {
                 columns.push(totalColumn);
             }
 
-            for (var i = productColIdx; i < gridOption.columns.length; i++) {
+            for (var i = productColIdx; i < gridOption.columns.length - 1; i++) {
                 var col = gridOption.columns[i];
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
                 columns.push({
                     TdClass: currency,
                     Value: itemLevel2[colName],
                     Name: col.Name
+                });
+            }
+
+            if (idxLevel2 === 0) {
+                var idx = gridOption.columns.length - 1;
+                var col = gridOption.columns[idx];
+                var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
+                
+                totalPayment = itemLevel2[colName];
+                columns.push({
+                    TdClass: currency,
+                    Value: totalPayment,
+                    Name: col.Name,
+                    MergeRowNumber: numProducts > 1 ? numProducts - 1 : numProducts
                 });
             }
 
@@ -353,11 +405,21 @@ var AffiliateCommissionByProduct = (function ($) {
                 Value: window.MSG.Total
             });
 
-            for (var i = productColIdx + 1; i < gridOption.columns.length; i++) {
+            for (var i = productColIdx + 1; i < gridOption.columns.length - 1; i++) {
                 var col = gridOption.columns[i];
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-                totalColumns.push({ Value: totalRowData.TotalAffiliateCommissionByProduct[colName], Name: col.Name });
+                totalColumns.push({
+                    Value: col.IsPercent ? "N/A" : totalRowData.TotalAffiliateCommissionByProduct[colName], 
+                    Name: col.Name
+                });
             }
+
+            var idx = gridOption.columns.length - 1;
+            var col = gridOption.columns[idx];
+            totalColumns.push({
+                Value: totalPayment,
+                Name: col.Name
+            });
 
             footerRows.push({ Columns: totalColumns, CssClass: "total-whole-range bold" });
         }
@@ -387,7 +449,7 @@ var AffiliateCommissionByProduct = (function ($) {
                     var gridObject = $('#gridId');
                     gridObject.show();
 
-                    customizeGridOption(data.HasCashbackDeduction);
+                    customizeGridOption();
 
                     var baseCurrency = $("#BaseCurrency").val();
 

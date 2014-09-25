@@ -217,7 +217,8 @@ var MemberWinLossByProduct = (function ($) {
                     TdClass: "toggler toggle-{0}".format(currency),
                     Value: itemLevel1.PlayerCurrency,
                     Name: "PlayerCurrency",
-                    MergeRowNumber: itemLevel1.MergeRowNumber
+                    MergeRowNumber: itemLevel1.MergeRowNumber,
+                    MergeColNumber: hasExRateColumn() ? 2 : 1
                 });
             }
 
@@ -309,7 +310,19 @@ var MemberWinLossByProduct = (function ($) {
         }
     };
 
+    var hasExRateColumn = function() {
+        if (submitOptions.GroupBy === GROUP_BY_DATE && submitOptions.BaseCurrency !== MEMBER_CURRENCY_OPTION) {
+            return true;
+        }
+
+        return false;
+    };
+
     var getProductColIndex = function () {
+        if (hasExRateColumn()) {
+            return getMergeColNumberOfTotalCol() + 2;
+        }
+
         return getMergeColNumberOfTotalCol() + 1;
     };
 
@@ -390,7 +403,7 @@ var MemberWinLossByProduct = (function ($) {
             TdClass: "toggler toggle-{0}".format(currency),
             Value: "<div align='center'>{0}</div>".format(window.MSG.TotalIn.format(System.Currency)),
             Name: "WinlostDate",
-            MergeColNumber: getMergeColNumberOfTotalCol() + 1,
+            MergeColNumber: productColIdx,
             MergeRowNumber: numProducts
         };
 
@@ -497,7 +510,6 @@ var MemberWinLossByProduct = (function ($) {
 
                         ToggleManager.InitForProduct();
                     }
-
                 },
                 error: function () {
                     alert("Occur the error when requesting the member win loss by product report!");

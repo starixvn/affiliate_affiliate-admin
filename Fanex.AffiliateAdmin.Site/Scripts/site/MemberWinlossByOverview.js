@@ -321,7 +321,7 @@ var MemberWinLossByOverview = (function ($) {
         columns.push({
             Value: "<div align='center'>" + window.MSG.TotalIn.format(System.Currency) + "</div>",
             Name: "WinlostDate",
-            MergeColNumber: mergeCols + 1
+            MergeColNumber: startIndex
         });
 
         var length = gridOption.columns.length;

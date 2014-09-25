@@ -53,12 +53,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
             return memberWinlossReport;
         }
 
-        protected override void GetColumnExtra(IDataReader reader, MemberWinLoss memberWinLoss)
-        {
-            memberWinLoss.ExRate = reader.ToDouble("ExRate");
-            memberWinLoss.AffExRate = reader.ToDouble("AffExRate");
-        }
-
         /// <summary>
         /// Get Column Extra.
         /// </summary>

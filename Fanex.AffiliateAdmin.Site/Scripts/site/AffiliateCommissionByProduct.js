@@ -81,7 +81,7 @@ var AffiliateCommissionByProduct = (function ($) {
 
         var products = getSelectedProducts(window.PRODUCTS);
 
-        //insertQMColumn();
+        insertQMColumn();
 
         removeRedundantColumns();
 

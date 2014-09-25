@@ -52,7 +52,9 @@ namespace Fanex.AffiliateAdmin.DataAccess
                     Currency = reader.ToString("Currency"),
                     PlayerUsername = reader.ToString("PlayerUsername"),
                     PlayerCurrency = reader.ToString("PlayerCurrency"),
-                    BetCount = reader.ToInt("BetCount")
+                    BetCount = reader.ToInt("BetCount"),
+                    ExRate = reader.ToDouble("ExRate"),
+                    AffExRate = reader.ToDouble("AffExRate")
                 };
 
                 GetColumnExtra(reader, memberWinloss);

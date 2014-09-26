@@ -855,7 +855,6 @@ var fanexGridCurrentLanguage = fanexGridCurrentLanguage || {};
 
                 for (var colIndex = 0; colIndex < colsLength; colIndex++) {
                     var currentCol = currentRow.Columns[colIndex];
-                    console.log(currentCol.Name);
                     var currentWidth = me.columnsHastable[currentCol.Name].Width;
                     var customSpan = '';
                     var currentHeight = 'height:' + (currentRow.RowHeight || options.bodyRowHeight) + 'px;';

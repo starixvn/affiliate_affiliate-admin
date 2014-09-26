@@ -12,7 +12,6 @@ namespace Fanex.AffiliateAdmin.Controller
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
     using Criterias;
@@ -58,7 +57,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var companyWinlossByProduct = GroupDataCompanyWinlossByOverview(criteria, data.CompanyWinlossList);
 
-            var hasShowSubTotalRow = data.CompanyWinlossList.GroupBy(t => t.Currency)
+            var hasMultipleCurrencyRows = data.CompanyWinlossList.GroupBy(t => t.Currency)
                                          .Select(t => new { Currency = t.Key, RowCount = t.Count() })
                                          .Any(t => t.RowCount > 1);
 
@@ -73,7 +72,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 Groups = companyWinlossByProduct,
                 TotalData = total,
-                HasShowSubTotalRow = hasShowSubTotalRow,
+                HasMultipleCurrencyRows = hasMultipleCurrencyRows,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows,
@@ -108,34 +107,6 @@ namespace Fanex.AffiliateAdmin.Controller
 
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
-        }
-
-        /// <summary>
-        /// Group Data By Currency.
-        /// </summary>
-        /// <param name="groupByDate">Group by date.</param>
-        /// <returns>Company Win Loss By Currency.</returns>
-        private IEnumerable<CompanyWinlossByCurrency> GroupDataByCurrency(
-            IEnumerable<CompanyWinloss> groupByDate)
-        {
-            var list = new List<CompanyWinlossByCurrency>();
-            var groupByCurrencies = groupByDate.GroupBy(t => t.Currency);
-
-            foreach (var groupByCurrency in groupByCurrencies)
-            {
-                var firstItem = groupByCurrency.First();
-                var currency = new CompanyWinlossByCurrency
-                {
-                    Currency = groupByCurrency.Key,
-                    AffExRate = firstItem.AffExRate,
-                    ExRate = firstItem.ExRate,
-                    CompanyWinlossByProductList = groupByCurrency.ToList()
-                };
-
-                list.Add(currency);
-            }
-
-            return list;
         }
 
         /// <summary>

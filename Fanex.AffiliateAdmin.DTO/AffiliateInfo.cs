@@ -53,5 +53,7 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal? BF { get; set; }
 
         public int? TotalMembers { get; set; }
+
+        public string Email { get; set; }
     }
 }

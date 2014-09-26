@@ -101,11 +101,11 @@ var AffiliateList = (function ($) {
                     legendObject.show();
 
                     var baseCurrency = $("#BaseCurrency").val();
-                    var currencySymbol = baseCurrency === SYSTEM_CURRENCY ? " (" + System.Prefix + ")" : "";
+                    var currencySymbol = baseCurrency === SYSTEM_CURRENCY ? " (" + window.System.Prefix + ")" : "";
 
                     $.each(gridOption.columns, function (idx, item) {
                         if (item.Name === "BF") {
-                            item.HeaderText = MSG.BF + currencySymbol;
+                            item.HeaderText = window.MSG.BF + currencySymbol;
                             return false;
                         }
                     });
@@ -119,13 +119,14 @@ var AffiliateList = (function ($) {
                     };
 
                     var bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
+                    
                     gridOption.bodyRows = bodyRows;
 
                     if (data.HideTotalRows) {
                         gridOption.showFooter = false;
                         gridOption.footerRows = [];
                     } else {
-                        gridOption.footerRows = AffiliateList.getFooterRows(data.SubTotal, data.Total, 13, data.HasShowSubTotalRow);
+                        gridOption.footerRows = AffiliateList.getFooterRows(data.SubTotal, data.Total, 14, data.HasMultipleCurrency);
                     }
 
                     gridObject.removeClass("noinfo").fanexGrid(gridOption);
@@ -135,36 +136,35 @@ var AffiliateList = (function ($) {
                     }
 
                     if (data.TotalItem === 0) {
-                        gridObject.addClass("noinfo").html(Lang.NoDataInfo);
+                        gridObject.addClass("noinfo").html(window.Lang.NoDataInfo);
                         legendObject.hide();
                     } else if (!data.HideTotalRows) {
                         ToggleManager.InitForOverview(getToggleStatus(data.SubTotal.length));
                     }
 
-                    $(".btnEditAccountType").addClass("icon-edit-account-type").attr("title", MSG.ChangeAccountType);
-                    $(".btnEditComGroup").addClass("icon-edit-commission-group").attr("title", MSG.ChangeComGroup);
+                    $(".btnEditAccountType").addClass("icon-edit-account-type").attr("title", window.MSG.ChangeAccountType);
+                    $(".btnEditComGroup").addClass("icon-edit-commission-group").attr("title", window.MSG.ChangeComGroup);
                 },
                 complete: function () {
                     $.unblockUI();
                 }
             });
         },
-        getFooterRows: function (subTotalData, totalData, colspan, hasShowSubTotalRow) {
+        getFooterRows: function (subTotalData, totalData, colspan, hasMultipleCurrency) {
             var subTotalRowCount = subTotalData.length;
             var footerRows = [];
             var columns = [];
 
-            if (hasShowSubTotalRow === true) {
+            if (hasMultipleCurrency === true) {
                 if (subTotalRowCount > 1 || (subTotalRowCount === 1 && subTotalData[0].CurrencyCode !== System.Currency)) {
                     var realSubTotalclass = subTotalRowCount > 1 ? 'subtotal-cell real-cell' : '';
                     var pseudoSubTotalclass = subTotalRowCount > 1 ? 'subtotal-cell pseudo-cell' : '';
-                    subTotalStatus = subTotalRowCount > 1 ? subTotalStatus : EXPAND_SUBTOTAL_STATUS; // jshint ignore:line
 
                     $.each(subTotalData, function (idx, item) {
                         columns = [];
 
                         if (idx === 0) {
-                            columns.push({ Value: Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });  // jshint ignore:line
+                            columns.push({ Value: window.Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });  // jshint ignore:line
                         }
 
                         columns.push({ Value: item.CurrencyCode, Name: "Currency" });
@@ -174,7 +174,7 @@ var AffiliateList = (function ($) {
                     });
 
                     columns = [];
-                    columns.push({ Value: Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
+                    columns.push({ Value: window.Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
                     columns.push({ Value: "", Name: "Currency" });
                     columns.push({ Value: "", Name: "BF" });
                     columns.push({ Value: "", Name: "TotalMembers" });
@@ -183,7 +183,7 @@ var AffiliateList = (function ($) {
             }
 
             columns = [];
-            columns.push({ Value: Lang.Total, Name: "ROW", MergeColNumber: colspan });
+            columns.push({ Value: window.Lang.Total, Name: "ROW", MergeColNumber: colspan });
             columns.push({ Value: totalData.CurrencyCode, Name: "Currency" });
             columns.push({ Value: totalData.Currency, Name: "BF" });
             columns.push({ Value: totalData.TotalMembers, Name: "TotalMembers" });

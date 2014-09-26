@@ -235,7 +235,7 @@ var CompanyWinlossByProduct = (function ($) {
 
             totalColumns.push({
                 Name: "ProductName",
-                Value: MSG.Total
+                Value: MSG.All
             });
 
             for (var i = startIndex + 1; i < gridOption.columns.length; i++) {
@@ -338,7 +338,7 @@ var CompanyWinlossByProduct = (function ($) {
 
             totalColumns.push({
                 Name: "ProductName",
-                Value: window.MSG.Total
+                Value: window.MSG.All
             });
 
             for (var i = startIndex + 1; i < gridOption.columns.length; i++) {
@@ -423,7 +423,7 @@ var CompanyWinlossByProduct = (function ($) {
 
             totalColumns.push({
                 Name: "ProductName",
-                Value: MSG.Total
+                Value: MSG.All
             });
 
             for (var i = startIndex + 1; i < gridOption.columns.length; i++) {

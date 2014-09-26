@@ -239,7 +239,7 @@ var MemberWinLossByProduct = (function ($) {
 
             totalColumns.push({
                 Name: "ProductName",
-                Value: window.MSG.Total
+                Value: window.MSG.All
             });
 
             for (var i = productColIdx + 1; i < gridOption.columns.length; i++) {
@@ -365,7 +365,7 @@ var MemberWinLossByProduct = (function ($) {
 
             totalColumns.push({
                 Name: "ProductName",
-                Value: window.MSG.Total
+                Value: window.MSG.All
             });
 
             for (var i = productColIdx + 1; i < gridOption.columns.length; i++) {
@@ -432,7 +432,7 @@ var MemberWinLossByProduct = (function ($) {
 
             totalColumns.push({
                 Name: "ProductName",
-                Value: window.MSG.Total
+                Value: window.MSG.All
             });
 
             for (var i = productColIdx + 1; i < gridOption.columns.length; i++) {

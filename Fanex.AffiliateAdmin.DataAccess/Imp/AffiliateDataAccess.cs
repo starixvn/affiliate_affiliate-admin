@@ -238,7 +238,8 @@ namespace Fanex.AffiliateAdmin.DataAccess
                         Currency = reader.ToString("Currency"),
                         CurrencyId = reader.ToInt("CurrencyId"),
                         BF = reader.ToDecimal("BF"),
-                        TotalMembers = reader.ToInt("TotalMembers")
+                        TotalMembers = reader.ToInt("TotalMembers"),
+                        Email = reader.ToString("Email")
                     });
                 }
             }

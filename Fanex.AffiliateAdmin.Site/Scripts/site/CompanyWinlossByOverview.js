@@ -373,28 +373,27 @@ var CompanyWinlossByOverview = (function ($) {
         rows.push({ Columns: columns, CssClass: "total-whole-range" });
     };
 
-    var getFooterRows = function (itemLevel1) {
+    var getFooterRows = function (itemLevel1, hasMultipleCurrencyRows, hasMultipleRows) {
         var footerRows = [];
 
         var numCurrencies = itemLevel1.MergeRowNumber;
         var firstCurrency = itemLevel1.CompanyWinlossInMemberCurrencies[0].Currency;
 
-        if (hasShowSubTotalRows(numCurrencies, firstCurrency, submitOptions.BaseCurrency)) {
-
-            window.subTotalStatus = itemLevel1.MergeRowNumber > 1 ? window.subTotalStatus : window.EXPAND_SUBTOTAL_STATUS; // jshint ignore:line
-
+        if (hasMultipleCurrencyRows && hasShowSubTotalRows(numCurrencies, firstCurrency, submitOptions.BaseCurrency)) {
             var sampleDateColumn =
-            {
-                Value: window.MSG.Total,
-                TdClass: itemLevel1.MergeRowNumber > 1 ? "subtotal-cell real-cell" : ''
-            };
+                {
+                    Value: window.MSG.Total,
+                    TdClass: itemLevel1.MergeRowNumber > 1 ? "subtotal-cell real-cell" : ''
+                };
 
             getTotalAllRowsOfGroup(footerRows, itemLevel1, sampleDateColumn);
 
             footerRows.push(getPseudoRow(itemLevel1.MergeRowNumber));
         }
 
-        getSubTotalAllRowsOfGroup(footerRows, itemLevel1.CompanyWinlossInSystemCurrency);
+        if (hasMultipleRows) {
+            getSubTotalAllRowsOfGroup(footerRows, itemLevel1.CompanyWinlossInSystemCurrency);
+        }
 
         return footerRows;
     };
@@ -509,8 +508,8 @@ var CompanyWinlossByOverview = (function ($) {
                     gridOption.titleInfo.text = window.MSG.CompanyWinLossOverviewTitle.format(data.TotalItem);
 
                     if (data.TotalItem > 0) {
-                        gridOption.bodyRows = getBodyRows(data.Groups, submitOptions);
-                        gridOption.footerRows = getFooterRows(data.TotalData, data.HasShowSubTotalRow);
+                        gridOption.bodyRows = getBodyRows(data.Groups, data.HasMultipleCurrencyRows);
+                        gridOption.footerRows = getFooterRows(data.TotalData, data.HasMultipleCurrencyRows, data.TotalItem > 1);
                     }
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
@@ -519,11 +518,11 @@ var CompanyWinlossByOverview = (function ($) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);
                         return;
                     } else {
-                        
+
                         setTimeout(function () {
                             AFFILIATE.resizeGridHeight();
                         }, 200);
-                        
+
                         ToggleManager.InitForOverview(getToggleStatus());
                     }
                 },

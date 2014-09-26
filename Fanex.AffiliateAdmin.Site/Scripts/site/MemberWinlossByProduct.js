@@ -326,22 +326,25 @@ var MemberWinLossByProduct = (function ($) {
         return getMergeColNumberOfTotalCol() + 1;
     };
 
-    var getFirstColumns = function (columns, itemLevel1, itemLevel2) {
+    var getFirstColumns = function (columns, itemLevel1, itemLevel2, rowIndex) {
         var productColIdx = getProductColIndex();
+        var indexNumberColumn = gridOption.indexNumberColumn;
 
         for (var i = 0; i < productColIdx; i++) {
 
             var col = gridOption.columns[i];
             columns.push({
-                Value: itemLevel2[col.Name],
-                Name: col.Name,
+                Value: indexNumberColumn === i ? (rowIndex + 1) : itemLevel2[col.Name],
+                Name:  col.Name,
                 MergeRowNumber: itemLevel1.MergeRowNumber,
                 CustomCellRender: AFFILIATE.getCustomCellRender(0, itemLevel2, col)
             });
         }
     };
 
-    var getRowsOfGroup = function (rows, itemLevel1) {
+    var getRowsOfGroup = function (rows, idxLevel1, itemLevel1) {
+        var currentPage = gridOption.pagerOption.currentPage || 0;
+        var rowIndex = currentPage * gridOption.pagerOption.itemsPerPage + idxLevel1;
         var numProducts = itemLevel1.MergeRowNumber;
         var productColIdx = getProductColIndex();
 
@@ -349,7 +352,7 @@ var MemberWinLossByProduct = (function ($) {
             var columns = [];
 
             if (idxLevel2 === 0) {
-                getFirstColumns(columns, itemLevel1, itemLevel2);
+                getFirstColumns(columns, itemLevel1, itemLevel2, rowIndex);
             }
 
             for (var i = productColIdx; i < gridOption.columns.length; i++) {
@@ -385,7 +388,8 @@ var MemberWinLossByProduct = (function ($) {
         var bodyRows = [];
 
         $.each(groups, function (idxLevel1, itemLevel1) {
-            getRowsOfGroup(bodyRows, itemLevel1);
+
+            getRowsOfGroup(bodyRows, idxLevel1, itemLevel1);
         });
 
         getSubTotalRows(bodyRows, subTotalData);

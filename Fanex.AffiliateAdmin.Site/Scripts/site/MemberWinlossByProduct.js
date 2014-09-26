@@ -214,7 +214,7 @@ var MemberWinLossByProduct = (function ($) {
 
             if (idxLevel2 === 0) {
                 columns.push({
-                    TdClass: "toggler toggle-{0}".format(currency),
+                    TdClass: numProducts > 1 ? "toggler toggle-{0}".format(currency) : "",
                     Value: itemLevel1.PlayerCurrency,
                     Name: "PlayerCurrency",
                     MergeRowNumber: itemLevel1.MergeRowNumber,
@@ -310,7 +310,7 @@ var MemberWinLossByProduct = (function ($) {
         }
     };
 
-    var hasExRateColumn = function() {
+    var hasExRateColumn = function () {
         if (submitOptions.GroupBy === GROUP_BY_DATE && submitOptions.BaseCurrency !== MEMBER_CURRENCY_OPTION) {
             return true;
         }
@@ -335,7 +335,7 @@ var MemberWinLossByProduct = (function ($) {
             var col = gridOption.columns[i];
             columns.push({
                 Value: indexNumberColumn === i ? (rowIndex + 1) : itemLevel2[col.Name],
-                Name:  col.Name,
+                Name: col.Name,
                 MergeRowNumber: itemLevel1.MergeRowNumber,
                 CustomCellRender: AFFILIATE.getCustomCellRender(0, itemLevel2, col)
             });
@@ -380,7 +380,23 @@ var MemberWinLossByProduct = (function ($) {
         }
     };
 
-    var getBodyRows = function (groups, subTotalData) {
+    var hasShowTotalByCurrency = function (hasMultipleRows, hasMultipleCurrencyRows) {
+        if (!hasMultipleRows) {
+            return false;
+        }
+
+        if (hasMultipleCurrencyRows) {
+            return true;
+        }
+
+        if (submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
+            return true;
+        }
+
+        return false;
+    };
+
+    var getBodyRows = function (groups, subTotalData, hasMultipleRows, hasMultipleCurrencyRows) {
         if (groups.length === 0) {
             return [];
         }
@@ -392,19 +408,25 @@ var MemberWinLossByProduct = (function ($) {
             getRowsOfGroup(bodyRows, idxLevel1, itemLevel1);
         });
 
-        getSubTotalRows(bodyRows, subTotalData);
+        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows)) {
+            getSubTotalRows(bodyRows, subTotalData);
+        }
 
         return bodyRows;
     };
 
-    var getFooterRows = function (totalRowData) {
+    var getFooterRows = function (totalRowData, hasMultipleRows) {
+        if (!hasMultipleRows && submitOptions.BaseCurrency === SYS_CURRENCY_OPTION) {
+            return [];
+        }
+
         var footerRows = [];
         var numProducts = totalRowData.MergeRowNumber;
         var productColIdx = getProductColIndex();
         var currency = 'base-currency';
 
         var totalColumn = {
-            TdClass: "toggler toggle-{0}".format(currency),
+            TdClass: numProducts > 1 ? "toggler toggle-{0}".format(currency) : "",
             Value: "<div align='center'>{0}</div>".format(window.MSG.TotalIn.format(System.Currency)),
             Name: "WinlostDate",
             MergeColNumber: productColIdx,
@@ -497,9 +519,9 @@ var MemberWinLossByProduct = (function ($) {
 
                     if (data.TotalItem > 0) {
 
-                        gridOption.bodyRows = getBodyRows(data.Groups, data.SubTotalData);
+                        gridOption.bodyRows = getBodyRows(data.Groups, data.SubTotalData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
 
-                        gridOption.footerRows = getFooterRows(data.TotalRowData);
+                        gridOption.footerRows = getFooterRows(data.TotalRowData, data.HasMultipleRows);
                     }
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);

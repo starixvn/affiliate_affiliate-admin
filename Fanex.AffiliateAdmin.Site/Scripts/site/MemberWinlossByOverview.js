@@ -302,19 +302,38 @@ var MemberWinLossByOverview = (function ($) {
         return mergeCols + 2;
     };
 
-    var getFooterRows = function (subTotalData, totalRowData, hasCurrencyOverTwoRows) {
+    var hasShowTotalByCurrency = function (hasMultipleRows, hasMultipleCurrencyRows) {
+        if (!hasMultipleRows) {
+            return false;
+        }
 
-        window.subTotalStatus = subTotalData.length > 1 ? window.subTotalStatus : window.EXPAND_SUBTOTAL_STATUS;
+        if (hasMultipleCurrencyRows) {
+            return true;
+        }
 
-        var subTotalRows = getSubTotalRows(subTotalData, hasCurrencyOverTwoRows);
+        if (submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
+            return true;
+        }
 
-        var totalRow = getTotalRow(totalRowData);
+        return false;
+    };
 
-        return subTotalRows.concat(totalRow);
+    var getFooterRows = function (subTotalData, totalRowData, hasMultipleRows, hasMultipleCurrencyRows) {
+        var footer = [];
+
+        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows)) {
+            footer = getSubTotalRows(subTotalData);
+        }
+
+        if (!hasMultipleRows || submitOptions !== SYS_CURRENCY_OPTION) {
+            var totalRow = getTotalRow(totalRowData);
+            footer.concat(totalRow);
+        }
+
+        return footer;
     };
 
     var getTotalRow = function (totalRowData) {
-        var mergeCols = getMergeColNumberOfTotalCol();
         var startIndex = getStartIndexForFooterRows();
         var columns = [];
 
@@ -440,7 +459,7 @@ var MemberWinLossByOverview = (function ($) {
 
                         gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
-                        gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasCurrencyOverTwoRows);
+                        gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
                     }
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
@@ -452,7 +471,7 @@ var MemberWinLossByOverview = (function ($) {
                         setTimeout(function () {
                             AFFILIATE.resizeGridHeight();
                         }, 200);
-                        
+
                         ToggleManager.InitForOverview(getToggleStatus(data.SubTotalData.length));
                     }
 

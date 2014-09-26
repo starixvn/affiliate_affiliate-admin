@@ -133,70 +133,56 @@ var AffiliateWinLossByOverview = (function ($) {
         return "Username";
     };
 
-    var hasShowSubTotalRows = function (numCurrencies, firstCurrency, selectedBaseCurrency) {
-        if (numCurrencies > 1) {
-            return true;
-        }
-
-        if (firstCurrency !== window.System.Currency && selectedBaseCurrency !== SYS_CURRENCY_OPTION) {
-            return true;
-        }
-
-        return false;
-    };
-
     var getToggleStatus = function (numCurrencies) {
         var collapseStatus = 0, expandStatus = 1;
         return numCurrencies > 1 ? collapseStatus : expandStatus;
     };
 
-    var getSubTotalRows = function (footerRows, subTotalData, totalItem, hasMultipleCurrency) {
+    var getSubTotalRows = function (footerRows, subTotalData) {
         var mergeCols = getMergeColNumberOfTotalCol();
         var numCurrencies = subTotalData.length;
         var firstCurrency = subTotalData[0].Currency;
         var fistColumName = getFirstColumName();
 
-        if (hasMultipleCurrency === true) {
-            if (hasShowSubTotalRows(numCurrencies, firstCurrency, submitOptions.BaseCurrency)) {
-                var realSubTotalclass = numCurrencies > 1 ? 'subtotal-cell real-cell' : '';
 
-                $.each(subTotalData, function (idx, item) {
+        var realSubTotalclass = numCurrencies > 1 ? 'subtotal-cell real-cell' : '';
 
-                    var columns = [];
+        $.each(subTotalData, function (idx, item) {
 
-                    if (idx === 0) {
-                        columns.push({
-                            Value: window.MSG.Total,
-                            Name: fistColumName,
-                            HeaderAlign: "center",
-                            CellAlign: "center",
-                            MergeColNumber: mergeCols,
-                            MergeRowNumber: numCurrencies,
-                            TdClass: realSubTotalclass
-                        });
-                    }
+            var columns = [];
 
-                    for (var i = mergeCols; i < gridOption.columns.length; i++) {
-                        var col = gridOption.columns[i];
-                        var column = {};
-                        if (col.IsPercent) {
-                            column = { Value: window.MSG.NA, Name: col.Name };
-                        } else {
-                            column = { Value: item[col.Name], Name: col.Name };
-                        }
-
-                        if (i === mergeCols && idx !== 0) {
-                            column.PrevRowsColMergeNumber = mergeCols;
-                        }
-                        columns.push(column);
-                    }
-
-                    footerRows.push({ Columns: columns, CssClass: "real-row" });
+            if (idx === 0) {
+                columns.push({
+                    Value: window.MSG.Total,
+                    Name: fistColumName,
+                    HeaderAlign: "center",
+                    CellAlign: "center",
+                    MergeColNumber: mergeCols,
+                    MergeRowNumber: numCurrencies,
+                    TdClass: realSubTotalclass
                 });
-
-                getPseudoSubTotalRow(footerRows, numCurrencies);
             }
-        }
+
+            for (var i = mergeCols; i < gridOption.columns.length; i++) {
+                var col = gridOption.columns[i];
+                var column = {};
+                if (col.IsPercent) {
+                    column = { Value: window.MSG.NA, Name: col.Name };
+                } else {
+                    column = { Value: item[col.Name], Name: col.Name };
+                }
+
+                if (i === mergeCols && idx !== 0) {
+                    column.PrevRowsColMergeNumber = mergeCols;
+                }
+                columns.push(column);
+            }
+
+            footerRows.push({ Columns: columns, CssClass: "real-row" });
+        });
+
+        getPseudoSubTotalRow(footerRows, numCurrencies);
+
     };
 
     var getPseudoSubTotalRow = function (footerRows, numCurrencies) {
@@ -222,40 +208,58 @@ var AffiliateWinLossByOverview = (function ($) {
         footerRows.push({ Columns: columns, CssClass: "pseudo-row" });
     };
 
-    function getFooterRows(subTotalData, totalRowData, totalItem, hasMultipleCurrency) {
+    var hasShowTotalByCurrency = function (hasMultipleRows, hasMultipleCurrencyRows) {
+        if (!hasMultipleRows) {
+            return false;
+        }
+
+        if (hasMultipleCurrencyRows) {
+            return true;
+        }
+
+        if (submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
+            return true;
+        }
+
+        return false;
+    };
+
+    function getFooterRows(subTotalData, totalRowData, hasMultipleRows, hasMultipleCurrencyRows) {
         if (subTotalData.length == 0) {
             return [];
         }
 
         var mergeCols = getMergeColNumberOfTotalCol();
-        var subTotalRowCount = subTotalData.length;
-
         var fistColumName = getFirstColumName();
 
         var footerRows = [];
 
-        getSubTotalRows(footerRows, subTotalData, totalItem, hasMultipleCurrency);
-
-        // Total row
-        var totalColums = [];
-        totalColums.push({ 
-            Value: "<div align='center'>" + window.MSG.TotalIn.format(window.System.Currency) + "</div>",
-            Name: fistColumName,
-            MergeColNumber: mergeCols + 1
-        });
-
-        for (var i = mergeCols + 1; i < gridOption.columns.length; i++) {
-            var col = gridOption.columns[i];
-            var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-
-            if (col.IsPercent) {
-                totalColums.push({ Value: window.MSG.NA, Name: col.Name });
-            } else {
-                totalColums.push({ Value: totalRowData[colName], Name: col.Name });
-            }
+        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows)) {
+            getSubTotalRows(footerRows, subTotalData);
         }
 
-        footerRows.push({ Columns: totalColums, CssClass: 'total-whole-range' });
+        if (hasMultipleRows || submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
+            // Total row
+            var totalColums = [];
+            totalColums.push({
+                Value: "<div align='center'>" + window.MSG.TotalIn.format(window.System.Currency) + "</div>",
+                Name: fistColumName,
+                MergeColNumber: mergeCols + 1
+            });
+
+            for (var i = mergeCols + 1; i < gridOption.columns.length; i++) {
+                var col = gridOption.columns[i];
+                var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
+
+                if (col.IsPercent) {
+                    totalColums.push({ Value: window.MSG.NA, Name: col.Name });
+                } else {
+                    totalColums.push({ Value: totalRowData[colName], Name: col.Name });
+                }
+            }
+
+            footerRows.push({ Columns: totalColums, CssClass: 'total-whole-range' });
+        }
 
         return footerRows;
     }
@@ -329,7 +333,7 @@ var AffiliateWinLossByOverview = (function ($) {
 
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
-                    gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.TotalItem, data.hasMultipleCurrency);
+                    gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 

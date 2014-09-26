@@ -51,16 +51,13 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var data = ReportService.GetMemberWinlossOverview(criteria);
 
-            var hasCurrencyOverTwoRows = data.MemberWinlossList.GroupBy(t => t.PlayerCurrency)
-                                           .Select(t => new { PlayerCurrency = t.Key, RowCount = t.Count() })
-                                           .Any(t => t.RowCount > 1);
-
             return Json(new
             {
                 List = data.MemberWinlossList,
                 TotalRowData = data.TotalMemberWinlossInSystemCurrency,
                 SubTotalData = data.TotalMemberWinlossInMemberCurrencies,
-                HasCurrencyOverTwoRows = hasCurrencyOverTwoRows,
+                HasMultipleRows = data.MemberWinlossList.Count() > 1,
+                HasMultipleCurrencyRows = data.TotalMemberWinlossInMemberCurrencies.Count() > 1,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows,

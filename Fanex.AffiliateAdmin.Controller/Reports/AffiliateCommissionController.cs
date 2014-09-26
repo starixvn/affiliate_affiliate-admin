@@ -49,15 +49,20 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var data = ReportService.GetAffiliateCommission(criteria);
 
+            var groups = GroupByRowIndex(data.AffiliateCommissionList);
+            var groupsByCurrency = GroupDataByCurrency(data.AffiliateCommissionInAffiliateCurrency);
+
             return Json(new
             {
-                Groups = GroupByRowIndex(data.AffiliateCommissionList),
-                SubTotalData = GroupDataByCurrency(data.AffiliateCommissionInAffiliateCurrency),
+                Groups = groups,
+                SubTotalData = groupsByCurrency,
                 TotalRowData = new AffiliateCommissionByProduct
                 {
                     Currency = AppSettings.BaseExchange.Code,
                     AffiliateCommissionByProductList = data.AffiliateCommissionInSystemCurrency
                 },
+                HasMultipleRows = groups.Count() > 1,
+                HasMultipleCurrencyRows = groupsByCurrency.Count() > 1,
                 CurrentPage = criteria.PageCurrent - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows

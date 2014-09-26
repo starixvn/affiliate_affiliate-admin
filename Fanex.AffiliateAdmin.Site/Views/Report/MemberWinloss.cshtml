@@ -6,33 +6,13 @@
 report
 }
 @section submenu{
-    @RazorHelper.ListSubmenu(Fanex.AffiliateAdmin.Core.Utilities.SubMenu.Reports, 3, "report")
+    @RazorHelper.ListSubmenu(SubMenu.Reports, 3, "report")
 }
 
 @{
     var now = DateTime.Now;
-    var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : new DateTime(now.Year, now.Month, 1);
-    var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now;
-
-    if (fromDate < AppSettings.SystemStartDate)
-    {
-        fromDate = AppSettings.SystemStartDate;
-    }
-
-    if (toDate < AppSettings.SystemStartDate)
-    {
-        toDate = AppSettings.SystemStartDate;
-    }
-
-    if (fromDate > now)
-    {
-        fromDate = now;
-    }
-
-    if (toDate > now)
-    {
-        toDate = now;
-    }
+    var fromDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1);
+    var toDate = now;
 }
 
 @using Fanex.AffiliateAdmin.Core.Configurations

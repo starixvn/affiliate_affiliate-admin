@@ -271,11 +271,26 @@ var CompanyWinlossByProduct = (function ($) {
         });
     };
 
-    var getTotalAllRowsOfGroup = function (rows, itemLevel1, sampleDateColumn) {
-        var numCurrencies = itemLevel1.CompanyWinlossInMemberCurrencies.length;
-        var firstCurrency = itemLevel1.CompanyWinlossInMemberCurrencies[0].Currency;
+    var hasShowTotalByCurrency = function(hasMultipleRows, hasMultipleCurrencyRows) {
+        if (!hasMultipleRows) {
+            return false;
+        }
 
-        if (hasShowSubTotalRows(numCurrencies, firstCurrency, submitOptions.BaseCurrency)) {
+        if (hasMultipleCurrencyRows) {
+            return true;
+        }
+
+        if (submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
+            return true;
+        }
+
+        return false;
+    };
+
+    var getTotalAllRowsOfGroup = function (rows, itemLevel1, sampleDateColumn, hasMultipleRows, hasMultipleCurrencyRows) {
+        var numCurrencies = itemLevel1.CompanyWinlossInMemberCurrencies.length;
+
+        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows)) {
             var dateColumn = $.extend(true, {}, {
                 Value: itemLevel1.GroupInfo,
                 Name: "WinlostDate",
@@ -286,7 +301,7 @@ var CompanyWinlossByProduct = (function ($) {
                 var currency = itemLevel2.Currency.toLowerCase();
 
                 var currencyColumn = {
-                    TdClass: "toggler toggle-{0}".format(currency),
+                    TdClass: numCurrencies > 1 ? "toggler toggle-{0}".format(currency) : '',
                     Value: itemLevel2.Currency,
                     Name: "Currency",
                     MergeRowNumber: itemLevel2.MergeRowNumber
@@ -350,7 +365,7 @@ var CompanyWinlossByProduct = (function ($) {
         }
     };
 
-    var getBodyRows = function (groups, totaldata) {
+    var getBodyRows = function (groups, totaldata, hasMultipleRows, hasMultipleCurrencyRows) {
         if (groups.length === 0) {
             return [];
         }
@@ -367,72 +382,62 @@ var CompanyWinlossByProduct = (function ($) {
             TdClass: "bold"
         };
 
-        getTotalAllRowsOfGroup(bodyRows, totaldata, sampleDateColumn);
+        getTotalAllRowsOfGroup(bodyRows, totaldata, sampleDateColumn, hasMultipleRows, hasMultipleCurrencyRows);
 
         return bodyRows;
     };
 
-    var hasShowSubTotalRows = function (numCurrencies, firstMemberCurrency, selectedBaseCurrency) {
-        if (numCurrencies > 1) {
-            return true;
-        }
-
-        if (firstMemberCurrency !== window.System.Currency && selectedBaseCurrency !== SYS_CURRENCY_OPTION) {
-            return true;
-        }
-
-        return false;
-    };
-
-    var getFooterRows = function (itemLevel1) {
+    var getFooterRows = function (itemLevel1, hasMultipleRows) {
         var footerRows = [];
-        var startIndex = getProductColIndex();
-        var itemLevel2 = itemLevel1.CompanyWinlossInSystemCurrency;
-        var numProducts = itemLevel2.CompanyWinlossByProductList.length;
-        var currency = "base-currency";
+        if (hasMultipleRows || submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
+            var startIndex = getProductColIndex();
+            var itemLevel2 = itemLevel1.CompanyWinlossInSystemCurrency;
+            var numProducts = itemLevel2.CompanyWinlossByProductList.length;
+            var currency = "base-currency";
 
-        var dateColumn = {
-            TdClass: "toggler toggle-{0}".format(currency),
-            Value: MSG.TotalIn.format(System.Currency),
-            Name: "WinlostDate",
-            MergeRowNumber: itemLevel1.MergeRowNumber,
-            MergeColNumber: startIndex
-        };
+            var dateColumn = {
+                TdClass: numProducts > 1 ? "toggler toggle-{0}".format(currency) : '',
+                Value: MSG.TotalIn.format(System.Currency),
+                Name: "WinlostDate",
+                MergeRowNumber: itemLevel1.MergeRowNumber,
+                MergeColNumber: startIndex
+            };
 
-        $.each(itemLevel2.CompanyWinlossByProductList, function (idxLevel3, itemLevel3) {
-            var columns = [];
-            if (idxLevel3 === 0) {
-                columns.push(dateColumn);
-            }
+            $.each(itemLevel2.CompanyWinlossByProductList, function (idxLevel3, itemLevel3) {
+                var columns = [];
+                if (idxLevel3 === 0) {
+                    columns.push(dateColumn);
+                }
 
-            for (var i = startIndex; i < gridOption.columns.length; i++) {
-                var col = gridOption.columns[i];
-                var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-                columns.push({
-                    TdClass: currency,
-                    Value: itemLevel3[colName],
-                    Name: col.Name
-                });
-            }
+                for (var i = startIndex; i < gridOption.columns.length; i++) {
+                    var col = gridOption.columns[i];
+                    var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
+                    columns.push({
+                        TdClass: currency,
+                        Value: itemLevel3[colName],
+                        Name: col.Name
+                    });
+                }
 
-            footerRows.push({ Columns: columns, CssClass: "total-whole-range" });
-        });
-
-        if (numProducts > 1) {
-            var totalColumns = [];
-
-            totalColumns.push({
-                Name: "ProductName",
-                Value: MSG.All
+                footerRows.push({ Columns: columns, CssClass: "total-whole-range" });
             });
 
-            for (var i = startIndex + 1; i < gridOption.columns.length; i++) {
-                var col = gridOption.columns[i];
-                var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-                totalColumns.push({ Value: itemLevel2.TotalCompanyWinlossByProduct[colName], Name: col.Name });
-            }
+            if (numProducts > 1) {
+                var totalColumns = [];
 
-            footerRows.push({ Columns: totalColumns, CssClass: "total-whole-range bold" });
+                totalColumns.push({
+                    Name: "ProductName",
+                    Value: MSG.All
+                });
+
+                for (var i = startIndex + 1; i < gridOption.columns.length; i++) {
+                    var col = gridOption.columns[i];
+                    var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
+                    totalColumns.push({ Value: itemLevel2.TotalCompanyWinlossByProduct[colName], Name: col.Name });
+                }
+
+                footerRows.push({ Columns: totalColumns, CssClass: "total-whole-range bold" });
+            }
         }
 
         return footerRows;
@@ -516,8 +521,8 @@ var CompanyWinlossByProduct = (function ($) {
                     gridOption.titleInfo.text = window.MSG.CompanyWinLossByProductTitle.format(data.TotalItem);
 
                     if (data.TotalItem > 0) {
-                        gridOption.bodyRows = getBodyRows(data.Groups, data.TotalData);
-                        gridOption.footerRows = getFooterRows(data.TotalData, data.HasShowSubTotalRow);
+                        gridOption.bodyRows = getBodyRows(data.Groups, data.TotalData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
+                        gridOption.footerRows = getFooterRows(data.TotalData, data.HasMultipleRows);
 
                         setTimeout(function () {
                             AFFILIATE.resizeGridHeight();

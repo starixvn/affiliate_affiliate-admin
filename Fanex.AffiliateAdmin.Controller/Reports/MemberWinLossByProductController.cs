@@ -55,9 +55,8 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var data = ReportService.GetMemberWinlossByProduct(criteria);
 
-            var hasMultipleCurrency = data.MemberWinlossList.GroupBy(t => t.PlayerCurrency)
-                                           .Select(t => new { PlayerCurrency = t.Key, RowCount = t.Count() })
-                                           .Any(t => t.RowCount > 1);
+            var groups = GroupDataByMember(data.MemberWinlossList);
+            var groupsByCurrency = GroupDataByCurrency(data.TotalMemberWinlossInMemberCurrencies);
 
             return Json(new
             {
@@ -68,7 +67,8 @@ namespace Fanex.AffiliateAdmin.Controller
                         MemberWinLossByProductList = data.TotalMemberWinlossInSystemCurrency
                     },
                 SubTotalData = GroupDataByCurrency(data.TotalMemberWinlossInMemberCurrencies),
-                HasMultipleCurrency = hasMultipleCurrency,
+                HasMultipleRows = groups.Count() > 1,
+                HasMultipleCurrencyRows = groupsByCurrency.Count() > 1,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows

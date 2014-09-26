@@ -73,8 +73,51 @@ var AffiliateCommissionReport = (function ($) {
             return true;
         },
 
+        checkRangeTime: function () {
+            $('#FromDate, #ToDate').removeClass('input-validation-error');
+
+            var fromDate = moment('01 ' + $('#FromDate').val());
+            var toDate = moment('01 ' + $('#ToDate').val());
+
+            var fromYear = fromDate.year();
+            var toYear = toDate.year();
+            var diffYear = toYear - fromYear;
+
+            if (diffYear < 0 || diffYear > 1) {
+                return false;
+            }
+
+            var fromMonth = fromDate.month();
+            var toMonth = toDate.month();
+            var diffMonth;
+
+            if (fromDate.year() === toDate.year()) {
+                diffMonth = toMonth - fromMonth;
+                if (diffMonth < 0 || diffMonth > 2) {
+                    $('#FromDate, #ToDate').addClass('input-validation-error');
+                    return false;
+                }
+
+                return true;
+
+            } else {
+                diffMonth = (toMonth + 11) - fromMonth;
+                if (diffMonth < 0 || diffMonth > 2) {
+                    $('#FromDate, #ToDate').addClass('input-validation-error');
+                    return false;
+                }
+
+                return true;
+            }
+        },
+
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
+
+            if (!AffiliateCommissionReport.checkRangeTime()) {
+                alert(window.MSG.RangeTime3Months);
+                return;
+            }
 
             if (!AffiliateCommissionReport.checkAtLeastOneSelectedProduct()) {
                 alert(window.MSG.ChooseAtLeastOneProduct);

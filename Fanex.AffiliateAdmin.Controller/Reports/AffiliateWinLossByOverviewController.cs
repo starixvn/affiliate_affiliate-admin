@@ -53,16 +53,13 @@ namespace Fanex.AffiliateAdmin.Controller
                 totalCommission.Currency = AppSettings.BaseExchange.Code;
             }
 
-            var hasMultipleCurrency = data.CommissionList.GroupBy(t => t.Currency)
-                                           .Select(t => new { Currency = t.Key, RowCount = t.Count() })
-                                           .Any(t => t.RowCount > 1);
-
             return Json(new
             {
                 List = data.CommissionList,
                 TotalRowData = totalCommission,
                 SubTotalData = data.CommissionInAffiliateCurrency,
-                hasMultipleCurrency = hasMultipleCurrency,
+                HasMultipleRows = data.CommissionList.Count() > 1,
+                HasMultipleCurrencyRows = data.CommissionInAffiliateCurrency.Count() > 1,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows

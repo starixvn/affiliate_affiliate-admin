@@ -373,13 +373,26 @@ var CompanyWinlossByOverview = (function ($) {
         rows.push({ Columns: columns, CssClass: "total-whole-range" });
     };
 
-    var getFooterRows = function (itemLevel1, hasMultipleCurrencyRows, hasMultipleRows) {
+    var hasShowTotalByCurrency = function (hasMultipleRows, hasMultipleCurrencyRows) {
+        if (!hasMultipleRows) {
+            return false;
+        }
+
+        if (hasMultipleCurrencyRows) {
+            return true;
+        }
+
+        if (submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
+            return true;
+        }
+
+        return false;
+    };
+
+    var getFooterRows = function (itemLevel1, hasMultipleRows, hasMultipleCurrencyRows) {
         var footerRows = [];
 
-        var numCurrencies = itemLevel1.MergeRowNumber;
-        var firstCurrency = itemLevel1.CompanyWinlossInMemberCurrencies[0].Currency;
-
-        if (hasMultipleCurrencyRows && hasShowSubTotalRows(numCurrencies, firstCurrency, submitOptions.BaseCurrency)) {
+        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows)) {
             var sampleDateColumn =
                 {
                     Value: window.MSG.Total,
@@ -508,8 +521,8 @@ var CompanyWinlossByOverview = (function ($) {
                     gridOption.titleInfo.text = window.MSG.CompanyWinLossOverviewTitle.format(data.TotalItem);
 
                     if (data.TotalItem > 0) {
-                        gridOption.bodyRows = getBodyRows(data.Groups, data.HasMultipleCurrencyRows);
-                        gridOption.footerRows = getFooterRows(data.TotalData, data.HasMultipleCurrencyRows, data.TotalItem > 1);
+                        gridOption.bodyRows = getBodyRows(data.Groups);
+                        gridOption.footerRows = getFooterRows(data.TotalData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
                     }
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);

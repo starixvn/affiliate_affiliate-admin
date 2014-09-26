@@ -58,10 +58,6 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var companyWinlossByProduct = GroupDataCompanyWinlossByProduct(criteria, data.CompanyWinlossList);
 
-            var hasShowSubTotalRow = data.CompanyWinlossList.GroupBy(t => t.Currency)
-                                         .Select(t => new { Currency = t.Key, RowCount = t.Count() })
-                                         .Any(t => t.RowCount > 1);
-
             var total = new CompanyWinlossReportByProduct
                 {
                     GroupInfo = Lang.Total,
@@ -77,7 +73,8 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 Groups = companyWinlossByProduct,
                 TotalData = total,
-                HasShowSubTotalRow = hasShowSubTotalRow,
+                HasMultipleRows = companyWinlossByProduct.Count > 1,
+                HasMultipleCurrencyRows = total.CompanyWinlossInMemberCurrencies.Count() > 1,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows,

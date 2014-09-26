@@ -204,7 +204,7 @@ var AffiliateWinLossByProduct = (function ($) {
 
             if (idxLevel2 === 0) {
                 columns.push({
-                    TdClass: "toggler toggle-{0}".format(currency),
+                    TdClass: numProducts > 1 ? "toggler toggle-{0}".format(currency) : '',
                     Value: itemLevel1.Currency,
                     Name: "Currency",
                     MergeRowNumber: itemLevel1.MergeRowNumber
@@ -260,7 +260,23 @@ var AffiliateWinLossByProduct = (function ($) {
         });
     };
 
-    var getBodyRows = function (groups, subTotalData) {
+    var hasShowTotalByCurrency = function (hasMultipleRows, hasMultipleCurrencyRows) {
+        if (!hasMultipleRows) {
+            return false;
+        }
+
+        if (hasMultipleCurrencyRows) {
+            return true;
+        }
+
+        if (submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
+            return true;
+        }
+
+        return false;
+    };
+
+    var getBodyRows = function (groups, subTotalData, hasMultipleRows, hasMultipleCurrencyRows) {
         if (groups.length === 0) {
             return [];
         }
@@ -271,19 +287,25 @@ var AffiliateWinLossByProduct = (function ($) {
             getRowsOfGroup(bodyRows, itemLevel1);
         });
 
-        getSubTotalRows(bodyRows, subTotalData);
+        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows)) {
+            getSubTotalRows(bodyRows, subTotalData);
+        }
 
         return bodyRows;
     };
 
-    function getFooterRows(totalRowData) {
+    function getFooterRows(totalRowData, hasMultipleRows) {
+        if (!hasMultipleRows && submitOptions.BaseCurrency === SYS_CURRENCY_OPTION) {
+            return [];
+        }
+        
         var footerRows = [];
         var numProducts = totalRowData.MergeRowNumber;
         var productColIdx = getProductColIndex();
         var currency = "base-currency";
 
         var totalColumn = {
-            TdClass: "toggler toggle-{0}".format(currency),
+            TdClass: numProducts > 1 ? "toggler toggle-{0}".format(currency) : '',
             Value: "<div align='center'>{0}</div>".format(MSG.TotalIn.format(System.Currency)),
             Name: getFirstColumName(),
             MergeColNumber: getProductColIndex(),
@@ -397,12 +419,11 @@ var AffiliateWinLossByProduct = (function ($) {
 
                     gridOption.titleInfo.text = window.MSG.AffiliateWinLossByProductTitle.format(data.TotalItem);
 
-                    gridOption.bodyRows = getBodyRows(data.Groups, data.SubTotalData);
+                    gridOption.bodyRows = getBodyRows(data.Groups, data.SubTotalData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
 
-                    gridOption.footerRows = getFooterRows(data.TotalRowData);
+                    gridOption.footerRows = getFooterRows(data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
-
 
                     if (data.Groups.length === 0) {
                         $('.status').hide();

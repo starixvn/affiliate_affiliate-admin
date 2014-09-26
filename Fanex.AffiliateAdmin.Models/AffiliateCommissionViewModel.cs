@@ -193,6 +193,7 @@ namespace Fanex.AffiliateAdmin.Models
             }
         }
 
+        [Display(Name = "GroupBy", ResourceType = typeof(Lang))]
         public byte GroupBy { get; set; }
 
         public SelectList GroupByOptionList

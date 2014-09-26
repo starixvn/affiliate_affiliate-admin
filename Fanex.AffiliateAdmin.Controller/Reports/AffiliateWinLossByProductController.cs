@@ -48,20 +48,21 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var data = ReportService.GetAffiliateWinLossByProduct(criteria);
 
-            var hasMultipleCurrency = data.AffiliateWinLossList.GroupBy(t => t.Currency)
-                                           .Select(t => new { Currency = t.Key, RowCount = t.Count() })
-                                           .Any(t => t.RowCount > 1);
+            var groups = GroupDataByAffiliate(data.AffiliateWinLossList);
+
+            var groupsByCurrency = GroupDataByCurrency(data.AffiliateWinLossInAffiliateCurrency);
 
             return Json(new
             {
-                Groups = GroupDataByAffiliate(data.AffiliateWinLossList),
-                SubTotalData = GroupDataByCurrency(data.AffiliateWinLossInAffiliateCurrency),
+                Groups = groups,
+                SubTotalData = groupsByCurrency,
                 TotalRowData = new AffiliateWinLossByProduct
                     {
                         Currency = AppSettings.BaseExchange.Code,
                         AffiliateWinLossByProductList = data.AffiliateWinLossInSystemCurrency
                     },
-                hasMultipleCurrency = hasMultipleCurrency,
+                HasMultipleRows = groups.Count() > 1,
+                HasMultipleCurrencyRows = groupsByCurrency.Count() > 1,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows
@@ -96,7 +97,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var list = new List<AffiliateWinLossByProduct>();
 
-            var groupByAffiliates = affiliateWinLosses.GroupBy(t => t.AffId);
+            var groupByAffiliates = affiliateWinLosses.GroupBy(t => t.RowIdx);
 
             foreach (var groupByAffiliate in groupByAffiliates)
             {

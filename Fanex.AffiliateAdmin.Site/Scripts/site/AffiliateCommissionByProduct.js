@@ -151,6 +151,7 @@ var AffiliateCommissionByProduct = (function ($) {
 
     var getFirstColumns = function (columns, idxLevel1, itemLevel1, itemLevel2) {
         var productColIdx = getProductColIndex();
+        var numProducts = itemLevel1.MergeRowNumber;
         var indexNumberColumn = gridOption.indexNumberColumn; // custom option
 
         for (var i = 0; i < productColIdx; i++) {
@@ -159,7 +160,7 @@ var AffiliateCommissionByProduct = (function ($) {
             columns.push({
                 Value: (indexNumberColumn === i) ? idxLevel1 + 1 : itemLevel2[col.Name],
                 Name: col.Name,
-                MergeRowNumber: itemLevel1.MergeRowNumber,
+                MergeRowNumber: numProducts > 1 ? numProducts - 1 : numProducts,
                 CustomCellRender: AFFILIATE.getCustomCellRender(0, itemLevel2, col)
             });
         }
@@ -182,7 +183,7 @@ var AffiliateCommissionByProduct = (function ($) {
             for (var i = productColIdx; i < gridOption.columns.length - 1; i++) {
                 var col = gridOption.columns[i];
                 columns.push({
-                    Value: itemLevel2[col.Name], 
+                    Value: itemLevel2[col.Name],
                     Name: col.Name
                 });
             }
@@ -204,32 +205,6 @@ var AffiliateCommissionByProduct = (function ($) {
                 RowHeight: rowHeight ? rowHeight(0, itemLevel2) : undefined
             });
         });
-
-        if (numProducts > 1) {
-            var totalColumns = [];
-
-            totalColumns.push({
-                Name: "ProductName",
-                Value: window.MSG.All
-            });
-
-            for (var i = productColIdx + 1; i < gridOption.columns.length - 1; i++) {
-                var col = gridOption.columns[i];
-                totalColumns.push({
-                    Value: col.IsPercent ? "N/A" : itemLevel1.TotalAffiliateCommissionByProduct[col.Name],
-                    Name: col.Name
-                });
-            }
-
-            var idx = gridOption.columns.length - 1;
-            var col = gridOption.columns[idx];
-            totalColumns.push({
-                Value: totalPayment,
-                Name: col.Name
-            });
-
-            rows.push({ Columns: totalColumns, CssClass: "sub-total-group bold" });
-        }
     };
 
     var getMergeColNumberOfTotalCol = function () {
@@ -255,7 +230,7 @@ var AffiliateCommissionByProduct = (function ($) {
 
             if (idxLevel2 === 0) {
                 columns.push({
-                    TdClass: "toggler toggle-{0}".format(currency),
+                    TdClass: numProducts > 1 ? "toggler toggle-{0}".format(currency) : "",
                     Value: itemLevel1.Currency,
                     Name: "Currency",
                     MergeRowNumber: itemLevel1.MergeRowNumber
@@ -333,7 +308,23 @@ var AffiliateCommissionByProduct = (function ($) {
         });
     };
 
-    var getBodyRows = function (groups, subTotalData) {
+    var hasShowTotalByCurrency = function (hasMultipleRows, hasMultipleCurrencyRows) {
+        if (!hasMultipleRows) {
+            return false;
+        }
+
+        if (hasMultipleCurrencyRows) {
+            return true;
+        }
+
+        if (submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
+            return true;
+        }
+
+        return false;
+    };
+
+    var getBodyRows = function (groups, subTotalData, hasMultipleRows, hasMultipleCurrencyRows) {
         if (groups.length === 0) {
             return [];
         }
@@ -344,19 +335,25 @@ var AffiliateCommissionByProduct = (function ($) {
             getRowsOfGroup(bodyRows, idxLevel1, itemLevel1);
         });
 
-        getSubTotalRows(bodyRows, subTotalData);
+        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows)) {
+            getSubTotalRows(bodyRows, subTotalData);
+        }
 
         return bodyRows;
     };
 
-    var getFooterRows = function (totalRowData) {
+    var getFooterRows = function (totalRowData, hasMultipleRows) {
+        if (!hasMultipleRows && submitOptions.BaseCurrency === SYS_CURRENCY_OPTION) {
+            return [];
+        }
+
         var footerRows = [];
         var numProducts = totalRowData.MergeRowNumber;
         var productColIdx = getProductColIndex();
         var currency = "base-currency";
         var totalPayment = 0;
         var totalColumn = {
-            TdClass: "toggler toggle-{0}".format(currency),
+            TdClass: numProducts > 1 ? "toggler toggle-{0}".format(currency) : '',
             Value: "<div align='center'>{0}</div>".format(window.MSG.TotalIn.format(System.Currency)),
             Name: "No",
             MergeColNumber: getMergeColNumberOfTotalCol() + 1,
@@ -384,7 +381,7 @@ var AffiliateCommissionByProduct = (function ($) {
                 var idx = gridOption.columns.length - 1;
                 var col = gridOption.columns[idx];
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-                
+
                 totalPayment = itemLevel2[colName];
                 columns.push({
                     TdClass: currency,
@@ -409,7 +406,7 @@ var AffiliateCommissionByProduct = (function ($) {
                 var col = gridOption.columns[i];
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
                 totalColumns.push({
-                    Value: col.IsPercent ? "N/A" : totalRowData.TotalAffiliateCommissionByProduct[colName], 
+                    Value: col.IsPercent ? "N/A" : totalRowData.TotalAffiliateCommissionByProduct[colName],
                     Name: col.Name
                 });
             }
@@ -467,9 +464,9 @@ var AffiliateCommissionByProduct = (function ($) {
 
                     gridOption.titleInfo.text = window.MSG.AffiliateCommissionTitle + ' [{0}]'.format(data.TotalItem);
 
-                    gridOption.bodyRows = getBodyRows(data.Groups, data.SubTotalData);
+                    gridOption.bodyRows = getBodyRows(data.Groups, data.SubTotalData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
 
-                    gridOption.footerRows = getFooterRows(data.TotalRowData);
+                    gridOption.footerRows = getFooterRows(data.TotalRowData, data.HasMultipleRows);
 
                     gridObject.removeClass("noinfo").fanexGrid(gridOption);
 

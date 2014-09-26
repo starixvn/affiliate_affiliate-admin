@@ -20,11 +20,11 @@ namespace Fanex.AffiliateAdmin.DataAccess
     /// </summary>
     public abstract class AffiliateWinLossDataAccess : ReportDataAccess
     {
-        protected virtual void GetColumnExtra(IDataReader reader, AffiliateWinLoss affiliateWinLoss)
+        protected virtual void GetColumnExtra(IDataReader reader, AffiliateWinLossItem affiliateWinLoss)
         {
         }
 
-        protected virtual void GetColumnExtra(IDataReader reader, AffiliateWinLoss affiliateWinLoss, string colSuffix)
+        protected virtual void GetColumnExtra(IDataReader reader, AffiliateWinLossItem affiliateWinLoss, string colSuffix)
         {
         }
 
@@ -35,13 +35,13 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <returns>Commission list.</returns>
-        protected IEnumerable<AffiliateWinLoss> GetCommissionList(IDataReader reader)
+        protected IEnumerable<AffiliateWinLossItem> GetCommissionList(IDataReader reader)
         {
-            var result = new List<AffiliateWinLoss>();
+            var result = new List<AffiliateWinLossItem>();
 
             while (reader.Read())
             {
-                var commission = new AffiliateWinLoss
+                var commission = new AffiliateWinLossItem
                 {
                     RowIdx = reader.ToLong("RowIDX"),
                     AffId = reader.ToInt("AffId"),
@@ -75,15 +75,15 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <returns>Total commission list.</returns>
-        protected IEnumerable<AffiliateWinLoss> GetTotalCommissionInAffiliateCurrency(IDataReader reader)
+        protected IEnumerable<AffiliateWinLossItem> GetTotalCommissionInAffiliateCurrency(IDataReader reader)
         {
-            var result = new List<AffiliateWinLoss>();
+            var result = new List<AffiliateWinLossItem>();
 
             if (reader.NextResult())
             {
                 while (reader.Read())
                 {
-                    var commission = new AffiliateWinLoss
+                    var commission = new AffiliateWinLossItem
                         {
                             CurrencyId = reader.ToInt("CurrencyId"),
                             Currency = reader.ToString("Currency"),
@@ -109,15 +109,15 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <returns>Total commission.</returns>
-        protected IEnumerable<AffiliateWinLoss> GetTotalCommissionInSystemCurrency(IDataReader reader)
+        protected IEnumerable<AffiliateWinLossItem> GetTotalCommissionInSystemCurrency(IDataReader reader)
         {
-            var result = new List<AffiliateWinLoss>();
+            var result = new List<AffiliateWinLossItem>();
 
             if (reader.NextResult())
             {
                 while (reader.Read())
                 {
-                    var commission = new AffiliateWinLoss
+                    var commission = new AffiliateWinLossItem
                         {
                             BetCount = reader.ToInt("BetCount"),
                             ActivePlayers = reader.ToInt("ActivePlayers")
@@ -140,11 +140,11 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="reader">Data reader.</param>
         /// <param name="commission">Commission object.</param>
         /// <param name="colSuffix">Column suffix.</param>
-        private void GetCommissionColumns(IDataReader reader, AffiliateWinLoss commission, string colSuffix)
+        private void GetCommissionColumns(IDataReader reader, AffiliateWinLossItem commission, string colSuffix)
         {
             SetPropertyValue(reader, commission, string.Format("Turnover{0}", colSuffix));
             SetPropertyValue(reader, commission, string.Format("PlayerComm{0}", colSuffix));
-            SetPropertyValue(reader, commission, string.Format("Winloss{0}", colSuffix));
+            SetPropertyValue(reader, commission, string.Format("AffiliateWinLoss{0}", colSuffix));
             SetPropertyValue(reader, commission, string.Format("PShare{0}", colSuffix));
             SetPropertyValue(reader, commission, string.Format("PWin{0}", colSuffix));
             SetPropertyValue(reader, commission, string.Format("NetGaming{0}", colSuffix));

@@ -58,11 +58,11 @@
       <DesignTime>True</DesignTime>
     </Content>
     <Content Include="ConfigModels\SiteConfigModels\SiteConfigModel.xml" />
+    <Content Include="ConfigModels\WebAppSettingModels\WebAppSettingModel.goobet.xml" />
     <Content Include="ConfigModels\WebAppSettingModels\WebAppSettingModel.athena.xml" />
-    <Content Include="ConfigModels\WebAppSettingModels\WebAppSettingModel.mymbet.xml" />
     <Content Include="ConfigModels\WebConfigModels\WebConfigModel.xml" />
+    <Content Include="ConfigModels\WebConnectionStringModels\WebConnectionStringModel.goobet.xml" />
     <Content Include="ConfigModels\WebConnectionStringModels\WebConnectionStringModel.athena.xml" />
-    <Content Include="ConfigModels\WebConnectionStringModels\WebConnectionStringModel.mymbet.xml" />
     <Content Include="SpName.txt">
       <DependentUpon>SpName.tt</DependentUpon>
       <AutoGen>True</AutoGen>

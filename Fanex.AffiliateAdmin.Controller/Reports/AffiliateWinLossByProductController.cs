@@ -92,7 +92,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="affiliateWinLosses">Affiliate Win Loss.</param>
         /// <returns>Affiliate WinLoss By Product List.</returns>
-        private IEnumerable<AffiliateWinLossByProduct> GroupDataByAffiliate(IEnumerable<AffiliateWinLoss> affiliateWinLosses)
+        private IEnumerable<AffiliateWinLossByProduct> GroupDataByAffiliate(IEnumerable<AffiliateWinLossItem> affiliateWinLosses)
         {
             var list = new List<AffiliateWinLossByProduct>();
 
@@ -126,7 +126,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="affiliateWinLosses">Affiliate Win Loss.</param>
         /// <returns>Affiliate WinLoss By Product List.</returns>
-        private IEnumerable<AffiliateWinLossByProduct> GroupDataByCurrency(IEnumerable<AffiliateWinLoss> affiliateWinLosses)
+        private IEnumerable<AffiliateWinLossByProduct> GroupDataByCurrency(IEnumerable<AffiliateWinLossItem> affiliateWinLosses)
         {
             var list = new List<AffiliateWinLossByProduct>();
 

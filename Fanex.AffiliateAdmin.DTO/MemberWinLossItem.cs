@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="CompanyWinloss.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MemberWinLossItem.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2013.10.16">Created</change>
+//   <change who="Brian.Dinh" date="2013.11.6">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.DTO
@@ -13,30 +13,29 @@ namespace Fanex.AffiliateAdmin.DTO
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    /// Company win loss.
+    /// Player win loss class.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
-    public class CompanyWinloss
+    public class MemberWinLossItem
     {
         public long RowIdx { get; set; }
 
         public DateTime WinlostDate { get; set; }
 
+        public string Username { get; set; }
+
         public string Currency { get; set; }
 
-        public short CurrencyId { get; set; }
+        public string PlayerUsername { get; set; }
+
+        public string PlayerCurrency { get; set; }
 
         public double ExRate { get; set; }
 
         public double AffExRate { get; set; }
 
-        public int ProductID { get; set; }
+        public int ProductId { get; set; }
 
         public string ProductName { get; set; }
-
-        public int BetCount { get; set; }
-
-        public int ActivePlayer { get; set; }
 
         public decimal Deposit { get; set; }
 
@@ -44,73 +43,56 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal Bonus { get; set; }
 
-        public decimal Adjustment { get; set; }
-
         public decimal PSP { get; set; }
+
+        public decimal Adjustment { get; set; }
 
         public decimal TotalTurnover { get; set; }
 
-        public decimal TotalTurnoverBase { get; set; }
+        public decimal MemberWinLoss { get; set; }
 
-        public decimal TotalWinlost { get; set; }
+        public int BetCount { get; set; }
 
-        public decimal TotalCompanyWinlost
-        { 
-            get
-            {
-                return -TotalWinlost;
-            }
-        }
+        public double DepositBase { get; set; }
 
-        public decimal DepositBase { get; set; }
+        public double WithdrawalBase { get; set; }
 
-        public decimal WithdrawalBase { get; set; }
+        public double BonusBase { get; set; }
 
-        public decimal BonusBase { get; set; }
+        public double PSPBase { get; set; }
 
-        public decimal AdjustmentBase { get; set; }
+        public double AdjustmentBase { get; set; }
 
-        public decimal PSPBase { get; set; }
+        public double TotalTurnoverBase { get; set; }
 
-        public decimal TotalWinlostBase { get; set; }
+        public double MemberWinLossBase { get; set; }
 
-        public decimal TotalCompanyWinlostBase 
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
+        public double CustomerWinlost_Aff
         {
-            get
-            {
-                return -TotalWinlostBase;
-            }
+            get { return -MemberWinLoss_Aff; }
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
-        public decimal Deposit_Aff { get; set; }
+        public double Deposit_Aff { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
-        public decimal Withdrawal_Aff { get; set; }
+        public double Withdrawal_Aff { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
-        public decimal Bonus_Aff { get; set; }
+        public double Bonus_Aff { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
-        public decimal Adjustment_Aff { get; set; }
+        public double Adjustment_Aff { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
-        public decimal PSP_Aff { get; set; }
+        public double PSP_Aff { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
-        public decimal TotalTurnover_Aff { get; set; }
+        public double TotalTurnover_Aff { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
-        public decimal TotalWinlost_Aff { get; set; }
-
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
-        public decimal TotalCompanyWinlost_Aff 
-        {
-            get
-            {
-                return -TotalWinlost_Aff;
-            }
-        }
+        public double MemberWinLoss_Aff { get; set; }
 
         public decimal PShare { get; set; }
 

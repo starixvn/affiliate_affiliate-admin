@@ -52,13 +52,13 @@ namespace Fanex.AffiliateAdmin.DataAccess
             return memberWinlossReport;
         }
 
-        protected override void GetColumnExtra(IDataReader reader, MemberWinLoss memberWinLoss)
+        protected override void GetColumnExtra(IDataReader reader, MemberWinLossItem memberWinLoss)
         {
             memberWinLoss.ProductId = reader.ToInt("ProductID");
             memberWinLoss.ProductName = reader.ToString("ProductName");
         }
 
-        protected override void GetColumnExtraInTotalResult(IDataReader reader, MemberWinLoss memberWinLoss)
+        protected override void GetColumnExtraInTotalResult(IDataReader reader, MemberWinLossItem memberWinLoss)
         {
             GetColumnExtra(reader, memberWinLoss);
         }

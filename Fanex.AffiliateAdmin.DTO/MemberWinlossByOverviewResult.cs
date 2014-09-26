@@ -16,11 +16,11 @@ namespace Fanex.AffiliateAdmin.DTO
     /// </summary>
     public class MemberWinLossByOverviewResult
     {
-        public IEnumerable<MemberWinLoss> MemberWinlossList { get; set; }
+        public IEnumerable<MemberWinLossItem> MemberWinlossList { get; set; }
 
-        public IEnumerable<MemberWinLoss> TotalMemberWinlossInMemberCurrencies { get; set; }
+        public IEnumerable<MemberWinLossItem> TotalMemberWinlossInMemberCurrencies { get; set; }
 
-        public MemberWinLoss TotalMemberWinlossInSystemCurrency { get; set; }
+        public MemberWinLossItem TotalMemberWinlossInSystemCurrency { get; set; }
 
         public long Duration { get; set; }
     }

@@ -116,7 +116,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="companyWinlosses">Company win loss.</param>
         /// <returns>Company Win Loss By Product.</returns>
         private List<CompanyWinlossReportByOverview> GroupDataCompanyWinlossByOverview(
-            CompanyWinlossOverviewCriteria criteria, IEnumerable<CompanyWinloss> companyWinlosses)
+            CompanyWinlossOverviewCriteria criteria, IEnumerable<CompanyWinLossItem> companyWinlosses)
         {
             var companyWinlossByOverviews = new List<CompanyWinlossReportByOverview>();
 

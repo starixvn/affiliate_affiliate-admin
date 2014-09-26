@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AffiliateWinLoss.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AffiliateWinLossItem.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -15,7 +15,7 @@ namespace Fanex.AffiliateAdmin.DTO
     /// TODO: Update summary.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
-    public class AffiliateWinLoss
+    public class AffiliateWinLossItem
     {
         public long RowIdx { get; set; }
 
@@ -75,9 +75,9 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public decimal TurnoverBase { get; set; }
 
-        public decimal Winloss { get; set; }
+        public decimal AffiliateWinLoss { get; set; }
 
-        public decimal WinlossBase { get; set; }
+        public decimal AffiliateWinLossBase { get; set; }
 
         public decimal PShare { get; set; }
 

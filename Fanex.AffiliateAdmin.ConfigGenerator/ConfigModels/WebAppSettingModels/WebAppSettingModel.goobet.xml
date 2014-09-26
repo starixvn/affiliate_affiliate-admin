@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <settings>
-  <Layout>athena</Layout>
+  <Layout>goobet</Layout>
   <DefaultLanguage>en-US</DefaultLanguage>
-  <AffiliateName>Athena000</AffiliateName>
+  <AffiliateName>Goobet</AffiliateName>
   <Environment>
     <local>Local Development</local>
     <sandbox>Sandbox</sandbox>
@@ -20,26 +20,26 @@
   <!--Used to determine which month is transfered, default value: 1 (last month). 0: Current month; 1: last month; 2: past 2nd month;-->
   <PastNthMonth>1</PastNthMonth>
 
-  <EmailHeaderBgColor>#0058DA</EmailHeaderBgColor>
+  <EmailHeaderBgColor>#252525</EmailHeaderBgColor>
   <EmailHeaderFontColor>#fff</EmailHeaderFontColor>
   <EmailContentBgColor>#fff</EmailContentBgColor>
-  <EmailContentFontColor>#000</EmailContentFontColor>
-  <EmailCopyrightBgColor>#d7d7d7</EmailCopyrightBgColor>
-  <EmailCopyrightFontColor>#333</EmailCopyrightFontColor>
-  <EmailFooterBgColor>#0058DA</EmailFooterBgColor>
+  <EmailContentFontColor>#252525</EmailContentFontColor>
+  <EmailCopyrightBgColor>#cccccc</EmailCopyrightBgColor>
+  <EmailCopyrightFontColor>#000</EmailCopyrightFontColor>
+  <EmailFooterBgColor>#252525</EmailFooterBgColor>
   <EmailFooterFontColor>#fff</EmailFooterFontColor>
 
   <app_mail_id>
     <local>31</local>
     <sandbox>31</sandbox>
     <uat>17</uat>
-    <production>17</production>
+    <production>38</production>
   </app_mail_id>
   <MailContact>
     <local>affliate_anpha@nexcel.vn</local>
     <sandbox>affliate_anpha@nexcel.vn</sandbox>
-    <uat>athena000@elinkaa.com</uat>
-    <production>athena000@elinkaa.com</production>
+    <uat>Athena000.csd@gmail.com</uat>
+    <production>member@goobet.com</production>
   </MailContact>
 
   <SkipCheckUMTime>
@@ -54,13 +54,13 @@
   <InternalURL>
     <local>http://10.18.200.209:5001/User</local>
     <sandbox>http://10.18.200.209:5001/User</sandbox>
-    <uat>http://affiliate.athena000.com/</uat>
-    <production>http://affiliate.athena000.com/</production>
+    <uat>http://affiliate.goobet.com/</uat>
+    <production>http://affiliate.goobet.com/</production>
   </InternalURL>
   <InternalURL_Kiosk>
     <local>http://10.18.200.209:5001/User</local>
     <sandbox>http://10.18.200.209:5001/User</sandbox>
-    <uat>http://affiliate.athena000.com/</uat>
-    <production>http://affiliate.athena000.com/</production>
+    <uat>http://affiliate.goobet.com/</uat>
+    <production>http://affiliate.goobet.com/</production>
   </InternalURL_Kiosk>
 </settings>

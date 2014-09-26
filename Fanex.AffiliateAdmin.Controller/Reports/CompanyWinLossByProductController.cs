@@ -120,7 +120,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="groupByDate">Group by date.</param>
         /// <returns>Company Win Loss By Currency.</returns>
         private IEnumerable<CompanyWinlossByCurrency> GroupDataByCurrency(
-            IEnumerable<CompanyWinloss> groupByDate)
+            IEnumerable<CompanyWinLossItem> groupByDate)
         {
             var list = new List<CompanyWinlossByCurrency>();
             var groupByCurrencies = groupByDate.GroupBy(t => t.Currency);
@@ -149,7 +149,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="companyWinlosses">Company win loss.</param>
         /// <returns>Company Win Loss By Product.</returns>
         private List<CompanyWinlossReportByProduct> GroupDataCompanyWinlossByProduct(
-            CompanyWinlossByProductCriteria criteria, IEnumerable<CompanyWinloss> companyWinlosses)
+            CompanyWinlossByProductCriteria criteria, IEnumerable<CompanyWinLossItem> companyWinlosses)
         {
             var companyWinlossByProducts = new List<CompanyWinlossReportByProduct>();
 
@@ -201,11 +201,11 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="groupByDate">Group By Date.</param>
         /// <returns>Company Win Loss List.</returns>
-        private IEnumerable<CompanyWinloss> GroupDataByProducts(IEnumerable<CompanyWinloss> groupByDate)
+        private IEnumerable<CompanyWinLossItem> GroupDataByProducts(IEnumerable<CompanyWinLossItem> groupByDate)
         {
-            var properties = typeof(CompanyWinloss).GetProperties().Where(p => IsPropertyAbleSumUp(p)).ToList();
+            var properties = typeof(CompanyWinLossItem).GetProperties().Where(p => IsPropertyAbleSumUp(p)).ToList();
 
-            var list = new List<CompanyWinloss>();
+            var list = new List<CompanyWinLossItem>();
 
             var groupByProducts = groupByDate.GroupBy(t => t.ProductName);
 
@@ -225,9 +225,9 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="companyWinlosses">Company Win loss List.</param>
         /// <param name="properties">Property List.</param>
         /// <returns>Company Win loss In System Currency.</returns>
-        private CompanyWinloss GetTotalCompanyWinloss(IEnumerable<CompanyWinloss> companyWinlosses, IEnumerable<PropertyInfo> properties)
+        private CompanyWinLossItem GetTotalCompanyWinloss(IEnumerable<CompanyWinLossItem> companyWinlosses, IEnumerable<PropertyInfo> properties)
         {
-            var totalCompanlyWinloss = new CompanyWinloss();
+            var totalCompanlyWinloss = new CompanyWinLossItem();
 
             // Sub total by date, in system currency.
             foreach (var property in properties)

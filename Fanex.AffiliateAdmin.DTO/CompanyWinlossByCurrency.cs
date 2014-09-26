@@ -34,9 +34,9 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public double AffExRate { get; set; }
 
-        public IEnumerable<CompanyWinloss> CompanyWinlossByProductList { get; set; }
+        public IEnumerable<CompanyWinLossItem> CompanyWinlossByProductList { get; set; }
 
-        public CompanyWinloss TotalCompanyWinlossByProduct
+        public CompanyWinLossItem TotalCompanyWinlossByProduct
         {
             get
             {
@@ -48,11 +48,11 @@ namespace Fanex.AffiliateAdmin.DTO
         /// Get Total Company Win Loss.
         /// </summary>
         /// <returns>Total Company Win Loss.</returns>
-        private CompanyWinloss GetTotalCompanyWinloss()
+        private CompanyWinLossItem GetTotalCompanyWinloss()
         {
-            var properties = typeof(CompanyWinloss).GetProperties().Where(IsPropertyAbleSumUp).ToList();
+            var properties = typeof(CompanyWinLossItem).GetProperties().Where(IsPropertyAbleSumUp).ToList();
 
-            var totalCompanlyWinloss = new CompanyWinloss();
+            var totalCompanlyWinloss = new CompanyWinLossItem();
 
             // Sub total by date, in system currency.
             foreach (var property in properties)

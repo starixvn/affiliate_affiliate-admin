@@ -52,7 +52,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             return commissionReport;
         }
 
-        protected override void GetColumnExtra(IDataReader reader, AffiliateWinLoss affiliateWinLoss)
+        protected override void GetColumnExtra(IDataReader reader, AffiliateWinLossItem affiliateWinLoss)
         {
             affiliateWinLoss.ProductId = reader.ToInt("ProductId");
             affiliateWinLoss.ProductName = reader.ToString("ProductName");

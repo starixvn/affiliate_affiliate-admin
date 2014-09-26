@@ -47,9 +47,9 @@ namespace Fanex.MemberAdmin.DTO
             }
         }
 
-        public IEnumerable<MemberWinLoss> MemberWinLossByProductList { get; set; }
+        public IEnumerable<MemberWinLossItem> MemberWinLossByProductList { get; set; }
 
-        public MemberWinLoss TotalMemberWinLossByProduct
+        public MemberWinLossItem TotalMemberWinLossByProduct
         {
             get
             {
@@ -61,11 +61,11 @@ namespace Fanex.MemberAdmin.DTO
         /// Get Total Member Win Loss.
         /// </summary>
         /// <returns>Total Member Win Loss.</returns>
-        private MemberWinLoss GetTotalMemberWinLoss()
+        private MemberWinLossItem GetTotalMemberWinLoss()
         {
-            var properties = typeof(MemberWinLoss).GetProperties().Where(IsPropertyAbleSumUp).ToList();
+            var properties = typeof(MemberWinLossItem).GetProperties().Where(IsPropertyAbleSumUp).ToList();
 
-            var totalMemberWinLoss = new MemberWinLoss();
+            var totalMemberWinLoss = new MemberWinLossItem();
 
             foreach (var property in properties)
             {

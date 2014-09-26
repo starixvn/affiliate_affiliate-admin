@@ -7,21 +7,21 @@
     <environment enable="1">uat</environment>
     <environment enable="1">production</environment>
   </environments>
-  <demoSite>Athena</demoSite>
+  <demoSite>athena</demoSite>
   <sites>
     <site>
-      <name>Athena</name>
+      <name>athena</name>
       <status>1</status>
       <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel.xml</webconfigmodel>
       <webappsettingmodel>ConfigModels\WebAppSettingModels\WebAppSettingModel.athena.xml</webappsettingmodel>
       <webconnectionstringmodel>ConfigModels\WebConnectionStringModels\WebConnectionStringModel.athena.xml</webconnectionstringmodel>
     </site>
     <site>
-      <name>Mymbet</name>
-      <status>0</status>
+      <name>goobet</name>
+      <status>1</status>
       <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel.xml</webconfigmodel>
-      <webappsettingmodel>ConfigModels\WebAppSettingModels\WebAppSettingModel.mymbet.xml</webappsettingmodel>
-      <webconnectionstringmodel>ConfigModels\WebConnectionStringModels\WebConnectionStringModel.mymbet.xml</webconnectionstringmodel>
+      <webappsettingmodel>ConfigModels\WebAppSettingModels\WebAppSettingModel.goobet.xml</webappsettingmodel>
+      <webconnectionstringmodel>ConfigModels\WebConnectionStringModels\WebConnectionStringModel.goobet.xml</webconnectionstringmodel>
     </site>
   </sites>
 </root>

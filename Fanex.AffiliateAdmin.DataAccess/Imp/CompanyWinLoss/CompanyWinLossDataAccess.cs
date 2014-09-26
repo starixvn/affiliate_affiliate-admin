@@ -21,11 +21,11 @@ namespace Fanex.AffiliateAdmin.DataAccess
     /// </summary>
     public abstract class CompanyWinLossDataAccess : ReportDataAccess
     {
-        protected virtual void GetColumnExtra(IDataReader reader, CompanyWinloss companyWinloss)
+        protected virtual void GetColumnExtra(IDataReader reader, CompanyWinLossItem companyWinloss)
         {
         }
 
-        protected virtual void GetColumnExtra(IDataReader reader, CompanyWinloss companyWinloss, string colSuffix)
+        protected virtual void GetColumnExtra(IDataReader reader, CompanyWinLossItem companyWinloss, string colSuffix)
         {
         }
 
@@ -36,14 +36,14 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="baseCurrency">Base Currency.</param>
         /// <param name="groupBy">Group By Input.</param>
         /// <returns>Company win-loss list.</returns>
-        protected IEnumerable<CompanyWinloss> GetCompanyWinLossByProductList(IDataReader reader, byte baseCurrency, int groupBy)
+        protected IEnumerable<CompanyWinLossItem> GetCompanyWinLossByProductList(IDataReader reader, byte baseCurrency, int groupBy)
         {
-            var result = new List<CompanyWinloss>();
+            var result = new List<CompanyWinLossItem>();
             const int GroupByDate = 0;
 
             while (reader.Read())
             {
-                var companyWinloss = new CompanyWinloss
+                var companyWinloss = new CompanyWinLossItem
                 {
                     RowIdx = reader.ToLong("RowIDX"),
                     WinlostDate = reader.ToDateTime("WinlostDate"),
@@ -75,15 +75,15 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="reader">Data reader.</param>
         /// <param name="baseCurrency">Base Currency.</param>
         /// <returns>Total company win-loss list.</returns>
-        protected IEnumerable<CompanyWinloss> GetCompanyWinLossSumUpByMemberCurrency(IDataReader reader, byte baseCurrency)
+        protected IEnumerable<CompanyWinLossItem> GetCompanyWinLossSumUpByMemberCurrency(IDataReader reader, byte baseCurrency)
         {
-            var result = new List<CompanyWinloss>();
+            var result = new List<CompanyWinLossItem>();
 
             if (reader.NextResult())
             {
                 while (reader.Read())
                 {
-                    var companyWinloss = new CompanyWinloss
+                    var companyWinloss = new CompanyWinLossItem
                     {
                         Currency = reader.ToString("Currency"),
                         BetCount = reader.ToInt("BetCount"),
@@ -106,15 +106,15 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <returns>Total company win-loss.</returns>
-        protected IEnumerable<CompanyWinloss> GetCompanyWinLossSumUpBySystemCurrency(IDataReader reader)
+        protected IEnumerable<CompanyWinLossItem> GetCompanyWinLossSumUpBySystemCurrency(IDataReader reader)
         {
-            var result = new List<CompanyWinloss>();
+            var result = new List<CompanyWinLossItem>();
 
             if (reader.NextResult())
             {
                 while (reader.Read())
                 {
-                    var companyWinloss = new CompanyWinloss
+                    var companyWinloss = new CompanyWinLossItem
                     {
                         BetCount = reader.ToInt("BetCount"),
                         ActivePlayer = reader.ToInt("ActivePlayer")
@@ -137,10 +137,10 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="reader">Data reader.</param>
         /// <param name="companyWinloss">Company win-loss.</param>
         /// <param name="colSuffix">Column suffix.</param>
-        private void GetCompanyWinlossColumns(IDataReader reader, CompanyWinloss companyWinloss, string colSuffix)
+        private void GetCompanyWinlossColumns(IDataReader reader, CompanyWinLossItem companyWinloss, string colSuffix)
         {
             SetPropertyValue(reader, companyWinloss, string.Format("TotalTurnover{0}", colSuffix));
-            SetPropertyValue(reader, companyWinloss, string.Format("TotalWinlost{0}", colSuffix));
+            SetPropertyValue(reader, companyWinloss, string.Format("CompanyWinLoss{0}", colSuffix));
             SetPropertyValue(reader, companyWinloss, string.Format("PlayerComm{0}", colSuffix));
             SetPropertyValue(reader, companyWinloss, string.Format("PShare{0}", colSuffix));
             SetPropertyValue(reader, companyWinloss, string.Format("PWin{0}", colSuffix));
@@ -155,7 +155,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="baseCurrency">Criteria input.</param>
         /// <param name="reader">Data reader.</param>
         /// <param name="companyWinloss">Company win-loss.</param>
-        private void GetCompanyWinLossColumnsBasedOnBaseCurrency(byte baseCurrency, IDataReader reader, CompanyWinloss companyWinloss)
+        private void GetCompanyWinLossColumnsBasedOnBaseCurrency(byte baseCurrency, IDataReader reader, CompanyWinLossItem companyWinloss)
         {
             const byte MemberCurrency = 0;
             const byte AffiliateCurrency = 2;

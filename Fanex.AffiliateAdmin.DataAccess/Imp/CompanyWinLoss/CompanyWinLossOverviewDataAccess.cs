@@ -55,7 +55,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// <param name="reader">Data Reader.</param>
         /// <param name="companyWinloss">Company Win Loss.</param>
         /// <param name="colSuffix">Column Suffix.</param>
-        protected override void GetColumnExtra(IDataReader reader, CompanyWinloss companyWinloss, string colSuffix)
+        protected override void GetColumnExtra(IDataReader reader, CompanyWinLossItem companyWinloss, string colSuffix)
         {
             SetPropertyValue(reader, companyWinloss, string.Format("Deposit{0}", colSuffix));
             SetPropertyValue(reader, companyWinloss, string.Format("Withdrawal{0}", colSuffix));

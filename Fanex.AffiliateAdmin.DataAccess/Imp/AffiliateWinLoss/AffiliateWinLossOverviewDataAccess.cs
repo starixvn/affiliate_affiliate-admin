@@ -51,7 +51,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
             return commissionReport;
         }
 
-        protected override void GetColumnExtra(IDataReader reader, AffiliateWinLoss affiliateWinLoss, string colSuffix)
+        protected override void GetColumnExtra(IDataReader reader, AffiliateWinLossItem affiliateWinLoss, string colSuffix)
         {
             SetPropertyValue(reader, affiliateWinLoss, string.Format("Deposit{0}", colSuffix));
             SetPropertyValue(reader, affiliateWinLoss, string.Format("Withdrawal{0}", colSuffix));

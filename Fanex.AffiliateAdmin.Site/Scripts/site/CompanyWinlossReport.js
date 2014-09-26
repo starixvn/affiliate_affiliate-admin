@@ -3,7 +3,7 @@ var CompanyWinlossReport = (function ($) {
     "use strict";
     var submitOptions = {};
 
-    var GROUP_BY_DATE = 0;
+    var GROUP_BY_DATE = "0";
 
     return {
         init: function () {

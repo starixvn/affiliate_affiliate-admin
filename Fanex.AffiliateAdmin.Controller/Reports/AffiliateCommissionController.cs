@@ -70,6 +70,25 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         /// <summary>
+        /// Affiliate win loss action.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>Affiliate Win Loss result.</returns>
+        [HttpPost]
+        public ActionResult GetDataByAffiliate(AffiliateCommissionCriteria criteria)
+        {
+            const int GroupByMonth = 1;
+            criteria.AffName = CurrentSession.Affiliate.Username;
+            criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
+            criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
+            criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
+            criteria.Currencies = CurrentSession.Affiliate.CurrencyID.ToString();
+            criteria.GroupBy = GroupByMonth;
+
+            return GetData(criteria);
+        }
+
+        /// <summary>
         /// Group Data By Currency.
         /// </summary>
         /// <param name="affiliateCommissions">Affiliate Commissions.</param>

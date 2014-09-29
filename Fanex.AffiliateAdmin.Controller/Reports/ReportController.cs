@@ -286,7 +286,36 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return View(new AffiliateCommissionViewModel());
         }
-        
+
+        /// <summary>
+        /// Commission By Affiliate.
+        /// </summary>
+        /// <param name="model">Model Input.</param>
+        /// <returns>Commission By Affiliate Result.</returns>
+        [HttpGet]
+        public ActionResult AffiliateCommissionByAffiliate(AffiliateCommissionByAffiliateViewModel model)
+        {
+            var serializer = new JavaScriptSerializer();
+
+            ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
+            {
+                Id = x.ProductID,
+                Name = x.ProductName
+            }));
+
+            ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
+
+            var baseCurrencyList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "0",  Text = CurrentSession.Affiliate.Currency },
+                new SelectListItem { Value = "1",  Text = AppSettings.BaseExchange.Code },
+            };
+
+            model.AddBaseCurrencyList(baseCurrencyList);
+
+            return View(model);
+        }
+
         #endregion Affiliate Commission Report
 
         #region Helpers

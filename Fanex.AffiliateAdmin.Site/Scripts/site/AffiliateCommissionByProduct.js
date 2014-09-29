@@ -424,6 +424,18 @@ var AffiliateCommissionByProduct = (function ($) {
         return footerRows;
     };
 
+    var byAffiliate = function () {
+        return $('#ByAffiliate').length > 0;
+    };
+
+    var getUrl = function () {
+        if (byAffiliate()) {
+            return AFFILIATE.getAbsoluteUrl("AffiliateCommission/GetDataByAffiliate");
+        }
+
+        return AFFILIATE.getAbsoluteUrl("AffiliateCommission/GetData");
+    };
+
     return {
         submitRequest: function (dataRequest) {
             $.extend(true, submitOptions, dataRequest);
@@ -434,7 +446,7 @@ var AffiliateCommissionByProduct = (function ($) {
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
 
             $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("AffiliateCommission/GetData"),
+                url: getUrl(),
                 type: 'post',
                 data: jQuery.param(submitOptions) + "&pageCurrent=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 beforeSend: function () {

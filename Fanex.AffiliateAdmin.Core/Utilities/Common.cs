@@ -287,9 +287,9 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             {
                 Directory.CreateDirectory(directory);
             }
-
-            // Delete it if exist.
+            
             DeleteFile(newFilePath);
+
             File.Move(oldFilePath, newFilePath);
         }
 

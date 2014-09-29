@@ -11,6 +11,7 @@ namespace Fanex.AffiliateAdmin.Core.Options
 {
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// Manage the hard-code options.
@@ -52,9 +53,9 @@ namespace Fanex.AffiliateAdmin.Core.Options
                 {
                     _drawFilters = new List<SelectListItem>
                     {
-                        new SelectListItem { Value = "0", Text = "Normal" },
-                        new SelectListItem { Value = "1", Text = "No Draw" },
-                        new SelectListItem { Value = "2", Text = "No Draw For Turnover Only" }
+                        new SelectListItem { Value = "0", Text = Lang.Normal },
+                        new SelectListItem { Value = "1", Text = Lang.NoDraw },
+                        new SelectListItem { Value = "2", Text = Lang.NoDrawForTurnover }
                     };
                 }
 

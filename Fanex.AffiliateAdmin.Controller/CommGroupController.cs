@@ -101,6 +101,10 @@ namespace Fanex.AffiliateAdmin.Controller
 
             criteria.IP = Remote.GetClientIPAddress();
 
+            criteria.GroupName = criteria.GroupName.Encode();
+
+            criteria.Description = criteria.Description.Encode();
+
             _commGroupService.ExecuteOutput(criteria);
 
             var errorMsg = string.Empty;
@@ -170,6 +174,10 @@ namespace Fanex.AffiliateAdmin.Controller
                 GroupIDList = groupid.ToString(CultureInfo.InvariantCulture)
             });
 
+            group.GroupName = group.GroupName.Decode();
+
+            group.Description = group.Description.Decode();
+
             return View("Edit", group);
         }
 
@@ -197,9 +205,14 @@ namespace Fanex.AffiliateAdmin.Controller
 
             criteria.IP = Remote.GetClientIPAddress();
 
+            criteria.GroupName = criteria.GroupName.Encode();
+
+            criteria.Description = criteria.Description.Encode();
+
             _commGroupService.ExecuteOutput(criteria);
 
             var errorMsg = string.Empty;
+
             if (criteria.ErrCode == 9999)
             {
                 errorMsg = criteria.ErrMsg;
@@ -279,7 +292,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             var groups = _commGroupService.GetById(criteria);
             var date = criteria.Date == null ? DateTime.Now : criteria.Date.Value;
-            BuildGroupData(groups, date, criteria.GroupID.ToString());            
+            BuildGroupData(groups, date, criteria.GroupID.ToString());
             return View(groups.FirstOrDefault());
         }
 
@@ -317,9 +330,9 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="group">Commission group.</param>
         /// <param name="deductionSettings">Deduction setting.</param>
         private void GetCommGroupSettings(
-            List<CommGroupTierSetting> tierSettings, 
-            Dictionary<string, object> products, 
-            CommGroup group, 
+            List<CommGroupTierSetting> tierSettings,
+            Dictionary<string, object> products,
+            CommGroup group,
             IEnumerable<DeductionSetting> deductionSettings)
         {
             var allDeductions = AppSettings.DeductionTypes;

@@ -255,13 +255,9 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 // Banner Type is image.
                 if (BannerType == 1)
                 {
-                    if (System.IO.File.Exists(oldBannerPath))
+                    if (System.IO.File.Exists(oldThumbnailPath))
                     {
                         Common.MoveFile(oldThumbnailPath, ThumbnailPath);
-                    }
-                    else
-                    {
-                        return string.Format(Lang.CouldNotFindPath, oldBannerPath.Replace("\\", "/"));
                     }
                 }
 

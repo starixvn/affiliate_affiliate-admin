@@ -14,6 +14,7 @@ namespace Fanex.AffiliateAdmin.Models
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Options;
     using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
@@ -22,25 +23,6 @@ namespace Fanex.AffiliateAdmin.Models
     public class AffiliateWLByAffiliateViewModel
     {
         #region Fields
-
-        private readonly List<SelectListItem> _drawFilterOptions = new List<SelectListItem>
-                {
-                    new SelectListItem
-                    {
-                        Text = Lang.Normal,
-                        Value = "0"
-                    },
-                    new SelectListItem
-                    {
-                        Text = Lang.NoDraw,
-                        Value = "1"
-                    },
-                    new SelectListItem
-                    {
-                        Text = Lang.NoDrawForTurnover,
-                        Value = "2"
-                    }
-                };
 
         private readonly IEnumerable<SelectListItem> _sortByList = new List<SelectListItem>
             {
@@ -120,7 +102,7 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                return _drawFilterOptions;
+                return new SelectList(OptionManager.DrawFilters, "Value", "Text", DrawFilter.ToString());
             }
         }
 

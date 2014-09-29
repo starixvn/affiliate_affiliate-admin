@@ -7,6 +7,7 @@
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System;
+    using System.Web;
 
     /// <summary>
     /// TODO: Update summary.
@@ -41,6 +42,16 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             where TEnum : struct
         {
             return (TEnum)Enum.Parse(typeof(TEnum), value);
+        }
+
+        public static string Encode(this string value)
+        {
+            return HttpUtility.HtmlEncode(value);
+        }
+
+        public static string Decode(this string value)
+        {
+            return HttpUtility.HtmlDecode(value);
         }
     }
 }

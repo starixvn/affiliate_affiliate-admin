@@ -1697,6 +1697,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this domain control?.
+        /// </summary>
+        public static string ConfirmDelDomainControl {
+            get {
+                return ResourceManager.GetString("ConfirmDelDomainControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the domain settings?.
         /// </summary>
         public static string ConfirmDelDomainSetting {
@@ -2566,6 +2575,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string EditCurrentMessage {
             get {
                 return ResourceManager.GetString("EditCurrentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Domain Control.
+        /// </summary>
+        public static string EditDomainControl {
+            get {
+                return ResourceManager.GetString("EditDomainControl", resourceCulture);
             }
         }
         

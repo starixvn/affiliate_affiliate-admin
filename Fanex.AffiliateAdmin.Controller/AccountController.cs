@@ -28,7 +28,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Account controller.
     /// </summary>
-    public partial class AccountController : Controller
+    public class AccountController : Controller
     {
         #region Services
 

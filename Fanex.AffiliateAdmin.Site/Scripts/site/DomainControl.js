@@ -43,13 +43,13 @@ var DOMAINCONTROL = (function ($) {
             });
         },
         Insert: function() {
-            AFFILIATE.openDialogFrame("Domain/DomainControlAdd", lang.AddDomain, { width: 500, height: 370 });
+            AFFILIATE.openDialogFrame("Domain/DomainControlAdd", lang.AddDomainControl, { width: 500, height: 370 });
         },
         ShowUpdate: function(id) {
-            AFFILIATE.openDialogFrame("Domain/DomainControlUpd/" + id, lang.EditDomain, { width: 500, height: 370 });
+            AFFILIATE.openDialogFrame("Domain/DomainControlUpd/" + id, lang.EditDomainControl, { width: 500, height: 370 });
         },
         Remove: function(id) {
-            if (confirm(lang.DeleteDomain)) {
+            if (confirm(lang.DeleteDomainControl)) {
                 $.ajax({
                     url: AFFILIATE.getAbsoluteUrl("Domain/DomainControlRemove/" + id),
                     type: 'post',

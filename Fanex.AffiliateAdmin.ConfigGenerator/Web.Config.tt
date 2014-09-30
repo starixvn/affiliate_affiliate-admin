@@ -58,7 +58,7 @@ if(Site != null)
     <add key="app_mail_address" value="<#= appSettings.GetValue("app_mail_address") #>"/>
     <add key="RemoteRefURL" value="<#= appSettings.GetValue("RemoteRefURL") #>" />
     <add key="ITMail" value="<#= appSettings.GetValue("ITMail") #>" />
-
+	<add key="RefreshTime" value="635476950936537376" />
   </appSettings>
   <system.web>
     <compilation debug="<#= compilations.GetValue("debug") #>" targetFramework="4.0" />

@@ -2657,4 +2657,10 @@
   <data name="MemberWinLossOverview" xml:space="preserve">
     <value>Member Win Loss Overview</value>
   </data>
+  <data name="ConfirmDelDomainControl" xml:space="preserve">
+    <value>Are you sure you want to delete this domain control?</value>
+  </data>
+  <data name="EditDomainControl" xml:space="preserve">
+    <value>Edit Domain Control</value>
+  </data>
 </root>

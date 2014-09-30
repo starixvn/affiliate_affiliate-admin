@@ -54,13 +54,13 @@
   <InternalURL>
     <local>http://10.18.200.209:5001/User</local>
     <sandbox>http://10.18.200.209:5001/User</sandbox>
-    <uat>http://affqa.starific.net/athena001user/</uat>
-    <production>http://affiliate.goobet.com/</production>
+    <uat>http://affqa.starific.net/athena001user</uat>
+    <production>http://affiliate.goobet.com</production>
   </InternalURL>
   <InternalURL_Kiosk>
     <local>http://10.18.200.209:5001/User</local>
     <sandbox>http://10.18.200.209:5001/User</sandbox>
-    <uat>http://affqa.starific.net/athena001user/</uat>
-    <production>http://affiliate.goobet.com/</production>
+    <uat>http://affqa.starific.net/athena001user</uat>
+    <production>http://affiliate.goobet.com</production>
   </InternalURL_Kiosk>
 </settings>

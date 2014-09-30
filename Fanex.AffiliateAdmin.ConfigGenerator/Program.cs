@@ -1,74 +1,71 @@
-﻿using System;
-using System.IO;
-using System.Xml.Linq;
+﻿// --------------------------------------------------------------------------
+// <copyright file="Program.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2014.9.30">Created</change>
+// </history>
 
 namespace Fanex.AffiliateAdmin.ConfigGenerator
 {
-    public class Program
+    using System.IO;
+    using System.Xml.Linq;
+
+    /// <summary>
+    /// Program class.
+    /// </summary>
+    public static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            AddXtest();
+            OperateXtest(OperationType.Add);
 
-            //RemoveXtest();
+            OperateXtest(OperationType.Remove);
         }
 
-        private static void RemoveXtest()
+        /// <summary>
+        /// Operate on test store procedure.
+        /// </summary>
+        /// <param name="type">Operation type.</param>
+        private static void OperateXtest(OperationType type)
         {
-            const string xmlFile = @"..\..\XtestSps.xml";
-            const string spNameFile = @"..\..\SpName.tt";
+            const string XmlFile = @"..\..\XtestSps.xml";
+
+            const string SpNameFile = @"..\..\SpName.tt";
 
             var document = new XDocument();
 
-            if (!string.IsNullOrEmpty(xmlFile))
+            if (!string.IsNullOrEmpty(XmlFile))
             {
-                document = XDocument.Load(xmlFile);
+                document = XDocument.Load(XmlFile);
             }
 
             var sps = document.Descendants("sp");
 
-            var spName = File.ReadAllText(spNameFile);
+            var content = File.ReadAllText(SpNameFile);
 
-            const string oldValueFormat = "SpName=\"{0}\"";
+            const string OldValueFormat = "SpName=\"{0}\"";
 
-            const string xtestValueFormat = "SpName=\"{0}_xtest\"";
-
-            foreach (var sp in sps)
-            {
-                var value = GetNodeValue(sp);
-                spName = spName.Replace(string.Format(xtestValueFormat, value), string.Format(oldValueFormat, value));
-            }
-
-            File.WriteAllText(spNameFile, spName);
-        }
-
-        private static void AddXtest()
-        {
-            const string xmlFile = @"..\..\XtestSps.xml";
-            const string spNameFile = @"..\..\SpName.tt";
-
-            var document = new XDocument();
-
-            if (!string.IsNullOrEmpty(xmlFile))
-            {
-                document = XDocument.Load(xmlFile);
-            }
-
-            var sps = document.Descendants("sp");
-
-            var spName = File.ReadAllText(spNameFile);
-            
-            const string oldValueFormat = "SpName=\"{0}\"";
-
-            const string xtestValueFormat = "SpName=\"{0}_xtest\"";
+            const string XtestValueFormat = "SpName=\"{0}_xtest\"";
 
             foreach (var sp in sps)
             {
                 var value = GetNodeValue(sp);
-                spName = spName.Replace(string.Format(oldValueFormat, value), string.Format(xtestValueFormat, value));
+
+                switch (type)
+                {
+                    case OperationType.Add:
+                        content = content.Replace(string.Format(OldValueFormat, value), string.Format(XtestValueFormat, value));
+                        break;
+
+                    case OperationType.Remove:
+                        content = content.Replace(string.Format(XtestValueFormat, value), string.Format(OldValueFormat, value));
+                        break;
+                }
             }
 
-            File.WriteAllText(spNameFile, spName);
+            File.WriteAllText(SpNameFile, content);
         }
 
         private static string GetNodeValue(XElement element)

@@ -5135,7 +5135,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No.Affiliates.
+        ///   Looks up a localized string similar to No. Affiliates.
         /// </summary>
         public static string NoOfAffiliate {
             get {
@@ -5561,7 +5561,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Member Comm..
+        ///   Looks up a localized string similar to Member Comm.
         /// </summary>
         public static string PlayerComm {
             get {

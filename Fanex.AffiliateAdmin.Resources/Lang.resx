@@ -1737,7 +1737,7 @@
     <value>None</value>
   </data>
   <data name="NoOfAffiliate" xml:space="preserve">
-    <value>No.Affiliates</value>
+    <value>No. Affiliates</value>
   </data>
   <data name="NoOfUser" xml:space="preserve">
     <value>No of User</value>
@@ -2575,7 +2575,7 @@
     <value>Affiliate Win Loss Report</value>
   </data>
   <data name="PlayerComm" xml:space="preserve">
-    <value>Member Comm.</value>
+    <value>Member Comm</value>
   </data>
   <data name="PlayerCommission" xml:space="preserve">
     <value>Member Commmission</value>

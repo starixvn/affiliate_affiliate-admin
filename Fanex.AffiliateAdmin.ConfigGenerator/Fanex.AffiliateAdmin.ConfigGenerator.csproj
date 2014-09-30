@@ -52,6 +52,7 @@
     <Compile Include="ConfigModelReaders\SiteManager.cs" />
     <Compile Include="ConfigModelReaders\WebAppSettingsModelReader.cs" />
     <Compile Include="ConfigModelReaders\WebConfigModelReader.cs" />
+    <Compile Include="OperationType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

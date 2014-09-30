@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E8885F0B-442F-473D-BA3C-5C7E2229B123}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fanex.AffiliateAdmin.ConfigGenerator</RootNamespace>
     <AssemblyName>Fanex.AffiliateAdmin.ConfigGenerator</AssemblyName>
@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,6 +52,7 @@
     <Compile Include="ConfigModelReaders\SiteManager.cs" />
     <Compile Include="ConfigModelReaders\WebAppSettingsModelReader.cs" />
     <Compile Include="ConfigModelReaders\WebConfigModelReader.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +67,9 @@
     <Content Include="ConfigModels\WebConfigModels\WebConfigModel.xml" />
     <Content Include="ConfigModels\WebConnectionStringModels\WebConnectionStringModel.goobet.xml" />
     <Content Include="ConfigModels\WebConnectionStringModels\WebConnectionStringModel.athena.xml" />
+    <Content Include="XtestSps.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SpName.txt">
       <DependentUpon>SpName.tt</DependentUpon>
       <AutoGen>True</AutoGen>

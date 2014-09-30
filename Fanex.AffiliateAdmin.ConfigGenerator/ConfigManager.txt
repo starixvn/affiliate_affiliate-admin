@@ -1,61 +1,61 @@
 ﻿
-Error processing file SpName.athena.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> SpName.athena.local.xml
-Error processing file SpName.athena.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> SpName.athena.production.xml
-Error processing file SpName.athena.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> SpName.athena.uat.xml
-Error processing file SpName.goobet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> SpName.goobet.local.xml
-Error processing file SpName.goobet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> SpName.goobet.production.xml
-Error processing file SpName.goobet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> SpName.goobet.uat.xml
-Error processing file SpName.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> SpName.xml
-Error processing file Web.AppSettings.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.AppSettings.athena.local.config
-Error processing file Web.AppSettings.athena.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.AppSettings.athena.production.config
-Error processing file Web.AppSettings.athena.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.AppSettings.athena.uat.config
-Error processing file Web.AppSettings.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.AppSettings.config
-Error processing file Web.AppSettings.goobet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.AppSettings.goobet.local.config
-Error processing file Web.AppSettings.goobet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.AppSettings.goobet.production.config
-Error processing file Web.AppSettings.goobet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.AppSettings.goobet.uat.config
-Error processing file Web.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.athena.local.config
-Error processing file Web.athena.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.athena.production.config
-Error processing file Web.athena.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.athena.uat.config
-Error processing file Web.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.config
-Error processing file Web.ConnectionString.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.ConnectionString.athena.local.config
-Error processing file Web.ConnectionString.athena.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.ConnectionString.athena.production.config
-Error processing file Web.ConnectionString.athena.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.ConnectionString.athena.uat.config
-Error processing file Web.ConnectionString.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.ConnectionString.config
-Error processing file Web.ConnectionString.goobet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.ConnectionString.goobet.local.config
-Error processing file Web.ConnectionString.goobet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.ConnectionString.goobet.production.config
-Error processing file Web.ConnectionString.goobet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.ConnectionString.goobet.uat.config
-Error processing file Web.goobet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.goobet.local.config
-Error processing file Web.goobet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.goobet.production.config
-Error processing file Web.goobet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.goobet.uat.config
-Error processing file Web.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.config
 // Generated helper templates
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\ConfigManager.txt4

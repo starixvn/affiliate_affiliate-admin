@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <sp>AffAdmin_HomeGeneralInfo</sp>
+  <sp>AffAdmin_GetMemberStatistics</sp>
+  <sp>AffAdmin_AffiliateSelGeneralInfo</sp>
+  <sp>AffAdmin_StatisticsSel</sp>
+  <sp>AffAdmin_CompanyWinlossReport</sp>
+  <sp>AffAdmin_MemberWinLossReport</sp>
+  <sp>AffAdmin_CompanyWinLossByProductReport</sp>
+  <sp>AffAdmin_AffiliateWinLossReport</sp>
+  <sp>Aff_CommissionForMonthAll</sp>
+  <sp>AffAdmin_AffiliateCommissionReport</sp>
+  <sp>AffAdmin_MemberWinLossByProductReport</sp>
+  <sp>AffAdmin_AffiliateWinLossByProductReport</sp>
+  <sp>AffAdmin_AffiliateListForReport</sp>
+  <sp>AffAdmin_QualifiedMembersReport</sp>
+  <sp>AffAdmin_f_GetDeductionPercent</sp>
+  <sp>AffAdmin_f_HasDeduction</sp>
+  <sp>AffAdmin_CommGroupSel</sp>
+  <sp>AffAdmin_CommGroupUpd</sp>
+  <sp>AffAdmin_CommGroupIns</sp>
+  <sp>AffAdmin_DeductionSettingSel</sp>
+  <sp>AffAdmin_CommGroupList_SettingDetail</sp>
+  <sp>AffAdmin_CommGroupSelDetail</sp>
+  <sp>AffAdmin_GetDefaultPSPExchange</sp>
+  <sp>AffAdmin_ProductSelAll</sp>
+  <sp>AffAdmin_BannerSel</sp>
+  <sp>AffAdmin_GetMemberDetail</sp>
+  <sp>AffAdmin_DeductionTypeSel</sp>
+  <sp>Aff_CalMonthlyEarning</sp>
+  <sp>Aff_CalMonthlyEarningCurrent</sp>
+  <sp>Aff_CommissionForMonth</sp>
+  <sp>Aff_CommissionForCurrentMonth</sp>
+  <sp>AffAdmin_CalMonthlyEarningCurrent</sp>
+  <sp>AffAdmin_CalMonthlyEarning</sp>
+  <sp>Task_Aff_MonthlyTransfer_Job</sp>
+  <sp>Task_Aff_MemberDailyImportData</sp>
+  <sp>IsZeroCommissionGroup</sp>
+  <sp>Task_Aff_GroupSettingBackup</sp>
+  <sp>AffAdmin_AffiliateSel</sp>
+  <sp>Aff_User_EarningSelDaily</sp>
+  <sp>Aff_User_EarningSelDetail</sp>
+  <sp>Aff_User_SecureLoginInfo</sp>
+  <sp>Aff_User_SecureLoginUpdate</sp>
+  <sp>Aff_User_SecureUpdPasswordInfo</sp>
+  <sp>Aff_User_SecureUpdPasswordUpdate</sp>
+</root>

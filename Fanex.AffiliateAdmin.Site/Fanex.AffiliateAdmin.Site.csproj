@@ -222,7 +222,6 @@
     </Content>
     <Content Include="App_Data\SpName.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\themes\base\AffiliateAdmin.css" />
@@ -922,42 +921,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\CommGroup\Add.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
-    <Content Include="Web.ConnectionString.athena.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.athena.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.athena.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.athena.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.athena.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.athena.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.athena.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.athena.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.athena.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
     <Content Include="Web.ConnectionString.goobet.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -986,6 +949,42 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="Views\Report\AffiliateCommissionByAffiliate.cshtml" />
+    <Content Include="Web.ConnectionString.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.athena.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.athena.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.athena.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.athena.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.athena.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.athena.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.athena.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.athena.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.athena.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

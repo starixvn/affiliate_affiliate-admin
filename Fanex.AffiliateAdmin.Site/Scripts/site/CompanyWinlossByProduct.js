@@ -288,7 +288,6 @@ var CompanyWinlossByProduct = (function ($) {
     };
 
     var getTotalAllRowsOfGroup = function (rows, itemLevel1, sampleDateColumn, hasMultipleRows, hasMultipleCurrencyRows) {
-        var numCurrencies = itemLevel1.CompanyWinlossInMemberCurrencies.length;
 
         if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows)) {
             var dateColumn = $.extend(true, {}, {
@@ -301,7 +300,7 @@ var CompanyWinlossByProduct = (function ($) {
                 var currency = itemLevel2.Currency.toLowerCase();
 
                 var currencyColumn = {
-                    TdClass: numCurrencies > 1 ? "toggler toggle-{0}".format(currency) : '',
+                    TdClass: itemLevel2.MergeRowNumber > 1 ? "toggler toggle-{0}".format(currency) : '',
                     Value: itemLevel2.Currency,
                     Name: "Currency",
                     MergeRowNumber: itemLevel2.MergeRowNumber

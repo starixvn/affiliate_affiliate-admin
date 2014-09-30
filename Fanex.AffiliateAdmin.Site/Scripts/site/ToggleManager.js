@@ -1,5 +1,6 @@
 ﻿var ToggleManager = (function ($) {
     var currentStatus;
+    var rowHeight = 27;
     var collapseStatus = 0, expandStatus = 1;
 
     var manager = {};
@@ -36,13 +37,15 @@
 
     var addToggleIndicatorForProduct = function (element) {
         var rowspan = parseInt($(element).attr("rowspan"), 10);
+        rowspan = isNaN(rowspan) ? 1 : rowspan;
         $(element).css({ position: 'relative' });
         var halfWidth = $(element).width() / 2 - 12 + 'px';
+        var height = $(element).height();
 
         var toggleClass = getToggleClass(element);
         var currencyClass = getCurrencyClass(element);
 
-        if (!isNaN(rowspan) && rowspan > 1) {
+        if (rowspan > 1) {
             $(element).prepend("<div class='toggle-indicator expand' title='{0}'></div>".format("Collapse/expand data rows."));
             $('.{0} .toggle-indicator'.format(toggleClass)).css({
                 position: 'absolute',
@@ -60,6 +63,8 @@
         if (currencyClass.length > 0) {
             $('.' + currencyClass).hide();
         }
+
+        $(element).find('.table-cell').css('height', rowHeight + 'px');
     };
 
     var handleToggleForProduct = function (element) {
@@ -70,12 +75,21 @@
         if (self.hasClass('collapse')) {
             self.removeClass('collapse').addClass('expand');
             $('.' + currencyClass).hide();
+
+            resizeGrid();
+
+            $(parent).find('.table-cell').css('height', rowHeight + 'px');
+
         } else {
             self.removeClass('expand').addClass('collapse');
             $('.' + currencyClass).show();
-        }
 
-        resizeGrid();
+            resizeGrid();
+
+            var height = $(parent).height();
+
+            $(parent).find('.table-cell').css('height', height + 'px');
+        }
     };
 
     var handleToggleForOverview = function () {
@@ -103,6 +117,11 @@
             left: $('.subtotal-cell').width() / 2 - 12 + 'px',
             bottom: 0
         });
+
+
+
+        $('.real-cell').find('.table-cell').css('height', $('.real-cell').height() + 'px');
+        $('.pseudo-cell').find('.table-cell').css('height', rowHeight + 'px');
     };
 
     manager.InitForProduct = function () {

@@ -139,8 +139,8 @@ affiliate-info
                     }
 
                     if (rowData.TransType == 201) {
-                        var href = AFFILIATE.getAbsoluteUrl("Report/CommissionByAffiliate");
-                        var transdate = moment(rowData.TransDate).format(AFFILIATE.DATE_FORMAT_FULL);
+                        var href = AFFILIATE.getAbsoluteUrl("Report/AffiliateCommissionByAffiliate");
+                        var transdate = window.moment(rowData.TransDate).format(AFFILIATE.DATE_FORMAT_FULL);
                         href += "?FromDate=" + transdate + "&ToDate=" + transdate;
                         return "<a href=\"{0}\">".format(href) + currentValue + "</a>";
                     } else if (rowData.TransType == 202) {

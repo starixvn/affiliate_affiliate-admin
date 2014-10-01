@@ -5,11 +5,15 @@
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.Services
 @section iconcss{
 commgroup
 }
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.CommGroup, 0, "commissionGroup")
+}
+@{
+    var now = ServerTimeService.GetSystemDateTime();
 }
 <div class="search-panel search-commgroup">
     <div class="ic-reload" title="@Lang.RefreshPage">
@@ -29,7 +33,7 @@ commgroup
                 </div>
                 <div class="cell">
                     <label for="Date" class="txt">@Lang.Month</label>
-                    @Html.MonthPicker("Date", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, new { @class = "width-140" })                
+                    @Html.MonthPicker("Date", now, AppSettings.SystemStartDate, now, new { @class = "width-140" })                
                 </div>
             </div>
             <div class="row-fluid row-form btn-action">

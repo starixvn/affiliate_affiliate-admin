@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "ServerTime2";
+    Layout = "~/Views/Shared/_LayoutNoHeader.cshtml";
+}
+
+@model Tuple<DateTime, SystemDateTime>
+
+<h1>Web Server Time: @Model.Item1.ToString("ddd, dd MMM yyyy HH:mm:ss fffffffK")</h1>
+
+<h1>DB Server Time: @Model.Item2.DatabaseDateTime.ToString("ddd, dd MMM yyyy HH:mm:ss fffffffK")</h1>
+<p>GMT Offset: @Model.Item2.GMTOffSet</p>
+

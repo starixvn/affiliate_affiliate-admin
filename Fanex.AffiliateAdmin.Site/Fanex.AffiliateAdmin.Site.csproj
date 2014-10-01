@@ -213,6 +213,7 @@
     </Content>
     <Content Include="App_Data\SpName.goobet.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\SpName.goobet.production.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
@@ -816,7 +817,6 @@
     <Content Include="Content\_Sites\goobet\Login.less" />
     <Content Include="Content\_Sites\goobet\Notify.less" />
     <None Include="App_Data\ConfigManager.txt4" />
-    <None Include="ConfigManager.txt4" />
     <None Include="Content\_Sites\q8bola\Login.less" />
     <None Include="Content\_Sites\q8bola\Notify.less" />
     <None Include="Content\_Sites\royalebet\Login.less" />
@@ -921,70 +921,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\CommGroup\Add.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
-    <Content Include="Web.ConnectionString.goobet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.goobet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.goobet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.goobet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.goobet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.goobet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.goobet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.goobet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.goobet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
     <Content Include="Views\Report\AffiliateCommissionByAffiliate.cshtml" />
-    <Content Include="Web.ConnectionString.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.athena.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.athena.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.athena.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.athena.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.athena.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.athena.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.athena.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.athena.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.athena.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
+    <Content Include="Views\Refresh\ServerTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

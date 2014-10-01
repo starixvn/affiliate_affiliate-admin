@@ -4,6 +4,7 @@
 <#@ assembly name="System.Xml.Linq" #>
 <#@ assembly name="System.Data" #>
 <#@ assembly name="System.Core" #>
+
 <#@ import namespace="Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders" #>
 <#@ include file="$(SolutionDir)\packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
 <# 

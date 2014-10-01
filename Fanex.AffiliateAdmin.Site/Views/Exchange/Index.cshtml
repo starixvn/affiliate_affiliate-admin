@@ -6,12 +6,16 @@
 @using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Services
 
 @section iconcss{
 exchange-rate
 }
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.Exchange, 0, "currency")
+}
+@{
+    var now = SystemTimeService.GetSystemDateTime();
 }
 <div class="search-panel" style="width: 1000px">
     <div class="ic-reload" title="@Lang.RefreshPage">
@@ -22,7 +26,7 @@ exchange-rate
         <div class="span12 search-form">
             <div class="row-fluid row-form end-search">
                 <div class="cell">
-                    @Html.DatePicker("Time", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now)
+                    @Html.DatePicker("Time", now, AppSettings.SystemStartDate, now)
                     <button type="button" id="btnSubmit" class="btn btn-default" style="vertical-align: top">@Lang.Submit</button>
                 </div>
             </div>

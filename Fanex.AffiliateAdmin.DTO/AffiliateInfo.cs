@@ -34,7 +34,23 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime? RegisteredDate { get; set; }
 
+        public string RegisteredDateStr
+        {
+            get
+            {
+                return RegisteredDate.HasValue ? RegisteredDate.Value.ToString(DateFormatManager.DateFormat) : string.Empty;
+            }
+        }
+
         public DateTime? ApprovedDate { get; set; }
+
+        public string ApprovedDateStr
+        {
+            get
+            {
+                return ApprovedDate.HasValue ? ApprovedDate.Value.ToString(DateFormatManager.DateFormat) : string.Empty;
+            }
+        }
 
         public string Status { get; set; }
 

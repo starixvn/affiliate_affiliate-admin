@@ -2,6 +2,7 @@
 @using Fanex.AffiliateAdmin.Models
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Services
 @model MessageViewModel
 @{
     ViewBag.Title = Lang.MessageList;
@@ -13,6 +14,9 @@ message
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.Message, 0, "message")
 }
+@{
+    var now = SystemTimeService.GetSystemDateTime();
+}
 <div class="search-panel">
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
@@ -22,17 +26,17 @@ message
         <div class="span12 search-form">
             <div class="row-fluid row-form end-search">
                 <div class="cell">
-                    @Html.LabelFor(m => m.SearchBy)                    
+                    @Html.LabelFor(m => m.SearchBy)
                     @Html.DropDownCheckList("SearchBy", MessageSettings.ListSearchBy, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
                 <div class="cell">
                     &nbsp;&nbsp;
                     @Html.CheckBoxFor(m => m.DateChecked)
                     @Html.LabelFor(m => m.FromDate)
-                    @Html.DatePicker("FromDate", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), AppSettings.SystemStartDate, DateTime.Now, true)
+                    @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), AppSettings.SystemStartDate, now, true)
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     @Html.LabelFor(m => m.ToDate)
-                    @Html.DatePicker("ToDate", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, true)
+                    @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, true)
                 </div>
             </div>
             <div class="row-fluid row-form btn-action">
@@ -72,11 +76,11 @@ message
             columns: [
                 { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Creator", Width: 80, Name: "CreatorName", HeaderAlign: "center" },
-                { HeaderText: "@Lang.PostDate", Width: 160, Name: "PostedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+                { HeaderText: "@Lang.PostDate", Width: 160, Name: "PostedDateStr", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Message", Width: 400, Name: "Message_en", HeaderAlign: "center", Formatter: formatMessage },
                 { HeaderText: "@Lang.Important", Width: 70, Name: "Important", HeaderAlign: "center", Formatter: formatImportant },
                 { HeaderText: "@Lang.UpdatedBy", Width: 70, Name: "UpdateName", HeaderAlign: "center", CanResize: true },
-                { HeaderText: "@Lang.UpdateDate", Width: 160, Name: "UpdatedDate", HeaderAlign: "center", CellAlign: "center",  FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+                { HeaderText: "@Lang.UpdateDate", Width: 160, Name: "UpdatedDateStr", HeaderAlign: "center", CellAlign: "center" },
                 {
                     HeaderText: "@Lang.Action",
                     Width: 70,

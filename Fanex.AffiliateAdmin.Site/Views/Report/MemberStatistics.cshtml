@@ -2,6 +2,7 @@
 @using Fanex.AffiliateAdmin.Models
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Services
 
 @{
     ViewBag.Title = Lang.MemberStatistics;
@@ -12,6 +13,9 @@ report
 }
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.Reports, 1, "report")
+}
+@{
+    var now = SystemTimeService.GetSystemDateTime();
 }
 <div class="search-panel search-message" style="min-width: 872px">
     <div class="ic-reload" title="@Lang.RefreshPage">
@@ -41,27 +45,27 @@ report
                      <select id="GroupBy" name="GroupBy" class="width-140 single-select dropdownchecklist">
                          <option value="0">@Lang.All</option>
                          <option value="1">@Lang.Date</option>
-                         <option value="2" selected>@Lang.Month</option>                    
+                         <option value="2" selected>@Lang.Month</option>
                      </select>
                  </div>
                  <div class="hide" id="dateSearch">
                      <div class="cell">
                          @Html.Label("FromDate", Lang.From, new { @class = "txt" })
-                         @Html.DatePicker("FromDate", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), AppSettings.SystemStartDate, DateTime.Now, false)
+                         @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), AppSettings.SystemStartDate, now, false)
                      </div>
                      <div class="cell" >
                          @Html.Label("ToDate", Lang.To, new { @class = "txt" })
-                         @Html.DatePicker("ToDate", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, false)                                        
+                         @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, false)                                        
                      </div>
                 </div>
                  <div id="monthSearch" >
                      <div class="cell" >
                          @Html.Label("FromMonth", Lang.From, new { @class = "txt" })
-                         @Html.MonthPicker("FromMonth", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, new { id = "FromMonth" })
+                         @Html.MonthPicker("FromMonth", now, AppSettings.SystemStartDate, now, new { id = "FromMonth" })
                      </div>
                      <div class="cell" >
                          @Html.Label("ToMonth", Lang.To, new { @class = "txt" })
-                         @Html.MonthPicker("ToMonth", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now, new { id = "ToMonth" })
+                         @Html.MonthPicker("ToMonth", now, AppSettings.SystemStartDate, now, new { id = "ToMonth" })
                      </div>
                 </div>
                  <input type="hidden" name="PreviousGroupBy" id="PreviousGroupBy" value="2"/>
@@ -122,18 +126,18 @@ report
             timeZone: AFFILIATE.TimeZone,
             titleInfo:
             {
-                text: "@Lang.MemberStatistics"                
+                text: "@Lang.MemberStatistics"
             },
             columns: [
                 { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "@Lang.Date", Width: 80, Name: "DateClick", HeaderAlign: "center", CellAlign: "center" },                
+                { HeaderText: "@Lang.Date", Width: 80, Name: "DateClickStr", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Affiliate", Width: 80, Name: "Username", HeaderAlign: "center",
                     Formatter: function (rIndex, record, cell, cellFormated) {
-                        var affInfoUrl = AFFILIATE.getAbsoluteUrl("AffiliateInfo?username=");                        
+                        var affInfoUrl = AFFILIATE.getAbsoluteUrl("AffiliateInfo?username=");
                         return "<a href='" + affInfoUrl + record.Username + "' target='_blank'>" + cellFormated + "</a>";
                     } 
                 },
-                { HeaderText: "@Lang.AffType", Width: 100, Name: "AffType", HeaderAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_FULL },
+                { HeaderText: "@Lang.AffType", Width: 100, Name: "AffType", HeaderAlign: "center" },
                 { HeaderText: "@Lang.Language", Width: 100, Name: "Language", HeaderAlign: "center"},
                 { HeaderText: "@Lang.Currency", Width: 70, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.TotalClicks", Width: 70, Name: "TotalClick", HeaderAlign: "center", CellAlign: "right" },

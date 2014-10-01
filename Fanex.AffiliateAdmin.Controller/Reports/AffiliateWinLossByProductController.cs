@@ -44,7 +44,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
             criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
-            criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, DateTime.Now);
+            criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
 
             var data = ReportService.GetAffiliateWinLossByProduct(criteria);
 

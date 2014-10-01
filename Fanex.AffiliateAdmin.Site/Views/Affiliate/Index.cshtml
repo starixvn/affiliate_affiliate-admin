@@ -5,6 +5,7 @@
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Services
 @section iconcss {
     aff-list
 }
@@ -12,7 +13,7 @@
     @RazorHelper.ListSubmenu(SubMenu.Affiliate, Model.IsFavorite ? 0 : 1, "affiliate")
 }
 @{
-    var now = DateTime.Now;
+    var now = SystemTimeService.GetSystemDateTime();
 }
 @model Fanex.AffiliateAdmin.Models.AffiliateListViewModel
 <div class="search-panel search-afflist">
@@ -189,8 +190,8 @@
                 { HeaderText: "@Lang.Email", Width: 150, Name: "Email", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.Language", Width: 60, Name: "LanguageName", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.AffType", Width: 70, Name: "AffTypeName", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "@Lang.RegisterDate", Width: 90, Name: "RegisteredDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
-                { HeaderText: "@Lang.ApprovalDate", Width: 80, Name: "ApprovedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+                { HeaderText: "@Lang.RegisterDate", Width: 90, Name: "RegisteredDateStr", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.ApprovalDate", Width: 80, Name: "ApprovedDateStr", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Status", Width: 70, Name: "Status", HeaderAlign: "center", CellAlign: "left",
                     Formatter: function(rIndex, record, cell, cellFormated) {
                         return "<span style='text-transform: capitalize;'>{0}</span>".format(record.Status);

@@ -28,6 +28,14 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime LoggedDate { get; set; }
 
+        public string LoggedDateStr
+        {
+            get
+            {
+                return LoggedDate.ToString(DateFormatManager.DateFormatFull);
+            }
+        }
+
         public string SPName { get; set; }
 
         public string Details { get; set; }

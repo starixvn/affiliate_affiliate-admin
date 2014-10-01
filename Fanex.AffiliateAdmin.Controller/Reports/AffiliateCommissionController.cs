@@ -45,7 +45,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
 
-            criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, DateTime.Now);
+            criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
 
             var data = ReportService.GetAffiliateCommission(criteria);
 

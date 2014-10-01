@@ -13,7 +13,7 @@ commgroup
     @RazorHelper.ListSubmenu(SubMenu.CommGroup, 0, "commissionGroup")
 }
 @{
-    var now = ServerTimeService.GetSystemDateTime();
+    var now = SystemTimeService.GetSystemDateTime();
 }
 <div class="search-panel search-commgroup">
     <div class="ic-reload" title="@Lang.RefreshPage">
@@ -96,7 +96,7 @@ commgroup
                         { HeaderText: "@Lang.NoOfAffiliate", Width: 70, Name: "NoOfAffiliate", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Description", Width: 70, Name: "Description", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Creator", Width: 50, Name: "Creator", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.CreatedDate", Width: 60, Name: "CreatedDate", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.CreatedDate", Width: 60, Name: "CreatedDateStr", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.QualifiedAmount", Width: 70, Name: "QualifiedAmount", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Currency", Width: 55, Name: "Currency", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Policy", Width: 70, Name: "ProductName", MergeColNumber: 8 },
@@ -111,7 +111,7 @@ commgroup
                 { HeaderText: "@Lang.NoOfAffiliate", Width: 70, Name: "NoOfAffiliate", HeaderAlign: "center", CellAlign: "center"},
                 { HeaderText: "@Lang.Description", Width: 70, Name: "Description", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Creator", Width: 50, Name: "Creator", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "@Lang.CreatedDate", Width: 60, Name: "CreatedDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+                { HeaderText: "@Lang.CreatedDate", Width: 60, Name: "CreatedDateStr", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.QualifiedAmount", Width: 70, Name: "QualifiedAmount", HeaderAlign: "center", CellAlign: "center", FormatNumber: AFFILIATE.FORMAT_INT_NUMBER },
                 { HeaderText: "@Lang.Currency", Width: 55, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Product", Width: 70, Name: "ProductName", HeaderAlign: "center", CellAlign: "center" },

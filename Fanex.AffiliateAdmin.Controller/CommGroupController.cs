@@ -65,7 +65,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var serializer = new JavaScriptSerializer();
             ViewBag.ProductIDList = serializer.Serialize(AppSettings.Products.Where(t => t.IsEnabled).Select(x => x.ProductID).ToArray());
             var hasCashback = AppSettings.DeductionTypes.Any(x => x.ProductID == 0
-                && x.RemovedDate.HasValue && x.RemovedDate.Value > DateTime.Now);
+                && x.RemovedDate.HasValue && x.RemovedDate.Value > SystemTimeService.GetSystemDateTime());
             var currency = SessionManager.CurrentSession.CurrencyList.First();
 
             var criteria = new GetDefaultPspExchangeCriteria
@@ -291,7 +291,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             criteria.UserId = CurrentSession.CustID;
             var groups = _commGroupService.GetById(criteria);
-            var date = criteria.Date == null ? DateTime.Now : criteria.Date.Value;
+            var date = criteria.Date == null ? SystemTimeService.GetSystemDateTime() : criteria.Date.Value;
             BuildGroupData(groups, date, criteria.GroupID.ToString());
             return View(groups.FirstOrDefault());
         }

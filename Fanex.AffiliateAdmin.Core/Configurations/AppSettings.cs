@@ -9,6 +9,8 @@
 //   <change who="Kaden.Trinh" date="2013.06.25">Load all setting default from DB</change>
 // </history>
 
+using Fanex.AffiliateAdmin.Services;
+
 namespace Fanex.AffiliateAdmin.Core.Configurations
 {
     using System;
@@ -298,6 +300,14 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
+        public static bool IsProduction
+        {
+            get
+            {
+                return Environment.Equals("Production");
+            }
+        }
+
         public static string MailContact
         {
             get
@@ -407,7 +417,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                         });
 
                     _systemStartDate = string.IsNullOrEmpty(systemSetting.SValue)
-                                           ? DateTime.Now
+                                           ? SystemTimeService.GetSystemDateTime()
                                            : Convert.ToDateTime(systemSetting.SValue);
                 }
 

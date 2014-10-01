@@ -39,6 +39,14 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime CreatedDate { get; set; }
 
+        public string CreatedDateStr
+        {
+            get
+            {
+                return CreatedDate.ToString(DateFormatManager.DateFormat);
+            }
+        }
+
         public int NoOfAffiliate { get; set; }
 
         public short CurrencyID { get; set; }

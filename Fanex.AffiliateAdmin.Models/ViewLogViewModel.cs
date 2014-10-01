@@ -4,6 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using Fanex.AffiliateAdmin.Services;
+
 namespace Fanex.AffiliateAdmin.Models
 {
     using System;
@@ -28,10 +30,10 @@ namespace Fanex.AffiliateAdmin.Models
 
         public ViewLogViewModel()
         {
-            var dateFrom = DateTime.Now.AddMonths(AppSettings.ViewLogBackMonth);
+            var dateFrom = SystemTimeService.GetSystemDateTime().AddMonths(AppSettings.ViewLogBackMonth);
 
             DateFrom = AppSettings.SystemStartDate.CompareTo(dateFrom) <= 0 ? dateFrom : AppSettings.SystemStartDate;
-            DateTo = DateTime.Now;
+            DateTo = SystemTimeService.GetSystemDateTime();
         }
 
         [Display(Name = "From", ResourceType = typeof(Lang))]

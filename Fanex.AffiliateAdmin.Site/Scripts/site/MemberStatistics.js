@@ -93,7 +93,7 @@ var Report = (function ($) {
         }
 
         gridOption.columns[DATE_COL].FormatDateTime = getDateFormat(groupBy);
-        gridOption.columns[DATE_COL].HeaderText = groupBy === GROUP_BY_DATE ? MSG.Date : MSG.Month;
+        gridOption.columns[DATE_COL].HeaderText = groupBy === GROUP_BY_DATE ? window.MSG.Date : window.MSG.Month;
     };
 
     var toggleRangeTime = function (value) {

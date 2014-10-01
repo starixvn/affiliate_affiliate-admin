@@ -7,6 +7,9 @@
 //   <change who="Kaden.Trinh" date="2013.05.28">Created</change>
 //   <change who="Kaden.Trinh" date="2013.06.14">Add new extension DropDownListFor</change>
 // </history>
+
+using Fanex.AffiliateAdmin.Services;
+
 namespace Fanex.AffiliateAdmin.Core.Mvc
 {
     using System;
@@ -265,7 +268,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
             DateTime? maxDate = null)
         {
             var metaData = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
-            DateTime? value = DateTime.Now;
+            DateTime? value = SystemTimeService.GetSystemDateTime();
             if (metaData.Model is DateTime? || metaData.Model is DateTime)
             {
                 value = (DateTime?)metaData.Model;
@@ -286,7 +289,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
         /// <param name="startYear">Default from year.</param>
         /// <param name="selectedYear">Default currentYear year.</param>
         /// <param name="htmlAttributes">Html attributes.</param>
-        /// <returns>Year picker string.</returns>        
+        /// <returns>Year picker string.</returns>
         public static MvcHtmlString YearPicker(
             this HtmlHelper htmlHelper,
             string name,
@@ -295,7 +298,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
             object htmlAttributes = null)
         {
             var list = new List<SelectListItem>();
-            var endYear = DateTime.Now.Year;
+            var endYear = SystemTimeService.GetSystemDateTime().Year;
 
             for (var i = startYear; i <= endYear; i++)
             {
@@ -361,7 +364,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
 
             if (!maxDate.HasValue)
             {
-                maxDate = DateTime.Now;
+                maxDate = SystemTimeService.GetSystemDateTime();
             }
 
             attributes["data-maxdate"] = maxDate.Value.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture);
@@ -475,7 +478,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
         /// <param name="startYear">Default from year.</param>
         /// <param name="selectedValue">Select quarter and year (format: {year}-{quarter}, Ex: 2013-1).</param>
         /// <param name="htmlAttributes">Html attributes.</param>
-        /// <returns>Year picker string.</returns>        
+        /// <returns>Year picker string.</returns>
         public static MvcHtmlString QuarterPicker(
             this HtmlHelper htmlHelper,
             string name,
@@ -484,7 +487,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
             object htmlAttributes = null)
         {
             var list = new List<SelectListItem>();
-            var endYear = DateTime.Now.Year;
+            var endYear = SystemTimeService.GetSystemDateTime().Year;
 
             for (var i = startYear; i <= endYear; i++)
             {

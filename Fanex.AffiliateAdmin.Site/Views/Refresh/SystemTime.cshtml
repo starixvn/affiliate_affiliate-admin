@@ -3,10 +3,9 @@
     Layout = "~/Views/Shared/_LayoutNoHeader.cshtml";
 }
 
-@model Tuple<DateTime, SystemDateTime>
+@model Tuple<DateTime, DateTime>
 
 <h1>Web Server Time: @Model.Item1.ToString("ddd, dd MMM yyyy HH:mm:ss fffffffK")</h1>
 
-<h1>DB Server Time: @Model.Item2.DatabaseDateTime.ToString("ddd, dd MMM yyyy HH:mm:ss fffffffK")</h1>
-<p>GMT Offset: @Model.Item2.GMTOffSet</p>
+<h1>DB Server Time: @Model.Item2.ToString("ddd, dd MMM yyyy HH:mm:ss fffffffK")</h1>
 

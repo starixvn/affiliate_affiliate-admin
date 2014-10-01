@@ -32,7 +32,23 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime CreateDate { get; set; }
 
+        public string CreateDateStr
+        {
+            get
+            {
+                return CreateDate.ToString(DateFormatManager.DateFormat);
+            }
+        }
+
         public DateTime ModifyDate { get; set; }
+
+        public string ModifyDateStr
+        {
+            get
+            {
+                return ModifyDate.ToString(DateFormatManager.DateFormat);
+            }
+        }
 
         public string Creator { get; set; }
 

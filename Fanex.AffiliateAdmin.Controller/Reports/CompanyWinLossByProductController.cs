@@ -104,7 +104,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 // If group by is month, we need to first day and last day of month.
                 criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
-                criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, DateTime.Now);
+                criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
             }
 
             criteria.UserId = CurrentSession.CustID;

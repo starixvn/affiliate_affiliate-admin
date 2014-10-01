@@ -30,6 +30,14 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime CreateDate { get; set; }
 
+        public string CreateDateStr
+        {
+            get
+            {
+                return CreateDate.ToString(DateFormatManager.DateFormatFull);
+            }
+        }
+
         public int GroupID { get; set; }
 
         public string GroupName { get; set; }

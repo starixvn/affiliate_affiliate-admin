@@ -923,7 +923,7 @@
     <Content Include="Views\CommGroup\Add.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Report\AffiliateCommissionByAffiliate.cshtml" />
-    <Content Include="Views\Refresh\ServerTime.cshtml" />
+    <Content Include="Views\Refresh\SystemTime.cshtml" />
     <Content Include="Web.ConnectionString.goobet.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>

@@ -10,7 +10,7 @@ report
     @RazorHelper.ListSubmenu(SubMenu.Reports, 2, "report")
 }
 @{
-    var now = DateTime.Now;
+    var now = SystemTimeService.GetSystemDateTime();
     var fromDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1);
     var toDate = now;
 }
@@ -19,6 +19,7 @@ report
 @using Fanex.AffiliateAdmin.Core.Enumerations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.Services
 @model Fanex.AffiliateAdmin.Models.AffiliateWinLossViewModel
 <div class="search-panel search-affiliate-win-loss">
     <div class="ic-reload" title="@Lang.RefreshPage">
@@ -159,7 +160,7 @@ report
                 {
                     Columns: [
                         { HeaderText: "@Lang.Affiliate", Name: "Username", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.Month", Name: "WinlostDate", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.Month", Name: "WinlostDateStr", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.AffType", Name: "AffType", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Language", Name: "Language", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.CommGroup", Name: "GroupName", MergeRowNumber: 2 },
@@ -198,12 +199,11 @@ report
                 {
                     HeaderText: "@Lang.Month",
                     Width: 80,
-                    Name: "WinlostDate",
+                    Name: "WinlostDateStr",
                     HeaderAlign: "center",
                     CellAlign: "center",
-                    FormatDateTime: AFFILIATE.DATE_FORMAT_MONTH,
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(record.WinlostDate) + cellFormated + "</a>";
+                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(record.WinlostDateStr) + cellFormated + "</a>";
                     }
                 },
                 { HeaderText: "@Lang.AffType", Width: 80, Name: "AffType", HeaderAlign: "center", CellAlign: "left" },
@@ -269,7 +269,7 @@ report
                 {
                     Columns: [
                         { HeaderText: "@Lang.Affiliate", Name: "Username", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.Month", Name: "WinlostDate", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.Month", Name: "WinlostDateStr", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.AffType", Name: "AffType", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Language", Name: "Language", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.CommGroup", Name: "GroupName", MergeRowNumber: 2 },
@@ -299,12 +299,11 @@ report
                 {
                     HeaderText: "@Lang.Month",
                     Width: 80,
-                    Name: "WinlostDate",
+                    Name: "WinlostDateStr",
                     HeaderAlign: "center",
                     CellAlign: "center",
-                    FormatDateTime: AFFILIATE.DATE_FORMAT_MONTH,
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(record.WinlostDate) + cellFormated + "</a>";
+                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(record.WinlostDateStr) + cellFormated + "</a>";
                     }
                 },
                 { HeaderText: "@Lang.AffType", Width: 80, Name: "AffType", HeaderAlign: "center", CellAlign: "left" },

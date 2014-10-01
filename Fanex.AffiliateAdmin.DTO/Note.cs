@@ -19,6 +19,14 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime UpdatedDate { get; set; }
 
+        public string UpdatedDateStr
+        {
+            get
+            {
+                return UpdatedDate.ToString(DateFormatManager.DateFormatFull);
+            }
+        }
+
         public int AffId { get; set; }
 
         public int UpdatedBy { get; set; }

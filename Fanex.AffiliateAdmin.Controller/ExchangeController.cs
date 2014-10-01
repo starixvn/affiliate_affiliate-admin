@@ -76,7 +76,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             bool isToday = false;
 
-            if (criteria.Time.HasValue && DateTime.Now.Subtract(criteria.Time.Value).Days == 0)
+            if (criteria.Time.HasValue && SystemTimeService.GetSystemDateTime().Subtract(criteria.Time.Value).Days == 0)
             {
                 criteria.Time = null;
                 isToday = true;

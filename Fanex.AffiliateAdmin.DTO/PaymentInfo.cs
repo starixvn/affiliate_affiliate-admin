@@ -24,6 +24,14 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime Transdate { get; set; }
 
+        public string TransdateStr
+        {
+            get
+            {
+                return Transdate.ToString(DateFormatManager.DateFormatFull);
+            }
+        }
+
         public int AffId { get; set; }
 
         public string Status { get; set; }
@@ -39,6 +47,14 @@ namespace Fanex.AffiliateAdmin.DTO
         public decimal ConvertedAmt { get; set; }
 
         public DateTime Completeddate { get; set; }
+
+        public string CompleteddateStr
+        {
+            get
+            {
+                return Completeddate.ToString(DateFormatManager.DateFormatFull);
+            }
+        }
 
         public string Creator { get; set; }
     }

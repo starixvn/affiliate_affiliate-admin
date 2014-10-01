@@ -6,6 +6,7 @@
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Services
 
 @model Fanex.AffiliateAdmin.Models.MemberListViewModel
 
@@ -22,7 +23,7 @@ customer
 }
 
 @{
-    var now = DateTime.Now;
+    var now = SystemTimeService.GetSystemDateTime();
     var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : new DateTime(now.Year, now.Month, 1);
     var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now;
 
@@ -132,9 +133,9 @@ customer
 	            { HeaderText: "@Lang.Phone", Width: 90, Name: "Phone" },
 	            { HeaderText: "@Lang.Address", Width: 90, Name: "Address" },
 	            { HeaderText: "@Lang.Country", Width: 80, Name: "Country" },
-	            { HeaderText: "@Lang.RegisterDate", Width: 100, Name: "RegisteredDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
-	            { HeaderText: "@Lang.FirstDepositDate", Width: 90, Name: "CreatedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
-	            { HeaderText: "@Lang.EffectiveDate", Width: 100, Name: "AffAffectedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+	            { HeaderText: "@Lang.RegisterDate", Width: 100, Name: "RegisteredDateStr", CellAlign: "center" },
+	            { HeaderText: "@Lang.FirstDepositDate", Width: 90, Name: "CreatedDateStr", CellAlign: "center" },
+	            { HeaderText: "@Lang.EffectiveDate", Width: 100, Name: "AffAffectedDateStr", CellAlign: "center" },
 	            { HeaderText: "@Lang.Currency", Width: 60, Name: "Currency", CellAlign: "center" },
 	            {
 	                HeaderText: "@Lang.Remove",
@@ -143,13 +144,7 @@ customer
 	                CellAlign: "center",
 	                Formatter: function(rowIndex, rowData, cell, cellFormated) {
 	                    if (rowData.IsRemoved) {
-	                        var obj = rowData.RemovedDate;
-
-	                        if (typeof obj !== "undefined" && obj != null && moment(obj).isValid()) {
-	                            return moment(obj).format(AFFILIATE.DATE_FORMAT);
-	                        }
-
-	                        return '';
+	                        return rowData.RemovedDateStr;
 	                    }
 
 	                    return "<a href=\"javascript:CUSTOMER.Remove('" + rowData.UserName + "')\"><i class=\"icon-remove\"></i></a>";

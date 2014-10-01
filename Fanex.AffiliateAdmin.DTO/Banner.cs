@@ -35,6 +35,14 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime? Lastupdate { get; set; }
 
+        public string LastUpdateStr 
+        {
+            get
+            {
+                return Lastupdate.HasValue ? Lastupdate.Value.ToString(DateFormatManager.DateFormat) : string.Empty;
+            }
+        }
+
         public string Currency { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Allow Type Property")]
@@ -45,5 +53,13 @@ namespace Fanex.AffiliateAdmin.DTO
         public long? TotalRequest { get; set; }
 
         public DateTime? LastRequest { get; set; }
+
+        public string LastRequestStr
+        {
+            get
+            {
+                return LastRequest.HasValue ? LastRequest.Value.ToString(DateFormatManager.DateFormat) : string.Empty;
+            }
+        }
     }
 }

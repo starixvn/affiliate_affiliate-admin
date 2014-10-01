@@ -17,7 +17,23 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime TransDate { get; set; }
 
+        public string TransDateStr
+        {
+            get
+            {
+                return TransDate.ToString(DateFormatManager.DateFormatFull);
+            }
+        }
+
         public DateTime? CompletedDate { get; set; }
+
+        public string CompletedDateStr
+        {
+            get
+            {
+                return CompletedDate.HasValue ? CompletedDate.Value.ToString(DateFormatManager.DateFormatFull) : string.Empty;
+            }
+        }
 
         public int TransType { get; set; }
 

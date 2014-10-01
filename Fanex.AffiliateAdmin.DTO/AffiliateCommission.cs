@@ -24,6 +24,14 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime? WinlostDate { get; set; }
 
+        public string WinlostDateStr
+        {
+            get
+            {
+                return WinlostDate.HasValue ? WinlostDate.Value.ToString(DateFormatManager.DateFormatMonth) : string.Empty;
+            }
+        }
+
         public int GroupID { get; set; }
 
         public string GroupName { get; set; }

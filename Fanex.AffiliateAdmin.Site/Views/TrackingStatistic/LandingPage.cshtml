@@ -6,11 +6,15 @@
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.Services
 
 @model Fanex.AffiliateAdmin.Models.TrackingStatisticViewModel
 
 @section iconcss{
     report
+}
+@{
+    var now = SystemTimeService.GetSystemDateTime();
 }
 
 @section submenu{
@@ -37,11 +41,11 @@
         <div class="row-fluid row-form end-search">
             <div class="cell">
                 @Html.LabelFor(m => m.FromDate, new { @class = "txt" })
-                @Html.DatePicker("FromDate", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), AppSettings.SystemStartDate, DateTime.Now)
+                @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), AppSettings.SystemStartDate, now)
             </div>
             <div class="cell">
                 @Html.LabelFor(m => m.ToDate, new { @class = "txt" })
-                @Html.DatePicker("ToDate", DateTime.Now, AppSettings.SystemStartDate, DateTime.Now)
+                @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now)
             </div>
         </div>
             <div class="row-fluid row-form btn-action">

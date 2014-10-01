@@ -125,8 +125,11 @@
     <Compile Include="Mvc\AttributesExtensions.cs" />
     <Compile Include="Services\Impl\AffiliateSettingService.cs" />
     <Compile Include="Services\Impl\MediaSettingService.cs" />
+    <Compile Include="Services\Impl\ServiceService.cs" />
+    <Compile Include="Services\Impl\SystemTimeService.cs" />
     <Compile Include="Services\Interface\IAffiliateSettingService.cs" />
     <Compile Include="Services\Interface\IMediaSettingService.cs" />
+    <Compile Include="Services\Interface\IServerService.cs" />
     <Compile Include="Session\AppSession.cs" />
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Session\CurrentSession.cs" />
@@ -231,7 +234,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -52,8 +52,9 @@ namespace Fanex.AffiliateAdmin.Criterias
         { 
             get
             {
-                return (this.Year == 0 || this.Month == 0) ? new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) 
-                    : new DateTime(this.Year, this.Month, 1);
+                //var systemTime = SystemTimeService.GetSystemDateTime();
+                return (Year == 0 || Month == 0) ? new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) 
+                    : new DateTime(Year, Month, 1);
             }
         }
 

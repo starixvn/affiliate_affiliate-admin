@@ -19,7 +19,23 @@ namespace Fanex.AffiliateAdmin.DTO
         
         public DateTime LoggedIn { get; set; }
 
+        public string LoggedInStr
+        {
+            get
+            {
+                return LoggedIn.ToString(DateFormatManager.DateFormatFull);
+            }
+        }
+
         public DateTime LastRequest { get; set; }
+
+        public string LastRequestStr
+        {
+            get
+            {
+                return LastRequest.ToString(DateFormatManager.DateFormatFull);
+            }
+        }
 
         public string Ip { get; set; }
 

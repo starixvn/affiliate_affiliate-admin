@@ -3,6 +3,7 @@
 @using Fanex.AffiliateAdmin.Models
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Mvc
+@using Fanex.AffiliateAdmin.Services
 @model AffiliateCommissionViewModel
 @{
     ViewBag.Title = Lang.AffiliateCommission;
@@ -18,7 +19,7 @@ report
 }
 
 @{
-    var now = DateTime.Now;
+    var now = SystemTimeService.GetSystemDateTime();
     var fromDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1);
     var toDate = now;
 }
@@ -154,7 +155,7 @@ report
                     Columns: [
                         { HeaderText: "#", Name: "No", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Affiliate", Name: "Username", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.Month", Name: "WinlostDate", MergeRowNumber: 2 },
+                        { HeaderText: "@Lang.Month", Name: "WinlostDateStr", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.CommGroup", Name: "GroupName", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Product", HeaderText: "@Lang.Product", Name: "ProductName", MergeRowNumber: 2 },
@@ -195,7 +196,7 @@ report
             columns: [
                 { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Affiliate", Width: 80, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "@Lang.Month", Width: 80, Name: "WinlostDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT_MONTH },
+                { HeaderText: "@Lang.Month", Width: 80, Name: "WinlostDateStr", HeaderAlign: "center", CellAlign: "center" },
                 {
                     HeaderText: "@Lang.CommGroup",
                     Width: 90,
@@ -203,7 +204,7 @@ report
                     HeaderAlign: "center",
                     CellAlign: "left",
                     Formatter: function(rIndex, record) {
-                        return '<a href="javascript:void(0)" data-groupid={0} data-date="{1}" class="commgroup">{2}</a>'.format(record.GroupID, moment(record.WinlostDate).format(AFFILIATE.DATE_FORMAT_MONTH), record.GroupName);
+                        return '<a href="javascript:void(0)" data-groupid={0} data-date="{1}" class="commgroup">{2}</a>'.format(record.GroupID, record.WinlostDateStr, record.GroupName);
                     }
                 },
                 { HeaderText: "@Lang.Currency", Width: 90, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },

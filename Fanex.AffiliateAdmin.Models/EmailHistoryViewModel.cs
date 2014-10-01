@@ -7,6 +7,8 @@
 //   <change who="Joseph.Pham" date="2013.8.2">Created</change>
 // </history>
 
+using Fanex.AffiliateAdmin.Services;
+
 namespace Fanex.AffiliateAdmin.Models
 {
     using System;
@@ -19,7 +21,7 @@ namespace Fanex.AffiliateAdmin.Models
         public EmailHistoryViewModel()
         {
             SearchOption = -1;
-            FromDate = ToDate = DateTime.Now;
+            FromDate = ToDate = SystemTimeService.GetSystemDateTime();
             IsAll = true;
         }
 

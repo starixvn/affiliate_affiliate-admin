@@ -16,7 +16,7 @@ var AFFILIATE = (function ($) {
     return {
         pageSizes: [20, 50, 100],
         DATE_FORMAT: "MM/DD/YYYY",
-        DATE_FORMAT_FULL: "MM/DD/YYYY hh:mm:ss A",
+        DATE_FORMAT_FULL: "MM/DD/YYYY HH:mm:ss",
         DATE_FORMAT_MONTH: "MM/YYYY",
         DATE_FORMAT_YEAR: "YYYY",
         FORMATNUMBER: '0,0.00',

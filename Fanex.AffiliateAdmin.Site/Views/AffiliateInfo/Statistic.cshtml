@@ -6,13 +6,15 @@
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.Services
 
 @model Fanex.AffiliateAdmin.Models.AffiliateStatisticViewModel
 
 @{
+    var now = SystemTimeService.GetSystemDateTime();
     var lastDay = Model.FullDateTime.AddMonths(1).AddDays(-1);
     var fromDate = Model.FullDateTime > AppSettings.SystemStartDate ? Model.FullDateTime.ToString("MMM dd yyyy", CultureInfo.InvariantCulture) : AppSettings.SystemStartDate.ToString("MMM dd yyyy", CultureInfo.InvariantCulture);
-    var toDate = lastDay < DateTime.Now ? lastDay.ToString("MMM dd yyyy", CultureInfo.InvariantCulture) : DateTime.Now.ToString("MMM dd yyyy", CultureInfo.InvariantCulture);
+    var toDate = lastDay < now ? lastDay.ToString("MMM dd yyyy", CultureInfo.InvariantCulture) : now.ToString("MMM dd yyyy", CultureInfo.InvariantCulture);
 }
 
 <table id="top_panel" class="top_panel">
@@ -25,7 +27,7 @@
         <tr>
             <td class="top_colexp"><span id="spStatistic" class="statistic-show"></span>@Lang.Statistics</td>
             <td class="col-data">
-                @Html.MonthPicker("monthyear", Model.FullDateTime, AppSettings.SystemStartDate, DateTime.Now, new { @class = "width-ex-90" })
+                @Html.MonthPicker("monthyear", Model.FullDateTime, AppSettings.SystemStartDate, now, new { @class = "width-ex-90" })
             </td>
             <td class="col-data">@Lang.UpToNow</td>
         </tr>
@@ -34,10 +36,10 @@
         <tr>
             <td class="col-label">@Lang.NewSignup/@Lang.FDM</td>
             <td class="col-data">
-                @Html.ActionLink(Model.Statistic.NewSignUp.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 1, FromDate = fromDate, ToDate = toDate, TimeStamp = DateTime.Now.Ticks }, new { @class = "link" })/@Html.ActionLink(Model.Statistic.NewSignUpDep.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 2, FromDate = fromDate, ToDate = toDate, TimeStamp = DateTime.Now.Ticks }, new { @class = "link" })
+                @Html.ActionLink(Model.Statistic.NewSignUp.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 1, FromDate = fromDate, ToDate = toDate, TimeStamp = now.Ticks }, new { @class = "link" })/@Html.ActionLink(Model.Statistic.NewSignUpDep.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 2, FromDate = fromDate, ToDate = toDate, TimeStamp = DateTime.Now.Ticks }, new { @class = "link" })
             </td>
             <td class="col-data">
-                @Html.ActionLink(Model.Statistic.TotalPlayer.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 0, TimeStamp = DateTime.Now.Ticks }, new { @class = "link" })/@Model.Statistic.TotalPlayerDepUp
+                @Html.ActionLink(Model.Statistic.TotalPlayer.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 0, TimeStamp = now.Ticks }, new { @class = "link" })/@Model.Statistic.TotalPlayerDepUp
             </td>
         </tr>
         @if (Model.Statistic.TotalActivePlayer != 0 && Model.FullDateTime.CompareTo(AppSettings.SystemStartDate) >= 0)
@@ -45,7 +47,7 @@
         <tr>
             <td class="col-label">@Lang.TotalActive</td>
             <td class="col-data">
-                @Html.ActionLink(Model.Statistic.TotalActivePlayer.ToString(), "MemberWinlossByAffiliate", "Report", new { GroupBy = 1, FromDate = fromDate, ToDate = toDate, BaseCurrency = 2, TimeStamp = DateTime.Now.Ticks  }, new { @class = "link" })
+                @Html.ActionLink(Model.Statistic.TotalActivePlayer.ToString(), "MemberWinlossByAffiliate", "Report", new { GroupBy = 1, FromDate = fromDate, ToDate = toDate, BaseCurrency = 2, TimeStamp = now.Ticks  }, new { @class = "link" })
             </td>
             <td class="col-data">@Lang.NotAvaliable</td>
         </tr>
@@ -80,28 +82,28 @@
         <tr>
             <td class="col-label">@Lang.TotalDeposit</td>
             <td class="col-data">
-                @Html.ActionLinkForRawLinkText(FormaterCurrency.Format(Model.Statistic.TotalDeposit), "MemberWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate, BaseCurrency = 2, TimeStamp = DateTime.Now.Ticks  }, new { @class = "link" })
+                @Html.ActionLinkForRawLinkText(FormaterCurrency.Format(Model.Statistic.TotalDeposit), "MemberWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate, BaseCurrency = 2, TimeStamp = now.Ticks  }, new { @class = "link" })
             </td>
             <td class="col-data">@MvcHtmlString.Create(FormaterCurrency.Format(Model.Statistic.TotalDepositUp))</td>
         </tr>
         <tr>
             <td class="col-label">@Lang.TotalTurnover</td>
             <td class="col-data">
-                @Html.ActionLinkForRawLinkText(FormaterCurrency.Format(Model.Statistic.TotalTurnover), "MemberWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate, BaseCurrency = 2, TimeStamp = DateTime.Now.Ticks  }, new { @class = "link" })
+                @Html.ActionLinkForRawLinkText(FormaterCurrency.Format(Model.Statistic.TotalTurnover), "MemberWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate, BaseCurrency = 2, TimeStamp = now.Ticks  }, new { @class = "link" })
             </td>
             <td class="col-data">@MvcHtmlString.Create(FormaterCurrency.Format(Model.Statistic.TotalTurnoverUp))</td>
         </tr>
         <tr>
             <td class="col-label">@Lang.TotalWinlost</td>
             <td class="col-data">
-                <a href="@Url.Action("MemberWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate, BaseCurrency = 2, TimeStamp = DateTime.Now.Ticks  })" class="link">@Html.Raw(FormaterCurrency.Format(Model.Statistic.TotalWinlost))</a>
+                <a href="@Url.Action("MemberWinlossByAffiliate", "Report", new { GroupBy = 0, FromDate = fromDate, ToDate = toDate, BaseCurrency = 2, TimeStamp = now.Ticks  })" class="link">@Html.Raw(FormaterCurrency.Format(Model.Statistic.TotalWinlost))</a>
             </td>
             <td class="col-data">@Html.Raw(FormaterCurrency.Format(Model.Statistic.TotalWinlostUp))</td>
         </tr>
         <tr>
             <td class="col-label">@Lang.TrackingRate</td>
             <td class="col-data">
-                @Html.ActionLink(Model.Statistic.TotalUniqueClicks.ToString(), "Referrer", "TrackingStatistic", new { FromDate = fromDate, ToDate = toDate, TimeStamp = DateTime.Now.Ticks }, new { @class = "link" })/@Html.ActionLink(Model.Statistic.TotalClicks.ToString(), "Referrer", "TrackingStatistic", new { FromDate = fromDate, ToDate = toDate, TimeStamp = DateTime.Now.Ticks }, new { @class = "link" })
+                @Html.ActionLink(Model.Statistic.TotalUniqueClicks.ToString(), "Referrer", "TrackingStatistic", new { FromDate = fromDate, ToDate = toDate, TimeStamp = now.Ticks }, new { @class = "link" })/@Html.ActionLink(Model.Statistic.TotalClicks.ToString(), "Referrer", "TrackingStatistic", new { FromDate = fromDate, ToDate = toDate, TimeStamp = DateTime.Now.Ticks }, new { @class = "link" })
             </td>
             <td class="col-data">@Lang.NotAvaliable</td>
         </tr>

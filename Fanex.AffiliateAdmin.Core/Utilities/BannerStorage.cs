@@ -81,7 +81,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         {
             get
             {
-                return MediaSettings.BannerDirectory;
+                return MediaSettings.BannerDirectory.Replace('/', '\\');
             }
         }
 

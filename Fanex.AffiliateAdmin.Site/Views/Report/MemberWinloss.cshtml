@@ -10,7 +10,7 @@ report
 }
 
 @{
-    var now = DateTime.Now;
+    var now = SystemTimeService.GetSystemDateTime();
     var fromDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1);
     var toDate = now;
 }
@@ -19,6 +19,7 @@ report
 @using Fanex.AffiliateAdmin.Core.Enumerations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.Services
 @model Fanex.AffiliateAdmin.Models.MemberWinlossViewModel
 <div class="search-panel search-company-winloss">
     <div class="ic-reload" title="@Lang.RefreshPage">
@@ -150,7 +151,7 @@ report
             groupHeaderRows: [
                 {
                     Columns: [
-                        { HeaderCaption: "@Lang.Date", HeaderText: "@Lang.Date", Name: "WinlostDate", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Date", HeaderText: "@Lang.Date", Name: "WinlostDateStr", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Affiliate", HeaderText: "@Lang.Affiliate", Name: "Username", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Currency", HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Member", HeaderText: "@Lang.Member", Name: "PlayerUsername", MergeRowNumber: 2 },
@@ -183,7 +184,7 @@ report
                 }
             ],
             columns: [
-                { HeaderText: "@Lang.Date", Width: 80, Name: "WinlostDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+                { HeaderText: "@Lang.Date", Width: 80, Name: "WinlostDateStr", HeaderAlign: "center", CellAlign: "center" },
                 {
                     HeaderText: "@Lang.Affiliate",
                     Width: 70,
@@ -266,7 +267,7 @@ report
             groupHeaderRows: [
                 {
                     Columns: [
-                        { HeaderCaption: "@Lang.Date", HeaderText: "@Lang.Date", Name: "WinlostDate", MergeRowNumber: 2 },
+                        { HeaderCaption: "@Lang.Date", HeaderText: "@Lang.Date", Name: "WinlostDateStr", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Affiliate", HeaderText: "@Lang.Affiliate", Name: "Username", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Currency", HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Member", HeaderText: "@Lang.Member", Name: "PlayerUsername", MergeRowNumber: 2 },
@@ -295,7 +296,7 @@ report
                 }
             ],
             columns: [
-                { HeaderText: "@Lang.Date", Width: 80, Name: "WinlostDate", HeaderAlign: "center", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+                { HeaderText: "@Lang.Date", Width: 80, Name: "WinlostDateStr", HeaderAlign: "center", CellAlign: "center" },
                 {
                     HeaderText: "@Lang.Affiliate",
                     Width: 70,

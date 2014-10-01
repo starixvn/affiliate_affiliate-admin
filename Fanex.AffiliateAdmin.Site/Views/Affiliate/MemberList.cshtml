@@ -6,6 +6,7 @@
 @using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Services
 @section iconcss{
 customer
 }
@@ -13,7 +14,7 @@ customer
     @RazorHelper.ListSubmenu(SubMenu.Affiliate, 2, "affiliate")
 }
 @{
-    var now = DateTime.Now;
+    var now = SystemTimeService.GetSystemDateTime();
 }
 <div class="search-panel">
     <div class="ic-reload" title="@Lang.RefreshPage">
@@ -23,11 +24,11 @@ customer
     <div class="span12 search-form">
         <div class="row-fluid row-form">
             <div class="cell">
-                <label for="username" class="txt">@Lang.Member</label>                
+                <label for="username" class="txt">@Lang.Member</label>
                 <input type="text" placeholder="@Lang.All" id="username" name="username" value="@ViewBag.MemberName" maxlength="100" class="form-control width-140" />                
             </div>
             <div class="cell">
-                <label for="affUsername" class="txt">@Lang.Affiliate</label>                
+                <label for="affUsername" class="txt">@Lang.Affiliate</label>
                 <input type="text" placeholder="@Lang.All" id="affUsername" name="affUsername" value="@ViewBag.AffName" maxlength="100" class="form-control width-140" />                
             </div>
             <div class="cell">
@@ -71,10 +72,10 @@ customer
                 <select id="SortBy" name="SortBy" class="width-140 single-select dropdownchecklist" >
                     <option value="0">@Lang.Username</option>
                     <option value="1" selected>@Lang.RegisterDate</option>
-                    <option value="2">@Lang.FirstDepositDate</option>                    
+                    <option value="2">@Lang.FirstDepositDate</option>
                 </select>
             </div>
-            <div class="cell checkbox">                
+            <div class="cell checkbox">
                  <label for="ExcludeTest">
                      <input type="checkbox" id="ExcludeTest" name="ExcludeTest" value="True" checked="checked"/>
                     @Lang.ExcludeTestAccounts
@@ -135,9 +136,9 @@ customer
                 { HeaderText: "@Lang.Phone", Width: 100, Name: "Phone" },
                 { HeaderText: "@Lang.Address", Width: 100, Name: "Address" },
                 { HeaderText: "@Lang.Country", Width: 80, Name: "Country" },
-                { HeaderText: "@Lang.RegisterDate", Width: 100, Name: "RegisteredDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
-                { HeaderText: "@Lang.FirstDepositDate", Width: 100, Name: "CreatedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
-                { HeaderText: "@Lang.EffectiveDate", Width: 100, Name: "AffAffectedDate", CellAlign: "center", FormatDateTime: AFFILIATE.DATE_FORMAT },
+                { HeaderText: "@Lang.RegisterDate", Width: 100, Name: "RegisteredDateStr", CellAlign: "center" },
+                { HeaderText: "@Lang.FirstDepositDate", Width: 100, Name: "CreatedDateStr", CellAlign: "center" },
+                { HeaderText: "@Lang.EffectiveDate", Width: 100, Name: "AffAffectedDateStr", CellAlign: "center" },
                 {
                     HeaderText: "@Lang.Affiliate",
                     Width: 70,
@@ -154,13 +155,7 @@ customer
                     CellAlign: "center",
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
                         if (rowData.IsRemoved) {
-                            var obj = rowData.RemovedDate;
-
-                            if (typeof obj !== "undefined" && obj != null && moment(obj).isValid()) {
-                                return moment(obj).format(AFFILIATE.DATE_FORMAT);
-                            }
-
-                            return '';
+                            return rowData.RemovedDateStr;
                         }
 
                         return "<a href=\"javascript:CUSTOMER.Remove('" + rowData.UserName + "')\"><i class=\"icon-remove\"></i></a>";

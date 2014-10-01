@@ -35,6 +35,14 @@ namespace Fanex.AffiliateAdmin.DTO
         
         public DateTime? CreatedDate { get; set; }
 
+        public string CreatedDateStr
+        {
+            get
+            {
+                return CreatedDate.HasValue ? CreatedDate.Value.ToString(DateFormatManager.DateFormatFull) : string.Empty;
+            }
+        }
+
         public string Description { get; set; }
 
         public decimal? QMTurnOver { get; set; }

@@ -7,6 +7,8 @@
 //   <change who="Brian.Dinh" date="2014.9.30">Created</change>
 // </history>
 
+using System;
+
 namespace Fanex.AffiliateAdmin.ConfigGenerator
 {
     using System.IO;
@@ -21,7 +23,7 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator
         {
             OperateXtest(OperationType.Add);
 
-            ////OperateXtest(OperationType.Remove);
+            //OperateXtest(OperationType.Remove);
         }
 
         /// <summary>

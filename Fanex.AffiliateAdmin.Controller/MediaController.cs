@@ -246,7 +246,11 @@ namespace Fanex.AffiliateAdmin.Controller
                 string bannerPath, thumbnailPath;
                 GetBannerPath(banner.Content, out bannerPath, out thumbnailPath);
 
-                if (System.IO.File.Exists(thumbnailPath))
+                if (AppSettings.IsProduction && System.IO.File.Exists(thumbnailPath))
+                {
+                    banner.Thumbnail = Path.Combine(Path.GetDirectoryName(content), thumbnailFile);
+                }
+                else
                 {
                     banner.Thumbnail = Path.Combine(Path.GetDirectoryName(content), thumbnailFile);
                 }
@@ -583,6 +587,7 @@ namespace Fanex.AffiliateAdmin.Controller
         private void GetBannerPath(string content, out string bannerPath, out string thumbnailPath)
         {
             var oldContent = content.Replace('/', '\\');
+
             var oldBannerFile = Path.GetFileName(oldContent);
             var oldThumbnailFile = string.Format(
                 BannerStorage.ThumbNailFormat,

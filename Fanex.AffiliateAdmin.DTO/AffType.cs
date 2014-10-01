@@ -27,6 +27,14 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime? CreatedDate { get; set; }
 
+        public string CreatedDateStr
+        {
+            get
+            {
+                return CreatedDate.HasValue ? CreatedDate.Value.ToString(DateFormatManager.DateFormatFull) : string.Empty;
+            }
+        }
+
         public int? Creator { get; set; }
 
         public string CreatorName { get; set; }

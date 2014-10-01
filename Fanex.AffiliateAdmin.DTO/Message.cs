@@ -25,6 +25,14 @@ namespace Fanex.AffiliateAdmin.DTO
         
         public DateTime PostedDate { get; set; }
 
+        public string PostedDateStr
+        {
+            get
+            {
+                return PostedDate.ToString(DateFormatManager.DateFormatFull);
+            }
+        }
+
         public int Msgid { get; set; }
 
         public bool Important { get; set; }
@@ -34,5 +42,13 @@ namespace Fanex.AffiliateAdmin.DTO
         public string UpdateName { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
+
+        public string UpdatedDateStr
+        {
+            get
+            {
+                return UpdatedDate.HasValue ? UpdatedDate.Value.ToString(DateFormatManager.DateFormatFull) : string.Empty;
+            }
+        }
     }
 }

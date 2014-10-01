@@ -27,6 +27,14 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public DateTime? DateClick { get; set; }
 
+        public string DateClickStr
+        {
+            get
+            {
+                return DateClick.HasValue ? DateClick.Value.ToString(DateFormatManager.DateFormat) : string.Empty;
+            }
+        }
+
         public int TotalClick { get; set; }
 
         public int UniqueClick { get; set; }

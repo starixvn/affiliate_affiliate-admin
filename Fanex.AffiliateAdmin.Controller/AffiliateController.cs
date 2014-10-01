@@ -485,6 +485,8 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>Error code.</returns>
         private int TestInsertMember(int affid, string affname, string customerName)
         {
+            var now = SystemTimeService.GetSystemDateTime();
+
             var insertCriteria = new InsertMemberCriteria()
             {
                 AffUserName = affname,
@@ -493,9 +495,9 @@ namespace Fanex.AffiliateAdmin.Controller
                 IBCCustID = 0,
                 AgentID = 0,
                 Btag = string.Format("{0}_{1}_0", AppSettings.LicenseeID, affid),
-                CreatedDate = DateTime.Now,
-                RegisterDate = DateTime.Now,
-                AffAffectedDate = DateTime.Now,
+                CreatedDate = now,
+                RegisterDate = now,
+                AffAffectedDate = now,
                 IP = Remote.GetClientIPAddress()
             };
 
@@ -515,7 +517,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 AffUserName = criteria.AffName,
                 Username = criteria.MemberName,
-                AffAffectedDate = DateTime.Now,
+                AffAffectedDate = SystemTimeService.GetSystemDateTime(),
                 ClickID = 0,
                 Btag = string.Empty,
                 IP = Remote.GetClientIPAddress()
@@ -556,7 +558,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 IBCCustID = 0,
                 IBCUserName = xml.Element("IBCusername").Value,
                 AgentID = 0,
-                AffAffectedDate = DateTime.Now,
+                AffAffectedDate = SystemTimeService.GetSystemDateTime(),
                 Btag = xml.Element("btag").Value,
                 Language = AppSession.Language,
                 FirstName = xml.Element("FirstName").Value,

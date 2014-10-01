@@ -7,16 +7,15 @@
 //   <change who="Brian.Dinh" date="2014.9.30">Created</change>
 // </history>
 
-using Fanex.AffiliateAdmin.Criterias;
-using Fanex.AffiliateAdmin.DTO;
-using Fanex.AffiliateAdmin.Services;
-
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
     using System.Configuration;
     using System.Web.Configuration;
     using System.Web.Mvc;
+    using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Refresh Web Config.
@@ -46,13 +45,17 @@ namespace Fanex.AffiliateAdmin.Controller
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult ServerTime()
+        /// <summary>
+        /// View System Time.
+        /// </summary>
+        /// <returns>System Time.</returns>
+        public ActionResult SystemTime()
         {
-            var webServerTime = DateTime.Now;
+            var webTime = DateTime.Now;
 
-            var dbServerTime = _homeService.GetSystemDateTime(new SystemDateTimeCriteria());
+            var systemTime = SystemTimeService.GetSystemDateTime();
 
-            return View(new Tuple<DateTime, SystemDateTime>(webServerTime, dbServerTime));
+            return View(new Tuple<DateTime, DateTime>(webTime, systemTime));
         }
     }
 }

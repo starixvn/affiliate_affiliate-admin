@@ -271,13 +271,17 @@ var CompanyWinlossByProduct = (function ($) {
         });
     };
 
-    var hasShowTotalByCurrency = function(hasMultipleRows, hasMultipleCurrencyRows) {
+    var hasShowTotalByCurrency = function(hasMultipleRows, hasMultipleCurrencyRows, firstCurrency) {
         if (!hasMultipleRows) {
             return false;
         }
 
         if (hasMultipleCurrencyRows) {
             return true;
+        }
+
+        if (firstCurrency === window.System.Currency) {
+            return false;
         }
 
         if (submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
@@ -520,7 +524,7 @@ var CompanyWinlossByProduct = (function ($) {
                     gridOption.titleInfo.text = window.MSG.CompanyWinLossByProductTitle.format(data.TotalItem);
 
                     if (data.TotalItem > 0) {
-                        gridOption.bodyRows = getBodyRows(data.Groups, data.TotalData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
+                        gridOption.bodyRows = getBodyRows(data.Groups, data.TotalData, data.HasMultipleRows, data.HasMultipleCurrencyRows, data.FirstCurrency);
                         gridOption.footerRows = getFooterRows(data.TotalData, data.HasMultipleRows);
 
                         setTimeout(function () {

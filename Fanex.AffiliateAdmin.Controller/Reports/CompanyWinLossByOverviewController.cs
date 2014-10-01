@@ -64,12 +64,15 @@ namespace Fanex.AffiliateAdmin.Controller
                     CompanyWinlossInMemberCurrencies = data.TotalCompanyWinlossInMemberCurrencies
                 };
 
+            var firstCurrency = total.CompanyWinlossInMemberCurrencies.FirstOrDefault();
+
             return Json(new
             {
                 Groups = companyWinlossByProduct,
                 TotalData = total,
                 HasMultipleRows = companyWinlossByProduct.Count > 1,
                 HasMultipleCurrencyRows = total.CompanyWinlossInMemberCurrencies.Count() > 1,
+                FirstCurrency = firstCurrency != null ? firstCurrency.Currency : string.Empty,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows,

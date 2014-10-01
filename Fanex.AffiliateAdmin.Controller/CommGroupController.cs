@@ -162,7 +162,12 @@ namespace Fanex.AffiliateAdmin.Controller
             var group = _commGroupService.GetListData<CommGroupInfo>(new CommGroupInfoCriteria()
             {
                 GroupId = groupid
-            }).First();
+            }).FirstOrDefault();
+
+            if (group == null)
+            {
+                return Content("Group is null");
+            }
 
             group.GroupSettings = _commGroupService.GetListData<GroupSetting>(new GroupSettingCriteria()
             {

@@ -117,7 +117,7 @@
             }
         }
         
-    @*@foreach (var product in products)
+    @foreach (var product in products)
     {
         var hasTier = Model.GroupSettings.Count(x => x.ProductID == product.ProductID) > 0;
         var headerIcon = hasTier ? "icon-ok-circle" : "icon-ban-circle";
@@ -243,7 +243,7 @@
                 </div>
             </div>
         </div>
-    }*@
+    }
 
     </div>
    <div class="clear"></div>

@@ -248,11 +248,11 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 if (AppSettings.IsProduction && System.IO.File.Exists(thumbnailPath))
                 {
-                    banner.Thumbnail = Path.Combine(Path.GetDirectoryName(content), thumbnailFile);
+                    banner.Thumbnail = Path.Combine(Path.GetDirectoryName(content), thumbnailFile).Replace('\\', '/');
                 }
                 else
                 {
-                    banner.Thumbnail = Path.Combine(Path.GetDirectoryName(content), thumbnailFile);
+                    banner.Thumbnail = Path.Combine(Path.GetDirectoryName(content), thumbnailFile).Replace('\\', '/');
                 }
             }
 

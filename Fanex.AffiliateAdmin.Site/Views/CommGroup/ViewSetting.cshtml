@@ -24,10 +24,10 @@
             <th rowspan="2" width="50px">@Lang.CreatedDate</th>
             <th rowspan="2" width="50px">@Lang.QualifiedAmount</th>
             <th rowspan="2">@Lang.Currency</th>
-            <th colspan="8">@Lang.Policy</th>        
+            <th colspan="8">@Lang.Policy</th>
             @if (Model.GeneralDeductions != null)
             {
-                <th rowspan="2" width="120px">@Lang.Deduction</th>    
+                <th rowspan="2" width="120px">@Lang.Cashback</th>
             }
         </tr>
         <tr>
@@ -38,7 +38,7 @@
             <th>@Lang.MinQM</th>
             <th>@Lang.MaxQM</th>
             <th>@Lang.Commission</th>
-            <th width="120px">@Lang.Deductions</th>
+            <th width="120px">@Lang.SharingFee</th>
             
         </tr>
     </thead>

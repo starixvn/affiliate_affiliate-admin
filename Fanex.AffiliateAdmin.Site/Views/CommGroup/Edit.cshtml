@@ -49,7 +49,7 @@
     </div>
      <div class="control-group">
         @Html.LabelFor(m => m.Currency, Lang.Currency, new { @class = "control-label" })
-        <div class="controls">        
+        <div class="controls">
         @if (isNoCommissionGroup)
         {
             @Html.DropDownListFor(m => m.Currency, new SelectList(new List<Currency>(){ new Currency(){
@@ -117,7 +117,7 @@
             }
         }
         
-    @foreach (var product in products)
+    @*@foreach (var product in products)
     {
         var hasTier = Model.GroupSettings.Count(x => x.ProductID == product.ProductID) > 0;
         var headerIcon = hasTier ? "icon-ok-circle" : "icon-ban-circle";
@@ -213,7 +213,7 @@
                                     var tier = settings.ElementAt(j);
                                     var ismax = tier.MaxAmount == MAXAM;
                                     var isLast = j == count - 1;
-                                    <tr class="tier">          
+                                    <tr class="tier">
                                         <td>@(j + 1)</td>
                                         <td>
                                             <input type="text" disabled class="minAM" value="@(((long)tier.MinAmount).ToString("#,0"))"  maxlength="19" /></td>
@@ -243,7 +243,7 @@
                 </div>
             </div>
         </div>
-    }
+    }*@
 
     </div>
    <div class="clear"></div>
@@ -284,7 +284,7 @@
               </td>
               <td>              
                   <a href="javascript:void(0);" class="icon-remove" title="@Lang.Remove"></a>
-              </td>            
+              </td>
           </tr>
 </table>
 
@@ -302,7 +302,7 @@
             PassRequire: "@Lang.ErrNewPass",
             PassConfirm: "@Lang.PassConfirm",
             InvalidSettingFor: "@Lang.InvalidSettingFor",
-            TierSettingAtLeastTier: "@Lang.TierSettingAtLeastTier",            
+            TierSettingAtLeastTier: "@Lang.TierSettingAtLeastTier",
             LastTierSettingHaveMaxValue: "@Lang.LastTierSettingHaveMaxValue",
             ConfirmRemoveFromGroup: "@Lang.ConfirmRemoveFromGroup",
             GroupNameEmpty: "@Lang.GroupNameEmpty",

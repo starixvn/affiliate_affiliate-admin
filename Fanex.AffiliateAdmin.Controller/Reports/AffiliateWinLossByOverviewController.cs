@@ -53,6 +53,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 totalCommission.Currency = AppSettings.BaseExchange.Code;
             }
 
+            var firstCurrency = data.CommissionInAffiliateCurrency.FirstOrDefault();
+
             return Json(new
             {
                 List = data.CommissionList,
@@ -60,6 +62,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 SubTotalData = data.CommissionInAffiliateCurrency,
                 HasMultipleRows = data.CommissionList.Count() > 1,
                 HasMultipleCurrencyRows = data.CommissionInAffiliateCurrency.Count() > 1,
+                FirstCurrency = firstCurrency != null ? firstCurrency.Currency : string.Empty,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows

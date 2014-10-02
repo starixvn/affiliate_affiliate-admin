@@ -47,17 +47,7 @@ namespace Fanex.AffiliateAdmin.Criterias
         public int TotalUniqueClicks { get; set; }
 
         public int TotalClicks { get; set; }
-
-        public DateTime MonthDate
-        { 
-            get
-            {
-                //var systemTime = SystemTimeService.GetSystemDateTime();
-                return (Year == 0 || Month == 0) ? new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) 
-                    : new DateTime(Year, Month, 1);
-            }
-        }
-
+       
         public override string GetSettingKey()
         {
             return "AffAdmin_StatisticsSel";
@@ -66,6 +56,12 @@ namespace Fanex.AffiliateAdmin.Criterias
         public override bool IsValid()
         {
             return true;
+        }
+
+        public DateTime GetFullDate(DateTime now)
+        {
+            return (Year == 0 || Month == 0) ? new DateTime(now.Year, now.Month, 1)
+                : new DateTime(Year, Month, 1);
         }
     }
 }

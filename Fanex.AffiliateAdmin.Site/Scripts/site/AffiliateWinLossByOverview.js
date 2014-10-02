@@ -1,4 +1,4 @@
-﻿/*global AFFILIATE,MSG,moment,System,COLLAPSE_SUBTOTAL_STATUS,EXPAND_SUBTOTAL_STATUS,subTotalStatus,Lang*/
+﻿/*global AFFILIATE,MSG,Lang*/
 var AffiliateWinLossByOverview = (function ($) {
 
     "use strict";
@@ -141,7 +141,6 @@ var AffiliateWinLossByOverview = (function ($) {
     var getSubTotalRows = function (footerRows, subTotalData) {
         var mergeCols = getMergeColNumberOfTotalCol();
         var numCurrencies = subTotalData.length;
-        var firstCurrency = subTotalData[0].Currency;
         var fistColumName = getFirstColumName();
 
 
@@ -208,13 +207,17 @@ var AffiliateWinLossByOverview = (function ($) {
         footerRows.push({ Columns: columns, CssClass: "pseudo-row" });
     };
 
-    var hasShowTotalByCurrency = function (hasMultipleRows, hasMultipleCurrencyRows) {
+    var hasShowTotalByCurrency = function (hasMultipleRows, hasMultipleCurrencyRows, firstCurrency) {
         if (!hasMultipleRows) {
             return false;
         }
 
         if (hasMultipleCurrencyRows) {
             return true;
+        }
+
+        if (firstCurrency === window.System.Currency) {
+            return false;
         }
 
         if (submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
@@ -224,8 +227,8 @@ var AffiliateWinLossByOverview = (function ($) {
         return false;
     };
 
-    function getFooterRows(subTotalData, totalRowData, hasMultipleRows, hasMultipleCurrencyRows) {
-        if (subTotalData.length == 0) {
+    function getFooterRows(subTotalData, totalRowData, hasMultipleRows, hasMultipleCurrencyRows, firstCurrency) {
+        if (subTotalData.length === 0) {
             return [];
         }
 
@@ -234,7 +237,7 @@ var AffiliateWinLossByOverview = (function ($) {
 
         var footerRows = [];
 
-        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows)) {
+        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows, firstCurrency)) {
             getSubTotalRows(footerRows, subTotalData);
         }
 
@@ -333,7 +336,7 @@ var AffiliateWinLossByOverview = (function ($) {
 
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
-                    gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
+                    gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows, data.FirstCurrency);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 

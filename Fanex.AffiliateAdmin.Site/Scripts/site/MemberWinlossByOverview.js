@@ -1,4 +1,4 @@
-﻿/*global AFFILIATE,MSG,samplePlaytechCasinoHeader,samplePShareCol,samplePWinCol,sampleNetGamingCol*/
+﻿/*global AFFILIATE*/
 var MemberWinLossByOverview = (function ($) {
     "use strict";
 
@@ -302,13 +302,17 @@ var MemberWinLossByOverview = (function ($) {
         return mergeCols + 2;
     };
 
-    var hasShowTotalByCurrency = function (hasMultipleRows, hasMultipleCurrencyRows) {
+    var hasShowTotalByCurrency = function (hasMultipleRows, hasMultipleCurrencyRows, firstCurrency) {
         if (!hasMultipleRows) {
             return false;
         }
 
         if (hasMultipleCurrencyRows) {
             return true;
+        }
+
+        if (firstCurrency === window.System.Currency) {
+            return false;
         }
 
         if (submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
@@ -318,10 +322,10 @@ var MemberWinLossByOverview = (function ($) {
         return false;
     };
 
-    var getFooterRows = function (subTotalData, totalRowData, hasMultipleRows, hasMultipleCurrencyRows) {
+    var getFooterRows = function (subTotalData, totalRowData, hasMultipleRows, hasMultipleCurrencyRows, firstCurrency) {
         var footer = [];
 
-        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows)) {
+        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows, firstCurrency)) {
             footer = getSubTotalRows(subTotalData);
         }
 
@@ -459,7 +463,8 @@ var MemberWinLossByOverview = (function ($) {
 
                         gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
-                        gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
+                        gridOption.footerRows 
+                            = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows, data.FirstCurrency);
                     }
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);

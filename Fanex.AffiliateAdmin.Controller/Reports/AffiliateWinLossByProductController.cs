@@ -52,6 +52,8 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var groupsByCurrency = GroupDataByCurrency(data.AffiliateWinLossInAffiliateCurrency);
 
+            var firstCurrency = groupsByCurrency.FirstOrDefault();
+
             return Json(new
             {
                 Groups = groups,
@@ -63,6 +65,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     },
                 HasMultipleRows = groups.Count() > 1,
                 HasMultipleCurrencyRows = groupsByCurrency.Count() > 1,
+                FirstCurrency = firstCurrency != null ? firstCurrency.Currency : string.Empty,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows

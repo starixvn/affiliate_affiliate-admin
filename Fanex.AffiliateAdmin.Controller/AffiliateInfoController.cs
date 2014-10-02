@@ -263,7 +263,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.AffId = CurrentSession.Affiliate.AffiliateId;
 
             var model = _affiliateService.GetAffiliateStatistic(criteria);
-            model.FullDateTime = criteria.MonthDate;
+            model.FullDateTime = criteria.GetFullDate(SystemTimeService.GetSystemDateTime());
             model.AffId = CurrentSession.Affiliate.AffiliateId;
             model.AffName = CurrentSession.Affiliate.Username;
             model.BaseCurrency = AppSettings.BaseExchange.Code;

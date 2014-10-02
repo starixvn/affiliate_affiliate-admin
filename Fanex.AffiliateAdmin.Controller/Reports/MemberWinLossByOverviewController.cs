@@ -51,6 +51,8 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var data = ReportService.GetMemberWinlossOverview(criteria);
 
+            var firstCurrency = data.TotalMemberWinlossInMemberCurrencies.FirstOrDefault();
+
             return Json(new
             {
                 List = data.MemberWinlossList,
@@ -58,6 +60,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 SubTotalData = data.TotalMemberWinlossInMemberCurrencies,
                 HasMultipleRows = data.MemberWinlossList.Count() > 1,
                 HasMultipleCurrencyRows = data.TotalMemberWinlossInMemberCurrencies.Count() > 1,
+                FirstCurrency = firstCurrency != null ? firstCurrency.Currency : string.Empty,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows,

@@ -260,13 +260,17 @@ var AffiliateWinLossByProduct = (function ($) {
         });
     };
 
-    var hasShowTotalByCurrency = function (hasMultipleRows, hasMultipleCurrencyRows) {
+    var hasShowTotalByCurrency = function (hasMultipleRows, hasMultipleCurrencyRows, firstCurrency) {
         if (!hasMultipleRows) {
             return false;
         }
 
         if (hasMultipleCurrencyRows) {
             return true;
+        }
+
+        if (firstCurrency === window.System.Currency) {
+            return false;
         }
 
         if (submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
@@ -276,7 +280,7 @@ var AffiliateWinLossByProduct = (function ($) {
         return false;
     };
 
-    var getBodyRows = function (groups, subTotalData, hasMultipleRows, hasMultipleCurrencyRows) {
+    var getBodyRows = function (groups, subTotalData, hasMultipleRows, hasMultipleCurrencyRows, firstCurrency) {
         if (groups.length === 0) {
             return [];
         }
@@ -287,7 +291,7 @@ var AffiliateWinLossByProduct = (function ($) {
             getRowsOfGroup(bodyRows, itemLevel1);
         });
 
-        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows)) {
+        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows, firstCurrency)) {
             getSubTotalRows(bodyRows, subTotalData);
         }
 
@@ -419,7 +423,7 @@ var AffiliateWinLossByProduct = (function ($) {
 
                     gridOption.titleInfo.text = window.MSG.AffiliateWinLossByProductTitle.format(data.TotalItem);
 
-                    gridOption.bodyRows = getBodyRows(data.Groups, data.SubTotalData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
+                    gridOption.bodyRows = getBodyRows(data.Groups, data.SubTotalData, data.HasMultipleRows, data.HasMultipleCurrencyRows, data.FirstCurrency);
 
                     gridOption.footerRows = getFooterRows(data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
 

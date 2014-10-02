@@ -291,9 +291,9 @@ var CompanyWinlossByProduct = (function ($) {
         return false;
     };
 
-    var getTotalAllRowsOfGroup = function (rows, itemLevel1, sampleDateColumn, hasMultipleRows, hasMultipleCurrencyRows) {
+    var getTotalAllRowsOfGroup = function (rows, itemLevel1, sampleDateColumn, hasMultipleRows, hasMultipleCurrencyRows, firstCurrency) {
 
-        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows)) {
+        if (hasShowTotalByCurrency(hasMultipleRows, hasMultipleCurrencyRows, firstCurrency)) {
             var dateColumn = $.extend(true, {}, {
                 Value: itemLevel1.GroupInfo,
                 Name: "WinlostDate",
@@ -368,7 +368,7 @@ var CompanyWinlossByProduct = (function ($) {
         }
     };
 
-    var getBodyRows = function (groups, totaldata, hasMultipleRows, hasMultipleCurrencyRows) {
+    var getBodyRows = function (groups, totaldata, hasMultipleRows, hasMultipleCurrencyRows, firstCurrency) {
         if (groups.length === 0) {
             return [];
         }
@@ -385,7 +385,7 @@ var CompanyWinlossByProduct = (function ($) {
             TdClass: "bold"
         };
 
-        getTotalAllRowsOfGroup(bodyRows, totaldata, sampleDateColumn, hasMultipleRows, hasMultipleCurrencyRows);
+        getTotalAllRowsOfGroup(bodyRows, totaldata, sampleDateColumn, hasMultipleRows, hasMultipleCurrencyRows, firstCurrency);
 
         return bodyRows;
     };

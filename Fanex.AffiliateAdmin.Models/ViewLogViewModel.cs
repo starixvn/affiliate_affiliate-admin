@@ -4,8 +4,6 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using Fanex.AffiliateAdmin.Services;
-
 namespace Fanex.AffiliateAdmin.Models
 {
     using System;
@@ -16,6 +14,7 @@ namespace Fanex.AffiliateAdmin.Models
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
+    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -26,7 +25,7 @@ namespace Fanex.AffiliateAdmin.Models
 
         private IEnumerable<LogType> _logTypeList;
 
-        #endregion
+        #endregion Fields
 
         public ViewLogViewModel()
         {
@@ -75,6 +74,6 @@ namespace Fanex.AffiliateAdmin.Models
             _logTypeList = logTypeList;
         }
 
-        #endregion
+        #endregion Methods
     }
 }

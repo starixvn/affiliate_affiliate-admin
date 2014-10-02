@@ -8,8 +8,6 @@
 //   <change who="Kaden.Trinh" date="2013.06.14">Add new extension DropDownListFor</change>
 // </history>
 
-using Fanex.AffiliateAdmin.Services;
-
 namespace Fanex.AffiliateAdmin.Core.Mvc
 {
     using System;
@@ -22,6 +20,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
     using System.Web.Mvc.Html;
     using System.Web.Routing;
     using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Implement html extension.
@@ -242,7 +241,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
                 }
                 else
                 {
-                    builder.AppendFormat(" {0}=\"{1}\" ", attr.Key, attr.Value);    
+                    builder.AppendFormat(" {0}=\"{1}\" ", attr.Key, attr.Value);
                 }
             }
 
@@ -422,7 +421,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
         /// Month picker.
         /// </summary>
         /// <param name="htmlHelper">Helper html extension.</param>
-        /// <param name="name">Name and id of element.</param>        
+        /// <param name="name">Name and id of element.</param>
         /// <param name="selectedMonth">Default month.</param>
         /// <param name="htmlAttributes">Html attributes.</param>
         /// <returns>Month picker string.</returns>
@@ -604,6 +603,6 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
             return minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy/MM/dd", CultureInfo.InvariantCulture) : "null";
         }
 
-        #endregion
+        #endregion Helpers
     }
 }

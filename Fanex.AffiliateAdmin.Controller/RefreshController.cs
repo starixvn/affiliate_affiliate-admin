@@ -22,13 +22,6 @@ namespace Fanex.AffiliateAdmin.Controller
     /// </summary>
     public class RefreshController : Controller
     {
-        private readonly IHomeService _homeService;
-
-        public RefreshController(IHomeService homeService)
-        {
-            _homeService = homeService;
-        }
-
         /// <summary>
         /// Refresh Web Config.
         /// </summary>

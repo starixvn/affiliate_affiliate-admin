@@ -7,11 +7,10 @@
 //   <change who="Joseph.Pham" date="2013.8.2">Created</change>
 // </history>
 
-using Fanex.AffiliateAdmin.Services;
-
 namespace Fanex.AffiliateAdmin.Models
 {
     using System;
+    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Email History ViewModel.
@@ -33,10 +32,10 @@ namespace Fanex.AffiliateAdmin.Models
 
         public string SearchText { get; set; }
 
-        public int SearchOption { get; set; }    
+        public int SearchOption { get; set; }
 
         public DateTime? FromDate { get; set; }
 
-        public DateTime? ToDate { get; set; }    
+        public DateTime? ToDate { get; set; }
     }
 }

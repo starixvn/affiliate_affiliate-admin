@@ -9,8 +9,6 @@
 //   <change who="Kaden.Trinh" date="2013.06.25">Load all setting default from DB</change>
 // </history>
 
-using Fanex.AffiliateAdmin.Services;
-
 namespace Fanex.AffiliateAdmin.Core.Configurations
 {
     using System;
@@ -23,6 +21,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     using Criterias.Configuration.SystemSetting;
     using DTO;
     using Fanex.AffiliateAdmin.Resources;
+    using Fanex.AffiliateAdmin.Services;
     using Services;
     using Services.Interface;
     using Session;

@@ -16,13 +16,14 @@
 //   <change who="Brian.Dinh" date="2014.10.1">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fanex.AffiliateAdmin.Services
 {
     using System;
-    using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
-
+    using Fanex.AffiliateAdmin.Criterias;
 
     /// <summary>
     /// System Time Service.
@@ -35,6 +36,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Get System Date time.
         /// </summary>
         /// <returns>System date time.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept it")]
         public static DateTime GetSystemDateTime()
         {
             var serverTime = ServerService.GetSystemDateTime(new SystemDateTimeCriteria());

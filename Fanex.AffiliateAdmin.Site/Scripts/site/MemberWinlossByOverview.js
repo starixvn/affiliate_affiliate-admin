@@ -214,7 +214,7 @@ var MemberWinLossByOverview = (function ($) {
         var mergeCols = getMergeColNumberOfTotalCol();
         var startIndex = getStartIndexForFooterRows();
 
-        columns.push({ Value: window.MSG.Total, Name: "WinlostDate", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
+        columns.push({ Value: window.MSG.Total, Name: "WinlostDateStr", MergeColNumber: mergeCols, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
 
         createPlayerCurrencyColumn(columns);
 
@@ -253,7 +253,7 @@ var MemberWinLossByOverview = (function ($) {
             var columns = [];
 
             if (idx === 0) {
-                columns.push({ Value: window.MSG.Total, Name: "WinlostDate",
+                columns.push({ Value: window.MSG.Total, Name: "WinlostDateStr",
                     MergeColNumber: mergeCols, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass
                 });
             }
@@ -343,7 +343,7 @@ var MemberWinLossByOverview = (function ($) {
 
         columns.push({
             Value: "<div align='center'>" + window.MSG.TotalIn.format(System.Currency) + "</div>",
-            Name: "WinlostDate",
+            Name: "WinlostDateStr",
             MergeColNumber: startIndex
         });
 

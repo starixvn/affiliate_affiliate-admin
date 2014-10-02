@@ -260,7 +260,7 @@ var MemberWinLossByProduct = (function ($) {
 
         var subTotalCol = {
             Value: "<div align='center'>{0}</div>".format(window.MSG.Total),
-            Name: "WinlostDate",
+            Name: "WinlostDateStr",
             MergeRowNumber: totalMergeRowNumber,
             MergeColNumber: getMergeColNumberOfTotalCol(),
             TdClass: "bold"
@@ -431,7 +431,7 @@ var MemberWinLossByProduct = (function ($) {
         var totalColumn = {
             TdClass: numProducts > 1 ? "toggler toggle-{0}".format(currency) : "",
             Value: "<div align='center'>{0}</div>".format(window.MSG.TotalIn.format(System.Currency)),
-            Name: "WinlostDate",
+            Name: "WinlostDateStr",
             MergeColNumber: productColIdx,
             MergeRowNumber: numProducts
         };

@@ -261,6 +261,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult Statistic(AffiliateStatisticCriteria criteria)
         {
             criteria.AffId = CurrentSession.Affiliate.AffiliateId;
+            criteria.MonthDate = criteria.GetFullDate(SystemTimeService.GetSystemDateTime());
 
             var model = _affiliateService.GetAffiliateStatistic(criteria);
             model.FullDateTime = criteria.GetFullDate(SystemTimeService.GetSystemDateTime());

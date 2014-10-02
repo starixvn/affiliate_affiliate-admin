@@ -63,5 +63,7 @@ namespace Fanex.AffiliateAdmin.Criterias
             return (Year == 0 || Month == 0) ? new DateTime(now.Year, now.Month, 1)
                 : new DateTime(Year, Month, 1);
         }
+
+        public DateTime MonthDate { get; set; }
     }
 }

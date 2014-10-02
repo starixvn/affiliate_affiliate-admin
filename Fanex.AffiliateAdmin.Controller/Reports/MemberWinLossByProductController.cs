@@ -72,7 +72,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 SubTotalData = GroupDataByCurrency(data.TotalMemberWinlossInMemberCurrencies),
                 HasMultipleRows = groups.Count() > 1,
                 HasMultipleCurrencyRows = groupsByCurrency.Count() > 1,
-                FirstCurrency = firstCurrency != null ? firstCurrency.Currency : string.Empty,
+                FirstCurrency = firstCurrency != null ? firstCurrency.PlayerCurrency : string.Empty,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows

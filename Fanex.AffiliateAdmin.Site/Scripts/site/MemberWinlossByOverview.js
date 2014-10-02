@@ -329,9 +329,9 @@ var MemberWinLossByOverview = (function ($) {
             footer = getSubTotalRows(subTotalData);
         }
 
-        if (!hasMultipleRows || submitOptions !== SYS_CURRENCY_OPTION) {
+        if (hasMultipleRows || submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
             var totalRow = getTotalRow(totalRowData);
-            footer.concat(totalRow);
+            footer = footer.concat(totalRow);
         }
 
         return footer;

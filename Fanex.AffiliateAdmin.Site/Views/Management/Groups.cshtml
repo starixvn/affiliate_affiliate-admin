@@ -19,10 +19,11 @@ management
 </div>
 @section scripts{
     <script type="text/javascript">
-        var PageVar = {
+        var MSG = {
             NoInfo: "@Lang.NoInfo",
             ConfirmDelGroup: "@Lang.ConfirmDelGroup",
-            AddNewGroup: "@Lang.AddNewGroup"
+            AddNewGroup: "@Lang.AddNewGroup",
+            GroupPolicyOfGroup: "@Lang.GroupPolicyOfGroup"
         };
         var gridOption = {
             language: '@AppSession.Language',
@@ -51,13 +52,13 @@ management
                 },
                 { HeaderText: "@Lang.Description", Width: 120, Name: "GroupDesc" },
                 {
-                    HeaderText: "@Lang.RolePolicy",
+                    HeaderText: "@Lang.Policy",
                     Width: 80,
                     Name: "RolePolicy",
                     CellAlign: "center",
                     Formatter:
                         function(rowIndex, rowData, cell, cellFormated) {
-                            return '<a href="javascript:Management.editRolePolicy(' + rowData.GroupId + ",'" + rowData.GroupName + '\')">@Lang.RolePolicy</a>';
+                            return '<a href="javascript:Management.editRolePolicy(' + rowData.GroupId + ",'" + rowData.GroupName + '\')">@Lang.GroupPolicy</a>';
                         }
                 },
                 {

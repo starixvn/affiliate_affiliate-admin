@@ -17,7 +17,7 @@
 <div class="span12 search-form">
     <div class="row-fluid row-form end-search">
         <div class="cell">
-            @Lang.Keyword
+            @Lang.Username
             <input type="text" class="form-control" name="UserName" placeholder="@Lang.All" />
         </div>
         <div class="cell">
@@ -40,9 +40,11 @@
 
 @section scripts{
     <script type="text/javascript">
-        var PageVar = {
+        var MSG = {
             NoInfo: "@Lang.NoInfo",
-            ChangeStatus: "@Lang.ConfirmChangeStatusAff"
+            ChangeStatus: "@Lang.ConfirmChangeStatusAff",
+            AccountPolicyOfUser: "@Lang.AccountPolicyOfUser",
+            ChangePassword: "@Lang.ChangePassword"
         };
         var gridOption = {
             language: '@AppSession.Language',

@@ -62,6 +62,8 @@ namespace Fanex.AffiliateAdmin.Models
         public AffiliateCommissionViewModel()
         {
             ExcludeTest = true;
+            GroupBy = 1;
+            SortBy = 1;
         }
 
         public MultiSelectList AffiliateCurrencyOptionList
@@ -202,12 +204,14 @@ namespace Fanex.AffiliateAdmin.Models
             {
                 if (_groupByOptions == null)
                 {
-                    _groupByOptions = new SelectList(_groupByList, "Value", "Text", "1");
+                    _groupByOptions = new SelectList(_groupByList, "Value", "Text", GroupBy);
                 }
 
                 return _groupByOptions;
             }
         }
+
+        public byte SortBy { get; set; }
 
         public SelectList SortByOptionList
         {
@@ -215,7 +219,7 @@ namespace Fanex.AffiliateAdmin.Models
             {
                 if (_sortByOptions == null)
                 {
-                    _sortByOptions = new SelectList(_sortByList.OrderBy(t => t.Text), "Value", "Text", "0");
+                    _sortByOptions = new SelectList(_sortByList.OrderBy(t => t.Text), "Value", "Text", SortBy);
                 }
 
                 return _sortByOptions;

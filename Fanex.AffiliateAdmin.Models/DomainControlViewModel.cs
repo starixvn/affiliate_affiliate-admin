@@ -32,7 +32,7 @@ namespace Fanex.AffiliateAdmin.Models
 
         public int ID { get; set; }
 
-        [Display(Name = "Market", ResourceType = typeof(Resources.Lang))]
+        [Display(Name = "Country", ResourceType = typeof(Resources.Lang))]
         [Required]
         public string Country { get; set; }
 

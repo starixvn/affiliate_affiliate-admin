@@ -167,7 +167,7 @@
                                     <td style="text-align: left;">
                                         <input type="checkbox" class="deduction" data-id="@item.DTypeID" data-percent="@item.DeductedPercentage" @(check ? "checked" : string.Empty) />
                                         <label title="@(Lang.ResourceManager.GetString("Deduction" + item.DTypeName.Replace(" ", string.Empty)))">
-                                            @item.DTypeName
+                                            @(Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)))
                                         </label>
                                     </td>
                                     <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList(percent, (decimal)0.01, className, check ? string.Empty : "disabled")

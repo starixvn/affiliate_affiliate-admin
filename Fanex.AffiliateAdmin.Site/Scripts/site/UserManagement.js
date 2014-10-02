@@ -64,7 +64,7 @@ var Management = (function ($) {
                     $('#gridId').show().fanexGrid(gridOption);
 
                     if (data.List.length === 0) {
-                        AFFILIATE.showNoDataMsgInGrid('#gridId', PageVar.NoInfo);
+                        AFFILIATE.showNoDataMsgInGrid('#gridId', MSG.NoInfo);
                     } else {
                         Management.reInit();
                     }
@@ -75,7 +75,7 @@ var Management = (function ($) {
             });
         },
         addUser: function () {
-            AFFILIATE.openDialogFrame("Management/AddUser", PageVar.AddNewUser, { width: 500, height: 400 });
+            AFFILIATE.openDialogFrame("Management/AddUser", window.MSG.AddNewUser, { width: 500, height: 400 });
             return false;
         },
         updatePolicy: function () {
@@ -122,7 +122,7 @@ var Management = (function ($) {
                 custId: custId
             };
 
-            AFFILIATE.openDialogFrame("Management/ChangePolicyUser?" + jQuery.param(param), groupName + ' - ' + userName, { width: 490, height: 530 });
+            AFFILIATE.openDialogFrame("Management/ChangePolicyUser?" + jQuery.param(param), window.MSG.AccountPolicyOfUser.format(userName), { width: 490, height: 530 });
         },
         viewGroup: function (groupId, groupName) {
             var param = {
@@ -138,8 +138,9 @@ var Management = (function ($) {
                 userName: userName
             };
 
-            AFFILIATE.openDialogFrame("Management/ChangePassword?" + jQuery.param(param), userName 
-                + ' - Change Password', { width: 500, height: 350 });
+            AFFILIATE.openDialogFrame("Management/ChangePassword?" + jQuery.param(param), 
+                window.MSG.ChangePassword + ' - ' + userName,
+                { width: 500, height: 350 });
         },
         getStatus: function (obj, custId) {
             //var className = $(obj).find("i:first").attr("class");
@@ -153,7 +154,7 @@ var Management = (function ($) {
             }
         },
         updateStatus: function (custId, status) {
-            if (!confirm(PageVar.ChangeStatus)) {
+            if (!confirm(MSG.ChangeStatus)) {
                 return false;
             }
             var param = {

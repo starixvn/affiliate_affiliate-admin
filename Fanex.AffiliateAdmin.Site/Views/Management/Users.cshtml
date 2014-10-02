@@ -22,7 +22,7 @@ management
         <div class="span12 search-form">
             <div class="row-fluid row-form end-search">
                 <div class="cell">
-                    <label for="username">@Lang.Keyword</label>
+                    <label for="username">@Lang.Username</label>
                     <input type="text" class="form-control" id="username" name="UserName" placeholder="@Lang.All" maxlength="100"/>
                 </div>
                 <div class="cell">
@@ -44,10 +44,12 @@ management
 </div>
 @section scripts{
     <script type="text/javascript">
-        var PageVar = {
+        var MSG = {
             NoInfo: "@Lang.NoInfo",
             ChangeStatus: "@Lang.ConfirmChangeStatusAff",
-            AddNewUser: "@Lang.AddNewUser"
+            AddNewUser: "@Lang.AddNewUser",
+            AccountPolicyOfUser: "@Lang.AccountPolicyOfUser",
+            ChangePassword: "@Lang.ChangePassword"
         };
         var gridOption = {
             language: '@AppSession.Language',

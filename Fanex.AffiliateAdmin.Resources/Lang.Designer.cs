@@ -101,6 +101,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Policy - {0}.
+        /// </summary>
+        public static string AccountPolicyOfUser {
+            get {
+                return ResourceManager.GetString("AccountPolicyOfUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Type.
         /// </summary>
         public static string AccountType {
@@ -182,7 +191,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Aff Domain.
+        ///   Looks up a localized string similar to Add Affiliate Domain.
         /// </summary>
         public static string AddAffDomain {
             get {
@@ -308,7 +317,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add New Aff Type.
+        ///   Looks up a localized string similar to Add New Affiliate Type.
         /// </summary>
         public static string AddNewAffType {
             get {
@@ -506,7 +515,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aff Domain.
+        ///   Looks up a localized string similar to Affiliate Domain.
         /// </summary>
         public static string AffDomain {
             get {
@@ -892,7 +901,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to API ProductID.
+        ///   Looks up a localized string similar to API Product ID.
         /// </summary>
         public static string APIProductID {
             get {
@@ -901,7 +910,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The field API_ProductID must be between 0 and 2147483647..
+        ///   Looks up a localized string similar to The field API Product ID must be between 0 and 2147483647..
         /// </summary>
         public static string APIProductIDRange {
             get {
@@ -1086,6 +1095,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string BankTrans {
             get {
                 return ResourceManager.GetString("BankTrans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Banner.
+        /// </summary>
+        public static string Banner {
+            get {
+                return ResourceManager.GetString("Banner", resourceCulture);
             }
         }
         
@@ -2552,7 +2570,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Aff Domain.
+        ///   Looks up a localized string similar to Edit Affiliate Domain.
         /// </summary>
         public static string EditAffDomain {
             get {
@@ -3727,6 +3745,24 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string GroupPermission {
             get {
                 return ResourceManager.GetString("GroupPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Policy.
+        /// </summary>
+        public static string GroupPolicy {
+            get {
+                return ResourceManager.GetString("GroupPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Policy - {0}.
+        /// </summary>
+        public static string GroupPolicyOfGroup {
+            get {
+                return ResourceManager.GetString("GroupPolicyOfGroup", resourceCulture);
             }
         }
         
@@ -5162,7 +5198,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No of User.
+        ///   Looks up a localized string similar to No. User.
         /// </summary>
         public static string NoOfUser {
             get {
@@ -7139,7 +7175,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Aff Domain.
+        ///   Looks up a localized string similar to Update Affiliate Domain.
         /// </summary>
         public static string UpdateAffDomain {
             get {
@@ -7148,7 +7184,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update affiliate type.
+        ///   Looks up a localized string similar to Update Affiliate Type.
         /// </summary>
         public static string UpdateAffType {
             get {

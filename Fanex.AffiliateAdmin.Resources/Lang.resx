@@ -161,7 +161,7 @@
     <value>Add Aff Currency</value>
   </data>
   <data name="AddAffDomain" xml:space="preserve">
-    <value>Add Aff Domain</value>
+    <value>Add Affiliate Domain</value>
   </data>
   <data name="AddBanner" xml:space="preserve">
     <value>Add Banner</value>
@@ -203,7 +203,7 @@
     <value>Add New Account</value>
   </data>
   <data name="AddNewAffType" xml:space="preserve">
-    <value>Add New Aff Type</value>
+    <value>Add New Affiliate Type</value>
   </data>
   <data name="AddNewConfiguration" xml:space="preserve">
     <value>Add New Configuration</value>
@@ -269,7 +269,7 @@
     <value>This affiliate has been closed.</value>
   </data>
   <data name="AffDomain" xml:space="preserve">
-    <value>Aff Domain</value>
+    <value>Affiliate Domain</value>
   </data>
   <data name="AffDomainNameAddSucc" xml:space="preserve">
     <value>The Affiliate Domain has been added successfully!</value>
@@ -366,10 +366,10 @@
     <value>Answer</value>
   </data>
   <data name="APIProductID" xml:space="preserve">
-    <value>API ProductID</value>
+    <value>API Product ID</value>
   </data>
   <data name="APIProductIDRange" xml:space="preserve">
-    <value>The field API_ProductID must be between 0 and 2147483647.</value>
+    <value>The field API Product ID must be between 0 and 2147483647.</value>
   </data>
   <data name="ApprovalDate" xml:space="preserve">
     <value>Approval Date</value>
@@ -900,7 +900,7 @@
     <value>Edit</value>
   </data>
   <data name="EditAffDomain" xml:space="preserve">
-    <value>Edit Aff Domain</value>
+    <value>Edit Affiliate Domain</value>
   </data>
   <data name="EditBanner" xml:space="preserve">
     <value>Edit Banner</value>
@@ -1740,7 +1740,7 @@
     <value>No. Affiliates</value>
   </data>
   <data name="NoOfUser" xml:space="preserve">
-    <value>No of User</value>
+    <value>No. User</value>
   </data>
   <data name="Normal" xml:space="preserve">
     <value>Normal</value>
@@ -2337,10 +2337,10 @@
     <value>Update</value>
   </data>
   <data name="UpdateAffDomain" xml:space="preserve">
-    <value>Update Aff Domain</value>
+    <value>Update Affiliate Domain</value>
   </data>
   <data name="UpdateAffType" xml:space="preserve">
-    <value>Update affiliate type</value>
+    <value>Update Affiliate Type</value>
   </data>
   <data name="UpdateConfiguration" xml:space="preserve">
     <value>Update configuration</value>
@@ -2662,5 +2662,17 @@
   </data>
   <data name="EditDomainControl" xml:space="preserve">
     <value>Edit Domain Control</value>
+  </data>
+  <data name="Banner" xml:space="preserve">
+    <value>Banner</value>
+  </data>
+  <data name="AccountPolicyOfUser" xml:space="preserve">
+    <value>Account Policy - {0}</value>
+  </data>
+  <data name="GroupPolicy" xml:space="preserve">
+    <value>Group Policy</value>
+  </data>
+  <data name="GroupPolicyOfGroup" xml:space="preserve">
+    <value>Group Policy - {0}</value>
   </data>
 </root>

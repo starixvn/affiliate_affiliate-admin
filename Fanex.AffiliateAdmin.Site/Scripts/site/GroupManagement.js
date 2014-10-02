@@ -35,7 +35,7 @@ var Management = (function ($) {
                     AFFILIATE.PreHandleAjaxResult(data);
 
                     if (data.List.length === 0) {
-                        $('#gridId').addClass("noinfo").html(PageVar.NoInfo);
+                        $('#gridId').addClass("noinfo").html(MSG.NoInfo);
                         return;
                     }
                     gridOption.pagerOption = {
@@ -54,7 +54,7 @@ var Management = (function ($) {
             });
         },
         addGroup: function () {
-            AFFILIATE.openDialogFrame("Management/AddGroup", PageVar.AddNewGroup, { width: 500, height: 400 });
+            AFFILIATE.openDialogFrame("Management/AddGroup", window.MSG.AddNewGroup, { width: 500, height: 400 });
             return false;
         },
         viewGroup: function (groupId, groupName) {
@@ -69,7 +69,7 @@ var Management = (function ($) {
                 groupId: groupId
             };
 
-            AFFILIATE.openDialogFrame("Management/ChangePolicyGroup?" + jQuery.param(param), groupName, { width: 380, height: 540 });
+            AFFILIATE.openDialogFrame("Management/ChangePolicyGroup?" + jQuery.param(param), window.MSG.GroupPolicyOfGroup.format(groupName), { width: 380, height: 540 });
         },
         editGroup: function (groupId, groupName) {
             var param = {
@@ -79,7 +79,7 @@ var Management = (function ($) {
             AFFILIATE.openDialogFrame("Management/EditGroup?" + jQuery.param(param), groupName, { width: 480, height: 440 });
         },
         deleteGroup: function (groupId, groupName) {
-            if (confirm(PageVar.ConfirmDelGroup.format(groupName))) {
+            if (confirm(MSG.ConfirmDelGroup.format(groupName))) {
                 var param = {
                     groupId: groupId
                 };

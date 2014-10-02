@@ -172,7 +172,8 @@ var AffiliateCommissionByProduct = (function ($) {
                 var col = gridOption.columns[i];
                 columns.push({
                     Value: itemLevel2[col.Name],
-                    Name: col.Name
+                    Name: col.Name,
+                    CustomCellRender: AFFILIATE.getCustomCellRender(0, itemLevel2, col)
                 });
             }
 

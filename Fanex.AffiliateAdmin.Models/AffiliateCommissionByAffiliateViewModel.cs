@@ -45,6 +45,7 @@ namespace Fanex.AffiliateAdmin.Models
         public AffiliateCommissionByAffiliateViewModel()
         {
             ExcludeTest = true;
+            SortBy = 1;
         }
 
         [Display(Name = "BaseCurrency", ResourceType = typeof(Lang))]

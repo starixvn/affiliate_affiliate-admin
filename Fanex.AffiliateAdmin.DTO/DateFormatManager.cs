@@ -9,6 +9,9 @@
 
 namespace Fanex.AffiliateAdmin.DTO
 {
+    /// <summary>
+    /// Date Format Manager.
+    /// </summary>
     public static class DateFormatManager
     {
         public const string DateFormat = "MM/dd/yyyy";

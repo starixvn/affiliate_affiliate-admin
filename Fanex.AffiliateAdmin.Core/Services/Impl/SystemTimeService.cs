@@ -16,11 +16,10 @@
 //   <change who="Brian.Dinh" date="2014.10.1">Created</change>
 // </history>
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace Fanex.AffiliateAdmin.Services
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Criterias;

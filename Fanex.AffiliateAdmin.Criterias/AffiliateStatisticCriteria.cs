@@ -47,7 +47,9 @@ namespace Fanex.AffiliateAdmin.Criterias
         public int TotalUniqueClicks { get; set; }
 
         public int TotalClicks { get; set; }
-       
+
+        public DateTime MonthDate { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_StatisticsSel";
@@ -63,7 +65,5 @@ namespace Fanex.AffiliateAdmin.Criterias
             return (Year == 0 || Month == 0) ? new DateTime(now.Year, now.Month, 1)
                 : new DateTime(Year, Month, 1);
         }
-
-        public DateTime MonthDate { get; set; }
     }
 }

@@ -28,7 +28,7 @@
 {
     @Html.ValidationSummary()
     <div class="popup-content" style="min-width:800px">
-    @Html.HiddenFor(m => m.GroupID)   
+    @Html.HiddenFor(m => m.GroupID)
    <div class="control-group">
         @Html.LabelFor(m => m.GroupName, Lang.GroupName, new { @class = "control-label" })
         <div class="controls">
@@ -36,13 +36,13 @@
         </div>
     </div>
     <div class="control-group">
-        @Html.LabelFor(m => m.Description, Lang.Description, new { @class = "control-label" })      
+        @Html.LabelFor(m => m.Description, Lang.Description, new { @class = "control-label" })
         <div class="controls">
             @Html.TextBoxFor(m => m.Description, new { maxlength = "100", @class = "form-control" })
         </div>
     </div>
     <div class="control-group">
-        @Html.LabelFor(m => m.QualifiedAmount, Lang.QualifiedAmount, new { @class = "control-label" })      
+        @Html.LabelFor(m => m.QualifiedAmount, Lang.QualifiedAmount, new { @class = "control-label" })
         <div class="controls">
             @Html.TextBox("QualifiedAmount", Model.QualifiedAmount.ToString("#,0"), new { maxlength = "20", @class = "form-control" })<span style="color: red"> *</span>
         </div>
@@ -99,7 +99,7 @@
                         <table style="margin-top: 10px;">
                             <tr>
                                 <td style="text-align: left; background-color: white;">
-                                    <input type="checkbox" class="deduction" @(check ? "checked=checked" : string.Empty) data-id="@deduction.DTypeID" data-percent="@deduction.DeductedPercentage" />            
+                                    <input type="checkbox" class="deduction" @(check ? "checked=checked" : string.Empty) data-id="@deduction.DTypeID" data-percent="@deduction.DeductedPercentage" />
                                     <label title="@(Lang.ResourceManager.GetString("Deduction" + deduction.DTypeName.Replace(" ", string.Empty)))">
                                         @Lang.Deduction
                                     </label>

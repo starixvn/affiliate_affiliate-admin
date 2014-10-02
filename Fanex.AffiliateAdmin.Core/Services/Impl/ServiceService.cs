@@ -15,6 +15,9 @@ namespace Fanex.AffiliateAdmin.Core.Services.Impl
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.Common.Helper;
 
+    /// <summary>
+    /// Service Service.
+    /// </summary>
     public class ServiceService : QueryService, IServerService
     {
         /// <summary>

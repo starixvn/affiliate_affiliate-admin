@@ -515,7 +515,7 @@ var MemberWinLossByProduct = (function ($) {
                         itemsPerPageArray: AFFILIATE.pageSizes,
                         currentPage: data.CurrentPage,
                         totalItem: data.TotalItem,
-                        pagerSelectCallBack: MemberWinLossByOverview.ReRenderAfterPaged
+                        pagerSelectCallBack: MemberWinLossByProduct.ReRenderAfterPaged
                     };
 
                     gridOption.titleInfo.text = window.MSG.MemberWinLossByProductTitle.format(data.TotalItem);

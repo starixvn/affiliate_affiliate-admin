@@ -127,7 +127,7 @@ var AffiliateWinLossByOverview = (function ($) {
 
     var getFirstColumName = function () {
         if (byAffiliate()) {
-            return "WinlostDate";
+            return "WinlostDateStr";
         }
 
         return "Username";

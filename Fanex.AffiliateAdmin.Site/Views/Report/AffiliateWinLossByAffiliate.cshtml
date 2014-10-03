@@ -174,7 +174,8 @@ report
                     HeaderAlign: "center",
                     CellAlign: "center",
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(record.WinlostDateStr) + cellFormated + "</a>";
+                        var winlost = window.moment(record.WinlostDate).format("DD MMM YYYY");
+                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(winlost) + cellFormated + "</a>";
                     }
                 },
                 {
@@ -264,7 +265,8 @@ report
                     HeaderAlign: "center",
                     CellAlign: "center",
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(record.WinlostDateStr) + cellFormated + "</a>";
+                        var winlost = window.moment(record.WinlostDate).format("DD MMM YYYY");
+                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(winlost) + cellFormated + "</a>";
                     }
                 },
                 {
@@ -274,7 +276,7 @@ report
                     HeaderAlign: "center",
                     Formatter: function(rIndex, record, cell, cellFormated) {
                         if (cellFormated)
-                            return "<a class='commgroup' data-date='" + moment(record.WinlostDate).format("MMM-YYYY") + "' data-groupid='" + record.GroupID + "' href='javascript:void(0)'>" + cellFormated + "</a>";
+                            return "<a class='commgroup' data-date='" + window.moment(record.WinlostDate).format("MMM-YYYY") + "' data-groupid='" + record.GroupID + "' href='javascript:void(0)'>" + cellFormated + "</a>";
                         return null;
                     }
                 },

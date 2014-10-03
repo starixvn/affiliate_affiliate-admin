@@ -96,7 +96,7 @@ namespace Fanex.AffiliateAdmin.Models
                                      ? new List<short>()
                                      : PlayerCurrencies.Split(',').Select(short.Parse);
 
-                var selectedValues = string.IsNullOrEmpty(Products)
+                var selectedValues = string.IsNullOrEmpty(PlayerCurrencies)
                                          ? AppSettings.PlayerCurrencies.Select(t => t.CurrencyID)
                                          : playerCurrencyList;
 

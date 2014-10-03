@@ -5407,7 +5407,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
         ///	&lt;li&gt;Net Win Loss = - Member Win Loss - Member Commission&lt;/li&gt;
-        ///	&lt;li&gt;Affiliate Commission (3rd Party Product) = Net Win Loss * Commission%&lt;/li&gt;	
+        ///	&lt;li&gt;Affiliate Commission = Net Win Loss * Commission%&lt;/li&gt;	
         ///    &lt;/ul&gt;.
         /// </summary>
         public static string OtherProductSharingFeeInfo {

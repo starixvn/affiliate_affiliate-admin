@@ -435,9 +435,7 @@ var MemberWinLossByOverview = (function ($) {
             submitOptions["pageIndex"] = currentPage + 1;
             submitOptions["pageSize"] = itemsPerPage;
 
-            stopwatch.reset();
-
-            stopwatch.start();
+           
 
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("MemberWinLossByOverview/GetData"),
@@ -453,6 +451,10 @@ var MemberWinLossByOverview = (function ($) {
                     console.log("DurationFanexData: ", data.DurationFanexData);
 
                     console.log("DurationGroupByDataOnWeb: ", data.DurationGroupByDataOnWeb);
+
+                    stopwatch.reset();
+
+                    stopwatch.start();
 
                     AFFILIATE.PreHandleAjaxResult(data);
 

@@ -10,7 +10,6 @@
 namespace Fanex.AffiliateAdmin.DataAccess
 {
     using System.Data;
-    using System.Diagnostics;
     using System.Linq;
     using Criterias;
     using DTO;
@@ -30,8 +29,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
         {
             var memberWinlossReport = new MemberWinLossByOverviewResult();
 
-            var stopwatch = new Stopwatch();
-
             if (criteria.IsValid())
             {
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
@@ -39,8 +36,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
                     var param = criteria.GetSpParams();
 
                     var reader = objectDb.ExecuteReader(param);
-
-                    stopwatch.Start();
 
                     memberWinlossReport.MemberWinlossList = GetMemberWinlossList(reader);
 
@@ -51,12 +46,8 @@ namespace Fanex.AffiliateAdmin.DataAccess
                     reader.Close();
 
                     GetOutputParams(criteria, objectDb);
-
-                    stopwatch.Stop();
                 }
             }
-
-            memberWinlossReport.Duration = stopwatch.Elapsed.TotalMilliseconds;
 
             return memberWinlossReport;
         }

@@ -21,8 +21,6 @@ var MemberWinLossByProduct = (function ($) {
     // number of all common columns (except product columns).
     var gridOption = {};
 
-    var stopwatch = new Stopwatch();
-
     //#region change custom grid option.
 
     var byAffiliate = function () {
@@ -504,16 +502,6 @@ var MemberWinLossByProduct = (function ($) {
                 },
                 success: function (data) {
 
-                    console.log("DurationDB: ", data.DurationDB);
-
-                    console.log("DurationFanexData: ", data.DurationFanexData);
-
-                    console.log("DurationGroupByDataOnWeb: ", data.DurationGroupByDataOnWeb);
-
-                    stopwatch.reset();
-
-                    stopwatch.start();
-
                     AFFILIATE.PreHandleAjaxResult(data);
 
                     customizeGridOption(window.sampleProductGridOption);
@@ -539,20 +527,8 @@ var MemberWinLossByProduct = (function ($) {
 
                         gridOption.footerRows = getFooterRows(data.TotalRowData, data.HasMultipleRows);
                     }
-
-                    stopwatch.stop();
-
-                    console.log("Duration - Mapping data to rows: " + stopwatch.time());
-
-                    stopwatch.reset();
-
-                    stopwatch.start();
-
+                    
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
-
-                    stopwatch.stop();
-
-                    console.log("Duration - Render rows: " + stopwatch.time());
 
                     if (data.TotalItem === 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);

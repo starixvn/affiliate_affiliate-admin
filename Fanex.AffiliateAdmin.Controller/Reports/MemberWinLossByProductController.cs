@@ -55,18 +55,12 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.IsITAdmin = CurrentSession.IsIT;
 
             var data = ReportService.GetMemberWinlossByProduct(criteria);
-
-            var stopwatch = new Stopwatch();
-
-            stopwatch.Start();
-
+            
             var groups = GroupDataByMember(data.MemberWinlossList);
 
             var groupsByCurrency = GroupDataByCurrency(data.TotalMemberWinlossInMemberCurrencies);
 
             var firstCurrency = groupsByCurrency.FirstOrDefault();
-
-            stopwatch.Stop();
 
             return Json(new
             {
@@ -84,8 +78,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows,
                 DurationDB = criteria.Duration,
-                DurationFanexData = data.Duration,
-                DurationGroupByDataOnWeb = stopwatch.Elapsed.TotalMilliseconds
+                DurationFanexData = data.Duration
             });
         }
 

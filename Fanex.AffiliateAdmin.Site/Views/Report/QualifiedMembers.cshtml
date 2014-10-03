@@ -34,7 +34,7 @@
                     <th rowspan="@rowSpan" width="60px">#</th>
                     <th rowspan="@rowSpan" width="150px">@Lang.Member</th>
                     <th rowspan="@rowSpan" width="100px">@Lang.MemberCurrency</th>
-                    <th rowspan="@rowSpan">@Lang.QualifiedAmount (@ViewBag.SymbolCurrency)</th>     
+                    <th rowspan="@rowSpan">@Lang.QualifiedAmount (@ViewBag.SymbolCurrency)</th>
                     @if (productCount > 0)
                     {
                         var turnoverTitle = productCount > 1
@@ -50,8 +50,8 @@
                     @foreach (var product in selectedProducts)
                     {
                         <th>@product.ProductName</th>
-                    }        
-                    </tr>    
+                    }
+                    </tr>
                 }
             </thead>
             <tbody>

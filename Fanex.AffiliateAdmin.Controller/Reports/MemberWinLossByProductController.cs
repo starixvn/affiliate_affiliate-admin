@@ -85,7 +85,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 TotalItem = criteria.NRows,
                 DurationDB = criteria.Duration,
                 DurationFanexData = data.Duration,
-                DurationGroupByDataOnWeb = stopwatch.ElapsedMilliseconds
+                DurationGroupByDataOnWeb = stopwatch.Elapsed.TotalMilliseconds
             });
         }
 

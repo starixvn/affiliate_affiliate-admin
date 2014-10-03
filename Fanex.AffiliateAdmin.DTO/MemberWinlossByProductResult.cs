@@ -22,6 +22,6 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public IEnumerable<MemberWinLossItem> TotalMemberWinlossInSystemCurrency { get; set; }
 
-        public long Duration { get; set; }
+        public double Duration { get; set; }
     }
 }

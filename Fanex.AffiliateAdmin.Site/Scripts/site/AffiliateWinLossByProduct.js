@@ -302,7 +302,7 @@ var AffiliateWinLossByProduct = (function ($) {
         if (!hasMultipleRows && submitOptions.BaseCurrency === SYS_CURRENCY_OPTION) {
             return [];
         }
-        
+
         var footerRows = [];
         var numProducts = totalRowData.MergeRowNumber;
         var productColIdx = getProductColIndex();
@@ -404,6 +404,7 @@ var AffiliateWinLossByProduct = (function ($) {
                     $.blockUI();
                 },
                 success: function (data) {
+
                     AFFILIATE.PreHandleAjaxResult(data);
                     gridOption = $.extend(true, {}, window.sampleProductGridOption);
 

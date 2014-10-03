@@ -101,6 +101,7 @@ namespace Fanex.AffiliateAdmin.Site
         private static void GetBundleForMemberWinLossJs(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/memberwinloss")
+                .Include("~/Scripts/site/stopwatch.js")
                 .Include("~/Scripts/site/togglemanager.js")
                 .Include("~/Scripts/site/memberwinlossbyoverview.js")
                 .Include("~/Scripts/site/memberwinlossbyproduct.js")

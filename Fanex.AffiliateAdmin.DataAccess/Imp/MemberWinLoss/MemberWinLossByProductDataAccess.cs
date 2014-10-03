@@ -56,7 +56,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
 
             stopwatch.Stop();
 
-            memberWinlossReport.Duration = stopwatch.ElapsedMilliseconds;
+            memberWinlossReport.Duration = stopwatch.Elapsed.TotalMilliseconds;
 
             return memberWinlossReport;
         }

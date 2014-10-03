@@ -21,6 +21,8 @@ var MemberWinLossByProduct = (function ($) {
     // number of all common columns (except product columns).
     var gridOption = {};
 
+    var stopwatch = new Stopwatch();
+
     //#region change custom grid option.
 
     var byAffiliate = function () {
@@ -493,6 +495,10 @@ var MemberWinLossByProduct = (function ($) {
             submitOptions["pageIndex"] = currentPage + 1;
             submitOptions["pageSize"] = itemsPerPage;
 
+            stopwatch.reset();
+            
+            stopwatch.start();
+
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("MemberWinLossByProduct/GetData"),
                 type: 'post',
@@ -501,6 +507,12 @@ var MemberWinLossByProduct = (function ($) {
                     $.blockUI();
                 },
                 success: function (data) {
+
+                    console.log("DurationDB: ", data.DurationDB);
+
+                    console.log("DurationFanexData: ", data.DurationFanexData);
+
+                    console.log("DurationGroupByDataOnWeb: ", data.DurationGroupByDataOnWeb);
 
                     AFFILIATE.PreHandleAjaxResult(data);
 
@@ -522,13 +534,25 @@ var MemberWinLossByProduct = (function ($) {
 
                     if (data.TotalItem > 0) {
 
-                        gridOption.bodyRows 
+                        gridOption.bodyRows
                             = getBodyRows(data.Groups, data.SubTotalData, data.HasMultipleRows, data.HasMultipleCurrencyRows, data.FirstCurrency);
 
                         gridOption.footerRows = getFooterRows(data.TotalRowData, data.HasMultipleRows);
                     }
 
+                    stopwatch.stop();
+
+                    console.log("Duration - Mapping data to rows: " + stopwatch.time());
+
+                    stopwatch.reset();
+
+                    stopwatch.start();
+
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
+
+                    stopwatch.stop();
+
+                    console.log("Duration - Render rows: " + stopwatch.time());
 
                     if (data.TotalItem === 0) {
                         AFFILIATE.showNoDataMsgInGrid('#gridId', window.Lang.NoDataInfo);

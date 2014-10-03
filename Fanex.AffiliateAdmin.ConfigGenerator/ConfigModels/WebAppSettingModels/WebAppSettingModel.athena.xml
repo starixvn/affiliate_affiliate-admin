@@ -2,7 +2,7 @@
 <settings>
   <Layout>athena</Layout>
   <DefaultLanguage>en-US</DefaultLanguage>
-  <AffiliateName>Athena000</AffiliateName>
+  <AffiliateName>Athena</AffiliateName>
   <Environment>
     <local>Local Development</local>
     <sandbox>Sandbox</sandbox>

@@ -88,11 +88,11 @@ var CompanyWinlossByOverview = (function ($) {
 
         if (hasPlaytechCasino === true) {
             if (products.length > 1) {
-                gridOption.groupHeaderRows[0].Columns.push(samplePlaytechCasinoHeader);
+                gridOption.groupHeaderRows[0].Columns.push(window.samplePlaytechCasinoHeader);
 
-                var pShareCol = $.extend(true, {}, samplePShareCol);
-                var pWinCol = $.extend(true, {}, samplePWinCol);
-                var netGamingCol = $.extend(true, {}, sampleNetGamingCol);
+                var pShareCol = $.extend(true, {}, window.samplePShareCol);
+                var pWinCol = $.extend(true, {}, window.samplePWinCol);
+                var netGamingCol = $.extend(true, {}, window.sampleNetGamingCol);
 
                 delete pShareCol["IsCurrency"];
                 delete pWinCol["IsCurrency"];
@@ -102,9 +102,9 @@ var CompanyWinlossByOverview = (function ($) {
                 gridOption.columns.push(pWinCol);
                 gridOption.columns.push(netGamingCol);
             } else {
-                gridOption.columns.push(samplePShareCol);
-                gridOption.columns.push(samplePWinCol);
-                gridOption.columns.push(sampleNetGamingCol);
+                gridOption.columns.push(window.samplePShareCol);
+                gridOption.columns.push(window.samplePWinCol);
+                gridOption.columns.push(window.sampleNetGamingCol);
             }
         }
     };
@@ -264,7 +264,32 @@ var CompanyWinlossByOverview = (function ($) {
         var dateColumn = $.extend(true, {}, {
             Value: itemLevel1.GroupInfo,
             Name: "WinlostDate",
-            MergeRowNumber: itemLevel1.MergeRowNumber
+            MergeRowNumber: itemLevel1.MergeRowNumber,
+            CustomCellRender: function (cell) {
+                var request = $.extend(true, {}, submitOptions);
+                var fromDate;
+                var toDate;
+                var obj;
+
+                if (submitOptions.GroupBy === GROUP_BY_DATE) {
+                    obj = window.moment(cell.Value);
+                    fromDate = obj.format(AFFILIATE.DATE_FORMAT);
+                    toDate = obj.format(AFFILIATE.DATE_FORMAT);
+                } else {
+                    obj = window.moment(cell.Value, AFFILIATE.DATE_FORMAT_MONTH);
+                    var firstDay = obj.date(1);
+                    fromDate = firstDay.format(AFFILIATE.DATE_FORMAT);
+                    var lastDay = obj.add('months', 1).add('days', -1);
+                    toDate = lastDay.format(AFFILIATE.DATE_FORMAT);
+                }
+
+                request.FromDate = fromDate;
+                request.ToDate = toDate;
+
+                var url = playerWinlossUrl + "?" + jQuery.param(request);
+
+                return "<a href='{0}' target='_blank'>".format(url) + cell.Value + "</a>";
+            }
         }, sampleDateColumn);
 
         var numCurrencies = itemLevel1.MergeRowNumber;

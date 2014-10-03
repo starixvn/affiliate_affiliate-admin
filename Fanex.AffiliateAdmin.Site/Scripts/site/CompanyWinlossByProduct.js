@@ -251,7 +251,32 @@ var CompanyWinlossByProduct = (function ($) {
         var dateColumn = $.extend(true, {}, {
             Value: itemLevel1.GroupInfo,
             Name: "WinlostDate",
-            MergeRowNumber: itemLevel1.MergeRowNumber
+            MergeRowNumber: itemLevel1.MergeRowNumber,
+            CustomCellRender: function (cell) {
+                var request = $.extend(true, {}, submitOptions);
+                var fromDate;
+                var toDate;
+                var obj;
+
+                if (submitOptions.GroupBy === GROUP_BY_DATE) {
+                    obj = window.moment(cell.Value);
+                    fromDate = obj.format(AFFILIATE.DATE_FORMAT);
+                    toDate = obj.format(AFFILIATE.DATE_FORMAT);
+                } else {
+                    obj = window.moment(cell.Value, AFFILIATE.DATE_FORMAT_MONTH);
+                    var firstDay = obj.date(1);
+                    fromDate = firstDay.format(AFFILIATE.DATE_FORMAT);
+                    var lastDay = obj.add('months', 1).add('days', -1);
+                    toDate = lastDay.format(AFFILIATE.DATE_FORMAT);
+                }
+
+                request.FromDate = fromDate;
+                request.ToDate = toDate;
+
+                var url = playerWinlossUrl + "?" + jQuery.param(request);
+
+                return "<a href='{0}' target='_blank'>".format(url) + cell.Value + "</a>";
+            }
         }, sampleDateColumn);
 
         $.each(itemLevel1.CompanyWinlossInMemberCurrencies, function (idxLevel2, itemLevel2) {

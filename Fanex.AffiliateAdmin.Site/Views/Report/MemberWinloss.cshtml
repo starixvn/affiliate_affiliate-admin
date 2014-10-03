@@ -11,8 +11,28 @@ report
 
 @{
     var now = SystemTimeService.GetSystemDateTime();
-    var fromDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1);
-    var toDate = now;
+    var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : new DateTime(now.Year, now.Month, 1).AddMonths(-1);
+    var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now;
+
+    if (fromDate < AppSettings.SystemStartDate)
+    {
+        fromDate = AppSettings.SystemStartDate;
+    }
+
+    if (toDate < AppSettings.SystemStartDate)
+    {
+        toDate = AppSettings.SystemStartDate;
+    }
+
+    if (fromDate > now)
+    {
+        fromDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1);
+    }
+
+    if (toDate > now)
+    {
+        toDate = now;
+    }
 }
 
 @using Fanex.AffiliateAdmin.Core.Configurations
@@ -91,7 +111,7 @@ report
             <div class="row-fluid row-form btn-action">
                 <div class="span12">
                     <button id="btnSubmit" type="button" class="btn btn-default">@Lang.Submit</button>
-                    <input type="hidden" name="ViewMode" id="ViewMode" value="0" />
+                    <input type="hidden" name="ViewMode" id="ViewMode" value="@Model.ViewMode" />
                 </div>
             </div>
         </div>

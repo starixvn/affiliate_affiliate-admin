@@ -10,6 +10,7 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Web.Mvc;
     using Criterias;
@@ -55,11 +56,17 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var data = ReportService.GetMemberWinlossByProduct(criteria);
 
+            var stopwatch = new Stopwatch();
+
+            stopwatch.Start();
+
             var groups = GroupDataByMember(data.MemberWinlossList);
 
             var groupsByCurrency = GroupDataByCurrency(data.TotalMemberWinlossInMemberCurrencies);
 
             var firstCurrency = groupsByCurrency.FirstOrDefault();
+
+            stopwatch.Stop();
 
             return Json(new
             {
@@ -75,7 +82,10 @@ namespace Fanex.AffiliateAdmin.Controller
                 FirstCurrency = firstCurrency != null ? firstCurrency.PlayerCurrency : string.Empty,
                 CurrentPage = criteria.PageIndex - 1,
                 ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.NRows
+                TotalItem = criteria.NRows,
+                DurationDB = criteria.Duration,
+                DurationFanexData = data.Duration,
+                DurationGroupByDataOnWeb = stopwatch.ElapsedMilliseconds
             });
         }
 

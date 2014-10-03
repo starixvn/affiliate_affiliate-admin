@@ -65,7 +65,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 ItemsPerPage = criteria.PageSize,
                 TotalItem = criteria.NRows,
                 DurationDB = criteria.Duration,
-                DurationFanexData = data.Duration
+                DurationFanexData = data.Duration,
+                DurationGroupByDataOnWeb = 0
             });
         }
 

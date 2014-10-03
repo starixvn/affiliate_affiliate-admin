@@ -43,7 +43,7 @@ var AffiliateWinLossReport = (function ($) {
                 delete params.Currencies;
 
                 params["FromDate"] = '01 ' + params["FromDate"];
-                var toDateObj = moment('01 ' + params["ToDate"]);
+                var toDateObj = window.moment('01 ' + params["ToDate"]);
                 var lastDateObj = toDateObj.add("months", 1).add("days", -1);
                 params["ToDate"] = lastDateObj.format("DD MMM YYYY");
 
@@ -59,14 +59,15 @@ var AffiliateWinLossReport = (function ($) {
                 params["GroupBy"] = 0;
                 delete params.Currencies;
 
-                var winlostDateObj = moment($(this).attr('data-winlostdate'));
+                var winlostDateObj = window.moment($(this).attr('data-winlostdate'));
                 var firstDayObj = winlostDateObj.date(1);
                 var firstDay = firstDayObj.format("DD MMM YYYY");
                 var lastDay = firstDayObj.add("months", 1).add("days", -1).format("DD MMM YYYY");
 
                 params["FromDate"] = firstDay;
                 params["ToDate"] = lastDay;
-                window.location = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/MemberWinlossByAffiliate?" : "Report/MemberWinloss?") + jQuery.param(params);
+                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/MemberWinlossByAffiliate?" : "Report/MemberWinloss?") + jQuery.param(params);
+                window.open(url, "_blank");
             });
 
             $maincontent.on("click", "a.qm", function () {

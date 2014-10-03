@@ -170,5 +170,7 @@ namespace Fanex.AffiliateAdmin.Models
                 return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);
             }
         }
+
+        public int ViewMode { get; set; }
     }
 }

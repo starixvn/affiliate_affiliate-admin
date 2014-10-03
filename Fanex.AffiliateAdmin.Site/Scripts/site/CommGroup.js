@@ -8,6 +8,10 @@ var COMMGROUP = function ($) {
     var INDEX_ACTION_COL = 17;
     var submitOptions = {};
 
+    var customRender = function (cell, cellFormated) {
+        return cellFormated;
+    };
+
     var genGridRows = function (list, gridOption) {
         var len = list.length;
 

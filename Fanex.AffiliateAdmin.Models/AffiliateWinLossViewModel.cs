@@ -58,7 +58,7 @@ namespace Fanex.AffiliateAdmin.Models
                      new SelectListItem { Text = Lang.Deposit, Value = "4" },
                      new SelectListItem { Text = Lang.Month, Value = "5" },
                      new SelectListItem { Text = Lang.Turnover, Value = "6" },
-                     new SelectListItem { Text = Lang.Winloss, Value = "7" },
+                     new SelectListItem { Text = Lang.AffiliateWinLoss, Value = "7" },
                      new SelectListItem { Text = Lang.Withdrawal, Value = "8" }
             };
 

@@ -39,7 +39,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                 return new List<SelectListItem>
                 {
                     new SelectListItem { Value = "0", Text = Lang.All },
-                    new SelectListItem { Value = "1", Text = Lang.TransactionDate },
+                    new SelectListItem { Value = "1", Text = Lang.DateRequest },
                     new SelectListItem { Value = "2", Text = Lang.CompletedDate }
                 };
             }

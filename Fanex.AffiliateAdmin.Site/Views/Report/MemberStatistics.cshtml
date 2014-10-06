@@ -55,7 +55,7 @@ report
                      </div>
                      <div class="cell" >
                          @Html.Label("ToDate", Lang.To, new { @class = "txt" })
-                         @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, false)                                        
+                         @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, false)
                      </div>
                 </div>
                  <div id="monthSearch" >
@@ -76,11 +76,11 @@ report
                     @Html.DropDownCheckList("Currencies", new SelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode"), true, true, new { @class = "width-140" })
                 </div>
                 <div class="cell">
-                    @Html.Label("SortBy", Lang.SortBy, new { @class = "txt" })                    
+                    @Html.Label("SortBy", Lang.SortBy, new { @class = "txt" })
                     <select id="SortBy" class="width-140 single-select dropdownchecklist">
                         <option value="0">@Lang.Affiliate</option>
-                        <option value="1" selected>@Lang.SignUp</option>
-                        <option value="2">@Lang.Active</option>                    
+                        <option value="1" selected>@Lang.Signups</option>
+                        <option value="2">@Lang.Active</option>
                     </select>
                 </div>
                 <div class="cell checkbox">                

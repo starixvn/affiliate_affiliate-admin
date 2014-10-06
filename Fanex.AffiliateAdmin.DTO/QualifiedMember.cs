@@ -39,8 +39,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public double PlaytechCasinoTurnover { get; set; }
 
-        public double VirtualSportTurnoverBase { get; set; }
+        public double VirtualSportsTurnoverBase { get; set; }
 
-        public double VirtualSportTurnover { get; set; }
+        public double VirtualSportsTurnover { get; set; }
     }
 }

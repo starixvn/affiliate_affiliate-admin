@@ -2675,4 +2675,10 @@
   <data name="GroupPolicyOfGroup" xml:space="preserve">
     <value>Group Policy - {0}</value>
   </data>
+  <data name="RegisteredDate" xml:space="preserve">
+    <value>Registered Date</value>
+  </data>
+  <data name="TransactionID" xml:space="preserve">
+    <value>Transaction ID</value>
+  </data>
 </root>

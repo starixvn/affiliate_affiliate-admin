@@ -96,7 +96,13 @@ payment
 
         var columnsBase = [
             { HeaderText: "#", Width: 40, Name: "RowID", CellAlign: "center" },
-            { HeaderText: "@Lang.TransId", Width: 72, Name: "Transid", HeaderAlign: "center", CellAlign: "center", Formatter: formatTransId },
+            {
+                HeaderText: "<span title='@Lang.TransactionID'>@Lang.TransId</span>",
+                Width: 72,
+                Name: "Transid",
+                HeaderAlign: "center",
+                CellAlign: "center", 
+                Formatter: formatTransId },
             { HeaderText: "@Lang.Username", Width: 150, Name: "Username", HeaderAlign: "center" },
             { HeaderText: "@Lang.AffType", Width: 90, Name: "AffType", HeaderAlign: "center" },
             { HeaderText: "@Lang.Status", Width: 100, Name: "Status" },

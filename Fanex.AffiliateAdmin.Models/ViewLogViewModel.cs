@@ -57,12 +57,12 @@ namespace Fanex.AffiliateAdmin.Models
             get
             {
                 var actualLogTypeList = _logTypeList.ToList();
-                actualLogTypeList.Insert(0, new LogType { TypeId = 0, TypeName = Lang.All });
+                actualLogTypeList.Insert(0, new LogType { TypeId = 0, TypeName = Lang.All, Description = Lang.All });
 
                 return actualLogTypeList.Select(log => new SelectListItem
                 {
                     Value = log.TypeId.ToString(),
-                    Text = log.TypeName
+                    Text = log.Description
                 }).ToList();
             }
         }

@@ -42,7 +42,7 @@ report
                     @Html.DropDownCheckList("AffTypes", new SelectList(AppSettings.AffTypes, "TypeID", "Name"), true, true, new {@class = "width-140"})
                 </div>
                 <div class="cell">
-                    @Html.LabelFor(m => m.CommGroup, new { @class = "txt", @for = "CommGroups" })
+                    @Html.LabelFor(m => m.CommGroup, new { @class = "txt", @for = "CommGroups", title = Lang.CommissionGroup })
                     @Html.DropDownCheckList("CommGroups", Model.CommissionGroupOptionList, true, true, new {@class = "width-140"})
                 </div>
                 <div class="cell">
@@ -136,8 +136,9 @@ report
             AffiliateCommissionTitle: "@Lang.AffiliateCommission",
             OccurMonthlyTransferError: "@Lang.OccurMonthlyTransferError",
             ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct',
-            QualifiedMembers: "@Lang.QualifiedMembers"
-            
+            QualifiedMembers: "@Lang.QualifiedMembers",
+            NA: "@Lang.NA",
+            NATooltip: "@Lang.NATooltip"
         };
 
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
@@ -156,7 +157,10 @@ report
                         { HeaderText: "#", Name: "No", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Affiliate", Name: "Username", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Month", Name: "WinlostDateStr", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.CommGroup", Name: "GroupName", MergeRowNumber: 2 },
+                        { 
+                            HeaderCaption: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
+                            HeaderText: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
+                            Name: "GroupName", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Product", HeaderText: "@Lang.Product", Name: "ProductName", MergeRowNumber: 2 },
                         {
@@ -168,8 +172,8 @@ report
                             MergeRowNumber: 2
                         },
                         {
-                            HeaderCaption: "@Lang.CommPercent",
-                            HeaderText: "@Lang.CommPercent",
+                            HeaderCaption: "<span title='@Lang.CommissionRate'>@Lang.CommPercent</span>",
+                            HeaderText: "<span title='@Lang.CommissionRate'>@Lang.CommPercent</span>",
                             IsCurrency: false,
                             Name: "CommissionPercent",
                             MergeRowNumber: 2

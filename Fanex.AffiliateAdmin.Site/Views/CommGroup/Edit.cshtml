@@ -71,52 +71,6 @@
  
     <div class="control-group red" id="currNotify" style="display:none;margin: 5px 5px 15px 25px">
     </div>
-        @if (Model.HasCashback > 0)
-        {
-            var deduction = AppSettings.DeductionTypes.FirstOrDefault(x => x.ProductID == 0);
-
-            if (deduction != null)
-            {
-                var check = Model.DeductionSettings.Any(x => x.DeductionID == deduction.DTypeID);
-                var d = check ? Model.DeductionSettings.FirstOrDefault(x => x.DeductionID == deduction.DTypeID) : null;
-                var percent = d == null ? (decimal)deduction.DeductedPercentage : d.DeductedPercentage;
-        
-                <div class="control-group">
-                <div id="tab_header0" data-productid="0" class="tab_header" data-productname="@Lang.Deduction">
-                    <div class="pull-left tab_title">
-                        <div class="expand">
-                            <span>
-                                <span id="product_header0" class="product_header" style="cursor: pointer"> 
-                                    @Lang.Deduction
-                                </span>
-                            </span>
-                        </div>
-                    </div>    
-                </div>
-                <div class="tab_content" id="tab_content0">
-                    <!--DeductionOption-->
-                    <div class="row-fluid row-form deductions">
-                        <table style="margin-top: 10px;">
-                            <tr>
-                                <td style="text-align: left; background-color: white;">
-                                    <input type="checkbox" class="deduction" @(check ? "checked=checked" : string.Empty) data-id="@deduction.DTypeID" data-percent="@deduction.DeductedPercentage" />
-                                    <label title="@(Lang.ResourceManager.GetString("Deduction" + deduction.DTypeName.Replace(" ", string.Empty)))">
-                                        @Lang.Deduction
-                                    </label>
-                                </td>
-                                <td style="text-align: left; background-color: white; "> = @RazorHelper.PercentageDropDownList((decimal)percent, (decimal)0.01, "deductionlist nopadding", check ? string.Empty: "disabled")
-                                </td>
-                                <td style="text-align: left;background-color: white; ">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                <!--/DeductionOption-->
-                </div>
-            </div>
-            }
-        }
-        
     @foreach (var product in products)
     {
         var hasTier = Model.GroupSettings.Count(x => x.ProductID == product.ProductID) > 0;

@@ -1677,7 +1677,7 @@
     <value>My Favorite</value>
   </data>
   <data name="NA" xml:space="preserve">
-    <value>NA</value>
+    <value>N/A</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -2578,7 +2578,7 @@
     <value>Member Comm</value>
   </data>
   <data name="PlayerCommission" xml:space="preserve">
-    <value>Member Commmission</value>
+    <value>Member Commission</value>
   </data>
   <data name="AffiliateMonth" xml:space="preserve">
     <value>Affiliate, Month</value>
@@ -2680,5 +2680,35 @@
   </data>
   <data name="TransactionID" xml:space="preserve">
     <value>Transaction ID</value>
+  </data>
+  <data name="FDMTooltip" xml:space="preserve">
+    <value>First Deposit Member</value>
+  </data>
+  <data name="MaxAMTTooltip" xml:space="preserve">
+    <value>Maximum company net win loss amount for a month</value>
+  </data>
+  <data name="MaxQMTooltip" xml:space="preserve">
+    <value>Maximum qualified members</value>
+  </data>
+  <data name="MinAMTTooltip" xml:space="preserve">
+    <value>Minimum company net win loss amount for a month</value>
+  </data>
+  <data name="MinQMTooltip" xml:space="preserve">
+    <value>Minimum qualified members</value>
+  </data>
+  <data name="PSPTooltip" xml:space="preserve">
+    <value>Payment Service Provider fee</value>
+  </data>
+  <data name="BFTooltip" xml:space="preserve">
+    <value>Current Affiliate Balance Brought Forward</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="CommissionRate" xml:space="preserve">
+    <value>Commission Rate</value>
+  </data>
+  <data name="NATooltip" xml:space="preserve">
+    <value>Not applicable</value>
   </data>
 </root>

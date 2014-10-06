@@ -358,10 +358,6 @@ var CommGroupPopup = (function ($) {
         var deductionList = "", deductedPercentageList = "";
         var finalProducts = [];
 
-        if (window.HasCashback === true) {
-            finalProducts.push(0); // ProductId = 0 for cashback deduction.
-        }
-
         finalProducts = finalProducts.concat(products);
 
         for (var i = 0; i < finalProducts.length; i++) {

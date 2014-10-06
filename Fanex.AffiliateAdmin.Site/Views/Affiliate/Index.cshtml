@@ -208,7 +208,7 @@
                     }
                 },
                 {
-                    HeaderText: "@Lang.CommissionGroup",
+                    HeaderText: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
                     Width: 100,
                     Name: "CommGroupName",
                     HeaderAlign: "center",
@@ -218,7 +218,11 @@
                     }
                 },
                 { HeaderText: "@Lang.Currency", Width: 60, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "@Lang.BF", Width: 70, Name: "BF", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00", FormatNegative: '($)', IsAbs: true },
+                {
+                    HeaderCaption: "<span title='@Lang.BFTooltip'>@Lang.BF</span>",
+                    HeaderText: "<span title='@Lang.BFTooltip'>@Lang.BF</span>",
+                    Width: 70, Name: "BF", HeaderAlign: "center", CellAlign: "right",
+                    FormatNumber: "0,0.00", FormatNegative: '($)', IsAbs: true },
                 {
                     HeaderText: "@Lang.Member",
                     Width: 70,

@@ -38,15 +38,12 @@
     var addToggleIndicatorForProduct = function (element) {
         var rowspan = parseInt($(element).attr("rowspan"), 10);
         rowspan = isNaN(rowspan) ? 1 : rowspan;
-        $(element).css({ position: 'relative' });
         var halfWidth = $(element).width() / 2 - 12 + 'px';
-        var height = $(element).height();
-
         var toggleClass = getToggleClass(element);
         var currencyClass = getCurrencyClass(element);
 
         if (rowspan > 1) {
-            $(element).prepend("<div class='toggle-indicator expand' title='{0}'></div>".format("Collapse/expand data rows."));
+            $(element).find('.table-cell').prepend("<div class='toggle-indicator expand' title='{0}'></div>".format("Collapse/expand data rows."));
             $('.{0} .toggle-indicator'.format(toggleClass)).css({
                 position: 'absolute',
                 left: halfWidth,
@@ -55,7 +52,7 @@
 
             if (toggleClass === 'toggle-base-currency') {
                 $('.{0} .toggle-indicator'.format(toggleClass)).css({
-                    bottom: '3px'
+                    bottom: '0px'
                 });
             }
         }
@@ -64,12 +61,15 @@
             $('.' + currencyClass).hide();
         }
 
-        $(element).find('.table-cell').css('height', rowHeight + 'px');
+        $(element).find('.table-cell').css({
+            position: 'relative',
+            'height': rowHeight + 'px'
+        });
     };
 
     var handleToggleForProduct = function (element) {
         var self = $(element);
-        var parent = self.parent('.toggler');
+        var parent = self.parents('.toggler')[0];
         var currencyClass = getCurrencyClass(parent);
 
         if (self.hasClass('collapse')) {
@@ -78,7 +78,10 @@
 
             resizeGrid();
 
-            $(parent).find('.table-cell').css('height', rowHeight + 'px');
+            $(parent).find('.table-cell').css({
+                'height': rowHeight + 'px',
+                'line-height': rowHeight + 'px'
+            });
 
         } else {
             self.removeClass('expand').addClass('collapse');
@@ -88,7 +91,10 @@
 
             var height = $(parent).height();
 
-            $(parent).find('.table-cell').css('height', height + 'px');
+            $(parent).find('.table-cell').css({
+                'height': height + 'px',
+                'line-height': height + 'px'
+            });
         }
     };
 
@@ -105,12 +111,8 @@
     };
 
     var addToggleIndicatorForOverview = function () {
-        $('.real-cell').prepend("<div class='toggle-indicator collapse' title='{0}'></div>".format(window.MSG.ToggleSubTotal));
-        $('.pseudo-cell').prepend("<div class='toggle-indicator expand' title='{0}'></div>".format(window.MSG.ToggleSubTotal));
-
-        $('.subtotal-cell').css({
-            position: 'relative'
-        });
+        $('.real-cell .table-cell').prepend("<div class='toggle-indicator collapse' title='{0}'></div>".format(window.MSG.ToggleSubTotal));
+        $('.pseudo-cell .table-cell').prepend("<div class='toggle-indicator expand' title='{0}'></div>".format(window.MSG.ToggleSubTotal));
 
         $('.subtotal-cell .toggle-indicator').css({
             position: 'absolute',
@@ -118,10 +120,17 @@
             bottom: 0
         });
 
+        $('.real-cell').find('.table-cell').css({
+            position: 'relative',
+            'height': $('.real-cell').height() + 'px',
+            'line-height': $('.real-cell').height() + 'px'
+        });
 
-
-        $('.real-cell').find('.table-cell').css('height', $('.real-cell').height() + 'px');
-        $('.pseudo-cell').find('.table-cell').css('height', rowHeight + 'px');
+        $('.pseudo-cell').find('.table-cell').css({
+            position: 'relative',
+            'height': rowHeight + 'px',
+            'line-height': rowHeight + 'px'
+        });
     };
 
     manager.InitForProduct = function () {

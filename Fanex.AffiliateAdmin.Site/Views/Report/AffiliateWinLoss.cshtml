@@ -38,7 +38,7 @@ report
                     @Html.DropDownCheckList("AffTypes", Model.AffTypeOptionList, true, true, new { @class = "width-140" })
                 </div>
                 <div class="cell">
-                    <label for="CommGroups" class="txt">@Lang.CommGroup</label>
+                    <label for="CommGroups" class="txt" title="@Lang.CommissionGroup" >@Lang.CommGroup</label>
                     @Html.DropDownCheckList("CommGroups", Model.CommissionGroupOptionList, true, true, new { @class = "width-140" })
                 </div>
                 <div class="cell">
@@ -163,7 +163,10 @@ report
                         { HeaderText: "@Lang.Month", Name: "WinlostDateStr", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.AffType", Name: "AffType", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Language", Name: "Language", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.CommGroup", Name: "GroupName", MergeRowNumber: 2 },
+                        { 
+                            HeaderCaption: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
+                            HeaderText: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
+                            Name: "GroupName", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Name: "Deposit", NameCache: "Deposit", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Withdrawal", HeaderText: "@Lang.Withdrawal", IsCurrency: true, Name: "Withdrawal", NameCache: "Withdrawal", MergeRowNumber: 2 },
@@ -273,7 +276,10 @@ report
                         { HeaderText: "@Lang.Month", Name: "WinlostDateStr", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.AffType", Name: "AffType", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Language", Name: "Language", MergeRowNumber: 2 },
-                        { HeaderText: "@Lang.CommGroup", Name: "GroupName", MergeRowNumber: 2 },
+                        { 
+                            HeaderCaption: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
+                            HeaderText: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
+                            Name: "GroupName", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Product", HeaderText: "@Lang.Product", Name: "ProductName", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.BetCount", HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },

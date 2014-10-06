@@ -1198,6 +1198,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Affiliate Balance Brought Forward.
+        /// </summary>
+        public static string BFTooltip {
+            get {
+                return ResourceManager.GetString("BFTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bonus.
         /// </summary>
         public static string Bonus {
@@ -1477,6 +1486,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        public static string Code {
+            get {
+                return ResourceManager.GetString("Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Collapse/Expand.
         /// </summary>
         public static string CollapseExpand {
@@ -1518,6 +1536,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string CommissionGroup {
             get {
                 return ResourceManager.GetString("CommissionGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commission Rate.
+        /// </summary>
+        public static string CommissionRate {
+            get {
+                return ResourceManager.GetString("CommissionRate", resourceCulture);
             }
         }
         
@@ -3479,6 +3506,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First Deposit Member.
+        /// </summary>
+        public static string FDMTooltip {
+            get {
+                return ResourceManager.GetString("FDMTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Feb.
         /// </summary>
         public static string Feb {
@@ -4523,6 +4559,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum company net win loss amount for a month.
+        /// </summary>
+        public static string MaxAMTTooltip {
+            get {
+                return ResourceManager.GetString("MaxAMTTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The maximum length of file name is 50. Please choose another name..
         /// </summary>
         public static string MaxFileNameLength {
@@ -4564,6 +4609,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string MaxQM {
             get {
                 return ResourceManager.GetString("MaxQM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum qualified members.
+        /// </summary>
+        public static string MaxQMTooltip {
+            get {
+                return ResourceManager.GetString("MaxQMTooltip", resourceCulture);
             }
         }
         
@@ -4856,6 +4910,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Minimum company net win loss amount for a month.
+        /// </summary>
+        public static string MinAMTTooltip {
+            get {
+                return ResourceManager.GetString("MinAMTTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimum number of qualified members.
         /// </summary>
         public static string MinimumQualifiedMembers {
@@ -4879,6 +4942,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string MinQM {
             get {
                 return ResourceManager.GetString("MinQM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum qualified members.
+        /// </summary>
+        public static string MinQMTooltip {
+            get {
+                return ResourceManager.GetString("MinQMTooltip", resourceCulture);
             }
         }
         
@@ -5000,7 +5072,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NA.
+        ///   Looks up a localized string similar to N/A.
         /// </summary>
         public static string NA {
             get {
@@ -5023,6 +5095,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string NameFieldIsRequired {
             get {
                 return ResourceManager.GetString("NameFieldIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not applicable.
+        /// </summary>
+        public static string NATooltip {
+            get {
+                return ResourceManager.GetString("NATooltip", resourceCulture);
             }
         }
         
@@ -5624,7 +5705,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Member Commmission.
+        ///   Looks up a localized string similar to Member Commission.
         /// </summary>
         public static string PlayerCommission {
             get {
@@ -5809,6 +5890,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string PSP {
             get {
                 return ResourceManager.GetString("PSP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Service Provider fee.
+        /// </summary>
+        public static string PSPTooltip {
+            get {
+                return ResourceManager.GetString("PSPTooltip", resourceCulture);
             }
         }
         

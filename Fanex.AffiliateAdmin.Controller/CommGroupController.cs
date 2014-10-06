@@ -64,8 +64,6 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var serializer = new JavaScriptSerializer();
             ViewBag.ProductIDList = serializer.Serialize(AppSettings.Products.Where(t => t.IsEnabled).Select(x => x.ProductID).ToArray());
-            var hasCashback = AppSettings.DeductionTypes.Any(x => x.ProductID == 0
-                && x.RemovedDate.HasValue && x.RemovedDate.Value > SystemTimeService.GetSystemDateTime());
             var currency = SessionManager.CurrentSession.CurrencyList.First();
 
             var criteria = new GetDefaultPspExchangeCriteria
@@ -77,7 +75,6 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var model = new CommGroupInfo
                 {
-                    HasCashback = hasCashback ? 1 : 0,
                     DepositPercent =
                         (double)(defaultPspExchange.DepositPercent.HasValue ? defaultPspExchange.DepositPercent : 0),
                     WithdrawalPercent =

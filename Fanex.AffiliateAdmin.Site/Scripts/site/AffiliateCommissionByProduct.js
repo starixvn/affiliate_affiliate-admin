@@ -12,6 +12,8 @@ var AffiliateCommissionByProduct = (function ($) {
 
     var PRODUCT_COL_INDEX = 5;
 
+    var naValue = "<span title='{0}'>{1}</span>".format(window.MSG.NATooltip, window.MSG.NA);
+
     var removeRedundantColumns = function () {
         if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
             gridOption.groupHeaderRows[0].Columns.splice(MONTH_COL, 2);
@@ -261,7 +263,7 @@ var AffiliateCommissionByProduct = (function ($) {
             for (var i = productColIdx + 1; i < gridOption.columns.length - 1; i++) {
                 var col = gridOption.columns[i];
                 totalColumns.push({
-                    Value: col.IsPercent ? "N/A" : itemLevel1.TotalAffiliateCommissionByProduct[col.Name],
+                    Value: col.IsPercent ? naValue : itemLevel1.TotalAffiliateCommissionByProduct[col.Name],
                     Name: col.Name
                 });
             }
@@ -399,7 +401,7 @@ var AffiliateCommissionByProduct = (function ($) {
                 var col = gridOption.columns[i];
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
                 totalColumns.push({
-                    Value: col.IsPercent ? "N/A" : totalRowData.TotalAffiliateCommissionByProduct[colName],
+                    Value: col.IsPercent ? naValue : totalRowData.TotalAffiliateCommissionByProduct[colName],
                     Name: col.Name
                 });
             }

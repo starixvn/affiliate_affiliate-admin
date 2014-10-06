@@ -40,7 +40,7 @@ report
                     @Html.DropDownCheckList("AffTypes", Model.AffTypeOptionList, true, true, new { @class = "width-140" })
                 </div>
                 <div class="cell">
-                    <label for="CommGroups" class="txt">@Lang.CommGroup</label>
+                    <label for="CommGroups" class="txt" title="@Lang.CommissionGroup">@Lang.CommGroup</label>
                     @Html.DropDownCheckList("CommGroups", Model.CommissionGroupOptionList, true, true, new { @class = "width-140" })
                 </div>
                 <div class="cell">
@@ -141,7 +141,10 @@ report
                         { HeaderCaptioin: "@Lang.UnitPerBaseCurrency".format(System.Currency), HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Name: "ExRate", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Name: "Deposit", NameCache: "Deposit", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Withdrawal", HeaderText: "@Lang.Withdrawal", IsCurrency: true, Name: "Withdrawal", NameCache: "Withdrawal", MergeRowNumber: 2 },
-                        { HeaderCaption: "@Lang.PSP", HeaderText: "@Lang.PSP", IsCurrency: true, Name: "PSP", NameCache: "PSP", MergeRowNumber: 2 },
+                        { 
+                            HeaderCaption: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>",
+                            HeaderText: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>",
+                            IsCurrency: true, Name: "PSP", NameCache: "PSP", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Name: "Bonus", NameCache: "Bonus", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Name: "Adjustment", NameCache: "Adjustment", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.ActiveMembers", HeaderText: "@Lang.ActiveMembers", Name: "ActivePlayer", MergeRowNumber: 2 },

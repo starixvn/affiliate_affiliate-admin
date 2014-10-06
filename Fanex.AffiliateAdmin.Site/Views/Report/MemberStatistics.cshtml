@@ -106,7 +106,7 @@ report
     <div class="row-fluid">
         <ul class="unstyled inline status pull-right">
             <li><span class="approved"></span>@Lang.Approved</li>
-            <li><span class="locked"></span>@Lang.LockedOut</li>            
+            <li><span class="locked"></span>@Lang.LockedOut</li>
             <li><span class="closed"></span>@Lang.Closed</li>
         </ul>
     </div>
@@ -117,7 +117,7 @@ report
             Date: "@Lang.Date",
             Month: "@Lang.Month",
             RangeTime3Months: "@Lang.RangeTime3Months",
-            MemberStatisticsTitle: "@Lang.MemberStatistics"                
+            MemberStatisticsTitle: "@Lang.MemberStatistics"
         };
         
         var sampleGridOption = {
@@ -143,7 +143,9 @@ report
                 { HeaderText: "@Lang.TotalClicks", Width: 70, Name: "TotalClick", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.UniqueClicks", Width: 70, Name: "UniqueClick", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.Signups", Width: 70, Name: "Signups", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "@Lang.FDM", Width: 70, Name: "FDM", HeaderAlign: "center", CellAlign: "right" },
+                {
+                    HeaderText: "<span title='@Lang.FDMTooltip'>@Lang.FDM</span>",
+                    Width: 70, Name: "FDM", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.NonDeposit", Width: 70, Name: "NonDeposit", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.Active", Width: 70, Name: "ActivePlayers", HeaderAlign: "center", CellAlign: "right" }
             ],

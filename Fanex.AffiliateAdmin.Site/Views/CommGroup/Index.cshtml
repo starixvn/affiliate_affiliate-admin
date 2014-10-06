@@ -116,10 +116,19 @@ commgroup
                 { HeaderText: "@Lang.Currency", Width: 55, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Product", Width: 70, Name: "ProductName", HeaderAlign: "center", CellAlign: "center", AllowTruncate: true },
                 { HeaderText: "@Lang.Tier", Width: 40, Name: "TierID", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "@Lang.MinAmount", Width: 65, Name: "MinAmount", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true },
-                { HeaderText: "@Lang.MaxAmount", Width: 65, Name: "MaxAmount", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true },
-                { HeaderText: "@Lang.MinQM", Width: 50, Name: "MinQM", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "@Lang.MaxQM", Width: 50, Name: "MaxQM", HeaderAlign: "center", CellAlign: "right" },
+                {
+                     HeaderText: "<span title='@Lang.MinAMTTooltip'>@Lang.MinAmount</span>",
+                     Width: 65, Name: "MinAmount", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true
+                },
+                { 
+                    HeaderText: "<span title='@Lang.MaxAMTTooltip'>@Lang.MaxAmount</span>", 
+                    Width: 65, Name: "MaxAmount", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true },
+                { 
+                    HeaderText: "<span title='@Lang.MinQMTooltip'>@Lang.MinQM</span>", 
+                    Width: 50, Name: "MinQM", HeaderAlign: "center", CellAlign: "right" },
+                { 
+                    HeaderText: "<span title='@Lang.MaxQMTooltip'>@Lang.MaxQM</span>", 
+                    Width: 50, Name: "MaxQM", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.Commission", Width: 70, Name: "Commission", HeaderAlign: "center", CellAlign: "center", FormatNumber: AFFILIATE.FORMATNUMBER, AllowTruncate: true },
                 { HeaderText: "@Lang.SharingFee", Width: 110, Name: "Deductions", HeaderAlign: "center", CellAlign: "left", AllowTruncate: true },
                 { HeaderText: "@Lang.Cashback", Width: 110, Name: "Deduction", HeaderAlign: "center", CellAlign: "left", FormatNumber: AFFILIATE.FORMATNUMBER, AllowTruncate: true },

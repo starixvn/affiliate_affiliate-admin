@@ -42,7 +42,7 @@
             multiple: true,
             position: {},
             appendTo: "body",
-            valueLength: 15, // 
+            valueLength: 15
         },
 
         _create: function () {
@@ -93,23 +93,6 @@
             checkboxContainer = (this.checkboxContainer = $('<ul />'))
               .addClass('ui-multiselect-checkboxes ui-helper-reset')
               .appendTo(menu);
-
-            // #region: added by Brian, 11/11/2013
-            $(button).on("mouseover", $(buttonlabel), function () {
-                var self = $(buttonlabel);
-                var title = self.attr('title');
-                var text = self.text();
-                self.tooltip({ content: title });
-                
-                if (title !== text) {
-                    self.tooltip("open");    
-                }
-            });
-
-            $(button).on("mouseout", $(buttonlabel), function () {
-                $(buttonlabel).tooltip("close");
-            });
-            // #end region
 
             // perform event bindings
             this._bindEvents();

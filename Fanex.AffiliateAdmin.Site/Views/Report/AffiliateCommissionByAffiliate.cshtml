@@ -127,8 +127,9 @@ report
             AffiliateCommissionTitle: "@Lang.AffiliateCommission",
             OccurMonthlyTransferError: "@Lang.OccurMonthlyTransferError",
             ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct',
-            QualifiedMembers: "@Lang.QualifiedMembers"
-            
+            QualifiedMembers: "@Lang.QualifiedMembers",
+            NA: "@Lang.NA",
+            NATooltip: "@Lang.NATooltip"
         };
 
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
@@ -221,7 +222,7 @@ report
                     HeaderText: '@Lang.CommPercent',
                     Name: "CommissionPercent", 
                     IsCurrency: false, 
-                    IsPercent: true,
+                    IsNA: true,
                     Width: 80, 
                     HeaderAlign: "center", CellAlign: "right",
                     FormatNumber: AFFILIATE.FORMATNUMBER

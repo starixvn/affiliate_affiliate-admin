@@ -92,9 +92,8 @@ report
             </div>
             <div class="row-fluid row-form btn-action">
                 <div class="span12">
-                    <button type="submit" class="btn" id="btnSubmit">
-                        @Lang.Submit
-                    </button>
+                    <button type="submit" class="btn" id="btnSubmit">@Lang.Submit</button>
+                    <input type="hidden" name="ViewMode" id="ViewMode" value="1" />
                 </div>
             </div>
         </div>
@@ -157,10 +156,12 @@ report
                         { HeaderText: "#", Name: "No", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Affiliate", Name: "Username", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Month", Name: "WinlostDateStr", MergeRowNumber: 2 },
-                        { 
+                        {
                             HeaderCaption: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
                             HeaderText: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
-                            Name: "GroupName", MergeRowNumber: 2 },
+                            Name: "GroupName",
+                            MergeRowNumber: 2
+                        },
                         { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Product", HeaderText: "@Lang.Product", Name: "ProductName", MergeRowNumber: 2 },
                         {
@@ -187,10 +188,10 @@ report
                             MergeRowNumber: 2
                         },
                         {
-                            HeaderCaption: "@Lang.TotalPayment", 
-                            HeaderText: "@Lang.TotalPayment", 
-                            IsCurrency: true, 
-                            Name: "TotalPayment", 
+                            HeaderCaption: "@Lang.TotalPayment",
+                            HeaderText: "@Lang.TotalPayment",
+                            IsCurrency: true,
+                            Name: "TotalPayment",
                             NameCache: "TotalPayment",
                             MergeRowNumber: 2
                         }
@@ -200,7 +201,17 @@ report
             columns: [
                 { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Affiliate", Width: 80, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "@Lang.Month", Width: 80, Name: "WinlostDateStr", HeaderAlign: "center", CellAlign: "center" },
+                {
+                    HeaderText: "@Lang.Month",
+                    Width: 80,
+                    Name: "WinlostDateStr",
+                    HeaderAlign: "center",
+                    CellAlign: "center",
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        var winlost = window.moment(record.WinlostDate).format("DD MMM YYYY");
+                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(winlost) + cellFormated + "</a>";
+                    }
+                },
                 {
                     HeaderText: "@Lang.CommGroup",
                     Width: 90,
@@ -226,30 +237,31 @@ report
                     FormatNegative: '($)',
                     IsAbs: true
                 },
-                { 
-                    HeaderCaption: '@Lang.CommPercent', 
+                {
+                    HeaderCaption: '@Lang.CommPercent',
                     HeaderText: '@Lang.CommPercent',
-                    Name: "CommissionPercent", 
-                    IsCurrency: false, 
-                    IsPercent: true,
-                    Width: 80, 
-                    HeaderAlign: "center", CellAlign: "right",
+                    Name: "CommissionPercent",
+                    IsCurrency: false,
+                    IsNA: true,
+                    Width: 80,
+                    HeaderAlign: "center",
+                    CellAlign: "right",
                     FormatNumber: AFFILIATE.FORMATNUMBER
                 },
-                { 
+                {
                     HeaderCaption: '@Lang.Commission',
                     HeaderText: '@Lang.Commission',
-                    Name: "Commission", 
-                    NameCache: "Commission", 
+                    Name: "Commission",
+                    NameCache: "Commission",
                     IsCurrency: true,
-                    Width: 100, 
+                    Width: 100,
                     HeaderAlign: "center",
-                    CellAlign: "right", 
-                    FormatNumber: AFFILIATE.FORMATNUMBER, 
-                    FormatNegative: '($)', 
+                    CellAlign: "right",
+                    FormatNumber: AFFILIATE.FORMATNUMBER,
+                    FormatNegative: '($)',
                     IsAbs: true
                 },
-                { 
+                {
                     HeaderCaption: "@Lang.TotalPayment",
                     HeaderText: "@Lang.TotalPayment",
                     IsCurrency: true,
@@ -257,10 +269,10 @@ report
                     Name: "TotalPayment",
                     NameCache: "TotalPayment",
                     HeaderAlign: "center",
-                    CellAlign: "right", 
-                    FormatNumber: AFFILIATE.FORMATNUMBER, 
-                    FormatNegative: '($)', 
-                    IsAbs: true 
+                    CellAlign: "right",
+                    FormatNumber: AFFILIATE.FORMATNUMBER,
+                    FormatNegative: '($)',
+                    IsAbs: true
                 }
             ],
             showPager: true,

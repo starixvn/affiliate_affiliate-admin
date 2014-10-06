@@ -336,7 +336,7 @@ var AffiliateWinLossByOverview = (function ($) {
 
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
-                    gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows, data.FirstCurrency);
+                    gridOption.footerRows =  getFooterRows(data.SubTotalData, data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows, data.FirstCurrency);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 

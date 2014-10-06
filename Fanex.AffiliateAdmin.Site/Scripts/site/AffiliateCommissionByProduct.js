@@ -46,6 +46,7 @@ var AffiliateCommissionByProduct = (function ($) {
                 HeaderText: "<span title='{0}'>{1}</span>".format(window.MSG.QualifiedMembers, window.MSG.QM),
                 Name: "TotalQM",
                 IsCurrency: false,
+                IsNA: true,
                 Width: 80,
                 HeaderAlign: "center", CellAlign: "right",
                 Formatter: function (rIndex, record, cell, cellFormated) {
@@ -263,7 +264,7 @@ var AffiliateCommissionByProduct = (function ($) {
             for (var i = productColIdx + 1; i < gridOption.columns.length - 1; i++) {
                 var col = gridOption.columns[i];
                 totalColumns.push({
-                    Value: col.IsPercent ? naValue : itemLevel1.TotalAffiliateCommissionByProduct[col.Name],
+                    Value: col.IsNA ? naValue : itemLevel1.TotalAffiliateCommissionByProduct[col.Name],
                     Name: col.Name
                 });
             }
@@ -401,7 +402,7 @@ var AffiliateCommissionByProduct = (function ($) {
                 var col = gridOption.columns[i];
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
                 totalColumns.push({
-                    Value: col.IsPercent ? naValue : totalRowData.TotalAffiliateCommissionByProduct[colName],
+                    Value: col.IsNA ? naValue : totalRowData.TotalAffiliateCommissionByProduct[colName],
                     Name: col.Name
                 });
             }

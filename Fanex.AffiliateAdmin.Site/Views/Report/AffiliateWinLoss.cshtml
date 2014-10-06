@@ -135,13 +135,14 @@ report
             AffQualifiedMemReportDetailFor: "@Html.Raw(Lang.AffQualifiedMemReportDetailFor)",
             Currency: "@Lang.Currency",
             AffiliateWinLossTitle: "@Lang.AffiliateWinLoss",
-            NA: "@Lang.NA",
             Amount: "@Lang.Amount",
             ToggleSubTotal: '@Lang.ToggleSubTotal',
             ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct',
             QualifiedMembers: "@Lang.QualifiedMembers",
             AffiliateWinLossOverviewTitle: "<span class='tab-title focus-tab-title tag-overview'>" + '@Lang.AffiliateWinLossOverview' +  " [{0}]</span><span class='tab-title tag-by-product'>" + '@Lang.AffiliateWinLossByProduct' + "</span>",
-            AffiliateWinLossByProductTitle: "<span class='tab-title tag-overview'>" + '@Lang.AffiliateWinLossOverview' +  "</span><span class='tab-title focus-tab-title tag-by-product'>" + '@Lang.AffiliateWinLossByProduct' + " [{0}]</span>"
+            AffiliateWinLossByProductTitle: "<span class='tab-title tag-overview'>" + '@Lang.AffiliateWinLossOverview' +  "</span><span class='tab-title focus-tab-title tag-by-product'>" + '@Lang.AffiliateWinLossByProduct' + " [{0}]</span>",
+            NA: "@Lang.NA",
+            NATooltip: "@Lang.NATooltip"
         };
 
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
@@ -330,7 +331,7 @@ report
                 { HeaderText: "@Lang.Currency", Width: 80, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Product", Width: 110, Name: "ProductName", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderText: "@Lang.ActiveMembers", Width: 110, Name: "ActivePlayers", HeaderAlign: "center", CellAlign: "right" },
+                { HeaderText: "@Lang.ActiveMembers", Width: 110, Name: "ActivePlayers", HeaderAlign: "center", CellAlign: "right", IsNA: true },
                 { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "Turnover", NameCache: "Turnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 {
                     HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",

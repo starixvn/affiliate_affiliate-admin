@@ -21,6 +21,8 @@ var CompanyWinlossByProduct = (function ($) {
 
     var playerWinlossUrl;
 
+    var naValue = "<span title='{0}'>{1}</span>".format(window.MSG.NATooltip, window.MSG.NA);
+
     var removeExchangeRateCol = function () {
         gridOption.groupHeaderRows[0].Columns.splice(EXRATE_COL_INDEX, 1);
 
@@ -240,7 +242,10 @@ var CompanyWinlossByProduct = (function ($) {
 
             for (var i = startIndex + 1; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
-                totalColumns.push({ Value: itemLevel2.TotalCompanyWinlossByProduct[col.Name], Name: col.Name });
+                totalColumns.push({
+                    Value: col.IsNA ? naValue : itemLevel2.TotalCompanyWinlossByProduct[col.Name], 
+                    Name: col.Name
+                });
             }
 
             rows.push({ Columns: totalColumns, CssClass: "sub-total-group bold" });
@@ -386,7 +391,10 @@ var CompanyWinlossByProduct = (function ($) {
 
             for (var i = startIndex + 1; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
-                totalColumns.push({ Value: itemLevel2.TotalCompanyWinlossByProduct[col.Name], Name: col.Name });
+                totalColumns.push({
+                    Value:  col.IsNA ? naValue : itemLevel2.TotalCompanyWinlossByProduct[col.Name], 
+                    Name: col.Name
+                });
             }
 
             rows.push({ Columns: totalColumns, CssClass: "total-of-currencies bold" });
@@ -461,7 +469,10 @@ var CompanyWinlossByProduct = (function ($) {
                 for (var i = startIndex + 1; i < gridOption.columns.length; i++) {
                     var col = gridOption.columns[i];
                     var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-                    totalColumns.push({ Value: itemLevel2.TotalCompanyWinlossByProduct[colName], Name: col.Name });
+                    totalColumns.push({
+                        Value: col.IsNA ? naValue : itemLevel2.TotalCompanyWinlossByProduct[colName], 
+                        Name: col.Name
+                    });
                 }
 
                 footerRows.push({ Columns: totalColumns, CssClass: "total-whole-range bold" });

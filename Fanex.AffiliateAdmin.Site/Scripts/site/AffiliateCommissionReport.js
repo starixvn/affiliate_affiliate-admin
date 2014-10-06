@@ -5,6 +5,10 @@ var AffiliateCommissionReport = (function ($) {
 
     var submitOptions = {};
 
+    var byAffiliate = function () {
+        return $('#ByAffiliate').length > 0;
+    };
+
     return {
         init: function () {
 
@@ -60,6 +64,25 @@ var AffiliateCommissionReport = (function ($) {
                 AFFILIATE.openDialogFrame("CommGroup/ViewSetting?"
                     + $.param(param), window.MSG.CommGroupSettingFor.replace("{0}", '"'
                     + $(this).html() + '" ' + $(this).data("date")), { width: 1000, height: 450 });
+            });
+
+            mainContentObject.on("click", "a.monthlink", function () {
+                var params = $('form').serializeObject2();
+                params.AffName = $(this).data("affname");
+                params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
+                params["SortBy"] = $('#SortBy').val();
+                params["GroupBy"] = 0;
+                delete params.Currencies;
+
+                var winlostDateObj = window.moment($(this).attr('data-winlostdate'));
+                var firstDayObj = winlostDateObj.date(1);
+                var firstDay = firstDayObj.format("DD MMM YYYY");
+                var lastDay = firstDayObj.add("months", 1).add("days", -1).format("DD MMM YYYY");
+
+                params["FromDate"] = firstDay;
+                params["ToDate"] = lastDay;
+                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/MemberWinlossByAffiliate?" : "Report/MemberWinloss?") + jQuery.param(params);
+                window.open(url, "_blank");
             });
         },
 

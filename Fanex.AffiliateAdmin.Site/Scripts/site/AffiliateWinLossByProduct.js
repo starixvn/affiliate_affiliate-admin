@@ -9,6 +9,8 @@ var AffiliateWinLossByProduct = (function ($) {
 
     var gridOption = {};
 
+    var naValue = "<span title='{0}'>{1}</span>".format(window.MSG.NATooltip, window.MSG.NA);
+
     var byAffiliate = function () {
         return $('#ByAffiliate').length > 0;
     };
@@ -184,7 +186,10 @@ var AffiliateWinLossByProduct = (function ($) {
 
             for (var i = productColIdx + 1; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
-                totalColumns.push({ Value: itemLevel1.TotalAffiliateWinLossByProduct[col.Name], Name: col.Name });
+                totalColumns.push({
+                    Value: col.IsNA ? naValue : itemLevel1.TotalAffiliateWinLossByProduct[col.Name], 
+                    Name: col.Name
+                });
             }
 
             rows.push({ Columns: totalColumns, CssClass: "sub-total-group bold" });
@@ -233,7 +238,10 @@ var AffiliateWinLossByProduct = (function ($) {
 
             for (var i = productColIdx + 1; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
-                totalColumns.push({ Value: itemLevel1.TotalAffiliateWinLossByProduct[col.Name], Name: col.Name });
+                totalColumns.push({
+                    Value:  col.IsNA ? naValue : itemLevel1.TotalAffiliateWinLossByProduct[col.Name], 
+                    Name: col.Name
+                });
             }
 
             rows.push({ Columns: totalColumns, CssClass: "total-of-currencies bold" });
@@ -347,7 +355,10 @@ var AffiliateWinLossByProduct = (function ($) {
             for (var i = productColIdx + 1; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-                totalColumns.push({ Value: totalRowData.TotalAffiliateWinLossByProduct[colName], Name: col.Name });
+                totalColumns.push({
+                    Value: col.IsNA ? naValue : totalRowData.TotalAffiliateWinLossByProduct[colName], 
+                    Name: col.Name
+                });
             }
 
             footerRows.push({ Columns: totalColumns, CssClass: "total-whole-range bold" });
@@ -423,14 +434,15 @@ var AffiliateWinLossByProduct = (function ($) {
                     };
 
                     gridOption.titleInfo.text = window.MSG.AffiliateWinLossByProductTitle.format(data.TotalItem);
-
+                   
+                    
                     gridOption.bodyRows = getBodyRows(data.Groups, data.SubTotalData, data.HasMultipleRows, data.HasMultipleCurrencyRows, data.FirstCurrency);
 
                     gridOption.footerRows = getFooterRows(data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 
-                    if (data.Groups.length === 0) {
+                    if (data.TotalItem === 0) {
                         $('.status').hide();
                         AFFILIATE.showNoDataMsgInGrid('#gridId', Lang.NoDataInfo);
                         return;

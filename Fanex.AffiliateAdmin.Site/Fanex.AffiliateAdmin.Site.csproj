@@ -744,15 +744,12 @@
     <Content Include="Views\Media\TextList.cshtml" />
     <Content Include="Views\Media\AddBanner.cshtml" />
     <Content Include="Views\Media\SubCategories.cshtml" />
-    <Content Include="Views\Configuration\Index.cshtml" />
     <Content Include="Views\Management\AddGroup.cshtml" />
     <Content Include="Views\Management\ChangePolicyGroup.cshtml" />
     <Content Include="Views\Management\EditGroup.cshtml" />
     <Content Include="Views\Exchange\Index.cshtml" />
     <Content Include="Views\Management\UserInGroup.cshtml" />
     <Content Include="Content\_Sites\itcbet\Login.less" />
-    <Content Include="Views\Configuration\ConfigurationDetail.cshtml" />
-    <Content Include="Views\Configuration\AddConfiguration.cshtml" />
     <Content Include="Views\Management\ChangeCurrencyUser.cshtml" />
     <Content Include="Content\themes\Default\commgroup.less" />
     <Content Include="Content\_Sites\itcbet\Notify.less" />
@@ -761,8 +758,6 @@
     <Content Include="Content\_Sites\i668bet\Login.less" />
     <Content Include="Content\_Sites\i668bet\Notify.less" />
     <Content Include="Views\Exchange\UpdateExRate.cshtml" />
-    <Content Include="Views\Configuration\CountryDetail.cshtml" />
-    <Content Include="Views\Configuration\AddCountry.cshtml" />
     <Content Include="Views\Media\AddText.cshtml" />
     <Content Include="Views\Media\EditText.cshtml" />
     <Content Include="Views\AffiliateInfo\Index.cshtml" />
@@ -816,17 +811,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Views\Configuration\Country.cshtml" />
     <Content Include="Views\CommGroup\Index.cshtml" />
-    <Content Include="Views\Configuration\Product.cshtml" />
-    <Content Include="Views\Configuration\ProductDetail.cshtml" />
-    <Content Include="Views\Configuration\AddProduct.cshtml" />
-    <Content Include="Views\Configuration\AddLanguage.cshtml" />
-    <Content Include="Views\Configuration\Language.cshtml" />
-    <Content Include="Views\Configuration\LanguageDetail.cshtml" />
-    <Content Include="Views\Configuration\AffType.cshtml" />
-    <Content Include="Views\Configuration\AffTypeDetail.cshtml" />
-    <Content Include="Views\Configuration\AddAffType.cshtml" />
     <Content Include="Views\Home\UserOnlineList.cshtml" />
     <Content Include="Views\CommGroup\Edit.cshtml" />
     <Content Include="Views\AffiliateInfo\Edit.cshtml" />
@@ -975,6 +960,21 @@
     <Content Include="Web.athena.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="Views\Configuration\AddAffType.cshtml" />
+    <Content Include="Views\Configuration\AddConfiguration.cshtml" />
+    <Content Include="Views\Configuration\AddCountry.cshtml" />
+    <Content Include="Views\Configuration\AddLanguage.cshtml" />
+    <Content Include="Views\Configuration\AddProduct.cshtml" />
+    <Content Include="Views\Configuration\AffType.cshtml" />
+    <Content Include="Views\Configuration\AffTypeDetail.cshtml" />
+    <Content Include="Views\Configuration\ConfigurationDetail.cshtml" />
+    <Content Include="Views\Configuration\Country.cshtml" />
+    <Content Include="Views\Configuration\CountryDetail.cshtml" />
+    <Content Include="Views\Configuration\Index.cshtml" />
+    <Content Include="Views\Configuration\Language.cshtml" />
+    <Content Include="Views\Configuration\LanguageDetail.cshtml" />
+    <Content Include="Views\Configuration\Product.cshtml" />
+    <Content Include="Views\Configuration\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

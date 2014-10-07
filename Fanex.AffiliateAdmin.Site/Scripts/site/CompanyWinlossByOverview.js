@@ -21,6 +21,8 @@ var CompanyWinlossByOverview = (function ($) {
 
     var playerWinlossUrl;
 
+    var naValue = "<span title='{0}'>{1}</span>".format(window.MSG.NATooltip, window.MSG.NA);
+
     var removeExchangeRateCol = function () {
         gridOption.groupHeaderRows[0].Columns.splice(EXRATE_COL_INDEX, 1);
 
@@ -370,7 +372,10 @@ var CompanyWinlossByOverview = (function ($) {
 
         for (var i = startIndex; i < gridOption.columns.length; i++) {
             var col = gridOption.columns[i];
-            columns.push({ Value: itemLevel2[col.Name], Name: col.Name });
+            columns.push({
+                Value: col.IsNA ? naValue : itemLevel2[col.Name], 
+                Name: col.Name
+            });
         }
 
         rows.push({ Columns: columns, CssClass: "real-row" });
@@ -392,7 +397,10 @@ var CompanyWinlossByOverview = (function ($) {
         for (var i = startIndex; i < gridOption.columns.length; i++) {
             var col = gridOption.columns[i];
             var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-            columns.push({ Value: itemLevel2[colName], Name: col.Name });
+            columns.push({
+                Value: col.IsNA ? naValue : itemLevel2[colName], 
+                Name: col.Name
+            });
         }
 
         rows.push({ Columns: columns, CssClass: "total-whole-range" });

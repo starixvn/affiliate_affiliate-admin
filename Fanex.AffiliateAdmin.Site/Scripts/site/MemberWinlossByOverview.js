@@ -86,11 +86,7 @@ var MemberWinLossByOverview = (function ($) {
     };
 
     var getNumberOfFrozenColumn = function () {
-        if (byAffiliate()) {
-            return getMergeColNumberOfTotalCol() + 1;
-        }
-
-        if (submitOptions.GroupBy === GROUP_BY_DATE && submitOptions.BaseCurrency === SYS_CURRENCY_OPTION) {
+        if (submitOptions.GroupBy === GROUP_BY_DATE && submitOptions.BaseCurrency !== MEMBER_CURRENCY_OPTION) {
             return getMergeColNumberOfTotalCol() + 2;
         }
 

@@ -28,7 +28,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Initializes a new instance of the <see cref="ExchangeRateService" /> class.
         /// </summary>
         public ExchangeRateService()
-            ////: this(null)
+            : base(null)
         {
         }
 

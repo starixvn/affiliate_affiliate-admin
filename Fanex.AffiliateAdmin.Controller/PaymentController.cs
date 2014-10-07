@@ -33,14 +33,20 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Constructor
 
+        public PaymentController()
+            : this(null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentController" /> class.
         /// </summary>
         /// <param name="service">Payment service.</param>
         public PaymentController(IPaymentService service)
         {
-            _paymentService = service;
+            _paymentService = service ?? new PaymentService();
         }
+
         #endregion Constructor
 
         /// <summary>
@@ -59,7 +65,7 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         /// <summary>
-        /// Payment list. 
+        /// Payment list.
         /// </summary>
         /// <param name="criteria">Payment Criteria.</param>
         /// <returns>Action Result.</returns>
@@ -310,6 +316,6 @@ namespace Fanex.AffiliateAdmin.Controller
             }
         }
 
-        #endregion
+        #endregion Helpers
     }
 }

@@ -10,7 +10,6 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
     using System.Web.Mvc;
     using Criterias;
@@ -25,13 +24,6 @@ namespace Fanex.AffiliateAdmin.Controller
     public class MemberWinlossByProductController : ReportController
     {
         #region Member Win Loss Report
-
-        public MemberWinlossByProductController(IReportService reportService, ICommGroupService commGroupService)
-            : base(reportService, commGroupService)
-        {
-            ReportService = reportService;
-            CommGroupService = commGroupService;
-        }
 
         /// <summary>
         /// Member win loss action.
@@ -55,7 +47,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.IsITAdmin = CurrentSession.IsIT;
 
             var data = ReportService.GetMemberWinlossByProduct(criteria);
-            
+
             var groups = GroupDataByMember(data.MemberWinlossList);
 
             var groupsByCurrency = GroupDataByCurrency(data.TotalMemberWinlossInMemberCurrencies);

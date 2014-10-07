@@ -9,7 +9,6 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
     using System.Linq;
     using System.Web.Mvc;
     using Criterias;
@@ -23,13 +22,6 @@ namespace Fanex.AffiliateAdmin.Controller
     public class AffiliateWinLossByOverviewController : ReportController
     {
         #region Affiliate Win Loss Report
-
-        public AffiliateWinLossByOverviewController(IReportService reportService, ICommGroupService commGroupService)
-            : base(reportService, commGroupService)
-        {
-            ReportService = reportService;
-            CommGroupService = commGroupService;
-        }
 
         /// <summary>
         /// Affiliate win loss action.

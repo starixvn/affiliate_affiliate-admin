@@ -19,6 +19,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias.Configuration.Country;
     using DTO;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Services;
     using Models;
     using Resources;
@@ -38,16 +39,22 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Constructor
 
+        public DomainController()
+            : this(null, null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DomainController" /> class.
         /// </summary>
-        /// <param name="service">Domain Service.</param>        
-        /// <param name="systemSetting">System Setting Service.</param>        
+        /// <param name="service">Domain Service.</param>
+        /// <param name="systemSetting">System Setting Service.</param>
         public DomainController(IDomainService service, ISystemSettingService systemSetting)
         {
-            _domainService = service;
-            _systemSettingService = systemSetting;
+            _domainService = service ?? new DomainService();
+            _systemSettingService = systemSetting ?? new SystemSettingService();
         }
+
         #endregion Constructor
 
         /// <summary>
@@ -387,7 +394,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 DBAction = DatabaseAction.Detail
             });
 
-            var model = new DomainControlViewModel 
+            var model = new DomainControlViewModel
             {
                 ID = result.ID,
                 Status = result.Status,

@@ -11,7 +11,6 @@ namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using System.Web.Mvc;
@@ -34,15 +33,26 @@ namespace Fanex.AffiliateAdmin.Controller
 
         private IReportService _reportService;
 
-        public ReportController(IReportService reportService, ICommGroupService commGroupService)
+        public ReportController()
+            : this(null, null)
         {
-            _reportService = reportService;
-            _commGroupService = commGroupService;
         }
 
-        public ICommGroupService CommGroupService { get; set; }
+        public ReportController(IReportService reportService, ICommGroupService commGroupService)
+        {
+            _reportService = reportService ?? new ReportService();
+            _commGroupService = commGroupService ?? new CommGroupService();
+        }
 
-        public IReportService ReportService { get; set; }
+        public ICommGroupService CommGroupService
+        {
+            get { return _commGroupService; }
+        }
+
+        public IReportService ReportService
+        {
+            get { return _reportService; }
+        }
 
         #region Company Win Loss Report.
 
@@ -81,7 +91,7 @@ namespace Fanex.AffiliateAdmin.Controller
             }));
 
             ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(CurrentSession.Affiliate.Currency);
-            
+
             var baseCurrencyList = GetBaseCurrencyList();
 
             model.AddBaseCurrencyList(baseCurrencyList);

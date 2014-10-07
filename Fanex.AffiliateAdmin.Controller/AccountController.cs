@@ -39,6 +39,11 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Constructor
 
+        public AccountController()
+            : this(null, null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController" /> class.
         /// </summary>
@@ -46,8 +51,8 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="systemSettingService">System Setting Service.</param>
         public AccountController(IAccountService accountService, ISystemSettingService systemSettingService)
         {
-            _accountService = accountService;
-            _systemSettingService = systemSettingService;
+            _accountService = accountService ?? new AccountService();
+            _systemSettingService = systemSettingService ?? new SystemSettingService();
         }
 
         #endregion Constructor

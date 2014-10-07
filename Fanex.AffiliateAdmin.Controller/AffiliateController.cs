@@ -38,13 +38,18 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Constructor
 
+        public AffiliateController()
+            : this(null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AffiliateController" /> class.
         /// </summary>
-        /// <param name="service">Affiliate Service.</param>        
+        /// <param name="service">Affiliate Service.</param>
         public AffiliateController(IAffiliateService service)
         {
-            _service = service;
+            _service = service ?? new AffiliateService();
         }
         #endregion Constructor
 

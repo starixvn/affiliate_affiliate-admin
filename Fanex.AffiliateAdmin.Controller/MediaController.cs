@@ -20,6 +20,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Services;
     using Models;
     using Resources;
@@ -36,23 +37,28 @@ namespace Fanex.AffiliateAdmin.Controller
 
         private readonly IMediaSettingService _mediaSettingService;
 
-        #endregion
+        #endregion Fields
 
         #region Constructors
 
-        public MediaController(IMediaService mediaService, IMediaSettingService mediaSettingService)
+        public MediaController()
+            : this(null, null)
         {
-            _mediaService = mediaService;
-            _mediaSettingService = mediaSettingService;
         }
 
-        #endregion
+        public MediaController(IMediaService mediaService, IMediaSettingService mediaSettingService)
+        {
+            _mediaService = mediaService ?? new MediaService();
+            _mediaSettingService = mediaSettingService ?? new MediaSettingService();
+        }
 
-       /// <summary>
-       /// Banner List.
-       /// </summary>
-       /// <param name="model">Input model.</param>
-       /// <returns>Banner list page.</returns>
+        #endregion Constructors
+
+        /// <summary>
+        /// Banner List.
+        /// </summary>
+        /// <param name="model">Input model.</param>
+        /// <returns>Banner list page.</returns>
         [HttpGet]
         public ActionResult Index(BannerListViewModel model)
         {
@@ -555,7 +561,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     }
 
                     // Update the position of banner file.
-                    // Determine the old banner/thumbnail path.       
+                    // Determine the old banner/thumbnail path.
                     string oldBannerPath, oldThumbnailPath;
                     GetBannerPath(bannerDetail.Content, out oldBannerPath, out oldThumbnailPath);
 
@@ -598,6 +604,6 @@ namespace Fanex.AffiliateAdmin.Controller
             thumbnailPath = bannerPath.Replace(oldBannerFile, oldThumbnailFile);
         }
 
-        #endregion
+        #endregion Banner Helpers
     }
 }

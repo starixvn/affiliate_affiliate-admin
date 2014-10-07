@@ -27,9 +27,14 @@ namespace Fanex.AffiliateAdmin.Controller
     {
         private readonly IHomeService _homeService;
 
+        public HomeController()
+            : this(null)
+        {
+        }
+
         public HomeController(IHomeService homeService)
         {
-            _homeService = homeService;
+            _homeService = homeService ?? new HomeService();
         }
 
         public ActionResult Index()

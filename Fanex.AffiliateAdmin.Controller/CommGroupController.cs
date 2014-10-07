@@ -43,6 +43,11 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Constructor
 
+        public CommGroupController()
+            : this(null, null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CommGroupController" /> class.
         /// </summary>
@@ -50,8 +55,8 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="exchangeRateService">Exchange rate service.</param>
         public CommGroupController(ICommGroupService commGroupService, IExchangeRateService exchangeRateService)
         {
-            _commGroupService = commGroupService;
-            _exchangeRateService = exchangeRateService;
+            _commGroupService = commGroupService ?? new CommGroupService();
+            _exchangeRateService = exchangeRateService ?? new ExchangeRateService();
         }
 
         #endregion Constructor

@@ -19,6 +19,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Core.Mailinator;
+    using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Services;
     using Models;
     using Resources;
@@ -41,20 +42,25 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Constructor
 
+        public AffiliateInfoController()
+            : this(null, null, null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AffiliateInfoController" /> class.
         /// </summary>
-        /// <param name="affiliateService">Affiliate Service.</param>   
-        /// <param name="countryService">Country Service.</param>     
-        /// <param name="systemSettingService">System Setting Service.</param> 
+        /// <param name="affiliateService">Affiliate Service.</param>
+        /// <param name="countryService">Country Service.</param>
+        /// <param name="systemSettingService">System Setting Service.</param>
         public AffiliateInfoController(
             IAffiliateService affiliateService,
             ICountryService countryService,
             ISystemSettingService systemSettingService)
         {
-            _affiliateService = affiliateService;
-            _countryService = countryService;
-            _systemSettingService = systemSettingService;
+            _affiliateService = affiliateService ?? new AffiliateService();
+            _countryService = countryService ?? new CountryService();
+            _systemSettingService = systemSettingService ?? new SystemSettingService();
         }
 
         #endregion Constructor
@@ -487,6 +493,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 Currency = affiliateInfo.CurrencyCode
             };
         }
-        #endregion
+
+        #endregion Helpers
     }
 }

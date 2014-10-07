@@ -22,13 +22,6 @@ namespace Fanex.AffiliateAdmin.Controller
     {
         #region Member Win Loss Report
 
-        public MemberWinLossByOverviewController(IReportService reportService, ICommGroupService commGroupService)
-            : base(reportService, commGroupService)
-        {
-            ReportService = reportService;
-            CommGroupService = commGroupService;
-        }
-
         /// <summary>
         /// Member win loss action.
         /// </summary>

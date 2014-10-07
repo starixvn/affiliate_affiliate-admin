@@ -27,13 +27,19 @@ namespace Fanex.AffiliateAdmin.Controller
         #endregion Services
 
         #region Constructor
+
+        public NoteController()
+            : this(null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="NoteController" /> class.
         /// </summary>
-        /// <param name="noteService">Note Service.</param>  
+        /// <param name="noteService">Note Service.</param>
         public NoteController(INoteService noteService)
         {
-            _noteService = noteService;
+            _noteService = noteService ?? new NoteService();
         }
 
         #endregion Constructor

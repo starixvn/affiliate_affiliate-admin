@@ -42,6 +42,11 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Constructor
 
+        public ManagementController()
+            : this(null, null, null, null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ManagementController" /> class.
         /// </summary>
@@ -50,20 +55,21 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="policyService">Policy Service.</param>
         /// <param name="permissionService">Permission Service.</param>
         public ManagementController(
-            IAccountService accountService, 
-            IGroupService groupService, 
-            IPolicyService policyService, 
+            IAccountService accountService,
+            IGroupService groupService,
+            IPolicyService policyService,
             IPermissionCurrencyService permissionService)
         {
-            _accountService = accountService;
-            _groupService = groupService;
-            _policyService = policyService;
-            _permissionService = permissionService;
+            _accountService = accountService ?? new AccountService();
+            _groupService = groupService ?? new GroupService();
+            _policyService = policyService ?? new PolicyService();
+            _permissionService = permissionService ?? new PermissionCurrencyService();
         }
 
         #endregion Constructor
 
         #region User Management
+
         /// <summary>
         /// User management.
         /// </summary>
@@ -89,6 +95,7 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         #region Edit User
+
         /// <summary>
         /// Update information account.
         /// </summary>
@@ -150,9 +157,11 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return EditUser(model.CustID);
         }
+
         #endregion Edit User
 
         #region Add User
+
         [HttpGet]
         public ActionResult AddUser(string password, int groupId = 0)
         {
@@ -188,7 +197,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         Username = model.Username,
                         GroupId = model.GroupID
                     };
-                
+
                 _accountService.AccountInsert(criteria);
 
                 ViewBag.Result = new ResultViewModel
@@ -200,9 +209,11 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return AddUser(model.Password, model.GroupID);
         }
+
         #endregion Add User
 
         #region Change Status
+
         /// <summary>
         /// Change Status.
         /// </summary>
@@ -223,9 +234,11 @@ namespace Fanex.AffiliateAdmin.Controller
                 Message = criteria.ErrCode == 0 ? Lang.UpdateStaSucc : ErrorMessage(criteria.ErrCode)
             });
         }
+
         #endregion Change Status
 
         #region Change Policy
+
         [HttpGet]
         public ActionResult ChangePolicyUser(int custId)
         {
@@ -355,7 +368,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             return View(new PasswordViewModel
                 {
-                    CustId = custId, 
+                    CustId = custId,
                     UserName = userName,
                     Password = password,
                     ConfirmPass = confirmPassword
@@ -423,6 +436,7 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         #region Add Group
+
         [HttpGet]
         public ActionResult AddGroup()
         {
@@ -447,7 +461,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         Ip = Remote.GetClientIPAddress(),
                         Type = "Add"
                     };
-                
+
                 _groupService.GroupInsert(criteria);
 
                 ViewBag.Result = new ResultViewModel
@@ -459,9 +473,11 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return AddGroup();
         }
+
         #endregion Add Group
 
         #region Change Policy
+
         [HttpGet]
         public ActionResult ChangePolicyGroup(PolicyCriteria criteria)
         {
@@ -505,9 +521,11 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return ChangePolicyGroup(new PolicyCriteria { GroupId = groupId });
         }
-        #endregion ChangePolicy
+
+        #endregion Change Policy
 
         #region Edit Group
+
         /// <summary>
         /// Edit group.
         /// </summary>
@@ -555,6 +573,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return EditGroup(Convert.ToInt32(criteria.GroupId));
         }
+
         #endregion Edit Group
 
         /// <summary>
@@ -577,9 +596,11 @@ namespace Fanex.AffiliateAdmin.Controller
                 Message = criteria.ErrCode == 0 ? string.Empty : ErrorMessage(criteria.ErrCode)
             });
         }
+
         #endregion Group Management
 
         #region Private Method
+
         /// <summary>
         /// Update Policy.
         /// </summary>
@@ -601,6 +622,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 Message = criteria.ErrCode == 0 ? Lang.UpdateRolePolicySucc : ErrorMessage(criteria.ErrCode)
             };
         }
+
         #endregion Private Method
     }
 }

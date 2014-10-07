@@ -29,7 +29,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Initializes a new instance of the <see cref="EmailHistoryService" /> class.
         /// </summary>
         public EmailHistoryService()
-            ////: this(null)
+            : base(null)
         {
         }
 
@@ -49,11 +49,11 @@ namespace Fanex.AffiliateAdmin.Services
         /// <summary>
         /// Execute store procedure.
         /// </summary>
-        /// <param name="criteria">Email history criteria.</param>        
+        /// <param name="criteria">Email history criteria.</param>
         public void ExecuteSP(EmailHistoryCriteria criteria)
         {
-            Check.Argument.IsNotNull(criteria, "criteria");            
-            ExecuteOutput(criteria);           
+            Check.Argument.IsNotNull(criteria, "criteria");
+            ExecuteOutput(criteria);
         }
     }
 }

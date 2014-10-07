@@ -37,13 +37,18 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Constructor
 
+        public EmailHistoryController()
+            : this(null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EmailHistoryController" /> class.
         /// </summary>
         /// <param name="service">Email History service.</param>
         public EmailHistoryController(IEmailHistoryService service)
         {
-            _service = service;
+            _service = service ?? new EmailHistoryService();
         }
 
         #endregion Constructor

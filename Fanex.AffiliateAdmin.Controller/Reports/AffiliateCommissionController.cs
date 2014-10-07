@@ -9,7 +9,6 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -24,11 +23,14 @@ namespace Fanex.AffiliateAdmin.Controller
     /// </summary>
     public class AffiliateCommissionController : ReportController
     {
+        public AffiliateCommissionController()
+            : this(null, null)
+        {
+        }
+
         public AffiliateCommissionController(IReportService reportService, ICommGroupService commGroupService)
             : base(reportService, commGroupService)
         {
-            ReportService = reportService;
-            CommGroupService = commGroupService;
         }
 
         /// <summary>

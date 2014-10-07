@@ -26,13 +26,19 @@ namespace Fanex.AffiliateAdmin.Controller
         #endregion Services
 
         #region Constructor
+
+        public ViewLogController()
+            : this(null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewLogController" /> class.
-        /// </summary>  
-        /// <param name="viewLogService">View log Service.</param>  
+        /// </summary>
+        /// <param name="viewLogService">View log Service.</param>
         public ViewLogController(IViewLogService viewLogService)
         {
-            _viewLogService = viewLogService;
+            _viewLogService = viewLogService ?? new ViewLogService();
         }
 
         #endregion Constructor

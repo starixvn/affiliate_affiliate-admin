@@ -28,13 +28,18 @@ namespace Fanex.AffiliateAdmin.Controller
         #endregion Services
 
         #region Constructor
+        public AdjustmentController()
+            : this(null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AdjustmentController" /> class.
         /// </summary>  
         /// <param name="adjustmentService">Adjustment Service.</param>  
         public AdjustmentController(IAdjustmentService adjustmentService)
         {
-            _adjustmentService = adjustmentService;
+            _adjustmentService = adjustmentService ?? new AdjustmentService();
         }
 
         #endregion Constructor
@@ -75,9 +80,9 @@ namespace Fanex.AffiliateAdmin.Controller
                 AffId = this.CurrentSession.Affiliate.AffiliateId,
                 AdminId = this.CurrentSession.CustID,
                 Amount = model.Amount,
-                Description = model.Description 
+                Description = model.Description
             };
-            
+
             this._adjustmentService.UpdateAdjustment(criteria);
 
             ViewBag.Result = GetResultViewModel(criteria.ErrCode);

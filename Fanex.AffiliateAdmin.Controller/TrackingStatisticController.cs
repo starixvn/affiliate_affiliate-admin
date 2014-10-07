@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
@@ -33,15 +34,21 @@ namespace Fanex.AffiliateAdmin.Controller
         #endregion Services
 
         #region Constructor
+
+        public TrackingStatisticController()
+            : this(null, null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TrackingStatisticController" /> class.
-        /// </summary>  
-        /// <param name="trackingService">Tracking Service.</param>  
-        /// <param name="systemSettingService">System setting Service.</param>  
+        /// </summary>
+        /// <param name="trackingService">Tracking Service.</param>
+        /// <param name="systemSettingService">System setting Service.</param>
         public TrackingStatisticController(ITrackingStatisticService trackingService, ISystemSettingService systemSettingService)
         {
-            _trackingService = trackingService;
-            _systemSettingService = systemSettingService;
+            _trackingService = trackingService ?? new TrackingStatisticService();
+            _systemSettingService = systemSettingService ?? new SystemSettingService();
         }
 
         #endregion Constructor

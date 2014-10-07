@@ -22,6 +22,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias.Configuration.Product;
     using Criterias.Configuration.SystemSetting;
     using DTO;
+    using Fanex.AffiliateAdmin.Core.Services;
     using Models;
     using Resources;
 
@@ -35,16 +36,21 @@ namespace Fanex.AffiliateAdmin.Controller
 
         private readonly ISystemSettingService _systemSettingService;
 
-        #endregion
+        #endregion Fields
 
         #region Constructors
 
-        public ConfigurationController(ISystemSettingService service)
+        public ConfigurationController()
+            : this(null)
         {
-            _systemSettingService = service;
         }
 
-        #endregion
+        public ConfigurationController(ISystemSettingService service)
+        {
+            _systemSettingService = service ?? new SystemSettingService();
+        }
+
+        #endregion Constructors
 
         #region Configuration
 
@@ -91,7 +97,7 @@ namespace Fanex.AffiliateAdmin.Controller
             });
         }
 
-        #endregion
+        #endregion Show Configuration
 
         #region Update Configuration
 
@@ -115,11 +121,12 @@ namespace Fanex.AffiliateAdmin.Controller
                     Environment = systemSetting.Environment,
                     EnvironmentList = _systemSettingService.GetSystemSettingList(new SystemSettingDetailCriteria
                         {
-                            SearchBy = SearchByType.ByType, Type = "Environment"
+                            SearchBy = SearchByType.ByType,
+                            Type = "Environment"
                         })
                 };
 
-                return View("ConfigurationDetail", model);
+            return View("ConfigurationDetail", model);
         }
 
         /// <summary>
@@ -143,7 +150,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return ConfigurationDetail(new SystemSettingDetailCriteria { ID = criteria.ID });
         }
 
-        #endregion
+        #endregion Update Configuration
 
         #region Delete Configuration
 
@@ -169,9 +176,10 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(GetResultViewModel(1003));
         }
 
-        #endregion
+        #endregion Delete Configuration
 
         #region Add Configuration
+
         /// <summary>
         /// Show new configuration UI.
         /// </summary>
@@ -216,9 +224,10 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return AddConfiguration();
         }
-        #endregion 
 
-        #endregion
+        #endregion Add Configuration
+
+        #endregion Configuration
 
         #region Country
 
@@ -279,7 +288,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
-                
+
                 _systemSettingService.UpdateCountry(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
@@ -287,7 +296,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return CountryDetail(new CountryDetailCriteria { ID = criteria.CountryID });
         }
 
-        #endregion
+        #endregion Update Country
 
         #region Add Country
 
@@ -313,7 +322,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
-                
+
                 criteria.CountryID = Server.HtmlEncode(criteria.CountryID);
 
                 _systemSettingService.InsertCountry(criteria);
@@ -323,7 +332,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return AddCountry();
         }
 
-        #endregion 
+        #endregion Add Country
 
         #region Delete Country
 
@@ -349,9 +358,9 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(GetResultViewModel(1003));
         }
 
-        #endregion
+        #endregion Delete Country
 
-        #endregion
+        #endregion Country
 
         #region Product
 
@@ -377,7 +386,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return Json(new
             {
-                List = data,            
+                List = data,
                 CurrentPage = 0,
                 ItemsPerPage = data.Count(),
                 TotalItem = data.Count()
@@ -409,7 +418,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
-                
+
                 _systemSettingService.UpdateProduct(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
@@ -417,7 +426,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return ProductDetail(new ProductDetailCriteria { ID = criteria.ProductID });
         }
 
-        #endregion
+        #endregion Update Product
 
         #region Add Product
 
@@ -451,7 +460,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return AddProduct();
         }
 
-        #endregion
+        #endregion Add Product
 
         #region Delete Product
 
@@ -477,9 +486,9 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(GetResultViewModel(1003));
         }
 
-        #endregion
+        #endregion Delete Product
 
-        #endregion
+        #endregion Product
 
         #region Language
 
@@ -534,7 +543,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     CountryID = language.CountryID,
                     CountryList = _systemSettingService.GetCountryList(new CountrySelectCriteria
                         {
-                            PageIndex = 1, PageSize = short.MaxValue
+                            PageIndex = 1,
+                            PageSize = short.MaxValue
                         })
                 };
 
@@ -561,7 +571,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return LanguageDetail(new LanguageDetailCriteria { ID = criteria.LanguageID });
         }
 
-        #endregion
+        #endregion Update Language
 
         #region Add Language
 
@@ -576,10 +586,11 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 CountryList = _systemSettingService.GetCountryList(new CountrySelectCriteria
                     {
-                        PageIndex = 1, PageSize = short.MaxValue
+                        PageIndex = 1,
+                        PageSize = short.MaxValue
                     })
             };
-            
+
             return View(model);
         }
 
@@ -595,7 +606,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
-                
+
                 _systemSettingService.InsertLanguage(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
@@ -603,7 +614,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return AddLanguage();
         }
 
-        #endregion
+        #endregion Add Language
 
         #region Delete Language
 
@@ -629,9 +640,9 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(GetResultViewModel(1003));
         }
 
-        #endregion
+        #endregion Delete Language
 
-        #endregion
+        #endregion Language
 
         #region Affiliate Type
 
@@ -700,7 +711,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return AffTypeDetail(new AffTypeDetailCriteria { ID = criteria.ID });
         }
 
-        #endregion
+        #endregion Update AffType
 
         #region Add AffType
 
@@ -734,7 +745,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return AddAffType();
         }
 
-        #endregion
+        #endregion Add AffType
 
         #region Delete AffType
 
@@ -760,8 +771,8 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(GetResultViewModel(1003));
         }
 
-        #endregion
+        #endregion Delete AffType
 
-        #endregion
+        #endregion Affiliate Type
     }
 }

@@ -30,15 +30,21 @@ namespace Fanex.AffiliateAdmin.Controller
         #endregion Services
 
         #region Constructor
+
+        public StatementController()
+            : this(null, null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="StatementController" /> class.
-        /// </summary>  
+        /// </summary>
         /// <param name="transTypeService">Transaction Service.</param>
-        /// <param name="statementService">Statement Service.</param>  
+        /// <param name="statementService">Statement Service.</param>
         public StatementController(ITransTypeService transTypeService, IStatementService statementService)
         {
-            _transTypeService = transTypeService;
-            _statementService = statementService;
+            _transTypeService = transTypeService ?? new TransTypeService();
+            _statementService = statementService ?? new StatementService();
         }
 
         #endregion Constructor
@@ -63,7 +69,7 @@ namespace Fanex.AffiliateAdmin.Controller
             model.AddTransTypeList(transTypeList.ToList());
 
             ViewBag.AffCurrencySymbol = CurrentSession.Affiliate.Prefix;
-            
+
             return View(model);
         }
 

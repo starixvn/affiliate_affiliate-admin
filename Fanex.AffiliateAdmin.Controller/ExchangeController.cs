@@ -9,7 +9,6 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -46,13 +45,18 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Constructor
 
+        public ExchangeController()
+            : this(null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ExchangeController" /> class.
         /// </summary>
         /// <param name="service">Email History service.</param>
         public ExchangeController(IExchangeRateService service)
         {
-            _exchangeService = service;
+            _exchangeService = service ?? new ExchangeRateService();
             _service = new QueryService();
         }
 

@@ -30,7 +30,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Initializes a new instance of the <see cref="CommGroupService" /> class.
         /// </summary>
         public CommGroupService()
-            ////: this(null)
+            : base(null)
         {
         }
 
@@ -44,7 +44,7 @@ namespace Fanex.AffiliateAdmin.Services
         public IEnumerable<DeductionSetting> GetDeductionSettings(DeductionSettingCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return GetDataOutput<DeductionSetting>(criteria);        
+            return GetDataOutput<DeductionSetting>(criteria);
         }
 
         /// <summary>
@@ -55,9 +55,9 @@ namespace Fanex.AffiliateAdmin.Services
         public IEnumerable<CommGroupTierSetting> GetTierSettings(TierSettingCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return GetDataOutput<CommGroupTierSetting>(criteria);        
+            return GetDataOutput<CommGroupTierSetting>(criteria);
         }
-        
+
         /// <summary>
         /// Get list data.
         /// </summary>
@@ -73,7 +73,7 @@ namespace Fanex.AffiliateAdmin.Services
         public IEnumerable<CommGroup> GetById(CommGroupSelByIdCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return GetDataOutput<CommGroup>(criteria);   
+            return GetDataOutput<CommGroup>(criteria);
         }
     }
 }

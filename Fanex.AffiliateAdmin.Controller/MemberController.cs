@@ -26,7 +26,12 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #endregion Services
 
-         #region Constructor
+        #region Constructor
+
+        public MemberController()
+            : this(null)
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MemberController" /> class.
@@ -34,7 +39,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="service">Member Service.</param>
         public MemberController(IMemberService service)
         {
-            _service = service;
+            _service = service ?? new MemberService();
         }
 
         #endregion Constructor

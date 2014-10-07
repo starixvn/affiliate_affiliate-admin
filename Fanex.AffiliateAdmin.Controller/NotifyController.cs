@@ -25,9 +25,14 @@ namespace Fanex.AffiliateAdmin.Controller
     {
         private readonly IAccountService _accountService;
 
+        public NotifyController()
+            : this(null)
+        {
+        }
+
         public NotifyController(IAccountService accountService)
         {
-            _accountService = accountService;
+            _accountService = accountService ?? new AccountService();
         }
 
         /// <summary>

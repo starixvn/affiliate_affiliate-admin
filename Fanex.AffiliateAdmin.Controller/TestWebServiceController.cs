@@ -58,7 +58,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     responseText = string.Empty;
                     break;
             }
-            
+
             return this.Content(responseText);
         }
 

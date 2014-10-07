@@ -36,10 +36,10 @@ namespace Fanex.AffiliateAdmin.Site
             AreaRegistration.RegisterAllAreas();
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             //// Register my types, for instance:
-            SimpleInjectorInitializer.Initialize();
             ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
 
             BundleConfig.RegisterBundles(BundleTable.Bundles);

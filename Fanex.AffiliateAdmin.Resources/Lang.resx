@@ -2554,13 +2554,14 @@
   </data>
   <data name="CompanyWinLossReportInfo" xml:space="preserve">
     <value>&lt;ul&gt;
-                &lt;li&gt;Company W/L: Sum of selected products' winloss&lt;/li&gt;{0}                
-                &lt;li&gt;Member W/L: Win loss amount of affiliate's members in a month on a product&lt;/li&gt;
-                &lt;li&gt;PSP (Payment Service Provider Fee) = Deposit * Deposit PSP + Withdrawal * Withdrawal PSP&lt;/li&gt;
-            &lt;/ul&gt;</value>
+                &lt;li&gt;Company W/L = Sum of Member Win Loss on selected products&lt;/li&gt;
+                &lt;li&gt;PSP (Payment Service Provider Fee) = Deposit * Deposit Percent + Withdrawal * Withdrawal Percent&lt;/li&gt;
+                {0}
+            &lt;/ul&gt;
+    </value>
   </data>
   <data name="PCNetGamingInfo" xml:space="preserve">
-    <value>&lt;li&gt;PC. Net Gaming: - Customer W/L - P.Share&lt;/li&gt;</value>
+    <value>&lt;li&gt;PC. Net Gaming = - Member Win Loss - Progressive Share&lt;/li&gt;</value>
   </data>
   <data name="UpdateExRate" xml:space="preserve">
     <value>Update exchange rate</value>
@@ -2597,13 +2598,16 @@
   </data>
   <data name="AffiliateCommissionReportInfo" xml:space="preserve">
     <value>&lt;ul&gt;
-	&lt;li&gt;QM (Qualified Member): Total number of members whose accumulated stake in that month is greater than or equal to a defined amount&lt;/li&gt;
-	&lt;li&gt;%Comm follow tier setting of commission group&lt;/li&gt;	
+    &lt;li&gt;Net Win Loss = - Member Win Loss - Member Commission&lt;/li&gt;
+	&lt;li&gt;QM (Qualified Member) = Number of members who have turnover in that month greater than or equal to the defined amount
+&lt;/li&gt;
+	&lt;li&gt;%Comm is defined in Tier setting of selected commission group&lt;/li&gt;
+    
 &lt;/ul&gt;</value>
   </data>
   <data name="AffiliateWinLossReportInfo" xml:space="preserve">
     <value>&lt;ul&gt;
-	&lt;li&gt;Win Loss = Sum of selected products' win loss&lt;/li&gt;
+	&lt;li&gt;Affiliate Win Loss = Company Gross Win Loss over Affiliate&lt;/li&gt;
 	{0}
 &lt;/ul&gt;</value>
   </data>
@@ -2710,5 +2714,14 @@
   </data>
   <data name="NATooltip" xml:space="preserve">
     <value>Not applicable</value>
+  </data>
+  <data name="MemberWinLessReportInfo" xml:space="preserve">
+    <value>&lt;ul&gt;
+                &lt;li&gt;Member W/L = monthly Member Win Loss on selected products&lt;/li&gt;
+                &lt;li&gt;PSP (Payment Service Provider Fee) = Deposit * Deposit Percent + Withdrawal * Withdrawal Percent&lt;/li&gt;
+                {0}
+            &lt;/ul&gt;
+            
+    </value>
   </data>
 </root>

@@ -329,8 +329,9 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             switch (reportType)
             {
                 case ReportType.CompanyWinLoss:
-                case ReportType.MemberWinLoss:
                     return string.Format(Lang.CompanyWinLossReportInfo, hasPlayCasino ? Lang.PCNetGamingInfo : string.Empty);
+                case ReportType.MemberWinLoss:
+                    return string.Format(Lang.MemberWinLessReportInfo, hasPlayCasino ? Lang.PCNetGamingInfo : string.Empty);
                 case ReportType.AffiliateWinLoss:
                     return string.Format(Lang.AffiliateWinLossReportInfo, hasPlayCasino ? Lang.PCNetGamingInfo : string.Empty);
                 case ReportType.AffiliateCommission:

@@ -579,8 +579,11 @@ namespace Fanex.AffiliateAdmin.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
-        ///	&lt;li&gt;QM (Qualified Member): Total number of members whose accumulated stake in that month is greater than or equal to a defined amount&lt;/li&gt;
-        ///	&lt;li&gt;%Comm follow tier setting of commission group&lt;/li&gt;	
+        ///    &lt;li&gt;Net Win Loss = - Member Win Loss - Member Commission&lt;/li&gt;
+        ///	&lt;li&gt;QM (Qualified Member) = Number of members who have turnover in that month greater than or equal to the defined amount
+        ///&lt;/li&gt;
+        ///	&lt;li&gt;%Comm is defined in Tier setting of selected commission group&lt;/li&gt;
+        ///    
         ///&lt;/ul&gt;.
         /// </summary>
         public static string AffiliateCommissionReportInfo {
@@ -737,7 +740,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
-        ///	&lt;li&gt;Win Loss = Sum of selected products&apos; win loss&lt;/li&gt;
+        ///	&lt;li&gt;Affiliate Win Loss = Company Gross Win Loss over Affiliate&lt;/li&gt;
         ///	{0}
         ///&lt;/ul&gt;.
         /// </summary>
@@ -1595,10 +1598,11 @@ namespace Fanex.AffiliateAdmin.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
-        ///                &lt;li&gt;Company W/L: Sum of selected products&apos; winloss&lt;/li&gt;{0}                
-        ///                &lt;li&gt;Member W/L: Win loss amount of affiliate&apos;s members in a month on a product&lt;/li&gt;
-        ///                &lt;li&gt;PSP (Payment Service Provider Fee) = Deposit * Deposit PSP + Withdrawal * Withdrawal PSP&lt;/li&gt;
-        ///            &lt;/ul&gt;.
+        ///                &lt;li&gt;Company W/L = Sum of Member Win Loss on selected products&lt;/li&gt;
+        ///                &lt;li&gt;PSP (Payment Service Provider Fee) = Deposit * Deposit Percent + Withdrawal * Withdrawal Percent&lt;/li&gt;
+        ///                {0}
+        ///            &lt;/ul&gt;
+        ///    .
         /// </summary>
         public static string CompanyWinLossReportInfo {
             get {
@@ -4775,6 +4779,21 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;ul&gt;
+        ///                &lt;li&gt;Member W/L = monthly Member Win Loss on selected products&lt;/li&gt;
+        ///                &lt;li&gt;PSP (Payment Service Provider Fee) = Deposit * Deposit Percent + Withdrawal * Withdrawal Percent&lt;/li&gt;
+        ///                {0}
+        ///            &lt;/ul&gt;
+        ///            
+        ///    .
+        /// </summary>
+        public static string MemberWinLessReportInfo {
+            get {
+                return ResourceManager.GetString("MemberWinLessReportInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member Win Loss.
         /// </summary>
         public static string MemberWinloss {
@@ -5642,7 +5661,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;li&gt;PC. Net Gaming: - Customer W/L - P.Share&lt;/li&gt;.
+        ///   Looks up a localized string similar to &lt;li&gt;PC. Net Gaming = - Member Win Loss - Progressive Share&lt;/li&gt;.
         /// </summary>
         public static string PCNetGamingInfo {
             get {

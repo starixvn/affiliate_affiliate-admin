@@ -60,8 +60,8 @@ settings
                     HeaderAlign: "center",
                     CellAlign: "center",
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        return "<a title='{0}' href='javascript:Language.showLanguageDlg(\"".format(MSG.Edit) + record.LanguageID + "\");'><i class='icon-edit'></i></a>"
-                            + "&nbsp;&nbsp;<a title='{1}' href='javascript:Language.deleteLanguage(\"".format(MSG.Remove) + record.LanguageID + "\");'><i class='icon-remove'></i></a>";
+                        return "<a title='@Lang.Edit' href='javascript:Language.showLanguageDlg(\"" + record.LanguageID + "\");'><i class='icon-edit'></i></a>"
+                            + "&nbsp;&nbsp;<a title='@Lang.Remove' href='javascript:Language.deleteLanguage(\"" + record.LanguageID + "\");'><i class='icon-remove'></i></a>";
                     }
                 }
             ],

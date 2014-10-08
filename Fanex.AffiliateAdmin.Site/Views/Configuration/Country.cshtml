@@ -71,8 +71,8 @@ settings
                     HeaderAlign: "center",
                     CellAlign: "center",
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        return "<a title='{0}' href='javascript:Country.showCountryDlg(\"".format(MSG.Edit) + record.CountryID + "\");'><i class='icon-edit'></i></a>"
-                            + "&nbsp;&nbsp;<a title='{0}' href='javascript:Country.deleteCountry(\"".format(MSG.Remove) + record.CountryID + "\");'><i class='icon-remove'></i></a>";
+                        return "<a title='@Lang.Edit' href='javascript:Country.showCountryDlg(\"" + record.CountryID + "\");'><i class='icon-edit'></i></a>"
+                            + "&nbsp;&nbsp;<a title='@Lang.Remove' href='javascript:Country.deleteCountry(\"" + record.CountryID + "\");'><i class='icon-remove'></i></a>";
                     }
                 }
             ],

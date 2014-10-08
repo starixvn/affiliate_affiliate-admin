@@ -70,7 +70,7 @@ management
                         function(rowIndex, rowData, cell, cellFormated) {
                             var html = '<a title="@Lang.Edit" href="javascript:Management.editGroup(' + rowData.GroupId + ",'" + rowData.GroupName + '\')"><i class=\"icon-edit\"></i></a>&nbsp;&nbsp;';
                             if (rowData.GroupName != 'None')
-                                html += "<a title='@Lang.Delete' href=\"javascript:Management.deleteGroup(" + rowData.GroupId + ",'" + rowData.GroupName + "\')\"><i class=\"icon-remove\"></i></a>";
+                                html += "<a title='@Lang.Remove' href=\"javascript:Management.deleteGroup(" + rowData.GroupId + ",'" + rowData.GroupName + "\')\"><i class=\"icon-remove\"></i></a>";
                             else
                                 html += "<a><i class=\"icon-\"></i></a>";
                             return html;

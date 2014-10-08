@@ -78,11 +78,6 @@ var EmailHistory = (function ($) {
             // resize height of datagrid
             gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);  // jshint ignore:line
 
-            if (gridOption && gridOption.pagerOption) {
-                currentPage = currentPage >= 0 ? currentPage : gridOption.pagerOption.currentPage;
-                itemsPerPage = itemsPerPage || gridOption.pagerOption.itemsPerPage;
-            }
-
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("EmailHistory/EmailHistory"),
                 type: 'post',

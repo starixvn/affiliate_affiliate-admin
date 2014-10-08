@@ -11,7 +11,7 @@ Error processing file SpName.goobet.production.xml Error HRESULT E_FAIL has been
 //-> SpName.goobet.production.xml
 Error processing file SpName.goobet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.goobet.uat.xml
-Error processing file SpName.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> SpName.xml
 Error processing file Web.AppSettings.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.athena.local.config
@@ -33,7 +33,7 @@ Error processing file Web.athena.production.config Error HRESULT E_FAIL has been
 //-> Web.athena.production.config
 Error processing file Web.athena.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.athena.uat.config
-
+Error processing file Web.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.config
 Error processing file Web.ConnectionString.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.athena.local.config

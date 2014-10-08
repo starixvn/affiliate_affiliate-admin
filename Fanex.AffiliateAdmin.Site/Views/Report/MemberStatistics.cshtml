@@ -77,7 +77,7 @@ report
                 </div>
                 <div class="cell">
                     @Html.Label("SortBy", Lang.SortBy, new { @class = "txt" })
-                    <select id="SortBy" class="width-140 single-select dropdownchecklist">
+                    <select id="SortBy" name="SortBy" class="width-140 single-select dropdownchecklist">
                         <option value="0">@Lang.Affiliate</option>
                         <option value="1" selected>@Lang.Signups</option>
                         <option value="2">@Lang.Active</option>

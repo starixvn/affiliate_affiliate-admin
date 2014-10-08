@@ -124,7 +124,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
 
-            return Json(GetResultViewModel(criteria.ErrCode, Lang.UpdateSucc, errorMsg));
+            return Json(GetResultViewModel(criteria.ErrCode, Lang.AddSucc, errorMsg));
         }
 
         /// <summary>

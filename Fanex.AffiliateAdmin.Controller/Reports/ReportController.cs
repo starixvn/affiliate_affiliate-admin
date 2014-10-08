@@ -212,20 +212,20 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Commission Report.
         /// </summary>
+        /// <param name="model">Input criteria.</param>
         /// <returns>Commission Report Page.</returns>
         [HttpGet]
-        public ActionResult AffiliateWinLoss()
+        public ActionResult AffiliateWinLoss(AffiliateWinLossViewModel model)
         {
             var serializer = new JavaScriptSerializer();
+
             ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
             {
                 Id = x.ProductID,
                 Name = x.ProductName
             }));
 
-            ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
-
-            return View(new AffiliateWinLossViewModel());
+            return View(model);
         }
 
         /// <summary>

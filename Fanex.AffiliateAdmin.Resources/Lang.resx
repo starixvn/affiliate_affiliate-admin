@@ -230,7 +230,7 @@
     <value>Address</value>
   </data>
   <data name="AddSucc" xml:space="preserve">
-    <value>Add successfully!</value>
+    <value>Added successfully!</value>
   </data>
   <data name="AddText" xml:space="preserve">
     <value>Add New Text</value>

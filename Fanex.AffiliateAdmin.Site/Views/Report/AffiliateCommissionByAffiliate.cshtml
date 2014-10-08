@@ -190,8 +190,17 @@ report
             ],
             columns: [
                 { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
-                { HeaderText: "@Lang.Affiliate", Width: 80, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "@Lang.Month", Width: 80, Name: "WinlostDateStr", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.Affiliate", Width: 80, Name: "Username", HeaderAlign: "center", CellAlign: "left",
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        return "<a class='afflink' data-affname='" + record.Username + "' href='javascript:void(0)' >" + cellFormated + "</a>";
+                    }
+                },
+                { HeaderText: "@Lang.Month", Width: 80, Name: "WinlostDateStr", HeaderAlign: "center", CellAlign: "center",
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        var winlost = window.moment(record.WinlostDate).format("DD MMM YYYY");
+                        return "<a class='monthlink' data-affname='" + record.Username + "' href='javascript:void(0)' data-winlostdate='{0}'>".format(winlost) + cellFormated + "</a>";
+                    }
+                },
                 {
                     HeaderText: "@Lang.CommGroup",
                     Width: 90,

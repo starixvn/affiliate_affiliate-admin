@@ -66,22 +66,29 @@ var AffiliateCommissionReport = (function ($) {
                     + $(this).html() + '" ' + $(this).data("date")), { width: 1000, height: 450 });
             });
 
+            mainContentObject.on("click", "a.afflink", function () {
+                var params = $('form').serializeObject2();
+                params.AffName = $(this).data("affname");
+                params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
+
+                delete params.SortBy;
+                delete params.TransferStatus;
+
+                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/AffiliateWinlossByAffiliate?" : "Report/AffiliateWinloss?") + jQuery.param(params);
+                window.open(url, "_blank");
+            });
+
             mainContentObject.on("click", "a.monthlink", function () {
                 var params = $('form').serializeObject2();
                 params.AffName = $(this).data("affname");
                 params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
-                params["SortBy"] = $('#SortBy').val();
-                params["GroupBy"] = 0;
-                delete params.Currencies;
+                params["FromDate"] = $(this).data("winlostdate");
+                params["ToDate"] = $(this).data("winlostdate");
 
-                var winlostDateObj = window.moment($(this).attr('data-winlostdate'));
-                var firstDayObj = winlostDateObj.date(1);
-                var firstDay = firstDayObj.format("DD MMM YYYY");
-                var lastDay = firstDayObj.add("months", 1).add("days", -1).format("DD MMM YYYY");
+                delete params.SortBy;
+                delete params.TransferStatus;
 
-                params["FromDate"] = firstDay;
-                params["ToDate"] = lastDay;
-                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/MemberWinlossByAffiliate?" : "Report/MemberWinloss?") + jQuery.param(params);
+                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/AffiliateWinlossByAffiliate?" : "Report/AffiliateWinloss?") + jQuery.param(params);
                 window.open(url, "_blank");
             });
         },

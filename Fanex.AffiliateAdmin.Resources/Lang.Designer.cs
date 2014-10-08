@@ -398,7 +398,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add successfully!.
+        ///   Looks up a localized string similar to Added successfully!.
         /// </summary>
         public static string AddSucc {
             get {

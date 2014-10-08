@@ -62,39 +62,35 @@ namespace Fanex.AffiliateAdmin.Models
                      new SelectListItem { Text = Lang.Withdrawal, Value = "8" }
             };
 
-        private SelectList _affTypeOptionList;
-
         private IList<SelectListItem> _baseCurrencyList;
 
-        private SelectList _commissionGroupOptionList;
-
-        private SelectList _currencyOptionList;
-
-        private SelectList _preferLanguageOptionList;
-
         private SelectList _sortByOptionList;
-
-        private SelectList _groupByOptionList;
 
         #endregion Fields
 
         public AffiliateWinLossViewModel()
         {
             ExcludeTest = true;
+            GroupBy = 1;
         }
 
-        public string Affiliate { get; set; }
+        public string AffName { get; set; }
 
-        public IEnumerable<SelectListItem> AffTypeOptionList
+        public string AffTypes { get; set; }
+
+        public MultiSelectList AffTypeOptionList
         {
             get
             {
-                if (_affTypeOptionList == null)
-                {
-                    _affTypeOptionList = new SelectList(AppSettings.AffTypes, "TypeID", "Name");
-                }
+                var affTypeList = string.IsNullOrEmpty(AffTypes)
+                                       ? new List<byte>()
+                                       : AffTypes.Split(',').Select(t => byte.Parse(t));
 
-                return _affTypeOptionList;
+                var selectedValues = string.IsNullOrEmpty(AffTypes)
+                                         ? AppSettings.AffTypes.Select(t => t.TypeID)
+                                         : affTypeList;
+
+                return new MultiSelectList(AppSettings.AffTypes, "TypeID", "Name", selectedValues);
             }
         }
 
@@ -105,6 +101,8 @@ namespace Fanex.AffiliateAdmin.Models
                 return _baseCurrencyList;
             }
         }
+
+        public int BaseCurrency { get; set; }
 
         public SelectList BaseCurrencyOptionList
         {
@@ -117,36 +115,50 @@ namespace Fanex.AffiliateAdmin.Models
                         _baseCurrencyList.RemoveAt(1);
                     }
 
-                    return new SelectList(_baseCurrencyList, "Value", "Text");
+                    return new SelectList(_baseCurrencyList, "Value", "Text", BaseCurrency);
                 }
 
-                return new SelectList(AppSettings.BaseCurrencyInAffiliate, "Value", "Text");
+                return new SelectList(AppSettings.BaseCurrencyInAffiliate, "Value", "Text", BaseCurrency);
             }
         }
 
-        public SelectList CommissionGroupOptionList
+        public string CommGroups { get; set; }
+
+        public MultiSelectList CommissionGroupOptionList
         {
             get
             {
-                if (_commissionGroupOptionList == null)
-                {
-                    _commissionGroupOptionList = new SelectList(AppSettings.GetCommGroups(null), "GroupID", "GroupName");
-                }
+                var groups = AppSettings.GetCommGroups(null);
 
-                return _commissionGroupOptionList;
+                var commGroupList = string.IsNullOrEmpty(CommGroups)
+                                       ? new List<int>()
+                                       : CommGroups.Split(',').Select(t => int.Parse(t));
+
+                var selectedValues = string.IsNullOrEmpty(CommGroups)
+                                         ? groups.Select(t => t.GroupID)
+                                         : commGroupList;
+
+                return new MultiSelectList(groups, "GroupID", "GroupName", selectedValues);
             }
         }
+
+        public string Currencies { get; set; }
 
         public IEnumerable<SelectListItem> CurrencyOptionList
         {
             get
             {
-                if (_currencyOptionList == null)
-                {
-                    _currencyOptionList = new SelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode");
-                }
+                var currencyList = string.IsNullOrEmpty(Currencies)
+                                       ? new List<short>()
+                                       : Currencies.Split(',').Select(short.Parse);
 
-                return _currencyOptionList;
+                var selectedValues = string.IsNullOrEmpty(Currencies)
+                                         ? AppSettings.PlayerCurrencies.Select(t => t.CurrencyID)
+                                         : currencyList;
+
+                var selectItemList = new MultiSelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode", selectedValues);
+
+                return selectItemList;
             }
         }
 
@@ -166,33 +178,37 @@ namespace Fanex.AffiliateAdmin.Models
 
         public DateTime? FromDate { get; set; }
 
-        public IEnumerable<SelectListItem> GroupByOptionList
+        public int GroupBy { get; set; }
+
+        public SelectList GroupByOptionList
         {
             get
             {
-                if (_groupByOptionList == null)
-                {
-                    _groupByOptionList = new SelectList(_groupByList, "Value", "Text", "1");
-                }
-
-                return _groupByOptionList;
+                return new SelectList(_groupByList, "Value", "Text", GroupBy.ToString());
             }
         }
 
         public int GroupId { get; set; }
 
-        public SelectList PreferLanguageOptionList
+        public string PreferLanguages { get; set; }
+
+        public MultiSelectList PreferLanguageOptionList
         {
             get
             {
-                if (_preferLanguageOptionList == null)
-                {
-                    _preferLanguageOptionList = new SelectList(AppSettings.AffSupportLanguages, "LanguageID", "LanguageName");
-                }
+                var preferLanguagesList = string.IsNullOrEmpty(PreferLanguages)
+                                    ? new List<string>()
+                                    : PreferLanguages.Split(',').ToList();
 
-                return _preferLanguageOptionList;
+                var selectedValues = string.IsNullOrEmpty(PreferLanguages)
+                                        ? AppSettings.AffSupportLanguages.Select(t => t.LanguageID)
+                                        : preferLanguagesList;
+
+                return new MultiSelectList(AppSettings.AffSupportLanguages, "LanguageID", "LanguageName", selectedValues);
             }
         }
+
+        public string Products { get; set; }
 
         public MultiSelectList ProductOptionList
         {
@@ -210,8 +226,6 @@ namespace Fanex.AffiliateAdmin.Models
             }
         }
 
-        public string Products { get; set; }
-
         public SelectList SortByOptionList
         {
             get
@@ -228,6 +242,8 @@ namespace Fanex.AffiliateAdmin.Models
         public string Status { get; set; }
 
         public DateTime? ToDate { get; set; }
+
+        public int ViewMode { get; set; }
 
         #region Methods
 

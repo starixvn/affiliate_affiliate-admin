@@ -9,16 +9,6 @@
     <uat>UAT</uat>
     <production>Production</production>
   </Environment>
-  <TransferDay>8</TransferDay>
-  <TestMonthlyTransfer>
-    <local>1</local>
-    <sandbox>1</sandbox>
-    <uat>1</uat>
-    <production>0</production>
-  </TestMonthlyTransfer>
-  <!--0: disable monthly transfer; 1: enable monthly transfer-->
-  <!--Used to determine which month is transfered, default value: 1 (last month). 0: Current month; 1: last month; 2: past 2nd month;-->
-  <PastNthMonth>1</PastNthMonth>
 
   <EmailHeaderBgColor>#0058DA</EmailHeaderBgColor>
   <EmailHeaderFontColor>#fff</EmailHeaderFontColor>

@@ -23,5 +23,12 @@
       <webappsettingmodel>ConfigModels\WebAppSettingModels\WebAppSettingModel.goobet.xml</webappsettingmodel>
       <webconnectionstringmodel>ConfigModels\WebConnectionStringModels\WebConnectionStringModel.goobet.xml</webconnectionstringmodel>
     </site>
+    <site>
+      <name>28bet</name>
+      <status>1</status>
+      <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel.xml</webconfigmodel>
+      <webappsettingmodel>ConfigModels\WebAppSettingModels\WebAppSettingModel.28bet.xml</webappsettingmodel>
+      <webconnectionstringmodel>ConfigModels\WebConnectionStringModels\WebConnectionStringModel.28bet.xml</webconnectionstringmodel>
+    </site>
   </sites>
 </root>

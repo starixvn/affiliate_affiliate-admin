@@ -339,14 +339,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        public static int PastNthMonth
-        {
-            get
-            {
-                return int.Parse(GetValue("PastNthMonth"));
-            }
-        }
-
         public static IEnumerable<Currency> PlayerCurrencies
         {
             get
@@ -424,27 +416,11 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        public static bool TestMonthlyTransfer
-        {
-            get
-            {
-                return Convert.ToInt32(GetValue("TestMonthlyTransfer")) > 0;
-            }
-        }
-
         public static string Theme
         {
             get
             {
                 return GetValue("Theme");
-            }
-        }
-
-        public static int TransferDay
-        {
-            get
-            {
-                return Convert.ToInt32(GetValue("TransferDay"));
             }
         }
 

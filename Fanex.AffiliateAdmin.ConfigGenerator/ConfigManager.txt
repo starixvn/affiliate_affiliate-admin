@@ -1,4 +1,10 @@
 ﻿
+Error processing file SpName.28bet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.28bet.local.xml
+Error processing file SpName.28bet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.28bet.production.xml
+Error processing file SpName.28bet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.28bet.uat.xml
 Error processing file SpName.athena.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.athena.local.xml
 Error processing file SpName.athena.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
@@ -11,8 +17,20 @@ Error processing file SpName.goobet.production.xml Error HRESULT E_FAIL has been
 //-> SpName.goobet.production.xml
 Error processing file SpName.goobet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.goobet.uat.xml
-
+Error processing file SpName.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.xml
+Error processing file Web.28bet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.28bet.local.config
+Error processing file Web.28bet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.28bet.production.config
+Error processing file Web.28bet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.28bet.uat.config
+Error processing file Web.AppSettings.28bet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.28bet.local.config
+Error processing file Web.AppSettings.28bet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.28bet.production.config
+Error processing file Web.AppSettings.28bet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.28bet.uat.config
 Error processing file Web.AppSettings.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.athena.local.config
 Error processing file Web.AppSettings.athena.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
@@ -35,6 +53,12 @@ Error processing file Web.athena.uat.config Error HRESULT E_FAIL has been return
 //-> Web.athena.uat.config
 Error processing file Web.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.config
+Error processing file Web.ConnectionString.28bet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.28bet.local.config
+Error processing file Web.ConnectionString.28bet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.28bet.production.config
+Error processing file Web.ConnectionString.28bet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.28bet.uat.config
 Error processing file Web.ConnectionString.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.athena.local.config
 Error processing file Web.ConnectionString.athena.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
@@ -61,6 +85,18 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\ConfigManager.txt4
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\ConfigManager.txt4
 // Generated items
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.28bet.production.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.28bet.production.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.28bet.production.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.28bet.production.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.28bet.uat.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.28bet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.28bet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.28bet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.28bet.local.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.28bet.local.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.28bet.local.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.28bet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.goobet.production.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.goobet.production.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.goobet.production.config

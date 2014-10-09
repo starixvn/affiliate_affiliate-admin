@@ -19,9 +19,9 @@ namespace Fanex.AffiliateAdmin.ConfigGenerator
     {
         private static void Main()
         {
-            OperateXtest(OperationType.Add);
+            ////OperateXtest(OperationType.Add);
 
-            ////OperateXtest(OperationType.Remove);
+            OperateXtest(OperationType.Remove);
         }
 
         /// <summary>

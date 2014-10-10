@@ -141,7 +141,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 List = data,
                 ItemsPerPage = criteria.PageSize,
                 CurrentPage = criteria.PageIndex - 1,
-                TotalItem = criteria.RowCount
+                TotalItem = criteria.NRows
             });
         }
     }

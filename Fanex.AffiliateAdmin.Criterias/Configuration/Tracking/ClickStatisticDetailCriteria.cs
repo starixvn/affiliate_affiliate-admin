@@ -32,7 +32,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int TotalPages { get; set; }
 
-        public int RowCount { get; set; }
+        public int NRows { get; set; }
 
         /// <summary>
         /// Get Setting Key.

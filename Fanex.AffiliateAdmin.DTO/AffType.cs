@@ -35,8 +35,6 @@ namespace Fanex.AffiliateAdmin.DTO
             }
         }
 
-        //// public int? Creator { get; set; }
-
         public string CreatorName { get; set; }
     }
 }

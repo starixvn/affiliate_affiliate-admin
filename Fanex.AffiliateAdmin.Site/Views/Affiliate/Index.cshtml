@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = Lang.AffList;
+    ViewBag.Title = Lang.AffManagement;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Fanex.AffiliateAdmin.Core.Utilities
@@ -74,7 +74,7 @@
                 </div>
                 <div class="cell checkbox">
                     @Html.CheckBoxFor(m => m.ExcludeTest)
-                    <label for="ExcludeTest">                        
+                    <label for="ExcludeTest">
                         @Lang.ExcludeTestAccounts
                     </label>
                 </div>

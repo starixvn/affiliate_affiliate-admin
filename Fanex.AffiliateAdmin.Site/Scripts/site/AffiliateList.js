@@ -105,7 +105,7 @@ var AffiliateList = (function ($) {
 
                     $.each(gridOption.columns, function (idx, item) {
                         if (item.Name === "BF") {
-                            item.HeaderText = window.MSG.BF + currencySymbol;
+                            item.HeaderText = item.HeaderCaption + currencySymbol;
                             return false;
                         }
                     });

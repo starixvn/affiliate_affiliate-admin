@@ -1121,465 +1121,6 @@
     <Content Include="Views\Configuration\LanguageDetail.cshtml" />
     <Content Include="Views\Configuration\Product.cshtml" />
     <Content Include="Views\Configuration\ProductDetail.cshtml" />
-    <Content Include="Web.ConnectionString.winner99.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.winner99.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.winner99.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.winner99.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.winner99.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.winner99.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.winner99.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.winner99.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.winner99.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.wawabet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.wawabet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.wawabet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.wawabet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.wawabet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.wawabet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.wawabet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.wawabet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.wawabet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.thbet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.thbet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.thbet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.thbet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.thbet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.thbet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.thbet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.thbet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.thbet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.royalebet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.royalebet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.royalebet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.royalebet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.royalebet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.royalebet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.royalebet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.royalebet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.royalebet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.q8bola.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.q8bola.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.q8bola.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.q8bola.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.q8bola.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.q8bola.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.q8bola.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.q8bola.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.q8bola.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.mymbet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.mymbet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.mymbet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.mymbet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.mymbet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.mymbet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.mymbet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.mymbet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.mymbet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.mgm88.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.mgm88.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.mgm88.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.mgm88.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.mgm88.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.mgm88.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.mgm88.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.mgm88.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.mgm88.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.macaubet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.macaubet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.macaubet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.macaubet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.macaubet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.macaubet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.macaubet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.macaubet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.macaubet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.m8bola.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.m8bola.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.m8bola.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.m8bola.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.m8bola.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.m8bola.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.m8bola.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.m8bola.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.m8bola.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.itcbet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.itcbet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.itcbet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.itcbet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.itcbet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.itcbet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.itcbet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.itcbet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.itcbet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.i668bet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.i668bet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.i668bet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.i668bet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.i668bet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.i668bet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.i668bet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.i668bet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.i668bet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.hbobet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.hbobet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.hbobet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.hbobet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.hbobet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.hbobet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.hbobet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.hbobet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.hbobet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.bwinning.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.bwinning.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.bwinning.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.bwinning.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.bwinning.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.bwinning.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.bwinning.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.bwinning.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.bwinning.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.be7.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.be7.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.be7.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.be7.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.be7.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.be7.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.be7.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.be7.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.be7.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.aoncash.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.aoncash.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.aoncash.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.aoncash.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.aoncash.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.aoncash.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.aoncash.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.aoncash.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.aoncash.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.allbetclub.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.allbetclub.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.allbetclub.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.allbetclub.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.allbetclub.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.allbetclub.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.allbetclub.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.allbetclub.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.allbetclub.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.28bet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.28bet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.28bet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.28bet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.28bet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.28bet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.28bet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.28bet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.28bet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
     <Content Include="Web.ConnectionString.goobet.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -1643,159 +1184,6 @@
     <Content Include="Web.athena.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionString.winner99.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.winner99.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.winner99.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.wawabet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.wawabet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.wawabet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.thbet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.thbet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.thbet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.royalebet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.royalebet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.royalebet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.q8bola.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.q8bola.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.q8bola.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.mymbet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.mymbet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.mymbet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.mgm88.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.mgm88.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.mgm88.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.macaubet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.macaubet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.macaubet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.m8bola.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.m8bola.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.m8bola.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.itcbet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.itcbet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.itcbet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.i668bet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.i668bet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.i668bet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.hbobet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.hbobet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.hbobet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.bwinning.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.bwinning.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.bwinning.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.be7.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.be7.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.be7.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.aoncash.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.aoncash.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.aoncash.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.allbetclub.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.allbetclub.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.allbetclub.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.28bet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.28bet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.28bet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
     <Content Include="Web.ConnectionString.goobet.master.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -1812,6 +1200,618 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="Web.athena.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.winner99.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.winner99.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.winner99.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.winner99.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.winner99.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.winner99.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.winner99.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.winner99.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.winner99.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.winner99.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.winner99.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.winner99.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.wawabet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.wawabet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.wawabet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.wawabet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.wawabet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.wawabet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.wawabet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.wawabet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.wawabet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.wawabet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.wawabet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.wawabet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.thbet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.thbet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.thbet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.thbet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.thbet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.thbet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.thbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.thbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.thbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.thbet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.thbet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.thbet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.royalebet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.royalebet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.royalebet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.royalebet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.royalebet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.royalebet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.royalebet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.royalebet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.royalebet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.royalebet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.royalebet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.royalebet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.q8bola.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.q8bola.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.q8bola.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.q8bola.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.q8bola.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.q8bola.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.q8bola.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.q8bola.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.q8bola.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.q8bola.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.q8bola.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.q8bola.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.mymbet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.mymbet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.mymbet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.mymbet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.mymbet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.mymbet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.mymbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.mymbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.mymbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.mymbet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.mymbet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.mymbet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.mgm88.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.mgm88.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.mgm88.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.mgm88.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.mgm88.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.mgm88.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.mgm88.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.mgm88.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.mgm88.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.mgm88.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.mgm88.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.mgm88.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.macaubet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.macaubet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.macaubet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.macaubet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.macaubet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.macaubet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.macaubet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.macaubet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.macaubet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.macaubet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.macaubet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.macaubet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.m8bola.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.m8bola.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.m8bola.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.m8bola.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.m8bola.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.m8bola.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.m8bola.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.m8bola.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.m8bola.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.m8bola.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.m8bola.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.m8bola.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.itcbet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.itcbet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.itcbet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.itcbet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.itcbet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.itcbet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.itcbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.itcbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.itcbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.itcbet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.itcbet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.itcbet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.i668bet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.i668bet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.i668bet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.i668bet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.i668bet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.i668bet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.i668bet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.i668bet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.i668bet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.i668bet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.i668bet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.i668bet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.hbobet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.hbobet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.hbobet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.hbobet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.hbobet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.hbobet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.hbobet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.hbobet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.hbobet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.hbobet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.hbobet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.hbobet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.bwinning.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.bwinning.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.bwinning.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.bwinning.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.bwinning.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.bwinning.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.bwinning.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.bwinning.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.bwinning.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.bwinning.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.bwinning.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.bwinning.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.be7.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.be7.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.be7.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.be7.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.be7.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.be7.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.be7.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.be7.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.be7.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.be7.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.be7.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.be7.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.aoncash.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.aoncash.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.aoncash.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.aoncash.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.aoncash.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.aoncash.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.aoncash.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.aoncash.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.aoncash.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.aoncash.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.aoncash.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.aoncash.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.allbetclub.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.allbetclub.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.allbetclub.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.allbetclub.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.allbetclub.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.allbetclub.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.allbetclub.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.allbetclub.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.allbetclub.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.allbetclub.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.allbetclub.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.allbetclub.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.28bet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.28bet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.28bet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.28bet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.28bet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.28bet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.28bet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.28bet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.28bet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.28bet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.28bet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.28bet.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
   </ItemGroup>
@@ -2043,7 +2043,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

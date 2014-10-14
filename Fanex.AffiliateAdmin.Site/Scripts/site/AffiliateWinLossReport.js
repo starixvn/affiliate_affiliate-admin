@@ -14,10 +14,7 @@ var AffiliateWinLossReport = (function ($) {
 
     return {
         init: function () {
-            $("#gridId").resize(function () {
-                $(".search-panel").width($(this).width());
-            });
-
+         
             AFFILIATE.initMonthPicker();
 
             var $maincontent = $(".main-content");

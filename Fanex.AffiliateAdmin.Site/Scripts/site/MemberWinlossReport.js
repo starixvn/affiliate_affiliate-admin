@@ -6,10 +6,6 @@ var MemberWinlossReport = (function ($) {
 
     return {
         init: function () {
-            $("#gridId").resize(function () {
-                $(".search-panel").width($(this).width());
-            });
-
             if ($('#gridId').length > 0) {
                 MemberWinlossReport.submitRequest();
             }

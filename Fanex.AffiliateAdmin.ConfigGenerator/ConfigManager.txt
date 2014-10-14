@@ -1,114 +1,152 @@
 ﻿
 Error processing file SpName.28bet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.28bet.local.xml
+Error processing file SpName.28bet.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.28bet.master.xml
 Error processing file SpName.28bet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.28bet.production.xml
 Error processing file SpName.28bet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.28bet.uat.xml
 Error processing file SpName.allbetclub.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.allbetclub.local.xml
+Error processing file SpName.allbetclub.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.allbetclub.master.xml
 Error processing file SpName.allbetclub.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.allbetclub.production.xml
 Error processing file SpName.allbetclub.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.allbetclub.uat.xml
 Error processing file SpName.aoncash.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.aoncash.local.xml
+Error processing file SpName.aoncash.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.aoncash.master.xml
 Error processing file SpName.aoncash.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.aoncash.production.xml
 Error processing file SpName.aoncash.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.aoncash.uat.xml
 Error processing file SpName.athena.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.athena.local.xml
+Error processing file SpName.athena.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.athena.master.xml
 Error processing file SpName.athena.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.athena.production.xml
 Error processing file SpName.athena.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.athena.uat.xml
 Error processing file SpName.be7.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.be7.local.xml
+Error processing file SpName.be7.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.be7.master.xml
 Error processing file SpName.be7.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.be7.production.xml
 Error processing file SpName.be7.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.be7.uat.xml
 Error processing file SpName.bwinning.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.bwinning.local.xml
+Error processing file SpName.bwinning.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.bwinning.master.xml
 Error processing file SpName.bwinning.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.bwinning.production.xml
 Error processing file SpName.bwinning.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.bwinning.uat.xml
 Error processing file SpName.goobet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.goobet.local.xml
+Error processing file SpName.goobet.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.goobet.master.xml
 Error processing file SpName.goobet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.goobet.production.xml
 Error processing file SpName.goobet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.goobet.uat.xml
 Error processing file SpName.hbobet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.hbobet.local.xml
+Error processing file SpName.hbobet.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.hbobet.master.xml
 Error processing file SpName.hbobet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.hbobet.production.xml
 Error processing file SpName.hbobet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.hbobet.uat.xml
 Error processing file SpName.i668bet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.i668bet.local.xml
+Error processing file SpName.i668bet.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.i668bet.master.xml
 Error processing file SpName.i668bet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.i668bet.production.xml
 Error processing file SpName.i668bet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.i668bet.uat.xml
 Error processing file SpName.itcbet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.itcbet.local.xml
+Error processing file SpName.itcbet.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.itcbet.master.xml
 Error processing file SpName.itcbet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.itcbet.production.xml
 Error processing file SpName.itcbet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.itcbet.uat.xml
 Error processing file SpName.m8bola.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.m8bola.local.xml
+Error processing file SpName.m8bola.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.m8bola.master.xml
 Error processing file SpName.m8bola.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.m8bola.production.xml
 Error processing file SpName.m8bola.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.m8bola.uat.xml
 Error processing file SpName.macaubet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.macaubet.local.xml
+Error processing file SpName.macaubet.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.macaubet.master.xml
 Error processing file SpName.macaubet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.macaubet.production.xml
 Error processing file SpName.macaubet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.macaubet.uat.xml
 Error processing file SpName.mgm88.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.mgm88.local.xml
+Error processing file SpName.mgm88.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.mgm88.master.xml
 Error processing file SpName.mgm88.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.mgm88.production.xml
 Error processing file SpName.mgm88.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.mgm88.uat.xml
 Error processing file SpName.mymbet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.mymbet.local.xml
+Error processing file SpName.mymbet.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.mymbet.master.xml
 Error processing file SpName.mymbet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.mymbet.production.xml
 Error processing file SpName.mymbet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.mymbet.uat.xml
 Error processing file SpName.q8bola.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.q8bola.local.xml
+Error processing file SpName.q8bola.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.q8bola.master.xml
 Error processing file SpName.q8bola.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.q8bola.production.xml
 Error processing file SpName.q8bola.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.q8bola.uat.xml
 Error processing file SpName.royalebet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.royalebet.local.xml
+Error processing file SpName.royalebet.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.royalebet.master.xml
 Error processing file SpName.royalebet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.royalebet.production.xml
 Error processing file SpName.royalebet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.royalebet.uat.xml
 Error processing file SpName.thbet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.thbet.local.xml
+Error processing file SpName.thbet.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.thbet.master.xml
 Error processing file SpName.thbet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.thbet.production.xml
 Error processing file SpName.thbet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.thbet.uat.xml
 Error processing file SpName.wawabet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.wawabet.local.xml
+Error processing file SpName.wawabet.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.wawabet.master.xml
 Error processing file SpName.wawabet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.wawabet.production.xml
 Error processing file SpName.wawabet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.wawabet.uat.xml
 Error processing file SpName.winner99.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.winner99.local.xml
+Error processing file SpName.winner99.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.winner99.master.xml
 Error processing file SpName.winner99.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.winner99.production.xml
 Error processing file SpName.winner99.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
@@ -117,54 +155,72 @@ Error processing file SpName.xml Error HRESULT E_FAIL has been returned from a c
 //-> SpName.xml
 Error processing file Web.28bet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.28bet.local.config
+Error processing file Web.28bet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.28bet.master.config
 Error processing file Web.28bet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.28bet.production.config
 Error processing file Web.28bet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.28bet.uat.config
 Error processing file Web.allbetclub.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.allbetclub.local.config
+Error processing file Web.allbetclub.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.allbetclub.master.config
 Error processing file Web.allbetclub.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.allbetclub.production.config
 Error processing file Web.allbetclub.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.allbetclub.uat.config
 Error processing file Web.aoncash.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.aoncash.local.config
+Error processing file Web.aoncash.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.aoncash.master.config
 Error processing file Web.aoncash.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.aoncash.production.config
 Error processing file Web.aoncash.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.aoncash.uat.config
 Error processing file Web.AppSettings.28bet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.28bet.local.config
+Error processing file Web.AppSettings.28bet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.28bet.master.config
 Error processing file Web.AppSettings.28bet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.28bet.production.config
 Error processing file Web.AppSettings.28bet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.28bet.uat.config
 Error processing file Web.AppSettings.allbetclub.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.allbetclub.local.config
+Error processing file Web.AppSettings.allbetclub.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.allbetclub.master.config
 Error processing file Web.AppSettings.allbetclub.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.allbetclub.production.config
 Error processing file Web.AppSettings.allbetclub.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.allbetclub.uat.config
 Error processing file Web.AppSettings.aoncash.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.aoncash.local.config
+Error processing file Web.AppSettings.aoncash.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.aoncash.master.config
 Error processing file Web.AppSettings.aoncash.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.aoncash.production.config
 Error processing file Web.AppSettings.aoncash.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.aoncash.uat.config
 Error processing file Web.AppSettings.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.athena.local.config
+Error processing file Web.AppSettings.athena.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.athena.master.config
 Error processing file Web.AppSettings.athena.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.athena.production.config
 Error processing file Web.AppSettings.athena.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.athena.uat.config
 Error processing file Web.AppSettings.be7.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.be7.local.config
+Error processing file Web.AppSettings.be7.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.be7.master.config
 Error processing file Web.AppSettings.be7.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.be7.production.config
 Error processing file Web.AppSettings.be7.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.be7.uat.config
 Error processing file Web.AppSettings.bwinning.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.bwinning.local.config
+Error processing file Web.AppSettings.bwinning.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.bwinning.master.config
 Error processing file Web.AppSettings.bwinning.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.bwinning.production.config
 Error processing file Web.AppSettings.bwinning.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
@@ -173,96 +229,128 @@ Error processing file Web.AppSettings.config Error HRESULT E_FAIL has been retur
 //-> Web.AppSettings.config
 Error processing file Web.AppSettings.goobet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.goobet.local.config
+Error processing file Web.AppSettings.goobet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.goobet.master.config
 Error processing file Web.AppSettings.goobet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.goobet.production.config
 Error processing file Web.AppSettings.goobet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.goobet.uat.config
 Error processing file Web.AppSettings.hbobet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.hbobet.local.config
+Error processing file Web.AppSettings.hbobet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.hbobet.master.config
 Error processing file Web.AppSettings.hbobet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.hbobet.production.config
 Error processing file Web.AppSettings.hbobet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.hbobet.uat.config
 Error processing file Web.AppSettings.i668bet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.i668bet.local.config
+Error processing file Web.AppSettings.i668bet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.i668bet.master.config
 Error processing file Web.AppSettings.i668bet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.i668bet.production.config
 Error processing file Web.AppSettings.i668bet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.i668bet.uat.config
 Error processing file Web.AppSettings.itcbet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.itcbet.local.config
+Error processing file Web.AppSettings.itcbet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.itcbet.master.config
 Error processing file Web.AppSettings.itcbet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.itcbet.production.config
 Error processing file Web.AppSettings.itcbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.itcbet.uat.config
 Error processing file Web.AppSettings.m8bola.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.m8bola.local.config
+Error processing file Web.AppSettings.m8bola.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.m8bola.master.config
 Error processing file Web.AppSettings.m8bola.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.m8bola.production.config
 Error processing file Web.AppSettings.m8bola.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.m8bola.uat.config
 Error processing file Web.AppSettings.macaubet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.macaubet.local.config
+Error processing file Web.AppSettings.macaubet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.macaubet.master.config
 Error processing file Web.AppSettings.macaubet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.macaubet.production.config
 Error processing file Web.AppSettings.macaubet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.macaubet.uat.config
 Error processing file Web.AppSettings.mgm88.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.mgm88.local.config
+Error processing file Web.AppSettings.mgm88.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.mgm88.master.config
 Error processing file Web.AppSettings.mgm88.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.mgm88.production.config
 Error processing file Web.AppSettings.mgm88.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.mgm88.uat.config
 Error processing file Web.AppSettings.mymbet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.mymbet.local.config
+Error processing file Web.AppSettings.mymbet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.mymbet.master.config
 Error processing file Web.AppSettings.mymbet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.mymbet.production.config
 Error processing file Web.AppSettings.mymbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.mymbet.uat.config
 Error processing file Web.AppSettings.q8bola.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.q8bola.local.config
+Error processing file Web.AppSettings.q8bola.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.q8bola.master.config
 Error processing file Web.AppSettings.q8bola.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.q8bola.production.config
 Error processing file Web.AppSettings.q8bola.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.q8bola.uat.config
 Error processing file Web.AppSettings.royalebet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.royalebet.local.config
+Error processing file Web.AppSettings.royalebet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.royalebet.master.config
 Error processing file Web.AppSettings.royalebet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.royalebet.production.config
 Error processing file Web.AppSettings.royalebet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.royalebet.uat.config
 Error processing file Web.AppSettings.thbet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.thbet.local.config
+Error processing file Web.AppSettings.thbet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.thbet.master.config
 Error processing file Web.AppSettings.thbet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.thbet.production.config
 Error processing file Web.AppSettings.thbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.thbet.uat.config
 Error processing file Web.AppSettings.wawabet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.wawabet.local.config
+Error processing file Web.AppSettings.wawabet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.wawabet.master.config
 Error processing file Web.AppSettings.wawabet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.wawabet.production.config
 Error processing file Web.AppSettings.wawabet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.wawabet.uat.config
 Error processing file Web.AppSettings.winner99.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.winner99.local.config
+Error processing file Web.AppSettings.winner99.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.winner99.master.config
 Error processing file Web.AppSettings.winner99.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.winner99.production.config
 Error processing file Web.AppSettings.winner99.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.winner99.uat.config
 Error processing file Web.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.athena.local.config
+Error processing file Web.athena.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.athena.master.config
 Error processing file Web.athena.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.athena.production.config
 Error processing file Web.athena.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.athena.uat.config
 Error processing file Web.be7.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.be7.local.config
+Error processing file Web.be7.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.be7.master.config
 Error processing file Web.be7.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.be7.production.config
 Error processing file Web.be7.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.be7.uat.config
 Error processing file Web.bwinning.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.bwinning.local.config
+Error processing file Web.bwinning.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.bwinning.master.config
 Error processing file Web.bwinning.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.bwinning.production.config
 Error processing file Web.bwinning.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
@@ -271,194 +359,258 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 //-> Web.config
 Error processing file Web.ConnectionString.28bet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.28bet.local.config
+Error processing file Web.ConnectionString.28bet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.28bet.master.config
 Error processing file Web.ConnectionString.28bet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.28bet.production.config
 Error processing file Web.ConnectionString.28bet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.28bet.uat.config
 Error processing file Web.ConnectionString.allbetclub.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.allbetclub.local.config
+Error processing file Web.ConnectionString.allbetclub.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.allbetclub.master.config
 Error processing file Web.ConnectionString.allbetclub.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.allbetclub.production.config
 Error processing file Web.ConnectionString.allbetclub.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.allbetclub.uat.config
 Error processing file Web.ConnectionString.aoncash.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.aoncash.local.config
+Error processing file Web.ConnectionString.aoncash.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.aoncash.master.config
 Error processing file Web.ConnectionString.aoncash.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.aoncash.production.config
 Error processing file Web.ConnectionString.aoncash.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.aoncash.uat.config
 Error processing file Web.ConnectionString.athena.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.athena.local.config
+Error processing file Web.ConnectionString.athena.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.athena.master.config
 Error processing file Web.ConnectionString.athena.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.athena.production.config
 Error processing file Web.ConnectionString.athena.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.athena.uat.config
 Error processing file Web.ConnectionString.be7.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.be7.local.config
+Error processing file Web.ConnectionString.be7.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.be7.master.config
 Error processing file Web.ConnectionString.be7.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.be7.production.config
 Error processing file Web.ConnectionString.be7.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.be7.uat.config
 Error processing file Web.ConnectionString.bwinning.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.bwinning.local.config
+Error processing file Web.ConnectionString.bwinning.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.bwinning.master.config
 Error processing file Web.ConnectionString.bwinning.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.bwinning.production.config
 Error processing file Web.ConnectionString.bwinning.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.bwinning.uat.config
-Error processing file Web.ConnectionString.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+
 //-> Web.ConnectionString.config
 Error processing file Web.ConnectionString.goobet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.goobet.local.config
+Error processing file Web.ConnectionString.goobet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.goobet.master.config
 Error processing file Web.ConnectionString.goobet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.goobet.production.config
 Error processing file Web.ConnectionString.goobet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.goobet.uat.config
 Error processing file Web.ConnectionString.hbobet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.hbobet.local.config
+Error processing file Web.ConnectionString.hbobet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.hbobet.master.config
 Error processing file Web.ConnectionString.hbobet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.hbobet.production.config
 Error processing file Web.ConnectionString.hbobet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.hbobet.uat.config
 Error processing file Web.ConnectionString.i668bet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.i668bet.local.config
+Error processing file Web.ConnectionString.i668bet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.i668bet.master.config
 Error processing file Web.ConnectionString.i668bet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.i668bet.production.config
 Error processing file Web.ConnectionString.i668bet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.i668bet.uat.config
 Error processing file Web.ConnectionString.itcbet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.itcbet.local.config
+Error processing file Web.ConnectionString.itcbet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.itcbet.master.config
 Error processing file Web.ConnectionString.itcbet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.itcbet.production.config
 Error processing file Web.ConnectionString.itcbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.itcbet.uat.config
 Error processing file Web.ConnectionString.m8bola.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.m8bola.local.config
+Error processing file Web.ConnectionString.m8bola.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.m8bola.master.config
 Error processing file Web.ConnectionString.m8bola.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.m8bola.production.config
 Error processing file Web.ConnectionString.m8bola.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.m8bola.uat.config
 Error processing file Web.ConnectionString.macaubet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.macaubet.local.config
+Error processing file Web.ConnectionString.macaubet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.macaubet.master.config
 Error processing file Web.ConnectionString.macaubet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.macaubet.production.config
 Error processing file Web.ConnectionString.macaubet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.macaubet.uat.config
 Error processing file Web.ConnectionString.mgm88.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.mgm88.local.config
+Error processing file Web.ConnectionString.mgm88.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.mgm88.master.config
 Error processing file Web.ConnectionString.mgm88.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.mgm88.production.config
 Error processing file Web.ConnectionString.mgm88.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.mgm88.uat.config
 Error processing file Web.ConnectionString.mymbet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.mymbet.local.config
+Error processing file Web.ConnectionString.mymbet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.mymbet.master.config
 Error processing file Web.ConnectionString.mymbet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.mymbet.production.config
 Error processing file Web.ConnectionString.mymbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.mymbet.uat.config
 Error processing file Web.ConnectionString.q8bola.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.q8bola.local.config
+Error processing file Web.ConnectionString.q8bola.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.q8bola.master.config
 Error processing file Web.ConnectionString.q8bola.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.q8bola.production.config
 Error processing file Web.ConnectionString.q8bola.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.q8bola.uat.config
 Error processing file Web.ConnectionString.royalebet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.royalebet.local.config
+Error processing file Web.ConnectionString.royalebet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.royalebet.master.config
 Error processing file Web.ConnectionString.royalebet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.royalebet.production.config
 Error processing file Web.ConnectionString.royalebet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.royalebet.uat.config
 Error processing file Web.ConnectionString.thbet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.thbet.local.config
+Error processing file Web.ConnectionString.thbet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.thbet.master.config
 Error processing file Web.ConnectionString.thbet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.thbet.production.config
 Error processing file Web.ConnectionString.thbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.thbet.uat.config
 Error processing file Web.ConnectionString.wawabet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.wawabet.local.config
+Error processing file Web.ConnectionString.wawabet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.wawabet.master.config
 Error processing file Web.ConnectionString.wawabet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.wawabet.production.config
 Error processing file Web.ConnectionString.wawabet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.wawabet.uat.config
 Error processing file Web.ConnectionString.winner99.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.winner99.local.config
+Error processing file Web.ConnectionString.winner99.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.winner99.master.config
 Error processing file Web.ConnectionString.winner99.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.winner99.production.config
 Error processing file Web.ConnectionString.winner99.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.winner99.uat.config
 Error processing file Web.goobet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.goobet.local.config
+Error processing file Web.goobet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.goobet.master.config
 Error processing file Web.goobet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.goobet.production.config
 Error processing file Web.goobet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.goobet.uat.config
 Error processing file Web.hbobet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.hbobet.local.config
+Error processing file Web.hbobet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.hbobet.master.config
 Error processing file Web.hbobet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.hbobet.production.config
 Error processing file Web.hbobet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.hbobet.uat.config
 Error processing file Web.i668bet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.i668bet.local.config
+Error processing file Web.i668bet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.i668bet.master.config
 Error processing file Web.i668bet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.i668bet.production.config
 Error processing file Web.i668bet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.i668bet.uat.config
 Error processing file Web.itcbet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.itcbet.local.config
+Error processing file Web.itcbet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.itcbet.master.config
 Error processing file Web.itcbet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.itcbet.production.config
 Error processing file Web.itcbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.itcbet.uat.config
 Error processing file Web.m8bola.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.m8bola.local.config
+Error processing file Web.m8bola.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.m8bola.master.config
 Error processing file Web.m8bola.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.m8bola.production.config
 Error processing file Web.m8bola.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.m8bola.uat.config
 Error processing file Web.macaubet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.macaubet.local.config
+Error processing file Web.macaubet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.macaubet.master.config
 Error processing file Web.macaubet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.macaubet.production.config
 Error processing file Web.macaubet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.macaubet.uat.config
 Error processing file Web.mgm88.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.mgm88.local.config
+Error processing file Web.mgm88.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.mgm88.master.config
 Error processing file Web.mgm88.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.mgm88.production.config
 Error processing file Web.mgm88.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.mgm88.uat.config
 Error processing file Web.mymbet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.mymbet.local.config
+Error processing file Web.mymbet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.mymbet.master.config
 Error processing file Web.mymbet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.mymbet.production.config
 Error processing file Web.mymbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.mymbet.uat.config
 Error processing file Web.q8bola.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.q8bola.local.config
+Error processing file Web.q8bola.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.q8bola.master.config
 Error processing file Web.q8bola.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.q8bola.production.config
 Error processing file Web.q8bola.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.q8bola.uat.config
 Error processing file Web.royalebet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.royalebet.local.config
+Error processing file Web.royalebet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.royalebet.master.config
 Error processing file Web.royalebet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.royalebet.production.config
 Error processing file Web.royalebet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.royalebet.uat.config
 Error processing file Web.thbet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.thbet.local.config
+Error processing file Web.thbet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.thbet.master.config
 Error processing file Web.thbet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.thbet.production.config
 Error processing file Web.thbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.thbet.uat.config
 Error processing file Web.wawabet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.wawabet.local.config
+Error processing file Web.wawabet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.wawabet.master.config
 Error processing file Web.wawabet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.wawabet.production.config
 Error processing file Web.wawabet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.wawabet.uat.config
 Error processing file Web.winner99.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.winner99.local.config
+Error processing file Web.winner99.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.winner99.master.config
 Error processing file Web.winner99.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.winner99.production.config
 Error processing file Web.winner99.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
@@ -477,6 +629,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.winner99.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.winner99.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.winner99.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.winner99.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.winner99.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.winner99.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.winner99.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.winner99.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.winner99.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.winner99.local.config
@@ -489,6 +645,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.wawabet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.wawabet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.wawabet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.wawabet.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.wawabet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.wawabet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.wawabet.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.wawabet.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.wawabet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.wawabet.local.config
@@ -501,6 +661,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.thbet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.thbet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.thbet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.thbet.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.thbet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.thbet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.thbet.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.thbet.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.thbet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.thbet.local.config
@@ -513,6 +677,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.royalebet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.royalebet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.royalebet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.royalebet.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.royalebet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.royalebet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.royalebet.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.royalebet.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.royalebet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.royalebet.local.config
@@ -525,6 +693,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.q8bola.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.q8bola.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.q8bola.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.q8bola.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.q8bola.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.q8bola.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.q8bola.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.q8bola.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.q8bola.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.q8bola.local.config
@@ -537,6 +709,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.mymbet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.mymbet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.mymbet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.mymbet.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.mymbet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.mymbet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.mymbet.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.mymbet.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.mymbet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.mymbet.local.config
@@ -549,6 +725,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.mgm88.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.mgm88.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.mgm88.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.mgm88.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.mgm88.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.mgm88.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.mgm88.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.mgm88.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.mgm88.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.mgm88.local.config
@@ -561,6 +741,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.macaubet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.macaubet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.macaubet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.macaubet.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.macaubet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.macaubet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.macaubet.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.macaubet.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.macaubet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.macaubet.local.config
@@ -573,6 +757,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.m8bola.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.m8bola.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.m8bola.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.m8bola.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.m8bola.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.m8bola.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.m8bola.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.m8bola.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.m8bola.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.m8bola.local.config
@@ -585,6 +773,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.itcbet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.itcbet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.itcbet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.itcbet.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.itcbet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.itcbet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.itcbet.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.itcbet.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.itcbet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.itcbet.local.config
@@ -597,6 +789,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.i668bet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.i668bet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.i668bet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.i668bet.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.i668bet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.i668bet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.i668bet.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.i668bet.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.i668bet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.i668bet.local.config
@@ -609,6 +805,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.hbobet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.hbobet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.hbobet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.hbobet.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.hbobet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.hbobet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.hbobet.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.hbobet.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.hbobet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.hbobet.local.config
@@ -621,6 +821,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.bwinning.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.bwinning.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.bwinning.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.bwinning.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.bwinning.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.bwinning.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.bwinning.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.bwinning.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.bwinning.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.bwinning.local.config
@@ -633,6 +837,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.be7.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.be7.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.be7.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.be7.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.be7.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.be7.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.be7.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.be7.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.be7.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.be7.local.config
@@ -645,6 +853,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.aoncash.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.aoncash.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.aoncash.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.aoncash.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.aoncash.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.aoncash.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.aoncash.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.aoncash.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.aoncash.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.aoncash.local.config
@@ -657,6 +869,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.allbetclub.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.allbetclub.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.allbetclub.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.allbetclub.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.allbetclub.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.allbetclub.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.allbetclub.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.allbetclub.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.allbetclub.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.allbetclub.local.config
@@ -669,6 +885,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.28bet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.28bet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.28bet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.28bet.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.28bet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.28bet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.28bet.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.28bet.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.28bet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.28bet.local.config
@@ -681,6 +901,10 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.goobet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.goobet.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.goobet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.goobet.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.goobet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.goobet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.goobet.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.goobet.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.goobet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.goobet.local.config
@@ -701,6 +925,14 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.athena.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.athena.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.athena.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.athena.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.athena.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.athena.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.athena.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config

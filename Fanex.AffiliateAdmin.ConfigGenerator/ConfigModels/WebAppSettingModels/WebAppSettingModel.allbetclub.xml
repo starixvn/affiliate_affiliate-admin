@@ -5,7 +5,7 @@
   <AffiliateName>AllBetClub</AffiliateName>
   <Environment>
     <local>Local Development</local>
-    <sandbox>Sandbox</sandbox>
+    <master>Master</master>
     <uat>UAT</uat>
     <production>Production</production>
   </Environment>
@@ -21,20 +21,20 @@
 
   <app_mail_id>
     <local>31</local>
-    <sandbox>31</sandbox>
+    <master>31</master>
     <uat>17</uat>
     <production>30</production>
   </app_mail_id>
   <MailContact>
     <local>affliate_anpha@nexcel.vn</local>
-    <sandbox>affliate_anpha@nexcel.vn</sandbox>
+    <master>affliate_anpha@nexcel.vn</master>
     <uat>Athena000.csd@gmail.com</uat>
     <production>allbetclub@hotmail.com</production>
   </MailContact>
 
   <SkipCheckUMTime>
     <local>1</local>
-    <sandbox>1</sandbox>
+    <master>1</master>
     <uat>1</uat>
     <production>0</production>
   </SkipCheckUMTime>
@@ -43,13 +43,13 @@
 
   <InternalURL>
     <local>http://10.18.200.209:5001/User</local>
-    <sandbox>http://10.18.200.209:5001/User</sandbox>
+    <master>http://10.18.200.209:5001/User</master>
     <uat>http://affiliate.allbetclubs.com</uat>
     <production>http://affiliate.allbetclubs.com</production>
   </InternalURL>
   <InternalURL_Kiosk>
     <local>http://10.18.200.209:5001/User</local>
-    <sandbox>http://10.18.200.209:5001/User</sandbox>
+    <master>http://10.18.200.209:5001/User</master>
     <uat>http://affiliate.allbetclubs.com</uat>
     <production>http://affiliate.allbetclubs.com</production>
   </InternalURL_Kiosk>

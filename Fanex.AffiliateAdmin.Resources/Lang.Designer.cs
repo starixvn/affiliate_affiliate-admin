@@ -6951,7 +6951,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Net Winloss.
+        ///   Looks up a localized string similar to Total Net Win Loss.
         /// </summary>
         public static string TotalNetWinlost {
             get {

@@ -192,6 +192,9 @@
     <Content Include="App_Data\SpName.28bet.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpName.28bet.master.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpName.28bet.production.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -199,6 +202,9 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.allbetclub.local.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.allbetclub.master.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.allbetclub.production.xml">
@@ -210,6 +216,9 @@
     <Content Include="App_Data\SpName.aoncash.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpName.aoncash.master.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpName.aoncash.production.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -217,6 +226,9 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.athena.local.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.athena.master.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.athena.production.xml">
@@ -228,6 +240,9 @@
     <Content Include="App_Data\SpName.be7.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpName.be7.master.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpName.be7.production.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -235,6 +250,9 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.bwinning.local.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.bwinning.master.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.bwinning.production.xml">
@@ -246,6 +264,9 @@
     <Content Include="App_Data\SpName.goobet.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpName.goobet.master.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpName.goobet.production.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -253,6 +274,9 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.hbobet.local.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.hbobet.master.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.hbobet.production.xml">
@@ -264,6 +288,9 @@
     <Content Include="App_Data\SpName.i668bet.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpName.i668bet.master.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpName.i668bet.production.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -271,6 +298,9 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.itcbet.local.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.itcbet.master.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.itcbet.production.xml">
@@ -282,6 +312,9 @@
     <Content Include="App_Data\SpName.m8bola.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpName.m8bola.master.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpName.m8bola.production.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -289,6 +322,9 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.macaubet.local.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.macaubet.master.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.macaubet.production.xml">
@@ -300,6 +336,9 @@
     <Content Include="App_Data\SpName.mgm88.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpName.mgm88.master.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpName.mgm88.production.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -307,6 +346,9 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.mymbet.local.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.mymbet.master.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.mymbet.production.xml">
@@ -318,6 +360,9 @@
     <Content Include="App_Data\SpName.q8bola.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpName.q8bola.master.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpName.q8bola.production.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -325,6 +370,9 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.royalebet.local.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.royalebet.master.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.royalebet.production.xml">
@@ -336,6 +384,9 @@
     <Content Include="App_Data\SpName.thbet.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpName.thbet.master.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpName.thbet.production.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -345,6 +396,9 @@
     <Content Include="App_Data\SpName.wawabet.local.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpName.wawabet.master.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpName.wawabet.production.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -352,6 +406,9 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.winner99.local.xml">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.winner99.master.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="App_Data\SpName.winner99.production.xml">
@@ -1586,6 +1643,177 @@
     <Content Include="Web.athena.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="Web.ConnectionString.winner99.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.winner99.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.winner99.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.wawabet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.wawabet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.wawabet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.thbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.thbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.thbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.royalebet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.royalebet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.royalebet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.q8bola.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.q8bola.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.q8bola.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.mymbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.mymbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.mymbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.mgm88.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.mgm88.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.mgm88.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.macaubet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.macaubet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.macaubet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.m8bola.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.m8bola.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.m8bola.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.itcbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.itcbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.itcbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.i668bet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.i668bet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.i668bet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.hbobet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.hbobet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.hbobet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.bwinning.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.bwinning.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.bwinning.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.be7.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.be7.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.be7.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.aoncash.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.aoncash.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.aoncash.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.allbetclub.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.allbetclub.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.allbetclub.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.28bet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.28bet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.28bet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.goobet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.goobet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.goobet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.athena.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.athena.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.athena.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1815,7 +2043,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

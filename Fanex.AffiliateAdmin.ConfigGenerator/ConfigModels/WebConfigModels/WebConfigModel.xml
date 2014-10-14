@@ -3,13 +3,13 @@
   <Fanex.Logging>
     <msmqPath>
       <local>FormatName:DIRECT=TCP:10.18.200.209\private$\entlib</local>
-      <sandbox>FormatName:DIRECT=TCP:10.2.180.13\private$\entlib</sandbox>
+      <master>FormatName:DIRECT=TCP:10.2.180.13\private$\entlib</master>
       <uat>FormatName:DIRECT=TCP:10.2.180.13\private$\entlib</uat>
       <production>FormatName:DIRECT=TCP:10.2.180.13\private$\entlib</production>
     </msmqPath>
     <defaultCategory>
       <local>Affliate Anpha</local>
-      <sandbox>AffiliateWeb</sandbox>
+      <master>AffiliateWeb</master>
       <uat>AffiliateWeb</uat>
       <production>AffiliateWeb</production>
     </defaultCategory>
@@ -17,31 +17,31 @@
   <appSettings>
     <LBUrl>
       <local></local>
-      <sandbox>tcp://10.40.40.150:8990/UMControllerInterface</sandbox>
+      <master>tcp://10.40.40.150:8990/UMControllerInterface</master>
       <uat>tcp://10.40.40.150:8990/UMControllerInterface</uat>
       <production>tcp://10.40.40.150:8990/UMControllerInterface</production>
     </LBUrl>
     <app_mail_address>
       <local>net.tcp://10.18.200.209:8787/MailService</local>
-      <sandbox>net.tcp://10.2.180.13:8585/MailService</sandbox>
+      <master>net.tcp://10.2.180.13:8585/MailService</master>
       <uat>net.tcp://10.2.180.13:8585/MailService</uat>
       <production>net.tcp://10.2.180.13:8585/MailService</production>
     </app_mail_address>
     <RemoteRefURL>
       <local>tcp://10.40.40.29:8098/CallGetRefFunction</local>
-      <sandbox>tcp://10.40.40.29:8098/CallGetRefFunction</sandbox>
+      <master>tcp://10.40.40.29:8098/CallGetRefFunction</master>
       <uat>tcp://10.40.40.29:8098/CallGetRefFunction</uat>
       <production>tcp://10.40.40.29:8098/CallGetRefFunction</production>
     </RemoteRefURL>
     <ITMail>
       <local>brian.dinh@nexcel.vn;jacob.phan@nexcel.vn;johnny.trinh@nexcel.vn</local>
-      <sandbox>olympus.errors@gmail.com;csd.peter.tong@gmail.com</sandbox>
+      <master>olympus.errors@gmail.com;csd.peter.tong@gmail.com</master>
       <uat>olympus.errors@gmail.com;csd.peter.tong@gmail.com</uat>
       <production>olympus.errors@gmail.com;csd.peter.tong@gmail.com</production>
     </ITMail>
     <Environment>
       <local>Local Developement</local>
-      <sandbox>Sandbox</sandbox>
+      <master>Master</master>
       <uat>UAT</uat>
       <production>Production</production>
     </Environment>
@@ -49,7 +49,7 @@
   <compilation>
     <debug>
       <local>true</local>
-      <sandbox>true</sandbox>
+      <master>true</master>
       <uat>true</uat>
       <production>false</production>
     </debug>
@@ -57,7 +57,7 @@
   <customErrors>
     <mode>
       <local>Off</local>
-      <sandbox>Off</sandbox>
+      <master>Off</master>
       <uat>Off</uat>
       <production>RemoteOnly</production>
     </mode>

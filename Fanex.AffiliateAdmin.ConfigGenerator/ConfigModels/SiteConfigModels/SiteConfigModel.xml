@@ -3,7 +3,7 @@
   <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel.xml</webconfigmodel>
   <environments>
     <environment enable="1">local</environment>
-    <environment enable="0">sandbox</environment>
+    <environment enable="1">master</environment>
     <environment enable="1">uat</environment>
     <environment enable="1">production</environment>
   </environments>

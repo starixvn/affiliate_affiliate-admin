@@ -2232,7 +2232,7 @@
     <value>Total Monthly</value>
   </data>
   <data name="TotalNetWinlost" xml:space="preserve">
-    <value>Total Net Winloss</value>
+    <value>Total Net Win Loss</value>
   </data>
   <data name="TotalPayment" xml:space="preserve">
     <value>Total Payment</value>

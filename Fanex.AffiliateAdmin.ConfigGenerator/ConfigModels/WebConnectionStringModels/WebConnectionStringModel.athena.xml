@@ -20,7 +20,7 @@
   </bodb02-name>
   <bodb02-connectionstring>
     <local>Data Source=10.18.200.231;Persist Security Info=True;User ID=bodbAdminNet;Initial Catalog=bodb02;Connect Timeout=360000;Password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
-    <master>Data Source=10.18.200.231;Persist Security Info=True;User ID=bodbAdminNet;Initial Catalog=bodb02;Connect Timeout=360000;Password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</master>
+    <master>Data Source=10.18.200.215;Persist Security Info=True;User ID=bodbAdminNet;Initial Catalog=bodb02;Connect Timeout=360000;Password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</master>
     <uat>packet size=4096; Data Source=10.40.40.92;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
     <production>packet size=4096; Data Source=10.40.40.92;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
   </bodb02-connectionstring>

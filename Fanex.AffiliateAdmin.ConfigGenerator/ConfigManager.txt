@@ -405,7 +405,7 @@ Error processing file Web.ConnectionString.bwinning.production.config Error HRES
 //-> Web.ConnectionString.bwinning.production.config
 Error processing file Web.ConnectionString.bwinning.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.bwinning.uat.config
-
+Error processing file Web.ConnectionString.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.config
 Error processing file Web.ConnectionString.goobet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.goobet.local.config

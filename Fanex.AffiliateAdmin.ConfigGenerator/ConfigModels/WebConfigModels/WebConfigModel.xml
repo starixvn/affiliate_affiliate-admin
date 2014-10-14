@@ -49,7 +49,7 @@
   <compilation>
     <debug>
       <local>true</local>
-      <master>true</master>
+      <master>false</master>
       <uat>true</uat>
       <production>false</production>
     </debug>
@@ -57,7 +57,7 @@
   <customErrors>
     <mode>
       <local>Off</local>
-      <master>Off</master>
+      <master>RemoteOnly</master>
       <uat>Off</uat>
       <production>RemoteOnly</production>
     </mode>

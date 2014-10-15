@@ -72,7 +72,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                     Name = "BannerDirectory",
                     Type = "Meta",
                     SearchBy = SearchByType.ByName
-                });
+                }).Replace("/", "\\");
             }
         }
 

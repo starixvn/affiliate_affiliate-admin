@@ -429,8 +429,6 @@ var MemberWinLossByOverview = (function ($) {
             submitOptions["pageIndex"] = currentPage + 1;
             submitOptions["pageSize"] = itemsPerPage;
 
-           
-
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("MemberWinLossByOverview/GetData"),
                 type: 'post',

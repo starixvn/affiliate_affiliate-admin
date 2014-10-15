@@ -44,7 +44,7 @@ home
                 var span = 4 * count;
                 <tr>
                     <th colspan="@span" class="l">
-                        <span class="ico-home-banner"> </span> @Lang.BannerStatc (@Lang.WeHave @Html.ActionLink(Model.BannerNum.ToString(), "BannerList", "Media") @Lang.BannerInPro)                    
+                        <span class="ico-home-banner"> </span> @Lang.BannerStatc (@Html.Raw(string.Format(Lang.NumBannerInProgram, @Html.ActionLink(Model.BannerNum.ToString(), "BannerList", "Media"))))
                     </th>
                 </tr>
                 <tr>

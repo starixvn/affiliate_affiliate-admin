@@ -1895,7 +1895,6 @@
     <Content Include="Content\themes\Default\index.less" />
     <Content Include="Content\themes\Default\mixins.less" />
     <Content Include="Content\themes\Default\variables.less" />
-    <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Shared\_LayoutNoHeader.cshtml" />
     <Content Include="Views\Affiliate\Index.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
@@ -2043,7 +2042,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2262,7 +2262,7 @@
     <value>Total Turnover</value>
   </data>
   <data name="TotalWinlost" xml:space="preserve">
-    <value>Total Winloss</value>
+    <value>Total Win Loss</value>
   </data>
   <data name="TotalWithdrawal" xml:space="preserve">
     <value>Total Withdrawal</value>
@@ -2723,5 +2723,8 @@
             &lt;/ul&gt;
             
     </value>
+  </data>
+  <data name="NumBannerInProgram" xml:space="preserve">
+    <value>We have {0} banner(s) in the program</value>
   </data>
 </root>

@@ -5397,6 +5397,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We have {0} banner(s) in the program.
+        /// </summary>
+        public static string NumBannerInProgram {
+            get {
+                return ResourceManager.GetString("NumBannerInProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number Game.
         /// </summary>
         public static string NumberGame {
@@ -7041,7 +7050,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Winloss.
+        ///   Looks up a localized string similar to Total Win Loss.
         /// </summary>
         public static string TotalWinlost {
             get {

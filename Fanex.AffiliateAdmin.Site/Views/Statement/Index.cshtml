@@ -144,7 +144,8 @@ affiliate-info
 
                     if (rowData.TransType == 201) {
                         var href = AFFILIATE.getAbsoluteUrl("Report/AffiliateCommissionByAffiliate");
-                        var transdate = rowData.TransDateStr;
+                        var transdate = window.moment(rowData.TransDateStr).format(AFFILIATE.DATE_FORMAT_MONTH);
+                        
                         href += "?FromDate=" + transdate + "&ToDate=" + transdate;
                         return "<a href=\"{0}\">".format(href) + currentValue + "</a>";
                     } else if (rowData.TransType == 202) {

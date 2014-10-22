@@ -1032,10 +1032,10 @@
     <Content Include="Content\_Sites\goobet\Notify.less" />
     <None Include="App_Data\ConfigManager.txt4" />
     <None Include="ConfigManager.txt4" />
-    <None Include="Content\_Sites\q8bola\Login.less" />
-    <None Include="Content\_Sites\q8bola\Notify.less" />
-    <None Include="Content\_Sites\royalebet\Login.less" />
-    <None Include="Content\_Sites\royalebet\Notify.less" />
+    <Content Include="Content\_Sites\q8bola\Login.less" />
+    <Content Include="Content\_Sites\q8bola\Notify.less" />
+    <Content Include="Content\_Sites\royalebet\Login.less" />
+    <Content Include="Content\_Sites\royalebet\Notify.less" />
     <Content Include="Content\_Sites\macaubet\Login.less" />
     <Content Include="Content\_Sites\macaubet\Notify.less" />
     <Content Include="Deployment.ignore">

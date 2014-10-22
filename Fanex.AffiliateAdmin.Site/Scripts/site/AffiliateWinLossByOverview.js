@@ -227,6 +227,10 @@ var AffiliateWinLossByOverview = (function ($) {
         return false;
     };
 
+    var disabledBaseCurrency = function () {
+        return $('#BaseCurrency').prop('disabled');
+    };
+
     function getFooterRows(subTotalData, totalRowData, hasMultipleRows, hasMultipleCurrencyRows, firstCurrency) {
         if (subTotalData.length === 0) {
             return [];
@@ -241,28 +245,30 @@ var AffiliateWinLossByOverview = (function ($) {
             getSubTotalRows(footerRows, subTotalData);
         }
 
-        if (hasMultipleRows || submitOptions.BaseCurrency !== SYS_CURRENCY_OPTION) {
-            // Total row
-            var totalColums = [];
-            totalColums.push({
-                Value: "<div align='center'>" + window.MSG.TotalIn.format(window.System.Currency) + "</div>",
-                Name: fistColumName,
-                MergeColNumber: mergeCols + 1
-            });
-
-            for (var i = mergeCols + 1; i < gridOption.columns.length; i++) {
-                var col = gridOption.columns[i];
-                var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
-
-                if (col.IsPercent) {
-                    totalColums.push({ Value: window.MSG.NA, Name: col.Name });
-                } else {
-                    totalColums.push({ Value: totalRowData[colName], Name: col.Name });
-                }
-            }
-
-            footerRows.push({ Columns: totalColums, CssClass: 'total-whole-range' });
+        if (!hasMultipleRows && (disabledBaseCurrency() === true || submitOptions.BaseCurrency === SYS_CURRENCY_OPTION)) {
+            return footerRows;
         }
+
+        // Total row
+        var totalColums = [];
+        totalColums.push({
+            Value: "<div align='center'>" + window.MSG.TotalIn.format(window.System.Currency) + "</div>",
+            Name: fistColumName,
+            MergeColNumber: mergeCols + 1
+        });
+
+        for (var i = mergeCols + 1; i < gridOption.columns.length; i++) {
+            var col = gridOption.columns[i];
+            var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
+
+            if (col.IsPercent) {
+                totalColums.push({ Value: window.MSG.NA, Name: col.Name });
+            } else {
+                totalColums.push({ Value: totalRowData[colName], Name: col.Name });
+            }
+        }
+
+        footerRows.push({ Columns: totalColums, CssClass: 'total-whole-range' });
 
         return footerRows;
     }
@@ -336,7 +342,7 @@ var AffiliateWinLossByOverview = (function ($) {
 
                     gridOption.bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
 
-                    gridOption.footerRows =  getFooterRows(data.SubTotalData, data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows, data.FirstCurrency);
+                    gridOption.footerRows = getFooterRows(data.SubTotalData, data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows, data.FirstCurrency);
 
                     $('#gridId').removeClass("noinfo").fanexGrid(gridOption);
 

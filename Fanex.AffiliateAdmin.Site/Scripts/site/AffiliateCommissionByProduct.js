@@ -6,6 +6,7 @@ var AffiliateCommissionByProduct = (function ($) {
     var SYS_CURRENCY_OPTION = "1";
     var gridOption = {};
     var MONTH_COL = 2;
+    var AFFILIATE_COL = 1;
     var GROUP_BY_AFFILIATE = "0";
 
     var QM_COL_INDEX = 7;
@@ -15,6 +16,12 @@ var AffiliateCommissionByProduct = (function ($) {
     var naValue = "<span title='{0}'>{1}</span>".format(window.MSG.NATooltip, window.MSG.NA);
 
     var removeRedundantColumns = function () {
+        if (byAffiliate() === true) {
+            gridOption.groupHeaderRows[0].Columns.splice(AFFILIATE_COL, 1);
+            gridOption.columns.splice(AFFILIATE_COL, 1);
+            return;
+        }
+
         if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
             gridOption.groupHeaderRows[0].Columns.splice(MONTH_COL, 2);
             gridOption.columns.splice(MONTH_COL, 2);
@@ -22,6 +29,10 @@ var AffiliateCommissionByProduct = (function ($) {
     };
 
     var getNumberOfFrozenColumn = function () {
+        if (byAffiliate() === true) {
+            return 5;
+        }
+
         if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
             return 4;
         }
@@ -133,6 +144,10 @@ var AffiliateCommissionByProduct = (function ($) {
     };
 
     var getProductColIndex = function () {
+        if (byAffiliate() === true) {
+            return PRODUCT_COL_INDEX - 1;
+        }
+
         if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
             return PRODUCT_COL_INDEX - 2;
         }
@@ -200,6 +215,9 @@ var AffiliateCommissionByProduct = (function ($) {
     };
 
     var getMergeColNumberOfTotalCol = function () {
+        if (byAffiliate() === true) {
+            return 3;
+        }
 
         if (submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
             return 2;
@@ -338,8 +356,13 @@ var AffiliateCommissionByProduct = (function ($) {
         return bodyRows;
     };
 
+    var disabledBaseCurrency = function() {
+        return $('#BaseCurrency').prop('disabled');
+    };
+
     var getFooterRows = function (totalRowData, hasMultipleRows) {
-        if (!hasMultipleRows && submitOptions.BaseCurrency === SYS_CURRENCY_OPTION) {
+
+        if (!hasMultipleRows && (disabledBaseCurrency() || submitOptions.BaseCurrency === SYS_CURRENCY_OPTION)) {
             return [];
         }
 
@@ -474,7 +497,7 @@ var AffiliateCommissionByProduct = (function ($) {
 
                     gridOption.bodyRows = getBodyRows(data.Groups, data.SubTotalData, data.HasMultipleRows, data.HasMultipleCurrencyRows, data.FirstCurrency);
 
-                    gridOption.footerRows = getFooterRows(data.TotalRowData, data.HasMultipleRows);
+                    gridOption.footerRows = getFooterRows(data.TotalRowData, data.HasMultipleRows, data.HasMultipleCurrencyRows, data.FirstCurrency);
 
                     gridObject.removeClass("noinfo").fanexGrid(gridOption);
 

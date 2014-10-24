@@ -249,9 +249,10 @@ var AffiliateCommissionByProduct = (function ($) {
 
             for (var i = productColIdx; i < gridOption.columns.length - 1; i++) {
                 var col = gridOption.columns[i];
+                
                 columns.push({
                     TdClass: currency,
-                    Value: itemLevel2[col.Name],
+                    Value: col.IsPercent ? naValue : itemLevel2[col.Name],
                     Name: col.Name
                 });
             }
@@ -391,7 +392,7 @@ var AffiliateCommissionByProduct = (function ($) {
                 var colName = col.NameCache ? col.NameCache + "Base" : col.Name;
                 columns.push({
                     TdClass: currency,
-                    Value: itemLevel2[colName],
+                    Value: col.IsPercent ? naValue : itemLevel2[colName],
                     Name: col.Name
                 });
             }

@@ -1482,6 +1482,7 @@
     </Content>
     <Content Include="Web.ConnectionString.macaubet.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.AppSettings.macaubet.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
@@ -1662,6 +1663,7 @@
     </Content>
     <Content Include="Web.ConnectionString.be7.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.AppSettings.be7.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>

@@ -153,7 +153,7 @@ namespace Fanex.AffiliateAdmin.Models
                                        : Currencies.Split(',').Select(short.Parse);
 
                 var selectedValues = string.IsNullOrEmpty(Currencies)
-                                         ? AppSettings.PlayerCurrencies.Select(t => t.CurrencyID)
+                                         ? SessionManager.CurrentSession.CurrencyList.Select(t => t.CurrencyID)
                                          : currencyList;
 
                 var selectItemList = new MultiSelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode", selectedValues);

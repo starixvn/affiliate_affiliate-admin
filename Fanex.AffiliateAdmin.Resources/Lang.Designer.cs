@@ -1599,7 +1599,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
         ///                &lt;li&gt;Company W/L = Sum of Member Win Loss on selected products&lt;/li&gt;
-        ///                &lt;li&gt;PSP (Payment Service Provider Fee) = Deposit * Deposit Percent + Withdrawal * Withdrawal Percent&lt;/li&gt;
+        ///                &lt;li&gt;PSP (Payment Service Provider Fee) = PSP Rate * (Deposit * Deposit Rate + Withdrawal * Withdrawal Rate)&lt;/li&gt;
         ///                {0}
         ///            &lt;/ul&gt;
         ///    .
@@ -4781,7 +4781,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
         ///                &lt;li&gt;Member W/L = monthly Member Win Loss on selected products&lt;/li&gt;
-        ///                &lt;li&gt;PSP (Payment Service Provider Fee) = Deposit * Deposit Percent + Withdrawal * Withdrawal Percent&lt;/li&gt;
+        ///                &lt;li&gt;PSP (Payment Service Provider Fee) = PSP Rate * (Deposit * Deposit Rate + Withdrawal * Withdrawal Rate)&lt;/li&gt;
         ///                {0}
         ///            &lt;/ul&gt;
         ///            
@@ -5516,7 +5516,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
         ///	&lt;li&gt;Net Win Loss = - Member Win Loss - Member Commission&lt;/li&gt;
-        ///	&lt;li&gt;Affiliate Commission = Net Win Loss * Commission%&lt;/li&gt;	
+        ///	&lt;li&gt;Affiliate Commission = Net Win Loss * Commission Rate&lt;/li&gt;	
         ///    &lt;/ul&gt;.
         /// </summary>
         public static string OtherProductSharingFeeInfo {
@@ -6608,7 +6608,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
         ///	&lt;li&gt;Net Win Loss = - Member Win Loss - Marketing - PSP - Odds Fee - Member Commission&lt;/li&gt;
-        ///	&lt;li&gt;Affiliate Commission = (Net Win Loss - Bonus * Bonus%) * Commission%&lt;/li&gt;
+        ///	&lt;li&gt;Affiliate Commission = (Net Win Loss - Bonus * Bonus Rate) * Commission Rate&lt;/li&gt;
         ///    &lt;/ul&gt;.
         /// </summary>
         public static string SportsbookSharingFeeInfo {

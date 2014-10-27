@@ -15,6 +15,10 @@ var AffiliateWinLossByProduct = (function ($) {
         return $('#ByAffiliate').length > 0;
     };
 
+    var disabledBaseCurrency = function () {
+        return $('#BaseCurrency').prop('disabled');
+    };
+
     var removeRedundantColumns = function () {
         if (!byAffiliate() && submitOptions.GroupBy === GROUP_BY_AFFILIATE) {
             gridOption.groupHeaderRows[0].Columns.splice(MONTH_COL, 1);
@@ -307,7 +311,7 @@ var AffiliateWinLossByProduct = (function ($) {
     };
 
     function getFooterRows(totalRowData, hasMultipleRows) {
-        if (!hasMultipleRows && submitOptions.BaseCurrency === SYS_CURRENCY_OPTION) {
+        if (!hasMultipleRows && (disabledBaseCurrency()  === true|| submitOptions.BaseCurrency === SYS_CURRENCY_OPTION)) {
             return [];
         }
 

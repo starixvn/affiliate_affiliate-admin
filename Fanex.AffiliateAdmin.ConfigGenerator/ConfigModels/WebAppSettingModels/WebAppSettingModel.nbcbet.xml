@@ -10,13 +10,13 @@
     <production>Production</production>
   </Environment>
 
-  <EmailHeaderBgColor>#a7b47f</EmailHeaderBgColor>
+  <EmailHeaderBgColor>#5ad4e9</EmailHeaderBgColor>
   <EmailHeaderFontColor>#fff</EmailHeaderFontColor>
   <EmailContentBgColor>#fff</EmailContentBgColor>
   <EmailContentFontColor>#252525</EmailContentFontColor>
   <EmailCopyrightBgColor>#cccccc</EmailCopyrightBgColor>
-  <EmailCopyrightFontColor>#252525</EmailCopyrightFontColor>
-  <EmailFooterBgColor>#a7b47f</EmailFooterBgColor>
+  <EmailCopyrightFontColor>#000</EmailCopyrightFontColor>
+  <EmailFooterBgColor>#5ad4e9</EmailFooterBgColor>
   <EmailFooterFontColor>#fff</EmailFooterFontColor>
 
   <app_mail_id>

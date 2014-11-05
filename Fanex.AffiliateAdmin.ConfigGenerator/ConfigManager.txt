@@ -111,6 +111,14 @@ Error processing file SpName.mymbet.production.xml Error HRESULT E_FAIL has been
 //-> SpName.mymbet.production.xml
 Error processing file SpName.mymbet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.mymbet.uat.xml
+Error processing file SpName.nbcbet.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.nbcbet.local.xml
+Error processing file SpName.nbcbet.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.nbcbet.master.xml
+Error processing file SpName.nbcbet.production.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.nbcbet.production.xml
+Error processing file SpName.nbcbet.uat.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> SpName.nbcbet.uat.xml
 Error processing file SpName.q8bola.local.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> SpName.q8bola.local.xml
 Error processing file SpName.q8bola.master.xml Error HRESULT E_FAIL has been returned from a call to a COM component.
@@ -291,6 +299,14 @@ Error processing file Web.AppSettings.mymbet.production.config Error HRESULT E_F
 //-> Web.AppSettings.mymbet.production.config
 Error processing file Web.AppSettings.mymbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.mymbet.uat.config
+Error processing file Web.AppSettings.nbcbet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.nbcbet.local.config
+Error processing file Web.AppSettings.nbcbet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.nbcbet.master.config
+Error processing file Web.AppSettings.nbcbet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.nbcbet.production.config
+Error processing file Web.AppSettings.nbcbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.AppSettings.nbcbet.uat.config
 Error processing file Web.AppSettings.q8bola.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.AppSettings.q8bola.local.config
 Error processing file Web.AppSettings.q8bola.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
@@ -393,7 +409,7 @@ Error processing file Web.ConnectionString.be7.local.config Error HRESULT E_FAIL
 //-> Web.ConnectionString.be7.local.config
 Error processing file Web.ConnectionString.be7.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.be7.master.config
-
+Error processing file Web.ConnectionString.be7.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.be7.production.config
 Error processing file Web.ConnectionString.be7.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.be7.uat.config
@@ -471,6 +487,14 @@ Error processing file Web.ConnectionString.mymbet.production.config Error HRESUL
 //-> Web.ConnectionString.mymbet.production.config
 Error processing file Web.ConnectionString.mymbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.mymbet.uat.config
+Error processing file Web.ConnectionString.nbcbet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.nbcbet.local.config
+Error processing file Web.ConnectionString.nbcbet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.nbcbet.master.config
+Error processing file Web.ConnectionString.nbcbet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.nbcbet.production.config
+Error processing file Web.ConnectionString.nbcbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.ConnectionString.nbcbet.uat.config
 Error processing file Web.ConnectionString.q8bola.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.ConnectionString.q8bola.local.config
 Error processing file Web.ConnectionString.q8bola.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
@@ -575,6 +599,14 @@ Error processing file Web.mymbet.production.config Error HRESULT E_FAIL has been
 //-> Web.mymbet.production.config
 Error processing file Web.mymbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.mymbet.uat.config
+Error processing file Web.nbcbet.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.nbcbet.local.config
+Error processing file Web.nbcbet.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.nbcbet.master.config
+Error processing file Web.nbcbet.production.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.nbcbet.production.config
+Error processing file Web.nbcbet.uat.config Error HRESULT E_FAIL has been returned from a call to a COM component.
+//-> Web.nbcbet.uat.config
 Error processing file Web.q8bola.local.config Error HRESULT E_FAIL has been returned from a call to a COM component.
 //-> Web.q8bola.local.config
 Error processing file Web.q8bola.master.config Error HRESULT E_FAIL has been returned from a call to a COM component.
@@ -621,6 +653,38 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\ConfigManager.txt4
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\ConfigManager.txt4
 // Generated items
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.nbcbet.production.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.nbcbet.production.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.nbcbet.production.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.nbcbet.production.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.nbcbet.uat.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.nbcbet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.nbcbet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.nbcbet.uat.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.nbcbet.master.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.nbcbet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.nbcbet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.nbcbet.master.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.nbcbet.local.xml
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.nbcbet.local.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.nbcbet.local.config
+// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.nbcbet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.winner99.production.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.winner99.production.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.winner99.production.config
@@ -909,34 +973,18 @@ Error processing file Web.config Error HRESULT E_FAIL has been returned from a c
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.goobet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.goobet.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.goobet.local.config
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.athena.production.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.athena.production.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.athena.production.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.athena.production.config
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.athena.uat.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.athena.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.athena.uat.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.athena.uat.config
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.athena.master.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.athena.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.athena.master.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.athena.master.config
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.xml
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.config
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.config
-// D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\App_Data\SpName.athena.local.xml
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.ConnectionString.athena.local.config
 // D:\GitLab\affiliate-admin\Fanex.AffiliateAdmin.Site\Web.AppSettings.athena.local.config

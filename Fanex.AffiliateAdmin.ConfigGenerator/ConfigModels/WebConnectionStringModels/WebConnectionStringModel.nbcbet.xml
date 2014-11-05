@@ -3,8 +3,8 @@
   <affilatedb-name>
     <local>DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet</local>
     <master>DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet</master>
-    <uat>DBAFFWINNER99.Affiliate_NBCBet.bodbAdminNet</uat>
-    <production>DBAFFWINNER99.Affiliate_NBCBet.bodbAdminNet</production>
+    <uat>DBAFFNBCBET.Affiliate_NBCBet.bodbAdminNet</uat>
+    <production>DBAFFNBCBET.Affiliate_NBCBet.bodbAdminNet</production>
   </affilatedb-name>
   <affilatedb-connectionstring>
     <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=Affiliate_Athena000;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>

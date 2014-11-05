@@ -65,6 +65,7 @@
     <Content Include="ConfigModels\SiteConfigModels\SiteConfigModel.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="ConfigModels\WebAppSettingModels\WebAppSettingModel.nbcbet.xml" />
     <Content Include="ConfigModels\WebAppSettingModels\WebAppSettingModel.winner99.xml" />
     <Content Include="ConfigModels\WebAppSettingModels\WebAppSettingModel.wawabet.xml" />
     <Content Include="ConfigModels\WebAppSettingModels\WebAppSettingModel.thbet.xml" />
@@ -85,6 +86,7 @@
     <Content Include="ConfigModels\WebAppSettingModels\WebAppSettingModel.goobet.xml" />
     <Content Include="ConfigModels\WebAppSettingModels\WebAppSettingModel.athena.xml" />
     <Content Include="ConfigModels\WebConfigModels\WebConfigModel.xml" />
+    <Content Include="ConfigModels\WebConnectionStringModels\WebConnectionStringModel.nbcbet.xml" />
     <Content Include="ConfigModels\WebConnectionStringModels\WebConnectionStringModel.itcbet.xml" />
     <Content Include="ConfigModels\WebConnectionStringModels\WebConnectionStringModel.winner99.xml" />
     <Content Include="ConfigModels\WebConnectionStringModels\WebConnectionStringModel.wawabet.xml" />

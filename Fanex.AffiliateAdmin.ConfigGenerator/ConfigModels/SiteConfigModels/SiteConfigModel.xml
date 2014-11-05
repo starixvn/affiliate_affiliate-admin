@@ -7,7 +7,7 @@
     <environment enable="1">uat</environment>
     <environment enable="1">production</environment>
   </environments>
-  <demoSite>athena</demoSite>
+  <demoSite>nbcbet</demoSite>
   <sites>
     <site>
       <name>athena</name>
@@ -142,5 +142,13 @@
       <webappsettingmodel>ConfigModels\WebAppSettingModels\WebAppSettingModel.winner99.xml</webappsettingmodel>
       <webconnectionstringmodel>ConfigModels\WebConnectionStringModels\WebConnectionStringModel.winner99.xml</webconnectionstringmodel>
     </site>
+    <site>
+      <name>nbcbet</name>
+      <status>1</status>
+      <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel.xml</webconfigmodel>
+      <webappsettingmodel>ConfigModels\WebAppSettingModels\WebAppSettingModel.nbcbet.xml</webappsettingmodel>
+      <webconnectionstringmodel>ConfigModels\WebConnectionStringModels\WebConnectionStringModel.nbcbet.xml</webconnectionstringmodel>
+    </site>
   </sites>
+  
 </root>

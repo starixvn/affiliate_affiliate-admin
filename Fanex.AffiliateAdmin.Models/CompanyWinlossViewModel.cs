@@ -146,7 +146,7 @@ namespace Fanex.AffiliateAdmin.Models
                                       : Products.Split(',').Select(byte.Parse);
 
                 var selectedValues = string.IsNullOrEmpty(Products)
-                                         ? AppSettings.Products.Select(t => t.ProductID)
+                                         ? AppSettings.Products.Where(t => t.IsEnabled).Select(t => t.ProductID)
                                          : productList;
 
                 return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);

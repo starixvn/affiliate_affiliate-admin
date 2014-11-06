@@ -1056,7 +1056,6 @@
     <Content Include="Content\_Sites\goobet\Login.less" />
     <Content Include="Content\_Sites\goobet\Notify.less" />
     <None Include="App_Data\ConfigManager.txt4" />
-    <None Include="ConfigManager.txt4" />
     <Content Include="Content\_Sites\q8bola\Login.less" />
     <Content Include="Content\_Sites\q8bola\Notify.less" />
     <Content Include="Content\_Sites\royalebet\Login.less" />
@@ -1068,6 +1067,7 @@
     </Content>
     <Content Include="Content\_Sites\nbcbet\Login.less" />
     <Content Include="Content\_Sites\nbcbet\Notify.less" />
+    <None Include="ConfigManager.txt4" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1173,42 +1173,7 @@
     <Content Include="Views\Configuration\LanguageDetail.cshtml" />
     <Content Include="Views\Configuration\Product.cshtml" />
     <Content Include="Views\Configuration\ProductDetail.cshtml" />
-    <Content Include="Web.ConnectionString.itcbet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.itcbet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.itcbet.production.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.itcbet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.itcbet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.itcbet.uat.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.itcbet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.itcbet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.itcbet.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionString.itcbet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.itcbet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
-    <Content Include="Web.itcbet.local.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
+    <Content Include="Views\Shared\Email\AffiliateApprove\Html\Body.ApprovalEmail.en-US.cshtml" />
     <Content Include="Web.ConnectionString.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -1218,43 +1183,42 @@
     <Content Include="Web.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionString.athena.production.config">
+    <Content Include="Web.ConnectionString.nbcbet.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.athena.production.config">
+    <Content Include="Web.AppSettings.nbcbet.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.athena.production.config">
+    <Content Include="Web.nbcbet.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionString.athena.uat.config">
+    <Content Include="Web.ConnectionString.nbcbet.uat.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.athena.uat.config">
+    <Content Include="Web.AppSettings.nbcbet.uat.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.athena.uat.config">
+    <Content Include="Web.nbcbet.uat.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionString.athena.master.config">
+    <Content Include="Web.ConnectionString.nbcbet.master.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.athena.master.config">
+    <Content Include="Web.AppSettings.nbcbet.master.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.athena.master.config">
+    <Content Include="Web.nbcbet.master.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionString.athena.local.config">
+    <Content Include="Web.ConnectionString.nbcbet.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.athena.local.config">
+    <Content Include="Web.AppSettings.nbcbet.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.athena.local.config">
+    <Content Include="Web.nbcbet.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Views\Shared\Email\AffiliateApprove\Html\Body.ApprovalEmail.en-US.cshtml" />
     <Content Include="Web.ConnectionString.winner99.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -1509,7 +1473,6 @@
     </Content>
     <Content Include="Web.ConnectionString.macaubet.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.AppSettings.macaubet.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
@@ -1578,6 +1541,42 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="Web.m8bola.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.itcbet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.itcbet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.itcbet.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.itcbet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.itcbet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.itcbet.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.itcbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.itcbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.itcbet.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionString.itcbet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.itcbet.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.itcbet.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="Web.ConnectionString.i668bet.production.config">
@@ -1690,7 +1689,6 @@
     </Content>
     <Content Include="Web.ConnectionString.be7.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.AppSettings.be7.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
@@ -1869,40 +1867,40 @@
     <Content Include="Web.goobet.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionString.nbcbet.production.config">
+    <Content Include="Web.ConnectionString.athena.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.nbcbet.production.config">
+    <Content Include="Web.AppSettings.athena.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.nbcbet.production.config">
+    <Content Include="Web.athena.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionString.nbcbet.uat.config">
+    <Content Include="Web.ConnectionString.athena.uat.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.nbcbet.uat.config">
+    <Content Include="Web.AppSettings.athena.uat.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.nbcbet.uat.config">
+    <Content Include="Web.athena.uat.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionString.nbcbet.master.config">
+    <Content Include="Web.ConnectionString.athena.master.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.nbcbet.master.config">
+    <Content Include="Web.AppSettings.athena.master.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.nbcbet.master.config">
+    <Content Include="Web.athena.master.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionString.nbcbet.local.config">
+    <Content Include="Web.ConnectionString.athena.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.nbcbet.local.config">
+    <Content Include="Web.AppSettings.athena.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.nbcbet.local.config">
+    <Content Include="Web.athena.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
   </ItemGroup>
@@ -2141,7 +2139,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

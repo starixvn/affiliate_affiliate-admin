@@ -36,9 +36,10 @@ namespace Fanex.AffiliateAdmin.Controller
 
         public ActionResult Index(
             string username,
-            string product,
+            string products,
             string winlostdate,
-            string currency
+            string affCurrencyId,
+            string playerCurrencyId
             )
         {
             DateTime winlostDate;

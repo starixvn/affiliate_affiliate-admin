@@ -156,14 +156,14 @@ report
             ToggleSubTotal: '@Lang.ToggleSubTotal',
             ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct',
             MemberInfo: '@Lang.MemberInformation',
-            MemberWinLossOverviewTitle: "<span class='tab-title focus-tab-title tag-overview'>" + '@Lang.MemberWinLossOverview' +  " [{0}]</span><span class='tab-title tag-by-product'>" + '@Lang.MemberWinLossByProduct' + "</span>",
-            MemberWinLossByProductTitle: "<span class='tab-title tag-overview'>" + '@Lang.MemberWinLossOverview' +  "</span><span class='tab-title focus-tab-title tag-by-product'>" + '@Lang.MemberWinLossByProduct' + " [{0}]</span>"
+            MemberWinLossOverviewTitle: "<span class='tab-title focus-tab-title tag-overview'>" + '@Lang.MemberWinLossOverview' + " [{0}]</span><span class='tab-title tag-by-product'>" + '@Lang.MemberWinLossByProduct' + "</span>",
+            MemberWinLossByProductTitle: "<span class='tab-title tag-overview'>" + '@Lang.MemberWinLossOverview' + "</span><span class='tab-title focus-tab-title tag-by-product'>" + '@Lang.MemberWinLossByProduct' + " [{0}]</span>"
         };
 
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
         var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
         var subTotalStatus = COLLAPSE_SUBTOTAL_STATUS;
-        
+
         var sampleOverviewGridOption = {
             language: '@AppSession.Language',
             showTitle: true,
@@ -183,10 +183,14 @@ report
                         { HeaderCaption: "@Lang.UnitPerBaseCurrency".format(System.Currency), HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Name: "ExRate", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Name: "Deposit", NameCache: "Deposit", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Withdrawal", HeaderText: "@Lang.Withdrawal", IsCurrency: true, Name: "Withdrawal", NameCache: "Withdrawal", MergeRowNumber: 2 },
-                        { 
+                        {
                             HeaderCaption: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>",
                             HeaderText: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>",
-                            IsCurrency: true, Name: "PSP", NameCache: "PSP", MergeRowNumber: 2 },
+                            IsCurrency: true,
+                            Name: "PSP",
+                            NameCache: "PSP",
+                            MergeRowNumber: 2
+                        },
                         { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Name: "Bonus", NameCache: "Bonus", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Name: "Adjustment", NameCache: "Adjustment", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.BetCount", HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
@@ -243,20 +247,26 @@ report
                 { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Width: 90, Name: "Bonus", NameCache: "Bonus", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Width: 90, Name: "Adjustment", NameCache: "Adjustment", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderCaption: "@Lang.Turnover", 
-                    HeaderText: "@Lang.Turnover", 
-                    IsCurrency: true, 
-                    Width: 110, 
-                    Name: "TotalTurnover", 
-                    NameCache: "TotalTurnover", 
-                    HeaderAlign: "center", 
-                    CellAlign: "right", 
-                    FormatNumber: AFFILIATE.FORMATNUMBER, 
-                    FormatNegative: '($)', 
+                {
+                    HeaderCaption: "@Lang.Turnover",
+                    HeaderText: "@Lang.Turnover",
+                    IsCurrency: true,
+                    Width: 110,
+                    Name: "TotalTurnover",
+                    NameCache: "TotalTurnover",
+                    HeaderAlign: "center",
+                    CellAlign: "right",
+                    FormatNumber: AFFILIATE.FORMATNUMBER,
+                    FormatNegative: '($)',
                     IsAbs: true,
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
-                        return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, record.TotalTurnover, record.TotalTurnover);
+                        var groupBy = $('GroupBy').val();
+                        if (groupBy === '0') {
+                            var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
+                            return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, record.TotalTurnover, record.TotalTurnover);
+                        }
+
+                        return record.TotalTurnover;
                     }
                 },
                 {
@@ -296,7 +306,7 @@ report
             numberOfFrozenColumn: 6,
             bodyRowHeight: 27
         };
-        
+
         var sampleProductGridOption = {
             language: '@AppSession.Language',
             showTitle: true,
@@ -365,16 +375,17 @@ report
                 { HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Width: 80, Name: "ExRate", HeaderAlign: "center", CellAlign: "right", IsExRate: true },
                 { HeaderText: "@Lang.Product", Width: 110, Name: "ProductName", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderCaption: "@Lang.Turnover", 
-                    HeaderText: "@Lang.Turnover", 
-                    IsCurrency: true, 
-                    Width: 110, 
-                    Name: "TotalTurnover", 
-                    NameCache: "TotalTurnover", 
-                    HeaderAlign: "center", 
-                    CellAlign: "right", 
-                    FormatNumber: AFFILIATE.FORMATNUMBER, 
-                    FormatNegative: '($)', 
+                {
+                    HeaderCaption: "@Lang.Turnover",
+                    HeaderText: "@Lang.Turnover",
+                    IsCurrency: true,
+                    Width: 110,
+                    Name: "TotalTurnover",
+                    NameCache: "TotalTurnover",
+                    HeaderAlign: "center",
+                    CellAlign: "right",
+                    FormatNumber: AFFILIATE.FORMATNUMBER,
+                    FormatNegative: '($)',
                     IsAbs: true,
                     Formatter: function(rIndex, record, cell, cellFormated) {
                         var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
@@ -421,7 +432,7 @@ report
         var cardinalHeaderCol = { HeaderText: "#", Name: "WinlostDateStr", MergeRowNumber: 2 };
 
         var cardinalCol = { HeaderText: "#", Width: 30, Name: "WinlostDateStr", CellAlign: "center" };
-      
+
         var samplePlayerCommCol = {
             HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
             HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",

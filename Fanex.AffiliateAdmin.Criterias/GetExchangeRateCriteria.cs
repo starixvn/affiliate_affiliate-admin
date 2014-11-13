@@ -15,52 +15,29 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// <summary>
     /// Exchange Rate Criteria.
     /// </summary>
-    public class ExchangeRateCriteria : CriteriaBase
+    public class GetExchangeRateCriteria : CriteriaBase
     {
-        [SpParam(Ignored = true)]
-        public CriteriaType Type { get; set; }
+        public int FromCurrency { get; set; }
 
-        public int UserId { get; set; }
+        public int ToCurrency { get; set; }
 
-        public int ExchangeId { get; set; }
+        public DateTime? Date { get; set; }
 
-        public string ExchangeIdList { get; set; }
+        // Output paramaters
+        public float Rate { get; set; }
 
-        public DateTime? Time { get; set; }
-
-        public double Rate { get; set; }
-
-        [SpParam(Ignored = true)]
-        public string FromCurrency { get; set; }
-
-        public string ToCurrency { get; set; }
-
-        public string Ip { get; set; }
-
-        public int ErrCode { get; set; }
+        public override bool IsValid()
+        {
+            return FromCurrency > 0 && ToCurrency > 0;
+        }
 
         /// <summary>
-        /// Get Setting Key.
+        /// Get SP name.
         /// </summary>
-        /// <returns>Setting Key.</returns>
+        /// <returns>Setting key.</returns>
         public override string GetSettingKey()
         {
-            if (Type == CriteriaType.Update)
-            {
-                if (!string.IsNullOrWhiteSpace(this.ToCurrency))
-                {
-                    return "AffAdmin_ExchangeUpdate";                       
-                }
-
-                if (!string.IsNullOrWhiteSpace(this.ExchangeIdList))
-                {
-                    return "AffAdmin_CopyRateFromMarket";
-                }
-
-                return "AffAdmin_ExchangeAutoRefreshUpd";
-            }
-
-            return "AffAdmin_ExchangeSel";
+            return "Aff_User_GetExchangeRate";
         }
     }
 }

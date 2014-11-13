@@ -257,6 +257,13 @@ namespace Fanex.AffiliateAdmin.Site
            .Include("~/Content/betlist/systemparlay.detail.css")
            .Include("~/Content/betlist/rngcasino.handhistory.css")
            .Include("~/Content/betlist/fanex.result.css"));
+
+            bundles.Add(new Bundle("~/js/betlist")
+                .Include("~/Scripts/site/betlist.js"));
+
+            bundles.Add(new Bundle("~/css/systemparlaydetails")
+           .Include("~/Content/betlist/global.content.css")
+           .Include("~/Content/betlist/systemparlay.detail.css"));
         }
     }
 }

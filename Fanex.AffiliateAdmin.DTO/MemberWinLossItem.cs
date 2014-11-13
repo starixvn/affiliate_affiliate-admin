@@ -29,6 +29,8 @@ namespace Fanex.AffiliateAdmin.DTO
             }
         }
 
+        public int AffId { get; set; }
+
         public string Username { get; set; }
 
         public int AffCurrencyId { get; set; }

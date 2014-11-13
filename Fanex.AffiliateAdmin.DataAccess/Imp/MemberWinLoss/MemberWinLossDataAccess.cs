@@ -48,6 +48,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
                 {
                     RowIdx = reader.ToLong("RowIDX"),
                     WinlostDate = reader.ToDateTime("WinlostDate"),
+                    AffId = reader.ToInt("AffId"),
                     Username = reader.ToString("Username"),
                     Currency = reader.ToString("Currency"),
                     PlayerUsername = reader.ToString("PlayerUsername"),

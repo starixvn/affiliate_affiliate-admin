@@ -27,9 +27,9 @@ namespace Fanex.AffiliateAdmin.Controller.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://10.19.10.32:8088/AffiliateAPI.asmx")]
-        public string Fanex_AffiliateAdmin_Controller_BetListService_AffiliateAPI {
+        public string Fanex_AffiliateAdmin_Controller_AffBetListService_AffiliateAPI {
             get {
-                return ((string)(this["Fanex_AffiliateAdmin_Controller_BetListService_AffiliateAPI"]));
+                return ((string)(this["Fanex_AffiliateAdmin_Controller_AffBetListService_AffiliateAPI"]));
             }
         }
     }

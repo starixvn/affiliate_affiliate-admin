@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Fanex.AffiliateAdmin.Controller.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Fanex_AffiliateAdmin_Controller_BetListService_AffiliateAPI" Type="(Web Service URL)" Scope="Application">
+    <Setting Name="Fanex_AffiliateAdmin_Controller_AffBetListService_AffiliateAPI" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://10.19.10.32:8088/AffiliateAPI.asmx</Value>
     </Setting>
   </Settings>

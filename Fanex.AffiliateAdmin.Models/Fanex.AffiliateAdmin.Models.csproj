@@ -81,7 +81,10 @@
     <Compile Include="CompanyWLByAffiliateViewModel.cs" />
     <Compile Include="AffiliateWLByAffiliateViewModel.cs" />
     <Compile Include="AffiliateCommissionByAffiliateViewModel.cs" />
+    <Compile Include="BetListViewModel.cs" />
     <Compile Include="MemberStatisticsViewModel.cs" />
+    <Compile Include="BetListParlayViewModel.cs" />
+    <Compile Include="SystemParlayDetailViewModel.cs" />
     <Compile Include="EditUserViewModel.cs" />
     <Compile Include="ExchangeRateViewModel.cs" />
     <Compile Include="AffiliateCommissionViewModel.cs" />

@@ -482,6 +482,7 @@
     </Content>
     <Content Include="App_Data\SpName.xml">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\betlist\betlist.core.css" />
     <Content Include="Content\betlist\betList.css" />
@@ -982,6 +983,7 @@
     <Content Include="Scripts\libraries\monpickr.js" />
     <Content Include="Scripts\libraries\placeholder_fixer.js" />
     <Content Include="Scripts\libraries\ui.dropdownchecklist.js" />
+    <Content Include="Scripts\site\BetList.js" />
     <Content Include="Scripts\site\CloseDialog.js" />
     <Content Include="Scripts\site\Adjustment.js" />
     <Content Include="Scripts\site\AffiliateEdit.js" />
@@ -1975,6 +1977,7 @@
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="Views\BetList\Index.cshtml" />
+    <Content Include="Views\BetList\SystemParlayDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

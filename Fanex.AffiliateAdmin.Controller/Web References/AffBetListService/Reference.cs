@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace Fanex.AffiliateAdmin.Controller.BetListService {
+namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -44,7 +44,7 @@ namespace Fanex.AffiliateAdmin.Controller.BetListService {
         
         /// <remarks/>
         public AffiliateAPI() {
-            this.Url = global::Fanex.AffiliateAdmin.Controller.Properties.Settings.Default.Fanex_AffiliateAdmin_Controller_BetListService_AffiliateAPI;
+            this.Url = global::Fanex.AffiliateAdmin.Controller.Properties.Settings.Default.Fanex_AffiliateAdmin_Controller_AffBetListService_AffiliateAPI;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

@@ -67,6 +67,8 @@
     <Compile Include="Impl\AdjustmentService.cs" />
     <Compile Include="Impl\AffiliateService.cs" />
     <Compile Include="Impl\CommGroupService.cs" />
+    <Compile Include="Impl\BetListService.cs" />
+    <Compile Include="Impl\ProductService.cs" />
     <Compile Include="Impl\MemberService.cs" />
     <Compile Include="Impl\ReportService.cs" />
     <Compile Include="Impl\CountryService.cs" />
@@ -86,6 +88,8 @@
     <Compile Include="Impl\TrackingStatisticService.cs" />
     <Compile Include="Impl\TransTypeService.cs" />
     <Compile Include="Impl\ViewLogService.cs" />
+    <Compile Include="Interface\IProductService.cs" />
+    <Compile Include="Interface\IBetListService.cs" />
     <Compile Include="Interface\IMemberService.cs" />
     <Compile Include="Interface\IReportService.cs" />
     <Compile Include="Interface\IAdjustmentService.cs" />

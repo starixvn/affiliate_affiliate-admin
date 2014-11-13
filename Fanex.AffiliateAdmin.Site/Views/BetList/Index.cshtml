@@ -6,6 +6,7 @@
 }
 
 @Styles.Render("~/css/betlist")
+@model Fanex.AffiliateAdmin.Models.BetListViewModel
 
 <style type="text/css">
     .popup .container-fluid
@@ -23,3 +24,12 @@
 <div id="betlist">
     @Html.Raw(ViewBag.Data)
 </div>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.WinlostDate)
+    @Html.HiddenFor(m => m.AffCurrencyId)
+    @Html.HiddenFor(m => m.PlayerCurrencyId)
+}
+
+@Scripts.Render("~/js/betlist")

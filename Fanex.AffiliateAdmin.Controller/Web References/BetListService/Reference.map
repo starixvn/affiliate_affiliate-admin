@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://10.19.10.32:8088/AffiliateAPI.asmx?disco" filename="AffiliateAPI.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://10.19.10.32:8088/AffiliateAPI.asmx?wsdl" filename="AffiliateAPI.wsdl" />
+  </Results>
+</DiscoveryClientResultsFile>

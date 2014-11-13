@@ -33,6 +33,10 @@ report
     {
         toDate = now;
     }
+    
+    fromDate = new DateTime(2014, 1, 1);
+    toDate = new DateTime(2014, 3, 28);
+    
 }
 
 @using Fanex.AffiliateAdmin.Core.Configurations
@@ -159,7 +163,7 @@ report
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
         var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
         var subTotalStatus = COLLAPSE_SUBTOTAL_STATUS;
-
+        
         var sampleOverviewGridOption = {
             language: '@AppSession.Language',
             showTitle: true,
@@ -239,7 +243,22 @@ report
                 { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Width: 90, Name: "Bonus", NameCache: "Bonus", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Width: 90, Name: "Adjustment", NameCache: "Adjustment", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
+                { HeaderCaption: "@Lang.Turnover", 
+                    HeaderText: "@Lang.Turnover", 
+                    IsCurrency: true, 
+                    Width: 110, 
+                    Name: "TotalTurnover", 
+                    NameCache: "TotalTurnover", 
+                    HeaderAlign: "center", 
+                    CellAlign: "right", 
+                    FormatNumber: AFFILIATE.FORMATNUMBER, 
+                    FormatNegative: '($)', 
+                    IsAbs: true,
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
+                        return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, record.TotalTurnover, record.TotalTurnover);
+                    }
+                },
                 {
                     HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
                     HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
@@ -346,7 +365,22 @@ report
                 { HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Width: 80, Name: "ExRate", HeaderAlign: "center", CellAlign: "right", IsExRate: true },
                 { HeaderText: "@Lang.Product", Width: 110, Name: "ProductName", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
+                { HeaderCaption: "@Lang.Turnover", 
+                    HeaderText: "@Lang.Turnover", 
+                    IsCurrency: true, 
+                    Width: 110, 
+                    Name: "TotalTurnover", 
+                    NameCache: "TotalTurnover", 
+                    HeaderAlign: "center", 
+                    CellAlign: "right", 
+                    FormatNumber: AFFILIATE.FORMATNUMBER, 
+                    FormatNegative: '($)', 
+                    IsAbs: true,
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
+                        return "<a href='{0}' alt='{1}'>{2}</a>".format(url, record.TotalTurnover, record.TotalTurnover);
+                    }
+                },
                 {
                     HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
                     HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",

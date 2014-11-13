@@ -1174,6 +1174,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet List.
+        /// </summary>
+        public static string BetList {
+            get {
+                return ResourceManager.GetString("BetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet Type List.
         /// </summary>
         public static string BettypeList {

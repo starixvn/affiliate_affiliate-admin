@@ -2727,4 +2727,7 @@
   <data name="NumBannerInProgram" xml:space="preserve">
     <value>We have {0} banner(s) in the program</value>
   </data>
+  <data name="BetList" xml:space="preserve">
+    <value>Bet List</value>
+  </data>
 </root>

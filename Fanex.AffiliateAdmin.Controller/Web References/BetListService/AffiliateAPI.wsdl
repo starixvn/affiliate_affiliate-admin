@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetAffiliateEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="siteName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="btag" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAffiliateEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAffiliateEmailResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBetlist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="betlistSOAP" type="tns:BetlistSOAP" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BetlistSOAP">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AffiliateName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Product" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FromDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ToDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExchangeRate" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SupportedProducts" type="tns:ArrayOfProduct" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProduct">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Product" nillable="true" type="tns:Product" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Product">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProductId" type="s:unsignedByte" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OriginalProductName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalQualifiedMembers" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBetlistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBetlistResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBetlistParlay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="affiliateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transactionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="exchangeRate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBetlistParlayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBetlistParlayResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBetlistSystemParlay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="affiliateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="exchangeRate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="criteria" type="tns:BetListSystemParlayDetailCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BetListSystemParlayDetailCriteria">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CriteriaBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="AffiliateGroup" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TransId" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="RefNo" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="BetId" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="CustId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="MoveBetsDay" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="BalanceUpDay" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Outstanding" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CriteriaBase" abstract="true" />
+      <s:element name="GetBetlistSystemParlayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBetlistSystemParlayResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBetlistResults">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="affiliateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sessionLanguage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="criteria" type="tns:BetListResultsCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BetListResultsCriteria">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CriteriaBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="MatchId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Bettype" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RaceNo" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="SportType" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsOutRight" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RefNo" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="WinLossDate" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetBetlistResultsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBetlistResultsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAffiliateEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAffiliateEmail" />
+  </wsdl:message>
+  <wsdl:message name="GetAffiliateEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAffiliateEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBetlistSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBetlist" />
+  </wsdl:message>
+  <wsdl:message name="GetBetlistSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBetlistResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBetlistParlaySoapIn">
+    <wsdl:part name="parameters" element="tns:GetBetlistParlay" />
+  </wsdl:message>
+  <wsdl:message name="GetBetlistParlaySoapOut">
+    <wsdl:part name="parameters" element="tns:GetBetlistParlayResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBetlistSystemParlaySoapIn">
+    <wsdl:part name="parameters" element="tns:GetBetlistSystemParlay" />
+  </wsdl:message>
+  <wsdl:message name="GetBetlistSystemParlaySoapOut">
+    <wsdl:part name="parameters" element="tns:GetBetlistSystemParlayResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBetlistResultsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBetlistResults" />
+  </wsdl:message>
+  <wsdl:message name="GetBetlistResultsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBetlistResultsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AffiliateAPISoap">
+    <wsdl:operation name="GetAffiliateEmail">
+      <wsdl:input message="tns:GetAffiliateEmailSoapIn" />
+      <wsdl:output message="tns:GetAffiliateEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBetlist">
+      <wsdl:input message="tns:GetBetlistSoapIn" />
+      <wsdl:output message="tns:GetBetlistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBetlistParlay">
+      <wsdl:input message="tns:GetBetlistParlaySoapIn" />
+      <wsdl:output message="tns:GetBetlistParlaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBetlistSystemParlay">
+      <wsdl:input message="tns:GetBetlistSystemParlaySoapIn" />
+      <wsdl:output message="tns:GetBetlistSystemParlaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBetlistResults">
+      <wsdl:input message="tns:GetBetlistResultsSoapIn" />
+      <wsdl:output message="tns:GetBetlistResultsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AffiliateAPISoap" type="tns:AffiliateAPISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAffiliateEmail">
+      <soap:operation soapAction="http://tempuri.org/GetAffiliateEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBetlist">
+      <soap:operation soapAction="http://tempuri.org/GetBetlist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBetlistParlay">
+      <soap:operation soapAction="http://tempuri.org/GetBetlistParlay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBetlistSystemParlay">
+      <soap:operation soapAction="http://tempuri.org/GetBetlistSystemParlay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBetlistResults">
+      <soap:operation soapAction="http://tempuri.org/GetBetlistResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AffiliateAPISoap12" type="tns:AffiliateAPISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAffiliateEmail">
+      <soap12:operation soapAction="http://tempuri.org/GetAffiliateEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBetlist">
+      <soap12:operation soapAction="http://tempuri.org/GetBetlist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBetlistParlay">
+      <soap12:operation soapAction="http://tempuri.org/GetBetlistParlay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBetlistSystemParlay">
+      <soap12:operation soapAction="http://tempuri.org/GetBetlistSystemParlay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBetlistResults">
+      <soap12:operation soapAction="http://tempuri.org/GetBetlistResults" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AffiliateAPI">
+    <wsdl:port name="AffiliateAPISoap" binding="tns:AffiliateAPISoap">
+      <soap:address location="http://10.19.10.32:8088/AffiliateAPI.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AffiliateAPISoap12" binding="tns:AffiliateAPISoap12">
+      <soap12:address location="http://10.19.10.32:8088/AffiliateAPI.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

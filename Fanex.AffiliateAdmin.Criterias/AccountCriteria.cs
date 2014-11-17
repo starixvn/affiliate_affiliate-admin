@@ -53,7 +53,7 @@ namespace Fanex.AffiliateAdmin.Criterias
                     settingKey = "AffAdmin_Con_AccountIns"; 
                     break;
                 case "Edit":
-                    settingKey = "AffAdmin_Con_AccountUpd";                       
+                    settingKey = "AffAdmin_Con_AccountUpd";
                     break;
                 case "Status":
                     settingKey = "AffAdmin_Con_AccountUpdClosed";

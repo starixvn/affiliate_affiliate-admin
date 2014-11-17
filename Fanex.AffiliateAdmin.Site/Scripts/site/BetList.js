@@ -36,16 +36,14 @@ var BetList = (function ($) {
                     : BetList.getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username);
 
             var title = "Results";
-            AFFILIATE.openDialogFrame(url, title, { width: 720, height: 500 });
+            AFFILIATE.openDialogUrl(url, title, { width: 720, height: 500 });
         },
 
         showMixParlayDetail: function (transId, divEvent) {
             var url = AFFILIATE.getAbsoluteUrl('BetList/BetListParlay');
             var para = $('form').serializeObject2();
             url = QueryString.setParam(url, "transId", transId);
-            url = QueryString.setParam(url, "winlostDate", para.WinlostDate);
-            url = QueryString.setParam(url, "affCurrencyId", para.AffCurrencyId);
-            url = QueryString.setParam(url, "playerCurrencyId", para.PlayerCurrencyId);
+            url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
 
             if (divEvent.css("display") === 'none') {
                 $.ajax({
@@ -81,9 +79,7 @@ var BetList = (function ($) {
             var url = AFFILIATE.getAbsoluteUrl('BetList/SystemParlayDetail');
             var para = $('form').serializeObject2();
             url = QueryString.setParam(url, "transId", transId);
-            url = QueryString.setParam(url, "winlostDate", para.WinlostDate);
-            url = QueryString.setParam(url, "affCurrencyId", para.AffCurrencyId);
-            url = QueryString.setParam(url, "playerCurrencyId", para.PlayerCurrencyId);
+            url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
             url = QueryString.setParam(url, "refno", refNo);
             url = QueryString.setParam(url, "betid", betId);
             url = QueryString.setParam(url, "custid", custId);
@@ -105,11 +101,17 @@ var BetList = (function ($) {
 
         ViewCasinoHandHistory: function (refNo) {
             var url = AFFILIATE.getAbsoluteUrl('BetList/RNGCasinoData');
-            var urlParam = $("#casino-hand-history-" + refNo).attr('url-param');
+            var para = $('form').serializeObject2();
 
+
+            var urlParam = $("#casino-hand-history-" + refNo).attr('url-param');
             url += urlParam;
+            url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
+            url = QueryString.setParam(url, "affCurrencyId", para.AffCurrencyId);
+            url = QueryString.setParam(url, "affCurrencyCode", para.AffCurrencyCode);
+
             var title = "Results";
-            AFFILIATE.openDialogFrame(url, title, { width: 950, height: 500 });
+            AFFILIATE.openDialogUrl(url, title, { width: 950, height: 500 });
         }
     };
 })(jQuery);

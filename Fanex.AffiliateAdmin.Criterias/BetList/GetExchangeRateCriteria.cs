@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ExchangeRateCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetExchangeRateCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Joseph.Pham" date="2013.8.29">Created</change>
+//   <change who="Brian.Dinh" date="2014.11.14">Created</change>
 // </history>
 
 namespace Fanex.AffiliateAdmin.Criterias

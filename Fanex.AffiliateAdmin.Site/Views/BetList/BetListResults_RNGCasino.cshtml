@@ -1,0 +1,139 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+@using Fanex.AffiliateAdmin.Core.Utilities
+@model Fanex.AffiliateAdmin.Models.BetListResultsRNGCasinoViewModel
+
+@Styles.Render("~/css/betlist")
+
+<style type="text/css">
+    .popup .container-fluid
+    {
+        width : auto !important;
+    }
+    
+    .popup .container-fluid .span12.contents .leftColumn
+    {
+        width: 715px !important;
+    }
+    
+</style>
+
+<div class="rngcasino_headerlabel">
+    @Lang.Username: @Model.Username - @RNGCasino.RefNo: @Model.RefNo - @RNGCasino.Viewin @Model.Currency - 
+    <input type="checkbox" id="chkIsShowPic" name="chkIsShowPic" @(Model.IsShowPic ? "checked='checked'" : "") /> @RNGCasino.ResultsWithPictures
+</div>
+
+<table cellspacing="0" cellpadding="0" class="tblBetList">
+    <thead>
+        <tr>
+            <th style="width: 20px">#</th>
+            <th style="width: 120px">@RNGCasino.GameID</th>
+            <th style="width: 120px">@RNGCasino.PlayerHistoryNo</th>
+            <th style="width: 120px">@RNGCasino.GameType</th>
+            <th style="width: 100px">@RNGCasino.GameGroup</th>
+            <th style="width: 100px">@RNGCasino.StartDate</th>
+            <th style="width: 100px">@RNGCasino.EndDate</th>
+            <th style="width: 100px">@RNGCasino.StartBalance</th>
+            <th style="width: 100px">@RNGCasino.EndBalance</th>
+            <th style="width: 80px">@RNGCasino.Stake</th>
+            <th style="width: 80px">@RNGCasino.Bet</th>
+            <th style="width: 80px">@RNGCasino.WinLoss</th>
+            <th style="width: 150px">@Lang.BetListResults</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Data.Count <= 0)
+        {
+            <tr>
+                <td colspan="13" class="c"> @Lang.NoInfo </td>
+            </tr>
+        }
+        else
+        {
+            var sessionLogCounter = 0;
+            var currentSessionID = Model.Data[0].SessionLogId;
+            <tr>
+                <td colspan="13" class="rngcasino_group">@RNGCasino.SessionID: @currentSessionID </td>
+            </tr>
+            var showPicHtmlString = "</td><td class=\"rngcasino_alignleft\"><a href='javascript:;' class='hand-history-detail-link' data-url='";
+            decimal sumStake = 0;
+            decimal sumBet = 0;
+            decimal sumWinloss = 0;
+            foreach (var item in Model.Data)
+            {
+                var rngCasinoDetailUrl = "?userbetid=" + item.UserBetId;
+                rngCasinoDetailUrl += "&gametypeid=" + item.GameTypeId;
+                rngCasinoDetailUrl += "&gametypename=" + item.GameTypeName;
+                rngCasinoDetailUrl += "&currencyid=" + ViewBag.AffCurrencyId;
+                rngCasinoDetailUrl += "&currencyname=" + ViewBag.AffCurrencyCode;
+                rngCasinoDetailUrl += "&playerhistoryno=" + item.PlayerHistoryNo;
+
+                if (item.SessionLogId != currentSessionID)
+                {
+                    currentSessionID = item.SessionLogId;
+                    <tr class="rngcasino_subtotal">
+                        <td class="r" colspan="9">Total</td>
+                        <td class="r">@FormaterCurrency.Format(sumStake)</td>
+                        <td class="r">@FormaterCurrency.Format(sumBet)</td>
+                        <td class="r">@Html.Raw(FormaterCurrency.Format(sumWinloss))</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="13" class="rngcasino_group">@RNGCasino.SessionID: @currentSessionID </td>
+                    </tr>
+                    sessionLogCounter++;
+                    sumStake = 0;
+                    sumBet = 0;
+                    sumWinloss = 0;
+                }
+
+                sumStake += item.Stake;
+                sumBet += item.Bet;
+                sumWinloss += item.WinLoss;
+                <tr>
+                    <td class="rngcasino_alignleft">@item.Index</td>
+                    <td class="rngcasino_alignleft">@item.GameId</td>
+                    <td class="rngcasino_alignleft">@item.PlayerHistoryNo</td>
+                    <td class="rngcasino_alignleft">@item.GameTypeName</td>
+                    <td class="rngcasino_alignleft">@item.GameGroupName</td>
+                    <td class="c">@item.StartTime</td>
+                    <td class="c">@item.EndTime</td>
+                    <td class="">@FormaterCurrency.Format(item.BeginBalance)</td>
+                    <td class="">@FormaterCurrency.Format(item.EndBlance)</td>
+                    <td class="">@FormaterCurrency.Format(item.Stake)</td>
+                    <td class="">@FormaterCurrency.Format(item.Bet)</td>
+                    <td class="">@Html.Raw(FormaterCurrency.Format(item.WinLoss))</td>
+                    <td class="rngcasino_alignleft"><a href='javascript:;' class='hand-history-detail-link' data-url='@rngCasinoDetailUrl'>@Html.Raw(item.Result)</a></td>
+                </tr>
+            }
+            <tr class="rngcasino_subtotal">
+                <td class="r" colspan="9">Total</td>
+                <td class="r">@FormaterCurrency.Format(sumStake)</td>
+                <td class="r">@FormaterCurrency.Format(sumBet)</td>
+                <td class="r">@Html.Raw(FormaterCurrency.Format(sumWinloss))</td>
+                <td></td>
+            </tr>
+            
+            decimal stake = 0;
+            decimal bet = 0;
+            decimal winloss = 0;
+            foreach (var subTotalItem in Model.SubTotal)
+            {
+                stake += subTotalItem.Stake;
+                bet += subTotalItem.Bet;
+                winloss += subTotalItem.WinLoss;
+            }
+            <tr class="bl_footertotal footer" id="tr_footer">
+                <td class="r" colspan="9">Grand Total</td>
+                <td class="r">@FormaterCurrency.Format(stake)</td>
+                <td class="r">@FormaterCurrency.Format(bet)</td>
+                <td class="r">@Html.Raw(FormaterCurrency.Format(winloss))</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Scripts.Render("~/js/jquery")
+@Scripts.Render("~/js/betlistrngcasino")

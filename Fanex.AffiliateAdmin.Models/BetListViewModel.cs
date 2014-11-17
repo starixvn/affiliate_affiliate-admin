@@ -26,6 +26,10 @@ namespace Fanex.AffiliateAdmin.Models
 
         public int AffCurrencyId { get; set; }
 
+        public string AffCurrencyCode { get; set; }
+
         public int PlayerCurrencyId { get; set; }
+
+        public decimal ExchangeRate { get; set; }
     }
 }

@@ -73,21 +73,27 @@
                 </div>
             </div>
             
-                <div class="control-group bold">
-                    @Html.Label(Lang.Status, new {@class = "control-label"})
-                    <div class="controls view-row">
-                        @if (Model.IsRemoved)
-                        {
-                            @Lang.Removed @(Model.RemovedDate.HasValue ? string.Format(" ({0})", Model.RemovedDate.Value.ToString(dateFormat)) : string.Empty)
-                        }
-                        else
-                        {
-                            @Lang.Available
-                        }
-                                              
-                    </div>
+            <div class="control-group bold">
+                @Html.Label(Lang.Status, new {@class = "control-label"})
+                <div class="controls view-row">
+                    @if (Model.IsRemoved)
+                    {
+                        @Lang.Removed
+                        @(Model.RemovedDate.HasValue ? string.Format(" ({0})", Model.RemovedDate.Value.ToString(dateFormat)) : string.Empty)
+                    }
+                    else
+                    {
+                        @Lang.Available
+                    }
                 </div>
+            </div>
             
+        </div>
+    }
+    else
+    {
+        <div class="popup-content">
+            No result is returned from this member.
         </div>
     }
 }

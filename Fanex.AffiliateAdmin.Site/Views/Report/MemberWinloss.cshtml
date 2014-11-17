@@ -273,11 +273,9 @@ report
                             }
                         });
 
-                        console.log(productNames.join(','));
-
                         if (groupBy === '0') {
                             var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
-                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&affCurrencyId={4}&playerCurrencyId={5}".format(record.AffId, record.PlayerUsername, productNames.join(','), record.WinlostDateStr, record.AffCurrencyId, record.PlayerCurrencyId);
+                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&affCurrencyId={4}&playerCurrencyId={5}&affCurrencyCode={6}".format(record.AffId, record.PlayerUsername, productNames.join(','), record.WinlostDateStr, record.AffCurrencyId, record.PlayerCurrencyId, record.Currency);
                             url = url + para;
                             return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, record.TotalTurnover, record.TotalTurnover);
                         }
@@ -404,8 +402,16 @@ report
                     FormatNegative: '($)',
                     IsAbs: true,
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
-                        return "<a href='{0}' alt='{1}'>{2}</a>".format(url, record.TotalTurnover, record.TotalTurnover);
+                        var groupBy = $('#GroupBy').val();
+
+                        if (groupBy === '0') {
+                            var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
+                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&affCurrencyId={4}&playerCurrencyId={5}&affCurrencyCode={6}".format(record.AffId, record.PlayerUsername, record.ProductName, record.WinlostDateStr, record.AffCurrencyId, record.PlayerCurrencyId, record.Currency);
+                            url = url + para;
+                            return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, record.TotalTurnover, record.TotalTurnover);
+                        }
+
+                        return record.TotalTurnover;
                     }
                 },
                 {

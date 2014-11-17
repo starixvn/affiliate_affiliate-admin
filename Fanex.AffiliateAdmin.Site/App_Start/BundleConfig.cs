@@ -244,13 +244,14 @@ namespace Fanex.AffiliateAdmin.Site
                 .Include("~/Content/themes/Default/commgroup.less"));
         }
 
+        /// <summary>
+        /// Get Bundle for Bet List.
+        /// </summary>
+        /// <param name="bundles">Bundle input.</param>
         private static void GetBundleForBetList(BundleCollection bundles)
         {
             bundles.Add(new Bundle("~/css/betlist")
-            //{
-            //    Transforms = { new CssTransformer(), new CssMinify() },
-            //    Orderer = new NullOrderer()
-            //}
+            
            .Include("~/Content/betlist/betlist.css")
            .Include("~/Content/betlist/betlist.core.css")
            .Include("~/Content/betlist/global.content.css")

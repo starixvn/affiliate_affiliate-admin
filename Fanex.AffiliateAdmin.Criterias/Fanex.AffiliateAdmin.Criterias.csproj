@@ -81,6 +81,7 @@
     <Compile Include="AffTypeCriteria.cs" />
     <Compile Include="BannerDetailCriteria.cs" />
     <Compile Include="BannerUpdateCriteria.cs" />
+    <Compile Include="BetList\BetListResultsRNGCasinoDetailCriteria.cs" />
     <Compile Include="ChangePasswordCriteria.cs" />
     <Compile Include="ChangeAffPasswordCriteria.cs" />
     <Compile Include="BannerTypeDetailCriteria.cs" />
@@ -93,8 +94,9 @@
     <Compile Include="Configuration\AffType\AffTypeSelectCriteria.cs" />
     <Compile Include="CompanyWinlossByProductCriteria.cs" />
     <Compile Include="AffiliateWinLossByProductCriteria.cs" />
+    <Compile Include="BetList\BetListResultsRNGCasinoCriteria.cs" />
     <Compile Include="GetProductByAffIdCriteria.cs" />
-    <Compile Include="GetExchangeRateCriteria.cs" />
+    <Compile Include="BetList\GetExchangeRateCriteria.cs" />
     <Compile Include="GetMemberDetailCriteria.cs" />
     <Compile Include="MemberWinlossByProductCriteria.cs" />
     <Compile Include="MemberWinlossOverviewCriteria.cs" />
@@ -238,7 +240,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

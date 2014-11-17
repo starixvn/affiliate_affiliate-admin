@@ -357,7 +357,11 @@ var MemberWinLossByProduct = (function ($) {
 
             for (var i = productColIdx; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
-                columns.push({ Value: itemLevel2[col.Name], Name: col.Name });
+                columns.push({
+                    Value: itemLevel2[col.Name], 
+                    Name: col.Name,
+                    CustomCellRender: AFFILIATE.getCustomCellRender(0, itemLevel2, col)
+                });
             }
 
             rows.push({ Columns: columns });
@@ -373,7 +377,11 @@ var MemberWinLossByProduct = (function ($) {
 
             for (var i = productColIdx + 1; i < gridOption.columns.length; i++) {
                 var col = gridOption.columns[i];
-                totalColumns.push({ Value: itemLevel1.TotalMemberWinLossByProduct[col.Name], Name: col.Name });
+                totalColumns.push({
+                    Value: itemLevel1.TotalMemberWinLossByProduct[col.Name], 
+                    Name: col.Name,
+                    CustomCellRender: AFFILIATE.getCustomCellRender(0, itemLevel1.TotalMemberWinLossByProduct, col)
+                });
             }
 
             rows.push({ Columns: totalColumns, CssClass: "sub-total-group bold" });

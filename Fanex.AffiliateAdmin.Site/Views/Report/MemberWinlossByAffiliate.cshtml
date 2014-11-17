@@ -38,6 +38,9 @@
     {
         toDate = now;
     }
+
+    fromDate = new DateTime(2014, 1, 1);
+    toDate = new DateTime(2014, 3, 28);
 }
 
 @section submenu{
@@ -220,7 +223,41 @@
                 { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Width: 90, Name: "Bonus", NameCache: "Bonus", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Width: 90, Name: "Adjustment", NameCache: "Adjustment", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
+                { HeaderCaption: "@Lang.Turnover", 
+                    HeaderText: "@Lang.Turnover", 
+                    IsCurrency: true,
+                    Width: 110, 
+                    Name: "TotalTurnover", 
+                    NameCache: "TotalTurnover", 
+                    HeaderAlign: "center", 
+                    CellAlign: "right", 
+                    FormatNumber: AFFILIATE.FORMATNUMBER, 
+                    FormatNegative: '($)', 
+                    IsAbs: true,
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        var groupBy = $('#GroupBy').val();
+
+                        var selectedProducts = $.map($('#Products').val(), function(item) {
+                            return parseInt(item, 10);
+                        });
+
+                        var productNames = [];
+                        $.each(PRODUCTS, function(idx, item) {
+                            if ($.inArray(item.Id, selectedProducts) >= 0) {
+                                productNames.push(item.Name);
+                            }
+                        });
+
+                        if (groupBy === '0') {
+                            var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
+                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&affCurrencyId={4}&playerCurrencyId={5}&affCurrencyCode={6}".format(record.AffId, record.PlayerUsername, productNames.join(','), record.WinlostDateStr, record.AffCurrencyId, record.PlayerCurrencyId, record.Currency);
+                            url = url + para;
+                            return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, record.TotalTurnover, record.TotalTurnover);
+                        }
+
+                        return record.TotalTurnover;
+                    }
+                },
                 {
                     HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
                     HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
@@ -327,7 +364,30 @@
                 { HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Width: 80, Name: "ExRate", HeaderAlign: "center", CellAlign: "right", IsExRate: true },
                 { HeaderText: "@Lang.Product", Width: 110, Name: "ProductName", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", IsCurrency: true, Width: 110, Name: "TotalTurnover", NameCache: "TotalTurnover", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
+                { HeaderCaption: "@Lang.Turnover", 
+                    HeaderText: "@Lang.Turnover", 
+                    IsCurrency: true, 
+                    Width: 110, 
+                    Name: "TotalTurnover", 
+                    NameCache: "TotalTurnover", 
+                    HeaderAlign: "center", 
+                    CellAlign: "right", 
+                    FormatNumber: AFFILIATE.FORMATNUMBER, 
+                    FormatNegative: '($)', 
+                    IsAbs: true,
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        var groupBy = $('#GroupBy').val();
+
+                        if (groupBy === '0') {
+                            var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
+                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&affCurrencyId={4}&playerCurrencyId={5}&affCurrencyCode={6}".format(record.AffId, record.PlayerUsername, record.ProductName, record.WinlostDateStr, record.AffCurrencyId, record.PlayerCurrencyId, record.Currency);
+                            url = url + para;
+                            return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, record.TotalTurnover, record.TotalTurnover);
+                        }
+
+                        return record.TotalTurnover;
+                    }
+                },
                 {
                     HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
                     HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",

@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+}
+<link href="@Url.Content("/Content/betlist/rngcasino.handhistory.css")" rel="stylesheet" type="text/css" />
+@using Fanex.AffiliateAdmin.Core.Utilities
+@model Fanex.AffiliateAdmin.Models.BetListResultsRNGCasinoDetailViewModel
+@{
+    var headerItem = Model.CasinoDetailHeaderList.FirstOrDefault();
+}
+<table style="width: 100%;" class="casino-detail-table" cellpadding="0" cellspacing="0">
+    <tr class="detail-header-row">
+        <td class="game-type-text" colspan="3">@Model.Param.GameTypeName - @headerItem.BetTime
+        </td>
+    </tr>
+    <tr class="player-total-row">
+        <td colspan="3">
+            @RNGCasino.Player: @headerItem.UserName - @RNGCasino.Viewin @Model.Param.CurrencyName
+        </td>
+    </tr>
+    <tr class="detail-header-row">
+        <td colspan="3">@RNGCasino.Result
+        </td>
+    </tr>
+    @foreach (var item in Model.CasinoDetailHeaderList)
+    {
+        <tr>
+            <td>
+                @item.ResultName
+            </td>
+            <td colspan="2"> 
+                @if (!string.IsNullOrEmpty(item.Result))
+                {
+                    @Html.Raw(item.Result.Replace("/Form", Url.Content("~/") + "Form"))
+                }
+            </td>
+        </tr>    
+    }
+    <tr class="detail-header-row">
+        <td>@RNGCasino.Type
+        </td>
+        <td>@RNGCasino.Bet
+        </td>
+        <td>@RNGCasino.Win/@RNGCasino.Loss
+        </td>
+    </tr>
+    @foreach (var item in Model.CasinoDetailList)
+    {
+        <tr>
+            <td>@item.BetTypeName
+            </td>
+            <td class="align-right">@FormaterCurrency.Format(item.Bet)
+            </td>
+            <td class="align-right">@Html.Raw(FormaterCurrency.Format(item.WinLoss))
+            </td>
+        </tr>
+    }
+    <tr class="player-total-row">
+        <td>@RNGCasino.Total
+        </td>
+        <td class="align-right">@FormaterCurrency.Format(Model.CasinoDetailList.Sum(p => p.Bet))
+        </td>
+        <td class="align-right">@Html.Raw(FormaterCurrency.Format(Model.CasinoDetailList.Sum(p => p.WinLoss)))
+        </td>
+    </tr>
+</table>

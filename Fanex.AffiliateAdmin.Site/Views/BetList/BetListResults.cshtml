@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+
+@Styles.Render("~/css/betlist")
+
+<style type="text/css">
+    .popup .container-fluid
+    {
+        width : auto !important;
+    }
+    
+    .popup .container-fluid .span12.contents .leftColumn
+    {
+        width: 715px !important;
+    }
+    
+</style>
+
+@Html.Raw(ViewBag.Data)
+
+@Scripts.Render("~/js/betlist")

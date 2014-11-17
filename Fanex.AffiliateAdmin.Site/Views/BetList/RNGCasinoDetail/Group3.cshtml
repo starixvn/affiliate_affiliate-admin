@@ -1,0 +1,89 @@
+﻿@{
+    Layout = null;
+}
+<link href="@Url.Content("/Content/betlist/rngcasino.handhistory.css")" rel="stylesheet" type="text/css" />
+@using Fanex.AffiliateAdmin.Core.Utilities
+@model Fanex.AffiliateAdmin.Models.BetListResultsRNGCasinoDetailViewModel
+@{
+    var headerItem = Model.CasinoDetailHeaderList.FirstOrDefault();
+    var modeItem = Model.CasinoDetailHeaderList.Where(x => x.ShowType.Trim() == "Mode").FirstOrDefault();
+    var autoSpinItem = Model.CasinoDetailHeaderList.Where(x => x.ShowType.Trim() == "AutoSpin").FirstOrDefault();
+    var freeSpinItem = Model.CasinoDetailHeaderList.Where(x => x.ShowType.Trim() == "FreeSpin").FirstOrDefault();
+}
+<table style="width: 100%;" class="casino-detail-table" cellpadding="0" cellspacing="0">
+    <tr class="detail-header-row">
+        <td class="game-type-text" colspan="2">@Model.Param.GameTypeName - @headerItem.BetTime
+        </td>
+    </tr>
+    <tr class="player-total-row">
+        <td colspan="2">
+            @RNGCasino.Player: @headerItem.UserName - @RNGCasino.Viewin @Model.Param.CurrencyName
+        </td>
+    </tr>
+    <tr class="detail-header-row">
+        <td colspan="2">@headerItem.ResultName
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            @if (!string.IsNullOrEmpty(headerItem.Result))
+            {
+                @Html.Raw(headerItem.Result.Replace("/Form", Url.Content("~/") + "Form"))
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>@RNGCasino.PlayerHistoryNo
+        </td>
+        <td class="align-left">@Model.Param.PlayerHistoryNo
+        </td>
+    </tr>
+    @if (modeItem != null || !string.IsNullOrEmpty(headerItem.ModeResult))
+    {
+        <tr>
+            <td>@RNGCasino.Mode
+            </td>
+            <td class="align-left">
+                @(!string.IsNullOrEmpty(headerItem.ModeResult)
+                ? headerItem.ModeResult
+                : modeItem.ModeResult)
+            </td>
+        </tr>
+    }
+    @if (autoSpinItem != null || !string.IsNullOrEmpty(headerItem.AutoSpinResult))
+    {
+        <tr>
+            <td>@RNGCasino.AutoSpin
+            </td>
+            <td class="align-left">
+                @(!string.IsNullOrEmpty(headerItem.AutoSpinResult)
+                ? headerItem.AutoSpinResult
+                : autoSpinItem.AutoSpinResult)
+            </td>
+        </tr>
+    }
+    @if (freeSpinItem != null || !string.IsNullOrEmpty(headerItem.FreeSpinResult))
+    {
+        <tr>
+            <td>@RNGCasino.FreeSpin
+            </td>
+            <td class="align-left">
+                @(!string.IsNullOrEmpty(headerItem.FreeSpinResult)
+                ? headerItem.FreeSpinResult
+                : freeSpinItem.FreeSpinResult)
+            </td>
+        </tr>    
+    }    
+    <tr class="player-total-row">
+        <td class="align-left">@RNGCasino.Total @RNGCasino.Bet
+        </td>
+        <td class="align-right">@FormaterCurrency.Format(Model.CasinoDetailList.Sum(p => p.Bet))
+        </td>
+    </tr>
+    <tr class="player-total-row">
+        <td class="align-left">@RNGCasino.Total @RNGCasino.Win/@RNGCasino.Loss
+        </td>
+        <td class="align-right">@Html.Raw(FormaterCurrency.Format(Model.CasinoDetailList.Sum(p => p.WinLoss)))
+        </td>
+    </tr>
+</table>

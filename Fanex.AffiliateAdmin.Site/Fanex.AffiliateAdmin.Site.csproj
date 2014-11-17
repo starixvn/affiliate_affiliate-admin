@@ -1978,6 +1978,29 @@
     </Content>
     <Content Include="Views\BetList\Index.cshtml" />
     <Content Include="Views\BetList\SystemParlayDetail.cshtml" />
+    <Content Include="Views\BetList\BetListResults.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group1-1.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group1.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group2.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group3.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group4-1.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group4.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group5.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group6-1.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group6.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-0.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-1.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-2.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-3.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-4.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-5.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-6.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-8.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group8.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group9.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\NoGameErr.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Noinfo.cshtml" />
+    <Content Include="Views\BetList\BetListResults_RNGCasino.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

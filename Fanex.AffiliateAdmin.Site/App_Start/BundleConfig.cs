@@ -262,6 +262,9 @@ namespace Fanex.AffiliateAdmin.Site
             bundles.Add(new Bundle("~/js/betlist")
                 .Include("~/Scripts/site/betlist.js"));
 
+            bundles.Add(new ScriptBundle("~/js/betlistrngcasino")
+                .Include("~/Scripts/site/rngcasino-results.js"));
+
             bundles.Add(new Bundle("~/css/systemparlaydetails")
            .Include("~/Content/betlist/global.content.css")
            .Include("~/Content/betlist/systemparlay.detail.css"));

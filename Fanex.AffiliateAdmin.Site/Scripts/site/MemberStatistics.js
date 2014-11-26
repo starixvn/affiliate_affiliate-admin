@@ -207,6 +207,7 @@ var Report = (function ($) {
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
             submitOptions = $('form').serializeObject2();
+            submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
 
             if (submitOptions.GroupBy === GROUP_BY_MONTH) { // month
                 submitOptions.FromDate = "1 " + submitOptions.FromMonth;

@@ -163,7 +163,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult MemberStatistics()
         {
-            return View();
+            return View(new MemberStatisticsViewModel());
         }
 
         /// <summary>

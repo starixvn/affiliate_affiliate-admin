@@ -1,8 +1,8 @@
-﻿*.local.config
-*.master.config
-*.uat.config
-*.production.config
-*.local.xml
-*.master.xml
-*.uat.xml
-*.production.xml
+﻿\\*.local.config
+\\*.master.config
+\\*.uat.config
+\\*.production.config
+\\*.local.xml
+\\*.master.xml
+\\*.uat.xml
+\\*.production.xml

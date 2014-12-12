@@ -81,10 +81,10 @@ var MemberWinlossReport = (function ($) {
         submitRequest: function () {
             AFFILIATE.trimBeforeSubmit();
 
-            if (!MemberWinlossReport.checkRangeTime()) {
-                alert(window.MSG.RangeTime3Months);
-                return;
-            }
+//            if (!MemberWinlossReport.checkRangeTime()) {
+//                alert(window.MSG.RangeTime3Months);
+//                return;
+//            }
 
             if (!MemberWinlossReport.checkAtLeastOneSelectedProduct()) {
                 alert(MSG.ChooseAtLeastOneProduct);

@@ -62,4 +62,12 @@
       <production>RemoteOnly</production>
     </mode>
   </customErrors>
+  <applicationSettings>
+    <value>
+      <local>http://10.19.10.32:8088/AffiliateAPI.asmx</local>
+      <master></master>
+      <uat></uat>
+      <production></production>
+    </value>
+</applicationSettings>
 </configuration>

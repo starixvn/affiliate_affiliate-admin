@@ -68,7 +68,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var betlistSoap = new AffBetListService.BetlistSOAP
             {
                 AffiliateName = AppSettings.AffiliateName.ToLower(),
-                Username = CurrentSession.Username,
+                Username = model.Username,
                 Product = model.Product,
                 FromDate = model.WinlostDate.HasValue ? model.WinlostDate.Value : DateTime.Now,
                 ToDate = model.WinlostDate.HasValue ? model.WinlostDate.Value : DateTime.Now,

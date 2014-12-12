@@ -444,6 +444,8 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         private int bettypeField;
         
+        private string betIdField;
+        
         private System.Nullable<int> raceNoField;
         
         private int sportTypeField;
@@ -473,6 +475,16 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
             }
             set {
                 this.bettypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BetId {
+            get {
+                return this.betIdField;
+            }
+            set {
+                this.betIdField = value;
             }
         }
         

@@ -97,15 +97,18 @@ namespace Fanex.MemberAdmin.DTO
                 }
             }
 
-            var sampleWinLoss = MemberWinLossByProductList.First();
-            totalMemberWinLoss.AffId = sampleWinLoss.AffId;
-            totalMemberWinLoss.Username = sampleWinLoss.Username;
-            totalMemberWinLoss.PlayerUsername = sampleWinLoss.PlayerUsername;
-            totalMemberWinLoss.AffCurrencyId = sampleWinLoss.AffCurrencyId;
-            totalMemberWinLoss.PlayerCurrencyId = sampleWinLoss.PlayerCurrencyId;
-            totalMemberWinLoss.ProductName = string.Join(",", MemberWinLossByProductList.Select(t => t.ProductName).Distinct());
-            totalMemberWinLoss.WinlostDate = sampleWinLoss.WinlostDate;
+            var sampleWinLoss = MemberWinLossByProductList.FirstOrDefault();
 
+            if (sampleWinLoss != null)
+            {
+                totalMemberWinLoss.AffId = sampleWinLoss.AffId;
+                totalMemberWinLoss.Username = sampleWinLoss.Username;
+                totalMemberWinLoss.PlayerUsername = sampleWinLoss.PlayerUsername;
+                totalMemberWinLoss.AffCurrencyId = sampleWinLoss.AffCurrencyId;
+                totalMemberWinLoss.PlayerCurrencyId = sampleWinLoss.PlayerCurrencyId;
+                totalMemberWinLoss.ProductName = string.Join(",", MemberWinLossByProductList.Select(t => t.ProductName).Distinct());
+                totalMemberWinLoss.WinlostDate = sampleWinLoss.WinlostDate;
+            }
             return totalMemberWinLoss;
         }
 

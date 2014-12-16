@@ -1251,6 +1251,31 @@
     <Content Include="Views\Configuration\Product.cshtml" />
     <Content Include="Views\Configuration\ProductDetail.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Html\Body.ApprovalEmail.en-US.cshtml" />
+    <Content Include="Views\BetList\Index.cshtml" />
+    <Content Include="Views\BetList\SystemParlayDetail.cshtml" />
+    <Content Include="Views\BetList\BetListResults.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group1-1.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group1.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group2.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group3.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group4-1.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group4.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group5.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group6-1.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group6.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-0.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-1.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-2.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-3.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-4.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-5.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-6.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group7-8.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group8.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Group9.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\NoGameErr.cshtml" />
+    <Content Include="Views\BetList\RNGCasinoDetail\Noinfo.cshtml" />
+    <Content Include="Views\BetList\BetListResults_RNGCasino.cshtml" />
     <Content Include="Web.ConnectionString.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
@@ -1265,7 +1290,6 @@
     </Content>
     <Content Include="Web.AppSettings.nbcbet.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.nbcbet.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
@@ -1981,31 +2005,6 @@
     <Content Include="Web.athena.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Views\BetList\Index.cshtml" />
-    <Content Include="Views\BetList\SystemParlayDetail.cshtml" />
-    <Content Include="Views\BetList\BetListResults.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group1-1.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group1.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group2.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group3.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group4-1.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group4.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group5.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group6-1.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group6.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group7-0.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group7-1.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group7-2.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group7-3.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group7-4.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group7-5.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group7-6.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group7-8.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group8.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Group9.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\NoGameErr.cshtml" />
-    <Content Include="Views\BetList\RNGCasinoDetail\Noinfo.cshtml" />
-    <Content Include="Views\BetList\BetListResults_RNGCasino.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -2241,7 +2240,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

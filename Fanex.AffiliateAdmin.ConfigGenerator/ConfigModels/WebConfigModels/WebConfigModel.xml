@@ -64,9 +64,9 @@
   </customErrors>
   <applicationSettings>
     <value>
-      <local>http://10.19.10.32:8088/AffiliateAPI.asmx</local>
+      <local>http://10.18.200.209:5001/WebService/AffiliateAPI.asmx</local>
       <master></master>
-      <uat></uat>
+      <uat>http://affqa.starific.net/API/AffiliateAPI.asmx</uat>
       <production></production>
     </value>
 </applicationSettings>

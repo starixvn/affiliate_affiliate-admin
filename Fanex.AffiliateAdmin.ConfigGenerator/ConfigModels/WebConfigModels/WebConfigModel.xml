@@ -66,8 +66,8 @@
     <value>
       <local>http://10.18.200.209:5001/WebService/AffiliateAPI.asmx</local>
       <master></master>
-      <uat>http://affqa.starific.net/API/AffiliateAPI.asmx</uat>
-      <production></production>
+      <uat>http://10.2.180.51/API/AffiliateAPI.asmx</uat>
+      <production>http://10.2.180.14:6111/AffiliateAPI.asmx</production>
     </value>
 </applicationSettings>
 </configuration>

@@ -215,8 +215,8 @@
     <Setting Key="AffAdmin_MemberStatisticsReport" SpName="AffAdmin_MemberStatisticsReport" DbName="DBAFFI668BET.Affiliate_I668Bet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateWinLossReport" SpName="AffAdmin_AffiliateWinLossReport" DbName="DBAFFI668BET.Affiliate_I668Bet.bodbAdminNet" Plain="0" />
 	<Setting Key="AffAdmin_AffiliateWinLossByProductReport" SpName="AffAdmin_AffiliateWinLossByProductReport" DbName="DBAFFI668BET.Affiliate_I668Bet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_MemberWinLossReport" SpName="AffAdmin_MemberWinLossReport" DbName="DBAFFI668BET.Affiliate_I668Bet.bodbAdminNet" Plain="0" />
-	<Setting Key="AffAdmin_MemberWinLossByProductReport" SpName="AffAdmin_MemberWinLossByProductReport" DbName="DBAFFI668BET.Affiliate_I668Bet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_MemberWinLossReport" SpName="AffAdmin_MemberWinLossReport_xtest" DbName="DBAFFI668BET.Affiliate_I668Bet.bodbAdminNet" Plain="0" />
+	<Setting Key="AffAdmin_MemberWinLossByProductReport" SpName="AffAdmin_MemberWinLossByProductReport_xtest" DbName="DBAFFI668BET.Affiliate_I668Bet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_QualifiedMembersReport" SpName="AffAdmin_QualifiedMembersReport" DbName="DBAFFI668BET.Affiliate_I668Bet.bodbAdminNet" Plain="0" />
   </Function>
 

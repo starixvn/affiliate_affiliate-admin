@@ -492,6 +492,8 @@
     <Content Include="Content\betlist\betList.css" />
     <Content Include="Content\betlist\fanex.result.css" />
     <Content Include="Content\betlist\global.content.css" />
+    <Content Include="Content\betlist\images\1F.gif" />
+    <Content Include="Content\betlist\images\1L.gif" />
     <Content Include="Content\betlist\images\bar-loader.gif" />
     <Content Include="Content\betlist\images\bgHeader.jpg" />
     <Content Include="Content\betlist\images\blank.gif" />

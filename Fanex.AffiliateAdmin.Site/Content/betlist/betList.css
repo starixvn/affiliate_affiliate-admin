@@ -143,6 +143,38 @@
     width: 14px;
 }
 
+.fhFirstGoal {
+    background: url(images/1F.gif) no-repeat scroll center center transparent;
+    display: inline;
+    height: 10px;
+    padding: 0 4px;
+    width: 14px;
+}
+
+.fhLastGoal {
+    background: url(images/1L.gif) no-repeat scroll center center transparent;
+    display: inline;
+    height: 10px;
+    padding: 0 4px;
+    width: 14px;
+}
+
+.first-half-first-goal {
+    background: url(images/1F.gif) no-repeat scroll center center transparent;
+    display: inline;
+    height: 10px;
+    padding: 0 4px;
+    width: 14px;
+}
+
+.first-half-last-goal{
+    background: url(images/1L.gif) no-repeat scroll center center transparent;
+    display: inline;
+    height: 10px;
+    padding: 0 4px;
+    width: 14px;
+}
+
 .bl_match {
     color: #000000;
     font-weight: normal;

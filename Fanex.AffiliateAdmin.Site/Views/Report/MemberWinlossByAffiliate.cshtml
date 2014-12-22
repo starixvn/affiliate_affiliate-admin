@@ -230,44 +230,7 @@
                     CellAlign: "right", 
                     FormatNumber: AFFILIATE.FORMATNUMBER, 
                     FormatNegative: '($)', 
-                    IsAbs: true,
-                    Formatter: function(rIndex, record, cell, cellFormated) {
-                        var groupBy = $('#GroupBy').val();
-
-                        var selectedProducts = $.map($('#Products').val(), function(item) {
-                            return parseInt(item, 10);
-                        });
-
-                        var productNames = [];
-                        $.each(PRODUCTS, function(idx, item) {
-                            if ($.inArray(item.Id, selectedProducts) >= 0) {
-                                productNames.push(item.Name);
-                            }
-                        });
-                        
-                        // handle the number format.
-                        var currentValue = record.TotalTurnover;
-                    
-                        if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
-                            if (currentValue < 0) {
-                                currentValue = -1 * currentValue;
-                            }
-                            currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
-                        }
-                    
-                        if (record.TotalTurnover < 0) {
-                            currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
-                        }
-
-                        if (groupBy === '0') {
-                            var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
-                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&affCurrencyId={4}&playerCurrencyId={5}&affCurrencyCode={6}".format(record.AffId, record.PlayerUsername, productNames.join(','), record.WinlostDateStr, record.AffCurrencyId, record.PlayerCurrencyId, record.Currency);
-                            url = url + para;
-                            return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, currentValue, currentValue);
-                        }
-
-                        return currentValue;
-                    }
+                    IsAbs: true
                 },
                 {
                     HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
@@ -293,7 +256,44 @@
                     CellAlign: "right",
                     FormatNumber: AFFILIATE.FORMATNUMBER,
                     FormatNegative: '($)',
-                    IsAbs: true
+                    IsAbs: true,
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        var groupBy = $('#GroupBy').val();
+
+                        var selectedProducts = $.map($('#Products').val(), function(item) {
+                            return parseInt(item, 10);
+                        });
+
+                        var productNames = [];
+                        $.each(PRODUCTS, function(idx, item) {
+                            if ($.inArray(item.Id, selectedProducts) >= 0) {
+                                productNames.push(item.Name);
+                            }
+                        });
+                        
+                        // handle the number format.
+                        var currentValue = record.MemberWinLoss;
+                    
+                        if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
+                            if (currentValue < 0) {
+                                currentValue = -1 * currentValue;
+                            }
+                            currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
+                        }
+                    
+                        if (record.MemberWinLossTotalTurnover < 0) {
+                            currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
+                        }
+
+                        if (groupBy === '0' && record.TotalTurnover !== 0) {
+                            var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
+                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&affCurrencyId={4}&playerCurrencyId={5}&affCurrencyCode={6}".format(record.AffId, record.PlayerUsername, productNames.join(','), record.WinlostDateStr, record.AffCurrencyId, record.PlayerCurrencyId, record.Currency);
+                            url = url + para;
+                            return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, currentValue, currentValue);
+                        }
+
+                        return currentValue;
+                    }
                 }
             ],
             showPager: true,
@@ -385,33 +385,7 @@
                     CellAlign: "right", 
                     FormatNumber: AFFILIATE.FORMATNUMBER, 
                     FormatNegative: '($)', 
-                    IsAbs: true,
-                    Formatter: function(rIndex, record, cell, cellFormated) {
-                        var groupBy = $('#GroupBy').val();
-
-                        // handle the number format.
-                        var currentValue = record.TotalTurnover;
-                    
-                        if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
-                            if (currentValue < 0) {
-                                currentValue = -1 * currentValue;
-                            }
-                            currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
-                        }
-                    
-                        if (record.TotalTurnover < 0) {
-                            currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
-                        }
-
-                        if (groupBy === '0') {
-                            var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
-                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&affCurrencyId={4}&playerCurrencyId={5}&affCurrencyCode={6}".format(record.AffId, record.PlayerUsername, record.ProductName, record.WinlostDateStr, record.AffCurrencyId, record.PlayerCurrencyId, record.Currency);
-                            url = url + para;
-                            return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, currentValue, currentValue);
-                        }
-
-                        return currentValue;
-                    }
+                    IsAbs: true
                 },
                 {
                     HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
@@ -437,7 +411,33 @@
                     CellAlign: "right",
                     FormatNumber: AFFILIATE.FORMATNUMBER,
                     FormatNegative: '($)',
-                    IsAbs: true
+                    IsAbs: true,
+                    Formatter: function(rIndex, record, cell, cellFormated) {
+                        var groupBy = $('#GroupBy').val();
+
+                        // handle the number format.
+                        var currentValue = record.MemberWinLoss;
+                    
+                        if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
+                            if (currentValue < 0) {
+                                currentValue = -1 * currentValue;
+                            }
+                            currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
+                        }
+                    
+                        if (record.MemberWinLoss < 0) {
+                            currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
+                        }
+
+                        if (groupBy === '0' && record.TotalTurnover !== 0) {
+                            var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
+                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&affCurrencyId={4}&playerCurrencyId={5}&affCurrencyCode={6}".format(record.AffId, record.PlayerUsername, record.ProductName, record.WinlostDateStr, record.AffCurrencyId, record.PlayerCurrencyId, record.Currency);
+                            url = url + para;
+                            return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, currentValue, currentValue);
+                        }
+
+                        return currentValue;
+                    }
                 }
             ],
             showPager: true,

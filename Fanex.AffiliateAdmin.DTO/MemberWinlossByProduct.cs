@@ -109,6 +109,7 @@ namespace Fanex.MemberAdmin.DTO
                 totalMemberWinLoss.ProductName = string.Join(",", MemberWinLossByProductList.Select(t => t.ProductName).Distinct());
                 totalMemberWinLoss.WinlostDate = sampleWinLoss.WinlostDate;
             }
+
             return totalMemberWinLoss;
         }
 

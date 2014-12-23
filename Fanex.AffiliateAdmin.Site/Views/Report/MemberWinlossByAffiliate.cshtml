@@ -272,7 +272,7 @@
                         });
                         
                         // handle the number format.
-                        var currentValue = record.MemberWinLoss;
+                        var currentValue = record[cell.Name];
                     
                         if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
                             if (currentValue < 0) {
@@ -281,7 +281,7 @@
                             currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
                         }
                     
-                        if (record.MemberWinLossTotalTurnover < 0) {
+                        if (record[cell.Name] < 0) {
                             currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
                         }
 
@@ -416,7 +416,7 @@
                         var groupBy = $('#GroupBy').val();
 
                         // handle the number format.
-                        var currentValue = record.MemberWinLoss;
+                        var currentValue = record[cell.Name];
                     
                         if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
                             if (currentValue < 0) {
@@ -425,7 +425,7 @@
                             currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
                         }
                     
-                        if (record.MemberWinLoss < 0) {
+                        if (record[cell.Name] < 0) {
                             currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
                         }
 

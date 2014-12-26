@@ -223,6 +223,7 @@
     <Function name="AdditionalSpsForBetlist">
     <Setting Key="Aff_User_GetExchangeRate" SpName="Aff_User_GetExchangeRate" DbName="DBAFFMYMBET.Affiliate_MYMBet.bodbAdminNet" Plain="0" />
     <Setting Key="Aff_User_ProductSelByAffID" SpName="Aff_User_ProductSelByAffID" DbName="DBAFFMYMBET.Affiliate_MYMBet.bodbAdminNet" Plain="0" />
+	<Setting Key="Aff_User_DummyAccID" SpName="Aff_User_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
   </Function>
 
 </Functions>

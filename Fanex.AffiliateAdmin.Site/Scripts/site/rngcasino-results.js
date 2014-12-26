@@ -26,8 +26,11 @@ var RNGCasinoResults = (function ($) {
 
             $("#chkIsShowPic").on('click', function () {
                 var isShowPic = $("#chkIsShowPic").is(':checked');
+                var exchangeRate = $("#ExchangeRate").val();
+                
                 var url = window.location.href;
                 url = QueryString.setParam(url, "IsShowPic", isShowPic);
+                url = QueryString.setParam(url, "ExchangeRate", exchangeRate);
                 window.location.href = url;
             });
         },

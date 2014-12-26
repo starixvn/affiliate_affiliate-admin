@@ -135,5 +135,10 @@
     </tbody>
 </table>
 
+@using (Html.BeginForm())
+{
+    <input type="hidden" name="ExchangeRate" id="ExchangeRate" value="@Model.Param.ExchangeRate"/>
+}
+
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/js/betlistrngcasino")

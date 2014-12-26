@@ -14,6 +14,7 @@ if(Site != null)
 	reader.LoadXml();
 
 	var fanexSettings = reader.GetSettingsOfNode("Fanex.Logging");
+	var log4net = reader.GetSettingsOfNode("log4net");
 	var appSettings = reader.GetSettingsOfNode("appSettings");
 	var compilations = reader.GetSettingsOfNode("compilation");
 	var customErrors = reader.GetSettingsOfNode("customErrors");
@@ -50,7 +51,7 @@ if(Site != null)
       </layout>
     </appender>
     <appender name="GeneralLog" type="log4net.Appender.RollingFileAppender">
-      <file value="\\10.2.180.14\E$\6.Logs\RNGCasino\log4net.txt" />
+      <file value="<#= log4net.GetValue("filename") #>" />
       <appendToFile value="true" />
       <maximumFileSize value="100MB" />
       <rollingStyle value="Date" />
@@ -73,7 +74,7 @@ if(Site != null)
     </providers>
   </Fanex.Data.DbSettingProvider>
 
-  <Fanex.Logging msmqPath="<#= fanexSettings["msmqPath"] #>" defaultCategory="<#= fanexSettings["defaultCategory"] #>" />
+  <Fanex.Logging msmqPath="<#= fanexSettings.GetValue("msmqPath") #>" defaultCategory="<#= fanexSettings.GetValue("defaultCategory") #>" />
   <connectionStrings configSource="Web.ConnectionString.config" />
   <appSettings file="Web.AppSettings.config">
     <!--Url use for checking downtime-->

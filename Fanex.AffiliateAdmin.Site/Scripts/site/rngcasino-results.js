@@ -21,16 +21,17 @@ var RNGCasinoResults = (function ($) {
             $("body").on("click", ".hand-history-detail-link", function () {
                 var url = 'BetList/RNGCasinoDetail';
                 url += $(this).attr("data-url");
+                
+                var exchangeRate = $("#ExchangeRate").val();
+                url = QueryString.setParam(url, "ExchangeRate", exchangeRate);
+                
                 RNGCasinoResults.viewCasinoDetail(url);
             });
 
             $("#chkIsShowPic").on('click', function () {
                 var isShowPic = $("#chkIsShowPic").is(':checked');
-                var exchangeRate = $("#ExchangeRate").val();
-                
                 var url = window.location.href;
                 url = QueryString.setParam(url, "IsShowPic", isShowPic);
-                url = QueryString.setParam(url, "ExchangeRate", exchangeRate);
                 window.location.href = url;
             });
         },

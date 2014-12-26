@@ -55,9 +55,11 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public decimal ExchangeRate { get; set; }
 
-        public int AffCurrencyId { get; set; }
+        public int ToCurrencyId { get; set; }
 
-        public string AffCurrencyCode { get; set; }
+        public string ToCurrencyCode { get; set; }
+
+        public Uri BaseUrl { get; set; }
 
         public override bool IsValid()
         {

@@ -2,7 +2,7 @@
 @using Fanex.AffiliateAdmin.Services
 @{
     ViewBag.Title = Lang.BetList;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutNoSubMenu.cshtml";
 }
 
 @Styles.Render("~/css/betlist")
@@ -18,18 +18,21 @@
     {
         font-weight: bold;
     }
-    
 </style>
 
+<div id="betlist-title">
+    @Html.Raw(string.Format(Lang.BetListTitle, Model.WinlostDate.HasValue ? Model.WinlostDate.Value.ToString("MM/dd/yyyy") : string.Empty, @Model.Username, @Model.ToCurrencyCode))
+</div>
 <div id="betlist">
     @Html.Raw(ViewBag.Data)
 </div>
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(m => m.AffCurrencyId)
-    @Html.HiddenFor(m => m.AffCurrencyCode)
+    @Html.HiddenFor(m => m.ToCurrencyId)
+    @Html.HiddenFor(m => m.ToCurrencyCode)
     @Html.HiddenFor(m => m.ExchangeRate)
 }
+
 
 @Scripts.Render("~/js/betlist")

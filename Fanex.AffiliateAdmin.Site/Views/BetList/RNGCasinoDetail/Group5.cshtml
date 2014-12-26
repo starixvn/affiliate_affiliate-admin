@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
 }
-<link href="@Url.Content("/Content/betlist/rngcasino.handhistory.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/betlist/rngcasino.handhistory.css")" rel="stylesheet" type="text/css" />
 @using Fanex.AffiliateAdmin.Core.Utilities
 @model Fanex.AffiliateAdmin.Models.BetListResultsRNGCasinoDetailViewModel
 @{
@@ -50,24 +50,24 @@
         <tr>
             <td>@detailItem.BetTypeName
             </td>
-            <td>@FormaterCurrency.Format(detailItem.Bet)
+            <td>@FormaterCurrency.FormatNoCurrncySymbol(detailItem.Bet)
             </td>
-            <td>@FormaterCurrency.Format(detailItem.Odds)
+            <td>@FormaterCurrency.FormatNoCurrncySymbol(detailItem.Odds)
             </td>
-            <td class="align-right">@Html.Raw(FormaterCurrency.Format(detailItem.WinLoss))
+            <td class="align-right">@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(detailItem.WinLoss))
             </td>        
         </tr>  
     }  
     <tr class="player-total-row">
         <td class="align-left">@RNGCasino.Total @RNGCasino.Bet
         </td>
-        <td colspan="3" class="align-right">@FormaterCurrency.Format(Model.CasinoDetailList.Sum(p => p.Bet))
+        <td colspan="3" class="align-right">@FormaterCurrency.FormatNoCurrncySymbol(Model.CasinoDetailList.Sum(p => p.Bet))
         </td>
     </tr>
      <tr class="player-total-row">
         <td class="align-left">@RNGCasino.Total @RNGCasino.Win/@RNGCasino.Loss
         </td>
-        <td colspan="3" class="align-right">@Html.Raw(FormaterCurrency.Format(Model.CasinoDetailList.Sum(p => p.WinLoss)))
+        <td colspan="3" class="align-right">@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(Model.CasinoDetailList.Sum(p => p.WinLoss)))
         </td>
     </tr>
 </table>

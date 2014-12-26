@@ -32,8 +32,6 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         private readonly IBetListDataAccess _betlistDataAccess;
 
-        private readonly string _subDomainPath = string.Empty;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BetListService" /> class.
         /// </summary>
@@ -80,6 +78,8 @@ namespace Fanex.AffiliateAdmin.Services
             var casinoList = new List<RNGCasinoResult>();
             DataTable dataTable;
             GetResultFromAPI(criteria, out dataTable);
+            var site = criteria.BaseUrl == null ? string.Empty : criteria.BaseUrl.ToString();
+
             if (dataTable != null && dataTable.Rows.Count > 0)
             {
                 for (int i = 0; i < dataTable.Rows.Count; i++)
@@ -88,8 +88,8 @@ namespace Fanex.AffiliateAdmin.Services
                     var casino = MapDataToCasinoItem(dataRow);
 
                     casino.Index = i + 1;
-                    casino.Result = casino.Result.Replace("/Form", this._subDomainPath + "/Form");
-                    casino.Result = casino.Result.Replace("/img", this._subDomainPath + "/img");
+                    casino.Result = casino.Result.Replace("/Form", site + "/Form");
+                    casino.Result = casino.Result.Replace("/img", site + "/img");
                     if (criteria.IsShowPic)
                     {
                         casino.Result = casino.Result.Replace("<img", "<br /><img");

@@ -121,6 +121,7 @@ report
 <div id="gridId" class="freegrid" data-colheight="200" data-expheight="350" />
 
 @section scripts{
+@* ReSharper disable AssignedValueIsNeverUsed *@
     <script type="text/javascript">
         var MSG = {
             Date: "@Lang.Date",
@@ -310,9 +311,30 @@ report
                             currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
                         }
 
+                        var baseCurrency = $('#BaseCurrency').val();
+                        var SYS_CURRENCY = '1', AFF_CURRENCY = '2';
+                        var fromCurrencyId, toCurrencyId, toCurrencyCode;
+                        fromCurrencyId = record.PlayerCurrencyId;
+                        toCurrencyCode = record.PlayerCurrency;
+
+                        switch (baseCurrency) {
+                            case SYS_CURRENCY:
+                                toCurrencyId = window.System.CurrencyId;
+                                toCurrencyCode = window.System.Currency;
+                                break;
+                            case AFF_CURRENCY:
+                                toCurrencyId = record.AffCurrencyId;
+                                toCurrencyCode = record.Currency;
+                                break;
+                            default:
+                                toCurrencyId = record.PlayerCurrencyId;
+                                toCurrencyCode = record.PlayerCurrency;
+                                break;
+                        }
+
                         if (groupBy === '0' && record.TotalTurnover !== 0) {
                             var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
-                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&affCurrencyId={4}&playerCurrencyId={5}&affCurrencyCode={6}".format(record.AffId, record.PlayerUsername, productNames.join(','), record.WinlostDateStr, record.AffCurrencyId, record.PlayerCurrencyId, record.Currency);
+                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&toCurrencyId={4}&fromCurrencyId={5}&toCurrencyCode={6}".format(record.AffId, record.PlayerUsername, productNames.join(','), record.WinlostDateStr, toCurrencyId, fromCurrencyId, toCurrencyCode);
                             url = url + para;
                             return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, currentValue, currentValue);
                         }
@@ -455,9 +477,30 @@ report
                             currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
                         }
 
+                        var baseCurrency = $('#BaseCurrency').val();
+                        var SYS_CURRENCY = '1', AFF_CURRENCY = '2';
+                        var fromCurrencyId, toCurrencyId, toCurrencyCode;
+                        fromCurrencyId = record.PlayerCurrencyId;
+                        toCurrencyCode = record.PlayerCurrency;
+
+                        switch (baseCurrency) {
+                            case SYS_CURRENCY:
+                                toCurrencyId = window.System.CurrencyId;
+                                toCurrencyCode = window.System.Currency;
+                                break;
+                            case AFF_CURRENCY:
+                                toCurrencyId = record.AffCurrencyId;
+                                toCurrencyCode = record.Currency;
+                                break;
+                            default:
+                                toCurrencyId = record.PlayerCurrencyId;
+                                toCurrencyCode = record.PlayerCurrency;
+                                break;
+                        }
+
                         if (groupBy === '0' && record.TotalTurnover !== 0) {
                             var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
-                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&affCurrencyId={4}&playerCurrencyId={5}&affCurrencyCode={6}".format(record.AffId, record.PlayerUsername, record.ProductName, record.WinlostDateStr, record.AffCurrencyId, record.PlayerCurrencyId, record.Currency);
+                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&toCurrencyId={4}&fromCurrencyId={5}&toCurrencyCode={6}".format(record.AffId, record.PlayerUsername, record.ProductName, record.WinlostDateStr, toCurrencyId, fromCurrencyId, toCurrencyCode);
                             url = url + para;
                             return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, currentValue, currentValue);
                         }
@@ -535,6 +578,7 @@ report
             IsAbs: true
         };
     </script>
+@* ReSharper restore AssignedValueIsNeverUsed *@
     
     @Scripts.Render("~/bundles/memberwinloss")
 }

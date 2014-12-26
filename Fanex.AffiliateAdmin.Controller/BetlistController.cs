@@ -59,8 +59,8 @@ namespace Fanex.AffiliateAdmin.Controller
             var exchangeRate = _betListService.GetExchangeRate(new GetExchangeRateCriteria
                 {
                     Date = model.WinlostDate,
-                    FromCurrency = model.PlayerCurrencyId,
-                    ToCurrency = model.AffCurrencyId
+                    FromCurrency = model.FromCurrencyId,
+                    ToCurrency = model.ToCurrencyId
                 });
 
             var supportedProducts = GetSupportedProductsForWebService(model.AffId);
@@ -185,6 +185,8 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.BaseCurrency = criteria.BaseCurrency ?? string.Empty;
             criteria.ExternalId = customerInfoBetList.Username;
             criteria.CurrencyId = customerInfoBetList.CurrencyId;
+            criteria.BaseUrl = UrlUtil.GetBaseUrl(this);
+
             var data = criteria.IsValid()
                 ? _betListService.GetRNGCasinoResult(criteria)
                 : new List<RNGCasinoResult>();
@@ -205,8 +207,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 });
             }
 
-            ViewBag.AffCurrencyId = criteria.AffCurrencyId;
-            ViewBag.AffCurrencyCode = criteria.AffCurrencyCode;
+            ViewBag.ToCurrencyId = criteria.ToCurrencyId;
+            ViewBag.ToCurrencyCode = criteria.ToCurrencyCode;
 
             var model = new BetListResultsRNGCasinoViewModel(data, totalAmount, criteria)
                 {

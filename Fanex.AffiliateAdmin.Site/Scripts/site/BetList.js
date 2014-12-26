@@ -36,7 +36,7 @@ var BetList = (function ($) {
                     : BetList.getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username);
 
             var title = "Results";
-            AFFILIATE.openDialogUrl(url, title, { width: 720, height: 500 });
+            AFFILIATE.openDialogUrl(url, title, { width: 720, height: 400 });
         },
 
         showMixParlayDetail: function (transId, divEvent) {
@@ -107,11 +107,11 @@ var BetList = (function ($) {
             var urlParam = $("#casino-hand-history-" + refNo).attr('url-param');
             url += urlParam;
             url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
-            url = QueryString.setParam(url, "affCurrencyId", para.AffCurrencyId);
-            url = QueryString.setParam(url, "affCurrencyCode", para.AffCurrencyCode);
+            url = QueryString.setParam(url, "toCurrencyId", para.ToCurrencyId);
+            url = QueryString.setParam(url, "toCurrencyCode", para.ToCurrencyCode);
 
             var title = "Results";
-            AFFILIATE.openDialogUrl(url, title, { width: 950, height: 500 });
+            AFFILIATE.openDialogUrl(url, title, { width: 1097, height: 500 });
         }
     };
 })(jQuery);

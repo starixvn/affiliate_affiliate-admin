@@ -10,9 +10,9 @@
 namespace Fanex.AffiliateAdmin.Core.Entities
 {
     using System;
-    using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Utilities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -38,24 +38,8 @@ namespace Fanex.AffiliateAdmin.Core.Entities
             var siteUrl = controller.Request.Url;
             var scheme = siteUrl.Scheme;
             var host = siteUrl.Authority;
-            if (siteUrl.HostNameType == UriHostNameType.Dns)
-            {
-                var words = host.Split('.');
-                if (words.Length > 2)
-                {
-                    var regex = new Regex(@":\d+");
-                    host = regex.Replace(siteUrl.Authority, string.Empty);
-                }
-            }
 
-            var adminSitePath = controller.Url.Content("~/");
-
-            if (adminSitePath.EndsWith("/", StringComparison.OrdinalIgnoreCase))
-            {
-                adminSitePath = adminSitePath.Remove(adminSitePath.Length - 1);
-            }
-
-            var adminSiteUrl = string.Format("{0}://{1}{2}", scheme, host, adminSitePath);
+            var adminSiteUrl = UrlUtil.GetBaseUrl(controller);
             var memberSiteDomain = host;
             var memberSiteUrl = adminSiteUrl;
 
@@ -77,9 +61,9 @@ namespace Fanex.AffiliateAdmin.Core.Entities
             return new SiteDomainInfo
             {
                 MemberSiteDomain = memberSiteDomain,
-                MemberSiteUrl = new Uri(memberSiteUrl),
+                MemberSiteUrl = memberSiteUrl,
                 AffiliateSiteUrl = isKiosk ? AppSettings.InternalUrlKiosk : AppSettings.InternalUrl,
-                AdminSiteUrl = new Uri(adminSiteUrl)
+                AdminSiteUrl = adminSiteUrl
             };
         }
     }

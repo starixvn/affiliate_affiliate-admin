@@ -2,7 +2,7 @@
     // Game type:  Monkey Hilo; Mahjong HiLo //
     Layout = null; 
 }
-<link href="@Url.Content("/Content/betlist/rngcasino.handhistory.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/betlist/rngcasino.handhistory.css")" rel="stylesheet" type="text/css" />
 @using Fanex.AffiliateAdmin.Core.Utilities
 @model Fanex.AffiliateAdmin.Models.BetListResultsRNGCasinoDetailViewModel
 @{
@@ -41,19 +41,19 @@
     <tr>
         <td>@RNGCasino.Odds
         </td>
-        <td class="align-left">@FormaterCurrency.Format(Model.CasinoDetailList.Sum(p => p.Odds))
+        <td class="align-left">@FormaterCurrency.FormatNoCurrncySymbol(Model.CasinoDetailList.Sum(p => p.Odds))
         </td>
     </tr>
     <tr class="player-total-row">
         <td class="align-left">@RNGCasino.Bet
         </td>
-        <td class="align-right">@FormaterCurrency.Format(Model.CasinoDetailList.Sum(p => p.Bet))
+        <td class="align-right">@FormaterCurrency.FormatNoCurrncySymbol(Model.CasinoDetailList.Sum(p => p.Bet))
         </td>
     </tr>
     <tr class="player-total-row">
         <td class="align-left">@RNGCasino.Win/@RNGCasino.Loss
         </td>
-        <td class="align-right">@Html.Raw(FormaterCurrency.Format(Model.CasinoDetailList.Sum(p => p.WinLoss)))
+        <td class="align-right">@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(Model.CasinoDetailList.Sum(p => p.WinLoss)))
         </td>
     </tr>
 </table>

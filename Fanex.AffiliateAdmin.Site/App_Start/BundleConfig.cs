@@ -251,7 +251,6 @@ namespace Fanex.AffiliateAdmin.Site
         private static void GetBundleForBetList(BundleCollection bundles)
         {
             bundles.Add(new Bundle("~/css/betlist")
-            
            .Include("~/Content/betlist/betlist.css")
            .Include("~/Content/betlist/betlist.core.css")
            .Include("~/Content/betlist/global.content.css")

@@ -2,7 +2,7 @@
     // Game type: Jungle Wild
     Layout = null;
 }
-<link href="@Url.Content("/Content/betlist/rngcasino.handhistory.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/betlist/rngcasino.handhistory.css")" rel="stylesheet" type="text/css" />
 @using Fanex.AffiliateAdmin.Core.Utilities
 @model Fanex.AffiliateAdmin.Models.BetListResultsRNGCasinoDetailViewModel
 @{
@@ -107,13 +107,13 @@
                     @Html.Raw(hitBetLineItem.Symbol.Replace("/img", Url.Content("~/") + "img"))
                 }
             </td>
-            <td>@Html.Raw(FormaterCurrency.Format(decimal.Parse(hitBetLineItem.CoinSize)))
+            <td>@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(decimal.Parse(hitBetLineItem.CoinSize)))
             </td>
             <td>@hitBetLineItem.BetPerLine
             </td>
             <td>@hitBetLineItem.Odds
             </td>
-            <td>@Html.Raw(FormaterCurrency.Format(decimal.Parse(hitBetLineItem.Win)))
+            <td>@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(decimal.Parse(hitBetLineItem.Win)))
             </td>
         </tr>         
     }
@@ -143,13 +143,13 @@
                     @Html.Raw(hitScatterItem.Symbol.Replace("/img", Url.Content("~/") + "img"))
                 }
             </td>
-            <td>@Html.Raw(FormaterCurrency.Format(decimal.Parse(hitScatterItem.CoinSize)))
+            <td>@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(decimal.Parse(hitScatterItem.CoinSize)))
             </td>
             <td>@hitScatterItem.BetPerLine
             </td>
             <td>@hitScatterItem.Odds
             </td>
-            <td>@Html.Raw(FormaterCurrency.Format(decimal.Parse(hitScatterItem.Win)))
+            <td>@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(decimal.Parse(hitScatterItem.Win)))
             </td>
         </tr>
     }
@@ -158,20 +158,20 @@
         <tr>
             <td>@RNGCasino.Win/@RNGCasino.Loss
             </td>
-            <td colspan="5" class="align-right">@FormaterCurrency.Format(totalItem.WinLossResultBaseCurrecyValue)
+            <td colspan="5" class="align-right">@FormaterCurrency.FormatNoCurrncySymbol(totalItem.WinLossResultBaseCurrecyValue)
             </td>
         </tr>
     }
     <tr class="player-total-row">
         <td class="align-left">@RNGCasino.Bet
         </td>
-        <td colspan="5" class="align-right">@FormaterCurrency.Format(Model.CasinoDetailList.Sum(p => p.Bet))
+        <td colspan="5" class="align-right">@FormaterCurrency.FormatNoCurrncySymbol(Model.CasinoDetailList.Sum(p => p.Bet))
         </td>
     </tr>
     <tr class="player-total-row">
         <td class="align-left">@RNGCasino.Win/@RNGCasino.Loss
         </td>
-        <td colspan="5" class="align-right">@Html.Raw(FormaterCurrency.Format(Model.CasinoDetailList.Sum(p => p.WinLoss)))
+        <td colspan="5" class="align-right">@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(Model.CasinoDetailList.Sum(p => p.WinLoss)))
         </td>
     </tr>
 </table>

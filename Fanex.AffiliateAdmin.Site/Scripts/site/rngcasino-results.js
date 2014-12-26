@@ -19,7 +19,7 @@ var RNGCasinoResults = (function ($) {
 
         initEvent: function () {
             $("body").on("click", ".hand-history-detail-link", function () {
-                var url = AFFILIATE.getAbsoluteUrl('Account/RNGCasinoDetail');
+                var url = 'BetList/RNGCasinoDetail';
                 url += $(this).attr("data-url");
                 RNGCasinoResults.viewCasinoDetail(url);
             });

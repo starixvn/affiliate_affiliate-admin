@@ -2733,4 +2733,7 @@
   <data name="BetListResults" xml:space="preserve">
     <value>Results</value>
   </data>
+  <data name="BetListTitle" xml:space="preserve">
+    <value>Bet List {0} - {1} - &lt;span&gt;View in {2}&lt;/span&gt;</value>
+  </data>
 </root>

@@ -65,8 +65,8 @@
                 var rngCasinoDetailUrl = "?userbetid=" + item.UserBetId;
                 rngCasinoDetailUrl += "&gametypeid=" + item.GameTypeId;
                 rngCasinoDetailUrl += "&gametypename=" + item.GameTypeName;
-                rngCasinoDetailUrl += "&currencyid=" + ViewBag.AffCurrencyId;
-                rngCasinoDetailUrl += "&currencyname=" + ViewBag.AffCurrencyCode;
+                rngCasinoDetailUrl += "&currencyid=" + ViewBag.ToCurrencyId;
+                rngCasinoDetailUrl += "&currencyname=" + ViewBag.ToCurrencyCode;
                 rngCasinoDetailUrl += "&playerhistoryno=" + item.PlayerHistoryNo;
 
                 if (item.SessionLogId != currentSessionID)
@@ -74,9 +74,9 @@
                     currentSessionID = item.SessionLogId;
                     <tr class="rngcasino_subtotal">
                         <td class="r" colspan="9">Total</td>
-                        <td class="r">@FormaterCurrency.Format(sumStake)</td>
-                        <td class="r">@FormaterCurrency.Format(sumBet)</td>
-                        <td class="r">@Html.Raw(FormaterCurrency.Format(sumWinloss))</td>
+                        <td class="r">@FormaterCurrency.FormatNoCurrncySymbol(sumStake)</td>
+                        <td class="r">@FormaterCurrency.FormatNoCurrncySymbol(sumBet)</td>
+                        <td class="r">@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(sumWinloss))</td>
                         <td></td>
                     </tr>
                     <tr>
@@ -99,19 +99,19 @@
                     <td class="rngcasino_alignleft">@item.GameGroupName</td>
                     <td class="c">@item.StartTime</td>
                     <td class="c">@item.EndTime</td>
-                    <td class="">@FormaterCurrency.Format(item.BeginBalance)</td>
-                    <td class="">@FormaterCurrency.Format(item.EndBlance)</td>
-                    <td class="">@FormaterCurrency.Format(item.Stake)</td>
-                    <td class="">@FormaterCurrency.Format(item.Bet)</td>
-                    <td class="">@Html.Raw(FormaterCurrency.Format(item.WinLoss))</td>
+                    <td class="">@FormaterCurrency.FormatNoCurrncySymbol(item.BeginBalance)</td>
+                    <td class="">@FormaterCurrency.FormatNoCurrncySymbol(item.EndBlance)</td>
+                    <td class="">@FormaterCurrency.FormatNoCurrncySymbol(item.Stake)</td>
+                    <td class="">@FormaterCurrency.FormatNoCurrncySymbol(item.Bet)</td>
+                    <td class="">@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(item.WinLoss))</td>
                     <td class="rngcasino_alignleft"><a href='javascript:;' class='hand-history-detail-link' data-url='@rngCasinoDetailUrl'>@Html.Raw(item.Result)</a></td>
                 </tr>
             }
             <tr class="rngcasino_subtotal">
                 <td class="r" colspan="9">Total</td>
-                <td class="r">@FormaterCurrency.Format(sumStake)</td>
-                <td class="r">@FormaterCurrency.Format(sumBet)</td>
-                <td class="r">@Html.Raw(FormaterCurrency.Format(sumWinloss))</td>
+                <td class="r">@FormaterCurrency.FormatNoCurrncySymbol(sumStake)</td>
+                <td class="r">@FormaterCurrency.FormatNoCurrncySymbol(sumBet)</td>
+                <td class="r">@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(sumWinloss))</td>
                 <td></td>
             </tr>
             
@@ -126,14 +126,14 @@
             }
             <tr class="bl_footertotal footer" id="tr_footer">
                 <td class="r" colspan="9">Grand Total</td>
-                <td class="r">@FormaterCurrency.Format(stake)</td>
-                <td class="r">@FormaterCurrency.Format(bet)</td>
-                <td class="r">@Html.Raw(FormaterCurrency.Format(winloss))</td>
+                <td class="r">@FormaterCurrency.FormatNoCurrncySymbol(stake)</td>
+                <td class="r">@FormaterCurrency.FormatNoCurrncySymbol(bet)</td>
+                <td class="r">@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(winloss))</td>
                 <td></td>
             </tr>
         }
     </tbody>
 </table>
 
-@Scripts.Render("~/js/jquery")
+@Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/js/betlistrngcasino")

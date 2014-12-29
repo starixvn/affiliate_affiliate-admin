@@ -32,5 +32,14 @@
     @Html.HiddenFor(m => m.ExchangeRate)
 }
 
-
 @Scripts.Render("~/js/betlist")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        setTimeout(function() {
+            $("#affiliateInfo").removeClass("active");
+        }, 500);
+        
+    });
+</script>
+

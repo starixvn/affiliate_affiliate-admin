@@ -38,7 +38,7 @@ var RNGCasinoResults = (function ($) {
 
         viewCasinoDetail: function (url) {
             var title = "Hand History Details";
-            AFFILIATE.openDialogFrame(url, title, { width: 900, height: 450 });
+            AFFILIATE.openDialogFrame(url, title, { width: 900, height: 400 });
         }
     };
 })(jQuery);

@@ -308,7 +308,6 @@ var AFFILIATE = (function ($) {
         /*jshint ignore:end */
 
         getCustomCellRender: function (rowIndex, rowData, col) {
-
             var customCellRender = function (cell, cellFormated) {
 
                 if (col.Formatter) {

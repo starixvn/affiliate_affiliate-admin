@@ -232,8 +232,15 @@ if(Site != null)
 	<Setting Key="AffAdmin_AffiliateWinLossByProductReport" SpName="AffAdmin_AffiliateWinLossByProductReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
     <Setting Key="AffAdmin_MemberWinLossReport" SpName="AffAdmin_MemberWinLossReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
 	<Setting Key="AffAdmin_MemberWinLossByProductReport" SpName="AffAdmin_MemberWinLossByProductReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
-    <Setting Key="AffAdmin_QualifiedMembersReport" SpName="AffAdmin_QualifiedMembersReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />    
+    <Setting Key="AffAdmin_QualifiedMembersReport" SpName="AffAdmin_QualifiedMembersReport" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
   </Function>
+
+    <Function name="AdditionalSpsForBetlist">
+    <Setting Key="Aff_User_GetExchangeRate" SpName="Aff_User_GetExchangeRate" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+    <Setting Key="Aff_User_ProductSelByAffID" SpName="Aff_User_ProductSelByAffID" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+	<Setting Key="Aff_User_DummyAccID" SpName="Aff_User_DummyAccID" DbName="<#= dbDict.GetValue("bodb02-name") #>" Plain="0" />
+  </Function>
+
 </Functions>
 <#
 }

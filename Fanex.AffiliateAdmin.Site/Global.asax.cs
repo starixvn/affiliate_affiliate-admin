@@ -14,6 +14,7 @@ namespace Fanex.AffiliateAdmin.Site
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
+    using CasinoSetting;
     using Core.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.Data.Configuration;
@@ -43,6 +44,14 @@ namespace Fanex.AffiliateAdmin.Site
             ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
 
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            log4net.Config.XmlConfigurator.Configure();
+            log4net.LogManager.GetLogger("GeneralLog").Info("Start");
+
+            if (AppSettings.Environment.IndexOf("Local", StringComparison.OrdinalIgnoreCase) < 0)
+            {
+                SettingMgr.GetInstance().Initialize(SiteEnum.AgentSite);
+            }
         }
 
         /// <summary>

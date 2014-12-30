@@ -53,6 +53,12 @@ if(Site != null)
   <add key="IPCheckerURL" value="http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&amp;token=&amp;toolhandler_redirect=0&amp;ip={0}&amp;j=1"/>
   <add key="InternalURL" value="<#= siteSettings.GetValue("InternalURL") #>"/>
   <add key="InternalURL_Kiosk" value="<#= siteSettings.GetValue("InternalURL_Kiosk") #>"/>
+
+  <!--RnG Casino-->
+  <add key="IsDisableRngCasino" value="false" />
+  <add key="CasinoNo" value="01" />
+  <add key="LoggingServiceUrl" value="tcp://10.40.40.127:9099/LoggingService" />
+  <!--End RnG Casino-->
 </appSettings>
 <#
 }

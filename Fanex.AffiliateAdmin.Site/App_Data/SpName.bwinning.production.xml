@@ -217,6 +217,13 @@
 	<Setting Key="AffAdmin_AffiliateWinLossByProductReport" SpName="AffAdmin_AffiliateWinLossByProductReport" DbName="DBAFFBWINNING.Affiliate_Bwinning.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_MemberWinLossReport" SpName="AffAdmin_MemberWinLossReport" DbName="DBAFFBWINNING.Affiliate_Bwinning.bodbAdminNet" Plain="0" />
 	<Setting Key="AffAdmin_MemberWinLossByProductReport" SpName="AffAdmin_MemberWinLossByProductReport" DbName="DBAFFBWINNING.Affiliate_Bwinning.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_QualifiedMembersReport" SpName="AffAdmin_QualifiedMembersReport" DbName="DBAFFBWINNING.Affiliate_Bwinning.bodbAdminNet" Plain="0" />    
+    <Setting Key="AffAdmin_QualifiedMembersReport" SpName="AffAdmin_QualifiedMembersReport" DbName="DBAFFBWINNING.Affiliate_Bwinning.bodbAdminNet" Plain="0" />
   </Function>
+
+    <Function name="AdditionalSpsForBetlist">
+    <Setting Key="Aff_User_GetExchangeRate" SpName="Aff_User_GetExchangeRate" DbName="DBAFFBWINNING.Affiliate_Bwinning.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_ProductSelByAffID" SpName="Aff_User_ProductSelByAffID" DbName="DBAFFBWINNING.Affiliate_Bwinning.bodbAdminNet" Plain="0" />
+	<Setting Key="Aff_User_DummyAccID" SpName="Aff_User_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+  </Function>
+
 </Functions>

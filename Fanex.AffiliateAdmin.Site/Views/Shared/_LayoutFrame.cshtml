@@ -18,7 +18,7 @@
         <div class="row-fulid">
             <div class="span12 content w-none">
                 <!--Submenu box-->
-                <div class="row-fluid submenu">                    
+                <div class="row-fluid submenu">
                     <div class="span12 menu">
                         <div class="span1 icon-submenu @RenderSection("iconcss", required: false)"></div>
                         @RenderSection("submenu", required: false)
@@ -48,7 +48,8 @@
 
         var System = {
             Currency: '@AppSettings.BaseExchange.Code',
-            Prefix: '@AppSettings.BaseExchange.Prefix'
+            Prefix: '@AppSettings.BaseExchange.Prefix',
+            CurrencyId: '@AppSettings.BaseExchange.ExchangeID'
         };
 
         $(document).ready(function() {

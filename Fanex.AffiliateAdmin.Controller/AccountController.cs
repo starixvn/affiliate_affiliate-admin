@@ -89,6 +89,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult Login(string username, string password)
         {
             var result = new ResultViewModel();
+
             if (ModelState.IsValid)
             {
                 var criteria = new LoginCriteria
@@ -99,6 +100,7 @@ namespace Fanex.AffiliateAdmin.Controller
                                     From = Request.UserHostName,
                                     NetSessionID = Session.SessionID
                                 };
+
                 Account user = _accountService.Login(criteria);
 
                 result.Success = criteria.ErrCode == 0;

@@ -14,9 +14,11 @@ if(Site != null)
 	reader.LoadXml();
 
 	var fanexSettings = reader.GetSettingsOfNode("Fanex.Logging");
+	var log4net = reader.GetSettingsOfNode("log4net");
 	var appSettings = reader.GetSettingsOfNode("appSettings");
 	var compilations = reader.GetSettingsOfNode("compilation");
 	var customErrors = reader.GetSettingsOfNode("customErrors");
+	var applicationSettings = reader.GetSettingsOfNode("applicationSettings");
 #>
 <?xml version="1.0" encoding="utf-8" ?>
 
@@ -36,14 +38,43 @@ if(Site != null)
     </sectionGroup>
     <section name="glimpse" type="Glimpse.Core.Configuration.Section, Glimpse.Core" />
     <section name="dotless" type="dotless.Core.configuration.DotlessConfigurationSectionHandler, dotless.Core" />
+	<sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+      <section name="Fanex.AffiliateAdmin.Controller.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+	<section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
   </configSections>
+
+  <log4net>
+    <appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender">
+      <layout type="log4net.Layout.PatternLayout">
+        <param name="ConversionPattern" value="%d [%t] %-5p %c [%x] &lt;%X{auth}&gt; - %m%n" />
+      </layout>
+    </appender>
+    <appender name="GeneralLog" type="log4net.Appender.RollingFileAppender">
+      <file value="<#= log4net.GetValue("filename") #>" />
+      <appendToFile value="true" />
+      <maximumFileSize value="100MB" />
+      <rollingStyle value="Date" />
+      <maxSizeRollBackups value="5" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%d{HH:mm:ss.fff} [%t] %-5p %c - %m%n" />
+      </layout>
+    </appender>
+    <!-- levels: DEBUG, INFO, WARN, ERROR, FATAL -->
+    <root>
+      <level value="ERROR" />
+      <appender-ref ref="ConsoleAppender" />
+      <appender-ref ref="GeneralLog" />
+    </root>
+  </log4net>
+
   <Fanex.Data.DbSettingProvider default="XmlDbSettingProvider">
     <providers>
       <add name="XmlDbSettingProvider" type="Fanex.Data.Configuration.XmlDbSettingProvider, Fanex.Data" resourcePath="~\App_Data\SpName.xml" enableWatching="1" />
     </providers>
   </Fanex.Data.DbSettingProvider>
 
-  <Fanex.Logging msmqPath="<#= fanexSettings["msmqPath"] #>" defaultCategory="<#= fanexSettings["defaultCategory"] #>" />
+  <Fanex.Logging msmqPath="<#= fanexSettings.GetValue("msmqPath") #>" defaultCategory="<#= fanexSettings.GetValue("defaultCategory") #>" />
   <connectionStrings configSource="Web.ConnectionString.config" />
   <appSettings file="Web.AppSettings.config">
     <!--Url use for checking downtime-->
@@ -218,6 +249,14 @@ if(Site != null)
     </core>
   </bundleTransformer>
   <dotless minifyCss="false" cache="true" web="false" />
+  <applicationSettings>
+    <Fanex.AffiliateAdmin.Controller.Properties.Settings>
+      <setting name="Fanex_AffiliateAdmin_Controller_AffBetListService_AffiliateAPI"
+          serializeAs="String">
+        <value><#= applicationSettings["value"] #></value>
+      </setting>
+    </Fanex.AffiliateAdmin.Controller.Properties.Settings>
+  </applicationSettings>
 </configuration>
 <#
 }

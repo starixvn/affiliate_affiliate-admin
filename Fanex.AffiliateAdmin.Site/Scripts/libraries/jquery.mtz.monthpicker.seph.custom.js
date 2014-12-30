@@ -96,8 +96,8 @@ var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
 
                     // # START: modified by Joseph
                     $this.monthpicker('setValue', settings);
-                  //  $this.monthpicker('parseInputValue', settings);                    
-                    $this.monthpicker('mountWidget', settings);          
+                  //  $this.monthpicker('parseInputValue', settings);
+                    $this.monthpicker('mountWidget', settings);
                                        
                     $this.on('monthpicker-click-month', function (e, month, year) {
                         $this.monthpicker('setValue', settings);
@@ -304,8 +304,8 @@ var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
         },
 
         getDate: function () {
-            var settings = this.data('monthpicker').settings;            
-            if (settings.selectedMonth && settings.selectedYear) {                
+            var settings = this.data('monthpicker').settings;
+            if (settings.selectedMonth && settings.selectedYear) {
                 return new Date(settings.selectedYear, settings.selectedMonth - 1);
             } else {
                 return null;
@@ -314,7 +314,7 @@ var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
 
         parseInputValue: function (settings) {
             if (this.val()) {
-                if (settings.dateSeparator) {                    
+                if (settings.dateSeparator) {
                     var val = this.val().toString().split(settings.dateSeparator);
                     if (settings.pattern.indexOf('m') === 0) {
                         settings.selectedMonth = val[0];

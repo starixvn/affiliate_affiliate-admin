@@ -60,6 +60,8 @@
     </Compile>
     <Compile Include="AffiliateCommissionResult.cs" />
     <Compile Include="AffiliateWinLossItem.cs" />
+    <Compile Include="BetList\RNGCasinoResultWinlossDetailHeader.cs" />
+    <Compile Include="BetList\RNGCasinoResultWinlossDetail.cs" />
     <Compile Include="CompanyWinlossByCurrency.cs" />
     <Compile Include="CompanyWinlossReportByOverview.cs" />
     <Compile Include="Account.cs" />
@@ -82,6 +84,9 @@
     <Compile Include="AffiliateWinLossByProductResult.cs" />
     <Compile Include="AffiliateWinlossByProduct.cs" />
     <Compile Include="AffiliateCommissionByProduct.cs" />
+    <Compile Include="BetList\RNGCasinoResult.cs" />
+    <Compile Include="BetList\CustomerInfoBetList.cs" />
+    <Compile Include="SimpleProduct.cs" />
     <Compile Include="DateFormatManager.cs" />
     <Compile Include="MemberWinlossByProduct.cs" />
     <Compile Include="MemberDetail.cs" />

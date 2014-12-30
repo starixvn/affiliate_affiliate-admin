@@ -48,13 +48,16 @@ namespace Fanex.AffiliateAdmin.DataAccess
                 {
                     RowIdx = reader.ToLong("RowIDX"),
                     WinlostDate = reader.ToDateTime("WinlostDate"),
+                    AffId = reader.ToInt("AffId"),
                     Username = reader.ToString("Username"),
                     Currency = reader.ToString("Currency"),
                     PlayerUsername = reader.ToString("PlayerUsername"),
                     PlayerCurrency = reader.ToString("PlayerCurrency"),
                     BetCount = reader.ToInt("BetCount"),
                     ExRate = reader.ToDouble("ExRate"),
-                    AffExRate = reader.ToDouble("AffExRate")
+                    AffExRate = reader.ToDouble("AffExRate"),
+                    AffCurrencyId = reader.ToInt("AffCurrencyId"),
+                    PlayerCurrencyId = reader.ToInt("PlayerCurrencyId")
                 };
 
                 GetColumnExtra(reader, memberWinloss);

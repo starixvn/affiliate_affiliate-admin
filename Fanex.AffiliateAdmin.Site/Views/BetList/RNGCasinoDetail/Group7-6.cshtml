@@ -1,0 +1,68 @@
+﻿@{
+    // Game type:  Turf King //
+    Layout = null; 
+}
+<link href="@Url.Content("~/Content/betlist/rngcasino.handhistory.css")" rel="stylesheet" type="text/css" />
+@using Fanex.AffiliateAdmin.Core.Utilities
+@model Fanex.AffiliateAdmin.Models.BetListResultsRNGCasinoDetailViewModel
+@{
+    var headerItem = Model.CasinoDetailHeaderList.Where(x => x.ShowType.Trim() == "BasicInfo").FirstOrDefault();
+}
+<table style="width: 100%;" class="casino-detail-table" cellpading="0" cellspacing="0">
+    <tr class="detail-header-row">
+        <td class="game-type-text" colspan="4">@Model.Param.GameTypeName - @headerItem.BetTime
+        </td>
+    </tr>
+    <tr class="player-total-row">
+        <td colspan="4">
+            @RNGCasino.Player: @headerItem.UserName - @RNGCasino.Viewin @Model.Param.CurrencyName
+        </td>
+    </tr>
+    <tr class="detail-header-row">
+        <td colspan="4">@headerItem.ResultName</td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            @Html.Raw(headerItem.Result) 
+        </td>
+    </tr>    
+    <tr>
+        <td colspan="2">@RNGCasino.PlayerHistoryNo
+        </td>
+        <td colspan="2" class="align-left">@Model.Param.PlayerHistoryNo
+        </td>
+    </tr>
+    <tr class="detail-header-row">
+        <td>@RNGCasino.Combination
+        </td>
+        <td>@RNGCasino.Bet
+        </td>
+        <td>@RNGCasino.Odds
+        </td>
+        <td>@RNGCasino.Win/@RNGCasino.Loss
+        </td>
+    </tr>
+    @foreach (var casino in Model.CasinoDetailList)
+    {
+    <tr>
+        <td>@casino.BetContent 
+        </td>
+        <td class="align-right">@FormaterCurrency.FormatNoCurrncySymbol(casino.Bet)
+        </td>
+        <td class="align-right">@FormaterCurrency.FormatNoCurrncySymbol(casino.Odds)
+        </td>
+        <td class="align-right">@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(casino.WinLoss))
+        </td>
+    </tr>
+    }
+    <tr class="player-total-row">
+        <td class="align-left">@RNGCasino.Total
+        </td>
+        <td class="align-right">@FormaterCurrency.FormatNoCurrncySymbol(Model.CasinoDetailList.Sum(p => p.Bet))
+        </td>
+        <td class="align-right"> 
+        </td>
+        <td class="align-right">@Html.Raw(FormaterCurrency.FormatNoCurrncySymbol(Model.CasinoDetailList.Sum(p => p.WinLoss)))
+        </td>
+    </tr>
+</table>

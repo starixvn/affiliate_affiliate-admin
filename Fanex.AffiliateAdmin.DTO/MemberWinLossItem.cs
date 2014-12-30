@@ -29,11 +29,17 @@ namespace Fanex.AffiliateAdmin.DTO
             }
         }
 
+        public int AffId { get; set; }
+
         public string Username { get; set; }
+
+        public int AffCurrencyId { get; set; }
 
         public string Currency { get; set; }
 
         public string PlayerUsername { get; set; }
+
+        public int PlayerCurrencyId { get; set; }
 
         public string PlayerCurrency { get; set; }
 

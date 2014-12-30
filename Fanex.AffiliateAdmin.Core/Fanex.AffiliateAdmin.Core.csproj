@@ -99,6 +99,8 @@
     </Compile>
     <Compile Include="Configurations\AffiliateSettings.cs" />
     <Compile Include="Configurations\GetAppSettings.cs" />
+    <Compile Include="Enumerations\CasinoGameType.cs" />
+    <Compile Include="Enumerations\BetType.cs" />
     <Compile Include="Enumerations\ReportType.cs" />
     <Compile Include="Filter\FunctionAuthAttribute.cs" />
     <Compile Include="Filter\NoCacheAttribute.cs" />
@@ -166,6 +168,7 @@
     <Compile Include="Utilities\FormaterCurrency.cs" />
     <Compile Include="Utilities\SwfInfo.cs" />
     <Compile Include="Utilities\ThumbnailCreator.cs" />
+    <Compile Include="Utilities\UrlUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Criterias\Fanex.AffiliateAdmin.Criterias.csproj">

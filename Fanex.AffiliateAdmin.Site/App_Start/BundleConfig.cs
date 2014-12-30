@@ -12,6 +12,8 @@ namespace Fanex.AffiliateAdmin.Site
     using System.IO;
     using System.Web;
     using System.Web.Optimization;
+    using BundleTransformer.Core.Orderers;
+    using BundleTransformer.Core.Transformers;
     using Fanex.AffiliateAdmin.Core.Configurations;
 
     /// <summary>
@@ -50,6 +52,8 @@ namespace Fanex.AffiliateAdmin.Site
             GetBundleForMemberWinLossJs(bundles);
 
             GetBundleForAffiliateCommissionJs(bundles);
+
+            GetBundleForBetList(bundles);
         }
 
         /// <summary>
@@ -238,6 +242,31 @@ namespace Fanex.AffiliateAdmin.Site
         {
             bundles.Add(new LessBundle("~/bundles/commgroup")
                 .Include("~/Content/themes/Default/commgroup.less"));
+        }
+
+        /// <summary>
+        /// Get Bundle for Bet List.
+        /// </summary>
+        /// <param name="bundles">Bundle input.</param>
+        private static void GetBundleForBetList(BundleCollection bundles)
+        {
+            bundles.Add(new Bundle("~/css/betlist")
+           .Include("~/Content/betlist/betlist.css")
+           .Include("~/Content/betlist/betlist.core.css")
+           .Include("~/Content/betlist/global.content.css")
+           .Include("~/Content/betlist/systemparlay.detail.css")
+           .Include("~/Content/betlist/rngcasino.handhistory.css")
+           .Include("~/Content/betlist/fanex.result.css"));
+
+            bundles.Add(new Bundle("~/js/betlist")
+                .Include("~/Scripts/site/betlist.js"));
+
+            bundles.Add(new ScriptBundle("~/js/betlistrngcasino")
+                .Include("~/Scripts/site/rngcasino-results.js"));
+
+            bundles.Add(new Bundle("~/css/systemparlaydetails")
+           .Include("~/Content/betlist/global.content.css")
+           .Include("~/Content/betlist/systemparlay.detail.css"));
         }
     }
 }

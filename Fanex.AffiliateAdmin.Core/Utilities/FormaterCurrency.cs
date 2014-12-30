@@ -146,6 +146,36 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         }
 
         /// <summary>
+        /// Format with no currency symbol.
+        /// </summary>
+        /// <param name="value">Input value.</param>
+        /// <param name="checkMinus">Enable/disable - sign.</param>
+        /// <returns>Format result.</returns>
+        public static string FormatNoCurrncySymbol(object value, bool checkMinus = true)
+        {
+            double d;
+
+            if (double.TryParse(value.ToString(), out d))
+            {
+                var currencySymbol = string.Empty;
+                var newValue = string.Format("{0}{1}", currencySymbol, string.Format(DecimalFormat20, value));
+                if (d < 0 && checkMinus)
+                {
+                    if (newValue.Contains("-"))
+                    {
+                        newValue = string.Format("({0})", newValue.Replace("-", string.Empty));
+                    }
+
+                    newValue = string.Format(_Minus, newValue);
+                }
+
+                return newValue;
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
         /// Initialize Currency Code Mapper.
         /// </summary>
         private static void InitCurrencyCodeMapper()

@@ -46,7 +46,7 @@ table.fn-rs thead th.cl-title
 table.fn-rs .header, table.fn-rs .sub-header
 {
     color: #fff;
-    background-color: #295091;
+    background-color: #0d94c3;
 }
 table.fn-rs tbody tr.even
 {
@@ -72,7 +72,7 @@ table.fn-rs tbody .cl-league
 table.fn-rs tbody .cl-match
 {
     text-align: left;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 12px;
     padding-left: 3px;
 }

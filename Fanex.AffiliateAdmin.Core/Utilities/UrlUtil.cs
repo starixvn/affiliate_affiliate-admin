@@ -11,6 +11,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System;
     using System.Web.Mvc;
+    using Fanex.AffiliateAdmin.Core.Configurations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -38,8 +39,9 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 subDomainPath = subDomainPath.Remove(subDomainPath.Length - 1);
             }
 
-            return new Uri(request.Url.Scheme + Uri.SchemeDelimiter + request.Url.Host 
-                + (request.Url.IsDefaultPort ? string.Empty : ":" + request.Url.Port) + subDomainPath);
+            return new Uri(request.Url.Scheme + Uri.SchemeDelimiter + request.Url.Host
+                + ((request.Url.IsDefaultPort || AppSettings.Environment.Equals("Production", StringComparison.OrdinalIgnoreCase))
+                ? string.Empty : ":" + request.Url.Port) + subDomainPath);
         }
     }
 }

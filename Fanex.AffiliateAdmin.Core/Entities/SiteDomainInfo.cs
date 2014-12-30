@@ -37,13 +37,13 @@ namespace Fanex.AffiliateAdmin.Core.Entities
         {
             var siteUrl = controller.Request.Url;
             var scheme = siteUrl.Scheme;
-            var host = siteUrl.Authority;
+            var host = siteUrl.Host;
 
             var adminSiteUrl = UrlUtil.GetBaseUrl(controller);
             var memberSiteDomain = host;
             var memberSiteUrl = adminSiteUrl;
 
-            if (siteUrl.HostNameType == UriHostNameType.Dns && AppSettings.Environment.Equals("Production"))
+            if (AppSettings.Environment.Equals("Production"))
             {
                 var words = host.Split('.');
                 if (words.Length > 2)

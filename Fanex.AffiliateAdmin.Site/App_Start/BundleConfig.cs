@@ -250,11 +250,7 @@ namespace Fanex.AffiliateAdmin.Site
         /// <param name="bundles">Bundle input.</param>
         private static void GetBundleForBetList(BundleCollection bundles)
         {
-            bundles.Add(new Bundle("~/css/betlist")
-            {
-                Transforms = { new CssTransformer(), new CssMinify() },
-                Orderer = new NullOrderer()
-            }
+            bundles.Add(new LessBundle("~/css/betlist")
            .Include("~/Content/betlist/betlist.css")
            .Include("~/Content/betlist/betlist.core.css")
            .Include("~/Content/betlist/global.content.css")
@@ -268,11 +264,8 @@ namespace Fanex.AffiliateAdmin.Site
             bundles.Add(new ScriptBundle("~/js/betlistrngcasino")
                 .Include("~/Scripts/site/rngcasino-results.js"));
 
-            bundles.Add(new Bundle("~/css/systemparlaydetails")
-            {
-                Transforms = { new CssTransformer(), new CssMinify() },
-                Orderer = new NullOrderer()
-            }
+            bundles.Add(new LessBundle("~/css/systemparlaydetails")
+           
            .Include("~/Content/betlist/global.content.css")
            .Include("~/Content/betlist/systemparlay.detail.css"));
         }

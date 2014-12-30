@@ -2870,10 +2870,10 @@
     <None Include="App_Data\Fanex.Result\Tennis.xls" />
     <None Include="App_Data\Fanex.Result\VSHRacing.xls" />
     <None Include="App_Data\Fanex.Result\VSTennis.xls" />
-    <None Include="ConfigManager.txt4" />
     <Content Include="GameData\GlobalSetting.ini" />
     <Content Include="GameData\VideoPoker\RV009\Settings.ini" />
     <Content Include="GameData\VideoPoker\RV010\Settings.ini" />
+    <None Include="ConfigManager.txt4" />
     <None Include="img\Slot\S0007\icon_20x20_doubleWild.jpg.exclude" />
     <None Include="img\Slot\S0007\icon_40x40_doubleWild.jpg.exclude" />
     <None Include="Properties\Settings.settings">
@@ -3393,7 +3393,6 @@
     </Content>
     <Content Include="Web.itcbet.uat.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.ConnectionString.itcbet.master.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
@@ -3427,7 +3426,6 @@
     </Content>
     <Content Include="Web.AppSettings.i668bet.uat.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.i668bet.uat.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
@@ -3976,7 +3974,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

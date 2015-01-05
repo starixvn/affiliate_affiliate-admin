@@ -212,7 +212,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var model = new BetListResultsRNGCasinoViewModel(data, totalAmount, criteria)
                 {
-                    Currency = criteria.CurrencyName
+                    Currency = criteria.ToCurrencyCode
                 };
 
             return View("~/Views/BetList/BetListResults_RNGCasino.cshtml", model);

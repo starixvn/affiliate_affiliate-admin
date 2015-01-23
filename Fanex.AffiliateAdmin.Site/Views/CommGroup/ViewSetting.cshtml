@@ -58,9 +58,9 @@
             <tr>
                 @if (i == 0)
                 {
-                    <td rowspan="@rowCount">@Model.GroupName</td>
+                    <td rowspan="@rowCount">@Html.Raw(Model.GroupName)</td>
                     <td rowspan="@rowCount">@Model.NoOfAffiliate</td>
-                    <td rowspan="@rowCount">@Model.Description</td>
+                    <td rowspan="@rowCount">@Html.Raw(Model.Description)</td>
                     <td rowspan="@rowCount">@Model.Creator</td>
                     <td rowspan="@rowCount">@Model.CreatedDate.ToShortDateString()</td>
                     <td rowspan="@rowCount">@Model.QualifiedAmount.ToString("#,0")</td>

@@ -10,9 +10,13 @@
         <table>
             <tbody>
                 <tr>
-                    <td>@Lang.AccountType</td>                    
-                    <td class="col-right"> 
-                        <a title="@(AffiliateSettings.AccountTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffLevel).FirstOrDefault().TypeName)" id="accountType" href="javascript:void(0);">@(AffiliateSettings.AccountTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffLevel).FirstOrDefault().TypeName.LeftString(12))</a>
+                    <td>@Lang.AccountType</td>
+                    <td class="col-right">
+                        @{
+                            var currentAccountTypes = AffiliateSettings.AccountTypes.FirstOrDefault(a => a.TypeID == Model.AffiliateInfo.AffLevel);
+                        }
+                         
+                        <a title="@(currentAccountTypes.TypeName)" id="accountType" data-test-level="@currentAccountTypes.TypeID" href="javascript:void(0);">@(currentAccountTypes.TypeName.LeftString(12))</a>
                     </td>
                 </tr>
                 @if (Model.AffiliateInfo.Status.Equals(AffiliateStatus.Approved.ToString(), StringComparison.CurrentCultureIgnoreCase))

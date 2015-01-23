@@ -12,7 +12,11 @@
                 <tr>
                     <td>@Lang.CommissionGroup<span class="icon-edit" id="spEdit" title="@Lang.ChangeComGroup"></span></td>
                     <td class="text-r">
-                        <a href="javascript:void(0);" id="groupLink" title="@Html.Raw(Model.AffiliateInfo.GroupName)">@Html.Raw(@Model.AffiliateInfo.GroupName.LeftString(12))</a>
+                        @{
+                            var groupName = HttpUtility.HtmlDecode(Model.AffiliateInfo.GroupName);
+                        }
+
+                        <a href="javascript:void(0);" id="groupLink" title="@Html.Raw(groupName)">@Html.Raw(groupName.LeftString(12))</a>
                     </td>
                 </tr>
                 <tr>

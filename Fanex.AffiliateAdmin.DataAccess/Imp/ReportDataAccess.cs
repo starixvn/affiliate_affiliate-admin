@@ -13,7 +13,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
     using Common.Extensions;
     using Core.Utilities;
     using Data;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Account data access.

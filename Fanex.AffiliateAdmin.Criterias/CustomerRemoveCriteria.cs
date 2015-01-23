@@ -8,7 +8,7 @@
 // </history>
 namespace Fanex.AffiliateAdmin.Criterias
 {
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Country Criteria.

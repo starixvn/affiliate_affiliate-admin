@@ -9,7 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
 {
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// SystemSettingDelete Criteria class.

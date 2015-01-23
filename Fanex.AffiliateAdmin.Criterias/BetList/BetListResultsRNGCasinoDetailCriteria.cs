@@ -11,7 +11,7 @@
 namespace Fanex.AffiliateAdmin.Criteria
 {
     using System;
-    using NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Bet List Criteria.

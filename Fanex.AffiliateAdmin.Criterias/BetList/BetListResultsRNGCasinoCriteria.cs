@@ -10,7 +10,7 @@
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
-    using NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// TODO: Update summary.

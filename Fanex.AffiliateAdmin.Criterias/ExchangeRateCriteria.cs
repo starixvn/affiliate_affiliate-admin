@@ -10,7 +10,7 @@
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Exchange Rate Criteria.
@@ -49,7 +49,7 @@ namespace Fanex.AffiliateAdmin.Criterias
             {
                 if (!string.IsNullOrWhiteSpace(this.ToCurrency))
                 {
-                    return "AffAdmin_ExchangeUpdate";                       
+                    return "AffAdmin_ExchangeUpdate";
                 }
 
                 if (!string.IsNullOrWhiteSpace(this.ExchangeIdList))

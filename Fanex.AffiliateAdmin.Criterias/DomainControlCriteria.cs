@@ -10,7 +10,7 @@
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Domain Control Criteria.

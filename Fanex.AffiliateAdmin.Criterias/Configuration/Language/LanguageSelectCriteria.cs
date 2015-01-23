@@ -9,7 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Criterias.Configuration.Language
 {
-    using NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// LanguageSelect Criteria class.

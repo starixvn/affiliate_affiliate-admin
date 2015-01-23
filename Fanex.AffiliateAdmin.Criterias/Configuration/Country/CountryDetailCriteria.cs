@@ -9,7 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Criterias.Configuration.Country
 {
-    using NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// CountryDetail Criteria class.

@@ -32,10 +32,10 @@
     <Setting Key="AffAdmin_CommGroupList_SettingDetail" SpName="AffAdmin_CommGroupList_SettingDetail" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupSelDetail" SpName="AffAdmin_CommGroupSelDetail" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupIns" SpName="AffAdmin_CommGroupIns" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_CommGroupUpd" SpName="AffAdmin_CommGroupUpd" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupUpd" SpName="AffAdmin_CommGroupUpd_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_GroupSettingSel" SpName="AffAdmin_GroupSettingSel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupDel" SpName="AffAdmin_CommGroupDel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_CommGroupAssign" SpName="AffAdmin_CommGroupAssign" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupAssign" SpName="AffAdmin_CommGroupAssign_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupSelByID" SpName="AffAdmin_CommGroupSelByID" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
 	<Setting Key="AffAdmin_CommGroup_SelActiveList" SpName="AffAdmin_CommGroup_SelActiveList" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
   </Function>
@@ -210,12 +210,12 @@
   </Function>
 
   <Function name="Reports">
-    <Setting Key="AffAdmin_CompanyWinlossReport" SpName="AffAdmin_CompanyWinlossReport" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CompanyWinlossReport" SpName="AffAdmin_CompanyWinlossReport_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
 	<Setting Key="AffAdmin_CompanyWinLossByProductReport" SpName="AffAdmin_CompanyWinLossByProductReport" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_MemberStatisticsReport" SpName="AffAdmin_MemberStatisticsReport" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateWinLossReport" SpName="AffAdmin_AffiliateWinLossReport" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
 	<Setting Key="AffAdmin_AffiliateWinLossByProductReport" SpName="AffAdmin_AffiliateWinLossByProductReport" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_MemberWinLossReport" SpName="AffAdmin_MemberWinLossReport" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_MemberWinLossReport" SpName="AffAdmin_MemberWinLossReport_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
 	<Setting Key="AffAdmin_MemberWinLossByProductReport" SpName="AffAdmin_MemberWinLossByProductReport" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_QualifiedMembersReport" SpName="AffAdmin_QualifiedMembersReport" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
   </Function>

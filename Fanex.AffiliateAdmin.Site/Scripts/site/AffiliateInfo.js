@@ -146,7 +146,8 @@ var AFFINFO = (function ($) {
             $('#accountType').click(function () {
                 var param = {
                     affids: $("#AffId").val(),
-                    usernames: $("#Username").val()
+                    usernames: $("#Username").val(),
+                    testlevel: $(this).data('test-level')
                 };
                 parent.AFFILIATE.openDialogFrame("Affiliate/ChangeAccountType?" + jQuery.param(param), MSG.ChangeAccountType, { width: 500, height: 300 });
             });

@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C4F30139-8F36-40A4-92A1-3961B47663CA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConfigGenerator</RootNamespace>
+    <AssemblyName>ConfigGenerator</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CheckCondition.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MoveUtil.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConfigGenerator.Core\ConfigGenerator.Core.csproj">
+      <Project>{F1DBBF7B-D61C-4900-A513-EE0EBCACCCA2}</Project>
+      <Name>ConfigGenerator.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfigGenerator.Services\ConfigGenerator.Services.csproj">
+      <Project>{2C2DD1D3-1F67-4F5E-BD5B-FF0637C68A01}</Project>
+      <Name>ConfigGenerator.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.athena000.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.yhy1980.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.yhy1980.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.athena000.xml" />
+    <Content Include="ConfigModels\SiteConfigModel.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.28bet.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.allbetclubs.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.aoncash.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.be7.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.bwinning.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.goobet.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.hbobet.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.i668bet.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.itcbet.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.m8bola.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.macaubet.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.mgm88.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.mymbet.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.nbcbet.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.q8bola.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.royalebet.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.thbet.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.wawabet.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.winner99.xml" />
+    <Content Include="ConfigModels\Admin\WebConfigs\WebConfigModel.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.28bet.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.allbetclubs.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.aoncash.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.be7.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.bwinning.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.goobet.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.hbobet.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.i668bet.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.itcbet.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.m8bola.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.macaubet.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.mgm88.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.mymbet.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.nbcbet.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.q8bola.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.royalebet.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.thbet.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.wawabet.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.winner99.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.28bet.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.allbetclubs.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.aoncash.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.athena000.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.be7.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.bwinning.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.goobet.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.hbobet.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.i668bet.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.idlivebet365.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.idlivebet365kiosk.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.itcbet.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.livebet365.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.livebet365kiosk.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.m8bola.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.macaubet.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.mgm88.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.mymbet.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.nbcbet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.q8bola.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.royalebet.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.thbet.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.wawabet.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.winner99.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.28bet.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.allbetclubs.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.aoncash.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.athena000.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.be7.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.bwinning.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.goobet.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.hbobet.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.i668bet.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.idlivebet365.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.idlivebet365kiosk.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.itcbet.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.livebet365.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.livebet365kiosk.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.m8bola.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.macaubet.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.mgm88.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.mymbet.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.nbcbet.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.q8bola.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.royalebet.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.thbet.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.wawabet.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.winner99.xml" />
+    <Content Include="ConfigModels\User\WebConfigs\WebConfigModel.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ConfigModels\Admin\SpNames\" />
+    <Folder Include="ConfigModels\Banner\AppSettings\" />
+    <Folder Include="ConfigModels\Banner\ConnectionStrings\" />
+    <Folder Include="ConfigModels\Banner\SpNames\" />
+    <Folder Include="ConfigModels\Banner\WebConfigs\" />
+    <Folder Include="ConfigModels\Link\AppSettings\" />
+    <Folder Include="ConfigModels\Link\ConnectionStrings\" />
+    <Folder Include="ConfigModels\Link\SpNames\" />
+    <Folder Include="ConfigModels\Link\WebConfigs\" />
+    <Folder Include="ConfigModels\User\SpNames\" />
+    <Folder Include="ConfigModels\WebService\AppSettings\" />
+    <Folder Include="ConfigModels\WebService\ConnectionStrings\" />
+    <Folder Include="ConfigModels\WebService\SpNames\" />
+    <Folder Include="ConfigModels\WebService\WebConfigs\" />
+    <Folder Include="Configurations\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

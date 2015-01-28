@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+  <Environment>
+    <local>Local Development</local>
+    <master>master</master>
+    <uat>UAT</uat>
+    <production>Production</production>
+  </Environment>
+  
+  <Layout>2</Layout>
+  <Theme>8</Theme>
+  <ServerID>400008</ServerID>
+  <InputAffType>1</InputAffType>
+  <IsShowZeroCommission>1</IsShowZeroCommission>
+  <IsShowDetailDailyEarnings>1</IsShowDetailDailyEarnings>
+  <DefaultLanguage>zh-TW</DefaultLanguage>
+  <DefaultTarget>Sportsbook</DefaultTarget>
+  <DefaultCurrency>CNY</DefaultCurrency>
+  <AffCustomerServiceUrl>skype:mymbet.csd?chat</AffCustomerServiceUrl>
+  
+  <EmailHeaderBgColor>#f39c11</EmailHeaderBgColor>
+  <EmailHeaderFontColor>#fff</EmailHeaderFontColor>
+  <EmailContentBgColor>#fff</EmailContentBgColor>
+  <EmailContentFontColor>#000</EmailContentFontColor>
+  <EmailCopyrightBgColor>#ccc</EmailCopyrightBgColor>
+  <EmailCopyrightFontColor>#333</EmailCopyrightFontColor>
+  <EmailFooterBgColor>#f39c11</EmailFooterBgColor>
+  <EmailFooterFontColor>#fff</EmailFooterFontColor>
+
+  <app_mail_id>
+    <local>31</local>
+    <master>31</master>
+    <uat>12</uat>
+    <production>12</production>
+  </app_mail_id>
+  
+  <MailContact>
+    <local>long.luu@nexcel.vn</local>
+    <master>long.luu@nexcel.vn</master>
+    <uat>mymbet@live.com</uat>
+    <production>mymbet@live.com</production>
+  </MailContact>
+  
+  <UM_StartTime>01 May 2013 02:30 PM</UM_StartTime>
+  <UM_EndTime>02 Jun 2013 04:00 PM</UM_EndTime>
+</settings>

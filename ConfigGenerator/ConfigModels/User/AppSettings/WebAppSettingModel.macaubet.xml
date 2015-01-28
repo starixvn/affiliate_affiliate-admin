@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+  <Environment>
+    <local>Local Development</local>
+    <master>master</master>
+    <uat>UAT</uat>
+    <production>Production</production>
+  </Environment>
+  
+  <Layout>2</Layout>
+  <Theme>7</Theme>
+  <ServerID>400007</ServerID>
+  <InputAffType>1</InputAffType>
+  <IsShowZeroCommission>1</IsShowZeroCommission>
+  <IsShowDetailDailyEarnings>1</IsShowDetailDailyEarnings>
+  <DefaultLanguage>en-US</DefaultLanguage>
+  <DefaultTarget>Sportsbook</DefaultTarget>
+  <DefaultCurrency>IDR</DefaultCurrency>
+  <AffCustomerServiceUrl>https://sightmax75r2.sightmaxondemand.com/macaubet/SightMaxAgentInterface/PreChatSurvey.aspx?accountID=259&amp;siteID=294&amp;queueID=631</AffCustomerServiceUrl>
+  
+  <EmailHeaderBgColor>#036ec3</EmailHeaderBgColor>
+  <EmailHeaderFontColor>#fff</EmailHeaderFontColor>
+  <EmailContentBgColor>#fff</EmailContentBgColor>
+  <EmailContentFontColor>#000</EmailContentFontColor>
+  <EmailCopyrightBgColor>#e1e1e1</EmailCopyrightBgColor>
+  <EmailCopyrightFontColor>#333</EmailCopyrightFontColor>
+  <EmailFooterBgColor>#036ec3</EmailFooterBgColor>
+  <EmailFooterFontColor>#fff</EmailFooterFontColor>
+
+  <app_mail_id>
+    <local>31</local>
+    <master>31</master>
+    <uat>10</uat>
+    <production>10</production>
+  </app_mail_id>
+  
+  <MailContact>
+    <local>long.luu@nexcel.vn</local>
+    <master>long.luu@nexcel.vn</master>
+    <uat>csd@macaubet.com</uat>
+    <production>csd@macaubet.com</production>
+  </MailContact>
+  
+  <UM_StartTime>01 May 2013 02:30 PM</UM_StartTime>
+  <UM_EndTime>02 Jun 2013 04:00 PM</UM_EndTime>
+</settings>

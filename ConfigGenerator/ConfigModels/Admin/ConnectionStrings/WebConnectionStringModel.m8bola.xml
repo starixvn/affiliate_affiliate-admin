@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<connectionstrings>
+  <affilatedb-name>
+    <local>DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet</local>
+    <master>DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet</master>
+    <uat>DBAFFM8BOLA.Affiliate_M8bola.bodbAdminNet</uat>
+    <production>DBAFFM8BOLA.Affiliate_M8bola.bodbAdminNet</production>
+  </affilatedb-name>
+  <affilatedb-connectionstring>
+    <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=Affiliate_Athena000;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
+    <master>packet size=4096; Data Source=10.18.200.215;Initial Catalog=Affiliate_Athena000;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</master>
+    <uat>packet size=4096; Data Source=10.40.40.224;Initial Catalog=Affiliate_M8bola;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
+    <production>packet size=4096; Data Source=10.40.40.224;Initial Catalog=Affiliate_M8bola;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+  </affilatedb-connectionstring>
+  <bodb02-name>
+    <local>DBEXT.bodb02.bodbAdminNet</local>
+    <master>DBEXT.bodb02.bodbAdminNet</master>
+    <uat>DBEXT.bodb02.bodbAdminNet</uat>
+    <production>DBEXT.bodb02.bodbAdminNet</production>
+  </bodb02-name>
+  <bodb02-connectionstring>
+    <local>Data Source=10.18.200.231;Persist Security Info=True;User ID=bodbAdminNet;Initial Catalog=bodb02;Connect Timeout=360000;Password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
+    <master>Data Source=10.18.200.215;Persist Security Info=True;User ID=bodbAdminNet;Initial Catalog=bodb02;Connect Timeout=360000;Password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</master>
+    <uat>packet size=4096; Data Source=10.40.40.92;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
+    <production>packet size=4096; Data Source=10.40.40.92;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+  </bodb02-connectionstring>
+</connectionstrings>

@@ -1,0 +1,67 @@
+﻿<#@ template  language="C#" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)\ConfigGenerator.Core\bin\Debug\ConfigGenerator.Core.dll" #>
+<#@ import namespace="ConfigGenerator.Core" #>
+<#
+if(Session["environment"] != null && Session["model"] != null)
+{
+	var reader = new WebAppSettingsModelReader 
+				{
+					Environment = Session["environment"].ToString(),
+					XmlFile = Session["model"].ToString()
+				};
+
+  reader.LoadXml();
+  var siteSettings = reader.GetSettingsOfSite();
+#>
+<?xml version="1.0"?>
+<appSettings>
+  <!--System Settings-->
+  <add key="Environment" value="<#= siteSettings.GetValue("Environment") #>"/>
+  <add key="Layout" value="<#= siteSettings.GetValue("Layout") #>" />
+  <add key="Theme" value="<#= siteSettings.GetValue("Theme") #>" />
+  <add key="PageSize" value="10" />
+  <add key="ServerID" value="<#= siteSettings.GetValue("ServerID") #>" />
+  <add key="InputAffType" value="<#= siteSettings.GetValue("InputAffType") #>" />
+  <add key="IsShowZeroCommission" value="<#= siteSettings.GetValue("IsShowZeroCommission") #>"/>
+  <add key="IsShowDetailDailyEarnings" value="<#= siteSettings.GetValue("IsShowDetailDailyEarnings") #>"/>
+  <add key="DefaultLanguage" value="<#= siteSettings.GetValue("DefaultLanguage") #>" />
+  <add key="DefaultTarget" value="<#= siteSettings.GetValue("DefaultTarget") #>" />
+  <add key="TimeHotMessage" value="60" />
+  <add key="DefaultCurrency" value="<#= siteSettings.GetValue("DefaultCurrency") #>" />
+  <add key="AffCustomerServiceUrl" value="<#= siteSettings.GetValue("AffCustomerServiceUrl").Replace("&", "&amp;") #>" />
+  <!--End System Settings-->
+
+  <!--Mail Template-->
+  <add key="EmailHeaderBgColor" value="<#= siteSettings.GetValue("EmailHeaderBgColor") #>"/>
+  <add key="EmailHeaderFontColor" value="<#= siteSettings.GetValue("EmailHeaderFontColor") #>"/>
+  <add key="EmailContentBgColor" value="<#= siteSettings.GetValue("EmailContentBgColor") #>"/>
+  <add key="EmailContentFontColor" value="<#= siteSettings.GetValue("EmailContentFontColor") #>"/>
+  <add key="EmailCopyrightBgColor" value="<#= siteSettings.GetValue("EmailCopyrightBgColor") #>"/>
+  <add key="EmailCopyrightFontColor" value="<#= siteSettings.GetValue("EmailCopyrightFontColor") #>"/>
+  <add key="EmailFooterBgColor" value="<#= siteSettings.GetValue("EmailFooterBgColor") #>"/>
+  <add key="EmailFooterFontColor" value="<#= siteSettings.GetValue("EmailFooterFontColor") #>"/>
+  <!--End mail Template-->
+  
+   <!--Config Mail-->
+  <add key="app_mail_id" value="<#= siteSettings.GetValue("app_mail_id") #>" />
+  <add key="MailContact" value="<#= siteSettings.GetValue("MailContact") #>" />
+  <!--End Config Mail-->
+  
+  <!--For hardcode undermaintenance format: dd MMM yyyy hh:mm PM or AM-->
+  <add key="UM_StartTime" value="<#= siteSettings.GetValue("UM_StartTime") #>" />
+  <add key="UM_EndTime" value="<#= siteSettings.GetValue("UM_EndTime") #>" />
+  <!--End for hardcode undermaintenance format: dd MMM yyyy hh:mm PM or AM-->
+  
+  <!--RnG Casino-->
+  <add key="IsDisableRngCasino" value="false" />
+  <add key="CasinoNo" value="01" />
+  <add key="LoggingServiceUrl" value="tcp://10.40.40.127:9099/LoggingService" />
+  <!--End RnG Casino-->
+</appSettings>
+<#
+}
+#>

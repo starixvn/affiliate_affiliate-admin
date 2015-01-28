@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2C2DD1D3-1F67-4F5E-BD5B-FF0637C68A01}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConfigGenerator.Services</RootNamespace>
+    <AssemblyName>ConfigGenerator.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Modeling.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigurationGenerators\ConfigurationGenerator.cs" />
+    <Compile Include="ConfigurationGenerators\ConfigurationGeneratorFactory.cs" />
+    <Compile Include="SystemGenerators\ComplexSystemGenerator.cs" />
+    <Compile Include="T4Templates\Banner\WebConfigBanner.cs">
+      <DependentUpon>WebConfigBanner.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="T4Templates\WebService\SpNameWebService.cs">
+      <DependentUpon>SpNameWebService.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="T4Templates\WebService\WebAppSettingUser.cs">
+      <DependentUpon>WebAppSettingUser.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="T4Templates\WebService\WebConfigWebService.cs">
+      <DependentUpon>WebConfigWebService.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="T4Templates\WebService\WebConnectionStringWebService.cs">
+      <DependentUpon>WebConnectionStringWebService.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="T4Templates\Link\WebConfigLink.cs">
+      <DependentUpon>WebConfigLink.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Tranformers\SpNameTransformer.cs" />
+    <Compile Include="Tranformers\WebAppSettingTransformer.cs" />
+    <Compile Include="Tranformers\WebConfigTransformer.cs" />
+    <Compile Include="Tranformers\WebConnectionStringTransformer.cs" />
+    <Compile Include="EnvironmentGenerators\EnvironmentGenerator.cs" />
+    <Compile Include="EnvironmentGenerators\EnvironmentGeneratorFactory.cs" />
+    <Compile Include="GeneratorService.cs" />
+    <Compile Include="EnvironmentGenerators\IEnvironmentGenerator.cs" />
+    <Compile Include="EnvironmentGenerators\LocalEnvironmentGenerator.cs" />
+    <Compile Include="EnvironmentGenerators\MasterEnvironmentGenerator.cs" />
+    <Compile Include="EnvironmentGenerators\ProductionEnvironmentGenerator.cs" />
+    <Compile Include="ConfigurationGenerators\IConfigurationGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EnvironmentGenerators\UatEnvironmentGenerator.cs" />
+    <Compile Include="ConfigurationGenerators\SpNameConfigurationGenerator.cs" />
+    <Compile Include="ConfigurationGenerators\WebAppSettingConfigurationGenerator.cs" />
+    <Compile Include="ConfigurationGenerators\WebConfigurationGenerator.cs" />
+    <Compile Include="ConfigurationGenerators\WebConnectionStringConfigurationGenerator.cs" />
+    <Compile Include="SystemGenerators\AdminGenerator.cs" />
+    <Compile Include="SystemGenerators\BannerGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SystemGenerators\LinkGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SystemGenerators\SystemGenerator.cs" />
+    <Compile Include="SystemGenerators\ISystemGenerator.cs" />
+    <Compile Include="SystemGenerators\SystemGeneratorFactory.cs" />
+    <Compile Include="SystemGenerators\UserGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SystemGenerators\WebServiceGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="T4Templates\Admin\SpNameAdmin.cs">
+      <DependentUpon>SpNameAdmin.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="T4Templates\Admin\WebAppSettingAdmin.cs">
+      <DependentUpon>WebAppSettingAdmin.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="T4Templates\Admin\WebConfigAdmin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebConfigAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4Templates\Admin\WebConnectionStringAdmin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebConnectionStringAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4Templates\Banner\SpNameBanner.cs">
+      <DependentUpon>SpNameBanner.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="T4Templates\Link\SpNameLink.cs">
+      <DependentUpon>SpNameLink.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="T4Templates\User\SpNameUser.cs">
+      <DependentUpon>SpNameUser.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="T4Templates\User\WebAppSettingUser.cs">
+      <DependentUpon>WebAppSettingUser.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="T4Templates\User\WebConfigUser.cs">
+      <DependentUpon>WebConfigUser.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="T4Templates\User\WebConnectionStringUser.cs">
+      <DependentUpon>WebConnectionStringUser.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Admin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="T4Templates\Admin\SpNameAdmin.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SpNameAdmin.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\Admin\WebAppSettingAdmin.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebAppSettingAdmin.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\Admin\WebConfigAdmin.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebConfigAdmin.cs</LastGenOutput>
+      <FormatOutput>True</FormatOutput>
+    </None>
+    <None Include="T4Templates\Admin\WebConnectionStringAdmin.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebConnectionStringAdmin.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\Banner\SpNameBanner.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SpNameBanner.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\Banner\WebConfigBanner.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebConfigBanner.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\WebService\SpNameWebService.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SpNameWebService.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\WebService\WebAppSettingUser.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebAppSettingUser.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\WebService\WebConfigWebService.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebConfigWebService.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\WebService\WebConnectionStringWebService.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebConnectionStringWebService.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\Link\SpNameLink.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SpNameLink.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\Link\WebConfigLink.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebConfigLink.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\User\SpNameUser.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SpNameUser.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\User\WebAppSettingUser.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebAppSettingUser.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\User\WebConfigUser.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebConfigUser.cs</LastGenOutput>
+    </None>
+    <None Include="T4Templates\User\WebConnectionStringUser.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebConnectionStringUser.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConfigGenerator.Core\ConfigGenerator.Core.csproj">
+      <Project>{F1DBBF7B-D61C-4900-A513-EE0EBCACCCA2}</Project>
+      <Name>ConfigGenerator.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

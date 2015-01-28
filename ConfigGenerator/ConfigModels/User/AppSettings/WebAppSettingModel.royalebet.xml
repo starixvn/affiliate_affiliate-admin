@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+  <Environment>
+    <local>Local Development</local>
+    <master>master</master>
+    <uat>UAT</uat>
+    <production>Production</production>
+  </Environment>
+  
+  <Layout>2</Layout>
+  <Theme>17</Theme>
+  <ServerID>400017</ServerID>
+  <InputAffType>1</InputAffType>
+  <IsShowZeroCommission>1</IsShowZeroCommission>
+  <IsShowDetailDailyEarnings>1</IsShowDetailDailyEarnings>
+  <DefaultLanguage>en-US</DefaultLanguage>
+  <DefaultTarget>Sportsbook</DefaultTarget>
+  <DefaultCurrency>USD</DefaultCurrency>
+  <AffCustomerServiceUrl>skype:Royalebet95.csd?chat</AffCustomerServiceUrl>
+  
+  <EmailHeaderBgColor>#c73737</EmailHeaderBgColor>
+  <EmailHeaderFontColor>#fff</EmailHeaderFontColor>
+  <EmailContentBgColor>#fff</EmailContentBgColor>
+  <EmailContentFontColor>#252525</EmailContentFontColor>
+  <EmailCopyrightBgColor>#ccc</EmailCopyrightBgColor>
+  <EmailCopyrightFontColor>#252525</EmailCopyrightFontColor>
+  <EmailFooterBgColor>#363636</EmailFooterBgColor>
+  <EmailFooterFontColor>#fff</EmailFooterFontColor>
+
+  <app_mail_id>
+    <local>31</local>
+    <master>31</master>
+    <uat>29</uat>
+    <production>29</production>
+  </app_mail_id>
+  
+  <MailContact>
+    <local>long.luu@nexcel.vn</local>
+    <master>long.luu@nexcel.vn</master>
+    <uat>affiliate@royalebet95.com</uat>
+    <production>affiliate@royalebet95.com</production>
+  </MailContact>
+  
+  <UM_StartTime>01 May 2013 02:30 PM</UM_StartTime>
+  <UM_EndTime>02 Jun 2013 04:00 PM</UM_EndTime>
+</settings>

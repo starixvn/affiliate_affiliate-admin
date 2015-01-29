@@ -1,34 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using ConfigGenerator.Core;
+﻿// --------------------------------------------------------------------------
+// <copyright file="ConfigurationGeneratorFactory.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2015.1.29">Created</change>
+// </history>
 
 namespace ConfigGenerator.Services.ConfigurationGenerators
 {
+    using System;
+    using System.Collections.Generic;
+    using ConfigGenerator.Core;
+
+    /// <summary>
+    /// Configuration Generator Factory.
+    /// </summary>
     public static class ConfigurationGeneratorFactory
     {
-        public static IList<IConfigurationGenerator> GetSupportedConfigurationGenerators(ConfigurationType configurationType)
-        {
-            return new List<IConfigurationGenerator>
-                {
-                    new WebConfigurationGenerator
-                        {
-                            ConfigurationType = configurationType
-                        },
-                    new WebAppSettingConfigurationGenerator
-                        {
-                            ConfigurationType = configurationType
-                        },
-                    new WebConnectionStringConfigurationGenerator
-                        {
-                            ConfigurationType = configurationType
-                        },
-                    new SpNameConfigurationGenerator
-                        {
-                            ConfigurationType = configurationType
-                        }
-                };
-        }
-
+        /// <summary>
+        /// Get Configuration Generator.
+        /// </summary>
+        /// <param name="configurationType">Configuration Type.</param>
+        /// <returns>Configuration Generator.</returns>
         public static IConfigurationGenerator GetConfigurationGenerator(ConfigurationType configurationType)
         {
             switch (configurationType)
@@ -58,6 +52,34 @@ namespace ConfigGenerator.Services.ConfigurationGenerators
                 default:
                     throw new ArgumentOutOfRangeException("configurationType");
             }
+        }
+
+        /// <summary>
+        /// Get Supported Configuration Generators.
+        /// </summary>
+        /// <param name="configurationType">Configuration Type.</param>
+        /// <returns>Configuration Generator List.</returns>
+        public static IList<IConfigurationGenerator> GetSupportedConfigurationGenerators(ConfigurationType configurationType)
+        {
+            return new List<IConfigurationGenerator>
+                {
+                    new WebConfigurationGenerator
+                        {
+                            ConfigurationType = configurationType
+                        },
+                    new WebAppSettingConfigurationGenerator
+                        {
+                            ConfigurationType = configurationType
+                        },
+                    new WebConnectionStringConfigurationGenerator
+                        {
+                            ConfigurationType = configurationType
+                        },
+                    new SpNameConfigurationGenerator
+                        {
+                            ConfigurationType = configurationType
+                        }
+                };
         }
     }
 }

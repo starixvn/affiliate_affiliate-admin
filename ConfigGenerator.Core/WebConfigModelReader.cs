@@ -7,14 +7,14 @@
 //   <change who="Brian.Dinh" date="2014.8.19">Created</change>
 // </history>
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Xml.Linq;
-
 namespace ConfigGenerator.Core
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Xml.Linq;
+
     /// <summary>
     /// Web config model reader.
     /// </summary>

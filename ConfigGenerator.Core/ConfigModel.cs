@@ -1,21 +1,33 @@
-﻿using System;
-using System.IO;
+﻿// --------------------------------------------------------------------------
+// <copyright file="ConfigModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2015.1.28">Created</change>
+// </history>
 
 namespace ConfigGenerator.Core
 {
+    using System;
+    using System.IO;
+
+    /// <summary>
+    /// Configuration Model.
+    /// </summary>
     public class ConfigModel
     {
-        public string SystemName { get; set; }
-
-        public SystemType SystemType { get; set; }
-
-        public string Licensee { get; set; }
-
         public string ConfigFolder { get; set; }
 
         public string EnvironmentName { get; set; }
 
         public bool IsGlobal { get; set; }
+
+        public string Licensee { get; set; }
+
+        public string SystemName { get; set; }
+
+        public SystemType SystemType { get; set; }
 
         public ConfigModel Clone()
         {
@@ -29,6 +41,20 @@ namespace ConfigGenerator.Core
                 };
         }
 
+        public string GetFileFilter()
+        {
+            if (IsGlobal)
+            {
+                return "*.xml";
+            }
+
+            return "*." + Licensee + ".xml";
+        }
+
+        /// <summary>
+        /// Get Model File.
+        /// </summary>
+        /// <returns>Model file.</returns>
         public string GetModelFile()
         {
             var fullPath = string.Format(@"{0}\{1}", Utility.GetModelFolder(), GetModelPath());
@@ -59,21 +85,15 @@ namespace ConfigGenerator.Core
             return string.Format(@"{0}\{1}", SystemName, ConfigFolder);
         }
 
-        public string GetFileFilter()
-        {
-            if (IsGlobal)
-            {
-                return "*.xml";
-            }
-
-            return "*." + Licensee + ".xml";
-        }
-
+        /// <summary>
+        /// Get connection string of affiliate user.
+        /// </summary>
+        /// <returns>Connection string.</returns>
         public string GetUserConnectionStringModelFile()
         {
-            const string modelPath = @"User\ConnectionStrings";
+            const string ModelPath = @"User\ConnectionStrings";
 
-            var fullPath = string.Format(@"{0}\{1}", Utility.GetModelFolder(), modelPath);
+            var fullPath = string.Format(@"{0}\{1}", Utility.GetModelFolder(), ModelPath);
 
             if (!Directory.Exists(fullPath))
             {
@@ -94,11 +114,15 @@ namespace ConfigGenerator.Core
             return files[0].FullName;
         }
 
+        /// <summary>
+        /// Get user web model file.
+        /// </summary>
+        /// <returns>Web model file.</returns>
         public object GetUserWebModelFile()
         {
-            const string modelPath = @"User\WebConfigs";
+            const string ModelPath = @"User\WebConfigs";
 
-            var fullPath = string.Format(@"{0}\{1}", Utility.GetModelFolder(), modelPath);
+            var fullPath = string.Format(@"{0}\{1}", Utility.GetModelFolder(), ModelPath);
 
             if (!Directory.Exists(fullPath))
             {

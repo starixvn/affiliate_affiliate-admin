@@ -1,9 +1,21 @@
-﻿using System.IO;
-using ConfigGenerator.Core;
-using ConfigGenerator.Services.Tranformers;
+﻿// --------------------------------------------------------------------------
+// <copyright file="SpNameConfigurationGenerator.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2015.1.29">Created</change>
+// </history>
 
 namespace ConfigGenerator.Services.ConfigurationGenerators
 {
+    using System.IO;
+    using ConfigGenerator.Core;
+    using ConfigGenerator.Services.Tranformers;
+
+    /// <summary>
+    /// SP Name Configuration Generator.
+    /// </summary>
     public class SpNameConfigurationGenerator : ConfigurationGenerator
     {
         protected override string GetTransformResult(ConfigModel configModel)

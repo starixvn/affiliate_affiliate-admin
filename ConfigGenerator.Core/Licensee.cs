@@ -1,21 +1,21 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SiteInfo.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="Licensee.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Brian.Dinh" date="2014.8.19">Created</change>
+//   <change who="Brian.Dinh" date="2015.1.29">Created</change>
 // </history>
-
-using System;
 
 namespace ConfigGenerator.Core
 {
+    using System;
+
     /// <summary>
-    /// Site information.
+    /// License Class.
     /// </summary>
     [Serializable]
-    public class Licensee : MarshalByRefObject
+    public class Licensee
     {
         public string Name { get; set; }
 

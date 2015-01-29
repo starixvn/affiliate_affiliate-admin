@@ -42,9 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigArgument.cs" />
     <Compile Include="ConfigurationGenerators\ConfigurationGenerator.cs" />
     <Compile Include="ConfigurationGenerators\ConfigurationGeneratorFactory.cs" />
     <Compile Include="SystemGenerators\ComplexSystemGenerator.cs" />
+    <Compile Include="SystemGenerators\SimpleSystemGenerator.cs" />
     <Compile Include="T4Templates\Banner\WebConfigBanner.cs">
       <DependentUpon>WebConfigBanner.tt</DependentUpon>
       <AutoGen>True</AutoGen>

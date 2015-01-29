@@ -6,10 +6,7 @@
 
 namespace ConfigGenerator.Core
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -17,6 +14,16 @@ namespace ConfigGenerator.Core
     public static class LicenseeUtility
     {
         private static IList<Licensee> _licensees;
+
+        public static IList<Licensee> SupportedLicensees
+        {
+            get
+            {
+                _licensees = _licensees ?? GetSupportedLicensees();
+
+                return _licensees;
+            }
+        }
 
         public static IList<Licensee> GetSupportedLicensees()
         {
@@ -28,16 +35,6 @@ namespace ConfigGenerator.Core
             manager.LoadXml();
 
             return manager.GetSupportedLicenseeList();
-        }
-
-        public static IList<Licensee> SupportedLicensees 
-        {
-            get
-            {
-                _licensees = _licensees ?? GetSupportedLicensees();
-
-                return _licensees;
-            }
         }
     }
 }

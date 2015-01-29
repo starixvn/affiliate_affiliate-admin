@@ -1,9 +1,20 @@
-﻿using System.IO;
-using ConfigGenerator.Core;
-using ConfigGenerator.Services.Tranformers;
+﻿// --------------------------------------------------------------------------
+// <copyright file="WebConnectionStringConfigurationGenerator.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2015.1.29">Created</change>
+// </history>
 
 namespace ConfigGenerator.Services.ConfigurationGenerators
 {
+    using ConfigGenerator.Core;
+    using ConfigGenerator.Services.Tranformers;
+
+    /// <summary>
+    /// Web Connection String Configuration Generator.
+    /// </summary>
     public class WebConnectionStringConfigurationGenerator : ConfigurationGenerator
     {
         public override void Generate(ConfigModel configModel)
@@ -14,11 +25,14 @@ namespace ConfigGenerator.Services.ConfigurationGenerators
             }
         }
 
-        private bool CheckValidSystem(ConfigModel configModel)
+        protected override string GetConfigurationFolder()
         {
-            return configModel.SystemType.HasFlag(SystemType.Admin)
-                || configModel.SystemType.HasFlag(SystemType.User)
-                || configModel.SystemType.HasFlag(SystemType.WebService);
+            return "ConnectionStrings";
+        }
+
+        protected override string GetConfigurationName()
+        {
+            return "Web.ConnectionString";
         }
 
         protected override string GetTransformResult(ConfigModel configModel)
@@ -31,14 +45,11 @@ namespace ConfigGenerator.Services.ConfigurationGenerators
             return ConfigurationType.HasFlag(ConfigurationType.ConnectionStrings);
         }
 
-        protected override string GetConfigurationFolder()
+        private bool CheckValidSystem(ConfigModel configModel)
         {
-            return "ConnectionStrings";
-        }
-
-        protected override string GetConfigurationName()
-        {
-            return "Web.ConnectionString";
+            return configModel.SystemType.HasFlag(SystemType.Admin)
+                || configModel.SystemType.HasFlag(SystemType.User)
+                || configModel.SystemType.HasFlag(SystemType.WebService);
         }
     }
 }

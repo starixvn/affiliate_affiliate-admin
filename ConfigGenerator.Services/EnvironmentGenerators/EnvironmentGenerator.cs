@@ -1,12 +1,29 @@
-﻿using ConfigGenerator.Core;
-using ConfigGenerator.Services.ConfigurationGenerators;
+﻿// --------------------------------------------------------------------------
+// <copyright file="EnvironmentGenerator.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2015.1.29">Created</change>
+// </history>
 
 namespace ConfigGenerator.Services.EnvironmentGenerators
 {
+    using ConfigGenerator.Core;
+    using ConfigGenerator.Services.ConfigurationGenerators;
+
+    /// <summary>
+    /// Environment Generator.
+    /// </summary>
     public abstract class EnvironmentGenerator : IEnvironmentGenerator
     {
         public EnvironmentType EnvironmentType { get; set; }
 
+        /// <summary>
+        /// Generate Method.
+        /// </summary>
+        /// <param name="configArgument">Configuration Argument.</param>
+        /// <param name="configModel">Configuration Model.</param>
         public virtual void Generate(ConfigArgument configArgument, ConfigModel configModel)
         {
             if (!IsValidEnvironment())

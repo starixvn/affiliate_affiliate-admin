@@ -1,8 +1,20 @@
-﻿using ConfigGenerator.Core;
-using ConfigGenerator.Services.Tranformers;
+﻿// --------------------------------------------------------------------------
+// <copyright file="WebAppSettingConfigurationGenerator.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2015.1.29">Created</change>
+// </history>
 
 namespace ConfigGenerator.Services.ConfigurationGenerators
 {
+    using ConfigGenerator.Core;
+    using ConfigGenerator.Services.Tranformers;
+
+    /// <summary>
+    /// Web Application Setting Configuration Generator.
+    /// </summary>
     public class WebAppSettingConfigurationGenerator : ConfigurationGenerator
     {
         public override void Generate(ConfigModel configModel)
@@ -13,10 +25,14 @@ namespace ConfigGenerator.Services.ConfigurationGenerators
             }
         }
 
-        private bool CheckValidSystem(ConfigModel configModel)
+        protected override string GetConfigurationFolder()
         {
-            return configModel.SystemType.HasFlag(SystemType.Admin)
-                || configModel.SystemType.HasFlag(SystemType.User);
+            return "AppSettings";
+        }
+
+        protected override string GetConfigurationName()
+        {
+            return "Web.AppSetting";
         }
 
         protected override string GetTransformResult(ConfigModel configModel)
@@ -36,14 +52,10 @@ namespace ConfigGenerator.Services.ConfigurationGenerators
             return ConfigurationType.HasFlag(ConfigurationType.AppSetting);
         }
 
-        protected override string GetConfigurationFolder()
+        private bool CheckValidSystem(ConfigModel configModel)
         {
-            return "AppSettings";
-        }
-
-        protected override string GetConfigurationName()
-        {
-            return "Web.AppSetting";
+            return configModel.SystemType.HasFlag(SystemType.Admin)
+                || configModel.SystemType.HasFlag(SystemType.User);
         }
     }
 }

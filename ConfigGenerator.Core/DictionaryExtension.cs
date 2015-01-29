@@ -7,10 +7,10 @@
 //   <change who="Brian.Dinh" date="2014.8.19">Created</change>
 // </history>
 
-using System.Collections.Generic;
-
 namespace ConfigGenerator.Core
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

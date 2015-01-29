@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ConfigGenerator.Core;
-using ConfigGenerator.Services.SystemGenerators;
+﻿// --------------------------------------------------------------------------
+// <copyright file="GeneratorService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2015.1.29">Created</change>
+// </history>
 
 namespace ConfigGenerator.Services
 {
-    public class ConfigArgument
-    {
-        public SystemType SystemType { get; set; }
+    using ConfigGenerator.Core;
+    using ConfigGenerator.Services.SystemGenerators;
 
-        public ConfigurationType ConfigurationType { get; set; }
-
-        public EnvironmentType EnvironmentType { get; set; }
-
-        public IEnumerable<string> SelectedLicensees { get; set; }
-    }
-
+    /// <summary>
+    /// Generator Service.
+    /// </summary>
     public class GeneratorService
     {
         public void Generate(ConfigArgument configArgument)
@@ -27,6 +25,11 @@ namespace ConfigGenerator.Services
             }
         }
 
+        /// <summary>
+        /// Generate Configuration Of One-Specific Licensee.
+        /// </summary>
+        /// <param name="configArgument">Configuration Argument.</param>
+        /// <param name="licenseeName">Licensee Name.</param>
         private void GenerateOneLicensee(ConfigArgument configArgument, string licenseeName)
         {
             var systemGeneratorList = SystemGeneratorFactory.GetSupportedSystemGenerators(configArgument.SystemType);
@@ -39,7 +42,6 @@ namespace ConfigGenerator.Services
 
             foreach (var generator in systemGeneratorList)
             {
-                
                 generator.Generate(configArgument, licensee);
             }
         }

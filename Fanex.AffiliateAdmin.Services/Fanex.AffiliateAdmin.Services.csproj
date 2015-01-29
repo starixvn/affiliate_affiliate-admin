@@ -46,16 +46,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CasinoLibrary, Version=1.0.2.8, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="CasinoLibrary">
       <HintPath>..\packages\CasinoLibrary.1.0.2.8\lib\net40\CasinoLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="CasinoSetting">
-      <HintPath>..\packages\Casino\CasinoSetting.dll</HintPath>
-    </Reference>
-    <Reference Include="CasinoUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Casino\CasinoUtility.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase">
       <HintPath>..\packages\Fanex.Caching.1.0.404.95\lib\net40\Couchbase.dll</HintPath>
@@ -79,12 +71,11 @@
     <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.MailDeliver.MailClient.1.0.0.2\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
     </Reference>
-    <Reference Include="GotDotNet.ApplicationBlocks.Data, Version=3.1.0.0, Culture=neutral">
+    <Reference Include="GotDotNet.ApplicationBlocks.Data">
       <HintPath>..\packages\HandHistoryLibrary.2014.11.11.1541\lib\net40\GotDotNet.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
-    <Reference Include="HandHistoryLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Casino\HandHistoryLibrary.dll</HintPath>
+    <Reference Include="HandHistoryLibrary">
+      <HintPath>..\packages\HandHistoryLibrary.2014.11.11.1541\lib\net40\HandHistoryLibrary.dll</HintPath>
     </Reference>
     <Reference Include="IBCCrypt">
       <HintPath>..\packages\Fanex.Crypt.1.1.0.0\lib\net40\IBCCrypt.dll</HintPath>
@@ -95,16 +86,13 @@
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\packages\NPOI.2.0.6\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
     <Reference Include="ILogger">
       <HintPath>..\packages\ILogger.1.0.0.0\lib\net40\ILogger.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.9.0\lib\net11\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=3.1.0.0, Culture=neutral">
+    <Reference Include="Microsoft.ApplicationBlocks.Data">
       <HintPath>..\packages\HandHistoryLibrary.2014.11.11.1541\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching">
@@ -135,16 +123,8 @@
     <Reference Include="MvcPager">
       <HintPath>..\packages\MvcPager.1.5.0.28157\lib\net40\MvcPager.dll</HintPath>
     </Reference>
-    <Reference Include="NetUtility, Version=1.0.4199.22106, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Casino\NetUtility.dll</HintPath>
-    </Reference>
-    <Reference Include="Nini, Version=1.1.0.0, Culture=neutral, PublicKeyToken=691faec150a7fa7b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Casino\Nini.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI">
-      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
+    <Reference Include="NetUtility">
+      <HintPath>..\packages\HandHistoryLibrary.2014.11.11.1541\lib\net40\NetUtility.dll</HintPath>
     </Reference>
     <Reference Include="RazorEngine, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorEngine.3.2.0\lib\net40\RazorEngine.dll</HintPath>
@@ -155,9 +135,8 @@
     <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
     </Reference>
-    <Reference Include="Sunplus.Libraries.AOP, Version=1.0.4218.28561, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Casino\Sunplus.Libraries.AOP.dll</HintPath>
+    <Reference Include="Sunplus.Libraries.AOP">
+      <HintPath>..\packages\Sunplus.Libraries.AOP.1.0.4218.28561\lib\net40\Sunplus.Libraries.AOP.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -259,20 +238,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="App_Data\Fanex.Result\Badminton.xls" />
-    <None Include="App_Data\Fanex.Result\BaseBall.xls" />
-    <None Include="App_Data\Fanex.Result\Basketball.xls" />
-    <None Include="App_Data\Fanex.Result\Billiard.xls" />
-    <None Include="App_Data\Fanex.Result\Hockey.xls" />
-    <None Include="App_Data\Fanex.Result\HorseRacing.xls" />
-    <None Include="App_Data\Fanex.Result\LiveCasino.xls" />
-    <None Include="App_Data\Fanex.Result\NumberGame.xls" />
-    <None Include="App_Data\Fanex.Result\OtherSport.xls" />
-    <None Include="App_Data\Fanex.Result\Outright.xls" />
-    <None Include="App_Data\Fanex.Result\Soccer.xls" />
-    <None Include="App_Data\Fanex.Result\Tennis.xls" />
-    <None Include="App_Data\Fanex.Result\VSHRacing.xls" />
-    <None Include="App_Data\Fanex.Result\VSTennis.xls" />
     <None Include="packages.config" />
     <None Include="Service References\MemberSiteService\service.wsdl" />
   </ItemGroup>
@@ -322,19 +287,10 @@
   <ItemGroup>
     <Folder Include="CodeAnalysis\" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\Fanex.Result\fanex.result.css" />
-    <Content Include="Content\Fanex.Result\images\1F.gif" />
-    <Content Include="Content\Fanex.Result\images\1L.gif" />
-    <Content Include="Content\Fanex.Result\images\bg_header03.jpg" />
-    <Content Include="Content\Fanex.Result\images\first-goal.gif" />
-    <Content Include="Content\Fanex.Result\images\last-goal.gif" />
-    <Content Include="Content\Fanex.Result\images\tab_topbg.gif" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,12 +1,16 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="LicenseeUtility.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="LicenseeUtility.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Brian.Dinh" date="2015.1.29">Created</change>
+// </history>
 
 namespace ConfigGenerator.Core
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// TODO: Update summary.
@@ -19,22 +23,22 @@ namespace ConfigGenerator.Core
         {
             get
             {
-                _licensees = _licensees ?? GetSupportedLicensees();
+                if (_licensees != null)
+                {
+                    return _licensees;
+                }
+
+                var manager = new SiteManager
+                {
+                    XmlFile = Utility.GetModelFolder() + @"\SiteConfigModel.xml"
+                };
+
+                manager.LoadXml();
+
+                _licensees = manager.GetSupportedLicenseeList();
 
                 return _licensees;
             }
-        }
-
-        public static IList<Licensee> GetSupportedLicensees()
-        {
-            var manager = new SiteManager
-            {
-                XmlFile = Utility.GetModelFolder() + @"\SiteConfigModel.xml"
-            };
-
-            manager.LoadXml();
-
-            return manager.GetSupportedLicenseeList();
         }
     }
 }

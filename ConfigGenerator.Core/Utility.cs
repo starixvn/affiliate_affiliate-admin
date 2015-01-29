@@ -1,6 +1,7 @@
 ﻿namespace ConfigGenerator.Core
 {
     using System.Configuration;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Utility class.

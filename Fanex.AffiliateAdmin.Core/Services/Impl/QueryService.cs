@@ -7,8 +7,6 @@
 //   <change who="Johnny.Trinh" date="2013.08.22">Created</change>
 // </history>
 
-using Fanex.Data.Repository;
-
 namespace Fanex.AffiliateAdmin.Core.Services
 {
     using System;
@@ -16,6 +14,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
     using System.Diagnostics.CodeAnalysis;
     using Fanex.Common.Helper;
     using Fanex.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Query Service class.

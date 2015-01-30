@@ -126,7 +126,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Update account.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        public void AccountUpdate(AccountCriteria criteria)
+        public void AccountUpdate(AccountUpdCriteria criteria)
         {
             ExecuteOutput(criteria);
         }
@@ -135,7 +135,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Insert new account.
         /// </summary>
         /// <param name="criteria">Account criteria.</param>
-        public void AccountInsert(AccountCriteria criteria)
+        public void AccountInsert(AccountInsCriteria criteria)
         {
             ExecuteOutput(criteria);
         }
@@ -144,7 +144,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Update status.
         /// </summary>
         /// <param name="criteria">Account criteria.</param>
-        public void AccountUpdateStatus(AccountCriteria criteria)
+        public void AccountUpdateStatus(AccountUpdClosedCriteria criteria)
         {
             ExecuteOutput(criteria);
         }

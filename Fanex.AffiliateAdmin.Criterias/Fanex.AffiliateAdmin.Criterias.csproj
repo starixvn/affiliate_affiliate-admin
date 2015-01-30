@@ -119,8 +119,10 @@
     <Compile Include="..\Fanex.AffiliateAdmin.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
-    <Compile Include="AccountCriteria.cs" />
-    <Compile Include="AccountTypeCriteria.cs" />
+    <Compile Include="Account\AccountInsCriteria.cs" />
+    <Compile Include="Account\AccountTypeCriteria.cs" />
+    <Compile Include="Account\AccountUpdClosedCriteria.cs" />
+    <Compile Include="Account\AccountUpdCriteria.cs" />
     <Compile Include="AdjustmentCriteria.cs" />
     <Compile Include="AdjustmentEditCriteria.cs" />
     <Compile Include="AffiliateUnlockCriteria.cs" />
@@ -132,20 +134,40 @@
     <Compile Include="AffiliateUpdCriteria.cs" />
     <Compile Include="AffiliateUpdLanguageCriteria.cs" />
     <Compile Include="AffiliateUpdStatusCriteria.cs" />
-    <Compile Include="BannerDeleteCriteria.cs" />
-    <Compile Include="BannerInsCriteria.cs" />
+    <Compile Include="AllSystemCurrencyCriteria.cs" />
+    <Compile Include="Configuration\SystemSetting\SystemSettingsSelByIdCriteria.cs" />
+    <Compile Include="Configuration\SystemSetting\SystemSettingsSelByNameCriteria.cs" />
+    <Compile Include="Configuration\SystemSetting\SystemSettingsSelByTypeCriteria.cs" />
+    <Compile Include="DomainAff\DomainAffDelCriteria.cs" />
+    <Compile Include="DomainAff\DomainAffInsCriteria.cs" />
+    <Compile Include="DomainAff\DomainAffSelByIdCriteria.cs" />
+    <Compile Include="DomainAff\DomainAffSelCriteria.cs" />
+    <Compile Include="DomainAff\DomainAffUpdCriteria.cs" />
+    <Compile Include="DomainControl\DomainControlDelCriteria.cs" />
+    <Compile Include="DomainControl\DomainControlInsCriteria.cs" />
+    <Compile Include="DomainControl\DomainControlSelByIdCriteria.cs" />
+    <Compile Include="DomainControl\DomainControlSelCriteria.cs" />
+    <Compile Include="DomainControl\DomainControlUpdCriteria.cs" />
+    <Compile Include="DomainMem\DomainMemDelCriteria.cs" />
+    <Compile Include="DomainMem\DomainMemInsCriteria.cs" />
+    <Compile Include="DomainMem\DomainMemSelByIdCriteria.cs" />
+    <Compile Include="DomainMem\DomainMemSelCriteria.cs" />
+    <Compile Include="DomainMem\DomainMemUpdCriteria.cs" />
+    <Compile Include="EmailHistoryDelCriteria.cs" />
+    <Compile Include="EmailHistorySelCriteria.cs" />
+    <Compile Include="Media\BannerDeleteCriteria.cs" />
+    <Compile Include="Media\BannerInsCriteria.cs" />
     <Compile Include="AffTypeCriteria.cs" />
-    <Compile Include="BannerDetailCriteria.cs" />
-    <Compile Include="BannerUpdateCriteria.cs" />
+    <Compile Include="Media\BannerDetailCriteria.cs" />
+    <Compile Include="Media\BannerUpdateCriteria.cs" />
     <Compile Include="BetList\BetListResultsRNGCasinoDetailCriteria.cs" />
     <Compile Include="ChangePasswordCriteria.cs" />
     <Compile Include="ChangeAffPasswordCriteria.cs" />
-    <Compile Include="BannerTypeDetailCriteria.cs" />
+    <Compile Include="Media\BannerTypeDetailCriteria.cs" />
     <Compile Include="CheckMemberExistCriteria.cs" />
-    <Compile Include="CommGroupActionCriteria.cs" />
-    <Compile Include="CommGroupCriteria.cs" />
-    <Compile Include="CommGroupInfoCriteria.cs" />
-    <Compile Include="CommGroupSelByIdCriteria.cs" />
+    <Compile Include="CommGroup\CommGroupCriteria.cs" />
+    <Compile Include="CommGroup\CommGroupInfoCriteria.cs" />
+    <Compile Include="CommGroup\CommGroupSelByIdCriteria.cs" />
     <Compile Include="AffiliateWinLossOverviewCriteria.cs" />
     <Compile Include="Configuration\AffType\AffTypeSelectCriteria.cs" />
     <Compile Include="CompanyWinlossByProductCriteria.cs" />
@@ -156,6 +178,7 @@
     <Compile Include="GetMemberDetailCriteria.cs" />
     <Compile Include="MemberWinlossByProductCriteria.cs" />
     <Compile Include="MemberWinlossOverviewCriteria.cs" />
+    <Compile Include="SystemSupportedCurrencyCriteria.cs" />
     <Compile Include="TierSettingCriteria.cs" />
     <Compile Include="AffiliateStatisticCriteria.cs" />
     <Compile Include="Configuration\AffType\AffTypeUpdateCriteria.cs" />
@@ -163,18 +186,18 @@
     <Compile Include="Configuration\AffType\AffTypeDeleteCriteria.cs" />
     <Compile Include="Configuration\AffType\AffTypeDetailCriteria.cs" />
     <Compile Include="Configuration\Country\CountryAddCriteria.cs" />
-    <Compile Include="AccountPasswordCriteria.cs" />
+    <Compile Include="Account\AccountPasswordCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingExchangeCriteria.cs" />
     <Compile Include="Configuration\Tracking\ClickStatisticByPageCriteria.cs" />
     <Compile Include="Configuration\Tracking\ClickStatisticBySiteCriteria.cs" />
     <Compile Include="Configuration\Tracking\ClickStatisticDetailCriteria.cs" />
-    <Compile Include="CommGroupAssignCriteria.cs" />
+    <Compile Include="CommGroup\CommGroupAssignCriteria.cs" />
     <Compile Include="CompanyWinlossOverviewCriteria.cs" />
     <Compile Include="CashBackUpdateCriteria.cs" />
-    <Compile Include="CommGroupSelActiveListCriteria.cs" />
-    <Compile Include="CommGroupInsertCriteria.cs" />
-    <Compile Include="CommGroupDeleteCriteria.cs" />
-    <Compile Include="CommGroupUpdateCriteria.cs" />
+    <Compile Include="CommGroup\CommGroupSelActiveListCriteria.cs" />
+    <Compile Include="CommGroup\CommGroupInsertCriteria.cs" />
+    <Compile Include="CommGroup\CommGroupDeleteCriteria.cs" />
+    <Compile Include="CommGroup\CommGroupUpdateCriteria.cs" />
     <Compile Include="GetDefaultPSPExchangeCriteria.cs" />
     <Compile Include="TestWebServiceCriteria.cs" />
     <Compile Include="CustomerSelByUserNameCriteria.cs" />
@@ -208,26 +231,22 @@
     <Compile Include="Configuration\Product\ProductDetailCriteria.cs" />
     <Compile Include="Configuration\Country\CountryUpdateCriteria.cs" />
     <Compile Include="Configuration\Country\CountryDeleteCriteria.cs" />
-    <Compile Include="DomainControlCriteria.cs" />
-    <Compile Include="CommGroupCurrencyCriteria.cs" />
+    <Compile Include="CommGroup\CommGroupCurrencyCriteria.cs" />
     <Compile Include="Configuration\Country\CountryDetailCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingAddCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingDeleteCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingUpdateCriteria.cs" />
     <Compile Include="ExchangeRateCriteria.cs" />
     <Compile Include="DatabaseAction.cs" />
-    <Compile Include="BannerListCriteria.cs" />
-    <Compile Include="BannerTypeCriteria.cs" />
-    <Compile Include="DomainMemCriteria.cs" />
+    <Compile Include="Media\BannerListCriteria.cs" />
+    <Compile Include="Media\BannerTypeCriteria.cs" />
     <Compile Include="GroupListCriteria.cs" />
     <Compile Include="MessageAddCriteria.cs" />
     <Compile Include="AffiliateListCriteria.cs" />
-    <Compile Include="DomainAffCriteria.cs" />
     <Compile Include="CustomerRemoveCriteria.cs" />
     <Compile Include="MemberListCriteria.cs" />
     <Compile Include="CriteriaType.cs" />
     <Compile Include="DummyAccIdCriteria.cs" />
-    <Compile Include="EmailHistoryCriteria.cs" />
     <Compile Include="GroupCriteria.cs" />
     <Compile Include="HomeOnlineListCriteria.cs" />
     <Compile Include="HomeGeneralInfoCriteria.cs" />
@@ -258,7 +277,6 @@
     <Compile Include="UpdateMessageCriteria.cs" />
     <Compile Include="UserCriteria.cs" />
     <Compile Include="UserPolicyCriteria.cs" />
-    <Compile Include="Configuration\SystemSetting\SystemSettingDetailCriteria.cs" />
     <Compile Include="ViewLogListCriteria.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +313,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Message\" />
+    <Folder Include="Payment\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

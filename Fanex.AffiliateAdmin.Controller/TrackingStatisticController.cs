@@ -86,9 +86,8 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult LandingPage()
         {
-            var customerPages = this._systemSettingService.GetCustomerPages(new SystemSettingDetailCriteria
+            var customerPages = this._systemSettingService.GetCustomerPages(new SystemSettingsSelByTypeCriteria
             {
-                SearchBy = SearchByType.ByType,
                 Type = "CustomerPage"
             });
 

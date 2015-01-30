@@ -23,73 +23,73 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List affiliate.</returns>
-        IEnumerable<Domain> AffDomainList(DomainAffCriteria criteria);
+        IEnumerable<Domain> AffDomainList(DomainAffSelCriteria criteria);
 
         /// <summary>
         /// Add Affiliate Domain.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        void AffDomainAdd(DomainAffCriteria criteria);
+        void AffDomainAdd(DomainAffInsCriteria criteria);
 
         /// <summary>
         /// Remove Affiliate Domain.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        void AffDomainDelete(DomainAffCriteria criteria);
+        void AffDomainDelete(DomainAffDelCriteria criteria);
 
         /// <summary>
         /// Update Affiliate Domain.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        void AffDomainUpdate(DomainAffCriteria criteria);
+        void AffDomainUpdate(DomainAffUpdCriteria criteria);
 
         /// <summary>
         /// Get Affiliate Domain by ID.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Domain info.</returns>
-        Domain AffDomainSelectById(DomainAffCriteria criteria);
+        Domain AffDomainSelectById(DomainAffSelByIdCriteria criteria);
 
         /// <summary>
         /// Member Domain list.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List domain.</returns>
-        IEnumerable<Domain> MemDomainList(DomainMemCriteria criteria);
+        IEnumerable<Domain> MemDomainList(DomainMemSelCriteria criteria);
 
         /// <summary>
         /// Add Member Domain.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        void MemDomainAdd(DomainMemCriteria criteria);
+        void MemDomainAdd(DomainMemInsCriteria criteria);
 
         /// <summary>
         /// Remove MemberDomain.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        void MemDomainDelete(DomainMemCriteria criteria);
+        void MemDomainDelete(DomainMemDelCriteria criteria);
 
         /// <summary>
         /// Update Member Domain.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        void MemDomainUpdate(DomainMemCriteria criteria);
+        void MemDomainUpdate(DomainMemUpdCriteria criteria);
 
         /// <summary>
         /// Get MemberDomain by ID.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Domain info.</returns>
-        Domain MemDomainSelectById(DomainMemCriteria criteria);
+        Domain MemDomainSelectById(DomainMemSelByIdCriteria criteria);
 
-        IEnumerable<DomainControl> DomainControlList(DomainControlCriteria criteria);
+        IEnumerable<DomainControl> DomainControlList(DomainControlSelCriteria criteria);
 
-        void DomainControlAdd(DomainControlCriteria criteria);
+        void DomainControlAdd(DomainControlInsCriteria criteria);
 
-        void DomainControlDelete(DomainControlCriteria criteria);
+        void DomainControlDelete(DomainControlDelCriteria criteria);
 
-        void DomainControlUpdate(DomainControlCriteria criteria);
+        void DomainControlUpdate(DomainControlUpdCriteria criteria);
 
-        DomainControl DomainControlSelectById(DomainControlCriteria criteria);
+        DomainControl DomainControlSelectById(DomainControlSelByIdCriteria criteria);
     }
 }

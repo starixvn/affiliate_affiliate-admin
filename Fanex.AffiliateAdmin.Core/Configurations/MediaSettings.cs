@@ -54,11 +54,9 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                return AppSettings.GetSettingValue(new SystemSettingDetailCriteria
+                return AppSettings.GetSettingValue(new SystemSettingsSelByNameCriteria
                 {
                     Name = "BannerDomain",
-                    Type = "Meta",
-                    SearchBy = SearchByType.ByName
                 });
             }
         }
@@ -67,11 +65,9 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                return AppSettings.GetSettingValue(new SystemSettingDetailCriteria
+                return AppSettings.GetSettingValue(new SystemSettingsSelByNameCriteria
                 {
                     Name = "BannerDirectory",
-                    Type = "Meta",
-                    SearchBy = SearchByType.ByName
                 }).Replace("/", "\\");
             }
         }

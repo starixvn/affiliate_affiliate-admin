@@ -135,7 +135,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
-                var criteria = new AccountCriteria
+                var criteria = new AccountUpdCriteria
                     {
                         CustId = model.CustID,
                         FirstName = model.FirstName,
@@ -143,7 +143,6 @@ namespace Fanex.AffiliateAdmin.Controller
                         GroupId = model.GroupID,
                         UserId = SessionManager.CurrentSession.CustID,
                         Ip = Remote.GetClientIPAddress(),
-                        Type = "Edit"
                     };
 
                 _accountService.AccountUpdate(criteria);
@@ -185,16 +184,15 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
-                var criteria = new AccountCriteria
+                var criteria = new AccountInsCriteria
                     {
                         UserId = SessionManager.CurrentSession.CustID,
                         Ip = Remote.GetClientIPAddress(),
-                        Type = "Add",
                         Password = Cryptography.CfsEnCode(model.Password),
                         CustId = model.CustID,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
-                        Username = model.Username,
+                        UserName = model.Username,
                         GroupId = model.GroupID
                     };
 
@@ -220,11 +218,10 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Account Criteria.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
-        public ActionResult ChangeStatus(AccountCriteria criteria)
+        public ActionResult ChangeStatus(AccountUpdClosedCriteria criteria)
         {
             criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.Ip = Remote.GetClientIPAddress();
-            criteria.Type = "Status";
 
             _accountService.AccountUpdateStatus(criteria);
 

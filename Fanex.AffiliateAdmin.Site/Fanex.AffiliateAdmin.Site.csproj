@@ -678,6 +678,7 @@
     <Content Include="Content\_Sites\yhy1980\images\favicon.jpg" />
     <Content Include="Content\_Sites\yhy1980\images\headerbg.jpg" />
     <Content Include="Content\_Sites\yhy1980\images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\yhy1980\images\logo.jpg" />
     <Content Include="Content\_Sites\yhy1980\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\yhy1980\images\notify.png" />
     <Content Include="Content\_Sites\yhy1980\images\panel.png" />

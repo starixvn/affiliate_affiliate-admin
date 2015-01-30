@@ -8,6 +8,8 @@
 //   <change who="Muller.Nguyen" date="2013.07.04">Add properties ListCurrency</change>
 // </history>
 
+using Fanex.Data.Repository;
+
 namespace Fanex.AffiliateAdmin.Core.Services
 {
     using System.Collections.Generic;
@@ -32,11 +34,11 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// <summary>
         /// Gets object setting.
         /// </summary>
-        /// <param name="detailCriteria">Input criteria.</param>
+        /// <param name="criteria">Input criteria.</param>
         /// <returns>Return object.</returns>
-        public SystemSetting GetSystemSetting(SystemSettingDetailCriteria detailCriteria)
+        public SystemSetting GetSystemSetting(ICriteria criteria)
         {
-            return this.GetEntity<SystemSetting>(detailCriteria);
+            return GetEntity<SystemSetting>(criteria);
         }
 
         /// <summary>
@@ -44,7 +46,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// </summary>
         /// <param name="detailCriteria">Input criteria.</param>
         /// <returns>Return list system setting.</returns>
-        public IEnumerable<SystemSetting> GetSystemSettingList(SystemSettingDetailCriteria detailCriteria)
+        public IEnumerable<SystemSetting> GetSystemSettingList(ICriteria detailCriteria)
         {
             return this.GetDataOutput<SystemSetting>(detailCriteria);
         }
@@ -282,18 +284,15 @@ namespace Fanex.AffiliateAdmin.Core.Services
             return this.GetData<AffType>(criteria);
         }
 
-        public IEnumerable<Currency> GetAffSystemSupportedCurrencyList(AccountCriteria criteria)
+        public IEnumerable<Currency> GetAffSystemSupportedCurrencyList(SystemSupportedCurrencyCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            criteria.Type = "SystemCurrency";
-
             return this.GetData<Currency>(criteria);
         }
 
-        public IEnumerable<Currency> GetAffSystemAllSupportedCurrencyList(AccountCriteria criteria)
+        public IEnumerable<Currency> GetAffSystemAllSupportedCurrencyList(AllSystemCurrencyCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            criteria.Type = "AllSystemCurrency";
 
             return this.GetData<Currency>(criteria);
         }
@@ -344,7 +343,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// </summary>
         /// <param name="criteria">System setting detail criteria.</param>
         /// <returns>List system setting.</returns>
-        public IEnumerable<SystemSetting> GetCustomerPages(SystemSettingDetailCriteria criteria)
+        public IEnumerable<SystemSetting> GetCustomerPages(SystemSettingsSelByTypeCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 

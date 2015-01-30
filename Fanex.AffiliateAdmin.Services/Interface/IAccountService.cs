@@ -64,19 +64,19 @@ namespace Fanex.AffiliateAdmin.Services
         /// Update account.
         /// </summary>
         /// <param name="criteria">Account criteria.</param>
-        void AccountUpdate(AccountCriteria criteria);
+        void AccountUpdate(AccountUpdCriteria criteria);
 
         /// <summary>
         /// Insert new account.
         /// </summary>
         /// <param name="criteria">Account criteria.</param>
-        void AccountInsert(AccountCriteria criteria);
+        void AccountInsert(AccountInsCriteria criteria);
 
         /// <summary>
         /// Update account status.
         /// </summary>
         /// <param name="criteria">Account criteria.</param>
-        void AccountUpdateStatus(AccountCriteria criteria);
+        void AccountUpdateStatus(AccountUpdClosedCriteria criteria);
 
         /// <summary>
         /// Update account password.

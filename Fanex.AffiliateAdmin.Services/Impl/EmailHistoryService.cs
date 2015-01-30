@@ -40,7 +40,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List email history.</returns>
-        public IEnumerable<EmailHistory> GetList(EmailHistoryCriteria criteria)
+        public IEnumerable<EmailHistory> GetList(EmailHistorySelCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             return GetDataOutput<EmailHistory>(criteria);
@@ -50,7 +50,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Execute store procedure.
         /// </summary>
         /// <param name="criteria">Email history criteria.</param>
-        public void ExecuteSP(EmailHistoryCriteria criteria)
+        public void ExecuteSP(EmailHistoryDelCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             ExecuteOutput(criteria);

@@ -9,6 +9,8 @@
 //   <change who="Joseph.Pham" date="2013.08.23">Add method GetAdminCurrencies</change>
 // </history>
 
+using Fanex.Data.Repository;
+
 namespace Fanex.AffiliateAdmin.Core.Services.Interface
 {
     using System.Collections.Generic;
@@ -28,16 +30,16 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
         /// Get system setting.
         /// For case, search by ID.
         /// </summary>
-        /// <param name="detailCriteria">Input criteria.</param>
+        /// <param name="criteria">Input criteria.</param>
         /// <returns>Return object.</returns>
-        SystemSetting GetSystemSetting(SystemSettingDetailCriteria detailCriteria);
+        SystemSetting GetSystemSetting(ICriteria criteria);
 
         /// <summary>
         /// Gets list setting when search by name, type.
         /// </summary>
         /// <param name="detailCriteria">Input criteria.</param>
         /// <returns>Return list system setting.</returns>
-        IEnumerable<SystemSetting> GetSystemSettingList(SystemSettingDetailCriteria detailCriteria);
+        IEnumerable<SystemSetting> GetSystemSettingList(ICriteria detailCriteria);
 
         IEnumerable<SystemSetting> GetSystemSettingList(SystemSettingSelectCriteria criteria);
 
@@ -149,14 +151,14 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Currency list.</returns>
-        IEnumerable<Currency> GetAffSystemSupportedCurrencyList(AccountCriteria criteria);
+        IEnumerable<Currency> GetAffSystemSupportedCurrencyList(SystemSupportedCurrencyCriteria criteria);
 
         /// <summary>
         /// Get system supported currencies (without currency permission).
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Currency list.</returns>
-        IEnumerable<Currency> GetAffSystemAllSupportedCurrencyList(AccountCriteria criteria);
+        IEnumerable<Currency> GetAffSystemAllSupportedCurrencyList(AllSystemCurrencyCriteria criteria);
         
         IEnumerable<AffType> GetAffTypeList(AffTypeCriteria criteria);
 
@@ -178,6 +180,6 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
         /// </summary>
         /// <param name="criteria">System setting detail criteria.</param>
         /// <returns>List system setting.</returns>
-        IEnumerable<SystemSetting> GetCustomerPages(SystemSettingDetailCriteria criteria);
+        IEnumerable<SystemSetting> GetCustomerPages(SystemSettingsSelByTypeCriteria criteria);
     }
 }

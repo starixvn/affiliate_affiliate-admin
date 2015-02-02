@@ -43,6 +43,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public bool IsITAdmin { get; set; }
 
+        [SpParam(Ignored = true)]
         public bool ByAffiliate { get; set; }
 
         public int PageSize { get; set; }

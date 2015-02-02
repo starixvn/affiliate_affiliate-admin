@@ -17,6 +17,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class MemberWinLossOverviewCriteria : CriteriaBase
     {
+        [SpParam(Ignored = true)]
         public bool ByAffiliate { get; set; }
 
         public int UserId { get; set; }

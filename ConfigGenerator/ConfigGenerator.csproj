@@ -139,6 +139,9 @@
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.thbet.xml" />
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.wawabet.xml" />
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.winner99.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.yhy1980.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.28bet.xml" />
     <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.allbetclubs.xml" />
     <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.aoncash.xml" />
@@ -165,6 +168,7 @@
     <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.thbet.xml" />
     <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.wawabet.xml" />
     <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.winner99.xml" />
+    <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.yhy1980.xml" />
     <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.28bet.xml" />
     <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.allbetclubs.xml" />
     <Content Include="ConfigModels\User\ConnectionStrings\WebConnectionStringModel.aoncash.xml" />

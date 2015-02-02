@@ -7,10 +7,9 @@
 //   <change who="Joseph.Pham" date="2013.8.2">Created</change>
 // </history>
 
-using System;
-
 namespace Fanex.AffiliateAdmin.Controller
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configurations;

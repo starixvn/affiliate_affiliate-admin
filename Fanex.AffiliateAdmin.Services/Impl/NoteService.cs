@@ -35,7 +35,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Note criteria.</param>
         /// <returns>Note information.</returns>
-        public Note GetNote(NoteCriteria criteria)
+        public Note GetNote(NoteSelCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -46,7 +46,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Insert note.
         /// </summary>
         /// <param name="criteria">Note criteria.</param>
-        public void InsertNote(NoteCriteria criteria)
+        public void InsertNote(NoteInsCriteria criteria)
         {
             ExecuteOutput(criteria);
         }
@@ -55,7 +55,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Update note.
         /// </summary>
         /// <param name="criteria">Note criteria.</param>
-        public void UpdateNote(NoteCriteria criteria)
+        public void UpdateNote(NoteUpdCriteria criteria)
         {
             ExecuteOutput(criteria);
         }
@@ -64,7 +64,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Delete note.
         /// </summary>
         /// <param name="criteria">Note criteria.</param>
-        public void DeleteNote(NoteCriteria criteria)
+        public void DeleteNote(NoteDelCriteria criteria)
         {
             ExecuteOutput(criteria);
         }

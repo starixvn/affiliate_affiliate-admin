@@ -16,11 +16,11 @@ namespace ConfigGenerator.Services.ConfigurationGenerators
     /// <summary>
     /// SP Name Configuration Generator.
     /// </summary>
-    public class SpNameConfigurationGenerator : ConfigurationGenerator
+    public class SPNameConfigurationGenerator : ConfigurationGenerator
     {
         protected override string GetTransformResult(ConfigModel configModel)
         {
-            return SpNameTransformer.GetTransformResult(configModel);
+            return SPNameTransformer.GetTransformResult(configModel);
         }
 
         protected override bool IsValidConfiguration()

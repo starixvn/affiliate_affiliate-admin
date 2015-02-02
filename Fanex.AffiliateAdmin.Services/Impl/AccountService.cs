@@ -103,7 +103,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List Account.</returns>
-        public IEnumerable<Account> GetListAccountManagement(UserCriteria criteria)
+        public IEnumerable<Account> GetListAccountManagement(SelByGroupIDCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             return GetData<Account>(criteria);
@@ -114,7 +114,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Account info.</returns>
-        public Account GetAccountInfo(UserCriteria criteria)
+        public Account GetAccountInfo(SelByCustIDCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             var data = GetData<Account>(criteria);

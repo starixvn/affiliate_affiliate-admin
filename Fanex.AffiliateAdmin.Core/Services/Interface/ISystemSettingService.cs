@@ -9,8 +9,6 @@
 //   <change who="Joseph.Pham" date="2013.08.23">Add method GetAdminCurrencies</change>
 // </history>
 
-using Fanex.Data.Repository;
-
 namespace Fanex.AffiliateAdmin.Core.Services.Interface
 {
     using System.Collections.Generic;
@@ -21,6 +19,7 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
     using Fanex.AffiliateAdmin.Criterias.Configuration.Product;
     using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.Data.Repository;
 
     public interface ISystemSettingService
     {
@@ -58,7 +57,7 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Return list language.</returns>
-        IEnumerable<Language> GetLanguageList(LanguageCriteria criteria);
+        IEnumerable<Language> GetLanguageList(AdminSupportedLanguagesSelCriteria criteria);
 
         IEnumerable<Language> GetAffLanguageList(AffLanguageCriteria criteria);
 
@@ -137,7 +136,7 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Return list Exchange.</returns>
-        IEnumerable<Exchange> GetExchangeList(ExchangeCriteria criteria);
+        IEnumerable<Exchange> GetExchangeList(AffiliateCurrenciesSelCriteria criteria);
 
         /// <summary>
         /// Gets Affiliate Currency.

@@ -9,6 +9,7 @@
 
 namespace ConfigGenerator.Services.ConfigurationGenerators
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using ConfigGenerator.Core;
 
@@ -55,10 +56,13 @@ namespace ConfigGenerator.Services.ConfigurationGenerators
             File.WriteAllText(configName, result);
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accepted")]
         protected abstract string GetConfigurationFolder();
 
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accepted")]
         protected abstract string GetConfigurationName();
 
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accepted")]
         protected virtual string GetExtenstionName()
         {
             return "config";

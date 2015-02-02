@@ -44,7 +44,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Insert new group.
         /// </summary>
         /// <param name="criteria">Group criteria.</param>
-        public void GroupInsert(GroupCriteria criteria)
+        public void GroupInsert(GroupInfoInsCriteria criteria)
         {
             ExecuteOutput(criteria);
         }
@@ -53,7 +53,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Update group.
         /// </summary>
         /// <param name="criteria">Group criteria.</param>
-        public void GroupUpdate(GroupCriteria criteria)
+        public void GroupUpdate(GroupInfoUpdCriteria criteria)
         {
             ExecuteOutput(criteria);
         }
@@ -62,7 +62,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Delete group.
         /// </summary>
         /// <param name="criteria">Group criteria.</param>
-        public void GroupDelete(GroupCriteria criteria)
+        public void GroupDelete(GroupInfoDelCriteria criteria)
         {
             ExecuteOutput(criteria);
         }

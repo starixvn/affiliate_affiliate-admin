@@ -20,7 +20,7 @@ namespace ConfigGenerator.Services.Tranformers
     /// <summary>
     /// SP Name Transformer.
     /// </summary>
-    public static class SpNameTransformer
+    public static class SPNameTransformer
     {
         /// <summary>
         /// Get Transform Result.

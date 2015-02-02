@@ -8,8 +8,6 @@
 //   <change who="Muller.Nguyen" date="2013.07.04">Add properties ListCurrency</change>
 // </history>
 
-using Fanex.Data.Repository;
-
 namespace Fanex.AffiliateAdmin.Core.Services
 {
     using System.Collections.Generic;
@@ -23,6 +21,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
     using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.Common.Helper;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// System setting service class.
@@ -80,7 +79,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// </summary>
         /// <param name="criteria">Language criteria.</param>
         /// <returns>Return List Language.</returns>
-        public IEnumerable<Language> GetLanguageList(LanguageCriteria criteria)
+        public IEnumerable<Language> GetLanguageList(AdminSupportedLanguagesSelCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             var list = GetData<Language>(criteria);
@@ -259,7 +258,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// </summary>
         /// <param name="criteria">Exchange Criteria.</param>
         /// <returns>Return List Exchange.</returns>
-        public IEnumerable<Exchange> GetExchangeList(ExchangeCriteria criteria)
+        public IEnumerable<Exchange> GetExchangeList(AffiliateCurrenciesSelCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             var list = GetData<Exchange>(criteria);

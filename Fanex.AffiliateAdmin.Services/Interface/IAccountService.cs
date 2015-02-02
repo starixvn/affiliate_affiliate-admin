@@ -51,14 +51,14 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List Account.</returns>
-        IEnumerable<Account> GetListAccountManagement(UserCriteria criteria);
+        IEnumerable<Account> GetListAccountManagement(SelByGroupIDCriteria criteria);
 
         /// <summary>
         /// Get account info.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Account information.</returns>
-        Account GetAccountInfo(UserCriteria criteria);
+        Account GetAccountInfo(SelByCustIDCriteria criteria);
 
         /// <summary>
         /// Update account.

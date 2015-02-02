@@ -85,9 +85,8 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Note criteria.</param>
         /// <returns>View model.</returns>
         [HttpPost]
-        public ActionResult AddNote(NoteCriteria criteria)
+        public ActionResult AddNote(NoteInsCriteria criteria)
         {
-            criteria.Type = "Add";
             criteria.Ip = Remote.GetClientIPAddress();
             criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
             criteria.UpdatedBy = this.CurrentSession.CustID;
@@ -111,11 +110,10 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult EditNote(int noteId)
         {
-            var note = this._noteService.GetNote(new NoteCriteria
+            var note = this._noteService.GetNote(new NoteSelCriteria
             {
                 AffId = this.CurrentSession.Affiliate.AffiliateId,
-                NoteId = noteId,
-                Type = "List"
+                NoteId = noteId
             });
 
             return View(new NoteViewModel { Content = note.Content, NoteId = noteId });
@@ -127,14 +125,13 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Note input criteria.</param>
         /// <returns>View model.</returns>
         [HttpPost]
-        public ActionResult EditNote(NoteCriteria criteria)
+        public ActionResult EditNote(NoteUpdCriteria criteria)
         {
-            criteria.Type = "Update";
             criteria.Ip = Remote.GetClientIPAddress();
             criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
             criteria.UpdatedBy = this.CurrentSession.CustID;
 
-            this._noteService.InsertNote(criteria);
+            this._noteService.UpdateNote(criteria);
 
             ViewBag.Result = new ResultViewModel
             {

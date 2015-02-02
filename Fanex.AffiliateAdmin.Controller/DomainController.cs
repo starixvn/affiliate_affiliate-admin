@@ -84,7 +84,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult AffDomainList()
         {
-            var result = _domainService.AffDomainList(new DomainAffSelCriteria ());
+            var result = _domainService.AffDomainList(new DomainAffSelCriteria());
             return Json(new { List = result });
         }
 
@@ -203,7 +203,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult MemDomainList()
         {
-            var result = _domainService.MemDomainList(new DomainMemSelCriteria ());
+            var result = _domainService.MemDomainList(new DomainMemSelCriteria());
             return Json(new { List = result });
         }
 

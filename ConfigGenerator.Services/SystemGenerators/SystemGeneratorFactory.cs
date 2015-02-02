@@ -16,7 +16,7 @@ namespace ConfigGenerator.Services.SystemGenerators
     /// <summary>
     /// System Generator Factory.
     /// </summary>
-    public class SystemGeneratorFactory
+    public static class SystemGeneratorFactory
     {
         /// <summary>
         /// Get Supported System Generators.

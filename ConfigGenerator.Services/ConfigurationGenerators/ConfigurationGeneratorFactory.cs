@@ -45,7 +45,7 @@ namespace ConfigGenerator.Services.ConfigurationGenerators
                         ConfigurationType = configurationType
                     };
                 case ConfigurationType.SpName:
-                    return new SpNameConfigurationGenerator
+                    return new SPNameConfigurationGenerator
                     {
                         ConfigurationType = configurationType
                     };
@@ -75,7 +75,7 @@ namespace ConfigGenerator.Services.ConfigurationGenerators
                         {
                             ConfigurationType = configurationType
                         },
-                    new SpNameConfigurationGenerator
+                    new SPNameConfigurationGenerator
                         {
                             ConfigurationType = configurationType
                         }

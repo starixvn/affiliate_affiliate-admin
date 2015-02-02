@@ -33,3 +33,11 @@ _ReSharper*/
 *.[Pp]ublish.xml
 /Fanex.AffiliateAdmin.Site/Fanex.AffiliateAdmin.Site.Publish.xml
 Fanex.AffiliateAdmin.Site/Fanex.AffiliateAdmin.Site.Publish.xml
+
+/cireport
+*.StyleCop.violations.xml
+*.StyleCop.xml
+*.FxCop.xml
+MsBuild.xml
+MSBUILD.SUMMARY.email
+SUMMARY.DISPLAY.xml

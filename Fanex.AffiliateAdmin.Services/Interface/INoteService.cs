@@ -27,24 +27,24 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Note criteria.</param>
         /// <returns>Note information.</returns>
-        Note GetNote(NoteCriteria criteria);
+        Note GetNote(NoteSelCriteria criteria);
 
         /// <summary>
         /// Insert note.
         /// </summary>
         /// <param name="criteria">Note criteria.</param>
-        void InsertNote(NoteCriteria criteria);
+        void InsertNote(NoteInsCriteria criteria);
 
         /// <summary>
         /// Update note.
         /// </summary>
         /// <param name="criteria">Note criteria.</param>
-        void UpdateNote(NoteCriteria criteria);
+        void UpdateNote(NoteUpdCriteria criteria);
 
         /// <summary>
         /// Delete note.
         /// </summary>
         /// <param name="criteria">Note criteria.</param>
-        void DeleteNote(NoteCriteria criteria);
+        void DeleteNote(NoteDelCriteria criteria);
     }
 }

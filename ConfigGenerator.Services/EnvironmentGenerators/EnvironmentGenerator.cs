@@ -9,6 +9,7 @@
 
 namespace ConfigGenerator.Services.EnvironmentGenerators
 {
+    using System.Diagnostics.CodeAnalysis;
     using ConfigGenerator.Core;
     using ConfigGenerator.Services.ConfigurationGenerators;
 
@@ -42,9 +43,10 @@ namespace ConfigGenerator.Services.EnvironmentGenerators
                 generator.Generate(configModel2);
             }
         }
-
+        
         protected abstract bool IsValidEnvironment();
 
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accepted")]
         protected virtual string GetEnvironmentName()
         {
             return EnvironmentType.ToString().ToLower();

@@ -86,10 +86,9 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">User criteria.</param>
         /// <returns>Return list user.</returns>
         [HttpPost]
-        public ActionResult Users(UserCriteria criteria)
+        public ActionResult Users(SelByGroupIDCriteria criteria)
         {
             criteria.IsIt = SessionManager.CurrentSession.IsIT;
-            criteria.Type = "ByGroup";
 
             return Json(new { List = _accountService.GetListAccountManagement(criteria) });
         }
@@ -104,11 +103,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult EditUser(int custId)
         {
-            var criteria = new UserCriteria
+            var criteria = new SelByCustIDCriteria
             {
-                CustId = custId,
-                IsIt = SessionManager.CurrentSession.IsIT,
-                Type = "ByCustId"
+                CustId = custId
             };
 
             var accountInfo = _accountService.GetAccountInfo(criteria);
@@ -450,13 +447,12 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
-                var criteria = new GroupCriteria
+                var criteria = new GroupInfoInsCriteria
                     {
                         GroupName = model.GroupName,
-                        Description = model.Description,
+                        GroupDesc = model.Description,
                         UserId = SessionManager.CurrentSession.CustID,
                         Ip = Remote.GetClientIPAddress(),
-                        Type = "Add"
                     };
 
                 _groupService.GroupInsert(criteria);
@@ -551,13 +547,12 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Group Criteria.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
-        public ActionResult EditGroup(GroupCriteria criteria)
+        public ActionResult EditGroup(GroupInfoUpdCriteria criteria)
         {
             if (ModelState.IsValid)
             {
                 criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.Ip = Remote.GetClientIPAddress();
-                criteria.Type = "Edit";
 
                 _groupService.GroupUpdate(criteria);
 
@@ -579,11 +574,10 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Group Criteria.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
-        public ActionResult DeleteGroup(GroupCriteria criteria)
+        public ActionResult DeleteGroup(GroupInfoDelCriteria criteria)
         {
             criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.Ip = Remote.GetClientIPAddress();
-            criteria.Type = "Delete";
 
             _groupService.GroupDelete(criteria);
 

@@ -155,6 +155,9 @@
     <Compile Include="DomainMem\DomainMemUpdCriteria.cs" />
     <Compile Include="EmailHistoryDelCriteria.cs" />
     <Compile Include="EmailHistorySelCriteria.cs" />
+    <Compile Include="GroupInfoDelCriteria.cs" />
+    <Compile Include="GroupInfoInsCriteria.cs" />
+    <Compile Include="GroupInfoUpdCriteria.cs" />
     <Compile Include="Media\BannerDeleteCriteria.cs" />
     <Compile Include="Media\BannerInsCriteria.cs" />
     <Compile Include="AffTypeCriteria.cs" />
@@ -178,6 +181,12 @@
     <Compile Include="GetMemberDetailCriteria.cs" />
     <Compile Include="MemberWinlossByProductCriteria.cs" />
     <Compile Include="MemberWinlossOverviewCriteria.cs" />
+    <Compile Include="NoteDelCriteria.cs" />
+    <Compile Include="NoteInsCriteria.cs" />
+    <Compile Include="NoteSelCriteria.cs" />
+    <Compile Include="NoteUpdCriteria.cs" />
+    <Compile Include="SelByCustIDCriteria.cs" />
+    <Compile Include="SelByGroupIDCriteria.cs" />
     <Compile Include="SystemSupportedCurrencyCriteria.cs" />
     <Compile Include="TierSettingCriteria.cs" />
     <Compile Include="AffiliateStatisticCriteria.cs" />
@@ -218,7 +227,6 @@
     <Compile Include="LogTypeCriteria.cs" />
     <Compile Include="MemberSiteLanguageCriteria.cs" />
     <Compile Include="MemberStatisticReportCriteria.cs" />
-    <Compile Include="NoteCriteria.cs" />
     <Compile Include="NoteListCriteria.cs" />
     <Compile Include="PaymentMethodCriteria.cs" />
     <Compile Include="PlayerPayoutInfoSelCriteria.cs" />
@@ -247,15 +255,14 @@
     <Compile Include="MemberListCriteria.cs" />
     <Compile Include="CriteriaType.cs" />
     <Compile Include="DummyAccIdCriteria.cs" />
-    <Compile Include="GroupCriteria.cs" />
     <Compile Include="HomeOnlineListCriteria.cs" />
     <Compile Include="HomeGeneralInfoCriteria.cs" />
     <Compile Include="AffLanguageCriteria.cs" />
     <Compile Include="LoginCriteria.cs" />
     <Compile Include="Configuration\Country\CountrySelectCriteria.cs" />
     <Compile Include="PlayerCurrencyCriteria.cs" />
-    <Compile Include="ExchangeCriteria.cs" />
-    <Compile Include="LanguageCriteria.cs" />
+    <Compile Include="AffiliateCurrenciesSelCriteria.cs" />
+    <Compile Include="AdminSupportedLanguagesSelCriteria.cs" />
     <Compile Include="LogOutCriteria.cs" />
     <Compile Include="MessageCriteria.cs" />
     <Compile Include="MessageDeleteCriteria.cs" />
@@ -275,7 +282,6 @@
     <Compile Include="SystemDateTimeCriteria.cs" />
     <Compile Include="TransTypeCriteria.cs" />
     <Compile Include="UpdateMessageCriteria.cs" />
-    <Compile Include="UserCriteria.cs" />
     <Compile Include="UserPolicyCriteria.cs" />
     <Compile Include="ViewLogListCriteria.cs" />
   </ItemGroup>
@@ -321,7 +327,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

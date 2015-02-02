@@ -19,11 +19,11 @@ namespace Fanex.AffiliateAdmin.Services
 
         GroupInfo GetGroupInfo(GroupListCriteria criteria);
 
-        void GroupInsert(GroupCriteria criteria);
+        void GroupInsert(GroupInfoInsCriteria criteria);
 
-        void GroupUpdate(GroupCriteria criteria);
+        void GroupUpdate(GroupInfoUpdCriteria criteria);
 
-        void GroupDelete(GroupCriteria criteria);
+        void GroupDelete(GroupInfoDelCriteria criteria);
 
         void GroupUpdatePolicy(PolicyUpdateCriteria criteria);
     }

@@ -1,15 +1,9 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AffiliateUpdStatusCriteria.cs" company="Microsoft">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.AffiliateAdmin.Criterias
+﻿namespace Fanex.AffiliateAdmin.Criterias
 {
     using Fanex.Data.Repository;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Affiliate Updated Status Criteria.
     /// </summary>
     public class AffiliateUpdStatusCriteria : CriteriaBase
     {
@@ -21,9 +15,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string Password { get; set; }
 
-        public int GroupId { get; set; }
-
-        public bool Closed { get; set; }
+        public int GroupID { get; set; }
 
         public string Ip { get; set; }
 
@@ -31,16 +23,9 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int ErrCode { get; set; }
 
-        public string Type { get; set; }
-
         public override string GetSettingKey()
         {
-            if (!string.IsNullOrEmpty(this.Type))
-            {
-                return "AffAdmin_AffiliateUpdStatus";
-            }
-
-            return "AffAdmin_AffiliateUpdClosedStatus";
+            return "AffAdmin_AffiliateUpdStatus";
         }
 
         public override bool IsValid()

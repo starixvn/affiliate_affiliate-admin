@@ -94,7 +94,9 @@
   <ItemGroup>
     <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
     <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.athena000.xml" />
-    <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.yhy1980.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.yhy1980.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.yhy1980.xml" />
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.athena000.xml" />
     <Content Include="ConfigModels\SiteConfigModel.xml" />

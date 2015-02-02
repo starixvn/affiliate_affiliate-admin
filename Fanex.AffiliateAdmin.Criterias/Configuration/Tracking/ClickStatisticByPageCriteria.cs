@@ -24,10 +24,6 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string LanguageCode { get; set; }
 
-        public int TotalClicks { get; set; }
-
-        public int UniqueClicks { get; set; }
-
         /// <summary>
         /// Get Setting Key.
         /// </summary>

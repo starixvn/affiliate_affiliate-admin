@@ -17,28 +17,26 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class AffiliateListCriteria : CriteriaBase
     {
-        public CriteriaType CriteriaType { get; set; }
-
         public int UserId { get; set; }
 
         public string AffName { get; set; }
 
-        public string AffTypes { get; set; } 
-        
+        public string AffTypes { get; set; }
+
         public string Currencies { get; set; }
 
         public string CommGroups { get; set; }
 
         public byte DateOption { get; set; }
 
-        public DateTime? FromDate { get; set; }
+        public DateTime FromDate { get; set; }
 
-        public DateTime? ToDate { get; set; }
+        public DateTime ToDate { get; set; }
 
         public byte BaseCurrency { get; set; }
 
         public string PreferLanguages { get; set; }
-        
+
         public byte SortBy { get; set; }
 
         public bool ExcludeTest { get; set; }
@@ -57,8 +55,6 @@ namespace Fanex.AffiliateAdmin.Criterias
         public int NRows { get; set; }
 
         public decimal TotalAmount { get; set; }
-
-        public byte ErrCode { get; set; }
 
         public override string GetSettingKey()
         {

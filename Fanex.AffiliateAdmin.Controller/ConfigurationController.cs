@@ -9,6 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configurations;
@@ -106,6 +107,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Input para.</param>
         /// <returns>Configuration details view.</returns>
         [HttpGet]
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Accepted")]
         public ActionResult ConfigurationDetail(SystemSettingsSelByIdCriteria criteria)
         {
             var systemSetting = _systemSettingService.GetSystemSetting(criteria);

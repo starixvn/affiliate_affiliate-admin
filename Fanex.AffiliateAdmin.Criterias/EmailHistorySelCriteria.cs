@@ -16,9 +16,9 @@
 
         public string AffiliateUserName { get; set; }
 
-        public DateTime Fromdate { get; set; }
+        public DateTime? Fromdate { get; set; }
 
-        public DateTime Todate { get; set; }
+        public DateTime? Todate { get; set; }
 
         public int PageSize { get; set; }
 

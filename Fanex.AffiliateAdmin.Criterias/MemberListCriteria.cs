@@ -52,8 +52,6 @@ namespace Fanex.AffiliateAdmin.Criterias
         public bool ExcludeTest { get; set; }
 
         public bool IsITAdmin { get; set; }
-
-        public bool ByAffiliate { get; set; }
         
         public int PageSize { get; set; }
 
@@ -62,6 +60,9 @@ namespace Fanex.AffiliateAdmin.Criterias
         public int TotalPages { get; set; }
 
         public int NRows { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool ByAffiliate { get; set; }
 
         public override string GetSettingKey()
         {

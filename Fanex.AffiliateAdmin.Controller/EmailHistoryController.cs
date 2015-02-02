@@ -78,7 +78,7 @@ namespace Fanex.AffiliateAdmin.Controller
             if (!viewModel.IsAll)
             {
                 criteria.Fromdate = viewModel.FromDate.HasValue ? viewModel.FromDate.Value : DateTime.Now;
-                criteria.Todate = viewModel.ToDate.HasValue 
+                criteria.Todate = viewModel.ToDate.HasValue
                     ? viewModel.ToDate.Value.AddDays(1).AddMilliseconds(-1)
                     : DateTime.Now.AddDays(1).AddMilliseconds(-1);
             }

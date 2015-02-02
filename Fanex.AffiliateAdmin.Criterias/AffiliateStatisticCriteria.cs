@@ -16,9 +16,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     {
         public int AffId { get; set; }
 
-        public int Month { get; set; }
-
-        public int Year { get; set; }
+        public DateTime MonthDate { get; set; }
 
         public int TotalActivePlayer { get; set; }
 
@@ -48,7 +46,11 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int TotalClicks { get; set; }
 
-        public DateTime MonthDate { get; set; }
+        [SpParam(Ignored = true)]
+        public int Month { get; set; }
+
+        [SpParam(Ignored = true)]
+        public int Year { get; set; }
 
         public override string GetSettingKey()
         {

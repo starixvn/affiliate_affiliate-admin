@@ -62,13 +62,15 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #endregion Constructor
 
-        public ActionResult CopyRate(ExchangeRateCriteria criteria)
+        public ActionResult CopyRate(UpdateExchangeRateViewModel criteria)
         {
-            criteria.Type = CriteriaType.Update;
             criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.Ip = Remote.GetClientIPAddress();
-            _service.ExecuteOutput(criteria);
-            return Json(GetResultViewModel(criteria.ErrCode));
+
+            var validCriteria = GetProperCriteria(criteria);
+
+            _service.ExecuteOutput(validCriteria);
+            return Json(GetResultViewModel(validCriteria.ErrCode));
         }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List of email.</returns>
-        public ActionResult GetList(ExchangeRateCriteria criteria)
+        public ActionResult GetList(ExchangeSelCriteria criteria)
         {
             bool isToday = false;
 
@@ -128,13 +130,15 @@ namespace Fanex.AffiliateAdmin.Controller
             return View();
         }
 
-        public ActionResult ToggleAutoUpdate(ExchangeRateCriteria criteria)
+        public ActionResult ToggleAutoUpdate(UpdateExchangeRateViewModel criteria)
         {
-            criteria.Type = CriteriaType.Update;
             criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.Ip = Remote.GetClientIPAddress();
-            _service.ExecuteOutput(criteria);
-            return Json(GetResultViewModel(criteria.ErrCode));
+
+            var validCriteria = GetProperCriteria(criteria);
+
+            _service.ExecuteOutput(validCriteria);
+            return Json(GetResultViewModel(validCriteria.ErrCode));
         }
 
         [HttpGet]
@@ -149,14 +153,15 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Exchange rate criteria.</param>
         /// <returns>Exchange rate view.</returns>
         [HttpPost]
-        public ActionResult UpdateExRate(ExchangeRateCriteria criteria)
+        public ActionResult UpdateExRate(UpdateExchangeRateViewModel criteria)
         {
-            criteria.Type = CriteriaType.Update;
             criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.Ip = Remote.GetClientIPAddress();
-            _service.ExecuteOutput(criteria);
+            var validCriteria = GetProperCriteria(criteria);
 
-            ViewBag.Result = GetResultViewModel(criteria.ErrCode);
+            _service.ExecuteOutput(validCriteria);
+
+            ViewBag.Result = GetResultViewModel(validCriteria.ErrCode);
 
             return View(new ExchangeRateViewModel
                 {
@@ -165,6 +170,44 @@ namespace Fanex.AffiliateAdmin.Controller
                     CodeFrom = criteria.FromCurrency,
                     CodeTo = criteria.ToCurrency
                 });
+        }
+
+        /// <summary>
+        /// Get Proper Criteria.
+        /// </summary>
+        /// <param name="criteria">Criteria input.</param>
+        /// <returns>Proper Criteria.</returns>
+        private SimpleCriteriaBase GetProperCriteria(UpdateExchangeRateViewModel criteria)
+        {
+            if (!string.IsNullOrWhiteSpace(criteria.ToCurrency))
+            {
+                return new ExchangeUpdateCriteria
+                {
+                    ToCurrency = criteria.ToCurrency,
+
+                    ExchangeId = criteria.ExchangeId,
+                    IP = criteria.Ip,
+                    Rate = criteria.Rate,
+                    UserId = criteria.UserId
+                };
+            }
+
+            if (!string.IsNullOrWhiteSpace(criteria.ExchangeIdList))
+            {
+                return new CopyRateFromMarketCriteria
+                {
+                    IP = criteria.Ip,
+                    UserId = criteria.UserId,
+                    ExchangeIdList = criteria.ExchangeIdList
+                };
+            }
+
+            return new ExchangeAutoRefreshUpdCriteria
+            {
+                ExchangeId = criteria.ExchangeId,
+                IP = criteria.Ip,
+                UserId = criteria.UserId
+            };
         }
     }
 }

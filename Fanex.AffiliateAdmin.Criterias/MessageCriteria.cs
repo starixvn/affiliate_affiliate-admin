@@ -17,6 +17,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class MessageCriteria : CriteriaBase
     {
+        [SpParam(Ignored = true)]
         public int SearchBy { get; set; }
 
         [SpParam(Ignored = true)]

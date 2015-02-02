@@ -39,7 +39,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List data.</returns>
-        public IEnumerable<ExchangeRate> GetList(ExchangeRateCriteria criteria)
+        public IEnumerable<ExchangeRate> GetList(ExchangeSelCriteria criteria)
         {
             return GetDataOutput<ExchangeRate>(criteria);
         }

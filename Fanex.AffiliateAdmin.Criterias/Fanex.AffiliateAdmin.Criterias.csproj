@@ -138,6 +138,7 @@
     <Compile Include="Configuration\SystemSetting\SystemSettingsSelByIdCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingsSelByNameCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingsSelByTypeCriteria.cs" />
+    <Compile Include="CopyRateFromMarketCriteria.cs" />
     <Compile Include="DomainAff\DomainAffDelCriteria.cs" />
     <Compile Include="DomainAff\DomainAffInsCriteria.cs" />
     <Compile Include="DomainAff\DomainAffSelByIdCriteria.cs" />
@@ -155,6 +156,8 @@
     <Compile Include="DomainMem\DomainMemUpdCriteria.cs" />
     <Compile Include="EmailHistoryDelCriteria.cs" />
     <Compile Include="EmailHistorySelCriteria.cs" />
+    <Compile Include="ExchangeAutoRefreshUpdCriteria.cs" />
+    <Compile Include="ExchangeUpdateCriteria.cs" />
     <Compile Include="GroupInfoDelCriteria.cs" />
     <Compile Include="GroupInfoInsCriteria.cs" />
     <Compile Include="GroupInfoUpdCriteria.cs" />
@@ -187,6 +190,7 @@
     <Compile Include="NoteUpdCriteria.cs" />
     <Compile Include="SelByCustIDCriteria.cs" />
     <Compile Include="SelByGroupIDCriteria.cs" />
+    <Compile Include="SimpleCriteriaBase.cs" />
     <Compile Include="SystemSupportedCurrencyCriteria.cs" />
     <Compile Include="TierSettingCriteria.cs" />
     <Compile Include="AffiliateStatisticCriteria.cs" />
@@ -244,7 +248,7 @@
     <Compile Include="Configuration\SystemSetting\SystemSettingAddCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingDeleteCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingUpdateCriteria.cs" />
-    <Compile Include="ExchangeRateCriteria.cs" />
+    <Compile Include="ExchangeSelCriteria.cs" />
     <Compile Include="DatabaseAction.cs" />
     <Compile Include="Media\BannerListCriteria.cs" />
     <Compile Include="Media\BannerTypeCriteria.cs" />

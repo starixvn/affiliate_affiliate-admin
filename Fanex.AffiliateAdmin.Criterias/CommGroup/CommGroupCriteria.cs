@@ -25,9 +25,9 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int UserId { get; set; }
 
-        public string GroupIDList { get; set; }
+        public int GroupID { get; set; }
 
-        public int TotalNoneGroup { get; set; }
+        public string GroupIDList { get; set; }
 
         public int PageSize { get; set; }
 

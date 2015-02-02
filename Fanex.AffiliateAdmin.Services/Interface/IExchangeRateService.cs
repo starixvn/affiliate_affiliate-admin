@@ -23,7 +23,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List email history.</returns>
-        IEnumerable<ExchangeRate> GetList(ExchangeRateCriteria criteria);
+        IEnumerable<ExchangeRate> GetList(ExchangeSelCriteria criteria);
 
         /// <summary>
         /// Get default transaction fee.

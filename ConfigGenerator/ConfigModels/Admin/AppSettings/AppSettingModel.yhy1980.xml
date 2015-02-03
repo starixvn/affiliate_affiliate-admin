@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <settings>
   <Layout>yhy1980</Layout>
-  <DefaultLanguage>en-US</DefaultLanguage>
+  <DefaultLanguage>zh-CN</DefaultLanguage>
   <AffiliateName>YHY1980</AffiliateName>
   <Environment>
     <local>Local Development</local>
@@ -29,8 +29,8 @@
   <MailContact>
     <local>affliate_anpha@nexcel.vn</local>
     <master>affliate_anpha@nexcel.vn</master>
-    <uat>Athena000.csd@gmail.com</uat>
-    <production>alice.anastacia.ng@gmail.com</production>
+    <uat>-yhy1980-@tom.com</uat>
+    <production>-yhy1980-@tom.com</production>
   </MailContact>
 
   <SkipCheckUMTime>

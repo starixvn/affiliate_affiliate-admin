@@ -3,14 +3,14 @@
   <affilatedb-name>
     <local>DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet</local>
     <master>DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet</master>
-    <uat>DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet</uat>
-    <production>DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet</production>
+    <uat>DBAFFYHY1980.Affiliate_YHY1980.bodbAdminNet</uat>
+    <production>DBAFFYHY1980.Affiliate_YHY1980.bodbAdminNet</production>
   </affilatedb-name>
   <affilatedb-connectionstring>
     <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=Affiliate_Athena000;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
     <master>packet size=4096; Data Source=10.18.200.215;Initial Catalog=Affiliate_Athena000;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</master>
-    <uat>packet size=4096; Data Source=10.40.40.224;Initial Catalog=Affiliate_Aoncash;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
-    <production>packet size=4096; Data Source=10.40.40.224;Initial Catalog=Affiliate_Aoncash;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+    <uat>packet size=4096; Data Source=10.40.40.224;Initial Catalog=Affiliate_YHY1980;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
+    <production>packet size=4096; Data Source=10.40.40.224;Initial Catalog=Affiliate_YHY1980;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
   </affilatedb-connectionstring>
   <bodb02-name>
     <local>DBEXT.bodb02.bodbAdminNet</local>

@@ -45,14 +45,14 @@
   <InternalURL>
     <local>http://10.18.200.209:5001/User</local>
     <master>http://10.18.200.209:5001/User</master>
-    <uat>http://affiliate.aoncash.com</uat>
-    <production>http://affiliate.aoncash.com</production>
+    <uat>http://affqa.starific.net/athena003user</uat>
+    <production>http://affiliate.YHY1980.com</production>
   </InternalURL>
   
   <InternalURL_Kiosk>
     <local>http://10.18.200.209:5001/User</local>
     <master>http://10.18.200.209:5001/User</master>
-    <uat>http://affiliate.aoncash.com</uat>
-    <production>http://affiliate.aoncash.com</production>
+    <uat>http://affqa.starific.net/athena003user</uat>
+    <production>http://affiliate.YHY1980.com</production>
   </InternalURL_Kiosk>
 </settings>

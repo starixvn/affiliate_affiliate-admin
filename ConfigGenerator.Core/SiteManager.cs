@@ -67,23 +67,6 @@ namespace ConfigGenerator.Core
         }
 
         /// <summary>
-        /// Get attribute value.
-        /// </summary>
-        /// <param name="attribute">Xml attribute.</param>
-        /// <returns>Attribute value.</returns>
-        private string GetAttributeValue(XAttribute attribute)
-        {
-            if (attribute != null)
-            {
-                var enable = attribute.Value;
-
-                return enable;
-            }
-
-            return string.Empty;
-        }
-
-        /// <summary>
         /// Get node value.
         /// </summary>
         /// <param name="element">Xml element.</param>

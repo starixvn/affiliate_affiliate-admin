@@ -7,6 +7,8 @@
 //   <change who="Brian.Dinh" date="2015.1.28">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace ConfigGenerator.Core
 {
     using System;
@@ -41,6 +43,8 @@ namespace ConfigGenerator.Core
                 };
         }
 
+         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Reviewed. Suppression is OK here.")]
         public string GetFileFilter()
         {
             if (IsGlobal)
@@ -55,6 +59,8 @@ namespace ConfigGenerator.Core
         /// Get Model File.
         /// </summary>
         /// <returns>Model file.</returns>
+         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Reviewed. Suppression is OK here.")]
         public string GetModelFile()
         {
             var fullPath = string.Format(@"{0}\{1}", Utility.GetModelFolder(), GetModelPath());
@@ -75,6 +81,8 @@ namespace ConfigGenerator.Core
             return files[0].FullName;
         }
 
+         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Reviewed. Suppression is OK here.")]
         public string GetModelPath()
         {
             if (ConfigFolder.Equals("SpNames", StringComparison.OrdinalIgnoreCase))
@@ -89,6 +97,8 @@ namespace ConfigGenerator.Core
         /// Get connection string of affiliate user.
         /// </summary>
         /// <returns>Connection string.</returns>
+         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Reviewed. Suppression is OK here.")]
         public string GetUserConnectionStringModelFile()
         {
             const string ModelPath = @"User\ConnectionStrings";
@@ -118,6 +128,8 @@ namespace ConfigGenerator.Core
         /// Get user web model file.
         /// </summary>
         /// <returns>Web model file.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Reviewed. Suppression is OK here.")]
         public object GetUserWebModelFile()
         {
             const string ModelPath = @"User\WebConfigs";

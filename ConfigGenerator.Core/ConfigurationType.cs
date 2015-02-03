@@ -7,11 +7,15 @@
 //   <change who="Brian.Dinh" date="2015.1.29">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace ConfigGenerator.Core
 {
     using System;
 
     [Flags]
+    [SuppressMessage("Microsoft.Naming", "CA1714:FlagsEnumsShouldHavePluralNames",
+        Justification = "Reviewed. Suppression is OK here.")]
     public enum ConfigurationType
     {
         /// <summary>
@@ -35,8 +39,10 @@ namespace ConfigGenerator.Core
         ConnectionStrings = 1 << 2,
 
         /// <summary>
-        /// SP Name Type.
+        /// Sp Name Type.
         /// </summary>
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly",
+            Justification = "Reviewed. Suppression is OK here.")]
         SpName = 1 << 3
     }
 }

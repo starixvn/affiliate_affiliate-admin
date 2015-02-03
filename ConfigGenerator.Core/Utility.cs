@@ -12,6 +12,8 @@
         /// Get model folder.
         /// </summary>
         /// <returns>Model folder.</returns>
+         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Reviewed. Suppression is OK here.")]
         public static string GetModelFolder()
         {
             return ConfigurationManager.AppSettings["ModelFolder"];
@@ -21,6 +23,8 @@
         /// Get configuration folder.
         /// </summary>
         /// <returns>Configuration folder.</returns>
+         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Reviewed. Suppression is OK here.")]
         public static string GetConfigurationFolder()
         {
             return ConfigurationManager.AppSettings["ConfigFolder"];
@@ -30,6 +34,8 @@
         /// Get admin configuration folder.
         /// </summary>
         /// <returns>Configuration folder.</returns>
+         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Reviewed. Suppression is OK here.")]
         public static string GetAdminConfigurationFolder()
         {
             return ConfigurationManager.AppSettings["AdminConfigFolder"];
@@ -39,6 +45,8 @@
         /// Get user configuration folder.
         /// </summary>
         /// <returns>Configuration folder.</returns>
+         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Reviewed. Suppression is OK here.")]
         public static string GetUserConfigurationFolder()
         {
             return ConfigurationManager.AppSettings["UserConfigFolder"];
@@ -48,6 +56,8 @@
         /// Get banner configuration folder.
         /// </summary>
         /// <returns>Configuration folder.</returns>
+         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Reviewed. Suppression is OK here.")]
         public static string GetBannerConfigurationFolder()
         {
             return ConfigurationManager.AppSettings["BannerConfigFolder"];
@@ -57,6 +67,8 @@
         /// Get link configuration folder.
         /// </summary>
         /// <returns>Configuration folder.</returns>
+         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Reviewed. Suppression is OK here.")]
         public static string GetLinkConfigurationFolder()
         {
             return ConfigurationManager.AppSettings["LinkConfigFolder"];
@@ -66,6 +78,8 @@
         /// Get web service configuration folder.
         /// </summary>
         /// <returns>Configuration folder.</returns>
+         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Reviewed. Suppression is OK here.")]
         public static string GetWebServiceConfigurationFolder()
         {
             return ConfigurationManager.AppSettings["WebServiceConfigFolder"];

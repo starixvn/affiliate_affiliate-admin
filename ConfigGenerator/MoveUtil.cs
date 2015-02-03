@@ -6,7 +6,7 @@
     /// <summary>
     /// Move configuration utility.
     /// </summary>
-    public class MoveUtil
+    public static class MoveUtil
     {
         /// <summary>
         /// Move configuration.

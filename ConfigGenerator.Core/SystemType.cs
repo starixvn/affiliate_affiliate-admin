@@ -7,11 +7,15 @@
 //   <change who="Brian.Dinh" date="2015.1.29">Created</change>
 // </history>
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace ConfigGenerator.Core
 {
     using System;
 
     [Flags]
+    [SuppressMessage("Microsoft.Naming", "CA1714:FlagsEnumsShouldHavePluralNames",
+        Justification = "Reviewed. Suppression is OK here.")]
     public enum SystemType
     {
         /// <summary>

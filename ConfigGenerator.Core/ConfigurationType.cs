@@ -7,11 +7,10 @@
 //   <change who="Brian.Dinh" date="2015.1.29">Created</change>
 // </history>
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace ConfigGenerator.Core
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     [Flags]
     [SuppressMessage("Microsoft.Naming", "CA1714:FlagsEnumsShouldHavePluralNames",
@@ -39,7 +38,7 @@ namespace ConfigGenerator.Core
         ConnectionStrings = 1 << 2,
 
         /// <summary>
-        /// Sp Name Type.
+        /// SP Name Type.
         /// </summary>
         [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly",
             Justification = "Reviewed. Suppression is OK here.")]

@@ -10,11 +10,12 @@
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Exchange Select Criteria.
     /// </summary>
-    public class ExchangeSelCriteria : SimpleCriteriaBase
+    public class ExchangeSelCriteria : CriteriaBase
     {
         public DateTime? Time { get; set; }
 

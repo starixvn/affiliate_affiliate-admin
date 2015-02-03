@@ -4608,7 +4608,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum File Size Limit: {0}.
+        ///   Looks up a localized string similar to Maximum File Size Limit: {0} bytes..
         /// </summary>
         public static string MaxFileSizeLimit {
             get {

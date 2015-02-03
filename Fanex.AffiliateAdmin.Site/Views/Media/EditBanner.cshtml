@@ -90,8 +90,11 @@
 
     <script type="text/javascript">
         var MSG = {
-            errFileExtension: "@Html.Raw(Lang.errFileExtension)"
+            errFileExtension: "@Html.Raw(Lang.errFileExtension)",
+            MaxFileSize: "@MediaSettings.MaxImageSize",
+            MaxFileSizeMsg: "@string.Format(Lang.MaxFileSizeLimit, string.Format("{0:#,##0}", MediaSettings.MaxImageSize))"
         };
+        
     </script>
     @if (ViewBag.Result != null)
     {

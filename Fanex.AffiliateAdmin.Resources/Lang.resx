@@ -1536,7 +1536,7 @@
     <value>The maximum length of file name is 50. Please choose another name.</value>
   </data>
   <data name="MaxFileSizeLimit" xml:space="preserve">
-    <value>Maximum File Size Limit: {0}</value>
+    <value>Maximum File Size Limit: {0} bytes.</value>
   </data>
   <data name="MaximumQualifiedMembers" xml:space="preserve">
     <value>Maximum number of qualified members</value>

@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Fanex.AffiliateAdmin.Site\Properties\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="CheckCondition.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

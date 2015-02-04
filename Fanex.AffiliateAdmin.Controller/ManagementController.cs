@@ -243,11 +243,9 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         [HttpPost]
-        public ActionResult ListPolicyUser(PolicyCriteria criteria)
+        public ActionResult ListPolicyUser(UserPolicySelCriteria criteria)
         {
-            criteria.IsUser = true;
-
-            return Json(new { List = _policyService.GetPolicyList(criteria) });
+            return Json(new { List = _policyService.GetUserPolicyList(criteria) });
         }
 
         [HttpPost]
@@ -289,10 +287,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult ChangeCurrencyUser(int custId)
         {
-            var criteria = new PermissionCurrencyCriteria
+            var criteria = new UserCurrencySelCriteria
             {
-                UserId = custId,
-                Type = CriteriaType.Select
+                UserId = custId
             };
 
             return View(new PermissionCurrencyViewModel
@@ -333,11 +330,10 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
 
-            var criteria = new PermissionCurrencyCriteria
+            var criteria = new UserCurrencyInsCriteria
             {
                 ModifyBy = SessionManager.CurrentSession.CustID,
                 UserId = custId,
-                Type = CriteriaType.Insert,
                 Ip = Remote.GetClientIPAddress(),
                 CurrencyXML = doc.OuterXml
             };
@@ -472,7 +468,7 @@ namespace Fanex.AffiliateAdmin.Controller
         #region Change Policy
 
         [HttpGet]
-        public ActionResult ChangePolicyGroup(PolicyCriteria criteria)
+        public ActionResult ChangePolicyGroup(GroupPolicySelCriteria criteria)
         {
             return View(new PolicyViewModel
             {
@@ -481,11 +477,9 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         [HttpPost]
-        public ActionResult ListPolicyGroup(PolicyCriteria criteria)
+        public ActionResult ListPolicyGroup(GroupPolicySelCriteria criteria)
         {
-            criteria.IsUser = false;
-
-            return Json(new { List = _policyService.GetPolicyList(criteria) });
+            return Json(new { List = _policyService.GetGroupPolicyList(criteria) });
         }
 
         /// <summary>
@@ -497,22 +491,24 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ChangePolicyGroup(int groupId, string groupPolicy)
         {
-            var criteria = new PolicyUpdateCriteria
+            var viewModel = new PolicyUpdateViewModel
             {
                 UserId = SessionManager.CurrentSession.CustID,
                 Ip = Remote.GetClientIPAddress(),
                 GroupPolicys = groupPolicy
             };
 
-            _groupService.GroupUpdatePolicy(criteria);
+            var criteria2 = GetProperPolicyUpdateCriteria(viewModel);
+
+            _groupService.GroupUpdatePolicy(criteria2);
 
             ViewBag.Result = new ResultViewModel
             {
-                ErrorCode = criteria.ErrCode,
-                Message = criteria.ErrCode == 0 ? Lang.UpdateRolePolicySucc : ErrorMessage(criteria.ErrCode)
+                ErrorCode = criteria2.ErrCode,
+                Message = criteria2.ErrCode == 0 ? Lang.UpdateRolePolicySucc : ErrorMessage(criteria2.ErrCode)
             };
 
-            return ChangePolicyGroup(new PolicyCriteria { GroupId = groupId });
+            return ChangePolicyGroup(new GroupPolicySelCriteria { GroupId = groupId });
         }
 
         #endregion Change Policy
@@ -598,19 +594,48 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="individualPolicy">Individual Policy.</param>
         private void UpdatePolicy(string individualPolicy)
         {
-            var criteria = new PolicyUpdateCriteria
+            var criteria = new PolicyUpdateViewModel
             {
                 UserId = SessionManager.CurrentSession.CustID,
                 Ip = Remote.GetClientIPAddress(),
                 MemPolicys = individualPolicy
             };
 
-            _accountService.AccountUpdatePolicy(criteria);
+            var criteria2 = GetProperPolicyUpdateCriteria(criteria);
+
+            _accountService.AccountUpdatePolicy(criteria2);
 
             ViewBag.Result = new ResultViewModel
             {
-                ErrorCode = criteria.ErrCode,
-                Message = criteria.ErrCode == 0 ? Lang.UpdateRolePolicySucc : ErrorMessage(criteria.ErrCode)
+                ErrorCode = criteria2.ErrCode,
+                Message = criteria2.ErrCode == 0 ? Lang.UpdateRolePolicySucc : ErrorMessage(criteria2.ErrCode)
+            };
+        }
+
+        /// <summary>
+        /// Get Proper Policy Update Criteria.
+        /// </summary>
+        /// <param name="criteria">Update Criteria.</param>
+        /// <returns>Proper Update Criteria.</returns>
+        private SimpleCriteriaBase GetProperPolicyUpdateCriteria(PolicyUpdateViewModel criteria)
+        {
+            if (string.IsNullOrEmpty(criteria.MemPolicys))
+            {
+                return new GroupPolicyUpdateCriteria
+                {
+                    GroupPolicys = criteria.GroupPolicys,
+                    IP = criteria.Ip,
+                    Language = criteria.Language,
+                    UserID = criteria.UserId
+                };
+            }
+
+            return new UserPolicyUpdateCriteria
+            {
+                IP = criteria.Ip,
+                Language = criteria.Language,
+                MemPolicys = criteria.MemPolicys,
+                UserID = criteria.UserId
             };
         }
 

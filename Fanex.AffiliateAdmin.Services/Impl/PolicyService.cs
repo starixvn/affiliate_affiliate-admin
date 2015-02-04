@@ -11,6 +11,7 @@ namespace Fanex.AffiliateAdmin.Services
     using Core.Services;
     using Criterias;
     using DTO;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// TODO: Update summary.
@@ -22,7 +23,18 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Policy criteria.</param>
         /// <returns>Function policy list.</returns>
-        public IEnumerable<FunctionPolicy> GetPolicyList(PolicyCriteria criteria)
+        public IEnumerable<FunctionPolicy> GetGroupPolicyList(GroupPolicySelCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+            return GetData<FunctionPolicy>(criteria);
+        }
+
+        /// <summary>
+        /// Get list policy of user.
+        /// </summary>
+        /// <param name="criteria">Policy criteria.</param>
+        /// <returns>Function policy list.</returns>
+        public IEnumerable<FunctionPolicy> GetUserPolicyList(UserPolicySelCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             return GetData<FunctionPolicy>(criteria);
@@ -32,7 +44,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Update policy of user.
         /// </summary>
         /// <param name="criteria">Policy update criteria.</param>
-        public void UpdatePolicy(PolicyUpdateCriteria criteria)
+        public void UpdatePolicy(ICriteria criteria)
         {
             ExecuteOutput(criteria);
         }

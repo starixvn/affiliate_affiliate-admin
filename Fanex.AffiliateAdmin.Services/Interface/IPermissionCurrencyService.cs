@@ -19,8 +19,8 @@ namespace Fanex.AffiliateAdmin.Services
     /// </summary>
     public interface IPermissionCurrencyService
     {
-        IEnumerable<PermissionCurrency> GetPermissionCurrencyList(PermissionCurrencyCriteria criteria);
+        IEnumerable<PermissionCurrency> GetPermissionCurrencyList(UserCurrencySelCriteria criteria);
 
-        void UpdatePermissionCurrency(PermissionCurrencyCriteria criteria);
+        void UpdatePermissionCurrency(UserCurrencyInsCriteria criteria);
     }
 }

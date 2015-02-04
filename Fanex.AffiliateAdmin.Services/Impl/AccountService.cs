@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Services
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.DataAccess;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Account Service.
@@ -25,12 +26,12 @@ namespace Fanex.AffiliateAdmin.Services
     public class AccountService : QueryService, IAccountService
     {
         #region Fields
-        
+
         /// <summary>
         /// Define Account DataAccess.
         /// </summary>
         private readonly IAccountDataAccess _accountDataAccess;
-        
+
         #endregion Fields
 
         #region Constructor
@@ -162,7 +163,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Update Account Policy.
         /// </summary>
         /// <param name="criteria">Policy update criteria.</param>
-        public void AccountUpdatePolicy(PolicyUpdateCriteria criteria)
+        public void AccountUpdatePolicy(ICriteria criteria)
         {
             ExecuteOutput(criteria);
         }

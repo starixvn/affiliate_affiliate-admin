@@ -9,6 +9,7 @@ namespace Fanex.AffiliateAdmin.Services
     using System.Collections.Generic;
     using Criterias;
     using DTO;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// TODO: Update summary.
@@ -25,6 +26,6 @@ namespace Fanex.AffiliateAdmin.Services
 
         void GroupDelete(GroupInfoDelCriteria criteria);
 
-        void GroupUpdatePolicy(PolicyUpdateCriteria criteria);
+        void GroupUpdatePolicy(ICriteria criteria);
     }
 }

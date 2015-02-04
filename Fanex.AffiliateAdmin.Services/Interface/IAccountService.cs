@@ -13,6 +13,7 @@ namespace Fanex.AffiliateAdmin.Services
     using System.Collections.Generic;
     using Criterias;
     using DTO;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Interface Account service.
@@ -88,7 +89,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Update account policy.
         /// </summary>
         /// <param name="criteria">Policy update criteria.</param>
-        void AccountUpdatePolicy(PolicyUpdateCriteria criteria);
+        void AccountUpdatePolicy(ICriteria criteria);
 
         /// <summary>
         /// Admin update him/herself password.

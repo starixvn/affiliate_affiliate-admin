@@ -12,7 +12,7 @@
 
         private string _userName;
 
-        public int Groupid { get; set; }
+        public int? Groupid { get; set; }
 
         public string UserName
         {

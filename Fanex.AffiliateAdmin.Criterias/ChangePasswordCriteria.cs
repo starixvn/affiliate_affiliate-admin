@@ -15,21 +15,24 @@ namespace Fanex.AffiliateAdmin.Criterias
     {
         public int CustId { get; set; }
 
-        public string UserName { get; set; }
-
         public int UserId { get; set; }
+
+        public string OldPwd { get; set; }
         
         [SpParam(SqlParamName = "UserPwd")]
         public string Password { get; set; }
 
-        [SpParam(Ignored = true)]
-        public string ConfirmPassword { get; set; }
+        public string Language { get; set; }
 
         public string Ip { get; set; }
 
         public int ErrCode { get; set; }
 
-        public string ErrMsg { get; set; }
+        [SpParam(Ignored = true)]
+        public string UserName { get; set; }
+
+        [SpParam(Ignored = true)]
+        public string ConfirmPassword { get; set; }
 
         public override string GetSettingKey()
         {

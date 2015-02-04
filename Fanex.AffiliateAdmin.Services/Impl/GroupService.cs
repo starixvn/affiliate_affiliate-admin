@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.Services
     using Core.Services;
     using Criterias;
     using DTO;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// TODO: Update summary.
@@ -71,7 +72,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Update group policy.
         /// </summary>
         /// <param name="criteria">Policy update criteria.</param>
-        public void GroupUpdatePolicy(PolicyUpdateCriteria criteria)
+        public void GroupUpdatePolicy(ICriteria criteria)
         {
             ExecuteOutput(criteria);
         }

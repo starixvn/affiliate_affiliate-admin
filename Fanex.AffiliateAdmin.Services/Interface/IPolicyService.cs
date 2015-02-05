@@ -9,6 +9,7 @@ namespace Fanex.AffiliateAdmin.Services
     using System.Collections.Generic;
     using Criterias;
     using DTO;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// TODO: Update summary.
@@ -20,13 +21,20 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Policy criteria.</param>
         /// <returns>Function policy list.</returns>
-        IEnumerable<FunctionPolicy> GetPolicyList(PolicyCriteria criteria);
+        IEnumerable<FunctionPolicy> GetGroupPolicyList(GroupPolicySelCriteria criteria);
+
+        /// <summary>
+        /// Get list policy of user.
+        /// </summary>
+        /// <param name="criteria">Policy criteria.</param>
+        /// <returns>Function policy list.</returns>
+        IEnumerable<FunctionPolicy> GetUserPolicyList(UserPolicySelCriteria criteria);
 
         /// <summary>
         /// Update policy of user.
         /// </summary>
         /// <param name="criteria">Policy update criteria.</param>
-        void UpdatePolicy(PolicyUpdateCriteria criteria);
+        void UpdatePolicy(ICriteria criteria);
 
         /// <summary>
         /// Get list policy of user.

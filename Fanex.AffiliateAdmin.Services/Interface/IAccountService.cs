@@ -13,6 +13,7 @@ namespace Fanex.AffiliateAdmin.Services
     using System.Collections.Generic;
     using Criterias;
     using DTO;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Interface Account service.
@@ -51,32 +52,32 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List Account.</returns>
-        IEnumerable<Account> GetListAccountManagement(UserCriteria criteria);
+        IEnumerable<Account> GetListAccountManagement(SelByGroupIDCriteria criteria);
 
         /// <summary>
         /// Get account info.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Account information.</returns>
-        Account GetAccountInfo(UserCriteria criteria);
+        Account GetAccountInfo(SelByCustIDCriteria criteria);
 
         /// <summary>
         /// Update account.
         /// </summary>
         /// <param name="criteria">Account criteria.</param>
-        void AccountUpdate(AccountCriteria criteria);
+        void AccountUpdate(AccountUpdCriteria criteria);
 
         /// <summary>
         /// Insert new account.
         /// </summary>
         /// <param name="criteria">Account criteria.</param>
-        void AccountInsert(AccountCriteria criteria);
+        void AccountInsert(AccountInsCriteria criteria);
 
         /// <summary>
         /// Update account status.
         /// </summary>
         /// <param name="criteria">Account criteria.</param>
-        void AccountUpdateStatus(AccountCriteria criteria);
+        void AccountUpdateStatus(AccountUpdClosedCriteria criteria);
 
         /// <summary>
         /// Update account password.
@@ -88,7 +89,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Update account policy.
         /// </summary>
         /// <param name="criteria">Policy update criteria.</param>
-        void AccountUpdatePolicy(PolicyUpdateCriteria criteria);
+        void AccountUpdatePolicy(ICriteria criteria);
 
         /// <summary>
         /// Admin update him/herself password.

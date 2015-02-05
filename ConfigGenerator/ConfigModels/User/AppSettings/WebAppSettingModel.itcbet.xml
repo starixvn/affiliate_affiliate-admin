@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+  <Environment>
+    <local>Local Development</local>
+    <master>master</master>
+    <uat>UAT</uat>
+    <production>Production</production>
+  </Environment>
+  
+  <Layout>2</Layout>
+  <Theme>6</Theme>
+  <ServerID>400006</ServerID>
+  <InputAffType>1</InputAffType>
+  <IsShowZeroCommission>1</IsShowZeroCommission>
+  <IsShowDetailDailyEarnings>1</IsShowDetailDailyEarnings>
+  <DefaultLanguage>id-ID</DefaultLanguage>
+  <DefaultTarget>Sportsbook</DefaultTarget>
+  <DefaultCurrency>IDR</DefaultCurrency>
+  <AffCustomerServiceUrl>skype:cs.itcbet?chat</AffCustomerServiceUrl>
+  
+  <EmailHeaderBgColor>#072257</EmailHeaderBgColor>
+  <EmailHeaderFontColor>#ffc809</EmailHeaderFontColor>
+  <EmailContentBgColor>#fff</EmailContentBgColor>
+  <EmailContentFontColor>#000</EmailContentFontColor>
+  <EmailCopyrightBgColor>#e1e1e1</EmailCopyrightBgColor>
+  <EmailCopyrightFontColor>#333</EmailCopyrightFontColor>
+  <EmailFooterBgColor>#072257</EmailFooterBgColor>
+  <EmailFooterFontColor>#c8d8ed</EmailFooterFontColor>
+
+  <app_mail_id>
+    <local>31</local>
+    <master>31</master>
+    <uat>14</uat>
+    <production>14</production>
+  </app_mail_id>
+  
+  <MailContact>
+    <local>long.luu@nexcel.vn</local>
+    <master>long.luu@nexcel.vn</master>
+    <uat>support@itcbet.com</uat>
+    <production>support@itcbet.com</production>
+  </MailContact>
+  
+  <UM_StartTime>01 May 2013 02:30 PM</UM_StartTime>
+  <UM_EndTime>02 Jun 2013 04:00 PM</UM_EndTime>
+</settings>

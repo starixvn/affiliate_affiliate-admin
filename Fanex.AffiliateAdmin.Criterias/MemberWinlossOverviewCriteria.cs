@@ -10,13 +10,14 @@
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Member Win Loss Overview Criteria.
     /// </summary>
     public class MemberWinLossOverviewCriteria : CriteriaBase
     {
+        [SpParam(Ignored = true)]
         public bool ByAffiliate { get; set; }
 
         public int UserId { get; set; }

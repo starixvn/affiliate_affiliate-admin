@@ -202,7 +202,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             criteria.AffId = CurrentSession.Affiliate.AffiliateId;
             criteria.Ip = Remote.GetClientIPAddress();
-            criteria.Type = "Status";
+            
             criteria.Password = Cryptography.CfsEnCode(password);
 
             this._affiliateService.ChangeAffiliateStatus(criteria);
@@ -247,7 +247,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Affiliate update status criteria.</param>
         /// <returns>View model.</returns>
         [HttpPost]
-        public ActionResult ChangeOpenClose(AffiliateUpdStatusCriteria criteria)
+        public ActionResult ChangeOpenClose(AffiliateUpdClosedStatusCriteria criteria)
         {
             criteria.UserId = CurrentSession.CustID;
             criteria.AffId = CurrentSession.Affiliate.AffiliateId;

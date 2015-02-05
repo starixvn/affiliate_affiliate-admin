@@ -9,6 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configurations;
@@ -73,11 +74,13 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             viewModel.SearchText = viewModel.SearchText.OrDefault();
 
-            var criteria = new EmailHistoryCriteria();
+            var criteria = new EmailHistorySelCriteria();
             if (!viewModel.IsAll)
             {
-                criteria.FromDate = viewModel.FromDate;
-                criteria.ToDate = viewModel.ToDate.Value.AddDays(1).AddMilliseconds(-1);
+                criteria.Fromdate = viewModel.FromDate.HasValue ? viewModel.FromDate.Value : DateTime.Now;
+                criteria.Todate = viewModel.ToDate.HasValue
+                    ? viewModel.ToDate.Value.AddDays(1).AddMilliseconds(-1)
+                    : DateTime.Now.AddDays(1).AddMilliseconds(-1);
             }
 
             switch (viewModel.SearchOption)
@@ -120,7 +123,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>One EmailHistory object.</returns>
         public ActionResult Detail(int? id)
         {
-            var c = new EmailHistoryCriteria { PageIndex = 1, PageSize = 1, MID = id };
+            var c = new EmailHistorySelCriteria { PageIndex = 1, PageSize = 1, MID = id };
             var email = _service.GetList(c).FirstOrDefault();
             return View(email);
         }
@@ -132,11 +135,10 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>OK or Error message.</returns>
         public ActionResult Delete(string listID)
         {
-            var criteria = new EmailHistoryCriteria
+            var criteria = new EmailHistoryDelCriteria
             {
-                CriteriaType = CriteriaType.Delete,
-                ListMID = listID.TrimEnd(','),
-                UserId = SessionManager.CurrentSession.CustID,
+                Listmid = listID.TrimEnd(','),
+                UserID = SessionManager.CurrentSession.CustID,
                 IP = Remote.GetClientIPAddress()
             };
             _service.ExecuteSP(criteria);

@@ -23,12 +23,12 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List email history.</returns>
-        IEnumerable<EmailHistory> GetList(EmailHistoryCriteria criteria);
+        IEnumerable<EmailHistory> GetList(EmailHistorySelCriteria criteria);
 
         /// <summary>
         /// Execute store procedure.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        void ExecuteSP(EmailHistoryCriteria criteria);
+        void ExecuteSP(EmailHistoryDelCriteria criteria);
     }
 }

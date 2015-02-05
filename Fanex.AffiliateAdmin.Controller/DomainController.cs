@@ -84,7 +84,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult AffDomainList()
         {
-            var result = _domainService.AffDomainList(new DomainAffCriteria { DBAction = DatabaseAction.Select });
+            var result = _domainService.AffDomainList(new DomainAffSelCriteria());
             return Json(new { List = result });
         }
 
@@ -108,12 +108,11 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
-                var criteria = new DomainAffCriteria
+                var criteria = new DomainAffInsCriteria
                 {
                     UserID = SessionManager.CurrentSession.CustID,
                     DomainName = domain.DomainName,
-                    IP = Remote.GetClientIPAddress(),
-                    DBAction = DatabaseAction.Insert
+                    IP = Remote.GetClientIPAddress()
                 };
 
                 _domainService.AffDomainAdd(criteria);
@@ -132,10 +131,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult AffDomainUpd(int id)
         {
-            Domain result = _domainService.AffDomainSelectById(new DomainAffCriteria
+            Domain result = _domainService.AffDomainSelectById(new DomainAffSelByIdCriteria
             {
-                DomainID = id,
-                DBAction = DatabaseAction.Detail
+                DomainId = id
             });
 
             return View(new DomainViewModel { DomainID = result.DomainID, DomainName = result.DomainName });
@@ -151,13 +149,12 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
-                var criteria = new DomainAffCriteria
+                var criteria = new DomainAffUpdCriteria
                 {
                     UserID = SessionManager.CurrentSession.CustID,
                     DomainID = domain.DomainID,
                     DomainName = domain.DomainName,
-                    IP = Remote.GetClientIPAddress(),
-                    DBAction = DatabaseAction.Update
+                    IP = Remote.GetClientIPAddress()
                 };
 
                 _domainService.AffDomainUpdate(criteria);
@@ -176,12 +173,11 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult AffDomainRemove(int id)
         {
-            var criteria = new DomainAffCriteria
+            var criteria = new DomainAffDelCriteria
             {
                 UserID = SessionManager.CurrentSession.CustID,
                 DomainID = Convert.ToInt32(id),
-                IP = Remote.GetClientIPAddress(),
-                DBAction = DatabaseAction.Delete
+                IP = Remote.GetClientIPAddress()
             };
             _domainService.AffDomainDelete(criteria);
 
@@ -207,7 +203,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult MemDomainList()
         {
-            var result = _domainService.MemDomainList(new DomainMemCriteria { DBAction = DatabaseAction.Select });
+            var result = _domainService.MemDomainList(new DomainMemSelCriteria());
             return Json(new { List = result });
         }
 
@@ -231,12 +227,11 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
-                var criteria = new DomainMemCriteria
+                var criteria = new DomainMemInsCriteria
                 {
                     UserID = SessionManager.CurrentSession.CustID,
                     DomainName = domain.DomainName,
-                    IP = Remote.GetClientIPAddress(),
-                    DBAction = DatabaseAction.Insert
+                    IP = Remote.GetClientIPAddress()
                 };
 
                 _domainService.MemDomainAdd(criteria);
@@ -255,10 +250,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult MemDomainUpd(int id)
         {
-            Domain result = _domainService.MemDomainSelectById(new DomainMemCriteria
+            Domain result = _domainService.MemDomainSelectById(new DomainMemSelByIdCriteria
             {
-                DomainID = id,
-                DBAction = DatabaseAction.Detail
+                DomainId = id
             });
 
             return View(new DomainViewModel { DomainID = result.DomainID, DomainName = result.DomainName });
@@ -274,13 +268,12 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
-                var criteria = new DomainMemCriteria
+                var criteria = new DomainMemUpdCriteria
                 {
                     UserID = SessionManager.CurrentSession.CustID,
                     DomainID = domain.DomainID,
                     DomainName = domain.DomainName,
-                    IP = Remote.GetClientIPAddress(),
-                    DBAction = DatabaseAction.Update
+                    IP = Remote.GetClientIPAddress()
                 };
 
                 _domainService.MemDomainUpdate(criteria);
@@ -299,12 +292,11 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult MemDomainRemove(int id)
         {
-            var criteria = new DomainMemCriteria
+            var criteria = new DomainMemDelCriteria
             {
                 UserID = SessionManager.CurrentSession.CustID,
                 DomainID = Convert.ToInt32(id),
-                IP = Remote.GetClientIPAddress(),
-                DBAction = DatabaseAction.Delete
+                IP = Remote.GetClientIPAddress()
             };
             _domainService.MemDomainDelete(criteria);
 
@@ -322,7 +314,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult DomainControlList()
         {
-            var result = _domainService.DomainControlList(new DomainControlCriteria { DBAction = DatabaseAction.Select });
+            var result = _domainService.DomainControlList(new DomainControlSelCriteria());
             return Json(new { List = result });
         }
 
@@ -344,8 +336,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     PageIndex = 1
                 }).ToList());
 
-            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffCriteria()).ToList());
-            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemCriteria()).ToList());
+            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria()).ToList());
+            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria()).ToList());
 
             return View(model);
         }
@@ -360,16 +352,14 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
-                var criteria = new DomainControlCriteria
+                var criteria = new DomainControlInsCriteria
                 {
                     UserID = SessionManager.CurrentSession.CustID,
-                    ID = domain.ID,
                     CountryID = domain.Country,
                     AffDomainID = domain.AffDomain,
                     MemberDomainID = domain.MemberDomain,
                     Status = domain.Status,
-                    IP = Remote.GetClientIPAddress(),
-                    DBAction = DatabaseAction.Insert
+                    IP = Remote.GetClientIPAddress()
                 };
 
                 _domainService.DomainControlAdd(criteria);
@@ -388,10 +378,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult DomainControlUpd(int id)
         {
-            DomainControl result = _domainService.DomainControlSelectById(new DomainControlCriteria
+            DomainControl result = _domainService.DomainControlSelectById(new DomainControlSelByIdCriteria
             {
-                ID = id,
-                DBAction = DatabaseAction.Detail
+                ID = id
             });
 
             var model = new DomainControlViewModel
@@ -409,9 +398,9 @@ namespace Fanex.AffiliateAdmin.Controller
                 PageIndex = 1
             }).ToList());
 
-            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffCriteria()).ToList());
+            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria()).ToList());
 
-            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemCriteria()).ToList());
+            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria()).ToList());
 
             return View(model);
         }
@@ -426,7 +415,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
-                var criteria = new DomainControlCriteria
+                var criteria = new DomainControlUpdCriteria
                 {
                     UserID = SessionManager.CurrentSession.CustID,
                     ID = domain.ID,
@@ -434,8 +423,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     MemberDomainID = domain.MemberDomain,
                     AffDomainID = domain.AffDomain,
                     Status = domain.Status,
-                    IP = Remote.GetClientIPAddress(),
-                    DBAction = DatabaseAction.Update
+                    IP = Remote.GetClientIPAddress()
                 };
 
                 _domainService.DomainControlUpdate(criteria);
@@ -454,12 +442,11 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult DomainControlRemove(int id)
         {
-            var criteria = new DomainControlCriteria
+            var criteria = new DomainControlDelCriteria
             {
                 UserID = SessionManager.CurrentSession.CustID,
-                ID = id,
-                IP = Remote.GetClientIPAddress(),
-                DBAction = DatabaseAction.Delete
+                Id = id,
+                IP = Remote.GetClientIPAddress()
             };
             _domainService.DomainControlDelete(criteria);
 

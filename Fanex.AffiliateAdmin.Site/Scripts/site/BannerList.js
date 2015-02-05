@@ -1,7 +1,7 @@
 ﻿/*global AFFILIATE,gridOption,MSG*/
 var BannerList = (function ($) {
     "use strict";
-    
+
     var submitOptions = {};
 
     return {
@@ -20,7 +20,12 @@ var BannerList = (function ($) {
             });
 
             $('.form-popup').submit(function () {
-                AFFILIATE.trimBeforeSubmit();
+                if (!BannerList.validateFileSize()) {
+                    alert(window.MSG.MaxFileSizeMsg);
+                    return false;
+                } else {
+                    AFFILIATE.trimBeforeSubmit();
+                }
             });
 
             $('#Category').change(function () {
@@ -36,7 +41,11 @@ var BannerList = (function ($) {
             });
 
             $('#File').change(function () {
-                BannerList.validateFileExtension(this);
+                if (!BannerList.validateFileSize()) {
+                    alert(window.MSG.MaxFileSizeMsg);
+                } else {
+                    BannerList.validateFileExtension(this);
+                }
             });
 
             $('#ActionBannerForm').submit(function () {
@@ -45,6 +54,15 @@ var BannerList = (function ($) {
                 // enable them
                 inputs.prop('disabled', false);
             });
+        },
+        validateFileSize: function () {
+            var maxFileSize = parseInt(window.MSG.MaxFileSize, 10);
+
+            if ($('#File')[0].files[0].size > maxFileSize) {
+                return false;
+            }
+
+            return true;
         },
         getSubCategories: function (category, isShowAll) {
             $.ajax({
@@ -106,7 +124,7 @@ var BannerList = (function ($) {
             return htmlContent.format(url, width, height);
         },
         /*jshint ignore:end */
-        
+
         viewFlash: function (element, width, height) {
             var url = $(element).attr('alt');
             var htmlContent = BannerList.createFlashHtml(url, width, height);
@@ -183,7 +201,7 @@ var BannerList = (function ($) {
             }
         }
     };
-}) (jQuery);
+})(jQuery);
 
 $(function () {
     "use strict";

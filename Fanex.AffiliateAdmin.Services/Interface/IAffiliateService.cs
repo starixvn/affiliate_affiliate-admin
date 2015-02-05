@@ -116,7 +116,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Change open close affiliate.
         /// </summary>
         /// <param name="criteria">Affiliate status criteria.</param>
-        void ChangeAffiliateOpenClose(AffiliateUpdStatusCriteria criteria);
+        void ChangeAffiliateOpenClose(AffiliateUpdClosedStatusCriteria criteria);
 
         /// <summary>
         /// Change affiliate status.

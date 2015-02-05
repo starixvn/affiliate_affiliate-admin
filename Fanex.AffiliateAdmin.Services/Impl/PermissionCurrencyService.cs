@@ -22,7 +22,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Permission currency criteria.</param>
         /// <returns>Permission currency list.</returns>
-        public IEnumerable<PermissionCurrency> GetPermissionCurrencyList(PermissionCurrencyCriteria criteria)
+        public IEnumerable<PermissionCurrency> GetPermissionCurrencyList(UserCurrencySelCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             return GetData<PermissionCurrency>(criteria);
@@ -32,7 +32,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Update permission currency of user.
         /// </summary>
         /// <param name="criteria">Permission currency update criteria.</param>
-        public void UpdatePermissionCurrency(PermissionCurrencyCriteria criteria)
+        public void UpdatePermissionCurrency(UserCurrencyInsCriteria criteria)
         {
             ExecuteOutput(criteria);
         }

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel.xml</webconfigmodel>
+  <environments>
+    <environment enable="1">local</environment>
+    <environment enable="1">master</environment>
+    <environment enable="1">uat</environment>
+    <environment enable="1">production</environment>
+  </environments>
+  <demoSite>nbcbet</demoSite>
+  <sites>
+    <site>
+      <name>athena000</name>
+    </site>
+    <site>
+      <name>goobet</name>
+    </site>
+    <site>
+      <name>28bet</name>
+    </site>
+    <site>
+      <name>allbetclubs</name>
+    </site>
+    <site>
+      <name>aoncash</name>
+    </site>
+    <site>
+      <name>be7</name>
+    </site>
+    <site>
+      <name>bwinning</name>
+    </site>
+    <site>
+      <name>hbobet</name>
+    </site>
+    <site>
+      <name>i668bet</name>
+    </site>
+    <site>
+      <name>itcbet</name>
+    </site>
+    <site>
+      <name>m8bola</name>
+    </site>
+    <site>
+      <name>macaubet</name>
+    </site>
+    <site>
+      <name>mgm88</name>
+    </site>
+    <site>
+      <name>mymbet</name>
+    </site>
+    <site>
+      <name>q8bola</name>
+    </site>
+    <site>
+      <name>royalebet</name>
+    </site>
+    <site>
+      <name>thbet</name>
+    </site>
+    <site>
+      <name>wawabet</name>
+    </site>
+    <site>
+      <name>winner99</name>
+    </site>
+    <site>
+      <name>nbcbet</name>
+    </site>
+    <site>
+      <name>yhy1980</name>
+    </site>
+  </sites>
+</root>

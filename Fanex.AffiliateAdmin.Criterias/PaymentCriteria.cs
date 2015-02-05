@@ -10,7 +10,7 @@
 namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// TODO: Update summary.
@@ -38,10 +38,7 @@ namespace Fanex.AffiliateAdmin.Criterias
         public bool IsITAdmin { get; set; }
 
         public bool ExcludeTest { get; set; }
-
-        [SpParam(SqlParamName = "ProductIds")]
-        public string Products { get; set; }
-
+        
         public override string GetSettingKey()
         {
             return "AffAdmin_PaymentRequestSelList";

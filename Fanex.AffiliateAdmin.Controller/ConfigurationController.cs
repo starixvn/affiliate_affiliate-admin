@@ -9,6 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configurations;
@@ -65,10 +66,9 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var model = new ConfigurationViewModel
             {
-                TypeList = _systemSettingService.GetSystemSetting(new SystemSettingDetailCriteria
+                TypeList = _systemSettingService.GetSystemSetting(new SystemSettingsSelByNameCriteria
                 {
-                    Name = "ConfigurationTypeList",
-                    SearchBy = SearchByType.ByName
+                    Name = "ConfigurationTypeList"
                 })
             };
 
@@ -107,9 +107,9 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Input para.</param>
         /// <returns>Configuration details view.</returns>
         [HttpGet]
-        public ActionResult ConfigurationDetail(SystemSettingDetailCriteria criteria)
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Accepted")]
+        public ActionResult ConfigurationDetail(SystemSettingsSelByIdCriteria criteria)
         {
-            criteria.SearchBy = SearchByType.ById;
             var systemSetting = _systemSettingService.GetSystemSetting(criteria);
 
             var model = new SystemSettingUpdateViewModel
@@ -119,9 +119,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     SValue = systemSetting.SValue,
                     Description = systemSetting.Description,
                     Environment = systemSetting.Environment,
-                    EnvironmentList = _systemSettingService.GetSystemSettingList(new SystemSettingDetailCriteria
+                    EnvironmentList = _systemSettingService.GetSystemSettingList(new SystemSettingsSelByTypeCriteria
                         {
-                            SearchBy = SearchByType.ByType,
                             Type = "Environment"
                         })
                 };
@@ -147,7 +146,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
 
-            return ConfigurationDetail(new SystemSettingDetailCriteria { ID = criteria.ID });
+            return ConfigurationDetail(new SystemSettingsSelByIdCriteria { ID = criteria.ID });
         }
 
         #endregion Update Configuration
@@ -189,14 +188,12 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var model = new AddConfigurationViewModel
             {
-                TypeList = _systemSettingService.GetSystemSetting(new SystemSettingDetailCriteria
+                TypeList = _systemSettingService.GetSystemSetting(new SystemSettingsSelByNameCriteria
                 {
                     Name = "ConfigurationTypeList",
-                    SearchBy = SearchByType.ByName
                 }),
-                EnvironmentList = _systemSettingService.GetSystemSettingList(new SystemSettingDetailCriteria
+                EnvironmentList = _systemSettingService.GetSystemSettingList(new SystemSettingsSelByTypeCriteria
                 {
-                    SearchBy = SearchByType.ByType,
                     Type = "Environment"
                 })
             };

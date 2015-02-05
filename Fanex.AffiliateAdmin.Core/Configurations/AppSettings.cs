@@ -14,6 +14,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     using System;
     using System.Collections.Generic;
     using System.Configuration;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Criterias;
@@ -34,14 +35,14 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         #region Define variable
 
         private static readonly ISystemSettingService SystemSetting = new SystemSettingService();
-        private static IEnumerable<Exchange> _affiliateCurrencies = SystemSetting.GetExchangeList(new ExchangeCriteria { Type = "Affiliate" });
+        private static IEnumerable<Exchange> _affiliateCurrencies = SystemSetting.GetExchangeList(new AffiliateCurrenciesSelCriteria());
         private static IEnumerable<Language> _affLanguage = SystemSetting.GetAffLanguageList(new AffLanguageCriteria());
         private static IEnumerable<Language> _affSupportLanguage = SystemSetting.GetAffSupportLanguageList(new AffiliateLanguageCriteria());
         private static IEnumerable<Currency> _affSystemAllSupportedCurrencies;
         private static IEnumerable<Currency> _affSystemSupportedCurrencies;
         private static IEnumerable<AffType> _affType = SystemSetting.GetAffTypeList(new AffTypeCriteria());
         private static Exchange _baseExchange = SystemSetting.GetSystemBaseExchange(new SystemSettingExchangeCriteria());
-        private static IEnumerable<Language> _baseLanguage = SystemSetting.GetLanguageList(new LanguageCriteria { Type = "Affiliate" });
+        private static IEnumerable<Language> _baseLanguage = SystemSetting.GetLanguageList(new AdminSupportedLanguagesSelCriteria());
         private static IEnumerable<DeductionType> _deductionTypes;
 
         private static int? _licenseeId;
@@ -95,8 +96,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             {
                 if (_affSystemAllSupportedCurrencies == null)
                 {
-                    var criteria = new AccountCriteria();
-                    criteria.UserId = SessionManager.CurrentSession.CustID;
+                    var criteria = new AllSystemCurrencyCriteria();
                     _affSystemAllSupportedCurrencies = SystemSetting.GetAffSystemAllSupportedCurrencyList(criteria);
                 }
 
@@ -110,8 +110,8 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             {
                 if (_affSystemSupportedCurrencies == null)
                 {
-                    var criteria = new AccountCriteria();
-                    criteria.UserId = SessionManager.CurrentSession.CustID;
+                    var criteria = new SystemSupportedCurrencyCriteria { UserId = SessionManager.CurrentSession.CustID };
+
                     _affSystemSupportedCurrencies = SystemSetting.GetAffSystemSupportedCurrencyList(criteria);
                 }
 
@@ -277,11 +277,9 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             {
                 if (_licenseeId == null)
                 {
-                    var licensee = SystemSetting.GetSystemSetting(new SystemSettingDetailCriteria()
+                    var licensee = SystemSetting.GetSystemSetting(new SystemSettingsSelByNameCriteria
                     {
                         Name = "LicenseeID",
-                        Type = "Meta",
-                        SearchBy = SearchByType.ByName,
                     });
 
                     _licenseeId = int.Parse(licensee.SValue);
@@ -391,7 +389,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                return GetSettingValue(new SystemSettingDetailCriteria { SearchBy = SearchByType.ByName, Name = "SystemName" });
+                return GetSettingValue(new SystemSettingsSelByNameCriteria { Name = "SystemName" });
             }
         }
 
@@ -401,9 +399,8 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             {
                 if (_systemStartDate == null)
                 {
-                    var systemSetting = SystemSetting.GetSystemSetting(new SystemSettingDetailCriteria
+                    var systemSetting = SystemSetting.GetSystemSetting(new SystemSettingsSelByNameCriteria
                         {
-                            SearchBy = SearchByType.ByName,
                             Name = "SystemStartDate"
                         });
 
@@ -463,7 +460,8 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         /// </summary>
         /// <param name="detailCriteria">System Setting Detail Criteria.</param>
         /// <returns>Setting value.</returns>
-        public static string GetSettingValue(SystemSettingDetailCriteria detailCriteria)
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Accepted")]
+        public static string GetSettingValue(SystemSettingsSelByNameCriteria detailCriteria)
         {
             string value = string.Empty;
             var systemSettings = SystemSetting.GetSystemSettingList(detailCriteria) as List<SystemSetting>;

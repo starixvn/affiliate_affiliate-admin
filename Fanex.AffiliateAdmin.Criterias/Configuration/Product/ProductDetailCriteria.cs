@@ -9,7 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Criterias.Configuration.Product
 {
-    using NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// ProductDetail Criteria class.

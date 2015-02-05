@@ -9,7 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Criterias.Configuration.AffType
 {
-    using NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Delete criteria class.

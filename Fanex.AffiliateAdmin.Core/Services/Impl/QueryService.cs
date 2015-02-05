@@ -14,7 +14,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
     using System.Diagnostics.CodeAnalysis;
     using Fanex.Common.Helper;
     using Fanex.Data;
-    using Fanex.NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Query Service class.
@@ -86,15 +86,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 var param = criteria.GetSpParams();
-                IEnumerable<T> list = new List<T>();
-
-                try
-                {
-                    list = objectDb.Query<T>(param);
-                }
-                catch (Exception)
-                {
-                }
+                IEnumerable<T> list = objectDb.Query<T>(param);
 
                 var outputParams = objectDb.GetOuputParams();
                 if (outputParams != null)

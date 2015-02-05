@@ -19,6 +19,7 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
     using Fanex.AffiliateAdmin.Criterias.Configuration.Product;
     using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.Data.Repository;
 
     public interface ISystemSettingService
     {
@@ -28,16 +29,16 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
         /// Get system setting.
         /// For case, search by ID.
         /// </summary>
-        /// <param name="detailCriteria">Input criteria.</param>
+        /// <param name="criteria">Input criteria.</param>
         /// <returns>Return object.</returns>
-        SystemSetting GetSystemSetting(SystemSettingDetailCriteria detailCriteria);
+        SystemSetting GetSystemSetting(ICriteria criteria);
 
         /// <summary>
         /// Gets list setting when search by name, type.
         /// </summary>
         /// <param name="detailCriteria">Input criteria.</param>
         /// <returns>Return list system setting.</returns>
-        IEnumerable<SystemSetting> GetSystemSettingList(SystemSettingDetailCriteria detailCriteria);
+        IEnumerable<SystemSetting> GetSystemSettingList(ICriteria detailCriteria);
 
         IEnumerable<SystemSetting> GetSystemSettingList(SystemSettingSelectCriteria criteria);
 
@@ -56,7 +57,7 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Return list language.</returns>
-        IEnumerable<Language> GetLanguageList(LanguageCriteria criteria);
+        IEnumerable<Language> GetLanguageList(AdminSupportedLanguagesSelCriteria criteria);
 
         IEnumerable<Language> GetAffLanguageList(AffLanguageCriteria criteria);
 
@@ -135,7 +136,7 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Return list Exchange.</returns>
-        IEnumerable<Exchange> GetExchangeList(ExchangeCriteria criteria);
+        IEnumerable<Exchange> GetExchangeList(AffiliateCurrenciesSelCriteria criteria);
 
         /// <summary>
         /// Gets Affiliate Currency.
@@ -149,14 +150,14 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Currency list.</returns>
-        IEnumerable<Currency> GetAffSystemSupportedCurrencyList(AccountCriteria criteria);
+        IEnumerable<Currency> GetAffSystemSupportedCurrencyList(SystemSupportedCurrencyCriteria criteria);
 
         /// <summary>
         /// Get system supported currencies (without currency permission).
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Currency list.</returns>
-        IEnumerable<Currency> GetAffSystemAllSupportedCurrencyList(AccountCriteria criteria);
+        IEnumerable<Currency> GetAffSystemAllSupportedCurrencyList(AllSystemCurrencyCriteria criteria);
         
         IEnumerable<AffType> GetAffTypeList(AffTypeCriteria criteria);
 
@@ -178,6 +179,6 @@ namespace Fanex.AffiliateAdmin.Core.Services.Interface
         /// </summary>
         /// <param name="criteria">System setting detail criteria.</param>
         /// <returns>List system setting.</returns>
-        IEnumerable<SystemSetting> GetCustomerPages(SystemSettingDetailCriteria criteria);
+        IEnumerable<SystemSetting> GetCustomerPages(SystemSettingsSelByTypeCriteria criteria);
     }
 }

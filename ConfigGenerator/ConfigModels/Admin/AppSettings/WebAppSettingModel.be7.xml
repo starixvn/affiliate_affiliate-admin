@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+  <Layout>be7</Layout>
+  <DefaultLanguage>en-US</DefaultLanguage>
+  <AffiliateName>BE7</AffiliateName>
+  <Environment>
+    <local>Local Development</local>
+    <master>Master</master>
+    <uat>UAT</uat>
+    <production>Production</production>
+  </Environment>
+
+  <EmailHeaderBgColor>#ce0000</EmailHeaderBgColor>
+  <EmailHeaderFontColor>#fff</EmailHeaderFontColor>
+  <EmailContentBgColor>#fff</EmailContentBgColor>
+  <EmailContentFontColor>#252525</EmailContentFontColor>
+  <EmailCopyrightBgColor>#cccccc</EmailCopyrightBgColor>
+  <EmailCopyrightFontColor>#1f5426</EmailCopyrightFontColor>
+  <EmailFooterBgColor>#ce0000</EmailFooterBgColor>
+  <EmailFooterFontColor>#fff</EmailFooterFontColor>
+
+  <app_mail_id>
+    <local>31</local>
+    <master>31</master>
+    <uat>17</uat>
+    <production>36</production>
+  </app_mail_id>
+  <MailContact>
+    <local>affliate_anpha@nexcel.vn</local>
+    <master>affliate_anpha@nexcel.vn</master>
+    <uat>Athena000.csd@gmail.com</uat>
+    <production>BE7.csd@gmail.com</production>
+  </MailContact>
+
+  <SkipCheckUMTime>
+    <local>1</local>
+    <master>1</master>
+    <uat>1</uat>
+    <production>0</production>
+  </SkipCheckUMTime>
+  <UM_StartTime>01 May 2013 02:30 PM</UM_StartTime>
+  <UM_EndTime>02 Jun 2013 04:00 PM</UM_EndTime>
+
+  <InternalURL>
+    <local>http://10.18.200.209:5001/User</local>
+    <master>http://10.18.200.209:5001/User</master>
+    <uat>http://affiliate.be7.com</uat>
+    <production>http://affiliate.be7.com</production>
+  </InternalURL>
+  <InternalURL_Kiosk>
+    <local>http://10.18.200.209:5001/User</local>
+    <master>http://10.18.200.209:5001/User</master>
+    <uat>http://affiliate.be7.com</uat>
+    <production>http://affiliate.be7.com</production>
+  </InternalURL_Kiosk>
+</settings>

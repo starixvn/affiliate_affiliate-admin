@@ -12,7 +12,7 @@ namespace Fanex.AffiliateAdmin.Services
     using System.Collections.Generic;
     using Criterias;
     using DTO;
-    using NAP.Framework.Data;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Interface service.

@@ -1,0 +1,29 @@
+﻿<#@ template  language="C#" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)\ConfigGenerator.Core\bin\Debug\ConfigGenerator.Core.dll" #>
+<#@ import namespace="ConfigGenerator.Core" #>
+<#
+if(Session["environment"] != null && Session["model"] != null)
+{
+	var reader = new WebConfigModelReader 
+				{
+					Environment = Session["environment"].ToString(),
+					XmlFile = Session["model"].ToString()
+				};
+
+	reader.LoadXml();  
+	
+	var dbDict = reader.GetSettingsOfNode("connectionstrings");
+#>
+<?xml version="1.0" encoding="utf-8" ?>
+<Functions>
+  <Function Name="Aff-Link">
+    <Setting Key="Aff_Link_AffiliateInsClickStatistics" SpName="Aff_Link_AffiliateInsClickStatistics" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
+</Functions>
+<#
+}
+#>

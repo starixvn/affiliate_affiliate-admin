@@ -68,7 +68,7 @@
                     const string hideClass = "class='qm hidden'";
                     const string noHideClass = "class='qm'";
                 }
-                <a @Html.Raw(Model.Products.FirstOrDefault().TotalQualifiedMembers > 0 ? noHideClass : hideClass) href="javascript:void(0)" data-date="@Model.FullDateTime.ToString("MMM yyyy")" 
+                <a @Html.Raw(Model.Products.FirstOrDefault().TotalQualifiedMembers > 0 ? noHideClass : hideClass) href="javascript:void(0)" data-date="@Model.FullDateTime.ToString("MMM yyyy", CultureInfo.InvariantCulture)" 
                    data-affid="@Model.AffId" data-affname="@Model.AffName"  data-basecurrency="2" 
                    data-currency="@Model.AffCurrency"  data-product="@Model.Products.FirstOrDefault().ProductID" 
                    data-groupid="@Model.CommGroupInfo.GroupID" data-commgroup="@Model.CommGroupInfo.GroupName">

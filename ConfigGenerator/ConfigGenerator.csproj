@@ -124,7 +124,9 @@
     <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.thbet.xml" />
     <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.wawabet.xml" />
     <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.winner99.xml" />
-    <Content Include="ConfigModels\Admin\WebConfigs\WebConfigModel.xml" />
+    <Content Include="ConfigModels\Admin\WebConfigs\WebConfigModel.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.28bet.xml" />
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.allbetclubs.xml" />
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.aoncash.xml" />

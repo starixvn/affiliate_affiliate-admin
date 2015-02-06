@@ -21,7 +21,6 @@ namespace Fanex.AffiliateAdmin.Core.Options
         #region Define variable
 
         private static List<SelectListItem> _affiliateStatuses;
-        private static List<SelectListItem> _drawFilters;
 
         #endregion Define variable
 
@@ -49,17 +48,12 @@ namespace Fanex.AffiliateAdmin.Core.Options
         {
             get
             {
-                if (_drawFilters == null)
+                return new List<SelectListItem>
                 {
-                    _drawFilters = new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "0", Text = Lang.Normal },
-                        new SelectListItem { Value = "1", Text = Lang.NoDraw },
-                        new SelectListItem { Value = "2", Text = Lang.NoDrawForTurnover }
-                    };
-                }
-
-                return _drawFilters;
+                    new SelectListItem { Value = "0", Text = Lang.Normal },
+                    new SelectListItem { Value = "1", Text = Lang.NoDraw },
+                    new SelectListItem { Value = "2", Text = Lang.NoDrawForTurnover }
+                };
             }
         }
     }

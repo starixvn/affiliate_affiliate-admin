@@ -38,7 +38,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string IbcUsername { get; set; }
 
-        public string PreferredLang { get; set; }
+        public string PreferredLanguage { get; set; }
 
         public bool MailOption { get; set; }
 

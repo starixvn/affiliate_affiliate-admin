@@ -148,7 +148,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     Status = model.Status,
                     AdminRemark = Common.CutLongText(model.AdminRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
                     AffRemark = Common.CutLongText(model.AffRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
-                    PreferredLang = paymentDetail.PreferredLanguage,
+                    PreferredLanguage = paymentDetail.PreferredLanguage,
                     UserId = CurrentSession.CustID,
                     IP = Remote.GetClientIPAddress()
                 };
@@ -158,7 +158,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 if (criteria.ErrCode == 0)
                 {
                     var emailType = criteria.Status.ToLower() == "approved" ? EmailTemplateType.PaymentApprove : EmailTemplateType.PaymentCancel;
-                    var emailTemplate = new EmailTemplate(emailType, criteria.PreferredLang, criteria.MailOption);
+                    var emailTemplate = new EmailTemplate(emailType, criteria.PreferredLanguage, criteria.MailOption);
                     var siteInfo = SiteDomainInfo.Parse(this, false);
                     var emailTemplateInfo = new EmailTemplateInfo
                     {

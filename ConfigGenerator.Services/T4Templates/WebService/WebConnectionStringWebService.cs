@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.WebService
     using System;
     
     
-    #line 1 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
+    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class WebConnectionStringWebService : WebConnectionStringWebServiceBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
+            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
 
 if(Session["environment"] != null && Session["model"] != null)
 {
@@ -38,28 +38,28 @@ if(Session["environment"] != null && Session["model"] != null)
             #line hidden
             this.Write("<connectionStrings>\r\n  <add name=\"");
             
-            #line 21 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
+            #line 21 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
             #line hidden
             this.Write("\" connectionString=\"");
             
-            #line 21 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
+            #line 21 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-connectionstring")));
             
             #line default
             #line hidden
             this.Write("\" providerName=\"System.Data.SqlClient\" />\r\n  <add name=\"");
             
-            #line 22 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
+            #line 22 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("bodb02-name")));
             
             #line default
             #line hidden
             this.Write("\" connectionString=\"");
             
-            #line 22 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
+            #line 22 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("bodb02-connectionstring")));
             
             #line default
@@ -86,7 +86,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "ent;Password=ibc$agt%2TGwG*a;Pooling=true;\" providerName=\"System.Data.SqlClient\"" +
                     " />\r\n</connectionStrings>\r\n");
             
-            #line 32 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
+            #line 32 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\WebService\WebConnectionStringWebService.tt"
 
 }
 

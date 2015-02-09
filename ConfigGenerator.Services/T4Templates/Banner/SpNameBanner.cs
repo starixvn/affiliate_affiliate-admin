@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.Banner
     using System;
     
     
-    #line 1 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\SpNameBanner.tt"
+    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\SpNameBanner.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class SpNameBanner : SpNameBannerBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\SpNameBanner.tt"
+            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\SpNameBanner.tt"
 
 if(Session["environment"] != null && Session["model"] != null)
 {
@@ -41,7 +41,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "r\">\r\n    <Setting Key=\"Aff_Banner_UpdateStatistic\" SpName=\"Aff_Banner_UpdateStat" +
                     "istic\" DbName=\"");
             
-            #line 24 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\SpNameBanner.tt"
+            #line 24 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\SpNameBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -49,7 +49,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_Banner_SelInfo\" SpName=\"Aff_Banner_SelInfo\"" +
                     " DbName=\"");
             
-            #line 25 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\SpNameBanner.tt"
+            #line 25 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\SpNameBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -57,14 +57,14 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_Banner_GetSystemName\" SpName=\"Aff_Banner_Ge" +
                     "tSystemName\" DbName=\"");
             
-            #line 26 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\SpNameBanner.tt"
+            #line 26 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\SpNameBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
             #line hidden
             this.Write("\" Plain=\"0\" />\r\n  </Function>\r\n</Functions>\r\n");
             
-            #line 29 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\SpNameBanner.tt"
+            #line 29 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\SpNameBanner.tt"
 
 }
 

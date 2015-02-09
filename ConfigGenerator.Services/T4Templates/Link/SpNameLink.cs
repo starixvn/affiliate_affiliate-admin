@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.Link
     using System;
     
     
-    #line 1 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\SpNameLink.tt"
+    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\SpNameLink.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class SpNameLink : SpNameLinkBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\SpNameLink.tt"
+            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\SpNameLink.tt"
 
 if(Session["environment"] != null && Session["model"] != null)
 {
@@ -41,14 +41,14 @@ if(Session["environment"] != null && Session["model"] != null)
                     ">\r\n    <Setting Key=\"Aff_Link_AffiliateInsClickStatistics\" SpName=\"Aff_Link_Affi" +
                     "liateInsClickStatistics\" DbName=\"");
             
-            #line 24 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\SpNameLink.tt"
+            #line 24 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\SpNameLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
             #line hidden
             this.Write("\" Plain=\"0\" />\r\n  </Function>\r\n</Functions>\r\n");
             
-            #line 27 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\SpNameLink.tt"
+            #line 27 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\SpNameLink.tt"
 
 }
 

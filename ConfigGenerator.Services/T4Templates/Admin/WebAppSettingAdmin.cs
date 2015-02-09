@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.Admin
     using System;
     
     
-    #line 1 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class WebAppSettingAdmin : WebAppSettingAdminBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
 
 if(Session["environment"] != null && Session["model"] != null)
 {
@@ -38,35 +38,35 @@ if(Session["environment"] != null && Session["model"] != null)
             #line hidden
             this.Write("<appSettings>\r\n  <add key=\"Layout\" value=\"");
             
-            #line 21 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 21 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("Layout")));
             
             #line default
             #line hidden
             this.Write("\" />\r\n  <add key=\"PageSize\" value=\"20\"/>  \r\n  <add key=\"DefaultLanguage\" value=\"");
             
-            #line 23 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 23 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("DefaultLanguage")));
             
             #line default
             #line hidden
             this.Write("\" />\r\n  <add key=\"AffiliateName\" value=\"");
             
-            #line 24 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 24 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("AffiliateName")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n  <add key=\"Environment\" value=\"");
             
-            #line 25 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 25 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("Environment")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n  <add key=\"TransferDay\" value=\"");
             
-            #line 26 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 26 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("TransferDay")));
             
             #line default
@@ -74,7 +74,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\"/> <!--nth day of month can transfer manually.-->\r\n  <add key=\"TestMonthlyTransf" +
                     "er\" value=\"");
             
-            #line 27 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 27 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("TestMonthlyTransfer")));
             
             #line default
@@ -83,7 +83,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     " determine which month is transfer, default value: 1 (last month). 0: Current mo" +
                     "nth; 1: last month; 2: past 2nd month;-->\r\n  <add key=\"PastNthMonth\" value=\"");
             
-            #line 29 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 29 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("PastNthMonth")));
             
             #line default
@@ -92,56 +92,56 @@ if(Session["environment"] != null && Session["model"] != null)
                     "value=\"200\"/>\r\n  <add key=\"ThumbnailWidth\" value=\"300\"/>\r\n\r\n  <add key=\"EmailHea" +
                     "derBgColor\" value=\"");
             
-            #line 35 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 35 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("EmailHeaderBgColor")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n  <add key=\"EmailHeaderFontColor\" value=\"");
             
-            #line 36 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 36 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("EmailHeaderFontColor")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n  <add key=\"EmailContentBgColor\" value=\"");
             
-            #line 37 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 37 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("EmailContentBgColor")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n  <add key=\"EmailContentFontColor\" value=\"");
             
-            #line 38 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 38 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("EmailContentFontColor")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n  <add key=\"EmailCopyrightBgColor\" value=\"");
             
-            #line 39 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 39 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("EmailCopyrightBgColor")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n  <add key=\"EmailCopyrightFontColor\" value=\"");
             
-            #line 40 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 40 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("EmailCopyrightFontColor")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n  <add key=\"EmailFooterBgColor\" value=\"");
             
-            #line 41 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 41 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("EmailFooterBgColor")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n  <add key=\"EmailFooterFontColor\" value=\"");
             
-            #line 42 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 42 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("EmailFooterFontColor")));
             
             #line default
@@ -149,14 +149,14 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\"/>\r\n\r\n  <add key=\"ViewLogBackMonth\" value=\"-3\"/>\r\n  <add key=\"LeftString\" value=" +
                     "\"20\"/>\r\n  \r\n  <!--Config Mail-->\r\n  <add key=\"app_mail_id\" value=\"");
             
-            #line 48 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 48 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("app_mail_id")));
             
             #line default
             #line hidden
             this.Write("\" />\r\n  <add key=\"MailContact\" value=\"");
             
-            #line 49 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 49 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("MailContact")));
             
             #line default
@@ -164,21 +164,21 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\"/>\r\n  <!--End Config Mail-->\r\n  \r\n  <!--For hardcode undermaintenance format: dd" +
                     " MMM yyyy hh:mm PM or AM-->\r\n  <add key=\"SkipCheckUMTime\" value=\"");
             
-            #line 53 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 53 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("SkipCheckUMTime")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n  <add key=\"UM_StartTime\" value=\"");
             
-            #line 54 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 54 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("UM_StartTime")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n    <add key=\"UM_EndTime\" value=\"");
             
-            #line 55 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 55 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("UM_EndTime")));
             
             #line default
@@ -187,14 +187,14 @@ if(Session["environment"] != null && Session["model"] != null)
                     "tuff.com/tools/ipall.ch?tool_id=67&amp;token=&amp;toolhandler_redirect=0&amp;ip=" +
                     "{0}&amp;j=1\"/>\r\n  <add key=\"InternalURL\" value=\"");
             
-            #line 58 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 58 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("InternalURL")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n  <add key=\"InternalURL_Kiosk\" value=\"");
             
-            #line 59 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 59 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(siteSettings.GetValue("InternalURL_Kiosk")));
             
             #line default
@@ -203,7 +203,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "add key=\"CasinoNo\" value=\"01\" />\r\n  <add key=\"LoggingServiceUrl\" value=\"tcp://10" +
                     ".40.40.127:9099/LoggingService\" />\r\n  <!--End RnG Casino-->\r\n</appSettings>\r\n");
             
-            #line 67 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
+            #line 67 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebAppSettingAdmin.tt"
 
 }
 

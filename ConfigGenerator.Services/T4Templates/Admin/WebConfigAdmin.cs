@@ -153,9 +153,10 @@ if(Session["environment"] != null && Session["model"] != null)
             #line default
             #line hidden
             this.Write("\" />\r\n\t<add key=\"RefreshTime\" value=\"635476950936537376\" />\r\n  </appSettings>\r\n  " +
-                    "<system.web>\r\n    <compilation debug=\"");
+                    "<system.web>\r\n    <httpRuntime executionTimeout=\"120000\" maxRequestLength=\"12288" +
+                    "\" />\r\n    <compilation debug=\"");
             
-            #line 98 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebConfigAdmin.tt"
+            #line 99 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebConfigAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(compilations.GetValue("debug")));
             
             #line default
@@ -190,7 +191,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "e=\"dotless.Core.LessCssHttpHandler, dotless.Core\" />\r\n    </httpHandlers>\r\n    <" +
                     "customErrors mode=\"");
             
-            #line 133 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebConfigAdmin.tt"
+            #line 134 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebConfigAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(customErrors.GetValue("mode")));
             
             #line default
@@ -276,7 +277,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "ler_AffBetListService_AffiliateAPI\"\r\n          serializeAs=\"String\">\r\n        <v" +
                     "alue>");
             
-            #line 259 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebConfigAdmin.tt"
+            #line 260 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebConfigAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(applicationSettings["value"]));
             
             #line default
@@ -284,7 +285,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("</value>\r\n      </setting>\r\n    </Fanex.AffiliateAdmin.Controller.Properties.Sett" +
                     "ings>\r\n  </applicationSettings>\r\n</configuration>\r\n");
             
-            #line 264 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebConfigAdmin.tt"
+            #line 265 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\WebConfigAdmin.tt"
 
 }
 

@@ -57,12 +57,22 @@ var BannerList = (function ($) {
         },
         validateFileSize: function () {
             var maxFileSize = parseInt(window.MSG.MaxFileSize, 10);
-
-            if ($('#File')[0].files[0].size > maxFileSize) {
+            var size = BannerList.findFileSize();
+            if (size > maxFileSize) {
                 return false;
             }
 
             return true;
+        },
+        findFileSize: function () {
+            var size = 0;
+            if ($.browser.msie) {
+                return size;
+            } else {
+                var fileInput = $("#File")[0];
+                size = fileInput.files !== undefined ? fileInput.files[0].size : size;
+                return size;
+            }
         },
         getSubCategories: function (category, isShowAll) {
             $.ajax({

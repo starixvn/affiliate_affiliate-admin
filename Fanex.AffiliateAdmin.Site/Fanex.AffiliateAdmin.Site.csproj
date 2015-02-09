@@ -331,9 +331,9 @@
     <Content Include="Form\LiveGenHistoryImg.aspx.cs">
       <DependentUpon>LiveGenHistoryImg.aspx</DependentUpon>
     </Content>
-    <Content Include="Form\GenImage\GenHistoryImg.aspx.cs">
+    <Compile Include="Form\GenImage\GenHistoryImg.aspx.cs">
       <DependentUpon>GenHistoryImg.aspx</DependentUpon>
-    </Content>
+    </Compile>
     <Content Include="Form\GenImage\LiveGenHistoryImg.aspx.cs">
       <DependentUpon>LiveGenHistoryImg.aspx</DependentUpon>
     </Content>

@@ -274,6 +274,7 @@
     <Content Include="Form\GenHistoryImg.aspx.cs">
       <DependentUpon>GenHistoryImg.aspx</DependentUpon>
     </Content>
+    <Content Include="Form\GenImage\GenHistoryImg.aspx" />
     <Content Include="Form\GenImage\GenHistoryImg_GenImage.aspx.cs">
       <DependentUpon>GenHistoryImg_GenImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -286,6 +287,7 @@
       <DependentUpon>HistoryImage_Champions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Form\GenImage\HistoryImage_ePoker.aspx" />
     <Content Include="Form\GenImage\HistoryImage_ePoker_GenImage.aspx.cs">
       <DependentUpon>HistoryImage_ePoker_GenImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -318,6 +320,7 @@
       <DependentUpon>HistoryImage_TattooArt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Form\GenImage\LiveGenHistoryImg.aspx" />
     <Content Include="Form\GenImage\LiveGenHistoryImg_GenImage.aspx.cs">
       <DependentUpon>LiveGenHistoryImg_GenImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -327,6 +330,15 @@
     </Content>
     <Content Include="Form\LiveGenHistoryImg.aspx.cs">
       <DependentUpon>LiveGenHistoryImg.aspx</DependentUpon>
+    </Content>
+    <Content Include="Form\GenImage\GenHistoryImg.aspx.cs">
+      <DependentUpon>GenHistoryImg.aspx</DependentUpon>
+    </Content>
+    <Content Include="Form\GenImage\LiveGenHistoryImg.aspx.cs">
+      <DependentUpon>LiveGenHistoryImg.aspx</DependentUpon>
+    </Content>
+    <Content Include="Form\GenImage\HistoryImage_ePoker.aspx.cs">
+      <DependentUpon>HistoryImage_ePoker.aspx</DependentUpon>
     </Content>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

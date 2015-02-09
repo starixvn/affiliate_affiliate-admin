@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.Link
     using System;
     
     
-    #line 1 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class WebConfigLink : WebConfigLinkBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
 
 if(Session["environment"] != null && Session["model"] != null && Session["connectionstringmodel"] != null)
 {
@@ -67,28 +67,28 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
   </Fanex.Data.DbSettingProvider>
   <Fanex.Logging msmqPath=""");
             
-            #line 49 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 49 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["msmqPath"]));
             
             #line default
             #line hidden
             this.Write("\" defaultCategory=\"");
             
-            #line 49 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 49 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["defaultCategory"]));
             
             #line default
             #line hidden
             this.Write("\" />\r\n  <connectionStrings>\r\n    <add name=\"");
             
-            #line 51 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 51 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
             #line hidden
             this.Write("\" connectionString=\"");
             
-            #line 51 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 51 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-connectionstring")));
             
             #line default
@@ -105,7 +105,7 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
   <system.web>
     <customErrors mode=""");
             
-            #line 61 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 61 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(customErrors.GetValue("mode")));
             
             #line default
@@ -113,7 +113,7 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
             this.Write("\" defaultRedirect=\"~/home/error\">\r\n      <error statusCode=\"404\" redirect=\"~/home" +
                     "/pagenotfound\" />\r\n    </customErrors>\r\n    <compilation debug=\"");
             
-            #line 64 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 64 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(compilations.GetValue("debug")));
             
             #line default
@@ -174,7 +174,7 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
                     "spNet.Policy.LocalPolicy, Glimpse.AspNet\"/>\r\n        </ignoredTypes>\r\n      </ru" +
                     "ntimePolicies>-->\r\n  </glimpse>\r\n</configuration>\r\n");
             
-            #line 139 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 139 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
 
 }
 

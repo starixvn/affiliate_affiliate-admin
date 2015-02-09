@@ -271,66 +271,63 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Form\GenHistoryImg.aspx.cs">
+    <Content Include="Form\GenHistoryImg.aspx.cs">
       <DependentUpon>GenHistoryImg.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\GenImage\GenHistoryImg_GenImage.aspx.cs">
+    </Content>
+    <Content Include="Form\GenImage\GenHistoryImg_GenImage.aspx.cs">
       <DependentUpon>GenHistoryImg_GenImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\GenImage\HistoryImage_BJ.aspx.cs">
+    </Content>
+    <Content Include="Form\GenImage\HistoryImage_BJ.aspx.cs">
       <DependentUpon>HistoryImage_BJ.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\GenImage\HistoryImage_Champions.aspx.cs">
+    </Content>
+    <Content Include="Form\GenImage\HistoryImage_Champions.aspx.cs">
       <DependentUpon>HistoryImage_Champions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\GenImage\HistoryImage_ePoker_GenImage.aspx.cs">
+    </Content>
+    <Content Include="Form\GenImage\HistoryImage_ePoker_GenImage.aspx.cs">
       <DependentUpon>HistoryImage_ePoker_GenImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\GenImage\HistoryImage_Holdem.aspx.cs">
+    </Content>
+    <Content Include="Form\GenImage\HistoryImage_Holdem.aspx.cs">
       <DependentUpon>HistoryImage_Holdem.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\GenImage\HistoryImage_MiniRoulette.aspx.cs">
+    </Content>
+    <Content Include="Form\GenImage\HistoryImage_MiniRoulette.aspx.cs">
       <DependentUpon>HistoryImage_MiniRoulette.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\GenImage\HistoryImage_MultiWheelRoulette.aspx.cs">
+    </Content>
+    <Content Include="Form\GenImage\HistoryImage_MultiWheelRoulette.aspx.cs">
       <DependentUpon>HistoryImage_MultiWheelRoulette.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\GenImage\HistoryImage_PokerWheel.aspx.cs">
+    </Content>
+    <Content Include="Form\GenImage\HistoryImage_PokerWheel.aspx.cs">
       <DependentUpon>HistoryImage_PokerWheel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\GenImage\HistoryImage_Scratch.aspx.cs">
+    </Content>
+    <Content Include="Form\GenImage\HistoryImage_Scratch.aspx.cs">
       <DependentUpon>HistoryImage_Scratch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\GenImage\HistoryImage_Taizen.aspx.cs">
+    </Content>
+    <Content Include="Form\GenImage\HistoryImage_Taizen.aspx.cs">
       <DependentUpon>HistoryImage_Taizen.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\GenImage\HistoryImage_TattooArt.aspx.cs">
+    </Content>
+    <Content Include="Form\GenImage\HistoryImage_TattooArt.aspx.cs">
       <DependentUpon>HistoryImage_TattooArt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\GenImage\LiveGenHistoryImg_GenImage.aspx.cs">
+    </Content>
+    <Content Include="Form\GenImage\LiveGenHistoryImg_GenImage.aspx.cs">
       <DependentUpon>LiveGenHistoryImg_GenImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\HistoryImage_ePoker.aspx.cs">
+    </Content>
+    <Content Include="Form\HistoryImage_ePoker.aspx.cs">
       <DependentUpon>HistoryImage_ePoker.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\LiveGenHistoryImg.aspx.cs">
+    </Content>
+    <Content Include="Form\LiveGenHistoryImg.aspx.cs">
       <DependentUpon>LiveGenHistoryImg.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    </Content>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -343,6 +340,7 @@
     <Compile Include="Properties\VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
     <Content Include="Configurations\SpNames\SpName.xml" />
     <Content Include="Configurations\SpNames\SpName.28bet.local.xml" />
     <Content Include="Configurations\SpNames\SpName.28bet.master.xml" />
@@ -4217,7 +4215,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

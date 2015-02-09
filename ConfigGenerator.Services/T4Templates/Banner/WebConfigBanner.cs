@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.Banner
     using System;
     
     
-    #line 1 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class WebConfigBanner : WebConfigBannerBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
 
 if(Session["environment"] != null && Session["model"] != null && Session["connectionstringmodel"] != null)
 {
@@ -68,28 +68,28 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
                     ">\r\n    </providers>\r\n  </Fanex.Data.DbSettingProvider>\r\n  <Fanex.Logging msmqPat" +
                     "h=\"");
             
-            #line 50 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 50 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["msmqPath"]));
             
             #line default
             #line hidden
             this.Write("\" defaultCategory=\"");
             
-            #line 50 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 50 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["defaultCategory"]));
             
             #line default
             #line hidden
             this.Write("\" />\r\n  <connectionStrings>\r\n    <add name=\"");
             
-            #line 52 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 52 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
             #line hidden
             this.Write("\" connectionString=\"");
             
-            #line 52 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 52 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-connectionstring")));
             
             #line default
@@ -108,7 +108,7 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
   <system.web>
     <customErrors mode=""");
             
-            #line 64 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 64 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(customErrors.GetValue("mode")));
             
             #line default
@@ -116,7 +116,7 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
             this.Write("\" defaultRedirect=\"~/home/error\">\r\n      <error statusCode=\"404\" redirect=\"~/home" +
                     "/pagenotfound\" />\r\n    </customErrors>\r\n    <compilation debug=\"");
             
-            #line 67 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 67 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(compilations.GetValue("debug")));
             
             #line default
@@ -192,7 +192,7 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
                     "3856ad364e35\" name=\"NullBackingStore\" />\r\n    </backingStores>\r\n  </cachingConfi" +
                     "guration>\r\n</configuration>\r\n");
             
-            #line 148 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 148 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
 
 }
 

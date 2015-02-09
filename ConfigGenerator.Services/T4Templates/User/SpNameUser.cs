@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.User
     using System;
     
     
-    #line 1 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class SpNameUser : SpNameUserBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
 
 if(Session["environment"] != null && Session["model"] != null)
 {
@@ -40,7 +40,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "nt\">\r\n    <Setting Key=\"Aff_User_SecureLoginInfo\" SpName=\"Aff_User_SecureLoginIn" +
                     "fo\" DbName=\"");
             
-            #line 23 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 23 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -48,7 +48,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_SecureLoginUpdate\" SpName=\"Aff_User_Se" +
                     "cureLoginUpdate\" DbName=\"");
             
-            #line 24 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 24 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -56,7 +56,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_Recheckin\" SpName=\"Aff_User_Recheckin\"" +
                     " DbName=\"");
             
-            #line 25 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 25 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -64,7 +64,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_Logout\" SpName=\"Aff_User_Logout\" DbNam" +
                     "e=\"");
             
-            #line 26 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 26 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -72,7 +72,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_AffiliateForgotPwd\" SpName=\"Aff_User_A" +
                     "ffiliateForgotPwd\" DbName=\"");
             
-            #line 27 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 27 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -80,7 +80,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_AffiliateRecoverPwd\" SpName=\"Aff_User_" +
                     "AffiliateRecoverPwd\" DbName=\"");
             
-            #line 28 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 28 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -88,7 +88,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_OnUserSelNetSessionID\" SpName=\"Aff_Use" +
                     "r_OnUserSelNetSessionID\" DbName=\"");
             
-            #line 29 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 29 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -96,7 +96,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_AffiliateInternalLogin\" SpName=\"Aff_Us" +
                     "er_AffiliateInternalLogin\" DbName=\"");
             
-            #line 30 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 30 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -104,7 +104,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_SecureUpdPasswordInfo\" SpName=\"Aff_Use" +
                     "r_SecureUpdPasswordInfo\" DbName=\"");
             
-            #line 31 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 31 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -112,7 +112,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_SecureUpdPasswordUpdate\" SpName=\"Aff_U" +
                     "ser_SecureUpdPasswordUpdate\" DbName=\"");
             
-            #line 32 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 32 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -120,7 +120,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n  </Function>\r\n\r\n  <Function Name=\"Aff-Account-Overview\">\r\n    <S" +
                     "etting Key=\"Aff_User_StatisticsSel\" SpName=\"Aff_User_StatisticsSel\" DbName=\"");
             
-            #line 36 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 36 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -128,7 +128,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_CommGroupSelDetail\" SpName=\"Aff_User_C" +
                     "ommGroupSelDetail\" DbName=\"");
             
-            #line 37 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 37 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -137,7 +137,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "Key=\"Aff_User_AffiliateStatementHistorySel\" SpName=\"Aff_User_AffiliateStatementH" +
                     "istorySel\" DbName=\"");
             
-            #line 41 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 41 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -145,7 +145,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_EarningSelDaily\" SpName=\"Aff_User_Earn" +
                     "ingSelDaily\" DbName=\"");
             
-            #line 42 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 42 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -153,7 +153,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_EarningSelDetail\" SpName=\"Aff_User_Ear" +
                     "ningSelDetail\" DbName=\"");
             
-            #line 43 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 43 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -161,7 +161,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_GetExchangeRate\" SpName=\"Aff_User_GetE" +
                     "xchangeRate\" DbName=\"");
             
-            #line 44 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 44 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -169,7 +169,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_BetList\" SpName=\"Aff_User_BetList\" DbN" +
                     "ame=\"");
             
-            #line 45 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 45 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("bodb02-name")));
             
             #line default
@@ -177,7 +177,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_BetListParlay\" SpName=\"Aff_User_BetLis" +
                     "tParlay\" DbName=\"");
             
-            #line 46 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 46 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("bodb02-name")));
             
             #line default
@@ -185,7 +185,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_BetListSystemParlayDetail\" SpName=\"Aff" +
                     "_User_BetListSystemParlayDetail\" DbName=\"");
             
-            #line 47 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 47 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("bodb02-name")));
             
             #line default
@@ -193,7 +193,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_SelBalanceUpDay\" SpName=\"Aff_User_SelB" +
                     "alanceUpDay\" DbName=\"");
             
-            #line 48 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 48 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("bodb02-name")));
             
             #line default
@@ -201,7 +201,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_DummyAccID\" SpName=\"Aff_User_DummyAccI" +
                     "D\" DbName=\"");
             
-            #line 49 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 49 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("bodb02-name")));
             
             #line default
@@ -209,7 +209,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n\r\n    <Setting Key=\"Aff_User_BetListResult_SelMatch\" SpName=\"Aff_" +
                     "User_BetListResult_SelMatch\" DbName=\"");
             
-            #line 51 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 51 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("bodb02-name")));
             
             #line default
@@ -217,7 +217,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_BetListResult_SelMatchParlay\" SpName=\"" +
                     "Aff_User_BetListResult_SelMatchParlay\" DbName=\"");
             
-            #line 52 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 52 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("bodb02-name")));
             
             #line default
@@ -225,7 +225,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_BetListResult_SelMatchNumberGame\" SpNa" +
                     "me=\"Aff_User_BetListResult_SelMatchNumberGame\" DbName=\"");
             
-            #line 53 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 53 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("bodb02-name")));
             
             #line default
@@ -233,7 +233,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n</Function>\r\n\r\n  <Function Name=\"Aff-CustomerInfo\">\r\n    <Setting" +
                     " Key=\"Aff_User_MemberListSel\" SpName=\"Aff_User_MemberListSel\" DbName=\"");
             
-            #line 57 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 57 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -242,7 +242,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "y=\"Aff_User_PaymentRequestSelInfoByAff\" SpName=\"Aff_User_PaymentRequestSelInfoBy" +
                     "Aff\" DbName=\"");
             
-            #line 61 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 61 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -250,7 +250,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_PlayerPayoutInfoSel\" SpName=\"Aff_User_" +
                     "PlayerPayoutInfoSel\" DbName=\"");
             
-            #line 62 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 62 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -258,7 +258,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_PaymentRequestIns\" SpName=\"Aff_User_Pa" +
                     "ymentRequestIns\" DbName=\"");
             
-            #line 63 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 63 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -266,7 +266,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_PaymentRequestUpd\" SpName=\"Aff_User_Pa" +
                     "ymentRequestUpd\" DbName=\"");
             
-            #line 64 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 64 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -275,7 +275,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     " Key=\"Aff_User_ClickStatisticsSelByPage\" SpName=\"Aff_User_ClickStatisticsSelByPa" +
                     "ge\" DbName=\"");
             
-            #line 68 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 68 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -283,7 +283,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_ClickStatisticsDetailBySite\" SpName=\"A" +
                     "ff_User_ClickStatisticsDetailBySite\" DbName=\"");
             
-            #line 69 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 69 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -291,7 +291,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_ClickStatisticsSelBySite\" SpName=\"Aff_" +
                     "User_ClickStatisticsSelBySite\" DbName=\"");
             
-            #line 70 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 70 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -300,7 +300,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "tting Key=\"Aff_User_SystemSettingsSelByType\" SpName=\"Aff_User_SystemSettingsSelB" +
                     "yType\" DbName=\"");
             
-            #line 74 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 74 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -308,7 +308,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_AffiliateSelDBTime\" SpName=\"Aff_User_A" +
                     "ffiliateSelDBTime\" DbName=\"");
             
-            #line 75 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 75 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -316,7 +316,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_GetAllAffSystemSettings\" SpName=\"Aff_U" +
                     "ser_GetAllAffSystemSettings\" DbName=\"");
             
-            #line 76 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 76 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -324,7 +324,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n  </Function>\r\n\r\n  <Function Name=\"Aff-Affiliate-Account\">\r\n    <" +
                     "Setting Key=\"Aff_User_AffiliateIns\" SpName=\"Aff_User_AffiliateIns\" DbName=\"");
             
-            #line 80 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 80 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -332,7 +332,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_AffiliateUpdInfo\" SpName=\"Aff_User_Aff" +
                     "iliateUpdInfo\" DbName=\"");
             
-            #line 81 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 81 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -340,7 +340,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_AffiliateSelEditInfo\" SpName=\"Aff_User" +
                     "_AffiliateSelEditInfo\" DbName=\"");
             
-            #line 82 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 82 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -348,7 +348,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n  </Function>\r\n\r\n  <Function Name=\"Aff-Product\">\r\n    <Setting Ke" +
                     "y=\"Aff_User_ProductSelByAffID\" SpName=\"Aff_User_ProductSelByAffID\" DbName=\"");
             
-            #line 86 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 86 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -356,7 +356,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n  </Function>\r\n\r\n  <Function Name=\"Aff-Marketing\">\r\n    <Setting " +
                     "Key=\"Aff_User_BannerSelType\" SpName=\"Aff_User_BannerSelType\" DbName=\"");
             
-            #line 90 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 90 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -364,7 +364,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_DomainAffClientSel\" SpName=\"Aff_User_D" +
                     "omainAffClientSel\" DbName=\"");
             
-            #line 91 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 91 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -372,7 +372,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_BannerSel\" SpName=\"Aff_User_BannerSel\"" +
                     " DbName=\"");
             
-            #line 92 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 92 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -380,7 +380,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n  </Function>\r\n\r\n  <Function Name=\"Aff-Message\">\r\n    <Setting Ke" +
                     "y=\"Aff_User_HotNewsSel_New\" SpName=\"Aff_User_HotNewsSel_New\" DbName=\"");
             
-            #line 96 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 96 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -388,7 +388,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_HotNewsDetail_New\" SpName=\"Aff_User_Ho" +
                     "tNewsDetail_New\" DbName=\"");
             
-            #line 97 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 97 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -396,7 +396,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\"/>\r\n  </Function>\r\n\r\n  <Function Name=\"Aff-Contact-Us\">\r\n    <Setting " +
                     "Key=\"Aff_User_EmailHistoryIns\" SpName=\"Aff_User_EmailHistoryIns\" DbName=\"");
             
-            #line 101 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 101 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -405,7 +405,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "ting Key=\"Aff_User_GetDefaultProductCommission\" SpName=\"Aff_User_GetDefaultProdu" +
                     "ctCommission\" DbName=\"");
             
-            #line 105 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 105 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -414,14 +414,14 @@ if(Session["environment"] != null && Session["model"] != null)
                     "e=\"Aff-Link\">\r\n    <Setting Key=\"Aff_Link_AffiliateInsClickStatistics\" SpName=\"A" +
                     "ff_Link_AffiliateInsClickStatistics\" DbName=\"");
             
-            #line 110 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 110 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
             #line hidden
             this.Write("\" Plain=\"0\" />\r\n  </Function>\r\n</Functions>\r\n");
             
-            #line 113 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 113 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
 
 }
 

@@ -11,7 +11,7 @@ public partial class LiveGenHistoryImg_GenImage : System.Web.UI.Page
     /// <summary>
     /// Page load.
     /// </summary>
-    /// <param name="sender">Object sender.</param>
+    /// <param name="sender">Object ssender.</param>
     /// <param name="e">Event arguments.</param>
     protected void Page_Load(object sender, EventArgs e)
     {

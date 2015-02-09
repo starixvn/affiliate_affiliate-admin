@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.WebService
     using System;
     
     
-    #line 1 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\WebService\WebConfigWebService.tt"
+    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\WebService\WebConfigWebService.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class WebConfigWebService : WebConfigWebServiceBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\WebService\WebConfigWebService.tt"
+            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\WebService\WebConfigWebService.tt"
 
 if(Session["environment"] != null && Session["model"] != null)
 {
@@ -57,7 +57,7 @@ if(Session["environment"] != null && Session["model"] != null)
     <appender name=""GeneralLog"" type=""log4net.Appender.RollingFileAppender"">
       <file value=""");
             
-            #line 39 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\WebService\WebConfigWebService.tt"
+            #line 39 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\WebService\WebConfigWebService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(log4net.GetValue("filename")));
             
             #line default
@@ -80,7 +80,7 @@ if(Session["environment"] != null && Session["model"] != null)
   <appSettings>
     <add key=""RemoteRefURL"" value=""");
             
-            #line 55 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\WebService\WebConfigWebService.tt"
+            #line 55 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\WebService\WebConfigWebService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("RemoteRefURL")));
             
             #line default
@@ -119,7 +119,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     " <bindingRedirect oldVersion=\"0.0.0.0-4.0.0.0\" newVersion=\"4.0.0.0\" />\r\n      </" +
                     "dependentAssembly>\r\n    </assemblyBinding>\r\n  </runtime>\r\n</configuration>\r\n");
             
-            #line 105 "D:\DraftProject\ConfigGenerator\ConfigGenerator.Services\T4Templates\WebService\WebConfigWebService.tt"
+            #line 105 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\WebService\WebConfigWebService.tt"
 
 }
 

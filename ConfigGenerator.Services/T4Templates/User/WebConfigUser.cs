@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.User
     using System;
     
     
-    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+    #line 1 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class WebConfigUser : WebConfigUserBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 8 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
 
 if(Session["environment"] != null && Session["model"] != null)
 {
@@ -67,7 +67,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "uth}&gt; - %m%n\" />\r\n      </layout>\r\n    </appender>\r\n    <appender name=\"Gener" +
                     "alLog\" type=\"log4net.Appender.RollingFileAppender\">\r\n      <file value=\"");
             
-            #line 53 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 53 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(log4net.GetValue("filename")));
             
             #line default
@@ -95,14 +95,14 @@ if(Session["environment"] != null && Session["model"] != null)
   </Fanex.Data.DbSettingProvider>
   <Fanex.Logging msmqPath=""");
             
-            #line 74 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 74 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["msmqPath"]));
             
             #line default
             #line hidden
             this.Write("\" defaultCategory=\"");
             
-            #line 74 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 74 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["defaultCategory"]));
             
             #line default
@@ -115,35 +115,35 @@ if(Session["environment"] != null && Session["model"] != null)
     <add key=""LinkFormat"" value=""http://{domain}/{custid}/{target}/{lang}/index.htm"" />
     <add key=""app_mail_address"" value=""");
             
-            #line 80 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 80 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("app_mail_address")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n    <add key=\"RemoteRefURL\" value=\"");
             
-            #line 81 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 81 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("RemoteRefURL")));
             
             #line default
             #line hidden
             this.Write("\" />\r\n    <add key=\"ITMail\" value=\"");
             
-            #line 82 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 82 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("ITMail")));
             
             #line default
             #line hidden
             this.Write("\" />\r\n    <!--Url use for checking downtime-->\r\n\t<add key=\"LBUrl\" value=\"");
             
-            #line 84 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 84 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings["LBUrl"]));
             
             #line default
             #line hidden
             this.Write("\" />\r\n  </appSettings>\r\n  <system.web>\r\n    <customErrors mode=\"");
             
-            #line 87 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 87 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(customErrors.GetValue("mode")));
             
             #line default
@@ -152,7 +152,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "tify/pagenotfound\" />\r\n    </customErrors>\r\n    <sessionState mode=\"StateServer\"" +
                     " timeout=\"20\" ");
             
-            #line 90 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 90 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("SessionState")));
             
             #line default
@@ -164,7 +164,7 @@ if(Session["environment"] != null && Session["model"] != null)
     </authentication>
 	<compilation debug=""");
             
-            #line 95 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 95 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(compilations.GetValue("debug")));
             
             #line default
@@ -215,52 +215,55 @@ if(Session["environment"] != null && Session["model"] != null)
                     "\"2.3.5.0\" />\r\n      </dependentAssembly>\r\n      <dependentAssembly>\r\n        <as" +
                     "semblyIdentity name=\"NPOI\" publicKeyToken=\"0df73ec7942b34e1\" culture=\"neutral\" /" +
                     ">\r\n        <bindingRedirect oldVersion=\"0.0.0.0-2.0.6.0\" newVersion=\"2.0.6.0\" />" +
-                    "\r\n      </dependentAssembly>\r\n    </assemblyBinding>\r\n  </runtime>\r\n  <dotless m" +
-                    "inifyCss=\"false\" cache=\"true\" web=\"false\" />\r\n  <bundleTransformer xmlns=\"http:/" +
-                    "/tempuri.org/BundleTransformer.Configuration.xsd\">\r\n    <core>\r\n      <css>\r\n   " +
-                    "     <minifiers>\r\n          <add name=\"NullMinifier\" type=\"BundleTransformer.Cor" +
-                    "e.Minifiers.NullMinifier, BundleTransformer.Core\" />\r\n        </minifiers>\r\n    " +
-                    "    <translators>\r\n          <add name=\"NullTranslator\" type=\"BundleTransformer." +
-                    "Core.Translators.NullTranslator, BundleTransformer.Core\" enabled=\"false\" />\r\n   " +
-                    "       <add name=\"LessTranslator\" type=\"BundleTransformer.Less.Translators.LessT" +
-                    "ranslator, BundleTransformer.Less\" />\r\n        </translators>\r\n      </css>\r\n   " +
-                    "   <js>\r\n        <minifiers>\r\n          <add name=\"NullMinifier\" type=\"BundleTra" +
-                    "nsformer.Core.Minifiers.NullMinifier, BundleTransformer.Core\" />\r\n        </mini" +
-                    "fiers>\r\n        <translators>\r\n          <add name=\"NullTranslator\" type=\"Bundle" +
-                    "Transformer.Core.Translators.NullTranslator, BundleTransformer.Core\" enabled=\"fa" +
-                    "lse\" />\r\n        </translators>\r\n      </js>\r\n    </core>\r\n  </bundleTransformer" +
-                    ">\r\n  <system.serviceModel>\r\n\t<behaviors>\r\n      <endpointBehaviors>\r\n        <be" +
-                    "havior name=\"BetListBehavior\">\r\n          <dataContractSerializer maxItemsInObje" +
-                    "ctGraph=\"2147483647\"/>\r\n        </behavior>\r\n      </endpointBehaviors>\r\n    </b" +
-                    "ehaviors>\r\n    <bindings>\r\n      <basicHttpBinding>\r\n        <binding name=\"WebS" +
-                    "erviceProviderSoap\" closeTimeout=\"00:01:00\" openTimeout=\"00:01:00\" receiveTimeou" +
-                    "t=\"00:10:00\" sendTimeout=\"00:01:00\" allowCookies=\"false\" bypassProxyOnLocal=\"fal" +
-                    "se\" hostNameComparisonMode=\"StrongWildcard\" maxBufferSize=\"65536\" maxBufferPoolS" +
-                    "ize=\"524288\" maxReceivedMessageSize=\"65536\" messageEncoding=\"Text\" textEncoding=" +
-                    "\"utf-8\" transferMode=\"Buffered\" useDefaultWebProxy=\"true\">\r\n          <readerQuo" +
-                    "tas maxDepth=\"32\" maxStringContentLength=\"8192\" maxArrayLength=\"16384\" maxBytesP" +
-                    "erRead=\"4096\" maxNameTableCharCount=\"16384\" />\r\n          <security mode=\"None\">" +
-                    "\r\n            <transport clientCredentialType=\"None\" proxyCredentialType=\"None\" " +
-                    "realm=\"\">\r\n              <extendedProtectionPolicy policyEnforcement=\"Never\" />\r" +
-                    "\n            </transport>\r\n            <message clientCredentialType=\"UserName\" " +
-                    "algorithmSuite=\"Default\" />\r\n          </security>\r\n        </binding>\r\n        " +
-                    "<binding name=\"ServiceSoap\" />\r\n        <binding name=\"AffiliateAPISoap\" closeTi" +
-                    "meout=\"00:01:00\" openTimeout=\"00:01:00\" receiveTimeout=\"00:10:00\" sendTimeout=\"0" +
-                    "0:01:00\" allowCookies=\"false\" bypassProxyOnLocal=\"false\" hostNameComparisonMode=" +
-                    "\"StrongWildcard\" maxBufferSize=\"2147483647\" maxBufferPoolSize=\"2147483647\" maxRe" +
-                    "ceivedMessageSize=\"2147483647\" messageEncoding=\"Text\" textEncoding=\"utf-8\" trans" +
-                    "ferMode=\"Buffered\" useDefaultWebProxy=\"true\">\r\n          <readerQuotas maxDepth=" +
-                    "\"2147483647\" maxStringContentLength=\"2147483647\" maxArrayLength=\"2147483647\" max" +
-                    "BytesPerRead=\"2147483647\" maxNameTableCharCount=\"2147483647\" />\r\n          <secu" +
-                    "rity mode=\"None\">\r\n            <transport clientCredentialType=\"None\" proxyCrede" +
-                    "ntialType=\"None\" realm=\"\" />\r\n            <message clientCredentialType=\"UserNam" +
-                    "e\" algorithmSuite=\"Default\" />\r\n          </security>\r\n        </binding>\r\n     " +
-                    " </basicHttpBinding>\r\n    </bindings>\r\n    <client>\r\n      <endpoint address=\"ht" +
-                    "tp://10.2.180.8:8082/service.asmx\" binding=\"basicHttpBinding\" bindingConfigurati" +
-                    "on=\"ServiceSoap\" contract=\"MemberSiteService.ServiceSoap\" name=\"ServiceSoap\" />\r" +
-                    "\n      <endpoint address=\"");
+                    "\r\n      </dependentAssembly>      \r\n      <dependentAssembly>\r\n        <assembly" +
+                    "Identity name=\"Newtonsoft.Json\" publicKeyToken=\"30ad4fe6b2a6aeed\" culture=\"neutr" +
+                    "al\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-6.0.0.0\" newVersion=\"6.0.0." +
+                    "0\" />\r\n      </dependentAssembly>\r\n    </assemblyBinding>\r\n  </runtime>\r\n  <dotl" +
+                    "ess minifyCss=\"false\" cache=\"true\" web=\"false\" />\r\n  <bundleTransformer xmlns=\"h" +
+                    "ttp://tempuri.org/BundleTransformer.Configuration.xsd\">\r\n    <core>\r\n      <css>" +
+                    "\r\n        <minifiers>\r\n          <add name=\"NullMinifier\" type=\"BundleTransforme" +
+                    "r.Core.Minifiers.NullMinifier, BundleTransformer.Core\" />\r\n        </minifiers>\r" +
+                    "\n        <translators>\r\n          <add name=\"NullTranslator\" type=\"BundleTransfo" +
+                    "rmer.Core.Translators.NullTranslator, BundleTransformer.Core\" enabled=\"false\" />" +
+                    "\r\n          <add name=\"LessTranslator\" type=\"BundleTransformer.Less.Translators." +
+                    "LessTranslator, BundleTransformer.Less\" />\r\n        </translators>\r\n      </css>" +
+                    "\r\n      <js>\r\n        <minifiers>\r\n          <add name=\"NullMinifier\" type=\"Bund" +
+                    "leTransformer.Core.Minifiers.NullMinifier, BundleTransformer.Core\" />\r\n        <" +
+                    "/minifiers>\r\n        <translators>\r\n          <add name=\"NullTranslator\" type=\"B" +
+                    "undleTransformer.Core.Translators.NullTranslator, BundleTransformer.Core\" enable" +
+                    "d=\"false\" />\r\n        </translators>\r\n      </js>\r\n    </core>\r\n  </bundleTransf" +
+                    "ormer>\r\n  <system.serviceModel>\r\n\t<behaviors>\r\n      <endpointBehaviors>\r\n      " +
+                    "  <behavior name=\"BetListBehavior\">\r\n          <dataContractSerializer maxItemsI" +
+                    "nObjectGraph=\"2147483647\"/>\r\n        </behavior>\r\n      </endpointBehaviors>\r\n  " +
+                    "  </behaviors>\r\n    <bindings>\r\n      <basicHttpBinding>\r\n        <binding name=" +
+                    "\"WebServiceProviderSoap\" closeTimeout=\"00:01:00\" openTimeout=\"00:01:00\" receiveT" +
+                    "imeout=\"00:10:00\" sendTimeout=\"00:01:00\" allowCookies=\"false\" bypassProxyOnLocal" +
+                    "=\"false\" hostNameComparisonMode=\"StrongWildcard\" maxBufferSize=\"65536\" maxBuffer" +
+                    "PoolSize=\"524288\" maxReceivedMessageSize=\"65536\" messageEncoding=\"Text\" textEnco" +
+                    "ding=\"utf-8\" transferMode=\"Buffered\" useDefaultWebProxy=\"true\">\r\n          <read" +
+                    "erQuotas maxDepth=\"32\" maxStringContentLength=\"8192\" maxArrayLength=\"16384\" maxB" +
+                    "ytesPerRead=\"4096\" maxNameTableCharCount=\"16384\" />\r\n          <security mode=\"N" +
+                    "one\">\r\n            <transport clientCredentialType=\"None\" proxyCredentialType=\"N" +
+                    "one\" realm=\"\">\r\n              <extendedProtectionPolicy policyEnforcement=\"Never" +
+                    "\" />\r\n            </transport>\r\n            <message clientCredentialType=\"UserN" +
+                    "ame\" algorithmSuite=\"Default\" />\r\n          </security>\r\n        </binding>\r\n   " +
+                    "     <binding name=\"ServiceSoap\" />\r\n        <binding name=\"AffiliateAPISoap\" cl" +
+                    "oseTimeout=\"00:01:00\" openTimeout=\"00:01:00\" receiveTimeout=\"00:10:00\" sendTimeo" +
+                    "ut=\"00:01:00\" allowCookies=\"false\" bypassProxyOnLocal=\"false\" hostNameComparison" +
+                    "Mode=\"StrongWildcard\" maxBufferSize=\"2147483647\" maxBufferPoolSize=\"2147483647\" " +
+                    "maxReceivedMessageSize=\"2147483647\" messageEncoding=\"Text\" textEncoding=\"utf-8\" " +
+                    "transferMode=\"Buffered\" useDefaultWebProxy=\"true\">\r\n          <readerQuotas maxD" +
+                    "epth=\"2147483647\" maxStringContentLength=\"2147483647\" maxArrayLength=\"2147483647" +
+                    "\" maxBytesPerRead=\"2147483647\" maxNameTableCharCount=\"2147483647\" />\r\n          " +
+                    "<security mode=\"None\">\r\n            <transport clientCredentialType=\"None\" proxy" +
+                    "CredentialType=\"None\" realm=\"\" />\r\n            <message clientCredentialType=\"Us" +
+                    "erName\" algorithmSuite=\"Default\" />\r\n          </security>\r\n        </binding>\r\n" +
+                    "      </basicHttpBinding>\r\n    </bindings>\r\n    <client>\r\n      <endpoint addres" +
+                    "s=\"http://10.2.180.8:8082/service.asmx\" binding=\"basicHttpBinding\" bindingConfig" +
+                    "uration=\"ServiceSoap\" contract=\"MemberSiteService.ServiceSoap\" name=\"ServiceSoap" +
+                    "\" />\r\n      <endpoint address=\"");
             
-            #line 208 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 212 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(serviceModels.GetValue("BetlistWebService")));
             
             #line default
@@ -273,7 +276,7 @@ if(Session["environment"] != null && Session["model"] != null)
 </configuration>
 ");
             
-            #line 214 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 218 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
 
 }
 

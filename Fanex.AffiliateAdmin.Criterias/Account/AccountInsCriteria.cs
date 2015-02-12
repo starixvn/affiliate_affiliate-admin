@@ -14,8 +14,6 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string UserName { get; set; }
 
-        public string UserPwd { get; set; }
-
         public int CustId { get; set; }
 
         public int UserId { get; set; }

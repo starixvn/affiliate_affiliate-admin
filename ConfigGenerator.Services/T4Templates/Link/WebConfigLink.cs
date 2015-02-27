@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.Link
     using System;
     
     
-    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+    #line 1 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class WebConfigLink : WebConfigLinkBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 8 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
 
 if(Session["environment"] != null && Session["model"] != null && Session["connectionstringmodel"] != null)
 {
@@ -67,28 +67,28 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
   </Fanex.Data.DbSettingProvider>
   <Fanex.Logging msmqPath=""");
             
-            #line 49 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 49 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["msmqPath"]));
             
             #line default
             #line hidden
             this.Write("\" defaultCategory=\"");
             
-            #line 49 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 49 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["defaultCategory"]));
             
             #line default
             #line hidden
             this.Write("\" />\r\n  <connectionStrings>\r\n    <add name=\"");
             
-            #line 51 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 51 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
             #line hidden
             this.Write("\" connectionString=\"");
             
-            #line 51 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 51 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-connectionstring")));
             
             #line default
@@ -105,7 +105,7 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
   <system.web>
     <customErrors mode=""");
             
-            #line 61 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 61 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(customErrors.GetValue("mode")));
             
             #line default
@@ -113,7 +113,7 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
             this.Write("\" defaultRedirect=\"~/home/error\">\r\n      <error statusCode=\"404\" redirect=\"~/home" +
                     "/pagenotfound\" />\r\n    </customErrors>\r\n    <compilation debug=\"");
             
-            #line 64 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 64 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(compilations.GetValue("debug")));
             
             #line default
@@ -163,18 +163,21 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
                     ".0.0\" newVersion=\"2.0.0.0\" />\r\n      </dependentAssembly>\r\n      <dependentAssem" +
                     "bly>\r\n        <assemblyIdentity name=\"NPOI\" publicKeyToken=\"0df73ec7942b34e1\" cu" +
                     "lture=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-2.0.6.0\" newVer" +
-                    "sion=\"2.0.6.0\" />\r\n      </dependentAssembly>\r\n    </assemblyBinding>\r\n  </runti" +
-                    "me>\r\n  <entityFramework>\r\n    <defaultConnectionFactory type=\"System.Data.Entity" +
-                    ".Infrastructure.SqlConnectionFactory, EntityFramework\" />\r\n  </entityFramework>\r" +
-                    "\n  <glimpse defaultRuntimePolicy=\"On\" endpointBaseUri=\"~/Glimpse.axd\">\r\n    <!--" +
-                    " If you are having issues with Glimpse, please include this. It will help us fig" +
-                    "ure out whats going on. \r\n      <logging level=\"Trace\" />-->\r\n    <!-- Want to u" +
-                    "se Glimpse on a remote server? Ignore the LocalPolicy by removing this comment.\r" +
-                    "\n      <runtimePolicies>\r\n        <ignoredTypes>\r\n          <add type=\"Glimpse.A" +
-                    "spNet.Policy.LocalPolicy, Glimpse.AspNet\"/>\r\n        </ignoredTypes>\r\n      </ru" +
-                    "ntimePolicies>-->\r\n  </glimpse>\r\n</configuration>\r\n");
+                    "sion=\"2.0.6.0\" />\r\n      </dependentAssembly>\r\n      <dependentAssembly>\r\n      " +
+                    "  <assemblyIdentity name=\"Newtonsoft.Json\" publicKeyToken=\"30ad4fe6b2a6aeed\" cul" +
+                    "ture=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-6.0.0.0\" newVers" +
+                    "ion=\"6.0.0.0\" />\r\n      </dependentAssembly>\r\n    </assemblyBinding>\r\n  </runtim" +
+                    "e>\r\n  <entityFramework>\r\n    <defaultConnectionFactory type=\"System.Data.Entity." +
+                    "Infrastructure.SqlConnectionFactory, EntityFramework\" />\r\n  </entityFramework>\r\n" +
+                    "  <glimpse defaultRuntimePolicy=\"On\" endpointBaseUri=\"~/Glimpse.axd\">\r\n    <!-- " +
+                    "If you are having issues with Glimpse, please include this. It will help us figu" +
+                    "re out whats going on. \r\n      <logging level=\"Trace\" />-->\r\n    <!-- Want to us" +
+                    "e Glimpse on a remote server? Ignore the LocalPolicy by removing this comment.\r\n" +
+                    "      <runtimePolicies>\r\n        <ignoredTypes>\r\n          <add type=\"Glimpse.As" +
+                    "pNet.Policy.LocalPolicy, Glimpse.AspNet\"/>\r\n        </ignoredTypes>\r\n      </run" +
+                    "timePolicies>-->\r\n  </glimpse>\r\n</configuration>\r\n");
             
-            #line 139 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
+            #line 143 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Link\WebConfigLink.tt"
 
 }
 

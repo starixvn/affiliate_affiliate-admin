@@ -23,7 +23,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
         /// </summary>
         public EmailTemplateInfo()
         {
-            SystemName = AppSettings.SystemName;
+            SystemName = AppSettings.SystemDisplayName;
             CsdEmail = AppSettings.MailContact;
             MailContact = AppSettings.MailContact;
         }

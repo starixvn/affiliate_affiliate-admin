@@ -85,24 +85,32 @@ namespace Fanex.AffiliateAdmin.Core.Services
 
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                var param = criteria.GetSpParams();
-                IEnumerable<T> list = objectDb.Query<T>(param);
+                IEnumerable<T> list = new List<T>();
 
-                var outputParams = objectDb.GetOuputParams();
-                if (outputParams != null)
+                try
                 {
-                    var properties = criteria.GetType().GetProperties();
+                    var param = criteria.GetSpParams();
+                    list = objectDb.Query<T>(param);
 
-                    foreach (string outputParam in outputParams.Keys)
+                    var outputParams = objectDb.GetOuputParams();
+                    if (outputParams != null)
                     {
-                        foreach (var property in properties)
+                        var properties = criteria.GetType().GetProperties();
+
+                        foreach (string outputParam in outputParams.Keys)
                         {
-                            if (property.CanWrite && property.Name.ToLower() == outputParam)
+                            foreach (var property in properties)
                             {
-                                property.SetValue(criteria, param[outputParam], null);
+                                if (property.CanWrite && property.Name.ToLower() == outputParam)
+                                {
+                                    property.SetValue(criteria, param[outputParam], null);
+                                }
                             }
                         }
                     }
+                }
+                catch
+                {
                 }
 
                 return list;

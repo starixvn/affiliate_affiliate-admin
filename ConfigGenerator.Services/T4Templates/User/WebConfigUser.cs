@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.User
     using System;
     
     
-    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+    #line 1 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class WebConfigUser : WebConfigUserBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 8 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
 
 if(Session["environment"] != null && Session["model"] != null)
 {
@@ -58,16 +58,15 @@ if(Session["environment"] != null && Session["model"] != null)
                     "ngs, BundleTransformer.Core\" />\r\n      <section name=\"less\" type=\"BundleTransfor" +
                     "mer.Less.Configuration.LessSettings, BundleTransformer.Less\" />\r\n    </sectionGr" +
                     "oup>\r\n    <section name=\"Fanex.Affiliate.Site.SimpleInjectorInitializer\" type=\"S" +
-                    "ystem.Configuration.NameValueFileSectionHandler\" />\r\n    <section name=\"glimpse\"" +
-                    " type=\"Glimpse.Core.Configuration.Section, Glimpse.Core\" />\r\n    <section name=\"" +
-                    "log4net\" type=\"log4net.Config.Log4NetConfigurationSectionHandler, log4net\" />\r\n " +
-                    " </configSections>\r\n  <log4net>\r\n    <appender name=\"ConsoleAppender\" type=\"log4" +
-                    "net.Appender.ConsoleAppender\">\r\n      <layout type=\"log4net.Layout.PatternLayout" +
-                    "\">\r\n        <param name=\"ConversionPattern\" value=\"%d [%t] %-5p %c [%x] &lt;%X{a" +
-                    "uth}&gt; - %m%n\" />\r\n      </layout>\r\n    </appender>\r\n    <appender name=\"Gener" +
-                    "alLog\" type=\"log4net.Appender.RollingFileAppender\">\r\n      <file value=\"");
+                    "ystem.Configuration.NameValueFileSectionHandler\" />\r\n    <section name=\"log4net\"" +
+                    " type=\"log4net.Config.Log4NetConfigurationSectionHandler, log4net\" />\r\n  </confi" +
+                    "gSections>\r\n  <log4net>\r\n    <appender name=\"ConsoleAppender\" type=\"log4net.Appe" +
+                    "nder.ConsoleAppender\">\r\n      <layout type=\"log4net.Layout.PatternLayout\">\r\n    " +
+                    "    <param name=\"ConversionPattern\" value=\"%d [%t] %-5p %c [%x] &lt;%X{auth}&gt;" +
+                    " - %m%n\" />\r\n      </layout>\r\n    </appender>\r\n    <appender name=\"GeneralLog\" t" +
+                    "ype=\"log4net.Appender.RollingFileAppender\">\r\n      <file value=\"");
             
-            #line 53 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 52 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(log4net.GetValue("filename")));
             
             #line default
@@ -95,14 +94,14 @@ if(Session["environment"] != null && Session["model"] != null)
   </Fanex.Data.DbSettingProvider>
   <Fanex.Logging msmqPath=""");
             
-            #line 74 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 73 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["msmqPath"]));
             
             #line default
             #line hidden
             this.Write("\" defaultCategory=\"");
             
-            #line 74 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 73 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["defaultCategory"]));
             
             #line default
@@ -115,35 +114,35 @@ if(Session["environment"] != null && Session["model"] != null)
     <add key=""LinkFormat"" value=""http://{domain}/{custid}/{target}/{lang}/index.htm"" />
     <add key=""app_mail_address"" value=""");
             
-            #line 80 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 79 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("app_mail_address")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n    <add key=\"RemoteRefURL\" value=\"");
             
-            #line 81 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 80 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("RemoteRefURL")));
             
             #line default
             #line hidden
             this.Write("\" />\r\n    <add key=\"ITMail\" value=\"");
             
-            #line 82 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 81 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("ITMail")));
             
             #line default
             #line hidden
             this.Write("\" />\r\n    <!--Url use for checking downtime-->\r\n\t<add key=\"LBUrl\" value=\"");
             
-            #line 84 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 83 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings["LBUrl"]));
             
             #line default
             #line hidden
             this.Write("\" />\r\n  </appSettings>\r\n  <system.web>\r\n    <customErrors mode=\"");
             
-            #line 87 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 86 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(customErrors.GetValue("mode")));
             
             #line default
@@ -152,7 +151,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "tify/pagenotfound\" />\r\n    </customErrors>\r\n    <sessionState mode=\"StateServer\"" +
                     " timeout=\"20\" ");
             
-            #line 90 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 89 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("SessionState")));
             
             #line default
@@ -164,7 +163,7 @@ if(Session["environment"] != null && Session["model"] != null)
     </authentication>
 	<compilation debug=""");
             
-            #line 95 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 94 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(compilations.GetValue("debug")));
             
             #line default
@@ -175,105 +174,98 @@ if(Session["environment"] != null && Session["model"] != null)
                     "Html\" />\r\n        <add namespace=\"System.Web.Routing\" />\r\n        <add namespace" +
                     "=\"System.Web.WebPages\" />\r\n      </namespaces>\r\n    </pages>\r\n    <httpHandlers>" +
                     "\r\n      <add path=\"*.less\" verb=\"GET\" type=\"dotless.Core.LessCssHttpHandler, dot" +
-                    "less.Core\" />\r\n      <add path=\"glimpse.axd\" verb=\"GET\" type=\"Glimpse.AspNet.Htt" +
-                    "pHandler, Glimpse.AspNet\" />\r\n    </httpHandlers>\r\n    <httpModules>\r\n      <add" +
-                    " name=\"Glimpse\" type=\"Glimpse.AspNet.HttpModule, Glimpse.AspNet\" />\r\n    </httpM" +
-                    "odules>\r\n    <globalization culture=\"en-US\" uiCulture=\"en-US\" />\r\n  </system.web" +
-                    ">\r\n  <system.webServer>\r\n    <validation validateIntegratedModeConfiguration=\"fa" +
-                    "lse\" />\r\n    <modules runAllManagedModulesForAllRequests=\"true\">\r\n      <add nam" +
-                    "e=\"Glimpse\" type=\"Glimpse.AspNet.HttpModule, Glimpse.AspNet\" preCondition=\"integ" +
-                    "ratedMode\" />\r\n    </modules>\r\n    <handlers>\r\n      <remove name=\"Extensionless" +
-                    "UrlHandler-ISAPI-4.0_32bit\" />\r\n      <remove name=\"ExtensionlessUrlHandler-ISAP" +
-                    "I-4.0_64bit\" />\r\n      <remove name=\"ExtensionlessUrlHandler-Integrated-4.0\" />\r" +
-                    "\n      <add name=\"ExtensionlessUrlHandler-ISAPI-4.0_32bit\" path=\"*.\" verb=\"GET,H" +
-                    "EAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS\" modules=\"IsapiModule\" scriptProcessor=\"" +
-                    "%windir%\\Microsoft.NET\\Framework\\v4.0.30319\\aspnet_isapi.dll\" preCondition=\"clas" +
-                    "sicMode,runtimeVersionv4.0,bitness32\" responseBufferLimit=\"0\" />\r\n      <add nam" +
-                    "e=\"ExtensionlessUrlHandler-ISAPI-4.0_64bit\" path=\"*.\" verb=\"GET,HEAD,POST,DEBUG," +
-                    "PUT,DELETE,PATCH,OPTIONS\" modules=\"IsapiModule\" scriptProcessor=\"%windir%\\Micros" +
-                    "oft.NET\\Framework64\\v4.0.30319\\aspnet_isapi.dll\" preCondition=\"classicMode,runti" +
-                    "meVersionv4.0,bitness64\" responseBufferLimit=\"0\" />\r\n      <add name=\"Extensionl" +
-                    "essUrlHandler-Integrated-4.0\" path=\"*.\" verb=\"GET,HEAD,POST,DEBUG,PUT,DELETE,PAT" +
-                    "CH,OPTIONS\" type=\"System.Web.Handlers.TransferRequestHandler\" preCondition=\"inte" +
-                    "gratedMode,runtimeVersionv4.0\" />\r\n      <add name=\"dotless\" path=\"*.less\" verb=" +
-                    "\"GET\" type=\"dotless.Core.LessCssHttpHandler,dotless.Core\" resourceType=\"File\" pr" +
-                    "eCondition=\"\" />\r\n      <add name=\"Glimpse\" path=\"glimpse.axd\" verb=\"GET\" type=\"" +
-                    "Glimpse.AspNet.HttpHandler, Glimpse.AspNet\" preCondition=\"integratedMode\" />\r\n  " +
-                    "  </handlers>\r\n  </system.webServer>\r\n  <runtime>\r\n    <assemblyBinding xmlns=\"u" +
-                    "rn:schemas-microsoft-com:asm.v1\">\r\n      <dependentAssembly>\r\n        <assemblyI" +
-                    "dentity name=\"System.Web.Mvc\" publicKeyToken=\"31bf3856ad364e35\" culture=\"neutral" +
-                    "\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-4.0.0.0\" newVersion=\"4.0.0.0\"" +
-                    " />\r\n      </dependentAssembly>\r\n      <dependentAssembly>\r\n        <assemblyIde" +
-                    "ntity name=\"BundleTransformer.Core\" publicKeyToken=\"973c344c93aac60d\" culture=\"n" +
-                    "eutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-1.6.28.0\" newVersion=\"1" +
-                    ".6.28.0\" />\r\n      </dependentAssembly>\r\n      <dependentAssembly>\r\n        <ass" +
-                    "emblyIdentity name=\"System.Web.WebPages\" publicKeyToken=\"31bf3856ad364e35\" cultu" +
-                    "re=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-2.0.0.0\" newVersio" +
-                    "n=\"2.0.0.0\" />\r\n      </dependentAssembly>\r\n      <dependentAssembly>\r\n        <" +
-                    "assemblyIdentity name=\"SimpleInjector\" publicKeyToken=\"984cb50dea722e99\" culture" +
-                    "=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-2.3.5.0\" newVersion=" +
-                    "\"2.3.5.0\" />\r\n      </dependentAssembly>\r\n      <dependentAssembly>\r\n        <as" +
-                    "semblyIdentity name=\"NPOI\" publicKeyToken=\"0df73ec7942b34e1\" culture=\"neutral\" /" +
-                    ">\r\n        <bindingRedirect oldVersion=\"0.0.0.0-2.0.6.0\" newVersion=\"2.0.6.0\" />" +
-                    "\r\n      </dependentAssembly>\r\n    </assemblyBinding>\r\n  </runtime>\r\n  <dotless m" +
-                    "inifyCss=\"false\" cache=\"true\" web=\"false\" />\r\n  <bundleTransformer xmlns=\"http:/" +
-                    "/tempuri.org/BundleTransformer.Configuration.xsd\">\r\n    <core>\r\n      <css>\r\n   " +
-                    "     <minifiers>\r\n          <add name=\"NullMinifier\" type=\"BundleTransformer.Cor" +
-                    "e.Minifiers.NullMinifier, BundleTransformer.Core\" />\r\n        </minifiers>\r\n    " +
-                    "    <translators>\r\n          <add name=\"NullTranslator\" type=\"BundleTransformer." +
-                    "Core.Translators.NullTranslator, BundleTransformer.Core\" enabled=\"false\" />\r\n   " +
-                    "       <add name=\"LessTranslator\" type=\"BundleTransformer.Less.Translators.LessT" +
-                    "ranslator, BundleTransformer.Less\" />\r\n        </translators>\r\n      </css>\r\n   " +
-                    "   <js>\r\n        <minifiers>\r\n          <add name=\"NullMinifier\" type=\"BundleTra" +
-                    "nsformer.Core.Minifiers.NullMinifier, BundleTransformer.Core\" />\r\n        </mini" +
-                    "fiers>\r\n        <translators>\r\n          <add name=\"NullTranslator\" type=\"Bundle" +
-                    "Transformer.Core.Translators.NullTranslator, BundleTransformer.Core\" enabled=\"fa" +
-                    "lse\" />\r\n        </translators>\r\n      </js>\r\n    </core>\r\n  </bundleTransformer" +
-                    ">\r\n  <system.serviceModel>\r\n\t<behaviors>\r\n      <endpointBehaviors>\r\n        <be" +
-                    "havior name=\"BetListBehavior\">\r\n          <dataContractSerializer maxItemsInObje" +
-                    "ctGraph=\"2147483647\"/>\r\n        </behavior>\r\n      </endpointBehaviors>\r\n    </b" +
-                    "ehaviors>\r\n    <bindings>\r\n      <basicHttpBinding>\r\n        <binding name=\"WebS" +
-                    "erviceProviderSoap\" closeTimeout=\"00:01:00\" openTimeout=\"00:01:00\" receiveTimeou" +
-                    "t=\"00:10:00\" sendTimeout=\"00:01:00\" allowCookies=\"false\" bypassProxyOnLocal=\"fal" +
-                    "se\" hostNameComparisonMode=\"StrongWildcard\" maxBufferSize=\"65536\" maxBufferPoolS" +
-                    "ize=\"524288\" maxReceivedMessageSize=\"65536\" messageEncoding=\"Text\" textEncoding=" +
-                    "\"utf-8\" transferMode=\"Buffered\" useDefaultWebProxy=\"true\">\r\n          <readerQuo" +
-                    "tas maxDepth=\"32\" maxStringContentLength=\"8192\" maxArrayLength=\"16384\" maxBytesP" +
-                    "erRead=\"4096\" maxNameTableCharCount=\"16384\" />\r\n          <security mode=\"None\">" +
-                    "\r\n            <transport clientCredentialType=\"None\" proxyCredentialType=\"None\" " +
-                    "realm=\"\">\r\n              <extendedProtectionPolicy policyEnforcement=\"Never\" />\r" +
-                    "\n            </transport>\r\n            <message clientCredentialType=\"UserName\" " +
-                    "algorithmSuite=\"Default\" />\r\n          </security>\r\n        </binding>\r\n        " +
-                    "<binding name=\"ServiceSoap\" />\r\n        <binding name=\"AffiliateAPISoap\" closeTi" +
-                    "meout=\"00:01:00\" openTimeout=\"00:01:00\" receiveTimeout=\"00:10:00\" sendTimeout=\"0" +
-                    "0:01:00\" allowCookies=\"false\" bypassProxyOnLocal=\"false\" hostNameComparisonMode=" +
-                    "\"StrongWildcard\" maxBufferSize=\"2147483647\" maxBufferPoolSize=\"2147483647\" maxRe" +
-                    "ceivedMessageSize=\"2147483647\" messageEncoding=\"Text\" textEncoding=\"utf-8\" trans" +
-                    "ferMode=\"Buffered\" useDefaultWebProxy=\"true\">\r\n          <readerQuotas maxDepth=" +
-                    "\"2147483647\" maxStringContentLength=\"2147483647\" maxArrayLength=\"2147483647\" max" +
-                    "BytesPerRead=\"2147483647\" maxNameTableCharCount=\"2147483647\" />\r\n          <secu" +
-                    "rity mode=\"None\">\r\n            <transport clientCredentialType=\"None\" proxyCrede" +
-                    "ntialType=\"None\" realm=\"\" />\r\n            <message clientCredentialType=\"UserNam" +
-                    "e\" algorithmSuite=\"Default\" />\r\n          </security>\r\n        </binding>\r\n     " +
-                    " </basicHttpBinding>\r\n    </bindings>\r\n    <client>\r\n      <endpoint address=\"ht" +
-                    "tp://10.2.180.8:8082/service.asmx\" binding=\"basicHttpBinding\" bindingConfigurati" +
-                    "on=\"ServiceSoap\" contract=\"MemberSiteService.ServiceSoap\" name=\"ServiceSoap\" />\r" +
-                    "\n      <endpoint address=\"");
+                    "less.Core\" />\r\n    </httpHandlers>\r\n    <globalization culture=\"en-US\" uiCulture" +
+                    "=\"en-US\" />\r\n  </system.web>\r\n  <system.webServer>\r\n    <validation validateInte" +
+                    "gratedModeConfiguration=\"false\" />\r\n    <handlers>\r\n      <remove name=\"Extensio" +
+                    "nlessUrlHandler-ISAPI-4.0_32bit\" />\r\n      <remove name=\"ExtensionlessUrlHandler" +
+                    "-ISAPI-4.0_64bit\" />\r\n      <remove name=\"ExtensionlessUrlHandler-Integrated-4.0" +
+                    "\" />\r\n      <add name=\"ExtensionlessUrlHandler-ISAPI-4.0_32bit\" path=\"*.\" verb=\"" +
+                    "GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS\" modules=\"IsapiModule\" scriptProces" +
+                    "sor=\"%windir%\\Microsoft.NET\\Framework\\v4.0.30319\\aspnet_isapi.dll\" preCondition=" +
+                    "\"classicMode,runtimeVersionv4.0,bitness32\" responseBufferLimit=\"0\" />\r\n      <ad" +
+                    "d name=\"ExtensionlessUrlHandler-ISAPI-4.0_64bit\" path=\"*.\" verb=\"GET,HEAD,POST,D" +
+                    "EBUG,PUT,DELETE,PATCH,OPTIONS\" modules=\"IsapiModule\" scriptProcessor=\"%windir%\\M" +
+                    "icrosoft.NET\\Framework64\\v4.0.30319\\aspnet_isapi.dll\" preCondition=\"classicMode," +
+                    "runtimeVersionv4.0,bitness64\" responseBufferLimit=\"0\" />\r\n      <add name=\"Exten" +
+                    "sionlessUrlHandler-Integrated-4.0\" path=\"*.\" verb=\"GET,HEAD,POST,DEBUG,PUT,DELET" +
+                    "E,PATCH,OPTIONS\" type=\"System.Web.Handlers.TransferRequestHandler\" preCondition=" +
+                    "\"integratedMode,runtimeVersionv4.0\" />\r\n      <add name=\"dotless\" path=\"*.less\" " +
+                    "verb=\"GET\" type=\"dotless.Core.LessCssHttpHandler,dotless.Core\" resourceType=\"Fil" +
+                    "e\" preCondition=\"\" />\r\n    </handlers>\r\n  </system.webServer>\r\n  <runtime>\r\n    " +
+                    "<assemblyBinding xmlns=\"urn:schemas-microsoft-com:asm.v1\">\r\n      <dependentAsse" +
+                    "mbly>\r\n        <assemblyIdentity name=\"System.Web.Mvc\" publicKeyToken=\"31bf3856a" +
+                    "d364e35\" culture=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-4.0." +
+                    "0.0\" newVersion=\"4.0.0.0\" />\r\n      </dependentAssembly>\r\n      <dependentAssemb" +
+                    "ly>\r\n        <assemblyIdentity name=\"BundleTransformer.Core\" publicKeyToken=\"973" +
+                    "c344c93aac60d\" culture=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0." +
+                    "0-1.6.28.0\" newVersion=\"1.6.28.0\" />\r\n      </dependentAssembly>\r\n      <depende" +
+                    "ntAssembly>\r\n        <assemblyIdentity name=\"System.Web.WebPages\" publicKeyToken" +
+                    "=\"31bf3856ad364e35\" culture=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0" +
+                    ".0.0.0-2.0.0.0\" newVersion=\"2.0.0.0\" />\r\n      </dependentAssembly>\r\n      <depe" +
+                    "ndentAssembly>\r\n        <assemblyIdentity name=\"SimpleInjector\" publicKeyToken=\"" +
+                    "984cb50dea722e99\" culture=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0" +
+                    ".0.0-2.3.5.0\" newVersion=\"2.3.5.0\" />\r\n      </dependentAssembly>\r\n      <depend" +
+                    "entAssembly>\r\n        <assemblyIdentity name=\"NPOI\" publicKeyToken=\"0df73ec7942b" +
+                    "34e1\" culture=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-2.0.6.0" +
+                    "\" newVersion=\"2.0.6.0\" />\r\n      </dependentAssembly>      \r\n      <dependentAss" +
+                    "embly>\r\n        <assemblyIdentity name=\"Newtonsoft.Json\" publicKeyToken=\"30ad4fe" +
+                    "6b2a6aeed\" culture=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-6." +
+                    "0.0.0\" newVersion=\"6.0.0.0\" />\r\n      </dependentAssembly>\r\n    </assemblyBindin" +
+                    "g>\r\n  </runtime>\r\n  <dotless minifyCss=\"false\" cache=\"true\" web=\"false\" />\r\n  <b" +
+                    "undleTransformer xmlns=\"http://tempuri.org/BundleTransformer.Configuration.xsd\">" +
+                    "\r\n    <core>\r\n      <css>\r\n        <minifiers>\r\n          <add name=\"NullMinifie" +
+                    "r\" type=\"BundleTransformer.Core.Minifiers.NullMinifier, BundleTransformer.Core\" " +
+                    "/>\r\n        </minifiers>\r\n        <translators>\r\n          <add name=\"NullTransl" +
+                    "ator\" type=\"BundleTransformer.Core.Translators.NullTranslator, BundleTransformer" +
+                    ".Core\" enabled=\"false\" />\r\n          <add name=\"LessTranslator\" type=\"BundleTran" +
+                    "sformer.Less.Translators.LessTranslator, BundleTransformer.Less\" />\r\n        </t" +
+                    "ranslators>\r\n      </css>\r\n      <js>\r\n        <minifiers>\r\n          <add name=" +
+                    "\"NullMinifier\" type=\"BundleTransformer.Core.Minifiers.NullMinifier, BundleTransf" +
+                    "ormer.Core\" />\r\n        </minifiers>\r\n        <translators>\r\n          <add name" +
+                    "=\"NullTranslator\" type=\"BundleTransformer.Core.Translators.NullTranslator, Bundl" +
+                    "eTransformer.Core\" enabled=\"false\" />\r\n        </translators>\r\n      </js>\r\n    " +
+                    "</core>\r\n  </bundleTransformer>\r\n  <system.serviceModel>\r\n\t<behaviors>\r\n      <e" +
+                    "ndpointBehaviors>\r\n        <behavior name=\"BetListBehavior\">\r\n          <dataCon" +
+                    "tractSerializer maxItemsInObjectGraph=\"2147483647\"/>\r\n        </behavior>\r\n     " +
+                    " </endpointBehaviors>\r\n    </behaviors>\r\n    <bindings>\r\n      <basicHttpBinding" +
+                    ">\r\n        <binding name=\"WebServiceProviderSoap\" closeTimeout=\"00:01:00\" openTi" +
+                    "meout=\"00:01:00\" receiveTimeout=\"00:10:00\" sendTimeout=\"00:01:00\" allowCookies=\"" +
+                    "false\" bypassProxyOnLocal=\"false\" hostNameComparisonMode=\"StrongWildcard\" maxBuf" +
+                    "ferSize=\"65536\" maxBufferPoolSize=\"524288\" maxReceivedMessageSize=\"65536\" messag" +
+                    "eEncoding=\"Text\" textEncoding=\"utf-8\" transferMode=\"Buffered\" useDefaultWebProxy" +
+                    "=\"true\">\r\n          <readerQuotas maxDepth=\"32\" maxStringContentLength=\"8192\" ma" +
+                    "xArrayLength=\"16384\" maxBytesPerRead=\"4096\" maxNameTableCharCount=\"16384\" />\r\n  " +
+                    "        <security mode=\"None\">\r\n            <transport clientCredentialType=\"Non" +
+                    "e\" proxyCredentialType=\"None\" realm=\"\">\r\n              <extendedProtectionPolicy" +
+                    " policyEnforcement=\"Never\" />\r\n            </transport>\r\n            <message cl" +
+                    "ientCredentialType=\"UserName\" algorithmSuite=\"Default\" />\r\n          </security>" +
+                    "\r\n        </binding>\r\n        <binding name=\"ServiceSoap\" />\r\n        <binding n" +
+                    "ame=\"AffiliateAPISoap\" closeTimeout=\"00:01:00\" openTimeout=\"00:01:00\" receiveTim" +
+                    "eout=\"00:10:00\" sendTimeout=\"00:01:00\" allowCookies=\"false\" bypassProxyOnLocal=\"" +
+                    "false\" hostNameComparisonMode=\"StrongWildcard\" maxBufferSize=\"2147483647\" maxBuf" +
+                    "ferPoolSize=\"2147483647\" maxReceivedMessageSize=\"2147483647\" messageEncoding=\"Te" +
+                    "xt\" textEncoding=\"utf-8\" transferMode=\"Buffered\" useDefaultWebProxy=\"true\">\r\n   " +
+                    "       <readerQuotas maxDepth=\"2147483647\" maxStringContentLength=\"2147483647\" m" +
+                    "axArrayLength=\"2147483647\" maxBytesPerRead=\"2147483647\" maxNameTableCharCount=\"2" +
+                    "147483647\" />\r\n          <security mode=\"None\">\r\n            <transport clientCr" +
+                    "edentialType=\"None\" proxyCredentialType=\"None\" realm=\"\" />\r\n            <message" +
+                    " clientCredentialType=\"UserName\" algorithmSuite=\"Default\" />\r\n          </securi" +
+                    "ty>\r\n        </binding>\r\n      </basicHttpBinding>\r\n    </bindings>\r\n    <client" +
+                    ">\r\n      <endpoint address=\"http://10.2.180.8:8082/service.asmx\" binding=\"basicH" +
+                    "ttpBinding\" bindingConfiguration=\"ServiceSoap\" contract=\"MemberSiteService.Servi" +
+                    "ceSoap\" name=\"ServiceSoap\" />\r\n      <endpoint address=\"");
             
-            #line 208 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 203 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(serviceModels.GetValue("BetlistWebService")));
             
             #line default
             #line hidden
-            this.Write(@""" binding=""basicHttpBinding"" bindingConfiguration=""AffiliateAPISoap"" contract=""AffBetlistService.AffiliateAPISoap"" name=""AffiliateAPISoap"" behaviorConfiguration=""BetListBehavior"" />
-    </client>
-  </system.serviceModel>
-  <glimpse defaultRuntimePolicy=""On"" endpointBaseUri=""~/Glimpse.axd"">
-  </glimpse>
-</configuration>
-");
+            this.Write("\" binding=\"basicHttpBinding\" bindingConfiguration=\"AffiliateAPISoap\" contract=\"Af" +
+                    "fBetlistService.AffiliateAPISoap\" name=\"AffiliateAPISoap\" behaviorConfiguration=" +
+                    "\"BetListBehavior\" />\r\n    </client>\r\n  </system.serviceModel>\r\n</configuration>\r" +
+                    "\n");
             
-            #line 214 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 207 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
 
 }
 

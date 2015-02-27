@@ -18,7 +18,7 @@ management
     @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
     @using (Html.BeginForm("Users", "Management", FormMethod.Post, new { @class = "row-fluid", id = "SearchForm" }))
     {
-        @Html.ValidationSummary()
+        @*@Html.ValidationSummary()*@
         <div class="span12 search-form">
             <div class="row-fluid row-form end-search">
                 <div class="cell">

@@ -393,6 +393,21 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
+        public static string SystemDisplayName
+        {
+            get
+            {
+                var displayName = GetSettingValue(new SystemSettingsSelByNameCriteria { Name = "SystemDisplayName" });
+                
+                if (string.IsNullOrEmpty(displayName))
+                {
+                    return SystemName;
+                }
+
+                return displayName;
+            }
+        }
+
         public static DateTime SystemStartDate
         {
             get
@@ -468,7 +483,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 
             if (systemSettings != null && systemSettings.Count > 0)
             {
-                var selectedSystemSetting = systemSettings.FirstOrDefault(x => x.Environment == Environment);
+                var selectedSystemSetting = systemSettings.FirstOrDefault(x => x.Environment.Equals(Environment, StringComparison.OrdinalIgnoreCase));
 
                 if (selectedSystemSetting != null)
                 {

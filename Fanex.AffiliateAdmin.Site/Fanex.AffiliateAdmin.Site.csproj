@@ -271,6 +271,23 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="Configurations\SpNames\SpName.unobet.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.unobet.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.unobet.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.unobet.uat.xml" />
+    <Content Include="Content\_Sites\unobet\images\banner_top.png" />
+    <Content Include="Content\_Sites\unobet\images\best-browsers.png" />
+    <Content Include="Content\_Sites\unobet\images\bodybg.jpg" />
+    <Content Include="Content\_Sites\unobet\images\btbg.png" />
+    <Content Include="Content\_Sites\unobet\images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\unobet\images\emailBg.jpg" />
+    <Content Include="Content\_Sites\unobet\images\favicon.jpg" />
+    <Content Include="Content\_Sites\unobet\images\headerbg.jpg" />
+    <Content Include="Content\_Sites\unobet\images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\unobet\images\logo.jpg" />
+    <Content Include="Content\_Sites\unobet\images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\unobet\images\notify.png" />
+    <Content Include="Content\_Sites\unobet\images\panel.png" />
     <Content Include="Form\GenHistoryImg.aspx.cs">
       <DependentUpon>GenHistoryImg.aspx</DependentUpon>
     </Content>
@@ -3721,6 +3738,20 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.yhy1980.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.yhy1980.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.yhy1980.uat.config" />
+    <Content Include="Configurations\WebConfigs\Web.unobet.local.config" />
+    <Content Include="Configurations\WebConfigs\Web.unobet.master.config" />
+    <Content Include="Configurations\WebConfigs\Web.unobet.production.config" />
+    <Content Include="Configurations\WebConfigs\Web.unobet.uat.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.local.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.master.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.production.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.uat.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.master.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.production.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.uat.config" />
+    <Content Include="Content\_Sites\unobet\Login.less" />
+    <Content Include="Content\_Sites\unobet\Notify.less" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\S0007\icon_20x20_doubleWild.jpg.exclude" />
@@ -3858,9 +3889,7 @@
     <Content Include="Views\BetList\RNGCasinoDetail\NoGameErr.cshtml" />
     <Content Include="Views\BetList\RNGCasinoDetail\Noinfo.cshtml" />
     <Content Include="Views\BetList\BetListResults_RNGCasino.cshtml" />
-    <Content Include="Web.AppSetting.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.AppSetting.config" />
     <Content Include="Web.ConnectionString.config" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -4102,7 +4131,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

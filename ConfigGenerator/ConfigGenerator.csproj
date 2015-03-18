@@ -102,6 +102,10 @@
     <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.yhy1980.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.unobet.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.unobet.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.yhy1980.xml">
       <SubType>Designer</SubType>
     </Content>

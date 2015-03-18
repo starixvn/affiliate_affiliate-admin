@@ -34,17 +34,14 @@ namespace Fanex.AffiliateAdmin.Controller
     {
         private readonly IBetListService _betListService;
 
-        private readonly IProductService _productService;
-
         public BetListController()
-            : this(null, null)
+            : this(null)
         {
         }
 
-        public BetListController(IBetListService betListService, IProductService productService)
+        public BetListController(IBetListService betListService)
         {
             _betListService = betListService ?? new BetListService();
-            _productService = productService ?? new ProductService();
         }
 
         #region BetList
@@ -56,6 +53,15 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>Action result.</returns>
         public ActionResult Index(BetListViewModel model)
         {
+            var isValid = GetValidationResult(model.AffId, model.Username);
+
+            if (!isValid)
+            {
+                ViewBag.Data = string.Empty;
+
+                return View();
+            }
+
             var exchangeRate = _betListService.GetExchangeRate(new GetExchangeRateCriteria
                 {
                     Date = model.WinlostDate,
@@ -63,7 +69,9 @@ namespace Fanex.AffiliateAdmin.Controller
                     ToCurrency = model.ToCurrencyId
                 });
 
-            var supportedProducts = GetSupportedProductsForWebService(model.AffId);
+            var supportedProducts = GetSupportedProductsForWebService();
+
+            ViewBag.SupportedProducts = string.Join(",", supportedProducts.Select(t => t.ProductName));
 
             var betlistSoap = new AffBetListService.BetlistSOAP
             {
@@ -146,11 +154,22 @@ namespace Fanex.AffiliateAdmin.Controller
         /// The pop up result page.
         /// </summary>
         /// <param name="criteria">The metal model.</param>
+        /// <param name="affId">The affiliate id.</param>
         /// <returns>The action result.</returns>
         [HttpGet]
-        public ActionResult BetListResults(AffBetListService.BetListResultsCriteria criteria)
+        public ActionResult BetListResults(AffBetListService.BetListResultsCriteria criteria, int affId)
         {
+            var isValid = GetValidationResult(affId, criteria.UserName);
+
+            if (!isValid)
+            {
+                ViewBag.Data = string.Empty;
+
+                return View();
+            }
+
             ViewBag.Data = GetPopUpData(criteria);
+
             return View();
         }
 
@@ -177,10 +196,20 @@ namespace Fanex.AffiliateAdmin.Controller
         /// Get RNG Casino data.
         /// </summary>
         /// <param name="criteria">The meta model.</param>
+        /// <param name="affId">The affiliate id.</param>
         /// <returns>The data string.</returns>
         [HttpGet]
-        public ActionResult RNGCasinoData(BetListResultsRNGCasinoCriteria criteria)
+        public ActionResult RNGCasinoData(BetListResultsRNGCasinoCriteria criteria, int affId)
         {
+            var isValid = GetValidationResult(affId, criteria.UserName);
+
+            if (!isValid)
+            {
+                ViewBag.Data = string.Empty;
+
+                return View("~/Views/BetList/BetListResults_RNGCasino.cshtml", null);
+            }
+
             var customerInfoBetList = _betListService.GetPlayerIbcInfo(AppSettings.AffiliateName + "$" + criteria.UserName);
             criteria.BaseCurrency = criteria.BaseCurrency ?? string.Empty;
             criteria.ExternalId = customerInfoBetList.Username;
@@ -212,7 +241,8 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var model = new BetListResultsRNGCasinoViewModel(data, totalAmount, criteria)
                 {
-                    Currency = criteria.ToCurrencyCode
+                    Currency = criteria.ToCurrencyCode,
+                    AffId = affId
                 };
 
             return View("~/Views/BetList/BetListResults_RNGCasino.cshtml", model);
@@ -240,10 +270,21 @@ namespace Fanex.AffiliateAdmin.Controller
         /// RNG Casino detail.
         /// </summary>
         /// <param name="criteria">The meta model.</param>
+        /// <param name="affId">The affiliate id.</param>
+        /// <param name="username">The user name.</param>
         /// <returns>The action result.</returns>
         [HttpGet]
-        public ViewResult RNGCasinoDetail(BetListResultsRNGCasinoDetailCriteria criteria)
+        public ViewResult RNGCasinoDetail(BetListResultsRNGCasinoDetailCriteria criteria, int affId, string username)
         {
+            var isValid = GetValidationResult(affId, username);
+
+            if (!isValid)
+            {
+                ViewBag.Data = string.Empty;
+
+                return View("~/Views/BetList/RNGCasinoDetail/Noinfo.cshtml");
+            }
+
             criteria.CurrencyName = criteria.CurrencyName.ToUpper();
 
             var exchangeRate = criteria.ExchangeRate;
@@ -427,27 +468,36 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <summary>
         /// Get supported products for web service.
         /// </summary>
-        /// <param name="affId">Affiliate input.</param>
         /// <returns>Product list.</returns>
-        private AffBetListService.Product[] GetSupportedProductsForWebService(int affId)
+        private AffBetListService.Product[] GetSupportedProductsForWebService()
         {
-            var productCriteria = new GetProductByAffIdCriteria
+            var supportedProducts = AppSettings.Products.Select(product => new AffBetListService.Product
             {
-                AffId = affId,
-                MonthDate = null
-            };
-
-            var products = _productService.GetProductList(productCriteria);
-
-            var supportedProducts = products.Select(product => new AffBetListService.Product
-            {
-                ProductId = product.ProductId,
-                ProductName = product.ProductName,
-                OriginalProductName = product.OriginalProductName,
-                TotalQualifiedMembers = product.TotalQualifiedMembers
+                ProductId = product.ProductID,
+                ProductName = product.ProductName
             }).ToList();
 
             return supportedProducts.ToArray();
+        }
+
+        /// <summary>
+        /// Get Validation Result.
+        /// </summary>
+        /// <param name="affId">The affiliate id.</param>
+        /// <param name="username">User name.</param>
+        /// <returns>Validation result.</returns>
+        private bool GetValidationResult(int affId, string username)
+        {
+            var criteria = new ValidationCriteria
+            {
+                AffId = affId,
+                AdminName = CurrentSession.Username,
+                MemberName = username ?? string.Empty
+            };
+
+            _betListService.ValidatePermission(criteria);
+
+            return criteria.BelongLevel1 && criteria.BelongLevel2;
         }
 
         #endregion

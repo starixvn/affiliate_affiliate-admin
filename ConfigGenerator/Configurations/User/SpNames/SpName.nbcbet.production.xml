@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Functions>
+  <Function Name="Aff-Account">
+    <Setting Key="Aff_User_SecureLoginInfo" SpName="Aff_User_SecureLoginInfo" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_SecureLoginUpdate" SpName="Aff_User_SecureLoginUpdate" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_Recheckin" SpName="Aff_User_Recheckin" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_Logout" SpName="Aff_User_Logout" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_AffiliateForgotPwd" SpName="Aff_User_AffiliateForgotPwd" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_AffiliateRecoverPwd" SpName="Aff_User_AffiliateRecoverPwd" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_OnUserSelNetSessionID" SpName="Aff_User_OnUserSelNetSessionID" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_AffiliateInternalLogin" SpName="Aff_User_AffiliateInternalLogin" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_SecureUpdPasswordInfo" SpName="Aff_User_SecureUpdPasswordInfo" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_SecureUpdPasswordUpdate" SpName="Aff_User_SecureUpdPasswordUpdate" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Account-Overview">
+    <Setting Key="Aff_User_StatisticsSel" SpName="Aff_User_StatisticsSel" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_CommGroupSelDetail" SpName="Aff_User_CommGroupSelDetail" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Statement">
+    <Setting Key="Aff_User_AffiliateStatementHistorySel" SpName="Aff_User_AffiliateStatementHistorySel" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_EarningSelDaily" SpName="Aff_User_EarningSelDaily" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_EarningSelDetail" SpName="Aff_User_EarningSelDetail" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_GetExchangeRate" SpName="Aff_User_GetExchangeRate" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_BetList" SpName="Aff_User_BetList" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_BetListParlay" SpName="Aff_User_BetListParlay" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_BetListSystemParlayDetail" SpName="Aff_User_BetListSystemParlayDetail" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_SelBalanceUpDay" SpName="Aff_User_SelBalanceUpDay" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_DummyAccID" SpName="Aff_User_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+
+    <Setting Key="Aff_User_BetListResult_SelMatch" SpName="Aff_User_BetListResult_SelMatch" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_BetListResult_SelMatchParlay" SpName="Aff_User_BetListResult_SelMatchParlay" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_BetListResult_SelMatchNumberGame" SpName="Aff_User_BetListResult_SelMatchNumberGame" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+</Function>
+
+  <Function Name="Aff-CustomerInfo">
+    <Setting Key="Aff_User_MemberListSel" SpName="Aff_User_MemberListSel" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Payment">
+    <Setting Key="Aff_User_PaymentRequestSelInfoByAff" SpName="Aff_User_PaymentRequestSelInfoByAff" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_PlayerPayoutInfoSel" SpName="Aff_User_PlayerPayoutInfoSel" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_PaymentRequestIns" SpName="Aff_User_PaymentRequestIns" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_PaymentRequestUpd" SpName="Aff_User_PaymentRequestUpd" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Statistics">
+    <Setting Key="Aff_User_ClickStatisticsSelByPage" SpName="Aff_User_ClickStatisticsSelByPage" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_ClickStatisticsDetailBySite" SpName="Aff_User_ClickStatisticsDetailBySite" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_ClickStatisticsSelBySite" SpName="Aff_User_ClickStatisticsSelBySite" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-System-Settings">
+    <Setting Key="Aff_User_SystemSettingsSelByType" SpName="Aff_User_SystemSettingsSelByType" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_AffiliateSelDBTime" SpName="Aff_User_AffiliateSelDBTime" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_GetAllAffSystemSettings" SpName="Aff_User_GetAllAffSystemSettings" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Affiliate-Account">
+    <Setting Key="Aff_User_AffiliateIns" SpName="Aff_User_AffiliateIns" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_AffiliateUpdInfo" SpName="Aff_User_AffiliateUpdInfo" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_AffiliateSelEditInfo" SpName="Aff_User_AffiliateSelEditInfo" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Product">
+    <Setting Key="Aff_User_ProductSelByAffID" SpName="Aff_User_ProductSelByAffID" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Marketing">
+    <Setting Key="Aff_User_BannerSelType" SpName="Aff_User_BannerSelType" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_DomainAffClientSel" SpName="Aff_User_DomainAffClientSel" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_BannerSel" SpName="Aff_User_BannerSel" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Message">
+    <Setting Key="Aff_User_HotNewsSel_New" SpName="Aff_User_HotNewsSel_New" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_HotNewsDetail_New" SpName="Aff_User_HotNewsDetail_New" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0"/>
+  </Function>
+
+  <Function Name="Aff-Contact-Us">
+    <Setting Key="Aff_User_EmailHistoryIns" SpName="Aff_User_EmailHistoryIns" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Group-Settings">
+    <Setting Key="Aff_User_GetDefaultProductCommission" SpName="Aff_User_GetDefaultProductCommission" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <!--SPs for Affiliate Link-->
+  <Function Name="Aff-Link">
+    <Setting Key="Aff_Link_AffiliateInsClickStatistics" SpName="Aff_Link_AffiliateInsClickStatistics" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Validation-Aff-Member">
+    <Setting Key="Aff_BetList_CheckBelonging" SpName="Aff_BetList_CheckBelonging" DbName="DBAFFNBCBET.Affiliate_NBCbet.bodbDownlineNet" Plain="0" />
+  </Function>
+</Functions>

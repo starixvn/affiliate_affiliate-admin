@@ -55,6 +55,11 @@ namespace Fanex.AffiliateAdmin.Services
             return _betlistDataAccess.GetExchangeRate(criteria);
         }
 
+        public void ValidatePermission(ValidationCriteria criteria)
+        {
+            ExecuteOutput(criteria);
+        }
+
         /// <summary>
         /// Get player's username.
         /// </summary>

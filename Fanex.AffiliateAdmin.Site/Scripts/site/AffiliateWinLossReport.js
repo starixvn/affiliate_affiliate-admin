@@ -9,9 +9,6 @@ var AffiliateWinLossReport = (function ($) {
         return $('#ByAffiliate').length > 0;
     };
 
-
-
-
     return {
         init: function () {
          
@@ -131,7 +128,7 @@ var AffiliateWinLossReport = (function ($) {
                 return true;
 
             } else {
-                diffMonth = (toMonth + 11) - fromMonth;
+                diffMonth = (toMonth + 12) - fromMonth;
                 if (diffMonth < 0 || diffMonth > 2) {
                     $('#FromDate, #ToDate').addClass('input-validation-error');
                     return false;

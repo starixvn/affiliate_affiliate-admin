@@ -1380,11 +1380,19 @@ if(Session["environment"] != null && Session["model"] != null)
             
             #line default
             #line hidden
+            this.Write("\" Plain=\"0\" />\r\n\t<Setting Key=\"Aff_BetList_CheckBelonging\" SpName=\"Aff_BetList_Ch" +
+                    "eckBelonging\" DbName=\"");
+            
+            #line 240 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\SpNameAdmin.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
+            
+            #line default
+            #line hidden
             this.Write("\" Plain=\"0\" />\r\n  </Function>\r\n\r\n    <Function name=\"AdditionalSpsForBetlist\">\r\n " +
                     "   <Setting Key=\"Aff_User_GetExchangeRate\" SpName=\"Aff_User_GetExchangeRate\" DbN" +
                     "ame=\"");
             
-            #line 243 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\SpNameAdmin.tt"
+            #line 244 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\SpNameAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -1392,7 +1400,7 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n    <Setting Key=\"Aff_User_ProductSelByAffID\" SpName=\"Aff_User_Pr" +
                     "oductSelByAffID\" DbName=\"");
             
-            #line 244 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\SpNameAdmin.tt"
+            #line 245 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\SpNameAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
@@ -1400,14 +1408,14 @@ if(Session["environment"] != null && Session["model"] != null)
             this.Write("\" Plain=\"0\" />\r\n\t<Setting Key=\"Aff_User_DummyAccID\" SpName=\"Aff_User_DummyAccID\" " +
                     "DbName=\"");
             
-            #line 245 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\SpNameAdmin.tt"
+            #line 246 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\SpNameAdmin.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("bodb02-name")));
             
             #line default
             #line hidden
             this.Write("\" Plain=\"0\" />\r\n  </Function>\r\n\r\n</Functions>\r\n");
             
-            #line 249 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\SpNameAdmin.tt"
+            #line 250 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Admin\SpNameAdmin.tt"
 
 }
 

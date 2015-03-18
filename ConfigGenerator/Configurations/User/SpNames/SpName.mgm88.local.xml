@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Functions>
+  <Function Name="Aff-Account">
+    <Setting Key="Aff_User_SecureLoginInfo" SpName="Aff_User_SecureLoginInfo" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_SecureLoginUpdate" SpName="Aff_User_SecureLoginUpdate" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_Recheckin" SpName="Aff_User_Recheckin" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_Logout" SpName="Aff_User_Logout" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_AffiliateForgotPwd" SpName="Aff_User_AffiliateForgotPwd" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_AffiliateRecoverPwd" SpName="Aff_User_AffiliateRecoverPwd" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_OnUserSelNetSessionID" SpName="Aff_User_OnUserSelNetSessionID" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_AffiliateInternalLogin" SpName="Aff_User_AffiliateInternalLogin" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_SecureUpdPasswordInfo" SpName="Aff_User_SecureUpdPasswordInfo" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_SecureUpdPasswordUpdate" SpName="Aff_User_SecureUpdPasswordUpdate" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Account-Overview">
+    <Setting Key="Aff_User_StatisticsSel" SpName="Aff_User_StatisticsSel" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_CommGroupSelDetail" SpName="Aff_User_CommGroupSelDetail" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Statement">
+    <Setting Key="Aff_User_AffiliateStatementHistorySel" SpName="Aff_User_AffiliateStatementHistorySel" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_EarningSelDaily" SpName="Aff_User_EarningSelDaily" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_EarningSelDetail" SpName="Aff_User_EarningSelDetail" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_GetExchangeRate" SpName="Aff_User_GetExchangeRate" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_BetList" SpName="Aff_User_BetList" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_BetListParlay" SpName="Aff_User_BetListParlay" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_BetListSystemParlayDetail" SpName="Aff_User_BetListSystemParlayDetail" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_SelBalanceUpDay" SpName="Aff_User_SelBalanceUpDay" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_DummyAccID" SpName="Aff_User_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+
+    <Setting Key="Aff_User_BetListResult_SelMatch" SpName="Aff_User_BetListResult_SelMatch" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_BetListResult_SelMatchParlay" SpName="Aff_User_BetListResult_SelMatchParlay" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_BetListResult_SelMatchNumberGame" SpName="Aff_User_BetListResult_SelMatchNumberGame" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+</Function>
+
+  <Function Name="Aff-CustomerInfo">
+    <Setting Key="Aff_User_MemberListSel" SpName="Aff_User_MemberListSel" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Payment">
+    <Setting Key="Aff_User_PaymentRequestSelInfoByAff" SpName="Aff_User_PaymentRequestSelInfoByAff" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_PlayerPayoutInfoSel" SpName="Aff_User_PlayerPayoutInfoSel" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_PaymentRequestIns" SpName="Aff_User_PaymentRequestIns" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_PaymentRequestUpd" SpName="Aff_User_PaymentRequestUpd" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Statistics">
+    <Setting Key="Aff_User_ClickStatisticsSelByPage" SpName="Aff_User_ClickStatisticsSelByPage" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_ClickStatisticsDetailBySite" SpName="Aff_User_ClickStatisticsDetailBySite" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_ClickStatisticsSelBySite" SpName="Aff_User_ClickStatisticsSelBySite" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-System-Settings">
+    <Setting Key="Aff_User_SystemSettingsSelByType" SpName="Aff_User_SystemSettingsSelByType" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_AffiliateSelDBTime" SpName="Aff_User_AffiliateSelDBTime" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_GetAllAffSystemSettings" SpName="Aff_User_GetAllAffSystemSettings" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Affiliate-Account">
+    <Setting Key="Aff_User_AffiliateIns" SpName="Aff_User_AffiliateIns" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_AffiliateUpdInfo" SpName="Aff_User_AffiliateUpdInfo" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_AffiliateSelEditInfo" SpName="Aff_User_AffiliateSelEditInfo" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Product">
+    <Setting Key="Aff_User_ProductSelByAffID" SpName="Aff_User_ProductSelByAffID" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Marketing">
+    <Setting Key="Aff_User_BannerSelType" SpName="Aff_User_BannerSelType" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_DomainAffClientSel" SpName="Aff_User_DomainAffClientSel" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_BannerSel" SpName="Aff_User_BannerSel" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Message">
+    <Setting Key="Aff_User_HotNewsSel_New" SpName="Aff_User_HotNewsSel_New" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+    <Setting Key="Aff_User_HotNewsDetail_New" SpName="Aff_User_HotNewsDetail_New" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0"/>
+  </Function>
+
+  <Function Name="Aff-Contact-Us">
+    <Setting Key="Aff_User_EmailHistoryIns" SpName="Aff_User_EmailHistoryIns" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Aff-Group-Settings">
+    <Setting Key="Aff_User_GetDefaultProductCommission" SpName="Aff_User_GetDefaultProductCommission" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <!--SPs for Affiliate Link-->
+  <Function Name="Aff-Link">
+    <Setting Key="Aff_Link_AffiliateInsClickStatistics" SpName="Aff_Link_AffiliateInsClickStatistics" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Validation-Aff-Member">
+    <Setting Key="Aff_BetList_CheckBelonging" SpName="Aff_BetList_CheckBelonging" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbDownlineNet" Plain="0" />
+  </Function>
+</Functions>

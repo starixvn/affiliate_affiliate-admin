@@ -131,7 +131,7 @@ var AffiliateCommissionReport = (function ($) {
                 return true;
 
             } else {
-                diffMonth = (toMonth + 11) - fromMonth;
+                diffMonth = (toMonth + 12) - fromMonth;
                 if (diffMonth < 0 || diffMonth > 2) {
                     $('#FromDate, #ToDate').addClass('input-validation-error');
                     return false;
@@ -164,6 +164,5 @@ var AffiliateCommissionReport = (function ($) {
 
 $(function () {
     "use strict";
-
     AffiliateCommissionReport.init();
 });

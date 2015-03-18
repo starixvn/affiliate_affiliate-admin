@@ -6,30 +6,28 @@
 @Styles.Render("~/css/betlist")
 @model Fanex.AffiliateAdmin.Models.BetListViewModel
 
-<style type="text/css">
-    .popup .container-fluid
-    {
-        margin: 0 0;
-    }
-    
-    .underdog, span.stake, span.handicap
-    {
-        font-weight: bold;
-    }
-</style>
+@if (string.IsNullOrEmpty(ViewBag.Data))
+{
+    <p style="font-size: 12px; font-weight: bold; text-align: center; margin-top: 7px;">No information is available.</p>
+}
+else
+{
+    <div id="betlist-title">
+        @Html.Raw(string.Format(Lang.BetListTitle, Model.WinlostDate.HasValue ? Model.WinlostDate.Value.ToString("MM/dd/yyyy") : string.Empty, @Model.Username, @Model.ToCurrencyCode))
+    </div>
+    <div id="betlist">
+        @Html.Raw(ViewBag.Data)
+    </div>
+}
 
-<div id="betlist-title">
-    @Html.Raw(string.Format(Lang.BetListTitle, Model.WinlostDate.HasValue ? Model.WinlostDate.Value.ToString("MM/dd/yyyy") : string.Empty, @Model.Username, @Model.ToCurrencyCode))
-</div>
-<div id="betlist">
-    @Html.Raw(ViewBag.Data)
-</div>
+<div style="display: none">@ViewBag.SupportedProducts</div>
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(m => m.ToCurrencyId)
     @Html.HiddenFor(m => m.ToCurrencyCode)
     @Html.HiddenFor(m => m.ExchangeRate)
+    @Html.HiddenFor(m => m.AffId)
 }
 
 @Scripts.Render("~/js/betlist")

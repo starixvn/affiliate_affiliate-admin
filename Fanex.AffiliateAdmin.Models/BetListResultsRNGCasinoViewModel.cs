@@ -47,5 +47,7 @@ namespace Fanex.AffiliateAdmin.Models
         public string Currency { get; set; }
 
         public bool IsShowPic { get; set; }
+
+        public int AffId { get; set; }
     }
 }

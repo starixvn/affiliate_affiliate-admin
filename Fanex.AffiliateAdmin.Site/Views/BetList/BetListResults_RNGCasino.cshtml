@@ -19,6 +19,12 @@
     
 </style>
 
+@if (Model == null)
+{
+    <p style="font-size: 12px; font-weight: bold; text-align: center;">No information is available.</p>
+}
+else
+{
 <div class="rngcasino_headerlabel">
     @Lang.Username: @Model.Username - @RNGCasino.RefNo: @Model.RefNo - @RNGCasino.Viewin @Model.Currency - 
     <input type="checkbox" id="chkIsShowPic" name="chkIsShowPic" @(Model.IsShowPic ? "checked='checked'" : "") /> @RNGCasino.ResultsWithPictures
@@ -68,6 +74,9 @@
                 rngCasinoDetailUrl += "&currencyid=" + ViewBag.ToCurrencyId;
                 rngCasinoDetailUrl += "&currencyname=" + ViewBag.ToCurrencyCode;
                 rngCasinoDetailUrl += "&playerhistoryno=" + item.PlayerHistoryNo;
+                rngCasinoDetailUrl += "&affid=" + Model.AffId;
+                rngCasinoDetailUrl += "&username=" + Model.Username;
+                
 
                 if (item.SessionLogId != currentSessionID)
                 {
@@ -135,10 +144,12 @@
     </tbody>
 </table>
 
-@using (Html.BeginForm())
-{
+        using (Html.BeginForm())
+        {
     <input type="hidden" name="ExchangeRate" id="ExchangeRate" value="@Model.Param.ExchangeRate"/>
-}
+        }
 
+}
+    
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/js/betlistrngcasino")

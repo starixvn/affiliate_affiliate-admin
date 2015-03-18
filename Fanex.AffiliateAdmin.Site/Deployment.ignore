@@ -18,7 +18,7 @@
 \\Configurations\\WebConfigs\\*.master.config
 \\Configurations\\WebConfigs\\*.uat.config
 \\Configurations\\WebConfigs\\*.production.config
-\\Configurations\\WebConfigs\\*.local.xml
-\\Configurations\\WebConfigs\\*.master.xml
-\\Configurations\\WebConfigs\\*.uat.xml
-\\Configurations\\WebConfigs\\*.production.xml
+\\Configurations\\SpNames\\*.local.xml
+\\Configurations\\SpNames\\*.master.xml
+\\Configurations\\SpNames\\*.uat.xml
+\\Configurations\\SpNames\\*.production.xml

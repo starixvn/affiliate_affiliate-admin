@@ -419,9 +419,18 @@ if(Session["environment"] != null && Session["model"] != null)
             
             #line default
             #line hidden
+            this.Write("\" Plain=\"0\" />\r\n  </Function>\r\n\r\n  <Function Name=\"Validation-Aff-Member\">\r\n    <" +
+                    "Setting Key=\"Aff_BetList_CheckBelonging\" SpName=\"Aff_BetList_CheckBelonging\" DbN" +
+                    "ame=\"");
+            
+            #line 114 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
+            
+            #line default
+            #line hidden
             this.Write("\" Plain=\"0\" />\r\n  </Function>\r\n</Functions>\r\n");
             
-            #line 113 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
+            #line 117 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\SpNameUser.tt"
 
 }
 

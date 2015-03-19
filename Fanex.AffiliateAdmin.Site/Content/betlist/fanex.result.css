@@ -120,6 +120,10 @@ table.fn-rs tbody .cl-match div.home, table.fn-rs tbody .cl-match div.away
     display: inline-block;
     margin-top: 10px;
 }
+table.fn-rs tbody .cl-ht-score
+{
+    color: #0065FE;
+}
 table.fn-rs tbody .cl-f-score
 {
     color: #fd537d;

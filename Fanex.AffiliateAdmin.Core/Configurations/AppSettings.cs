@@ -68,10 +68,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 
         public static string AffiliateName
         {
-            get
-            {
-                return GetValue("AffiliateName");
-            }
+            get { return SystemName; }
         }
 
         public static IEnumerable<Language> AffLanguages
@@ -398,7 +395,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             get
             {
                 var displayName = GetSettingValue(new SystemSettingsSelByNameCriteria { Name = "SystemDisplayName" });
-                
+
                 if (string.IsNullOrEmpty(displayName))
                 {
                     return SystemName;

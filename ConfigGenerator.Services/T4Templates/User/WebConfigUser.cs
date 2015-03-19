@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.User
     using System;
     
     
-    #line 1 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class WebConfigUser : WebConfigUserBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
 
 if(Session["environment"] != null && Session["model"] != null)
 {
@@ -66,7 +66,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     " - %m%n\" />\r\n      </layout>\r\n    </appender>\r\n    <appender name=\"GeneralLog\" t" +
                     "ype=\"log4net.Appender.RollingFileAppender\">\r\n      <file value=\"");
             
-            #line 52 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 52 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(log4net.GetValue("filename")));
             
             #line default
@@ -89,60 +89,60 @@ if(Session["environment"] != null && Session["model"] != null)
   </log4net>
   <Fanex.Data.DbSettingProvider default=""XmlDbSettingProvider"">
     <providers>
-      <add name=""XmlDbSettingProvider"" type=""Fanex.Data.Configuration.XmlDbSettingProvider, Fanex.Data"" resourcePath=""Configurations\SPNames\SpNames.xml"" enableWatching=""1"" />
+      <add name=""XmlDbSettingProvider"" type=""Fanex.Data.Configuration.XmlDbSettingProvider, Fanex.Data"" resourcePath=""Configurations\SPNames\SpName.xml"" enableWatching=""1"" />
     </providers>
   </Fanex.Data.DbSettingProvider>
   <Fanex.Logging msmqPath=""");
             
-            #line 73 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 73 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["msmqPath"]));
             
             #line default
             #line hidden
             this.Write("\" defaultCategory=\"");
             
-            #line 73 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 73 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["defaultCategory"]));
             
             #line default
             #line hidden
             this.Write(@""" />
   <connectionStrings configSource=""Web.ConnectionString.config"" />
-  <appSettings file=""Web.AppSettings.config"">
+  <appSettings file=""Web.AppSetting.config"">
     <add key=""ClientValidationEnabled"" value=""true"" />
     <add key=""UnobtrusiveJavaScriptEnabled"" value=""true"" />
     <add key=""LinkFormat"" value=""http://{domain}/{custid}/{target}/{lang}/index.htm"" />
     <add key=""app_mail_address"" value=""");
             
-            #line 79 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 79 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("app_mail_address")));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n    <add key=\"RemoteRefURL\" value=\"");
             
-            #line 80 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 80 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("RemoteRefURL")));
             
             #line default
             #line hidden
             this.Write("\" />\r\n    <add key=\"ITMail\" value=\"");
             
-            #line 81 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 81 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("ITMail")));
             
             #line default
             #line hidden
             this.Write("\" />\r\n    <!--Url use for checking downtime-->\r\n\t<add key=\"LBUrl\" value=\"");
             
-            #line 83 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 83 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings["LBUrl"]));
             
             #line default
             #line hidden
             this.Write("\" />\r\n  </appSettings>\r\n  <system.web>\r\n    <customErrors mode=\"");
             
-            #line 86 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 86 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(customErrors.GetValue("mode")));
             
             #line default
@@ -151,7 +151,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "tify/pagenotfound\" />\r\n    </customErrors>\r\n    <sessionState mode=\"StateServer\"" +
                     " timeout=\"20\" ");
             
-            #line 89 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 89 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(appSettings.GetValue("SessionState")));
             
             #line default
@@ -163,7 +163,7 @@ if(Session["environment"] != null && Session["model"] != null)
     </authentication>
 	<compilation debug=""");
             
-            #line 94 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 94 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(compilations.GetValue("debug")));
             
             #line default
@@ -255,7 +255,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "ttpBinding\" bindingConfiguration=\"ServiceSoap\" contract=\"MemberSiteService.Servi" +
                     "ceSoap\" name=\"ServiceSoap\" />\r\n      <endpoint address=\"");
             
-            #line 203 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 203 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(serviceModels.GetValue("BetlistWebService")));
             
             #line default
@@ -265,7 +265,7 @@ if(Session["environment"] != null && Session["model"] != null)
                     "\"BetListBehavior\" />\r\n    </client>\r\n  </system.serviceModel>\r\n</configuration>\r" +
                     "\n");
             
-            #line 207 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
+            #line 207 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\User\WebConfigUser.tt"
 
 }
 

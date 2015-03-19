@@ -109,6 +109,10 @@ if(Session["environment"] != null && Session["model"] != null)
   <Function Name="Aff-Link">
     <Setting Key="Aff_Link_AffiliateInsClickStatistics" SpName="Aff_Link_AffiliateInsClickStatistics" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
   </Function>
+
+  <Function Name="Validation-Aff-Member">
+    <Setting Key="Aff_BetList_CheckBelonging" SpName="Aff_BetList_CheckBelonging" DbName="<#= dbDict.GetValue("affilatedb-name") #>" Plain="0" />
+  </Function>
 </Functions>
 <#
 }

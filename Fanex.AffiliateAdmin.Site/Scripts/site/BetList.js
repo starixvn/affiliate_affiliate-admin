@@ -8,17 +8,20 @@ var BetList = (function ($) {
         },
 
         getMixParlayResultUrl: function (refno, winlostdate, bettype, username) {
+            var para = $('form').serializeObject2();
             var url = AFFILIATE.getAbsoluteUrl('BetList/BetListResults');
             url = QueryString.setParam(url, "refno", refno);
             url = QueryString.setParam(url, "winlossdate", winlostdate);
             url = QueryString.setParam(url, "bettype", bettype);
             url = QueryString.setParam(url, "matchid", 1);
             url = QueryString.setParam(url, "username", username);
+            url = QueryString.setParam(url, "affId", para.AffId);
 
             return url;
         },
 
         getSportBookResultUrl: function (matchid, bettype, raceNo, sporttype, league, isOutright, username) {
+            var para = $('form').serializeObject2();
             var url = AFFILIATE.getAbsoluteUrl('BetList/BetListResults');
             url = QueryString.setParam(url, "matchid", matchid);
             url = QueryString.setParam(url, "bettype", bettype);
@@ -26,6 +29,7 @@ var BetList = (function ($) {
             url = QueryString.setParam(url, "sporttype", sporttype);
             url = QueryString.setParam(url, "isoutright", isOutright);
             url = QueryString.setParam(url, "username", username);
+            url = QueryString.setParam(url, "affId", para.AffId);
 
             return url;
         },
@@ -103,12 +107,12 @@ var BetList = (function ($) {
             var url = AFFILIATE.getAbsoluteUrl('BetList/RNGCasinoData');
             var para = $('form').serializeObject2();
 
-
             var urlParam = $("#casino-hand-history-" + refNo).attr('url-param');
             url += urlParam;
             url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
             url = QueryString.setParam(url, "toCurrencyId", para.ToCurrencyId);
             url = QueryString.setParam(url, "toCurrencyCode", para.ToCurrencyCode);
+            url = QueryString.setParam(url, "affId", para.AffId);
 
             var title = "Results";
             AFFILIATE.openDialogUrl(url, title, { width: 1097, height: 500 });

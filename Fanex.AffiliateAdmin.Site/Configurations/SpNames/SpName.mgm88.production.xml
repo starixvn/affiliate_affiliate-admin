@@ -218,6 +218,7 @@
     <Setting Key="AffAdmin_MemberWinLossReport" SpName="AffAdmin_MemberWinLossReport" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbAdminNet" Plain="0" />
 	<Setting Key="AffAdmin_MemberWinLossByProductReport" SpName="AffAdmin_MemberWinLossByProductReport" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_QualifiedMembersReport" SpName="AffAdmin_QualifiedMembersReport" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbAdminNet" Plain="0" />
+	<Setting Key="Aff_BetList_CheckBelonging" SpName="Aff_BetList_CheckBelonging" DbName="DBAFFMGM88.Affiliate_Mgm88.bodbAdminNet" Plain="0" />
   </Function>
 
     <Function name="AdditionalSpsForBetlist">

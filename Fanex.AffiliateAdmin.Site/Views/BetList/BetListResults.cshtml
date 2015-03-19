@@ -3,6 +3,7 @@
 }
 
 @Styles.Render("~/css/betlist")
+@Styles.Render("~/css/tooltip")
 
 <style type="text/css">
     .popup .container-fluid
@@ -15,6 +16,22 @@
     }
 </style>
 
-@Html.Raw(ViewBag.Data)
+@if (string.IsNullOrEmpty(ViewBag.Data))
+{
+    <p style="font-size: 12px; font-weight: bold; text-align: center;">No information is available.</p>
+}
+else
+{
+    @Html.Raw(ViewBag.Data)
+}
 
 @Scripts.Render("~/js/betlist")
+@Scripts.Render("~/js/tooltip")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.penalty-result').tipsy({ opacity: 1.0 });
+    });
+</script>
+
+

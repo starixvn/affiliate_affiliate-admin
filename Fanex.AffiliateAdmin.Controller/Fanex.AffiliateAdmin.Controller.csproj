@@ -181,7 +181,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -200,10 +199,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://10.19.10.32:8088/AffiliateAPI.asmx">
+    <WebReferenceUrl Include="http://localhost:52390/AffiliateAPI.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\AffBetListService\</RelPath>
-      <UpdateFromURL>http://10.19.10.32:8088/AffiliateAPI.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:52390/AffiliateAPI.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

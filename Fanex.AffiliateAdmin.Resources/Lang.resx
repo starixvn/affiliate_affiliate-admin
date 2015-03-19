@@ -2720,6 +2720,7 @@
                 &lt;li&gt;Member W/L = monthly Member Win Loss on selected products&lt;/li&gt;
                 &lt;li&gt;PSP (Payment Service Provider Fee) = PSP Rate * (Deposit * Deposit Rate + Withdrawal * Withdrawal Rate)&lt;/li&gt;
                 {0}
+                &lt;li&gt;We don't support running bet list at the moment&lt;/li&gt;
             &lt;/ul&gt;
             
     </value>

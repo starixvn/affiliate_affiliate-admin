@@ -32,5 +32,7 @@ namespace Fanex.AffiliateAdmin.Services
         List<RNGCasinoResult> GetRNGCasinoResult(BetListResultsRNGCasinoCriteria criteria);
 
         BetListResultsRNGCasinoDetailViewModel GetRNGCasinoResultDetail(BetListResultsRNGCasinoDetailCriteria criteria);
+
+        void ValidatePermission(ValidationCriteria criteria);
     }
 }

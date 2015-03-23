@@ -3439,6 +3439,63 @@
     <Content Include="img\Slot\S0032\Line9.png" />
     <Content Include="img\Slot\S0032\S1.jpg" />
     <Content Include="img\Slot\S0032\W1.jpg" />
+    <Content Include="img\Slot\S0033\01.jpg" />
+    <Content Include="img\Slot\S0033\02.jpg" />
+    <Content Include="img\Slot\S0033\03.jpg" />
+    <Content Include="img\Slot\S0033\04.jpg" />
+    <Content Include="img\Slot\S0033\05.jpg" />
+    <Content Include="img\Slot\S0033\06.jpg" />
+    <Content Include="img\Slot\S0033\07.jpg" />
+    <Content Include="img\Slot\S0033\08.jpg" />
+    <Content Include="img\Slot\S0033\09.jpg" />
+    <Content Include="img\Slot\S0033\10.jpg" />
+    <Content Include="img\Slot\S0033\11.jpg" />
+    <Content Include="img\Slot\S0033\A.jpg" />
+    <Content Include="img\Slot\S0033\B.jpg" />
+    <Content Include="img\Slot\S0033\blank.jpg" />
+    <Content Include="img\Slot\S0033\C.jpg" />
+    <Content Include="img\Slot\S0033\D.jpg" />
+    <Content Include="img\Slot\S0033\E.jpg" />
+    <Content Include="img\Slot\S0033\F.jpg" />
+    <Content Include="img\Slot\S0033\F1.jpg" />
+    <Content Include="img\Slot\S0033\G.jpg" />
+    <Content Include="img\Slot\S0033\H.jpg" />
+    <Content Include="img\Slot\S0033\I.jpg" />
+    <Content Include="img\Slot\S0033\J.jpg" />
+    <Content Include="img\Slot\S0033\K.jpg" />
+    <Content Include="img\Slot\S0033\L.jpg" />
+    <Content Include="img\Slot\S0033\Line1.png" />
+    <Content Include="img\Slot\S0033\Line10.png" />
+    <Content Include="img\Slot\S0033\Line11.png" />
+    <Content Include="img\Slot\S0033\Line12.png" />
+    <Content Include="img\Slot\S0033\Line13.png" />
+    <Content Include="img\Slot\S0033\Line14.png" />
+    <Content Include="img\Slot\S0033\Line15.png" />
+    <Content Include="img\Slot\S0033\Line16.png" />
+    <Content Include="img\Slot\S0033\Line17.png" />
+    <Content Include="img\Slot\S0033\Line18.png" />
+    <Content Include="img\Slot\S0033\Line19.png" />
+    <Content Include="img\Slot\S0033\Line2.png" />
+    <Content Include="img\Slot\S0033\Line20.png" />
+    <Content Include="img\Slot\S0033\Line21.png" />
+    <Content Include="img\Slot\S0033\Line22.png" />
+    <Content Include="img\Slot\S0033\Line23.png" />
+    <Content Include="img\Slot\S0033\Line24.png" />
+    <Content Include="img\Slot\S0033\Line25.png" />
+    <Content Include="img\Slot\S0033\Line3.png" />
+    <Content Include="img\Slot\S0033\Line4.png" />
+    <Content Include="img\Slot\S0033\Line5.png" />
+    <Content Include="img\Slot\S0033\Line6.png" />
+    <Content Include="img\Slot\S0033\Line7.png" />
+    <Content Include="img\Slot\S0033\Line8.png" />
+    <Content Include="img\Slot\S0033\Line9.png" />
+    <Content Include="img\Slot\S0033\M.jpg" />
+    <Content Include="img\Slot\S0033\N.jpg" />
+    <Content Include="img\Slot\S0033\O.jpg" />
+    <Content Include="img\Slot\S0033\P.jpg" />
+    <Content Include="img\Slot\S0033\S1.jpg" />
+    <Content Include="img\Slot\S0033\W1.jpg" />
+    <Content Include="img\Slot\S0033\W2.jpg" />
     <Content Include="img\Slot\Taizen_01.jpg" />
     <Content Include="img\Slot\Taizen_02.jpg" />
     <Content Include="img\Slot\Taizen_03.jpg" />
@@ -3926,6 +3983,7 @@
     <None Include="img\Slot\S0007\old image backup\20x20\icon_20x20_doubleWild.jpg.exclude" />
     <None Include="img\Slot\S0007\old image backup\40x40\icon_40x40_doubleWild.jpg.exclude" />
     <None Include="img\Slot\S0032\Thumbs.db" />
+    <None Include="img\Slot\S0033\Thumbs.db" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -4299,7 +4357,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

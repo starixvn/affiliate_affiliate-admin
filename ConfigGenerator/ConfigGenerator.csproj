@@ -112,7 +112,7 @@
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.athena000.xml" />
     <Content Include="ConfigModels\SiteConfigModel.xml" />
     <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.28bet.xml" />
-    <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.allbetclubs.xml" />
+    <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.allbetclub.xml" />
     <Content Include="ConfigModels\Admin\AppSettings\AppSettingModel.aoncash.xml" />
     <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.be7.xml" />
     <Content Include="ConfigModels\Admin\AppSettings\WebAppSettingModel.bwinning.xml" />
@@ -134,7 +134,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.28bet.xml" />
-    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.allbetclubs.xml" />
+    <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.allbetclub.xml" />
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.aoncash.xml" />
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.be7.xml" />
     <Content Include="ConfigModels\Admin\ConnectionStrings\WebConnectionStringModel.bwinning.xml" />

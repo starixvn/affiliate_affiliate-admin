@@ -13,14 +13,14 @@ namespace ConfigGenerator.Services.T4Templates.Banner
     using System;
     
     
-    #line 1 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+    #line 1 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
     public partial class WebConfigBanner : WebConfigBannerBase
     {
         public virtual string TransformText()
         {
             
-            #line 8 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 8 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
 
 if(Session["environment"] != null && Session["model"] != null && Session["connectionstringmodel"] != null)
 {
@@ -68,28 +68,28 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
                     ">\r\n    </providers>\r\n  </Fanex.Data.DbSettingProvider>\r\n  <Fanex.Logging msmqPat" +
                     "h=\"");
             
-            #line 50 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 50 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["msmqPath"]));
             
             #line default
             #line hidden
             this.Write("\" defaultCategory=\"");
             
-            #line 50 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 50 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(fanexSettings["defaultCategory"]));
             
             #line default
             #line hidden
             this.Write("\" />\r\n  <connectionStrings>\r\n    <add name=\"");
             
-            #line 52 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 52 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-name")));
             
             #line default
             #line hidden
             this.Write("\" connectionString=\"");
             
-            #line 52 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 52 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dbDict.GetValue("affilatedb-connectionstring")));
             
             #line default
@@ -108,7 +108,7 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
   <system.web>
     <customErrors mode=""");
             
-            #line 64 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 64 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(customErrors.GetValue("mode")));
             
             #line default
@@ -116,7 +116,7 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
             this.Write("\" defaultRedirect=\"~/home/error\">\r\n      <error statusCode=\"404\" redirect=\"~/home" +
                     "/pagenotfound\" />\r\n    </customErrors>\r\n    <compilation debug=\"");
             
-            #line 67 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 67 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(compilations.GetValue("debug")));
             
             #line default
@@ -177,22 +177,25 @@ if(Session["environment"] != null && Session["model"] != null && Session["connec
                     ".0.0.0-2.0.0.0\" newVersion=\"2.0.0.0\" />\r\n      </dependentAssembly>\r\n      <depe" +
                     "ndentAssembly>\r\n        <assemblyIdentity name=\"NPOI\" publicKeyToken=\"0df73ec794" +
                     "2b34e1\" culture=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-2.0.6" +
-                    ".0\" newVersion=\"2.0.6.0\" />\r\n      </dependentAssembly>\r\n    </assemblyBinding>\r" +
-                    "\n  </runtime>\r\n  <entityFramework>\r\n    <defaultConnectionFactory type=\"System.D" +
-                    "ata.Entity.Infrastructure.SqlConnectionFactory, EntityFramework\" />\r\n  </entityF" +
-                    "ramework>\r\n  <cachingConfiguration defaultCacheManager=\"Cache Manager\">\r\n    <ca" +
-                    "cheManagers>\r\n      <add name=\"Cache Manager\" type=\"Microsoft.Practices.Enterpri" +
-                    "seLibrary.Caching.CacheManager, Microsoft.Practices.EnterpriseLibrary.Caching, V" +
-                    "ersion=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35\" expirationPo" +
-                    "llFrequencyInSeconds=\"60\" maximumElementsInCacheBeforeScavenging=\"1000\" numberTo" +
-                    "RemoveWhenScavenging=\"10\" backingStoreName=\"NullBackingStore\" />\r\n    </cacheMan" +
-                    "agers>\r\n    <backingStores>\r\n      <add type=\"Microsoft.Practices.EnterpriseLibr" +
-                    "ary.Caching.BackingStoreImplementations.NullBackingStore, Microsoft.Practices.En" +
-                    "terpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf" +
-                    "3856ad364e35\" name=\"NullBackingStore\" />\r\n    </backingStores>\r\n  </cachingConfi" +
-                    "guration>\r\n</configuration>\r\n");
+                    ".0\" newVersion=\"2.0.6.0\" />\r\n      </dependentAssembly>      \r\n      <dependentA" +
+                    "ssembly>\r\n        <assemblyIdentity name=\"Newtonsoft.Json\" publicKeyToken=\"30ad4" +
+                    "fe6b2a6aeed\" culture=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-" +
+                    "6.0.0.0\" newVersion=\"6.0.0.0\" />\r\n      </dependentAssembly>\r\n    </assemblyBind" +
+                    "ing>\r\n  </runtime>\r\n  <entityFramework>\r\n    <defaultConnectionFactory type=\"Sys" +
+                    "tem.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework\" />\r\n  </en" +
+                    "tityFramework>\r\n  <cachingConfiguration defaultCacheManager=\"Cache Manager\">\r\n  " +
+                    "  <cacheManagers>\r\n      <add name=\"Cache Manager\" type=\"Microsoft.Practices.Ent" +
+                    "erpriseLibrary.Caching.CacheManager, Microsoft.Practices.EnterpriseLibrary.Cachi" +
+                    "ng, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35\" expirat" +
+                    "ionPollFrequencyInSeconds=\"60\" maximumElementsInCacheBeforeScavenging=\"1000\" num" +
+                    "berToRemoveWhenScavenging=\"10\" backingStoreName=\"NullBackingStore\" />\r\n    </cac" +
+                    "heManagers>\r\n    <backingStores>\r\n      <add type=\"Microsoft.Practices.Enterpris" +
+                    "eLibrary.Caching.BackingStoreImplementations.NullBackingStore, Microsoft.Practic" +
+                    "es.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken" +
+                    "=31bf3856ad364e35\" name=\"NullBackingStore\" />\r\n    </backingStores>\r\n  </caching" +
+                    "Configuration>\r\n</configuration>\r\n");
             
-            #line 148 "D:\GitLab\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
+            #line 152 "E:\Gitlab\Affiliate\affiliate-admin\ConfigGenerator.Services\T4Templates\Banner\WebConfigBanner.tt"
 
 }
 

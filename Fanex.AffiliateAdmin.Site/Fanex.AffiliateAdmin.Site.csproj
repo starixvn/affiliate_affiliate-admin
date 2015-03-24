@@ -271,6 +271,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="Configurations\SpNames\SpName.allbetclub.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.allbetclub.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.allbetclub.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.allbetclub.uat.xml" />
     <Content Include="Configurations\SpNames\SpName.unobet.local.xml" />
     <Content Include="Configurations\SpNames\SpName.unobet.master.xml" />
     <Content Include="Configurations\SpNames\SpName.unobet.production.xml" />
@@ -390,10 +394,6 @@
     <Content Include="Configurations\SpNames\SpName.28bet.master.xml" />
     <Content Include="Configurations\SpNames\SpName.28bet.production.xml" />
     <Content Include="Configurations\SpNames\SpName.28bet.uat.xml" />
-    <Content Include="Configurations\SpNames\SpName.allbetclubs.local.xml" />
-    <Content Include="Configurations\SpNames\SpName.allbetclubs.master.xml" />
-    <Content Include="Configurations\SpNames\SpName.allbetclubs.production.xml" />
-    <Content Include="Configurations\SpNames\SpName.allbetclubs.uat.xml" />
     <Content Include="Configurations\SpNames\SpName.aoncash.local.xml" />
     <Content Include="Configurations\SpNames\SpName.aoncash.master.xml" />
     <Content Include="Configurations\SpNames\SpName.aoncash.production.xml" />
@@ -3708,10 +3708,6 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.28bet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.28bet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.28bet.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclubs.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclubs.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclubs.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclubs.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.production.config" />
@@ -3788,10 +3784,6 @@
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.28bet.master.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.28bet.production.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.28bet.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclubs.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclubs.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclubs.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclubs.uat.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.local.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.master.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config" />
@@ -3868,10 +3860,6 @@
     <Content Include="Configurations\WebConfigs\Web.28bet.master.config" />
     <Content Include="Configurations\WebConfigs\Web.28bet.production.config" />
     <Content Include="Configurations\WebConfigs\Web.28bet.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.allbetclubs.local.config" />
-    <Content Include="Configurations\WebConfigs\Web.allbetclubs.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.allbetclubs.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.allbetclubs.uat.config" />
     <Content Include="Configurations\WebConfigs\Web.aoncash.local.config" />
     <Content Include="Configurations\WebConfigs\Web.aoncash.master.config" />
     <Content Include="Configurations\WebConfigs\Web.aoncash.production.config" />
@@ -3974,6 +3962,18 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.uat.config" />
     <Content Include="Content\_Sites\unobet\Login.less" />
     <Content Include="Content\_Sites\unobet\Notify.less" />
+    <Content Include="Configurations\WebConfigs\Web.allbetclub.local.config" />
+    <Content Include="Configurations\WebConfigs\Web.allbetclub.master.config" />
+    <Content Include="Configurations\WebConfigs\Web.allbetclub.production.config" />
+    <Content Include="Configurations\WebConfigs\Web.allbetclub.uat.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.local.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.master.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.production.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.uat.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.master.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.production.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.uat.config" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -4357,7 +4357,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

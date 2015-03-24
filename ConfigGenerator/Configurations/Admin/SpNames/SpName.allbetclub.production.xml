@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Functions>
+  <Function Name="Core">
+    <Setting Key="AffAdmin_Login" SpName="AffAdmin_Login" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AdminUpdPwd" SpName="AffAdmin_AdminUpdPwd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>  
+  <Function Name="ExchangeRate">
+    <Setting Key="AffAdmin_ExchangeSel" SpName="AffAdmin_ExchangeSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ExchangeAutoRefreshUpd" SpName="AffAdmin_ExchangeAutoRefreshUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ExchangeUpdate" SpName="AffAdmin_ExchangeUpdate" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CopyRateFromMarket" SpName="AffAdmin_CopyRateFromMarket" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+	<Setting Key="AffAdmin_GetDefaultPSPExchange" SpName="AffAdmin_GetDefaultPSPExchange" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+  <Function Name="Aff-Account">
+    <Setting Key="AffAdmin_Login" SpName="AffAdmin_Login" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+  <Function Name="Home Function">
+    <Setting Key="AffAdmin_HomeGeneralInfo" SpName="AffAdmin_HomeGeneralInfo" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_UserOnlineList" SpName="AffAdmin_UserOnlineList" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+  <Function Name="Commission Group">
+    <Setting Key="AffAdmin_CommGroupSelListNormal" SpName="AffAdmin_CommGroupSelListNormal" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupSel" SpName="AffAdmin_CommGroupSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DeductionTypeSel" SpName="AffAdmin_DeductionTypeSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DeductionSettingSel" SpName="AffAdmin_DeductionSettingSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupList_SettingDetail" SpName="AffAdmin_CommGroupList_SettingDetail" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupSelDetail" SpName="AffAdmin_CommGroupSelDetail" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupIns" SpName="AffAdmin_CommGroupIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupUpd" SpName="AffAdmin_CommGroupUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_GroupSettingSel" SpName="AffAdmin_GroupSettingSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupDel" SpName="AffAdmin_CommGroupDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupAssign" SpName="AffAdmin_CommGroupAssign" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupSelByID" SpName="AffAdmin_CommGroupSelByID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+	<Setting Key="AffAdmin_CommGroup_SelActiveList" SpName="AffAdmin_CommGroup_SelActiveList" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+  <Function Name="Affiliate">
+    <Setting Key="AffAdmin_AffiliateUpdPwd" SpName="AffAdmin_AffiliateUpdPwd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_FavoriteDel" SpName="AffAdmin_FavoriteDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_FavoriteIns" SpName="AffAdmin_FavoriteIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSel" SpName="AffAdmin_AffiliateSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSelFavorite" SpName="AffAdmin_AffiliateSelFavorite" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_EmailHistorySel" SpName="AffAdmin_EmailHistorySel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+	<Setting Key="AffAdmin_EmailHistoryDel" SpName="AffAdmin_EmailHistoryDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_MemberListSel" SpName="AffAdmin_MemberListSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+	<Setting Key="AffAdmin_GetMemberDetail" SpName="AffAdmin_GetMemberDetail" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_MemberDel" SpName="AffAdmin_MemberDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AccountTypeSel" SpName="AffAdmin_AccountTypeSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CheckMemberExist" SpName="AffAdmin_CheckMemberExist" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CustomerInsMemberManually" SpName="AffAdmin_CustomerInsMemberManually" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateUpdAccountType" SpName="AffAdmin_AffiliateUpdAccountType" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_CustomerSelByUserName" SpName="Aff_CustomerSelByUserName" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />	
+  </Function>
+  <Function Name="System Settings">
+    <Setting Key="AffAdmin_SystemAllSupportedCurrencies" SpName="AffAdmin_SystemAllSupportedCurrencies" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSupportedCurrencies" SpName="AffAdmin_SystemSupportedCurrencies" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateCurrenciesSel" SpName="AffAdmin_AffiliateCurrenciesSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_LanguageSel" SpName="AffAdmin_LanguageSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSelDBTime" SpName="AffAdmin_AffiliateSelDBTime" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AdminSupportedLanguagesSel" SpName="AffAdmin_AdminSupportedLanguagesSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsSelByName" SpName="AffAdmin_SystemSettingsSelByName" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsSelByType" SpName="AffAdmin_SystemSettingsSelByType" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsSelByID" SpName="AffAdmin_SystemSettingsSelByID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsIns" SpName="AffAdmin_SystemSettingsIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsUpd" SpName="AffAdmin_SystemSettingsUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsDel" SpName="AffAdmin_SystemSettingsDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsSelAll" SpName="AffAdmin_SystemSettingsSelAll" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CountrySelAll" SpName="AffAdmin_CountrySelAll" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CountryUpd" SpName="AffAdmin_CountryUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CountryIns" SpName="AffAdmin_CountryIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CountryDel" SpName="AffAdmin_CountryDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CountrySelByID" SpName="AffAdmin_CountrySelByID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ProductSelAll" SpName="AffAdmin_ProductSelAll" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ProductUpd" SpName="AffAdmin_ProductUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ProductIns" SpName="AffAdmin_ProductIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ProductDel" SpName="AffAdmin_ProductDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ProductSelByID" SpName="AffAdmin_ProductSelByID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_LanguageSelAll" SpName="AffAdmin_LanguageSelAll" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_LanguageUpd" SpName="AffAdmin_LanguageUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_LanguageIns" SpName="AffAdmin_LanguageIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_LanguageDel" SpName="AffAdmin_LanguageDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_LanguageSelByID" SpName="AffAdmin_LanguageSelByID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeSelAll" SpName="AffAdmin_AffTypeSelAll" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeUpd" SpName="AffAdmin_AffTypeUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeIns" SpName="AffAdmin_AffTypeIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeDel" SpName="AffAdmin_AffTypeDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeSelByID" SpName="AffAdmin_AffTypeSelByID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsExchange" SpName="AffAdmin_SystemSettingsExchange" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_MemberSupportedLanguagesSel" SpName="AffAdmin_MemberSupportedLanguagesSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_PlayersCurrenciesSel" SpName="AffAdmin_PlayersCurrenciesSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+  <Function Name="Payment">
+    <Setting Key="AffAdmin_PaymentRequestSelList" SpName="AffAdmin_PaymentRequestSelList" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_PaymentRequestSelDetail" SpName="AffAdmin_PaymentRequestSelDetail" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_PlayerPayoutInfoSel" SpName="AffAdmin_PlayerPayoutInfoSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_PaymentRequestUpd" SpName="AffAdmin_PaymentRequestUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateCommissionReport" SpName="AffAdmin_AffiliateCommissionReport" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CashBackUpdate" SpName="AffAdmin_CashBackUpdate" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="Task_Aff_MonthlyTransfer" SpName="Task_Aff_MonthlyTransfer" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_IsMonthlyTransfer" SpName="AffAdmin_IsMonthlyTransfer" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_DummyAccID" SpName="Aff_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0"/>
+  </Function>
+  <Function Name="Message">
+    <Setting Key="AffAdmin_HotNewsSel" SpName="AffAdmin_HotNewsSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_HotNewsIns" SpName="AffAdmin_HotNewsIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_HotNewsDetail" SpName="AffAdmin_HotNewsDetail" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_HotNewsUpd" SpName="AffAdmin_HotNewsUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_HotNewsDel" SpName="AffAdmin_HotNewsDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+  <Function Name="Domain">
+    <Setting Key="AffAdmin_DomainAffSel" SpName="AffAdmin_DomainAffSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainAffUpd" SpName="AffAdmin_DomainAffUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainAffIns" SpName="AffAdmin_DomainAffIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainAffDel" SpName="AffAdmin_DomainAffDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainAffSelById" SpName="AffAdmin_DomainAffSelById" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainMemSel" SpName="AffAdmin_DomainMemSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainMemUpd" SpName="AffAdmin_DomainMemUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainMemIns" SpName="AffAdmin_DomainMemIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainMemDel" SpName="AffAdmin_DomainMemDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainMemSelById" SpName="AffAdmin_DomainMemSelById" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainControlSel" SpName="AffAdmin_DomainControlSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainControlUpd" SpName="AffAdmin_DomainControlUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainControlIns" SpName="AffAdmin_DomainControlIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainControlDel" SpName="AffAdmin_DomainControlDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DomainControlSelById" SpName="AffAdmin_DomainControlSelById" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+  <Function Name="Management">
+    <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_AccountUpd" SpName="AffAdmin_Con_AccountUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_AccountIns" SpName="AffAdmin_Con_AccountIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_AccountUpdClosed" SpName="AffAdmin_Con_AccountUpdClosed" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AccountUpdPwd" SpName="AffAdmin_AccountUpdPwd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoIns" SpName="AffAdmin_Con_GroupInfoIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoUpd" SpName="AffAdmin_Con_GroupInfoUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoDel" SpName="AffAdmin_Con_GroupInfoDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupPolicyUpd" SpName="AffAdmin_Con_GroupPolicyUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupPolicySel" SpName="AffAdmin_Con_GroupPolicySel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_Batch_PolicySel" SpName="AffAdmin_Con_Batch_PolicySel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_UserCurrencySel" SpName="AffAdmin_UserCurrencySel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_UserCurrencyIns" SpName="AffAdmin_UserCurrencyIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+  <Function Name="Media">
+    <Setting Key="AffAdmin_BannerSelType" SpName="AffAdmin_BannerSelType" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_BannerSel" SpName="AffAdmin_BannerSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeSel" SpName="AffAdmin_AffTypeSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_BannerSelDetail" SpName="AffAdmin_BannerSelDetail" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_BannerIns" SpName="AffAdmin_BannerIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_BannerUpd" SpName="AffAdmin_BannerUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_BannerDel" SpName="AffAdmin_BannerDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_BannerTypeSel" SpName="AffAdmin_BannerTypeSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+  
+  <Function name="AffiliateInfo">
+    <Setting Key="AffAdmin_AffiliateSelGeneralInfo" SpName="AffAdmin_AffiliateSelGeneralInfo" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_StatisticsSel" SpName="AffAdmin_StatisticsSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CountrySelAll" SpName="AffAdmin_CountrySelAll" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateUpdStatus" SpName="AffAdmin_AffiliateUpdStatus" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateUpdClosedStatus" SpName="AffAdmin_AffiliateUpdClosedStatus" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_PreferLangUpd" SpName="AffAdmin_PreferLangUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateUnlock" SpName="AffAdmin_AffiliateUnlock" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSupportedLanguagesSel" SpName="AffAdmin_AffiliateSupportedLanguagesSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_UpdAffType" SpName="AffAdmin_UpdAffType" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />    
+  </Function>
+
+  <Function name="AffiliateStatement">
+    <Setting Key="AffAdmin_TransTypeSel" SpName="AffAdmin_TransTypeSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_StatementHistorySel" SpName="AffAdmin_StatementHistorySel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+
+  <Function name="AffiliateEdit">
+    <Setting Key="AffAdmin_AffiliatePaymentMethodSel" SpName="AffAdmin_AffiliatePaymentMethodSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSelEditInfo" SpName="AffAdmin_AffiliateSelEditInfo" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0">
+      <Mapping DataField="SiteURL" ObjectProperty="SiteLink"></Mapping>
+    </Setting> 
+    <Setting Key="AffAdmin_AffiliateUpdInfo" SpName="AffAdmin_AffiliateUpdInfo" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+
+  <Function name="AffiliateNotes">
+    <Setting Key="AffAdmin_NoteSel" SpName="AffAdmin_NoteSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_NoteIns" SpName="AffAdmin_NoteIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_NoteUpd" SpName="AffAdmin_NoteUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_NoteDel" SpName="AffAdmin_NoteDel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+
+  <Function name="ViewLog">
+    <Setting Key="AffAdmin_AffiliateSelLogType" SpName="AffAdmin_AffiliateSelLogType" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSelLog" SpName="AffAdmin_AffiliateSelLog" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+
+  <Function name="Adjustment">
+    <Setting Key="AffAdmin_CustomerSelBalBF" SpName="AffAdmin_CustomerSelBalBF" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AdjustmentIns" SpName="AffAdmin_AdjustmentIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+
+  <Function name="ClickStatistic">
+    <Setting Key="AffAdmin_ClickStatisticsSelByPage" SpName="AffAdmin_ClickStatisticsSelByPage" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ClickStatisticsSelBySite" SpName="AffAdmin_ClickStatisticsSelBySite" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ClickStatisticsDetail" SpName="AffAdmin_ClickStatisticsDetail" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0">
+      <Mapping DataField="UrlReferrer" ObjectProperty="ReferrerLink"></Mapping>
+    </Setting>
+  </Function>
+
+  <Function name="Reports">
+    <Setting Key="AffAdmin_CompanyWinlossReport" SpName="AffAdmin_CompanyWinlossReport" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+	<Setting Key="AffAdmin_CompanyWinLossByProductReport" SpName="AffAdmin_CompanyWinLossByProductReport" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_MemberStatisticsReport" SpName="AffAdmin_MemberStatisticsReport" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateWinLossReport" SpName="AffAdmin_AffiliateWinLossReport" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+	<Setting Key="AffAdmin_AffiliateWinLossByProductReport" SpName="AffAdmin_AffiliateWinLossByProductReport" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_MemberWinLossReport" SpName="AffAdmin_MemberWinLossReport" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+	<Setting Key="AffAdmin_MemberWinLossByProductReport" SpName="AffAdmin_MemberWinLossByProductReport" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_QualifiedMembersReport" SpName="AffAdmin_QualifiedMembersReport" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+	<Setting Key="Aff_BetList_CheckBelonging" SpName="Aff_BetList_CheckBelonging" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+  </Function>
+
+    <Function name="AdditionalSpsForBetlist">
+    <Setting Key="Aff_User_GetExchangeRate" SpName="Aff_User_GetExchangeRate" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_ProductSelByAffID" SpName="Aff_User_ProductSelByAffID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
+	<Setting Key="Aff_User_DummyAccID" SpName="Aff_User_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+  </Function>
+
+</Functions>

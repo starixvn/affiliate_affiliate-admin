@@ -25,7 +25,7 @@
   <EmailCopyrightBgColor>#ccc</EmailCopyrightBgColor>
   <EmailCopyrightFontColor>#454545</EmailCopyrightFontColor>
   <EmailFooterBgColor>#B05400</EmailFooterBgColor>
-  <EmailFooterFontColor>#AF5401</EmailFooterFontColor>
+  <EmailFooterFontColor>#EAECE9</EmailFooterFontColor>
 
   <app_mail_id>
     <local>36</local>

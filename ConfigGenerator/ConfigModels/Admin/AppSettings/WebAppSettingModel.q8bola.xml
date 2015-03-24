@@ -15,8 +15,8 @@
   <EmailContentBgColor>#fff</EmailContentBgColor>
   <EmailContentFontColor>#252525</EmailContentFontColor>
   <EmailCopyrightBgColor>#cccccc</EmailCopyrightBgColor>
-  <EmailCopyrightFontColor>#000</EmailCopyrightFontColor>
-  <EmailFooterBgColor>#252525</EmailFooterBgColor>
+  <EmailCopyrightFontColor>#525252</EmailCopyrightFontColor>
+  <EmailFooterBgColor>#C5481A</EmailFooterBgColor>
   <EmailFooterFontColor>#fff</EmailFooterFontColor>
 
   <app_mail_id>
@@ -26,10 +26,10 @@
     <production>37</production>
   </app_mail_id>
   <MailContact>
-    <local>affliate_anpha@nexcel.vn</local>
+    <local>support@axioobet.com</local>
     <master>affliate_anpha@nexcel.vn</master>
-    <uat>Athena000.csd@gmail.com</uat>
-    <production>cs.q8bola@gmail.com</production>
+    <uat>support@axioobet.com</uat>
+    <production>support@axioobet.com</production>
   </MailContact>
 
   <SkipCheckUMTime>
@@ -44,13 +44,13 @@
   <InternalURL>
     <local>http://10.18.200.209:5001/User</local>
     <master>http://10.18.200.209:5001/User</master>
-    <uat>http://affiliate.q8bola.com</uat>
+    <uat>http://affqa.starific.net/athena001user</uat>
     <production>http://affiliate.q8bola.com</production>
   </InternalURL>
   <InternalURL_Kiosk>
     <local>http://10.18.200.209:5001/User</local>
     <master>http://10.18.200.209:5001/User</master>
-    <uat>http://affiliate.q8bola.com</uat>
+    <uat>http://affqa.starific.net/athena001user</uat>
     <production>http://affiliate.q8bola.com</production>
   </InternalURL_Kiosk>
 </settings>

@@ -133,11 +133,21 @@ namespace Fanex.AffiliateAdmin.Core.Entities
             }
         }
 
-         public int CopyrightYear
+        public int CopyrightYear
         {
             get
             {
                 return DateTime.Now.Year;
+            }
+        }
+
+        public string AdminRootLink
+        {
+            get
+            {
+                var url = AdminSiteUrl.ToString();
+                var baseUrl = url.EndsWith("/") ? url.Substring(0, url.Length - 1) : url;
+                return baseUrl;
             }
         }
     }

@@ -177,7 +177,9 @@
     <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.nbcbet.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.q8bola.xml" />
+    <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.q8bola.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.royalebet.xml" />
     <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.thbet.xml" />
     <Content Include="ConfigModels\User\AppSettings\WebAppSettingModel.wawabet.xml" />

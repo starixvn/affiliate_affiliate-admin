@@ -18,6 +18,8 @@ namespace Fanex.AffiliateAdmin.Criterias
     {
         public int OnUserID { get; set; }
 
+        public bool IsKickedOut { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_Recheckin";

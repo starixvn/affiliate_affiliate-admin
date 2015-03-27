@@ -8,7 +8,7 @@
   </Environment>
   
   <Layout>2</Layout>
-  <Theme>26</Theme>
+  <Theme>27</Theme>
   <ServerID>400013</ServerID>
   <InputAffType>1</InputAffType>
   <IsShowZeroCommission>1</IsShowZeroCommission>
@@ -37,8 +37,8 @@
   <MailContact>
     <local>johnny.trinh@nexcel.vn</local>
     <master>johnny.trinh@nexcel.vn</master>
-    <uat>-yhy1980-@tom.com</uat>
-    <production>-yhy1980-@tom.com</production>
+    <uat>yhy1980@yahoo.com</uat>
+    <production>yhy1980@yahoo.com</production>
   </MailContact>
   
   <UM_StartTime>01 May 2013 02:30 PM</UM_StartTime>

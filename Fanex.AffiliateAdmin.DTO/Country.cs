@@ -23,6 +23,7 @@ namespace Fanex.AffiliateAdmin.DTO
         public string CountryID { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "NameFieldIsRequired")]
+        [Display(ResourceType = typeof(Lang), Name = "Name")]
         public string CountryName { get; set; }
 
         public string Description { get; set; }

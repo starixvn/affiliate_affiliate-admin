@@ -28,7 +28,7 @@ var EmailHistory = (function ($) {
                 var queryString = jQuery.param(param);
                 var url = "EmailHistory/Detail?" + queryString;
 
-                AFFILIATE.openDialogFrame(url, "Email Detail", { width: 500, height: 400 });
+                AFFILIATE.openDialogFrame(url, window.MSG.EmailDetail, { width: 500, height: 400 });
 
             });
 

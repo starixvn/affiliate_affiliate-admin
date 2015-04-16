@@ -99,7 +99,7 @@
                 <li><span class="pending"></span>@Lang.Pending</li>
             }
             <li><span class="closed"></span>@Lang.Closed</li>
-            <li><span class="locked"></span>@Lang.LockedOut</li>
+            <li><span class="locked"></span>@Lang.Locked</li>
         </ul>
     </div>
 </div>
@@ -117,7 +117,9 @@
             AddToMyFavorite: '@Lang.AddToMyFavorite',
             RemoveFromMyFavorite: '@Lang.RemoveFromMyFavorite',
             ToggleSubTotal: '@Lang.ToggleSubTotal',
-            UncheckPendingDisapprovedAffiliates: '@Lang.UncheckPendingDisapprovedAffiliates'
+            UncheckPendingDisapprovedAffiliates: '@Lang.UncheckPendingDisapprovedAffiliates',
+            Disapproved: '@Lang.Disapproved',
+            Pending: '@Lang.Pending'
         };
 
         var customerListUrl = '@Url.Action("MemberList", "Affiliate")';
@@ -142,7 +144,7 @@
                     HeaderAlign: "center",
                     CellAlign: "center",
                     Formatter: function(rIndex, record, cell, cellFormated) {
-                        return "<input type='checkbox' class='chkItem' data-username='{0}' data-affid='{1}' data-testlevel='{2}' data-groupid='{3}' data-currency='{4}' data-status='{5}'/>".format(record.UserName, record.AffID, record.TestLevel, record.CommGroupID, record.CurrencyId, record.Status.toLowerCase());
+                        return "<input type='checkbox' class='chkItem' data-username='{0}' data-affid='{1}' data-testlevel='{2}' data-groupid='{3}' data-currency='{4}' data-status='{5}'/>".format(record.UserName, record.AffID, record.TestLevel, record.CommGroupID, record.CurrencyId, record.OriginalStatus.toLowerCase());
                     }
                 },
                 { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
@@ -160,7 +162,7 @@
                         var title = record.Favorite ? MSG.RemoveFromMyFavorite : MSG.AddToMyFavorite;
                         var action = record.Favorite ? -1 : 1;
 
-                        if (status === 'disapproved' || status === 'pending') {
+                        if (status === "@Lang.Disapproved" || status === "@Lang.Pending") {
                             var favorStr = "";
                         } else {
                             var favorStr = "<div onclick='javascript:AffiliateList.changeFavorite(this, {0});' class='{1}' data-action='{2}' title='{3}'>&nbsp;</div>".format(record.AffID, favorite, action, title);
@@ -178,7 +180,7 @@
                     Formatter: function(rIndex, record, cell, cellFormated) {
                         var status = record.Status.toLowerCase();
 
-                        if (status === 'disapproved' || status === 'pending') {
+                        if (status === "@Lang.Disapproved" || status === "@Lang.Pending") {
                             return "";
                         } else {
                             return "<a href='javascript:AffiliateList.changePassword({0}, \"{1}\")' title='{2}'><i class='icon-edit'></i></a>".format(record.AffID, record.UserName, MSG.ChangePassword);
@@ -187,10 +189,10 @@
                 },
                 { HeaderText: "@Lang.FirstName", Width: 80, Name: "FirstName", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.LastName", Width: 80, Name: "LastName", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "@Lang.Email", Width: 150, Name: "Email", HeaderAlign: "center", CellAlign: "left" },
+                { HeaderText: "@Lang.EmailAddress", Width: 150, Name: "Email", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.Language", Width: 60, Name: "LanguageName", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.AffType", Width: 70, Name: "AffTypeName", HeaderAlign: "center", CellAlign: "left" },
-                { HeaderText: "@Lang.RegisterDate", Width: 90, Name: "RegisteredDateStr", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.RegisteredDate", Width: 90, Name: "RegisteredDateStr", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.ApprovalDate", Width: 80, Name: "ApprovedDateStr", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderText: "@Lang.Status", Width: 70, Name: "Status", HeaderAlign: "center", CellAlign: "left",
                     Formatter: function(rIndex, record, cell, cellFormated) {
@@ -242,7 +244,7 @@
             indexNumberColumn: 1,
             showFooter: true,
             rowCssClass: function(rowIndex, rowData) {
-                return rowData.Status.toLowerCase();
+                return rowData.OriginalStatus.toLowerCase();
             }
         };
     </script>

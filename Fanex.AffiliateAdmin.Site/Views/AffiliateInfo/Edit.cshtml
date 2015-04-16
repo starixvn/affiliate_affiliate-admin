@@ -101,7 +101,7 @@ affiliate-info
                         </td>
                     </tr>
                     <tr>
-                        <td>@Html.LabelFor(m => m.Affiliate.Email, Lang.Email, new { @for = "Email", @class = "control-label" })
+                        <td>@Html.LabelFor(m => m.Affiliate.Email, Lang.EmailAddress, new { @for = "Email", @class = "control-label" })
                         </td>
                         <td class="required">
                             *
@@ -186,7 +186,7 @@ affiliate-info
                             *
                         </td>
                         <td>
-                            @RazorHelper.DropDownListCountry(Model.Countries.ToList(), Model.Affiliate.CountryId, new Dictionary<string, object> { { "id", "Country" }, { "class", "dropdownchecklist single-select" } })
+                            @RazorHelper.DropDownListCountry(Model.Countries, Model.Affiliate.CountryId, new Dictionary<string, object> { { "id", "Country" }, { "class", "dropdownchecklist single-select" } })
                         </td>
                     </tr>
                     <tr>

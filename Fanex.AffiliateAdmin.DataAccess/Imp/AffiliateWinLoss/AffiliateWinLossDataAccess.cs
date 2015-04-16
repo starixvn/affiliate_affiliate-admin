@@ -11,8 +11,8 @@ namespace Fanex.AffiliateAdmin.DataAccess
 {
     using System.Collections.Generic;
     using System.Data;
-    using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Common.Extensions;
 
     /// <summary>
@@ -57,6 +57,9 @@ namespace Fanex.AffiliateAdmin.DataAccess
                     GroupID = reader.ToInt("GroupID"),
                     GroupName = reader.ToString("GroupName")
                 };
+
+                var translated = Lang.ResourceManager.GetString(commission.AffType);
+                commission.AffType = string.IsNullOrEmpty(translated) ? commission.AffType : translated;
 
                 GetColumnExtra(reader, commission);
 
@@ -151,7 +154,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
 
             GetColumnExtra(reader, commission, colSuffix);
         }
-       
+
         #endregion Helpers for commission
     }
 }

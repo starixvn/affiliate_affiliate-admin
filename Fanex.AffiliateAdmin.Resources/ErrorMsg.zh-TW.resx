@@ -118,16 +118,10 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="Msg2001" xml:space="preserve">
-    <value>This Affiliate Domain has been existed.</value>
-  </data>
-	<data name="Msg2002" xml:space="preserve">
-    <value>This Affiliate Domain has been used!</value>
+    <value>此合作夥伴域名已存在。</value>
   </data>
 	<data name="Msg2003" xml:space="preserve">
-    <value>This Member Domain has been used!</value>
-  </data>
-	<data name="Msg2004" xml:space="preserve">
-    <value>这个会员网域已经存在！</value>
+    <value>該會員域名已經存在。</value>
   </data>
 	<data name="Msg2020" xml:space="preserve">
     <value>这个网域设定已经存在！</value>
@@ -136,16 +130,16 @@
     <value>您的网域设定和另一个设定重复。请确认！</value>
   </data>
 	<data name="Msg1" xml:space="preserve">
-    <value>This transaction is not a withdrawal.</value>
+    <value>取款交易是無效的。</value>
   </data>
 	<data name="Msg2" xml:space="preserve">
-    <value>Oops, You do not have permission to update this transaction.</value>
+    <value>抱歉，您沒有更新此交易的權限。</value>
   </data>
 	<data name="Msg200" xml:space="preserve">
-    <value>Error! Insert message unsuccessfully!</value>
+    <value>錯誤！輸入訊息失敗！</value>
   </data>
 	<data name="Msg201" xml:space="preserve">
-    <value>Error! Insert data into refresouces unsuccessfully!</value>
+    <value>錯誤！無法輸入資料！</value>
   </data>
 	<data name="Msg202" xml:space="preserve">
     <value>无效的讯息ID</value>
@@ -163,16 +157,16 @@
     <value>错误发生。插入资料不成功。</value>
   </data>
 	<data name="Msg3" xml:space="preserve">
-    <value>Insert transaction failed.</value>
+    <value>交易無法輸入。</value>
   </data>
 	<data name="Msg4" xml:space="preserve">
-    <value>This member does not exist or be removed before!</value>
+    <value>該成員不存在或已被刪除！</value>
   </data>
 	<data name="Msg5" xml:space="preserve">
-    <value>Error occur when re-calculate affiliate winloss</value>
+    <value>合作夥伴輸贏重新計算有錯誤</value>
   </data>
 	<data name="Msg500" xml:space="preserve">
-    <value>You are not authorized on this function.</value>
+    <value>您無權使用此功能。</value>
   </data>
 	<data name="Msg501" xml:space="preserve">
     <value>错误发生。插入不成功</value>
@@ -180,8 +174,8 @@
 	<data name="Msg502" xml:space="preserve">
     <value>出現錯誤.更新不成功.</value>
   </data>
-  <data name="Msg503" xml:space="preserve">
-    <value>You are not authorized on this currency.</value>
+	<data name="Msg503" xml:space="preserve">
+    <value>您無授權使用此貨幣。</value>
   </data>
 	<data name="Msg6" xml:space="preserve">
     <value>无效的电子邮件ID！</value>
@@ -211,16 +205,16 @@
     <value>舊密碼不正確.</value>
   </data>
 	<data name="Msg12" xml:space="preserve">
-    <value>Add group failed.</value>
+    <value>不能添加組。</value>
   </data>
 	<data name="Msg13" xml:space="preserve">
     <value>这个群组名称已经被使用</value>
   </data>
 	<data name="Msg14" xml:space="preserve">
-    <value>This group has customer belong to, so you cannot delete!</value>
+    <value>你不能刪除有會員的群組。</value>
   </data>
 	<data name="Msg2010" xml:space="preserve">
-    <value>Update process is unsuccessful!</value>
+    <value>無法更新過程</value>
   </data>
 	<data name="Msg300" xml:space="preserve">
     <value>无效的广告ID！</value>
@@ -318,20 +312,11 @@
 	<data name="Msg37" xml:space="preserve">
     <value>错误！无效的扣除设定！</value>
   </data>
-	<data name="Msg38" xml:space="preserve">
-    <value>错误！无效的一线层名单！</value>
-  </data>
-	<data name="Msg39" xml:space="preserve">
-    <value>允许最多50层</value>
-  </data>
 	<data name="Msg40" xml:space="preserve">
     <value>当设定层级时，出现错误。</value>
   </data>
 	<data name="Msg41" xml:space="preserve">
     <value>错误！无效的资料设定!</value>
-  </data>
-	<data name="Msg42" xml:space="preserve">
-    <value>错误！无效的资料设定 (ProductIDList) !</value>
   </data>
 	<data name="Msg43" xml:space="preserve">
     <value>当在更新资料时，会有错误，请重新再试一次！</value>
@@ -370,7 +355,7 @@
     <value>用戶名或密碼錯誤.</value>
   </data>
 	<data name="Msg102" xml:space="preserve">
-    <value>Your account is closed due to 5 consecutive failed login attempts. Please contact your administrator.</value>
+    <value>您已輸入6次錯誤的用戶名/密碼, 請5分鐘後再嘗試。</value>
   </data>
 	<data name="Msg103" xml:space="preserve">
     <value>帳號已關閉. 請聯絡管理員.</value>
@@ -381,22 +366,28 @@
 	<data name="Msg602" xml:space="preserve">
 		<value>无效的工作伙伴名单，请确认。</value>
 	</data>
-	<data name="Msg603" xml:space="preserve">
-		<value>无效的工作伙伴名单，请确认。</value>
-	</data>
 	<data name="Msg604" xml:space="preserve">
 		<value>货币的群组与工作伙伴的群组不相配。请确认。</value>
 	</data>
 	<data name="Msg605" xml:space="preserve">
 		<value>当在更新资料时，会有错误，请重新再试一次！</value>
 	</data>
-	<data name="Msg606" xml:space="preserve">
-		<value>当在更新资料时，会有错误，请重新再试一次！</value>
+	<data name="Msg1001" xml:space="preserve">
+		<value>錯誤！此設置密碼已存在。</value>
 	</data>
-	<data name="Msg607" xml:space="preserve">
-		<value>当在更新资料时，会有错误，请重新再试一次！</value>
+	<data name="Msg1002" xml:space="preserve">
+		<value>錯誤！這語言已存在了。</value>
 	</data>
-	<data name="Msg608" xml:space="preserve">
-		<value>当在更新资料时，会有错误，请重新再试一次！</value>
+	<data name="Msg1003" xml:space="preserve">
+		<value>錯誤！請求無效。</value>
+	</data>
+	<data name="Msg2008" xml:space="preserve">
+		<value>此合作夥伴不存在。</value>
+	</data>
+	<data name="Msg2009" xml:space="preserve">
+		<value>錯誤！無法刪除我的最愛合作夥伴！</value>
+	</data>
+	<data name="Msg400" xml:space="preserve">
+		<value>錯誤！此國家已存在。</value>
 	</data>
 </root>

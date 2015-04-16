@@ -58,11 +58,24 @@ namespace Fanex.AffiliateAdmin.Models
 
         #region Option Lists
 
-        public SelectList BannerCategoryOptionList
+        public IEnumerable<SelectListItem> BannerCategoryOptionList
         {
             get
             {
-                return new SelectList(MediaSettings.BannerCategories, "TypeId", "Value", Category.ToString()); 
+                var optionList = new List<SelectListItem>();
+                foreach (var banner in MediaSettings.BannerCategories)
+                {
+                    var text = Lang.ResourceManager.GetString(banner.Value.Replace(" ", string.Empty));
+
+                    optionList.Add(new SelectListItem()
+                        {
+                            Value = banner.TypeId.ToString(),
+                            Text = string.IsNullOrEmpty(text) ? banner.Value : text,
+                            Selected = Category == banner.TypeId
+                        }); 
+                }
+
+                return optionList; 
             }
         }
 
@@ -90,21 +103,49 @@ namespace Fanex.AffiliateAdmin.Models
             }
         }
 
-        public SelectList BannerTypeOptionList
+        public IEnumerable<SelectListItem> BannerTypeOptionList
         {
             get
             {
-                return new SelectList(MediaSettings.BannerTypes, "TypeId", "Value", ImageType.ToString());
+                var optionList = new List<SelectListItem>();
+
+                foreach (var item in MediaSettings.BannerTypes)
+                {
+                    var text = Lang.ResourceManager.GetString(item.Value.Replace(" ", string.Empty));
+
+                    optionList.Add(new SelectListItem
+                        {
+                            Value = item.TypeId.ToString(),
+                            Text = string.IsNullOrEmpty(text) ? item.Value : text,
+                            Selected = item.TypeId == ImageType
+                        }); 
+                }
+
+                return optionList;
             }
         }
 
-        public SelectList BannerSubCategoryOptionList
+        public IEnumerable<SelectListItem> BannerSubCategoryOptionList
         {
             get
             {
                 SubCategories = SubCategories ?? new List<MediaType>();
 
-                return new SelectList(SubCategories, "TypeId", "Value", SubCategory.HasValue ? SubCategory.Value.ToString() : string.Empty);
+                var optionList = new List<SelectListItem>();
+
+                foreach (var category in SubCategories)
+                {
+                    var text = Lang.ResourceManager.GetString(category.Value.Replace(" ", string.Empty));
+
+                    optionList.Add(new SelectListItem()
+                        {
+                            Value = category.TypeId.ToString(),
+                            Text = string.IsNullOrEmpty(text) ? category.Value : text,
+                            Selected = category.TypeId == SubCategory
+                        }); 
+                }
+
+                return optionList;
             }
         }
 

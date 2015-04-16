@@ -10,11 +10,13 @@
 namespace Fanex.AffiliateAdmin.Core.Configurations
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -27,10 +29,18 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                return _affiliateSettingService.GetAccountTypeList(new AccountTypeCriteria
+                var accountTypes = _affiliateSettingService.GetAccountTypeList(new AccountTypeCriteria
                 {
                     IsIT = SessionManager.CurrentSession.IsIT
                 });
+
+                var translated = accountTypes.Select(t => new AccountType()
+                    {
+                        TypeID = t.TypeID,
+                        TypeName = Lang.ResourceManager.GetString(t.TypeName.Replace(" ", string.Empty).Replace("-", string.Empty))
+                    });
+
+                return translated;
             }
         }
     }

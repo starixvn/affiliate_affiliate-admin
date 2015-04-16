@@ -141,8 +141,7 @@ report
             LiveCasino: "@Lang.LiveCasino",
             RNGCasino: "@Lang.RNGCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
-            VirtualSport: "@Lang.VirtualSport",
-            TotalTransactions: "@Lang.TotalTransactions",
+            VirtualSport: "@Lang.VirtualSports",
             CustomerWL: "@Lang.MemberWL",
             CompanyWL: "@Lang.CompanyWL",
             All: "@Lang.All",
@@ -193,8 +192,8 @@ report
                         { HeaderCaption: "@Lang.BetCount", HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", HeaderAlign: "center", IsCurrency: true, Name: "TotalTurnover", NameCache: "TotalTurnover", MergeRowNumber: 2 },
                         {
-                            HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
-                            HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
+                            HeaderCaption: "<span title='@Lang.MemberCommission'>@Lang.MemberComm</span>",
+                            HeaderText: "<span title='@Lang.MemberCommission'>@Lang.MemberComm</span>",
                             IsCurrency: true,
                             Name: "PlayerComm",
                             NameCache: "PlayerComm",
@@ -259,8 +258,8 @@ report
                     
                 },
                 {
-                    HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
-                    HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
+                    HeaderCaption: "<span title='@Lang.MemberCommission'>@Lang.MemberComm</span>",
+                    HeaderText: "<span title='@Lang.MemberCommission'>@Lang.MemberComm</span>",
                     IsCurrency: true,
                     Width: 110,
                     Name: "PlayerComm",
@@ -375,8 +374,8 @@ report
                         { HeaderCaption: "@Lang.BetCount", HeaderText: "@Lang.BetCount", Name: "BetCount", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Turnover", HeaderText: "@Lang.Turnover", HeaderAlign: "center", IsCurrency: true, Name: "TotalTurnover", NameCache: "TotalTurnover", MergeRowNumber: 2 },
                         {
-                            HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
-                            HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
+                            HeaderCaption: "<span title='@Lang.MemberCommission'>@Lang.MemberComm</span>",
+                            HeaderText: "<span title='@Lang.MemberCommission'>@Lang.MemberComm</span>",
                             IsCurrency: true,
                             Name: "PlayerComm",
                             NameCache: "PlayerComm",
@@ -436,8 +435,8 @@ report
                     IsAbs: true
                 },
                 {
-                    HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
-                    HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
+                    HeaderCaption: "<span title='@Lang.MemberCommission'>@Lang.MemberComm</span>",
+                    HeaderText: "<span title='@Lang.MemberCommission'>@Lang.MemberComm</span>",
                     IsCurrency: true,
                     Width: 110,
                     Name: "PlayerComm",
@@ -500,7 +499,7 @@ report
 
                         if (groupBy === '0' && record.TotalTurnover !== 0) {
                             var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
-                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&toCurrencyId={4}&fromCurrencyId={5}&toCurrencyCode={6}".format(record.AffId, record.PlayerUsername, record.ProductName, record.WinlostDateStr, toCurrencyId, fromCurrencyId, toCurrencyCode);
+                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&toCurrencyId={4}&fromCurrencyId={5}&toCurrencyCode={6}".format(record.AffId, record.PlayerUsername, record.OriginalProductName, record.WinlostDateStr, toCurrencyId, fromCurrencyId, toCurrencyCode);
                             url = url + para;
                             return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, currentValue, currentValue);
                         }
@@ -524,8 +523,8 @@ report
         var cardinalCol = { HeaderText: "#", Width: 30, Name: "WinlostDateStr", CellAlign: "center" };
 
         var samplePlayerCommCol = {
-            HeaderCaption: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
-            HeaderText: "<span title='@Lang.PlayerCommission'>@Lang.PlayerComm</span>",
+            HeaderCaption: "<span title='@Lang.MemberCommission'>@Lang.MemberComm</span>",
+            HeaderText: "<span title='@Lang.MemberCommission'>@Lang.MemberComm</span>",
             IsCurrency: true,
             Width: 110,
             Name: "PlayerComm",

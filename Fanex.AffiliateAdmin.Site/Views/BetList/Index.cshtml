@@ -33,6 +33,11 @@ else
 @Scripts.Render("~/js/betlist")
 
 <script type="text/javascript">
+    var MSG = {
+        Results: "@Lang.BetListResults",
+        HandHistoryDetails: "@Lang.HandHistoryDetails"
+    };
+    
     $(document).ready(function () {
         setTimeout(function() {
             $("#affiliateInfo").removeClass("active");

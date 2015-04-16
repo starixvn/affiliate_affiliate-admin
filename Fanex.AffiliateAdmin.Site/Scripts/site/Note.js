@@ -41,7 +41,7 @@ var NOTE = (function ($) {
             return false;
         },
         editNote: function (noteId) {
-            AFFILIATE.openDialogFrame("Note/EditNote?noteId=" + noteId, "Edit Note", { width: 600, height: 220 });
+            AFFILIATE.openDialogFrame("Note/EditNote?noteId=" + noteId, MSG.EditNote, { width: 600, height: 220 });
             return false;
         }
     };

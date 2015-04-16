@@ -9,6 +9,7 @@
     long MAXAM = 100000000000000;
     var currencyDropDownAttr = new Dictionary<string, object>();
     currencyDropDownAttr.Add("class", "width-140 dropdownchecklist single-select");
+    
     var products = AppSettings.Products.Where(t => t.IsEnabled);
 }
 
@@ -24,19 +25,19 @@
         </div>
     </div>
     <div class="control-group">
-        @Html.LabelFor(m => m.Description, Lang.Description, new { @class = "control-label" })      
+        @Html.LabelFor(m => m.Description, Lang.Description, new { @class = "control-label" })
         <div class="controls">
             @Html.TextBoxFor(m => m.Description, new { maxlength = "100", @class = "form-control" })
         </div>
     </div>
     <div class="control-group">
-        @Html.LabelFor(m => m.QualifiedAmount, Lang.QualifiedAmount, new { @class = "control-label" })      
+        @Html.LabelFor(m => m.QualifiedAmount, Lang.QualifiedAmount, new { @class = "control-label" })
         <div class="controls">
             @Html.TextBox("QualifiedAmount", string.Empty, new { maxlength = "20", @class = "form-control" })<span style="color: red"> *</span>
         </div>
     </div>
      <div class="control-group">
-        @Html.LabelFor(m => m.Currency, Lang.Currency, new { @class = "control-label" })      
+        @Html.LabelFor(m => m.Currency, Lang.Currency, new { @class = "control-label" })
         <div class="controls">
             @Html.DropDownListFor(m => m.Currency, new SelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode"), currencyDropDownAttr)
         </div>
@@ -60,8 +61,8 @@
                     <div class="expand">
                         <span>
                             <span id="product_header@(product.ProductID)" class="product_header" style="cursor: pointer"> 
-                                <i id="header_icon@(product.ProductID)" class="header_icon icon-ok-circle"></i>			      
-                                @product.ProductName
+                                <i id="header_icon@(product.ProductID)" class="header_icon icon-ok-circle"></i>
+                                @Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty))
                             </span>
                         </span>
                     </div>
@@ -69,7 +70,7 @@
                 <div class="pull-right textcopy">
                     <label for="@(product.ProductID)">
                         <input type="checkbox" class="copy" id="@(product.ProductID)" />
-                        @string.Format(@Lang.CopyTierSettingFor, product.ProductName)
+                        @string.Format(@Lang.CopyTierSettingFor, Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty)))
                     </label>
                 </div>
             </div>

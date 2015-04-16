@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Joseph.Pham" date="2013.9.9">Created</change>
 // </history>
+
 namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Fanex.AffiliateAdmin.Services
     using Core.Services;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -55,7 +57,16 @@ namespace Fanex.AffiliateAdmin.Services
         public IEnumerable<CommGroupTierSetting> GetTierSettings(TierSettingCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return GetDataOutput<CommGroupTierSetting>(criteria);
+            var settings = GetDataOutput<CommGroupTierSetting>(criteria);
+
+            foreach (var setting in settings)
+            {
+                var productName = setting.ProductName;
+                var translatedProduct = Lang.ResourceManager.GetString(productName.Replace(" ", string.Empty));
+                setting.ProductName = string.IsNullOrEmpty(translatedProduct) ? productName : translatedProduct;
+            }
+
+            return settings;
         }
 
         /// <summary>

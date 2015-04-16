@@ -23,7 +23,7 @@ namespace Fanex.AffiliateAdmin.Models
         [Display(ResourceType = typeof(Resources.Lang), Name = "Password")]
         public string Password { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrConfirmPasswordRequired")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ConfirmPasswordIsRequired")]
         [DataType(DataType.Password)]
         [Display(ResourceType = typeof(Resources.Lang), Name = "ConfirmPass")]
         [Compare("Password", ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "PassConfirm")]

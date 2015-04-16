@@ -1,6 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -37,7 +38,7 @@
             get
             {
                 if (!string.IsNullOrEmpty(_firstChar) &&
-                    !_firstChar.Equals("All", StringComparison.CurrentCultureIgnoreCase))
+                    !_firstChar.Equals(Lang.All, StringComparison.CurrentCultureIgnoreCase))
                 {
                     if (_firstChar.Equals("0-9"))
                     {

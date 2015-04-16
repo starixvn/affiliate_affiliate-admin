@@ -118,147 +118,147 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AutoPlay" xml:space="preserve">
-    <value>Auto Play</value>
+    <value>자동플레이</value>
   </data>
   <data name="AutoSpin" xml:space="preserve">
-    <value>Auto Spin</value>
+    <value>자동 스핀</value>
   </data>
   <data name="Bet" xml:space="preserve">
-    <value>Bet</value>
+    <value>배팅</value>
   </data>
   <data name="BetPerLine" xml:space="preserve">
-    <value>Bet Per Line</value>
+    <value>라인당 배팅</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>Characters</value>
+    <value>특성</value>
   </data>
   <data name="CoinSize" xml:space="preserve">
-    <value>Coin Size</value>
+    <value>동전 크기</value>
   </data>
   <data name="Combination" xml:space="preserve">
-    <value>Combination</value>
+    <value>조합</value>
   </data>
   <data name="Detail" xml:space="preserve">
-    <value>Detail</value>
+    <value>상세보기</value>
   </data>
   <data name="EndBalance" xml:space="preserve">
-    <value>End Balance</value>
+    <value>최종 잔액</value>
   </data>
   <data name="EndDate" xml:space="preserve">
-    <value>End Date</value>
+    <value>종료일</value>
   </data>
   <data name="FinalHand" xml:space="preserve">
-    <value>Final Hand</value>
+    <value>최종핸드</value>
   </data>
   <data name="FreeSpin" xml:space="preserve">
-    <value>Free Spin</value>
+    <value>프리스핀</value>
   </data>
   <data name="Game" xml:space="preserve">
-    <value>Game</value>
+    <value>게임</value>
   </data>
   <data name="GameGroup" xml:space="preserve">
-    <value>Game Group</value>
+    <value>게임그룹</value>
   </data>
   <data name="GameID" xml:space="preserve">
-    <value>Game ID</value>
+    <value>게임 아이디</value>
   </data>
   <data name="GameType" xml:space="preserve">
-    <value>Game Type</value>
+    <value>게임 유형</value>
   </data>
   <data name="HandNo" xml:space="preserve">
-    <value>Hand No</value>
+    <value>핸드번호</value>
   </data>
   <data name="Hit" xml:space="preserve">
-    <value>Hit</value>
+    <value>히트</value>
   </data>
   <data name="InitialHand" xml:space="preserve">
-    <value>Initial Hand</value>
+    <value>초기핸드 </value>
   </data>
   <data name="Kidnapping" xml:space="preserve">
-    <value>Kidnapping</value>
+    <value>유괴</value>
   </data>
   <data name="LineNo" xml:space="preserve">
-    <value>Line No</value>
+    <value>라인번호</value>
   </data>
   <data name="Loss" xml:space="preserve">
-    <value>Loss</value>
+    <value>패배</value>
   </data>
   <data name="Mode" xml:space="preserve">
-    <value>Mode</value>
+    <value>모드</value>
   </data>
   <data name="Money" xml:space="preserve">
-    <value>Money</value>
+    <value>금전</value>
   </data>
   <data name="Multiplier" xml:space="preserve">
-    <value>Multiplier</value>
+    <value>멀티플라이어 </value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>이름</value>
   </data>
   <data name="Normal" xml:space="preserve">
-    <value>Normal</value>
+    <value>정상</value>
   </data>
   <data name="Number" xml:space="preserve">
-    <value>Number</value>
+    <value>번호</value>
   </data>
   <data name="Odds" xml:space="preserve">
-    <value>Odds</value>
+    <value>배당율 </value>
   </data>
   <data name="PerLineWin" xml:space="preserve">
-    <value>Per Line Win</value>
+    <value>라인 당 승리</value>
   </data>
   <data name="Pick" xml:space="preserve">
-    <value>Pick</value>
+    <value>택하기</value>
   </data>
   <data name="Player" xml:space="preserve">
-    <value>Player</value>
+    <value>경기자</value>
   </data>
   <data name="PlayerHistoryNo" xml:space="preserve">
-    <value>Player History No</value>
+    <value>경기자 이력 번호</value>
   </data>
   <data name="RefNo" xml:space="preserve">
-    <value>Ref No</value>
+    <value>참조번호</value>
   </data>
   <data name="Result" xml:space="preserve">
-    <value>Results</value>
+    <value>결과 </value>
   </data>
   <data name="ResultsWithPictures" xml:space="preserve">
-    <value>Results with pictures</value>
+    <value>그림이 주어진 결과</value>
   </data>
   <data name="RoundType" xml:space="preserve">
-    <value>Round Type</value>
+    <value>라운드 유형</value>
   </data>
   <data name="SessionID" xml:space="preserve">
-    <value>Session ID</value>
+    <value>세션 아이디</value>
   </data>
   <data name="Stake" xml:space="preserve">
-    <value>Stake</value>
+    <value>지분</value>
   </data>
   <data name="StartBalance" xml:space="preserve">
-    <value>Start Balance</value>
+    <value>시작  잔액</value>
   </data>
   <data name="StartDate" xml:space="preserve">
-    <value>Start Date</value>
+    <value>시작일 </value>
   </data>
   <data name="Symbol" xml:space="preserve">
-    <value>Symbol</value>
+    <value>기호</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>Total</value>
+    <value>총합</value>
   </data>
   <data name="TotalLineBet" xml:space="preserve">
-    <value>Total Line Bet</value>
+    <value>총 라인 배팅</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>Type</value>
+    <value>유형 </value>
   </data>
   <data name="Viewin" xml:space="preserve">
-    <value>View in </value>
+    <value>에서 보기 {0}</value>
   </data>
   <data name="Win" xml:space="preserve">
-    <value>Win</value>
+    <value>승리</value>
   </data>
   <data name="WinLoss" xml:space="preserve">
-    <value>Win/Loss</value>
+    <value>승리 패배</value>
   </data>
 </root>

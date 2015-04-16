@@ -9,6 +9,8 @@
 
 namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
 {
+    using System.ComponentModel.DataAnnotations;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -18,8 +20,10 @@ namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
     {
         public int Updatedby { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "KeyFieldIsRequired")]
         public string Key { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ValueFieldIsRequired")]
         public string Value { get; set; }
 
         public string Type { get; set; }

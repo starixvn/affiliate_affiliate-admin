@@ -253,7 +253,7 @@
     <value>Type</value>
   </data>
   <data name="Viewin" xml:space="preserve">
-    <value>View in </value>
+    <value>View in {0}</value>
   </data>
   <data name="Win" xml:space="preserve">
     <value>Win</value>

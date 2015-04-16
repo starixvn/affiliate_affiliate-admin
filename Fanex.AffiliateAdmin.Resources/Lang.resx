@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,2500 +59,2404 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="AccessDenied" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="AccessDenied" xml:space="preserve">
     <value>Access Denied</value>
   </data>
-  <data name="AccessDeniedHtml" xml:space="preserve">
+	<data name="AccessDeniedHtml" xml:space="preserve">
     <value>&lt;h3 class="c"&gt;
     Access Denied! &lt;br&gt;
     You don't have permission on this action. &lt;br&gt;
     Please contact your administrator.
 &lt;/h3&gt;</value>
   </data>
-  <data name="AccInfo" xml:space="preserve">
+	<data name="AccInfo" xml:space="preserve">
     <value>Account Information</value>
   </data>
-  <data name="AccountPolicy" xml:space="preserve">
+	<data name="AccountPolicy" xml:space="preserve">
     <value>Account Policy</value>
   </data>
-  <data name="AccountType" xml:space="preserve">
+	<data name="AccountType" xml:space="preserve">
     <value>Account Type</value>
   </data>
-  <data name="Action" xml:space="preserve">
+	<data name="Action" xml:space="preserve">
     <value>Action</value>
   </data>
-  <data name="Active" xml:space="preserve">
+	<data name="Active" xml:space="preserve">
     <value>Active</value>
   </data>
-  <data name="ActiveAll" xml:space="preserve">
+	<data name="ActiveAll" xml:space="preserve">
     <value>Active All</value>
   </data>
-  <data name="ActiveMembers" xml:space="preserve">
+	<data name="ActiveMembers" xml:space="preserve">
     <value>Active Members</value>
   </data>
-  <data name="Add" xml:space="preserve">
+	<data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
-  <data name="AddAdministrator" xml:space="preserve">
+	<data name="AddAdministrator" xml:space="preserve">
     <value>Add Administrator</value>
   </data>
-  <data name="AddAdministratorExist" xml:space="preserve">
+	<data name="AddAdministratorExist" xml:space="preserve">
     <value>Add Existed Administrator</value>
   </data>
-  <data name="AddAffCurrency" xml:space="preserve">
+	<data name="AddAffCurrency" xml:space="preserve">
     <value>Add Aff Currency</value>
   </data>
-  <data name="AddAffDomain" xml:space="preserve">
+	<data name="AddAffDomain" xml:space="preserve">
     <value>Add Affiliate Domain</value>
   </data>
-  <data name="AddBanner" xml:space="preserve">
+	<data name="AddBanner" xml:space="preserve">
     <value>Add Banner</value>
   </data>
-  <data name="AddBannerSuccessful" xml:space="preserve">
+	<data name="AddBannerSuccessful" xml:space="preserve">
     <value>Your banner has been added successfully!</value>
   </data>
-  <data name="AddCommissionGroup" xml:space="preserve">
+	<data name="AddCommissionGroup" xml:space="preserve">
     <value>Add Commission Group</value>
   </data>
-  <data name="AddCurrency" xml:space="preserve">
+	<data name="AddCurrency" xml:space="preserve">
     <value>Add Currency</value>
   </data>
-  <data name="AddDepartment" xml:space="preserve">
+	<data name="AddGroup" xml:space="preserve">
     <value>Add Group</value>
   </data>
-  <data name="AddDomainControl" xml:space="preserve">
+	<data name="AddDomainControl" xml:space="preserve">
     <value>Add Domain Control</value>
   </data>
-  <data name="AddEmptyMessError" xml:space="preserve">
+	<data name="AddEmptyMessError" xml:space="preserve">
     <value>Please enter the content of message at least one language.</value>
   </data>
-  <data name="AdditionalInfo" xml:space="preserve">
+	<data name="AdditionalInfo" xml:space="preserve">
     <value>Additional Information</value>
   </data>
-  <data name="AddMemberDomain" xml:space="preserve">
+	<data name="AddMemberDomain" xml:space="preserve">
     <value>Add Member Domain</value>
   </data>
-  <data name="AddMemberSiteDomain" xml:space="preserve">
+	<data name="AddMemberSiteDomain" xml:space="preserve">
     <value>Add Member Site Domain</value>
   </data>
-  <data name="AddMessage" xml:space="preserve">
+	<data name="AddMessage" xml:space="preserve">
     <value>Add Message</value>
   </data>
-  <data name="AddNew" xml:space="preserve">
+	<data name="AddNew" xml:space="preserve">
     <value>Add New</value>
   </data>
-  <data name="AddNewAccount" xml:space="preserve">
+	<data name="AddNewAccount" xml:space="preserve">
     <value>Add New Account</value>
   </data>
-  <data name="AddNewAffType" xml:space="preserve">
+	<data name="AddNewAffType" xml:space="preserve">
     <value>Add New Affiliate Type</value>
   </data>
-  <data name="AddNewConfiguration" xml:space="preserve">
+	<data name="AddNewConfiguration" xml:space="preserve">
     <value>Add New Configuration</value>
   </data>
-  <data name="AddNewCountry" xml:space="preserve">
+	<data name="AddNewCountry" xml:space="preserve">
     <value>Add New Country</value>
   </data>
-  <data name="AddNewGroup" xml:space="preserve">
+	<data name="AddNewGroup" xml:space="preserve">
     <value>Add New Group</value>
   </data>
-  <data name="AddNewLanguage" xml:space="preserve">
+	<data name="AddNewLanguage" xml:space="preserve">
     <value>Add New Language</value>
   </data>
-  <data name="AddNewProduct" xml:space="preserve">
+	<data name="AddNewProduct" xml:space="preserve">
     <value>Add New Product</value>
   </data>
-  <data name="AddNewUser" xml:space="preserve">
+	<data name="AddNewUser" xml:space="preserve">
     <value>Add New User</value>
   </data>
-  <data name="AddNote" xml:space="preserve">
+	<data name="AddNote" xml:space="preserve">
     <value>Add Note</value>
   </data>
-  <data name="Address" xml:space="preserve">
+	<data name="Address" xml:space="preserve">
     <value>Address</value>
   </data>
-  <data name="AddSucc" xml:space="preserve">
+	<data name="AddSucc" xml:space="preserve">
     <value>Added successfully!</value>
   </data>
-  <data name="AddText" xml:space="preserve">
+	<data name="AddText" xml:space="preserve">
     <value>Add New Text</value>
   </data>
-  <data name="AddTier" xml:space="preserve">
+	<data name="AddTier" xml:space="preserve">
     <value>Add New Tier</value>
   </data>
-  <data name="AddToMyFavorite" xml:space="preserve">
+	<data name="AddToMyFavorite" xml:space="preserve">
     <value>Add to My Favorite</value>
   </data>
-  <data name="AddUrl" xml:space="preserve">
+	<data name="AddUrl" xml:space="preserve">
     <value>Add New Url</value>
   </data>
-  <data name="AddUserSucc" xml:space="preserve">
-    <value>The user has been added successfully.</value>
-  </data>
-  <data name="AddUserSuccess" xml:space="preserve">
+	<data name="AddUserSuccess" xml:space="preserve">
     <value>The administrator has been added successfully.</value>
   </data>
-  <data name="AdjustAmountUpTo" xml:space="preserve">
+	<data name="AdjustAmountUpTo" xml:space="preserve">
     <value>The allowed adjustment is between -{0} and +{0}.</value>
   </data>
-  <data name="Adjustment" xml:space="preserve">
+	<data name="Adjustment" xml:space="preserve">
     <value>Adjustment</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
+	<data name="Administrator" xml:space="preserve">
     <value>Administrator</value>
   </data>
-  <data name="AdminNote" xml:space="preserve">
+	<data name="AdminNote" xml:space="preserve">
     <value>Admin Note</value>
   </data>
-  <data name="AffApproved" xml:space="preserve">
+	<data name="AffApproved" xml:space="preserve">
     <value>This affiliate has been approved.</value>
   </data>
-  <data name="AffClosed" xml:space="preserve">
+	<data name="AffClosed" xml:space="preserve">
     <value>This affiliate has been closed.</value>
   </data>
-  <data name="AffDomain" xml:space="preserve">
+	<data name="AffDomain" xml:space="preserve">
     <value>Affiliate Domain</value>
   </data>
-  <data name="AffDomainNameAddSucc" xml:space="preserve">
+	<data name="AffDomainNameAddSucc" xml:space="preserve">
     <value>The Affiliate Domain has been added successfully!</value>
   </data>
-  <data name="AffDomainNameNotContainChar" xml:space="preserve">
+	<data name="AffDomainNameNotContainChar" xml:space="preserve">
     <value>Affiliate Domain name can not contain this character.</value>
   </data>
-  <data name="EffectiveDate" xml:space="preserve">
+	<data name="EffectiveDate" xml:space="preserve">
     <value>Effective Date</value>
   </data>
-  <data name="Affiliate" xml:space="preserve">
+	<data name="Affiliate" xml:space="preserve">
     <value>Affiliate</value>
   </data>
-  <data name="AffiliateAdministration" xml:space="preserve">
+	<data name="AffiliateAdministration" xml:space="preserve">
     <value>Affiliate Administration</value>
   </data>
-  <data name="AffiliateAdminLogin" xml:space="preserve">
+	<data name="AffiliateAdminLogin" xml:space="preserve">
     <value>Affiliate Admin - Login</value>
   </data>
-  <data name="AffiliateDomains" xml:space="preserve">
+	<data name="AffiliateDomains" xml:space="preserve">
     <value>Affiliate Domains</value>
   </data>
-  <data name="AffiliateInfo" xml:space="preserve">
+	<data name="AffiliateInfo" xml:space="preserve">
     <value>Affiliate Info</value>
   </data>
-  <data name="AffiliateIs" xml:space="preserve">
+	<data name="AffiliateIs" xml:space="preserve">
     <value>This affiliate is {0}.</value>
   </data>
-  <data name="AffiliateNote" xml:space="preserve">
+	<data name="AffiliateNote" xml:space="preserve">
     <value>Affiliate Note</value>
   </data>
-  <data name="AffiliateReport" xml:space="preserve">
+	<data name="AffiliateReport" xml:space="preserve">
     <value>Affiliate Report</value>
   </data>
-  <data name="AffiliateReportDetail" xml:space="preserve">
+	<data name="AffiliateReportDetail" xml:space="preserve">
     <value>Affiliate Report Detail</value>
   </data>
-  <data name="AffiliateStatistics" xml:space="preserve">
+	<data name="AffiliateStatistics" xml:space="preserve">
     <value>Affiliate Statistics</value>
   </data>
-  <data name="AffiliateTypeList" xml:space="preserve">
+	<data name="AffiliateTypeList" xml:space="preserve">
     <value>Affiliate Type List</value>
   </data>
-  <data name="AffiliateUserName" xml:space="preserve">
+	<data name="AffiliateUserName" xml:space="preserve">
     <value>Affiliate Username</value>
   </data>
-  <data name="AffInPro" xml:space="preserve">
-    <value>affiliate(s) in the program</value>
-  </data>
-  <data name="AffList" xml:space="preserve">
+	<data name="AffList" xml:space="preserve">
     <value>Affiliate List</value>
   </data>
-  <data name="AffManagement" xml:space="preserve">
+	<data name="AffManagement" xml:space="preserve">
     <value>Affiliate Management</value>
   </data>
-  <data name="AffMonthStatc" xml:space="preserve">
+	<data name="AffMonthStatc" xml:space="preserve">
     <value>Affiliate statistics (this month)</value>
   </data>
-  <data name="AffNetWinLoss" xml:space="preserve">
+	<data name="AffNetWinLoss" xml:space="preserve">
     <value>Affiliate Net Win/Loss</value>
   </data>
-  <data name="AffNotApproved" xml:space="preserve">
+	<data name="AffNotApproved" xml:space="preserve">
     <value>This affiliate has not been approved.</value>
   </data>
-  <data name="AffNotExist" xml:space="preserve">
+	<data name="AffNotExist" xml:space="preserve">
     <value>This affiliate does not exist.</value>
   </data>
-  <data name="AffQualifiedMemReportDetailFor" xml:space="preserve">
+	<data name="AffQualifiedMemReportDetailFor" xml:space="preserve">
     <value>{0}'s Qualified members report details for {1} - Currency: {2}, Commission Group: {3}</value>
     <comment>{0}: affiliate name, {1}: month - year, {2} - currency code, {3}: commission group name</comment>
   </data>
-  <data name="AffStatisticsAll" xml:space="preserve">
+	<data name="AffStatisticsAll" xml:space="preserve">
     <value>Affiliate statistics (up to now)</value>
   </data>
-  <data name="AffType" xml:space="preserve">
+	<data name="AffType" xml:space="preserve">
     <value>Affiliate Type</value>
   </data>
-  <data name="AffWinlost" xml:space="preserve">
+	<data name="AffWinlost" xml:space="preserve">
     <value>Affiliate Win/Loss</value>
   </data>
-  <data name="All" xml:space="preserve">
+	<data name="All" xml:space="preserve">
     <value>All</value>
   </data>
-  <data name="AllCurrencies" xml:space="preserve">
+	<data name="AllCurrencies" xml:space="preserve">
     <value>All Currencies</value>
   </data>
-  <data name="AllStatus" xml:space="preserve">
+	<data name="AllStatus" xml:space="preserve">
     <value>All status</value>
   </data>
-  <data name="Amount" xml:space="preserve">
+	<data name="Amount" xml:space="preserve">
     <value>Amount</value>
   </data>
-  <data name="Answer" xml:space="preserve">
+	<data name="Answer" xml:space="preserve">
     <value>Answer</value>
   </data>
-  <data name="APIProductID" xml:space="preserve">
+	<data name="APIProductID" xml:space="preserve">
     <value>API Product ID</value>
   </data>
-  <data name="APIProductIDRange" xml:space="preserve">
+	<data name="APIProductIDRange" xml:space="preserve">
     <value>The field API Product ID must be between 0 and 2147483647.</value>
   </data>
-  <data name="ApprovalDate" xml:space="preserve">
+	<data name="ApprovalDate" xml:space="preserve">
     <value>Approval Date</value>
   </data>
-  <data name="Approved" xml:space="preserve">
+	<data name="Approved" xml:space="preserve">
     <value>Approved</value>
   </data>
-  <data name="ApprovedBF" xml:space="preserve">
+	<data name="ApprovedBF" xml:space="preserve">
     <value>Approved(B/F)</value>
   </data>
-  <data name="ApprovedErr" xml:space="preserve">
+	<data name="ApprovedErr" xml:space="preserve">
     <value>You must choose Approved or Rejected for this request!</value>
   </data>
-  <data name="Apr" xml:space="preserve">
+	<data name="Apr" xml:space="preserve">
     <value>Apr</value>
   </data>
-  <data name="Assign" xml:space="preserve">
+	<data name="Assign" xml:space="preserve">
     <value>Assign</value>
   </data>
-  <data name="AssignComGroup" xml:space="preserve">
+	<data name="AssignComGroup" xml:space="preserve">
     <value>Assign Commission Group To New Affiliate</value>
   </data>
-  <data name="Assignee" xml:space="preserve">
+	<data name="Assignee" xml:space="preserve">
     <value>Assignee</value>
   </data>
-  <data name="AssignMemToAff" xml:space="preserve">
+	<data name="AssignMemToAff" xml:space="preserve">
     <value>Assign Member to Affiliate</value>
   </data>
-  <data name="Aug" xml:space="preserve">
+	<data name="Aug" xml:space="preserve">
     <value>Aug</value>
   </data>
-  <data name="AutoUpdate" xml:space="preserve">
+	<data name="AutoUpdate" xml:space="preserve">
     <value>Auto update</value>
   </data>
-  <data name="Back" xml:space="preserve">
+	<data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
-  <data name="BalanceForward" xml:space="preserve">
+	<data name="BalanceForward" xml:space="preserve">
     <value>Balance Brought Forward</value>
   </data>
-  <data name="BankAccname" xml:space="preserve">
+	<data name="BankAccname" xml:space="preserve">
     <value>Bank Account Name</value>
   </data>
-  <data name="BankAccnumber" xml:space="preserve">
+	<data name="BankAccnumber" xml:space="preserve">
     <value>Bank Account Number</value>
   </data>
-  <data name="BankAddress" xml:space="preserve">
+	<data name="BankAddress" xml:space="preserve">
     <value>Bank Address</value>
   </data>
-  <data name="BankName" xml:space="preserve">
+	<data name="BankName" xml:space="preserve">
     <value>Bank Name</value>
   </data>
-  <data name="BankSwift" xml:space="preserve">
+	<data name="BankSwift" xml:space="preserve">
     <value>Bank ABA/Swift/Sort Code</value>
   </data>
-  <data name="BankTrans" xml:space="preserve">
+	<data name="BankTrans" xml:space="preserve">
     <value>Bank Transfer</value>
   </data>
-  <data name="BannerInPro" xml:space="preserve">
+	<data name="BannerInPro" xml:space="preserve">
     <value>banner(s) in the program</value>
   </data>
-  <data name="BannerList" xml:space="preserve">
+	<data name="BannerList" xml:space="preserve">
     <value>Banner List</value>
   </data>
-  <data name="BannerStatc" xml:space="preserve">
+	<data name="BannerStatc" xml:space="preserve">
     <value>Banner statistics</value>
   </data>
-  <data name="BaseCurrency" xml:space="preserve">
+	<data name="BaseCurrency" xml:space="preserve">
     <value>Base Currency</value>
   </data>
-  <data name="BestViewIn" xml:space="preserve">
+	<data name="BestViewIn" xml:space="preserve">
     <value>Best view in</value>
   </data>
-  <data name="BetAcc12" xml:space="preserve">
+	<data name="BetAcc12" xml:space="preserve">
     <value>Player account</value>
   </data>
-  <data name="BetCount" xml:space="preserve">
+	<data name="BetCount" xml:space="preserve">
     <value>Bet Count</value>
   </data>
-  <data name="BettypeList" xml:space="preserve">
+	<data name="BettypeList" xml:space="preserve">
     <value>Bet Type List</value>
   </data>
-  <data name="BF" xml:space="preserve">
+	<data name="BF" xml:space="preserve">
     <value>BF</value>
   </data>
-  <data name="BFComm" xml:space="preserve">
+	<data name="BFComm" xml:space="preserve">
     <value>BF Comm</value>
   </data>
-  <data name="Bonus" xml:space="preserve">
+	<data name="Bonus" xml:space="preserve">
     <value>Bonus</value>
   </data>
-  <data name="Browser" xml:space="preserve">
+	<data name="Browser" xml:space="preserve">
     <value>Browser</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
+	<data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="CancelEditBanner" xml:space="preserve">
+	<data name="CancelEditBanner" xml:space="preserve">
     <value>Please cancel current editing banner first.</value>
   </data>
-  <data name="Cancelled" xml:space="preserve">
+	<data name="Cancelled" xml:space="preserve">
     <value>Cancelled</value>
   </data>
-  <data name="Cashback" xml:space="preserve">
+	<data name="Cashback" xml:space="preserve">
     <value>Cash Back</value>
   </data>
-  <data name="CashbackAmount" xml:space="preserve">
+	<data name="CashbackAmount" xml:space="preserve">
     <value>Cashback Amount</value>
   </data>
-  <data name="Category" xml:space="preserve">
+	<data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
-  <data name="CategoryFieldIsRequired" xml:space="preserve">
+	<data name="CategoryFieldIsRequired" xml:space="preserve">
     <value>The Category field is required.</value>
   </data>
-  <data name="Change" xml:space="preserve">
+	<data name="Change" xml:space="preserve">
     <value>Change</value>
   </data>
-  <data name="ChangeAccountType" xml:space="preserve">
+	<data name="ChangeAccountType" xml:space="preserve">
     <value>Change Account Type</value>
   </data>
-  <data name="ChangeComGroup" xml:space="preserve">
+	<data name="ChangeComGroup" xml:space="preserve">
     <value>Change Commission Group</value>
   </data>
-  <data name="ChangeCurrencyUser" xml:space="preserve">
+	<data name="ChangeCurrencyUser" xml:space="preserve">
     <value>Change Currency User</value>
   </data>
-  <data name="ChangeGroup" xml:space="preserve">
+	<data name="ChangeGroup" xml:space="preserve">
     <value>Change Group</value>
   </data>
-  <data name="ChangeLanguage" xml:space="preserve">
+	<data name="ChangeLanguage" xml:space="preserve">
     <value>Change Language</value>
   </data>
-  <data name="ChangePassword" xml:space="preserve">
+	<data name="ChangePassword" xml:space="preserve">
     <value>Change Password</value>
   </data>
-  <data name="ChangePolicyGroup" xml:space="preserve">
+	<data name="ChangePolicyGroup" xml:space="preserve">
     <value>Change Group Policy</value>
   </data>
-  <data name="ChangePolicyMultiUser" xml:space="preserve">
+	<data name="ChangePolicyMultiUser" xml:space="preserve">
     <value>Change Policy Of Multiple User</value>
   </data>
-  <data name="ChangePolicyOfMultipleUsers" xml:space="preserve">
+	<data name="ChangePolicyOfMultipleUsers" xml:space="preserve">
     <value>Change Policy Of Multiple Users.</value>
   </data>
-  <data name="ChangePolicyUser" xml:space="preserve">
+	<data name="ChangePolicyUser" xml:space="preserve">
     <value>Change User Policy</value>
   </data>
-  <data name="CheckIp" xml:space="preserve">
+	<data name="CheckIp" xml:space="preserve">
     <value>Check the IP</value>
   </data>
-  <data name="Cheque" xml:space="preserve">
+	<data name="Cheque" xml:space="preserve">
     <value>Cheque</value>
   </data>
-  <data name="ChineseSimplified" xml:space="preserve">
+	<data name="ChineseSimplified" xml:space="preserve">
     <value>简体中文</value>
   </data>
-  <data name="ChineseTraditional" xml:space="preserve">
+	<data name="ChineseTraditional" xml:space="preserve">
     <value>繁體中文</value>
   </data>
-  <data name="ChooseAtLeast" xml:space="preserve">
+	<data name="ChooseAtLeast" xml:space="preserve">
     <value>Please choose at least one account.</value>
   </data>
-  <data name="ChooseGroup" xml:space="preserve">
+	<data name="ChooseGroup" xml:space="preserve">
     <value>Please choose another group (not old group)!</value>
   </data>
-  <data name="City" xml:space="preserve">
+	<data name="City" xml:space="preserve">
     <value>City</value>
   </data>
-  <data name="ClickHere" xml:space="preserve">
+	<data name="ClickHere" xml:space="preserve">
     <value>Click here if your browser does not automatically redirect you.</value>
   </data>
-  <data name="Closed" xml:space="preserve">
+	<data name="Closed" xml:space="preserve">
     <value>Closed</value>
   </data>
-  <data name="CloseOpenAccount" xml:space="preserve">
+	<data name="CloseOpenAccount" xml:space="preserve">
     <value>Close/Open this account</value>
   </data>
-  <data name="CollapseExpand" xml:space="preserve">
+	<data name="CollapseExpand" xml:space="preserve">
     <value>Collapse/Expand</value>
   </data>
-  <data name="CommGroup" xml:space="preserve">
+	<data name="CommGroup" xml:space="preserve">
     <value>Comm Group</value>
   </data>
-  <data name="CommGroupSettingFor" xml:space="preserve">
+	<data name="CommGroupSettingFor" xml:space="preserve">
     <value>Commission Group Setting for {0}</value>
   </data>
-  <data name="Commission" xml:space="preserve">
+	<data name="Commission" xml:space="preserve">
     <value>Commission</value>
   </data>
-  <data name="CommissionGroup" xml:space="preserve">
+	<data name="CommissionGroup" xml:space="preserve">
     <value>Commission Group</value>
   </data>
-  <data name="CommissionReport" xml:space="preserve">
+	<data name="CommissionReport" xml:space="preserve">
     <value>Commission Report</value>
   </data>
-  <data name="CommPercent" xml:space="preserve">
+	<data name="CommPercent" xml:space="preserve">
     <value>%Comm</value>
   </data>
-  <data name="CompanyWinloss" xml:space="preserve">
+	<data name="CompanyWinloss" xml:space="preserve">
     <value>Company Win Loss</value>
   </data>
-  <data name="CompanyWL" xml:space="preserve">
+	<data name="CompanyWL" xml:space="preserve">
     <value>Company W/L</value>
   </data>
-  <data name="CompletedDate" xml:space="preserve">
+	<data name="CompletedDate" xml:space="preserve">
     <value>Completed Date</value>
   </data>
-  <data name="ConfigurationList" xml:space="preserve">
+	<data name="ConfigurationList" xml:space="preserve">
     <value>Configuration List</value>
   </data>
-  <data name="Configurations" xml:space="preserve">
+	<data name="Configurations" xml:space="preserve">
     <value>Configurations</value>
   </data>
-  <data name="ConfirmChangeGroup" xml:space="preserve">
+	<data name="ConfirmChangeGroup" xml:space="preserve">
     <value>Are you sure you want to change the commission group of selected affiliate(s):</value>
   </data>
-  <data name="ConfirmChangeLanguageAff" xml:space="preserve">
+	<data name="ConfirmChangeLanguageAff" xml:space="preserve">
     <value>Are you sure you want to change language of this affiliate?</value>
   </data>
-  <data name="ConfirmChangeStatusAff" xml:space="preserve">
+	<data name="ConfirmChangeStatusAff" xml:space="preserve">
     <value>Are you sure you want to change status of this user?</value>
   </data>
-  <data name="ConfirmCheckAff" xml:space="preserve">
+	<data name="ConfirmCheckAff" xml:space="preserve">
     <value>The selected Affiliate's Currency is different. If you want to continue, all other selected rows will be unchecked.\nDo you want to continue?</value>
   </data>
-  <data name="ConfirmCloseAff" xml:space="preserve">
+	<data name="ConfirmCloseAff" xml:space="preserve">
     <value>Are you sure you want to close this affiliate?</value>
   </data>
-  <data name="ConfirmCopyRate" xml:space="preserve">
+	<data name="ConfirmCopyRate" xml:space="preserve">
     <value>Are you sure you want to copy market rate(s) to selected rate(s)?</value>
   </data>
-  <data name="ConfirmDelAffDomain" xml:space="preserve">
+	<data name="ConfirmDelAffDomain" xml:space="preserve">
     <value>Are you sure you want to delete this affiliate domain?</value>
   </data>
-  <data name="ConfirmDelBanner" xml:space="preserve">
+	<data name="ConfirmDelBanner" xml:space="preserve">
     <value>Are you sure you want to delete selected banner(s)?</value>
   </data>
-  <data name="ConfirmDelConfiguration" xml:space="preserve">
+	<data name="ConfirmDelConfiguration" xml:space="preserve">
     <value>Are you sure you want to delete selected configuration(s)?</value>
   </data>
-  <data name="ConfirmDelCountry" xml:space="preserve">
+	<data name="ConfirmDelCountry" xml:space="preserve">
     <value>Are you sure you want to delete selected countries?</value>
   </data>
-  <data name="ConfirmDelDomain" xml:space="preserve">
+	<data name="ConfirmDelDomain" xml:space="preserve">
     <value>Are you sure you want to delete this member domain?</value>
   </data>
-  <data name="ConfirmDelDomainSetting" xml:space="preserve">
-    <value>Are you sure you want to delete the domain settings?</value>
-  </data>
-  <data name="ConfirmDelete" xml:space="preserve">
+	<data name="ConfirmDelete" xml:space="preserve">
     <value>Are you sure you want to delete this group?</value>
   </data>
-  <data name="ConfirmDeleteEmail" xml:space="preserve">
+	<data name="ConfirmDeleteEmail" xml:space="preserve">
     <value>Are you sure you want to delete the selected email?</value>
   </data>
-  <data name="ConfirmDeleteMessage" xml:space="preserve">
+	<data name="ConfirmDeleteMessage" xml:space="preserve">
     <value>Are you sure you want to delete selected message(s)?</value>
   </data>
-  <data name="ConfirmDeleteText" xml:space="preserve">
+	<data name="ConfirmDeleteText" xml:space="preserve">
     <value>Are you sure you want to delete this text?</value>
   </data>
-  <data name="ConfirmDeleteTypes" xml:space="preserve">
+	<data name="ConfirmDeleteTypes" xml:space="preserve">
     <value>Are you sure you want to delete selected type(s)?</value>
   </data>
-  <data name="ConfirmDelGroup" xml:space="preserve">
+	<data name="ConfirmDelGroup" xml:space="preserve">
     <value>Are you sure you want to delete the commission group {0}?</value>
   </data>
-  <data name="ConfirmDelLang" xml:space="preserve">
+	<data name="ConfirmDelLang" xml:space="preserve">
     <value>Are you sure you want to delete selected language(s)?</value>
   </data>
-  <data name="ConfirmDelNote" xml:space="preserve">
-    <value>Are you sure you want to delete these notes?</value>
-  </data>
-  <data name="ConfirmDelProduct" xml:space="preserve">
+	<data name="ConfirmDelProduct" xml:space="preserve">
     <value>Are you sure you want to delete selected product(s)?</value>
   </data>
-  <data name="ConfirmDelTexts" xml:space="preserve">
-    <value>Are you sure you want to delete selected text(s)?</value>
-  </data>
-  <data name="ConfirmDelTranslation" xml:space="preserve">
+	<data name="ConfirmDelTranslation" xml:space="preserve">
     <value>Are you sure you want to delete selected translation(s)?</value>
   </data>
-  <data name="ConfirmLockAff" xml:space="preserve">
+	<data name="ConfirmLockAff" xml:space="preserve">
     <value>Are you sure you want to lock this affiliate?</value>
   </data>
-  <data name="ConfirmOpenAff" xml:space="preserve">
+	<data name="ConfirmOpenAff" xml:space="preserve">
     <value>Are you sure you want to open this affiliate?</value>
   </data>
-  <data name="ConfirmPass" xml:space="preserve">
+	<data name="ConfirmPass" xml:space="preserve">
     <value>Confirm Password</value>
   </data>
-  <data name="ConfirmPasswordIsRequired" xml:space="preserve">
+	<data name="ConfirmPasswordIsRequired" xml:space="preserve">
     <value>Confirm password is required</value>
   </data>
-  <data name="ConfirmRemoveFromGroup" xml:space="preserve">
+	<data name="ConfirmRemoveFromGroup" xml:space="preserve">
     <value>Are you sure you want to remove {item} from the group?</value>
   </data>
-  <data name="ConfirmRemoveMem" xml:space="preserve">
+	<data name="ConfirmRemoveMem" xml:space="preserve">
     <value>Are you sure you want to remove this member from this affiliate?</value>
   </data>
-  <data name="ConfirmUnlockAff" xml:space="preserve">
+	<data name="ConfirmUnlockAff" xml:space="preserve">
     <value>Are you sure you want to unlock this affiliate?</value>
   </data>
-  <data name="ConfirmUnlockAffs" xml:space="preserve">
-    <value>Are you sure you want to unlock selected affiliate(s)?</value>
-  </data>
-  <data name="ConfirmUpdAffiliateGroup" xml:space="preserve">
+	<data name="ConfirmUpdAffiliateGroup" xml:space="preserve">
     <value>Are you sure you want to change the commission group of selected affiliate(s): {a}; {b}?</value>
   </data>
-  <data name="ConfirmUpdateGroup" xml:space="preserve">
+	<data name="ConfirmUpdateGroup" xml:space="preserve">
     <value>Are you sure you want to update the group '{a}' ?</value>
   </data>
-  <data name="ConfirmUpdateMessage" xml:space="preserve">
+	<data name="ConfirmUpdateMessage" xml:space="preserve">
     <value>Are you sure you want to update this message?</value>
   </data>
-  <data name="ConfirmUpdateTypeAff" xml:space="preserve">
+	<data name="ConfirmUpdateTypeAff" xml:space="preserve">
     <value>Do you want to update the type of this affiliate?</value>
   </data>
-  <data name="ContactNumber" xml:space="preserve">
+	<data name="ContactNumber" xml:space="preserve">
     <value>Contact Number</value>
   </data>
-  <data name="Content" xml:space="preserve">
+	<data name="Content" xml:space="preserve">
     <value>Content</value>
   </data>
-  <data name="CopyRateMarket" xml:space="preserve">
+	<data name="CopyRateMarket" xml:space="preserve">
     <value>Copy Rate(s) From Market</value>
   </data>
-  <data name="CopyTierSettingFor" xml:space="preserve">
+	<data name="CopyTierSettingFor" xml:space="preserve">
     <value>Copy all Tier Settings for all other products from {0}</value>
   </data>
-  <data name="CouldNotFindPath" xml:space="preserve">
+	<data name="CouldNotFindPath" xml:space="preserve">
     <value>Could not find the path: {0}</value>
   </data>
-  <data name="Country" xml:space="preserve">
+	<data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
-  <data name="CountryList" xml:space="preserve">
+	<data name="CountryList" xml:space="preserve">
     <value>Country List</value>
   </data>
-  <data name="CreatedBy" xml:space="preserve">
+	<data name="CreatedBy" xml:space="preserve">
     <value>Created By</value>
   </data>
-  <data name="CreatedDate" xml:space="preserve">
+	<data name="CreatedDate" xml:space="preserve">
     <value>Created Date</value>
   </data>
-  <data name="Creator" xml:space="preserve">
+	<data name="Creator" xml:space="preserve">
     <value>Creator</value>
   </data>
-  <data name="CurrenciesPermission" xml:space="preserve">
+	<data name="CurrenciesPermission" xml:space="preserve">
     <value>Currency Permission</value>
   </data>
-  <data name="Currency" xml:space="preserve">
+	<data name="Currency" xml:space="preserve">
     <value>Currency</value>
   </data>
-  <data name="CurrencyCode" xml:space="preserve">
+	<data name="CurrencyCode" xml:space="preserve">
     <value>Currency Code</value>
   </data>
-  <data name="CurrencyFieldIsRequired" xml:space="preserve">
+	<data name="CurrencyFieldIsRequired" xml:space="preserve">
     <value>The Currency field is required.</value>
   </data>
-  <data name="CurrencyId" xml:space="preserve">
+	<data name="CurrencyId" xml:space="preserve">
     <value>Currency ID</value>
   </data>
-  <data name="CurrencyOfAffiliatesMustBeSame" xml:space="preserve">
+	<data name="CurrencyOfAffiliatesMustBeSame" xml:space="preserve">
     <value>Selected affiliates must be the same currency.</value>
   </data>
-  <data name="Current" xml:space="preserve">
+	<data name="Current" xml:space="preserve">
     <value>Current</value>
   </data>
-  <data name="CurrentMessage" xml:space="preserve">
+	<data name="CurrentMessage" xml:space="preserve">
     <value>Current Message</value>
   </data>
-  <data name="CurrOnlineList" xml:space="preserve">
+	<data name="CurrOnlineList" xml:space="preserve">
     <value>Current Online List</value>
   </data>
-  <data name="Customer" xml:space="preserve">
+	<data name="Customer" xml:space="preserve">
     <value>Customer</value>
   </data>
-  <data name="MemberWL" xml:space="preserve">
+	<data name="MemberWL" xml:space="preserve">
     <value>Member W/L</value>
   </data>
-  <data name="DailyEarnings" xml:space="preserve">
+	<data name="DailyEarnings" xml:space="preserve">
     <value>Daily Earnings</value>
   </data>
-  <data name="DataChanged" xml:space="preserve">
+	<data name="DataChanged" xml:space="preserve">
     <value>Data has been changed by someone else. Please refresh data!</value>
   </data>
-  <data name="Date" xml:space="preserve">
+	<data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="DateFormat" xml:space="preserve">
+	<data name="DateFormat" xml:space="preserve">
     <value>The date format should be: mm/dd/yyyy</value>
   </data>
-  <data name="DateOption" xml:space="preserve">
+	<data name="DateOption" xml:space="preserve">
     <value>Date Option</value>
   </data>
-  <data name="DateRequest" xml:space="preserve">
+	<data name="DateRequest" xml:space="preserve">
     <value>Request Date</value>
   </data>
-  <data name="Dec" xml:space="preserve">
+	<data name="Dec" xml:space="preserve">
     <value>Dec</value>
   </data>
-  <data name="Deduction" xml:space="preserve">
+	<data name="Deduction" xml:space="preserve">
     <value>Deduction</value>
   </data>
-  <data name="DeductionBonus" xml:space="preserve">
+	<data name="DeductionBonus" xml:space="preserve">
     <value>Has Bonus for SportsBook</value>
   </data>
-  <data name="DeductionMarketing" xml:space="preserve">
+	<data name="DeductionMarketing" xml:space="preserve">
     <value>Has Marketting fee for SportsBook</value>
   </data>
-  <data name="DeductionOddsFee" xml:space="preserve">
+	<data name="DeductionOddsFee" xml:space="preserve">
     <value>Has Odds Management Fee for SportsBook</value>
   </data>
-  <data name="DeductionPercent" xml:space="preserve">
+	<data name="DeductionPercent" xml:space="preserve">
     <value>% Deduction</value>
   </data>
-  <data name="DeductionPSP" xml:space="preserve">
+	<data name="DeductionPSP" xml:space="preserve">
     <value>Has Payment Solution Package fee for SportsBook</value>
   </data>
-  <data name="Deductions" xml:space="preserve">
+	<data name="Deductions" xml:space="preserve">
     <value>Deductions</value>
   </data>
-  <data name="DelBannerSucc" xml:space="preserve">
+	<data name="DelBannerSucc" xml:space="preserve">
     <value>Banner was deleted successfully!</value>
   </data>
-  <data name="Delete" xml:space="preserve">
+	<data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="DeleteAffTypeMsg" xml:space="preserve">
+	<data name="DeleteAffTypeMsg" xml:space="preserve">
     <value>Do you want to delete this affiliate type?</value>
   </data>
-  <data name="DeleteBannerMsg" xml:space="preserve">
+	<data name="DeleteBannerMsg" xml:space="preserve">
     <value>Do you want to delete this banner?</value>
   </data>
-  <data name="DeleteConfigurationMsg" xml:space="preserve">
+	<data name="DeleteConfigurationMsg" xml:space="preserve">
     <value>Do you want to delete this configuration?</value>
   </data>
-  <data name="DeleteCountryMsg" xml:space="preserve">
+	<data name="DeleteCountryMsg" xml:space="preserve">
     <value>Do you want to delete this country?</value>
   </data>
-  <data name="DeleteLanguageMsg" xml:space="preserve">
+	<data name="DeleteLanguageMsg" xml:space="preserve">
     <value>Do you want to delete this language?</value>
   </data>
-  <data name="DeleteMessageMsg" xml:space="preserve">
+	<data name="DeleteMessageMsg" xml:space="preserve">
     <value>Do you want to delete this message?</value>
   </data>
-  <data name="DeleteProductMsg" xml:space="preserve">
+	<data name="DeleteProductMsg" xml:space="preserve">
     <value>Do you want to delete this product?</value>
   </data>
-  <data name="DeleteSucc" xml:space="preserve">
+	<data name="DeleteSucc" xml:space="preserve">
     <value>Delete successfully!</value>
   </data>
-  <data name="DeleteTextMsg" xml:space="preserve">
+	<data name="DeleteTextMsg" xml:space="preserve">
     <value>Do you want to delete this text?</value>
   </data>
-  <data name="DeleteUserSucc" xml:space="preserve">
+	<data name="DeleteUserSucc" xml:space="preserve">
     <value>has been deleted successfully!</value>
   </data>
-  <data name="Department" xml:space="preserve">
+	<data name="Group" xml:space="preserve">
     <value>Group</value>
   </data>
-  <data name="DepartmentList" xml:space="preserve">
+	<data name="GroupManagement" xml:space="preserve">
     <value>Group Management</value>
   </data>
-  <data name="Deposit" xml:space="preserve">
+	<data name="Deposit" xml:space="preserve">
     <value>Deposit</value>
   </data>
-  <data name="Deposited" xml:space="preserve">
+	<data name="Deposited" xml:space="preserve">
     <value>Deposited</value>
   </data>
-  <data name="Description" xml:space="preserve">
+	<data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="DetailEarning" xml:space="preserve">
+	<data name="DetailEarning" xml:space="preserve">
     <value>Detail Earnings</value>
   </data>
-  <data name="disapprovaldate" xml:space="preserve">
+	<data name="disapprovaldate" xml:space="preserve">
     <value>Disapproval Date</value>
   </data>
-  <data name="Disapproved" xml:space="preserve">
+	<data name="Disapproved" xml:space="preserve">
     <value>Disapproved</value>
   </data>
-  <data name="DisplayingItems" xml:space="preserve">
+	<data name="DisplayingItems" xml:space="preserve">
     <value>Displaying &lt;b&gt;{0}&lt;/b&gt; to &lt;b&gt;{1}&lt;/b&gt; of &lt;b&gt;{2}&lt;/b&gt; item(s).</value>
   </data>
-  <data name="DisplayOrder" xml:space="preserve">
+	<data name="DisplayOrder" xml:space="preserve">
     <value>Display Order</value>
   </data>
-  <data name="DisplayOrderFieldIsRequired" xml:space="preserve">
+	<data name="DisplayOrderFieldIsRequired" xml:space="preserve">
     <value>The Display Order field is required.</value>
   </data>
-  <data name="DisplayOrderRange" xml:space="preserve">
+	<data name="DisplayOrderRange" xml:space="preserve">
     <value>The field Display Order must be between 0 and 32767.</value>
   </data>
-  <data name="Domain" xml:space="preserve">
+	<data name="Domain" xml:space="preserve">
     <value>Domain</value>
   </data>
-  <data name="DomainControl" xml:space="preserve">
+	<data name="DomainControl" xml:space="preserve">
     <value>Domain Control</value>
   </data>
-  <data name="DomainIsRequired" xml:space="preserve">
+	<data name="DomainIsRequired" xml:space="preserve">
     <value>Domain is required.</value>
   </data>
-  <data name="Dormant" xml:space="preserve">
+	<data name="Dormant" xml:space="preserve">
     <value>Dormant</value>
   </data>
-  <data name="DoYouWantToTransferAll" xml:space="preserve">
-    <value>Do you want to transfer all?</value>
-  </data>
-  <data name="DrawFilter" xml:space="preserve">
+	<data name="DrawFilter" xml:space="preserve">
     <value>Draw Filter</value>
   </data>
-  <data name="DropLastZeroDigits" xml:space="preserve">
+	<data name="DropLastZeroDigits" xml:space="preserve">
     <value>In our report, we may drop some last zero digits as below:</value>
   </data>
-  <data name="DropZerosCurrency" xml:space="preserve">
+	<data name="DropZerosCurrency" xml:space="preserve">
     <value>In all reports, the last 3 zeros are dropped from IDR/VND currency. Ex: Rp2 is Rp2000 in real value.</value>
   </data>
-  <data name="Earning" xml:space="preserve">
+	<data name="Earning" xml:space="preserve">
     <value>Earning</value>
   </data>
-  <data name="EarningsHistory" xml:space="preserve">
+	<data name="EarningsHistory" xml:space="preserve">
     <value>Statement History</value>
   </data>
-  <data name="Edit" xml:space="preserve">
+	<data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="EditAffDomain" xml:space="preserve">
+	<data name="EditAffDomain" xml:space="preserve">
     <value>Edit Affiliate Domain</value>
   </data>
-  <data name="EditBanner" xml:space="preserve">
+	<data name="EditBanner" xml:space="preserve">
     <value>Edit Banner</value>
   </data>
-  <data name="EditCurrentMessage" xml:space="preserve">
+	<data name="EditCurrentMessage" xml:space="preserve">
     <value>Edit Current Message</value>
   </data>
-  <data name="EditGroup" xml:space="preserve">
+	<data name="EditGroup" xml:space="preserve">
     <value>Edit Group</value>
   </data>
-  <data name="EditMemberDomain" xml:space="preserve">
+	<data name="EditMemberDomain" xml:space="preserve">
     <value>Edit Member Domain</value>
   </data>
-  <data name="EditMessage" xml:space="preserve">
+	<data name="EditMessage" xml:space="preserve">
     <value>Edit Message</value>
   </data>
-  <data name="EditNote" xml:space="preserve">
+	<data name="EditNote" xml:space="preserve">
     <value>Edit Note</value>
   </data>
-  <data name="EditText" xml:space="preserve">
+	<data name="EditText" xml:space="preserve">
     <value>Edit Text</value>
   </data>
-  <data name="EditUser" xml:space="preserve">
+	<data name="EditUser" xml:space="preserve">
     <value>Edit User</value>
   </data>
-  <data name="Email" xml:space="preserve">
-    <value>Email Address</value>
-  </data>
-  <data name="EmailDetail" xml:space="preserve">
+	<data name="EmailDetail" xml:space="preserve">
     <value>Email Detail</value>
   </data>
-  <data name="EmailFormat" xml:space="preserve">
+	<data name="EmailFormat" xml:space="preserve">
     <value>Email Format</value>
   </data>
-  <data name="AffiliateFeedback" xml:space="preserve">
+	<data name="AffiliateFeedback" xml:space="preserve">
     <value>Affiliate Feedback</value>
   </data>
-  <data name="EmailPref" xml:space="preserve">
+	<data name="EmailPref" xml:space="preserve">
     <value>Email Format Preference</value>
   </data>
-  <data name="EmptyIBCCustID" xml:space="preserve">
+	<data name="EmptyIBCCustID" xml:space="preserve">
     <value>No member specificed</value>
   </data>
-  <data name="EnableProduct" xml:space="preserve">
+	<data name="EnableProduct" xml:space="preserve">
     <value>Oops, you must enable at least 1 product.</value>
   </data>
-  <data name="English" xml:space="preserve">
+	<data name="English" xml:space="preserve">
     <value>English</value>
   </data>
-  <data name="EnglishEU" xml:space="preserve">
+	<data name="EnglishEU" xml:space="preserve">
     <value>English_Euro</value>
   </data>
-  <data name="Environment" xml:space="preserve">
+	<data name="Environment" xml:space="preserve">
     <value>Environment</value>
   </data>
-  <data name="Err100" xml:space="preserve">
+	<data name="Err100" xml:space="preserve">
     <value>Sorry, cannot create agent</value>
   </data>
-  <data name="Err30011" xml:space="preserve">
+	<data name="Err30011" xml:space="preserve">
     <value>Status must be approved or rejected.</value>
   </data>
-  <data name="ErrAddress" xml:space="preserve">
+	<data name="ErrAddress" xml:space="preserve">
     <value>Address is required</value>
   </data>
-  <data name="ErrAdminRemark" xml:space="preserve">
+	<data name="ErrAdminRemark" xml:space="preserve">
     <value>Admin note is required</value>
   </data>
-  <data name="ErrAffRemark" xml:space="preserve">
+	<data name="ErrAffRemark" xml:space="preserve">
     <value>Afffiliate note is required</value>
   </data>
-  <data name="ErrAnwser" xml:space="preserve">
+	<data name="ErrAnwser" xml:space="preserve">
     <value>Your Answer is required. </value>
   </data>
-  <data name="ErrBankAccName" xml:space="preserve">
+	<data name="ErrBankAccName" xml:space="preserve">
     <value>Bank Account Name is required</value>
   </data>
-  <data name="ErrBankAccNumber" xml:space="preserve">
+	<data name="ErrBankAccNumber" xml:space="preserve">
     <value>Bank Account Number is required</value>
   </data>
-  <data name="ErrBankAddress" xml:space="preserve">
+	<data name="ErrBankAddress" xml:space="preserve">
     <value>Bank Address is required</value>
   </data>
-  <data name="ErrBankCode" xml:space="preserve">
+	<data name="ErrBankCode" xml:space="preserve">
     <value>Bank ABA/Swift/Sort Code is required</value>
   </data>
-  <data name="ErrBankName" xml:space="preserve">
+	<data name="ErrBankName" xml:space="preserve">
     <value>Bank Name is required</value>
   </data>
-  <data name="ErrBanner" xml:space="preserve">
+	<data name="ErrBanner" xml:space="preserve">
     <value>You must browse banner to update</value>
   </data>
-  <data name="ErrCharacter" xml:space="preserve">
+	<data name="ErrCharacter" xml:space="preserve">
     <value>Username cannot contain special characters. Please try again!</value>
   </data>
-  <data name="ErrChequeAddress" xml:space="preserve">
+	<data name="ErrChequeAddress" xml:space="preserve">
     <value>Cheque Address is required</value>
   </data>
-  <data name="ErrChequeCity" xml:space="preserve">
+	<data name="ErrChequeCity" xml:space="preserve">
     <value>Cheque City is required</value>
   </data>
-  <data name="ErrChequeFullname" xml:space="preserve">
+	<data name="ErrChequeFullname" xml:space="preserve">
     <value>Cheque Full Name is required</value>
   </data>
-  <data name="ErrChequePostcode" xml:space="preserve">
+	<data name="ErrChequePostcode" xml:space="preserve">
     <value>Cheque Postcode/Zip is required</value>
   </data>
-  <data name="ErrChequeState" xml:space="preserve">
+	<data name="ErrChequeState" xml:space="preserve">
     <value>Cheque State is required</value>
   </data>
-  <data name="ErrChooseItem" xml:space="preserve">
+	<data name="ErrChooseItem" xml:space="preserve">
     <value>You must choose at least one item to update!</value>
   </data>
-  <data name="ErrCity" xml:space="preserve">
+	<data name="ErrCity" xml:space="preserve">
     <value>City is required</value>
   </data>
-  <data name="ErrContactNumber" xml:space="preserve">
+	<data name="ErrContactNumber" xml:space="preserve">
     <value>Contact Number is empty. Please check!</value>
   </data>
-  <data name="ErrCountry" xml:space="preserve">
+	<data name="ErrCountry" xml:space="preserve">
     <value>Please select country</value>
   </data>
-  <data name="ErrDate" xml:space="preserve">
+	<data name="ErrDate" xml:space="preserve">
     <value>Please input both from date and to date!</value>
   </data>
-  <data name="ErrDepartment" xml:space="preserve">
+	<data name="ErrDepartment" xml:space="preserve">
     <value>Please input group name!</value>
   </data>
-  <data name="ErrDepartmentChoose" xml:space="preserve">
+	<data name="ErrDepartmentChoose" xml:space="preserve">
     <value>Please choose a group!</value>
   </data>
-  <data name="ErrEmail" xml:space="preserve">
+	<data name="ErrEmail" xml:space="preserve">
     <value>Email Address is required</value>
   </data>
-  <data name="ErrEmailValid" xml:space="preserve">
+	<data name="ErrEmailValid" xml:space="preserve">
     <value>Email Address is invalid</value>
   </data>
-  <data name="ErrExcelFileExtension" xml:space="preserve">
+	<data name="ErrExcelFileExtension" xml:space="preserve">
     <value>Sorry! We just support these file types : '.xls', '.xlsx'</value>
   </data>
-  <data name="ErrFile" xml:space="preserve">
+	<data name="ErrFile" xml:space="preserve">
     <value>Please select a file to upload.</value>
   </data>
-  <data name="errFileExtension" xml:space="preserve">
+	<data name="errFileExtension" xml:space="preserve">
     <value>Sorry! We just support these file types : '.jpg', '.gif' , '.png','.swf','.jpeg'</value>
   </data>
-  <data name="ErrFName" xml:space="preserve">
+	<data name="ErrFName" xml:space="preserve">
     <value>First Name is required.</value>
   </data>
-  <data name="ErrGender" xml:space="preserve">
+	<data name="ErrGender" xml:space="preserve">
     <value>Please select Gender!</value>
   </data>
-  <data name="ErrInvalidData" xml:space="preserve">
+	<data name="ErrInvalidData" xml:space="preserve">
     <value>Invalid data</value>
   </data>
-  <data name="ErrLang" xml:space="preserve">
+	<data name="ErrLang" xml:space="preserve">
     <value>Language is invalid.</value>
   </data>
-  <data name="ErrLanguageSucc" xml:space="preserve">
+	<data name="ErrLanguageSucc" xml:space="preserve">
     <value>The language has been updated successfully!</value>
   </data>
-  <data name="ErrLName" xml:space="preserve">
+	<data name="ErrLName" xml:space="preserve">
     <value>Last Name is required</value>
   </data>
-  <data name="ErrMessage" xml:space="preserve">
+	<data name="ErrMessage" xml:space="preserve">
     <value>You must input an English message.</value>
   </data>
-  <data name="ErrMobilePhone" xml:space="preserve">
+	<data name="ErrMobilePhone" xml:space="preserve">
     <value>Mobile Number is required.</value>
   </data>
-  <data name="ErrMoneybooker" xml:space="preserve">
+	<data name="ErrMoneybooker" xml:space="preserve">
     <value>Moneybookers Email is required</value>
   </data>
-  <data name="ErrMoneybookerValid" xml:space="preserve">
+	<data name="ErrMoneybookerValid" xml:space="preserve">
     <value>Moneybookers Email is invalid</value>
   </data>
-  <data name="ErrmsgFile" xml:space="preserve">
+	<data name="ErrmsgFile" xml:space="preserve">
     <value>You uploaded an invalid file.</value>
   </data>
-  <data name="ErrmsgFileNameEmpty" xml:space="preserve">
+	<data name="ErrmsgFileNameEmpty" xml:space="preserve">
     <value>File name is required!</value>
   </data>
-  <data name="ErrmsgSizeFile" xml:space="preserve">
+	<data name="ErrmsgSizeFile" xml:space="preserve">
     <value>Your upload file size must be &lt;= 3 MB</value>
   </data>
-  <data name="ErrName" xml:space="preserve">
+	<data name="ErrName" xml:space="preserve">
     <value>Name is invalid</value>
   </data>
-  <data name="ErrNeteller" xml:space="preserve">
+	<data name="ErrNeteller" xml:space="preserve">
     <value>Neteller Account ID is required</value>
   </data>
-  <data name="ErrNewPass" xml:space="preserve">
+	<data name="ErrNewPass" xml:space="preserve">
     <value>New Password is required</value>
   </data>
-  <data name="ErrNoteConfirm" xml:space="preserve">
+	<data name="ErrNoteConfirm" xml:space="preserve">
     <value>Are you sure you want to delete this note?</value>
   </data>
-  <data name="ErrNoteDel" xml:space="preserve">
+	<data name="ErrNoteDel" xml:space="preserve">
     <value>Delete note successfully.</value>
   </data>
-  <data name="ErrNoteEmpty" xml:space="preserve">
+	<data name="ErrNoteEmpty" xml:space="preserve">
     <value>Note content is required.</value>
   </data>
-  <data name="Error" xml:space="preserve">
+	<data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="ErrorRequest" xml:space="preserve">
+	<data name="ErrorRequest" xml:space="preserve">
     <value>An error occurred while processing your request.</value>
   </data>
-  <data name="ErrorTryAgain" xml:space="preserve">
+	<data name="ErrorTryAgain" xml:space="preserve">
     <value>Error. Please try again!</value>
   </data>
-  <data name="ErrPasswordRequired" xml:space="preserve">
+	<data name="ErrPasswordRequired" xml:space="preserve">
     <value>Password is required</value>
   </data>
-  <data name="ErrPhone" xml:space="preserve">
+	<data name="ErrPhone" xml:space="preserve">
     <value>Contact Number is required.</value>
   </data>
-  <data name="ErrPostCode" xml:space="preserve">
+	<data name="ErrPostCode" xml:space="preserve">
     <value>Postcode/Zip is required</value>
   </data>
-  <data name="ErrPreferLang" xml:space="preserve">
+	<data name="ErrPreferLang" xml:space="preserve">
     <value>Please select preferred language</value>
   </data>
-  <data name="ErrRate" xml:space="preserve">
+	<data name="ErrRate" xml:space="preserve">
     <value>Exchange rate must be greater than zero.</value>
   </data>
-  <data name="ErrRateRequire" xml:space="preserve">
+	<data name="ErrRateRequire" xml:space="preserve">
     <value>Exchange rate is required.</value>
   </data>
-  <data name="ErrRePass" xml:space="preserve">
+	<data name="ErrRePass" xml:space="preserve">
     <value>Re-enter New Password is invalid</value>
   </data>
-  <data name="ErrSiteUrl" xml:space="preserve">
+	<data name="ErrSiteUrl" xml:space="preserve">
     <value>Website URL is required</value>
   </data>
-  <data name="ErrState" xml:space="preserve">
+	<data name="ErrState" xml:space="preserve">
     <value>State is required</value>
   </data>
-  <data name="ErrSubCategory" xml:space="preserve">
-    <value>Sub category is required.</value>
-  </data>
-  <data name="ErrText" xml:space="preserve">
-    <value>Please input a text.</value>
-  </data>
-  <data name="ErrUsername" xml:space="preserve">
+	<data name="ErrUsername" xml:space="preserve">
     <value>Username is required</value>
   </data>
-  <data name="ErrUserNamePlayer" xml:space="preserve">
+	<data name="ErrUserNamePlayer" xml:space="preserve">
     <value>Player Username is required</value>
   </data>
-  <data name="ErrUserOnline" xml:space="preserve">
+	<data name="ErrUserOnline" xml:space="preserve">
     <value>This user is not online</value>
   </data>
-  <data name="ExceedCharacters" xml:space="preserve">
+	<data name="ExceedCharacters" xml:space="preserve">
     <value>Exceed 8 characters</value>
   </data>
-  <data name="ExcelErrmsgEmpty" xml:space="preserve">
+	<data name="ExcelErrmsgEmpty" xml:space="preserve">
     <value>You must browse excel to update</value>
   </data>
-  <data name="ExcelNotTranslation" xml:space="preserve">
+	<data name="ExcelNotTranslation" xml:space="preserve">
     <value>Not Translation</value>
   </data>
-  <data name="ExcelTranslationKey" xml:space="preserve">
+	<data name="ExcelTranslationKey" xml:space="preserve">
     <value>Key</value>
   </data>
-  <data name="ExcelTranslationLang" xml:space="preserve">
+	<data name="ExcelTranslationLang" xml:space="preserve">
     <value>{0}_{1}</value>
   </data>
-  <data name="ExcelTranslationTitle" xml:space="preserve">
+	<data name="ExcelTranslationTitle" xml:space="preserve">
     <value>Excel File</value>
   </data>
-  <data name="ExcelUploadFail" xml:space="preserve">
+	<data name="ExcelUploadFail" xml:space="preserve">
     <value>There was a problem uploading your file, please recheck it.</value>
   </data>
-  <data name="ExcelUploadSuccessful" xml:space="preserve">
+	<data name="ExcelUploadSuccessful" xml:space="preserve">
     <value>Your excel file was uploaded successfully!</value>
   </data>
-  <data name="ExchangeRate" xml:space="preserve">
+	<data name="ExchangeRate" xml:space="preserve">
     <value>Currency Rates</value>
   </data>
-  <data name="ExchangeRateInputValid" xml:space="preserve">
+	<data name="ExchangeRateInputValid" xml:space="preserve">
     <value>For the exchange rate, please input 1 for 1000 IDR/VND.</value>
   </data>
-  <data name="ExcludeTestAccounts" xml:space="preserve">
+	<data name="ExcludeTestAccounts" xml:space="preserve">
     <value>Exclude Test Accounts</value>
   </data>
-  <data name="FavoriteListEmpty" xml:space="preserve">
+	<data name="FavoriteListEmpty" xml:space="preserve">
     <value>My favorite list is empty. You will be redirected to the Approved Page.</value>
   </data>
-  <data name="FDM" xml:space="preserve">
+	<data name="FDM" xml:space="preserve">
     <value>FDM</value>
   </data>
-  <data name="Feb" xml:space="preserve">
+	<data name="Feb" xml:space="preserve">
     <value>Feb</value>
   </data>
-  <data name="Female" xml:space="preserve">
+	<data name="Female" xml:space="preserve">
     <value>Female</value>
   </data>
-  <data name="FieldMustCompleted" xml:space="preserve">
+	<data name="FieldMustCompleted" xml:space="preserve">
     <value>Fields marked * must be completed.</value>
   </data>
-  <data name="FieldRequired" xml:space="preserve">
+	<data name="FieldRequired" xml:space="preserve">
     <value>This field is required</value>
   </data>
-  <data name="File" xml:space="preserve">
+	<data name="File" xml:space="preserve">
     <value>File</value>
   </data>
-  <data name="filename" xml:space="preserve">
+	<data name="filename" xml:space="preserve">
     <value>File Name</value>
   </data>
-  <data name="FileNameExisted" xml:space="preserve">
+	<data name="FileNameExisted" xml:space="preserve">
     <value>File Name has existed. Please choose another name.</value>
   </data>
-  <data name="FileSizeLimit" xml:space="preserve">
+	<data name="FileSizeLimit" xml:space="preserve">
     <value>File Size Limit</value>
   </data>
-  <data name="FirstDeposit" xml:space="preserve">
+	<data name="FirstDeposit" xml:space="preserve">
     <value>First Deposit</value>
   </data>
-  <data name="FirstDepositDate" xml:space="preserve">
+	<data name="FirstDepositDate" xml:space="preserve">
     <value>First Deposit Date</value>
   </data>
-  <data name="FirstLetter" xml:space="preserve">
+	<data name="FirstLetter" xml:space="preserve">
     <value>First Letter</value>
   </data>
-  <data name="FirstName" xml:space="preserve">
+	<data name="FirstName" xml:space="preserve">
     <value>First Name</value>
   </data>
-  <data name="Fr" xml:space="preserve">
+	<data name="Fr" xml:space="preserve">
     <value>Fr</value>
   </data>
-  <data name="From" xml:space="preserve">
+	<data name="From" xml:space="preserve">
     <value>From</value>
   </data>
-  <data name="FromDate" xml:space="preserve">
+	<data name="FromDate" xml:space="preserve">
     <value>From</value>
   </data>
-  <data name="FullName" xml:space="preserve">
+	<data name="FullName" xml:space="preserve">
     <value>Full Name</value>
   </data>
-  <data name="FullScreen" xml:space="preserve">
+	<data name="FullScreen" xml:space="preserve">
     <value>Full Screen</value>
   </data>
-  <data name="Function" xml:space="preserve">
+	<data name="Function" xml:space="preserve">
     <value>Function</value>
   </data>
-  <data name="FunctionPermission" xml:space="preserve">
+	<data name="FunctionPermission" xml:space="preserve">
     <value>Function Permission</value>
   </data>
-  <data name="Gender" xml:space="preserve">
+	<data name="Gender" xml:space="preserve">
     <value>Gender</value>
   </data>
-  <data name="GetAll" xml:space="preserve">
+	<data name="GetAll" xml:space="preserve">
     <value>Get All</value>
   </data>
-  <data name="GoToPage" xml:space="preserve">
+	<data name="GoToPage" xml:space="preserve">
     <value>Go To Page</value>
   </data>
-  <data name="GroupAddSucc" xml:space="preserve">
+	<data name="GroupAddSucc" xml:space="preserve">
     <value>Group has been added successfully!</value>
   </data>
-  <data name="GroupBy" xml:space="preserve">
+	<data name="GroupBy" xml:space="preserve">
     <value>Group By</value>
   </data>
-  <data name="GroupInfo" xml:space="preserve">
+	<data name="GroupInfo" xml:space="preserve">
     <value>Group Info</value>
   </data>
-  <data name="GroupList" xml:space="preserve">
+	<data name="GroupList" xml:space="preserve">
     <value>Group List</value>
   </data>
-  <data name="GroupName" xml:space="preserve">
+	<data name="GroupName" xml:space="preserve">
     <value>Group Name</value>
   </data>
-  <data name="GroupNameEmpty" xml:space="preserve">
+	<data name="GroupNameEmpty" xml:space="preserve">
     <value>Group Name cannot be empty. Please check!</value>
   </data>
-  <data name="GroupNameNotContainChar" xml:space="preserve">
+	<data name="GroupNameNotContainChar" xml:space="preserve">
     <value>Group name can not contain this character.</value>
   </data>
-  <data name="GroupPermission" xml:space="preserve">
+	<data name="GroupPermission" xml:space="preserve">
     <value>Group Permission</value>
   </data>
-  <data name="Home" xml:space="preserve">
+	<data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="HomeDesc" xml:space="preserve">
+	<data name="HomeDesc" xml:space="preserve">
     <value>Below you see tasks that are waiting for your approval and overview of the affiliate program</value>
   </data>
-  <data name="HomePage" xml:space="preserve">
+	<data name="HomePage" xml:space="preserve">
     <value>Home Page</value>
   </data>
-  <data name="HorseRacing" xml:space="preserve">
+	<data name="HorseRacing" xml:space="preserve">
     <value>Horse Racing</value>
   </data>
-  <data name="Host" xml:space="preserve">
+	<data name="Host" xml:space="preserve">
     <value>Host</value>
   </data>
-  <data name="HouseNetWinLost" xml:space="preserve">
+	<data name="HouseNetWinLost" xml:space="preserve">
     <value>House Net Win/Loss</value>
   </data>
-  <data name="HouseWinLost" xml:space="preserve">
+	<data name="HouseWinLost" xml:space="preserve">
     <value>House Win/Loss</value>
   </data>
-  <data name="HR" xml:space="preserve">
+	<data name="HR" xml:space="preserve">
     <value>HR</value>
   </data>
-  <data name="HtmlFormat" xml:space="preserve">
+	<data name="HtmlFormat" xml:space="preserve">
     <value>Html Format</value>
   </data>
-  <data name="IBCUsername" xml:space="preserve">
+	<data name="IBCUsername" xml:space="preserve">
     <value>IBC Username</value>
   </data>
-  <data name="Icon" xml:space="preserve">
+	<data name="Icon" xml:space="preserve">
     <value>Icon</value>
   </data>
-  <data name="ID" xml:space="preserve">
+	<data name="ID" xml:space="preserve">
     <value>ID</value>
   </data>
-  <data name="IDFieldIsRequired" xml:space="preserve">
+	<data name="IDFieldIsRequired" xml:space="preserve">
     <value>The ID field is required.</value>
   </data>
-  <data name="IdNotNumber" xml:space="preserve">
+	<data name="IdNotNumber" xml:space="preserve">
     <value>ID is not number. Please input number!</value>
   </data>
-  <data name="Images" xml:space="preserve">
+	<data name="Images" xml:space="preserve">
     <value>Images</value>
   </data>
-  <data name="ImageType" xml:space="preserve">
+	<data name="ImageType" xml:space="preserve">
     <value>Media Type</value>
   </data>
-  <data name="Important" xml:space="preserve">
+	<data name="Important" xml:space="preserve">
     <value>Important</value>
   </data>
-  <data name="In" xml:space="preserve">
+	<data name="In" xml:space="preserve">
     <value>In</value>
   </data>
-  <data name="IndividualPermission" xml:space="preserve">
+	<data name="IndividualPermission" xml:space="preserve">
     <value>Individual Permission</value>
   </data>
-  <data name="Indonesian" xml:space="preserve">
+	<data name="Indonesian" xml:space="preserve">
     <value>Indonesian</value>
   </data>
-  <data name="InpuResourceVal" xml:space="preserve">
+	<data name="InpuResourceVal" xml:space="preserve">
     <value>Please input value of resource!</value>
   </data>
-  <data name="InputAff" xml:space="preserve">
+	<data name="InputAff" xml:space="preserve">
     <value>Please input affiliate!</value>
   </data>
-  <data name="InputDigitOnly" xml:space="preserve">
+	<data name="InputDigitOnly" xml:space="preserve">
     <value>Please input digit only!</value>
   </data>
-  <data name="InputKeyName" xml:space="preserve">
+	<data name="InputKeyName" xml:space="preserve">
     <value>Please input key name!</value>
   </data>
-  <data name="InputMem" xml:space="preserve">
+	<data name="InputMem" xml:space="preserve">
     <value>Please input member!</value>
   </data>
-  <data name="InputSettingVal" xml:space="preserve">
+	<data name="InputSettingVal" xml:space="preserve">
     <value>Please input value of setting!</value>
   </data>
-  <data name="InputTextUpload" xml:space="preserve">
+	<data name="InputTextUpload" xml:space="preserve">
     <value>Please input text to upload.</value>
   </data>
-  <data name="InputValueTranslation" xml:space="preserve">
+	<data name="InputValueTranslation" xml:space="preserve">
     <value>Please input value of translation!</value>
   </data>
-  <data name="InputWebUrl" xml:space="preserve">
+	<data name="InputWebUrl" xml:space="preserve">
     <value>Please input Website URL {number}!</value>
   </data>
-  <data name="InvalidAffiliate" xml:space="preserve">
+	<data name="InvalidAffiliate" xml:space="preserve">
     <value>Invalid Affiliate</value>
   </data>
-  <data name="InvalidAffType" xml:space="preserve">
+	<data name="InvalidAffType" xml:space="preserve">
     <value>Invalid Affiliate Type</value>
   </data>
-  <data name="InvalidAmount" xml:space="preserve">
+	<data name="InvalidAmount" xml:space="preserve">
     <value>The amount is invalid</value>
   </data>
-  <data name="InvalidBanner" xml:space="preserve">
+	<data name="InvalidBanner" xml:space="preserve">
     <value>Invalid Banner</value>
   </data>
-  <data name="InvalidConfiguration" xml:space="preserve">
+	<data name="InvalidConfiguration" xml:space="preserve">
     <value>Invalid Configuration</value>
   </data>
-  <data name="InvalidCountry" xml:space="preserve">
+	<data name="InvalidCountry" xml:space="preserve">
     <value>Invalid Country</value>
   </data>
-  <data name="InvalidFileName" xml:space="preserve">
+	<data name="InvalidFileName" xml:space="preserve">
     <value>File name only accept the alphanumeric characters, hyphen(-), undercore(_), dot(.) and space.</value>
   </data>
-  <data name="InvalidID" xml:space="preserve">
+	<data name="InvalidID" xml:space="preserve">
     <value>Invalid ID</value>
   </data>
-  <data name="InvalidLanguage" xml:space="preserve">
+	<data name="InvalidLanguage" xml:space="preserve">
     <value>Invalid Language</value>
   </data>
-  <data name="InvalidMessage" xml:space="preserve">
+	<data name="InvalidMessage" xml:space="preserve">
     <value>Invalid Message.</value>
   </data>
-  <data name="InvalidProduct" xml:space="preserve">
+	<data name="InvalidProduct" xml:space="preserve">
     <value>Invalid Product</value>
   </data>
-  <data name="InvalidRequest" xml:space="preserve">
+	<data name="InvalidRequest" xml:space="preserve">
     <value>Invalid Request</value>
   </data>
-  <data name="InvalidSettingFor" xml:space="preserve">
+	<data name="InvalidSettingFor" xml:space="preserve">
     <value>Invalid setting for {item}.</value>
   </data>
-  <data name="InvalidText" xml:space="preserve">
+	<data name="InvalidText" xml:space="preserve">
     <value>Invalid Text</value>
   </data>
-  <data name="IP" xml:space="preserve">
+	<data name="IP" xml:space="preserve">
     <value>IP</value>
   </data>
-  <data name="IsEnabled" xml:space="preserve">
+	<data name="IsEnabled" xml:space="preserve">
     <value>Is Enabled</value>
   </data>
-  <data name="IsHrTurnoverQualified" xml:space="preserve">
-    <value>Is HRQM</value>
-  </data>
-  <data name="IsQualifiedMember" xml:space="preserve">
+	<data name="IsQualifiedMember" xml:space="preserve">
     <value>Is Qualified Member</value>
   </data>
-  <data name="Jan" xml:space="preserve">
+	<data name="Jan" xml:space="preserve">
     <value>Jan</value>
   </data>
-  <data name="Jul" xml:space="preserve">
+	<data name="Jul" xml:space="preserve">
     <value>Jul</value>
   </data>
-  <data name="Jun" xml:space="preserve">
+	<data name="Jun" xml:space="preserve">
     <value>Jun</value>
   </data>
-  <data name="Key" xml:space="preserve">
+	<data name="Key" xml:space="preserve">
     <value>Key</value>
   </data>
-  <data name="KeyFieldIsRequired" xml:space="preserve">
+	<data name="KeyFieldIsRequired" xml:space="preserve">
     <value>The Key field is required.</value>
   </data>
-  <data name="Keyword" xml:space="preserve">
+	<data name="Keyword" xml:space="preserve">
     <value>Keyword</value>
   </data>
-  <data name="KioskFlashBanner" xml:space="preserve">
+	<data name="KioskFlashBanner" xml:space="preserve">
     <value>Kiosk flash banner(s)</value>
   </data>
-  <data name="KioskImageBanner" xml:space="preserve">
+	<data name="KioskImageBanner" xml:space="preserve">
     <value>Kiosk image banner(s)</value>
   </data>
-  <data name="LandingPages" xml:space="preserve">
+	<data name="LandingPages" xml:space="preserve">
     <value>Landing Pages</value>
   </data>
-  <data name="LandingPagesStatisticDetails" xml:space="preserve">
+	<data name="LandingPagesStatisticDetails" xml:space="preserve">
     <value>Landing Pages Statistic Details</value>
   </data>
-  <data name="LandingPagesStatistics" xml:space="preserve">
+	<data name="LandingPagesStatistics" xml:space="preserve">
     <value>Landing Page Statistics</value>
   </data>
-  <data name="Language" xml:space="preserve">
+	<data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
-  <data name="LanguageList" xml:space="preserve">
+	<data name="LanguageList" xml:space="preserve">
     <value>Language List</value>
   </data>
-  <data name="LastCheckIn" xml:space="preserve">
+	<data name="LastCheckIn" xml:space="preserve">
     <value>Last Check-in</value>
   </data>
-  <data name="LastLogin" xml:space="preserve">
+	<data name="LastLogin" xml:space="preserve">
     <value>Last Login</value>
   </data>
-  <data name="LastLoginIP" xml:space="preserve">
+	<data name="LastLoginIP" xml:space="preserve">
     <value>Last Login IP</value>
   </data>
-  <data name="LastModify" xml:space="preserve">
+	<data name="LastModify" xml:space="preserve">
     <value>Last Modify</value>
   </data>
-  <data name="LastName" xml:space="preserve">
+	<data name="LastName" xml:space="preserve">
     <value>Last Name</value>
   </data>
-  <data name="LastRequest" xml:space="preserve">
+	<data name="LastRequest" xml:space="preserve">
     <value>Last Request</value>
   </data>
-  <data name="LastTierSettingHaveMaxValue" xml:space="preserve">
+	<data name="LastTierSettingHaveMaxValue" xml:space="preserve">
     <value>Last Tier Setting must have maximum value=∞.</value>
   </data>
-  <data name="Limit100Characters" xml:space="preserve">
-    <value>The maximum number of characters for this field is 100, please try again.</value>
-  </data>
-  <data name="LimitDate" xml:space="preserve">
+	<data name="LimitDate" xml:space="preserve">
     <value>You could only see report from </value>
   </data>
-  <data name="LiveCasino" xml:space="preserve">
+	<data name="LiveCasino" xml:space="preserve">
     <value>Live Casino</value>
   </data>
-  <data name="LockedOut" xml:space="preserve">
+	<data name="Locked" xml:space="preserve">
     <value>Locked</value>
   </data>
-  <data name="LoggedIn" xml:space="preserve">
+	<data name="LoggedIn" xml:space="preserve">
     <value>Logged in</value>
   </data>
-  <data name="LogList" xml:space="preserve">
+	<data name="LogList" xml:space="preserve">
     <value>Log List</value>
   </data>
-  <data name="Logon" xml:space="preserve">
+	<data name="Logon" xml:space="preserve">
     <value>Logon</value>
   </data>
-  <data name="Logout" xml:space="preserve">
+	<data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
-  <data name="LogType" xml:space="preserve">
+	<data name="LogType" xml:space="preserve">
     <value>Log Type</value>
   </data>
-  <data name="MainInfo" xml:space="preserve">
+	<data name="MainInfo" xml:space="preserve">
     <value>Setting Information</value>
   </data>
-  <data name="Male" xml:space="preserve">
+	<data name="Male" xml:space="preserve">
     <value>Male</value>
   </data>
-  <data name="Mar" xml:space="preserve">
+	<data name="Mar" xml:space="preserve">
     <value>Mar</value>
   </data>
-  <data name="Market" xml:space="preserve">
+	<data name="Market" xml:space="preserve">
     <value>Market</value>
   </data>
-  <data name="MarketingTools" xml:space="preserve">
+	<data name="MarketingTools" xml:space="preserve">
     <value>Marketing Tools</value>
   </data>
-  <data name="MarketRate" xml:space="preserve">
+	<data name="MarketRate" xml:space="preserve">
     <value>Market rate</value>
   </data>
-  <data name="MaxAmount" xml:space="preserve">
+	<data name="MaxAmount" xml:space="preserve">
     <value>Max AMT</value>
   </data>
-  <data name="MaxFileNameLength" xml:space="preserve">
+	<data name="MaxFileNameLength" xml:space="preserve">
     <value>The maximum length of file name is 50. Please choose another name.</value>
   </data>
-  <data name="MaxFileSizeLimit" xml:space="preserve">
+	<data name="MaxFileSizeLimit" xml:space="preserve">
     <value>Maximum File Size Limit: {0} bytes.</value>
   </data>
-  <data name="MaximumQualifiedMembers" xml:space="preserve">
+	<data name="MaximumQualifiedMembers" xml:space="preserve">
     <value>Maximum number of qualified members</value>
   </data>
-  <data name="MaximumWinlossAmount" xml:space="preserve">
+	<data name="MaximumWinlossAmount" xml:space="preserve">
     <value>Maximum all members' winloss amount</value>
   </data>
-  <data name="MaxQM" xml:space="preserve">
+	<data name="MaxQM" xml:space="preserve">
     <value>Max QM</value>
   </data>
-  <data name="MaxTierAllow" xml:space="preserve">
+	<data name="MaxTierAllow" xml:space="preserve">
     <value>Maximum of 50 tiers are allowed.</value>
   </data>
-  <data name="May" xml:space="preserve">
+	<data name="May" xml:space="preserve">
     <value>May</value>
   </data>
-  <data name="MediaAff" xml:space="preserve">
+	<data name="MediaAff" xml:space="preserve">
     <value>Media Affiliate</value>
   </data>
-  <data name="MediaFlashBanner" xml:space="preserve">
+	<data name="MediaFlashBanner" xml:space="preserve">
     <value>media flash banner(s)</value>
   </data>
-  <data name="MediaGallery" xml:space="preserve">
+	<data name="MediaGallery" xml:space="preserve">
     <value>Media Gallery</value>
   </data>
-  <data name="MediaImageBanner" xml:space="preserve">
+	<data name="MediaImageBanner" xml:space="preserve">
     <value> image banner(s)</value>
   </data>
-  <data name="Member" xml:space="preserve">
+	<data name="Member" xml:space="preserve">
     <value>Member</value>
   </data>
-  <data name="MemberCurrency" xml:space="preserve">
+	<data name="MemberCurrency" xml:space="preserve">
     <value>Member Currency</value>
   </data>
-  <data name="MemberDomain" xml:space="preserve">
+	<data name="MemberDomain" xml:space="preserve">
     <value>Member Domain</value>
   </data>
-  <data name="MemberExist" xml:space="preserve">
+	<data name="MemberExist" xml:space="preserve">
     <value>The member has already existed in system.</value>
   </data>
-  <data name="MemberList" xml:space="preserve">
+	<data name="MemberList" xml:space="preserve">
     <value>Member List</value>
   </data>
-  <data name="MemberPage" xml:space="preserve">
+	<data name="MemberPage" xml:space="preserve">
     <value>Member Page</value>
   </data>
-  <data name="MemberStatistics" xml:space="preserve">
+	<data name="MemberStatistics" xml:space="preserve">
     <value>Member Statistics</value>
   </data>
-  <data name="MemberStatisticsDetail" xml:space="preserve">
+	<data name="MemberStatisticsDetail" xml:space="preserve">
     <value>Member Statistics Detail for </value>
   </data>
-  <data name="MemberType" xml:space="preserve">
+	<data name="MemberType" xml:space="preserve">
     <value>Member Type</value>
   </data>
-  <data name="MemberWinloss" xml:space="preserve">
+	<data name="MemberWinloss" xml:space="preserve">
     <value>Member Win Loss</value>
   </data>
-  <data name="MemDomainNameNotContainChar" xml:space="preserve">
+	<data name="MemDomainNameNotContainChar" xml:space="preserve">
     <value>Member domain name can not contain this character.</value>
   </data>
-  <data name="MemInAffPro" xml:space="preserve">
-    <value>members in the program</value>
-  </data>
-  <data name="MemStatAll" xml:space="preserve">
+	<data name="MemStatAll" xml:space="preserve">
     <value>Member statistics (up to now)</value>
   </data>
-  <data name="MemStatcMonth" xml:space="preserve">
+	<data name="MemStatcMonth" xml:space="preserve">
     <value>Member statistics (this month)</value>
   </data>
-  <data name="Message" xml:space="preserve">
+	<data name="Message" xml:space="preserve">
     <value>Message</value>
   </data>
-  <data name="MessageDetails" xml:space="preserve">
+	<data name="MessageDetails" xml:space="preserve">
     <value>Message Details</value>
   </data>
-  <data name="MessageHistory" xml:space="preserve">
+	<data name="MessageHistory" xml:space="preserve">
     <value>Message History</value>
   </data>
-  <data name="MessageInformation" xml:space="preserve">
+	<data name="MessageInformation" xml:space="preserve">
     <value>Message Information</value>
   </data>
-  <data name="MessageList" xml:space="preserve">
+	<data name="MessageList" xml:space="preserve">
     <value>Message List</value>
   </data>
-  <data name="Messages" xml:space="preserve">
+	<data name="Messages" xml:space="preserve">
     <value>Messages</value>
   </data>
-  <data name="MinAmount" xml:space="preserve">
+	<data name="MinAmount" xml:space="preserve">
     <value>Min AMT</value>
   </data>
-  <data name="MinimumQualifiedMembers" xml:space="preserve">
+	<data name="MinimumQualifiedMembers" xml:space="preserve">
     <value>Minimum number of qualified members</value>
   </data>
-  <data name="MinimumWinlossAmount" xml:space="preserve">
-    <value>Minimum number of qualified members</value>
+	<data name="MinimumWinlossAmount" xml:space="preserve">
+    <value>Minumum all members' winloss amount</value>
   </data>
-  <data name="MinQM" xml:space="preserve">
+	<data name="MinQM" xml:space="preserve">
     <value>Min QM</value>
   </data>
-  <data name="Minutes" xml:space="preserve">
+	<data name="Minutes" xml:space="preserve">
     <value>minutes</value>
   </data>
-  <data name="MinWithdraw" xml:space="preserve">
+	<data name="MinWithdraw" xml:space="preserve">
     <value>Minimum Withdrawal Amount</value>
   </data>
-  <data name="Mo" xml:space="preserve">
+	<data name="Mo" xml:space="preserve">
     <value>Mo</value>
   </data>
-  <data name="Mobile" xml:space="preserve">
+	<data name="Mobile" xml:space="preserve">
     <value>Mobile Number</value>
   </data>
-  <data name="MoneyBooker" xml:space="preserve">
+	<data name="MoneyBooker" xml:space="preserve">
     <value>Moneybookers</value>
   </data>
-  <data name="MoneybookerEmail" xml:space="preserve">
+	<data name="MoneybookerEmail" xml:space="preserve">
     <value>Moneybookers Email</value>
   </data>
-  <data name="Month" xml:space="preserve">
+	<data name="Month" xml:space="preserve">
     <value>Month</value>
   </data>
-  <data name="MoreUrl" xml:space="preserve">
+	<data name="MoreUrl" xml:space="preserve">
     <value>More Website URLs</value>
   </data>
-  <data name="Msg1001" xml:space="preserve">
+	<data name="Msg1001" xml:space="preserve">
     <value>Wrong username or password.</value>
   </data>
-  <data name="Msg1003" xml:space="preserve">
+	<data name="Msg1003" xml:space="preserve">
     <value>Account closed. Please contact your administrator!</value>
   </data>
-  <data name="MsgApproveAffiliate" xml:space="preserve">
+	<data name="MsgApproveAffiliate" xml:space="preserve">
     <value>Before you approve this affiliate, you must create or assign one commission group for him.</value>
   </data>
-  <data name="MsgKickout" xml:space="preserve">
+	<data name="MsgKickout" xml:space="preserve">
     <value>Another session has logged in or your session is expired. Forced to logout!</value>
   </data>
-  <data name="MyFavorite" xml:space="preserve">
+	<data name="MyFavorite" xml:space="preserve">
     <value>My Favorite</value>
   </data>
-  <data name="NA" xml:space="preserve">
+	<data name="NA" xml:space="preserve">
     <value>N/A</value>
   </data>
-  <data name="Name" xml:space="preserve">
+	<data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="NameFieldIsRequired" xml:space="preserve">
+	<data name="NameFieldIsRequired" xml:space="preserve">
     <value>The Name field is required.</value>
   </data>
-  <data name="NetellerAccId" xml:space="preserve">
+	<data name="NetellerAccId" xml:space="preserve">
     <value>Neteller Account ID</value>
   </data>
-  <data name="Netteller" xml:space="preserve">
+	<data name="Netteller" xml:space="preserve">
     <value>Neteller</value>
   </data>
-  <data name="Never" xml:space="preserve">
+	<data name="Never" xml:space="preserve">
     <value>Never</value>
   </data>
-  <data name="NewGroup" xml:space="preserve">
+	<data name="NewGroup" xml:space="preserve">
     <value>New Group</value>
   </data>
-  <data name="NewMessage" xml:space="preserve">
+	<data name="NewMessage" xml:space="preserve">
     <value>New Message</value>
   </data>
-  <data name="NewPassworDifferOldPassword" xml:space="preserve">
+	<data name="NewPassworDifferOldPassword" xml:space="preserve">
     <value>New password must be different with old password!</value>
   </data>
-  <data name="NewSignup" xml:space="preserve">
+	<data name="NewSignup" xml:space="preserve">
     <value>New Signups</value>
   </data>
-  <data name="No" xml:space="preserve">
+	<data name="No" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="NoData" xml:space="preserve">
+	<data name="NoData" xml:space="preserve">
     <value>There is no data.</value>
   </data>
-  <data name="NoDataInfo" xml:space="preserve">
+	<data name="NoDataInfo" xml:space="preserve">
     <value>There is no information available!</value>
   </data>
-  <data name="NoDraw" xml:space="preserve">
+	<data name="NoDraw" xml:space="preserve">
     <value>No Draw</value>
   </data>
-  <data name="NoDrawForTurnover" xml:space="preserve">
+	<data name="NoDrawForTurnover" xml:space="preserve">
     <value>No Draw For Turnover Only</value>
   </data>
-  <data name="NoEmailSelected" xml:space="preserve">
+	<data name="NoEmailSelected" xml:space="preserve">
     <value>Please select email to delete.</value>
   </data>
-  <data name="NoInfo" xml:space="preserve">
+	<data name="NoInfo" xml:space="preserve">
     <value>No information is available</value>
   </data>
-  <data name="NoMessSelected" xml:space="preserve">
+	<data name="NoMessSelected" xml:space="preserve">
     <value>Please select message to delete.</value>
   </data>
-  <data name="NonDeposit" xml:space="preserve">
+	<data name="NonDeposit" xml:space="preserve">
     <value>Non-deposit</value>
   </data>
-  <data name="None" xml:space="preserve">
+	<data name="None" xml:space="preserve">
     <value>None</value>
   </data>
-  <data name="NoOfAffiliate" xml:space="preserve">
+	<data name="NoOfAffiliate" xml:space="preserve">
     <value>No. Affiliates</value>
   </data>
-  <data name="NoOfUser" xml:space="preserve">
+	<data name="NoOfUser" xml:space="preserve">
     <value>No. User</value>
   </data>
-  <data name="Normal" xml:space="preserve">
+	<data name="Normal" xml:space="preserve">
     <value>Normal</value>
   </data>
-  <data name="NormalFlashBanner" xml:space="preserve">
+	<data name="NormalFlashBanner" xml:space="preserve">
     <value>Normal flash banner(s)</value>
   </data>
-  <data name="NormalImageBanner" xml:space="preserve">
+	<data name="NormalImageBanner" xml:space="preserve">
     <value>Normal image banner(s)</value>
   </data>
-  <data name="NotAvaliable" xml:space="preserve">
+	<data name="NotAvaliable" xml:space="preserve">
     <value>N/A</value>
   </data>
-  <data name="Note" xml:space="preserve">
+	<data name="Note" xml:space="preserve">
     <value>Notes</value>
   </data>
-  <data name="NotesList" xml:space="preserve">
+	<data name="NotesList" xml:space="preserve">
     <value>Note List</value>
   </data>
-  <data name="NoTextSelected" xml:space="preserve">
-    <value>Please select text(s) to delete.</value>
-  </data>
-  <data name="NotHandleFrames" xml:space="preserve">
+	<data name="NotHandleFrames" xml:space="preserve">
     <value>Sorry, Your browser does not handle frames!</value>
   </data>
-  <data name="NoUser" xml:space="preserve">
+	<data name="NoUser" xml:space="preserve">
     <value>Invalid username</value>
   </data>
-  <data name="Nov" xml:space="preserve">
+	<data name="Nov" xml:space="preserve">
     <value>Nov</value>
   </data>
-  <data name="NumberGame" xml:space="preserve">
+	<data name="NumberGame" xml:space="preserve">
     <value>Number Game</value>
   </data>
-  <data name="Oct" xml:space="preserve">
+	<data name="Oct" xml:space="preserve">
     <value>Oct</value>
   </data>
-  <data name="Of" xml:space="preserve">
+	<data name="Of" xml:space="preserve">
     <value>Of</value>
   </data>
-  <data name="OldPass" xml:space="preserve">
+	<data name="OldPass" xml:space="preserve">
     <value>Old Password</value>
   </data>
-  <data name="OldPassIncorrect" xml:space="preserve">
+	<data name="OldPassIncorrect" xml:space="preserve">
     <value>Old Password is incorrect.</value>
   </data>
-  <data name="OldRequire" xml:space="preserve">
+	<data name="OldRequire" xml:space="preserve">
     <value>Old Password is required</value>
   </data>
-  <data name="OnlistListNotUpdate" xml:space="preserve">
+	<data name="OnlistListNotUpdate" xml:space="preserve">
     <value>Sorry! The online list could not be updated.</value>
   </data>
-  <data name="Open" xml:space="preserve">
+	<data name="Open" xml:space="preserve">
     <value>Open</value>
   </data>
-  <data name="Original" xml:space="preserve">
+	<data name="Original" xml:space="preserve">
     <value>Original</value>
   </data>
-  <data name="Others" xml:space="preserve">
+	<data name="Others" xml:space="preserve">
     <value>Others</value>
   </data>
-  <data name="Page" xml:space="preserve">
+	<data name="Page" xml:space="preserve">
     <value>Page</value>
   </data>
-  <data name="PageNotFound" xml:space="preserve">
+	<data name="PageNotFound" xml:space="preserve">
     <value>Page Not Found</value>
   </data>
-  <data name="PageSize" xml:space="preserve">
+	<data name="PageSize" xml:space="preserve">
     <value>Page size </value>
   </data>
-  <data name="Paging" xml:space="preserve">
+	<data name="Paging" xml:space="preserve">
     <value>Page {0} of {1}</value>
   </data>
-  <data name="PassCheck" xml:space="preserve">
+	<data name="PassCheck" xml:space="preserve">
     <value>Password must have at least 6 charecters, including at least 2 letters and at least 2 digits. (e.g:pass22)</value>
   </data>
-  <data name="PassConfirm" xml:space="preserve">
+	<data name="PassConfirm" xml:space="preserve">
     <value>Your password and confirmation password do not match.</value>
   </data>
-  <data name="PassNew" xml:space="preserve">
+	<data name="PassNew" xml:space="preserve">
     <value>New Password</value>
   </data>
-  <data name="Password" xml:space="preserve">
+	<data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
-  <data name="PasswordIsRequired" xml:space="preserve">
+	<data name="PasswordIsRequired" xml:space="preserve">
     <value>Password is required</value>
   </data>
-  <data name="Payment" xml:space="preserve">
+	<data name="Payment" xml:space="preserve">
     <value>Payment</value>
   </data>
-  <data name="PaymentInfo" xml:space="preserve">
+	<data name="PaymentInfo" xml:space="preserve">
     <value>Payment Information</value>
   </data>
-  <data name="PaymentMethod" xml:space="preserve">
+	<data name="PaymentMethod" xml:space="preserve">
     <value>Payment Method</value>
   </data>
-  <data name="PaymentRequest" xml:space="preserve">
+	<data name="PaymentRequest" xml:space="preserve">
     <value>Payment</value>
   </data>
-  <data name="PaymentSuccess" xml:space="preserve">
+	<data name="PaymentSuccess" xml:space="preserve">
     <value>Payment updated successfully!</value>
   </data>
-  <data name="Pending" xml:space="preserve">
+	<data name="Pending" xml:space="preserve">
     <value>Pending</value>
   </data>
-  <data name="PendingCommission" xml:space="preserve">
-    <value>Processing Commission</value>
-  </data>
-  <data name="PersonalInfo" xml:space="preserve">
+	<data name="PersonalInfo" xml:space="preserve">
     <value>Personal Information</value>
   </data>
-  <data name="Phone" xml:space="preserve">
+	<data name="Phone" xml:space="preserve">
     <value>Phone</value>
   </data>
-  <data name="PlainText" xml:space="preserve">
+	<data name="PlainText" xml:space="preserve">
     <value>Plain Text</value>
   </data>
-  <data name="PlayersDetail" xml:space="preserve">
+	<data name="PlayersDetail" xml:space="preserve">
     <value>Member Detail</value>
   </data>
-  <data name="PlayerUserName" xml:space="preserve">
+	<data name="PlayerUserName" xml:space="preserve">
     <value>Member Username</value>
   </data>
-  <data name="PleaseInput1For" xml:space="preserve">
+	<data name="PleaseInput1For" xml:space="preserve">
     <value>Please input 1 for {0} {1}. Ex: {2}  is {3} in real value.</value>
   </data>
-  <data name="Policy" xml:space="preserve">
+	<data name="Policy" xml:space="preserve">
     <value>Policy</value>
   </data>
-  <data name="Postal" xml:space="preserve">
+	<data name="Postal" xml:space="preserve">
     <value>Postcode/Zip</value>
   </data>
-  <data name="PostDate" xml:space="preserve">
+	<data name="PostDate" xml:space="preserve">
     <value>Posted Date</value>
   </data>
-  <data name="Preference" xml:space="preserve">
+	<data name="Preference" xml:space="preserve">
     <value>Preference</value>
   </data>
-  <data name="PreferLang" xml:space="preserve">
+	<data name="PreferLang" xml:space="preserve">
     <value>Language</value>
   </data>
-  <data name="PreferredPaymentMethod" xml:space="preserve">
+	<data name="PreferredPaymentMethod" xml:space="preserve">
     <value>Preferred Payment Method</value>
   </data>
-  <data name="Processing" xml:space="preserve">
+	<data name="Processing" xml:space="preserve">
     <value>Processing</value>
   </data>
-  <data name="ProcessingCommission" xml:space="preserve">
-    <value>Processing Commission</value>
-  </data>
-  <data name="Product" xml:space="preserve">
+	<data name="Product" xml:space="preserve">
     <value>Product</value>
   </data>
-  <data name="ProductList" xml:space="preserve">
+	<data name="ProductList" xml:space="preserve">
     <value>Product List</value>
   </data>
-  <data name="ProductType" xml:space="preserve">
+	<data name="ProductType" xml:space="preserve">
     <value>Product Type</value>
   </data>
-  <data name="PSP" xml:space="preserve">
+	<data name="PSP" xml:space="preserve">
     <value>PSP</value>
   </data>
-  <data name="QM" xml:space="preserve">
+	<data name="QM" xml:space="preserve">
     <value>QM</value>
   </data>
-  <data name="QMReport" xml:space="preserve">
+	<data name="QMReport" xml:space="preserve">
     <value>QM Report</value>
   </data>
-  <data name="QMReportDetailOf" xml:space="preserve">
+	<data name="QMReportDetailOf" xml:space="preserve">
     <value>QM Report Detail Of</value>
   </data>
-  <data name="QualifiedAmount" xml:space="preserve">
+	<data name="QualifiedAmount" xml:space="preserve">
     <value>Qualified Amount</value>
   </data>
-  <data name="QualifiedMembers" xml:space="preserve">
+	<data name="QualifiedMembers" xml:space="preserve">
     <value>Qualified Members</value>
   </data>
-  <data name="RangeTime3Months" xml:space="preserve">
+	<data name="RangeTime3Months" xml:space="preserve">
     <value>The range time (from date - to date) should be less than 3 months.</value>
   </data>
-  <data name="Rate" xml:space="preserve">
+	<data name="Rate" xml:space="preserve">
     <value>US Dollar rate</value>
   </data>
-  <data name="rate_" xml:space="preserve">
+	<data name="rate_" xml:space="preserve">
     <value>rate</value>
   </data>
-  <data name="Read" xml:space="preserve">
+	<data name="Read" xml:space="preserve">
     <value>Read</value>
   </data>
-  <data name="Redirect" xml:space="preserve">
+	<data name="Redirect" xml:space="preserve">
     <value>Redirecting</value>
   </data>
-  <data name="RedirectDomain" xml:space="preserve">
+	<data name="RedirectDomain" xml:space="preserve">
     <value>Redirect Domain</value>
   </data>
-  <data name="Referrers" xml:space="preserve">
+	<data name="Referrers" xml:space="preserve">
     <value>Referrers</value>
   </data>
-  <data name="ReferrersStatisticDetails" xml:space="preserve">
+	<data name="ReferrersStatisticDetails" xml:space="preserve">
     <value>Referrers Statistic Details</value>
   </data>
-  <data name="ReferrersStatistics" xml:space="preserve">
+	<data name="ReferrersStatistics" xml:space="preserve">
     <value>Referrer Statistics</value>
   </data>
-  <data name="RefNo" xml:space="preserve">
+	<data name="RefNo" xml:space="preserve">
     <value>Ref.No</value>
   </data>
-  <data name="RefreshPage" xml:space="preserve">
+	<data name="RefreshPage" xml:space="preserve">
     <value>Refresh Page</value>
   </data>
-  <data name="RegisterDate" xml:space="preserve">
-    <value>Registered Date</value>
-  </data>
-  <data name="Rejected" xml:space="preserve">
+	<data name="Rejected" xml:space="preserve">
     <value>Rejected</value>
   </data>
-  <data name="Remark" xml:space="preserve">
+	<data name="Remark" xml:space="preserve">
     <value>Remark</value>
   </data>
-  <data name="Remove" xml:space="preserve">
+	<data name="Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
-  <data name="Removed" xml:space="preserve">
+	<data name="Removed" xml:space="preserve">
     <value>Removed</value>
   </data>
-  <data name="RemoveFromMyFavorite" xml:space="preserve">
+	<data name="RemoveFromMyFavorite" xml:space="preserve">
     <value>Remove from My Favorite</value>
   </data>
-  <data name="Report" xml:space="preserve">
+	<data name="Reports" xml:space="preserve">
     <value>Reports</value>
   </data>
-  <data name="ReportDetails" xml:space="preserve">
+	<data name="ReportDetails" xml:space="preserve">
     <value>Report Details</value>
   </data>
-  <data name="RequiredAmount" xml:space="preserve">
+	<data name="RequiredAmount" xml:space="preserve">
     <value>Sorry, the adjustment amount is invalid.</value>
   </data>
-  <data name="Reset" xml:space="preserve">
+	<data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="ResetPassSuccess" xml:space="preserve">
+	<data name="ResetPassSuccess" xml:space="preserve">
     <value>Reset password successfully!</value>
   </data>
-  <data name="RichTextEditor" xml:space="preserve">
+	<data name="RichTextEditor" xml:space="preserve">
     <value>rich text editor</value>
   </data>
-  <data name="RmbMarketRate" xml:space="preserve">
+	<data name="RmbMarketRate" xml:space="preserve">
     <value>RMB market rate</value>
   </data>
-  <data name="RmbRate" xml:space="preserve">
+	<data name="RmbRate" xml:space="preserve">
     <value>RMB rate</value>
   </data>
-  <data name="RNGCasino" xml:space="preserve">
+	<data name="RNGCasino" xml:space="preserve">
     <value>RNG Casino</value>
   </data>
-  <data name="Role" xml:space="preserve">
+	<data name="Role" xml:space="preserve">
     <value>Role</value>
   </data>
-  <data name="RolePolicy" xml:space="preserve">
+	<data name="RolePolicy" xml:space="preserve">
     <value>Role Policy</value>
   </data>
-  <data name="Sa" xml:space="preserve">
+	<data name="Sa" xml:space="preserve">
     <value>Sa</value>
   </data>
-  <data name="Save" xml:space="preserve">
+	<data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="Search" xml:space="preserve">
+	<data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="SearchBy" xml:space="preserve">
+	<data name="SearchBy" xml:space="preserve">
     <value>Search By</value>
   </data>
-  <data name="SearchByKey" xml:space="preserve">
+	<data name="SearchByKey" xml:space="preserve">
     <value>Search by Key</value>
   </data>
-  <data name="SearchByName" xml:space="preserve">
+	<data name="SearchByName" xml:space="preserve">
     <value>Search By Name</value>
   </data>
-  <data name="Securequestion" xml:space="preserve">
+	<data name="Securequestion" xml:space="preserve">
     <value>Security Question</value>
   </data>
-  <data name="SelConfiguration" xml:space="preserve">
+	<data name="SelConfiguration" xml:space="preserve">
     <value>Please select configuration(s) first!</value>
   </data>
-  <data name="SelCountry" xml:space="preserve">
+	<data name="SelCountry" xml:space="preserve">
     <value>Please select countries first!</value>
   </data>
-  <data name="Select" xml:space="preserve">
+	<data name="Select" xml:space="preserve">
     <value>Select</value>
   </data>
-  <data name="SelectAffChangeGroup" xml:space="preserve">
+	<data name="SelectAffChangeGroup" xml:space="preserve">
     <value>Please select Affiliate(s) to change group!</value>
   </data>
-  <data name="SelectAtLeastOneAffiliate" xml:space="preserve">
+	<data name="SelectAtLeastOneAffiliate" xml:space="preserve">
     <value>Please select at least an affiliate!</value>
   </data>
-  <data name="SelectBannerDelete" xml:space="preserve">
+	<data name="SelectBannerDelete" xml:space="preserve">
     <value>Please select banner to delete.</value>
   </data>
-  <data name="SelectBannerUpload" xml:space="preserve">
+	<data name="SelectBannerUpload" xml:space="preserve">
     <value>Please select banner to upload.</value>
   </data>
-  <data name="SelectExcelUpload" xml:space="preserve">
-    <value>Please select excel to upload.</value>
-  </data>
-  <data name="SelectNoteDel" xml:space="preserve">
-    <value>Please select note to delete!</value>
-  </data>
-  <data name="SelectType" xml:space="preserve">
+	<data name="SelectType" xml:space="preserve">
     <value>Please select type(s) first.</value>
   </data>
-  <data name="SelLang" xml:space="preserve">
+	<data name="SelLang" xml:space="preserve">
     <value>Please select language(s) first!</value>
   </data>
-  <data name="SelProduct" xml:space="preserve">
+	<data name="SelProduct" xml:space="preserve">
     <value>Please select product(s) first!</value>
   </data>
-  <data name="SelRate" xml:space="preserve">
+	<data name="SelRate" xml:space="preserve">
     <value>Please select rate(s) first!</value>
   </data>
-  <data name="SelTextDel" xml:space="preserve">
+	<data name="SelTextDel" xml:space="preserve">
     <value>Please select text to delete.</value>
   </data>
-  <data name="SelTranslation" xml:space="preserve">
+	<data name="SelTranslation" xml:space="preserve">
     <value>Please select translation(s) first!</value>
   </data>
-  <data name="Sender" xml:space="preserve">
+	<data name="Sender" xml:space="preserve">
     <value>Sender</value>
   </data>
-  <data name="Sent" xml:space="preserve">
+	<data name="Sent" xml:space="preserve">
     <value>Sent</value>
   </data>
-  <data name="SentDate" xml:space="preserve">
+	<data name="SentDate" xml:space="preserve">
     <value>Sent Date</value>
   </data>
-  <data name="Sep" xml:space="preserve">
+	<data name="Sep" xml:space="preserve">
     <value>Sep</value>
   </data>
-  <data name="Setting" xml:space="preserve">
+	<data name="Setting" xml:space="preserve">
     <value>Setting</value>
   </data>
-  <data name="SignUp" xml:space="preserve">
+	<data name="SignUp" xml:space="preserve">
     <value>Sign Up</value>
   </data>
-  <data name="Signups" xml:space="preserve">
+	<data name="Signups" xml:space="preserve">
     <value>Signups</value>
   </data>
-  <data name="SiteInfo" xml:space="preserve">
+	<data name="SiteInfo" xml:space="preserve">
     <value>Website Information</value>
   </data>
-  <data name="SiteUrl" xml:space="preserve">
+	<data name="SiteUrl" xml:space="preserve">
     <value>Website URL</value>
   </data>
-  <data name="SiteURLs" xml:space="preserve">
+	<data name="SiteURLs" xml:space="preserve">
     <value>Site URLs</value>
   </data>
-  <data name="Size" xml:space="preserve">
+	<data name="Size" xml:space="preserve">
     <value>Size</value>
   </data>
-  <data name="SorryYouCantDeleteBanner" xml:space="preserve">
-    <value>Sorry! You can't delete the banner having total request greater than 0!</value>
-  </data>
-  <data name="SorryYouCantDeleteText" xml:space="preserve">
-    <value>Sorry! You can't delete the text having total request greater than 0!</value>
-  </data>
-  <data name="SortBy" xml:space="preserve">
+	<data name="SortBy" xml:space="preserve">
     <value>Sort By</value>
   </data>
-  <data name="SP" xml:space="preserve">
+	<data name="SP" xml:space="preserve">
     <value>SB</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
+	<data name="Spanish" xml:space="preserve">
     <value>Español</value>
   </data>
-  <data name="Sportsbook" xml:space="preserve">
+	<data name="Sportsbook" xml:space="preserve">
     <value>Sportsbook</value>
   </data>
-  <data name="SPTurnover" xml:space="preserve">
+	<data name="SPTurnover" xml:space="preserve">
     <value>SB Turnover</value>
   </data>
-  <data name="State" xml:space="preserve">
+	<data name="State" xml:space="preserve">
     <value>State</value>
   </data>
-  <data name="StatementHistory" xml:space="preserve">
+	<data name="StatementHistory" xml:space="preserve">
     <value>Statement</value>
   </data>
-  <data name="Statistics" xml:space="preserve">
+	<data name="Statistics" xml:space="preserve">
     <value>Statistics</value>
   </data>
-  <data name="Status" xml:space="preserve">
+	<data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="Su" xml:space="preserve">
+	<data name="Su" xml:space="preserve">
     <value>Su</value>
   </data>
-  <data name="SubCategory" xml:space="preserve">
+	<data name="SubCategory" xml:space="preserve">
     <value>Sub Category </value>
   </data>
-  <data name="Subject" xml:space="preserve">
+	<data name="Subject" xml:space="preserve">
     <value>Subject</value>
   </data>
-  <data name="Submit" xml:space="preserve">
+	<data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
-  <data name="SubTotal" xml:space="preserve">
+	<data name="SubTotal" xml:space="preserve">
     <value>Sub Total</value>
   </data>
-  <data name="SubTotalIn" xml:space="preserve">
+	<data name="SubTotalIn" xml:space="preserve">
     <value>Sub Total in {0}</value>
   </data>
-  <data name="SuccAddText" xml:space="preserve">
+	<data name="SuccAddText" xml:space="preserve">
     <value>Your text has been added successfully!</value>
   </data>
-  <data name="SuccNoteAdd" xml:space="preserve">
+	<data name="SuccNoteAdd" xml:space="preserve">
     <value>The note has been added successfully.</value>
   </data>
-  <data name="SuccRemoveMem" xml:space="preserve">
+	<data name="SuccRemoveMem" xml:space="preserve">
     <value>Member has been removed suseccfully!</value>
   </data>
-  <data name="SystemCurrencyCode" xml:space="preserve">
-    <value>System Currency Code</value>
-  </data>
-  <data name="TaskWaitingApp" xml:space="preserve">
+	<data name="TaskWaitingApp" xml:space="preserve">
     <value>Tasks waiting for approval</value>
   </data>
-  <data name="Text" xml:space="preserve">
+	<data name="Text" xml:space="preserve">
     <value>Text Box</value>
   </data>
-  <data name="TextBoxFieldIsRequired" xml:space="preserve">
+	<data name="TextBoxFieldIsRequired" xml:space="preserve">
     <value>The Text Box field is required.</value>
   </data>
-  <data name="TextList" xml:space="preserve">
+	<data name="TextList" xml:space="preserve">
     <value>Text List</value>
   </data>
-  <data name="Th" xml:space="preserve">
+	<data name="Th" xml:space="preserve">
     <value>Th</value>
   </data>
-  <data name="Thai" xml:space="preserve">
+	<data name="Thai" xml:space="preserve">
     <value>ภาษาไทย</value>
   </data>
-  <data name="Thumbnail" xml:space="preserve">
-    <value>Thumbnail</value>
-  </data>
-  <data name="Tier" xml:space="preserve">
+	<data name="Tier" xml:space="preserve">
     <value>Tier</value>
   </data>
-  <data name="TierSetting" xml:space="preserve">
+	<data name="TierSetting" xml:space="preserve">
     <value>Tier Setting</value>
   </data>
-  <data name="TierSettingAtLeastTier" xml:space="preserve">
+	<data name="TierSettingAtLeastTier" xml:space="preserve">
     <value>Tier Setting must have at least 1 tier.</value>
   </data>
-  <data name="To" xml:space="preserve">
+	<data name="To" xml:space="preserve">
     <value>To</value>
   </data>
-  <data name="ToDate" xml:space="preserve">
+	<data name="ToDate" xml:space="preserve">
     <value>To</value>
   </data>
-  <data name="Today" xml:space="preserve">
+	<data name="Today" xml:space="preserve">
     <value>Today</value>
   </data>
-  <data name="ToggleSubTotal" xml:space="preserve">
+	<data name="ToggleSubTotal" xml:space="preserve">
     <value>Collapse/Expand Sub Total</value>
   </data>
-  <data name="Total" xml:space="preserve">
+	<data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
-  <data name="TotalActive" xml:space="preserve">
+	<data name="TotalActive" xml:space="preserve">
     <value>Total Active Members</value>
   </data>
-  <data name="TotalAdjustment" xml:space="preserve">
+	<data name="TotalAdjustment" xml:space="preserve">
     <value>Total Adjustment</value>
   </data>
-  <data name="TotalIn" xml:space="preserve">
+	<data name="TotalIn" xml:space="preserve">
     <value>Total in {0}</value>
   </data>
-  <data name="TotalBonus" xml:space="preserve">
+	<data name="TotalBonus" xml:space="preserve">
     <value>Total Bonus</value>
   </data>
-  <data name="TotalClicks" xml:space="preserve">
+	<data name="TotalClicks" xml:space="preserve">
     <value>Total Clicks</value>
   </data>
-  <data name="TotalDeposit" xml:space="preserve">
+	<data name="TotalDeposit" xml:space="preserve">
     <value>Total Deposit</value>
   </data>
-  <data name="TotalMonthly" xml:space="preserve">
+	<data name="TotalMonthly" xml:space="preserve">
     <value>Total Monthly</value>
   </data>
-  <data name="TotalNetWinlost" xml:space="preserve">
+	<data name="TotalNetWinlost" xml:space="preserve">
     <value>Total Net Win Loss</value>
   </data>
-  <data name="TotalPayment" xml:space="preserve">
+	<data name="TotalPayment" xml:space="preserve">
     <value>Total Payment</value>
   </data>
-  <data name="TotalPSPFees" xml:space="preserve">
+	<data name="TotalPSPFees" xml:space="preserve">
     <value>Total PSP fees</value>
   </data>
-  <data name="TotalQM" xml:space="preserve">
+	<data name="TotalQM" xml:space="preserve">
     <value>Total QM</value>
   </data>
-  <data name="TotalQualifiedMembers" xml:space="preserve">
+	<data name="TotalQualifiedMembers" xml:space="preserve">
     <value>Total Qualified Active Members</value>
   </data>
-  <data name="TotalRangeIn" xml:space="preserve">
-    <value>Total {0} in {1}</value>
-  </data>
-  <data name="TotalRegister" xml:space="preserve">
+	<data name="TotalRegister" xml:space="preserve">
     <value>Total Registers</value>
   </data>
-  <data name="TotalRequest" xml:space="preserve">
+	<data name="TotalRequest" xml:space="preserve">
     <value>Total Request</value>
   </data>
-  <data name="TotalTransactions" xml:space="preserve">
-    <value>Total Transactions</value>
-  </data>
-  <data name="TotalTurnover" xml:space="preserve">
+	<data name="TotalTurnover" xml:space="preserve">
     <value>Total Turnover</value>
   </data>
-  <data name="TotalWinlost" xml:space="preserve">
+	<data name="TotalWinlost" xml:space="preserve">
     <value>Total Win Loss</value>
   </data>
-  <data name="TotalWithdrawal" xml:space="preserve">
+	<data name="TotalWithdrawal" xml:space="preserve">
     <value>Total Withdrawal</value>
   </data>
-  <data name="TrackingCode" xml:space="preserve">
+	<data name="TrackingCode" xml:space="preserve">
     <value>Tracking Code</value>
   </data>
-  <data name="TrackingRate" xml:space="preserve">
+	<data name="TrackingRate" xml:space="preserve">
     <value>Tracking Rate (Unique/Total)</value>
   </data>
-  <data name="TrackingStatistics" xml:space="preserve">
+	<data name="TrackingStatistics" xml:space="preserve">
     <value>Tracking Statistics</value>
   </data>
-  <data name="TransactionDate" xml:space="preserve">
+	<data name="TransactionDate" xml:space="preserve">
     <value>Transaction Date</value>
   </data>
-  <data name="TransactionsId" xml:space="preserve">
-    <value>Transaction ID</value>
-  </data>
-  <data name="TransferAll" xml:space="preserve">
-    <value>Transfer All</value>
-  </data>
-  <data name="TransferAmount" xml:space="preserve">
+	<data name="TransferAmount" xml:space="preserve">
     <value>Transfer Amount</value>
   </data>
-  <data name="TransferTo" xml:space="preserve">
+	<data name="TransferTo" xml:space="preserve">
     <value>Transfer To</value>
   </data>
-  <data name="TransId" xml:space="preserve">
+	<data name="TransId" xml:space="preserve">
     <value>Trxn.ID</value>
   </data>
-  <data name="Translations" xml:space="preserve">
+	<data name="Translations" xml:space="preserve">
     <value>Translations</value>
   </data>
-  <data name="TransType" xml:space="preserve">
+	<data name="TransType" xml:space="preserve">
     <value>Transaction Type</value>
   </data>
-  <data name="Tu" xml:space="preserve">
+	<data name="Tu" xml:space="preserve">
     <value>Tu</value>
   </data>
-  <data name="Turnover" xml:space="preserve">
+	<data name="Turnover" xml:space="preserve">
     <value>Turnover</value>
   </data>
-  <data name="Type" xml:space="preserve">
+	<data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
-  <data name="UnauthorizedMsg" xml:space="preserve">
+	<data name="UnauthorizedMsg" xml:space="preserve">
     <value>Your session has timed out or your request is not authorized</value>
   </data>
-  <data name="UnderMaintenance" xml:space="preserve">
+	<data name="UnderMaintenance" xml:space="preserve">
     <value>Under Maintenance</value>
   </data>
-  <data name="UniqueClicks" xml:space="preserve">
+	<data name="UniqueClicks" xml:space="preserve">
     <value>Unique Clicks</value>
   </data>
-  <data name="UnitPerBaseCurrency" xml:space="preserve">
+	<data name="UnitPerBaseCurrency" xml:space="preserve">
     <value>Unit/1 {0}</value>
   </data>
-  <data name="Units" xml:space="preserve">
+	<data name="Units" xml:space="preserve">
     <value>Units</value>
   </data>
-  <data name="UnknownAffiliate" xml:space="preserve">
+	<data name="UnknownAffiliate" xml:space="preserve">
     <value>Unknown Affiliate</value>
   </data>
-  <data name="Unlock" xml:space="preserve">
+	<data name="Unlock" xml:space="preserve">
     <value>Unlock</value>
   </data>
-  <data name="UpdAffSuccess" xml:space="preserve">
+	<data name="UpdAffSuccess" xml:space="preserve">
     <value>{0} has been updated successfully!</value>
   </data>
-  <data name="Update" xml:space="preserve">
+	<data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>
-  <data name="UpdateAffDomain" xml:space="preserve">
+	<data name="UpdateAffDomain" xml:space="preserve">
     <value>Update Affiliate Domain</value>
   </data>
-  <data name="UpdateAffType" xml:space="preserve">
+	<data name="UpdateAffType" xml:space="preserve">
     <value>Update Affiliate Type</value>
   </data>
-  <data name="UpdateConfiguration" xml:space="preserve">
+	<data name="UpdateConfiguration" xml:space="preserve">
     <value>Update configuration</value>
   </data>
-  <data name="UpdateCountry" xml:space="preserve">
+	<data name="UpdateCountry" xml:space="preserve">
     <value>Update country</value>
   </data>
-  <data name="UpdateDate" xml:space="preserve">
+	<data name="UpdateDate" xml:space="preserve">
     <value>Updated Date</value>
   </data>
-  <data name="UpdatedBy" xml:space="preserve">
+	<data name="UpdatedBy" xml:space="preserve">
     <value>Updated By</value>
   </data>
-  <data name="UpdateLanguage" xml:space="preserve">
+	<data name="UpdateLanguage" xml:space="preserve">
     <value>Update language</value>
   </data>
-  <data name="UpdatePayment" xml:space="preserve">
+	<data name="UpdatePayment" xml:space="preserve">
     <value>Update Payment</value>
   </data>
-  <data name="UpdatePermissionSucc" xml:space="preserve">
+	<data name="UpdatePermissionSucc" xml:space="preserve">
     <value>The Permission has been updated successfully!</value>
   </data>
-  <data name="UpdateProduct" xml:space="preserve">
+	<data name="UpdateProduct" xml:space="preserve">
     <value>Update Product</value>
   </data>
-  <data name="UpdateRolePolicyErr" xml:space="preserve">
+	<data name="UpdateRolePolicyErr" xml:space="preserve">
     <value>You are not authorized to access this function.</value>
   </data>
-  <data name="UpdateRolePolicySucc" xml:space="preserve">
+	<data name="UpdateRolePolicySucc" xml:space="preserve">
     <value>Role policy has been updated successfully!</value>
   </data>
-  <data name="UpdateStaSucc" xml:space="preserve">
+	<data name="UpdateStaSucc" xml:space="preserve">
     <value>The status has been updated successfully!</value>
   </data>
-  <data name="UpdateSucc" xml:space="preserve">
+	<data name="UpdateSucc" xml:space="preserve">
     <value>Updated successfully.</value>
   </data>
-  <data name="UpdateUserSucc" xml:space="preserve">
+	<data name="UpdateUserSucc" xml:space="preserve">
     <value>has been updated successfully!</value>
   </data>
-  <data name="Upload" xml:space="preserve">
+	<data name="Upload" xml:space="preserve">
     <value>Upload</value>
   </data>
-  <data name="UploadExcelFile" xml:space="preserve">
+	<data name="UploadExcelFile" xml:space="preserve">
     <value>Upload Excel File</value>
   </data>
-  <data name="UpToNow" xml:space="preserve">
+	<data name="UpToNow" xml:space="preserve">
     <value>Up To Now</value>
   </data>
-  <data name="UsdEqv" xml:space="preserve">
+	<data name="UsdEqv" xml:space="preserve">
     <value>Eqv</value>
   </data>
-  <data name="UsePrivateGroup" xml:space="preserve">
+	<data name="UsePrivateGroup" xml:space="preserve">
     <value>Use private group</value>
   </data>
-  <data name="UserManagement" xml:space="preserve">
+	<data name="UserManagement" xml:space="preserve">
     <value>User Management</value>
   </data>
-  <data name="Username" xml:space="preserve">
+	<data name="Username" xml:space="preserve">
     <value>Username</value>
   </data>
-  <data name="UsernameRequired" xml:space="preserve">
+	<data name="UsernameRequired" xml:space="preserve">
     <value>Username is required!</value>
   </data>
-  <data name="UusMarketRate" xml:space="preserve">
+	<data name="UusMarketRate" xml:space="preserve">
     <value>UUS market rate</value>
   </data>
-  <data name="UusRate" xml:space="preserve">
+	<data name="UusRate" xml:space="preserve">
     <value>UUS rate</value>
   </data>
-  <data name="ValidDate" xml:space="preserve">
+	<data name="ValidDate" xml:space="preserve">
     <value>Please enter a valid date</value>
   </data>
-  <data name="ValidMonth" xml:space="preserve">
+	<data name="ValidMonth" xml:space="preserve">
     <value>Please enter a valid month</value>
   </data>
-  <data name="ValidQualifiedAmount" xml:space="preserve">
+	<data name="ValidQualifiedAmount" xml:space="preserve">
     <value>Please input a valid qualified amount (greater than 0)!</value>
   </data>
-  <data name="ValidTypes" xml:space="preserve">
+	<data name="ValidTypes" xml:space="preserve">
     <value>Valid Types</value>
   </data>
-  <data name="ValidUsername" xml:space="preserve">
+	<data name="ValidUsername" xml:space="preserve">
     <value>Username must be [a-z] [0-9] characters.</value>
   </data>
-  <data name="ValidYear" xml:space="preserve">
+	<data name="ValidYear" xml:space="preserve">
     <value>Please enter a valid 4 digit year between {a} and {b}</value>
   </data>
-  <data name="Value" xml:space="preserve">
+	<data name="Value" xml:space="preserve">
     <value>Value</value>
   </data>
-  <data name="ValueFieldIsRequired" xml:space="preserve">
+	<data name="ValueFieldIsRequired" xml:space="preserve">
     <value>The Value field is required.</value>
   </data>
-  <data name="Vietnamese" xml:space="preserve">
+	<data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
   </data>
-  <data name="View" xml:space="preserve">
+	<data name="View" xml:space="preserve">
     <value>View</value>
   </data>
-  <data name="ViewAffiliateWebsite" xml:space="preserve">
+	<data name="ViewAffiliateWebsite" xml:space="preserve">
     <value>View in affiliate website internally</value>
   </data>
-  <data name="ViewAllAccount" xml:space="preserve">
+	<data name="ViewAllAccount" xml:space="preserve">
     <value>View All Accounts</value>
   </data>
-  <data name="ViewDetail" xml:space="preserve">
+	<data name="ViewDetail" xml:space="preserve">
     <value>View Detail</value>
   </data>
-  <data name="ViewLog" xml:space="preserve">
+	<data name="ViewLog" xml:space="preserve">
     <value>View Log</value>
   </data>
-  <data name="ViewOriginalSize" xml:space="preserve">
+	<data name="ViewOriginalSize" xml:space="preserve">
     <value>View original size.</value>
   </data>
-  <data name="VisibleAlsoToAffiliate" xml:space="preserve">
+	<data name="VisibleAlsoToAffiliate" xml:space="preserve">
     <value>Visible also to affiliate</value>
   </data>
-  <data name="VisibleOnlyToAdmin" xml:space="preserve">
+	<data name="VisibleOnlyToAdmin" xml:space="preserve">
     <value>Visible only to admin</value>
   </data>
-  <data name="VisitWebsite" xml:space="preserve">
+	<data name="VisitWebsite" xml:space="preserve">
     <value>Visit this website</value>
   </data>
-  <data name="We" xml:space="preserve">
-    <value>We</value>
-  </data>
-  <data name="WebsiteUrl" xml:space="preserve">
+	<data name="WebsiteUrl" xml:space="preserve">
     <value>Please input Website URL</value>
   </data>
-  <data name="WeHave" xml:space="preserve">
-    <value>We have </value>
-  </data>
-  <data name="Welcome" xml:space="preserve">
+	<data name="Welcome" xml:space="preserve">
     <value>Welcome</value>
   </data>
-  <data name="Winloss" xml:space="preserve">
+	<data name="Winloss" xml:space="preserve">
     <value>Winloss</value>
   </data>
-  <data name="Withdrawal" xml:space="preserve">
+	<data name="Withdrawal" xml:space="preserve">
     <value>Withdrawal</value>
   </data>
-  <data name="Write" xml:space="preserve">
+	<data name="Write" xml:space="preserve">
     <value>Write</value>
   </data>
-  <data name="Year" xml:space="preserve">
+	<data name="Year" xml:space="preserve">
     <value>Year</value>
   </data>
-  <data name="Yes" xml:space="preserve">
+	<data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
-  <data name="Yesterday" xml:space="preserve">
+	<data name="Yesterday" xml:space="preserve">
     <value>Yesterday</value>
   </data>
-  <data name="YouAreNotAuthorized" xml:space="preserve">
+	<data name="YouAreNotAuthorized" xml:space="preserve">
     <value>You are not authorized to access this page.</value>
   </data>
-  <data name="YouDontHaveMonthlyTransfer" xml:space="preserve">
+	<data name="YouDontHaveMonthlyTransfer" xml:space="preserve">
     <value>Sorrry! You don't have monthly transfer permission.</value>
   </data>
-  <data name="UncheckPendingDisapprovedAffiliates" xml:space="preserve">
+	<data name="UncheckPendingDisapprovedAffiliates" xml:space="preserve">
     <value>Please uncheck affiliates which has Pending/Disapproved status!</value>
   </data>
-  <data name="AlreadyTransfersForThisMonth" xml:space="preserve">
-    <value>Please check the data. Transfers have been done for {0}!</value>
-  </data>
-  <data name="DontEnterSpecialCharacters" xml:space="preserve">
+	<data name="DontEnterSpecialCharacters" xml:space="preserve">
     <value>Please don't enter special characters, such as ~!#$%^&amp;*();&lt;&gt;{}[]| in text box.</value>
   </data>
-  <data name="MemberNotDepositOnMemberSite" xml:space="preserve">
+	<data name="MemberNotDepositOnMemberSite" xml:space="preserve">
     <value>Sorry. This member {0} has not deposited on the member site.</value>
   </data>
-  <data name="OccurMonthlyTransferError" xml:space="preserve">
+	<data name="OccurMonthlyTransferError" xml:space="preserve">
     <value>Occur the error when running monthly transfer.</value>
   </data>
-  <data name="ChooseAtLeastOneProduct" xml:space="preserve">
+	<data name="ChooseAtLeastOneProduct" xml:space="preserve">
     <value>Please choose at least one product!</value>
   </data>
-  <data name="PlaytechCasino" xml:space="preserve">
+	<data name="PlaytechCasino" xml:space="preserve">
     <value>Playtech Casino</value>
   </data>
-  <data name="AffiliateCommission" xml:space="preserve">
+	<data name="AffiliateCommission" xml:space="preserve">
     <value>Affiliate Commission</value>
   </data>
-  <data name="OccurErrorWhenCallWebAPI" xml:space="preserve">
+	<data name="OccurErrorWhenCallWebAPI" xml:space="preserve">
     <value>Occur the error when calling web API!</value>
   </data>
-  <data name="PCNetGaming" xml:space="preserve">
+	<data name="PCNetGaming" xml:space="preserve">
     <value>PC.Net Gaming</value>
   </data>
-  <data name="PShare" xml:space="preserve">
+	<data name="PShare" xml:space="preserve">
     <value>P.Share</value>
   </data>
-  <data name="PWin" xml:space="preserve">
+	<data name="PWin" xml:space="preserve">
     <value>P.Win</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>Member Winloss</value>
-  </data>
-  <data name="PlaytechCasinoNetGaming" xml:space="preserve">
+	<data name="PlaytechCasinoNetGaming" xml:space="preserve">
     <value>Playtech Casino Net Gaming</value>
   </data>
-  <data name="ProgressiveShare" xml:space="preserve">
+	<data name="ProgressiveShare" xml:space="preserve">
     <value>Progressive Share</value>
   </data>
-  <data name="ProgressiveWin" xml:space="preserve">
+	<data name="ProgressiveWin" xml:space="preserve">
     <value>Progressive Win</value>
   </data>
-  <data name="ErrConfirmPasswordRequired" xml:space="preserve">
-    <value>Confirm password is required</value>
-  </data>
-  <data name="CompanyWinLossReportInfo" xml:space="preserve">
+	<data name="CompanyWinLossReportInfo" xml:space="preserve">
     <value>&lt;ul&gt;
                 &lt;li&gt;Company W/L = Sum of Member Win Loss on selected products&lt;/li&gt;
                 &lt;li&gt;PSP (Payment Service Provider Fee) = PSP Rate * (Deposit * Deposit Rate + Withdrawal * Withdrawal Rate)&lt;/li&gt;
@@ -2560,43 +2464,37 @@
             &lt;/ul&gt;
     </value>
   </data>
-  <data name="PCNetGamingInfo" xml:space="preserve">
-    <value>&lt;li&gt;PC. Net Gaming = - Member Win Loss - Progressive Share&lt;/li&gt;</value>
-  </data>
-  <data name="UpdateExRate" xml:space="preserve">
+	<data name="UpdateExRate" xml:space="preserve">
     <value>Update exchange rate</value>
   </data>
-  <data name="SharingFee" xml:space="preserve">
+	<data name="SharingFee" xml:space="preserve">
     <value>Sharing Fee</value>
   </data>
-  <data name="AffiliateWinLoss" xml:space="preserve">
+	<data name="AffiliateWinLoss" xml:space="preserve">
     <value>Affiliate Win Loss</value>
   </data>
-  <data name="AffiliateWinLossReport" xml:space="preserve">
-    <value>Affiliate Win Loss Report</value>
-  </data>
-  <data name="PlayerComm" xml:space="preserve">
+	<data name="MemberComm" xml:space="preserve">
     <value>Member Comm</value>
   </data>
-  <data name="PlayerCommission" xml:space="preserve">
+	<data name="MemberCommission" xml:space="preserve">
     <value>Member Commission</value>
   </data>
-  <data name="AffiliateMonth" xml:space="preserve">
+	<data name="AffiliateMonth" xml:space="preserve">
     <value>Affiliate, Month</value>
   </data>
-  <data name="Transfered" xml:space="preserve">
+	<data name="Transfered" xml:space="preserve">
     <value>Transfered</value>
   </data>
-  <data name="TransferState" xml:space="preserve">
+	<data name="TransferState" xml:space="preserve">
     <value>Transfer State</value>
   </data>
-  <data name="VirtualSport" xml:space="preserve">
-    <value>Virtual Sport</value>
+	<data name="VirtualSports" xml:space="preserve">
+    <value>Virtual Sports</value>
   </data>
-  <data name="NetWinloss" xml:space="preserve">
+	<data name="NetWinloss" xml:space="preserve">
     <value>Net Win Loss</value>
   </data>
-  <data name="AffiliateCommissionReportInfo" xml:space="preserve">
+	<data name="AffiliateCommissionReportInfo" xml:space="preserve">
     <value>&lt;ul&gt;
     &lt;li&gt;Net Win Loss = - Member Win Loss - Member Commission&lt;/li&gt;
 	&lt;li&gt;QM (Qualified Member) = Number of members who have turnover in that month greater than or equal to the defined amount
@@ -2605,117 +2503,117 @@
     
 &lt;/ul&gt;</value>
   </data>
-  <data name="AffiliateWinLossReportInfo" xml:space="preserve">
+	<data name="AffiliateWinLossReportInfo" xml:space="preserve">
     <value>&lt;ul&gt;
 	&lt;li&gt;Affiliate Win Loss = Company Gross Win Loss over Affiliate&lt;/li&gt;
 	{0}
 &lt;/ul&gt;</value>
   </data>
-  <data name="EmailAddress" xml:space="preserve">
+	<data name="EmailAddress" xml:space="preserve">
     <value>Email Address</value>
   </data>
-  <data name="MemberInformation" xml:space="preserve">
+	<data name="MemberInformation" xml:space="preserve">
     <value>Member Information</value>
   </data>
-  <data name="Available" xml:space="preserve">
+	<data name="Available" xml:space="preserve">
     <value>Available</value>
   </data>
-  <data name="OtherProductSharingFeeInfo" xml:space="preserve">
+	<data name="OtherProductSharingFeeInfo" xml:space="preserve">
     <value>&lt;ul&gt;
 	&lt;li&gt;Net Win Loss = - Member Win Loss - Member Commission&lt;/li&gt;
 	&lt;li&gt;Affiliate Commission = Net Win Loss * Commission Rate&lt;/li&gt;	
     &lt;/ul&gt;</value>
   </data>
-  <data name="SportsbookSharingFeeInfo" xml:space="preserve">
+	<data name="SportsbookSharingFeeInfo" xml:space="preserve">
     <value>&lt;ul&gt;
 	&lt;li&gt;Net Win Loss = - Member Win Loss - Marketing - PSP - Odds Fee - Member Commission&lt;/li&gt;
 	&lt;li&gt;Affiliate Commission = (Net Win Loss - Bonus * Bonus Rate) * Commission Rate&lt;/li&gt;
     &lt;/ul&gt;</value>
   </data>
-  <data name="AffiliateListInfo" xml:space="preserve">
+	<data name="AffiliateListInfo" xml:space="preserve">
     <value>&lt;ul&gt;
 	&lt;li&gt;BF: Current Affiliate Balance Brought Forward&lt;/li&gt;
     &lt;/ul&gt;</value>
   </data>
-  <data name="Marketing" xml:space="preserve">
+	<data name="Marketing" xml:space="preserve">
     <value>Marketing</value>
   </data>
-  <data name="OddsFee" xml:space="preserve">
+	<data name="OddsFee" xml:space="preserve">
     <value>Odds Fee</value>
   </data>
-  <data name="CompanyWinLossByProduct" xml:space="preserve">
+	<data name="CompanyWinLossByProduct" xml:space="preserve">
     <value>Company Win Loss By Product</value>
   </data>
-  <data name="CompanyWinLossOverview" xml:space="preserve">
+	<data name="CompanyWinLossOverview" xml:space="preserve">
     <value>Company Win Loss Overview</value>
   </data>
-  <data name="AffiliateWinLossByProduct" xml:space="preserve">
+	<data name="AffiliateWinLossByProduct" xml:space="preserve">
     <value>Affiliate Win Loss By Product</value>
   </data>
-  <data name="AffiliateWinLossOverview" xml:space="preserve">
+	<data name="AffiliateWinLossOverview" xml:space="preserve">
     <value>Affiliate Win Loss Overview</value>
   </data>
-  <data name="MemberWinLossByProduct" xml:space="preserve">
+	<data name="MemberWinLossByProduct" xml:space="preserve">
     <value>Member Win Loss By Product</value>
   </data>
-  <data name="MemberWinLossOverview" xml:space="preserve">
+	<data name="MemberWinLossOverview" xml:space="preserve">
     <value>Member Win Loss Overview</value>
   </data>
-  <data name="ConfirmDelDomainControl" xml:space="preserve">
+	<data name="ConfirmDelDomainControl" xml:space="preserve">
     <value>Are you sure you want to delete this domain control?</value>
   </data>
-  <data name="EditDomainControl" xml:space="preserve">
+	<data name="EditDomainControl" xml:space="preserve">
     <value>Edit Domain Control</value>
   </data>
-  <data name="Banner" xml:space="preserve">
+	<data name="Banner" xml:space="preserve">
     <value>Banner</value>
   </data>
-  <data name="AccountPolicyOfUser" xml:space="preserve">
+	<data name="AccountPolicyOfUser" xml:space="preserve">
     <value>Account Policy - {0}</value>
   </data>
-  <data name="GroupPolicy" xml:space="preserve">
+	<data name="GroupPolicy" xml:space="preserve">
     <value>Group Policy</value>
   </data>
-  <data name="GroupPolicyOfGroup" xml:space="preserve">
+	<data name="GroupPolicyOfGroup" xml:space="preserve">
     <value>Group Policy - {0}</value>
   </data>
-  <data name="RegisteredDate" xml:space="preserve">
+	<data name="RegisteredDate" xml:space="preserve">
     <value>Registered Date</value>
   </data>
-  <data name="TransactionID" xml:space="preserve">
+	<data name="TransactionID" xml:space="preserve">
     <value>Transaction ID</value>
   </data>
-  <data name="FDMTooltip" xml:space="preserve">
+	<data name="FDMTooltip" xml:space="preserve">
     <value>First Deposit Member</value>
   </data>
-  <data name="MaxAMTTooltip" xml:space="preserve">
+	<data name="MaxAMTTooltip" xml:space="preserve">
     <value>Maximum company net win loss amount for a month</value>
   </data>
-  <data name="MaxQMTooltip" xml:space="preserve">
+	<data name="MaxQMTooltip" xml:space="preserve">
     <value>Maximum qualified members</value>
   </data>
-  <data name="MinAMTTooltip" xml:space="preserve">
+	<data name="MinAMTTooltip" xml:space="preserve">
     <value>Minimum company net win loss amount for a month</value>
   </data>
-  <data name="MinQMTooltip" xml:space="preserve">
+	<data name="MinQMTooltip" xml:space="preserve">
     <value>Minimum qualified members</value>
   </data>
-  <data name="PSPTooltip" xml:space="preserve">
+	<data name="PSPTooltip" xml:space="preserve">
     <value>Payment Service Provider fee</value>
   </data>
-  <data name="BFTooltip" xml:space="preserve">
+	<data name="BFTooltip" xml:space="preserve">
     <value>Current Affiliate Balance Brought Forward</value>
   </data>
-  <data name="Code" xml:space="preserve">
+	<data name="Code" xml:space="preserve">
     <value>Code</value>
   </data>
-  <data name="CommissionRate" xml:space="preserve">
+	<data name="CommissionRate" xml:space="preserve">
     <value>Commission Rate</value>
   </data>
-  <data name="NATooltip" xml:space="preserve">
+	<data name="NATooltip" xml:space="preserve">
     <value>Not applicable</value>
   </data>
-  <data name="MemberWinLessReportInfo" xml:space="preserve">
+	<data name="MemberWinLessReportInfo" xml:space="preserve">
     <value>&lt;ul&gt;
                 &lt;li&gt;Member W/L = monthly Member Win Loss on selected products&lt;/li&gt;
                 &lt;li&gt;PSP (Payment Service Provider Fee) = PSP Rate * (Deposit * Deposit Rate + Withdrawal * Withdrawal Rate)&lt;/li&gt;
@@ -2725,16 +2623,199 @@
             
     </value>
   </data>
-  <data name="NumBannerInProgram" xml:space="preserve">
+	<data name="NumBannerInProgram" xml:space="preserve">
     <value>We have {0} banner(s) in the program</value>
   </data>
-  <data name="BetList" xml:space="preserve">
+	<data name="BetList" xml:space="preserve">
     <value>Bet List</value>
   </data>
-  <data name="BetListResults" xml:space="preserve">
+	<data name="BetListResults" xml:space="preserve">
     <value>Results</value>
   </data>
-  <data name="BetListTitle" xml:space="preserve">
+	<data name="BetListTitle" xml:space="preserve">
     <value>Bet List {0} - {1} - &lt;span&gt;View in {2}&lt;/span&gt;</value>
   </data>
+	<data name="Comm" xml:space="preserve">
+    <value>Commission</value>
+  </data>
+	<data name="CurrencyMustSame" xml:space="preserve">
+    <value>Currencies of affiliates must be same!</value>
+  </data>
+	<data name="Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
+	<data name="Item" xml:space="preserve">
+    <value>Item(s)</value>
+  </data>
+	<data name="Msg1002" xml:space="preserve">
+    <value>The A/C is closed due to 5 wrong password attempts.</value>
+  </data>
+	<data name="NumSelected" xml:space="preserve">
+    <value>{0} Selected</value>
+  </data>
+	<data name="PreferPayment" xml:space="preserve">
+    <value>Preferred Payment</value>
+  </data>
+	<data name="Realaccount" xml:space="preserve">
+    <value>Real account</value>
+  </data>
+	<data name="Kiosk" xml:space="preserve">
+    <value>Kiosk</value>
+  </data>
+	<data name="Testaccount" xml:space="preserve">
+    <value>Test account</value>
+  </data>
+	<data name="ITTestaccount" xml:space="preserve">
+    <value>IT-Test account</value>
+  </data>
+	<data name="EditCommissionGroup" xml:space="preserve">
+    <value>Edit Commission Group</value>
+  </data>
+	<data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+	<data name="Uncheck" xml:space="preserve">
+    <value>Uncheck</value>
+  </data>
+	<data name="Selected" xml:space="preserve">
+    <value>selected</value>
+  </data>
+	<data name="SelectAnOption" xml:space="preserve">
+    <value>Select an option</value>
+  </data>
+	<data name="WeHaveAffiliates" xml:space="preserve">
+    <value>We have &lt;strong&gt;{0}&lt;/strong&gt; affiliate(s) in the program.</value>
+  </data>
+	<data name="WeHaveMembers" xml:space="preserve">
+    <value>We have &lt;strong&gt;{0}&lt;/strong&gt; members in the program.</value>
+  </data>
+	<data name="HandHistoryDetails" xml:space="preserve">
+    <value>Hand History Details</value>
+  </data>
+	<data name="Player" xml:space="preserve">
+    <value>Player</value>
+  </data>
+	<data name="Casino" xml:space="preserve">
+    <value>Casino</value>
+  </data>
+	<data name="Racebook" xml:space="preserve">
+    <value>Racebook</value>
+  </data>
+	<data name="Baccarat" xml:space="preserve">
+    <value>Baccarat</value>
+  </data>
+	<data name="Blackjack" xml:space="preserve">
+    <value>Blackjack</value>
+  </data>
+	<data name="CasinoBonus" xml:space="preserve">
+    <value>Casino Bonus</value>
+  </data>
+	<data name="Roulettle" xml:space="preserve">
+    <value>Roulettle</value>
+  </data>
+	<data name="SicBo" xml:space="preserve">
+    <value>Sic Bo</value>
+  </data>
+	<data name="BasketBall" xml:space="preserve">
+    <value>Basketball</value>
+  </data>
+	<data name="SBBonus" xml:space="preserve">
+    <value>SB Bonus</value>
+  </data>
+	<data name="Soccer" xml:space="preserve">
+    <value>Soccer</value>
+  </data>
+	<data name="Tennis" xml:space="preserve">
+    <value>Tennis</value>
+  </data>
+	<data name="Slot" xml:space="preserve">
+    <value>Slot</value>
+  </data>
+	<data name="CollapseExpandDataRows" xml:space="preserve">
+    <value>Collapse/Expand data rows</value>
+  </data>
+	<data name="PlayerComm" xml:space="preserve">
+    <value>Member Comm</value>
+  </data>
+	<data name="TotalAll" xml:space="preserve">
+    <value>Total All</value>
+  </data>
+	<data name="TotalAllIn" xml:space="preserve">
+    <value>Total All in {0}</value>
+  </data>
+	<data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+	<data name="Flash" xml:space="preserve">
+    <value>Flash</value>
+  </data>
+	<data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
+	<data name="Currentmonthstatistics" xml:space="preserve">
+    <value>Current month statistics</value>
+  </data>
+	<data name="SettingforCommissionGroup" xml:space="preserve">
+    <value>Setting for Commission Group</value>
+  </data>
+	<data name="UserInfo" xml:space="preserve">
+    <value>User Info</value>
+  </data>
+	<data name="Transaction" xml:space="preserve">
+    <value>Transaction</value>
+  </data>
+	<data name="Payout" xml:space="preserve">
+    <value>Payout</value>
+  </data>
+	<data name="Permission" xml:space="preserve">
+    <value>Permission</value>
+  </data>
+	<data name="UserNote" xml:space="preserve">
+    <value>User Note</value>
+  </data>
+	<data name="LoginAdmin" xml:space="preserve">
+    <value>Login Admin</value>
+  </data>
+	<data name="LoginAffiliate" xml:space="preserve">
+    <value>Login Affiliate</value>
+  </data>
+	<data name="LogoutAdmin" xml:space="preserve">
+    <value>Logout Admin</value>
+  </data>
+	<data name="LogoutAffiliate" xml:space="preserve">
+    <value>Logout Affiliate</value>
+  </data>
+	<data name="UserControl" xml:space="preserve">
+    <value>User Control</value>
+  </data>
+	<data name="AffiliatePortal" xml:space="preserve">
+    <value>Affiliate Portal</value>
+  </data>
+	<data name="UnCalculatedMonth" xml:space="preserve">
+    <value>UnCalculated Month</value>
+  </data>
+	<data name="Requestpayout" xml:space="preserve">
+    <value>Request payout</value>
+  </data>
+	<data name="CurrencyRates" xml:space="preserve">
+    <value>Currency Rates</value>
+  </data>
+	<data name="MonthlyTransfer" xml:space="preserve">
+    <value>Monthly Transfer</value>
+  </data>
+	<data name="CustomerSupportDepartment" xml:space="preserve">
+    <value>Customer Support Department</value>
+  </data>
+	<data name="Finance" xml:space="preserve">
+    <value>Finance</value>
+  </data>
+	<data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+	<data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+	<data name="MonthlyEarning" xml:space="preserve">
+		<value>Monthly Earning</value>
+	</data>
 </root>

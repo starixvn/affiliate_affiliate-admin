@@ -21,6 +21,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Utilities;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Core;
     using Fanex.AffiliateAdmin.Services;
     using Models;
     using Resources;
@@ -42,6 +43,9 @@ namespace Fanex.AffiliateAdmin.Controller
         public AccountController()
             : this(null, null)
         {
+            ////Set default language
+            var langManager = new LanguageManager();
+            langManager.SetCulture(AppSession.Language);
         }
 
         /// <summary>

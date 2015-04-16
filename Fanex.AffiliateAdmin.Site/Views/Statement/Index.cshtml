@@ -158,7 +158,7 @@ affiliate-info
             { HeaderText: "@Lang.Status", Width: 80, Name: "Status", HeaderAlign: "center" },
             { HeaderText: "@Lang.CompletedDate", Width: 115, Name: "CompletedDateStr", HeaderAlign: "center", CellAlign: "center", 
                 Formatter: function (rIndex, record, cell, cellFormated) {
-                    if (record["Status"] === 'Processing') {
+                    if (record["OriginalStatus"] === 'Processing') {
                         return null;
                     }
                     return record['CompletedDateStr'];
@@ -173,7 +173,7 @@ affiliate-info
             showPager: true,
             indexNumberColumn: 0,
             rowCssClass: function(rowIndex, rowData) {
-            return rowData.Status.toLowerCase().replace('/', '');
+            return rowData.OriginalStatus.toLowerCase().replace('/', '');
         }
         };
         var TransType = @(MvcHtmlString.Create(new JavaScriptSerializer().Serialize(Model.TransTypeList)));

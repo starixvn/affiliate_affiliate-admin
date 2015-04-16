@@ -49,11 +49,19 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                return _customerPageList.Select(custPage => new SelectListItem
+                var list = new List<SelectListItem>();
+
+                foreach (var item in _customerPageList)
                 {
-                    Value = custPage.SValue,
-                    Text = custPage.SValue
-                }).ToList();
+                    var translated = Lang.ResourceManager.GetString(item.SValue);
+                    list.Add(new SelectListItem
+                        {
+                            Value = item.SValue,
+                            Text = string.IsNullOrEmpty(translated) ? item.SValue : translated
+                        });
+                }
+
+                return list;
             }
         }
 

@@ -22,16 +22,18 @@ namespace Fanex.AffiliateAdmin.Criterias.Configuration.Country
 
         [StringLength(6, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ExceedCharacters")]
         [RegularExpression(@"^([a-zA-Z-]+)$", ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "InvalidID")]
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "IDFieldIsRequired")]
         public string CountryID { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "NameFieldIsRequired")]
         public string CountryName { get; set; }
 
         public string Description { get; set; }
 
         public string Icon { get; set; }
 
+        [Range(0, short.MaxValue, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "DisplayOrderRange")]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "DisplayOrderFieldIsRequired")]
         public short DisplayOrder { get; set; }
 
         public bool IsEnabled { get; set; }

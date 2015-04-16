@@ -28,7 +28,7 @@ namespace Fanex.AffiliateAdmin.Models
 
         public string CountryID { get; set; }
 
-        public IEnumerable<Country> CountryList { get; set; }
+        public IEnumerable<DTO.Country> CountryList { get; set; }
 
         public IEnumerable<SelectListItem> CountryOptionList
         {
@@ -36,8 +36,8 @@ namespace Fanex.AffiliateAdmin.Models
             {
                 var selectItemList = CountryList.Select(t => new SelectListItem
                 {
-                    Text = t.CountryName,
                     Value = t.CountryID,
+                    Text = t.CountryID == "-" ? Resources.Country.Others : Resources.Country.ResourceManager.GetString(t.CountryID),
                     Selected = t.CountryID.Equals(CountryID)
                 }).ToList();
 

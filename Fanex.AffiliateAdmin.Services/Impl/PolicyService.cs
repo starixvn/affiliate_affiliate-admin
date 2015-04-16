@@ -11,6 +11,7 @@ namespace Fanex.AffiliateAdmin.Services
     using Core.Services;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -37,7 +38,15 @@ namespace Fanex.AffiliateAdmin.Services
         public IEnumerable<FunctionPolicy> GetUserPolicyList(UserPolicySelCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return GetData<FunctionPolicy>(criteria);
+            var result = GetData<FunctionPolicy>(criteria);
+
+            foreach (var policy in result)
+            {
+                var translated = Lang.ResourceManager.GetString(policy.FuncDesc.Replace(" ", string.Empty));
+                policy.FuncDesc = string.IsNullOrEmpty(translated) ? policy.FuncDesc : translated;
+            }
+
+            return result;
         }
 
         /// <summary>

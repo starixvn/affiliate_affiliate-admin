@@ -14,7 +14,8 @@
 
 @{
     var products = ViewBag.Products as List<byte>;
-    var selectedProducts =  AppSettings.Products
+
+    var selectedProducts = AppSettings.Products
                                       .Where(t => products.Any(p => p == t.ProductID))
                                       .ToList();
     var productCount = selectedProducts.Count;

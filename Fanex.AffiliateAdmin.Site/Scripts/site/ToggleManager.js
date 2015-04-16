@@ -43,7 +43,7 @@
         var currencyClass = getCurrencyClass(element);
 
         if (rowspan > 1) {
-            $(element).find('.table-cell').prepend("<div class='toggle-indicator expand' title='{0}'></div>".format("Collapse/expand data rows."));
+            $(element).find('.table-cell').prepend("<div class='toggle-indicator expand' title='{0}'></div>".format(window.Lang.CollapseExpandDataRows));
             $('.{0} .toggle-indicator'.format(toggleClass)).css({
                 position: 'absolute',
                 left: halfWidth,

@@ -28,17 +28,14 @@ namespace Fanex.AffiliateAdmin.Core.Options
         {
             get
             {
-                if (_affiliateStatuses == null)
+                _affiliateStatuses = new List<SelectListItem>
                 {
-                    _affiliateStatuses = new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "approved", Text = "Approved" },
-                        new SelectListItem { Value = "pending", Text = "Pending" },
-                        new SelectListItem { Value = "disapproved", Text = "Disapproved" },
-                        new SelectListItem { Value = "closed", Text = "Closed" },
-                        new SelectListItem { Value = "lockedOut", Text = "Locked" }
-                    };
-                }
+                    new SelectListItem { Value = "approved", Text = Lang.Approved },
+                    new SelectListItem { Value = "pending", Text = Lang.Pending },
+                    new SelectListItem { Value = "disapproved", Text = Lang.Disapproved },
+                    new SelectListItem { Value = "closed", Text = Lang.Closed },
+                    new SelectListItem { Value = "lockedOut", Text = Lang.Locked }
+                };
 
                 return _affiliateStatuses;
             }

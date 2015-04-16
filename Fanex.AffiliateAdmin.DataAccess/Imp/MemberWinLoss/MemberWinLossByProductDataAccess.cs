@@ -14,6 +14,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
     using Criterias;
     using Data;
     using DTO;
+    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// Account data access.
@@ -55,7 +56,11 @@ namespace Fanex.AffiliateAdmin.DataAccess
         protected override void GetColumnExtra(IDataReader reader, MemberWinLossItem memberWinLoss)
         {
             memberWinLoss.ProductId = reader.ToInt("ProductID");
-            memberWinLoss.ProductName = reader.ToString("ProductName");
+
+            var productName = reader.ToString("ProductName");
+            var translatedProduct = Lang.ResourceManager.GetString(productName.Replace(" ", string.Empty));
+            memberWinLoss.ProductName = string.IsNullOrEmpty(translatedProduct) ? productName : translatedProduct;
+            memberWinLoss.OriginalProductName = productName;
         }
 
         protected override void GetColumnExtraInTotalResult(IDataReader reader, MemberWinLossItem memberWinLoss)

@@ -146,7 +146,7 @@ namespace Fanex.AffiliateAdmin.Core.Entities
             get
             {
                 var url = AdminSiteUrl.ToString();
-                var baseUrl = url.EndsWith("/") ? url.Substring(0, url.Length - 1) : url;
+                var baseUrl = url.EndsWith("/", StringComparison.OrdinalIgnoreCase) ? url.Substring(0, url.Length - 1) : url;
                 return baseUrl;
             }
         }

@@ -180,7 +180,7 @@ var COMMGROUP = function ($) {
                 var groupid = $(this).data("groupid");
                 var url = "CommGroup/Edit?groupid=" + groupid;
 
-                AFFILIATE.openDialogFrame(url, "Edit Commission Group", { width: 900, height: 700 });
+                AFFILIATE.openDialogFrame(url, MSG.EditCommissionGroup, { width: 900, height: 700 });
             });
 
             $("#gridId").on("click", "a.remove", function () {
@@ -213,7 +213,7 @@ var COMMGROUP = function ($) {
             //   var queryString = jQuery.param(param);
             var url = "CommGroup/Add?"; // +queryString;
 
-            AFFILIATE.openDialogFrame(url, "Add Commission Group", { width: 900, height: 700 });
+            AFFILIATE.openDialogFrame(url, MSG.AddCommissionGroup, { width: 900, height: 700 });
         },
         checkAll: function (value) {
             $('#gridId input[type=checkbox].check').prop('checked', value);
@@ -248,7 +248,7 @@ var COMMGROUP = function ($) {
                         $("#gridId").fanexGrid("hideColumns", gridOption, [16]);
                     }
 
-                    if (date.getMonth() == (new Date()).getMonth()) {
+                    if (date.getMonth() == (new Date()).getMonth() && date.getYear() == (new Date()).getYear()) {
                         // remove tooltips of two last columns
                         //$("#gridId tr ").find("td.free-grid-td-2 div,td.free-grid-td-16 div,td.free-grid-td-15 div").prop("title", "");
 

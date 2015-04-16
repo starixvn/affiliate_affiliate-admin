@@ -36,6 +36,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string Status { get; set; }
 
+        public string OriginalStatus { get; set; }
+
         public long RefId { get; set; }
 
         public string Username { get; set; }

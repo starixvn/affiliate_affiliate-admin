@@ -51,7 +51,11 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                return _transTypeList;
+                return _transTypeList.Select(trans => new TransType
+                {
+                    TypeId = trans.TypeId,
+                    TypeName = Lang.ResourceManager.GetString(trans.TypeName)
+                }).ToList();
             }
         }
 
@@ -59,13 +63,15 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                _transTypeList.Insert(0, new TransType { TypeId = 0, TypeName = Lang.All });
-
-                return _transTypeList.Select(trans => new SelectListItem
+                var translated = _transTypeList.Select(trans => new SelectListItem
                 {
                     Value = trans.TypeId != 0 ? trans.TypeId.ToString() : string.Empty,
-                    Text = trans.TypeName
+                    Text = Lang.ResourceManager.GetString(trans.TypeName)
                 }).ToList();
+
+                translated.Insert(0, new SelectListItem { Value = string.Empty, Text = Lang.All });
+
+                return translated;
             }
         }
 

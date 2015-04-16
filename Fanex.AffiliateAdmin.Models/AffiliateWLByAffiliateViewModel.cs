@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Models
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Options;
+    using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
@@ -29,7 +30,7 @@ namespace Fanex.AffiliateAdmin.Models
                      new SelectListItem { Text = Lang.ActiveMembers, Value = "0" },
                      new SelectListItem { Text = Lang.Affiliate, Value = "1" },
                      new SelectListItem { Text = Lang.BetCount, Value = "2" },
-                     new SelectListItem { Text = Lang.PlayerComm, Value = "3" },
+                     new SelectListItem { Text = Lang.MemberComm, Value = "3" },
                      new SelectListItem { Text = Lang.Deposit, Value = "4" },
                      new SelectListItem { Text = Lang.Month, Value = "5" },
                      new SelectListItem { Text = Lang.Turnover, Value = "6" },
@@ -122,7 +123,20 @@ namespace Fanex.AffiliateAdmin.Models
                                          ? AppSettings.Products.Where(t => t.IsEnabled).Select(t => t.ProductID)
                                          : productList;
 
-                return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);
+                var translatedProducts = new List<Product>();
+
+                foreach (var product in AppSettings.Products)
+                {
+                    var name = Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty));
+
+                    translatedProducts.Add(new Product
+                    {
+                        ProductID = product.ProductID,
+                        ProductName = string.IsNullOrEmpty(name) ? product.ProductName : name
+                    });
+                }
+
+                return new MultiSelectList(translatedProducts, "ProductID", "ProductName", selectedValues);
             }
         }
 

@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
     using System.Collections.Generic;
     using System.Data;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Common.Extensions;
 
     /// <summary>
@@ -55,6 +56,10 @@ namespace Fanex.AffiliateAdmin.DataAccess
                     CommissionPercent = reader.ToDecimal("CommissionPercent")
                 };
 
+                var productName = commission.ProductName;
+                var translatedProduct = Lang.ResourceManager.GetString(productName.Replace(" ", string.Empty));
+                commission.ProductName = string.IsNullOrEmpty(translatedProduct) ? productName : translatedProduct;
+
                 GetColumnExtra(reader, commission);
 
                 GetCommissionColumns(reader, commission, string.Empty);
@@ -89,6 +94,10 @@ namespace Fanex.AffiliateAdmin.DataAccess
                             CommissionPercent = reader.ToDecimal("CommissionPercent")
                         };
 
+                    var productName = commission.ProductName;
+                    var translatedProduct = Lang.ResourceManager.GetString(productName.Replace(" ", string.Empty));
+                    commission.ProductName = string.IsNullOrEmpty(translatedProduct) ? productName : translatedProduct;
+
                     GetColumnExtra(reader, commission);
 
                     GetCommissionColumns(reader, commission, string.Empty);
@@ -122,6 +131,10 @@ namespace Fanex.AffiliateAdmin.DataAccess
                             TotalQM = reader.ToInt("TotalQM"),
                             CommissionPercent = reader.ToDecimal("CommissionPercent")
                         };
+
+                    var productName = commission.ProductName;
+                    var translatedProduct = Lang.ResourceManager.GetString(productName.Replace(" ", string.Empty));
+                    commission.ProductName = string.IsNullOrEmpty(translatedProduct) ? productName : translatedProduct;
 
                     GetColumnExtra(reader, commission);
 

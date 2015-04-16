@@ -53,7 +53,7 @@
         @if (isNoCommissionGroup)
         {
             @Html.DropDownListFor(m => m.Currency, new SelectList(new List<Currency>(){ new Currency(){
-                CurrencyCode = "All", CurrencyID = 0 }}, "CurrencyID", "CurrencyCode"),
+                CurrencyCode = Lang.All, CurrencyID = 0 }}, "CurrencyID", "CurrencyCode"),
             currencyDropDownAttr)
         }
         else
@@ -85,7 +85,7 @@
                         <span>
                             <span id="product_header@(product.ProductID)" class="product_header @colorClass" style="cursor: pointer"> 
                                 <i id="header_icon@(product.ProductID)" class="header_icon @headerIcon"></i>			      
-                                @product.ProductName
+                                @Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty))
                             </span>
                         </span>
                     </div>
@@ -93,7 +93,7 @@
                 <div class="pull-right textcopy">
                     <label for="@(product.ProductID)">
                         <input type="checkbox" class="copy" id="@(product.ProductID)" @(hasTier ? string.Empty : "disabled")/>
-                        @string.Format(@Lang.CopyTierSettingFor, product.ProductName)
+                        @string.Format(@Lang.CopyTierSettingFor, Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty)))
                     </label>
                 </div>
             </div>

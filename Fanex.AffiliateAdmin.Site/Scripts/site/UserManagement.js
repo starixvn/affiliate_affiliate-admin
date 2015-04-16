@@ -129,7 +129,7 @@ var Management = (function ($) {
                 groupId: groupId
             };
 
-            AFFILIATE.openDialogFrame("Management/UserInGroup?" + jQuery.param(param), 'Group - '
+            AFFILIATE.openDialogFrame("Management/UserInGroup?" + jQuery.param(param), window.MSG.Group + " - "
                 + groupName, { width: 960, height: 650 });
         },
         editPassword: function (custId, userName) {

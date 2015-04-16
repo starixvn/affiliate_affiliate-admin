@@ -69,7 +69,7 @@ var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
                  var settings = $.extend({
                         pattern: 'mm/yyyy',
                         selectedMonth: month + 1,
-                        selectedMonthName: monthNames[month],                       
+                        selectedMonthName: monthNames[month],
                         startYear: year - 10,
                         finalYear: year + 10,
                         monthNames: monthNames,
@@ -77,7 +77,7 @@ var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
                         openOnFocus: true,
                         disabledMonths: []
                     }, options);
-                settings.selectedYear =  year;                
+                settings.selectedYear =  year;
                 settings.dateSeparator = settings.pattern.replace(/(mmm|mm|m|yyyy|yy|y)/ig, '');
                 
                 // If the plugin hasn't been initialized yet for this element

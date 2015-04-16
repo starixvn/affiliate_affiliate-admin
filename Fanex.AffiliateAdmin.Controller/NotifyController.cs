@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Web.Mvc;
     using System.Web.Security;
     using Core.Services;
+    using Fanex.AffiliateAdmin.Core;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Criterias;
@@ -28,6 +29,9 @@ namespace Fanex.AffiliateAdmin.Controller
         public NotifyController()
             : this(null)
         {
+            ////Set default language
+            var langManager = new LanguageManager();
+            langManager.SetCulture(AppSession.Language);
         }
 
         public NotifyController(IAccountService accountService)

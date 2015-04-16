@@ -22,7 +22,7 @@ namespace Fanex.AffiliateAdmin.Models
         private readonly IList<SelectListItem> _dateOptions = new List<SelectListItem>
             {
                 new SelectListItem { Value = "0", Text = Lang.All },
-                new SelectListItem { Value = "1", Text = Lang.RegisterDate },
+                new SelectListItem { Value = "1", Text = Lang.RegisteredDate },
                 new SelectListItem { Value = "2", Text = Lang.FirstDepositDate },
             };
 

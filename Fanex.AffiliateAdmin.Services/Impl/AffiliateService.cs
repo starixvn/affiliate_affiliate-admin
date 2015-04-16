@@ -10,11 +10,14 @@
 namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
+    using System.Globalization;
+    using System.Threading;
     using Common.Helper;
     using Core.Services;
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.DataAccess;
+    using Fanex.AffiliateAdmin.Resources;
     using Models;
 
     /// <summary>
@@ -70,7 +73,26 @@ namespace Fanex.AffiliateAdmin.Services
         public AffiliateListReportViewModel GetAffiliateList(AffiliateListCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return _affiliateDataAccess.GetAffiliateList(criteria);
+            var result = _affiliateDataAccess.GetAffiliateList(criteria);
+
+            foreach (var affiliate in result.AffiliateList)
+            {
+                var keyAccountType = affiliate.AccountType.Replace(" ", string.Empty).Replace("-", string.Empty);
+                var translatedAccountType = Lang.ResourceManager.GetString(keyAccountType);
+                affiliate.AccountType = string.IsNullOrEmpty(translatedAccountType) ? affiliate.AccountType : translatedAccountType;
+
+                CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+                TextInfo textInfo = cultureInfo.TextInfo;
+                var capitalStatus = textInfo.ToTitleCase(affiliate.Status);
+
+                var translatedStatus = Lang.ResourceManager.GetString(capitalStatus);
+                affiliate.Status = string.IsNullOrEmpty(translatedStatus) ? affiliate.Status : translatedStatus;
+
+                var translatedAffTypeName = Lang.ResourceManager.GetString(affiliate.AffTypeName);
+                affiliate.AffTypeName = string.IsNullOrEmpty(translatedAffTypeName) ? affiliate.AffTypeName : translatedAffTypeName;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -96,7 +118,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// <summary>
         /// Add affiliate to favorite.
         /// </summary>
-        /// <param name="criteria">Input criteria.</param>        
+        /// <param name="criteria">Input criteria.</param>
         public void AddFavorite(FavoriteCriteria criteria)
         {
             criteria.Type = CriteriaType.Insert;
@@ -106,7 +128,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// <summary>
         /// Remove affiliate from Favorite.
         /// </summary>
-        /// <param name="criteria">Input criteria.</param>        
+        /// <param name="criteria">Input criteria.</param>
         public void RemoveFavorite(FavoriteCriteria criteria)
         {
             criteria.Type = CriteriaType.Delete;

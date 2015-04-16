@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = Lang.DepartmentList;
+    ViewBag.Title = Lang.GroupManagement;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Fanex.AffiliateAdmin.Core.Utilities
@@ -23,7 +23,8 @@ management
             NoInfo: "@Lang.NoInfo",
             ConfirmDelGroup: "@Lang.ConfirmDelGroup",
             AddNewGroup: "@Lang.AddNewGroup",
-            GroupPolicyOfGroup: "@Lang.GroupPolicyOfGroup"
+            GroupPolicyOfGroup: "@Lang.GroupPolicyOfGroup",
+            Group: "@Lang.Group"
         };
         var gridOption = {
             language: '@AppSession.Language',
@@ -31,7 +32,7 @@ management
             timeZone: AFFILIATE.TimeZone,
             titleInfo:
             {
-                text: "@Lang.DepartmentList",
+                text: "@Lang.GroupManagement",
                 showButtonsWhenNoData: true,
                 customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddNewGroup" class="btnAdd icon-add-group" id="btnAddgridId">'
             },

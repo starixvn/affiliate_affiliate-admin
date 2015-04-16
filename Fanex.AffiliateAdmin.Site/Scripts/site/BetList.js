@@ -39,7 +39,7 @@ var BetList = (function ($) {
                     ? BetList.getMixParlayResultUrl(refnoMixParlay, winlostdate, bettype, username)
                     : BetList.getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username);
 
-            var title = "Results";
+            var title = MSG.Results;
             AFFILIATE.openDialogUrl(url, title, { width: 720, height: 400 });
         },
 
@@ -114,7 +114,7 @@ var BetList = (function ($) {
             url = QueryString.setParam(url, "toCurrencyCode", para.ToCurrencyCode);
             url = QueryString.setParam(url, "affId", para.AffId);
 
-            var title = "Results";
+            var title = MSG.Results;
             AFFILIATE.openDialogUrl(url, title, { width: 1097, height: 500 });
         }
     };

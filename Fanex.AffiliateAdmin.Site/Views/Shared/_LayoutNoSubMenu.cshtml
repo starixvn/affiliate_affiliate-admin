@@ -32,8 +32,18 @@
     
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
+        var Lang = {
+            NoDataInfo: '@Html.Raw(Lang.NoInfo)',
+            All: "@Lang.All",
+            Uncheck: "@Lang.Uncheck",
+            Selected: "@Lang.Selected",
+            SelectAnOption: "@Lang.SelectAnOption",
+            Close: "@Lang.Close"
+        };
+
         $(document).ready(function() {
             $.unblockUI();
+
             AFFILIATE.getAbsoluteUrl = function(relativeUrl) {
                 return '@Url.Content("~/")' + relativeUrl;
             };

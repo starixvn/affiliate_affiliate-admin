@@ -77,7 +77,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             {
                 return new List<Menu>
                 {
-                    new Menu { Text = Lang.ExchangeRate, Link = "~/Exchange" }
+                    new Menu { Text = Lang.CurrencyRates, Link = "~/Exchange" }
                 };
             }
         }

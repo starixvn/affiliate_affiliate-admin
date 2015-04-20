@@ -205,6 +205,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This game type has not been supported yet!.
+        /// </summary>
+        public static string GameTypeNotSupported {
+            get {
+                return ResourceManager.GetString("GameTypeNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hand No.
         /// </summary>
         public static string HandNo {
@@ -484,7 +493,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Win/Loss.
+        ///   Looks up a localized string similar to Win Loss.
         /// </summary>
         public static string WinLoss {
             get {

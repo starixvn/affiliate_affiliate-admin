@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = Lang.ExchangeRate;
+    ViewBag.Title = Lang.CurrencyRates;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Fanex.AffiliateAdmin.Core.Utilities
@@ -50,7 +50,7 @@ exchange-rate
             ConfirmCopyRate: "@Lang.ConfirmCopyRate",
             Rate: "@Lang.rate_",
             MarketRate: "@Lang.MarketRate",
-            Title: "@Lang.ExchangeRate",
+            Title: "@Lang.CurrencyRates",
             UpdateExRate: "@Lang.UpdateExRate"
         };
         
@@ -60,7 +60,7 @@ exchange-rate
             timeZone: AFFILIATE.TimeZone,
             titleInfo:
             {
-                text: "@Lang.ExchangeRate",
+                text: "@Lang.CurrencyRates",
                 showButtonsWhenNoData: true,
                 customButtons: "<input type='button' name='btnCopy' value='' title='@Lang.CopyRateMarket' class='btnAdd icon-add-config' id='btnCopy'>"
             },

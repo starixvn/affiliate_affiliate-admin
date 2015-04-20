@@ -20,6 +20,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string SportCode { get; set; }
 
+        public string OriginalSportCode { get; set; }
+
         public string LanguageCode { get; set; }
 
         public string LanguageName { get; set; }

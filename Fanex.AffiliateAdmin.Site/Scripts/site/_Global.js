@@ -23,7 +23,7 @@ var AFFILIATE = (function ($) {
         FORMAT_INT_NUMBER: '0,0',
         MIN_CONTENT_WIDTH: '1110',
         scrollTop: function () {
-            $('html, body').animate({ scrollTop: $('.container-fluid').offset().top }, 400);
+            $('html, body').animate({ scrollTop: $('.container-flsuid').offset().top }, 400);
         },
         initDatePicker: function () {
             var datePickers = $('.datepicker');
@@ -361,7 +361,7 @@ var AFFILIATE = (function ($) {
                 AFFILIATE.showErrorMsg(msg);
 
                 if (callback) {
-                    callback();
+                    callback(0, parent.$("#itemperpage").val());
                 }
             }
         },

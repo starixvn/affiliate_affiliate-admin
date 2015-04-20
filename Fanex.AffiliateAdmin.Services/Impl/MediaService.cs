@@ -32,9 +32,17 @@ namespace Fanex.AffiliateAdmin.Services
 
             foreach (var item in result)
             {
-                var value = Lang.ResourceManager.GetString(item.Category.Replace(" ", string.Empty));
+                if (!string.IsNullOrEmpty(item.Category))
+                {
+                    var category = Lang.ResourceManager.GetString(item.Category.Replace(" ", string.Empty));
+                    item.Category = string.IsNullOrEmpty(category) ? item.Category : category;
+                }
 
-                item.Category = string.IsNullOrEmpty(value) ? item.Category : value;
+                if (!string.IsNullOrEmpty(item.ImageType))
+                {
+                    var image = Lang.ResourceManager.GetString(item.ImageType.Replace(" ", string.Empty));
+                    item.ImageType = string.IsNullOrEmpty(image) ? item.ImageType : image;
+                }
             }
 
             return result;
@@ -52,9 +60,11 @@ namespace Fanex.AffiliateAdmin.Services
 
             foreach (var item in result)
             {
-                var value = Lang.ResourceManager.GetString(item.Category.Replace(" ", string.Empty));
-
-                item.Category = string.IsNullOrEmpty(value) ? item.Category : value;
+                if (!string.IsNullOrEmpty(item.Category))
+                {
+                    var category = Lang.ResourceManager.GetString(item.Category.Replace(" ", string.Empty));
+                    item.Category = string.IsNullOrEmpty(category) ? item.Category : category;
+                }
             }
 
             return result;

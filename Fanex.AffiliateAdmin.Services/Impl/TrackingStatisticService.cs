@@ -43,6 +43,8 @@ namespace Fanex.AffiliateAdmin.Services
 
             foreach (var item in result)
             {
+                item.OriginalSportCode = item.SportCode;
+
                 var value = Lang.ResourceManager.GetString(item.SportCode.Replace(" ", string.Empty));
 
                 item.SportCode = string.IsNullOrEmpty(value) ? item.SportCode : value;

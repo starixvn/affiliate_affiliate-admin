@@ -256,14 +256,14 @@
 {
     if (deductionName.Equals("Marketing", StringComparison.OrdinalIgnoreCase) || deductionName.Equals("Odds Fee", StringComparison.OrdinalIgnoreCase))
     {
-        <span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|WinLoss|</span>
+        <span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|@Lang.Winloss|</span>
     }
     
     if (deductionName.Equals("PSP"))
     {
         <span>&nbsp;&nbsp;&nbsp;* 
-        ( Total Deposit * @PercentageDropDownList(percentDeposit, (decimal)0.01, "totaldeposit", disabled)
-      + Total Withdrawal * @PercentageDropDownList(percentWithdrawl, (decimal)0.01, "totalwithdrawal", disabled) )
+        ( @Lang.TotalDeposit * @PercentageDropDownList(percentDeposit, (decimal)0.01, "totaldeposit", disabled)
+      + @Lang.TotalWithdrawal * @PercentageDropDownList(percentWithdrawl, (decimal)0.01, "totalwithdrawal", disabled) )
         </span>
     }
 }

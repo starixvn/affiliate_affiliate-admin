@@ -210,7 +210,7 @@
 	<data name="Msg2001" xml:space="preserve">
     <value>이 가맹자 도메인이 존재합니다.</value>
   </data>
-	<data name="Msg2003" xml:space="preserve">
+	<data name="Msg2004" xml:space="preserve">
     <value>이 회원 도메인은 사용되었습니다!</value>
   </data>
 	<data name="Msg2005" xml:space="preserve">

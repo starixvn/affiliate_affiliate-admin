@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,335 +59,335 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="Msg2001" xml:space="preserve">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Msg2001" xml:space="preserve">
     <value>此合作夥伴域名已存在。</value>
   </data>
-	<data name="Msg2004" xml:space="preserve">
+  <data name="Msg2004" xml:space="preserve">
     <value>該會員域名已經存在。</value>
   </data>
-	<data name="Msg2020" xml:space="preserve">
+  <data name="Msg2020" xml:space="preserve">
     <value>这个网域设定已经存在！</value>
   </data>
-	<data name="Msg2021" xml:space="preserve">
+  <data name="Msg2021" xml:space="preserve">
     <value>您的网域设定和另一个设定重复。请确认！</value>
   </data>
-	<data name="Msg1" xml:space="preserve">
+  <data name="Msg1" xml:space="preserve">
     <value>取款交易是無效的。</value>
   </data>
-	<data name="Msg2" xml:space="preserve">
+  <data name="Msg2" xml:space="preserve">
     <value>抱歉，您沒有更新此交易的權限。</value>
   </data>
-	<data name="Msg200" xml:space="preserve">
+  <data name="Msg200" xml:space="preserve">
     <value>錯誤！輸入訊息失敗！</value>
   </data>
-	<data name="Msg201" xml:space="preserve">
+  <data name="Msg201" xml:space="preserve">
     <value>錯誤！無法輸入資料！</value>
   </data>
-	<data name="Msg202" xml:space="preserve">
+  <data name="Msg202" xml:space="preserve">
     <value>无效的讯息ID</value>
   </data>
-	<data name="Msg203" xml:space="preserve">
+  <data name="Msg203" xml:space="preserve">
     <value>错误发生。更新不成功!</value>
   </data>
-	<data name="Msg204" xml:space="preserve">
+  <data name="Msg204" xml:space="preserve">
     <value>抱歉，您输入的讯息ID是无效的，请重新确认。</value>
   </data>
-	<data name="Msg205" xml:space="preserve">
+  <data name="Msg205" xml:space="preserve">
     <value>抱歉，管理员ID是无效的，请重新确认。</value>
   </data>
-	<data name="Msg206" xml:space="preserve">
+  <data name="Msg206" xml:space="preserve">
     <value>错误发生。插入资料不成功。</value>
   </data>
-	<data name="Msg3" xml:space="preserve">
+  <data name="Msg3" xml:space="preserve">
     <value>交易無法輸入。</value>
   </data>
-	<data name="Msg4" xml:space="preserve">
+  <data name="Msg4" xml:space="preserve">
     <value>該成員不存在或已被刪除！</value>
   </data>
-	<data name="Msg5" xml:space="preserve">
+  <data name="Msg5" xml:space="preserve">
     <value>合作夥伴輸贏重新計算有錯誤</value>
   </data>
-	<data name="Msg500" xml:space="preserve">
+  <data name="Msg500" xml:space="preserve">
     <value>您無權使用此功能。</value>
   </data>
-	<data name="Msg501" xml:space="preserve">
+  <data name="Msg501" xml:space="preserve">
     <value>错误发生。插入不成功</value>
   </data>
-	<data name="Msg502" xml:space="preserve">
+  <data name="Msg502" xml:space="preserve">
     <value>出現錯誤.更新不成功.</value>
   </data>
-	<data name="Msg503" xml:space="preserve">
+  <data name="Msg503" xml:space="preserve">
     <value>您無授權使用此貨幣。</value>
   </data>
-	<data name="Msg6" xml:space="preserve">
+  <data name="Msg6" xml:space="preserve">
     <value>无效的电子邮件ID！</value>
   </data>
-	<data name="Msg7" xml:space="preserve">
+  <data name="Msg7" xml:space="preserve">
     <value>抱歉，所选的电子邮件是无效的，请重新确认。</value>
   </data>
-	<data name="Msg8" xml:space="preserve">
+  <data name="Msg8" xml:space="preserve">
     <value>抱歉，管理员ID是无效的，请重新确认。</value>
   </data>
-	<data name="Msg9" xml:space="preserve">
+  <data name="Msg9" xml:space="preserve">
     <value>错误！电子邮件删除不成功！</value>
   </data>
-	<data name="Msg2005" xml:space="preserve">
+  <data name="Msg2005" xml:space="preserve">
     <value>这个使用者名称不存在</value>
   </data>
-	<data name="Msg10" xml:space="preserve">
+  <data name="Msg10" xml:space="preserve">
     <value>这个使用者名称不存在</value>
   </data>
-	<data name="Msg2006" xml:space="preserve">
+  <data name="Msg2006" xml:space="preserve">
     <value>这个工作伙伴之前已经新增了</value>
   </data>
-	<data name="Msg2007" xml:space="preserve">
+  <data name="Msg2007" xml:space="preserve">
     <value>错误！新增最爱不成功！</value>
   </data>
-	<data name="Msg11" xml:space="preserve">
+  <data name="Msg11" xml:space="preserve">
     <value>舊密碼不正確.</value>
   </data>
-	<data name="Msg12" xml:space="preserve">
+  <data name="Msg12" xml:space="preserve">
     <value>不能添加組。</value>
   </data>
-	<data name="Msg13" xml:space="preserve">
+  <data name="Msg13" xml:space="preserve">
     <value>这个群组名称已经被使用</value>
   </data>
-	<data name="Msg14" xml:space="preserve">
+  <data name="Msg14" xml:space="preserve">
     <value>你不能刪除有會員的群組。</value>
   </data>
-	<data name="Msg2010" xml:space="preserve">
+  <data name="Msg2010" xml:space="preserve">
     <value>無法更新過程</value>
   </data>
-	<data name="Msg300" xml:space="preserve">
+  <data name="Msg300" xml:space="preserve">
     <value>无效的广告ID！</value>
   </data>
-	<data name="Msg301" xml:space="preserve">
+  <data name="Msg301" xml:space="preserve">
     <value>抱歉，您输入的广告ID是无效的，请重新确认。</value>
   </data>
-	<data name="Msg302" xml:space="preserve">
+  <data name="Msg302" xml:space="preserve">
     <value>抱歉，管理员ID是无效的，请重新确认。</value>
   </data>
-	<data name="Msg303" xml:space="preserve">
+  <data name="Msg303" xml:space="preserve">
     <value>错误！广告删除不成功</value>
   </data>
-	<data name="Msg1004" xml:space="preserve">
+  <data name="Msg1004" xml:space="preserve">
     <value>这个帐号有一笔付款要求还在等待，请先更新这笔交易！</value>
   </data>
-	<data name="Msg15" xml:space="preserve">
+  <data name="Msg15" xml:space="preserve">
     <value>此郵箱地址已被使用，請選用其他郵箱地址。</value>
   </data>
-	<data name="Msg16" xml:space="preserve">
+  <data name="Msg16" xml:space="preserve">
     <value>用戶信息無效，更新失敗。</value>
   </data>
-	<data name="Msg17" xml:space="preserve">
+  <data name="Msg17" xml:space="preserve">
     <value>出現錯誤，更新程序失敗。</value>
   </data>
-	<data name="Msg20" xml:space="preserve">
+  <data name="Msg20" xml:space="preserve">
     <value>群组名称是空白。请选择一个名称！</value>
   </data>
-	<data name="Msg21" xml:space="preserve">
+  <data name="Msg21" xml:space="preserve">
     <value>群组名称已经存在，请选择另一个名称！</value>
   </data>
-	<data name="Msg22" xml:space="preserve">
+  <data name="Msg22" xml:space="preserve">
     <value>无效的合格的总数. 请确认。</value>
   </data>
-	<data name="Msg23" xml:space="preserve">
+  <data name="Msg23" xml:space="preserve">
     <value>无效的合格的总数. 请确认。</value>
   </data>
-	<data name="Msg24" xml:space="preserve">
+  <data name="Msg24" xml:space="preserve">
     <value>错误发生。插入不成功</value>
   </data>
-	<data name="Msg25" xml:space="preserve">
+  <data name="Msg25" xml:space="preserve">
     <value>错误发生。插入不成功</value>
   </data>
-	<data name="Msg26" xml:space="preserve">
+  <data name="Msg26" xml:space="preserve">
     <value>错误！无效的一线层名单！</value>
   </data>
-	<data name="Msg27" xml:space="preserve">
+  <data name="Msg27" xml:space="preserve">
     <value>允许最多50层</value>
   </data>
-	<data name="Msg28" xml:space="preserve">
+  <data name="Msg28" xml:space="preserve">
     <value>当设定层级时，出现错误。</value>
   </data>
-	<data name="Msg29" xml:space="preserve">
+  <data name="Msg29" xml:space="preserve">
     <value>错误！无效的资料设定(ProductID={0})!</value>
   </data>
-	<data name="Msg30" xml:space="preserve">
+  <data name="Msg30" xml:space="preserve">
     <value>错误！无效的资料设定 (ProductIDList) !</value>
   </data>
-	<data name="Msg31" xml:space="preserve">
+  <data name="Msg31" xml:space="preserve">
     <value>这个群组ID {0}已经不再存在。请确认。</value>
   </data>
-	<data name="Msg1005" xml:space="preserve">
+  <data name="Msg1005" xml:space="preserve">
     <value>出现错误。更新过程不成功！</value>
   </data>
-	<data name="Msg32" xml:space="preserve">
+  <data name="Msg32" xml:space="preserve">
     <value>至少一个工作伙伴被安排到这个群组。您无法删除。</value>
   </data>
-	<data name="Msg1006" xml:space="preserve">
+  <data name="Msg1006" xml:space="preserve">
     <value>无效的工作伙伴！</value>
   </data>
-	<data name="Msg1007" xml:space="preserve">
+  <data name="Msg1007" xml:space="preserve">
     <value>无效的状态！</value>
   </data>
-	<data name="Msg1008" xml:space="preserve">
+  <data name="Msg1008" xml:space="preserve">
     <value>无效的群组！</value>
   </data>
-	<data name="Msg1009" xml:space="preserve">
+  <data name="Msg1009" xml:space="preserve">
     <value>货币和所选择的群组不相配。请确认！</value>
   </data>
-	<data name="Msg1010" xml:space="preserve">
+  <data name="Msg1010" xml:space="preserve">
     <value>当在更新资料时，会有错误，请重新再试一次！</value>
   </data>
-	<data name="Msg33" xml:space="preserve">
+  <data name="Msg33" xml:space="preserve">
     <value>这个群组ID {0}已经不再存在。请确认。</value>
   </data>
-	<data name="Msg34" xml:space="preserve">
+  <data name="Msg34" xml:space="preserve">
     <value>群组名称是空白。请选择一个名称！</value>
   </data>
-	<data name="Msg35" xml:space="preserve">
+  <data name="Msg35" xml:space="preserve">
     <value>群组名称已经存在，请选择另一个名称！</value>
   </data>
-	<data name="Msg36" xml:space="preserve">
+  <data name="Msg36" xml:space="preserve">
     <value>这个群组已经被使用，无法改变货币。请确认！</value>
   </data>
-	<data name="Msg37" xml:space="preserve">
+  <data name="Msg37" xml:space="preserve">
     <value>错误！无效的扣除设定！</value>
   </data>
-	<data name="Msg40" xml:space="preserve">
+  <data name="Msg40" xml:space="preserve">
     <value>当设定层级时，出现错误。</value>
   </data>
-	<data name="Msg41" xml:space="preserve">
+  <data name="Msg41" xml:space="preserve">
     <value>错误！无效的资料设定!</value>
   </data>
-	<data name="Msg43" xml:space="preserve">
+  <data name="Msg43" xml:space="preserve">
     <value>当在更新资料时，会有错误，请重新再试一次！</value>
   </data>
-	<data name="Msg50" xml:space="preserve">
+  <data name="Msg50" xml:space="preserve">
     <value>错误！插入注解不成功！</value>
   </data>
-	<data name="Msg51" xml:space="preserve">
+  <data name="Msg51" xml:space="preserve">
     <value>错误！更新注解不成功！</value>
   </data>
-	<data name="Msg52" xml:space="preserve">
+  <data name="Msg52" xml:space="preserve">
     <value>错误！删除注解不成功！</value>
   </data>
-	<data name="Msg44" xml:space="preserve">
+  <data name="Msg44" xml:space="preserve">
     <value>无效的合作伙伴的使用者名称！</value>
   </data>
-	<data name="Msg45" xml:space="preserve">
+  <data name="Msg45" xml:space="preserve">
     <value>使用者已经存在在这个系统中！</value>
   </data>
-	<data name="Msg1011" xml:space="preserve">
+  <data name="Msg1011" xml:space="preserve">
     <value>抱歉，总额是无效的</value>
   </data>
-	<data name="Msg1012" xml:space="preserve">
+  <data name="Msg1012" xml:space="preserve">
     <value>无效的货币</value>
   </data>
-	<data name="Msg1013" xml:space="preserve">
+  <data name="Msg1013" xml:space="preserve">
     <value>抱歉，您无法调整，因为这个工作伙伴尚未核准</value>
   </data>
-	<data name="Msg1014" xml:space="preserve">
+  <data name="Msg1014" xml:space="preserve">
     <value>抱歉，您无法调整，因为这个工作伙伴已经关闭</value>
   </data>
-	<data name="Msg1015" xml:space="preserve">
+  <data name="Msg1015" xml:space="preserve">
     <value>这笔交易是不成功的</value>
   </data>
-	<data name="Msg101" xml:space="preserve">
+  <data name="Msg101" xml:space="preserve">
     <value>用戶名或密碼錯誤.</value>
   </data>
-	<data name="Msg102" xml:space="preserve">
+  <data name="Msg102" xml:space="preserve">
     <value>您已輸入6次錯誤的用戶名/密碼, 請5分鐘後再嘗試。</value>
   </data>
-	<data name="Msg103" xml:space="preserve">
+  <data name="Msg103" xml:space="preserve">
     <value>帳號已關閉. 請聯絡管理員.</value>
   </data>
-	<data name="Msg601" xml:space="preserve">
+  <data name="Msg601" xml:space="preserve">
     <value>无效的群组请确认。</value>
   </data>
-	<data name="Msg602" xml:space="preserve">
+  <data name="Msg602" xml:space="preserve">
     <value>无效的工作伙伴名单，请确认。</value>
   </data>
-	<data name="Msg604" xml:space="preserve">
+  <data name="Msg604" xml:space="preserve">
     <value>货币的群组与工作伙伴的群组不相配。请确认。</value>
   </data>
-	<data name="Msg605" xml:space="preserve">
+  <data name="Msg605" xml:space="preserve">
     <value>当在更新资料时，会有错误，请重新再试一次！</value>
   </data>
-	<data name="Msg1001" xml:space="preserve">
+  <data name="Msg1001" xml:space="preserve">
     <value>錯誤！此設置密碼已存在。</value>
   </data>
-	<data name="Msg1002" xml:space="preserve">
+  <data name="Msg1002" xml:space="preserve">
     <value>錯誤！這語言已存在了。</value>
   </data>
-	<data name="Msg1003" xml:space="preserve">
+  <data name="Msg1003" xml:space="preserve">
     <value>錯誤！請求無效。</value>
   </data>
-	<data name="Msg2008" xml:space="preserve">
-    <value>此合作伙伴不存在。</value>
+  <data name="Msg2008" xml:space="preserve">
+    <value>此合作夥伴不存在。</value>
   </data>
-	<data name="Msg2009" xml:space="preserve">
+  <data name="Msg2009" xml:space="preserve">
     <value>錯誤！無法刪除我的最愛合作夥伴！</value>
   </data>
-	<data name="Msg400" xml:space="preserve">
+  <data name="Msg400" xml:space="preserve">
     <value>錯誤！此國家已存在。</value>
   </data>
 </root>

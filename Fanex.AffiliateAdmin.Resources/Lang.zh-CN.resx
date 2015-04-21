@@ -223,7 +223,7 @@
     <value>合作夥伴淨輸贏</value>
   </data>
   <data name="AffNotExist" xml:space="preserve">
-    <value>此合作夥伴不存在</value>
+    <value>此合作伙伴不存在。</value>
   </data>
   <data name="AffStatisticsAll" xml:space="preserve">
     <value>合作夥伴統計(到現在為止)</value>

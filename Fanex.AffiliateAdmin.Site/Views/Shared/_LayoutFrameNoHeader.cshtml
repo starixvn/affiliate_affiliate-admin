@@ -13,11 +13,15 @@
     </head>
     <body>
         <!--content html-->
-        @RenderBody()      
+        @RenderBody()
         
         @Scripts.Render("~/bundles/js")
         @RenderSection("scripts", required: false)
         <script type="text/javascript">
+            var Lang = {
+                ChangePassword: "@Lang.ChangePassword"
+            };
+            
             $(document).ready(function() {
                 AFFILIATE.getAbsoluteUrl = function(relativeUrl) {
                     return '@Url.Content("~/")' + relativeUrl;

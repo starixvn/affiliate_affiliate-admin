@@ -8,14 +8,19 @@
         <meta name="viewport" content="width=device-width" />
         <meta http-equiv="refresh" content="60" />
         @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/headjs")    
+        @Scripts.Render("~/bundles/headjs")
         @RenderSection("css", required: false)
     </head>
     <body>
         <!--content html-->
-        @RenderBody()              
+        @RenderBody()
         @RenderSection("scripts", required: false)
         <script type="text/javascript">
+            var Lang = {
+                ChangePassword: "@Lang.ChangePassword",
+                Close: "@Lang.Close"
+            };
+
             $(document).ready(function() {
                 AFFILIATE.getAbsoluteUrl = function(relativeUrl) {
                     return '@Url.Content("~/")' + relativeUrl;

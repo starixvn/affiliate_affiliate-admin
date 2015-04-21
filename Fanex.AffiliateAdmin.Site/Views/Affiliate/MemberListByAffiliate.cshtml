@@ -37,8 +37,8 @@ customer
         <div class="span12 search-form">
             <div class="row-fluid row-form">
                 <div class="cell">
-                    <label for="username" class="txt">@Lang.Member</label>                
-                    <input type="text" placeholder="@Lang.All" id="username" name="username" value="@Model.Username" maxlength="100" class="form-control width-140" />                
+                    <label for="username" class="txt">@Lang.Member</label>
+                    <input type="text" placeholder="@Lang.All" id="username" name="username" value="@Model.Username" maxlength="100" class="form-control width-140" />
                 </div>
                 <div class="cell">
                     <label for="CurrencyList" class="txt">@Lang.Currency</label>
@@ -48,8 +48,8 @@ customer
                     <label for="SortBy" class="txt">@Lang.SortBy</label>
                     <select id="SortBy" name="SortBy" class="width-140 single-select dropdownchecklist">
                         <option value="0">@Lang.Username</option>
-                        <option value="1" selected>@Lang.RegisterDate</option>
-                        <option value="2">@Lang.FirstDepositDate</option>                    
+                        <option value="1" selected>@Lang.RegisteredDate</option>
+                        <option value="2">@Lang.FirstDepositDate</option>
                     </select>
                 </div>
             </div>
@@ -99,12 +99,9 @@ customer
 
 @section scripts{
 	<script type="text/javascript">
-	    var Lang = {
-	        NoDataInfo: "@Lang.NoInfo"
-	    };
-
 	    var MSG = {
-	        ConfirmRemoveMem: "@Lang.ConfirmRemoveMem"
+	        ConfirmRemoveMem: "@Lang.ConfirmRemoveMem",
+	        AssignMemToAff: "@Lang.AssignMemToAff"
 	    };
 
 	    var gridOption = {
@@ -123,7 +120,7 @@ customer
 	            { HeaderText: "@Lang.FirstName", Width: 100, Name: "FirstName" },
 	            { HeaderText: "@Lang.LastName", Width: 100, Name: "LastName" },
 	            {
-	                HeaderText: "@Lang.Email",
+	                HeaderText: "@Lang.EmailAddress",
 	                Width: 120,
 	                Name: "Email",
 	                Formatter: function(rowIndex, rowData, cell, cellFormated) {
@@ -133,7 +130,7 @@ customer
 	            { HeaderText: "@Lang.Phone", Width: 90, Name: "Phone" },
 	            { HeaderText: "@Lang.Address", Width: 90, Name: "Address" },
 	            { HeaderText: "@Lang.Country", Width: 80, Name: "Country" },
-	            { HeaderText: "@Lang.RegisterDate", Width: 100, Name: "RegisteredDateStr", CellAlign: "center" },
+	            { HeaderText: "@Lang.RegisteredDate", Width: 100, Name: "RegisteredDateStr", CellAlign: "center" },
 	            { HeaderText: "@Lang.FirstDepositDate", Width: 90, Name: "CreatedDateStr", CellAlign: "center" },
 	            { HeaderText: "@Lang.EffectiveDate", Width: 100, Name: "AffAffectedDateStr", CellAlign: "center" },
 	            { HeaderText: "@Lang.Currency", Width: 60, Name: "Currency", CellAlign: "center" },

@@ -100,116 +100,7 @@
         }
     </select>
 }
-@helper RenderDateRangePicker(DateTime fromDate, DateTime toDate, DateTime minDate, DateTime maxDate,
-    string fromClass = "", string toClass = "",
-    int fromGrid = 1, int fromInputGrid = 2, int toGrid = 1, int toInputGrid = 2, bool simpleMode = false)
-    {
-        var today = DateTime.Today < maxDate ? DateTime.Today : maxDate;
-        var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
 
-    <label for="FromDate">@Lang.From</label>
-    <input type="text" id="FromDate" data-original="@fromDate.ToString("MM/dd/yyyy")" value="@fromDate.ToString("MM/dd/yyyy")" class = "date-range @fromClass" name="FromDate" />
-    <label for="ToDate">@Lang.To</label>
-    <input type="text" id="ToDate" data-original="@toDate.ToString("MM/dd/yyyy")" value="@toDate.ToString("MM/dd/yyyy")" class = "date-range @toClass" name="ToDate" />
-    <script type="text/javascript">
-        var dateRangePicker = null;
-        var langDatePicker = {
-            Today: "@Lang.Today",
-            Yesterday: "@Lang.Yesterday",
-            Currentweek: "Current Week",
-            Lastweek: "Last Week",
-            Currentmonth: "Current month",
-            Lastmonth: "Last month",
-            Sincelastmonth: "Since last month",
-            SpecificDate: "SpecificDate",
-            DateRange: "DateRange",
-            Fromdate: "Fromdate",
-            Todate: "Todate",
-            Next: "Next",
-            Prev: "Prev",
-            OK: "OK",
-            EndDate: "EndDate"
-        };
-        $(document).ready(function () {
-            var monthShort = ['@Lang.Jan', '@Lang.Feb', '@Lang.Mar', '@Lang.Apr', '@Lang.May', '@Lang.Jun', '@Lang.Jul', '@Lang.Aug', '@Lang.Sep', '@Lang.Oct', '@Lang.Nov', '@Lang.Dec']
-            var dayMin = ['@Lang.Su', '@Lang.Mo', '@Lang.Tu', '@Lang.We', '@Lang.Th', '@Lang.Fr', '@Lang.Sa'];
-
-            var disabledPreset = @(simpleMode ? 1 : 0) ? ['Lastweek', 'Currentmonth', 'Lastmonth', 'Sincelastmonth'] : [];
-            dateRangePicker = $('#FromDate, #ToDate').daterangepicker({
-                today: '@(today.ToString("MMM d yyyy"))',
-                buttonImage: '@url.Content("~/Content/Themes/Theme1/images/calendar.gif")',
-                datepickerOptions: {
-                    showOtherMonths: true,
-                    changeMonth: true,
-                    changeYear: true,
-                    selectOtherMonths: true,
-                    closeText: 'OK',
-                    dateFormat: 'mm/dd/yy',
-                    minDate: '@(minDate.ToString("MM/dd/yyyy"))',
-                    maxDate: '@(maxDate.ToString("MM/dd/yyyy"))',
-                    monthNamesShort: monthShort,
-                    dayNamesMin: dayMin
-                },
-                dateFormat: 'mm/dd/yy',
-                disabledPreset: disabledPreset,
-                monthNamesShort: monthShort
-
-            });
-        });
-    </script>
-    @Scripts.Render("~/bundles/daterange")
-}
-@helper RenderDatePicker(DateTime date, DateTime minDate, DateTime maxDate, string id = "FromDate",
-    string className = "", int inputWidth = 3)
-    {
-        var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
-    <div class="date-picker-wrapper span@(inputWidth) filter-input">
-        <input type="text" readonly="readonly" data-original="@date.ToString("MM/dd/yyyy")" name="@(id)" id="@(id)" class="@(className)" />
-        <script type="text/javascript">
-            var langDatePicker = {
-                Today: "@Lang.Today",
-                Yesterday: "@Lang.Yesterday",
-                Currentweek: "Current Week",
-                Lastweek: "Last Week",
-                Currentmonth: "Current month",
-                Lastmonth: "Last month",
-                Sincelastmonth: "Since last month",
-                SpecificDate: "SpecificDate",
-                DateRange: "DateRange",
-                Fromdate: "Fromdate",
-                Todate: "Todate",
-                Next: "Next",
-                Prev: "Prev",
-                OK: "OK",
-                EndDate: "EndDate"
-            };
-
-            $(document).ready(function () {
-                var monthShort = ['@Lang.Jan', '@Lang.Feb', '@Lang.Mar', '@Lang.Apr', '@Lang.May', '@Lang.Jun', '@Lang.Jul', '@Lang.Aug', '@Lang.Sep', '@Lang.Oct', '@Lang.Nov', '@Lang.Dec']
-                var dayMin = ['@Lang.Su', '@Lang.Mo', '@Lang.Tu', '@Lang.We', '@Lang.Th', '@Lang.Fr', '@Lang.Sa'];
-
-                $("#@(id)").datepicker({
-                    showOn: "both",
-                    buttonImage: '@url.Content("~/Content/Themes/Theme1/images/calendar.gif")',
-                    buttonText: "Show Date Picker",
-                    buttonImageOnly: true,
-                    showOtherMonths: true,
-                    changeMonth: true,
-                    changeYear: true,
-                    selectOtherMonths: true,
-                    closeText: 'OK',
-                    dateFormat: 'mm/dd/yy',
-                    monthNamesShort: monthShort,
-                    dayNamesMin: dayMin,
-                    minDate: '@(minDate.ToString("MM/dd/yyyy"))',
-                    maxDate: '@(maxDate.ToString("MM/dd/yyyy"))'
-                });
-                $('#@(id)').datepicker('setDate', '@(date.ToString("MM/dd/yyyy"))');
-            });
-        </script>
-    </div>
-
-}
 @helper ListPopupMenu(List<Menu> list, int selectedMenu, IDictionary<string, object> queryStrings = null)
     {
         var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
@@ -252,7 +143,7 @@
         }
         @if (hasInfo)
         {
-            <span id="info" title="Information" class="info"></span>
+            <span id="info" title="@Lang.Information" class="info"></span>
         }
         </div>
         <div id="info-dialog">
@@ -265,7 +156,7 @@
 @helper SharingFeeInfoPanel(string product)
 {
     <div class="more">
-        <span id="info" title="Information" class="info"></span>
+        <span id="info" title="@Lang.Information" class="info"></span>
     </div>
     <div id="info-dialog">
         <p id="info-close">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
@@ -297,7 +188,7 @@
             @Lang.Pending
         }
 }
-@helper DropDownListCountry(List<Country> list, string selectedValue, IDictionary<string, object> htmlAttributies = null)
+@helper DropDownListCountry(IEnumerable<System.Web.Mvc.SelectListItem> list, string selectedValue, IDictionary<string, object> htmlAttributies = null)
     {
         var name = string.Empty;
         var style = string.Empty;
@@ -309,7 +200,7 @@
     <select @( new HtmlString(name)) @(new HtmlString(style)) class="width-140 dropdownchecklist single-select">
         @foreach (var item in list)
         {
-            <option value="@item.CountryID" @(item.CountryID == selectedValue ? "selected" : string.Empty)>@item.CountryName</option>
+            <option value="@item.Value" @(item.Value == selectedValue ? "selected" : string.Empty)>@item.Text</option>
         }
     </select>
 }
@@ -365,14 +256,14 @@
 {
     if (deductionName.Equals("Marketing", StringComparison.OrdinalIgnoreCase) || deductionName.Equals("Odds Fee", StringComparison.OrdinalIgnoreCase))
     {
-        <span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|WinLoss|</span>
+        <span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|@Lang.Winloss|</span>
     }
     
     if (deductionName.Equals("PSP"))
     {
         <span>&nbsp;&nbsp;&nbsp;* 
-        ( Total Deposit * @PercentageDropDownList(percentDeposit, (decimal)0.01, "totaldeposit", disabled)
-      + Total Withdrawal * @PercentageDropDownList(percentWithdrawl, (decimal)0.01, "totalwithdrawal", disabled) )
+        ( @Lang.TotalDeposit * @PercentageDropDownList(percentDeposit, (decimal)0.01, "totaldeposit", disabled)
+      + @Lang.TotalWithdrawal * @PercentageDropDownList(percentWithdrawl, (decimal)0.01, "totalwithdrawal", disabled) )
         </span>
     }
 }

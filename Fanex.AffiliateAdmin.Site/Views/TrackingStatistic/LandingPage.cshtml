@@ -77,7 +77,7 @@
                         { HeaderText: "#", Width: 30, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                         { HeaderText: "@Lang.Page", Width: 230, Name: "SportCode", HeaderAlign: "center", 
                             Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                                return "<a href=\"javascript:STATISTIC.showLandingPageDetail('{0}', '{1}')\">{0}</a>".format(rowData.SportCode, rowData.LanguageCode);
+                                return "<a href=\"javascript:STATISTIC.showLandingPageDetail('{0}', '{1}')\">{2}</a>".format(rowData.OriginalSportCode, rowData.LanguageCode, rowData.SportCode);
                             }
                         },
                         { HeaderText: "@Lang.Language", Width: 120, Name: "LanguageName", HeaderAlign: "center" },

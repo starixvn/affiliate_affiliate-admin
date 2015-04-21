@@ -26,11 +26,16 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                var selectItemList = SubCategories.Select(t => new SelectListItem
+                var selectItemList = new List<SelectListItem>();
+                foreach (var item in SubCategories)
                 {
-                    Text = t.Value,
-                    Value = t.TypeId.ToString()
-                }).ToList();
+                    var value = Lang.ResourceManager.GetString(item.Value.Replace(" ", string.Empty));
+                    selectItemList.Add(new SelectListItem
+                    {
+                        Text = string.IsNullOrEmpty(value) ? item.Value : value,
+                        Value = item.TypeId.ToString()
+                    });
+                }
 
                 if (IsShowAll)
                 {

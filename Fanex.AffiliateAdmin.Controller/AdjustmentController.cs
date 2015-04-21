@@ -28,6 +28,7 @@ namespace Fanex.AffiliateAdmin.Controller
         #endregion Services
 
         #region Constructor
+
         public AdjustmentController()
             : this(null)
         {
@@ -35,8 +36,8 @@ namespace Fanex.AffiliateAdmin.Controller
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AdjustmentController" /> class.
-        /// </summary>  
-        /// <param name="adjustmentService">Adjustment Service.</param>  
+        /// </summary>
+        /// <param name="adjustmentService">Adjustment Service.</param>
         public AdjustmentController(IAdjustmentService adjustmentService)
         {
             _adjustmentService = adjustmentService ?? new AdjustmentService();

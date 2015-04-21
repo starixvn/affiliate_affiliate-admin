@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.Services
     using Core.Services;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -27,7 +28,15 @@ namespace Fanex.AffiliateAdmin.Services
         public IEnumerable<GroupInfo> GetListGroup(GroupListCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return GetData<GroupInfo>(criteria);
+            var result = GetData<GroupInfo>(criteria);
+
+            foreach (var group in result)
+            {
+                var translated = Lang.ResourceManager.GetString(group.GroupName.Replace(" ", string.Empty));
+                group.GroupName = string.IsNullOrEmpty(translated) ? group.GroupName : translated;
+            }
+
+            return result;
         }
 
         /// <summary>

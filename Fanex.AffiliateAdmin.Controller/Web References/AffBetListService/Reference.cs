@@ -155,28 +155,30 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetlistParlay", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string GetBetlistParlay(string affiliateName, string transactionId, string exchangeRate) {
+        public string GetBetlistParlay(string affiliateName, string transactionId, string exchangeRate, string language) {
             object[] results = this.Invoke("GetBetlistParlay", new object[] {
                         affiliateName,
                         transactionId,
-                        exchangeRate});
+                        exchangeRate,
+                        language});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void GetBetlistParlayAsync(string affiliateName, string transactionId, string exchangeRate) {
-            this.GetBetlistParlayAsync(affiliateName, transactionId, exchangeRate, null);
+        public void GetBetlistParlayAsync(string affiliateName, string transactionId, string exchangeRate, string language) {
+            this.GetBetlistParlayAsync(affiliateName, transactionId, exchangeRate, language, null);
         }
         
         /// <remarks/>
-        public void GetBetlistParlayAsync(string affiliateName, string transactionId, string exchangeRate, object userState) {
+        public void GetBetlistParlayAsync(string affiliateName, string transactionId, string exchangeRate, string language, object userState) {
             if ((this.GetBetlistParlayOperationCompleted == null)) {
                 this.GetBetlistParlayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBetlistParlayOperationCompleted);
             }
             this.InvokeAsync("GetBetlistParlay", new object[] {
                         affiliateName,
                         transactionId,
-                        exchangeRate}, this.GetBetlistParlayOperationCompleted, userState);
+                        exchangeRate,
+                        language}, this.GetBetlistParlayOperationCompleted, userState);
         }
         
         private void OnGetBetlistParlayOperationCompleted(object arg) {
@@ -188,28 +190,30 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetlistSystemParlay", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string GetBetlistSystemParlay(string affiliateName, string exchangeRate, BetListSystemParlayDetailCriteria criteria) {
+        public string GetBetlistSystemParlay(string affiliateName, string exchangeRate, BetListSystemParlayDetailCriteria criteria, string language) {
             object[] results = this.Invoke("GetBetlistSystemParlay", new object[] {
                         affiliateName,
                         exchangeRate,
-                        criteria});
+                        criteria,
+                        language});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void GetBetlistSystemParlayAsync(string affiliateName, string exchangeRate, BetListSystemParlayDetailCriteria criteria) {
-            this.GetBetlistSystemParlayAsync(affiliateName, exchangeRate, criteria, null);
+        public void GetBetlistSystemParlayAsync(string affiliateName, string exchangeRate, BetListSystemParlayDetailCriteria criteria, string language) {
+            this.GetBetlistSystemParlayAsync(affiliateName, exchangeRate, criteria, language, null);
         }
         
         /// <remarks/>
-        public void GetBetlistSystemParlayAsync(string affiliateName, string exchangeRate, BetListSystemParlayDetailCriteria criteria, object userState) {
+        public void GetBetlistSystemParlayAsync(string affiliateName, string exchangeRate, BetListSystemParlayDetailCriteria criteria, string language, object userState) {
             if ((this.GetBetlistSystemParlayOperationCompleted == null)) {
                 this.GetBetlistSystemParlayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBetlistSystemParlayOperationCompleted);
             }
             this.InvokeAsync("GetBetlistSystemParlay", new object[] {
                         affiliateName,
                         exchangeRate,
-                        criteria}, this.GetBetlistSystemParlayOperationCompleted, userState);
+                        criteria,
+                        language}, this.GetBetlistSystemParlayOperationCompleted, userState);
         }
         
         private void OnGetBetlistSystemParlayOperationCompleted(object arg) {
@@ -221,28 +225,30 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetlistResults", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string GetBetlistResults(string affiliateName, string sessionLanguage, BetListResultsCriteria criteria) {
+        public string GetBetlistResults(string affiliateName, string sessionLanguage, BetListResultsCriteria criteria, string language) {
             object[] results = this.Invoke("GetBetlistResults", new object[] {
                         affiliateName,
                         sessionLanguage,
-                        criteria});
+                        criteria,
+                        language});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void GetBetlistResultsAsync(string affiliateName, string sessionLanguage, BetListResultsCriteria criteria) {
-            this.GetBetlistResultsAsync(affiliateName, sessionLanguage, criteria, null);
+        public void GetBetlistResultsAsync(string affiliateName, string sessionLanguage, BetListResultsCriteria criteria, string language) {
+            this.GetBetlistResultsAsync(affiliateName, sessionLanguage, criteria, language, null);
         }
         
         /// <remarks/>
-        public void GetBetlistResultsAsync(string affiliateName, string sessionLanguage, BetListResultsCriteria criteria, object userState) {
+        public void GetBetlistResultsAsync(string affiliateName, string sessionLanguage, BetListResultsCriteria criteria, string language, object userState) {
             if ((this.GetBetlistResultsOperationCompleted == null)) {
                 this.GetBetlistResultsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBetlistResultsOperationCompleted);
             }
             this.InvokeAsync("GetBetlistResults", new object[] {
                         affiliateName,
                         sessionLanguage,
-                        criteria}, this.GetBetlistResultsOperationCompleted, userState);
+                        criteria,
+                        language}, this.GetBetlistResultsOperationCompleted, userState);
         }
         
         private void OnGetBetlistResultsOperationCompleted(object arg) {
@@ -292,6 +298,8 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         private decimal exchangeRateField;
         
         private Product[] supportedProductsField;
+        
+        private string languageField;
         
         /// <remarks/>
         public string AffiliateName {
@@ -360,6 +368,16 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
             }
             set {
                 this.supportedProductsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Language {
+            get {
+                return this.languageField;
+            }
+            set {
+                this.languageField = value;
             }
         }
     }

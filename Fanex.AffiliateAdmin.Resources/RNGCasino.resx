@@ -165,6 +165,9 @@
   <data name="GameType" xml:space="preserve">
     <value>Game Type</value>
   </data>
+  <data name="GameTypeNotSupported" xml:space="preserve">
+    <value>This game type has not been supported yet!</value>
+  </data>
   <data name="HandNo" xml:space="preserve">
     <value>Hand No</value>
   </data>
@@ -253,12 +256,12 @@
     <value>Type</value>
   </data>
   <data name="Viewin" xml:space="preserve">
-    <value>View in </value>
+    <value>View in {0}</value>
   </data>
   <data name="Win" xml:space="preserve">
     <value>Win</value>
   </data>
   <data name="WinLoss" xml:space="preserve">
-    <value>Win/Loss</value>
+    <value>Win Loss</value>
   </data>
 </root>

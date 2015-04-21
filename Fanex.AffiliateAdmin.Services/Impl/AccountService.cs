@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Services
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.DataAccess;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -107,7 +108,15 @@ namespace Fanex.AffiliateAdmin.Services
         public IEnumerable<Account> GetListAccountManagement(SelByGroupIDCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return GetData<Account>(criteria);
+            var result = GetData<Account>(criteria);
+
+            foreach (var account in result)
+            {
+                var translated = Lang.ResourceManager.GetString(account.GroupName.Replace(" ", string.Empty));
+                account.GroupName = string.IsNullOrEmpty(translated) ? account.GroupName : translated;
+            }
+
+            return result;
         }
 
         /// <summary>

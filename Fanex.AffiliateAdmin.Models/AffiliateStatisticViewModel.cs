@@ -8,7 +8,9 @@ namespace Fanex.AffiliateAdmin.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -19,7 +21,7 @@ namespace Fanex.AffiliateAdmin.Models
 
         private IList<Product> _products;
 
-        #endregion
+        #endregion Fields
 
         public IList<Product> Products
         {
@@ -38,7 +40,7 @@ namespace Fanex.AffiliateAdmin.Models
         public int Year { get; set; }
 
         public int AffId { get; set; }
-        
+
         public string AffName { get; set; }
 
         public string AffCurrency { get; set; }
@@ -61,7 +63,14 @@ namespace Fanex.AffiliateAdmin.Models
 
         public void AddProducts(IList<Product> products)
         {
-            _products = products;
+            _products = products.Select(t => new Product()
+                {
+                    ProductID = t.ProductID,
+                    ProductName = Lang.ResourceManager.GetString(t.ProductName.Replace(" ", string.Empty)),
+                    TotalQualifiedMembers = t.TotalQualifiedMembers,
+                    QMDeposit = t.QMDeposit,
+                    QMTurnOver = t.QMTurnOver
+                }).ToList();
         }
     }
 }

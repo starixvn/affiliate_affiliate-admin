@@ -23,7 +23,7 @@ var AFFILIATE = (function ($) {
         FORMAT_INT_NUMBER: '0,0',
         MIN_CONTENT_WIDTH: '1110',
         scrollTop: function () {
-            $('html, body').animate({ scrollTop: $('.container-fluid').offset().top }, 400);
+            $('html, body').animate({ scrollTop: $('.container-flsuid').offset().top }, 400);
         },
         initDatePicker: function () {
             var datePickers = $('.datepicker');
@@ -109,6 +109,7 @@ var AFFILIATE = (function ($) {
         currentOpenDialog: null,
         openDialog: function (target, title, options) {
             options = options || {};
+            options.closeText = window.Lang.Close;
 
             if (title) {
                 options.title = title;
@@ -360,7 +361,7 @@ var AFFILIATE = (function ($) {
                 AFFILIATE.showErrorMsg(msg);
 
                 if (callback) {
-                    callback();
+                    callback(0, parent.$("#itemperpage").val());
                 }
             }
         },
@@ -380,7 +381,7 @@ var AFFILIATE = (function ($) {
             }
         },
         ChangePassword: function () {
-            AFFILIATE.openDialogFrame("Account/ChangePassword", "Change Password", { width: 450, height: 300 });
+            AFFILIATE.openDialogFrame("Account/ChangePassword", window.Lang.ChangePassword, { width: 450, height: 300 });
         },
         showNoDataMsgInGrid: function (gridId, msg) {
             $(gridId).html(msg);
@@ -727,36 +728,39 @@ $.fn.createDropdownchecklist = function () {
     "use strict";
     $(this).each(function (index, element) {
         var $el = $(element);
+        var translateOptions = {
+            noneSelectedText: window.Lang.SelectAnOption,
+            checkAllText: window.Lang.All,
+            uncheckAllText: window.Lang.Uncheck,
+            selectedText: "# " + window.Lang.Selected
+        };
+        
         if ($el.hasClass('single-select')) {
             if ($el.hasClass('width-140')) {
-                $el.multiselect({
+                $el.multiselect($.extend({
                     multiple: false,
                     header: false,
-                    noneSelectedText: "Select an Option",
                     selectedList: 1,
                     minWidth: 145,
                     height: 100
-                });
+                }, translateOptions));
             } else {
-                $el.multiselect({
+                $el.multiselect($.extend({
                     multiple: false,
                     header: false,
-                    noneSelectedText: "Select an Option",
                     selectedList: 1,
                     minWidth: 145,
                     height: 100
-                });
+                }, translateOptions));
             }
         } else {
             if ($el.hasClass('width-140')) {
-                $el.multiselect({
+                $el.multiselect($.extend({
                     minWidth: 145,
                     multiple: true,
-                    checkAllText: 'All',
-                    uncheckAllText: 'Uncheck'
-                });
+                }, translateOptions));
             } else {
-                $el.multiselect();
+                $el.multiselect(translateOptions);
             }
         }
     });

@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Models
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configurations;
+    using Fanex.AffiliateAdmin.DTO;
     using Resources;
 
     /// <summary>
@@ -68,7 +69,7 @@ namespace Fanex.AffiliateAdmin.Models
                 return new SelectList(AppSettings.BaseCurrencyInAffiliate, "Value", "Text", BaseCurrency);
             }
         }
-       
+
         [Display(Name = "Currency", ResourceType = typeof(Lang))]
         public int? Currency { get; set; }
 
@@ -90,7 +91,20 @@ namespace Fanex.AffiliateAdmin.Models
                                          ? AppSettings.Products.Where(t => t.IsEnabled).Select(t => t.ProductID)
                                          : productList;
 
-                return new MultiSelectList(AppSettings.Products, "ProductID", "ProductName", selectedValues);
+                var translatedProducts = new List<Product>();
+
+                foreach (var product in AppSettings.Products)
+                {
+                    var name = Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty));
+
+                    translatedProducts.Add(new Product
+                    {
+                        ProductID = product.ProductID,
+                        ProductName = string.IsNullOrEmpty(name) ? product.ProductName : name
+                    });
+                }
+
+                return new MultiSelectList(translatedProducts, "ProductID", "ProductName", selectedValues);
             }
         }
 

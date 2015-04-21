@@ -14,21 +14,60 @@ namespace Fanex.AffiliateAdmin.Services
     using Core.Services;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class MediaService : QueryService, IMediaService
     {
+        /// <summary>
+        /// Get Banners.
+        /// </summary>
+        /// <param name="criteria">Banner Criteria.</param>
+        /// <returns>Banner List.</returns>
         public IEnumerable<Banner> GetBanners(BannerListCriteria criteria)
         {
-            return GetDataOutput<Banner>(criteria);
+            var result = GetDataOutput<Banner>(criteria);
+
+            foreach (var item in result)
+            {
+                if (!string.IsNullOrEmpty(item.Category))
+                {
+                    var category = Lang.ResourceManager.GetString(item.Category.Replace(" ", string.Empty));
+                    item.Category = string.IsNullOrEmpty(category) ? item.Category : category;
+                }
+
+                if (!string.IsNullOrEmpty(item.ImageType))
+                {
+                    var image = Lang.ResourceManager.GetString(item.ImageType.Replace(" ", string.Empty));
+                    item.ImageType = string.IsNullOrEmpty(image) ? item.ImageType : image;
+                }
+            }
+
+            return result;
         }
 
+        /// <summary>
+        /// Get Texts.
+        /// </summary>
+        /// <param name="criteria">Banner Criteria.</param>
+        /// <returns>Banner List.</returns>
         public IEnumerable<Banner> GetTexts(BannerListCriteria criteria)
         {
             criteria.AffType = 0;
-            return GetDataOutput<Banner>(criteria);
+            var result = GetDataOutput<Banner>(criteria);
+
+            foreach (var item in result)
+            {
+                if (!string.IsNullOrEmpty(item.Category))
+                {
+                    var category = Lang.ResourceManager.GetString(item.Category.Replace(" ", string.Empty));
+                    item.Category = string.IsNullOrEmpty(category) ? item.Category : category;
+                }
+            }
+
+            return result;
         }
 
         public BannerDetail GetBannerDetail(BannerDetailCriteria criteria)

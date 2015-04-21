@@ -26,7 +26,7 @@
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
     <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
     <ExcludeApp_Data>false</ExcludeApp_Data>
     <PublishDatabases>true</PublishDatabases>
@@ -4058,7 +4058,6 @@
     <Content Include="Views\Management\Groups.cshtml" />
     <Content Include="Views\Management\EditUser.cshtml" />
     <Content Include="Views\Management\ChangePolicyUser.cshtml" />
-    <Content Include="Views\Management\GroupInfo.cshtml" />
     <Content Include="Views\Management\ChangePassword.cshtml" />
     <Content Include="Views\Management\AddUser.cshtml" />
     <Content Include="Views\Shared\_LayoutFrame.cshtml" />

@@ -34,7 +34,7 @@ report
             <div class="row-fluid row-form">
                 <div class="cell">
                     @Html.LabelFor(m => m.Username, new {@class = "txt"})
-                    <input type="text" placeholder="All" name="AffName" maxlength="100" id="Username" class="width-140">
+                    <input type="text" placeholder="@Lang.All" name="AffName" maxlength="100" id="Username" class="width-140">
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.AffType, new { @class = "txt", @for = "AffTypes"})
@@ -119,21 +119,18 @@ report
             LiveCasino: "@Lang.LiveCasino",
             RNGCasino: "@Lang.RNGCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
-            VirtualSport: "@Lang.VirtualSport",
+            VirtualSport: "@Lang.VirtualSports",
             SubTotal: "@Lang.SubTotal",
             CommPercent: "@Lang.CommPercent",
             QM: "@Lang.QM",
             CommGroupSettingFor: "@Lang.CommGroupSettingFor",
             AffQualifiedMemReportDetailFor: "@Html.Raw(Lang.AffQualifiedMemReportDetailFor)",
             Currency: "@Lang.Currency",
-            Cashback: "@Lang.Cashback",
             DeductionPercent: "@Lang.DeductionPercent",
             Amount: "@Lang.Amount",
             CommissionTitle: "@Lang.Commission",
-            DoYouWantToTransferAll: "@Lang.DoYouWantToTransferAll",
             CommissionGroup: "@Lang.CommGroup",
             AffiliateCommissionTitle: "@Lang.AffiliateCommission",
-            OccurMonthlyTransferError: "@Lang.OccurMonthlyTransferError",
             ChooseAtLeastOneProduct: '@Lang.ChooseAtLeastOneProduct',
             QualifiedMembers: "@Lang.QualifiedMembers",
             NA: "@Lang.NA",

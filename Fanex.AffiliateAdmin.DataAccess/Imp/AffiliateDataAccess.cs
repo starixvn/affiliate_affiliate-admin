@@ -231,6 +231,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
                         RegisteredDate = reader.ToDateTime2("RegisteredDate"),
                         ApprovedDate = reader.ToDateTime2("ApprovedDate"),
                         Status = reader.ToString("Status"),
+                        OriginalStatus = reader.ToString("Status"),
                         TestLevel = reader.ToByte("TestLevel"),
                         AccountType = reader.ToString("AccountType"),
                         CommGroupID = reader.ToInt("CommGroupID"),

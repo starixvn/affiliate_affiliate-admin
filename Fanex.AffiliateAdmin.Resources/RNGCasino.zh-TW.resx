@@ -118,147 +118,150 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AutoPlay" xml:space="preserve">
-    <value>Auto Play</value>
+    <value>自動撥放</value>
   </data>
   <data name="AutoSpin" xml:space="preserve">
-    <value>Auto Spin</value>
+    <value>自動旋轉</value>
   </data>
   <data name="Bet" xml:space="preserve">
-    <value>Bet</value>
+    <value>下注</value>
   </data>
   <data name="BetPerLine" xml:space="preserve">
-    <value>Bet Per Line</value>
+    <value> 每行下注</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>Characters</value>
+    <value>文字</value>
   </data>
   <data name="CoinSize" xml:space="preserve">
-    <value>Coin Size</value>
+    <value>硬幣尺寸</value>
   </data>
   <data name="Combination" xml:space="preserve">
-    <value>Combination</value>
+    <value>組合</value>
   </data>
   <data name="Detail" xml:space="preserve">
-    <value>Detail</value>
+    <value>細節</value>
   </data>
   <data name="EndBalance" xml:space="preserve">
-    <value>End Balance</value>
+    <value>結束餘額</value>
   </data>
   <data name="EndDate" xml:space="preserve">
-    <value>End Date</value>
+    <value>結束日期</value>
   </data>
   <data name="FinalHand" xml:space="preserve">
-    <value>Final Hand</value>
+    <value>結果</value>
   </data>
   <data name="FreeSpin" xml:space="preserve">
-    <value>Free Spin</value>
+    <value>免費旋轉</value>
   </data>
   <data name="Game" xml:space="preserve">
-    <value>Game</value>
+    <value>遊戲</value>
   </data>
   <data name="GameGroup" xml:space="preserve">
-    <value>Game Group</value>
+    <value>遊戲群組</value>
   </data>
   <data name="GameID" xml:space="preserve">
-    <value>Game ID</value>
+    <value>遊戲號碼</value>
   </data>
   <data name="GameType" xml:space="preserve">
-    <value>Game Type</value>
+    <value>遊戲類型</value>
+  </data>
+  <data name="GameTypeNotSupported" xml:space="preserve">
+    <value>這種遊戲類型還沒有被支持呢！</value>
   </data>
   <data name="HandNo" xml:space="preserve">
-    <value>Hand No</value>
+    <value>每局號碼</value>
   </data>
   <data name="Hit" xml:space="preserve">
-    <value>Hit</value>
+    <value>點擊</value>
   </data>
   <data name="InitialHand" xml:space="preserve">
-    <value>Initial Hand</value>
+    <value>第一手</value>
   </data>
   <data name="Kidnapping" xml:space="preserve">
-    <value>Kidnapping</value>
+    <value>綁架</value>
   </data>
   <data name="LineNo" xml:space="preserve">
-    <value>Line No</value>
+    <value>每行號碼</value>
   </data>
   <data name="Loss" xml:space="preserve">
-    <value>Loss</value>
+    <value>輸</value>
   </data>
   <data name="Mode" xml:space="preserve">
-    <value>Mode</value>
+    <value> 模式</value>
   </data>
   <data name="Money" xml:space="preserve">
-    <value>Money</value>
+    <value>金額</value>
   </data>
   <data name="Multiplier" xml:space="preserve">
-    <value>Multiplier</value>
+    <value> 倍增</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>姓名</value>
   </data>
   <data name="Normal" xml:space="preserve">
-    <value>Normal</value>
+    <value>正常</value>
   </data>
   <data name="Number" xml:space="preserve">
-    <value>Number</value>
+    <value>數字</value>
   </data>
   <data name="Odds" xml:space="preserve">
-    <value>Odds</value>
+    <value>賠率</value>
   </data>
   <data name="PerLineWin" xml:space="preserve">
-    <value>Per Line Win</value>
+    <value> 每行下注</value>
   </data>
   <data name="Pick" xml:space="preserve">
-    <value>Pick</value>
+    <value>選</value>
   </data>
   <data name="Player" xml:space="preserve">
-    <value>Player</value>
+    <value>玩家</value>
   </data>
   <data name="PlayerHistoryNo" xml:space="preserve">
-    <value>Player History No</value>
+    <value>玩家歷史號碼</value>
   </data>
   <data name="RefNo" xml:space="preserve">
-    <value>Ref No</value>
+    <value>參考號碼</value>
   </data>
   <data name="Result" xml:space="preserve">
-    <value>Results</value>
+    <value>賽果</value>
   </data>
   <data name="ResultsWithPictures" xml:space="preserve">
-    <value>Results with pictures</value>
+    <value>圖式結果</value>
   </data>
   <data name="RoundType" xml:space="preserve">
-    <value>Round Type</value>
+    <value> 每局類型</value>
   </data>
   <data name="SessionID" xml:space="preserve">
-    <value>Session ID</value>
+    <value>每局號碼</value>
   </data>
   <data name="Stake" xml:space="preserve">
-    <value>Stake</value>
+    <value>投注額</value>
   </data>
   <data name="StartBalance" xml:space="preserve">
-    <value>Start Balance</value>
+    <value>開始餘額</value>
   </data>
   <data name="StartDate" xml:space="preserve">
-    <value>Start Date</value>
+    <value>開始日期</value>
   </data>
   <data name="Symbol" xml:space="preserve">
-    <value>Symbol</value>
+    <value>符號</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>Total</value>
+    <value>總和</value>
   </data>
   <data name="TotalLineBet" xml:space="preserve">
-    <value>Total Line Bet</value>
+    <value>匯流排下注</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>Type</value>
+    <value>類型</value>
   </data>
   <data name="Viewin" xml:space="preserve">
-    <value>View in </value>
+    <value>以 {0} 查看</value>
   </data>
   <data name="Win" xml:space="preserve">
-    <value>Win</value>
+    <value>贏</value>
   </data>
   <data name="WinLoss" xml:space="preserve">
-    <value>Win/Loss</value>
+    <value>輸贏</value>
   </data>
 </root>

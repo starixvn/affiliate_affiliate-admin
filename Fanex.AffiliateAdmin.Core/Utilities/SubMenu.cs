@@ -77,7 +77,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             {
                 return new List<Menu>
                 {
-                    new Menu { Text = Lang.ExchangeRate, Link = "~/Exchange" }
+                    new Menu { Text = Lang.CurrencyRates, Link = "~/Exchange" }
                 };
             }
         }
@@ -110,7 +110,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 return new List<Menu>
                 {
                     new Menu { Text = Lang.UserManagement, Link = "~/Management/Users" },
-                    new Menu { Text = Lang.DepartmentList, Link = "~/Management/Groups" }
+                    new Menu { Text = Lang.GroupManagement, Link = "~/Management/Groups" }
                 };
             }
         }
@@ -215,7 +215,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                     },                    
                     new Menu
                     {
-                        Text = Lang.Report, 
+                        Text = Lang.Reports, 
                         Link = "~/Report/CompanyWinlossByAffiliate",
                         SubMenu = new List<Menu>
                             {

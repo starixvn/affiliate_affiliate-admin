@@ -8,7 +8,7 @@
 
 @if (string.IsNullOrEmpty(ViewBag.Data))
 {
-    <p style="font-size: 12px; font-weight: bold; text-align: center; margin-top: 7px;">No information is available.</p>
+    <p style="font-size: 12px; font-weight: bold; text-align: center; margin-top: 7px;">@Lang.NoInfo</p>
 }
 else
 {
@@ -33,6 +33,11 @@ else
 @Scripts.Render("~/js/betlist")
 
 <script type="text/javascript">
+    var MSG = {
+        Results: "@Lang.BetListResults",
+        HandHistoryDetails: "@Lang.HandHistoryDetails"
+    };
+    
     $(document).ready(function () {
         setTimeout(function() {
             $("#affiliateInfo").removeClass("active");

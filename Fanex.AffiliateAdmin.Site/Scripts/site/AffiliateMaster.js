@@ -40,7 +40,7 @@ var AFFMASTER = (function ($) {
             $("#ifStatistic").attr("class", "statistic-exp");
         },
         changePassword: function (userName) {
-            AFFILIATE.openDialogFrame("AffiliateInfo/ChangePassword", userName + ' - Change Password', { width: 500, height: 280 });
+            AFFILIATE.openDialogFrame("AffiliateInfo/ChangePassword", userName + ' - ' + window.Lang.ChangePassword, { width: 500, height: 280 });
         },
         changeAffInfo: function (groupId, status) {
             var param = {

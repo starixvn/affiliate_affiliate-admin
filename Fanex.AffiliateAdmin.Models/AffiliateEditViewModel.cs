@@ -18,29 +18,21 @@ namespace Fanex.AffiliateAdmin.Models
     {
         #region Fields
 
-        private IEnumerable<Country> _countries;
+        private IEnumerable<SelectListItem> _countries;
 
         private IEnumerable<SystemSetting> _paymentMethods;
 
-        #endregion
+        #endregion Fields
 
         #region Properties
 
         public Affiliate Affiliate { get; set; }
 
-        public IEnumerable<Country> Countries
+        public IEnumerable<SelectListItem> Countries
         {
             get
             {
                 return _countries;
-            }
-        }
-
-        public IEnumerable<SystemSetting> PaymentMethods
-        {
-            get
-            {
-                return _paymentMethods;
             }
         }
 
@@ -58,22 +50,26 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                return PaymentMethods.Select(payment => new SelectListItem
+                return _paymentMethods.Select(payment => new SelectListItem
                 {
                     Value = payment.SName,
                     Text = payment.SValue,
                     Selected = Affiliate.PreferredPayment == payment.SName
                 }).ToList();
             }
-        } 
+        }
 
-        #endregion
+        #endregion Properties
 
         #region Methods
 
         public void AddCountries(IEnumerable<Country> countries)
         {
-            _countries = countries;
+            _countries = countries.Select(country => new SelectListItem
+            {
+                Value = country.CountryID,
+                Text = country.CountryID == "-" ? Resources.Country.Others : Resources.Country.ResourceManager.GetString(country.CountryID)
+            }).ToList();
         }
 
         public void AddPaymentMethods(IEnumerable<SystemSetting> paymentMethods)
@@ -81,6 +77,6 @@ namespace Fanex.AffiliateAdmin.Models
             _paymentMethods = paymentMethods;
         }
 
-        #endregion
+        #endregion Methods
     }
 }

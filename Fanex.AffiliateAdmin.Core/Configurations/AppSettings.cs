@@ -120,7 +120,13 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                return _affType;
+                 var translatedAffTypes = _affType.Select(t => new AffType()
+                    {
+                        TypeID = t.TypeID,
+                        Name = Lang.ResourceManager.GetString(t.Name)
+                    });
+
+                return translatedAffTypes;
             }
         }
 

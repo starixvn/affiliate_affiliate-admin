@@ -10,6 +10,7 @@ namespace Fanex.AffiliateAdmin.Services
     using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Common.Helper;
 
     /// <summary>
@@ -37,8 +38,17 @@ namespace Fanex.AffiliateAdmin.Services
         public IEnumerable<ViewLog> GetViewLogList(ViewLogListCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
+            var result = GetDataOutput<ViewLog>(criteria);
 
-            return GetDataOutput<ViewLog>(criteria);
+            foreach (var log in result)
+            {
+                if (!string.IsNullOrEmpty(log.Description))
+                {
+                    log.Description = Lang.ResourceManager.GetString(log.Description.Replace(" ", string.Empty));
+                }
+            }
+
+            return result;
         }
     }
 }

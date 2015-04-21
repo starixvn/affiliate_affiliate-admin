@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="control-group">
-                @Html.Label(Lang.RegisterDate, new {@class = "control-label"})
+                @Html.Label(Lang.RegisteredDate, new {@class = "control-label"})
                 <div class="controls view-row">
                     @(Model.RegisteredDate.HasValue ? Model.RegisteredDate.Value.ToString(dateFormat) : string.Empty)
                 </div>

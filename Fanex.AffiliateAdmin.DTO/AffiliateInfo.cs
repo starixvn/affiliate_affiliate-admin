@@ -54,6 +54,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string Status { get; set; }
 
+        public string OriginalStatus { get; set; }
+
         public byte TestLevel { get; set; }
 
         public string AccountType { get; set; }

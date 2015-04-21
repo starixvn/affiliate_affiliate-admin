@@ -21,12 +21,12 @@
 
 @if (Model == null)
 {
-    <p style="font-size: 12px; font-weight: bold; text-align: center;">No information is available.</p>
+    <p style="font-size: 12px; font-weight: bold; text-align: center;">@Lang.NoInfo</p>
 }
 else
 {
 <div class="rngcasino_headerlabel">
-    @Lang.Username: @Model.Username - @RNGCasino.RefNo: @Model.RefNo - @RNGCasino.Viewin @Model.Currency - 
+    @Lang.Username: @Model.Username - @RNGCasino.RefNo: @Model.RefNo - @string.Format(RNGCasino.Viewin, Model.Currency) - 
     <input type="checkbox" id="chkIsShowPic" name="chkIsShowPic" @(Model.IsShowPic ? "checked='checked'" : "") /> @RNGCasino.ResultsWithPictures
 </div>
 
@@ -52,7 +52,7 @@ else
         @if (Model.Data.Count <= 0)
         {
             <tr>
-                <td colspan="13" class="c"> @Lang.NoInfo </td>
+                <td colspan="13" class="c"> @Lang.NoInfo</td>
             </tr>
         }
         else
@@ -144,12 +144,19 @@ else
     </tbody>
 </table>
 
-        using (Html.BeginForm())
-        {
-    <input type="hidden" name="ExchangeRate" id="ExchangeRate" value="@Model.Param.ExchangeRate"/>
-        }
-
+    using (Html.BeginForm())
+    {
+        <input type="hidden" name="ExchangeRate" id="ExchangeRate" value="@Model.Param.ExchangeRate"/>
+    }
 }
     
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/js/betlistrngcasino")
+
+<script type="text/javascript">
+    var MSG = {
+        Results: "@Lang.BetListResults",
+        HandHistoryDetails: "@Lang.HandHistoryDetails"
+    };
+</script>
+

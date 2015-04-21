@@ -37,11 +37,11 @@ home
             <div class="cell">
                 <label for="SearchOption" class="txt">@Lang.SearchBy</label>
                 <select id="SearchOption" name="SearchOption" class="width-140 single-select dropdownchecklist">
-                    <option value="-1">All</option>
-                    <option value="0">Sender</option>
-                    <option value="1">Email Address</option>
-                    <option value="2">Affiliate</option>
-                    <option value="-2">Unknown Affiliate</option>
+                    <option value="-1">@Lang.All</option>
+                    <option value="0">@Lang.Sender</option>
+                    <option value="1">@Lang.EmailAddress</option>
+                    <option value="2">@Lang.Affiliate</option>
+                    <option value="-2">@Lang.UnknownAffiliate</option>
                 </select>
                 @Html.TextBoxFor(m => m.SearchText, Model.SearchText, 
                     new { @class = "form-control width-140", Style = "display:" + (Model.SearchOption >= 0 ? "inline" : "none") })                                
@@ -72,7 +72,8 @@ home
         var MSG = {
             NoEmailSelected: "@Lang.NoEmailSelected",
             ConfirmDeleteEmail: "@Lang.ConfirmDeleteEmail",
-            NoInfo: "@Lang.NoInfo"
+            NoInfo: "@Lang.NoInfo",
+            EmailDetail: "@Lang.EmailDetail"
         };
         var gridOption = {
             language: '@AppSession.Language',
@@ -102,7 +103,7 @@ home
                     }
                 },
                 {
-                    HeaderText: "@Lang.Email",
+                    HeaderText: "@Lang.EmailAddress",
                     Width: 200,
                     Name: "Email",
                     HeaderAlign: "center",

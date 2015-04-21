@@ -10,6 +10,7 @@ namespace Fanex.AffiliateAdmin.Services
     using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Common.Helper;
 
     /// <summary>
@@ -38,7 +39,18 @@ namespace Fanex.AffiliateAdmin.Services
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            return GetDataOutput<ClickStatistic>(criteria);
+            var result = GetDataOutput<ClickStatistic>(criteria);
+
+            foreach (var item in result)
+            {
+                item.OriginalSportCode = item.SportCode;
+
+                var value = Lang.ResourceManager.GetString(item.SportCode.Replace(" ", string.Empty));
+
+                item.SportCode = string.IsNullOrEmpty(value) ? item.SportCode : value;
+            }
+
+            return result;
         }
 
         /// <summary>

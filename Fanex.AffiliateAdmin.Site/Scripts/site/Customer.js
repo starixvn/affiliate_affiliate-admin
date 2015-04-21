@@ -33,7 +33,7 @@ var CUSTOMER = (function ($) {
                     url += "?ByAffiliate=True";
                 }
 
-                AFFILIATE.openDialogFrame(url, "Assign Member To Affiliate", { width: 420, height: 260 });
+                AFFILIATE.openDialogFrame(url, window.MSG.AssignMemToAff, { width: 420, height: 260 });
             });
         },
 

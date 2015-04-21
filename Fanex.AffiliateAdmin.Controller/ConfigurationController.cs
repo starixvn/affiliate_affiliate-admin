@@ -304,7 +304,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult AddCountry()
         {
-            return View(new Country());
+            return View(new DTO.Country());
         }
 
         /// <summary>
@@ -325,7 +325,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 _systemSettingService.InsertCountry(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
-
+        
             return AddCountry();
         }
 

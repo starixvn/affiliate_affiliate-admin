@@ -2,7 +2,7 @@
     ViewBag.Title = Lang.UpdateCountry;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
-@model Country
+@model Fanex.AffiliateAdmin.DTO.Country
 @using (Html.BeginForm("UpdateCountry", "Configuration", FormMethod.Post, new { @class = "form-horizontal form-popup" }))
 {
     @Html.ValidationSummary()

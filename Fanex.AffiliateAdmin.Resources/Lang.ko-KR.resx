@@ -165,7 +165,7 @@
 	<data name="AddCurrency" xml:space="preserve">
     <value>Add Currency</value>
   </data>
-	<data name="AddDepartment" xml:space="preserve">
+	<data name="AddGroup" xml:space="preserve">
     <value>그룹 추가</value>
   </data>
 	<data name="AddEmptyMessError" xml:space="preserve">
@@ -221,9 +221,6 @@
   </data>
 	<data name="AddUrl" xml:space="preserve">
     <value>Add New Url</value>
-  </data>
-	<data name="AddUserSucc" xml:space="preserve">
-    <value>성공적으로 추가되었습니다!</value>
   </data>
 	<data name="AddUserSuccess" xml:space="preserve">
     <value>관리자가 성공적으로 추가되었습니다!</value>
@@ -284,9 +281,6 @@
   </data>
 	<data name="AffiliateUserName" xml:space="preserve">
     <value>가맹사 사용자 명</value>
-  </data>
-	<data name="AffInPro" xml:space="preserve">
-    <value>프로그램 내의 가맹자(들)</value>
   </data>
 	<data name="AffList" xml:space="preserve">
     <value>가맹자 목록</value>
@@ -421,7 +415,7 @@
     <value>Bet Type List</value>
   </data>
 	<data name="BF" xml:space="preserve">
-    <value>BF</value>
+    <value>잔액 이월</value>
   </data>
 	<data name="BFComm" xml:space="preserve">
     <value>BF 수수료</value>
@@ -558,9 +552,6 @@
 	<data name="ConfirmDelDomain" xml:space="preserve">
     <value>이 회원 도메인을 삭제하시겠습니까?</value>
   </data>
-	<data name="ConfirmDelDomainSetting" xml:space="preserve">
-    <value>이 도메인 설정을 삭제하시겠습니까?</value>
-  </data>
 	<data name="ConfirmDelete" xml:space="preserve">
     <value>이 그룹을 삭제하시겠습니까?</value>
   </data>
@@ -582,14 +573,8 @@
 	<data name="ConfirmDelLang" xml:space="preserve">
     <value>선택된 언어(들)을 삭제하시겠습니까?</value>
   </data>
-	<data name="ConfirmDelNote" xml:space="preserve">
-    <value>이 각주들을 확실히 삭제하시겠습니까?</value>
-  </data>
 	<data name="ConfirmDelProduct" xml:space="preserve">
     <value>선택된 상품(들)을 삭제하시겠습니까?</value>
-  </data>
-	<data name="ConfirmDelTexts" xml:space="preserve">
-    <value>Are you sure you want to delete selected text(s)?</value>
   </data>
 	<data name="ConfirmDelTranslation" xml:space="preserve">
     <value>선택된 번역(들)을 삭제하시겠습니까?</value>
@@ -611,9 +596,6 @@
   </data>
 	<data name="ConfirmUnlockAff" xml:space="preserve">
     <value>이 가맹자를 열어놓으시겠습니까?</value>
-  </data>
-	<data name="ConfirmUnlockAffs" xml:space="preserve">
-    <value>선택된 가맹자(들)을 열어놓으시겠습니까?</value>
   </data>
 	<data name="ConfirmUpdAffiliateGroup" xml:space="preserve">
     <value>선택된 가맹자(들) {a}; {b}에 대한 수수료 그룹을 변경하시겠습니까?</value>
@@ -683,9 +665,6 @@
   </data>
 	<data name="Customer" xml:space="preserve">
     <value>고객</value>
-  </data>
-	<data name="CustomerWL" xml:space="preserve">
-    <value>Member W/L</value>
   </data>
 	<data name="DailyEarnings" xml:space="preserve">
     <value>일간 수익</value>
@@ -759,10 +738,10 @@
 	<data name="DeleteUserSucc" xml:space="preserve">
     <value>성공적으로 삭제했습니다!</value>
   </data>
-	<data name="Department" xml:space="preserve">
+	<data name="Group" xml:space="preserve">
     <value>그룹</value>
   </data>
-	<data name="DepartmentList" xml:space="preserve">
+	<data name="GroupManagement" xml:space="preserve">
     <value>Group Management</value>
   </data>
 	<data name="Deposit" xml:space="preserve">
@@ -810,9 +789,6 @@
 	<data name="DropLastZeroDigits" xml:space="preserve">
     <value>저희의 보고서에, 저희는 아래와 같이 마지막 영자리를 삭제할 수 있습니다:</value>
   </data>
-	<data name="DropZerosCurrency" xml:space="preserve">
-    <value>모든 보고에서는, 마지막 세 개의 영은 인도네시아루피/베트남동 통화에서 삭제됩니다. 예: Rp2는 실제가치 Rp2000입니다.</value>
-  </data>
 	<data name="Earning" xml:space="preserve">
     <value>수익</value>
   </data>
@@ -843,17 +819,11 @@
 	<data name="EditUser" xml:space="preserve">
     <value>사용자 편집</value>
   </data>
-	<data name="Email" xml:space="preserve">
-    <value>이메일 주소</value>
-  </data>
 	<data name="EmailDetail" xml:space="preserve">
     <value>이메일 상세 내역</value>
   </data>
 	<data name="EmailFormat" xml:space="preserve">
     <value>이메일 서식</value>
-  </data>
-	<data name="EmailHistory" xml:space="preserve">
-    <value>이메일 이력</value>
   </data>
 	<data name="EmailPref" xml:space="preserve">
     <value>이메일 서식 참조</value>
@@ -866,9 +836,6 @@
   </data>
 	<data name="English" xml:space="preserve">
     <value>영어</value>
-  </data>
-	<data name="EnglishEU" xml:space="preserve">
-    <value>영어_유로</value>
   </data>
 	<data name="Environment" xml:space="preserve">
     <value>환경</value>
@@ -1056,12 +1023,6 @@
 	<data name="ErrState" xml:space="preserve">
     <value>주명이 필요합니다</value>
   </data>
-	<data name="ErrSubCategory" xml:space="preserve">
-    <value>Sub category is required.</value>
-  </data>
-	<data name="ErrText" xml:space="preserve">
-    <value>Please input a text.</value>
-  </data>
 	<data name="ErrUsername" xml:space="preserve">
     <value>Username is required</value>
   </data>
@@ -1095,12 +1056,6 @@
 	<data name="ExcelUploadSuccessful" xml:space="preserve">
     <value>Your excel file was uploaded successfully!</value>
   </data>
-	<data name="ExchangeRate" xml:space="preserve">
-    <value>통화율</value>
-  </data>
-	<data name="ExchangeRateInputValid" xml:space="preserve">
-    <value>환율에 대해, 1000IDR/VND 당 1을 입력해 주십시오  .</value>
-  </data>
 	<data name="ExcludeTestAccounts" xml:space="preserve">
     <value>Exclude Test Accounts</value>
   </data>
@@ -1115,9 +1070,6 @@
   </data>
 	<data name="Female" xml:space="preserve">
     <value>여성</value>
-  </data>
-	<data name="FieldMustCompleted" xml:space="preserve">
-    <value>*로 표시된 영역을 완성해야합니다.</value>
   </data>
 	<data name="FieldRequired" xml:space="preserve">
     <value>이 영역은 필요합니다</value>
@@ -1172,9 +1124,6 @@
   </data>
 	<data name="GroupBy" xml:space="preserve">
     <value>Group By</value>
-  </data>
-	<data name="GroupList" xml:space="preserve">
-    <value>Group List</value>
   </data>
 	<data name="GroupName" xml:space="preserve">
     <value>그룹명</value>
@@ -1317,9 +1266,6 @@
 	<data name="IsEnabled" xml:space="preserve">
     <value>사용할 수 있습니다</value>
   </data>
-	<data name="IsHrTurnoverQualified" xml:space="preserve">
-    <value>HRQM입니다</value>
-  </data>
 	<data name="IsQualifiedMember" xml:space="preserve">
     <value>자격있는 회원입니다</value>
   </data>
@@ -1380,16 +1326,13 @@
 	<data name="LastTierSettingHaveMaxValue" xml:space="preserve">
     <value>최종 수준 설정은 최고치가 무한대입니다</value>
   </data>
-	<data name="Limit100Characters" xml:space="preserve">
-    <value>The maximum number of characters for this field is 100, please try again.</value>
-  </data>
 	<data name="LimitDate" xml:space="preserve">
     <value>You could only see report from </value>
   </data>
 	<data name="LiveCasino" xml:space="preserve">
     <value>Live Casino</value>
   </data>
-	<data name="LockedOut" xml:space="preserve">
+	<data name="Locked" xml:space="preserve">
     <value>로그아웃되었습니다</value>
   </data>
 	<data name="LoggedIn" xml:space="preserve">
@@ -1480,16 +1423,10 @@
     <value>Member Type</value>
   </data>
 	<data name="MemberWinloss" xml:space="preserve">
-    <value>Member Winloss</value>
-  </data>
-	<data name="MemberWinlost" xml:space="preserve">
-    <value>회원 승리/손실</value>
+    <value>Member Win Loss</value>
   </data>
 	<data name="MemDomainNameNotContainChar" xml:space="preserve">
     <value>회원 도메인명은 이 문자를 포함할 수 없습니다</value>
-  </data>
-	<data name="MemInAffPro" xml:space="preserve">
-    <value>이 프로그램의 회원들</value>
   </data>
 	<data name="MemStatAll" xml:space="preserve">
     <value>고객 통계(현재까지)</value>
@@ -1585,7 +1522,7 @@
     <value>신규 가입</value>
   </data>
 	<data name="No" xml:space="preserve">
-    <value>아니오</value>
+    <value>없음</value>
   </data>
 	<data name="NoDataInfo" xml:space="preserve">
     <value>정보가 없습니다!</value>
@@ -1635,9 +1572,6 @@
 	<data name="NotesList" xml:space="preserve">
     <value>Notes List</value>
   </data>
-	<data name="NoTextSelected" xml:space="preserve">
-    <value>Please select text(s) to delete.</value>
-  </data>
 	<data name="NotHandleFrames" xml:space="preserve">
     <value>죄송합니다, 귀하의 브라우저는 프레임을 취급하지 않습니다!</value>
   </data>
@@ -1664,9 +1598,6 @@
   </data>
 	<data name="OldRequire" xml:space="preserve">
     <value>구비밀번호가 필요합니다.</value>
-  </data>
-	<data name="OnlistListNotUpdate" xml:space="preserve">
-    <value>죄송합니다! 온라인 목록을 업데이트하지 못했습니다.</value>
   </data>
 	<data name="Open" xml:space="preserve">
     <value>열기</value>
@@ -1755,9 +1686,6 @@
 	<data name="PreferredPaymentMethod" xml:space="preserve">
     <value>선호하는 지불 방법</value>
   </data>
-	<data name="Proccessing" xml:space="preserve">
-    <value>처리</value>
-  </data>
 	<data name="Product" xml:space="preserve">
     <value>상품</value>
   </data>
@@ -1815,9 +1743,6 @@
 	<data name="RefreshPage" xml:space="preserve">
     <value>Refresh Page</value>
   </data>
-	<data name="RegisterDate" xml:space="preserve">
-    <value>등록일</value>
-  </data>
 	<data name="Rejected" xml:space="preserve">
     <value>거절일</value>
   </data>
@@ -1830,7 +1755,7 @@
 	<data name="Removed" xml:space="preserve">
     <value>Removed</value>
   </data>
-	<data name="Report" xml:space="preserve">
+	<data name="Reports" xml:space="preserve">
     <value>보고들</value>
   </data>
 	<data name="ReportDetails" xml:space="preserve">
@@ -1902,15 +1827,6 @@
 	<data name="SelectBannerDelete" xml:space="preserve">
     <value>삭제할 현수막을 선택하십시오.</value>
   </data>
-	<data name="SelectBannerUpload" xml:space="preserve">
-    <value>업로드할 현수막을 선택하십시오.</value>
-  </data>
-	<data name="SelectExcelUpload" xml:space="preserve">
-    <value>업로드할 엑셀을 선택하십시오.</value>
-  </data>
-	<data name="SelectNoteDel" xml:space="preserve">
-    <value>삭제할 주를 선택하십시오!</value>
-  </data>
 	<data name="SelectType" xml:space="preserve">
     <value>유형(들)을 선택하십시오!</value>
   </data>
@@ -1961,12 +1877,6 @@
   </data>
 	<data name="Size" xml:space="preserve">
     <value>크기</value>
-  </data>
-	<data name="SorryYouCantDeleteBanner" xml:space="preserve">
-    <value>Sorry! You can't delete the banner having total request greater than 0!</value>
-  </data>
-	<data name="SorryYouCantDeleteText" xml:space="preserve">
-    <value>Sorry! You can't delete the text having total request greater than 0!</value>
   </data>
 	<data name="SortBy" xml:space="preserve">
     <value>에 의한 정리</value>
@@ -2019,9 +1929,6 @@
 	<data name="SuccRemoveMem" xml:space="preserve">
     <value>회원이 성공적으로 제거되었습니다!</value>
   </data>
-	<data name="SystemCurrencyCode" xml:space="preserve">
-    <value>시스템 통화 코드</value>
-  </data>
 	<data name="TaskWaitingApp" xml:space="preserve">
     <value>승인을 기다리는 과제</value>
   </data>
@@ -2039,9 +1946,6 @@
   </data>
 	<data name="Thai" xml:space="preserve">
     <value>ภาษาไทย</value>
-  </data>
-	<data name="Thumbnail" xml:space="preserve">
-    <value>Thumbnail</value>
   </data>
 	<data name="Tier" xml:space="preserve">
     <value>수준</value>
@@ -2067,12 +1971,6 @@
 	<data name="TotalAdjustment" xml:space="preserve">
     <value>총 조정</value>
   </data>
-	<data name="TotalAll" xml:space="preserve">
-    <value>Total All</value>
-  </data>
-	<data name="TotalAllIn" xml:space="preserve">
-    <value>Total All in {0}</value>
-  </data>
 	<data name="TotalBonus" xml:space="preserve">
     <value>총 상여금</value>
   </data>
@@ -2097,17 +1995,11 @@
 	<data name="TotalQualifiedMembers" xml:space="preserve">
     <value>총 자격있는 활성 경기자들</value>
   </data>
-	<data name="TotalRangeIn" xml:space="preserve">
-    <value>Total {0} in {1}</value>
-  </data>
 	<data name="TotalRegister" xml:space="preserve">
     <value>총 등록수</value>
   </data>
 	<data name="TotalRequest" xml:space="preserve">
     <value>총 요청수</value>
-  </data>
-	<data name="TotalTransactions" xml:space="preserve">
-    <value>Total Transactions</value>
   </data>
 	<data name="TotalTurnover" xml:space="preserve">
     <value>Total Turnover</value>
@@ -2129,9 +2021,6 @@
   </data>
 	<data name="TransactionDate" xml:space="preserve">
     <value>Transaction Date</value>
-  </data>
-	<data name="TransactionsId" xml:space="preserve">
-    <value>거래 아이디</value>
   </data>
 	<data name="TransferAmount" xml:space="preserve">
     <value>이체 금액</value>
@@ -2156,9 +2045,6 @@
   </data>
 	<data name="Type" xml:space="preserve">
     <value>유형</value>
-  </data>
-	<data name="UnauthorizedMsg" xml:space="preserve">
-    <value>귀하의 세션 시간이 종료되었거나 귀하의 요청이 인식되지 않았습니다</value>
   </data>
 	<data name="UniqueClicks" xml:space="preserve">
     <value>특정의 클릭들</value>
@@ -2286,9 +2172,6 @@
 	<data name="ViewAllAccount" xml:space="preserve">
     <value>모든 계정보기</value>
   </data>
-	<data name="ViewDetail" xml:space="preserve">
-    <value>상세보기</value>
-  </data>
 	<data name="ViewLog" xml:space="preserve">
     <value>로그 보기</value>
   </data>
@@ -2301,17 +2184,8 @@
 	<data name="VisibleOnlyToAdmin" xml:space="preserve">
     <value>관리자에게만 보여짐</value>
   </data>
-	<data name="VisitWebsite" xml:space="preserve">
-    <value>Visit this website</value>
-  </data>
-	<data name="We" xml:space="preserve">
-    <value>저희</value>
-  </data>
 	<data name="WebsiteUrl" xml:space="preserve">
     <value>Please input Website URL</value>
-  </data>
-	<data name="WeHave" xml:space="preserve">
-    <value>저희는 </value>
   </data>
 	<data name="Welcome" xml:space="preserve">
     <value>환영합니다</value>
@@ -2373,16 +2247,56 @@
 	<data name="MinimumQualifiedMembers" xml:space="preserve">
     <value>Minimum number of qualified members</value>
   </data>
-	<data name="PendingCommission" xml:space="preserve">
-    <value>미결 수수료</value>
-  </data>
 	<data name="MinimumWinlossAmount" xml:space="preserve">
-    <value>Minimum number of qualified members</value>
+    <value>Minumum all members' winloss amount</value>
   </data>
 	<data name="RemoveFromMyFavorite" xml:space="preserve">
     <value>Remove from My Favorite</value>
   </data>
 	<data name="EffectiveDate" xml:space="preserve">
-		<value>Effective Date</value>
+    <value>Effective Date</value>
+  </data>
+	<data name="AccessDenied" xml:space="preserve">
+    <value>Access Denied</value>
+  </data>
+	<data name="AccessDeniedHtml" xml:space="preserve">
+    <value>&lt;h3 class="c"&gt;
+    Access Denied! &lt;br&gt;
+    You don't have permission on this action. &lt;br&gt;
+    Please contact your administrator.
+&lt;/h3&gt;</value>
+  </data>
+	<data name="Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
+	<data name="Item" xml:space="preserve">
+    <value>Item(s)</value>
+  </data>
+	<data name="NumSelected" xml:space="preserve">
+    <value>{0} Selected</value>
+  </data>
+	<data name="Realaccount" xml:space="preserve">
+    <value>real account</value>
+  </data>
+	<data name="WeHaveAffiliates" xml:space="preserve">
+		<value>We have &lt;strong&gt;{0}&lt;/strong&gt; affiliate(s) in the program.</value>
+	</data>
+	<data name="WeHaveMembers" xml:space="preserve">
+		<value>We have &lt;strong&gt;{0}&lt;/strong&gt; members in the program.</value>
+	</data>
+	<data name="Player" xml:space="preserve">
+		<value>경기자</value>
+	</data>
+	<data name="Casino" xml:space="preserve">
+		<value>Casino</value>
+	</data>
+	<data name="RegisteredDate" xml:space="preserve">
+		<value>등록일</value>
+	</data>
+	<data name="Image" xml:space="preserve">
+		<value>이미지</value>
+	</data>
+	<data name="Currentmonthstatistics" xml:space="preserve">
+		<value>Current month statistics</value>
 	</data>
 </root>

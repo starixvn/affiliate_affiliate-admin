@@ -474,7 +474,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     message = Lang.AffApproved;
                     break;
                 default:
-                    message = string.Format(Lang.AffiliateIs, affiliateStatus);
+                    var status = Lang.ResourceManager.GetString(affiliateStatus);
+                    message = string.Format(Lang.AffiliateIs, string.IsNullOrEmpty(status) ? affiliateStatus.ToLower() : status);
                     break;
             }
 

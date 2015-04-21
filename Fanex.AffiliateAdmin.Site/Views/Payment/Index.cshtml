@@ -110,7 +110,7 @@ payment
             { HeaderText: "@Lang.DateRequest", Width: 140, Name: "TransdateStr", HeaderAlign: "center", CellAlign: "center" },
             { HeaderText: "@Lang.CompletedDate", Width: 140, Name: "Completeddate", CellAlign: "center",
                 Formatter: function (rIndex, record, cell, cellFormated) {
-                    if (record["Status"] === 'Processing') {
+                    if (record["Status"] === '@Lang.Processing') {
                         return null;
                     }
                     return record['CompleteddateStr'];
@@ -131,7 +131,7 @@ payment
                 text: "@Lang.Payment"
             },
             rowCssClass: function(rowIndex, rowData) {
-                return rowData.Status.toLowerCase();
+                return rowData.OriginalStatus.toLowerCase();
             },
             showPager: true,
             gridExpandHeight: 360,

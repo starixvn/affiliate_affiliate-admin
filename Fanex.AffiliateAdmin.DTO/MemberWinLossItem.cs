@@ -51,6 +51,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string ProductName { get; set; }
 
+        public string OriginalProductName { get; set; }
+
         public decimal Deposit { get; set; }
 
         public decimal Withdrawal { get; set; }

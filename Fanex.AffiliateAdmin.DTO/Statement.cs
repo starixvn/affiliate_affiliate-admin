@@ -41,6 +41,8 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string Status { get; set; }
 
+        public string OriginalStatus { get; set; }
+
         public string Creator { get; set; }
 
         public string Description { get; set; }

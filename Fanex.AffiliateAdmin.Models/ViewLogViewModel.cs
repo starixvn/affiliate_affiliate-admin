@@ -71,6 +71,12 @@ namespace Fanex.AffiliateAdmin.Models
 
         public void AddLogTypeList(IEnumerable<LogType> logTypeList)
         {
+            foreach (var logType in logTypeList)
+            {
+                var value = Lang.ResourceManager.GetString(logType.Description.Replace(" ", string.Empty));
+                logType.Description = string.IsNullOrEmpty(value) ? logType.Description : value;
+            }
+
             _logTypeList = logTypeList;
         }
 

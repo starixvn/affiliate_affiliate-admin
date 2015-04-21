@@ -81,7 +81,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 FromDate = model.WinlostDate.HasValue ? model.WinlostDate.Value : DateTime.Now,
                 ToDate = model.WinlostDate.HasValue ? model.WinlostDate.Value : DateTime.Now,
                 ExchangeRate = exchangeRate,
-                SupportedProducts = supportedProducts
+                SupportedProducts = supportedProducts,
+                Language = AppSession.Language
             };
 
             var betlistService = new AffBetListService.AffiliateAPI();
@@ -107,7 +108,8 @@ namespace Fanex.AffiliateAdmin.Controller
             var tickets = affBetlistService.GetBetlistParlay(
                 AppSettings.AffiliateName,
                 model.TransId.ToString(),
-                exchangeRate.ToString());
+                exchangeRate.ToString(),
+                AppSession.Language);
 
             return tickets;
         }
@@ -139,7 +141,8 @@ namespace Fanex.AffiliateAdmin.Controller
             var systemParlayDataText = affBetlistService.GetBetlistSystemParlay(
                 AppSettings.AffiliateName,
                 exchangeRate.ToString(),
-                criteria);
+                criteria, 
+                AppSession.Language);
 
             ViewBag.Data = systemParlayDataText;
 
@@ -181,11 +184,12 @@ namespace Fanex.AffiliateAdmin.Controller
         public string GetPopUpData(AffBetListService.BetListResultsCriteria criteria)
         {
             var affBetlistService = new AffBetListService.AffiliateAPI();
-          
+
             return affBetlistService.GetBetlistResults(
                 AppSettings.AffiliateName,
                 AppSession.Language,
-                criteria);
+                criteria,
+                AppSession.Language);
         }
 
         #endregion

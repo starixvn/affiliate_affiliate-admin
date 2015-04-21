@@ -6,6 +6,8 @@
 
 namespace Fanex.AffiliateAdmin.Criterias
 {
+    using System.ComponentModel.DataAnnotations;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -17,28 +19,43 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int UserId { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrFName")]
         public string FirstName { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrLName")]
         public string LastName { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrGender")]
         public bool Gender { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrCountry")]
         public string Country { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrEmail")]
+        [RegularExpression(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$",
+            ErrorMessageResourceType = typeof(Lang),
+            ErrorMessageResourceName = "ErrEmailValid")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         public string Password { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrPhone")]
         public string Phone { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrMobilePhone")]
         public string MobilePhone { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrAddress")]
         public string Address { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrCity")]
         public string City { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrState")]
         public string State { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrChequePostcode")]
         public string Postal { get; set; }
 
         [SpParam(SqlParamName = "emailformat")]
@@ -53,6 +70,7 @@ namespace Fanex.AffiliateAdmin.Criterias
         public int Level { get; set; }
 
         [SpParam(SqlParamName = "SiteUrl")]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrSiteUrl")]
         public string SiteLink { get; set; }
 
         public string MoreSiteUrls { get; set; }
@@ -61,6 +79,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string PreferredPayment { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrUserNamePlayer")]
         [SpParam(SqlParamName = "player_username")]
         public string PlayerUserName { get; set; }
 

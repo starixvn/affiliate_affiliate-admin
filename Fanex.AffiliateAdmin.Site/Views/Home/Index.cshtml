@@ -75,7 +75,7 @@ home
             </tr>
             <tr>
                 <td colspan="5">
-                    @Lang.WeHave <strong>@Model.AffInProAllNum</strong> @Lang.AffInPro
+                    @Html.Raw(string.Format(Lang.WeHaveAffiliates, @Model.AffInProAllNum))
                 </td>
             </tr>
             <tr class="info">
@@ -87,7 +87,7 @@ home
                 </td>
                 <td><strong>@Html.ActionLink(Model.ClosedAllNum.ToString(), "Index", "Affiliate", new { Status = "Closed" }, new { })</strong> @Lang.Closed
                 </td>
-                <td><strong>@Html.ActionLink(Model.LockedAllNum.ToString(), "Index", "Affiliate", new { Status = "LockedOut" }, new { })</strong> @Lang.LockedOut
+                <td><strong>@Html.ActionLink(Model.LockedAllNum.ToString(), "Index", "Affiliate", new { Status = "LockedOut" }, new { })</strong> @Lang.Locked
                 </td>
             </tr>
         </table>
@@ -101,7 +101,7 @@ home
             </tr>
             <tr>
                 <td colspan="5">
-                    @Lang.WeHave <strong>@Model.AffInProMonthNum</strong> @Lang.AffInPro
+                    @Html.Raw(string.Format(Lang.WeHaveAffiliates, @Model.AffInProMonthNum))
                 </td>
             </tr>
             <tr class="info">
@@ -113,7 +113,7 @@ home
                 </td>
                 <td><strong>@Model.ClosedMonthNum</strong> @Lang.Closed
                 </td>
-                <td><strong>@Model.LockedMonthNum</strong> @Lang.LockedOut
+                <td><strong>@Model.LockedMonthNum</strong> @Lang.Locked
                 </td>
             </tr>
         </table>
@@ -131,7 +131,8 @@ home
             <tr>
                 <td colspan="2">
                     <p>
-                        @Lang.WeHave <strong>@Model.MemInProAllNum</strong> @Lang.MemInAffPro<br />
+                        @Html.Raw(string.Format(Lang.WeHaveMembers, Model.MemInProAllNum))
+                        <br />
                         <strong>@Model.DepositMemAllNum</strong> @Lang.Deposit / <strong>@(Model.MemInProAllNum - Model.DepositMemAllNum)</strong>
                         @Lang.NonDeposit
                     </p>
@@ -191,7 +192,8 @@ home
             <tr>
                 <td colspan="2">
                     <p>
-                        @Lang.WeHave <strong>@Model.MemInProMonthNum</strong> @Lang.MemInAffPro<br />
+                        @Html.Raw(string.Format(Lang.WeHaveMembers, @Model.MemInProMonthNum))
+                        <br />
                         <strong>@Model.DepositMemMonthNum</strong> @Lang.Deposit / <strong>@Model.NonDepositMemMonthNum/@Model.MemInProMonthNum</strong>
                         @Lang.NonDeposit
                     </p>

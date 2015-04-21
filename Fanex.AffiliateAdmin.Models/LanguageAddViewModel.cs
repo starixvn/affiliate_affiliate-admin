@@ -29,7 +29,7 @@ namespace Fanex.AffiliateAdmin.Models
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "NameFieldIsRequired")]
         public string LanguageName { get; set; }
 
-        public IEnumerable<Country> CountryList { get; set; }
+        public IEnumerable<DTO.Country> CountryList { get; set; }
 
         public IEnumerable<SelectListItem> CountryOptionList
         {

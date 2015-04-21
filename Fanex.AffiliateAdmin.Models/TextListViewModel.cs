@@ -50,17 +50,21 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                if (_bannerCategoryOptions == null)
+                var selectItemList = new List<SelectListItem>();
+                
+                foreach (var item in MediaSettings.BannerCategories)
                 {
-                    var selectItemList = MediaSettings.BannerCategories.Select(t => new SelectListItem
-                    {
-                        Text = t.Value,
-                        Value = t.TypeId.ToString()
-                    }).ToList();
+                    var value = Lang.ResourceManager.GetString(item.Value.Replace(" ", string.Empty));
 
-                    selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
-                    _bannerCategoryOptions = selectItemList;
+                    selectItemList.Add(new SelectListItem
+                        {
+                            Text = string.IsNullOrEmpty(value) ? item.Value : value,
+                            Value = item.TypeId.ToString()
+                        });
                 }
+
+                selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
+                _bannerCategoryOptions = selectItemList;
 
                 return _bannerCategoryOptions;
             }

@@ -20,6 +20,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
     using Fanex.AffiliateAdmin.Criterias.Configuration.Product;
     using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Common.Helper;
     using Fanex.Data.Repository;
 
@@ -54,7 +55,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         {
             return this.GetDataOutput<SystemSetting>(criteria);
         }
-       
+
         public void UpdateSystemSetting(SystemSettingUpdateCriteria criteria)
         {
             this.ExecuteOutput(criteria);
@@ -70,7 +71,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
             this.ExecuteOutput(criteria);
         }
 
-        #endregion
+        #endregion Configuration
 
         #region Language
 
@@ -147,7 +148,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
             this.ExecuteOutput(criteria);
         }
 
-        #endregion
+        #endregion Language
 
         #region Country
 
@@ -156,14 +157,14 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// </summary>
         /// <param name="criteria">Country Criteria.</param>
         /// <returns>Return List Countries.</returns>
-        public IEnumerable<Country> GetCountryList(CountrySelectCriteria criteria)
+        public IEnumerable<DTO.Country> GetCountryList(CountrySelectCriteria criteria)
         {
-            return this.GetDataOutput<Country>(criteria);
+            return this.GetDataOutput<DTO.Country>(criteria);
         }
 
-        public Country GetCountry(CountryDetailCriteria criteria)
+        public DTO.Country GetCountry(CountryDetailCriteria criteria)
         {
-            return this.GetEntity<Country>(criteria);
+            return this.GetEntity<DTO.Country>(criteria);
         }
 
         public void UpdateCountry(CountryUpdateCriteria criteria)
@@ -181,7 +182,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
             this.ExecuteOutput(criteria);
         }
 
-        #endregion
+        #endregion Country
 
         #region Product
 
@@ -210,7 +211,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
             this.ExecuteOutput(criteria);
         }
 
-        #endregion
+        #endregion Product
 
         #region Affiliate Type
 
@@ -239,7 +240,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
             this.ExecuteOutput(criteria);
         }
 
-        #endregion        
+        #endregion Affiliate Type
 
         /// <summary>
         /// Gets Deduction Types.
@@ -310,7 +311,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
 
             criteria.UserId = SessionManager.CurrentSession.CustID;
 
-            return GetData<CommGroup>(criteria);            
+            return GetData<CommGroup>(criteria);
         }
 
         public IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
@@ -334,7 +335,15 @@ namespace Fanex.AffiliateAdmin.Core.Services
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            return this.GetData<SystemSetting>(criteria);
+            var result = GetData<SystemSetting>(criteria);
+
+            foreach (var item in result)
+            {
+                var text = Lang.ResourceManager.GetString(item.SValue);
+                item.SValue = string.IsNullOrEmpty(text) ? item.SValue : text;
+            }
+
+            return result;
         }
 
         /// <summary>

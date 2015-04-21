@@ -28,7 +28,7 @@ namespace Fanex.AffiliateAdmin.Models
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrConfirmPasswordRequired")]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ConfirmPasswordIsRequired")]
         [Compare("Password", ErrorMessageResourceName = "PassConfirm", ErrorMessageResourceType = typeof(Lang))]
         [Display(ResourceType = typeof(Lang), Name = "ConfirmPass")]
         public string ConfirmPassword { get; set; }

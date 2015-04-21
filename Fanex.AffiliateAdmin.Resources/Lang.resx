@@ -175,7 +175,7 @@
   <data name="AddCurrency" xml:space="preserve">
     <value>Add Currency</value>
   </data>
-  <data name="AddDepartment" xml:space="preserve">
+  <data name="AddGroup" xml:space="preserve">
     <value>Add Group</value>
   </data>
   <data name="AddDomainControl" xml:space="preserve">
@@ -243,9 +243,6 @@
   </data>
   <data name="AddUrl" xml:space="preserve">
     <value>Add New Url</value>
-  </data>
-  <data name="AddUserSucc" xml:space="preserve">
-    <value>The user has been added successfully.</value>
   </data>
   <data name="AddUserSuccess" xml:space="preserve">
     <value>The administrator has been added successfully.</value>
@@ -315,9 +312,6 @@
   </data>
   <data name="AffiliateUserName" xml:space="preserve">
     <value>Affiliate Username</value>
-  </data>
-  <data name="AffInPro" xml:space="preserve">
-    <value>affiliate(s) in the program</value>
   </data>
   <data name="AffList" xml:space="preserve">
     <value>Affiliate List</value>
@@ -617,9 +611,6 @@
   <data name="ConfirmDelDomain" xml:space="preserve">
     <value>Are you sure you want to delete this member domain?</value>
   </data>
-  <data name="ConfirmDelDomainSetting" xml:space="preserve">
-    <value>Are you sure you want to delete the domain settings?</value>
-  </data>
   <data name="ConfirmDelete" xml:space="preserve">
     <value>Are you sure you want to delete this group?</value>
   </data>
@@ -641,14 +632,8 @@
   <data name="ConfirmDelLang" xml:space="preserve">
     <value>Are you sure you want to delete selected language(s)?</value>
   </data>
-  <data name="ConfirmDelNote" xml:space="preserve">
-    <value>Are you sure you want to delete these notes?</value>
-  </data>
   <data name="ConfirmDelProduct" xml:space="preserve">
     <value>Are you sure you want to delete selected product(s)?</value>
-  </data>
-  <data name="ConfirmDelTexts" xml:space="preserve">
-    <value>Are you sure you want to delete selected text(s)?</value>
   </data>
   <data name="ConfirmDelTranslation" xml:space="preserve">
     <value>Are you sure you want to delete selected translation(s)?</value>
@@ -673,9 +658,6 @@
   </data>
   <data name="ConfirmUnlockAff" xml:space="preserve">
     <value>Are you sure you want to unlock this affiliate?</value>
-  </data>
-  <data name="ConfirmUnlockAffs" xml:space="preserve">
-    <value>Are you sure you want to unlock selected affiliate(s)?</value>
   </data>
   <data name="ConfirmUpdAffiliateGroup" xml:space="preserve">
     <value>Are you sure you want to change the commission group of selected affiliate(s): {a}; {b}?</value>
@@ -830,10 +812,10 @@
   <data name="DeleteUserSucc" xml:space="preserve">
     <value>has been deleted successfully!</value>
   </data>
-  <data name="Department" xml:space="preserve">
+  <data name="Group" xml:space="preserve">
     <value>Group</value>
   </data>
-  <data name="DepartmentList" xml:space="preserve">
+  <data name="GroupManagement" xml:space="preserve">
     <value>Group Management</value>
   </data>
   <data name="Deposit" xml:space="preserve">
@@ -878,17 +860,11 @@
   <data name="Dormant" xml:space="preserve">
     <value>Dormant</value>
   </data>
-  <data name="DoYouWantToTransferAll" xml:space="preserve">
-    <value>Do you want to transfer all?</value>
-  </data>
   <data name="DrawFilter" xml:space="preserve">
     <value>Draw Filter</value>
   </data>
   <data name="DropLastZeroDigits" xml:space="preserve">
     <value>In our report, we may drop some last zero digits as below:</value>
-  </data>
-  <data name="DropZerosCurrency" xml:space="preserve">
-    <value>In all reports, the last 3 zeros are dropped from IDR/VND currency. Ex: Rp2 is Rp2000 in real value.</value>
   </data>
   <data name="Earning" xml:space="preserve">
     <value>Earning</value>
@@ -926,9 +902,6 @@
   <data name="EditUser" xml:space="preserve">
     <value>Edit User</value>
   </data>
-  <data name="Email" xml:space="preserve">
-    <value>Email Address</value>
-  </data>
   <data name="EmailDetail" xml:space="preserve">
     <value>Email Detail</value>
   </data>
@@ -949,9 +922,6 @@
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
-  </data>
-  <data name="EnglishEU" xml:space="preserve">
-    <value>English_Euro</value>
   </data>
   <data name="Environment" xml:space="preserve">
     <value>Environment</value>
@@ -1139,12 +1109,6 @@
   <data name="ErrState" xml:space="preserve">
     <value>State is required</value>
   </data>
-  <data name="ErrSubCategory" xml:space="preserve">
-    <value>Sub category is required.</value>
-  </data>
-  <data name="ErrText" xml:space="preserve">
-    <value>Please input a text.</value>
-  </data>
   <data name="ErrUsername" xml:space="preserve">
     <value>Username is required</value>
   </data>
@@ -1178,12 +1142,6 @@
   <data name="ExcelUploadSuccessful" xml:space="preserve">
     <value>Your excel file was uploaded successfully!</value>
   </data>
-  <data name="ExchangeRate" xml:space="preserve">
-    <value>Currency Rates</value>
-  </data>
-  <data name="ExchangeRateInputValid" xml:space="preserve">
-    <value>For the exchange rate, please input 1 for 1000 IDR/VND.</value>
-  </data>
   <data name="ExcludeTestAccounts" xml:space="preserve">
     <value>Exclude Test Accounts</value>
   </data>
@@ -1198,9 +1156,6 @@
   </data>
   <data name="Female" xml:space="preserve">
     <value>Female</value>
-  </data>
-  <data name="FieldMustCompleted" xml:space="preserve">
-    <value>Fields marked * must be completed.</value>
   </data>
   <data name="FieldRequired" xml:space="preserve">
     <value>This field is required</value>
@@ -1267,9 +1222,6 @@
   </data>
   <data name="GroupInfo" xml:space="preserve">
     <value>Group Info</value>
-  </data>
-  <data name="GroupList" xml:space="preserve">
-    <value>Group List</value>
   </data>
   <data name="GroupName" xml:space="preserve">
     <value>Group Name</value>
@@ -1418,9 +1370,6 @@
   <data name="IsEnabled" xml:space="preserve">
     <value>Is Enabled</value>
   </data>
-  <data name="IsHrTurnoverQualified" xml:space="preserve">
-    <value>Is HRQM</value>
-  </data>
   <data name="IsQualifiedMember" xml:space="preserve">
     <value>Is Qualified Member</value>
   </data>
@@ -1484,16 +1433,13 @@
   <data name="LastTierSettingHaveMaxValue" xml:space="preserve">
     <value>Last Tier Setting must have maximum value=∞.</value>
   </data>
-  <data name="Limit100Characters" xml:space="preserve">
-    <value>The maximum number of characters for this field is 100, please try again.</value>
-  </data>
   <data name="LimitDate" xml:space="preserve">
     <value>You could only see report from </value>
   </data>
   <data name="LiveCasino" xml:space="preserve">
     <value>Live Casino</value>
   </data>
-  <data name="LockedOut" xml:space="preserve">
+  <data name="Locked" xml:space="preserve">
     <value>Locked</value>
   </data>
   <data name="LoggedIn" xml:space="preserve">
@@ -1598,9 +1544,6 @@
   <data name="MemDomainNameNotContainChar" xml:space="preserve">
     <value>Member domain name can not contain this character.</value>
   </data>
-  <data name="MemInAffPro" xml:space="preserve">
-    <value>members in the program</value>
-  </data>
   <data name="MemStatAll" xml:space="preserve">
     <value>Member statistics (up to now)</value>
   </data>
@@ -1632,7 +1575,7 @@
     <value>Minimum number of qualified members</value>
   </data>
   <data name="MinimumWinlossAmount" xml:space="preserve">
-    <value>Minimum number of qualified members</value>
+    <value>Minumum all members' winloss amount</value>
   </data>
   <data name="MinQM" xml:space="preserve">
     <value>Min QM</value>
@@ -1760,9 +1703,6 @@
   <data name="NotesList" xml:space="preserve">
     <value>Note List</value>
   </data>
-  <data name="NoTextSelected" xml:space="preserve">
-    <value>Please select text(s) to delete.</value>
-  </data>
   <data name="NotHandleFrames" xml:space="preserve">
     <value>Sorry, Your browser does not handle frames!</value>
   </data>
@@ -1789,9 +1729,6 @@
   </data>
   <data name="OldRequire" xml:space="preserve">
     <value>Old Password is required</value>
-  </data>
-  <data name="OnlistListNotUpdate" xml:space="preserve">
-    <value>Sorry! The online list could not be updated.</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>Open</value>
@@ -1847,9 +1784,6 @@
   <data name="Pending" xml:space="preserve">
     <value>Pending</value>
   </data>
-  <data name="PendingCommission" xml:space="preserve">
-    <value>Processing Commission</value>
-  </data>
   <data name="PersonalInfo" xml:space="preserve">
     <value>Personal Information</value>
   </data>
@@ -1888,9 +1822,6 @@
   </data>
   <data name="Processing" xml:space="preserve">
     <value>Processing</value>
-  </data>
-  <data name="ProcessingCommission" xml:space="preserve">
-    <value>Processing Commission</value>
   </data>
   <data name="Product" xml:space="preserve">
     <value>Product</value>
@@ -1952,9 +1883,6 @@
   <data name="RefreshPage" xml:space="preserve">
     <value>Refresh Page</value>
   </data>
-  <data name="RegisterDate" xml:space="preserve">
-    <value>Registered Date</value>
-  </data>
   <data name="Rejected" xml:space="preserve">
     <value>Rejected</value>
   </data>
@@ -1970,7 +1898,7 @@
   <data name="RemoveFromMyFavorite" xml:space="preserve">
     <value>Remove from My Favorite</value>
   </data>
-  <data name="Report" xml:space="preserve">
+  <data name="Reports" xml:space="preserve">
     <value>Reports</value>
   </data>
   <data name="ReportDetails" xml:space="preserve">
@@ -2042,15 +1970,6 @@
   <data name="SelectBannerDelete" xml:space="preserve">
     <value>Please select banner to delete.</value>
   </data>
-  <data name="SelectBannerUpload" xml:space="preserve">
-    <value>Please select banner to upload.</value>
-  </data>
-  <data name="SelectExcelUpload" xml:space="preserve">
-    <value>Please select excel to upload.</value>
-  </data>
-  <data name="SelectNoteDel" xml:space="preserve">
-    <value>Please select note to delete!</value>
-  </data>
   <data name="SelectType" xml:space="preserve">
     <value>Please select type(s) first.</value>
   </data>
@@ -2101,12 +2020,6 @@
   </data>
   <data name="Size" xml:space="preserve">
     <value>Size</value>
-  </data>
-  <data name="SorryYouCantDeleteBanner" xml:space="preserve">
-    <value>Sorry! You can't delete the banner having total request greater than 0!</value>
-  </data>
-  <data name="SorryYouCantDeleteText" xml:space="preserve">
-    <value>Sorry! You can't delete the text having total request greater than 0!</value>
   </data>
   <data name="SortBy" xml:space="preserve">
     <value>Sort By</value>
@@ -2162,9 +2075,6 @@
   <data name="SuccRemoveMem" xml:space="preserve">
     <value>Member has been removed suseccfully!</value>
   </data>
-  <data name="SystemCurrencyCode" xml:space="preserve">
-    <value>System Currency Code</value>
-  </data>
   <data name="TaskWaitingApp" xml:space="preserve">
     <value>Tasks waiting for approval</value>
   </data>
@@ -2182,9 +2092,6 @@
   </data>
   <data name="Thai" xml:space="preserve">
     <value>ภาษาไทย</value>
-  </data>
-  <data name="Thumbnail" xml:space="preserve">
-    <value>Thumbnail</value>
   </data>
   <data name="Tier" xml:space="preserve">
     <value>Tier</value>
@@ -2246,17 +2153,11 @@
   <data name="TotalQualifiedMembers" xml:space="preserve">
     <value>Total Qualified Active Members</value>
   </data>
-  <data name="TotalRangeIn" xml:space="preserve">
-    <value>Total {0} in {1}</value>
-  </data>
   <data name="TotalRegister" xml:space="preserve">
     <value>Total Registers</value>
   </data>
   <data name="TotalRequest" xml:space="preserve">
     <value>Total Request</value>
-  </data>
-  <data name="TotalTransactions" xml:space="preserve">
-    <value>Total Transactions</value>
   </data>
   <data name="TotalTurnover" xml:space="preserve">
     <value>Total Turnover</value>
@@ -2278,12 +2179,6 @@
   </data>
   <data name="TransactionDate" xml:space="preserve">
     <value>Transaction Date</value>
-  </data>
-  <data name="TransactionsId" xml:space="preserve">
-    <value>Transaction ID</value>
-  </data>
-  <data name="TransferAll" xml:space="preserve">
-    <value>Transfer All</value>
   </data>
   <data name="TransferAmount" xml:space="preserve">
     <value>Transfer Amount</value>
@@ -2308,9 +2203,6 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
-  </data>
-  <data name="UnauthorizedMsg" xml:space="preserve">
-    <value>Your session has timed out or your request is not authorized</value>
   </data>
   <data name="UnderMaintenance" xml:space="preserve">
     <value>Under Maintenance</value>
@@ -2447,9 +2339,6 @@
   <data name="ViewAllAccount" xml:space="preserve">
     <value>View All Accounts</value>
   </data>
-  <data name="ViewDetail" xml:space="preserve">
-    <value>View Detail</value>
-  </data>
   <data name="ViewLog" xml:space="preserve">
     <value>View Log</value>
   </data>
@@ -2462,23 +2351,14 @@
   <data name="VisibleOnlyToAdmin" xml:space="preserve">
     <value>Visible only to admin</value>
   </data>
-  <data name="VisitWebsite" xml:space="preserve">
-    <value>Visit this website</value>
-  </data>
-  <data name="We" xml:space="preserve">
-    <value>We</value>
-  </data>
   <data name="WebsiteUrl" xml:space="preserve">
     <value>Please input Website URL</value>
-  </data>
-  <data name="WeHave" xml:space="preserve">
-    <value>We have </value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome</value>
   </data>
   <data name="Winloss" xml:space="preserve">
-    <value>Winloss</value>
+    <value>WinLoss</value>
   </data>
   <data name="Withdrawal" xml:space="preserve">
     <value>Withdrawal</value>
@@ -2503,9 +2383,6 @@
   </data>
   <data name="UncheckPendingDisapprovedAffiliates" xml:space="preserve">
     <value>Please uncheck affiliates which has Pending/Disapproved status!</value>
-  </data>
-  <data name="AlreadyTransfersForThisMonth" xml:space="preserve">
-    <value>Please check the data. Transfers have been done for {0}!</value>
   </data>
   <data name="DontEnterSpecialCharacters" xml:space="preserve">
     <value>Please don't enter special characters, such as ~!#$%^&amp;*();&lt;&gt;{}[]| in text box.</value>
@@ -2537,9 +2414,6 @@
   <data name="PWin" xml:space="preserve">
     <value>P.Win</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>Member Winloss</value>
-  </data>
   <data name="PlaytechCasinoNetGaming" xml:space="preserve">
     <value>Playtech Casino Net Gaming</value>
   </data>
@@ -2549,9 +2423,6 @@
   <data name="ProgressiveWin" xml:space="preserve">
     <value>Progressive Win</value>
   </data>
-  <data name="ErrConfirmPasswordRequired" xml:space="preserve">
-    <value>Confirm password is required</value>
-  </data>
   <data name="CompanyWinLossReportInfo" xml:space="preserve">
     <value>&lt;ul&gt;
                 &lt;li&gt;Company W/L = Sum of Member Win Loss on selected products&lt;/li&gt;
@@ -2559,9 +2430,6 @@
                 {0}
             &lt;/ul&gt;
     </value>
-  </data>
-  <data name="PCNetGamingInfo" xml:space="preserve">
-    <value>&lt;li&gt;PC. Net Gaming = - Member Win Loss - Progressive Share&lt;/li&gt;</value>
   </data>
   <data name="UpdateExRate" xml:space="preserve">
     <value>Update exchange rate</value>
@@ -2572,13 +2440,10 @@
   <data name="AffiliateWinLoss" xml:space="preserve">
     <value>Affiliate Win Loss</value>
   </data>
-  <data name="AffiliateWinLossReport" xml:space="preserve">
-    <value>Affiliate Win Loss Report</value>
-  </data>
-  <data name="PlayerComm" xml:space="preserve">
+  <data name="MemberComm" xml:space="preserve">
     <value>Member Comm</value>
   </data>
-  <data name="PlayerCommission" xml:space="preserve">
+  <data name="MemberCommission" xml:space="preserve">
     <value>Member Commission</value>
   </data>
   <data name="AffiliateMonth" xml:space="preserve">
@@ -2590,8 +2455,8 @@
   <data name="TransferState" xml:space="preserve">
     <value>Transfer State</value>
   </data>
-  <data name="VirtualSport" xml:space="preserve">
-    <value>Virtual Sport</value>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>Virtual Sports</value>
   </data>
   <data name="NetWinloss" xml:space="preserve">
     <value>Net Win Loss</value>
@@ -2736,5 +2601,218 @@
   </data>
   <data name="BetListTitle" xml:space="preserve">
     <value>Bet List {0} - {1} - &lt;span&gt;View in {2}&lt;/span&gt;</value>
+  </data>
+  <data name="Comm" xml:space="preserve">
+    <value>Commission</value>
+  </data>
+  <data name="CurrencyMustSame" xml:space="preserve">
+    <value>Currencies of affiliates must be same!</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Item(s)</value>
+  </data>
+  <data name="Msg1002" xml:space="preserve">
+    <value>The A/C is closed due to 5 wrong password attempts.</value>
+  </data>
+  <data name="NumSelected" xml:space="preserve">
+    <value>{0} Selected</value>
+  </data>
+  <data name="PreferPayment" xml:space="preserve">
+    <value>Preferred Payment</value>
+  </data>
+  <data name="Realaccount" xml:space="preserve">
+    <value>Real account</value>
+  </data>
+  <data name="Kiosk" xml:space="preserve">
+    <value>Kiosk</value>
+  </data>
+  <data name="Testaccount" xml:space="preserve">
+    <value>Test account</value>
+  </data>
+  <data name="ITTestaccount" xml:space="preserve">
+    <value>IT-Test account</value>
+  </data>
+  <data name="EditCommissionGroup" xml:space="preserve">
+    <value>Edit Commission Group</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Uncheck" xml:space="preserve">
+    <value>Uncheck</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>selected</value>
+  </data>
+  <data name="SelectAnOption" xml:space="preserve">
+    <value>Select an option</value>
+  </data>
+  <data name="WeHaveAffiliates" xml:space="preserve">
+    <value>We have &lt;strong&gt;{0}&lt;/strong&gt; affiliate(s) in the program.</value>
+  </data>
+  <data name="WeHaveMembers" xml:space="preserve">
+    <value>We have &lt;strong&gt;{0}&lt;/strong&gt; members in the program.</value>
+  </data>
+  <data name="HandHistoryDetails" xml:space="preserve">
+    <value>Hand History Details</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="Casino" xml:space="preserve">
+    <value>Casino</value>
+  </data>
+  <data name="Racebook" xml:space="preserve">
+    <value>Racebook</value>
+  </data>
+  <data name="Baccarat" xml:space="preserve">
+    <value>Baccarat</value>
+  </data>
+  <data name="Blackjack" xml:space="preserve">
+    <value>Blackjack</value>
+  </data>
+  <data name="CasinoBonus" xml:space="preserve">
+    <value>Casino Bonus</value>
+  </data>
+  <data name="Roulettle" xml:space="preserve">
+    <value>Roulettle</value>
+  </data>
+  <data name="Sicbo" xml:space="preserve">
+    <value>Sic bo</value>
+  </data>
+  <data name="Basketball" xml:space="preserve">
+    <value>Basketball</value>
+  </data>
+  <data name="SBBonus" xml:space="preserve">
+    <value>SB Bonus</value>
+  </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>Soccer</value>
+  </data>
+  <data name="Tennis" xml:space="preserve">
+    <value>Tennis</value>
+  </data>
+  <data name="Slot" xml:space="preserve">
+    <value>Slot</value>
+  </data>
+  <data name="CollapseExpandDataRows" xml:space="preserve">
+    <value>Collapse/Expand data rows</value>
+  </data>
+  <data name="PlayerComm" xml:space="preserve">
+    <value>Member Comm</value>
+  </data>
+  <data name="TotalAll" xml:space="preserve">
+    <value>Total All</value>
+  </data>
+  <data name="TotalAllIn" xml:space="preserve">
+    <value>Total All in {0}</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="Flash" xml:space="preserve">
+    <value>Flash</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Currentmonthstatistics" xml:space="preserve">
+    <value>Current month statistics</value>
+  </data>
+  <data name="SettingforCommissionGroup" xml:space="preserve">
+    <value>Setting for Commission Group</value>
+  </data>
+  <data name="UserInfo" xml:space="preserve">
+    <value>User Info</value>
+  </data>
+  <data name="Transaction" xml:space="preserve">
+    <value>Transaction</value>
+  </data>
+  <data name="Payout" xml:space="preserve">
+    <value>Payout</value>
+  </data>
+  <data name="Permission" xml:space="preserve">
+    <value>Permission</value>
+  </data>
+  <data name="UserNote" xml:space="preserve">
+    <value>User Note</value>
+  </data>
+  <data name="LoginAdmin" xml:space="preserve">
+    <value>Login Admin</value>
+  </data>
+  <data name="LoginAffiliate" xml:space="preserve">
+    <value>Login Affiliate</value>
+  </data>
+  <data name="LogoutAdmin" xml:space="preserve">
+    <value>Logout Admin</value>
+  </data>
+  <data name="LogoutAffiliate" xml:space="preserve">
+    <value>Logout Affiliate</value>
+  </data>
+  <data name="UserControl" xml:space="preserve">
+    <value>User Control</value>
+  </data>
+  <data name="AffiliatePortal" xml:space="preserve">
+    <value>Affiliate Portal</value>
+  </data>
+  <data name="UnCalculatedMonth" xml:space="preserve">
+    <value>UnCalculated Month</value>
+  </data>
+  <data name="Requestpayout" xml:space="preserve">
+    <value>Request payout</value>
+  </data>
+  <data name="CurrencyRates" xml:space="preserve">
+    <value>Currency Rates</value>
+  </data>
+  <data name="MonthlyTransfer" xml:space="preserve">
+    <value>Monthly Transfer</value>
+  </data>
+  <data name="CustomerSupportDepartment" xml:space="preserve">
+    <value>Customer Support Department</value>
+  </data>
+  <data name="Finance" xml:space="preserve">
+    <value>Finance</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="MonthlyEarning" xml:space="preserve">
+    <value>Monthly Earning</value>
+  </data>
+  <data name="Roulette" xml:space="preserve">
+    <value>Roulette</value>
+  </data>
+  <data name="SystemIsNotAvailable" xml:space="preserve">
+    <value>SORRY! THE SYSTEM IS NOT AVAILABLE</value>
+  </data>
+  <data name="ExchangeRate" xml:space="preserve">
+    <value>Exchange Rate</value>
+  </data>
+  <data name="VirtualCycling" xml:space="preserve">
+    <value>Virtual Cycling</value>
+  </data>
+  <data name="VirtualGreyhounds" xml:space="preserve">
+    <value>Virtual Greyhounds</value>
+  </data>
+  <data name="VirtualHorseRacing" xml:space="preserve">
+    <value>Virtual Horse Racing</value>
+  </data>
+  <data name="VirtualSoccer" xml:space="preserve">
+    <value>Virtual Soccer</value>
+  </data>
+  <data name="VirtualSpeedway" xml:space="preserve">
+    <value>Virtual Speedway</value>
+  </data>
+  <data name="VirtualTennis" xml:space="preserve">
+    <value>Virtual Tennis</value>
+  </data>
+  <data name="VirtualMotorsports" xml:space="preserve">
+    <value>Virtual Motorsports</value>
   </data>
 </root>

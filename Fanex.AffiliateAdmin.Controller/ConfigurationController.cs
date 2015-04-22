@@ -325,7 +325,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 _systemSettingService.InsertCountry(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
-        
+
             return AddCountry();
         }
 

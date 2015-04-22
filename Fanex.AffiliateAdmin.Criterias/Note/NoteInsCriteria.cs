@@ -1,5 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias
 {
+    using System.ComponentModel.DataAnnotations;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -7,6 +8,7 @@
     /// </summary>
     public class NoteInsCriteria : CriteriaBase
     {
+        [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrNoteEmpty")]
         public string Content { get; set; }
 
         public int AffId { get; set; }
@@ -26,7 +28,7 @@
 
         public override bool IsValid()
         {
-            return true;
+            return !string.IsNullOrEmpty(Content);
         }
     }
 }

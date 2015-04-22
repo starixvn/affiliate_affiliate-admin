@@ -37,9 +37,11 @@
                     <th rowspan="@rowSpan">@Lang.QualifiedAmount (@ViewBag.SymbolCurrency)</th>
                     @if (productCount > 0)
                     {
+                        var productName = Lang.ResourceManager.GetString(selectedProducts[0].ProductName.Replace(" ", string.Empty));
+                        productName = string.IsNullOrEmpty(productName) ? selectedProducts[0].ProductName : productName;
                         var turnoverTitle = productCount > 1
                             ? string.Format("{0} ({1})", Lang.Turnover, ViewBag.SymbolCurrency)
-                            : string.Format("{0} {1} ({2})", selectedProducts[0].ProductName, Lang.Turnover, ViewBag.SymbolCurrency);
+                            : string.Format("{0} {1} ({2})", productName, Lang.Turnover, ViewBag.SymbolCurrency);
                         
                         <th colspan="@(selectedProducts.Count())">@turnoverTitle</th>
                     }
@@ -49,7 +51,10 @@
                     <tr style="height: 24px">
                     @foreach (var product in selectedProducts)
                     {
-                        <th>@product.ProductName</th>
+                        var productName = Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty));
+                        productName = string.IsNullOrEmpty(productName) ? product.ProductName : productName;
+                        
+                        <th>@productName</th>
                     }
                     </tr>
                 }

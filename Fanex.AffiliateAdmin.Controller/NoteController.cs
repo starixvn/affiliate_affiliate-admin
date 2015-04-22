@@ -76,7 +76,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult AddNote()
         {
-            return View();
+            return View(new NoteViewModel());
         }
 
         /// <summary>
@@ -87,19 +87,21 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult AddNote(NoteInsCriteria criteria)
         {
-            criteria.Ip = Remote.GetClientIPAddress();
-            criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
-            criteria.UpdatedBy = this.CurrentSession.CustID;
-
-            this._noteService.InsertNote(criteria);
-
-            ViewBag.Result = new ResultViewModel
+            if (ModelState.IsValid && criteria.IsValid())
             {
-                ErrorCode = criteria.ErrCode,
-                Message = criteria.ErrCode == 0 ? Lang.SuccNoteAdd : ErrorMessage(criteria.ErrCode)
-            };
+                criteria.Ip = Remote.GetClientIPAddress();
+                criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
+                criteria.UpdatedBy = this.CurrentSession.CustID;
 
-            return View();
+                this._noteService.InsertNote(criteria);
+                ViewBag.Result = new ResultViewModel
+                {
+                    ErrorCode = criteria.ErrCode,
+                    Message = criteria.ErrCode == 0 ? Lang.SuccNoteAdd : ErrorMessage(criteria.ErrCode)
+                };
+            }
+
+            return AddNote();
         }
 
         /// <summary>

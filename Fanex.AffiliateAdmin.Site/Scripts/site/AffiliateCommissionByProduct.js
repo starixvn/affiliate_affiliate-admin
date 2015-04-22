@@ -307,11 +307,11 @@ var AffiliateCommissionByProduct = (function ($) {
         });
         var subTotalCol = {
 
-            Value: "<div align='center'>{0}</div>".format(window.MSG.Total),
+            Value: window.MSG.Total,
             Name: "No",
             MergeRowNumber: totalMergeRowNumber,
             MergeColNumber: getMergeColNumberOfTotalCol(),
-            TdClass: "bold"
+            TdClass: "bold center"
         };
 
         $.each(subTotalData, function (idxLevel1, itemLevel1) {
@@ -374,7 +374,7 @@ var AffiliateCommissionByProduct = (function ($) {
         var totalPayment = 0;
         var totalColumn = {
             TdClass: numProducts > 1 ? "toggler toggle-{0}".format(currency) : '',
-            Value: "<div align='center'>{0}</div>".format(window.MSG.TotalIn.format(System.Currency)),
+            Value: window.MSG.TotalIn.format(System.Currency),
             Name: "No",
             MergeColNumber: getMergeColNumberOfTotalCol() + 1,
             MergeRowNumber: numProducts

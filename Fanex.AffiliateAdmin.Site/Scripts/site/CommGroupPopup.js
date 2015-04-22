@@ -65,7 +65,7 @@ var CommGroupPopup = (function ($) {
         var productname = $tab.data("productname");
 
         if ($tab.find("#" + productId).prop("checked")) {
-            alert("Please uncheck copy all tier settings on the " + productname + " product");
+            alert(window.MSG.UncheckCopyAllTierSettings.format(productname));
             return false;
         }
 

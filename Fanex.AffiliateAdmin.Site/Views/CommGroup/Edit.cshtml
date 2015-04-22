@@ -77,6 +77,8 @@
         var headerIcon = hasTier ? "icon-ok-circle" : "icon-ban-circle";
         var colorClass = hasTier ? "enabled" : "disabled";
         var toggleClass = hasTier ? "show" : "hide";
+        var productName = @Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty));
+        productName = string.IsNullOrEmpty(productName) ? product.ProductName : productName;
             
         <div class="control-group product">
             <div id="tab_header@(product.ProductID)" @(hasTier ? string.Empty : "data-disabled='true'") data-productid="@(product.ProductID)" class="tab_header" data-productname="@product.ProductName">
@@ -85,7 +87,7 @@
                         <span>
                             <span id="product_header@(product.ProductID)" class="product_header @colorClass" style="cursor: pointer"> 
                                 <i id="header_icon@(product.ProductID)" class="header_icon @headerIcon"></i>			      
-                                @Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty))
+                                @productName
                             </span>
                         </span>
                     </div>
@@ -93,7 +95,7 @@
                 <div class="pull-right textcopy">
                     <label for="@(product.ProductID)">
                         <input type="checkbox" class="copy" id="@(product.ProductID)" @(hasTier ? string.Empty : "disabled")/>
-                        @string.Format(@Lang.CopyTierSettingFor, Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty)))
+                        @string.Format(@Lang.CopyTierSettingFor, productName)
                     </label>
                 </div>
             </div>
@@ -143,7 +145,7 @@
                     <table id="tblTier@(product.ProductID)">
                         <thead>
                             <tr>
-                                <td style="width: 55px;" class="theader">Tier</td>
+                                <td style="width: 55px;" class="theader">@Lang.Tier</td>
                                 <td style="width: 110px;" title="@Lang.MinimumWinlossAmount" class="theader">@Lang.MinAmount</td>
                                 <td style="width: 165px;" title="@Lang.MaximumWinlossAmount" class="theader">@Lang.MaxAmount</td>
                                 <td style="width: 110px;" title="@Lang.MinimumQualifiedMembers" class="theader">@Lang.MinQM</td>
@@ -262,7 +264,8 @@
             GroupNameEmpty: "@Lang.GroupNameEmpty",
             ValidQualifiedAmount: "@Lang.ValidQualifiedAmount",
             EnableProduct: "@Lang.EnableProduct",
-            MaxTierAllow: "@Lang.MaxTierAllow"
+            MaxTierAllow: "@Lang.MaxTierAllow",
+            UncheckCopyAllTierSettings: "@Lang.UncheckCopyAllTierSettings"
         };
 
         var PRODUCTS = JSON.parse("@(ViewBag.ProductIDList)");

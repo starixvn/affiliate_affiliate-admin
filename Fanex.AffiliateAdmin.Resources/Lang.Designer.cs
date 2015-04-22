@@ -7429,6 +7429,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please uncheck copy all tier settings on the {0} product..
+        /// </summary>
+        public static string UncheckCopyAllTierSettings {
+            get {
+                return ResourceManager.GetString("UncheckCopyAllTierSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please uncheck affiliates which has Pending/Disapproved status!.
         /// </summary>
         public static string UncheckPendingDisapprovedAffiliates {

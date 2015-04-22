@@ -1639,7 +1639,7 @@
     <value>允许最多50个</value>
   </data>
 	<data name="TierSettingAtLeastTier" xml:space="preserve">
-    <value>Tier Setting must have at least 1 tier.</value>
+    <value>層的設定必须至少有1層的。</value>
   </data>
 	<data name="rate_" xml:space="preserve">
     <value>利率</value>
@@ -2761,6 +2761,9 @@
     <value>虚拟网球</value>
   </data>
 	<data name="OriginalView" xml:space="preserve">
-		<value>原来查看</value>
+    <value>原来查看</value>
+  </data>
+	<data name="UncheckCopyAllTierSettings" xml:space="preserve">
+		<value>Please uncheck copy all tier settings on the {0} product.</value>
 	</data>
 </root>

@@ -2818,4 +2818,7 @@
 	<data name="OriginalView" xml:space="preserve">
 		<value>Original View</value>
 	</data>
+	<data name="UncheckCopyAllTierSettings" xml:space="preserve">
+		<value>Please uncheck copy all tier settings on the {0} product.</value>
+	</data>
 </root>

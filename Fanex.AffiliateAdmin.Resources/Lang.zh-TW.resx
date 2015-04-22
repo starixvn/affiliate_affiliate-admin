@@ -1636,7 +1636,7 @@
     <value>允許最多50個</value>
   </data>
 	<data name="TierSettingAtLeastTier" xml:space="preserve">
-    <value>Tier Setting must have at least 1 tier.</value>
+    <value>层的设定必須至少有1层的。</value>
   </data>
 	<data name="rate_" xml:space="preserve">
     <value>利率</value>
@@ -2765,6 +2765,9 @@
     <value>虛擬賽車</value>
   </data>
 	<data name="OriginalView" xml:space="preserve">
-		<value>原來查看</value>
+    <value>原來查看</value>
+  </data>
+	<data name="UncheckCopyAllTierSettings" xml:space="preserve">
+		<value>Please uncheck copy all tier settings on the {0} product.</value>
 	</data>
 </root>

@@ -77,7 +77,9 @@ marketing-tools
             InvalidBanner: "@Lang.InvalidBanner",
             DeleteBannerMsg: "@Lang.DeleteBannerMsg",
             Remove: "@Lang.Remove",
-            Edit: "@Lang.Edit"
+            Edit: "@Lang.Edit",
+            OriginalView: "@Lang.OriginalView",
+            Image: "@Lang.Image"
         };
 
         var thumbnailHeight = @MediaSettings.ThumbnailHeight;
@@ -158,7 +160,7 @@ marketing-tools
                 sheight = parseInt(sheight * ratio);
             }
 
-            if (record.ImageType == 'Image') {
+            if (record.ImageType == window.MSG.Image) {
                 if (record.Thumbnail) {
                     var thumbnailUrl = '@MediaSettings.BannerDomain' + record.Thumbnail;
                     objectFormat = '<img style="cursor: pointer; max-width: 300px" src="{0}" alt="{1}" onclick="javascript:BannerList.viewImage(this, {2}, {3});" title="{4}" />';

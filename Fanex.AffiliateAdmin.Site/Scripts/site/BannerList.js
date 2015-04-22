@@ -119,7 +119,7 @@ var BannerList = (function ($) {
         },
         viewImage: function (imgElement) {
             var imgUrl = $(imgElement).attr('alt');
-            AFFILIATE.openDialogUrl(imgUrl, "Orginal View", { width: 800, height: 600 });
+            AFFILIATE.openDialogUrl(imgUrl, window.MSG.OriginalView, { width: 800, height: 600 });
         },
 
         /*jshint ignore:start */

@@ -1,4 +1,4 @@
-﻿div.fn-rs-content-header
+div.fn-rs-content-header
 {
     border: 1px solid #cbc9ca;
     padding-right: 15px;
@@ -12,6 +12,40 @@ div.fn-rs-content-scroll
     -ms-overflow-x: hidden;
     width: 100%;
     max-height: 780px;
+}
+div.goal-record
+{
+    float: right;
+    padding: :5px 0px;
+}
+div.goal-record table
+{
+    min-width: 180px;
+    border-collapse: collapse;
+    text-align: center;
+}
+div.goal-record table th
+{
+    border-right: 1px solid #cbc9ca;
+    font-weight: normal;
+    vertical-align: middle;
+    text-align: center;
+    color: #FFF !important;
+}
+div.goal-record table .header
+{
+    color: #fff;
+    background-color: #295091;
+}
+div.goal-record table tbody td
+{
+    border: solid 1px #cbc9ca;
+    padding: 1px;
+    vertical-align: middle;
+}
+div.goal-record table tbody .cl-goal
+{
+    width: 50%;
 }
 table
 {
@@ -46,7 +80,7 @@ table.fn-rs thead th.cl-title
 table.fn-rs .header, table.fn-rs .sub-header
 {
     color: #fff;
-    background-color: #0d94c3;
+    background-color: #295091;
 }
 table.fn-rs tbody tr.even
 {
@@ -63,16 +97,18 @@ table.fn-rs tbody .cl-league
     color: #1d3968;
     background: #ccc;
     vertical-align: middle;
-    border: 0;
     font-weight: bold;
     text-align: left;
     line-height: 7px;
     height: 21px;
 }
+table.fn-rs tbody .cl-team
+{
+    text-align: left;
+}
 table.fn-rs tbody .cl-match
 {
     text-align: left;
-    font-weight: normal;
     font-size: 12px;
     padding-left: 3px;
 }
@@ -83,6 +119,10 @@ table.fn-rs tbody .cl-match.home
 table.fn-rs tbody .cl-match.away
 {
     color: #008d95;
+}
+table.fn-rs tbody .cl-match.win
+{
+    font-weight: bold;
 }
 table.fn-rs tbody .cl-match div
 {
@@ -120,10 +160,6 @@ table.fn-rs tbody .cl-match div.home, table.fn-rs tbody .cl-match div.away
     display: inline-block;
     margin-top: 10px;
 }
-table.fn-rs tbody .cl-ht-score
-{
-    color: #0065FE;
-}
 table.fn-rs tbody .cl-f-score
 {
     color: #fd537d;
@@ -139,6 +175,18 @@ table.fn-rs .cl-m-code .m-code
 table.fn-rs .cl-ko-time
 {
     width: 90px;
+}
+table.fn-rs .cl-result
+{
+    text-align: center;
+}
+table.fn-rs .cl-result.home
+{
+    min-width: 150px;
+}
+table.fn-rs .cl-result.away
+{
+    min-width: 150px;
 }
 table.fn-rs .cl-match
 {
@@ -176,6 +224,10 @@ table.fn-rs .cl-status .detail-link
 table.fn-rs .cl-status .detail-link:hover
 {
     color: #D2592D;
+}
+table.fn-rs .cl-bg-postponed
+{
+    background: #fdfd87;
 }
 table.number-game
 {
@@ -217,7 +269,7 @@ table.racing .cl-race
 {
     width: 180px;
 }
-table.racing .cl-result
+table.racing td.cl-result
 {
     font-weight: bold;
     text-align: left;

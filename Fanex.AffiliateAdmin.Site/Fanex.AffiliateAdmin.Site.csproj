@@ -4123,15 +4123,15 @@
     </Content>
     <Content Include="Views\Piwik\allbetclub.cshtml" />
     <Content Include="Views\Piwik\q8bola.cshtml" />
-    <Content Include="Views\Piwik\Copy of q8bola.cshtml" />
+    <Content Include="Views\Piwik\yhy1980.cshtml" />
     <Content Include="Views\Piwik\bwinning.cshtml" />
-    <Content Include="Views\Piwik\Copy %283%29 of q8bola.cshtml" />
-    <Content Include="Views\Piwik\Copy %284%29 of q8bola.cshtml" />
-    <Content Include="Views\Piwik\Copy %285%29 of q8bola.cshtml" />
-    <Content Include="Views\Piwik\Copy %286%29 of q8bola.cshtml" />
-    <Content Include="Views\Piwik\Copy %287%29 of q8bola.cshtml" />
-    <Content Include="Views\Piwik\Copy %288%29 of q8bola.cshtml" />
-    <Content Include="Views\Piwik\Copy %289%29 of q8bola.cshtml" />
+    <Content Include="Views\Piwik\goobet.cshtml" />
+    <Content Include="Views\Piwik\itcbet.cshtml" />
+    <Content Include="Views\Piwik\m8bola.cshtml" />
+    <Content Include="Views\Piwik\macaubet.cshtml" />
+    <Content Include="Views\Piwik\nbcbet.cshtml" />
+    <Content Include="Views\Piwik\unobet.cshtml" />
+    <Content Include="Views\Piwik\wawabet.cshtml" />
     <Content Include="Views\Piwik\aoncash.cshtml" />
     <Content Include="Views\Piwik\athena000.cshtml" />
     <Content Include="Views\Piwik\be7.cshtml" />

@@ -4121,6 +4121,20 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Piwik\allbetclub.cshtml" />
+    <Content Include="Views\Piwik\q8bola.cshtml" />
+    <Content Include="Views\Piwik\Copy of q8bola.cshtml" />
+    <Content Include="Views\Piwik\bwinning.cshtml" />
+    <Content Include="Views\Piwik\Copy %283%29 of q8bola.cshtml" />
+    <Content Include="Views\Piwik\Copy %284%29 of q8bola.cshtml" />
+    <Content Include="Views\Piwik\Copy %285%29 of q8bola.cshtml" />
+    <Content Include="Views\Piwik\Copy %286%29 of q8bola.cshtml" />
+    <Content Include="Views\Piwik\Copy %287%29 of q8bola.cshtml" />
+    <Content Include="Views\Piwik\Copy %288%29 of q8bola.cshtml" />
+    <Content Include="Views\Piwik\Copy %289%29 of q8bola.cshtml" />
+    <Content Include="Views\Piwik\aoncash.cshtml" />
+    <Content Include="Views\Piwik\athena000.cshtml" />
+    <Content Include="Views\Piwik\be7.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -4360,7 +4374,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

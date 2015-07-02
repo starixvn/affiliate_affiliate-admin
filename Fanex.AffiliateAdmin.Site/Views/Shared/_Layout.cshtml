@@ -72,12 +72,11 @@
 
     </script>
 
-    @if (AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase))
+    @if (AppSettings.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase))
     {
         <script type="text/ecmascript">
-
             var piwikSiteId = '@AppSettings.PiwikSiteId';
-            
+                        
             var _paq = _paq || [];
             _paq.push(['trackPageView']);
             _paq.push(['enableLinkTracking']);
@@ -87,12 +86,9 @@
                 _paq.push(['setSiteId', piwikSiteId]);            
                 var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
                 g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
-            })();            
-
-        </script>     
-    
+            })();           
+        </script>    
         <noscript><p><img src="https://pw.detecas.com/piwik.php?idsite=@(AppSettings.PiwikSiteId)'  style="border:0;" alt="" /></p></noscript>
-    } 
-      
+    }       
 </body>
 </html>

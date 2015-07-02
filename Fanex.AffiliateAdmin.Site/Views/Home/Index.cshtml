@@ -279,9 +279,3 @@ home
 @section scripts{
     @Scripts.Render("~/scripts/dashboard")
 }
-@{
-    if (Fanex.AffiliateAdmin.Core.Configurations.AppSettings.Environment == "Production")
-    {
-        Html.RenderPartial("~/Views/Piwik/" + Fanex.AffiliateAdmin.Core.Configurations.AppSettings.AffiliateName.ToLower() + ".cshtml");
-    }
-}

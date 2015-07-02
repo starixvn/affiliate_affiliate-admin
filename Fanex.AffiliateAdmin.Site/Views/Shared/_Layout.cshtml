@@ -57,7 +57,9 @@
             CollapseExpandDataRows: "@Lang.CollapseExpandDataRows",
             Close: "@Lang.Close"
         };
-        
+
+        var PiwikSiteId = '@AppSettings.PiwikSiteId';
+
         $(document).ready(function () {
             $.unblockUI();
             
@@ -68,9 +70,22 @@
             AFFILIATE.baseUrl = '@Url.Content("~/")';
 
             AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
-        });       
+        });
+
+        var _paq = _paq || [];
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "https://pw.detecas.com/";
+            _paq.push(['setTrackerUrl', u + 'piwik.php']);
+            _paq.push(['setSiteId', PiwikSiteId]);            
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
+        })();
 
     </script>    
+
+    <noscript><p><img src="https://pw.detecas.com/piwik.php?idsite=PiwikSiteId"  style="border:0;" alt="" /></p></noscript>
 
     @RenderSection("scripts", required: false)  
 </body>

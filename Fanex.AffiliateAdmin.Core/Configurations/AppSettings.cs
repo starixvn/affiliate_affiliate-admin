@@ -43,7 +43,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         private static IEnumerable<AffType> _affType = SystemSetting.GetAffTypeList(new AffTypeCriteria());
         private static Exchange _baseExchange = SystemSetting.GetSystemBaseExchange(new SystemSettingExchangeCriteria());
         private static IEnumerable<Language> _baseLanguage = SystemSetting.GetLanguageList(new AdminSupportedLanguagesSelCriteria());
-        private static IEnumerable<DeductionType> _deductionTypes;
+        private static IEnumerable<DeductionType> _deductionTypes;        
 
         private static int? _licenseeId;
 
@@ -175,6 +175,14 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             get
             {
                 return _baseExchange;
+            }
+        }
+
+        public static string PiwikSiteId
+        {
+            get
+            {
+                return GetValue("PiwikSiteId");
             }
         }
 

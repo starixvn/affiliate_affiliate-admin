@@ -4121,20 +4121,6 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Piwik\allbetclub.cshtml" />
-    <Content Include="Views\Piwik\q8bola.cshtml" />
-    <Content Include="Views\Piwik\yhy1980.cshtml" />
-    <Content Include="Views\Piwik\bwinning.cshtml" />
-    <Content Include="Views\Piwik\goobet.cshtml" />
-    <Content Include="Views\Piwik\itcbet.cshtml" />
-    <Content Include="Views\Piwik\m8bola.cshtml" />
-    <Content Include="Views\Piwik\macaubet.cshtml" />
-    <Content Include="Views\Piwik\nbcbet.cshtml" />
-    <Content Include="Views\Piwik\unobet.cshtml" />
-    <Content Include="Views\Piwik\wawabet.cshtml" />
-    <Content Include="Views\Piwik\aoncash.cshtml" />
-    <Content Include="Views\Piwik\athena000.cshtml" />
-    <Content Include="Views\Piwik\be7.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -4374,7 +4360,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

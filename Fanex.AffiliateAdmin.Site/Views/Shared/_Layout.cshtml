@@ -87,8 +87,9 @@
         }
 
     </script>    
-
-    <noscript><p><img src="https://pw.detecas.com/piwik.php?idsite=@(AppSettings.PiwikSiteId)'  style="border:0;" alt="" /></p></noscript>
+    @if (AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase)) { 
+        <noscript><p><img src="https://pw.detecas.com/piwik.php?idsite=@(AppSettings.PiwikSiteId)'  style="border:0;" alt="" /></p></noscript>
+    }
 
     @RenderSection("scripts", required: false)  
 </body>

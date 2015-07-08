@@ -29,7 +29,7 @@
             AFFILIATE.TimeZone = '@Fanex.AffiliateAdmin.Core.Configurations.AppSettings.ServerTimeZone';
         });
     </script>
-    @if (AppSettings.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase))
+    @if (AppSettings.Environment.Equals("Production", StringComparison.OrdinalIgnoreCase))
     {
         <script type="text/ecmascript">
             var piwikSiteId = '@AppSettings.PiwikSiteId';

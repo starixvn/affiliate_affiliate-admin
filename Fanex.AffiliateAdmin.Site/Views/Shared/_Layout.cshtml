@@ -70,7 +70,7 @@
 
     </script>
     @RenderSection("scripts", required: false)
-    @if (AppSettings.Environment.Equals("Production", StringComparison.OrdinalIgnoreCase))
+    @if (string.IsNullOrWhiteSpace(AppSettings.PiwikSiteId) == false && AppSettings.Environment.Equals("Production", StringComparison.OrdinalIgnoreCase))
     {
         <script type="text/ecmascript">
             var piwikSiteId = '@AppSettings.PiwikSiteId';

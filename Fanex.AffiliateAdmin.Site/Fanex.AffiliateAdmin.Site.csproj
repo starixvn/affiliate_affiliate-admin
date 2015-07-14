@@ -4116,7 +4116,9 @@
     <Content Include="Views\BetList\RNGCasinoDetail\NoGameErr.cshtml" />
     <Content Include="Views\BetList\RNGCasinoDetail\Noinfo.cshtml" />
     <Content Include="Views\BetList\BetListResults_RNGCasino.cshtml" />
-    <Content Include="Web.AppSetting.config" />
+    <Content Include="Web.AppSetting.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.ConnectionString.config" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -4360,7 +4362,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

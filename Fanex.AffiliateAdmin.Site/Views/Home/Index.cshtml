@@ -4,7 +4,6 @@
 }
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Utilities
-
 @model Fanex.AffiliateAdmin.Models.HomeViewModel
 @section iconcss{
 home
@@ -22,17 +21,19 @@ home
         <table class="table table-bordered">
             <tr>
                 <th colspan="4" class="l">
-                    <span class="ico-home-waiting"> </span> @Lang.TaskWaitingApp
+                    <span class="ico-home-waiting"></span>@Lang.TaskWaitingApp
                 </th>
             </tr>
             <tr>
                 <td>@Lang.Affiliate
                 </td>
-                <td><strong>@Html.ActionLink(Model.PendingAllNum.ToString(), "Index", "Affiliate", new { Status= "Pending" }, new { })</strong>
+                <td>
+                    <strong>@Html.ActionLink(Model.PendingAllNum.ToString(), "Index", "Affiliate", new { Status = "Pending" }, new { })</strong>
                 </td>
                 <td>@Lang.Payment
                 </td>
-                <td><strong>@Html.ActionLink(Model.PaymentReqNum.ToString(), "Index", "Payment", new { Status = "Pending" }, new { })</strong>
+                <td>
+                    <strong>@Html.ActionLink(Model.PaymentReqNum.ToString(), "Index", "Payment", new { Status = "Pending" }, new { })</strong>
                 </td>
             </tr>
         </table>
@@ -44,20 +45,32 @@ home
                 var span = 4 * count;
                 <tr>
                     <th colspan="@span" class="l">
-                        <span class="ico-home-banner"> </span> @Lang.BannerStatc (@Html.Raw(string.Format(Lang.NumBannerInProgram, @Html.ActionLink(Model.BannerNum.ToString(), "BannerList", "Media"))))
+                        <span class="ico-home-banner"></span>@Lang.BannerStatc (@Html.Raw(string.Format(Lang.NumBannerInProgram, @Html.ActionLink(Model.BannerNum.ToString(), "BannerList", "Media"))))
                     </th>
                 </tr>
                 <tr>
-                    <td>@Lang.NormalImageBanner</td>
-                    <td><strong>@Html.ActionLink(Model.ImageBannerNum.ToString(), "BannerList", "Media", new { ImageType = 1, AffType = 1 }, new { })</strong></td>
-                    <td>@Lang.NormalFlashBanner</td>
-                    <td><strong>@Html.ActionLink(Model.FlashBannerNum.ToString(), "BannerList", "Media", new { ImageType = 2, AffType = 1 }, new { })</strong></td>
+                    <td>@Lang.NormalImageBanner
+                    </td>
+                    <td>
+                        <strong>@Html.ActionLink(Model.ImageBannerNum.ToString(), "BannerList", "Media", new { ImageType = 1, AffType = 1 }, new { })</strong>
+                    </td>
+                    <td>@Lang.NormalFlashBanner
+                    </td>
+                    <td>
+                        <strong>@Html.ActionLink(Model.FlashBannerNum.ToString(), "BannerList", "Media", new { ImageType = 2, AffType = 1 }, new { })</strong>
+                    </td>
                     @if (count == 2)
                     {
-                        <td>@Lang.KioskImageBanner</td>
-                        <td><strong>@Html.ActionLink(Model.KioskImageBannerNum.ToString(), "BannerList", "Media", new { ImageType = 1, AffType = 3 }, new { })</strong></td>
-                        <td>@Lang.KioskFlashBanner</td>
-                        <td><strong>@Html.ActionLink(Model.KioskFlashBannerNum.ToString(), "BannerList", "Media", new { ImageType = 2, AffType = 3 }, new { })</strong></td>
+                        <td>@Lang.KioskImageBanner
+                        </td>
+                        <td>
+                            <strong>@Html.ActionLink(Model.KioskImageBannerNum.ToString(), "BannerList", "Media", new { ImageType = 1, AffType = 3 }, new { })</strong>
+                        </td>
+                        <td>@Lang.KioskFlashBanner
+                        </td>
+                        <td>
+                            <strong>@Html.ActionLink(Model.KioskFlashBannerNum.ToString(), "BannerList", "Media", new { ImageType = 2, AffType = 3 }, new { })</strong>
+                        </td>
                     }
                 </tr>
             }
@@ -70,7 +83,7 @@ home
         <table class="table table-bordered">
             <tr>
                 <th colspan="5" class="l">
-                    <span class="ico-home-statistisc-up"></span> @Lang.AffStatisticsAll
+                    <span class="ico-home-statistisc-up"></span>@Lang.AffStatisticsAll
                 </th>
             </tr>
             <tr>
@@ -79,15 +92,25 @@ home
                 </td>
             </tr>
             <tr class="info">
-                <td><strong>@Html.ActionLink(Model.PendingAllNum.ToString(), "Index", "Affiliate", new { Status = "Pending" }, new { })</strong> @Lang.Pending
+                <td>
+                    <strong>@Html.ActionLink(Model.PendingAllNum.ToString(), "Index", "Affiliate", new { Status = "Pending" }, new { })</strong>
+                    @Lang.Pending
                 </td>
-                <td><strong>@Html.ActionLink(Model.ApprovedAllNum.ToString(), "Index", "Affiliate", new { Status = "Approved" }, new { })</strong>  @Lang.Approved
+                <td>
+                    <strong>@Html.ActionLink(Model.ApprovedAllNum.ToString(), "Index", "Affiliate", new { Status = "Approved" }, new { })</strong>
+                    @Lang.Approved
                 </td>
-                <td><strong>@Html.ActionLink(Model.DisapprovedAllNum.ToString(), "Index", "Affiliate", new { Status = "Disapproved" }, new { })</strong> @Lang.Disapproved
+                <td>
+                    <strong>@Html.ActionLink(Model.DisapprovedAllNum.ToString(), "Index", "Affiliate", new { Status = "Disapproved" }, new { })</strong>
+                    @Lang.Disapproved
                 </td>
-                <td><strong>@Html.ActionLink(Model.ClosedAllNum.ToString(), "Index", "Affiliate", new { Status = "Closed" }, new { })</strong> @Lang.Closed
+                <td>
+                    <strong>@Html.ActionLink(Model.ClosedAllNum.ToString(), "Index", "Affiliate", new { Status = "Closed" }, new { })</strong>
+                    @Lang.Closed
                 </td>
-                <td><strong>@Html.ActionLink(Model.LockedAllNum.ToString(), "Index", "Affiliate", new { Status = "LockedOut" }, new { })</strong> @Lang.Locked
+                <td>
+                    <strong>@Html.ActionLink(Model.LockedAllNum.ToString(), "Index", "Affiliate", new { Status = "LockedOut" }, new { })</strong>
+                    @Lang.Locked
                 </td>
             </tr>
         </table>
@@ -96,7 +119,7 @@ home
         <table class="table table-bordered">
             <tr>
                 <th colspan="5" class="l">
-                    <span class="ico-home-statistisc-month"> </span> @Lang.AffMonthStatc
+                    <span class="ico-home-statistisc-month"></span>@Lang.AffMonthStatc
                 </th>
             </tr>
             <tr>
@@ -105,15 +128,20 @@ home
                 </td>
             </tr>
             <tr class="info">
-                <td><strong>@Model.PendingMonthNum</strong> @Lang.Pending
+                <td>
+                    <strong>@Model.PendingMonthNum</strong> @Lang.Pending
                 </td>
-                <td><strong>@Model.ApprovedMonthNum</strong> @Lang.Approved
+                <td>
+                    <strong>@Model.ApprovedMonthNum</strong> @Lang.Approved
                 </td>
-                <td><strong>@Model.DisapprovedMonthNum</strong> @Lang.Disapproved
+                <td>
+                    <strong>@Model.DisapprovedMonthNum</strong> @Lang.Disapproved
                 </td>
-                <td><strong>@Model.ClosedMonthNum</strong> @Lang.Closed
+                <td>
+                    <strong>@Model.ClosedMonthNum</strong> @Lang.Closed
                 </td>
-                <td><strong>@Model.LockedMonthNum</strong> @Lang.Locked
+                <td>
+                    <strong>@Model.LockedMonthNum</strong> @Lang.Locked
                 </td>
             </tr>
         </table>
@@ -125,7 +153,7 @@ home
         <table class="table table-bordered table-hover table-striped">
             <tr>
                 <th colspan="2" class="l">
-                    <span class="ico-home-statistisc-up"></span> @Lang.MemStatAll
+                    <span class="ico-home-statistisc-up"></span>@Lang.MemStatAll
                 </th>
             </tr>
             <tr>
@@ -175,9 +203,11 @@ home
                 </td>
             </tr>
             <tr class="info">
-                <td><strong>@Lang.TotalNetWinlost</strong>
+                <td>
+                    <strong>@Lang.TotalNetWinlost</strong>
                 </td>
-                <td class="text-right"><strong>@Html.Raw(FormaterCurrency.Format(Model.NetWinlostAll))</strong>
+                <td class="text-right">
+                    <strong>@Html.Raw(FormaterCurrency.Format(Model.NetWinlostAll))</strong>
                 </td>
             </tr>
         </table>
@@ -186,7 +216,7 @@ home
         <table class="table table-bordered table-hover table-striped">
             <tr>
                 <th colspan="2" class="l">
-                    <span class="ico-home-statistisc-month"> </span> @Lang.MemStatcMonth
+                    <span class="ico-home-statistisc-month"></span>@Lang.MemStatcMonth
                 </th>
             </tr>
             <tr>
@@ -220,7 +250,8 @@ home
             <tr>
                 <td>@Lang.TotalWinlost
                 </td>
-                <td class="text-right">@Html.Raw(FormaterCurrency.Format(Model.WinlostMonth))
+                <td class="text-right">
+                    @Html.Raw(FormaterCurrency.Format(Model.WinlostMonth))
             </tr>
             <tr>
                 <td>@Lang.TotalBonus
@@ -235,9 +266,11 @@ home
                 </td>
             </tr>
             <tr class="info">
-                <td><strong>@Lang.TotalNetWinlost</strong>
+                <td>
+                    <strong>@Lang.TotalNetWinlost</strong>
                 </td>
-                <td class="text-right"><strong>@Html.Raw(FormaterCurrency.Format(Model.NetWinlostMonth))</strong>
+                <td class="text-right">
+                    <strong>@Html.Raw(FormaterCurrency.Format(Model.NetWinlostMonth))</strong>
                 </td>
             </tr>
         </table>

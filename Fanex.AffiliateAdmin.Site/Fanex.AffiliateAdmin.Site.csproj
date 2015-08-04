@@ -3968,7 +3968,9 @@
     <Content Include="Content\_Sites\unobet\Notify.less" />
     <Content Include="Configurations\WebConfigs\Web.allbetclub.local.config" />
     <Content Include="Configurations\WebConfigs\Web.allbetclub.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.allbetclub.production.config" />
+    <Content Include="Configurations\WebConfigs\Web.allbetclub.production.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\WebConfigs\Web.allbetclub.uat.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.local.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.master.config" />

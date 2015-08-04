@@ -3892,7 +3892,9 @@
     <Content Include="Configurations\WebConfigs\Web.i668bet.uat.config" />
     <Content Include="Configurations\WebConfigs\Web.itcbet.local.config" />
     <Content Include="Configurations\WebConfigs\Web.itcbet.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.itcbet.production.config" />
+    <Content Include="Configurations\WebConfigs\Web.itcbet.production.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\WebConfigs\Web.itcbet.uat.config" />
     <Content Include="Configurations\WebConfigs\Web.m8bola.local.config" />
     <Content Include="Configurations\WebConfigs\Web.m8bola.master.config" />
@@ -4362,7 +4364,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

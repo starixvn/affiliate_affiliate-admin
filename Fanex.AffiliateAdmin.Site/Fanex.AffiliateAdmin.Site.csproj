@@ -3706,10 +3706,6 @@
     <Content Include="GameData\GlobalSetting.ini" />
     <Content Include="GameData\VideoPoker\RV009\Settings.ini" />
     <Content Include="GameData\VideoPoker\RV010\Settings.ini" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.28bet.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.28bet.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.28bet.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.28bet.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.production.config" />
@@ -3722,22 +3718,10 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.be7.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.be7.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.be7.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.bwinning.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.bwinning.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.bwinning.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.bwinning.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.goobet.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.goobet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.goobet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.goobet.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.hbobet.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.hbobet.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.hbobet.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.hbobet.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.i668bet.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.i668bet.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.i668bet.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.i668bet.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.production.config" />
@@ -3750,14 +3734,6 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.mgm88.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.mgm88.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.mgm88.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.mgm88.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.mymbet.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.mymbet.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.mymbet.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.mymbet.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.nbcbet.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.nbcbet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.nbcbet.production.config" />
@@ -3766,26 +3742,6 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.royalebet.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.royalebet.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.royalebet.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.royalebet.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.thbet.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.thbet.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.thbet.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.thbet.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.wawabet.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.wawabet.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.wawabet.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.wawabet.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.winner99.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.winner99.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.winner99.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.winner99.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.28bet.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.28bet.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.28bet.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.28bet.uat.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.local.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.master.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config" />
@@ -4366,7 +4322,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

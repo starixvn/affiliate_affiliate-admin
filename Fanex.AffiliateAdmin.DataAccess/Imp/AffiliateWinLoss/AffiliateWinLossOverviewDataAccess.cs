@@ -34,15 +34,14 @@ namespace Fanex.AffiliateAdmin.DataAccess
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var param = criteria.GetSpParams();
-                    var reader = objectDb.ExecuteReader(param);
+                    using (var reader = objectDb.ExecuteReader(param))
+                    {
+                        commissionReport.CommissionList = GetCommissionList(reader);
 
-                    commissionReport.CommissionList = GetCommissionList(reader);
+                        commissionReport.CommissionInAffiliateCurrency = GetTotalCommissionInAffiliateCurrency(reader);
 
-                    commissionReport.CommissionInAffiliateCurrency = GetTotalCommissionInAffiliateCurrency(reader);
-
-                    commissionReport.CommissionInSystemCurrency = GetTotalCommissionInSystemCurrency(reader).FirstOrDefault();
-
-                    reader.Close();
+                        commissionReport.CommissionInSystemCurrency = GetTotalCommissionInSystemCurrency(reader).FirstOrDefault();
+                    }
 
                     GetOutputParams(criteria, objectDb);
                 }

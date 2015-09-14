@@ -3335,7 +3335,7 @@
     <Content Include="Scripts\libraries\Fanex.Grid.js" />
     <Content Include="Scripts\libraries\Fanex.Pagination.js" />
     <Content Include="Scripts\libraries\head.js" />
-    <Content Include="Scripts\libraries\jquery-1.10.1.js" />
+    <Content Include="Scripts\libraries\jquery-1.11.3.min.js" />
     <Content Include="Scripts\libraries\jquery-ui-1.10.3.js" />
     <Content Include="Scripts\libraries\jquery.ba-resize.min.js" />
     <Content Include="Scripts\libraries\jquery.blockUI.js" />
@@ -4016,7 +4016,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

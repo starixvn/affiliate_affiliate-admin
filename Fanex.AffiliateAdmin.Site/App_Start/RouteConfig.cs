@@ -24,6 +24,8 @@ namespace Fanex.AffiliateAdmin.Site
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
+            routes.IgnoreRoute("{*ieccs3}", new { ieccs3 = @"(.*/)?ie-css3.htc(/.*)?" });
 
             routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -20,7 +20,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
     using DTO;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Models;
-    
+
     /// <summary>
     /// Account data access.
     /// </summary>
@@ -36,46 +36,48 @@ namespace Fanex.AffiliateAdmin.DataAccess
             var affiliateInfo = new AffiliateInfoViewModel();
 
             Check.Argument.IsNotNull(criteria, "criteria");
-            
+
             if (criteria.IsValid())
             {
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    var reader = objectDb.ExecuteReader(criteria.GetSpParams());
-                    while (reader.Read())
+                    using (var reader = objectDb.ExecuteReader(criteria.GetSpParams()))
                     {
-                        affiliateInfo.AffiliateInfo  = new Affiliate
+                        while (reader.Read())
                         {
-                            IsClosed = reader.ToBool("closed"),
-                            IsLocked = reader.ToBool("IsLocked"),
-                            Username = reader.ToString("Username"),
-                            AffId = reader.ToInt("AffID"),
-                            FirstName = reader.ToString("firstname"),
-                            LastName = reader.ToString("lastname"),
-                            Prefix = reader.ToString("Prefix"),
-                            Gender = reader.ToBool("gender"),
-                            Email = reader.ToString("email"),
-                            Phone = reader.ToString("phone"),
-                            MobilePhone = reader.ToString("mobilephone"),
-                            SiteLink = reader.ToString("siteurl"),
-                            LastLoginDate = reader.ToDateTime("lastlogindate"),
-                            LastLoginIp = reader.ToString("lastloginip"),
-                            PreferredLanguage = reader.ToString("PreferredLanguage"),
-                            PreferredPayment = reader.ToString("PreferredPayment"),
-                            Player_Username = reader.ToString("Player_Username"),
-                            Status = reader.ToString("status").ToLower(),
-                            MailOption = reader.ToBool("MailOption"),
-                            GroupName = reader.ToString("GroupName"),
-                            GroupId = reader.ToInt("GroupId"),
-                            AffType = reader.ToByte("AffType"),
-                            CurrencyCode = reader.ToString("CurrencyCode"),
-                            Currency = reader.ToShort("Currency"),
-                            AffLevel = reader.ToShort("TestLevel"),
-                            BalanceBF = reader.ToDecimal("BalBroughtForward")
-                        };
-                    }
+                            affiliateInfo.AffiliateInfo = new Affiliate
+                            {
+                                IsClosed = reader.ToBool("closed"),
+                                IsLocked = reader.ToBool("IsLocked"),
+                                Username = reader.ToString("Username"),
+                                AffId = reader.ToInt("AffID"),
+                                FirstName = reader.ToString("firstname"),
+                                LastName = reader.ToString("lastname"),
+                                Prefix = reader.ToString("Prefix"),
+                                Gender = reader.ToBool("gender"),
+                                Email = reader.ToString("email"),
+                                Phone = reader.ToString("phone"),
+                                MobilePhone = reader.ToString("mobilephone"),
+                                SiteLink = reader.ToString("siteurl"),
+                                LastLoginDate = reader.ToDateTime("lastlogindate"),
+                                LastLoginIp = reader.ToString("lastloginip"),
+                                PreferredLanguage = reader.ToString("PreferredLanguage"),
+                                PreferredPayment = reader.ToString("PreferredPayment"),
+                                Player_Username = reader.ToString("Player_Username"),
+                                Status = reader.ToString("status").ToLower(),
+                                MailOption = reader.ToBool("MailOption"),
+                                GroupName = reader.ToString("GroupName"),
+                                GroupId = reader.ToInt("GroupId"),
+                                AffType = reader.ToByte("AffType"),
+                                CurrencyCode = reader.ToString("CurrencyCode"),
+                                Currency = reader.ToShort("Currency"),
+                                AffLevel = reader.ToShort("TestLevel"),
+                                BalanceBF = reader.ToDecimal("BalBroughtForward")
+                            };
+                        }
 
-                    GetAffiliateOnUser(reader, affiliateInfo);
+                        GetAffiliateOnUser(reader, affiliateInfo);
+                    }
                 }
             }
 
@@ -96,13 +98,12 @@ namespace Fanex.AffiliateAdmin.DataAccess
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     var param = criteria.GetSpParams();
-                    var reader = objectDb.ExecuteReader(param);
+                    using (var reader = objectDb.ExecuteReader(param))
+                    {
+                        affiliateStatistic.AddProducts(GetProductList(reader));
 
-                    affiliateStatistic.AddProducts(GetProductList(reader));
-
-                    affiliateStatistic.CommGroupInfo = GetCommGroup(reader);
-
-                    reader.Close();
+                        affiliateStatistic.CommGroupInfo = GetCommGroup(reader);
+                    }
 
                     affiliateStatistic.Statistic = GetAffiliateStatistic(objectDb);
                 }
@@ -152,18 +153,13 @@ namespace Fanex.AffiliateAdmin.DataAccess
 
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                var reader = objectDb.ExecuteReader(criteria.GetSpParams());
-
-                // Read Currency Statistics.
-                result.AddCurrencyList(GetCurrencyList(reader));
-
-                // Read Affiliate List.
-                result.AddAffiliateList(GetAffiliateList(reader));
-
-                // Close reader before read output.
-                if (!reader.IsClosed)
+                using (var reader = objectDb.ExecuteReader(criteria.GetSpParams()))
                 {
-                    reader.Close();    
+                    // Read Currency Statistics.
+                    result.AddCurrencyList(GetCurrencyList(reader));
+
+                    // Read Affiliate List.
+                    result.AddAffiliateList(GetAffiliateList(reader));
                 }
 
                 // Read output parameters.

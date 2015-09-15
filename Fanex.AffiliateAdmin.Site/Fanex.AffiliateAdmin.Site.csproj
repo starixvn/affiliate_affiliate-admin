@@ -3335,7 +3335,7 @@
     <Content Include="Scripts\libraries\Fanex.Grid.js" />
     <Content Include="Scripts\libraries\Fanex.Pagination.js" />
     <Content Include="Scripts\libraries\head.js" />
-    <Content Include="Scripts\libraries\jquery-1.10.1.js" />
+    <Content Include="Scripts\libraries\jquery-1.11.3.min.js" />
     <Content Include="Scripts\libraries\jquery-ui-1.10.3.js" />
     <Content Include="Scripts\libraries\jquery.ba-resize.min.js" />
     <Content Include="Scripts\libraries\jquery.blockUI.js" />
@@ -3487,7 +3487,9 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.goobet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.goobet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.goobet.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.local.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.uat.config" />
@@ -3625,6 +3627,9 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.uat.config" />
+    <Content Include="App_Browsers\BrowserFile.browser" />
+    <Content Include="App_Browsers\ie.browser" />
+    <Content Include="App_Browsers\ie11.browser" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />

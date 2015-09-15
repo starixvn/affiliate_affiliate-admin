@@ -137,7 +137,7 @@ namespace Fanex.AffiliateAdmin.Site
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery")
                             .Include(
-                            "~/Scripts/libraries/jquery-1.10.1.js",
+                            "~/Scripts/libraries/jquery-1.11.3.min.js",
                             "~/Scripts/libraries/jquery-ui-1.10.3.js",
                             "~/Scripts/libraries/jquery.blockUI.js"));
         }

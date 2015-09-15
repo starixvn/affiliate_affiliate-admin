@@ -36,15 +36,14 @@ namespace Fanex.AffiliateAdmin.DataAccess
                 {
                     var param = criteria.GetSpParams();
 
-                    var reader = objectDb.ExecuteReader(param);
+                    using (var reader = objectDb.ExecuteReader(param))
+                    {
+                        memberWinlossReport.MemberWinlossList = GetMemberWinlossList(reader);
 
-                    memberWinlossReport.MemberWinlossList = GetMemberWinlossList(reader);
+                        memberWinlossReport.TotalMemberWinlossInMemberCurrencies = GetTotalMemberWinlossInMemberCurrency(reader);
 
-                    memberWinlossReport.TotalMemberWinlossInMemberCurrencies = GetTotalMemberWinlossInMemberCurrency(reader);
-
-                    memberWinlossReport.TotalMemberWinlossInSystemCurrency = GetTotalMemberWinlossInSystemCurrency(reader);
-
-                    reader.Close();
+                        memberWinlossReport.TotalMemberWinlossInSystemCurrency = GetTotalMemberWinlossInSystemCurrency(reader);
+                    }
 
                     GetOutputParams(criteria, objectDb);
                 }

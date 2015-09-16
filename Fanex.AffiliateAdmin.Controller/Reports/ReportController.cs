@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
+    using System.Web.SessionState;
     using Core.Filter;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
@@ -26,6 +27,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Report Controller.
     /// </summary>
+    [SessionState(SessionStateBehavior.ReadOnly)]
     [FunctionAuth(Function = "[AffReport]")]
     public class ReportController : BaseController
     {

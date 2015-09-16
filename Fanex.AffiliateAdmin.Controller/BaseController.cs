@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using Core;
     using Core.Filter;
     using Core.Session;
@@ -21,6 +22,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Base Controller.
     /// </summary>
+    [SessionState(SessionStateBehavior.ReadOnly)]
     [Undermaintenance]
     [Authorization]
     public class BaseController : Controller

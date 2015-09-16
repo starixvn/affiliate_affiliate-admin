@@ -9,6 +9,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System;
     using System.Linq;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using Common;
     using Core.Configurations;
     using Core.Entities;
@@ -27,6 +28,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [SessionState(SessionStateBehavior.Default)]
     [FunctionAuth(Function = "[Affiliate]")]
     public class AffiliateInfoController : BaseController
     {

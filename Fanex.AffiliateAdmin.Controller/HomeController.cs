@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System;
     using System.Linq;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using Core.Configurations;
     using Core.Filter;
     using Core.Session;
@@ -22,6 +23,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Home Controller class.
     /// </summary>
+    [SessionState(SessionStateBehavior.Default)]
     [NoCache]
     public class HomeController : BaseController
     {

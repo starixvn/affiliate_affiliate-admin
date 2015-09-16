@@ -11,6 +11,7 @@ namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
     using System.Web.Security;
+    using System.Web.SessionState;
     using Core.Services;
     using Fanex.AffiliateAdmin.Core;
     using Fanex.AffiliateAdmin.Core.Filter;
@@ -21,8 +22,8 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Notify Controller class.
     /// </summary>
-    [AllowAnonymous]
-    public class NotifyController : Controller
+    [SessionState(SessionStateBehavior.Default)]
+    [AllowAnonymous]    public class NotifyController : Controller
     {
         /// <summary>
         /// Under maintenance.

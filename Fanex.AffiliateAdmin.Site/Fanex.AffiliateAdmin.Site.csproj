@@ -3629,8 +3629,8 @@
     <Content Include="Configurations\WebConfigs\Web.9bet.master.config" />
     <Content Include="Configurations\WebConfigs\Web.9bet.production.config" />
     <Content Include="Configurations\WebConfigs\Web.9bet.uat.config" />
-    <None Include="Content\_Sites\9bet\Login.less" />
-    <None Include="Content\_Sites\9bet\Notify.less" />
+    <Content Include="Content\_Sites\9bet\Login.less" />
+    <Content Include="Content\_Sites\9bet\Notify.less" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />

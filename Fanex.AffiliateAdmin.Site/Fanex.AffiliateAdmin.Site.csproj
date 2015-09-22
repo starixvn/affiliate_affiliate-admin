@@ -285,6 +285,8 @@
     <Content Include="Content\_Sites\9bet\images\best-browsers.png" />
     <Content Include="Content\_Sites\9bet\images\bodybg.jpg" />
     <Content Include="Content\_Sites\9bet\images\btbg.png" />
+    <Content Include="Content\_Sites\9bet\images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\9bet\images\emailBg.jpg" />
     <Content Include="Content\_Sites\9bet\images\favicon.jpg" />
     <Content Include="Content\_Sites\9bet\images\headerbg.jpg" />
     <Content Include="Content\_Sites\9bet\images\headerbg_notify.png" />

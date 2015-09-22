@@ -71,6 +71,6 @@ namespace Fanex.AffiliateAdmin.Site
             {
                 throw exception;
             }
-        }
+       }
     }
 }

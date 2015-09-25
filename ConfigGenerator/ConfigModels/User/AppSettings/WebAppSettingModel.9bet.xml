@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+  <Environment>
+    <local>Local Development</local>
+    <master>master</master>
+    <uat>UAT</uat>
+    <production>Production</production>
+  </Environment>
+
+  <Layout>2</Layout>
+  <Theme>29</Theme>
+  <ServerID>400021</ServerID>
+  <InputAffType>1</InputAffType>
+  <IsShowZeroCommission>1</IsShowZeroCommission>
+  <IsShowDetailDailyEarnings>1</IsShowDetailDailyEarnings>
+  <DefaultLanguage>en-US</DefaultLanguage>
+  <DefaultTarget>Sportsbook</DefaultTarget>
+  <DefaultCurrency>USD</DefaultCurrency>
+  <AffCustomerServiceUrl>skype:28bet.csd?chat</AffCustomerServiceUrl>
+
+  <EmailHeaderBgColor>#252525</EmailHeaderBgColor>
+  <EmailHeaderFontColor>#fff</EmailHeaderFontColor>
+  <EmailContentBgColor>#fff</EmailContentBgColor>
+  <EmailContentFontColor>#000</EmailContentFontColor>
+  <EmailCopyrightBgColor>#CCCCCC</EmailCopyrightBgColor>
+  <EmailCopyrightFontColor>#333</EmailCopyrightFontColor>
+  <EmailFooterBgColor>#BBBBBB</EmailFooterBgColor>
+  <EmailFooterFontColor>#252525</EmailFooterFontColor>
+
+  <app_mail_id>
+    <local></local>
+    <master></master>
+    <uat></uat>
+    <production></production>
+  </app_mail_id>
+
+  <MailContact>
+    <local>cs@9bet.com</local>
+    <master>cs@9bet.com</master>
+    <uat>cs@9bet.com</uat>
+    <production>cs@9bet.com</production>
+  </MailContact>
+
+  <UM_StartTime>01 May 2013 02:30 PM</UM_StartTime>
+  <UM_EndTime>02 Jun 2013 04:00 PM</UM_EndTime>
+</settings>

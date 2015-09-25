@@ -34,23 +34,20 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     {
         #region Define variable
 
-        private static readonly ISystemSettingService SystemSetting = new SystemSettingService();
-        private static IEnumerable<Exchange> _affiliateCurrencies = SystemSetting.GetExchangeList(new AffiliateCurrenciesSelCriteria());
-        private static IEnumerable<Language> _affLanguage = SystemSetting.GetAffLanguageList(new AffLanguageCriteria());
-        private static IEnumerable<Language> _affSupportLanguage = SystemSetting.GetAffSupportLanguageList(new AffiliateLanguageCriteria());
+        private static ISystemSettingService _systemSetting;
+        private static IEnumerable<Exchange> _affiliateCurrencies;
+        private static IEnumerable<Language> _affLanguage;
+        private static IEnumerable<Language> _affSupportLanguage;
         private static IEnumerable<Currency> _affSystemAllSupportedCurrencies;
         private static IEnumerable<Currency> _affSystemSupportedCurrencies;
-        private static IEnumerable<AffType> _affType = SystemSetting.GetAffTypeList(new AffTypeCriteria());
-        private static Exchange _baseExchange = SystemSetting.GetSystemBaseExchange(new SystemSettingExchangeCriteria());
-        private static IEnumerable<Language> _baseLanguage = SystemSetting.GetLanguageList(new AdminSupportedLanguagesSelCriteria());
-        private static IEnumerable<DeductionType> _deductionTypes;        
+        private static IEnumerable<AffType> _affType;
+        private static Exchange _baseExchange;
+        private static IEnumerable<Language> _baseLanguage;
+        private static IEnumerable<DeductionType> _deductionTypes;
 
         private static int? _licenseeId;
 
-        private static IEnumerable<Language> _memberSiteSupportedLanguage = SystemSetting.GetMemberSiteSupportedLanguageList(new MemberSiteLanguageCriteria
-            {
-                Environment = Environment
-            });
+        private static IEnumerable<Language> _memberSiteSupportedLanguage;
 
         private static IEnumerable<Currency> _playerCurrencies;
         private static IEnumerable<Product> _products;
@@ -58,10 +55,28 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 
         #endregion Define variable
 
+        private static ISystemSettingService SystemSetting
+        {
+            get
+            {
+                if (_systemSetting == null)
+                {
+                    _systemSetting = new SystemSettingService();
+                }
+
+                return _systemSetting;
+            }
+        }
+
         public static IEnumerable<Exchange> AffiliateCurrencies
         {
             get
             {
+                if (_affiliateCurrencies == null)
+                {
+                    _affiliateCurrencies = SystemSetting.GetExchangeList(new AffiliateCurrenciesSelCriteria());
+                }
+
                 return _affiliateCurrencies;
             }
         }
@@ -75,6 +90,11 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
+                if (_affLanguage == null)
+                {
+                    _affLanguage = SystemSetting.GetAffLanguageList(new AffLanguageCriteria());
+                }
+
                 return _affLanguage;
             }
         }
@@ -83,6 +103,11 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
+                if (_affSupportLanguage == null)
+                {
+                    _affSupportLanguage = SystemSetting.GetAffSupportLanguageList(new AffiliateLanguageCriteria());
+                }
+
                 return _affSupportLanguage;
             }
         }
@@ -120,11 +145,16 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                 var translatedAffTypes = _affType.Select(t => new AffType()
-                    {
-                        TypeID = t.TypeID,
-                        Name = Lang.ResourceManager.GetString(t.Name)
-                    });
+                if (_affType == null)
+                {
+                    _affType = SystemSetting.GetAffTypeList(new AffTypeCriteria());
+                }
+
+                var translatedAffTypes = _affType.Select(t => new AffType()
+                   {
+                       TypeID = t.TypeID,
+                       Name = Lang.ResourceManager.GetString(t.Name)
+                   });
 
                 return translatedAffTypes;
             }
@@ -174,6 +204,11 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
+                if (_baseExchange == null)
+                {
+                    _baseExchange = SystemSetting.GetSystemBaseExchange(new SystemSettingExchangeCriteria());
+                }
+
                 return _baseExchange;
             }
         }
@@ -190,6 +225,11 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
+                if (_baseLanguage == null)
+                {
+                    _baseLanguage = SystemSetting.GetLanguageList(new AdminSupportedLanguagesSelCriteria());
+                }
+
                 return _baseLanguage;
             }
         }
@@ -328,6 +368,14 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
+                if (_memberSiteSupportedLanguage == null)
+                {
+                    _memberSiteSupportedLanguage = SystemSetting.GetMemberSiteSupportedLanguageList(new MemberSiteLanguageCriteria
+                    {
+                        Environment = Environment
+                    });
+                }
+
                 return _memberSiteSupportedLanguage;
             }
         }

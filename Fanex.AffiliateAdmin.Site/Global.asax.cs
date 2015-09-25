@@ -63,9 +63,8 @@ namespace Fanex.AffiliateAdmin.Site
         {
             var exception = Server.GetLastError();
 
-            ////Send error email to list user in bcc email
             var message = exception.Message + Environment.NewLine + exception.StackTrace;
-            LogService.Error("Affiliate Admin " + AppSettings.AffiliateName + Environment.NewLine + message);
+            LogService.Error("Affiliate Admin " + AppSettings.GetValue("AffiliateName") + Environment.NewLine + message);
 
             if (exception != null)
             {

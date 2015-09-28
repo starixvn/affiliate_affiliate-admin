@@ -44,7 +44,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 UserId = SessionManager.CurrentSession.CustID
             });
             var model = result.FirstOrDefault();
-            FormaterCurrency.SetDefaultCurrency(AppSettings.BaseExchange.Code);
+
+            FormaterCurrency.SetDefaultCurrency(AppSettings.BaseExchange == null ? string.Empty : AppSettings.BaseExchange.Code);
 
             return View(model);
         }

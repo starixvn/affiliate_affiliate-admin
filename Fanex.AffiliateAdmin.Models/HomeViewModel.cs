@@ -109,7 +109,7 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                return _onlineList;
+                return _onlineList ?? new List<UserOnline>();
             }
         } 
 

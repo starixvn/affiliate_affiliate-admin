@@ -34,37 +34,102 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     {
         #region Define variable
 
-        private static ISystemSettingService _systemSetting;
-        private static IEnumerable<Exchange> _affiliateCurrencies;
-        private static IEnumerable<Language> _affLanguage;
-        private static IEnumerable<Language> _affSupportLanguage;
-        private static IEnumerable<Currency> _affSystemAllSupportedCurrencies;
-        private static IEnumerable<Currency> _affSystemSupportedCurrencies;
-        private static IEnumerable<AffType> _affType;
-        private static Exchange _baseExchange;
-        private static IEnumerable<Language> _baseLanguage;
-        private static IEnumerable<DeductionType> _deductionTypes;
+        private static Lazy<ISystemSettingService> _systemSetting;
+        private static Lazy<IEnumerable<Exchange>> _affiliateCurrencies;
+        private static Lazy<IEnumerable<Language>> _affLanguage;
+        private static Lazy<IEnumerable<Language>> _affSupportLanguage;
+        private static Lazy<IEnumerable<Currency>> _affSystemAllSupportedCurrencies;
+        private static Lazy<IEnumerable<Currency>> _affSystemSupportedCurrencies;
+        private static Lazy<IEnumerable<AffType>> _affType;
+        private static Lazy<Exchange> _baseExchange;
+        private static Lazy<IEnumerable<Language>> _baseLanguage;
+        private static Lazy<IEnumerable<DeductionType>> _deductionTypes;
 
-        private static int? _licenseeId;
+        private static Lazy<int> _licenseeId;
 
-        private static IEnumerable<Language> _memberSiteSupportedLanguage;
+        private static Lazy<IEnumerable<Language>> _memberSiteSupportedLanguage;
 
-        private static IEnumerable<Currency> _playerCurrencies;
-        private static IEnumerable<Product> _products;
-        private static DateTime? _systemStartDate;
+        private static Lazy<IEnumerable<Currency>> _playerCurrencies;
+        private static Lazy<IEnumerable<Product>> _products;
+        private static Lazy<DateTime> _systemStartDate;
+
+        private static Lazy<string> _systemName;
+        private static Lazy<string> _systemDisplayName;
 
         #endregion Define variable
+
+        [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Reviewed.")]
+        static AppSettings()
+        {
+            _systemSetting = new Lazy<ISystemSettingService>(() => new SystemSettingService());
+            _affiliateCurrencies = new Lazy<IEnumerable<Exchange>>(() => SystemSetting.GetExchangeList(new AffiliateCurrenciesSelCriteria()));
+            _affLanguage = new Lazy<IEnumerable<Language>>(() => SystemSetting.GetAffLanguageList(new AffLanguageCriteria()));
+            _affSupportLanguage = new Lazy<IEnumerable<Language>>(() => SystemSetting.GetAffSupportLanguageList(new AffiliateLanguageCriteria()));
+            _affSystemAllSupportedCurrencies = new Lazy<IEnumerable<Currency>>(() => SystemSetting.GetAffSystemAllSupportedCurrencyList(new AllSystemCurrencyCriteria()));
+            _affSystemSupportedCurrencies = new Lazy<IEnumerable<Currency>>(() =>
+            {
+                var criteria = new SystemSupportedCurrencyCriteria { UserId = SessionManager.CurrentSession.CustID };
+
+                return SystemSetting.GetAffSystemSupportedCurrencyList(criteria);
+            });
+            _affType = new Lazy<IEnumerable<AffType>>(() =>
+            {
+                var affType = SystemSetting.GetAffTypeList(new AffTypeCriteria());
+                return affType.Select(t => new AffType()
+                   {
+                       TypeID = t.TypeID,
+                       Name = Lang.ResourceManager.GetString(t.Name)
+                   });
+            });
+            _baseExchange = new Lazy<Exchange>(() => SystemSetting.GetSystemBaseExchange(new SystemSettingExchangeCriteria()));
+            _baseLanguage = new Lazy<IEnumerable<Language>>(() => SystemSetting.GetLanguageList(new AdminSupportedLanguagesSelCriteria()));
+            _deductionTypes = new Lazy<IEnumerable<DeductionType>>(() => SystemSetting.GetDeductionTypes(new DeductionTypeCriteria()));
+            _licenseeId = new Lazy<int>(() =>
+            {
+                var licensee = SystemSetting.GetSystemSetting(new SystemSettingsSelByNameCriteria
+                    {
+                        Name = "LicenseeID",
+                    });
+
+                return int.Parse(licensee.SValue);
+            });
+            _memberSiteSupportedLanguage = new Lazy<IEnumerable<Language>>(() => SystemSetting.GetMemberSiteSupportedLanguageList(
+                new MemberSiteLanguageCriteria
+                    {
+                        Environment = Environment
+                    }));
+            _playerCurrencies = new Lazy<IEnumerable<Currency>>(() => SystemSetting.GetPlayerCurrencyList(new PlayerCurrencyCriteria()));
+            _products = new Lazy<IEnumerable<Product>>(() => SystemSetting.GetProductList(new ProductSelectCriteria()));
+            _systemName = new Lazy<string>(() => GetSettingValue(new SystemSettingsSelByNameCriteria { Name = "SystemName" }));
+            _systemDisplayName = new Lazy<string>(() =>
+            {
+                var displayName = GetSettingValue(new SystemSettingsSelByNameCriteria { Name = "SystemDisplayName" });
+
+                if (string.IsNullOrEmpty(displayName))
+                {
+                    displayName = SystemName;
+                }
+
+                return displayName;
+            });
+            _systemStartDate = new Lazy<DateTime>(() =>
+            {
+                var systemSetting = SystemSetting.GetSystemSetting(new SystemSettingsSelByNameCriteria
+                    {
+                        Name = "SystemStartDate"
+                    });
+
+                return string.IsNullOrEmpty(systemSetting.SValue)
+                                           ? SystemTimeService.GetSystemDateTime()
+                                           : Convert.ToDateTime(systemSetting.SValue);
+            });
+        }
 
         private static ISystemSettingService SystemSetting
         {
             get
             {
-                if (_systemSetting == null)
-                {
-                    _systemSetting = new SystemSettingService();
-                }
-
-                return _systemSetting;
+                return _systemSetting.Value;
             }
         }
 
@@ -72,12 +137,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_affiliateCurrencies == null)
-                {
-                    _affiliateCurrencies = SystemSetting.GetExchangeList(new AffiliateCurrenciesSelCriteria());
-                }
-
-                return _affiliateCurrencies;
+                return _affiliateCurrencies.Value;
             }
         }
 
@@ -90,12 +150,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_affLanguage == null)
-                {
-                    _affLanguage = SystemSetting.GetAffLanguageList(new AffLanguageCriteria());
-                }
-
-                return _affLanguage;
+                return _affLanguage.Value;
             }
         }
 
@@ -103,12 +158,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_affSupportLanguage == null)
-                {
-                    _affSupportLanguage = SystemSetting.GetAffSupportLanguageList(new AffiliateLanguageCriteria());
-                }
-
-                return _affSupportLanguage;
+                return _affSupportLanguage.Value;
             }
         }
 
@@ -116,13 +166,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_affSystemAllSupportedCurrencies == null)
-                {
-                    var criteria = new AllSystemCurrencyCriteria();
-                    _affSystemAllSupportedCurrencies = SystemSetting.GetAffSystemAllSupportedCurrencyList(criteria);
-                }
-
-                return _affSystemAllSupportedCurrencies;
+                return _affSystemAllSupportedCurrencies.Value;
             }
         }
 
@@ -130,14 +174,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_affSystemSupportedCurrencies == null)
-                {
-                    var criteria = new SystemSupportedCurrencyCriteria { UserId = SessionManager.CurrentSession.CustID };
-
-                    _affSystemSupportedCurrencies = SystemSetting.GetAffSystemSupportedCurrencyList(criteria);
-                }
-
-                return _affSystemSupportedCurrencies;
+                return _affSystemSupportedCurrencies.Value;
             }
         }
 
@@ -145,18 +182,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_affType == null)
-                {
-                    _affType = SystemSetting.GetAffTypeList(new AffTypeCriteria());
-                }
-
-                var translatedAffTypes = _affType.Select(t => new AffType()
-                   {
-                       TypeID = t.TypeID,
-                       Name = Lang.ResourceManager.GetString(t.Name)
-                   });
-
-                return translatedAffTypes;
+                return _affType.Value;
             }
         }
 
@@ -204,12 +230,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_baseExchange == null)
-                {
-                    _baseExchange = SystemSetting.GetSystemBaseExchange(new SystemSettingExchangeCriteria());
-                }
-
-                return _baseExchange;
+                return _baseExchange.Value;
             }
         }
 
@@ -225,12 +246,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_baseLanguage == null)
-                {
-                    _baseLanguage = SystemSetting.GetLanguageList(new AdminSupportedLanguagesSelCriteria());
-                }
-
-                return _baseLanguage;
+                return _baseLanguage.Value;
             }
         }
 
@@ -238,7 +254,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                return _deductionTypes ?? (_deductionTypes = SystemSetting.GetDeductionTypes(new DeductionTypeCriteria()));
+                return _deductionTypes.Value;
             }
         }
 
@@ -326,16 +342,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_licenseeId == null)
-                {
-                    var licensee = SystemSetting.GetSystemSetting(new SystemSettingsSelByNameCriteria
-                    {
-                        Name = "LicenseeID",
-                    });
-
-                    _licenseeId = int.Parse(licensee.SValue);
-                }
-
                 return _licenseeId.Value;
             }
         }
@@ -368,15 +374,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_memberSiteSupportedLanguage == null)
-                {
-                    _memberSiteSupportedLanguage = SystemSetting.GetMemberSiteSupportedLanguageList(new MemberSiteLanguageCriteria
-                    {
-                        Environment = Environment
-                    });
-                }
-
-                return _memberSiteSupportedLanguage;
+                return _memberSiteSupportedLanguage.Value;
             }
         }
 
@@ -400,9 +398,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                _playerCurrencies = _playerCurrencies ?? SystemSetting.GetPlayerCurrencyList(new PlayerCurrencyCriteria());
-
-                return _playerCurrencies;
+                return _playerCurrencies.Value;
             }
         }
 
@@ -410,12 +406,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_products == null)
-                {
-                    _products = SystemSetting.GetProductList(new ProductSelectCriteria());
-                }
-
-                return _products;
+                return _products.Value;
             }
         }
 
@@ -448,7 +439,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                return GetSettingValue(new SystemSettingsSelByNameCriteria { Name = "SystemName" });
+                return _systemName.Value;
             }
         }
 
@@ -456,14 +447,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                var displayName = GetSettingValue(new SystemSettingsSelByNameCriteria { Name = "SystemDisplayName" });
-
-                if (string.IsNullOrEmpty(displayName))
-                {
-                    return SystemName;
-                }
-
-                return displayName;
+                return _systemDisplayName.Value;
             }
         }
 
@@ -471,18 +455,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             get
             {
-                if (_systemStartDate == null)
-                {
-                    var systemSetting = SystemSetting.GetSystemSetting(new SystemSettingsSelByNameCriteria
-                        {
-                            Name = "SystemStartDate"
-                        });
-
-                    _systemStartDate = string.IsNullOrEmpty(systemSetting.SValue)
-                                           ? SystemTimeService.GetSystemDateTime()
-                                           : Convert.ToDateTime(systemSetting.SValue);
-                }
-
                 return _systemStartDate.Value;
             }
         }

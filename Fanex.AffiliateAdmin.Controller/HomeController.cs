@@ -39,21 +39,11 @@ namespace Fanex.AffiliateAdmin.Controller
 
         public ActionResult Index()
         {
-            var result = _homeService.GeneralInfoSel(new HomeGeneralInfoCriteria
+            FormaterCurrency.SetDefaultCurrency(AppSettings.BaseExchange.Code);
+            var model = _homeService.GeneralInfoSel(new HomeGeneralInfoCriteria
             {
                 UserId = SessionManager.CurrentSession.CustID
             });
-            var model = result.FirstOrDefault();
-
-            FormaterCurrency.SetDefaultCurrency(AppSettings.BaseExchange == null ? string.Empty : AppSettings.BaseExchange.Code);
-
-            return View(model);
-        }
-
-        public ActionResult Home()
-        {
-            var result = _homeService.GeneralInfoSel(new HomeGeneralInfoCriteria());
-            var model = result.FirstOrDefault();
 
             return View(model);
         }

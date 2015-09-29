@@ -62,14 +62,13 @@ namespace Fanex.AffiliateAdmin.Site
         protected void Application_Error(object sender, EventArgs e)
         {
             var exception = Server.GetLastError();
-
-            var message = exception.Message + Environment.NewLine + exception.StackTrace;
-            LogService.Error("Affiliate Admin " + AppSettings.GetValue("AffiliateName") + Environment.NewLine + message);
-
             if (exception != null)
             {
+                var message = exception.Message + Environment.NewLine + exception.StackTrace;
+                LogService.Error("Affiliate Admin " + AppSettings.GetValue("AffiliateName") + Environment.NewLine + message);
+
                 throw exception;
             }
-       }
+        }
     }
 }

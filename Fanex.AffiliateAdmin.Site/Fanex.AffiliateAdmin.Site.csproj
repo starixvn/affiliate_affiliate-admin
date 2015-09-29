@@ -269,7 +269,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="Configurations\SpNames\SpName.9bet.local.xml" />
     <Content Include="Configurations\SpNames\SpName.9bet.master.xml" />
@@ -3627,7 +3626,9 @@
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.uat.config" />
     <Content Include="Configurations\WebConfigs\Web.9bet.local.config" />
     <Content Include="Configurations\WebConfigs\Web.9bet.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.9bet.production.config" />
+    <Content Include="Configurations\WebConfigs\Web.9bet.production.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\WebConfigs\Web.9bet.uat.config" />
     <Content Include="Content\_Sites\9bet\Login.less" />
     <Content Include="Content\_Sites\9bet\Notify.less" />
@@ -3779,7 +3780,6 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -4019,7 +4019,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -36,8 +36,6 @@ namespace Fanex.AffiliateAdmin.Site
 
             AreaRegistration.RegisterAllAreas();
 
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             //// Register my types, for instance:
@@ -66,8 +64,6 @@ namespace Fanex.AffiliateAdmin.Site
             {
                 var message = exception.Message + Environment.NewLine + exception.StackTrace;
                 LogService.Error("Affiliate Admin " + AppSettings.GetValue("AffiliateName") + Environment.NewLine + message);
-
-                throw exception;
             }
         }
     }

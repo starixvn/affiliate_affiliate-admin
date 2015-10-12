@@ -27,10 +27,11 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List home view model.</returns>
-        public IEnumerable<HomeViewModel> GeneralInfoSel(HomeGeneralInfoCriteria criteria)
+        public HomeViewModel GeneralInfoSel(HomeGeneralInfoCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return GetData<HomeViewModel>(criteria);
+            var model = GetEntity<HomeViewModel>(criteria);
+            return model ?? new HomeViewModel();
         }
 
         /// <summary>

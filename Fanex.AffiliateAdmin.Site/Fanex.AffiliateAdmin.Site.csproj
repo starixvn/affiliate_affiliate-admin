@@ -269,8 +269,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="Configurations\SpNames\SpName.9bet.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.9bet.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.9bet.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.9bet.uat.xml" />
     <Content Include="Configurations\SpNames\SpName.allbetclub.local.xml" />
     <Content Include="Configurations\SpNames\SpName.allbetclub.master.xml" />
     <Content Include="Configurations\SpNames\SpName.allbetclub.production.xml" />
@@ -281,6 +284,20 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\SpNames\SpName.unobet.uat.xml" />
+    <Content Include="Content\_Sites\9bet\images\banner_top.png" />
+    <Content Include="Content\_Sites\9bet\images\best-browsers.png" />
+    <Content Include="Content\_Sites\9bet\images\bodybg.jpg" />
+    <Content Include="Content\_Sites\9bet\images\btbg.png" />
+    <Content Include="Content\_Sites\9bet\images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\9bet\images\emailBg.jpg" />
+    <Content Include="Content\_Sites\9bet\images\favicon.jpg" />
+    <Content Include="Content\_Sites\9bet\images\headerbg.jpg" />
+    <Content Include="Content\_Sites\9bet\images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\9bet\images\logo-afterlogin.png" />
+    <Content Include="Content\_Sites\9bet\images\logo.jpg" />
+    <Content Include="Content\_Sites\9bet\images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\9bet\images\notify.png" />
+    <Content Include="Content\_Sites\9bet\images\panel.png" />
     <Content Include="Content\_Sites\unobet\images\banner_top.png" />
     <Content Include="Content\_Sites\unobet\images\best-browsers.png" />
     <Content Include="Content\_Sites\unobet\images\bodybg.jpg" />
@@ -430,10 +447,6 @@
     <Content Include="Configurations\SpNames\SpName.q8bola.master.xml" />
     <Content Include="Configurations\SpNames\SpName.q8bola.production.xml" />
     <Content Include="Configurations\SpNames\SpName.q8bola.uat.xml" />
-    <Content Include="Configurations\SpNames\SpName.yhy1980.local.xml" />
-    <Content Include="Configurations\SpNames\SpName.yhy1980.master.xml" />
-    <Content Include="Configurations\SpNames\SpName.yhy1980.production.xml" />
-    <Content Include="Configurations\SpNames\SpName.yhy1980.uat.xml" />
     <Content Include="Content\betlist\betlist.core.css" />
     <Content Include="Content\betlist\betList.css" />
     <Content Include="Content\betlist\fanex.result.css" />
@@ -646,19 +659,6 @@
     <Content Include="Content\_Sites\allbetclub\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\allbetclub\images\notify.png" />
     <Content Include="Content\_Sites\allbetclub\images\panel.png" />
-    <Content Include="Content\_Sites\yhy1980\images\banner_top.png" />
-    <Content Include="Content\_Sites\yhy1980\images\best-browsers.png" />
-    <Content Include="Content\_Sites\yhy1980\images\bodybg.jpg" />
-    <Content Include="Content\_Sites\yhy1980\images\btbg.png" />
-    <Content Include="Content\_Sites\yhy1980\images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\yhy1980\images\emailBg.jpg" />
-    <Content Include="Content\_Sites\yhy1980\images\favicon.jpg" />
-    <Content Include="Content\_Sites\yhy1980\images\headerbg.jpg" />
-    <Content Include="Content\_Sites\yhy1980\images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\yhy1980\images\logo.jpg" />
-    <Content Include="Content\_Sites\yhy1980\images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\yhy1980\images\notify.png" />
-    <Content Include="Content\_Sites\yhy1980\images\panel.png" />
     <Content Include="Content\_Sites\nbcbet\images\banner_top.png" />
     <Content Include="Content\_Sites\nbcbet\images\best-browsers.png" />
     <Content Include="Content\_Sites\nbcbet\images\bodybg.jpg" />
@@ -3583,20 +3583,6 @@
     <Content Include="Configurations\WebConfigs\Web.q8bola.master.config" />
     <Content Include="Configurations\WebConfigs\Web.q8bola.production.config" />
     <Content Include="Configurations\WebConfigs\Web.q8bola.uat.config" />
-    <Content Include="Content\_Sites\yhy1980\Login.less" />
-    <Content Include="Content\_Sites\yhy1980\Notify.less" />
-    <Content Include="Configurations\WebConfigs\Web.yhy1980.local.config" />
-    <Content Include="Configurations\WebConfigs\Web.yhy1980.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.yhy1980.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.yhy1980.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.yhy1980.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.yhy1980.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.yhy1980.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.yhy1980.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.yhy1980.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.yhy1980.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.yhy1980.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.yhy1980.uat.config" />
     <Content Include="Configurations\WebConfigs\Web.unobet.local.config" />
     <Content Include="Configurations\WebConfigs\Web.unobet.master.config" />
     <Content Include="Content\_Sites\athena000\Login.less" />
@@ -3630,6 +3616,24 @@
     <Content Include="App_Browsers\BrowserFile.browser" />
     <Content Include="App_Browsers\ie.browser" />
     <Content Include="App_Browsers\ie11.browser" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.master.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.production.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.uat.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.local.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.master.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.production.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.uat.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.9bet.local.config" />
+    <Content Include="Configurations\WebConfigs\Web.9bet.master.config" />
+    <Content Include="Configurations\WebConfigs\Web.9bet.production.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.9bet.uat.config" />
+    <Content Include="Content\_Sites\9bet\Login.less" />
+    <Content Include="Content\_Sites\9bet\Notify.less" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -3724,7 +3728,6 @@
     <Content Include="Views\TrackingStatistic\StatisticDetail.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Text\Body.ko-KR.cshtml" />
     <Content Include="Views\TestWebService\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\CommGroup\Add.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Report\AffiliateCommissionByAffiliate.cshtml" />
@@ -3773,7 +3776,9 @@
     <Content Include="Web.AppSetting.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.ConnectionString.config" />
+    <Content Include="Web.ConnectionString.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -4004,9 +4009,9 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
+          <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>57335</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <DevelopmentServerVPath>/AffAdmin</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
@@ -4016,7 +4021,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

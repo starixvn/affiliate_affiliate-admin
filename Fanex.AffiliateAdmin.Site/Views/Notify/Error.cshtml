@@ -1,13 +1,16 @@
 ﻿@{
     ViewBag.Title = Lang.Error;
-    Layout = "~/Views/Shared/_LayoutNoHeader.cshtml";
+    Layout = null;
 }
-@using Fanex.AffiliateAdmin.Core.Configurations
-@section css{
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/bundles/notify")
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-}
-
+</head>
+<body>
 <div class="header">
     <a href="@Url.Content("~/Home")" class="no-underline">
         <div class="logo">@Lang.SystemIsNotAvailable</div>
@@ -16,69 +19,31 @@
     </div>
 </div>
 <div class="content">
-    <div class="icon error">
+        <div class="icon error">
+        </div>
+        <div class="text">
+            <ul class="notify-content">
+                <li><span>We are sorry. The system is currently unavailable.<br />
+                    Please try again later or contact administrator. </span></li>
+                <li><span>Mohon maaf. Saat ini sistem tidak tersedia.
+                    <br />
+                    Silahkan mencoba dilain waktu atau hubungi administrator. </span></li>
+                <li><span>ขออภัยในความไม่สะดวก ขณะนี้ระบบยังไม่สามารถใช้งานได้ชั่วคราว อีกสักครู่
+                    <br />
+                    กรุณาเข้าระบบใหม่อีกครั้ง หรือติดต่อเจ้าหน้าที่เพื่อให้คำแนะนำ </span></li>
+                <li><span>Chúng tôi thành thật xin lỗi, vì hệ thống đang tiến hành bảo trì.
+                    <br />
+                    Xin vui lòng thử lại trong giây lát sau hoặc liên hệ hỗ trợ trực tuyến </span>
+                </li>
+                <li><span>非常抱歉，本司服务器正在维护中，请稍后尝试登陆或联系在线客服。 </span></li>
+                <li><span>非常抱歉，本司服務器正在維護中，請稍後嘗試登陸或聯繫在線客服. </span></li>
+                <li class="end"><span>죄송합니다. 시스템을 현재 사용할 수 없습니다. 나중에 다시 시도하시거나 관리자에게 연락을 주시기 바랍니다 </span></li>                
+            </ul>
+        </div>
     </div>
-    <div class="text">
-        <ul class="notify-content">
-            @for (var i = 0; i <= AppSettings.BaseLanguages.Count() - 1; i++)
-            {
-                var lang = AppSettings.BaseLanguages.ElementAt(i);
-                <li class="@(i == (AppSettings.BaseLanguages.Count() - 1) ? "end" : string.Empty)">
-                @switch (lang.LanguageID)
-                {
-                    case "en-US":
-                        <span>
-                    	    We are sorry. The system is currently unavailable.<br />
-						    Please try again later or contact administrator.
-                        </span>
-                        break;
-                    case "id-ID":
-                        <span>
-                        Mohon maaf. Saat ini sistem tidak tersedia.
-					    <br />Silahkan mencoba dilain waktu atau hubungi administrator.
-                        </span>
-                        break;
-                    case "th-TH":
-                        <span>
-                        ขออภัยในความไม่สะดวก ขณะนี้ระบบยังไม่สามารถใช้งานได้ชั่วคราว อีกสักครู่
-					    <br />กรุณาเข้าระบบใหม่อีกครั้ง หรือติดต่อเจ้าหน้าที่เพื่อให้คำแนะนำ 
-                        </span>
-                        break;
-                    case "vi-VN":
-                        <span>
-                        Chúng tôi thành thật xin lỗi ,vì hệ thống đang tiến hành bảo trì.
-					    <br />Xin vui lòng thử lại trong giây lát sau hoặc liên hệ hỗ trợ trực tuyến 
-                	    </span>
-                        break;
-                    case "zh-CN":
-                        <span>
-                        非常抱歉，本司服务器正在维护中，请稍后尝试登陆或联系在线客服。 
-                        </span>
-                        break;
-                    case "zh-TW":
-                        <span>
-                        非常抱歉，本司服務器正在維護中，請稍後嘗試登陸或聯繫在線客服.
-                        </span>
-                        break;
-                    case "ko-KR":
-                        <span>
-                        죄송합니다. 시스템을 현재 사용할 수 없습니다. 
-                        나중에 다시 시도하시거나 관리자에게 연락을 주시기 바랍니다
-                        </span>
-                        break;
-                    default:
-                        <span>
-                    	    We are sorry. The system is currently unavailable.<br />
-						    Please try again later or contact administrator.
-                        </span>
-                        break;
-                }
-            </li>
-            }       
-        </ul>     
-    </div>    
-</div>
 
 @section scripts{    
     @Scripts.Render("~/bundles/loginjs")
 }
+</body>
+</html>

@@ -323,7 +323,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            return GetEntity<Exchange>(criteria);
+            return GetEntity<Exchange>(criteria) ?? new Exchange();
         }
 
         /// <summary>

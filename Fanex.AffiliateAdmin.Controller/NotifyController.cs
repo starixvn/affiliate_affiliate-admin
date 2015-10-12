@@ -21,24 +21,9 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Notify Controller class.
     /// </summary>
-    [Undermaintenance]
+    [AllowAnonymous]
     public class NotifyController : Controller
     {
-        private readonly IAccountService _accountService;
-
-        public NotifyController()
-            : this(null)
-        {
-            ////Set default language
-            var langManager = new LanguageManager();
-            langManager.SetCulture(AppSession.Language);
-        }
-
-        public NotifyController(IAccountService accountService)
-        {
-            _accountService = accountService ?? new AccountService();
-        }
-
         /// <summary>
         /// Under maintenance.
         /// </summary>
@@ -87,18 +72,10 @@ namespace Fanex.AffiliateAdmin.Controller
             return View();
         }
 
-        /// <summary>
-        /// Log out when maintenance.
-        /// </summary>
         private void LogOutWhenUMTime()
         {
             if (SessionManager.CurrentSession != null)
             {
-                _accountService.UserLogOut(new LogOutCriteria
-                {
-                    OnUserId = SessionManager.CurrentSession.OnUserID
-                });
-
                 FormsAuthentication.SignOut();
                 SessionManager.ClearAll();
             }

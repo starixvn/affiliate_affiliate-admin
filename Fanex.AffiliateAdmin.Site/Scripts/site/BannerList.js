@@ -19,15 +19,6 @@ var BannerList = (function ($) {
                 return false;
             });
 
-            $('.form-popup').submit(function () {
-                if (!BannerList.validateFileSize()) {
-                    alert(window.MSG.MaxFileSizeMsg);
-                    return false;
-                } else {
-                    AFFILIATE.trimBeforeSubmit();
-                }
-            });
-
             $('#Category').change(function () {
                 if ($('#Category').val()) {
                     var isShowAll = false;
@@ -41,14 +32,17 @@ var BannerList = (function ($) {
             });
 
             $('#File').change(function () {
-                if (!BannerList.validateFileSize()) {
-                    alert(window.MSG.MaxFileSizeMsg);
-                } else {
+                if (BannerList.validateFileSize()) {
                     BannerList.validateFileExtension(this);
                 }
             });
 
             $('#ActionBannerForm').submit(function () {
+                if (!BannerList.validateFileSize()) {
+                    return false;
+                }
+
+                AFFILIATE.trimBeforeSubmit();
                 // find disabled inputs
                 var inputs = $(this).find(':disabled');
                 // enable them
@@ -58,7 +52,13 @@ var BannerList = (function ($) {
         validateFileSize: function () {
             var maxFileSize = parseInt(window.MSG.MaxFileSize, 10);
             var size = BannerList.findFileSize();
+            if (size <= 0 && $("#BannerId").length === 0) {
+                alert(window.MSG.BannerFileRequiredMsg);
+                return false;
+            }
+
             if (size > maxFileSize) {
+                alert(window.MSG.MaxFileSizeMsg);
                 return false;
             }
 
@@ -70,7 +70,7 @@ var BannerList = (function ($) {
                 return size;
             } else {
                 var fileInput = $("#File")[0];
-                size = fileInput.files !== undefined ? fileInput.files[0].size : size;
+                size = fileInput.files && fileInput.files.length > 0 ? fileInput.files[0].size : size;
                 return size;
             }
         },

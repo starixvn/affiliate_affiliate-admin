@@ -25,7 +25,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List home view model.</returns>
-        IEnumerable<HomeViewModel> GeneralInfoSel(HomeGeneralInfoCriteria criteria);
+        HomeViewModel GeneralInfoSel(HomeGeneralInfoCriteria criteria);
 
         /// <summary>
         /// Get user online list.

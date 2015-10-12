@@ -320,7 +320,8 @@ namespace Fanex.AffiliateAdmin.Controller
                             Content = bannerStorage.RelativeBannerPath.Replace('\\', '/'),
                             Size = bannerStorage.BannerSize,
                             UserId = CurrentSession.CustID,
-                            Ip = Remote.GetClientIPAddress()
+                            Ip = Remote.GetClientIPAddress(),
+                            Language = model.Language
                         };
 
                     _mediaService.AddBanner(criteria);

@@ -36,8 +36,6 @@ namespace Fanex.AffiliateAdmin.Site
 
             AreaRegistration.RegisterAllAreas();
 
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             //// Register my types, for instance:
@@ -62,14 +60,10 @@ namespace Fanex.AffiliateAdmin.Site
         protected void Application_Error(object sender, EventArgs e)
         {
             var exception = Server.GetLastError();
-
-            ////Send error email to list user in bcc email
-            var message = exception.Message + Environment.NewLine + exception.StackTrace;
-            LogService.Error("Affiliate Admin " + AppSettings.AffiliateName + Environment.NewLine + message);
-
             if (exception != null)
             {
-                throw exception;
+                var message = exception.Message + Environment.NewLine + exception.StackTrace;
+                LogService.Error("Affiliate Admin " + AppSettings.GetValue("AffiliateName") + Environment.NewLine + message);
             }
         }
     }

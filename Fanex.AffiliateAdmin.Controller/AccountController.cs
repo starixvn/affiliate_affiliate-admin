@@ -92,7 +92,8 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
-            var result = new ResultViewModel();
+            ResultModel result = null;
+            Account user = null;
 
             if (ModelState.IsValid)
             {
@@ -101,14 +102,12 @@ namespace Fanex.AffiliateAdmin.Controller
                                     Username = username,
                                     UserPwd = password,
                                     LoginIP = Remote.GetClientIPAddress(),
-                                    From = Request.UserHostName,
-                                    NetSessionID = Session.SessionID
+                                    LoginDomain = Request.UserHostName,
                                 };
 
-                Account user = _accountService.Login(criteria);
-
-                result.Success = criteria.ErrCode == 0;
-                if (criteria.ErrCode == 0 && user.CustID > 0)
+                result = _accountService.Login(criteria, out user);
+                result.Success = result.ErrorCode == 0;
+                if (result.ErrorCode == 0 && user.CustID > 0)
                 {
                     FormsAuthentication.SetAuthCookie(username, true);
 
@@ -126,7 +125,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
                 else
                 {
-                    result = GetResultViewModel(criteria.ErrCode);
+                    result = GetResultViewModel(result.ErrorCode);
                 }
             }
 
@@ -157,7 +156,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 if (model.NewPassword.Equals(model.OldPassword))
                 {
-                    ViewBag.Result = new ResultViewModel
+                    ViewBag.Result = new ResultModel
                         {
                             ErrorCode = 16,
                             Message = Lang.NewPassworDifferOldPassword
@@ -198,7 +197,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ReCheckIn()
         {
-            var result = new ResultViewModel();
+            var result = new ResultModel();
 
             KickedOutSession(result);
 
@@ -216,7 +215,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// Kicked out session.
         /// </summary>
         /// <param name="result">Kick-out result.</param>
-        private void KickedOutSession(ResultViewModel result)
+        private void KickedOutSession(ResultModel result)
         {
             var criteria = new ReCheckInCriteria
             {
@@ -243,7 +242,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// Kicked out down time.
         /// </summary>
         /// <param name="result">Kick-out result.</param>
-        private void KickedOutDownTime(ResultViewModel result)
+        private void KickedOutDownTime(ResultModel result)
         {
             string startTime = string.Empty, endTime = string.Empty;
             result.Success = UnderMaintenanceService.GetDownTime(ref startTime, ref endTime);
@@ -268,9 +267,9 @@ namespace Fanex.AffiliateAdmin.Controller
             }
         }
 
-        private ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
+        private ResultModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
         {
-            return new ResultViewModel
+            return new ResultModel
             {
                 ErrorCode = errCode,
                 Message = errCode == 0 ?

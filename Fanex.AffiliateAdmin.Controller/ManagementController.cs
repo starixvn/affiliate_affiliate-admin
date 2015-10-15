@@ -144,7 +144,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 _accountService.AccountUpdate(criteria);
 
-                ViewBag.Result = new ResultViewModel
+                ViewBag.Result = new ResultModel
                 {
                     ErrorCode = criteria.ErrCode,
                     Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
@@ -195,7 +195,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 _accountService.AccountInsert(criteria);
 
-                ViewBag.Result = new ResultViewModel
+                ViewBag.Result = new ResultModel
                 {
                     ErrorCode = criteria.ErrCode,
                     Message = criteria.ErrCode == 0 ? Lang.AddUserSuccess : ErrorMessage(criteria.ErrCode)
@@ -340,7 +340,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             _permissionService.UpdatePermissionCurrency(criteria);
 
-            ViewBag.Result = new ResultViewModel
+            ViewBag.Result = new ResultModel
             {
                 ErrorCode = criteria.ErrCode,
                 Message = criteria.ErrCode == 0 ? Lang.UpdatePermissionSucc : ErrorMessage(criteria.ErrCode)
@@ -386,7 +386,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 _accountService.AccountUpdatePassword(criteria);
 
-                ViewBag.Result = new ResultViewModel
+                ViewBag.Result = new ResultModel
                 {
                     ErrorCode = criteria.ErrCode,
                     Message = criteria.ErrCode == 0 ? Lang.ResetPassSuccess : ErrorMessage(criteria.ErrCode)
@@ -453,7 +453,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 _groupService.GroupInsert(criteria);
 
-                ViewBag.Result = new ResultViewModel
+                ViewBag.Result = new ResultModel
                 {
                     ErrorCode = criteria.ErrCode,
                     Message = criteria.ErrCode == 0 ? Lang.GroupAddSucc : ErrorMessage(criteria.ErrCode)
@@ -502,7 +502,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             _groupService.GroupUpdatePolicy(criteria2);
 
-            ViewBag.Result = new ResultViewModel
+            ViewBag.Result = new ResultModel
             {
                 ErrorCode = criteria2.ErrCode,
                 Message = criteria2.ErrCode == 0 ? Lang.UpdateRolePolicySucc : ErrorMessage(criteria2.ErrCode)
@@ -552,7 +552,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 _groupService.GroupUpdate(criteria);
 
-                ViewBag.Result = new ResultViewModel
+                ViewBag.Result = new ResultModel
                 {
                     ErrorCode = criteria.ErrCode,
                     Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
@@ -605,7 +605,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             _accountService.AccountUpdatePolicy(criteria2);
 
-            ViewBag.Result = new ResultViewModel
+            ViewBag.Result = new ResultModel
             {
                 ErrorCode = criteria2.ErrCode,
                 Message = criteria2.ErrCode == 0 ? Lang.UpdateRolePolicySucc : ErrorMessage(criteria2.ErrCode)

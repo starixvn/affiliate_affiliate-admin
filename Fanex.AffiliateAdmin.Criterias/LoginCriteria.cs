@@ -16,73 +16,29 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class LoginCriteria : CriteriaBase
     {
-        /// <summary>
-        /// Gets or sets Customer ID.
-        /// </summary>
-        /// <value>Customer ID.</value>
-        public int CustID { get; set; }
-
-        /// <summary>
-        /// Gets or sets Username.
-        /// </summary>
-        /// <value>Username Admin.</value>
         public string Username { get; set; }
 
-        /// <summary>
-        /// Gets or sets Password.
-        /// </summary>
-        /// <value>User password Admin.</value>
         public string UserPwd { get; set; }
 
-        /// <summary>
-        /// Gets or sets LoginIP.
-        /// </summary>
-        /// <value>Admin IP Login.</value>
         public string LoginIP { get; set; }
 
-        /// <summary>
-        /// Gets or sets NetSessionID.
-        /// </summary>
-        /// <value>Net Session ID.</value>
-        public string NetSessionID { get; set; }
+        public string LoginDomain { get; set; }
 
-        /// <summary>
-        /// Gets or sets OnUserID.
-        /// </summary>
-        /// <value>On User ID.</value>
-        public string OnUserID { get; set; }
+        public string BrowserName { get; set; }
 
-        /// <summary>
-        /// Gets or sets ErrCode.
-        /// </summary>
-        /// <value>Error Code.</value>
-        public int ErrCode { get; set; }
-        
-        /// <summary>
-        /// Gets or sets From.
-        /// </summary>
-        /// <value>From system.</value>
-        public string From { get; set; }
+        public string Platform { get; set; }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether the IT is enabled.
-        /// </summary>
-        /// <value>Flag is it or not.</value>
-        public bool IsIT { get; set; }
+        public string CountryCode { get; set; }
 
-        /// <summary>
-        /// Store procedure Name.
-        /// </summary>
-        /// <returns>Return Store procedure name.</returns>
+        public string Langkey { get; set; }
+
+        public int UserId { get; set; }
+
         public override string GetSettingKey()
         {
-            return "AffAdmin_Login";
+            return "Aff_UserLogin";
         }
 
-        /// <summary>
-        /// Validation of criteria.
-        /// </summary>
-        /// <returns>Validate criteria.</returns>
         public override bool IsValid()
         {
             return true;

@@ -45,5 +45,7 @@ namespace Fanex.AffiliateAdmin.DTO
         public bool IsIT { get; set; }
 
         public int OnUserID { get; set; }
+
+        public int ServerId { get; set; }
     }
 }

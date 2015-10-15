@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Services
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.DataAccess;
+    using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
 
@@ -56,17 +57,23 @@ namespace Fanex.AffiliateAdmin.Services
 
         #endregion Constructor
 
+        public ResultModel LoginInternal(LoginInternalCriteria criteria, out Account account)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+            return _accountDataAccess.LoginInternal(criteria, out account);
+        }
+
         /// <summary>
         /// Login user.
         /// </summary>
         /// <param name="criteria">Login criteria.</param>
         /// <returns>Account info.</returns>
-        public Account Login(LoginCriteria criteria)
+        public ResultModel Login(LoginCriteria criteria, out Account account)
         {
-            Check.Argument.IsNotNull(criteria, "criteria");
+            Check.Argument.IsNotNull(criteria, "criteria");            
             criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
 
-            return _accountDataAccess.Login(criteria);
+            return _accountDataAccess.Login(criteria, out account);
         }
 
         /// <summary>

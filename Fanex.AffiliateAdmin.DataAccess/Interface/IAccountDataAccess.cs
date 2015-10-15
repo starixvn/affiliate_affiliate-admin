@@ -10,20 +10,26 @@
 // </history>
 namespace Fanex.AffiliateAdmin.DataAccess
 {
+    using System.Diagnostics.CodeAnalysis;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Models;
 
     /// <summary>
     /// Interface Account.
     /// </summary>
     public interface IAccountDataAccess
     {
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
+        ResultModel LoginInternal(LoginInternalCriteria criteria, out Account account);
+
         /// <summary>
         /// Get statistics for Affiliate.
         /// </summary>
         /// <param name="criteria">Login Criteria.</param>
         /// <returns>Return Account.</returns>
-        Account Login(LoginCriteria criteria);
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
+        ResultModel Login(LoginCriteria criteria, out Account account);
 
         /// <summary>
         /// User Logout.

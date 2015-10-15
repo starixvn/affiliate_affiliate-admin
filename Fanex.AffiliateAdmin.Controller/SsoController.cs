@@ -18,9 +18,6 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Services;
     using Core.Services.Interface;
     using Core.Session;
-    using Core.Utilities;
-    using Criterias;
-    using DTO;
     using Fanex.AffiliateAdmin.Core;
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Logging;
@@ -140,54 +137,14 @@ namespace Fanex.AffiliateAdmin.Controller
             return View();
         }
 
-        private ResultViewModel InternalLogin(string userName, string passWord)
-        {
-            var result = new ResultViewModel();
-
-            var criteria = new LoginCriteria
-            {
-                Username = userName,
-                UserPwd = passWord,
-                LoginIP = Remote.GetClientIPAddress(),
-                From = Request.UserHostName,
-                NetSessionID = Session.SessionID
-            };
-
-            Account user = _accountService.Login(criteria);
-
-            result.Success = criteria.ErrCode == 0;
-            if (criteria.ErrCode == 0 && user.CustID > 0)
-            {
-                FormsAuthentication.SetAuthCookie(userName, true);
-
-                SessionManager.CurrentSession = new CurrentSession(user)
-                {
-                    RoleAccess = _accountService.UserPolicySel(new UserPolicyCriteria
-                    {
-                        CustID = user.CustID
-                    }).ToList(),
-                    CurrencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
-                    {
-                        UserId = user.CustID
-                    }).ToList()
-                };
-            }
-            else
-            {
-                result = GetResultViewModel(criteria.ErrCode);
-            }
-
-            return result;
-        }
-
         private string ErrorMessage(int errCode)
         {
             return ErrorMsg.ResourceManager.GetString("Msg" + errCode);
         }
 
-        private ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
+        private ResultModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
         {
-            return new ResultViewModel
+            return new ResultModel
             {
                 ErrorCode = errCode,
                 Message = errCode == 0 ?
@@ -196,7 +153,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 Success = errCode == 0
             };
         }
-        
+
         private RedirectResult RedirectToErrorPage(int code)
         {
             return Redirect("~/DenyAccess?code=" + code);
@@ -275,7 +232,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 return RedirectToErrorPage(InValidParamErrorCode);
             }
 
-            var resultInfo = InternalLogin(userName, passWord);
+            var resultInfo = new ResultModel(); // InternalLogin(userName, passWord);
             if (resultInfo.Success)
             {
                 FormsAuthentication.SetAuthCookie(userName, false);

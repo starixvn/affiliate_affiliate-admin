@@ -11,8 +11,10 @@
 namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Models;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -20,12 +22,16 @@ namespace Fanex.AffiliateAdmin.Services
     /// </summary>
     public interface IAccountService
     {
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
+        ResultModel LoginInternal(LoginInternalCriteria criteria, out Account account);
+
         /// <summary>
         /// Get statistics for Affiliate.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Return object.</returns>
-        Account Login(LoginCriteria criteria);
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
+        ResultModel Login(LoginCriteria criteria, out Account account);
 
         /// <summary>
         /// Logout user.

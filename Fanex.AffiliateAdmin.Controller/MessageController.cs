@@ -104,7 +104,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     };
 
                     _messageService.AddMessage(criteria);
-                    ViewBag.Result = new ResultViewModel
+                    ViewBag.Result = new ResultModel
                     {
                         ErrorCode = criteria.ErrCode,
                         Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
@@ -157,7 +157,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     };
 
                     _messageService.UpdateMessage(criteria);
-                    ViewBag.Result = new ResultViewModel
+                    ViewBag.Result = new ResultModel
                     {
                         ErrorCode = criteria.ErrCode,
                         Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)

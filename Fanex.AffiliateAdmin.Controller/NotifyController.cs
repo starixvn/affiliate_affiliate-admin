@@ -23,7 +23,8 @@ namespace Fanex.AffiliateAdmin.Controller
     /// Notify Controller class.
     /// </summary>
     [SessionState(SessionStateBehavior.Default)]
-    [AllowAnonymous]    public class NotifyController : Controller
+    [AllowAnonymous]    
+    public class NotifyController : Controller
     {
         /// <summary>
         /// Under maintenance.

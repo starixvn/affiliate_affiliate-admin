@@ -298,6 +298,14 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
+        public static Uri SiteCheckerUrl
+        {
+            get
+            {
+                return new Uri(GetValue("SiteCheckerURL"));
+            }
+        }
+
         public static Uri IPCheckerUrl
         {
             get

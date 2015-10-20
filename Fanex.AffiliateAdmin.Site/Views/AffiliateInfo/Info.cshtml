@@ -78,7 +78,7 @@
                     <tr>
                         <td>@Lang.SiteUrl</td>
                         <td class="col-right">
-                            <a href="@string.Format(AppSettings.IPCheckerUrl.ToString(), Model.AffiliateInfo.SiteLink)" target="_blank" title="@Model.AffiliateInfo.SiteLink">@Model.AffiliateInfo.SiteLink.LeftString(AppSettings.LeftString)</a>
+                            <a href="@string.Format(AppSettings.SiteCheckerUrl.ToString(), Model.AffiliateInfo.SiteLink)" target="_blank" title="Check the link">@Model.AffiliateInfo.SiteLink.LeftString(AppSettings.LeftString)</a>
                         </td>
                     </tr>
                     <tr>

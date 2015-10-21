@@ -1,7 +1,7 @@
 ﻿/*global AFFILIATE,gridOption,MSG*/
 var TextList = (function ($) {
     "use strict";
-    
+
     var submitOptions = {};
     return {
         init: function () {
@@ -21,6 +21,10 @@ var TextList = (function ($) {
 
             $('.form-popup').submit(function () {
                 AFFILIATE.trimBeforeSubmit();
+                // find disabled inputs
+                var inputs = $(this).find(':disabled');
+                // enable them
+                inputs.prop('disabled', false);
             });
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
@@ -39,7 +43,7 @@ var TextList = (function ($) {
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, TextList.ReRenderAfterPaged);
                 },
                 complete: function () {
@@ -60,7 +64,7 @@ var TextList = (function ($) {
                 alert(MSG.InvalidText);
             } else {
                 var totalReq = parseInt(totalRequest, 10);
-                
+
                 if (!isNaN(totalReq) && totalReq > 0) {
                     return;
                 }
@@ -74,7 +78,7 @@ var TextList = (function ($) {
                         data: param,
                         success: function (result) {
                             AFFILIATE.PreHandleAjaxResult(result);
-                            
+
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {
@@ -86,7 +90,7 @@ var TextList = (function ($) {
             }
         }
     };
-}) (jQuery);
+})(jQuery);
 
 $(function () {
     "use strict";

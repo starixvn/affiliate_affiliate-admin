@@ -91,7 +91,7 @@ namespace Fanex.AffiliateAdmin.Models
         {
             get
             {
-                return new SelectList(AppSettings.PlayerCurrencies, "CurrencyID", "CurrencyCode", Currency.ToString());                 
+                return new SelectList(AppSettings.PlayerCurrencies, "CurrencyID", "CurrencyCode", Currency.ToString());
             }
         }
 

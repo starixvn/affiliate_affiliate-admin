@@ -121,7 +121,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         CurrencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
                         {
                             UserId = user.CustID
-                        }).Where(c => c.CurrencyCode == CurrencyConstant.IDRCode).ToList()
+                        }).ToList()
                     };
                 }
                 else

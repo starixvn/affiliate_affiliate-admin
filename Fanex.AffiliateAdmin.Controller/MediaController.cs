@@ -120,6 +120,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>Return result.</returns>
+        [HttpPost]
         public ActionResult AddText(TextAddViewModel model)
         {
             if (ModelState.IsValid)

@@ -18,7 +18,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string Username { get; set; }
 
-        public string EncryptedPassword { get; set; }
+        [SpParam(SqlParamName = "EncryptedPassword")]
+        public string Password { get; set; }
 
         public DateTime LoginTime { get; set; }
 
@@ -33,6 +34,14 @@ namespace Fanex.AffiliateAdmin.Criterias
         public string CountryCode { get; set; }
 
         public string Language { get; set; }
+
+        public int UserId { get; set; }
+
+        public int ErrCode { get; set; }
+
+        public string ErrMsg { get; set; }
+
+        public int ServerId { get; set; }
 
         public override string GetSettingKey()
         {

@@ -19,6 +19,8 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Services.Interface;
     using Core.Session;
     using Fanex.AffiliateAdmin.Core;
+    using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Logging;
     using Models;
@@ -28,13 +30,14 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Account controller.
     /// </summary>
+    [AllowAnonymous]
     public class SsoController : Controller
     {
         private const string InternalLoginErrorMessage = "Internal login failed.";
 
         private const int DecryptKeySize = 1024;
 
-        private const int InValidParamErrorCode = 1;
+        private const int InvalidParamErrorCode = 1;
         private const int DisableSsoErrorCode = 2;
 
         private const string PrivateKey = "12bet.snk";
@@ -137,6 +140,31 @@ namespace Fanex.AffiliateAdmin.Controller
             return View();
         }
 
+        private ResultModel InternalLogin(LoginInternalCriteria criteria)
+        {
+            Account user;
+            var result = _accountService.LoginInternal(criteria, out user);
+
+            if (result.ErrorCode == 0 && user.CustID > 0)
+            {
+                FormsAuthentication.SetAuthCookie(user.Username, true);
+
+                SessionManager.CurrentSession = new CurrentSession(user)
+                {
+                    RoleAccess = _accountService.UserPolicySel(new UserPolicyCriteria
+                    {
+                        CustID = user.CustID
+                    }).ToList(),
+                    CurrencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
+                    {
+                        UserId = user.CustID
+                    }).ToList()
+                };
+            }
+
+            return result;
+        }
+
         private string ErrorMessage(int errCode)
         {
             return ErrorMsg.ResourceManager.GetString("Msg" + errCode);
@@ -176,7 +204,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             if (string.IsNullOrEmpty(parameter))
             {
-                RedirectToErrorPage(InValidParamErrorCode);
+                RedirectToErrorPage(InvalidParamErrorCode);
             }
 
             return parameter;
@@ -208,53 +236,60 @@ namespace Fanex.AffiliateAdmin.Controller
             }
 
             var queryParams = GetQueryParams();
-            var licname = queryParams["affname"] ?? string.Empty;
-            var userName = queryParams["username"] ?? string.Empty;
-            var passWord = queryParams["password"] ?? string.Empty;
-            var siteOutUrl = queryParams["loginurl"] ?? string.Empty;
-            var languageCode = queryParams["language"] ?? DefaultLanguage;
-            if (!IsValidLanguage(languageCode))
+            var criteria = new LoginInternalCriteria()
             {
-                languageCode = DefaultLanguage;
+                LicenseeName = queryParams["licenseename"] ?? string.Empty,
+                Username = queryParams["username"] ?? string.Empty,
+                Password = queryParams["password"] ?? string.Empty,
+                LoginDomain = queryParams["loginurl"] ?? string.Empty,
+                Language = queryParams["language"],
+                LoginIP = HttpContext.Request.UserHostAddress,
+                BrowserName = HttpContext.Request.Browser.Browser,
+                Platform = HttpContext.Request.Browser.Platform
+            };
+
+            if (string.IsNullOrEmpty(criteria.Username) || string.IsNullOrEmpty(criteria.Password))
+            {
+                return RedirectToErrorPage(InvalidParamErrorCode);
+            }
+
+            if (!IsValidLanguage(criteria.Language))
+            {
+                criteria.Language = DefaultLanguage;
             }
 
             if (IsUserAuthenticated)
             {
-                if (userName == CurrentUserName)
+                if (criteria.Username == CurrentUserName)
                 {
-                    AppSession.Language = languageCode;
+                    AppSession.Language = criteria.Language;
                     return Redirect("~/Home/Index");
                 }
             }
 
-            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(passWord))
-            {
-                return RedirectToErrorPage(InValidParamErrorCode);
-            }
+            long timeSpan;
+            long.TryParse(queryParams["timestamp"], out timeSpan);
+            criteria.LoginTime = new DateTime(timeSpan);
 
-            var resultInfo = new ResultModel(); // InternalLogin(userName, passWord);
-            if (resultInfo.Success)
+            var result = InternalLogin(criteria);
+            if (result.ErrorCode == 0)
             {
-                FormsAuthentication.SetAuthCookie(userName, false);
                 return Redirect("~/Home/Index");
             }
             else
-            {
-                long timeSpan;
-                long.TryParse(queryParams["timestamp"], out timeSpan);
-
+            {                
                 string message = InternalLoginErrorMessage +
-                    "\r\nCode: " + resultInfo.ErrorCode +
-                    "\r\nMessage: " + resultInfo.Message +
-                    "\r\nLicensee: " + licname +
-                     "\r\nUserName: " + userName +
+                    "\r\nCode: " + result.ErrorCode +
+                    "\r\nMessage: " + result.Message +
+                    "\r\nLicensee: " + criteria.LicenseeName +
+                     "\r\nUserName: " + criteria.Username +
                      "\r\nTimeSpan: " + timeSpan +
-                     "\r\nSiteOutUrl: " + siteOutUrl +
-                     "\r\nLanguageCode: " + languageCode;
+                     "\r\nDomain: " + criteria.LoginDomain +
+                     "\r\nLanguage: " + criteria.Language;
 
                 LogService.Info(message);
 
-                return RedirectToErrorPage(resultInfo.ErrorCode);
+                return RedirectToErrorPage(result.ErrorCode);
             }
         }
     }

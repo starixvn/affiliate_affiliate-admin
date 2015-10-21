@@ -34,6 +34,12 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int UserId { get; set; }
 
+        public int ErrCode { get; set; }
+
+        public string ErrMsg { get; set; }
+
+        public int ServerId { get; set; }
+
         public override string GetSettingKey()
         {
             return "Aff_UserLogin";

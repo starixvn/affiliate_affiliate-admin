@@ -21,6 +21,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     using Criterias.Configuration.Product;
     using Criterias.Configuration.SystemSetting;
     using DTO;
+    using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Services;
@@ -65,7 +66,9 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             _affiliateCurrencies = new Lazy<IEnumerable<Exchange>>(() => SystemSetting.GetExchangeList(new AffiliateCurrenciesSelCriteria()));
             _affLanguage = new Lazy<IEnumerable<Language>>(() => SystemSetting.GetAffLanguageList(new AffLanguageCriteria()));
             _affSupportLanguage = new Lazy<IEnumerable<Language>>(() => SystemSetting.GetAffSupportLanguageList(new AffiliateLanguageCriteria()));
-            _affSystemAllSupportedCurrencies = new Lazy<IEnumerable<Currency>>(() => SystemSetting.GetAffSystemAllSupportedCurrencyList(new AllSystemCurrencyCriteria()));
+            _affSystemAllSupportedCurrencies = new Lazy<IEnumerable<Currency>>(() => 
+                SystemSetting.GetAffSystemAllSupportedCurrencyList(new AllSystemCurrencyCriteria())
+                .Where(c => c.CurrencyCode == CurrencyConstant.IDRCode));
             _affSystemSupportedCurrencies = new Lazy<IEnumerable<Currency>>(() =>
             {
                 var criteria = new SystemSupportedCurrencyCriteria { UserId = SessionManager.CurrentSession.CustID };
@@ -98,7 +101,9 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                     {
                         Environment = Environment
                     }));
-            _playerCurrencies = new Lazy<IEnumerable<Currency>>(() => SystemSetting.GetPlayerCurrencyList(new PlayerCurrencyCriteria()));
+            _playerCurrencies = new Lazy<IEnumerable<Currency>>(() =>
+                SystemSetting.GetPlayerCurrencyList(new PlayerCurrencyCriteria())
+                .Where(c => c.CurrencyCode == CurrencyConstant.IDRCode));
             _products = new Lazy<IEnumerable<Product>>(() => SystemSetting.GetProductList(new ProductSelectCriteria()));
             _systemName = new Lazy<string>(() => GetSettingValue(new SystemSettingsSelByNameCriteria { Name = "SystemName" }));
             _systemDisplayName = new Lazy<string>(() =>

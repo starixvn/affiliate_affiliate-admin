@@ -9,6 +9,8 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
+    using System;
+    using System.Globalization;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Security;
@@ -79,6 +81,7 @@ namespace Fanex.AffiliateAdmin.Controller
             }
             else
             {
+                ViewBag.LogInToken = CreateToken();
                 return View(new LoginViewModel());
             }
         }
@@ -90,7 +93,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="password">Password login.</param>
         /// <returns>Return Result view model.</returns>
         [HttpPost]
-        public ActionResult Login(string username, string password)
+        public ActionResult Login(string username, string password, string logInToken)
         {
             ResultModel result = null;
             Account user = null;
@@ -105,7 +108,7 @@ namespace Fanex.AffiliateAdmin.Controller
                                     LoginDomain = Request.UserHostName,
                                 };
 
-                result = _accountService.Login(criteria, out user);
+                result = _accountService.Login(criteria, out user, logInToken);
                 result.Success = result.ErrorCode == 0;
                 if (result.ErrorCode == 0 && user.CustID > 0)
                 {
@@ -126,10 +129,33 @@ namespace Fanex.AffiliateAdmin.Controller
                 else
                 {
                     result = GetResultViewModel(result.ErrorCode);
+                    ViewBag.LogInToken = CreateToken();
                 }
             }
 
             return Json(result);
+        }
+
+        private string CreateToken()
+        {
+            return Guid.NewGuid().ToString("N", CultureInfo.CurrentCulture);
+        }
+
+        /// <summary>
+        /// Get User Salt.
+        /// </summary>
+        /// <param name="userName">User name value.</param>
+        /// <returns>String value.</returns>
+        [HttpGet]
+        public string GetUserSalt(string userName)
+        {
+            var user = _accountService.GetByUsername(userName);
+            if (user != null)
+            {
+                return user.UserSalt;
+            }
+
+            return string.Empty;
         }
 
         /// <summary>

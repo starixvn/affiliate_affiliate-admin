@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     {
         public string Username { get; set; }
 
+        [SpParam(Ignored = true)]
         public string UserPwd { get; set; }
 
         public string LoginIP { get; set; }

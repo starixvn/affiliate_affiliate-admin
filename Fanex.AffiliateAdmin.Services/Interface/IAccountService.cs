@@ -31,7 +31,14 @@ namespace Fanex.AffiliateAdmin.Services
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Return object.</returns>
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
-        ResultModel Login(LoginCriteria criteria, out Account account);
+        ResultModel Login(LoginCriteria criteria, out Account account, string logInToken);
+
+        /// <summary>
+        /// Get by username.
+        /// </summary>
+        /// <param name="userName">Username value.</param>
+        /// <returns>Account value.</returns>
+        Account GetByUsername(string userName);
 
         /// <summary>
         /// Logout user.

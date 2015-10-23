@@ -21,16 +21,18 @@ var LOGIN = (function ($) {
             });
         },
         submitForm: function() {
-            var username = $("#Username").val(),
-                password = $("#Password").val();
+            var $userName = $("#Username");
+            var $password = $("#Password");
 
-            if (username === "" || password === "") {
+            if ($userName.val() === "" || $password.val() === "") {
                 alert("Please input username and password.");
             } else {
                 $.blockUI();
+                LOGIN.encryptPassword($userName, $password);
                 var param = {
-                    "Username": username,
-                    "Password": password
+                    "Username": $userName.val(),
+                    "Password": $password.val(),
+                    "LogInToken": $('#LogInToken').val()
                 };
 
                 $.ajax({
@@ -56,6 +58,37 @@ var LOGIN = (function ($) {
                     }
                 });
             }
+        },
+        encryptPassword: function (userNameElement, passWordElement) {
+            var $loginToken = $('#LogInToken');
+
+            var userSalt = LOGIN.getUserSalt(userNameElement);
+
+            var hashPassword = CryptoJS.SHA1(passWordElement.val() + userSalt).toString(CryptoJS.enc.Hex).toUpperCase();
+            var encryptedPass = CryptoJS.SHA1(hashPassword + $loginToken.val() + userSalt).toString(CryptoJS.enc.Hex).toUpperCase();
+            passWordElement.val(encryptedPass);
+        },
+        getUserSalt: function (userNameElement) {
+            var salt;
+            var userName = userNameElement.val();
+            if (userName) {
+                var url = AFFILIATE.getAbsoluteUrl("Account/GetUserSalt?userName=" + userName);
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    async: false,
+                    contentType: "application/json; charset=utf-8",
+                    cache: false,
+                    success: function (result) {
+                        salt = result;
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + ": " + thrownError);
+                    }
+                });
+            }
+
+            return salt;
         }
     };
 }) (jQuery);

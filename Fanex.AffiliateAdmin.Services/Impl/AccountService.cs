@@ -10,6 +10,7 @@
 
 namespace Fanex.AffiliateAdmin.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Common;
@@ -20,7 +21,9 @@ namespace Fanex.AffiliateAdmin.Services
     using Fanex.AffiliateAdmin.DataAccess;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
+    using Fanex.Data;
     using Fanex.Data.Repository;
+    using Fanex.Logging;
 
     /// <summary>
     /// Account Service.
@@ -68,12 +71,57 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Login criteria.</param>
         /// <returns>Account info.</returns>
-        public ResultModel Login(LoginCriteria criteria, out Account account)
+        public ResultModel Login(LoginCriteria criteria, out Account account, string logInToken)
         {
-            Check.Argument.IsNotNull(criteria, "criteria");            
-            criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
+            ResultModel result = null;
+            account = null;
+            Check.Argument.IsNotNull(criteria, "criteria");
+            var user = GetByUsername(criteria.Username);
+            if (user != null)
+            {
+                var hashPassword = Cryptography.CreateHash(user.Password + logInToken, user.UserSalt);
 
-            return _accountDataAccess.Login(criteria, out account);
+                if (criteria.UserPwd.Equals(hashPassword, StringComparison.OrdinalIgnoreCase))
+                {
+                    result = _accountDataAccess.Login(criteria, out account);
+                }
+            }
+            
+            return result;
+        }
+
+        /// <summary>
+        /// Get by username.
+        /// </summary>
+        /// <param name="userName">Username value.</param>
+        /// <returns>User value.</returns>
+        public Account GetByUsername(string userName)
+        {
+            var param = new
+            {
+                Username = userName,
+            };
+            try
+            {
+                using (var objectDb = new ObjectDb("Lrf_UserInfoSelByUserName"))
+                {
+                    var user = objectDb.Query<User>(param).FirstOrDefault();
+
+                    var account = new Account
+                    {
+                        Username = user.Username,
+                        Password = user.Password,
+                        UserSalt = user.UserSalt
+                    };
+
+                    return account;
+                }
+            }
+            catch (Exception exception)
+            {
+                LogService.Error(exception.Message, exception);
+                throw;
+            }
         }
 
         /// <summary>

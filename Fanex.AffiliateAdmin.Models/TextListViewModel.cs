@@ -102,6 +102,11 @@ namespace Fanex.AffiliateAdmin.Models
                             Value = t.CurrencyID.ToString()
                         }).ToList();
 
+                    if (selectItemList.Count > 1)
+                    {
+                        selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
+                    }
+
                     _playerCurrencyOptions = selectItemList;
                 }
 

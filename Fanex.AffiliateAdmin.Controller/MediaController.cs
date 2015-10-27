@@ -154,7 +154,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var bannerDetail = _mediaService.GetBannerDetail(new BannerDetailCriteria
             {
                 BannerId = id
-            });
+            });           
 
             var model = new TextEditViewModel
             {
@@ -164,6 +164,12 @@ namespace Fanex.AffiliateAdmin.Controller
                 Currency = bannerDetail.Currency.Value,
                 BannerId = id
             };
+
+            var selectedCurrency = model.PlayerCurrencyOptionList.FirstOrDefault(t => t.Value == model.Currency.ToString());
+            if (selectedCurrency != null)
+            {
+                selectedCurrency.Selected = true;
+            }
 
             return View(model);
         }

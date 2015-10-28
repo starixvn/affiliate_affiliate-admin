@@ -248,8 +248,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var baseCurrencyList = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0",  Text = CurrentSession.Affiliate.Currency },
-                new SelectListItem { Value = "1",  Text = AppSettings.BaseExchange.Code },
+                new SelectListItem { Value = "0",  Text = CurrentSession.Affiliate.Currency }
             };
 
             model.AddBaseCurrencyList(baseCurrencyList);
@@ -317,8 +316,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var baseCurrencyList = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0",  Text = CurrentSession.Affiliate.Currency },
-                new SelectListItem { Value = "1",  Text = AppSettings.BaseExchange.Code },
+                new SelectListItem { Value = "0",  Text = CurrentSession.Affiliate.Currency }
             };
 
             model.AddBaseCurrencyList(baseCurrencyList);

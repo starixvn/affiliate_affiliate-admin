@@ -232,7 +232,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (string.IsNullOrEmpty(_keyPath))
             {
-                RedirectToErrorPage(DisableSsoErrorCode);
+                return RedirectToErrorPage(DisableSsoErrorCode);
             }
 
             var queryParams = GetQueryParams();

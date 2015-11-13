@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
-using Nexcel.Affiliate.Integration;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Data;
-using Nexcel.Affiliate.Integration.Configurations;
-
-namespace SsoSimulator.Controllers
+﻿namespace SsoSimulator.Controllers
 {
+    using System;
+    using System.Configuration;
+    using System.Data;
+    using System.Data.SqlClient;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Security;
+    using Nexcel.Affiliate.Integration;
+    using Nexcel.Affiliate.Integration.Configurations;
+
     public class HomeController : Controller
     {
         [Authorize]
@@ -55,7 +53,7 @@ namespace SsoSimulator.Controllers
 
             requestModel.EncryptedPassword = "754A738BF99D986D8716FE00A81BC5CA32916BF6";
             requestModel.Timestamp = GetDbTimeStamp();
-            requestModel.ActiveDomain = IntegrationSettings.Settings.SsoUrl; // GetActiveDomain();
+            requestModel.ActiveDomain = GetActiveDomain(); // IntegrationSettings.Settings.SsoUrl; 
             requestModel.LanguageCode = "zh-CN";
 
             UrlFactory urlFactory = new UrlFactory();
@@ -79,7 +77,7 @@ namespace SsoSimulator.Controllers
             }
         }
 
-        private static string GetActiveDomain()
+        private static Uri GetActiveDomain()
         {
             using (SqlConnection sqlConnection =
            new SqlConnection(ConfigurationManager.ConnectionStrings["demo"].ToString()))
@@ -90,7 +88,7 @@ namespace SsoSimulator.Controllers
                     sqlConnection.Open();
                     string result = (string)sqlCommand.ExecuteScalar();
                     sqlConnection.Close();
-                    return result;
+                    return new Uri(result);
                 }
             }
         }

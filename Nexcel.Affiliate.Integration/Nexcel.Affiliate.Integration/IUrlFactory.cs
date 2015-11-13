@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Nexcel.Affiliate.Integration
+﻿namespace Nexcel.Affiliate.Integration
 {
     public interface IUrlFactory
     {

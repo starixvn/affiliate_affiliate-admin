@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Nexcel.Affiliate.Integration
+﻿namespace Nexcel.Affiliate.Integration
 {
+    using System;
+
     public interface IRequestSsoModel
     {
         string Username
@@ -11,20 +9,24 @@ namespace Nexcel.Affiliate.Integration
             get;
             set;
         }
+
         string EncryptedPassword
         {
             get;
             set;
         }
+
         long Timestamp
         {
             get;
             set;
         }
+
         bool IsValid
         {
             get;
         }
+
         /// <summary>
         /// Default Value= en-US
         /// The language Value is the national language code
@@ -32,6 +34,7 @@ namespace Nexcel.Affiliate.Integration
         /// for more language code ,plz go to:http://msdn.microsoft.com/en-us/library/ms533052(v=vs.85).aspx 
         /// </summary>
         string LanguageCode { get; set; }
-         string ActiveDomain { get; set; }
+
+        Uri ActiveDomain { get; set; }
     }
 }

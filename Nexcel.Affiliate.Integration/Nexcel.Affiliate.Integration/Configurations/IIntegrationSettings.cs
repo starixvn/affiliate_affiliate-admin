@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Nexcel.Affiliate.Integration.Configurations
+﻿namespace Nexcel.Affiliate.Integration.Configurations
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    using System;
+
     public interface IIntegrationSettings
     {
         string PublicKeyPath
@@ -14,16 +9,19 @@ namespace Nexcel.Affiliate.Integration.Configurations
             get;
             set;
         }
-        string SsoUrl
+
+        Uri SsoUrl
         {
             get;
             set;
         }
-        string InternalLoginUrl
+
+        Uri InternalLoginUrl
         {
             get;
             set;
         }
+
         string LicenseeName
         {
             get;

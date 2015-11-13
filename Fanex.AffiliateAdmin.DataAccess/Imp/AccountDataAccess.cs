@@ -58,7 +58,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
                 if (result.ErrorCode == 0)
                 {
                     account.CustID = Convert.ToInt32(outputParams["userid"]);
-                    account.IsIT = true;
+                    account.IsIT = false;
                     account.ServerId = Convert.ToInt32(outputParams["serverid"]);
                     account.Username = criteria.Username;
                 }

@@ -300,12 +300,12 @@ namespace Fanex.AffiliateAdmin.Controller
                 ErrorCode = errCode,
                 Message = errCode == 0 ?
                     (string.IsNullOrEmpty(messageSuccess) ? Lang.UpdateSucc : messageSuccess) :
-                    (string.IsNullOrEmpty(errorMessage) ? ErrorMessage(errCode) : errorMessage),
+                    (string.IsNullOrEmpty(errorMessage) ? GetErrorMessage(errCode) : errorMessage),
                 Success = errCode == 0
             };
         }
 
-        private string ErrorMessage(int errCode)
+        private string GetErrorMessage(int errCode)
         {
             return ErrorMsg.ResourceManager.GetString("Msg" + errCode);
         }

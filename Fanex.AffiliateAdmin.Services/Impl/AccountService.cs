@@ -30,6 +30,8 @@ namespace Fanex.AffiliateAdmin.Services
     /// </summary>
     public class AccountService : QueryService, IAccountService
     {
+        private const int WrongUserPasswordErrorCode = 101;
+
         #region Fields
 
         /// <summary>
@@ -77,7 +79,14 @@ namespace Fanex.AffiliateAdmin.Services
             account = null;
             Check.Argument.IsNotNull(criteria, "criteria");
             var user = GetByUsername(criteria.Username);
-            if (user != null)
+            if (user == null)
+            {
+                result = new ResultModel()
+                {
+                    ErrorCode = WrongUserPasswordErrorCode
+                };
+            }
+            else 
             {
                 var hashPassword = Cryptography.CreateHash(user.Password + logInToken, user.UserSalt);
 
@@ -86,7 +95,7 @@ namespace Fanex.AffiliateAdmin.Services
                     result = _accountDataAccess.Login(criteria, out account);
                 }
             }
-            
+
             return result;
         }
 
@@ -101,26 +110,24 @@ namespace Fanex.AffiliateAdmin.Services
             {
                 Username = userName,
             };
-            try
-            {
-                using (var objectDb = new ObjectDb("Lrf_UserInfoSelByUserName"))
-                {
-                    var user = objectDb.Query<User>(param).FirstOrDefault();
 
-                    var account = new Account
+            using (var objectDb = new ObjectDb("Lrf_UserInfoSelByUserName"))
+            {
+                var user = objectDb.Query<User>(param).FirstOrDefault();
+
+                Account account = null;
+
+                if (user != null)
+                {
+                    account = new Account
                     {
                         Username = user.Username,
                         Password = user.Password,
                         UserSalt = user.UserSalt
                     };
-
-                    return account;
                 }
-            }
-            catch (Exception exception)
-            {
-                LogService.Error(exception.Message, exception);
-                throw;
+
+                return account;
             }
         }
 

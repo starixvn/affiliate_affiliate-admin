@@ -38,7 +38,7 @@
             }
         }
 
-        [ConfigurationProperty("SsoUrl", IsRequired = true)]
+        [ConfigurationProperty("SsoUrl", IsRequired = false)]
         public Uri SsoUrl
         {
             get

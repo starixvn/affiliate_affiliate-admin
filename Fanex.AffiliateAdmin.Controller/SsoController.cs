@@ -184,7 +184,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         private RedirectResult RedirectToErrorPage(int code)
         {
-            return Redirect("~/DenyAccess?code=" + code);
+            return Redirect("~/Notify/AccessDenied?code=" + code);
         }
 
         private string GetPrivateKeyPath()

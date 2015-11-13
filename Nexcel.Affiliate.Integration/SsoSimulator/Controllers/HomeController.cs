@@ -53,7 +53,7 @@
 
             requestModel.EncryptedPassword = "754A738BF99D986D8716FE00A81BC5CA32916BF6";
             requestModel.Timestamp = GetDbTimeStamp();
-            requestModel.ActiveDomain = GetActiveDomain(); // IntegrationSettings.Settings.SsoUrl; 
+            requestModel.ActiveDomain = new Uri("http://localhost:57335/AffAdmin/sso/Login"); // IntegrationSettings.Settings.SsoUrl; GetActiveDomain();
             requestModel.LanguageCode = "zh-CN";
 
             UrlFactory urlFactory = new UrlFactory();

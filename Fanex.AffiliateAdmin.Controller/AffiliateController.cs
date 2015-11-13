@@ -186,7 +186,7 @@ namespace Fanex.AffiliateAdmin.Controller
             }
             else
             {
-                ViewBag.Result = new ResultModel
+                ViewBag.Result = new ResultViewModel
                 {
                     ErrorCode = 16,
                     Success = false,
@@ -231,7 +231,7 @@ namespace Fanex.AffiliateAdmin.Controller
             }
             else
             {
-                ViewBag.Result = new ResultModel
+                ViewBag.Result = new ResultViewModel
                 {
                     ErrorCode = 16,
                     Success = false,
@@ -262,7 +262,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 return Json(GetResultViewModel(criteria.ErrCode));
             }
 
-            return Json(new ResultModel
+            return Json(new ResultViewModel
                 {
                     ErrorCode = 16,
                     Success = false,
@@ -285,7 +285,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 return Json(GetResultViewModel(criteria.ErrCode));
             }
 
-            return Json(new ResultModel
+            return Json(new ResultViewModel
             {
                 ErrorCode = 16,
                 Success = false,
@@ -383,7 +383,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult AssignMember(CheckMemberExistCriteria criteria)
         {
             _service.CheckMemberExist(criteria);
-            var result = new ResultModel();
+            var result = new ResultViewModel();
 
             if (!IsValidAffiliate(criteria, ref result) || !IsValidMember(criteria, ref result))
             {
@@ -653,7 +653,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Check member exist criteria.</param>
         /// <param name="result">Result view model.</param>
         /// <returns>Valid or invalid member.</returns>
-        private bool IsValidMember(CheckMemberExistCriteria criteria, ref ResultModel result)
+        private bool IsValidMember(CheckMemberExistCriteria criteria, ref ResultViewModel result)
         {
             if (criteria.IsMemberExist)
             {
@@ -671,7 +671,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Check member exist criteria.</param>
         /// <param name="result">Result view model.</param>
         /// <returns>Valid or invalid affiliate.</returns>
-        private bool IsValidAffiliate(CheckMemberExistCriteria criteria, ref ResultModel result)
+        private bool IsValidAffiliate(CheckMemberExistCriteria criteria, ref ResultViewModel result)
         {
             if (criteria.AffID < 1)
             {

@@ -123,8 +123,6 @@
     </Compile>
     <Compile Include="Account\AccountInsCriteria.cs" />
     <Compile Include="Account\AccountTypeCriteria.cs" />
-    <Compile Include="Account\AccountUpdClosedCriteria.cs" />
-    <Compile Include="Account\AccountUpdCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AdjustmentCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AdjustmentEditCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AffiliateUnlockCriteria.cs" />
@@ -197,7 +195,6 @@
     <Compile Include="Note\NoteUpdCriteria.cs" />
     <Compile Include="Policy\PolicyCriteria.cs" />
     <Compile Include="Policy\PolicyUpdCriteria.cs" />
-    <Compile Include="SelByCustIDCriteria.cs" />
     <Compile Include="SelByGroupIDCriteria.cs" />
     <Compile Include="SimpleCriteriaBase.cs" />
     <Compile Include="SystemSupportedCurrencyCriteria.cs" />
@@ -339,7 +336,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

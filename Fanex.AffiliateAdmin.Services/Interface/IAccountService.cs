@@ -23,7 +23,7 @@ namespace Fanex.AffiliateAdmin.Services
     public interface IAccountService
     {
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
-        ResultModel LoginInternal(LoginInternalCriteria criteria, out Account account);
+        ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account);
 
         /// <summary>
         /// Get statistics for Affiliate.
@@ -31,7 +31,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Return object.</returns>
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
-        ResultModel Login(LoginCriteria criteria, out Account account, string logInToken);
+        ResultViewModel Login(LoginCriteria criteria, out Account account, string logInToken);
 
         /// <summary>
         /// Get by username.
@@ -68,29 +68,10 @@ namespace Fanex.AffiliateAdmin.Services
         IEnumerable<Account> GetListAccountManagement(SelByGroupIDCriteria criteria);
 
         /// <summary>
-        /// Get account info.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>Account information.</returns>
-        Account GetAccountInfo(SelByCustIDCriteria criteria);
-
-        /// <summary>
-        /// Update account.
-        /// </summary>
-        /// <param name="criteria">Account criteria.</param>
-        void AccountUpdate(AccountUpdCriteria criteria);
-
-        /// <summary>
         /// Insert new account.
         /// </summary>
         /// <param name="criteria">Account criteria.</param>
         void AccountInsert(AccountInsCriteria criteria);
-
-        /// <summary>
-        /// Update account status.
-        /// </summary>
-        /// <param name="criteria">Account criteria.</param>
-        void AccountUpdateStatus(AccountUpdClosedCriteria criteria);
 
         /// <summary>
         /// Update account password.

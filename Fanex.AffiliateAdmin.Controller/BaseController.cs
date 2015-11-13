@@ -75,9 +75,9 @@ namespace Fanex.AffiliateAdmin.Controller
             return ModelState.Values.SelectMany(v => v.Errors).Select(x => x.ErrorMessage).ToArray();
         }
 
-        protected ResultModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
+        protected ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
         {
-            return new ResultModel
+            return new ResultViewModel
             {
                 ErrorCode = errCode,
                 Message = errCode == 0 ?
@@ -89,7 +89,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         protected JsonResult InvalidModelResult()
         {
-            var result = new ResultModel
+            var result = new ResultViewModel
             {
                 ErrorCode = -1,
                 Success = false,
@@ -101,7 +101,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         protected JsonResult ModelResult(int errCode)
         {
-            var result = new ResultModel
+            var result = new ResultViewModel
             {
                 ErrorCode = errCode,
                 Success = errCode == 0,

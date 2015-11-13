@@ -23,13 +23,13 @@ namespace Fanex.AffiliateAdmin.DataAccess
     /// </summary>
     public class AccountDataAccess : IAccountDataAccess
     {
-        public ResultModel LoginInternal(LoginInternalCriteria criteria, out Account account)
+        public ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account)
         {
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 objectDb.ExecuteNonQuery(criteria.GetSpParams());
                 var outputParams = objectDb.GetOuputParams();
-                var result = new ResultModel();
+                var result = new ResultViewModel();
                 account = new Account();
                 result.ErrorCode = Convert.ToInt32(outputParams["errcode"]);
                 result.ErrorMessage = Convert.ToString(outputParams["errmsg"]);
@@ -45,13 +45,13 @@ namespace Fanex.AffiliateAdmin.DataAccess
             }
         }
 
-        public ResultModel Login(LoginCriteria criteria, out Account account)
+        public ResultViewModel Login(LoginCriteria criteria, out Account account)
         {
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 objectDb.ExecuteNonQuery(criteria.GetSpParams());
                 var outputParams = objectDb.GetOuputParams();
-                var result = new ResultModel();
+                var result = new ResultViewModel();
                 account = new Account();
                 result.ErrorCode = Convert.ToInt32(outputParams["errcode"]);
                 result.ErrorMessage = Convert.ToString(outputParams["errmsg"]);

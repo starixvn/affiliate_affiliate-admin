@@ -20,11 +20,13 @@ management
     {
         @*@Html.ValidationSummary()*@
         <div class="span12 search-form">
-            <div class="row-fluid row-form end-search">
+            <div class="row-fluid row-form">
                 <div class="cell">
                     <label for="username">@Lang.Username</label>
                     <input type="text" class="form-control" id="username" name="UserName" placeholder="@Lang.All" maxlength="100"/>
                 </div>
+                </div>
+                <div class="row-fluid row-form end-search">
                 <div class="cell">
                     <label for="FirstChar">@Lang.FirstLetter</label>
                     @RazorHelper.ListAlPhabet(Model.FirstLetter, new Dictionary<string, object> { { "name", "FirstChar" }, { "id", "FirstChar" } })
@@ -64,31 +66,18 @@ management
             },
             columns: [
                       { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
-                      { HeaderText: "@Lang.Username", Width: 120, Name: "Username", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) { return '<a href="javascript:Management.editAccount(' + rowData.CustID + ",'" + rowData.Username + '\')">' + cell.Value + '</a>'; }
-                      },
-                      { HeaderText: "@Lang.FirstName", Width: 80, Name: "FirstName" },
-                      { HeaderText: "@Lang.LastName", Width: 80, Name: "LastName" },
-                      { HeaderText: "@Lang.Status", Width: 80, Name: "Status", Formatter:
-                        function (rowIndex, rowData, cell, cellFormated) {
-                            var statusName = cell.Value ? "@Lang.Closed" : "@Lang.Open";
-                            var className = cell.Value ? "icon-ban-circle" : "icon-ok-circle";
-                            return statusName + "<a href=\"javascript:Management.changeStatus(this," + rowData.CustID + ");\"><i id='i_" + rowData.CustID + "' class=\"" + className + "\"></i></a>";
-                        }
-                      },
-                      { HeaderText: "@Lang.Creator", Width: 80, Name: "Creator" },
-                      { HeaderText: "@Lang.CreatedDate", Width: 160, Name: "CreateDateStr", CellAlign: "center" },
-                      { HeaderText: "@Lang.Policy", Width: 100, Name: "PolicyCol", HeaderAlign: "center", CellAlign: "center", Formatter:
+                      { HeaderText: "@Lang.Username", Width: 150, Name: "Username" },
+                      { HeaderText: "@Lang.Policy", Width: 150, Name: "PolicyCol", HeaderAlign: "center", CellAlign: "center", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
                             return '<a href="javascript:Management.viewAccountPolicy(' + rowData.CustID + ",'" + rowData.Username + "','" + rowData.GroupName + '\')">@Lang.AccountPolicy</a>';
                         }
                       },
-                      { HeaderText: "@Lang.GroupName", Width: 100, Name: "GroupName", Formatter:
+                      { HeaderText: "@Lang.GroupName", Width: 150, Name: "GroupName", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
                             return '<a href="javascript:Management.viewGroup(' + rowData.GroupID + ",'" + rowData.GroupName + '\')">' + cell.Value + '</a>';
                         }
                       },
-                      { HeaderText: "@Lang.Password", Width: 80, Name: "PasswordCol", CellAlign: "center", Formatter:
+                      { HeaderText: "@Lang.Password", Width: 80, Name: "Password", CellAlign: "center", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
                             if (rowData.Status)
                                 return "";
@@ -97,7 +86,7 @@ management
                       }
                    ],
             showPager: true,
-            gridExpandHeight: 290,  
+            gridExpandHeight: 290,
             showNumberColumn: true
         }
     </script>

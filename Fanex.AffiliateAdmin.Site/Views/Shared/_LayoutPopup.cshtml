@@ -11,7 +11,7 @@
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()
 </head>
 <body class="popup">
-    
+    @Html.Hidden("IsIT", SessionManager.CurrentSession.IsIT ? 1 : 0)
     <div class="container-fluid">
         <div class="box-insite">
             @RenderBody()

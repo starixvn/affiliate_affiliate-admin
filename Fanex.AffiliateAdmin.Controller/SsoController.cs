@@ -140,7 +140,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return View();
         }
 
-        private ResultModel InternalLogin(LoginInternalCriteria criteria)
+        private ResultViewModel InternalLogin(LoginInternalCriteria criteria)
         {
             Account user;
             var result = _accountService.LoginInternal(criteria, out user);
@@ -170,9 +170,9 @@ namespace Fanex.AffiliateAdmin.Controller
             return ErrorMsg.ResourceManager.GetString("Msg" + errCode);
         }
 
-        private ResultModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
+        private ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
         {
-            return new ResultModel
+            return new ResultViewModel
             {
                 ErrorCode = errCode,
                 Message = errCode == 0 ?

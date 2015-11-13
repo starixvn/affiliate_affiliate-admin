@@ -14,6 +14,7 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
+    @Html.Hidden("IsIT", SessionManager.CurrentSession.IsIT ? 1 : 0)
     <div class="container" style="overflow-x: hidden">
         <div class="row-fulid">
             <div class="span12 content w-none">

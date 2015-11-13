@@ -94,7 +94,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.UpdatedBy = this.CurrentSession.CustID;
 
                 this._noteService.InsertNote(criteria);
-                ViewBag.Result = new ResultModel
+                ViewBag.Result = new ResultViewModel
                 {
                     ErrorCode = criteria.ErrCode,
                     Message = criteria.ErrCode == 0 ? Lang.SuccNoteAdd : ErrorMessage(criteria.ErrCode)
@@ -135,7 +135,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             this._noteService.UpdateNote(criteria);
 
-            ViewBag.Result = new ResultModel
+            ViewBag.Result = new ResultViewModel
             {
                 ErrorCode = criteria.ErrCode,
                 Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)

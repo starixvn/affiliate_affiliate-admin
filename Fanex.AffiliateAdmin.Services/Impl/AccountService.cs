@@ -62,7 +62,7 @@ namespace Fanex.AffiliateAdmin.Services
 
         #endregion Constructor
 
-        public ResultModel LoginInternal(LoginInternalCriteria criteria, out Account account)
+        public ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             return _accountDataAccess.LoginInternal(criteria, out account);
@@ -73,15 +73,15 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Login criteria.</param>
         /// <returns>Account info.</returns>
-        public ResultModel Login(LoginCriteria criteria, out Account account, string logInToken)
+        public ResultViewModel Login(LoginCriteria criteria, out Account account, string logInToken)
         {
-            ResultModel result = null;
+            ResultViewModel result = null;
             account = null;
             Check.Argument.IsNotNull(criteria, "criteria");
             var user = GetByUsername(criteria.Username);
             if (user == null)
             {
-                result = new ResultModel()
+                result = new ResultViewModel()
                 {
                     ErrorCode = WrongUserPasswordErrorCode
                 };
@@ -182,41 +182,10 @@ namespace Fanex.AffiliateAdmin.Services
         }
 
         /// <summary>
-        /// Get account info.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>Account info.</returns>
-        public Account GetAccountInfo(SelByCustIDCriteria criteria)
-        {
-            Check.Argument.IsNotNull(criteria, "criteria");
-            var data = GetData<Account>(criteria);
-
-            return data.FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Update account.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        public void AccountUpdate(AccountUpdCriteria criteria)
-        {
-            ExecuteOutput(criteria);
-        }
-
-        /// <summary>
         /// Insert new account.
         /// </summary>
         /// <param name="criteria">Account criteria.</param>
         public void AccountInsert(AccountInsCriteria criteria)
-        {
-            ExecuteOutput(criteria);
-        }
-
-        /// <summary>
-        /// Update status.
-        /// </summary>
-        /// <param name="criteria">Account criteria.</param>
-        public void AccountUpdateStatus(AccountUpdClosedCriteria criteria)
         {
             ExecuteOutput(criteria);
         }

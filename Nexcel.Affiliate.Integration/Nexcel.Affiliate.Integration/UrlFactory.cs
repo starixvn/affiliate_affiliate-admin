@@ -9,7 +9,6 @@
     public class UrlFactory : IUrlFactory
     {
         private const string EncryptedParamPattern = "licenseename={0}&username={1}&password={2}&timestamp={3}&loginurl={4}&language={5}";
-        private static readonly Regex UrlRegularExpression = new Regex("(http|https):\\/\\/([\\w@][\\w.:@]+)\\/?[\\w\\.?=%&=\\-@/$,]*");
 
         private IIntegrationSettings _settings;
 

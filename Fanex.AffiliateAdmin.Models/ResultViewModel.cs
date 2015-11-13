@@ -11,7 +11,7 @@ namespace Fanex.AffiliateAdmin.Models
     /// <summary>
     /// Result View Model.
     /// </summary>
-    public class ResultModel
+    public class ResultViewModel
     {
         public bool Success { get; set; }
 

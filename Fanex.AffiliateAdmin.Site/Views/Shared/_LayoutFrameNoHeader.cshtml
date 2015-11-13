@@ -12,6 +12,7 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
+    @Html.Hidden("IsIT", SessionManager.CurrentSession.IsIT ? 1 : 0)
     <!--content html-->
     @RenderBody()
     @Scripts.Render("~/bundles/js")

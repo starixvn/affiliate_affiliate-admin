@@ -93,72 +93,10 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(new { List = _accountService.GetListAccountManagement(criteria) });
         }
 
-        #region Edit User
-
-        /// <summary>
-        /// Update information account.
-        /// </summary>
-        /// <param name="custId">Customer Id.</param>
-        /// <returns>Return view.</returns>
-        [HttpGet]
-        public ActionResult EditUser(int custId)
-        {
-            var criteria = new SelByCustIDCriteria
-            {
-                CustId = custId
-            };
-
-            var accountInfo = _accountService.GetAccountInfo(criteria);
-            var groupList = _groupService.GetListGroup(new GroupListCriteria { IsIt = SessionManager.CurrentSession.IsIT });
-
-            return View(new EditUserViewModel
-            {
-                Username = accountInfo.Username,
-                FirstName = accountInfo.FirstName,
-                LastName = accountInfo.LastName,
-                GroupID = accountInfo.GroupID,
-                CustID = custId,
-                GroupList = groupList
-            });
-        }
-
-        /// <summary>
-        /// Edit User Info.
-        /// </summary>
-        /// <param name="model">Edit user view model.</param>
-        /// <returns>Action Result.</returns>
-        [HttpPost]
-        public ActionResult EditUser(EditUserViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var criteria = new AccountUpdCriteria
-                    {
-                        CustId = model.CustID,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        GroupId = model.GroupID,
-                        UserId = SessionManager.CurrentSession.CustID,
-                        Ip = Remote.GetClientIPAddress(),
-                    };
-
-                _accountService.AccountUpdate(criteria);
-
-                ViewBag.Result = new ResultModel
-                {
-                    ErrorCode = criteria.ErrCode,
-                    Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
-                };
-            }
-
-            return EditUser(model.CustID);
-        }
-
-        #endregion Edit User
-
         #region Add User
 
         [HttpGet]
+        [ITAuth]
         public ActionResult AddUser(string password, int groupId = 0)
         {
             var groupList = _groupService.GetListGroup(new GroupListCriteria { IsIt = SessionManager.CurrentSession.IsIT });
@@ -177,6 +115,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="model">Account view model.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
+        [ITAuth]
         public ActionResult AddUser(AccountViewModel model)
         {
             if (ModelState.IsValid)
@@ -195,7 +134,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 _accountService.AccountInsert(criteria);
 
-                ViewBag.Result = new ResultModel
+                ViewBag.Result = new ResultViewModel
                 {
                     ErrorCode = criteria.ErrCode,
                     Message = criteria.ErrCode == 0 ? Lang.AddUserSuccess : ErrorMessage(criteria.ErrCode)
@@ -206,30 +145,6 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         #endregion Add User
-
-        #region Change Status
-
-        /// <summary>
-        /// Change Status.
-        /// </summary>
-        /// <param name="criteria">Account Criteria.</param>
-        /// <returns>Action Result.</returns>
-        [HttpPost]
-        public ActionResult ChangeStatus(AccountUpdClosedCriteria criteria)
-        {
-            criteria.UserId = SessionManager.CurrentSession.CustID;
-            criteria.Ip = Remote.GetClientIPAddress();
-
-            _accountService.AccountUpdateStatus(criteria);
-
-            return Json(new
-            {
-                ErrorCode = criteria.ErrCode,
-                Message = criteria.ErrCode == 0 ? Lang.UpdateStaSucc : ErrorMessage(criteria.ErrCode)
-            });
-        }
-
-        #endregion Change Status
 
         #region Change Policy
 
@@ -340,7 +255,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             _permissionService.UpdatePermissionCurrency(criteria);
 
-            ViewBag.Result = new ResultModel
+            ViewBag.Result = new ResultViewModel
             {
                 ErrorCode = criteria.ErrCode,
                 Message = criteria.ErrCode == 0 ? Lang.UpdatePermissionSucc : ErrorMessage(criteria.ErrCode)
@@ -354,6 +269,7 @@ namespace Fanex.AffiliateAdmin.Controller
         #region Change Password
 
         [HttpGet]
+        [ITAuth]
         public ActionResult ChangePassword(int custId, string userName, string password, string confirmPassword)
         {
             return View(new PasswordViewModel
@@ -371,6 +287,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="model">Password view model.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
+        [ITAuth]
         public ActionResult ChangePassword(PasswordViewModel model)
         {
             if (ModelState.IsValid)
@@ -386,7 +303,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 _accountService.AccountUpdatePassword(criteria);
 
-                ViewBag.Result = new ResultModel
+                ViewBag.Result = new ResultViewModel
                 {
                     ErrorCode = criteria.ErrCode,
                     Message = criteria.ErrCode == 0 ? Lang.ResetPassSuccess : ErrorMessage(criteria.ErrCode)
@@ -453,7 +370,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 _groupService.GroupInsert(criteria);
 
-                ViewBag.Result = new ResultModel
+                ViewBag.Result = new ResultViewModel
                 {
                     ErrorCode = criteria.ErrCode,
                     Message = criteria.ErrCode == 0 ? Lang.GroupAddSucc : ErrorMessage(criteria.ErrCode)
@@ -502,7 +419,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             _groupService.GroupUpdatePolicy(criteria2);
 
-            ViewBag.Result = new ResultModel
+            ViewBag.Result = new ResultViewModel
             {
                 ErrorCode = criteria2.ErrCode,
                 Message = criteria2.ErrCode == 0 ? Lang.UpdateRolePolicySucc : ErrorMessage(criteria2.ErrCode)
@@ -552,7 +469,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 _groupService.GroupUpdate(criteria);
 
-                ViewBag.Result = new ResultModel
+                ViewBag.Result = new ResultViewModel
                 {
                     ErrorCode = criteria.ErrCode,
                     Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
@@ -605,7 +522,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             _accountService.AccountUpdatePolicy(criteria2);
 
-            ViewBag.Result = new ResultModel
+            ViewBag.Result = new ResultViewModel
             {
                 ErrorCode = criteria2.ErrCode,
                 Message = criteria2.ErrCode == 0 ? Lang.UpdateRolePolicySucc : ErrorMessage(criteria2.ErrCode)

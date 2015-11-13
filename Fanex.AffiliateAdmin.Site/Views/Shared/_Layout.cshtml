@@ -12,7 +12,7 @@
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()
 </head>
 <body>
-    
+    @Html.Hidden("IsIT", SessionManager.CurrentSession.IsIT ? 1 : 0)
     <div class="container">
         <div class="row-fulid">
             @Html.Partial("_Header")

@@ -12,6 +12,7 @@ var AFFILIATE = (function ($) {
         var systemSecond = window.sysSecond;
         var systemMonthName = window.sysMonthName;
     }
+    var _isIT = false;
 
     return {
         pageSizes: [20, 50, 100],
@@ -24,6 +25,9 @@ var AFFILIATE = (function ($) {
         MIN_CONTENT_WIDTH: '1110',
         scrollTop: function () {
             $('html, body').animate({ scrollTop: $('.container-flsuid').offset().top }, 400);
+        },
+        init: function(){
+            _isIT = $("#IsIT").val() === '1';
         },
         initDatePicker: function () {
             var datePickers = $('.datepicker');
@@ -66,6 +70,9 @@ var AFFILIATE = (function ($) {
                     });
                 });
             }
+        },
+        isIT: function () {
+            return _isIT;
         },
         // Show language Box
         showLanguageBox: function () {
@@ -675,6 +682,20 @@ Array.prototype.clear = function () {
     "use strict";
     while (this.length > 0) {
         this.pop();
+    }
+};
+
+Array.prototype.removeItem = function (propertyName, propertyValue) {
+    "use strict";
+    var i = 0;
+    while (i < this.length) {
+        if(this[i][propertyName] == propertyValue) {
+            this.splice(i, 1);
+        }
+        else
+        {
+            i++;
+        }
     }
 };
 

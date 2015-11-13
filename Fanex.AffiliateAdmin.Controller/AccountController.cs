@@ -95,7 +95,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult Login(string username, string password, string logInToken)
         {
-            ResultModel result = null;
+            ResultViewModel result = null;
             Account user = null;
 
             if (ModelState.IsValid)
@@ -164,6 +164,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>Return change password form.</returns>
         [HttpGet]
         [Authorization]
+        [ITAuth]
         public ActionResult ChangePassword()
         {
             return View(new AccountPasswordViewModel());
@@ -176,13 +177,14 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>Return change password form.</returns>
         [HttpPost]
         [Authorization]
+        [ITAuth]
         public ActionResult ChangePassword(AccountPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
                 if (model.NewPassword.Equals(model.OldPassword))
                 {
-                    ViewBag.Result = new ResultModel
+                    ViewBag.Result = new ResultViewModel
                         {
                             ErrorCode = 16,
                             Message = Lang.NewPassworDifferOldPassword
@@ -223,7 +225,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ReCheckIn()
         {
-            var result = new ResultModel();
+            var result = new ResultViewModel();
 
             KickedOutSession(result);
 
@@ -241,7 +243,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// Kicked out session.
         /// </summary>
         /// <param name="result">Kick-out result.</param>
-        private void KickedOutSession(ResultModel result)
+        private void KickedOutSession(ResultViewModel result)
         {
             var criteria = new ReCheckInCriteria
             {
@@ -268,7 +270,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// Kicked out down time.
         /// </summary>
         /// <param name="result">Kick-out result.</param>
-        private void KickedOutDownTime(ResultModel result)
+        private void KickedOutDownTime(ResultViewModel result)
         {
             string startTime = string.Empty, endTime = string.Empty;
             result.Success = UnderMaintenanceService.GetDownTime(ref startTime, ref endTime);
@@ -293,9 +295,9 @@ namespace Fanex.AffiliateAdmin.Controller
             }
         }
 
-        private ResultModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
+        private ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
         {
-            return new ResultModel
+            return new ResultViewModel
             {
                 ErrorCode = errCode,
                 Message = errCode == 0 ?

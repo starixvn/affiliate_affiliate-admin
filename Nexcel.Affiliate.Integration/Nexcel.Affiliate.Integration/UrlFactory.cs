@@ -52,8 +52,7 @@
 
             var encryptionThread = new EncryptionThread();
             string str = encryptionThread.EncryptString(inputString, 1024, publicKeyPath);
-            return model.ActiveDomain == null ? this._settings.SsoUrl + "?key=" + str
-                : model.ActiveDomain + "?key=" + str;
+            return this._settings.SsoUrl + "?key=" + str;
         }
     }
 }

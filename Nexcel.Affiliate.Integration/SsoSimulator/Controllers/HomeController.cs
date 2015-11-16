@@ -53,7 +53,6 @@
 
             requestModel.EncryptedPassword = "754A738BF99D986D8716FE00A81BC5CA32916BF6";
             requestModel.Timestamp = GetDbTimeStamp();
-            requestModel.ActiveDomain = GetActiveDomain(); // IntegrationSettings.Settings.SsoUrl;
             requestModel.LanguageCode = "zh-CN";
 
             UrlFactory urlFactory = new UrlFactory();
@@ -73,22 +72,6 @@
                     DateTime result = (DateTime)sqlCommand.ExecuteScalar();
                     sqlConnection.Close();
                     return result.Ticks;
-                }
-            }
-        }
-
-        private static Uri GetActiveDomain()
-        {
-            using (SqlConnection sqlConnection =
-           new SqlConnection(ConfigurationManager.ConnectionStrings["demo"].ToString()))
-            {
-                using (SqlCommand sqlCommand = new SqlCommand("Lrf_GetActiveDomain", sqlConnection))
-                {
-                    sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlConnection.Open();
-                    string result = (string)sqlCommand.ExecuteScalar();
-                    sqlConnection.Close();
-                    return new Uri(result);
                 }
             }
         }

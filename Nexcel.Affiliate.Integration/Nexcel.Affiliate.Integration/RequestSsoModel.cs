@@ -37,10 +37,5 @@
         /// Required:true
         /// </summary>
         public string LanguageCode { get; set; }
-
-        /// <summary>
-        /// if ActiveDomain is null or Empty,the system will use domain in webcongif file
-        /// </summary>
-        public Uri ActiveDomain { get; set; }
     }
 }

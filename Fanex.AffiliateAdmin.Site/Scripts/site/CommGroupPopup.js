@@ -294,7 +294,6 @@ var CommGroupPopup = (function ($) {
             if ($tab.data("disabled")) {
                 var index = products.indexOf(productid);
                 products.splice(index, 1);
-                continue;
             }
         }
 

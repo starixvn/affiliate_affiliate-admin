@@ -20,6 +20,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
     using Fanex.Common.Extensions;
     using Fanex.Common.Helper;
     using Models;
+    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// Account data access.
@@ -100,7 +101,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
                     var param = criteria.GetSpParams();
                     using (var reader = objectDb.ExecuteReader(param))
                     {
-                        affiliateStatistic.AddProducts(GetProductList(reader));
+                        affiliateStatistic.Products = GetProductList(reader);
 
                         affiliateStatistic.CommGroupInfo = GetCommGroup(reader);
                     }
@@ -292,16 +293,18 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <returns>Product List.</returns>
-        private IList<Product> GetProductList(IDataReader reader)
+        private IEnumerable<Product> GetProductList(IDataReader reader)
         {
             var productList = new List<Product>();
 
             while (reader.Read())
             {
+                var productName = reader.ToString("ProductName");
+                productName = Lang.ResourceManager.GetString(productName.Replace(" ", string.Empty));
                 productList.Add(new Product
                 {
                     ProductID = reader.ToByte("ProductID"),
-                    ProductName = reader.ToString("ProductName"),
+                    ProductName = productName,
                     TotalQualifiedMembers = reader.ToInt("TotalQualifiedMembers")
                 });
             }

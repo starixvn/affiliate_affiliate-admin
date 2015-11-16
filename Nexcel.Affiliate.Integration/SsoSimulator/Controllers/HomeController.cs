@@ -28,16 +28,23 @@
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
-            FormsAuthentication.SetAuthCookie(username, true);
-            HttpContext.Session.Add("username", username);
-            HttpContext.Session.Add("password", password);
-
-            return Redirect("Index");
+            if (password != "1234aa")
+            {
+                ViewBag.Message = "Wrong username or password!";
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SetAuthCookie(username, true);
+                HttpContext.Session.Add("username", username);
+                HttpContext.Session.Add("password", password);
+                return Redirect("Index");
+            }
         }
 
         [Authorize]
         public void Logout()
-        {            
+        {
             HttpContext.Session.Clear();
             HttpContext.Session.Abandon();
             HttpContext.Response.Cookies.Clear();
@@ -51,7 +58,7 @@
             var requestModel = new RequestSsoModel();
             requestModel.Username = HttpContext.User.Identity.Name;
 
-            requestModel.EncryptedPassword = "754A738BF99D986D8716FE00A81BC5CA32916BF6";
+            requestModel.EncryptedPassword = GetEncryptedPassword(requestModel.Username, "spondemo"); // "754A738BF99D986D8716FE00A81BC5CA32916BF6";
             requestModel.Timestamp = GetDbTimeStamp();
             requestModel.LanguageCode = "zh-CN";
 
@@ -72,6 +79,24 @@
                     DateTime result = (DateTime)sqlCommand.ExecuteScalar();
                     sqlConnection.Close();
                     return result.Ticks;
+                }
+            }
+        }
+
+        private static string GetEncryptedPassword(string userName, string licenseeName)
+        {
+            using (SqlConnection sqlConnection =
+            new SqlConnection(ConfigurationManager.ConnectionStrings["demo"].ToString()))
+            {
+                using (SqlCommand sqlCommand = new SqlCommand(
+                    "Select UserPwd from Users where Username = @Username and LicenseeName = @Licenseename", sqlConnection))
+                {
+                    sqlCommand.Parameters.Add("@Username", SqlDbType.VarChar).Value = userName;
+                    sqlCommand.Parameters.Add("@LicenseeName", SqlDbType.VarChar).Value = licenseeName;
+                    sqlConnection.Open();
+                    var result = sqlCommand.ExecuteScalar().ToString();
+                    sqlConnection.Close();
+                    return result;
                 }
             }
         }

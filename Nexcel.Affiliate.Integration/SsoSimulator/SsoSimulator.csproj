@@ -126,7 +126,7 @@
     <Content Include="Content\Home\images\headerbg.jpg" />
     <Content Include="Content\Home\images\headerbg_notify.png" />
     <Content Include="Content\Home\images\logo-afterlogin.png" />
-    <Content Include="Content\Home\images\logo.jpg" />
+    <Content Include="Content\Home\images\logo.png" />
     <Content Include="Content\Home\images\logoNotify.jpg" />
     <Content Include="Content\Home\images\notify.png" />
     <Content Include="Content\Home\images\panel.png" />

@@ -279,7 +279,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {                
                 string message = InternalLoginErrorMessage +
                     "\r\nCode: " + result.ErrorCode +
-                    "\r\nMessage: " + result.Message +
+                    "\r\nMessage: " + result.ErrorMessage +
                     "\r\nLicensee: " + criteria.LicenseeName +
                      "\r\nUserName: " + criteria.Username +
                      "\r\nTimeSpan: " + timeSpan +

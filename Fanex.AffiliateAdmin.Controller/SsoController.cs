@@ -40,7 +40,6 @@ namespace Fanex.AffiliateAdmin.Controller
         private const int InvalidParamErrorCode = 1;
         private const int DisableSsoErrorCode = 2;
 
-        private const string PrivateKey = "12bet.snk";
         private const string DefaultLanguage = "en-US";
 
         private readonly string _keyPath = string.Empty;
@@ -189,7 +188,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         private string GetPrivateKeyPath()
         {
-            var privateKeyPath = Server.MapPath("~/" + _keyPath + PrivateKey);
+            var privateKeyPath = Server.MapPath("~/" + _keyPath);
             if (!System.IO.File.Exists(privateKeyPath))
             {
                 RedirectToErrorPage(DisableSsoErrorCode);

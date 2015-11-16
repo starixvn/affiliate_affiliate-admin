@@ -164,7 +164,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="sso.public.snk" />
+    <Content Include="sso.public.snk" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nexcel.Affiliate.Integration\Nexcel.Affiliate.Integration.csproj">

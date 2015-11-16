@@ -7,7 +7,6 @@
     @Styles.Render("~/bundles/notify")
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 }
-
 <div class="header">
     <a href="@Url.Content("~/Home")" class="no-underline">
         <div class="logo">@Lang.AccessDenied</div>
@@ -20,59 +19,79 @@
     </div>
     <div class="text">
         <ul class="notify-content">
-            @for (var i = 0; i <= AppSettings.BaseLanguages.Count() - 1; i++)
+            @if (TempData["Message"] != null)
             {
-                var lang = AppSettings.BaseLanguages.ElementAt(i);
-                <li class="@(i == (AppSettings.BaseLanguages.Count() - 1) ? "end" : string.Empty)">
-                @switch (lang.LanguageID)
-                {
-                case "zh-TW":
-                    <span>訪問被拒絕! <br />
-                        在此行動中，您沒有權限. <br />
-                        請聯絡管理員.</span>
-                    break;
-                    
-                 case "zh-CN":
-                    <span>访问被拒绝! <br />
-                        在此行动中，您没有权限. <br />
-                        请联络管理员.</span>
-                    break;
-
-                 case "en-US":
-                    <span>Access Denied! <br />
-                        You don't have permission on this action. <br />
-                        Please contact your administrator.</span>
-                    break;
-
-                 case "id-ID":
-                    <span>Akses ditolak! <br />
-                        Anda tidak memiliki izin pada tindakan ini. <br />
-                        Harap menghubungi administrator Anda!</span>
-                    break;
-
-                case "th-TH":
-                    <span>ปฏิเสธการเข้าใช้! <br />
-                        คุณไม่ได้รับสิทธิ์ในการดำเนินการนี้. <br />
-                        กรุณาติดต่อผู้ดูแล.</span>
-                    break;
-                    
-               case "vi-VN":
-                    <span>Xin lỗi! <br />
-                        Bạn không có quyền thực hiện thao tác này. <br />
-                        Vui lòng liên hệ quản trị viên của chúng tôi.</span>
-                    break;
-                case "ko-KR":
-                    <span>접근 불가! <br />
-                        이 작업에 대한 권한이 없습니다. <br />
-                        관리자에게 문의하십시오.</span>
-                    break;
+                <li class="end"><span>@TempData["Message"]</span> </li>
             }
-            </li>
+            else
+            {
+                for (var i = 0; i <= AppSettings.BaseLanguages.Count() - 1; i++)
+                {
+                    var lang = AppSettings.BaseLanguages.ElementAt(i);
+                <li class="@(i == (AppSettings.BaseLanguages.Count() - 1) ? "end" : string.Empty)">
+                    @switch (lang.LanguageID)
+                    {
+                        case "zh-TW":
+                        <span>訪問被拒絕!
+                            <br />
+                            在此行動中，您沒有權限.
+                            <br />
+                            請聯絡管理員.</span>
+                            break;
+
+                        case "zh-CN":
+                        <span>访问被拒绝!
+                            <br />
+                            在此行动中，您没有权限.
+                            <br />
+                            请联络管理员.</span>
+                            break;
+
+                        case "en-US":
+                        <span>Access Denied!
+                            <br />
+                            You don't have permission on this action.
+                            <br />
+                            Please contact your administrator.</span>
+                            break;
+
+                        case "id-ID":
+                        <span>Akses ditolak!
+                            <br />
+                            Anda tidak memiliki izin pada tindakan ini.
+                            <br />
+                            Harap menghubungi administrator Anda!</span>
+                            break;
+
+                        case "th-TH":
+                        <span>ปฏิเสธการเข้าใช้!
+                            <br />
+                            คุณไม่ได้รับสิทธิ์ในการดำเนินการนี้.
+                            <br />
+                            กรุณาติดต่อผู้ดูแล.</span>
+                            break;
+
+                        case "vi-VN":
+                        <span>Xin lỗi!
+                            <br />
+                            Bạn không có quyền thực hiện thao tác này.
+                            <br />
+                            Vui lòng liên hệ quản trị viên của chúng tôi.</span>
+                            break;
+                        case "ko-KR":
+                        <span>접근 불가!
+                            <br />
+                            이 작업에 대한 권한이 없습니다.
+                            <br />
+                            관리자에게 문의하십시오.</span>
+                            break;
+                    }
+                </li>
+                }
             }
         </ul>
     </div>
 </div>
-
-@section scripts{    
+@section scripts{
     @Scripts.Render("~/bundles/loginjs")
 }

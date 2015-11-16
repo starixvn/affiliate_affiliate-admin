@@ -33,6 +33,10 @@ namespace Fanex.AffiliateAdmin.Controller
     [AllowAnonymous]
     public class SsoController : Controller
     {
+        private const string InvalidSettingsMessage = "Invalid settings!";
+
+        private const string InvalidParametersMessage = "Invalid parameters!";
+
         private const string InternalLoginErrorMessage = "Internal login failed.";
 
         private const int DecryptKeySize = 1024;
@@ -181,38 +185,21 @@ namespace Fanex.AffiliateAdmin.Controller
             };
         }
 
-        private RedirectResult RedirectToErrorPage(int code)
+        private RedirectResult RedirectToErrorPage(int code, string message)
         {
+            TempData["Message"] = message;
             return Redirect("~/Notify/AccessDenied?code=" + code);
-        }
-
-        private string GetPrivateKeyPath()
-        {
-            var privateKeyPath = Server.MapPath("~/" + _keyPath);
-            if (!System.IO.File.Exists(privateKeyPath))
-            {
-                RedirectToErrorPage(DisableSsoErrorCode);
-            }
-
-            return privateKeyPath;
-        }
-
-        private string GetRequestKey()
-        {
-            string parameter = HttpContext.Request["key"] ?? string.Empty;
-
-            if (string.IsNullOrEmpty(parameter))
-            {
-                RedirectToErrorPage(InvalidParamErrorCode);
-            }
-
-            return parameter;
         }
 
         private NameValueCollection GetQueryParams()
         {
-            string parameter = GetRequestKey();
-            var privateKeyPath = GetPrivateKeyPath();
+            string parameter = HttpContext.Request["key"] ?? string.Empty;
+            if (string.IsNullOrEmpty(parameter))
+            {
+                return null;
+            }
+
+            var privateKeyPath = Server.MapPath("~/" + _keyPath);
 
             parameter = parameter.Replace(" ", "+");
             var descryptParam = new EncryptionThread().DecryptString(parameter, DecryptKeySize, privateKeyPath);
@@ -231,10 +218,15 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (string.IsNullOrEmpty(_keyPath))
             {
-                return RedirectToErrorPage(DisableSsoErrorCode);
+                return RedirectToErrorPage(DisableSsoErrorCode, InvalidSettingsMessage);
             }
 
             var queryParams = GetQueryParams();
+            if (queryParams == null)
+            {
+                return RedirectToErrorPage(InvalidParamErrorCode, InvalidParametersMessage);
+            }
+
             var criteria = new LoginInternalCriteria()
             {
                 LicenseeName = queryParams["licenseename"] ?? string.Empty,
@@ -249,7 +241,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             if (string.IsNullOrEmpty(criteria.Username) || string.IsNullOrEmpty(criteria.Password))
             {
-                return RedirectToErrorPage(InvalidParamErrorCode);
+                return RedirectToErrorPage(InvalidParamErrorCode, InvalidParametersMessage);
             }
 
             if (!IsValidLanguage(criteria.Language))
@@ -288,7 +280,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 LogService.Info(message);
 
-                return RedirectToErrorPage(result.ErrorCode);
+                return RedirectToErrorPage(result.ErrorCode, result.ErrorMessage);
             }
         }
     }

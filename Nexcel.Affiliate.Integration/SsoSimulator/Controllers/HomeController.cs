@@ -8,7 +8,6 @@
     using System.Web.Mvc;
     using System.Web.Security;
     using Nexcel.Affiliate.Integration;
-    using Nexcel.Affiliate.Integration.Configurations;
 
     public class HomeController : Controller
     {
@@ -33,13 +32,18 @@
                 ViewBag.Message = "Wrong username or password!";
                 return View();
             }
-            else
+
+            var encryptedPassword = GetEncryptedPassword(username, "spondemo"); // "754A738BF99D986D8716FE00A81BC5CA32916BF6";
+            if (string.IsNullOrEmpty(encryptedPassword))
             {
-                FormsAuthentication.SetAuthCookie(username, true);
-                HttpContext.Session.Add("username", username);
-                HttpContext.Session.Add("password", password);
-                return Redirect("Index");
+                ViewBag.Message = "Username is not existed!";
+                return View();
             }
+
+            FormsAuthentication.SetAuthCookie(username, true);
+            HttpContext.Session.Add("username", username);
+            HttpContext.Session.Add("password", encryptedPassword);
+            return Redirect("Index");
         }
 
         [Authorize]
@@ -57,14 +61,18 @@
         {
             var requestModel = new RequestSsoModel();
             requestModel.Username = HttpContext.User.Identity.Name;
-
-            requestModel.EncryptedPassword = GetEncryptedPassword(requestModel.Username, "spondemo"); // "754A738BF99D986D8716FE00A81BC5CA32916BF6";
+            requestModel.EncryptedPassword = HttpContext.Session["password"].ToString();
             requestModel.Timestamp = GetDbTimeStamp();
             requestModel.LanguageCode = "zh-CN";
 
             UrlFactory urlFactory = new UrlFactory();
             string ssoUrl = urlFactory.GenerateSsoLink(requestModel);
             Response.Redirect(ssoUrl);
+        }
+
+        public ActionResult Error()
+        {
+            return View();
         }
 
         private static long GetDbTimeStamp()
@@ -94,9 +102,9 @@
                     sqlCommand.Parameters.Add("@Username", SqlDbType.VarChar).Value = userName;
                     sqlCommand.Parameters.Add("@LicenseeName", SqlDbType.VarChar).Value = licenseeName;
                     sqlConnection.Open();
-                    var result = sqlCommand.ExecuteScalar().ToString();
+                    var result = sqlCommand.ExecuteScalar();
                     sqlConnection.Close();
-                    return result;
+                    return result != null ? result.ToString() : string.Empty;
                 }
             }
         }

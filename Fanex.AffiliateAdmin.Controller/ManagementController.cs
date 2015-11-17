@@ -17,6 +17,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Session;
     using Core.Utilities;
     using Criterias;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Services;
     using Models;
@@ -366,6 +367,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         GroupDesc = model.Description,
                         UserId = SessionManager.CurrentSession.CustID,
                         Ip = Remote.GetClientIPAddress(),
+                        LicenseeId = AppSettings.LicenseeID
                     };
 
                 _groupService.GroupInsert(criteria);
@@ -466,6 +468,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.Ip = Remote.GetClientIPAddress();
+                criteria.LicenseeId = AppSettings.LicenseeID;
 
                 _groupService.GroupUpdate(criteria);
 

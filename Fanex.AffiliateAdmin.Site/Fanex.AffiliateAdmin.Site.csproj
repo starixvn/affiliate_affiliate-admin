@@ -337,6 +337,16 @@
     <Content Include="Configurations\SpNames\SpName.q8bola.uat.xml">
       <DependentUpon>SpName.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.9bet.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.9bet.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.9bet.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.9bet.uat.xml" />
+    <Content Include="Configurations\SpNames\SpName.allbetclub.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.allbetclub.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.allbetclub.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.allbetclub.uat.xml" />
+    <Content Include="Configurations\SpNames\SpName.unobet.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.unobet.master.xml" />
     <Content Include="Configurations\SpNames\SpName.unobet.production.xml">
       <DependentUpon>SpName.xml.tt</DependentUpon>
     </Content>
@@ -480,7 +490,48 @@
     <Compile Include="Properties\VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
+    <Content Include="Configurations\CodeAnalysis\CodeAnalysisConfiguration.xml" />
+    <Content Include="Configurations\SpNames\SpName.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.aoncash.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.aoncash.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.aoncash.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.aoncash.uat.xml" />
+    <Content Include="Configurations\SpNames\SpName.athena000.local.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.athena000.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.athena000.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.athena000.uat.xml" />
+    <Content Include="Configurations\SpNames\SpName.be7.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.be7.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.be7.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.be7.uat.xml" />
+    <Content Include="Configurations\SpNames\SpName.goobet.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.goobet.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.goobet.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.goobet.uat.xml" />
+    <Content Include="Configurations\SpNames\SpName.itcbet.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.itcbet.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.itcbet.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.itcbet.uat.xml" />
+    <Content Include="Configurations\SpNames\SpName.m8bola.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.m8bola.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.m8bola.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.m8bola.uat.xml" />
+    <Content Include="Configurations\SpNames\SpName.macaubet.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.macaubet.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.macaubet.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.macaubet.uat.xml" />
+    <Content Include="Configurations\SpNames\SpName.nbcbet.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.nbcbet.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.nbcbet.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.nbcbet.uat.xml" />
+    <Content Include="Configurations\SpNames\SpName.q8bola.local.xml" />
+    <Content Include="Configurations\SpNames\SpName.q8bola.master.xml" />
+    <Content Include="Configurations\SpNames\SpName.q8bola.production.xml" />
+    <Content Include="Configurations\SpNames\SpName.q8bola.uat.xml" />
     <Content Include="Content\betlist\betlist.core.css" />
     <Content Include="Content\betlist\betList.css" />
     <Content Include="Content\betlist\fanex.result.css" />

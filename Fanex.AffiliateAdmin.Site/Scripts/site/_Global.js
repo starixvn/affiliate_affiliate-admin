@@ -528,6 +528,8 @@ var AFFILIATE = (function ($) {
 
 $(function () {
     "use strict";
+    AFFILIATE.init();
+
     $(".ic-reload").click(function () {
         if ($("form :submit").length > 0) {
             $("form :submit").click();

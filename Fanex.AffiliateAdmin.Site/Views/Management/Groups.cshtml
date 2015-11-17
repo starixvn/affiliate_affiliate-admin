@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = Lang.GroupManagement;
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var ignoredGroupNames = ViewBag.IgnoredGroupNames as string;
 }
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.DTO
@@ -17,8 +19,12 @@ management
 </div>
 <div id="gridId" class="freegrid content-grid">
 </div>
+
+<input id="IgnoredGroups" type="hidden" value="@ignoredGroupNames" />
+
 @section scripts{
     <script type="text/javascript">
+        var ignoredGroups = $.parseJSON($("#IgnoredGroups").val());
         var MSG = {
             NoInfo: "@Lang.NoInfo",
             ConfirmDelGroup: "@Lang.ConfirmDelGroup",
@@ -45,7 +51,7 @@ management
                     Name: "NoUser",
                     CellAlign: "center",
                     Formatter:
-                        function(rowIndex, rowData, cell, cellFormated) {
+                        function (rowIndex, rowData, cell, cellFormated) {
                             if (cell.Value > 0)
                                 return '<a href="javascript:Management.viewGroup(' + rowData.GroupId + ",'" + rowData.GroupName + '\')">' + cell.Value + '</a>';
                             return cell.Value;
@@ -58,7 +64,7 @@ management
                     Name: "RolePolicy",
                     CellAlign: "center",
                     Formatter:
-                        function(rowIndex, rowData, cell, cellFormated) {
+                        function (rowIndex, rowData, cell, cellFormated) {
                             return '<a href="javascript:Management.editRolePolicy(' + rowData.GroupId + ",'" + rowData.GroupName + '\')">@Lang.GroupPolicy</a>';
                         }
                 },
@@ -68,12 +74,13 @@ management
                     Name: "Update",
                     CellAlign: "center",
                     Formatter:
-                        function(rowIndex, rowData, cell, cellFormated) {
-                            var html = '<a title="@Lang.Edit" href="javascript:Management.editGroup(' + rowData.GroupId + ",'" + rowData.GroupName + '\')"><i class=\"icon-edit\"></i></a>&nbsp;&nbsp;';
-                            if (rowData.GroupName != 'None')
+                        function (rowIndex, rowData, cell, cellFormated) {
+                            var html = '';
+                            if (!isIgnoredGroup(rowData.GroupName)) {
+                                html += '<a title="@Lang.Edit" href="javascript:Management.editGroup(' + rowData.GroupId + ",'" + rowData.GroupName + '\')"><i class=\"icon-edit\"></i></a>&nbsp;&nbsp;';
                                 html += "<a title='@Lang.Remove' href=\"javascript:Management.deleteGroup(" + rowData.GroupId + ",'" + rowData.GroupName + "\')\"><i class=\"icon-remove\"></i></a>";
-                            else
-                                html += "<a><i class=\"icon-\"></i></a>";
+                            }
+
                             return html;
                         }
                 }
@@ -82,6 +89,16 @@ management
             gridExpandHeight: 290,
             showNumberColumn: true
         };
+
+        function isIgnoredGroup(groupName) {
+            for (var i = 0; i < ignoredGroups.length; i++) {
+                if (ignoredGroups[i] === groupName) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     </script>
     @Scripts.Render("~/scripts/groupmanagement")
 }

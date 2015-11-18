@@ -133,11 +133,8 @@
   </Function>
   <Function Name="Management">
     <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="DBAFFIGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID" DbName="DBAFFIGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="DBAFFIGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AccountUpd" SpName="AffAdmin_Con_AccountUpd" DbName="DBAFFIGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AccountIns" SpName="AffAdmin_Con_AccountIns" DbName="DBAFFIGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AccountUpdClosed" SpName="AffAdmin_Con_AccountUpdClosed" DbName="DBAFFIGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID" DbName="DBAFFIGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd" DbName="DBAFFIGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AccountUpdPwd" SpName="AffAdmin_AccountUpdPwd" DbName="DBAFFIGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />

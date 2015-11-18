@@ -11,6 +11,7 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
@@ -31,6 +32,14 @@ namespace Fanex.AffiliateAdmin.Controller
     [FunctionAuth(Function = "[UserControl]")]
     public class ManagementController : BaseController
     {
+        #region Static Fields
+
+        private static IEnumerable<string> ignoredGroupNames = new string[] { "Administrator", "None", "Aff_IT_Dept" };
+
+        private static string[] groupForIT = new string[] { "Aff_IT_Dept" };
+
+        #endregion Static Fields
+
         #region Services
 
         private readonly IAccountService _accountService;
@@ -104,7 +113,6 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult AddUser(string password, int groupId = 0)
         {
             var groupList = _groupService.GetListGroup(new GroupListCriteria { IsIt = SessionManager.CurrentSession.IsIT, LicenseeId = AppSettings.LicenseeID });
-            string[] groupForIT = new string[] { "Aff_IT_Dept" };
 
             return View(new AccountViewModel
                 {
@@ -334,7 +342,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult Groups()
         {
             var serializer = new JavaScriptSerializer();
-            ViewBag.IgnoredGroupNames = serializer.Serialize(AppSettings.IgnoredGroupNames);
+            ViewBag.IgnoredGroupNames = serializer.Serialize(ignoredGroupNames);
             return View();
         }
 
@@ -471,7 +479,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult EditGroup(GroupInfoUpdCriteria criteria)
         {
-            var isIgnoredGroup = AppSettings.IgnoredGroupNames.Any(g => g == criteria.GroupName);
+            var isIgnoredGroup = ignoredGroupNames.Any(g => g == criteria.GroupName);
             if (ModelState.IsValid && !isIgnoredGroup)
             {
                 criteria.UserId = SessionManager.CurrentSession.CustID;

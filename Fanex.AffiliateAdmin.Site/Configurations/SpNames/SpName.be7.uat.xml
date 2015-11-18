@@ -133,11 +133,8 @@
   </Function>
   <Function Name="Management">
     <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AccountUpd" SpName="AffAdmin_Con_AccountUpd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AccountIns" SpName="AffAdmin_Con_AccountIns" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AccountUpdClosed" SpName="AffAdmin_Con_AccountUpdClosed" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AccountUpdPwd" SpName="AffAdmin_AccountUpdPwd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />

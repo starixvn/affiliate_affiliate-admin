@@ -133,11 +133,8 @@
   </Function>
   <Function Name="Management">
     <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AccountUpd" SpName="AffAdmin_Con_AccountUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AccountIns" SpName="AffAdmin_Con_AccountIns" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AccountUpdClosed" SpName="AffAdmin_Con_AccountUpdClosed" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AccountUpdPwd" SpName="AffAdmin_AccountUpdPwd" DbName="DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet" Plain="0" />

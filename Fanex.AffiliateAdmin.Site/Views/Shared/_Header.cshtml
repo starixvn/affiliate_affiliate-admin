@@ -11,7 +11,7 @@
                 <span class="welcome"></span>
                 <div class="grp-info">
                     <strong>@Lang.Welcome, @currentSession.Username</strong> 
-                    @if (true || currentSession.IsIT)
+                    @if (currentSession.IsIT)
                     {
                         <a id="changePassword" href="#">[@Lang.ChangePassword]</a> 
                         <a href="@Url.Content("~/Account/Logout")">[@Lang.Logout]</a>

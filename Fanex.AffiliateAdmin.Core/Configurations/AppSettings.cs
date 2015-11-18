@@ -500,14 +500,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        public static IEnumerable<string> IgnoredGroupNames
-        {
-            get
-            {
-                return new string[] { "Administrator", "None", "Aff_IT_Dept" };
-            }
-        }
-
         public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
         {
             return SystemSetting.GetActiveCommGroups(criteria);

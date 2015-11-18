@@ -10,6 +10,7 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Services;
@@ -46,6 +47,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         public ActionResult Index(GetMemberDetailCriteria criteria)
         {
+            criteria.LicenseeId = AppSettings.LicenseeID;
             return View(_service.GetMemberDetail(criteria));
         }
     }

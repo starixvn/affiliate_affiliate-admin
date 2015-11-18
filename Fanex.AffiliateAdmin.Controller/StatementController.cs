@@ -81,6 +81,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult ListStatement(StatementCriteria criteria)
         {
             criteria.AffId = CurrentSession.Affiliate.AffiliateId;
+            criteria.LicenseeId = AppSettings.LicenseeID;
 
             var data = _statementService.GetAffiliateStatement(criteria);
 

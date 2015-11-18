@@ -7,6 +7,8 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class DomainAffSelCriteria : CriteriaBase
     {
+        public int LicenseeId { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_DomainAffSel";

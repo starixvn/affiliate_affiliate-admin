@@ -221,7 +221,8 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var criteria = new UserCurrencySelCriteria
             {
-                UserId = custId
+                UserId = custId,
+                LicenseeId = AppSettings.LicenseeID
             };
 
             return View(new PermissionCurrencyViewModel
@@ -267,7 +268,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 ModifyBy = SessionManager.CurrentSession.CustID,
                 UserId = custId,
                 Ip = Remote.GetClientIPAddress(),
-                CurrencyXML = doc.OuterXml
+                CurrencyXML = doc.OuterXml,
+                LicenseeId = AppSettings.LicenseeID
             };
 
             _permissionService.UpdatePermissionCurrency(criteria);
@@ -566,7 +568,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     GroupPolicys = criteria.GroupPolicys,
                     IP = criteria.Ip,
                     Language = criteria.Language,
-                    UserID = criteria.UserId
+                    UserID = criteria.UserId,
+                    LicenseeId = AppSettings.LicenseeID
                 };
             }
 
@@ -575,7 +578,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 IP = criteria.Ip,
                 Language = criteria.Language,
                 MemPolicys = criteria.MemPolicys,
-                UserID = criteria.UserId
+                UserID = criteria.UserId,
+                LicenseeId = AppSettings.LicenseeID
             };
         }
 

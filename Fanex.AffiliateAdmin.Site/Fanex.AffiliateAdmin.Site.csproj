@@ -3555,42 +3555,6 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.athena000.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.athena000.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.athena000.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.athena000.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.goobet.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.goobet.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.goobet.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.goobet.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.m8bola.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.m8bola.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.m8bola.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.m8bola.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.nbcbet.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.nbcbet.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.nbcbet.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.nbcbet.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.q8bola.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.q8bola.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.q8bola.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.q8bola.uat.config" />
     <Content Include="Configurations\WebConfigs\Web.aoncash.local.config" />
     <Content Include="Configurations\WebConfigs\Web.aoncash.master.config" />
     <Content Include="Configurations\WebConfigs\Web.aoncash.production.config" />
@@ -3635,10 +3599,6 @@
     <Content Include="Content\_Sites\athena000\Notify.less" />
     <Content Include="Configurations\WebConfigs\Web.unobet.production.config" />
     <Content Include="Configurations\WebConfigs\Web.unobet.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.production.config">
@@ -3653,10 +3613,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\WebConfigs\Web.allbetclub.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.production.config" />
@@ -3668,12 +3624,6 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.local.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.master.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.production.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.uat.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Configurations\WebConfigs\Web.9bet.local.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3685,76 +3635,76 @@
     <Content Include="Content\_Sites\9bet\Login.less" />
     <Content Include="Content\_Sites\9bet\Notify.less" />
     <Content Include="Integration\PrivateKey\12bet.snk" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.9bet.production.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.9bet.uat.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.allbetclub.production.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.allbetclub.uat.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.aoncash.production.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.aoncash.uat.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.athena000.production.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.athena000.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.athena000.uat.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.athena000.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.be7.production.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.be7.uat.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.goobet.production.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.goobet.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.goobet.uat.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.goobet.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.itcbet.production.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.itcbet.uat.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.m8bola.production.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.m8bola.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.m8bola.uat.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.m8bola.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.macaubet.production.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.macaubet.uat.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.nbcbet.production.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.nbcbet.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.nbcbet.uat.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.nbcbet.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.q8bola.production.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.q8bola.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.q8bola.uat.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.q8bola.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.unobet.production.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionStrings.unobet.uat.config">
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />

@@ -214,6 +214,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.Ip = Remote.GetClientIPAddress();
+                criteria.LicenseeId = AppSettings.LicenseeID;
 
                 _mediaService.DeleteBanner(criteria);
 
@@ -457,7 +458,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 {
                     BannerIds = model.BannerIds,
                     UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress()
+                    Ip = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _mediaService.DeleteBanner(criteria);

@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias;
     using Criterias.Configuration.Country;
     using DTO;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Services;
@@ -84,7 +85,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult AffDomainList()
         {
-            var result = _domainService.AffDomainList(new DomainAffSelCriteria());
+            var result = _domainService.AffDomainList(new DomainAffSelCriteria { LicenseeId = AppSettings.LicenseeID });
             return Json(new { List = result });
         }
 
@@ -133,7 +134,8 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             Domain result = _domainService.AffDomainSelectById(new DomainAffSelByIdCriteria
             {
-                DomainId = id
+                DomainId = id,
+                LicenseeId = AppSettings.LicenseeID
             });
 
             return View(new DomainViewModel { DomainID = result.DomainID, DomainName = result.DomainName });
@@ -203,7 +205,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult MemDomainList()
         {
-            var result = _domainService.MemDomainList(new DomainMemSelCriteria());
+            var result = _domainService.MemDomainList(new DomainMemSelCriteria { LicenseeId = AppSettings.LicenseeID });
             return Json(new { List = result });
         }
 
@@ -252,7 +254,8 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             Domain result = _domainService.MemDomainSelectById(new DomainMemSelByIdCriteria
             {
-                DomainId = id
+                DomainId = id,
+                LicenseeId = AppSettings.LicenseeID
             });
 
             return View(new DomainViewModel { DomainID = result.DomainID, DomainName = result.DomainName });
@@ -314,7 +317,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult DomainControlList()
         {
-            var result = _domainService.DomainControlList(new DomainControlSelCriteria());
+            var result = _domainService.DomainControlList(new DomainControlSelCriteria { LicenseeId = AppSettings.LicenseeID });
             return Json(new { List = result });
         }
 
@@ -336,8 +339,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     PageIndex = 1
                 }).ToList());
 
-            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria()).ToList());
-            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria()).ToList());
+            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
+            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
 
             return View(model);
         }
@@ -398,9 +401,9 @@ namespace Fanex.AffiliateAdmin.Controller
                 PageIndex = 1
             }).ToList());
 
-            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria()).ToList());
+            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
 
-            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria()).ToList());
+            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
 
             return View(model);
         }

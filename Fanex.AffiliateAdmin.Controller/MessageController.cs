@@ -57,7 +57,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 FromDate = model.DateChecked ? (DateTime?)model.FromDate : null,
                 ToDate = model.DateChecked ? (DateTime?)model.ToDate : null,
                 PageIndex = model.PageIndex == 0 ? 1 : model.PageIndex,
-                PageSize = model.PageSize == 0 ? AppSettings.PageSize : model.PageSize
+                PageSize = model.PageSize == 0 ? AppSettings.PageSize : model.PageSize,
+                LicenseeId = AppSettings.LicenseeID
             };
 
             var data = _messageService.GetMessages(criteria);
@@ -120,7 +121,8 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var criteria = new MessageDetailCriteria
             {
-                MsgId = msgId
+                MsgId = msgId,
+                LicenseeId = AppSettings.LicenseeID
             };
 
             var model = _messageService.MessageDetail(criteria);
@@ -182,7 +184,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 {
                     MsgIds = model.MsgIds,
                     UserID = SessionManager.CurrentSession.CustID,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _messageService.DeleteMessage(criteria);

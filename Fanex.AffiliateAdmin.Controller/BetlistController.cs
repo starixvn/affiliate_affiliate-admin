@@ -496,7 +496,8 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 AffId = affId,
                 AdminName = CurrentSession.Username,
-                MemberName = username ?? string.Empty
+                MemberName = username ?? string.Empty,
+                LicenseeId = AppSettings.LicenseeID
             };
 
             _betListService.ValidatePermission(criteria);

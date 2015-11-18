@@ -102,6 +102,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.IsIT = SessionManager.CurrentSession.IsIT;
             criteria.LicenseeId = AppSettings.LicenseeID;
             var listUseronlines = _homeService.UserOnlineList(criteria).ToList();
+
             return Json(new
             {
                 List = listUseronlines,

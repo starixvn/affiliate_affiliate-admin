@@ -216,6 +216,8 @@ namespace Fanex.AffiliateAdmin.Controller
 
             criteria.Description = criteria.Description.Encode();
 
+            criteria.LicenseeId = AppSettings.LicenseeID;
+
             _commGroupService.ExecuteOutput(criteria);
 
             var errorMsg = string.Empty;
@@ -268,6 +270,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
+            criteria.LicenseeId = AppSettings.LicenseeID;
 
             var groups = GetGridData(criteria);
 
@@ -297,6 +300,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult ViewSetting(CommGroupSelByIdCriteria criteria)
         {
             criteria.UserId = CurrentSession.CustID;
+            criteria.LicenseeId = AppSettings.LicenseeID;
             var groups = _commGroupService.GetById(criteria);
             var date = criteria.Date == null ? SystemTimeService.GetSystemDateTime() : criteria.Date.Value;
             BuildGroupData(groups, date, criteria.GroupID.ToString());

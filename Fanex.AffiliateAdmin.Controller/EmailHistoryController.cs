@@ -139,7 +139,8 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 Listmid = listID.TrimEnd(','),
                 UserID = SessionManager.CurrentSession.CustID,
-                IP = Remote.GetClientIPAddress()
+                IP = Remote.GetClientIPAddress(),
+                LicenseeId = AppSettings.LicenseeID
             };
             _service.ExecuteSP(criteria);
 

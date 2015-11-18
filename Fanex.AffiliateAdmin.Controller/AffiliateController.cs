@@ -70,6 +70,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
             criteria.UserId = SessionManager.CurrentSession.CustID;
+            criteria.LicenseeId = AppSettings.LicenseeID;
             var result = _service.GetAffiliateList(criteria);
 
             var approveStatusList = new List<string> { "approved", "closed", "lockedout" };

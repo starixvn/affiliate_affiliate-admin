@@ -17,6 +17,8 @@
 
         public bool BelongLevel2 { get; set; }
 
+        public int LicenseeId { get; set; }
+
         public override string GetSettingKey()
         {
             return "Aff_BetList_CheckBelonging";

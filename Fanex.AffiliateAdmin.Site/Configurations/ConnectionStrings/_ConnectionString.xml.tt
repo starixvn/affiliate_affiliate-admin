@@ -1,0 +1,50 @@
+﻿<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".txt" #>
+<#@ import namespace="System" #>
+<#@ include file="$(SolutionDir)\Packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
+
+<#
+	var manager = TemplateFileManager.Create(this);
+
+	var licenseeNames = new string[] {
+			"9bet", 
+			"allbetclub",
+			"aoncash",
+			"athena000",
+			"be7",
+			"goobet",
+			"itcbet",
+			"m8bola",
+			"macaubet",
+			"nbcbet",
+			"q8bola",
+			"unobet"
+		};
+
+	var environments = new string[] { "uat", "production" };
+
+	foreach(var licenseeName in licenseeNames)
+	{
+		foreach(var environment in environments)
+		{
+			var fileName = string.Format("Web.ConnectionStrings.{0}.{1}.config", licenseeName, environment);
+			manager.StartNewFile(fileName);
+			var licenseeDb = string.Format("<add name=\"DBAFF{0}.Affiliate_{0}.bodbAdminNet\" connectionString=\"packet size=4096; Data Source=10.40.40.224;Initial Catalog=Affiliate_{0};integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;\" providerName=\"System.Data.SqlClient\" />", licenseeName.ToUpper());
+#>
+<connectionStrings>
+	<#= licenseeDb #>
+	<add name="DBEXT.bodb02.bodbAdminNet" connectionString="packet size=4096; Data Source=10.40.40.92;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;" providerName="System.Data.SqlClient" />
+
+	<add name="live_casino" connectionString="packet size=4096; Data Source=10.40.40.187;Initial Catalog=LiveCasinoAdmin;integrated security=false; User Id=dot_agent;Password=mitKKyz3dDYDUvLCNDdQmw==;" providerName="System.Data.SqlClient" />
+	<add name="DBLOG_bodbLicenseeNet" connectionString="packet size=4096; Data Source=10.40.40.92;Initial Catalog=bodb_CustomerLog;integrated security=false; User Id=bodbLicenseeNet;Password=rQdgyA7UNg5isU2wtrRVyRrWEq1gYCANdd3I4UUfIHA==" providerName="System.Data.SqlClient" />
+	<add name="CS_BackupDB" connectionString="Data Source=10.40.40.167;initial catalog=CasinoAdmin;User ID=dot_agent;Password=ibc$agt%2TGwG*a;Pooling=true;" providerName="System.Data.SqlClient" />
+	<add name="CS_BackupDB_004202600" connectionString="Data Source=10.40.40.167;initial catalog=CasinoAdmin;User ID=dot_agent;Password=ibc$agt%2TGwG*a;Pooling=true;" providerName="System.Data.SqlClient" />
+	<add name="CS_BackupDB_004202700" connectionString="Data Source=10.40.40.167;initial catalog=CasinoAdmin;User ID=dot_agent;Password=ibc$agt%2TGwG*a;Pooling=true;" providerName="System.Data.SqlClient" />
+	<add name="LV_BackupDB" connectionString="packet size=4096; Data Source=10.40.40.187;Initial Catalog=LiveCasinoAdmin;integrated security=false; User Id=LVCasino_Agen;Password=ibc$agt%2TGwG*a" providerName="System.Data.SqlClient" />
+	<add name="CS_ArchiveDB" connectionString="Data Source=10.40.40.167;initial catalog=Casino_Archive;User ID=dot_agent;Password=ibc$agt%2TGwG*a;Pooling=true;" providerName="System.Data.SqlClient" />			
+</connectionStrings>
+		<#
+		}
+	}
+	manager.Process();
+#>

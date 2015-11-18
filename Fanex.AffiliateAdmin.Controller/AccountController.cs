@@ -118,7 +118,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     {
                         RoleAccess = _accountService.UserPolicySel(new UserPolicyCriteria
                         {
-                            CustID = user.CustID
+                            CustID = user.CustID,
+                            LicenseeId = AppSettings.LicenseeID
                         }).ToList(),
                         CurrencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
                         {

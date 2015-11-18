@@ -173,6 +173,8 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ListPolicyUser(UserPolicySelCriteria criteria)
         {
+            criteria.LicenseeId = AppSettings.LicenseeID;
+
             return Json(new { List = _policyService.GetUserPolicyList(criteria) });
         }
 
@@ -196,6 +198,8 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ListPolicyMultiUser(PolicyMultiUserCriteria criteria)
         {
+            criteria.LicenseeId = AppSettings.LicenseeID;
+
             return Json(new { List = _policyService.GetPolicyMultiUserList(criteria) });
         }
 

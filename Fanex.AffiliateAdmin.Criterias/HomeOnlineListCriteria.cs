@@ -26,6 +26,7 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public bool IsIT { get; set; }
 
+        public int LicenseeId { get; set; }
         /// <summary>
         /// Store procedure Name.
         /// </summary>

@@ -27,7 +27,7 @@
 	{
 		foreach(var environment in environments)
 		{
-			var fileName = string.Format("Web.ConnectionStrings.{0}.{1}.config", licenseeName, environment);
+			var fileName = string.Format("Web.ConnectionString.{0}.{1}.config", licenseeName, environment);
 			manager.StartNewFile(fileName);
 			var licenseeDb = string.Format("<add name=\"DBAFF{0}.Affiliate_{0}.bodbAdminNet\" connectionString=\"packet size=4096; Data Source=10.40.40.224;Initial Catalog=Affiliate_{0};integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;\" providerName=\"System.Data.SqlClient\" />", licenseeName.ToUpper());
 #>

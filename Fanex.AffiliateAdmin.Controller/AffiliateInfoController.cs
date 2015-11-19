@@ -335,6 +335,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
                 criteria.UserId = this.CurrentSession.CustID;
                 criteria.PreferredPayment = criteria.PreferredPayment ?? CurrentSession.Affiliate.PrefferredPayment;
+                criteria.LicenseeId = AppSettings.LicenseeID;
 
                 _affiliateService.UpdateAffiliateInfo(criteria);
 

@@ -379,6 +379,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult GetProductList(ProductSelectCriteria criteria)
         {
+            criteria.LicenseeId = AppSettings.LicenseeID;
             var data = _systemSettingService.GetProductList(criteria);
 
             return Json(new

@@ -7,6 +7,7 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
@@ -65,7 +66,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             return Json(new
             {
-                List = this._noteService.GetNoteList(new NoteListCriteria { AffId = this.CurrentSession.Affiliate.AffiliateId })
+                List = this._noteService.GetNoteList(new NoteListCriteria { AffId = this.CurrentSession.Affiliate.AffiliateId, LicenseeId = AppSettings.LicenseeID })
             });
         }
 
@@ -115,7 +116,8 @@ namespace Fanex.AffiliateAdmin.Controller
             var note = this._noteService.GetNote(new NoteSelCriteria
             {
                 AffId = this.CurrentSession.Affiliate.AffiliateId,
-                NoteId = noteId
+                NoteId = noteId,
+                LicenseeId = AppSettings.LicenseeID
             });
 
             return View(new NoteViewModel { Content = note.Content, NoteId = noteId });

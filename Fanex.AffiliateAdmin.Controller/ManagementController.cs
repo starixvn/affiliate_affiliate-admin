@@ -100,6 +100,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult Users(SelByGroupIDCriteria criteria)
         {
+            criteria.UserName = SessionManager.CurrentSession.Username;
             criteria.IsIt = SessionManager.CurrentSession.IsIT;
             criteria.LicenseeId = AppSettings.LicenseeID;
 

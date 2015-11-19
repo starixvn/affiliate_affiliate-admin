@@ -73,6 +73,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult DataList(PaymentCriteria criteria)
         {
             criteria.IsITAdmin = SessionManager.CurrentSession.IsIT;
+            criteria.LicenseeId = AppSettings.LicenseeID;
 
             var data = _paymentService.GetPayments(criteria).ToList();
 
@@ -112,7 +113,8 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria
             {
-                TransId = transId
+                TransId = transId,
+                LicenseeId = AppSettings.LicenseeID
             });
 
             var model = new PaymentUpdateViewModel
@@ -136,7 +138,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult UpdatePayment(PaymentUpdateViewModel model)
         {
-            var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria { TransId = model.TransId });
+            var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria { TransId = model.TransId, LicenseeId = AppSettings.LicenseeID });
 
             model.PaymentDetail = paymentDetail;
 

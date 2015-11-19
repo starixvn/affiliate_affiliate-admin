@@ -133,7 +133,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     Category = model.Category,
                     Currency = model.Currency,
                     Language = model.Language,
-                    AffType = 0 // banner text
+                    AffType = 0, // banner text
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _mediaService.AddBanner(criteria);
@@ -192,7 +193,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     Language = model.Language,
                     Currency = model.Currency,
                     UserId = CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress()
+                    Ip = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _mediaService.EditBanner(criteria);
@@ -329,7 +331,8 @@ namespace Fanex.AffiliateAdmin.Controller
                             Size = bannerStorage.BannerSize,
                             UserId = CurrentSession.CustID,
                             Ip = Remote.GetClientIPAddress(),
-                            Language = model.Language
+                            Language = model.Language,
+                            LicenseeId = AppSettings.LicenseeID
                         };
 
                     _mediaService.AddBanner(criteria);
@@ -425,7 +428,8 @@ namespace Fanex.AffiliateAdmin.Controller
                             Content = bannerStorage.RelativeBannerPath.Replace('\\', '/'),
                             Size = bannerStorage.BannerSize,
                             UserId = CurrentSession.CustID,
-                            Ip = Remote.GetClientIPAddress()
+                            Ip = Remote.GetClientIPAddress(),
+                            LicenseeId = AppSettings.LicenseeID
                         };
 
                     _mediaService.EditBanner(criteria);

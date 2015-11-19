@@ -38,6 +38,8 @@ namespace Fanex.AffiliateAdmin.Criterias
         public bool IsITAdmin { get; set; }
 
         public bool ExcludeTest { get; set; }
+
+        public int LicenseeId { get; set; }
         
         public override string GetSettingKey()
         {

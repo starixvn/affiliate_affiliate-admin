@@ -28,7 +28,7 @@ namespace Fanex.AffiliateAdmin.Core.Session
         public static bool HasPolicy(this List<FunctionPolicy> list, string functionName, byte policy = 0)
         {
             return true;
-            //return list.Where(i => i.FuncName == functionName && i.Actual_Policy > policy).Any();
+            ////return list.Where(i => i.FuncName == functionName && i.Actual_Policy > policy).Any();
         }
     }
 }

@@ -69,7 +69,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             _affSystemAllSupportedCurrencies = new Lazy<IEnumerable<Currency>>(() => SystemSetting.GetAffSystemAllSupportedCurrencyList(new AllSystemCurrencyCriteria()));
             _affSystemSupportedCurrencies = new Lazy<IEnumerable<Currency>>(() =>
             {
-                var criteria = new SystemSupportedCurrencyCriteria { UserId = SessionManager.CurrentSession.CustID };
+                var criteria = new SystemSupportedCurrencyCriteria { UserId = SessionManager.CurrentSession.CustID, LicenseeId = LicenseeID };
 
                 return SystemSetting.GetAffSystemSupportedCurrencyList(criteria);
             });
@@ -507,6 +507,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 
         public static IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)
         {
+            criteria.LicenseeId = LicenseeID;
             return SystemSetting.GetCommGroups(criteria);
         }
 

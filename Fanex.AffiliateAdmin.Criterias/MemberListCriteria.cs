@@ -61,6 +61,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int NRows { get; set; }
 
+        public int LicenseeId { get; set; }
+
         [SpParam(Ignored = true)]
         public bool ByAffiliate { get; set; }
 

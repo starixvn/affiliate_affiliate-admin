@@ -112,6 +112,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         public ActionResult GetCommGroups(CommGroupCurrencyCriteria criteria)
         {
+            criteria.LicenseeId = AppSettings.LicenseeID;
             return Json(new
             {
                 List = AppSettings.GetCommGroups(criteria)
@@ -327,6 +328,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
             criteria.UserId = SessionManager.CurrentSession.CustID;
+            criteria.LicenseeId = AppSettings.LicenseeID;
 
             var result = _service.CustomerList(criteria);
 

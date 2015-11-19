@@ -123,7 +123,8 @@ namespace Fanex.AffiliateAdmin.Controller
                         }).ToList(),
                         CurrencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
                         {
-                            UserId = user.CustID
+                            UserId = user.CustID,
+                            LicenseeId = AppSettings.LicenseeID
                         }).ToList()
                     };
                 }

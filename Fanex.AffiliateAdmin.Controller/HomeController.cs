@@ -44,7 +44,8 @@ namespace Fanex.AffiliateAdmin.Controller
             FormaterCurrency.SetDefaultCurrency(AppSettings.BaseExchange.Code);
             var model = _homeService.GeneralInfoSel(new HomeGeneralInfoCriteria
             {
-                UserId = SessionManager.CurrentSession.CustID
+                UserId = SessionManager.CurrentSession.CustID,
+                LicenseeId = AppSettings.LicenseeID
             });
 
             return View(model);

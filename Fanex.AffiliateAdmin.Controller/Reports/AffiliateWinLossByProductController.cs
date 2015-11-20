@@ -35,6 +35,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
+            criteria.LicenseeId = AppSettings.LicenseeID;
             criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
             criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
 

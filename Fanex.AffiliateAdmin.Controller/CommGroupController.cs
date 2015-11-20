@@ -107,6 +107,8 @@ namespace Fanex.AffiliateAdmin.Controller
 
             criteria.Description = criteria.Description.Encode();
 
+            criteria.LicenseeId = AppSettings.LicenseeID;
+
             _commGroupService.ExecuteOutput(criteria);
 
             var errorMsg = string.Empty;
@@ -139,6 +141,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 GroupId = groupid,
                 UserId = SessionManager.CurrentSession.CustID,
                 IP = Remote.GetClientIPAddress(),
+                LicenseeId = AppSettings.LicenseeID
             };
 
             _commGroupService.ExecuteOutput(criteria);

@@ -101,7 +101,8 @@ namespace Fanex.AffiliateAdmin.Controller
                         Important = values["Important"].ToLower().Contains("true"),
                         Xml = messageXml,
                         UserID = SessionManager.CurrentSession.CustID,
-                        IP = Remote.GetClientIPAddress()
+                        IP = Remote.GetClientIPAddress(),
+                        LicenseeId = AppSettings.LicenseeID
                     };
 
                     _messageService.AddMessage(criteria);
@@ -155,7 +156,8 @@ namespace Fanex.AffiliateAdmin.Controller
                         Important = values["Important"].ToLower().Contains("true"),
                         Xml = messageXml,
                         UserID = SessionManager.CurrentSession.CustID,
-                        IP = Remote.GetClientIPAddress()
+                        IP = Remote.GetClientIPAddress(),
+                        LicenseeId = AppSettings.LicenseeID
                     };
 
                     _messageService.UpdateMessage(criteria);

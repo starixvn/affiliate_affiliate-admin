@@ -113,7 +113,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 {
                     UserID = SessionManager.CurrentSession.CustID,
                     DomainName = domain.DomainName,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _domainService.AffDomainAdd(criteria);
@@ -156,7 +157,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     UserID = SessionManager.CurrentSession.CustID,
                     DomainID = domain.DomainID,
                     DomainName = domain.DomainName,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _domainService.AffDomainUpdate(criteria);
@@ -179,7 +181,8 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 UserID = SessionManager.CurrentSession.CustID,
                 DomainID = Convert.ToInt32(id),
-                IP = Remote.GetClientIPAddress()
+                IP = Remote.GetClientIPAddress(),
+                LicenseeId = AppSettings.LicenseeID
             };
             _domainService.AffDomainDelete(criteria);
 
@@ -233,7 +236,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 {
                     UserID = SessionManager.CurrentSession.CustID,
                     DomainName = domain.DomainName,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _domainService.MemDomainAdd(criteria);
@@ -276,7 +280,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     UserID = SessionManager.CurrentSession.CustID,
                     DomainID = domain.DomainID,
                     DomainName = domain.DomainName,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _domainService.MemDomainUpdate(criteria);
@@ -299,7 +304,8 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 UserID = SessionManager.CurrentSession.CustID,
                 DomainID = Convert.ToInt32(id),
-                IP = Remote.GetClientIPAddress()
+                IP = Remote.GetClientIPAddress(),
+                LicenseeId = AppSettings.LicenseeID
             };
             _domainService.MemDomainDelete(criteria);
 
@@ -362,7 +368,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     AffDomainID = domain.AffDomain,
                     MemberDomainID = domain.MemberDomain,
                     Status = domain.Status,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _domainService.DomainControlAdd(criteria);
@@ -426,7 +433,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     MemberDomainID = domain.MemberDomain,
                     AffDomainID = domain.AffDomain,
                     Status = domain.Status,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _domainService.DomainControlUpdate(criteria);
@@ -449,7 +457,8 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 UserID = SessionManager.CurrentSession.CustID,
                 Id = id,
-                IP = Remote.GetClientIPAddress()
+                IP = Remote.GetClientIPAddress(),
+                LicenseeId = AppSettings.LicenseeID
             };
             _domainService.DomainControlDelete(criteria);
 

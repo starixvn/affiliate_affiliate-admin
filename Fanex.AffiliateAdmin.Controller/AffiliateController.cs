@@ -183,6 +183,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.Ip = Remote.GetClientIPAddress();
                 criteria.UserId = SessionManager.CurrentSession.CustID;
+                criteria.LicenseeId = AppSettings.LicenseeID;
                 _service.ChangeAccountType(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
@@ -353,7 +354,8 @@ namespace Fanex.AffiliateAdmin.Controller
                                             {
                                                 UserId = SessionManager.CurrentSession.CustID,
                                                 Username = username,
-                                                IP = Remote.GetClientIPAddress()
+                                                IP = Remote.GetClientIPAddress(),
+                                                LicenseeId = AppSettings.LicenseeID
                                             };
             _service.CustomerRemove(criteria);
 

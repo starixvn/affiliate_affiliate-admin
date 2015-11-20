@@ -81,7 +81,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 AffId = this.CurrentSession.Affiliate.AffiliateId,
                 AdminId = this.CurrentSession.CustID,
                 Amount = model.Amount,
-                Description = model.Description
+                Description = model.Description,
+                LicenseeId = AppSettings.LicenseeID
             };
 
             this._adjustmentService.UpdateAdjustment(criteria);

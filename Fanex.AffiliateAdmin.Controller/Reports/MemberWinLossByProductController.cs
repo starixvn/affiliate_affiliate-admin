@@ -46,6 +46,8 @@ namespace Fanex.AffiliateAdmin.Controller
 
             criteria.IsITAdmin = CurrentSession.IsIT;
 
+            criteria.LicenseeId = AppSettings.LicenseeID;
+
             var data = ReportService.GetMemberWinlossByProduct(criteria);
 
             var groups = GroupDataByMember(data.MemberWinlossList);

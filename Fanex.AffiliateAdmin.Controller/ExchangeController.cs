@@ -188,7 +188,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     ExchangeId = criteria.ExchangeId,
                     IP = criteria.Ip,
                     Rate = criteria.Rate,
-                    UserId = criteria.UserId
+                    UserId = criteria.UserId,
+                    LicenseeId = AppSettings.LicenseeID
                 };
             }
 
@@ -198,7 +199,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 {
                     IP = criteria.Ip,
                     UserId = criteria.UserId,
-                    ExchangeIdList = criteria.ExchangeIdList
+                    ExchangeIdList = criteria.ExchangeIdList,
+                    LicenseeId = AppSettings.LicenseeID
                 };
             }
 

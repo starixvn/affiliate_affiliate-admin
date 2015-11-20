@@ -43,6 +43,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public long RefNo { get; set; }
 
+        public int LicenseeId { get; set; }
+
         /// <summary>
         /// Store procedure Name.
         /// </summary>

@@ -279,6 +279,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="transferAmount">The amount.</param>
         private void UpdatePayment(PaymentUpdateCriteria criteria, long affId, long refId, decimal transferAmount)
         {
+            criteria.LicenseeId = AppSettings.LicenseeID;
             if (criteria.Status.ToLower() == "approved")
             {
                 var playerPayoutInfo = _paymentService.GetPlayerPayoutInfo(new PlayerPayoutInfoSelCriteria

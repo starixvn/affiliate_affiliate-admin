@@ -99,6 +99,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
+            criteria.LicenseeId = AppSettings.LicenseeID;
         }
 
         /// <summary>

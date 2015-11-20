@@ -178,6 +178,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             criteria.UserId = CurrentSession.CustID;
             criteria.IsITAdmin = CurrentSession.IsIT;
+            criteria.LicenseeId = AppSettings.LicenseeID;
 
             if (criteria.GroupBy == 2)
             {
@@ -268,6 +269,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var products = GetValidProducts(criteria.GroupId, criteria.MonthDate, criteria.Products);
             criteria.UserId = CurrentSession.CustID;
             criteria.Products = string.Join(",", products);
+            criteria.LicenseeId = AppSettings.LicenseeID;
             var members = _reportService.GetQualifiedMembers(criteria);
 
             ViewBag.SymbolCurrency = FormaterCurrency.GetCurrencySymbol(criteria.Currency);

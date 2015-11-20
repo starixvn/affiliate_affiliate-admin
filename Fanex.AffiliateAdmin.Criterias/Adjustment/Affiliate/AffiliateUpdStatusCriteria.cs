@@ -23,6 +23,8 @@
 
         public int ErrCode { get; set; }
 
+        public int LicenseeId { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_AffiliateUpdStatus";

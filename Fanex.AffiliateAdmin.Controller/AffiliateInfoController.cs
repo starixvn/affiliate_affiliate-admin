@@ -205,6 +205,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             criteria.AffId = CurrentSession.Affiliate.AffiliateId;
             criteria.Ip = Remote.GetClientIPAddress();
+            criteria.LicenseeId = AppSettings.LicenseeID;
             
             criteria.Password = Cryptography.CfsEnCode(password);
 
@@ -415,6 +416,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             criteria.AffId = CurrentSession.Affiliate.AffiliateId;
             criteria.Ip = Remote.GetClientIPAddress();
+            criteria.LicenseeId = AppSettings.LicenseeID;
 
             this._affiliateService.AffiliateUnLocked(criteria);
 

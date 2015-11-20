@@ -214,6 +214,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
                 criteria.Language = AppSession.Language;
+                criteria.LicenseeId = AppSettings.LicenseeID;
 
                 _systemSettingService.InsertSystemSetting(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);

@@ -3,7 +3,7 @@
     var roleAccess = SessionManager.CurrentSession.RoleAccess;
 }
 <ul class="span12 menu">
-    @if (!roleAccess.Any())
+    @if (roleAccess.Any())
     {
         if (roleAccess.HasPolicy("[AffReport]"))
         {

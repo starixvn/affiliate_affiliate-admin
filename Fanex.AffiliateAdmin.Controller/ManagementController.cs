@@ -100,7 +100,6 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult Users(SelByGroupIDCriteria criteria)
         {
-            criteria.UserName = SessionManager.CurrentSession.Username;
             criteria.IsIt = SessionManager.CurrentSession.IsIT;
             criteria.LicenseeId = AppSettings.LicenseeID;
 
@@ -486,7 +485,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult EditGroup(GroupInfoUpdCriteria criteria)
         {
-            var isIgnoredGroup = ignoredGroupNames.Any(g => g == criteria.GroupName);
+            var isIgnoredGroup = ignoredGroupNames.Any(g => g.ToUpper() == criteria.GroupName.ToUpper());
             if (ModelState.IsValid && !isIgnoredGroup)
             {
                 criteria.UserId = SessionManager.CurrentSession.CustID;

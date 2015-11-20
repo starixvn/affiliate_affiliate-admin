@@ -27,8 +27,19 @@ namespace Fanex.AffiliateAdmin.Core.Filter
         /// <param name="filterContext">Filter Context.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (SessionManager.CurrentSession != null && 
-                (SessionManager.CurrentSession.CurrencyList.Count == 0 || !SessionManager.CurrentSession.RoleAccess.HasPolicy(Function)))
+            var hasPermission = false;
+
+            if (SessionManager.CurrentSession != null)
+            {
+                hasPermission = SessionManager.CurrentSession.RoleAccess.HasPolicy(Function);
+
+                if (hasPermission && !SessionManager.CurrentSession.IsIT)
+                {
+                    hasPermission = SessionManager.CurrentSession.CurrencyList.Count > 0;
+                }
+            }
+
+            if (!hasPermission)
             {
                 filterContext.HttpContext.Response.Redirect("~/notify/AccessDenied");
             }    

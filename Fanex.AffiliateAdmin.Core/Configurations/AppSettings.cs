@@ -507,7 +507,13 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 
         public static IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)
         {
+            if (criteria == null)
+            {
+                criteria = new CommGroupCurrencyCriteria();
+            }
+
             criteria.LicenseeId = LicenseeID;
+
             return SystemSetting.GetCommGroups(criteria);
         }
 

@@ -12,7 +12,6 @@ namespace Fanex.AffiliateAdmin.Core.Services
 {
     using System.Collections.Generic;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
-    using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Criterias.Configuration.AffType;
     using Fanex.AffiliateAdmin.Criterias.Configuration.Country;
@@ -302,7 +301,8 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List commission groups.</returns>
-        public IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)        {                       
+        public IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)
+        {
             return GetData<CommGroup>(criteria);
         }
 

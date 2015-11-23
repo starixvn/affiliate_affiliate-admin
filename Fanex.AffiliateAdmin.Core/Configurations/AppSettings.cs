@@ -510,9 +510,10 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         {
             if (criteria == null)
             {
-                criteria = new CommGroupCurrencyCriteria();
+                criteria = new CommGroupCurrencyCriteria { Currency = "All" };
             }
 
+            criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.LicenseeId = LicenseeID;
 
             return SystemSetting.GetCommGroups(criteria);

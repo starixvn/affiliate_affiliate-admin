@@ -303,14 +303,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List commission groups.</returns>
         public IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)
-        {
-            if (criteria == null)
-            {
-                criteria = new CommGroupCurrencyCriteria { Currency = "All" };
-            }
-
-            criteria.UserId = SessionManager.CurrentSession.CustID;
-
+        {                       
             return GetData<CommGroup>(criteria);
         }
 

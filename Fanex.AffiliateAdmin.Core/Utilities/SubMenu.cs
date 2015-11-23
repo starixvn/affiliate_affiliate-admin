@@ -126,8 +126,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             {
                 var menus = new List<Menu>
                 {
-                    new Menu { Text = Lang.FunctionPermission, Link = "~/Management/ChangePolicyUser" }
-                 
+                    new Menu { Text = Lang.FunctionPermission, Link = "~/Management/ChangePolicyUser" }              
                 };
 
                 if (!SessionManager.CurrentSession.IsIT)

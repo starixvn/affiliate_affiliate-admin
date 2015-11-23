@@ -93,6 +93,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.Ip = Remote.GetClientIPAddress();
                 criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
                 criteria.UpdatedBy = this.CurrentSession.CustID;
+                criteria.LicenseeId = AppSettings.LicenseeID;
 
                 this._noteService.InsertNote(criteria);
                 ViewBag.Result = new ResultViewModel
@@ -134,6 +135,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.Ip = Remote.GetClientIPAddress();
             criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
             criteria.UpdatedBy = this.CurrentSession.CustID;
+            criteria.LicenseeId = AppSettings.LicenseeID;
 
             this._noteService.UpdateNote(criteria);
 

@@ -124,7 +124,7 @@
     <div class="popmenu menu">
         <ul>
             @for (var i = 0; i < list.Count; i++)
-            {
+            {               
                 var item = list[i];
                 string activeText = (i == selectedMenu ? "class=\"popcurrent\"" : string.Empty);
                 <li @(new HtmlString(activeText))><a href="@(url.Content(item.Link + queryUrl))"><span>@item.Text</span></a></li>

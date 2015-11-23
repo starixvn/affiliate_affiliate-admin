@@ -229,7 +229,10 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.UserId = SessionManager.CurrentSession.CustID;
+                criteria.LicenseeId = AppSettings.LicenseeID;
+
                 _service.ChangeCommissionGroup(criteria);
+
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
             else

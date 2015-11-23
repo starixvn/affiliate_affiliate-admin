@@ -256,6 +256,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.UserId = CurrentSession.CustID;
             criteria.AffId = CurrentSession.Affiliate.AffiliateId;
             criteria.Ip = Remote.GetClientIPAddress();
+            criteria.LicenseeId = AppSettings.LicenseeID;
 
             this._affiliateService.ChangeAffiliateOpenClose(criteria);
 
@@ -367,6 +368,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.Ip = Remote.GetClientIPAddress();
                 criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
                 criteria.UserId = this.CurrentSession.CustID;
+                criteria.LicenseeId = AppSettings.LicenseeID;
+
                 this._affiliateService.ChangeAffiliateLanguage(criteria);
 
                 if (criteria.ErrCode == 0)
@@ -392,6 +395,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.Ip = Remote.GetClientIPAddress();
                 criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
                 criteria.UserId = this.CurrentSession.CustID;
+                criteria.LicenseeId = AppSettings.LicenseeID;
 
                 this._affiliateService.ChangeAffType(criteria);
 

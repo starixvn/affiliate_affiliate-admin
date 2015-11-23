@@ -11,6 +11,7 @@
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System.Collections.Generic;
+    using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
@@ -123,11 +124,18 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         {
             get
             {
-                return new List<Menu>
+                var menus = new List<Menu>
                 {
-                    new Menu { Text = Lang.FunctionPermission, Link = "~/Management/ChangePolicyUser" },
-                    new Menu { Text = Lang.CurrenciesPermission, Link = "~/Management/ChangeCurrencyUser" }
+                    new Menu { Text = Lang.FunctionPermission, Link = "~/Management/ChangePolicyUser" }
+                 
                 };
+
+                if (!SessionManager.CurrentSession.IsIT)
+                {
+                    menus.Add(new Menu { Text = Lang.CurrenciesPermission, Link = "~/Management/ChangeCurrencyUser" });
+                }
+
+                return menus;
             }
         }
 

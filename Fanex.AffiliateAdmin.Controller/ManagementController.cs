@@ -485,8 +485,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult EditGroup(GroupInfoUpdCriteria criteria)
         {
-            var isIgnoredGroup = ignoredGroupNames.Any(g => g.ToUpper() == criteria.GroupName.ToUpper());
-            if (ModelState.IsValid && !isIgnoredGroup)
+            if (ModelState.IsValid)
             {
                 criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.Ip = Remote.GetClientIPAddress();

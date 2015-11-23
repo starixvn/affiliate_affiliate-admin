@@ -19,6 +19,8 @@ namespace Fanex.AffiliateAdmin.Criterias
         public int UserId { get; set; }
 
         public string Currency { get; set; }
+
+        public int LicenseeId { get; set; } 
         
         public override string GetSettingKey()
         {

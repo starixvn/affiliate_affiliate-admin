@@ -502,6 +502,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 
         public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
         {
+            criteria.LicenseeId = LicenseeID;
             return SystemSetting.GetActiveCommGroups(criteria);
         }
 

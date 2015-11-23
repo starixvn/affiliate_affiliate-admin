@@ -21,7 +21,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     using Criterias.Configuration.Product;
     using Criterias.Configuration.SystemSetting;
     using DTO;
-    using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Services;

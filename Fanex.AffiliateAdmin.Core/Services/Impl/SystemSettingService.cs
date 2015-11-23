@@ -302,8 +302,7 @@ namespace Fanex.AffiliateAdmin.Core.Services
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List commission groups.</returns>
-        public IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)
-        {                       
+        public IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)        {                       
             return GetData<CommGroup>(criteria);
         }
 

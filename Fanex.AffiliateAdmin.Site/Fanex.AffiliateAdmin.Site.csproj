@@ -364,7 +364,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>_SpName.xml.txt</LastGenOutput>
     </Content>
-    <Content Include="Configurations\SpNames\_SpNameConfig.xml" />
+    <Content Include="Configurations\SpNames\_SpNameConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\SpNames\_SpNameOriginal.xml" />
     <Content Include="Content\_Sites\9bet\images\banner_top.png" />
     <Content Include="Content\_Sites\9bet\images\best-browsers.png" />
@@ -4097,7 +4099,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

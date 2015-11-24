@@ -130,7 +130,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
                 else
                 {
-                    result = GetResultViewModel(result.ErrorCode);
+                    result = GetResultViewModel(result.ErrorCode, string.Empty, result.ErrorMessage);
                     ViewBag.LogInToken = CreateToken();
                 }
             }

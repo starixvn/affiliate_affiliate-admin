@@ -23,7 +23,6 @@ namespace Fanex.AffiliateAdmin.Services
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data;
     using Fanex.Data.Repository;
-    using Fanex.Logging;
 
     /// <summary>
     /// Account Service.
@@ -79,14 +78,7 @@ namespace Fanex.AffiliateAdmin.Services
             account = null;
             Check.Argument.IsNotNull(criteria, "criteria");
             var user = GetByUsername(criteria.Username);
-            if (user == null)
-            {
-                result = new ResultViewModel()
-                {
-                    ErrorCode = WrongUserPasswordErrorCode
-                };
-            }
-            else 
+            if (user != null)
             {
                 var hashPassword = Cryptography.CreateHash(user.Password + logInToken, user.UserSalt);
 
@@ -96,7 +88,10 @@ namespace Fanex.AffiliateAdmin.Services
                 }
             }
 
-            return result;
+            return result ?? new ResultViewModel()
+            {
+                ErrorCode = WrongUserPasswordErrorCode
+            };
         }
 
         /// <summary>

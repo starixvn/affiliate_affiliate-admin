@@ -33,7 +33,7 @@
                 return View();
             }
 
-            var encryptedPassword = GetEncryptedPassword(username, "spondemo"); // "754A738BF99D986D8716FE00A81BC5CA32916BF6";
+            var encryptedPassword = GetEncryptedPassword(username, "Athena000"); // "754A738BF99D986D8716FE00A81BC5CA32916BF6";
             if (string.IsNullOrEmpty(encryptedPassword))
             {
                 ViewBag.Message = "Username is not existed!";

@@ -1,4 +1,4 @@
-﻿/*global AFFILIATE,gridOption,PageVar*/
+﻿/*global AFFILIATE,gridOption, MSG*/
 var Management = (function ($) {
     "use strict";
     var submitOptions = {};
@@ -82,7 +82,7 @@ var Management = (function ($) {
             });
         },
         addUser: function () {
-            AFFILIATE.openDialogFrame("Management/AddUser", window.MSG.AddNewUser, { width: 500, height: 400 });
+            AFFILIATE.openDialogFrame("Management/AddUser", window.MSG.AddNewUser, { width: 500, height: 300 });
             return false;
         },
         updatePolicy: function () {
@@ -115,7 +115,9 @@ var Management = (function ($) {
                 custId: custId
             };
 
-            AFFILIATE.openDialogFrame("Management/ChangePolicyUser?" + jQuery.param(param), window.MSG.AccountPolicyOfUser.format(userName), { width: 490, height: 530 });
+            AFFILIATE.openDialogFrame("Management/ChangePolicyUser?" + jQuery.param(param),
+                window.MSG.AccountPolicyOfUser.format(userName), 
+                { width: 490, height: 530 });
         },
         viewGroup: function (groupId, groupName) {
             var param = {

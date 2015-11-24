@@ -8,10 +8,6 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class AccountInsCriteria : CriteriaBase
     {
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
         public string UserName { get; set; }
 
         public int CustId { get; set; }

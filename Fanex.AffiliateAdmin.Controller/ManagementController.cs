@@ -139,8 +139,6 @@ namespace Fanex.AffiliateAdmin.Controller
                         Ip = Remote.GetClientIPAddress(),
                         Password = Cryptography.CfsEnCode(model.Password),
                         CustId = model.CustID,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
                         UserName = model.Username,
                         GroupId = model.GroupID
                     };

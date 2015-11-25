@@ -355,11 +355,6 @@
     <Content Include="Configurations\SpNames\SpName.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\SpNames\_SpName.xml.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\SpNames\_SpName.xml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>_SpName.xml.txt</LastGenOutput>
@@ -4099,7 +4094,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions>
   <Function Name="Core">
-    <Setting Key="AffAdmin_Login" SpName="AffAdmin_Login" DbName="DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet" Plain="0" />
@@ -17,8 +16,6 @@
   <Function Name="Aff-Account">
     <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="Aff_InternalLogin" SpName="Aff_InternalLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet" Plain="0" />
     <Setting Key="Lrf_UserInfoSelByUserName" SpName="Lrf_UserInfoSelByUserName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
   </Function>

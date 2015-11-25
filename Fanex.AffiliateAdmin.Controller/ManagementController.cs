@@ -125,8 +125,6 @@ namespace Fanex.AffiliateAdmin.Controller
             return View(new EditUserViewModel
             {
                 Username = accountInfo.Username,
-                FirstName = accountInfo.FirstName,
-                LastName = accountInfo.LastName,
                 GroupID = accountInfo.GroupID,
                 CustID = custId,
                 GroupList = groupList
@@ -146,8 +144,6 @@ namespace Fanex.AffiliateAdmin.Controller
                 var criteria = new AccountUpdateCriteria
                 {
                     CustId = model.CustID,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
                     GroupId = model.GroupID,
                     UserId = SessionManager.CurrentSession.CustID,
                     Ip = Remote.GetClientIPAddress(),

@@ -20,14 +20,6 @@ namespace Fanex.AffiliateAdmin.Models
         [Display(ResourceType = typeof(Resources.Lang), Name = "Username")]
         public string Username { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrFName")]
-        [Display(ResourceType = typeof(Resources.Lang), Name = "FirstName")]
-        public string FirstName { get; set; }
-
-        [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrLName")]
-        [Display(ResourceType = typeof(Resources.Lang), Name = "LastName")]
-        public string LastName { get; set; }
-
         [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrDepartmentChoose")]
         public int GroupID { get; set; }
 

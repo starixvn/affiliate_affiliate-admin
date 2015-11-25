@@ -26,11 +26,6 @@ var DOMAIN = (function ($) {
                 success: function(data) {
                     AFFILIATE.PreHandleAjaxResult(data);
 
-                    if (data.List.length === 0) {
-                        $('#gridId').addClass("noinfo").html(MSG.NoInfo);
-                        return;
-                    }
-
                     gridOption.pagerOption = {
                         itemsPerPage: itemsPerPage,
                         itemsPerPageArray: AFFILIATE.pageSizes,

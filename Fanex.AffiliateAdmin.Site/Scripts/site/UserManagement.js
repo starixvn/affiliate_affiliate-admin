@@ -117,13 +117,6 @@ var Management = (function ($) {
 
             AFFILIATE.openDialogFrame("Management/EditUser?" + jQuery.param(param), userName, { width: 500, height: 270 });
         },
-        changeStatus: function (obj, custId) {
-            if (!Management.updateStatus(custId, Management.getStatus(obj, custId))) {
-                Management.getStatus(obj);
-            } else {
-                Management.ReRenderAfterPaged(0, $("#itemperpage").val());
-            }
-        },
         viewAccountPolicy: function (custId, userName, groupName) {
             var param = {
                 custId: custId

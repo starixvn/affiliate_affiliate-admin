@@ -123,6 +123,7 @@
     </Compile>
     <Compile Include="Account\AccountInsCriteria.cs" />
     <Compile Include="Account\AccountTypeCriteria.cs" />
+    <Compile Include="Account\AccountUpdateCriteria.cs" />
     <Compile Include="Account\CheckInCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AdjustmentCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AdjustmentEditCriteria.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Note\NoteSelCriteria.cs" />
     <Compile Include="Note\NoteUpdCriteria.cs" />
     <Compile Include="Policy\PolicyUpdCriteria.cs" />
+    <Compile Include="SelByCustIDCriteria.cs" />
     <Compile Include="SelByGroupIDCriteria.cs" />
     <Compile Include="SimpleCriteriaBase.cs" />
     <Compile Include="SystemSupportedCurrencyCriteria.cs" />

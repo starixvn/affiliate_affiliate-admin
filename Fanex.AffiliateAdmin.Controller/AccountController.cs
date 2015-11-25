@@ -206,8 +206,7 @@ namespace Fanex.AffiliateAdmin.Controller
                             CustId = SessionManager.CurrentSession.CustID,
                             OldPassword = Cryptography.CfsEnCode(model.OldPassword),
                             NewPassword = Cryptography.CfsEnCode(model.NewPassword),
-                            Ip = Remote.GetClientIPAddress(),
-                            LicenseeId = AppSettings.LicenseeID
+                            Ip = Remote.GetClientIPAddress()
                         };
 
                     _accountService.AccountUpdatePassword(criteria);

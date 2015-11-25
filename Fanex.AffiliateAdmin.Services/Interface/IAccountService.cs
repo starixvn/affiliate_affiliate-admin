@@ -14,6 +14,7 @@ namespace Fanex.AffiliateAdmin.Services
     using System.Diagnostics.CodeAnalysis;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.Data.Repository;
 
@@ -68,6 +69,14 @@ namespace Fanex.AffiliateAdmin.Services
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List Account.</returns>
         IEnumerable<Account> GetListAccountManagement(SelByGroupIDCriteria criteria);
+
+        Account GetAccountInfo(SelByCustIDCriteria criteria);
+
+        /// <summary>
+        /// Update account.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        void AccountUpdate(AccountUpdateCriteria criteria);
 
         /// <summary>
         /// Insert new account.

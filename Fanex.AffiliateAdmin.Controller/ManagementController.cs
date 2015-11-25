@@ -12,7 +12,6 @@ namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
     using System.Xml;
@@ -22,6 +21,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.AffiliateAdmin.Services;
     using Models;
     using Resources;
@@ -103,6 +103,69 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return Json(new { List = _accountService.GetListAccountManagement(criteria) });
         }
+
+        #region Edit User
+
+        /// <summary>
+        /// Update information account.
+        /// </summary>
+        /// <param name="custId">Customer Id.</param>
+        /// <returns>Return view.</returns>
+        [HttpGet]
+        public ActionResult EditUser(int custId)
+        {
+            var criteria = new SelByCustIDCriteria
+            {
+                CustId = custId
+            };
+
+            var accountInfo = _accountService.GetAccountInfo(criteria);
+            var groupList = _groupService.GetListGroup(new GroupListCriteria { IsIt = SessionManager.CurrentSession.IsIT });
+
+            return View(new EditUserViewModel
+            {
+                Username = accountInfo.Username,
+                FirstName = accountInfo.FirstName,
+                LastName = accountInfo.LastName,
+                GroupID = accountInfo.GroupID,
+                CustID = custId,
+                GroupList = groupList
+            });
+        }
+
+        /// <summary>
+        /// Edit User Info.
+        /// </summary>
+        /// <param name="model">Edit user view model.</param>
+        /// <returns>Action Result.</returns>
+        [HttpPost]
+        public ActionResult EditUser(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var criteria = new AccountUpdateCriteria
+                {
+                    CustId = model.CustID,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    GroupId = model.GroupID,
+                    UserId = SessionManager.CurrentSession.CustID,
+                    Ip = Remote.GetClientIPAddress(),
+                };
+
+                _accountService.AccountUpdate(criteria);
+
+                ViewBag.Result = new ResultViewModel
+                {
+                    ErrorCode = criteria.ErrCode,
+                    Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
+                };
+            }
+
+            return EditUser(model.CustID);
+        }
+
+        #endregion Edit User
 
         #region Add User
 

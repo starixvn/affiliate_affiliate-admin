@@ -1,0 +1,29 @@
+﻿
+
+// Generated helper templates
+// Generated items
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.unobet.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.q8bola.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.nbcbet.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.m8bola.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.goobet.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.be7.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aoncash.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.allbetclub.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.9bet.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.unobet.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.q8bola.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.nbcbet.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.m8bola.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.goobet.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.be7.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aoncash.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.allbetclub.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.9bet.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.xml

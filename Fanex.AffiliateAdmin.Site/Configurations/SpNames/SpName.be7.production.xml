@@ -129,6 +129,8 @@
     <Setting Key="AffAdmin_DomainControlSelById" SpName="AffAdmin_DomainControlSelById" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Management">
+    <Setting Key="AffAdmin_Con_AccountUpd" SpName="AffAdmin_Con_AccountUpd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AccountIns" SpName="AffAdmin_Con_AccountIns" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />

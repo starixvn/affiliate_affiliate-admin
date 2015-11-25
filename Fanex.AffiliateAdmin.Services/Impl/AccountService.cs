@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Services
     using Core.Services;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.AffiliateAdmin.DataAccess;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
@@ -179,6 +180,28 @@ namespace Fanex.AffiliateAdmin.Services
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Get account info.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>Account info.</returns>
+        public Account GetAccountInfo(SelByCustIDCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+            var data = GetData<Account>(criteria);
+
+            return data.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Update account.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        public void AccountUpdate(AccountUpdateCriteria criteria)
+        {
+            ExecuteOutput(criteria);
         }
 
         /// <summary>

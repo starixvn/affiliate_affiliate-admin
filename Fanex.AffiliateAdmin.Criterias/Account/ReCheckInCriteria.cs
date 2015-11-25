@@ -16,6 +16,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class ReCheckInCriteria : CriteriaBase
     {
+        [SpParam(SqlParamName = "On_UserID")]
         public int OnUserID { get; set; }
 
         public bool IsKickedOut { get; set; }

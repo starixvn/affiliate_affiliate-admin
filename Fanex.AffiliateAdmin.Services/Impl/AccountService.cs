@@ -147,6 +147,11 @@ namespace Fanex.AffiliateAdmin.Services
             return GetData<FunctionPolicy>(criteria);
         }
 
+        public int CheckIn(CheckInCriteria criteria)
+        {
+            return _accountDataAccess.CheckIn(criteria);
+        }
+
         /// <summary>
         /// ReCheckIn: kick out the previous login user.
         /// </summary>

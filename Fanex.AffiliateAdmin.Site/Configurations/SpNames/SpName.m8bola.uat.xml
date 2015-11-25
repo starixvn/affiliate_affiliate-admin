@@ -2,7 +2,6 @@
 <Functions>
   <Function Name="Core">
     <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="DBAFFM8BOLA.Affiliate_M8bola.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBAFFM8BOLA.Affiliate_M8bola.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFM8BOLA.Affiliate_M8bola.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AdminUpdPwd" SpName="AffAdmin_AdminUpdPwd" DbName="DBAFFM8BOLA.Affiliate_M8bola.bodbAdminNet" Plain="0" />
   </Function>
@@ -14,6 +13,8 @@
     <Setting Key="AffAdmin_GetDefaultPSPExchange" SpName="AffAdmin_GetDefaultPSPExchange" DbName="DBAFFM8BOLA.Affiliate_M8bola.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Aff-Account">
+    <Setting Key="AffAdmin_CheckIn" SpName="AffAdmin_CheckIn" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="Aff_InternalLogin" SpName="Aff_InternalLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFM8BOLA.Affiliate_M8bola.bodbAdminNet" Plain="0" />

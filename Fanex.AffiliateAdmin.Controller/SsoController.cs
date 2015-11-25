@@ -19,6 +19,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Services.Interface;
     using Core.Session;
     using Fanex.AffiliateAdmin.Core;
+    using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Services;
@@ -150,6 +151,14 @@ namespace Fanex.AffiliateAdmin.Controller
 
             if (result.ErrorCode == 0 && user.CustID > 0)
             {
+                user.OnUserID = _accountService.CheckIn(new CheckInCriteria()
+                {
+                    CustId = user.CustID,
+                    IP = Remote.GetClientIPAddress(),
+                    NetSessionId = Session.SessionID,
+                    ServerId = user.ServerId
+                });
+
                 FormsAuthentication.SetAuthCookie(user.Username, true);
 
                 SessionManager.CurrentSession = new CurrentSession(user)
@@ -270,7 +279,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 return Redirect("~/Home/Index");
             }
             else
-            {                
+            {
                 string message = InternalLoginErrorMessage +
                     "\r\nCode: " + result.ErrorCode +
                     "\r\nMessage: " + result.ErrorMessage +

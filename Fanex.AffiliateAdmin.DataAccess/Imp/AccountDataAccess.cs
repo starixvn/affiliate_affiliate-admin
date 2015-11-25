@@ -81,6 +81,16 @@ namespace Fanex.AffiliateAdmin.DataAccess
             }
         }
 
+        public int CheckIn(CheckInCriteria criteria)
+        {
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                var currentParams = criteria.GetSpParams();                
+                objectDb.ExecuteNonQuery(currentParams);
+                return Converter.ToInt(currentParams["on_userid"]);
+            }
+        }
+
         /// <summary>
         /// Check Is kicked out.
         /// </summary>

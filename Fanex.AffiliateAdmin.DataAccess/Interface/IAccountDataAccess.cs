@@ -38,6 +38,13 @@ namespace Fanex.AffiliateAdmin.DataAccess
         void UserLogOut(LogOutCriteria criteria);
 
         /// <summary>
+        /// Check in after login to get On User Id.
+        /// </summary>
+        /// <param name="criteria">criteria</param>
+        /// <returns>The On user id.</returns>
+        int CheckIn(CheckInCriteria criteria);
+
+        /// <summary>
         /// Auto kick out previous login user.
         /// </summary>
         /// <param name="criteria">Re-CheckIn Criteria.</param>

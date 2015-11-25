@@ -82,7 +82,7 @@ var Management = (function ($) {
             });
         },
         addUser: function () {
-            AFFILIATE.openDialogFrame("Management/AddUser", window.MSG.AddNewUser, { width: 500, height: 300 });
+            AFFILIATE.openDialogFrame("Management/AddUser", window.MSG.AddNewUser, { width: 500, height: 250 });
             return false;
         },
         updatePolicy: function () {

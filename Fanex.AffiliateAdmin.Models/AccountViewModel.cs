@@ -25,12 +25,5 @@ namespace Fanex.AffiliateAdmin.Models
         [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrPasswordRequired")]
         [Display(ResourceType = typeof(Resources.Lang), Name = "Password")]
         public string Password { get; set; }
-
-        [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrDepartmentChoose")]
-        public int GroupID { get; set; }
-
-        public string GroupName { get; set; }
-
-        public IEnumerable<GroupInfo> GroupList { get; set; }
     }
 }

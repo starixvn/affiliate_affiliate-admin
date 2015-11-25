@@ -53,6 +53,8 @@ namespace Fanex.AffiliateAdmin.Services
         /// <returns>List function policy.</returns>
         IEnumerable<FunctionPolicy> UserPolicySel(UserPolicyCriteria criteria);
 
+        int CheckIn(CheckInCriteria criteria);
+
         /// <summary>
         /// Auto kicked out previous user.
         /// </summary>

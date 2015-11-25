@@ -14,8 +14,6 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int UserId { get; set; }
 
-        public int GroupId { get; set; }
-
         public string Ip { get; set; }
 
         public string Language { get; set; }

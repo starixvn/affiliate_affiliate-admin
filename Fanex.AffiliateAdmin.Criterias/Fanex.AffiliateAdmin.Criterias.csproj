@@ -123,6 +123,7 @@
     </Compile>
     <Compile Include="Account\AccountInsCriteria.cs" />
     <Compile Include="Account\AccountTypeCriteria.cs" />
+    <Compile Include="Account\CheckInCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AdjustmentCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AdjustmentEditCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AffiliateUnlockCriteria.cs" />
@@ -140,7 +141,7 @@
     <Compile Include="Configuration\SystemSetting\SystemSettingsSelByIdCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingsSelByNameCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingsSelByTypeCriteria.cs" />
-    <Compile Include="LoginInternalCriteria.cs" />
+    <Compile Include="Account\LoginInternalCriteria.cs" />
     <Compile Include="CopyRateFromMarketCriteria.cs" />
     <Compile Include="DomainAff\DomainAffDelCriteria.cs" />
     <Compile Include="DomainAff\DomainAffInsCriteria.cs" />
@@ -266,12 +267,12 @@
     <Compile Include="HomeOnlineListCriteria.cs" />
     <Compile Include="HomeGeneralInfoCriteria.cs" />
     <Compile Include="AffLanguageCriteria.cs" />
-    <Compile Include="LoginCriteria.cs" />
+    <Compile Include="Account\LoginCriteria.cs" />
     <Compile Include="Configuration\Country\CountrySelectCriteria.cs" />
     <Compile Include="PlayerCurrencyCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AffiliateCurrenciesSelCriteria.cs" />
     <Compile Include="AdminSupportedLanguagesSelCriteria.cs" />
-    <Compile Include="LogOutCriteria.cs" />
+    <Compile Include="Account\LogOutCriteria.cs" />
     <Compile Include="Message\MessageCriteria.cs" />
     <Compile Include="Message\MessageDeleteCriteria.cs" />
     <Compile Include="Message\MessageDetailCriteria.cs" />
@@ -282,7 +283,7 @@
     <Compile Include="Policy\PolicyMultiUserCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QualifiedMembersReportCriteria.cs" />
-    <Compile Include="ReCheckInCriteria.cs" />
+    <Compile Include="Account\ReCheckInCriteria.cs" />
     <Compile Include="StatementCriteria.cs" />
     <Compile Include="SystemDateTimeCriteria.cs" />
     <Compile Include="TransTypeCriteria.cs" />
@@ -334,7 +335,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

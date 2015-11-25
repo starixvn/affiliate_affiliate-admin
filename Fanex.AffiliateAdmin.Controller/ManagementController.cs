@@ -36,8 +36,6 @@ namespace Fanex.AffiliateAdmin.Controller
 
         private static IEnumerable<string> ignoredGroupNames = new string[] { "Administrator", "None", "Aff_IT_Dept" };
 
-        private static string[] groupForIT = new string[] { "Aff_IT_Dept" };
-
         #endregion Static Fields
 
         #region Services
@@ -110,15 +108,11 @@ namespace Fanex.AffiliateAdmin.Controller
 
         [HttpGet]
         [ITAuth]
-        public ActionResult AddUser(string password, int groupId = 0)
+        public ActionResult AddUser(string password)
         {
-            var groupList = _groupService.GetListGroup(new GroupListCriteria { IsIt = SessionManager.CurrentSession.IsIT, LicenseeId = AppSettings.LicenseeID });
-
             return View(new AccountViewModel
                 {
-                    Password = password,
-                    GroupID = groupId,
-                    GroupList = groupList.Where(g => groupForIT.Contains(g.GroupName))
+                    Password = password
                 });
         }
 
@@ -139,8 +133,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         Ip = Remote.GetClientIPAddress(),
                         Password = Cryptography.CfsEnCode(model.Password),
                         CustId = model.CustID,
-                        UserName = model.Username,
-                        GroupId = model.GroupID
+                        UserName = model.Username
                     };
 
                 _accountService.AccountInsert(criteria);
@@ -152,7 +145,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 };
             }
 
-            return AddUser(model.Password, model.GroupID);
+            return AddUser(model.Password);
         }
 
         #endregion Add User

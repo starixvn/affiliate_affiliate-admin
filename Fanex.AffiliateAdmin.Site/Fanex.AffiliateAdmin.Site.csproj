@@ -359,6 +359,11 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>_SpName.xml.txt</LastGenOutput>
     </Content>
+    <Content Include="Configurations\SpNames\_SpName.xml.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\SpNames\_SpNameConfig.xml">
       <SubType>Designer</SubType>
     </Content>

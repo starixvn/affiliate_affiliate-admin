@@ -23,12 +23,6 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="GroupId">@Lang.GroupName</label>
-            <div class="controls">
-                @RazorHelper.DropDownListGroup(Model.GroupList.ToList(), Model.GroupID, new Dictionary<string, object> { { "id", "GroupId" } })
-            </div>
-        </div>
-         <div class="control-group">
             <div class="controls">
                 <button type="submit" id="btnSubmit" class="btn">@Lang.Add</button>
                 <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>

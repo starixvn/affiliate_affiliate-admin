@@ -262,13 +262,14 @@ namespace Fanex.AffiliateAdmin.Controller
             var isKickedOut = _accountService.ReCheckIn(criteria);
 
             result.Success = isKickedOut;
-            result.Message = isKickedOut ? Lang.MsgKickout : string.Empty;
+            result.Message = string.Empty;
 
             if (!AppSettings.LocalTest)
             {
                 if (isKickedOut)
                 {
                     result.ErrorMessage = "Expired";
+                    result.Message = Lang.MsgKickout;
 
                     // Signout and clean all session.
                     DoLogOut();

@@ -261,12 +261,13 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var isKickedOut = _accountService.ReCheckIn(criteria);
 
+            result.Success = isKickedOut;
+            result.Message = isKickedOut ? Lang.MsgKickout : string.Empty;
+
             if (!AppSettings.LocalTest)
             {
                 if (isKickedOut)
                 {
-                    result.Success = isKickedOut;
-                    result.Message = isKickedOut ? Lang.MsgKickout : string.Empty;
                     result.ErrorMessage = "Expired";
 
                     // Signout and clean all session.
@@ -283,8 +284,11 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             string startTime = string.Empty, endTime = string.Empty;
             result.Success = UnderMaintenanceService.GetDownTime(ref startTime, ref endTime);
-            result.Message = "Under-maintenance";
-            result.ErrorMessage = "UM";
+            if (result.Success)
+            {
+                result.Message = "Under-maintenance";
+                result.ErrorMessage = "UM";
+            }
         }
 
         /// <summary>

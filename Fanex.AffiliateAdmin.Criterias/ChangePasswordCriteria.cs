@@ -22,8 +22,6 @@ namespace Fanex.AffiliateAdmin.Criterias
         [SpParam(SqlParamName = "UserPwd")]
         public string Password { get; set; }
 
-        public string Language { get; set; }
-
         public string Ip { get; set; }
 
         public int ErrCode { get; set; }
@@ -33,6 +31,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         [SpParam(Ignored = true)]
         public string ConfirmPassword { get; set; }
+
+        public string UserSalt { get; set; }
 
         public override string GetSettingKey()
         {

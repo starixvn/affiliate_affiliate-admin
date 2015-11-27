@@ -23,6 +23,8 @@ namespace Fanex.AffiliateAdmin.Criterias
         [SpParam(SqlParamName = "UserPwd")]
         public string Password { get; set; }
 
+        public string UserSalt { get; set; }
+
         /// <summary>
         /// Get Setting Key.
         /// </summary>

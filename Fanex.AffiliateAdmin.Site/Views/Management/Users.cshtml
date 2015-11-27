@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = Lang.UserManagement;
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var title = SessionManager.CurrentSession.IsIT ? Lang.AddNewITUser : Lang.AddNewUser;
 }
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.DTO
@@ -49,7 +51,7 @@ management
         var MSG = {
             NoInfo: "@Lang.NoInfo",
             ChangeStatus: "@Lang.ConfirmChangeStatusAff",
-            AddNewUser: "@Lang.AddNewUser",
+            AddNewUser: "@title",
             AccountPolicyOfUser: "@Lang.AccountPolicyOfUser",
             ChangePassword: "@Lang.ChangePassword",
             Group: "@Lang.Group"
@@ -62,7 +64,7 @@ management
             {
                 text: "@Lang.UserManagement",
                 showButtonsWhenNoData: true,
-                customButtons: '<input type="button" name="btnAdd" value="" title="@Lang.AddNewUser" class="btnAdd" id="btnAddgridId">'
+                customButtons: '<input type="button" name="btnAdd" value="" title="@title" class="btnAdd" id="btnAddgridId">'
             },
             columns: [
                       { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },

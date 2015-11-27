@@ -2824,4 +2824,7 @@
   <data name="BannerFileRequiredMsg" xml:space="preserve">
     <value>Banner file is required! Please check and upload the file.</value>
   </data>
+  <data name="AddNewITUser" xml:space="preserve">
+    <value>Add Aff_IT_Dept New User</value>
+  </data>
 </root>

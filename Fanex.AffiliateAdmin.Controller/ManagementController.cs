@@ -120,7 +120,11 @@ namespace Fanex.AffiliateAdmin.Controller
             };
 
             var accountInfo = _accountService.GetAccountInfo(criteria);
-            var groupList = _groupService.GetListGroup(new GroupListCriteria { IsIt = SessionManager.CurrentSession.IsIT });
+            var groupList = _groupService.GetListGroup(new GroupListCriteria 
+            { 
+                IsIt = SessionManager.CurrentSession.IsIT, 
+                LicenseeId = AppSettings.LicenseeID 
+            });
 
             return View(new EditUserViewModel
             {
@@ -192,7 +196,8 @@ namespace Fanex.AffiliateAdmin.Controller
                         Ip = Remote.GetClientIPAddress(),
                         Password = Cryptography.CfsEnCode(model.Password),
                         CustId = model.CustID,
-                        UserName = model.Username
+                        UserName = model.Username,
+                        UserSalt = Cryptography.CreateSalt()
                     };
 
                 _accountService.AccountInsert(criteria);
@@ -367,7 +372,8 @@ namespace Fanex.AffiliateAdmin.Controller
                         UserName = model.UserName,
                         UserId = SessionManager.CurrentSession.CustID,
                         Ip = Remote.GetClientIPAddress(),
-                        Password = Cryptography.CfsEnCode(model.Password)
+                        Password = Cryptography.CfsEnCode(model.Password),
+                        UserSalt = Cryptography.CreateSalt()
                     };
 
                 _accountService.AccountUpdatePassword(criteria);
@@ -397,8 +403,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Groups()
         {
-            var serializer = new JavaScriptSerializer();
-            ViewBag.IgnoredGroupNames = serializer.Serialize(ignoredGroupNames);
+            ViewBag.IgnoredGroupNames = ignoredGroupNames.ToJson();
             return View();
         }
 

@@ -31,7 +31,7 @@ namespace Fanex.AffiliateAdmin.Core.Filter
 
             if (SessionManager.CurrentSession != null)
             {
-                hasPermission = SessionManager.CurrentSession.RoleAccess.HasPolicy(Function);
+                hasPermission = SessionManager.CurrentSession.HasReadPolicy(Function);
 
                 if (hasPermission && !SessionManager.CurrentSession.IsIT)
                 {

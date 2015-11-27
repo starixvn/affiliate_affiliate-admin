@@ -10,26 +10,26 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
-    using Common;
-    using Core.Configurations;
-    using Core.Entities;
-    using Core.Enumerations;
-    using Core.Filter;
-    using Core.Services.Interface;
-    using Core.Utilities;
-    using Criterias;
-    using DTO;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Entities;
+    using Fanex.AffiliateAdmin.Core.Enumerations;
+    using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Mailinator;
     using Fanex.AffiliateAdmin.Core.Services;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Models;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
-    using Models;
-    using Resources;
+    using Fanex.Common;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     [SessionState(SessionStateBehavior.Default)]
-    [FunctionAuth(Function = "[Affiliate]")]
+    [FunctionAuth(Function = FunctionPermissions.Affiliate)]
     public class AffiliateInfoController : BaseController
     {
         #region Services
@@ -206,7 +206,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.AffId = CurrentSession.Affiliate.AffiliateId;
             criteria.Ip = Remote.GetClientIPAddress();
             criteria.LicenseeId = AppSettings.LicenseeID;
-            
+
             criteria.Password = Cryptography.CfsEnCode(password);
 
             this._affiliateService.ChangeAffiliateStatus(criteria);

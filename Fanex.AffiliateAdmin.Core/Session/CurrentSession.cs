@@ -11,6 +11,7 @@ namespace Fanex.AffiliateAdmin.Core.Session
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web;
     using Fanex.AffiliateAdmin.DTO;
 
@@ -21,25 +22,19 @@ namespace Fanex.AffiliateAdmin.Core.Session
     [Serializable]
     public class CurrentSession : ICurrentSession
     {
-        private List<FunctionPolicy> _roleAccess;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CurrentSession" /> class.
-        /// </summary>
-        public CurrentSession()
-        {
-        }
+        private readonly IEnumerable<FunctionPolicy> _policies;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CurrentSession" /> class.
         /// </summary>
         /// <param name="user">User login in system.</param>
-        public CurrentSession(Account user)
+        public CurrentSession(Account user, IEnumerable<FunctionPolicy> policies)
         {
             this.CustID = user.CustID;
             this.Username = user.Username;
             this.OnUserID = user.OnUserID;
             this.IsIT = user.IsIT;
+            this._policies = policies ?? new List<FunctionPolicy>();
         }
 
         /// <summary>
@@ -140,19 +135,6 @@ namespace Fanex.AffiliateAdmin.Core.Session
             }
         }
 
-        public List<FunctionPolicy> RoleAccess
-        {
-            get
-            {
-                return this._roleAccess;
-            }
-
-            set
-            {
-                _roleAccess = value;
-            }
-        }
-
         public AffiliateSession Affiliate
         {
             get
@@ -164,6 +146,16 @@ namespace Fanex.AffiliateAdmin.Core.Session
             {
                 HttpContext.Current.Session["Affiliate"] = value;
             }
+        }
+
+        public bool HasReadPolicy(string functionName)
+        {
+            return this._policies.Any(i => i.FuncName == functionName && i.CanRead);
+        }
+
+        public bool HasHostPolicy(string functionName)
+        {
+            return this._policies.Any(i => i.FuncName == functionName && i.CanHost);
         }
     }
 }

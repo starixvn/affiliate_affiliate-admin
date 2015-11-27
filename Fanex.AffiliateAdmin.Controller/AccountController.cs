@@ -121,13 +121,13 @@ namespace Fanex.AffiliateAdmin.Controller
                     });
                     FormsAuthentication.SetAuthCookie(username, true);
 
-                    SessionManager.CurrentSession = new CurrentSession(user)
-                    {
-                        RoleAccess = _accountService.UserPolicySel(new UserPolicyCriteria
+                    var policies = _accountService.UserPolicySel(new UserPolicyCriteria
                         {
                             CustID = user.CustID,
                             LicenseeId = AppSettings.LicenseeID
-                        }).ToList(),
+                        });
+                    SessionManager.CurrentSession = new CurrentSession(user, policies)
+                    {
                         CurrencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
                         {
                             UserId = user.CustID,

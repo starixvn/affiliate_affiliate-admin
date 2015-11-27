@@ -10,6 +10,7 @@
 namespace Fanex.AffiliateAdmin.Core.Filter
 {
     using System;
+    using System.Linq;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Session;
 
@@ -35,14 +36,14 @@ namespace Fanex.AffiliateAdmin.Core.Filter
 
                 if (hasPermission && !SessionManager.CurrentSession.IsIT)
                 {
-                    hasPermission = SessionManager.CurrentSession.CurrencyList.Count > 0;
+                    hasPermission = SessionManager.CurrentSession.CurrencyList.Any();
                 }
             }
 
             if (!hasPermission)
             {
                 filterContext.HttpContext.Response.Redirect("~/notify/AccessDenied");
-            }    
+            }
 
             base.OnActionExecuting(filterContext);
         }

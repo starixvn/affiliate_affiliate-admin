@@ -29,7 +29,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// TODO: Update summary.
     /// </summary>
     [SessionState(SessionStateBehavior.Default)]
-    [FunctionAuth(Function = FunctionPermissions.Affiliate)]
+    [FunctionAuth(Function = FunctionPolicyNames.Affiliate)]
     public class AffiliateInfoController : BaseController
     {
         #region Services
@@ -135,7 +135,6 @@ namespace Fanex.AffiliateAdmin.Controller
                         });
 
                     ViewBag.IsLoadOtherPage = Request["IsLoadOtherPage"];
-
                     return View(model);
                 }
                 else

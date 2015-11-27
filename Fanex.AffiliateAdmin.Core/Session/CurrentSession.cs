@@ -37,10 +37,6 @@ namespace Fanex.AffiliateAdmin.Core.Session
             this._policies = policies ?? new List<FunctionPolicy>();
         }
 
-        /// <summary>
-        /// Gets or sets Customer ID.
-        /// </summary>
-        /// <value>Return Customer ID.</value>
         public int CustID
         {
             get
@@ -54,10 +50,6 @@ namespace Fanex.AffiliateAdmin.Core.Session
             }
         }
 
-        /// <summary>
-        /// Gets or sets UserName.
-        /// </summary>
-        /// <value>Return UserName.</value>
         public string Username
         {
             get
@@ -71,10 +63,6 @@ namespace Fanex.AffiliateAdmin.Core.Session
             }
         }
 
-        /// <summary>
-        /// Gets or sets Email.
-        /// </summary>
-        /// <value>Return Email.</value>
         public string Email
         {
             get
@@ -88,10 +76,6 @@ namespace Fanex.AffiliateAdmin.Core.Session
             }
         }
 
-        /// <summary>
-        /// Gets or sets OnUser.
-        /// </summary>
-        /// <value>Return OnUser.</value>
         public int OnUserID
         {
             get
@@ -118,15 +102,11 @@ namespace Fanex.AffiliateAdmin.Core.Session
             }
         }
 
-        /// <summary>
-        /// Gets or sets List supported currency by Admin user Id.
-        /// </summary>
-        /// <value>Supported currency.</value>
-        public List<Currency> CurrencyList
+        public IEnumerable<Currency> CurrencyList
         {
             get
             {
-                return (List<Currency>)HttpContext.Current.Session["CurrencyList"];
+                return (IEnumerable<Currency>)HttpContext.Current.Session["CurrencyList"];
             }
 
             set

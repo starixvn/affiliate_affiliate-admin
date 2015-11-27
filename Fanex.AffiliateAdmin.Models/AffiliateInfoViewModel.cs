@@ -9,6 +9,8 @@ namespace Fanex.AffiliateAdmin.Models
     using System;
     using System.Collections.Generic;
     using DTO;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Session;
 
     /// <summary>
     /// TODO: Update summary.
@@ -34,6 +36,14 @@ namespace Fanex.AffiliateAdmin.Models
         public Affiliate AffiliateInfo { get; set; }
 
         public Uri ExternalLoginUrl { get; set; }
+
+        public bool HasHostAffiliatePolicy
+        {
+            get
+            {
+                return SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.Affiliate);
+            }
+        }
 
         #endregion Properties
 

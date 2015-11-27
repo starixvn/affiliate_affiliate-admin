@@ -2,33 +2,34 @@
     ViewBag.Title = Lang.AffiliateInfo;
     Layout = "~/Views/Shared/_LayoutFrameNoHeader.cshtml";
 }
-
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Enumerations
-
 @model Fanex.AffiliateAdmin.Models.AffiliateInfoViewModel
 @{
     Model.AffiliateInfo.FirstName = HttpUtility.HtmlDecode(Model.AffiliateInfo.FirstName);
     Model.AffiliateInfo.LastName = HttpUtility.HtmlDecode(Model.AffiliateInfo.LastName);
+
 }
 <div id="left_show" class="left_show">
     <div class="left-show-d">
-        <div class="l-panel-row l-panel-top"></div>
+        <div class="l-panel-row l-panel-top">
+        </div>
         <div class="l-panel-row l-panel-content l-panel-show">
             <div class="left-search">
                 @using (Html.BeginForm("Index", "AffiliateInfo", FormMethod.Get, new { target = "_top" }))
                 {
-                   @Html.TextBox("Username", Model.AffiliateInfo.Username, new { id = "AffiliateInfo_Username" })
-                   <button id="btnAdd" name="btnAdd" class="btn btn-default" type="submit">@Lang.Submit</button>
+                    @Html.TextBox("Username", Model.AffiliateInfo.Username, new { id = "AffiliateInfo_Username" })
+                    <button id="btnAdd" name="btnAdd" class="btn btn-default" type="submit">@Lang.Submit</button>
                 }
             </div>
             <table class="left-info">
                 <thead>
-                    <tr> 
-                        <th class="col-left">@Lang.Affiliate</th>
+                    <tr>
+                        <th class="col-left">@Lang.Affiliate
+                        </th>
                         <th class="col-right">
-                            @if(Model.AffiliateInfo.Status.Equals("approved", StringComparison.OrdinalIgnoreCase) && !Model.AffiliateInfo.IsClosed)
+                            @if (Model.AffiliateInfo.Status.Equals("approved", StringComparison.OrdinalIgnoreCase) && !Model.AffiliateInfo.IsClosed)
                             {
                                 <a href="@Html.Raw(Model.ExternalLoginUrl)" id="lnkUN" target="_blank" class="upper b" title="@Lang.ViewAffiliateWebsite">@Model.AffiliateInfo.Username</a>
                             }
@@ -42,97 +43,126 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>@Lang.FirstName</td>
-                        <td class="col-right" title="@Model.AffiliateInfo.FirstName">@Model.AffiliateInfo.FirstName.LeftString(AppSettings.LeftString)</td>
-                    </tr>
-                    <tr>
-                        <td>@Lang.LastName</td>
-                        <td class="col-right" title="@Model.AffiliateInfo.LastName">@Model.AffiliateInfo.LastName.LeftString(AppSettings.LeftString)</td>
-                    </tr>
-                    <tr>
-                        <td>@Lang.Gender</td>
-                        <td class="col-right">@(Model.AffiliateInfo.Gender ? @Lang.Male : Lang.Female)</td>
-                    </tr>
-                    <tr>
-                        <td>@Lang.ContactNumber</td>
-                        <td class="col-right" title="@Model.AffiliateInfo.Phone">@Model.AffiliateInfo.Phone.LeftString(AppSettings.LeftString)</td>
-                    </tr>
-                    <tr>
-                        <td>@Lang.Mobile</td>
-                        <td class="col-right" title="@Model.AffiliateInfo.MobilePhone">@Model.AffiliateInfo.MobilePhone.LeftString(AppSettings.LeftString)</td>
-                    </tr>
-                    <tr>
-                        <td>@Lang.Language</td>
-                        <td class="col-right">
-                            <select id="slLanguage" name="slLanguage" style="display: none;" class="width-ex-100 nopadding">
-                                @foreach (var lang in AppSettings.AffSupportLanguages)
-                                {
-                                <option value="@lang.LanguageID" @(lang.LanguageID == Model.AffiliateInfo.PreferredLanguage ? "selected" : string.Empty) >@lang.LanguageName</option>
-                                }
-                            </select>
-                            
-                            <span class="link-box-active" id="spLanguage" title="@Lang.ChangeLanguage">@(AppSettings.AffLanguages.Where(l => l.LanguageID == Model.AffiliateInfo.PreferredLanguage).FirstOrDefault().LanguageName)</span>
-
+                        <td>@Lang.FirstName
+                        </td>
+                        <td class="col-right" title="@Model.AffiliateInfo.FirstName">@Model.AffiliateInfo.FirstName.LeftString(AppSettings.LeftString)
                         </td>
                     </tr>
                     <tr>
-                        <td>@Lang.SiteUrl</td>
+                        <td>@Lang.LastName
+                        </td>
+                        <td class="col-right" title="@Model.AffiliateInfo.LastName">@Model.AffiliateInfo.LastName.LeftString(AppSettings.LeftString)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.Gender
+                        </td>
+                        <td class="col-right">@(Model.AffiliateInfo.Gender ? @Lang.Male : Lang.Female)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.ContactNumber
+                        </td>
+                        <td class="col-right" title="@Model.AffiliateInfo.Phone">@Model.AffiliateInfo.Phone.LeftString(AppSettings.LeftString)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.Mobile
+                        </td>
+                        <td class="col-right" title="@Model.AffiliateInfo.MobilePhone">@Model.AffiliateInfo.MobilePhone.LeftString(AppSettings.LeftString)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.Language
+                        </td>
+                        <td class="col-right">
+                            @{
+                                var firstLanguageName = AppSettings.AffLanguages.Where(l => l.LanguageID == Model.AffiliateInfo.PreferredLanguage).FirstOrDefault().LanguageName;
+                            }
+                            @if (Model.HasHostAffiliatePolicy)
+                            {
+                                <select id="slLanguage" name="slLanguage" style="display: none;" class="width-ex-100 nopadding">
+                                    @foreach (var lang in AppSettings.AffSupportLanguages)
+                                    {
+                                        <option value="@lang.LanguageID" @(lang.LanguageID == Model.AffiliateInfo.PreferredLanguage ? "selected" : string.Empty) >@lang.LanguageName</option>
+                                    }
+                                </select>
+
+                                <span class="link-box-active" id="spLanguage" title="@Lang.ChangeLanguage">@firstLanguageName</span>
+                            }
+                            else
+                            {
+                                @firstLanguageName
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Lang.SiteUrl
+                        </td>
                         <td class="col-right">
                             <a href="@string.Format(AppSettings.SiteCheckerUrl.ToString(), Model.AffiliateInfo.SiteLink)" target="_blank" title="Check the link">@Model.AffiliateInfo.SiteLink.LeftString(AppSettings.LeftString)</a>
                         </td>
                     </tr>
                     <tr>
-                        <td>@Lang.LastLogin</td>
-                        <td class="col-right">@string.Format(FormatType.FULL_DATETIME_SPLASH_FORMAT.GetStringValue(), Model.AffiliateInfo.LastLoginDate)</td>
+                        <td>@Lang.LastLogin
+                        </td>
+                        <td class="col-right">@string.Format(FormatType.FULL_DATETIME_SPLASH_FORMAT.GetStringValue(), Model.AffiliateInfo.LastLoginDate)
+                        </td>
                     </tr>
                     <tr>
-                        <td>@Lang.LastLoginIP</td>
-                        <td class="col-right"><a href="@string.Format(AppSettings.IPCheckerUrl.ToString(), Model.AffiliateInfo.LastLoginIp)" target="_blank" title="@Lang.CheckIp">@Model.AffiliateInfo.LastLoginIp</a></td>
+                        <td>@Lang.LastLoginIP
+                        </td>
+                        <td class="col-right">
+                            <a href="@string.Format(AppSettings.IPCheckerUrl.ToString(), Model.AffiliateInfo.LastLoginIp)" target="_blank" title="@Lang.CheckIp">@Model.AffiliateInfo.LastLoginIp</a>
+                        </td>
                     </tr>
                     @if (Model.AffiliateInfo.Status.Equals(AffiliateStatus.Approved.ToString(), StringComparison.CurrentCultureIgnoreCase))
                     {
-                    <tr>
-                        <td>@Lang.Password</td>
-                        <td class="col-right">
-                            <span class="link-box-active" id="spPassword" title="@Lang.ChangePassword">[@Lang.Change]</span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@Lang.Password
+                            </td>
+                            <td class="col-right">
+                                <span class="link-box-active" id="spPassword" title="@Lang.ChangePassword">[@Lang.Change]</span>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
-             @if (string.Compare(Model.AffiliateInfo.Status, "Approved", true) == 0)
-             {
+            @if (string.Compare(Model.AffiliateInfo.Status, "Approved", true) == 0)
+            {
                 @Html.Partial("_Commission", Model)
-             }
-             
-             @Html.Partial("_Setting", Model)
-
-             @if (string.Compare(Model.AffiliateInfo.Status, "Approved", true) == 0)
-             {
+            }
+            @Html.Partial("_Setting", Model)
+            @if (string.Compare(Model.AffiliateInfo.Status, "Approved", true) == 0)
+            {
                 @Html.Partial("_OnlineList", Model)
-             }
-             @Html.HiddenFor(m => m.AffiliateInfo.AffId, new { id = "AffId" })
-             @Html.HiddenFor(m => m.AffiliateInfo.Username, new { id = "Username" })
-             @Html.HiddenFor(m => m.AffiliateInfo.Currency, new { id = "Currency" })
-             @Html.HiddenFor(m => m.AffiliateInfo.CurrencyCode, new { id = "CurrencyCode" })
-             @Html.HiddenFor(m => m.AffiliateInfo.GroupId, new { id = "GroupId" })
+            }
+            @Html.HiddenFor(m => m.AffiliateInfo.AffId, new { id = "AffId" })
+            @Html.HiddenFor(m => m.AffiliateInfo.Username, new { id = "Username" })
+            @Html.HiddenFor(m => m.AffiliateInfo.Currency, new { id = "Currency" })
+            @Html.HiddenFor(m => m.AffiliateInfo.CurrencyCode, new { id = "CurrencyCode" })
+            @Html.HiddenFor(m => m.AffiliateInfo.GroupId, new { id = "GroupId" })
         </div>
-        <div class="l-panel-row l-panel-bottom"></div>
+        <div class="l-panel-row l-panel-bottom">
+        </div>
     </div>
-    <div id="left_show_i" class="left_show_i"></div>
+    <div id="left_show_i" class="left_show_i">
+    </div>
 </div>
 <div id="left_hide" class="left_hide">
-    <div class="left-hide-top"></div>
-    <div class="left-hide-center"></div>
-    <div class="left-hide-bottom"></div>
-    <div id="left_hide_i" class="left_hide_i"></div>
+    <div class="left-hide-top">
+    </div>
+    <div class="left-hide-center">
+    </div>
+    <div class="left-hide-bottom">
+    </div>
+    <div id="left_hide_i" class="left_hide_i">
+    </div>
 </div>
-
 @section scripts{
     @Scripts.Render("~/scripts/affiliateinfo")
-
     <script type="text/javascript">
-        
+
         $(window).resize(function () {
             setHeightBox();
         });
@@ -140,7 +170,7 @@
         function setHeightBox() {
             $("#left_hide").css("height", ($(window).height() - 50));
         }
-        
+
         var MSG = {
             No: "@Lang.No",
             Yes: "@Lang.Yes",
@@ -157,7 +187,6 @@
             ChangePassword: "@Lang.ChangePassword"
         };
     </script>
-    
     @if (ViewBag.IsLoadOtherPage != "1")
     {
         <script type="text/javascript">
@@ -165,4 +194,3 @@
         </script>
     }
 }
-

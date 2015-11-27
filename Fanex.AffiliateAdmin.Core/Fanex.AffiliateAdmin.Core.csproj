@@ -135,7 +135,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Configurations\AffiliateSettings.cs" />
-    <Compile Include="Configurations\FunctionPermissions.cs" />
+    <Compile Include="Configurations\FunctionPolicyNames.cs" />
     <Compile Include="Configurations\GetAppSettings.cs" />
     <Compile Include="Enumerations\CasinoGameType.cs" />
     <Compile Include="Enumerations\BetType.cs" />

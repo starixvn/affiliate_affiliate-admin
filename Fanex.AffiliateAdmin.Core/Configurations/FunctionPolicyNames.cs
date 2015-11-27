@@ -14,7 +14,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public static class FunctionPermissions
+    public static class FunctionPolicyNames
     {
         public const string Affiliate = "[Affiliate]";
     }

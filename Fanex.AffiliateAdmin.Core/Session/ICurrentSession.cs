@@ -25,7 +25,7 @@ namespace Fanex.AffiliateAdmin.Core.Session
 
         bool IsIT { get; set; }
 
-        List<Currency> CurrencyList { get; set; }
+        IEnumerable<Currency> CurrencyList { get; set; }
 
         AffiliateSession Affiliate { get; set; }
 

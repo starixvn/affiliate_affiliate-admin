@@ -20,6 +20,8 @@ namespace Fanex.AffiliateAdmin.Services
     /// </summary>
     public class GroupService : QueryService, IGroupService
     {
+        private const string ItGroupName = "Aff_IT_Dept";
+
         /// <summary>
         /// Get List Group.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Fanex.AffiliateAdmin.Services
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             var result = GetData<GroupInfo>(criteria);
-
+            result = result.Where(x => !x.GroupName.Equals(ItGroupName, System.StringComparison.OrdinalIgnoreCase)).ToList();
             foreach (var group in result)
             {
                 var translated = Lang.ResourceManager.GetString(group.GroupName.Replace(" ", string.Empty));

@@ -14,20 +14,20 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Linq;
     using System.Web.Mvc;
     using System.Xml.Linq;
-    using Core.Configurations;
-    using Core.Filter;
-    using Core.Session;
-    using Core.Utilities;
-    using Criterias;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.Models;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Common;
-    using Models;
-    using Resources;
 
     /// <summary>
     /// Affiliate Controller.
-    /// </summary>    
-    [FunctionAuth(Function = "[Affiliate]")]
+    /// </summary>
+    [FunctionAuth(Function = FunctionPolicyNames.Affiliate)]
     public partial class AffiliateController : BaseController
     {
         #region Services
@@ -51,6 +51,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             _service = service ?? new AffiliateService();
         }
+
         #endregion Constructor
 
         [HttpGet]
@@ -350,6 +351,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="username">Username of customer.</param>
         /// <returns>Action Result.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.Affiliate, HasHostPolicy = true)]
         [HttpPost]
         public ActionResult CustomerRemove(string username)
         {
@@ -372,6 +374,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(GetResultViewModel(criteria.ErrCode));
         }
 
+        [FunctionAuth(Function = FunctionPolicyNames.Affiliate, HasHostPolicy = true)]
         public ActionResult AssignMember(AssignMemberViewModel model)
         {
             if (model.ByAffiliate)
@@ -387,6 +390,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Result Message.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.Affiliate, HasHostPolicy = true)]
         [HttpPost]
         public ActionResult AssignMember(CheckMemberExistCriteria criteria)
         {
@@ -447,6 +451,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult MemberListByAffiliate(MemberListViewModel model)
         {
+            ViewBag.HasHostAffiliatePolicy = SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.Affiliate);
             return View(model);
         }
 
@@ -478,9 +483,11 @@ namespace Fanex.AffiliateAdmin.Controller
                 case "closed":
                     message = Lang.AffClosed;
                     break;
+
                 case "approved":
                     message = Lang.AffApproved;
                     break;
+
                 default:
                     var status = Lang.ResourceManager.GetString(affiliateStatus);
                     message = string.Format(Lang.AffiliateIs, string.IsNullOrEmpty(status) ? affiliateStatus.ToLower() : status);
@@ -495,7 +502,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="affid">Affiliate ID.</param>
         /// <param name="affname">Affiliate Name.</param>
-        /// <param name="customerName">Member Name.</param>      
+        /// <param name="customerName">Member Name.</param>
         /// <returns>Error code.</returns>
         private int TestInsertMember(int affid, string affname, string customerName)
         {
@@ -700,6 +707,6 @@ namespace Fanex.AffiliateAdmin.Controller
             return true;
         }
 
-        #endregion
+        #endregion Private Methods
     }
 }

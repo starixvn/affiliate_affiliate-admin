@@ -158,13 +158,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public string GetUserSalt(string userName)
         {
-            var user = _accountService.GetByUsername(userName);
-            if (user != null)
-            {
-                return user.UserSalt;
-            }
-
-            return string.Empty;
+            return GetSalt(userName);
         }
 
         /// <summary>
@@ -201,11 +195,13 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
                 else
                 {
+                    var oldSalt = GetSalt(SessionManager.CurrentSession.Username);
+                    var newSalt = Cryptography.CreateSalt();
                     var criteria = new AccountPasswordCriteria
                         {
                             CustId = SessionManager.CurrentSession.CustID,
-                            OldPassword = Cryptography.CfsEnCode(model.OldPassword),
-                            NewPassword = Cryptography.CfsEnCode(model.NewPassword),
+                            OldPassword = Cryptography.CreateHash(model.OldPassword, oldSalt),
+                            NewPassword = Cryptography.CreateHash(model.NewPassword, newSalt),
                             Ip = Remote.GetClientIPAddress()
                         };
 
@@ -246,6 +242,17 @@ namespace Fanex.AffiliateAdmin.Controller
             KickedOutDownTime(result);
 
             return Json(result);
+        }
+
+        private string GetSalt(string userName)
+        {
+            var user = _accountService.GetByUsername(userName);
+            if (user != null)
+            {
+                return user.UserSalt;
+            }
+
+            return string.Empty;
         }
 
         /// <summary>

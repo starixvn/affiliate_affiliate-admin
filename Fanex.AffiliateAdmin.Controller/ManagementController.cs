@@ -351,6 +351,17 @@ namespace Fanex.AffiliateAdmin.Controller
         [ITAuth]
         public ActionResult ChangePassword(int custId, string userName, string password, string confirmPassword)
         {
+            var criteria = new SelByCustIDCriteria
+            {
+                CustId = custId
+            };
+
+            var accountInfo = _accountService.GetAccountInfo(criteria);
+            if (!accountInfo.IsITAdmin)
+            {
+                return new RedirectResult("~/Notify/AccessDenied");
+            }
+
             return View(new PasswordViewModel
                 {
                     CustId = custId,

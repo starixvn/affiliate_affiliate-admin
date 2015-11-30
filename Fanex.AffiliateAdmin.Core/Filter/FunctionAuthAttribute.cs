@@ -13,6 +13,7 @@ namespace Fanex.AffiliateAdmin.Core.Filter
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// Authorization Attribute class.
@@ -20,7 +21,11 @@ namespace Fanex.AffiliateAdmin.Core.Filter
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class FunctionAuthAttribute : ActionFilterAttribute
     {
+        private const int AccessDeniedErrorCode = 500;
+
         public string Function { get; set; }
+
+        public bool HasHostPolicy { get; set; }
 
         /// <summary>
         /// Action filter for under maintenance service.
@@ -32,7 +37,9 @@ namespace Fanex.AffiliateAdmin.Core.Filter
 
             if (SessionManager.CurrentSession != null)
             {
-                hasPermission = SessionManager.CurrentSession.HasReadPolicy(Function);
+                hasPermission = HasHostPolicy ?
+                    SessionManager.CurrentSession.HasHostPolicy(Function) :
+                    SessionManager.CurrentSession.HasReadPolicy(Function);
 
                 if (hasPermission && !SessionManager.CurrentSession.IsIT)
                 {
@@ -42,7 +49,15 @@ namespace Fanex.AffiliateAdmin.Core.Filter
 
             if (!hasPermission)
             {
-                filterContext.HttpContext.Response.Redirect("~/notify/AccessDenied");
+                if (filterContext.HttpContext.Request.IsAjaxRequest())
+                {
+                    var data = new { ErrorCode = AccessDeniedErrorCode, Message = ErrorMsg.Msg500 };
+                    filterContext.Result = new JsonResult() { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                }
+                else
+                {
+                    filterContext.HttpContext.Response.Redirect("~/notify/AccessDenied");
+                }
             }
 
             base.OnActionExecuting(filterContext);

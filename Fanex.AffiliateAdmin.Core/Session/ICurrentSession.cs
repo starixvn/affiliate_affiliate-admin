@@ -6,10 +6,11 @@
 // <history>
 //   <change who="Kaden.Trinh" date="2013.05.28">Created</change>
 // </history>
+
 namespace Fanex.AffiliateAdmin.Core.Session
 {
     using System.Collections.Generic;
-    using System.Linq;
+    using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
 
     /// <summary>
@@ -25,12 +26,14 @@ namespace Fanex.AffiliateAdmin.Core.Session
 
         bool IsIT { get; set; }
 
-        IEnumerable<Currency> CurrencyList { get; set; }
+        IEnumerable<Currency> CurrencyList { get; }
 
         AffiliateSession Affiliate { get; set; }
 
+        IEnumerable<FunctionMenu> FunctionMenus { get; }
+
         bool HasReadPolicy(string functionName);
-        
+
         bool HasHostPolicy(string functionName);
     }
 }

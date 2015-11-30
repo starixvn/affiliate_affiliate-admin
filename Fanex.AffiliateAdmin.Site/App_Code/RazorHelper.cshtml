@@ -6,7 +6,7 @@
 @using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Enumerations
 
-@helper ListSubmenu(List<Menu> list, int selectedMenu, string activeMenu = "home", int selectedSubMenu = -1)
+@helper ListSubmenu(List<Menu> list, int selectedMenu, string activeMenu = "Home", int selectedSubMenu = -1)
     {
     var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
     <ul>

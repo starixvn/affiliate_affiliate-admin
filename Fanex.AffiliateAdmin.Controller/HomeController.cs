@@ -13,11 +13,11 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
-    using Core.Configurations;
-    using Core.Filter;
-    using Core.Session;
-    using Core.Utilities;
-    using Criterias;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
@@ -27,6 +27,8 @@ namespace Fanex.AffiliateAdmin.Controller
     [NoCache]
     public class HomeController : BaseController
     {
+        private const string HomeMenuName = "Home";
+
         private readonly IHomeService _homeService;
 
         public HomeController()
@@ -41,6 +43,17 @@ namespace Fanex.AffiliateAdmin.Controller
 
         public ActionResult Index()
         {
+            var firstMenu = SessionManager.CurrentSession.FunctionMenus.FirstOrDefault();
+
+            if (firstMenu == null)
+            {
+                return View();
+            }
+            else if (!firstMenu.Name.Equals(HomeMenuName, StringComparison.OrdinalIgnoreCase))
+            {
+                return new RedirectResult(firstMenu.Link);
+            }
+
             FormaterCurrency.SetDefaultCurrency(AppSettings.BaseExchange.Code);
             var model = _homeService.GeneralInfoSel(new HomeGeneralInfoCriteria
             {

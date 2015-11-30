@@ -166,14 +166,12 @@ namespace Fanex.AffiliateAdmin.Controller
                         CustID = user.CustID,
                         LicenseeId = AppSettings.LicenseeID
                     });
-                SessionManager.CurrentSession = new CurrentSession(user, policies)
-                {
-                    CurrencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
+                var currencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
                     {
                         UserId = user.CustID,
                         LicenseeId = AppSettings.LicenseeID
-                    }).ToList()
-                };
+                    }).ToList();
+                SessionManager.CurrentSession = new CurrentSession(user, policies, currencyList);
             }
 
             return result;

@@ -19,5 +19,21 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         public const string Affiliate = "[Affiliate]";
 
         public const string CommissionGroup = "[CommissionGroup]";
+
+        public const string AffReport = "[AffReport]";
+
+        public const string Payment = "[Payment]";
+
+        public const string Media = "[Media]";
+
+        public const string HotNews = "[HotNews]";
+
+        public const string AffExchangeRate = "[AffEx.Rate]";
+
+        public const string SystemSettings = "[SystemSettings]";
+
+        public const string Domain = "[Domain]";
+
+        public const string UserControl = "[UserControl]";
     }
 }

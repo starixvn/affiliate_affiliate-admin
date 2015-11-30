@@ -17,5 +17,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     public static class FunctionPolicyNames
     {
         public const string Affiliate = "[Affiliate]";
+
+        public const string CommissionGroup = "[CommissionGroup]";
     }
 }

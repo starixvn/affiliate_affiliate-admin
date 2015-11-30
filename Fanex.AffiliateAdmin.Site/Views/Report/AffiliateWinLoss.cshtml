@@ -165,6 +165,8 @@ report
             NATooltip: "@Lang.NATooltip"
         };
 
+        var hasCommGroupPolicy = @(ViewBag.HasCommGroupPolicy ? "true" : "false");
+
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
         var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
         var subTotalStatus = COLLAPSE_SUBTOTAL_STATUS;
@@ -242,7 +244,9 @@ report
                     HeaderAlign: "center",
                     Formatter: function(rIndex, record, cell, cellFormated) {
                         if (cellFormated)
-                            return "<a class='commgroup' data-date='" + moment(record.WinlostDate).format("MMM-YYYY") + "' data-groupid='" + record.GroupID + "' href='javascript:void(0)'>" + cellFormated + "</a>";
+                            return hasCommGroupPolicy ? 
+                                "<a class='commgroup' data-date='" + moment(record.WinlostDate).format("MMM-YYYY") + "' data-groupid='" + record.GroupID + "' href='javascript:void(0)'>" + cellFormated + "</a>":
+                                cellFormated;
                         return null;
                     }
                 },

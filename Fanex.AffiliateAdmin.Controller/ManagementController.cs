@@ -120,7 +120,7 @@ namespace Fanex.AffiliateAdmin.Controller
             };
 
             var accountInfo = _accountService.GetAccountInfo(criteria);
-            if (accountInfo.IsITAdmin)
+            if (accountInfo.IsIT)
             {
                 return new RedirectResult("~/Notify/AccessDenied");
             }
@@ -357,7 +357,7 @@ namespace Fanex.AffiliateAdmin.Controller
             };
 
             var accountInfo = _accountService.GetAccountInfo(criteria);
-            if (!accountInfo.IsITAdmin)
+            if (!accountInfo.IsIT)
             {
                 return new RedirectResult("~/Notify/AccessDenied");
             }

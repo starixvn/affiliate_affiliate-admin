@@ -16,13 +16,14 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
     using System.Web.SessionState;
-    using Core.Filter;
-    using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
-    using Models;
 
     /// <summary>
     /// Report Controller.
@@ -228,6 +229,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 Name = x.ProductName
             }));
 
+            ViewBag.HasCommGroupPolicy = SessionManager.CurrentSession.HasReadPolicy(FunctionPolicyNames.CommissionGroup);
             return View(model);
         }
 

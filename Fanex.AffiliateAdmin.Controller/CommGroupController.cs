@@ -15,19 +15,19 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
-    using Core.Configurations;
-    using Core.Session;
-    using Core.Utilities;
-    using Criterias;
-    using DTO;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Commission group Controller.
     /// </summary>
-    [FunctionAuth(Function = "[CommissionGroup]")]
+    [FunctionAuth(Function = FunctionPolicyNames.CommissionGroup)]
     public partial class CommGroupController : BaseController
     {
         #region Services

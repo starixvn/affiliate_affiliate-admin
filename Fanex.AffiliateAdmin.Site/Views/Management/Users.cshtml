@@ -70,7 +70,7 @@ management
                       { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },
                       { HeaderText: "@Lang.Username", Width: 150, Name: "Username", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
-                            return rowData.IsITAdmin ? cellFormated : '<a href="javascript:Management.editAccount(' + rowData.CustID + ",'" + rowData.Username + '\')">' + cell.Value + '</a>';
+                            return rowData.IsIT ? cellFormated : '<a href="javascript:Management.editAccount(' + rowData.CustID + ",'" + rowData.Username + '\')">' + cell.Value + '</a>';
                         }
                       },
                       { HeaderText: "@Lang.Policy", Width: 150, Name: "PolicyCol", HeaderAlign: "center", CellAlign: "center", Formatter:
@@ -85,7 +85,7 @@ management
                       },
                       { HeaderText: "@Lang.Password", Width: 80, Name: "Password", CellAlign: "center", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
-                            if (rowData.IsITAdmin == false || rowData.Status)
+                            if (rowData.IsIT == false || rowData.Status)
                                 return "";
                             return "<a href=\"javascript:Management.editPassword(" + rowData.CustID + ",'" + rowData.Username + "\')\"><i class=\"icon-edit\"></i></a>";
                         }

@@ -33,7 +33,7 @@ namespace Fanex.AffiliateAdmin.Core.Session
             this.CustID = user.CustID;
             this.Username = user.Username;
             this.OnUserID = user.OnUserID;
-            this.IsIT = user.IsIT;
+            this.IsIT = user.IsITAdmin;
             this._policies = policies ?? new List<FunctionPolicy>();
         }
 

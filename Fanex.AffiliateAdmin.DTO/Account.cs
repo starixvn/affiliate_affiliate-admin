@@ -46,7 +46,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string GroupName { get; set; }
 
-        public bool IsIT { get; set; }
+        public bool IsITAdmin { get; set; }
 
         public int OnUserID { get; set; }
 

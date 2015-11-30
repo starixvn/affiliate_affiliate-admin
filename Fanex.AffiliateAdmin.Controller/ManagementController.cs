@@ -120,6 +120,11 @@ namespace Fanex.AffiliateAdmin.Controller
             };
 
             var accountInfo = _accountService.GetAccountInfo(criteria);
+            if (accountInfo.IsITAdmin)
+            {
+                return new RedirectResult("~/Notify/AccessDenied");
+            }
+
             var groupList = _groupService.GetListGroup(new GroupListCriteria 
             { 
                 IsIt = SessionManager.CurrentSession.IsIT, 
@@ -366,14 +371,15 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
+                var salt = Cryptography.CreateSalt();
                 var criteria = new ChangePasswordCriteria
                     {
                         CustId = model.CustId,
                         UserName = model.UserName,
                         UserId = SessionManager.CurrentSession.CustID,
                         Ip = Remote.GetClientIPAddress(),
-                        Password = Cryptography.CfsEnCode(model.Password),
-                        UserSalt = Cryptography.CreateSalt()
+                        Password = Cryptography.CreateHash(model.Password, salt),
+                        UserSalt = salt
                     };
 
                 _accountService.AccountUpdatePassword(criteria);

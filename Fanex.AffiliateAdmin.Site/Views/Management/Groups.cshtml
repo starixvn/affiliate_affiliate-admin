@@ -32,6 +32,7 @@ management
             GroupPolicyOfGroup: "@Lang.GroupPolicyOfGroup",
             Group: "@Lang.Group"
         };
+        var canUpdateData = @(ViewBag.CanUpdateData ? "true" : "false");
         var gridOption = {
             language: '@AppSession.Language',
             showTitle: true,

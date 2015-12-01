@@ -42,6 +42,7 @@
             AccountPolicyOfUser: "@Lang.AccountPolicyOfUser",
             ChangePassword: "@Lang.ChangePassword"
         };
+        var canUpdateData = @(ViewBag.CanUpdateData ? "true" : "false");
         var gridOption = {
             language: '@AppSession.Language',
             showTitle: true,

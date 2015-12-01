@@ -14,6 +14,11 @@ var Management = (function ($) {
             $(".main-content").on("click", ".icon-add-group", function () {
                 Management.addGroup();
             });
+
+            if (!canUpdateData) {
+                gridOption.columns.removeItem('Name', 'Update');
+                gridOption.titleInfo.customButtons = null;
+            }
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid

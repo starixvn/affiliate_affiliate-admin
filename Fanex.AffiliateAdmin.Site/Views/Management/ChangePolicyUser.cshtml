@@ -5,28 +5,27 @@
 }
 @using Fanex.AffiliateAdmin.Core.Utilities
 @model Fanex.AffiliateAdmin.Models.PolicyViewModel
-
 @RazorHelper.ListPopupMenu(SubMenu.Permission, 0, new Dictionary<string, object> { { "custid", Model.CustId } })
-
 @Html.ValidationSummary()
-
-<div id="gridId" class="freegrid"></div>
-
+<div id="gridId" class="freegrid">
+</div>
 @using (Html.BeginForm("ChangePolicyUser", "Management", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.HiddenFor(m => m.CustId)
-
+    if (ViewBag.CanUpdateData)
+    {
     <div class="control-group action-grp">
         <div class="controls">
             <button type="submit" id="btnUpdate" class="btn">@Lang.Submit</button>
             <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
         </div>
     </div>
-    <input type="hidden" id="IndividualPolicy" name="IndividualPolicy"/>
+    }
+    <input type="hidden" id="IndividualPolicy" name="IndividualPolicy" />
 }
-
 @section scripts{
     <script type="text/javascript">
+        var canUpdateData = @(ViewBag.CanUpdateData ? "true" : "false");
         var gridOption = {
             language: '@AppSession.Language',
             customizeHeader: true,
@@ -44,7 +43,7 @@
                 { HeaderText: "@Lang.Function", Width: 100, Name: "FuncDesc" },
                 { HeaderText: "@Lang.Read", Width: 80, Name: "IndividualRead", CellAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
-                        if (rowData.GroupHost || rowData.GroupRead) {
+                        if (!canUpdateData || rowData.GroupHost || rowData.GroupRead) {
                             return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' checked=checked disabled=disabled/>";
                         }
                             
@@ -53,7 +52,7 @@
                 },
                 { HeaderText: "@Lang.Host", Width: 80, Name: "IndividualHost", CellAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
-                        if (rowData.GroupHost) {
+                        if (!canUpdateData || rowData.GroupHost) {
                             return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualHost' checked=checked disabled=disabled/>";
                         }
                             
@@ -75,9 +74,7 @@
             hideYBackGroundScroller : true
         }
     </script>
-
     @Scripts.Render("~/scripts/userpolicy")
-
     @if (ViewBag.Result != null)
     {
         var result = (ResultViewModel)ViewBag.Result;

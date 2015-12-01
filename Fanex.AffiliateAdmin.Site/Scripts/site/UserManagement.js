@@ -1,9 +1,11 @@
-﻿/*global AFFILIATE,gridOption, MSG*/
+﻿/*global AFFILIATE,gridOption, MSG, canUpdateData*/
 var Management = (function ($) {
     "use strict";
     var submitOptions = {};
+    
     return {
         init: function () {
+            
             if ($('#gridId').length > 0) {
                 Management.submitRequest();
             }
@@ -21,7 +23,7 @@ var Management = (function ($) {
                 Management.updatePolicy();
             });
 
-            if (!AFFILIATE.isIT()) {
+            if (!canUpdateData || !AFFILIATE.isIT()) {
                 gridOption.columns.removeItem('Name', 'Password');
                 gridOption.titleInfo.customButtons = null;
             }
@@ -117,7 +119,7 @@ var Management = (function ($) {
 
             AFFILIATE.openDialogFrame("Management/EditUser?" + jQuery.param(param), userName, { width: 500, height: 270 });
         },
-        viewAccountPolicy: function (custId, userName, groupName) {
+        viewAccountPolicy: function (custId, userName) {
             var param = {
                 custId: custId
             };

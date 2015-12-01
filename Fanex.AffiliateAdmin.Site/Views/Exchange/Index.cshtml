@@ -54,6 +54,7 @@ exchange-rate
             UpdateExRate: "@Lang.UpdateExRate"
         };
         
+        var canUpdateData = @(ViewBag.CanUpdateData ? "true" : "false");
         var sampleGridOption = {
             language: '@AppSession.Language',
             showTitle: true,
@@ -84,7 +85,14 @@ exchange-rate
                     HeaderAlign: "center",
                     CellAlign: "center",
                     Formatter: function(rowIndex, rowData, cell, cellFormated) {
-                        return "<input class='' type='checkbox' " + (rowData.IsAutoRefresh ? "checked='checked'" : null) + " data-id='" + rowData.ExchangeID + "' onclick='javascript:EXCHANGE.toggleAutoUpdate(this);'/>";
+                        if (canUpdateData)
+                        {
+                            return "<input class='' type='checkbox' " + (rowData.IsAutoRefresh ? "checked='checked'" : null) + " data-id='" + rowData.ExchangeID + "' onclick='javascript:EXCHANGE.toggleAutoUpdate(this);'/>";
+                        }
+                        else
+                        {
+                            return "<input disabled type='checkbox' " + (rowData.IsAutoRefresh ? "checked='checked'" : null) + " />";
+                        }
                     }
                 }
             ],

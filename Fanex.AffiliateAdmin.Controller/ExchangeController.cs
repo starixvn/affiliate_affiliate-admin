@@ -127,9 +127,11 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
 
+            ViewBag.CanUpdateData = SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.AffExchangeRate);
             return View();
         }
 
+        [FunctionAuth(Function = FunctionPolicyNames.AffExchangeRate, HasHostPolicy = true)]
         public ActionResult ToggleAutoUpdate(UpdateExchangeRateViewModel criteria)
         {
             criteria.UserId = SessionManager.CurrentSession.CustID;

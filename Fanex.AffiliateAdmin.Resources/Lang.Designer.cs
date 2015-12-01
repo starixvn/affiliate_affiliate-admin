@@ -353,7 +353,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Aff_IT_Dept New User.
+        ///   Looks up a localized string similar to Add IT User.
         /// </summary>
         public static string AddNewITUser {
             get {

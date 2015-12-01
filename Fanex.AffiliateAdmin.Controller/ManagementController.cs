@@ -125,18 +125,18 @@ namespace Fanex.AffiliateAdmin.Controller
                 return new RedirectResult("~/Notify/AccessDenied");
             }
 
-            var groupList = _groupService.GetListGroup(new GroupListCriteria 
-            { 
-                IsIt = SessionManager.CurrentSession.IsIT, 
-                LicenseeId = AppSettings.LicenseeID 
-            });
+            var groupListCriteria = new GroupListCriteria
+            {
+                IsIt = SessionManager.CurrentSession.IsIT,
+                LicenseeId = AppSettings.LicenseeID
+            };
 
             return View(new EditUserViewModel
             {
                 Username = accountInfo.Username,
                 GroupID = accountInfo.GroupID,
                 CustID = custId,
-                GroupList = groupList
+                GroupList = _groupService.GetListGroup(groupListCriteria, true)
             });
         }
 
@@ -433,7 +433,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 LicenseeId = AppSettings.LicenseeID
             };
 
-            return Json(new { List = _groupService.GetListGroup(criteria) });
+            return Json(new { List = _groupService.GetListGroup(criteria, !SessionManager.CurrentSession.IsIT) });
         }
 
         #region Add Group

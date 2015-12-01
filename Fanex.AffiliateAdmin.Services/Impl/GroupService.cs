@@ -27,11 +27,15 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Criteria List Group.</param>
         /// <returns>List group.</returns>
-        public IEnumerable<GroupInfo> GetListGroup(GroupListCriteria criteria)
+        public IEnumerable<GroupInfo> GetListGroup(GroupListCriteria criteria, bool removeItGroup = false)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             var result = GetData<GroupInfo>(criteria);
-            result = result.Where(x => !x.GroupName.Equals(ItGroupName, System.StringComparison.OrdinalIgnoreCase)).ToList();
+            if (removeItGroup)
+            {
+                result = result.Where(x => !x.GroupName.Equals(ItGroupName, System.StringComparison.OrdinalIgnoreCase)).ToList();
+            }
+
             foreach (var group in result)
             {
                 var translated = Lang.ResourceManager.GetString(group.GroupName.Replace(" ", string.Empty));

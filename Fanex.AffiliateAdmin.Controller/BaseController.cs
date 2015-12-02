@@ -52,6 +52,11 @@ namespace Fanex.AffiliateAdmin.Controller
             return View("~/Views/Notify/Message.cshtml", (object)message);
         }
 
+        protected ActionResult RedirectToAccessDenied()
+        {
+            return new RedirectResult("~/Notify/AccessDenied");
+        }
+
         /// <summary>
         /// Get Error message.
         /// </summary>

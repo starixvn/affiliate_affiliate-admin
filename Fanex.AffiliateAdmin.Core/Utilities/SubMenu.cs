@@ -23,7 +23,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// Gets the Home Menu link.
         /// </summary>
         /// <value>Return Home Menu link..</value>
-        public static List<Menu> Home
+        public static IList<Menu> Home
         {
             get
             {
@@ -39,7 +39,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// Gets Affiliate menu list.
         /// </summary>
         /// <value>Return Affiliate menu list.</value>
-        public static List<Menu> Affiliate
+        public static IList<Menu> Affiliate
         {
             get
             {
@@ -57,7 +57,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// Gets Domain list link.
         /// </summary>
         /// <value>Return list link.</value>
-        public static List<Menu> CommGroup
+        public static IList<Menu> CommGroup
         {
             get
             {
@@ -72,7 +72,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// Gets Commission group link.
         /// </summary>
         /// <value>Return list link.</value>
-        public static List<Menu> Exchange
+        public static IList<Menu> Exchange
         {
             get
             {
@@ -87,7 +87,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// Gets Domain list link.
         /// </summary>
         /// <value>Return list link.</value>
-        public static List<Menu> Domain
+        public static IList<Menu> Domain
         {
             get
             {
@@ -104,7 +104,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// Gets User Management Menu.
         /// </summary>
         /// <value>Return Management Menu.</value>
-        public static List<Menu> Management
+        public static IList<Menu> Management
         {
             get
             {
@@ -117,32 +117,10 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         }
 
         /// <summary>
-        /// Gets User Permission Menu.
-        /// </summary>
-        /// <value>Return Permission Menu.</value>
-        public static List<Menu> Permission
-        {
-            get
-            {
-                var menus = new List<Menu>
-                {
-                    new Menu { Text = Lang.FunctionPermission, Link = "~/Management/ChangePolicyUser" }              
-                };
-
-                if (!SessionManager.CurrentSession.IsIT)
-                {
-                    menus.Add(new Menu { Text = Lang.CurrenciesPermission, Link = "~/Management/ChangeCurrencyUser" });
-                }
-
-                return menus;
-            }
-        }
-
-        /// <summary>
         /// Gets Media Menu.
         /// </summary>
         /// <value>Return Media Menu.</value>
-        public static List<Menu> Media
+        public static IList<Menu> Media
         {
             get
             {
@@ -158,7 +136,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// Gets Message Menu.
         /// </summary>
         /// <value>Return Message Menu.</value>
-        public static List<Menu> Message
+        public static IList<Menu> Message
         {
             get
             {
@@ -173,7 +151,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// Gets Payment Menu.
         /// </summary>
         /// <value>Return Payment Menu.</value>
-        public static List<Menu> Payment
+        public static IList<Menu> Payment
         {
             get
             {
@@ -184,7 +162,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             }
         }
 
-        public static List<Menu> Configuration
+        public static IList<Menu> Configuration
         {
             get
             {
@@ -199,7 +177,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             }
         }
 
-        public static List<Menu> AffiliateInfo
+        public static IList<Menu> AffiliateInfo
         {
             get
             {
@@ -237,7 +215,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             }
         }
 
-        public static List<Menu> AffiliateNotApprove
+        public static IList<Menu> AffiliateNotApprove
         {
             get
             {
@@ -249,7 +227,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             }
         }
 
-        public static List<Menu> Reports
+        public static IList<Menu> Reports
         {
             get
             {
@@ -262,6 +240,21 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                     new Menu { Text = Lang.AffiliateCommission, Link = "~/Report/AffiliateCommission" }
                 };
             }
+        }
+
+        public static IEnumerable<Menu> GetPermissionMenus(bool isIT)
+        {
+            var menus = new List<Menu>
+                {
+                    new Menu { Text = Lang.FunctionPermission, Link = "~/Management/ChangePolicyUser" }
+                };
+
+            if (!isIT)
+            {
+                menus.Add(new Menu { Text = Lang.CurrenciesPermission, Link = "~/Management/ChangeCurrencyUser" });
+            }
+
+            return menus;
         }
     }
 }

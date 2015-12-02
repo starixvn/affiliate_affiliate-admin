@@ -5,10 +5,9 @@
 @using Fanex.AffiliateAdmin.Resources
 @using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Enumerations
-
-@helper ListSubmenu(List<Menu> list, int selectedMenu, string activeMenu = "Home", int selectedSubMenu = -1)
+@helper ListSubmenu(IList<Menu> list, int selectedMenu, string activeMenu = "Home", int selectedSubMenu = -1)
     {
-    var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
+        var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
     <ul>
         @for (var i = 0; i < list.Count; i++)
         {
@@ -17,28 +16,25 @@
 
             if (item.SubMenu == null || item.SubMenu.Count == 0)
             {
-                <li @(new HtmlString(activeText))>
-                    <a href="@(url.Content(item.Link))"><span>@item.Text</span></a>
-                </li>
+            <li @(new HtmlString(activeText))><a href="@(url.Content(item.Link))"><span>@item.Text</span></a>
+            </li>
             }
             else
             {
                 var link = (i == selectedMenu && selectedSubMenu != -1) ? item.SubMenu[selectedSubMenu].Link : item.Link;
                 
-                <li @(new HtmlString(activeText))>
-                    <a href="@(url.Content(link))"><span>@item.Text</span></a>
-                    <ul class="inner-submenu">
-                        @for (int j = 0; j < item.SubMenu.Count; j++)
-                        {
-                            activeText = (j == selectedSubMenu ? "class=\"current\"" : string.Empty);
-                            var ele = item.SubMenu[j];
+            <li @(new HtmlString(activeText))><a href="@(url.Content(link))"><span>@item.Text</span></a>
+                <ul class="inner-submenu">
+                    @for (int j = 0; j < item.SubMenu.Count; j++)
+                    {
+                        activeText = (j == selectedSubMenu ? "class=\"current\"" : string.Empty);
+                        var ele = item.SubMenu[j];
                             
-                           <li @(new HtmlString(activeText))>
-                                <a href="@(url.Content(ele.Link))">&raquo; @ele.Text</a>
-                           </li>
-                        }
-                    </ul>
-                </li>
+                        <li @(new HtmlString(activeText))><a href="@(url.Content(ele.Link))">&raquo; @ele.Text</a>
+                        </li>
+                    }
+                </ul>
+            </li>
             }
         }
     </ul>
@@ -46,7 +42,6 @@
         $("#@(activeMenu)").addClass("active");
     </script>
 }
-
 @helper PageSizeDropdownList(int selectedPageSize = 10, string id = "pageSize", string postAction = "")
     {
     <div class="pagesize">
@@ -61,7 +56,6 @@
         </span>
     </div>
 }
-
 @helper ListAlPhabet(string selectedValue, IDictionary<string, object> htmlAttributies = null)
     {
         string[] alphas = { "0-9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
@@ -83,8 +77,7 @@
         }
     </select>
 }
-
-@helper DropDownListGroup(List<GroupInfo> list, int selectedValue, IDictionary<string, object> htmlAttributies = null)
+@helper DropDownListGroup(IList<GroupInfo> list, int selectedValue, IDictionary<string, object> htmlAttributies = null)
     {
         var name = string.Empty;
         var style = string.Empty;
@@ -100,8 +93,7 @@
         }
     </select>
 }
-
-@helper ListPopupMenu(List<Menu> list, int selectedMenu, IDictionary<string, object> queryStrings = null)
+@helper ListPopupMenu(IEnumerable<Menu> list, int selectedMenu, IDictionary<string, object> queryStrings = null)
     {
         var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
         string queryUrl = string.Empty;
@@ -123,54 +115,57 @@
         }
     <div class="popmenu menu">
         <ul>
-            @for (var i = 0; i < list.Count; i++)
-            {               
-                var item = list[i];
-                string activeText = (i == selectedMenu ? "class=\"popcurrent\"" : string.Empty);
+            @{
+                var index = 0;
+            }
+            @foreach (var item in list)
+            {
+                string activeText = (index == selectedMenu ? "class=\"popcurrent\"" : string.Empty);
                 <li @(new HtmlString(activeText))><a href="@(url.Content(item.Link + queryUrl))"><span>@item.Text</span></a></li>
+                index++;
             }
         </ul>
     </div>
 }
 @helper SearchPanel(string contentSelector, string information, bool hasExport = true, bool hasInfo = true)
-{
+    {
     <div class="span12 search-title" data-selector="@contentSelector"  title="@Lang.CollapseExpand">
-        <div class="expand collapse">&nbsp;</div><label>@Lang.Search</label>
+        <div class="expand collapse">
+            &nbsp;</div>
+        <label>@Lang.Search</label>
         <div class="more">
-        @if (hasExport)
-        {
-            <span id="excel" title="Export Excel" class="excel"></span>
-        }
-        @if (hasInfo)
-        {
-            <span id="info" title="@Lang.Information" class="info"></span>
-        }
+            @if (hasExport)
+            {
+                <span id="excel" title="Export Excel" class="excel"></span>
+            }
+            @if (hasInfo)
+            {
+                <span id="info" title="@Lang.Information" class="info"></span>
+            }
         </div>
         <div id="info-dialog">
-            <p id="info-close">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <p id="info-close">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
             @MvcHtmlString.Create(information)
         </div>
     </div>
 }
-
 @helper SharingFeeInfoPanel(string product)
-{
+    {
     <div class="more">
         <span id="info" title="@Lang.Information" class="info"></span>
     </div>
     <div id="info-dialog">
-        <p id="info-close">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <p id="info-close">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         @MvcHtmlString.Create(product.Equals("Sportsbook", StringComparison.OrdinalIgnoreCase) ? Lang.SportsbookSharingFeeInfo : Lang.OtherProductSharingFeeInfo)
     </div>
 }
-
 @helper FormatCurrencyNumber(decimal number, int dec = 2)
     {
         if (number < 0)
         {
-            <span style="color: red">
-                (@decimal.Round(number, dec))
-            </span>
+    <span style="color: red">(@decimal.Round(number, dec)) </span>
         }
         else
         {
@@ -181,11 +176,11 @@
     {
         if (status.Equals(AffiliateStatus.Disapproved.ToString(), StringComparison.CurrentCultureIgnoreCase))
         {
-            @Lang.Disapproved
+    @Lang.Disapproved
         }
         else
         {
-            @Lang.Pending
+    @Lang.Pending
         }
 }
 @helper DropDownListCountry(IEnumerable<System.Web.Mvc.SelectListItem> list, string selectedValue, IDictionary<string, object> htmlAttributies = null)
@@ -216,12 +211,19 @@
 
             for (int index = 0; index < sites.Count(); index++)
             {
-                <tr id="site_@(index + 2)">
-                    <td><label class = "control-label" for="Affiliate_SiteURL_@(index + 2)">@(Lang.SiteUrl + " " + (index + 2).ToString())</label></td>
-                    <td></td>
-                    <td><input type="text" class="sites more-site control-text valid" id="Affiliate_SiteURL_@(index + 2)" value="@sites[index]" /></td>
-                     <td><button type="button" class="btn btn-default" onclick="AFFEDIT.delUrl(this);" style="vertical-align: top">@Lang.Delete</button></td>
-                </tr>
+    <tr id="site_@(index + 2)">
+        <td>
+            <label class = "control-label" for="Affiliate_SiteURL_@(index + 2)">@(Lang.SiteUrl + " " + (index + 2).ToString())</label>
+        </td>
+        <td>
+        </td>
+        <td>
+            <input type="text" class="sites more-site control-text valid" id="Affiliate_SiteURL_@(index + 2)" value="@sites[index]" />
+        </td>
+        <td>
+            <button type="button" class="btn btn-default" onclick="AFFEDIT.delUrl(this);" style="vertical-align: top">@Lang.Delete</button>
+        </td>
+    </tr>
             }
         }        
 }
@@ -230,20 +232,18 @@
         if (currency != null && currency.MultipliedBy > 1)
         {
             int number = 2;
-        <p>
-            @string.Format(Lang.PleaseInput1For, currency.MultipliedBy.ToString(), currency.CurrencyCode,
+    <p>
+        @string.Format(Lang.PleaseInput1For, currency.MultipliedBy.ToString(), currency.CurrencyCode,
                         FormaterCurrency.Format(number, currency.CurrencyCode),
                         FormaterCurrency.Format(number * currency.MultipliedBy, currency.CurrencyCode))
-                            
-        </p>
+    </p>
         }
 }
-
 @helper PercentageDropDownList(decimal percent, decimal step, string className, string disabled)
-{
-    decimal num = 0;
+    {
+        decimal num = 0;
     <select style="margin-left: 10px; width: 70px" class="@className" @disabled>
-        @while (num <= (decimal) 1.00)
+        @while (num <= (decimal)1.00)
         {
             var val = string.Format("{0:0.00}", num);
             <option value="@val" @(num == percent ? "selected" : null)>@val</option>
@@ -251,21 +251,17 @@
         }
     </select>
 }
-
 @helper AdditionalSharingFee(string deductionName, decimal percentDeposit, decimal percentWithdrawl, string disabled)
-{
-    if (deductionName.Equals("Marketing", StringComparison.OrdinalIgnoreCase) || deductionName.Equals("Odds Fee", StringComparison.OrdinalIgnoreCase))
     {
-        <span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|@Lang.Winloss|</span>
-    }
-    
-    if (deductionName.Equals("PSP"))
-    {
-        <span>&nbsp;&nbsp;&nbsp;* 
-        ( @Lang.TotalDeposit * @PercentageDropDownList(percentDeposit, (decimal)0.01, "totaldeposit", disabled)
-      + @Lang.TotalWithdrawal * @PercentageDropDownList(percentWithdrawl, (decimal)0.01, "totalwithdrawal", disabled) )
-        </span>
-    }
+        if (deductionName.Equals("Marketing", StringComparison.OrdinalIgnoreCase) || deductionName.Equals("Odds Fee", StringComparison.OrdinalIgnoreCase))
+        {
+    <span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|@Lang.Winloss|</span>
+        }
+
+        if (deductionName.Equals("PSP"))
+        {
+    <span>&nbsp;&nbsp;&nbsp;* ( @Lang.TotalDeposit * @PercentageDropDownList(percentDeposit, (decimal)0.01, "totaldeposit", disabled)
+        + @Lang.TotalWithdrawal * @PercentageDropDownList(percentWithdrawl, (decimal)0.01, "totalwithdrawal", disabled)
+        ) </span>
+        }
 }
-
-

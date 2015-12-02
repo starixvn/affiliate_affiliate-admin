@@ -21,6 +21,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Criterias.Account;
+    using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Services;
     using Models;
     using Resources;
@@ -115,15 +116,10 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult EditUser(int custId)
         {
-            var criteria = new SelByCustIDCriteria
+            var account = GetAccount(custId);
+            if (account.IsIT)
             {
-                CustId = custId
-            };
-
-            var accountInfo = _accountService.GetAccountInfo(criteria);
-            if (accountInfo.IsIT)
-            {
-                return new RedirectResult("~/Notify/AccessDenied");
+                return RedirectToAccessDenied();
             }
 
             var groupListCriteria = new GroupListCriteria
@@ -134,8 +130,8 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return View(new EditUserViewModel
             {
-                Username = accountInfo.Username,
-                GroupID = accountInfo.GroupID,
+                Username = account.Username,
+                GroupID = account.GroupID,
                 CustID = custId,
                 GroupList = _groupService.GetListGroup(groupListCriteria, true)
             });
@@ -229,9 +225,11 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult ChangePolicyUser(int custId)
         {
             ViewBag.CanUpdateData = SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl);
+            var account = GetAccount(custId);
             return View(new PolicyViewModel
             {
-                CustId = custId
+                CustId = custId,
+                Menus = SubMenu.GetPermissionMenus(account.IsIT)
             });
         }
 
@@ -286,16 +284,22 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult ChangeCurrencyUser(int custId)
         {
+            var account = GetAccount(custId);
+            if (account.IsIT)
+            {
+                return RedirectToAccessDenied();
+            }
+
             var criteria = new UserCurrencySelCriteria
             {
                 UserId = custId,
                 LicenseeId = AppSettings.LicenseeID
             };
-
             return View(new PermissionCurrencyViewModel
             {
                 CustId = custId,
-                ListPermissionCurrency = _permissionService.GetPermissionCurrencyList(criteria)
+                ListPermissionCurrency = _permissionService.GetPermissionCurrencyList(criteria),
+                Menus = SubMenu.GetPermissionMenus(account.IsIT)
             });
         }
 
@@ -360,17 +364,6 @@ namespace Fanex.AffiliateAdmin.Controller
         [ITAuth]
         public ActionResult ChangePassword(int custId, string userName, string password, string confirmPassword)
         {
-            var criteria = new SelByCustIDCriteria
-            {
-                CustId = custId
-            };
-
-            var accountInfo = _accountService.GetAccountInfo(criteria);
-            if (!accountInfo.IsIT)
-            {
-                return new RedirectResult("~/Notify/AccessDenied");
-            }
-
             return View(new PasswordViewModel
                 {
                     CustId = custId,
@@ -671,6 +664,16 @@ namespace Fanex.AffiliateAdmin.Controller
                 UserID = criteria.UserId,
                 LicenseeId = AppSettings.LicenseeID
             };
+        }
+
+        private Account GetAccount(int custId)
+        {
+            var criteria = new SelByCustIDCriteria
+            {
+                CustId = custId
+            };
+
+            return _accountService.GetAccountInfo(criteria);
         }
 
         #endregion Private Method

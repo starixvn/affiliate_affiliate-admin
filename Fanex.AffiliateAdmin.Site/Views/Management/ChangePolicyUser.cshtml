@@ -5,7 +5,7 @@
 }
 @using Fanex.AffiliateAdmin.Core.Utilities
 @model Fanex.AffiliateAdmin.Models.PolicyViewModel
-@RazorHelper.ListPopupMenu(SubMenu.Permission, 0, new Dictionary<string, object> { { "custid", Model.CustId } })
+@RazorHelper.ListPopupMenu(Model.Menus, 0, new Dictionary<string, object> { { "custid", Model.CustId } })
 @Html.ValidationSummary()
 <div id="gridId" class="freegrid">
 </div>

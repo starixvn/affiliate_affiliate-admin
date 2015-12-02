@@ -24,7 +24,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [FunctionAuth(Function = "[HotNews]")]
+    [FunctionAuth(Function = FunctionPolicyNames.HotNews)]
     public class MessageController : BaseController
     {
         private readonly IMessageService _messageService = new MessageService();

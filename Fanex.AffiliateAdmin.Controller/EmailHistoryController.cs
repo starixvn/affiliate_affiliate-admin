@@ -24,7 +24,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Email History Controller.
     /// </summary>
-    [FunctionAuth(Function = "[Affiliate]")]
+    [FunctionAuth(Function = FunctionPolicyNames.Affiliate)]
     public partial class EmailHistoryController : BaseController
     {
         #region Services

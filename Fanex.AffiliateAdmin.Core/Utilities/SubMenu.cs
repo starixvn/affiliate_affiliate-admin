@@ -11,6 +11,7 @@
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Resources;
 
@@ -27,11 +28,18 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         {
             get
             {
-                return new List<Menu>
+                var menus = new List<Menu>
                 {
-                    new Menu { Text = Lang.Home, Link = "~/" },
                     new Menu { Text = Lang.CurrOnlineList, Link = "~/Home/UserOnlineList" }
                 };
+
+                var currentSession = SessionManager.CurrentSession;
+                if (currentSession.IsIT || currentSession.CurrencyList.Any())
+                {
+                    menus.Insert(0, new Menu { Text = Lang.Home, Link = "~/" });
+                }
+
+                return menus;
             }
         }
 
@@ -188,19 +196,19 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                     new Menu { Text = Lang.Note, Link = "~/Note" },
                     new Menu { Text = Lang.Adjustment, Link = "~/Adjustment" },
                     new Menu { Text = Lang.Member, Link = "~/Affiliate/MemberListByAffiliate" },
-                    new Menu 
-                    { 
-                        Text = Lang.Statistics, 
+                    new Menu
+                    {
+                        Text = Lang.Statistics,
                         Link = "~/TrackingStatistic/Referrer",
                         SubMenu = new List<Menu>
                             {
                                 new Menu { Text = Lang.ReferrersStatistics, Link = "~/TrackingStatistic/Referrer" },
                                 new Menu { Text = Lang.LandingPagesStatistics, Link = "~/TrackingStatistic/LandingPage" }
                             }
-                    },                    
+                    },
                     new Menu
                     {
-                        Text = Lang.Reports, 
+                        Text = Lang.Reports,
                         Link = "~/Report/CompanyWinlossByAffiliate",
                         SubMenu = new List<Menu>
                             {

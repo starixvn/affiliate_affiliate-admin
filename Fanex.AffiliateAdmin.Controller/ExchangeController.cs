@@ -13,19 +13,19 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
-    using Core.Configurations;
-    using Core.Session;
-    using Core.Utilities;
-    using Criterias;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Services;
+    using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Currency Rate Controller.
     /// </summary>
-    [FunctionAuth(Function = "[AffEx.Rate]")]
+    [FunctionAuth(Function = FunctionPolicyNames.AffExchangeRate, CurrenciesRequired = true)]
     public partial class ExchangeController : BaseController
     {
         private static Dictionary<string, int> _multipliedCurrencies = new Dictionary<string, int>();
@@ -131,7 +131,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return View();
         }
 
-        [FunctionAuth(Function = FunctionPolicyNames.AffExchangeRate, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.AffExchangeRate, IsHostPolicy = true)]
         public ActionResult ToggleAutoUpdate(UpdateExchangeRateViewModel criteria)
         {
             criteria.UserId = SessionManager.CurrentSession.CustID;

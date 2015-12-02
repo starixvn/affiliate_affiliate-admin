@@ -30,7 +30,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Configuration Controller.
     /// </summary>
-    [FunctionAuth(Function = "[SystemSettings]")]
+    [FunctionAuth(Function = FunctionPolicyNames.SystemSettings)]
     public class ConfigurationController : BaseController
     {
         #region Fields

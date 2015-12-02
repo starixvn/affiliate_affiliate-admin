@@ -25,7 +25,9 @@ namespace Fanex.AffiliateAdmin.Core.Filter
 
         public string Function { get; set; }
 
-        public bool HasHostPolicy { get; set; }
+        public bool IsHostPolicy { get; set; }
+
+        public bool CurrenciesRequired { get; set; }
 
         /// <summary>
         /// Action filter for under maintenance service.
@@ -35,15 +37,16 @@ namespace Fanex.AffiliateAdmin.Core.Filter
         {
             var hasPermission = false;
 
-            if (SessionManager.CurrentSession != null)
+            var currentSession = SessionManager.CurrentSession;
+            if (currentSession != null)
             {
-                hasPermission = HasHostPolicy ?
-                    SessionManager.CurrentSession.HasHostPolicy(Function) :
-                    SessionManager.CurrentSession.HasReadPolicy(Function);
+                hasPermission = IsHostPolicy ?
+                    currentSession.HasHostPolicy(Function) :
+                    currentSession.HasReadPolicy(Function);
 
-                if (hasPermission && !SessionManager.CurrentSession.IsIT)
+                if (hasPermission && CurrenciesRequired && !currentSession.IsIT)
                 {
-                    hasPermission = SessionManager.CurrentSession.CurrencyList.Any();
+                    hasPermission = currentSession.CurrencyList.Any();
                 }
             }
 
@@ -56,7 +59,7 @@ namespace Fanex.AffiliateAdmin.Core.Filter
                 }
                 else
                 {
-                    filterContext.HttpContext.Response.Redirect("~/notify/AccessDenied");
+                    filterContext.Result = new RedirectResult("~/notify/AccessDenied");
                 }
             }
 

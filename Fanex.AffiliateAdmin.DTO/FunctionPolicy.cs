@@ -89,7 +89,7 @@ namespace Fanex.AffiliateAdmin.DTO
         {
             get
             {
-                return this.GPolicy == ReadPolicy;
+                return this.GPolicy == ReadPolicy || this.GPolicy == HostPolicy;
             }
         }
 

@@ -53,6 +53,10 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 return new RedirectResult(firstMenu.Link);
             }
+            else if (SubMenu.Home.Count == 1)
+            {
+                return new RedirectResult("~/Home/UserOnlineList");
+            }
 
             FormaterCurrency.SetDefaultCurrency(AppSettings.BaseExchange.Code);
             var model = _homeService.GeneralInfoSel(new HomeGeneralInfoCriteria
@@ -72,9 +76,10 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult Language()
         {
             var languageList = AppSettings.BaseLanguages;
-            var selectedLang = languageList.FirstOrDefault(lang => lang.LanguageID == AppSession.Language).LanguageName;
+            var selectedLang = languageList.FirstOrDefault(lang => lang.LanguageID == AppSession.Language);
+            var languageName = selectedLang == null ? string.Empty : selectedLang.LanguageName;
             var sysDateTime = _homeService.GetSystemDateTime(new SystemDateTimeCriteria());
-            return PartialView(Tuple.Create(languageList, selectedLang, sysDateTime));
+            return PartialView(Tuple.Create(languageList, languageName, sysDateTime));
         }
 
         /// <summary>
@@ -99,6 +104,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return PartialView();
         }
 
+        [FunctionAuth(Function = FunctionPolicyNames.AffReport)]
         [HttpGet]
         public ActionResult UserOnlineList()
         {
@@ -110,6 +116,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Home Online List Criteria.</param>
         /// <returns>Action Result.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.AffReport)]
         [HttpPost]
         public ActionResult UserOnlineList(HomeOnlineListCriteria criteria)
         {

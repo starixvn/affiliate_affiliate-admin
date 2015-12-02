@@ -5,14 +5,18 @@
 @using Fanex.AffiliateAdmin.Resources
 @using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Enumerations
-@helper ListSubmenu(IList<Menu> list, int selectedMenu, string activeMenu = "Home", int selectedSubMenu = -1)
+@helper ListSubmenu(IList<Menu> list, int selectedMenuIndex, string activeMenu = "Home", int selectedSubMenuIndex = -1)
     {
         var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
+        if (selectedMenuIndex >= list.Count)
+        {
+            selectedMenuIndex = list.Count - 1;
+        }
     <ul>
         @for (var i = 0; i < list.Count; i++)
         {
             var item = list[i];
-            string activeText = (i == selectedMenu ? "class=\"current\"" : string.Empty);
+            string activeText = (i == selectedMenuIndex ? "class=\"current\"" : string.Empty);
 
             if (item.SubMenu == null || item.SubMenu.Count == 0)
             {
@@ -21,13 +25,13 @@
             }
             else
             {
-                var link = (i == selectedMenu && selectedSubMenu != -1) ? item.SubMenu[selectedSubMenu].Link : item.Link;
+                var link = (i == selectedMenuIndex && selectedSubMenuIndex != -1) ? item.SubMenu[selectedSubMenuIndex].Link : item.Link;
                 
             <li @(new HtmlString(activeText))><a href="@(url.Content(link))"><span>@item.Text</span></a>
                 <ul class="inner-submenu">
                     @for (int j = 0; j < item.SubMenu.Count; j++)
                     {
-                        activeText = (j == selectedSubMenu ? "class=\"current\"" : string.Empty);
+                        activeText = (j == selectedSubMenuIndex ? "class=\"current\"" : string.Empty);
                         var ele = item.SubMenu[j];
                             
                         <li @(new HtmlString(activeText))><a href="@(url.Content(ele.Link))">&raquo; @ele.Text</a>
@@ -93,7 +97,7 @@
         }
     </select>
 }
-@helper ListPopupMenu(IEnumerable<Menu> list, int selectedMenu, IDictionary<string, object> queryStrings = null)
+@helper ListPopupMenu(IEnumerable<Menu> list, int selectedMenuIndex, IDictionary<string, object> queryStrings = null)
     {
         var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
         string queryUrl = string.Empty;
@@ -120,7 +124,7 @@
             }
             @foreach (var item in list)
             {
-                string activeText = (index == selectedMenu ? "class=\"popcurrent\"" : string.Empty);
+                string activeText = (index == selectedMenuIndex ? "class=\"popcurrent\"" : string.Empty);
                 <li @(new HtmlString(activeText))><a href="@(url.Content(item.Link + queryUrl))"><span>@item.Text</span></a></li>
                 index++;
             }

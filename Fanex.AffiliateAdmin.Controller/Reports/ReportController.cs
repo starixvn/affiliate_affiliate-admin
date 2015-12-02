@@ -29,7 +29,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// Report Controller.
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
-    [FunctionAuth(Function = "[AffReport]")]
+    [FunctionAuth(Function = FunctionPolicyNames.AffReport, CurrenciesRequired = true)]
     public class ReportController : BaseController
     {
         private ICommGroupService _commGroupService;

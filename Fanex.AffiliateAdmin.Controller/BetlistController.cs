@@ -29,7 +29,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Report Controller.
     /// </summary>
-    [FunctionAuth(Function = "[AffReport]")]
+    [FunctionAuth(Function = FunctionPolicyNames.AffReport)]
     public class BetListController : BaseController
     {
         private readonly IBetListService _betListService;

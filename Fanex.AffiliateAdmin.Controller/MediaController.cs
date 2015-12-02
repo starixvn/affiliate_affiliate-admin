@@ -28,7 +28,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [FunctionAuth(Function = "[Media]")]
+    [FunctionAuth(Function = FunctionPolicyNames.Media)]
     public class MediaController : BaseController
     {
         #region Fields

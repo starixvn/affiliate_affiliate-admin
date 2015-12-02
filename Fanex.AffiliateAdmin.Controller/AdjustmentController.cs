@@ -18,7 +18,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [FunctionAuth(Function = "[Affiliate]")]
+    [FunctionAuth(Function = FunctionPolicyNames.Affiliate)]
     public class AdjustmentController : BaseController
     {
         #region Services

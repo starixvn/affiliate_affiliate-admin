@@ -26,7 +26,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [FunctionAuth(Function = "[Payment]")]
+    [FunctionAuth(Function = FunctionPolicyNames.Payment, CurrenciesRequired = true)]
     public class PaymentController : BaseController
     {
         private readonly IPaymentService _paymentService;

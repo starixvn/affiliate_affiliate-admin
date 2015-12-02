@@ -84,7 +84,7 @@ namespace Fanex.AffiliateAdmin.Core.Session
 
             AddFunctionMenu(FunctionPolicyNames.AffReport, "Home", "~/");
 
-            if (CurrencyList.Any())
+            if (IsIT || CurrencyList.Any())
             {
                 AddFunctionMenu(FunctionPolicyNames.Affiliate, "AffiliateInfo", "~/AffiliateInfo");
                 AddFunctionMenu(FunctionPolicyNames.Affiliate, "AffManagement", "~/Affiliate");
@@ -96,7 +96,11 @@ namespace Fanex.AffiliateAdmin.Core.Session
 
             AddFunctionMenu(FunctionPolicyNames.Media, "MarketingTools", "~/Media/BannerList");
             AddFunctionMenu(FunctionPolicyNames.HotNews, "Message", "~/Message");
-            AddFunctionMenu(FunctionPolicyNames.AffExchangeRate, "Currency", "~/Exchange");
+
+            if (IsIT || CurrencyList.Any())
+            {
+                AddFunctionMenu(FunctionPolicyNames.AffExchangeRate, "Currency", "~/Exchange");
+            }
 
             AddFunctionMenu(FunctionPolicyNames.SystemSettings, "Configurations", "~/Configuration");
             AddFunctionMenu(FunctionPolicyNames.Domain, "Domain", "~/Domain/AffDomain");

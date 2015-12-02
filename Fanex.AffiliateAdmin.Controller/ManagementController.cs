@@ -112,7 +112,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="custId">Customer Id.</param>
         /// <returns>Return view.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpGet]
         public ActionResult EditUser(int custId)
         {
@@ -142,7 +142,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="model">Edit user view model.</param>
         /// <returns>Action Result.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult EditUser(EditUserViewModel model)
         {
@@ -172,7 +172,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Add User
 
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpGet]
         [ITAuth]
         public ActionResult AddUser(string password)
@@ -188,7 +188,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="model">Account view model.</param>
         /// <returns>Action Result.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         [ITAuth]
         public ActionResult AddUser(AccountViewModel model)
@@ -241,7 +241,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(new { List = _policyService.GetUserPolicyList(criteria) });
         }
 
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult ChangePolicyUser(int custId, string individualPolicy)
         {
@@ -267,7 +267,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(new { List = _policyService.GetPolicyMultiUserList(criteria) });
         }
 
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult ChangePolicyMultiUser(string custIds, string individualPolicy)
         {
@@ -309,7 +309,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="custId">Customer Id.</param>
         /// <param name="currencies">Currencies to change.</param>
         /// <returns>Action Result.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult ChangeCurrencyUser(int custId, string currencies)
         {
@@ -359,7 +359,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Change Password
 
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpGet]
         [ITAuth]
         public ActionResult ChangePassword(int custId, string userName, string password, string confirmPassword)
@@ -378,7 +378,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="model">Password view model.</param>
         /// <returns>Action Result.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         [ITAuth]
         public ActionResult ChangePassword(PasswordViewModel model)
@@ -443,7 +443,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Add Group
 
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpGet]
         public ActionResult AddGroup()
         {
@@ -455,7 +455,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="model">Group view model.</param>
         /// <returns>Action Result.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult AddGroup(GroupViewModel model)
         {
@@ -508,7 +508,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="groupId">Group Id value.</param>
         /// <param name="groupPolicy">Group Policy.</param>
         /// <returns>Action Result.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult ChangePolicyGroup(int groupId, string groupPolicy)
         {
@@ -541,7 +541,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="groupId">Group Id information.</param>
         /// <returns>Action Result.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpGet]
         public ActionResult EditGroup(int groupId)
         {
@@ -564,7 +564,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Group Criteria.</param>
         /// <returns>Action Result.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult EditGroup(GroupInfoUpdCriteria criteria)
         {
@@ -593,7 +593,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Group Criteria.</param>
         /// <returns>Action Result.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.UserControl, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult DeleteGroup(GroupInfoDelCriteria criteria)
         {

@@ -18,7 +18,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [FunctionAuth(Function = "[AffReport]")]
+    [FunctionAuth(Function = FunctionPolicyNames.AffReport)]
     public class MemberController : BaseController
     {
         #region Services

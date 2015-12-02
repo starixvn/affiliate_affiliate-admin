@@ -25,7 +25,7 @@
 }
 @section scripts{
     <script type="text/javascript">
-        var canUpdateData = @(ViewBag.CanUpdateData ? "true" : "false");
+        var disabledAttribute = "@(ViewBag.CanUpdateData ? "" : "disabled")";
         var gridOption = {
             language: '@AppSession.Language',
             customizeHeader: true,
@@ -43,20 +43,20 @@
                 { HeaderText: "@Lang.Function", Width: 100, Name: "FuncDesc" },
                 { HeaderText: "@Lang.Read", Width: 80, Name: "IndividualRead", CellAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
-                        if (!canUpdateData || rowData.GroupHost || rowData.GroupRead) {
+                        if (rowData.GroupHost || rowData.GroupRead) {
                             return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' checked=checked disabled=disabled/>";
                         }
                             
-                        return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' " + ( cell.Value ? "checked=checked" : "") + " />";
+                        return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' " + ( cell.Value ? "checked=checked " : " ") + disabledAttribute + " />";
                     } 
                 },
                 { HeaderText: "@Lang.Host", Width: 80, Name: "IndividualHost", CellAlign: "center", Formatter:
                     function (rowIndex, rowData, cell, cellFormated) {
-                        if (!canUpdateData || rowData.GroupHost) {
+                        if (rowData.GroupHost) {
                             return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualHost' checked=checked disabled=disabled/>";
                         }
                             
-                        return "<input type='checkbox' class='p-check' id='ih_" + rowData.FuncID + "' name='IndividualHost' " + (cell.Value ? "checked=checked" : "") + " />";
+                        return "<input type='checkbox' class='p-check' id='ih_" + rowData.FuncID + "' name='IndividualHost' " + (cell.Value ? "checked=checked " : " ") + disabledAttribute + " />";
                     } 
                 },
                 { HeaderText: "@Lang.Read", Width: 80, Name: "GroupRead", CellAlign: "center", Formatter:

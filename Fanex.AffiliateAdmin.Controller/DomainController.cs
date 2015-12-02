@@ -28,7 +28,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Domain Controller.
     /// </summary>
-    [FunctionAuth(Function = "[Domain]")]
+    [FunctionAuth(Function = FunctionPolicyNames.Domain)]
     public partial class DomainController : BaseController
     {
         #region Services

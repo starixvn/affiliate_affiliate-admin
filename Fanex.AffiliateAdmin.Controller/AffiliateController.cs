@@ -27,7 +27,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Affiliate Controller.
     /// </summary>
-    [FunctionAuth(Function = FunctionPolicyNames.Affiliate)]
+    [FunctionAuth(Function = FunctionPolicyNames.Affiliate, CurrenciesRequired = true)]
     public partial class AffiliateController : BaseController
     {
         #region Services
@@ -351,7 +351,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="username">Username of customer.</param>
         /// <returns>Action Result.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.Affiliate, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.Affiliate, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult CustomerRemove(string username)
         {
@@ -374,7 +374,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(GetResultViewModel(criteria.ErrCode));
         }
 
-        [FunctionAuth(Function = FunctionPolicyNames.Affiliate, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.Affiliate, IsHostPolicy = true)]
         public ActionResult AssignMember(AssignMemberViewModel model)
         {
             if (model.ByAffiliate)
@@ -390,7 +390,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Result Message.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.Affiliate, HasHostPolicy = true)]
+        [FunctionAuth(Function = FunctionPolicyNames.Affiliate, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult AssignMember(CheckMemberExistCriteria criteria)
         {

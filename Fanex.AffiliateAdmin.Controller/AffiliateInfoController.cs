@@ -29,7 +29,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// TODO: Update summary.
     /// </summary>
     [SessionState(SessionStateBehavior.Default)]
-    [FunctionAuth(Function = FunctionPolicyNames.Affiliate)]
+    [FunctionAuth(Function = FunctionPolicyNames.Affiliate, CurrenciesRequired = true)]
     public class AffiliateInfoController : BaseController
     {
         #region Services

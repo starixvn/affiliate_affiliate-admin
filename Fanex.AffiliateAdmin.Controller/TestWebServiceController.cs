@@ -15,7 +15,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Services;
 
-    [FunctionAuth(Function = "[SystemSettings]")]
+    [FunctionAuth(Function = FunctionPolicyNames.SystemSettings)]
     public class TestWebServiceController : BaseController
     {
         /// <summary>

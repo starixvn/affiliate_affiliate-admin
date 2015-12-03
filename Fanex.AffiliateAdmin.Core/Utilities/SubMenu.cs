@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Resources;
 
@@ -24,7 +25,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// Gets the Home Menu link.
         /// </summary>
         /// <value>Return Home Menu link..</value>
-        public static IList<Menu> Home
+        public static IEnumerable<Menu> Home
         {
             get
             {
@@ -34,7 +35,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 };
 
                 var currentSession = SessionManager.CurrentSession;
-                if (currentSession.IsIT || currentSession.CurrencyList.Any())
+                if (currentSession.HasReadPolicy(FunctionPolicyNames.AffReport) && (currentSession.IsIT || currentSession.CurrencyList.Any()))
                 {
                     menus.Insert(0, new Menu { Text = Lang.Home, Link = "~/" });
                 }

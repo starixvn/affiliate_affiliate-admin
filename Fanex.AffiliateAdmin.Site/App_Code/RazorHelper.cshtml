@@ -5,17 +5,18 @@
 @using Fanex.AffiliateAdmin.Resources
 @using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Enumerations
-@helper ListSubmenu(IList<Menu> list, int selectedMenuIndex, string activeMenu = "Home", int selectedSubMenuIndex = -1)
+@helper ListSubmenu(IEnumerable<Menu> list, int selectedMenuIndex, string activeMenu = "Home", int selectedSubMenuIndex = -1)
     {
         var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
-        if (selectedMenuIndex >= list.Count)
+        var menuLength = list.Count();
+        if (selectedMenuIndex >= menuLength)
         {
-            selectedMenuIndex = list.Count - 1;
+            selectedMenuIndex = menuLength - 1;
         }
     <ul>
-        @for (var i = 0; i < list.Count; i++)
+        @for (var i = 0; i < menuLength; i++)
         {
-            var item = list[i];
+            var item = list.ElementAt(i);
             string activeText = (i == selectedMenuIndex ? "class=\"current\"" : string.Empty);
 
             if (item.SubMenu == null || item.SubMenu.Count == 0)

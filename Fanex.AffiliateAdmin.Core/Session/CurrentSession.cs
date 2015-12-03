@@ -77,12 +77,16 @@ namespace Fanex.AffiliateAdmin.Core.Session
 
         private void InitializeFunctionMenuItems()
         {
+            _menus.Add(new FunctionMenu()
+            {
+                Name = "Home",
+                Link = "~/"
+            });
+
             if (_policies.Any() == false)
             {
                 return;
             }
-
-            AddFunctionMenu(FunctionPolicyNames.AffReport, "Home", "~/");
 
             if (IsIT || CurrencyList.Any())
             {

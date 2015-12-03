@@ -43,17 +43,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         public ActionResult Index()
         {
-            var firstMenu = SessionManager.CurrentSession.FunctionMenus.FirstOrDefault();
-
-            if (firstMenu == null)
-            {
-                return View();
-            }
-            else if (!firstMenu.Name.Equals(HomeMenuName, StringComparison.OrdinalIgnoreCase))
-            {
-                return new RedirectResult(firstMenu.Link);
-            }
-            else if (SubMenu.Home.Count == 1)
+            if (SubMenu.Home.Count() == 1)
             {
                 return new RedirectResult("~/Home/UserOnlineList");
             }
@@ -104,7 +94,6 @@ namespace Fanex.AffiliateAdmin.Controller
             return PartialView();
         }
 
-        [FunctionAuth(Function = FunctionPolicyNames.AffReport)]
         [HttpGet]
         public ActionResult UserOnlineList()
         {
@@ -116,7 +105,6 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Home Online List Criteria.</param>
         /// <returns>Action Result.</returns>
-        [FunctionAuth(Function = FunctionPolicyNames.AffReport)]
         [HttpPost]
         public ActionResult UserOnlineList(HomeOnlineListCriteria criteria)
         {

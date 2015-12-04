@@ -291,6 +291,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 return RedirectToAccessDenied();
             }
 
+            ViewBag.CanUpdateData = SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl);
             var criteria = new UserCurrencySelCriteria
             {
                 UserId = custId,

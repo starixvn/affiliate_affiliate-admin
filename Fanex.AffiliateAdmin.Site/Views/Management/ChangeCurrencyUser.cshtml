@@ -5,37 +5,39 @@
 }
 @using Fanex.AffiliateAdmin.Core.Utilities
 @model Fanex.AffiliateAdmin.Models.PermissionCurrencyViewModel
-
 @RazorHelper.ListPopupMenu(Model.Menus, 1, new Dictionary<string, object> { { "custid", Model.CustId } })
-
 @Html.ValidationSummary()
-
+@{
+    var disabledAttribute = (ViewBag.CanUpdateData ? "" : "disabled");
+}
 <div class="box">
-    <div><input type="checkbox" id="chkAll" />@Lang.AllCurrencies</div>
+    <div>
+        <input type="checkbox" id="chkAll" @disabledAttribute />@Lang.AllCurrencies</div>
     <ul>
         @foreach (var currency in Model.ListPermissionCurrency)
         {
-            <li><input type="checkbox" name="chkCurrency" value="@currency.CurrencyId" @(currency.IsChecked?"checked=checked":string.Empty) />@currency.CurrencyName</li>
+            <li>
+                <input type="checkbox" @disabledAttribute name="chkCurrency" value="@currency.CurrencyId" @(currency.IsChecked ? "checked=checked" : string.Empty) />@currency.CurrencyName</li>
         }
     </ul>
 </div>
-
 @using (Html.BeginForm("ChangeCurrencyUser", "Management", FormMethod.Post, new { @class = "form-horizontal" }))
 {
-@Html.HiddenFor(m => m.CustId)
+    @Html.HiddenFor(m => m.CustId)
 
-<div class="control-group action-grp">
-    <div class="controls">
-        <button type="submit" id="btnSubmit" class="btn">@Lang.Submit</button>
-        <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
-        <input type="hidden" id="Currencies" name="Currencies" />
+    if (ViewBag.CanUpdateData)
+    {
+    <div class="control-group action-grp">
+        <div class="controls">
+            <button type="submit" id="btnSubmit" class="btn">@Lang.Submit</button>
+            <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
+            <input type="hidden" id="Currencies" name="Currencies" />
+        </div>
     </div>
-</div>
+    }
 }
-
 @section scripts{
     @Scripts.Render("~/scripts/userpolicy")
-    
     @if (ViewBag.Result != null)
     {
         var result = (ResultViewModel)ViewBag.Result;

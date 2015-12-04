@@ -194,12 +194,11 @@ namespace Fanex.AffiliateAdmin.Controller
                 else
                 {
                     var oldSalt = GetSalt(SessionManager.CurrentSession.Username);
-                    var newSalt = Cryptography.CreateSalt();
                     var criteria = new AccountPasswordCriteria
                         {
                             CustId = SessionManager.CurrentSession.CustID,
                             OldPassword = Cryptography.CreateHash(model.OldPassword, oldSalt),
-                            NewPassword = Cryptography.CreateHash(model.NewPassword, newSalt),
+                            NewPassword = Cryptography.CreateHash(model.NewPassword, oldSalt),
                             Ip = Remote.GetClientIPAddress()
                         };
 

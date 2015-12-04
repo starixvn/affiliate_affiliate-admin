@@ -12,6 +12,8 @@ namespace Fanex.AffiliateAdmin.Services
     using Core.Services;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
 
@@ -21,6 +23,19 @@ namespace Fanex.AffiliateAdmin.Services
     public class GroupService : QueryService, IGroupService
     {
         private const string ItGroupName = "Aff_IT_Dept";
+
+        public bool IsItGroup(int groupId)
+        {
+            var criteria = new GroupListCriteria
+            {
+                IsIt = SessionManager.CurrentSession.IsIT,
+                LicenseeId = AppSettings.LicenseeID,
+                GroupId = groupId
+            };
+
+            var result = GetEntity<GroupInfo>(criteria);
+            return result == null ? false : result.GroupName.Equals(ItGroupName, System.StringComparison.OrdinalIgnoreCase);
+        }
 
         /// <summary>
         /// Get List Group.

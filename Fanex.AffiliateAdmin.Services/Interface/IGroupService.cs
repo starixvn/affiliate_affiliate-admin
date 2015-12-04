@@ -16,6 +16,8 @@ namespace Fanex.AffiliateAdmin.Services
     /// </summary>
     public interface IGroupService
     {
+        bool IsItGroup(int groupId);
+
         IEnumerable<GroupInfo> GetListGroup(GroupListCriteria criteria, bool removeItGroup = false);
 
         GroupInfo GetGroupInfo(GroupListCriteria criteria);

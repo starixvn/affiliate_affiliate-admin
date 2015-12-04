@@ -429,13 +429,14 @@ var AFFILIATE = (function ($) {
             $('.search-panel').width(gridObject.width());
         },
         resizeHeightDataGrid: function (gridOption) {
-            var colHeight = $("#gridId").data('colheight'),
-                expHeight = $("#gridId").data('expheight');
+            var height = 0;
             if ($(".search-form").is(":visible")) {
-                gridOption.gridExpandHeight = expHeight;
+                height = $("#gridId").data('expheight') || gridOption.gridExpandHeight;
             } else {
-                gridOption.gridExpandHeight = colHeight;
+                height = $("#gridId").data('colheight');
             }
+
+            gridOption.gridExpandHeight = height;
             return gridOption;
         },
         setWidthOfFormSearch: function () {

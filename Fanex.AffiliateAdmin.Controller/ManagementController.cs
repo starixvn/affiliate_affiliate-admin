@@ -12,19 +12,20 @@ namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using System.Xml;
-    using Common;
-    using Core.Session;
-    using Core.Utilities;
-    using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Models;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
-    using Models;
-    using Resources;
+    using Fanex.Common;
 
     /// <summary>
     /// TODO: Update summary.
@@ -415,7 +416,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult UserInGroup(int groupId)
         {
-            ViewBag.CanUpdateData = SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl);
+            ViewBag.CanUpdateData = 
+                SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl) && 
+                _groupService.IsItGroup(groupId);
             return View(new UserManagementViewModel { GroupId = groupId });
         }
 

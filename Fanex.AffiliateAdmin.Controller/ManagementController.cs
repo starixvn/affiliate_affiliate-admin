@@ -195,14 +195,15 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
+                var salt = Cryptography.CreateSalt();
                 var criteria = new AccountInsCriteria
                     {
                         UserId = SessionManager.CurrentSession.CustID,
                         Ip = Remote.GetClientIPAddress(),
-                        Password = Cryptography.CfsEnCode(model.Password),
+                        Password = Cryptography.CreateHash(model.Password, salt),
                         CustId = model.CustID,
                         UserName = model.Username,
-                        UserSalt = Cryptography.CreateSalt()
+                        UserSalt = salt
                     };
 
                 _accountService.AccountInsert(criteria);

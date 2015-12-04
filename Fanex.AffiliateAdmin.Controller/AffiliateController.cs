@@ -451,7 +451,6 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult MemberListByAffiliate(MemberListViewModel model)
         {
-            ViewBag.HasHostAffiliatePolicy = SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.Affiliate);
             return View(model);
         }
 

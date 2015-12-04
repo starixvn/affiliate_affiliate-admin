@@ -23,7 +23,7 @@ var Management = (function ($) {
                 Management.updatePolicy();
             });
 
-            if (!canUpdateData || !AFFILIATE.isIT()) {
+            if (window.canUpdateData === false || !AFFILIATE.isIT()) {
                 gridOption.columns.removeItem('Name', 'Password');
                 gridOption.titleInfo.customButtons = null;
             }

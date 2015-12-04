@@ -18,7 +18,7 @@
     <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="Aff_InternalLogin" SpName="Aff_InternalLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFM8BOLA.Affiliate_M8bola.bodbAdminNet" Plain="0" />
-    <Setting Key="Lrf_UserInfoSelByUserName" SpName="Lrf_UserInfoSelByUserName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
   </Function>
   <Function Name="Home Function">
     <Setting Key="AffAdmin_HomeGeneralInfo" SpName="AffAdmin_HomeGeneralInfo" DbName="DBAFFM8BOLA.Affiliate_M8bola.bodbAdminNet" Plain="0" />

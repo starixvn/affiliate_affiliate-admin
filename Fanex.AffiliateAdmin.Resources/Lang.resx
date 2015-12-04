@@ -245,7 +245,7 @@
     <value>Add New Url</value>
   </data>
   <data name="AddUserSuccess" xml:space="preserve">
-    <value>The administrator has been added successfully.</value>
+    <value>The IT user has been added successfully.</value>
   </data>
   <data name="AdjustAmountUpTo" xml:space="preserve">
     <value>The allowed adjustment is between -{0} and +{0}.</value>

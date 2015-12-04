@@ -107,7 +107,7 @@ namespace Fanex.AffiliateAdmin.Services
                 Username = userName,
             };
 
-            using (var objectDb = new ObjectDb("Lrf_UserInfoSelByUserName"))
+            using (var objectDb = new ObjectDb("AffAdmin_UserInfoSelByUserName"))
             {
                 var user = objectDb.Query<User>(param).FirstOrDefault();
 

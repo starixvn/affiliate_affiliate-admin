@@ -104,7 +104,6 @@ customer
 	        AssignMemToAff: "@Lang.AssignMemToAff"
 	    };
 
-        var canUpdateData = @(ViewBag.HasHostAffiliatePolicy ? "true" : "false");
 	    var gridOption = {
 	        language: '@AppSession.Language',
 	        showTitle: true,
@@ -113,9 +112,7 @@ customer
 	        {
 	            text: "@Lang.MemberList",
 	            showButtonsWhenNoData: true,
-	            customButtons: canUpdateData ?
-                             "<input type='button' name='btnAssign' value='' title='@Lang.AssignMemToAff' class='btnAdd btnAssign' id='btnAssign'>" :
-                             ""
+	            customButtons:"<input type='button' name='btnAssign' value='' title='@Lang.AssignMemToAff' class='btnAdd btnAssign' id='btnAssign'>"
 	        },
 	        columns: [
 	            { HeaderText: "#", Width: 30, Name: "No", CellAlign: "center" },

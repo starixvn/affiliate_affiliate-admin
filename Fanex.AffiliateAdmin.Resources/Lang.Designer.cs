@@ -452,7 +452,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The administrator has been added successfully..
+        ///   Looks up a localized string similar to The IT user has been added successfully..
         /// </summary>
         public static string AddUserSuccess {
             get {

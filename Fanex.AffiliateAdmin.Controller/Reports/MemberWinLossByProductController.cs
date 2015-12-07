@@ -14,6 +14,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Web.Mvc;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Services;
     using Fanex.MemberAdmin.DTO;
@@ -33,18 +34,19 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult GetData(MemberWinlossByProductCriteria criteria)
         {
+            var session = SessionManager.CurrentSession;
             if (criteria.ByAffiliate)
             {
-                criteria.AffName = CurrentSession.Affiliate.Username;
+                criteria.AffName = session.Affiliate.Username;
                 criteria.ExcludeTest = false;
                 criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
                 criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
             }
 
-            criteria.UserId = CurrentSession.CustID;
+            criteria.UserId = session.CustID;
 
-            criteria.IsITAdmin = CurrentSession.IsIT;
+            criteria.IsITAdmin = session.IsIT;
 
             criteria.LicenseeId = AppSettings.LicenseeID;
 

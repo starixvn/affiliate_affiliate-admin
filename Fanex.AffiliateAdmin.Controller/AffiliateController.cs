@@ -322,17 +322,18 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult MemberList(MemberListCriteria criteria)
         {
+            var session = SessionManager.CurrentSession;
             if (criteria.ByAffiliate)
             {
-                criteria.AffUsername = this.CurrentSession.Affiliate.Username;
+                criteria.AffUsername = session.Affiliate.Username;
                 criteria.AffType = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.ExcludeTest = false;
             }
 
-            criteria.IsITAdmin = this.CurrentSession.IsIT;
+            criteria.IsITAdmin = session.IsIT;
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
-            criteria.UserId = SessionManager.CurrentSession.CustID;
+            criteria.UserId = session.CustID;
             criteria.LicenseeId = AppSettings.LicenseeID;
 
             var result = _service.CustomerList(criteria);
@@ -379,7 +380,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (model.ByAffiliate)
             {
-                model.AffName = CurrentSession.Affiliate.Username;
+                model.AffName = SessionManager.CurrentSession.Affiliate.Username;
             }
 
             return View(model);
@@ -462,8 +463,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult ChangeCommissionApprove(ChangeCommissionGroupViewModel model)
         {
-            model.Currency = CurrentSession.Affiliate.CurrencyID.ToString();
-            model.UserId = SessionManager.CurrentSession.CustID;
+            var session = SessionManager.CurrentSession;
+            model.Currency = session.Affiliate.CurrencyID.ToString();
+            model.UserId = session.CustID;
             return View(model);
         }
 

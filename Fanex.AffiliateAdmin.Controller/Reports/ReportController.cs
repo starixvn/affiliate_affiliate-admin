@@ -93,7 +93,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 Name = x.ProductName
             }));
 
-            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(CurrentSession.Affiliate.Currency);
+            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(SessionManager.CurrentSession.Affiliate.Currency);
 
             var baseCurrencyList = GetBaseCurrencyList();
 
@@ -154,7 +154,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 Name = x.ProductName
             }));
 
-            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(CurrentSession.Affiliate.Currency);
+            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(SessionManager.CurrentSession.Affiliate.Currency);
 
             return View("MemberWinlossByAffiliate", model);
         }
@@ -177,8 +177,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult MemberStatistics(MemberStatisticReportCriteria criteria)
         {
-            criteria.UserId = CurrentSession.CustID;
-            criteria.IsITAdmin = CurrentSession.IsIT;
+            var session = SessionManager.CurrentSession;
+            criteria.UserId = session.CustID;
+            criteria.IsITAdmin = session.IsIT;
             criteria.LicenseeId = AppSettings.LicenseeID;
 
             if (criteria.GroupBy == 2)
@@ -253,7 +254,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var baseCurrencyList = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0",  Text = CurrentSession.Affiliate.Currency }
+                new SelectListItem { Value = "0",  Text = SessionManager.CurrentSession.Affiliate.Currency }
             };
 
             model.AddBaseCurrencyList(baseCurrencyList);
@@ -269,7 +270,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult QualifiedMembers(QualifiedMembersReportCriteria criteria)
         {
             var products = GetValidProducts(criteria.GroupId, criteria.MonthDate, criteria.Products);
-            criteria.UserId = CurrentSession.CustID;
+            criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.Products = string.Join(",", products);
             criteria.LicenseeId = AppSettings.LicenseeID;
             var members = _reportService.GetQualifiedMembers(criteria);
@@ -322,7 +323,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             var baseCurrencyList = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0",  Text = CurrentSession.Affiliate.Currency }
+                new SelectListItem { Value = "0",  Text = SessionManager.CurrentSession.Affiliate.Currency }
             };
 
             model.AddBaseCurrencyList(baseCurrencyList);
@@ -341,8 +342,8 @@ namespace Fanex.AffiliateAdmin.Controller
         private List<SelectListItem> GetBaseCurrencyList()
         {
             List<SelectListItem> baseCurrencyList;
-
-            if (CurrentSession.Affiliate.Currency.Equals(AppSettings.BaseExchange.Code))
+            var session = SessionManager.CurrentSession;
+            if (session.Affiliate.Currency.Equals(AppSettings.BaseExchange.Code))
             {
                 baseCurrencyList = new List<SelectListItem>
                     {
@@ -356,7 +357,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     {
                         new SelectListItem { Value = "0", Text = Lang.Member },
                         new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
-                        new SelectListItem { Value = "2", Text = CurrentSession.Affiliate.Currency }
+                        new SelectListItem { Value = "2", Text = session.Affiliate.Currency }
                     };
             }
 

@@ -13,6 +13,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Web.Mvc;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Services;
 
@@ -31,8 +32,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult GetData(AffiliateWinLossOverviewCriteria criteria)
         {
-            criteria.UserId = CurrentSession.CustID;
-            criteria.IsITAdmin = CurrentSession.IsIT;
+            var session = SessionManager.CurrentSession;
+            criteria.UserId = session.CustID;
+            criteria.IsITAdmin = session.IsIT;
             criteria.LicenseeId = AppSettings.LicenseeID;
             criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
             criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
@@ -71,11 +73,12 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult GetDataByAffiliate(AffiliateWinLossOverviewCriteria criteria)
         {
             const int GroupByMonth = 1;
-            criteria.AffName = CurrentSession.Affiliate.Username;
+            var session = SessionManager.CurrentSession;
+            criteria.AffName = session.Affiliate.Username;
             criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
             criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
             criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
-            criteria.Currencies = CurrentSession.Affiliate.CurrencyID.ToString();
+            criteria.Currencies = session.Affiliate.CurrencyID.ToString();
             criteria.GroupBy = GroupByMonth;
 
             return GetData(criteria);

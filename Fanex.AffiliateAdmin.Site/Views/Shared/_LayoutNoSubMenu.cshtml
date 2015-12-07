@@ -1,5 +1,5 @@
 ﻿@{
-    var currentSession = Fanex.AffiliateAdmin.Core.Session.SessionManager.CurrentSession;
+    var currentSession = SessionManager.CurrentSession;
 }
 @using Fanex.AffiliateAdmin.Core.Configurations
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body >
-    @Html.Hidden("IsIT", SessionManager.CurrentSession.IsIT ? 1 : 0)
+    @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
     <div class="container">
         <div class="row-fulid">
             @Html.Partial("_Header")

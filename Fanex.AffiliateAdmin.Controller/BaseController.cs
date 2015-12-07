@@ -37,11 +37,6 @@ namespace Fanex.AffiliateAdmin.Controller
             langManager.SetCulture(AppSession.Language);
         }
 
-        protected ICurrentSession CurrentSession
-        {
-            get { return SessionManager.CurrentSession; }
-        }
-
         protected string ErrorMessage(int errCode)
         {
             return ErrorMsg.ResourceManager.GetString("Msg" + errCode);

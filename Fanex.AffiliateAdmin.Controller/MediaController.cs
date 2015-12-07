@@ -127,7 +127,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 var criteria = new BannerInsCriteria
                 {
-                    UserId = CurrentSession.CustID,
+                    UserId = SessionManager.CurrentSession.CustID,
                     Ip = Remote.GetClientIPAddress(),
                     Content = HttpUtility.HtmlEncode(model.Content),
                     Category = model.Category,
@@ -192,7 +192,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     Content = HttpUtility.HtmlEncode(model.Content),
                     Language = model.Language,
                     Currency = model.Currency,
-                    UserId = CurrentSession.CustID,
+                    UserId = SessionManager.CurrentSession.CustID,
                     Ip = Remote.GetClientIPAddress(),
                     LicenseeId = AppSettings.LicenseeID
                 };
@@ -329,7 +329,7 @@ namespace Fanex.AffiliateAdmin.Controller
                             ImageType = model.ImageType,
                             Content = bannerStorage.RelativeBannerPath.Replace('\\', '/'),
                             Size = bannerStorage.BannerSize,
-                            UserId = CurrentSession.CustID,
+                            UserId = SessionManager.CurrentSession.CustID,
                             Ip = Remote.GetClientIPAddress(),
                             Language = model.Language,
                             LicenseeId = AppSettings.LicenseeID
@@ -427,7 +427,7 @@ namespace Fanex.AffiliateAdmin.Controller
                             ImageType = model.ImageType,
                             Content = bannerStorage.RelativeBannerPath.Replace('\\', '/'),
                             Size = bannerStorage.BannerSize,
-                            UserId = CurrentSession.CustID,
+                            UserId = SessionManager.CurrentSession.CustID,
                             Ip = Remote.GetClientIPAddress(),
                             LicenseeId = AppSettings.LicenseeID
                         };

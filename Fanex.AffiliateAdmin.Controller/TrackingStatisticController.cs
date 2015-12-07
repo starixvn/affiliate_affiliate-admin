@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
+    using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
     using Fanex.AffiliateAdmin.Models;
@@ -73,7 +74,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ReferrerList(ClickStatisticBySiteCriteria criteria)
         {
-            criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
+            criteria.AffId = SessionManager.CurrentSession.Affiliate.AffiliateId;
 
             var data = this._trackingService.GetReferrers(criteria);
 
@@ -106,7 +107,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult LandingPageList(ClickStatisticByPageCriteria criteria)
         {
-            criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
+            criteria.AffId = SessionManager.CurrentSession.Affiliate.AffiliateId;
 
             var data = this._trackingService.GetLandingPages(criteria);
 
@@ -132,7 +133,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult StatisticDetailList(ClickStatisticDetailCriteria criteria)
         {
-            criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
+            criteria.AffId = SessionManager.CurrentSession.Affiliate.AffiliateId;
 
             var data = this._trackingService.GetTrackingStatisticDetails(criteria);
 

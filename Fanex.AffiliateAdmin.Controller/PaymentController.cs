@@ -151,7 +151,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     AdminRemark = Common.CutLongText(model.AdminRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
                     AffRemark = Common.CutLongText(model.AffRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
                     PreferredLanguage = paymentDetail.PreferredLanguage,
-                    UserId = CurrentSession.CustID,
+                    UserId = SessionManager.CurrentSession.CustID,
                     IP = Remote.GetClientIPAddress()
                 };
 

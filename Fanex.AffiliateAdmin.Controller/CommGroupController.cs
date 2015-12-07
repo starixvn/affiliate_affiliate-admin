@@ -302,7 +302,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         public ActionResult ViewSetting(CommGroupSelByIdCriteria criteria)
         {
-            criteria.UserId = CurrentSession.CustID;
+            criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.LicenseeId = AppSettings.LicenseeID;
             var groups = _commGroupService.GetById(criteria);
             var date = criteria.Date == null ? SystemTimeService.GetSystemDateTime() : criteria.Date.Value;

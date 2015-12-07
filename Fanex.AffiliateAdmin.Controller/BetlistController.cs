@@ -495,7 +495,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var criteria = new ValidationCriteria
             {
                 AffId = affId,
-                AdminName = CurrentSession.Username,
+                AdminName = SessionManager.CurrentSession.Username,
                 MemberName = username ?? string.Empty,
                 LicenseeId = AppSettings.LicenseeID
             };

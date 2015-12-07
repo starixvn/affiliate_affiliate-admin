@@ -10,6 +10,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
@@ -65,7 +66,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ListLog(ViewLogListCriteria criteria)
         {
-            criteria.AffId = this.CurrentSession.Affiliate.AffiliateId;
+            criteria.AffId = SessionManager.CurrentSession.Affiliate.AffiliateId;
 
             var logList = this._viewLogService.GetViewLogList(criteria);
 

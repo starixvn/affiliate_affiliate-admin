@@ -108,7 +108,10 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult UserOnlineList(HomeOnlineListCriteria criteria)
         {
-            criteria.IsIT = SessionManager.CurrentSession.IsIT;
+            var session = SessionManager.CurrentSession;
+
+            criteria.UserId = session.CustID;
+            criteria.IsIT = session.IsIT;
             criteria.LicenseeId = AppSettings.LicenseeID;
             var listUseronlines = _homeService.UserOnlineList(criteria).ToList();
 

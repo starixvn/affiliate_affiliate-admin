@@ -5941,6 +5941,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select at least one user!.
+        /// </summary>
+        public static string PleaseSelectUser {
+            get {
+                return ResourceManager.GetString("PleaseSelectUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Policy.
         /// </summary>
         public static string Policy {

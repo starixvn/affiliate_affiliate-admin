@@ -2,10 +2,10 @@
 var Management = (function ($) {
     "use strict";
     var submitOptions = {};
-    
+
     return {
         init: function () {
-            
+
             if ($('#gridId').length > 0) {
                 Management.submitRequest();
             }
@@ -25,7 +25,6 @@ var Management = (function ($) {
 
             if (window.canUpdateData === false || !AFFILIATE.isIT()) {
                 gridOption.columns.removeItem('Name', 'Password');
-                gridOption.titleInfo.customButtons = null;
             }
         },
         reInit: function () {
@@ -110,6 +109,9 @@ var Management = (function ($) {
 
                 AFFILIATE.openDialogFrame("Management/ChangePolicyMultiUser?" + jQuery.param(param), multiCustName, { width: 500, height: 430 });
             }
+            else {
+                alert(MSG.PleaseSelectUser);
+            }
             return false;
         },
         editAccount: function (custId, userName) {
@@ -125,7 +127,7 @@ var Management = (function ($) {
             };
 
             AFFILIATE.openDialogFrame("Management/ChangePolicyUser?" + jQuery.param(param),
-                window.MSG.AccountPolicyOfUser.format(userName), 
+                window.MSG.AccountPolicyOfUser.format(userName),
                 { width: 490, height: 530 });
         },
         viewGroup: function (groupId, groupName) {

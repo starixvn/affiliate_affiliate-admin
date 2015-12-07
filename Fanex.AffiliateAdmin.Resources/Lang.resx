@@ -2827,4 +2827,7 @@
   <data name="AddNewITUser" xml:space="preserve">
     <value>Add IT User</value>
   </data>
+  <data name="PleaseSelectUser" xml:space="preserve">
+    <value>Please select at least one user!</value>
+  </data>
 </root>

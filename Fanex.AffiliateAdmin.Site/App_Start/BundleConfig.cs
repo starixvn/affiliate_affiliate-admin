@@ -70,7 +70,7 @@ namespace Fanex.AffiliateAdmin.Site
             bundles.Add(new ScriptBundle("~/bundles/loginJs").Include(
                 "~/Scripts/libraries/cryptoJS.js",
                 "~/Scripts/libraries/jquery.placeholder.js",
-                "~/Scripts/site/_Global.js",
+                "~/Scripts/libraries/jquery.blockUI.js",
                 "~/Scripts/site/Login.js"));
         }
 

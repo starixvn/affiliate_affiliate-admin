@@ -1,8 +1,8 @@
-﻿/*global AFFILIATE*/
+﻿/*global CryptoJS*/
 var LOGIN = (function ($) {
     "use strict";
     return {
-        init: function() {
+        init: function () {
             if ($("#Username").val() === "") {
                 $("#Username").focus();
             } else {
@@ -10,17 +10,17 @@ var LOGIN = (function ($) {
             }
 
             // Event click login
-            $("#btnlogin").click(function() {
+            $("#btnlogin").click(function () {
                 LOGIN.submitForm();
             });
 
-            $('.login input').bind('keypress', function(e) {
+            $('.login input').bind('keypress', function (e) {
                 if (e.keyCode === 13) {
                     LOGIN.submitForm();
                 }
             });
         },
-        submitForm: function() {
+        submitForm: function () {
             var $userName = $("#Username");
             var $password = $("#Password");
 
@@ -37,24 +37,18 @@ var LOGIN = (function ($) {
 
                 $.ajax({
                     type: "POST",
-                    url: AFFILIATE.getAbsoluteUrl("Account/Login"),
+                    url: LOGIN.getAbsoluteUrl("Account/Login"),
                     contentType: "application/json",
                     dataType: "json",
                     data: JSON.stringify(param),
-                    success: function(result) {
-                        AFFILIATE.PreHandleAjaxResult(result);
-
+                    success: function (result) {
                         if (!result.Success) {
+                            $.unblockUI();
                             alert(result.Message);
                             $("#Password").val("");
                         } else {
-                            window.top.location = AFFILIATE.getAbsoluteUrl("Home");
+                            window.top.location = LOGIN.getAbsoluteUrl("Home");
                         }
-                    },
-                    error: function() {
-                    },
-                    complete: function() {
-                        $.unblockUI();
                     }
                 });
             }
@@ -72,7 +66,7 @@ var LOGIN = (function ($) {
             var salt;
             var userName = userNameElement.val();
             if (userName) {
-                var url = AFFILIATE.getAbsoluteUrl("Account/GetUserSalt?userName=" + userName);
+                var url = LOGIN.getAbsoluteUrl("Account/GetUserSalt?userName=" + userName);
                 $.ajax({
                     url: url,
                     type: "GET",
@@ -91,8 +85,8 @@ var LOGIN = (function ($) {
             return salt;
         }
     };
-}) (jQuery);
+})(jQuery);
 $(function () {
     "use strict";
-	LOGIN.init();
+    LOGIN.init();
 });

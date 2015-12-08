@@ -1,50 +1,68 @@
 ﻿@{
     ViewBag.Title = Lang.AffiliateAdminLogin;
-    Layout = "~/Views/Shared/_LayoutNoHeader.cshtml";
+    Layout = null;
 }
-
 @model Fanex.AffiliateAdmin.Models.LoginViewModel
-
-@section css{
+@using Fanex.AffiliateAdmin.Core.Configurations
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content(string.Format("~/Content/_Sites/{0}/images/favicon.jpg?{1}", AppSettings.Layout, DateTime.Now.Ticks))" rel="shortcut icon" type="image/jpg" />
+    <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/bundles/login")
-}
-
-@using (Html.BeginForm())
-{
-<div class="login">
-    <div id="header">
-    	<div class="logo">
-        </div>
-        <div class="seperator">
-        </div>
-    </div>
-    
-    <div id="container">
-        <div class="panel">
-            <div class="control-group">
-                <div class="input-prepend">
-                    @Html.TextBoxFor(m => m.Username, new { placeholder = "Username", @class = "span4"})
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div class="login">
+            <div id="header">
+                <div class="logo">
+                </div>
+                <div class="seperator">
                 </div>
             </div>
-            <div class="control-group">
-                <div class="input-prepend">
-                    @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "span4" })
+            <div id="container">
+                <div class="panel">
+                    <div class="control-group">
+                        <div class="input-prepend">
+                            @Html.TextBoxFor(m => m.Username, new { placeholder = "Username", @class = "span4" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="input-prepend">
+                            @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "span4" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <input class="btn btn-primary" type="button" id="btnlogin" value="Submit">
+                    </div>
+                </div>
+                <div class="browser">
+                    @Lang.BestViewIn
+                    <a target="_blank" href="http://www.microsoft.com/uk/windows/internet-explorer/default.aspx">
+                        <span class="ie">&nbsp;</span></a> <a target="_blank" href="http://www.mozilla.com/en-US/products/download.html">
+                            <span class="firefox">&nbsp;</span></a> <a target="_blank" href="https://www.google.com/intl/en/chrome/browser">
+                                <span class="chrome">&nbsp;</span></a>
                 </div>
             </div>
-            <div class="control-group">
-                <input class="btn btn-primary" type="button" id="btnlogin" value="Submit">
-            </div>
+            <input id="LogInToken" name="LogInToken" value="@ViewBag.LogInToken" type ="hidden" />
         </div>
-        <div class="browser">
-            @Lang.BestViewIn
-            <a target="_blank" href="http://www.microsoft.com/uk/windows/internet-explorer/default.aspx"><span class="ie">&nbsp;</span></a>
-            <a target="_blank" href="http://www.mozilla.com/en-US/products/download.html"><span class="firefox">&nbsp;</span></a>
-            <a target="_blank" href="https://www.google.com/intl/en/chrome/browser"><span class="chrome">&nbsp;</span></a>
-        </div>
-    </div>
-    <input id="LogInToken" name="LogInToken" value="@ViewBag.LogInToken" type ="hidden" />
-</div>
-}
-@section scripts{    
+    }
+    @Scripts.Render("~/Scripts/libraries/jquery-1.11.3.min.js")
     @Scripts.Render("~/bundles/loginJs")
-}
+    <script type="text/javascript">
+        var Lang = {
+            ChangePassword: "@Lang.ChangePassword",
+            Close: "@Lang.Close"
+        };
+
+        $(document).ready(function () {
+            LOGIN.getAbsoluteUrl = function (relativeUrl) {
+                return '@Url.Content("~/")' + relativeUrl;
+            };
+        });
+    </script>
+</body>
+</html>

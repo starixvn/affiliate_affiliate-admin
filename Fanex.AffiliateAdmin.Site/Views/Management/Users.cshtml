@@ -65,7 +65,7 @@ management
             {
                 text: "@Lang.UserManagement",
                 showButtonsWhenNoData: true,
-                customButtons: canUpdateData ? '<input type="button" name="btnAdd" value="" title="@title" class="btnAdd" id="btnAddgridId">': null
+                customButtons: canUpdateData && AFFILIATE.isIT() ? '<input type="button" name="btnAdd" value="" title="@title" class="btnAdd" id="btnAddgridId">': null
             },
             columns: [
                       { HeaderText: "#", Width: 40, Name: "No", HeaderAlign: "center", CellAlign: "center" },

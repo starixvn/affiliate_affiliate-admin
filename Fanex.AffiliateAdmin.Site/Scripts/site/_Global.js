@@ -362,7 +362,7 @@ var AFFILIATE = (function ($) {
                     callback(0, parent.$("#itemperpage").val()); //Refresh parent page
                 }
 
-                setTimeout(function () { AFFILIATE.refreshParent(); }, timeout || 3000);
+                setTimeout(AFFILIATE.refreshParent, timeout || 3000);
             }
             else {
                 AFFILIATE.showErrorMsg(msg);

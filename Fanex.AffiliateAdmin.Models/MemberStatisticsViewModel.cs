@@ -54,7 +54,8 @@ namespace Fanex.AffiliateAdmin.Models
                     new SelectListItem
                     {
                         Text = Lang.Month,
-                        Value = "2"
+                        Value = "2",
+                        Selected = true
                     }
                 };
 

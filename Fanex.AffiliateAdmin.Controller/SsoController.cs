@@ -161,20 +161,25 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 FormsAuthentication.SetAuthCookie(user.Username, true);
 
-                var policies = _accountService.UserPolicySel(new UserPolicyCriteria
-                    {
-                        CustID = user.CustID,
-                        LicenseeId = AppSettings.LicenseeID
-                    });
-                var currencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
-                    {
-                        UserId = user.CustID,
-                        LicenseeId = AppSettings.LicenseeID
-                    }).ToList();
-                SessionManager.CurrentSession = new CurrentSession(user, policies, currencyList);
+                InitializeSession(user);
             }
 
             return result;
+        }
+
+        private void InitializeSession(Account user)
+        {
+            var policies = _accountService.UserPolicySel(new UserPolicyCriteria
+            {
+                CustID = user.CustID,
+                LicenseeId = AppSettings.LicenseeID
+            });
+            var currencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
+            {
+                UserId = user.CustID,
+                LicenseeId = AppSettings.LicenseeID
+            }).ToList();
+            SessionManager.CurrentSession = new CurrentSession(user, policies, currencyList);
         }
 
         private string ErrorMessage(int errCode)
@@ -263,6 +268,15 @@ namespace Fanex.AffiliateAdmin.Controller
                 if (criteria.Username == CurrentUserName)
                 {
                     AppSession.Language = criteria.Language;
+                    var session = SessionManager.CurrentSession;
+                    var account = new Account()
+                    {
+                        CustID = session.CustID,
+                        Username = session.Username,
+                        OnUserID = session.OnUserID,
+                        IsIT = session.IsIT
+                    };
+                    InitializeSession(account);
                     return Redirect("~/Home/Index");
                 }
             }

@@ -138,7 +138,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 };
 
                 _mediaService.AddBanner(criteria);
-                ViewBag.Result = GetResultViewModel(criteria.ErrCode);
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
 
             return View(model);

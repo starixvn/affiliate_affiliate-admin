@@ -89,6 +89,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult Users()
         {
             ViewBag.CanUpdateData = SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl);
+            ViewBag.IsIt = SessionManager.CurrentSession.IsIT;
             return View(new UserManagementViewModel());
         }
 

@@ -374,7 +374,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 _domainService.DomainControlAdd(criteria);
 
-                ViewBag.Result = GetResultViewModel(criteria.ErrCode);
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
 
             return DomainControlAdd();

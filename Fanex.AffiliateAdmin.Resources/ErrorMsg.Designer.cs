@@ -340,7 +340,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry ! Cannot delete the affiliate domain since it is being used..
+        ///   Looks up a localized string similar to Sorry! Cannot delete the affiliate domain since it is being used..
         /// </summary>
         public static string Msg2002 {
             get {
@@ -349,7 +349,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry ! Cannot delete the member domain since it is being used..
+        ///   Looks up a localized string similar to Sorry! Cannot delete the member domain since it is being used..
         /// </summary>
         public static string Msg2003 {
             get {

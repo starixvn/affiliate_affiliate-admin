@@ -109,7 +109,7 @@
   <item LicenseeName="athena000" Environment="UAT" SpName="Aff_UserLogin" Suffix="_xtest"></item>
   <item LicenseeName="athena000" Environment="UAT" SpName="Aff_UserLogout" Suffix="_xtest"></item>
   <item LicenseeName="athena000" Environment="UAT" SpName="Aff_WriteLog_UserLog_Login" Suffix="_xtest"></item>
-  <item LicenseeName="athena000" Environment="UAT" SpName="AffAdmin_SystemSettingsIns.prod" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="UAT" SpName="AffAdmin_SystemSettingsIns" Suffix="_xtest"></item>
   <item LicenseeName="athena000" Environment="UAT" SpName="AffAdmin_SystemSupportedCurrencies" Suffix="_xtest"></item>
   <item LicenseeName="athena000" Environment="UAT" SpName="AffAdmin_AccountUpdPwd" Suffix="_xtest"></item>
   <item LicenseeName="athena000" Environment="UAT" SpName="AffAdmin_AdminUpdPwd" Suffix="_xtest"></item>

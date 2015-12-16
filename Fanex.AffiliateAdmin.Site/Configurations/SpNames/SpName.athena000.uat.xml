@@ -66,7 +66,7 @@
     <Setting Key="AffAdmin_SystemSettingsSelByName" SpName="AffAdmin_SystemSettingsSelByName" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemSettingsSelByType" SpName="AffAdmin_SystemSettingsSelByType" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemSettingsSelByID" SpName="AffAdmin_SystemSettingsSelByID" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_SystemSettingsIns" SpName="AffAdmin_SystemSettingsIns" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsIns" SpName="AffAdmin_SystemSettingsIns_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemSettingsUpd" SpName="AffAdmin_SystemSettingsUpd" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemSettingsDel" SpName="AffAdmin_SystemSettingsDel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemSettingsSelAll" SpName="AffAdmin_SystemSettingsSelAll" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />

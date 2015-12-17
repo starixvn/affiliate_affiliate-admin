@@ -136,6 +136,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="model">Payment Update View Model.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
+        [FunctionAuth(Function = FunctionPolicyNames.Payment, IsHostPolicy = true)]
         public ActionResult UpdatePayment(PaymentUpdateViewModel model)
         {
             var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria { TransId = model.TransId, LicenseeId = AppSettings.LicenseeID });

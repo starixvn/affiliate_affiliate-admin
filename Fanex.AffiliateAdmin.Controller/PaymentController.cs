@@ -20,6 +20,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Session;
     using Core.Utilities;
     using Criterias;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Models;
 
@@ -156,9 +157,9 @@ namespace Fanex.AffiliateAdmin.Controller
                     IP = Remote.GetClientIPAddress()
                 };
 
-                UpdatePayment(criteria, paymentDetail.AffId, paymentDetail.RefId, paymentDetail.TransferAmount);
+                var result = UpdatePayment(criteria, paymentDetail.AffId, paymentDetail.RefId, paymentDetail.TransferAmount);
 
-                if (criteria.ErrCode == 0)
+                if (result.Success)
                 {
                     var emailType = criteria.Status.ToLower() == "approved" ? EmailTemplateType.PaymentApprove : EmailTemplateType.PaymentCancel;
                     var emailTemplate = new EmailTemplate(emailType, criteria.PreferredLanguage, criteria.MailOption);
@@ -176,11 +177,13 @@ namespace Fanex.AffiliateAdmin.Controller
                     };
 
                     emailTemplate.ResolvePath(Server).Send(paymentDetail.Email, emailTemplateInfo);
-                    ViewBag.Result = GetResultViewModel(criteria.ErrCode);
+                    ViewBag.Result = GetResultViewModel(result.ErrorCode, result.ErrorMessage);
                 }
                 else
                 {
-                    ModelState.AddModelError("ErrMsg", Common.GetErrorMsg(criteria.ErrCode));
+                    var message = string.IsNullOrEmpty(result.ErrorMessage) ? Common.GetErrorMsg(result.ErrorCode) : result.ErrorMessage;
+
+                    ModelState.AddModelError("ErrMsg", string.IsNullOrEmpty(message) ? "Error" + result.ErrorCode + ": " + Lang.ErrorRequest : message);
                 }
             }
 
@@ -237,38 +240,43 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="balAccCustId">The balance account customer id.</param>
         /// <param name="ibcRefNo">The IBC preference no.</param>
         /// <param name="ibcTransId">The IBC trans id.</param>
-        /// <param name="errMsg">The error MSG.</param>
         /// <returns>Returns result when calling service to transfer amount to player account.</returns>
-        private bool TransferToPlayerAcc(
+        private ResultViewModel TransferToPlayerAcc(
             string systemName,
             string playerUsername,
             double amount,
             int balAccCustId,
             ref long ibcRefNo,
-            ref long ibcTransId,
-            ref string errMsg)
+            ref long ibcTransId)
         {
+            var result = new ResultViewModel();
+
             if (AppSettings.LocalTest)
             {
-                return true;
+                result.Success = true;
+                return result;
             }
 
             var xml = ServiceWrapper.Transfer(systemName, playerUsername, amount, balAccCustId);
             if (xml == null || xml.IsEmpty)
             {
-                return false;
+                result.ErrorMessage = "Empty result from API!";
+                return result;
             }
 
-            int errCode = Convert.ToInt32(xml.Element("ReturnCode").Value);
-            if (errCode == 0)
+            result.ErrorCode = Convert.ToInt32(xml.Element("ReturnCode").Value);
+            if (result.ErrorCode == 0)
             {
+                result.Success = true;
                 ibcRefNo = Convert.ToInt64(xml.Element("IBCRefNo").Value);
                 ibcTransId = Convert.ToInt64(xml.Element("IBCTransId").Value);
-                return true;
+            }
+            else
+            {
+                result.ErrorMessage = xml.Element("ReturnMessage").Value;
             }
 
-            errMsg = xml.Element("ReturnMessage").Value;
-            return false;
+            return result;
         }
 
         /// <summary>
@@ -278,8 +286,10 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="affId">The affiliate id.</param>
         /// <param name="refId">The preference unique identifier.</param>
         /// <param name="transferAmount">The amount.</param>
-        private void UpdatePayment(PaymentUpdateCriteria criteria, long affId, long refId, decimal transferAmount)
+        private ResultViewModel UpdatePayment(PaymentUpdateCriteria criteria, long affId, long refId, decimal transferAmount)
         {
+            ResultViewModel result;
+
             criteria.LicenseeId = AppSettings.LicenseeID;
             if (criteria.Status.ToLower() == "approved")
             {
@@ -295,29 +305,46 @@ namespace Fanex.AffiliateAdmin.Controller
                 });
 
                 long ibcRefNo = 0, ibcTransId = 0;
-                var errMsg = string.Empty;
-                if (TransferToPlayerAcc(
+                result = TransferToPlayerAcc(
                     playerPayoutInfo.SystemName,
                     playerPayoutInfo.PlayerUsername,
                     Math.Abs(Convert.ToDouble(transferAmount)),
                     balAccCustId,
                     ref ibcRefNo,
-                    ref ibcTransId,
-                    ref errMsg))
+                    ref ibcTransId);
+
+                if (result.Success)
                 {
-                    string ibcUsername = string.Empty, playerCurrency = string.Empty;
-                    ////Update IbcUsername for the payout with non-deposited Acc
-                    IsExistLicenseeCustInfo(playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername, ref ibcUsername, ref playerCurrency, ref errMsg);
-                    criteria.IbcRefNo = ibcRefNo;
-                    criteria.IbcTransId = ibcTransId;
-                    criteria.IbcUsername = ibcUsername;
-                    _paymentService.UpdatePayment(criteria);
+                    string ibcUsername = string.Empty, playerCurrency = string.Empty, errorMessage = string.Empty;
+
+                    // Update IbcUsername for the payout with non-deposited Acc
+                    if (IsExistLicenseeCustInfo(
+                        playerPayoutInfo.SystemName,
+                        playerPayoutInfo.PlayerUsername,
+                        ref ibcUsername,
+                        ref playerCurrency,
+                        ref errorMessage))
+                    {
+                        criteria.IbcRefNo = ibcRefNo;
+                        criteria.IbcTransId = ibcTransId;
+                        criteria.IbcUsername = ibcUsername;
+                        _paymentService.UpdatePayment(criteria);
+                    }
+                    else
+                    {
+                        result.ErrorMessage = errorMessage;
+                    }
                 }
             }
             else
             {
+                result = new ResultViewModel();
                 _paymentService.UpdatePayment(criteria);
             }
+
+            result.ErrorCode = criteria.ErrCode;
+            result.Success = result.ErrorCode == 0;
+            return result;
         }
 
         #endregion Helpers

@@ -45,24 +45,12 @@ namespace Fanex.AffiliateAdmin.Services
 
         public PaymentDetail GetPaymentDetail(PaymentDetailCriteria criteria)
         {
-            var data = GetData<PaymentDetail>(criteria);
-            if (data.Count() > 0)
-            {
-                return data.First();
-            }
-
-            return null;
+            return GetEntity<PaymentDetail>(criteria);
         }
 
         public PlayerPayoutInfo GetPlayerPayoutInfo(PlayerPayoutInfoSelCriteria criteria)
         {
-            var data = GetData<PlayerPayoutInfo>(criteria);
-            if (data.Count() > 0)
-            {
-                return data.First();
-            }
-
-            return null;
+            return GetEntity<PlayerPayoutInfo>(criteria);
         }
 
         public int GetCustIDByUsername(DummyAccIdCriteria criteria)

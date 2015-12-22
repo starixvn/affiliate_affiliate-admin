@@ -2,7 +2,6 @@
 <Functions>
   <Function Name="Core">
     <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="" Plain="0" />
-    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="" Plain="0" />
     <Setting Key="AffAdmin_AdminUpdPwd" SpName="AffAdmin_AdminUpdPwd" DbName="" Plain="0" />
   </Function>
   <Function Name="ExchangeRate">

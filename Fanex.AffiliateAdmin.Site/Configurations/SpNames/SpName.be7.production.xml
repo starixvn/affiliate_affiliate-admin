@@ -2,7 +2,6 @@
 <Functions>
   <Function Name="Core">
     <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AdminUpdPwd" SpName="AffAdmin_AdminUpdPwd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="ExchangeRate">

@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System;
     using System.Globalization;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using System.Web.Security;
     using Common;
@@ -78,6 +79,10 @@ namespace Fanex.AffiliateAdmin.Controller
                 ViewBag.EndTime = endTime;
 
                 return Redirect("~/Notify");
+            }
+            else if (!Regex.IsMatch(Request.UserHostAddress, AppSettings.GetValue("CompanyIPRange")))
+            {
+                return Redirect("~/Notify/AccessDenied");
             }
             else
             {

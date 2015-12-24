@@ -66,8 +66,8 @@ var Management = (function ($) {
             var param = {
                 groupId: groupId
             };
-            var width = AFFILIATE.isIT() ? 540 : 445;
-            AFFILIATE.openDialogFrame("Management/UserInGroup?" + jQuery.param(param), window.MSG.Group + ' - ' + groupName, { width: width, height: 600 });
+            
+            AFFILIATE.openDialogFrame("Management/UserInGroup?" + jQuery.param(param), window.MSG.Group + ' - ' + groupName, { width: 540, height: 600 });
         },
         editRolePolicy: function (groupId, groupName) {
             var param = {

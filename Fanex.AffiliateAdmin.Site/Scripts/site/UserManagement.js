@@ -134,9 +134,9 @@ var Management = (function ($) {
             var param = {
                 groupId: groupId
             };
-            var width = AFFILIATE.isIT() ? 530 : 445;
+
             AFFILIATE.openDialogFrame("Management/UserInGroup?" + jQuery.param(param), window.MSG.Group + " - "
-                + groupName, { width: width, height: 650 });
+                + groupName, { width: 530, height: 650 });
         },
         editPassword: function (custId, userName) {
             var param = {

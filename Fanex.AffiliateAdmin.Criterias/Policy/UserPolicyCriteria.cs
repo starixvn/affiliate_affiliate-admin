@@ -28,6 +28,8 @@ namespace Fanex.AffiliateAdmin.Criterias
         /// <value>Group ID of user.</value>
         public int GroupID { get; set; }
 
+        public int LicenseeId { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_Con_AdminPolicySelByCustID";

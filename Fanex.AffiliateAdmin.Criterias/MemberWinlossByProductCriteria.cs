@@ -60,6 +60,8 @@ namespace Fanex.AffiliateAdmin.Criterias
         [SpParam(SqlParamName = "ProductIds")]
         public string Products { get; set; }
 
+        public int LicenseeId { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_MemberWinLossByProductReport";

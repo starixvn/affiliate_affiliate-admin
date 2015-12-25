@@ -9,6 +9,8 @@ namespace Fanex.AffiliateAdmin.Criterias
     {
         public string CountryID { get; set; }
 
+        public int LicenseeId { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_DomainControlSel";

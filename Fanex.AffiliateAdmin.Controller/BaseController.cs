@@ -12,6 +12,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using Core;
     using Core.Filter;
     using Core.Session;
@@ -21,6 +22,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Base Controller.
     /// </summary>
+    [SessionState(SessionStateBehavior.ReadOnly)]
     [Undermaintenance]
     [Authorization]
     public class BaseController : Controller
@@ -35,11 +37,6 @@ namespace Fanex.AffiliateAdmin.Controller
             langManager.SetCulture(AppSession.Language);
         }
 
-        protected ICurrentSession CurrentSession
-        {
-            get { return SessionManager.CurrentSession; }
-        }
-
         protected string ErrorMessage(int errCode)
         {
             return ErrorMsg.ResourceManager.GetString("Msg" + errCode);
@@ -48,6 +45,11 @@ namespace Fanex.AffiliateAdmin.Controller
         protected ActionResult ErrorPage(string message)
         {
             return View("~/Views/Notify/Message.cshtml", (object)message);
+        }
+
+        protected ActionResult RedirectToAccessDenied()
+        {
+            return new RedirectResult("~/Notify/AccessDenied");
         }
 
         /// <summary>

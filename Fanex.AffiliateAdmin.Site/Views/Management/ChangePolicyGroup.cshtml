@@ -3,25 +3,29 @@
     ViewBag.Title = Lang.ChangePolicyGroup;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
-
 @model Fanex.AffiliateAdmin.Models.PolicyViewModel
 <br />
 @Html.ValidationSummary()
-<div id="gridId" class="freegrid"></div>
+<div id="gridId" class="freegrid">
+</div>
 @using (Html.BeginForm("ChangePolicyGroup", "Management", FormMethod.Post, new { @class = "form-horizontal" }))
 {
-@Html.HiddenFor(m => m.GroupId)
+    @Html.HiddenFor(m => m.GroupId)
 
-<div class="control-group action-grp">
-    <div class="controls">
-        <button type="submit" id="btnUpdate" class="btn">@Lang.Update</button>
-        <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
+    if (ViewBag.CanUpdateData)
+    {
+    <div class="control-group action-grp">
+        <div class="controls">
+            <button type="submit" id="btnUpdate" class="btn">@Lang.Update</button>
+            <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
+        </div>
     </div>
-</div>
-<input type="hidden" id="GroupPolicy" name="GroupPolicy"/>
+    }
+    <input type="hidden" id="GroupPolicy" name="GroupPolicy" />
 }
 @section scripts{
     <script type="text/javascript">
+        var canUpdateData = @(ViewBag.CanUpdateData ? "true" : "false");
         var gridOption = {
             language: '@AppSession.Language',
             customizeHeader: true,
@@ -38,12 +42,16 @@
                       { HeaderText: "@Lang.Function", Width: 150, Name: "FuncDesc" },
                       { HeaderText: "@Lang.Read", Width: 80, Name: "GroupRead", CellAlign: "center", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
-                            return "<input type='checkbox' class='p-check' id='gr_" + rowData.FuncID + "' name='GroupRead' " + (cell.Value ? "checked=checked" : "") + " />";
+                            if(canUpdateData)
+                                return "<input type='checkbox' class='p-check' id='gr_" + rowData.FuncID + "' name='GroupRead' " + (cell.Value ? "checked=checked" : "") + " />";
+                            return "<input disabled type='checkbox'" + (cell.Value ? "checked=checked" : "") + " />";
                         }
                       },
                       { HeaderText: "@Lang.Host", Width: 80, Name: "GroupHost", CellAlign: "center", Formatter:
                         function (rowIndex, rowData, cell, cellFormated) {
-                            return "<input type='checkbox' class='p-check' id='gh_" + rowData.FuncID + "' name='GroupHost' " + (cell.Value ? "checked=checked" : "") + " />";
+                            if(canUpdateData)
+                                return "<input type='checkbox' class='p-check' id='gh_" + rowData.FuncID + "' name='GroupHost' " + (cell.Value ? "checked=checked" : "") + " />";
+                            return "<input disabled type='checkbox'" + (cell.Value ? "checked=checked" : "") + " />";
                         }
                       }
                    ],

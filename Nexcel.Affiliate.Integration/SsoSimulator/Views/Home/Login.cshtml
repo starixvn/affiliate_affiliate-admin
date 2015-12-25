@@ -1,0 +1,47 @@
+﻿@section styles{
+    @Styles.Render("~/content/home/login.css")
+}
+
+@using (Html.BeginForm())
+{
+<div class="login">
+    <div id="header">
+    	<div class="logo">
+        </div>
+        <div class="seperator">
+        </div>
+    </div>
+    
+    <div id="container">
+        <div class="panel">
+            <div class="control-group">
+                <div class="input-prepend">
+                    <input type="text" id="Username" name="Username" placeholder="Username" class="span4" />
+                    
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="input-prepend">
+                    <input type="password" id="Password" name="Password" placeholder="Password" class="span4" />
+                </div>
+            </div>
+            <div class="control-group">
+                <input class="btn btn-primary" type="submit" id="btnlogin" value="Submit">
+            </div>
+        </div>
+        <div class="browser">
+            Best view in:
+            <a target="_blank" href="http://www.microsoft.com/uk/windows/internet-explorer/default.aspx"><span class="ie">&nbsp;</span></a>
+            <a target="_blank" href="http://www.mozilla.com/en-US/products/download.html"><span class="firefox">&nbsp;</span></a>
+            <a target="_blank" href="https://www.google.com/intl/en/chrome/browser"><span class="chrome">&nbsp;</span></a>
+        </div>
+    </div>
+</div>
+}
+
+<script>
+    var msg = "@(ViewBag.Message)";
+    if (msg) {
+        alert(msg);
+    }
+</script>

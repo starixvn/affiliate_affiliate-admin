@@ -1,24 +1,23 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions>
   <Function Name="Core">
-    <Setting Key="AffAdmin_Login" SpName="AffAdmin_Login" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AdminUpdPwd" SpName="AffAdmin_AdminUpdPwd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-  </Function>  
+  </Function>
   <Function Name="ExchangeRate">
     <Setting Key="AffAdmin_ExchangeSel" SpName="AffAdmin_ExchangeSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_ExchangeAutoRefreshUpd" SpName="AffAdmin_ExchangeAutoRefreshUpd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_ExchangeUpdate" SpName="AffAdmin_ExchangeUpdate" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CopyRateFromMarket" SpName="AffAdmin_CopyRateFromMarket" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-	<Setting Key="AffAdmin_GetDefaultPSPExchange" SpName="AffAdmin_GetDefaultPSPExchange" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_GetDefaultPSPExchange" SpName="AffAdmin_GetDefaultPSPExchange" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Aff-Account">
-    <Setting Key="AffAdmin_Login" SpName="AffAdmin_Login" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CheckIn" SpName="AffAdmin_CheckIn" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Aff_InternalLogin" SpName="Aff_InternalLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
   </Function>
   <Function Name="Home Function">
     <Setting Key="AffAdmin_HomeGeneralInfo" SpName="AffAdmin_HomeGeneralInfo" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
@@ -37,7 +36,7 @@
     <Setting Key="AffAdmin_CommGroupDel" SpName="AffAdmin_CommGroupDel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupAssign" SpName="AffAdmin_CommGroupAssign" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupSelByID" SpName="AffAdmin_CommGroupSelByID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-	<Setting Key="AffAdmin_CommGroup_SelActiveList" SpName="AffAdmin_CommGroup_SelActiveList" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroup_SelActiveList" SpName="AffAdmin_CommGroup_SelActiveList" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Affiliate">
     <Setting Key="AffAdmin_AffiliateUpdPwd" SpName="AffAdmin_AffiliateUpdPwd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
@@ -46,15 +45,15 @@
     <Setting Key="AffAdmin_AffiliateSel" SpName="AffAdmin_AffiliateSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateSelFavorite" SpName="AffAdmin_AffiliateSelFavorite" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_EmailHistorySel" SpName="AffAdmin_EmailHistorySel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-	<Setting Key="AffAdmin_EmailHistoryDel" SpName="AffAdmin_EmailHistoryDel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_EmailHistoryDel" SpName="AffAdmin_EmailHistoryDel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_MemberListSel" SpName="AffAdmin_MemberListSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-	<Setting Key="AffAdmin_GetMemberDetail" SpName="AffAdmin_GetMemberDetail" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_GetMemberDetail" SpName="AffAdmin_GetMemberDetail" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_MemberDel" SpName="AffAdmin_MemberDel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AccountTypeSel" SpName="AffAdmin_AccountTypeSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CheckMemberExist" SpName="AffAdmin_CheckMemberExist" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CustomerInsMemberManually" SpName="AffAdmin_CustomerInsMemberManually" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateUpdAccountType" SpName="AffAdmin_AffiliateUpdAccountType" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="Aff_CustomerSelByUserName" SpName="Aff_CustomerSelByUserName" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />	
+    <Setting Key="Aff_CustomerSelByUserName" SpName="Aff_CustomerSelByUserName" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="System Settings">
     <Setting Key="AffAdmin_SystemAllSupportedCurrencies" SpName="AffAdmin_SystemAllSupportedCurrencies" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
@@ -100,10 +99,9 @@
     <Setting Key="AffAdmin_PlayerPayoutInfoSel" SpName="AffAdmin_PlayerPayoutInfoSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_PaymentRequestUpd" SpName="AffAdmin_PaymentRequestUpd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateCommissionReport" SpName="AffAdmin_AffiliateCommissionReport" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_CashBackUpdate" SpName="AffAdmin_CashBackUpdate" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="Task_Aff_MonthlyTransfer" SpName="Task_Aff_MonthlyTransfer" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_IsMonthlyTransfer" SpName="AffAdmin_IsMonthlyTransfer" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="Aff_DummyAccID" SpName="Aff_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0"/>
+    <Setting Key="Aff_DummyAccID" SpName="Aff_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Message">
     <Setting Key="AffAdmin_HotNewsSel" SpName="AffAdmin_HotNewsSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
@@ -130,12 +128,11 @@
     <Setting Key="AffAdmin_DomainControlSelById" SpName="AffAdmin_DomainControlSelById" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Management">
-    <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AccountUpd" SpName="AffAdmin_Con_AccountUpd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AccountIns" SpName="AffAdmin_Con_AccountIns" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AccountUpdClosed" SpName="AffAdmin_Con_AccountUpdClosed" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AccountUpdPwd" SpName="AffAdmin_AccountUpdPwd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
@@ -158,7 +155,7 @@
     <Setting Key="AffAdmin_BannerDel" SpName="AffAdmin_BannerDel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_BannerTypeSel" SpName="AffAdmin_BannerTypeSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
   </Function>
-  
+
   <Function name="AffiliateInfo">
     <Setting Key="AffAdmin_AffiliateSelGeneralInfo" SpName="AffAdmin_AffiliateSelGeneralInfo" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_StatisticsSel" SpName="AffAdmin_StatisticsSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
@@ -168,7 +165,7 @@
     <Setting Key="AffAdmin_PreferLangUpd" SpName="AffAdmin_PreferLangUpd" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateUnlock" SpName="AffAdmin_AffiliateUnlock" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateSupportedLanguagesSel" SpName="AffAdmin_AffiliateSupportedLanguagesSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_UpdAffType" SpName="AffAdmin_UpdAffType" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />    
+    <Setting Key="AffAdmin_UpdAffType" SpName="AffAdmin_UpdAffType" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
   </Function>
 
   <Function name="AffiliateStatement">
@@ -180,7 +177,7 @@
     <Setting Key="AffAdmin_AffiliatePaymentMethodSel" SpName="AffAdmin_AffiliatePaymentMethodSel" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateSelEditInfo" SpName="AffAdmin_AffiliateSelEditInfo" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0">
       <Mapping DataField="SiteURL" ObjectProperty="SiteLink"></Mapping>
-    </Setting> 
+    </Setting>
     <Setting Key="AffAdmin_AffiliateUpdInfo" SpName="AffAdmin_AffiliateUpdInfo" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
   </Function>
 
@@ -211,20 +208,20 @@
 
   <Function name="Reports">
     <Setting Key="AffAdmin_CompanyWinlossReport" SpName="AffAdmin_CompanyWinlossReport" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-	<Setting Key="AffAdmin_CompanyWinLossByProductReport" SpName="AffAdmin_CompanyWinLossByProductReport" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CompanyWinLossByProductReport" SpName="AffAdmin_CompanyWinLossByProductReport" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_MemberStatisticsReport" SpName="AffAdmin_MemberStatisticsReport" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateWinLossReport" SpName="AffAdmin_AffiliateWinLossReport" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-	<Setting Key="AffAdmin_AffiliateWinLossByProductReport" SpName="AffAdmin_AffiliateWinLossByProductReport" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateWinLossByProductReport" SpName="AffAdmin_AffiliateWinLossByProductReport" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_MemberWinLossReport" SpName="AffAdmin_MemberWinLossReport" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-	<Setting Key="AffAdmin_MemberWinLossByProductReport" SpName="AffAdmin_MemberWinLossByProductReport" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_MemberWinLossByProductReport" SpName="AffAdmin_MemberWinLossByProductReport" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_QualifiedMembersReport" SpName="AffAdmin_QualifiedMembersReport" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-	<Setting Key="Aff_BetList_CheckBelonging" SpName="Aff_BetList_CheckBelonging" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_BetList_CheckBelonging" SpName="Aff_BetList_CheckBelonging" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
   </Function>
 
-    <Function name="AdditionalSpsForBetlist">
+  <Function name="AdditionalSpsForBetlist">
     <Setting Key="Aff_User_GetExchangeRate" SpName="Aff_User_GetExchangeRate" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
     <Setting Key="Aff_User_ProductSelByAffID" SpName="Aff_User_ProductSelByAffID" DbName="DBAFFBE7.Affiliate_BE7.bodbAdminNet" Plain="0" />
-	<Setting Key="Aff_User_DummyAccID" SpName="Aff_User_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_User_DummyAccID" SpName="Aff_User_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
   </Function>
-
 </Functions>
+		

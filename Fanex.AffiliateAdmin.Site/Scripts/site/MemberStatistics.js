@@ -96,22 +96,6 @@ var Report = (function ($) {
         gridOption.columns[DATE_COL].HeaderText = groupBy === GROUP_BY_DATE ? window.MSG.Date : window.MSG.Month;
     };
 
-    var toggleRangeTime = function (value) {
-        var disabled = value === GROUP_BY_ALL;
-
-        if (disabled) {
-            $("#FromDate").attr("disabled", "disabled");
-            $("#ToDate").attr("disabled", "disabled");
-            $("#FromMonth").attr("disabled", "disabled");
-            $("#ToMonth").attr("disabled", "disabled");
-        } else {
-            $("#FromDate").removeAttr("disabled");
-            $("#ToDate").removeAttr("disabled");
-            $("#FromMonth").removeAttr("disabled");
-            $("#ToMonth").removeAttr("disabled");
-        }
-    };
-
     return {
         init: function () {
 
@@ -142,7 +126,8 @@ var Report = (function ($) {
 
         changeGroupBy: function (value) {
             var previous = $('#PreviousGroupBy').val();
-            toggleRangeTime(value);
+            var disabled = value === GROUP_BY_ALL;
+            $("#FromDate, #ToDate, #FromMonth, #ToMonth").prop("disabled", disabled);
 
             switch (value) {
                 case GROUP_BY_DATE:

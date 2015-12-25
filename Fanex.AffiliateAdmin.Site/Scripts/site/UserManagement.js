@@ -1,9 +1,11 @@
-﻿/*global AFFILIATE,gridOption,PageVar*/
+﻿/*global AFFILIATE,gridOption, MSG, canUpdateData*/
 var Management = (function ($) {
     "use strict";
     var submitOptions = {};
+
     return {
         init: function () {
+
             if ($('#gridId').length > 0) {
                 Management.submitRequest();
             }
@@ -20,6 +22,10 @@ var Management = (function ($) {
             $(".popup").on("click", ".icon-assign-permission-to-multi-user", function () {
                 Management.updatePolicy();
             });
+
+            if (window.canUpdateData === false || !AFFILIATE.isIT()) {
+                gridOption.columns.removeItem('Name', 'Password');
+            }
         },
         reInit: function () {
             $('input:checkbox').change(function () {
@@ -68,6 +74,8 @@ var Management = (function ($) {
                     } else {
                         Management.reInit();
                     }
+
+                    $('.search-panel').width($('.grid-title').width());
                 },
                 complete: function () {
                     $.unblockUI();
@@ -75,7 +83,7 @@ var Management = (function ($) {
             });
         },
         addUser: function () {
-            AFFILIATE.openDialogFrame("Management/AddUser", window.MSG.AddNewUser, { width: 500, height: 400 });
+            AFFILIATE.openDialogFrame("Management/AddUser", window.MSG.AddNewUser, { width: 500, height: 250 });
             return false;
         },
         updatePolicy: function () {
@@ -101,6 +109,9 @@ var Management = (function ($) {
 
                 AFFILIATE.openDialogFrame("Management/ChangePolicyMultiUser?" + jQuery.param(param), multiCustName, { width: 500, height: 430 });
             }
+            else {
+                alert(MSG.PleaseSelectUser);
+            }
             return false;
         },
         editAccount: function (custId, userName) {
@@ -110,19 +121,14 @@ var Management = (function ($) {
 
             AFFILIATE.openDialogFrame("Management/EditUser?" + jQuery.param(param), userName, { width: 500, height: 270 });
         },
-        changeStatus: function (obj, custId) {
-            if (!Management.updateStatus(custId, Management.getStatus(obj, custId))) {
-                Management.getStatus(obj);
-            } else {
-                Management.ReRenderAfterPaged(0, $("#itemperpage").val());
-            }
-        },
-        viewAccountPolicy: function (custId, userName, groupName) {
+        viewAccountPolicy: function (custId, userName) {
             var param = {
                 custId: custId
             };
 
-            AFFILIATE.openDialogFrame("Management/ChangePolicyUser?" + jQuery.param(param), window.MSG.AccountPolicyOfUser.format(userName), { width: 490, height: 530 });
+            AFFILIATE.openDialogFrame("Management/ChangePolicyUser?" + jQuery.param(param),
+                window.MSG.AccountPolicyOfUser.format(userName),
+                { width: 490, height: 530 });
         },
         viewGroup: function (groupId, groupName) {
             var param = {
@@ -130,7 +136,7 @@ var Management = (function ($) {
             };
 
             AFFILIATE.openDialogFrame("Management/UserInGroup?" + jQuery.param(param), window.MSG.Group + " - "
-                + groupName, { width: 960, height: 650 });
+                + groupName, { width: 530, height: 650 });
         },
         editPassword: function (custId, userName) {
             var param = {
@@ -138,49 +144,9 @@ var Management = (function ($) {
                 userName: userName
             };
 
-            AFFILIATE.openDialogFrame("Management/ChangePassword?" + jQuery.param(param), 
+            AFFILIATE.openDialogFrame("Management/ChangePassword?" + jQuery.param(param),
                 window.MSG.ChangePassword + ' - ' + userName,
                 { width: 500, height: 350 });
-        },
-        getStatus: function (obj, custId) {
-            //var className = $(obj).find("i:first").attr("class");
-            var className = $("#i_" + custId).attr("class");
-            if (className === "icon-ok-circle") {
-                $(obj).find("i").attr("class", "icon-ban-circle");
-                return false;
-            } else {
-                $(obj).find("i").attr("class", "icon-ok-circle");
-                return true;
-            }
-        },
-        updateStatus: function (custId, status) {
-            if (!confirm(MSG.ChangeStatus)) {
-                return false;
-            }
-            var param = {
-                custId: custId,
-                closed: !status
-            };
-            $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Management/ChangeStatus"),
-                type: 'post',
-                data: jQuery.param(param),
-                beforeSend: function () {
-                    $.blockUI();
-                },
-                success: function (data) {
-                    AFFILIATE.PreHandleAjaxResult(data);
-
-                    Management.showMsg(data);
-                    if (data.ErrorCode !== 0) {
-                        return false;
-                    }
-                },
-                complete: function () {
-                    $.unblockUI();
-                }
-            });
-            return true;
         },
         showMsg: function (data) {
             if (data.ErrorCode !== 0) {

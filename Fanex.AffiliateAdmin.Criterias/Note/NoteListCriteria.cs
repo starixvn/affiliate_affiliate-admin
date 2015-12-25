@@ -14,6 +14,8 @@ namespace Fanex.AffiliateAdmin.Criterias
     public class NoteListCriteria : CriteriaBase
     {
         public int AffId { get; set; }
+
+        public int LicenseeId { get; set; }
        
         /// <summary>
         /// Get Setting Key.

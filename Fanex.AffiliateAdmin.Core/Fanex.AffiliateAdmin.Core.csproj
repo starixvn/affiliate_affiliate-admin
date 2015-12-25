@@ -29,6 +29,8 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -114,6 +116,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -132,12 +135,15 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Configurations\AffiliateSettings.cs" />
+    <Compile Include="Configurations\FunctionPolicyNames.cs" />
     <Compile Include="Configurations\GetAppSettings.cs" />
     <Compile Include="Enumerations\CasinoGameType.cs" />
     <Compile Include="Enumerations\BetType.cs" />
     <Compile Include="Enumerations\ReportType.cs" />
+    <Compile Include="Filter\ITAuthAttribute.cs" />
     <Compile Include="Filter\FunctionAuthAttribute.cs" />
     <Compile Include="Filter\NoCacheAttribute.cs" />
+    <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Mailinator\AffiliateMailinator.cs" />
     <Compile Include="Mailinator\EmailColorPalette.cs" />
     <Compile Include="Mailinator\KioskAffiliateMailinator.cs" />
@@ -183,7 +189,6 @@
     <Compile Include="Services\Impl\SystemSettingService.cs" />
     <Compile Include="Services\Interface\ISystemSettingService.cs" />
     <Compile Include="Services\Impl\UnderMaintenanceService.cs" />
-    <Compile Include="Session\SessionExtensions.cs" />
     <Compile Include="Session\SessionManager.cs" />
     <Compile Include="Utilities\BannerStorage.cs" />
     <Compile Include="Utilities\Common.cs" />
@@ -194,6 +199,7 @@
     <Compile Include="Utilities\ExternalLoginInfo.cs" />
     <Compile Include="Utilities\Formater.cs" />
     <Compile Include="Utilities\FormatType.cs" />
+    <Compile Include="Utilities\FunctionMenu.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\Menu.cs" />
     <Compile Include="Utilities\Remote.cs" />
@@ -273,9 +279,16 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

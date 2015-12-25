@@ -13,6 +13,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Web;
+    using System.Web.Script.Serialization;
     using Fanex.Common.Extensions;
 
     /// <summary>
@@ -168,6 +169,13 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                     property.SetValue(obj, Convert.ChangeType(HttpUtility.HtmlEncode(value.ToString()), property.GetType()), null);
                 }
             }
+        }
+
+        public static string ToJson(this object value)
+        {
+            var serializer = new JavaScriptSerializer();
+
+            return serializer.Serialize(value);
         }
     }
 }

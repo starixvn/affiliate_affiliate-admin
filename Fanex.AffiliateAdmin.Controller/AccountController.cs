@@ -9,7 +9,10 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
+    using System;
+    using System.Globalization;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using System.Web.Security;
     using Common;
@@ -77,8 +80,13 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 return Redirect("~/Notify");
             }
+            else if (!Regex.IsMatch(Request.UserHostAddress, AppSettings.GetValue("CompanyIPRange")))
+            {
+                return Redirect("~/Notify/AccessDenied");
+            }
             else
             {
+                ViewBag.LogInToken = CreateToken();
                 return View(new LoginViewModel());
             }
         }
@@ -90,9 +98,10 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="password">Password login.</param>
         /// <returns>Return Result view model.</returns>
         [HttpPost]
-        public ActionResult Login(string username, string password)
+        public ActionResult Login(string username, string password, string logInToken)
         {
-            var result = new ResultViewModel();
+            ResultViewModel result = null;
+            Account user = null;
 
             if (ModelState.IsValid)
             {
@@ -101,36 +110,58 @@ namespace Fanex.AffiliateAdmin.Controller
                                     Username = username,
                                     UserPwd = password,
                                     LoginIP = Remote.GetClientIPAddress(),
-                                    From = Request.UserHostName,
-                                    NetSessionID = Session.SessionID
+                                    LoginDomain = Request.UserHostName,
                                 };
 
-                Account user = _accountService.Login(criteria);
-
-                result.Success = criteria.ErrCode == 0;
-                if (criteria.ErrCode == 0 && user.CustID > 0)
+                result = _accountService.Login(criteria, out user, logInToken);
+                result.Success = result.ErrorCode == 0;
+                if (result.ErrorCode == 0 && user.CustID > 0)
                 {
+                    user.OnUserID = _accountService.CheckIn(new CheckInCriteria()
+                    {
+                        CustId = user.CustID,
+                        IP = Remote.GetClientIPAddress(),
+                        NetSessionId = Session.SessionID,
+                        ServerId = user.ServerId
+                    });
                     FormsAuthentication.SetAuthCookie(username, true);
 
-                    SessionManager.CurrentSession = new CurrentSession(user)
-                    {
-                        RoleAccess = _accountService.UserPolicySel(new UserPolicyCriteria
+                    var policies = _accountService.UserPolicySel(new UserPolicyCriteria
                         {
-                            CustID = user.CustID
-                        }).ToList(),
-                        CurrencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
+                            CustID = user.CustID,
+                            LicenseeId = AppSettings.LicenseeID
+                        });
+                    var currencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
                         {
-                            UserId = user.CustID
-                        }).ToList()
-                    };
+                            UserId = user.CustID,
+                            LicenseeId = AppSettings.LicenseeID
+                        }).ToList();
+                    SessionManager.CurrentSession = new CurrentSession(user, policies, currencyList);
                 }
                 else
                 {
-                    result = GetResultViewModel(criteria.ErrCode);
+                    result = GetResultViewModel(result.ErrorCode, string.Empty, result.ErrorMessage);
+                    ViewBag.LogInToken = CreateToken();
                 }
             }
 
             return Json(result);
+        }
+
+        private string CreateToken()
+        {
+            return Guid.NewGuid().ToString("N", CultureInfo.CurrentCulture);
+        }
+
+        /// <summary>
+        /// Get User Salt.
+        /// </summary>
+        /// <param name="userName">User name value.</param>
+        /// <returns>String value.</returns>
+        [HttpGet]
+        public string GetUserSalt(string userName)
+        {
+            return GetSalt(userName);
         }
 
         /// <summary>
@@ -139,6 +170,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>Return change password form.</returns>
         [HttpGet]
         [Authorization]
+        [ITAuth]
         public ActionResult ChangePassword()
         {
             return View(new AccountPasswordViewModel());
@@ -151,6 +183,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>Return change password form.</returns>
         [HttpPost]
         [Authorization]
+        [ITAuth]
         public ActionResult ChangePassword(AccountPasswordViewModel model)
         {
             if (ModelState.IsValid)
@@ -165,11 +198,12 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
                 else
                 {
+                    var oldSalt = GetSalt(SessionManager.CurrentSession.Username);
                     var criteria = new AccountPasswordCriteria
                         {
                             CustId = SessionManager.CurrentSession.CustID,
-                            OldPassword = Cryptography.CfsEnCode(model.OldPassword),
-                            NewPassword = Cryptography.CfsEnCode(model.NewPassword),
+                            OldPassword = Cryptography.CreateHash(model.OldPassword, oldSalt),
+                            NewPassword = Cryptography.CreateHash(model.NewPassword, oldSalt),
                             Ip = Remote.GetClientIPAddress()
                         };
 
@@ -212,6 +246,17 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(result);
         }
 
+        private string GetSalt(string userName)
+        {
+            var user = _accountService.GetByUsername(userName);
+            if (user != null)
+            {
+                return user.UserSalt;
+            }
+
+            return string.Empty;
+        }
+
         /// <summary>
         /// Kicked out session.
         /// </summary>
@@ -227,10 +272,10 @@ namespace Fanex.AffiliateAdmin.Controller
 
             if (!AppSettings.LocalTest)
             {
+                result.Message = isKickedOut ? Lang.MsgKickout : string.Empty;
                 if (isKickedOut)
                 {
                     result.Success = isKickedOut;
-                    result.Message = isKickedOut ? Lang.MsgKickout : string.Empty;
                     result.ErrorMessage = "Expired";
 
                     // Signout and clean all session.
@@ -247,8 +292,11 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             string startTime = string.Empty, endTime = string.Empty;
             result.Success = UnderMaintenanceService.GetDownTime(ref startTime, ref endTime);
-            result.Message = "Under-maintenance";
-            result.ErrorMessage = "UM";
+            if (result.Success)
+            {
+                result.Message = "Under-maintenance";
+                result.ErrorMessage = "UM";
+            }
         }
 
         /// <summary>
@@ -275,12 +323,12 @@ namespace Fanex.AffiliateAdmin.Controller
                 ErrorCode = errCode,
                 Message = errCode == 0 ?
                     (string.IsNullOrEmpty(messageSuccess) ? Lang.UpdateSucc : messageSuccess) :
-                    (string.IsNullOrEmpty(errorMessage) ? ErrorMessage(errCode) : errorMessage),
+                    (string.IsNullOrEmpty(errorMessage) ? GetErrorMessage(errCode) : errorMessage),
                 Success = errCode == 0
             };
         }
 
-        private string ErrorMessage(int errCode)
+        private string GetErrorMessage(int errCode)
         {
             return ErrorMsg.ResourceManager.GetString("Msg" + errCode);
         }

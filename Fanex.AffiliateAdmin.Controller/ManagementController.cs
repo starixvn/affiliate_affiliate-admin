@@ -11,23 +11,34 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using System.Xml;
-    using Common;
-    using Core.Session;
-    using Core.Utilities;
-    using Criterias;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.Criterias.Account;
+    using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Models;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
-    using Models;
-    using Resources;
+    using Fanex.Common;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [FunctionAuth(Function = "[UserControl]")]
+    [FunctionAuth(Function = FunctionPolicyNames.UserControl)]
     public class ManagementController : BaseController
     {
+        #region Static Fields
+
+        private static IEnumerable<string> ignoredGroupNames = new string[] { "Administrator", "None", "Aff_IT_Dept" };
+
+        #endregion Static Fields
+
         #region Services
 
         private readonly IAccountService _accountService;
@@ -77,6 +88,8 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Users()
         {
+            ViewBag.CanUpdateData = SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl);
+            ViewBag.IsIt = SessionManager.CurrentSession.IsIT;
             return View(new UserManagementViewModel());
         }
 
@@ -89,6 +102,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult Users(SelByGroupIDCriteria criteria)
         {
             criteria.IsIt = SessionManager.CurrentSession.IsIT;
+            criteria.LicenseeId = AppSettings.LicenseeID;
 
             return Json(new { List = _accountService.GetListAccountManagement(criteria) });
         }
@@ -100,25 +114,28 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="custId">Customer Id.</param>
         /// <returns>Return view.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpGet]
         public ActionResult EditUser(int custId)
         {
-            var criteria = new SelByCustIDCriteria
+            var account = GetAccount(custId);
+            if (account.IsIT)
             {
-                CustId = custId
-            };
+                return RedirectToAccessDenied();
+            }
 
-            var accountInfo = _accountService.GetAccountInfo(criteria);
-            var groupList = _groupService.GetListGroup(new GroupListCriteria { IsIt = SessionManager.CurrentSession.IsIT });
+            var groupListCriteria = new GroupListCriteria
+            {
+                IsIt = SessionManager.CurrentSession.IsIT,
+                LicenseeId = AppSettings.LicenseeID
+            };
 
             return View(new EditUserViewModel
             {
-                Username = accountInfo.Username,
-                FirstName = accountInfo.FirstName,
-                LastName = accountInfo.LastName,
-                GroupID = accountInfo.GroupID,
+                Username = account.Username,
+                GroupID = account.GroupID,
                 CustID = custId,
-                GroupList = groupList
+                GroupList = _groupService.GetListGroup(groupListCriteria, true)
             });
         }
 
@@ -127,20 +144,19 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="model">Edit user view model.</param>
         /// <returns>Action Result.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult EditUser(EditUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var criteria = new AccountUpdCriteria
-                    {
-                        CustId = model.CustID,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        GroupId = model.GroupID,
-                        UserId = SessionManager.CurrentSession.CustID,
-                        Ip = Remote.GetClientIPAddress(),
-                    };
+                var criteria = new AccountUpdateCriteria
+                {
+                    CustId = model.CustID,
+                    GroupId = model.GroupID,
+                    UserId = SessionManager.CurrentSession.CustID,
+                    Ip = Remote.GetClientIPAddress(),
+                };
 
                 _accountService.AccountUpdate(criteria);
 
@@ -158,16 +174,14 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Add User
 
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpGet]
-        public ActionResult AddUser(string password, int groupId = 0)
+        [ITAuth]
+        public ActionResult AddUser(string password)
         {
-            var groupList = _groupService.GetListGroup(new GroupListCriteria { IsIt = SessionManager.CurrentSession.IsIT });
-
             return View(new AccountViewModel
                 {
-                    Password = password,
-                    GroupID = groupId,
-                    GroupList = groupList
+                    Password = password
                 });
         }
 
@@ -176,21 +190,22 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="model">Account view model.</param>
         /// <returns>Action Result.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
+        [ITAuth]
         public ActionResult AddUser(AccountViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var salt = Cryptography.CreateSalt();
                 var criteria = new AccountInsCriteria
                     {
                         UserId = SessionManager.CurrentSession.CustID,
                         Ip = Remote.GetClientIPAddress(),
-                        Password = Cryptography.CfsEnCode(model.Password),
+                        Password = Cryptography.CreateHash(model.Password, salt),
                         CustId = model.CustID,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
                         UserName = model.Username,
-                        GroupId = model.GroupID
+                        UserSalt = salt
                     };
 
                 _accountService.AccountInsert(criteria);
@@ -202,52 +217,34 @@ namespace Fanex.AffiliateAdmin.Controller
                 };
             }
 
-            return AddUser(model.Password, model.GroupID);
+            return AddUser(model.Password);
         }
 
         #endregion Add User
-
-        #region Change Status
-
-        /// <summary>
-        /// Change Status.
-        /// </summary>
-        /// <param name="criteria">Account Criteria.</param>
-        /// <returns>Action Result.</returns>
-        [HttpPost]
-        public ActionResult ChangeStatus(AccountUpdClosedCriteria criteria)
-        {
-            criteria.UserId = SessionManager.CurrentSession.CustID;
-            criteria.Ip = Remote.GetClientIPAddress();
-
-            _accountService.AccountUpdateStatus(criteria);
-
-            return Json(new
-            {
-                ErrorCode = criteria.ErrCode,
-                Message = criteria.ErrCode == 0 ? Lang.UpdateStaSucc : ErrorMessage(criteria.ErrCode)
-            });
-        }
-
-        #endregion Change Status
 
         #region Change Policy
 
         [HttpGet]
         public ActionResult ChangePolicyUser(int custId)
         {
+            ViewBag.CanUpdateData = SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl);
+            var account = GetAccount(custId);
             return View(new PolicyViewModel
             {
-                CustId = custId
+                CustId = custId,
+                Menus = SubMenu.GetPermissionMenus(account.IsIT)
             });
         }
 
         [HttpPost]
         public ActionResult ListPolicyUser(UserPolicySelCriteria criteria)
         {
+            criteria.LicenseeId = AppSettings.LicenseeID;
+
             return Json(new { List = _policyService.GetUserPolicyList(criteria) });
         }
 
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult ChangePolicyUser(int custId, string individualPolicy)
         {
@@ -268,9 +265,12 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ListPolicyMultiUser(PolicyMultiUserCriteria criteria)
         {
+            criteria.LicenseeId = AppSettings.LicenseeID;
+
             return Json(new { List = _policyService.GetPolicyMultiUserList(criteria) });
         }
 
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult ChangePolicyMultiUser(string custIds, string individualPolicy)
         {
@@ -287,15 +287,23 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult ChangeCurrencyUser(int custId)
         {
+            var account = GetAccount(custId);
+            if (account.IsIT)
+            {
+                return RedirectToAccessDenied();
+            }
+
+            ViewBag.CanUpdateData = SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl);
             var criteria = new UserCurrencySelCriteria
             {
-                UserId = custId
+                UserId = custId,
+                LicenseeId = AppSettings.LicenseeID
             };
-
             return View(new PermissionCurrencyViewModel
             {
                 CustId = custId,
-                ListPermissionCurrency = _permissionService.GetPermissionCurrencyList(criteria)
+                ListPermissionCurrency = _permissionService.GetPermissionCurrencyList(criteria),
+                Menus = SubMenu.GetPermissionMenus(account.IsIT)
             });
         }
 
@@ -305,6 +313,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="custId">Customer Id.</param>
         /// <param name="currencies">Currencies to change.</param>
         /// <returns>Action Result.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult ChangeCurrencyUser(int custId, string currencies)
         {
@@ -335,7 +344,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 ModifyBy = SessionManager.CurrentSession.CustID,
                 UserId = custId,
                 Ip = Remote.GetClientIPAddress(),
-                CurrencyXML = doc.OuterXml
+                CurrencyXML = doc.OuterXml,
+                LicenseeId = AppSettings.LicenseeID
             };
 
             _permissionService.UpdatePermissionCurrency(criteria);
@@ -353,7 +363,9 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Change Password
 
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpGet]
+        [ITAuth]
         public ActionResult ChangePassword(int custId, string userName, string password, string confirmPassword)
         {
             return View(new PasswordViewModel
@@ -370,18 +382,22 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="model">Password view model.</param>
         /// <returns>Action Result.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
+        [ITAuth]
         public ActionResult ChangePassword(PasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var salt = Cryptography.CreateSalt();
                 var criteria = new ChangePasswordCriteria
                     {
                         CustId = model.CustId,
                         UserName = model.UserName,
                         UserId = SessionManager.CurrentSession.CustID,
                         Ip = Remote.GetClientIPAddress(),
-                        Password = Cryptography.CfsEnCode(model.Password)
+                        Password = Cryptography.CreateHash(model.Password, salt),
+                        UserSalt = salt
                     };
 
                 _accountService.AccountUpdatePassword(criteria);
@@ -401,6 +417,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult UserInGroup(int groupId)
         {
+            ViewBag.CanUpdateData = 
+                SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl) && 
+                _groupService.IsItGroup(groupId);
             return View(new UserManagementViewModel { GroupId = groupId });
         }
 
@@ -411,6 +430,8 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Groups()
         {
+            ViewBag.CanUpdateData = SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl);
+            ViewBag.IgnoredGroupNames = ignoredGroupNames.ToJson();
             return View();
         }
 
@@ -419,14 +440,16 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var criteria = new GroupListCriteria
             {
-                IsIt = SessionManager.CurrentSession.IsIT
+                IsIt = SessionManager.CurrentSession.IsIT,
+                LicenseeId = AppSettings.LicenseeID
             };
 
-            return Json(new { List = _groupService.GetListGroup(criteria) });
+            return Json(new { List = _groupService.GetListGroup(criteria, !SessionManager.CurrentSession.IsIT) });
         }
 
         #region Add Group
 
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpGet]
         public ActionResult AddGroup()
         {
@@ -438,6 +461,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="model">Group view model.</param>
         /// <returns>Action Result.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult AddGroup(GroupViewModel model)
         {
@@ -449,6 +473,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         GroupDesc = model.Description,
                         UserId = SessionManager.CurrentSession.CustID,
                         Ip = Remote.GetClientIPAddress(),
+                        LicenseeId = AppSettings.LicenseeID
                     };
 
                 _groupService.GroupInsert(criteria);
@@ -470,6 +495,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult ChangePolicyGroup(GroupPolicySelCriteria criteria)
         {
+            ViewBag.CanUpdateData = SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl);
             return View(new PolicyViewModel
             {
                 GroupId = criteria.GroupId
@@ -488,6 +514,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="groupId">Group Id value.</param>
         /// <param name="groupPolicy">Group Policy.</param>
         /// <returns>Action Result.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult ChangePolicyGroup(int groupId, string groupPolicy)
         {
@@ -520,6 +547,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="groupId">Group Id information.</param>
         /// <returns>Action Result.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpGet]
         public ActionResult EditGroup(int groupId)
         {
@@ -542,6 +570,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Group Criteria.</param>
         /// <returns>Action Result.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult EditGroup(GroupInfoUpdCriteria criteria)
         {
@@ -549,6 +578,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.Ip = Remote.GetClientIPAddress();
+                criteria.LicenseeId = AppSettings.LicenseeID;
 
                 _groupService.GroupUpdate(criteria);
 
@@ -569,6 +599,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Group Criteria.</param>
         /// <returns>Action Result.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.UserControl, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult DeleteGroup(GroupInfoDelCriteria criteria)
         {
@@ -626,7 +657,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     GroupPolicys = criteria.GroupPolicys,
                     IP = criteria.Ip,
                     Language = criteria.Language,
-                    UserID = criteria.UserId
+                    UserID = criteria.UserId,
+                    LicenseeId = AppSettings.LicenseeID
                 };
             }
 
@@ -635,8 +667,19 @@ namespace Fanex.AffiliateAdmin.Controller
                 IP = criteria.Ip,
                 Language = criteria.Language,
                 MemPolicys = criteria.MemPolicys,
-                UserID = criteria.UserId
+                UserID = criteria.UserId,
+                LicenseeId = AppSettings.LicenseeID
             };
+        }
+
+        private Account GetAccount(int custId)
+        {
+            var criteria = new SelByCustIDCriteria
+            {
+                CustId = custId
+            };
+
+            return _accountService.GetAccountInfo(criteria);
         }
 
         #endregion Private Method

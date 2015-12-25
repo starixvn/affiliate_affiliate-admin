@@ -12,19 +12,23 @@ namespace Fanex.AffiliateAdmin.Controller
     using System;
     using System.Linq;
     using System.Web.Mvc;
-    using Core.Configurations;
-    using Core.Filter;
-    using Core.Session;
-    using Core.Utilities;
-    using Criterias;
+    using System.Web.SessionState;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Home Controller class.
     /// </summary>
+    [SessionState(SessionStateBehavior.Default)]
     [NoCache]
     public class HomeController : BaseController
     {
+        private const string HomeMenuName = "Home";
+
         private readonly IHomeService _homeService;
 
         public HomeController()
@@ -39,10 +43,16 @@ namespace Fanex.AffiliateAdmin.Controller
 
         public ActionResult Index()
         {
+            if (SubMenu.Home.Count() == 1)
+            {
+                return new RedirectResult("~/Home/UserOnlineList");
+            }
+
             FormaterCurrency.SetDefaultCurrency(AppSettings.BaseExchange.Code);
             var model = _homeService.GeneralInfoSel(new HomeGeneralInfoCriteria
             {
-                UserId = SessionManager.CurrentSession.CustID
+                UserId = SessionManager.CurrentSession.CustID,
+                LicenseeId = AppSettings.LicenseeID
             });
 
             return View(model);
@@ -56,9 +66,10 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult Language()
         {
             var languageList = AppSettings.BaseLanguages;
-            var selectedLang = languageList.FirstOrDefault(lang => lang.LanguageID == AppSession.Language).LanguageName;
+            var selectedLang = languageList.FirstOrDefault(lang => lang.LanguageID == AppSession.Language);
+            var languageName = selectedLang == null ? string.Empty : selectedLang.LanguageName;
             var sysDateTime = _homeService.GetSystemDateTime(new SystemDateTimeCriteria());
-            return PartialView(Tuple.Create(languageList, selectedLang, sysDateTime));
+            return PartialView(Tuple.Create(languageList, languageName, sysDateTime));
         }
 
         /// <summary>
@@ -97,8 +108,13 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult UserOnlineList(HomeOnlineListCriteria criteria)
         {
-            criteria.IsIT = SessionManager.CurrentSession.IsIT;
+            var session = SessionManager.CurrentSession;
+
+            criteria.UserId = session.CustID;
+            criteria.IsIT = session.IsIT;
+            criteria.LicenseeId = AppSettings.LicenseeID;
             var listUseronlines = _homeService.UserOnlineList(criteria).ToList();
+
             return Json(new
             {
                 List = listUseronlines,

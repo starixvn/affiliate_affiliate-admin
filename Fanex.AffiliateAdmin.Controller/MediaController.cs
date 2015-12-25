@@ -28,7 +28,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [FunctionAuth(Function = "[Media]")]
+    [FunctionAuth(Function = FunctionPolicyNames.Media)]
     public class MediaController : BaseController
     {
         #region Fields
@@ -127,17 +127,18 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 var criteria = new BannerInsCriteria
                 {
-                    UserId = CurrentSession.CustID,
+                    UserId = SessionManager.CurrentSession.CustID,
                     Ip = Remote.GetClientIPAddress(),
                     Content = HttpUtility.HtmlEncode(model.Content),
                     Category = model.Category,
                     Currency = model.Currency,
                     Language = model.Language,
-                    AffType = 0 // banner text
+                    AffType = 0, // banner text
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _mediaService.AddBanner(criteria);
-                ViewBag.Result = GetResultViewModel(criteria.ErrCode);
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
 
             return View(model);
@@ -191,8 +192,9 @@ namespace Fanex.AffiliateAdmin.Controller
                     Content = HttpUtility.HtmlEncode(model.Content),
                     Language = model.Language,
                     Currency = model.Currency,
-                    UserId = CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress()
+                    UserId = SessionManager.CurrentSession.CustID,
+                    Ip = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _mediaService.EditBanner(criteria);
@@ -214,6 +216,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.Ip = Remote.GetClientIPAddress();
+                criteria.LicenseeId = AppSettings.LicenseeID;
 
                 _mediaService.DeleteBanner(criteria);
 
@@ -326,9 +329,10 @@ namespace Fanex.AffiliateAdmin.Controller
                             ImageType = model.ImageType,
                             Content = bannerStorage.RelativeBannerPath.Replace('\\', '/'),
                             Size = bannerStorage.BannerSize,
-                            UserId = CurrentSession.CustID,
+                            UserId = SessionManager.CurrentSession.CustID,
                             Ip = Remote.GetClientIPAddress(),
-                            Language = model.Language
+                            Language = model.Language,
+                            LicenseeId = AppSettings.LicenseeID
                         };
 
                     _mediaService.AddBanner(criteria);
@@ -423,8 +427,9 @@ namespace Fanex.AffiliateAdmin.Controller
                             ImageType = model.ImageType,
                             Content = bannerStorage.RelativeBannerPath.Replace('\\', '/'),
                             Size = bannerStorage.BannerSize,
-                            UserId = CurrentSession.CustID,
-                            Ip = Remote.GetClientIPAddress()
+                            UserId = SessionManager.CurrentSession.CustID,
+                            Ip = Remote.GetClientIPAddress(),
+                            LicenseeId = AppSettings.LicenseeID
                         };
 
                     _mediaService.EditBanner(criteria);
@@ -457,7 +462,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 {
                     BannerIds = model.BannerIds,
                     UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress()
+                    Ip = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _mediaService.DeleteBanner(criteria);

@@ -10,6 +10,7 @@
 
 namespace Fanex.AffiliateAdmin.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Common;
@@ -17,8 +18,11 @@ namespace Fanex.AffiliateAdmin.Services
     using Core.Services;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.AffiliateAdmin.DataAccess;
+    using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
+    using Fanex.Data;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -26,6 +30,8 @@ namespace Fanex.AffiliateAdmin.Services
     /// </summary>
     public class AccountService : QueryService, IAccountService
     {
+        private const int WrongUserPasswordErrorCode = 101;
+
         #region Fields
 
         /// <summary>
@@ -56,17 +62,69 @@ namespace Fanex.AffiliateAdmin.Services
 
         #endregion Constructor
 
+        public ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+            return _accountDataAccess.LoginInternal(criteria, out account);
+        }
+
         /// <summary>
         /// Login user.
         /// </summary>
         /// <param name="criteria">Login criteria.</param>
         /// <returns>Account info.</returns>
-        public Account Login(LoginCriteria criteria)
+        public ResultViewModel Login(LoginCriteria criteria, out Account account, string logInToken)
         {
+            ResultViewModel result = null;
+            account = null;
             Check.Argument.IsNotNull(criteria, "criteria");
-            criteria.UserPwd = Cryptography.CfsEnCode(criteria.UserPwd);
+            var user = GetByUsername(criteria.Username);
+            if (user != null)
+            {
+                var hashPassword = Cryptography.CreateHash(user.Password + logInToken, user.UserSalt);
 
-            return _accountDataAccess.Login(criteria);
+                if (criteria.UserPwd.Equals(hashPassword, StringComparison.OrdinalIgnoreCase))
+                {
+                    result = _accountDataAccess.Login(criteria, out account);
+                }
+            }
+
+            return result ?? new ResultViewModel()
+            {
+                ErrorCode = WrongUserPasswordErrorCode
+            };
+        }
+
+        /// <summary>
+        /// Get by username.
+        /// </summary>
+        /// <param name="userName">Username value.</param>
+        /// <returns>User value.</returns>
+        public Account GetByUsername(string userName)
+        {
+            var param = new
+            {
+                Username = userName,
+            };
+
+            using (var objectDb = new ObjectDb("AffAdmin_UserInfoSelByUserName"))
+            {
+                var user = objectDb.Query<User>(param).FirstOrDefault();
+
+                Account account = null;
+
+                if (user != null)
+                {
+                    account = new Account
+                    {
+                        Username = user.Username,
+                        Password = user.Password,
+                        UserSalt = user.UserSalt
+                    };
+                }
+
+                return account;
+            }
         }
 
         /// <summary>
@@ -88,6 +146,11 @@ namespace Fanex.AffiliateAdmin.Services
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             return GetData<FunctionPolicy>(criteria);
+        }
+
+        public int CheckIn(CheckInCriteria criteria)
+        {
+            return _accountDataAccess.CheckIn(criteria);
         }
 
         /// <summary>
@@ -136,7 +199,7 @@ namespace Fanex.AffiliateAdmin.Services
         /// Update account.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        public void AccountUpdate(AccountUpdCriteria criteria)
+        public void AccountUpdate(AccountUpdateCriteria criteria)
         {
             ExecuteOutput(criteria);
         }
@@ -146,15 +209,6 @@ namespace Fanex.AffiliateAdmin.Services
         /// </summary>
         /// <param name="criteria">Account criteria.</param>
         public void AccountInsert(AccountInsCriteria criteria)
-        {
-            ExecuteOutput(criteria);
-        }
-
-        /// <summary>
-        /// Update status.
-        /// </summary>
-        /// <param name="criteria">Account criteria.</param>
-        public void AccountUpdateStatus(AccountUpdClosedCriteria criteria)
         {
             ExecuteOutput(criteria);
         }

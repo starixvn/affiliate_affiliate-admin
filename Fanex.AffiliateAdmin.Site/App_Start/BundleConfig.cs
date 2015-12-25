@@ -68,8 +68,9 @@ namespace Fanex.AffiliateAdmin.Site
                         "~/Content/themes/base/AffiliateAdmin.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/loginJs").Include(
+                "~/Scripts/libraries/cryptoJS.js",
                 "~/Scripts/libraries/jquery.placeholder.js",
-                "~/Scripts/site/_Global.js",
+                "~/Scripts/libraries/jquery.blockUI.js",
                 "~/Scripts/site/Login.js"));
         }
 

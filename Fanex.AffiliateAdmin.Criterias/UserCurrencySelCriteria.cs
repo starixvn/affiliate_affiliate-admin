@@ -9,6 +9,8 @@
     {
         public int UserId { get; set; }
 
+        public int LicenseeId { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_UserCurrencySel";

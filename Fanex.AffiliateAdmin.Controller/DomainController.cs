@@ -18,6 +18,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Criterias;
     using Criterias.Configuration.Country;
     using DTO;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Services;
@@ -27,7 +28,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Domain Controller.
     /// </summary>
-    [FunctionAuth(Function = "[Domain]")]
+    [FunctionAuth(Function = FunctionPolicyNames.Domain)]
     public partial class DomainController : BaseController
     {
         #region Services
@@ -84,7 +85,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult AffDomainList()
         {
-            var result = _domainService.AffDomainList(new DomainAffSelCriteria());
+            var result = _domainService.AffDomainList(new DomainAffSelCriteria { LicenseeId = AppSettings.LicenseeID });
             return Json(new { List = result });
         }
 
@@ -112,7 +113,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 {
                     UserID = SessionManager.CurrentSession.CustID,
                     DomainName = domain.DomainName,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _domainService.AffDomainAdd(criteria);
@@ -133,7 +135,8 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             Domain result = _domainService.AffDomainSelectById(new DomainAffSelByIdCriteria
             {
-                DomainId = id
+                DomainId = id,
+                LicenseeId = AppSettings.LicenseeID
             });
 
             return View(new DomainViewModel { DomainID = result.DomainID, DomainName = result.DomainName });
@@ -154,7 +157,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     UserID = SessionManager.CurrentSession.CustID,
                     DomainID = domain.DomainID,
                     DomainName = domain.DomainName,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _domainService.AffDomainUpdate(criteria);
@@ -177,7 +181,8 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 UserID = SessionManager.CurrentSession.CustID,
                 DomainID = Convert.ToInt32(id),
-                IP = Remote.GetClientIPAddress()
+                IP = Remote.GetClientIPAddress(),
+                LicenseeId = AppSettings.LicenseeID
             };
             _domainService.AffDomainDelete(criteria);
 
@@ -203,7 +208,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult MemDomainList()
         {
-            var result = _domainService.MemDomainList(new DomainMemSelCriteria());
+            var result = _domainService.MemDomainList(new DomainMemSelCriteria { LicenseeId = AppSettings.LicenseeID });
             return Json(new { List = result });
         }
 
@@ -231,7 +236,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 {
                     UserID = SessionManager.CurrentSession.CustID,
                     DomainName = domain.DomainName,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _domainService.MemDomainAdd(criteria);
@@ -252,7 +258,8 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             Domain result = _domainService.MemDomainSelectById(new DomainMemSelByIdCriteria
             {
-                DomainId = id
+                DomainId = id,
+                LicenseeId = AppSettings.LicenseeID
             });
 
             return View(new DomainViewModel { DomainID = result.DomainID, DomainName = result.DomainName });
@@ -273,7 +280,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     UserID = SessionManager.CurrentSession.CustID,
                     DomainID = domain.DomainID,
                     DomainName = domain.DomainName,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _domainService.MemDomainUpdate(criteria);
@@ -296,7 +304,8 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 UserID = SessionManager.CurrentSession.CustID,
                 DomainID = Convert.ToInt32(id),
-                IP = Remote.GetClientIPAddress()
+                IP = Remote.GetClientIPAddress(),
+                LicenseeId = AppSettings.LicenseeID
             };
             _domainService.MemDomainDelete(criteria);
 
@@ -314,7 +323,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult DomainControlList()
         {
-            var result = _domainService.DomainControlList(new DomainControlSelCriteria());
+            var result = _domainService.DomainControlList(new DomainControlSelCriteria { LicenseeId = AppSettings.LicenseeID });
             return Json(new { List = result });
         }
 
@@ -336,8 +345,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     PageIndex = 1
                 }).ToList());
 
-            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria()).ToList());
-            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria()).ToList());
+            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
+            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
 
             return View(model);
         }
@@ -359,12 +368,13 @@ namespace Fanex.AffiliateAdmin.Controller
                     AffDomainID = domain.AffDomain,
                     MemberDomainID = domain.MemberDomain,
                     Status = domain.Status,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _domainService.DomainControlAdd(criteria);
 
-                ViewBag.Result = GetResultViewModel(criteria.ErrCode);
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
 
             return DomainControlAdd();
@@ -398,9 +408,9 @@ namespace Fanex.AffiliateAdmin.Controller
                 PageIndex = 1
             }).ToList());
 
-            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria()).ToList());
+            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
 
-            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria()).ToList());
+            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
 
             return View(model);
         }
@@ -423,7 +433,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     MemberDomainID = domain.MemberDomain,
                     AffDomainID = domain.AffDomain,
                     Status = domain.Status,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _domainService.DomainControlUpdate(criteria);
@@ -446,7 +457,8 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 UserID = SessionManager.CurrentSession.CustID,
                 Id = id,
-                IP = Remote.GetClientIPAddress()
+                IP = Remote.GetClientIPAddress(),
+                LicenseeId = AppSettings.LicenseeID
             };
             _domainService.DomainControlDelete(criteria);
 

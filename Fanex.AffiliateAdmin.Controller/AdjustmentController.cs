@@ -10,6 +10,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
@@ -18,7 +19,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [FunctionAuth(Function = "[Affiliate]")]
+    [FunctionAuth(Function = FunctionPolicyNames.Affiliate)]
     public class AdjustmentController : BaseController
     {
         #region Services
@@ -52,18 +53,19 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Index()
         {
+            var affiliateSession = SessionManager.CurrentSession.Affiliate;
             var adjustment = this._adjustmentService.GetAdjustmentBalance(new AdjustmentCriteria
             {
-                AffId = this.CurrentSession.Affiliate.AffiliateId,
-                Currency = this.CurrentSession.Affiliate.Currency
+                AffId = affiliateSession.AffiliateId,
+                Currency = affiliateSession.Currency
             });
 
             return View(new AdjustmentViewModel
             {
-                AffName = this.CurrentSession.Affiliate.Username,
+                AffName = affiliateSession.Username,
                 Adjustment = adjustment,
                 Description = string.Empty,
-                Currency = AppSettings.AffSystemSupportedCurrencies.FirstOrDefault(c => c.CurrencyCode == CurrentSession.Affiliate.Currency)
+                Currency = AppSettings.AffSystemSupportedCurrencies.FirstOrDefault(c => c.CurrencyCode == affiliateSession.Currency)
             });
         }
 
@@ -75,13 +77,15 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult Index(AdjustmentViewModel model)
         {
+            var session = SessionManager.CurrentSession;
             var criteria = new AdjustmentEditCriteria()
             {
                 Ip = Remote.GetClientIPAddress(),
-                AffId = this.CurrentSession.Affiliate.AffiliateId,
-                AdminId = this.CurrentSession.CustID,
+                AffId = session.Affiliate.AffiliateId,
+                AdminId = session.CustID,
                 Amount = model.Amount,
-                Description = model.Description
+                Description = model.Description,
+                LicenseeId = AppSettings.LicenseeID
             };
 
             this._adjustmentService.UpdateAdjustment(criteria);

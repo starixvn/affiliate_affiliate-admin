@@ -12,6 +12,7 @@ var AFFILIATE = (function ($) {
         var systemSecond = window.sysSecond;
         var systemMonthName = window.sysMonthName;
     }
+    var _isIT = false;
 
     return {
         pageSizes: [20, 50, 100],
@@ -24,6 +25,9 @@ var AFFILIATE = (function ($) {
         MIN_CONTENT_WIDTH: '1110',
         scrollTop: function () {
             $('html, body').animate({ scrollTop: $('.container-flsuid').offset().top }, 400);
+        },
+        init: function(){
+            _isIT = $("#IsIT").val() === '1';
         },
         initDatePicker: function () {
             var datePickers = $('.datepicker');
@@ -66,6 +70,9 @@ var AFFILIATE = (function ($) {
                     });
                 });
             }
+        },
+        isIT: function () {
+            return _isIT;
         },
         // Show language Box
         showLanguageBox: function () {
@@ -355,7 +362,7 @@ var AFFILIATE = (function ($) {
                     callback(0, parent.$("#itemperpage").val()); //Refresh parent page
                 }
 
-                setTimeout(function () { AFFILIATE.refreshParent(); }, timeout || 3000);
+                setTimeout(AFFILIATE.refreshParent, timeout || 3000);
             }
             else {
                 AFFILIATE.showErrorMsg(msg);
@@ -422,13 +429,14 @@ var AFFILIATE = (function ($) {
             $('.search-panel').width(gridObject.width());
         },
         resizeHeightDataGrid: function (gridOption) {
-            var colHeight = $("#gridId").data('colheight'),
-                expHeight = $("#gridId").data('expheight');
+            var height = 0;
             if ($(".search-form").is(":visible")) {
-                gridOption.gridExpandHeight = expHeight;
+                height = $("#gridId").data('expheight') || gridOption.gridExpandHeight;
             } else {
-                gridOption.gridExpandHeight = colHeight;
+                height = $("#gridId").data('colheight');
             }
+
+            gridOption.gridExpandHeight = height;
             return gridOption;
         },
         setWidthOfFormSearch: function () {
@@ -521,6 +529,8 @@ var AFFILIATE = (function ($) {
 
 $(function () {
     "use strict";
+    AFFILIATE.init();
+
     $(".ic-reload").click(function () {
         if ($("form :submit").length > 0) {
             $("form :submit").click();
@@ -675,6 +685,20 @@ Array.prototype.clear = function () {
     "use strict";
     while (this.length > 0) {
         this.pop();
+    }
+};
+
+Array.prototype.removeItem = function (propertyName, propertyValue) {
+    "use strict";
+    var i = 0;
+    while (i < this.length) {
+        if(this[i][propertyName] == propertyValue) {
+            this.splice(i, 1);
+        }
+        else
+        {
+            i++;
+        }
     }
 };
 

@@ -35,6 +35,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigGenerator.Core", "Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigGenerator.Services", "ConfigGenerator.Services\ConfigGenerator.Services.csproj", "{2C2DD1D3-1F67-4F5E-BD5B-FF0637C68A01}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5D26CB67-3EE8-4523-BE9F-2483F50259CB}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nexcel.Affiliate.Integration", "Nexcel.Affiliate.Integration", "{9D71BFBB-690F-47FF-832C-E6B8904E08B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexcel.Affiliate.Integration", "Nexcel.Affiliate.Integration\Nexcel.Affiliate.Integration\Nexcel.Affiliate.Integration.csproj", "{50CE695F-1458-4087-A945-3E4AB818DCCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SsoSimulator", "Nexcel.Affiliate.Integration\SsoSimulator\SsoSimulator.csproj", "{143A1513-E9F6-46E5-9195-1F1F7059A07B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -169,6 +182,26 @@ Global
 		{2C2DD1D3-1F67-4F5E-BD5B-FF0637C68A01}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2C2DD1D3-1F67-4F5E-BD5B-FF0637C68A01}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2C2DD1D3-1F67-4F5E-BD5B-FF0637C68A01}.Release|x86.ActiveCfg = Release|Any CPU
+		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Release|x86.ActiveCfg = Release|Any CPU
+		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -177,6 +210,8 @@ Global
 		{C4F30139-8F36-40A4-92A1-3961B47663CA} = {B98D5F40-8EBF-43EF-92A9-A3ABE1EE9B44}
 		{F1DBBF7B-D61C-4900-A513-EE0EBCACCCA2} = {B98D5F40-8EBF-43EF-92A9-A3ABE1EE9B44}
 		{2C2DD1D3-1F67-4F5E-BD5B-FF0637C68A01} = {B98D5F40-8EBF-43EF-92A9-A3ABE1EE9B44}
+		{50CE695F-1458-4087-A945-3E4AB818DCCA} = {9D71BFBB-690F-47FF-832C-E6B8904E08B3}
+		{143A1513-E9F6-46E5-9195-1F1F7059A07B} = {9D71BFBB-690F-47FF-832C-E6B8904E08B3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		BuildVersion_UseGlobalSettings = True

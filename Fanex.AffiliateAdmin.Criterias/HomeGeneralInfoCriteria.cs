@@ -18,6 +18,8 @@ namespace Fanex.AffiliateAdmin.Criterias
     {
         public int UserId { get; set; }
 
+        public int LicenseeId { get; set; }
+
         /// <summary>
         /// Store procedure Name.
         /// </summary>

@@ -16,44 +16,55 @@ namespace Fanex.AffiliateAdmin.DataAccess
     using Criterias;
     using Data;
     using DTO;
+    using Fanex.AffiliateAdmin.Models;
 
     /// <summary>
     /// Account data access.
     /// </summary>
     public class AccountDataAccess : IAccountDataAccess
     {
-        /// <summary>
-        /// Get statistics for Affiliate.
-        /// </summary>
-        /// <param name="criteria">Login Criteria.</param>
-        /// <returns>Return Account.</returns>
-        public Account Login(LoginCriteria criteria)
+        public ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account)
         {
-            var result = new Account();
-            if (criteria.IsValid())
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                {     
-                    var param = criteria.GetSpParams();
-                    objectDb.ExecuteNonQuery(param);
-
-                    criteria.ErrCode = Convert.ToInt32(param["errcode"]);
-                    if (criteria.ErrCode == 0)
-                    {
-                        result = new Account
-                        {
-                            CustID = Convert.ToInt32(param["custid"]),
-                            IsIT = Convert.ToBoolean(param["isit"]),
-                            OnUserID = Convert.ToInt32(param["onuserid"]),
-                            Username = criteria.Username
-                        };
-                    }
-                        
-                    return result;
+                objectDb.ExecuteNonQuery(criteria.GetSpParams());
+                var outputParams = objectDb.GetOuputParams();
+                var result = new ResultViewModel();
+                account = new Account();
+                result.ErrorCode = Convert.ToInt32(outputParams["errcode"]);
+                result.ErrorMessage = Convert.ToString(outputParams["errmsg"]);
+                if (result.ErrorCode == 0)
+                {
+                    account.CustID = Convert.ToInt32(outputParams["userid"]);
+                    account.IsIT = false;
+                    account.ServerId = Convert.ToInt32(outputParams["serverid"]);
+                    account.Username = criteria.Username;
                 }
-            }
 
-            return result;
+                return result;
+            }
+        }
+
+        public ResultViewModel Login(LoginCriteria criteria, out Account account)
+        {
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                objectDb.ExecuteNonQuery(criteria.GetSpParams());
+                var outputParams = objectDb.GetOuputParams();
+                var result = new ResultViewModel();
+                account = new Account();
+                result.ErrorCode = Convert.ToInt32(outputParams["errcode"]);
+                result.ErrorMessage = Convert.ToString(outputParams["errmsg"]);
+                if (result.ErrorCode == 0)
+                {
+                    account.CustID = Convert.ToInt32(outputParams["userid"]);
+                    account.IsIT = true;
+                    account.ServerId = Convert.ToInt32(outputParams["serverid"]);
+                    account.Username = criteria.Username;
+                }
+
+                return result;
+            }
         }
 
         /// <summary>
@@ -67,6 +78,16 @@ namespace Fanex.AffiliateAdmin.DataAccess
             {
                 var currentParams = criteria.GetSpParams();
                 objectDb.ExecuteNonQuery(currentParams);
+            }
+        }
+
+        public int CheckIn(CheckInCriteria criteria)
+        {
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                var currentParams = criteria.GetSpParams();                
+                objectDb.ExecuteNonQuery(currentParams);
+                return Converter.ToInt(currentParams["on_userid"]);
             }
         }
 

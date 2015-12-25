@@ -37,6 +37,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public long RefNo { get; set; }
 
+        public int LicenseeId { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_CommGroupAssign";

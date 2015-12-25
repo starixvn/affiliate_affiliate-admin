@@ -36,6 +36,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     objectDb.AddInParameter("msgid", DbType.Int32, criteria.MsgId);
+                    objectDb.AddInParameter("licenseeid", DbType.Int32, criteria.LicenseeId);
                     using (var reader = objectDb.ExecuteReader())
                     {
                         while (reader.Read())

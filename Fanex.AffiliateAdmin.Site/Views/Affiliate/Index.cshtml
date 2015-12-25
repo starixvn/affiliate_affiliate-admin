@@ -10,7 +10,7 @@
     aff-list
 }
 @section submenu{
-    @RazorHelper.ListSubmenu(SubMenu.Affiliate, Model.IsFavorite ? 0 : 1, "affiliate")
+    @RazorHelper.ListSubmenu(SubMenu.Affiliate, Model.IsFavorite ? 0 : 1, "AffManagement")
 }
 @{
     var now = SystemTimeService.GetSystemDateTime();

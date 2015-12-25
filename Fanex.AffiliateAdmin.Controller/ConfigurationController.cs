@@ -30,7 +30,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Configuration Controller.
     /// </summary>
-    [FunctionAuth(Function = "[SystemSettings]")]
+    [FunctionAuth(Function = FunctionPolicyNames.SystemSettings)]
     public class ConfigurationController : BaseController
     {
         #region Fields
@@ -214,6 +214,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
                 criteria.Language = AppSession.Language;
+                criteria.LicenseeId = AppSettings.LicenseeID;
 
                 _systemSettingService.InsertSystemSetting(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
@@ -379,6 +380,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult GetProductList(ProductSelectCriteria criteria)
         {
+            criteria.LicenseeId = AppSettings.LicenseeID;
             var data = _systemSettingService.GetProductList(criteria);
 
             return Json(new

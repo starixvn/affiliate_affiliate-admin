@@ -1,9 +1,15 @@
-﻿namespace Fanex.AffiliateAdmin.Criterias
+﻿// -----------------------------------------------------------------------
+// <copyright file="SelByCustIDCriteria.cs" company="">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace Fanex.AffiliateAdmin.Criterias
 {
     using Fanex.Data.Repository;
 
     /// <summary>
-    /// Select By Customer Id Criteria.
+    /// TODO: Update summary.
     /// </summary>
     public class SelByCustIDCriteria : CriteriaBase
     {

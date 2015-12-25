@@ -353,6 +353,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add IT User.
+        /// </summary>
+        public static string AddNewITUser {
+            get {
+                return ResourceManager.GetString("AddNewITUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add New Language.
         /// </summary>
         public static string AddNewLanguage {
@@ -443,7 +452,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The administrator has been added successfully..
+        ///   Looks up a localized string similar to The IT user has been added successfully..
         /// </summary>
         public static string AddUserSuccess {
             get {
@@ -5928,6 +5937,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string PleaseInput1For {
             get {
                 return ResourceManager.GetString("PleaseInput1For", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select at least one user!.
+        /// </summary>
+        public static string PleaseSelectUser {
+            get {
+                return ResourceManager.GetString("PleaseSelectUser", resourceCulture);
             }
         }
         

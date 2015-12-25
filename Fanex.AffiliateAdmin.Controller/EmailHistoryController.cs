@@ -24,7 +24,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Email History Controller.
     /// </summary>
-    [FunctionAuth(Function = "[Affiliate]")]
+    [FunctionAuth(Function = FunctionPolicyNames.Affiliate)]
     public partial class EmailHistoryController : BaseController
     {
         #region Services
@@ -139,7 +139,8 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 Listmid = listID.TrimEnd(','),
                 UserID = SessionManager.CurrentSession.CustID,
-                IP = Remote.GetClientIPAddress()
+                IP = Remote.GetClientIPAddress(),
+                LicenseeId = AppSettings.LicenseeID
             };
             _service.ExecuteSP(criteria);
 

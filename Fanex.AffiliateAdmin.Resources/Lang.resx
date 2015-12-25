@@ -245,7 +245,7 @@
     <value>Add New Url</value>
   </data>
   <data name="AddUserSuccess" xml:space="preserve">
-    <value>The administrator has been added successfully.</value>
+    <value>The IT user has been added successfully.</value>
   </data>
   <data name="AdjustAmountUpTo" xml:space="preserve">
     <value>The allowed adjustment is between -{0} and +{0}.</value>
@@ -2823,5 +2823,11 @@
   </data>
   <data name="BannerFileRequiredMsg" xml:space="preserve">
     <value>Banner file is required! Please check and upload the file.</value>
+  </data>
+  <data name="AddNewITUser" xml:space="preserve">
+    <value>Add IT User</value>
+  </data>
+  <data name="PleaseSelectUser" xml:space="preserve">
+    <value>Please select at least one user!</value>
   </data>
 </root>

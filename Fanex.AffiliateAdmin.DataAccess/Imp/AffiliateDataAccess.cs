@@ -13,12 +13,12 @@ namespace Fanex.AffiliateAdmin.DataAccess
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
-    using Common.Extensions;
-    using Common.Helper;
     using Criterias;
     using Data;
     using DTO;
     using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.Common.Extensions;
+    using Fanex.Common.Helper;
     using Models;
 
     /// <summary>

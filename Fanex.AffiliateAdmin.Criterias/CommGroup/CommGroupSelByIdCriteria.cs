@@ -21,6 +21,8 @@ namespace Fanex.AffiliateAdmin.Criterias
         [SpParam(Ignored = true)]
         public DateTime? Date { get; set; }
 
+        public int LicenseeId { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_CommGroupSelByID";

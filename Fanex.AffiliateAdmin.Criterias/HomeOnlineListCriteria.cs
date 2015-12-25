@@ -16,6 +16,8 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class HomeOnlineListCriteria : CriteriaBase
     {
+        public int UserId { get; set; }
+
         public int PageIndex { get; set; }
 
         public int TotalPages { get; set; }
@@ -25,6 +27,8 @@ namespace Fanex.AffiliateAdmin.Criterias
         public int NRows { get; set; }
 
         public bool IsIT { get; set; }
+
+        public int LicenseeId { get; set; }
 
         /// <summary>
         /// Store procedure Name.

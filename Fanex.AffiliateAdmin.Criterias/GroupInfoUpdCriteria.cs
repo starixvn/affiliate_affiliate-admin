@@ -11,7 +11,8 @@
 
         public string GroupName { get; set; }
 
-        public string GroupDesc { get; set; }
+        [SpParam(SqlParamName = "GroupDesc")]
+        public string Description { get; set; }
 
         public string Language { get; set; }
 
@@ -20,6 +21,8 @@
         public int UserId { get; set; }
 
         public string Ip { get; set; }
+
+        public int LicenseeId { get; set; }
 
         public override string GetSettingKey()
         {

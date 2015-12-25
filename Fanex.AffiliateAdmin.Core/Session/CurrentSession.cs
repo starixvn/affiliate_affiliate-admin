@@ -11,7 +11,9 @@ namespace Fanex.AffiliateAdmin.Core.Session
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
+    using System.Linq;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
 
     /// <summary>
@@ -21,148 +23,103 @@ namespace Fanex.AffiliateAdmin.Core.Session
     [Serializable]
     public class CurrentSession : ICurrentSession
     {
-        private List<FunctionPolicy> _roleAccess;
+        private readonly IEnumerable<FunctionPolicy> _policies;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CurrentSession" /> class.
-        /// </summary>
-        public CurrentSession()
-        {
-        }
+        private readonly IList<FunctionMenu> _menus;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CurrentSession" /> class.
-        /// </summary>
-        /// <param name="user">User login in system.</param>
-        public CurrentSession(Account user)
+        public CurrentSession(
+            Account user,
+            IEnumerable<FunctionPolicy> policies,
+            IEnumerable<Currency> currencies)
         {
             this.CustID = user.CustID;
             this.Username = user.Username;
             this.OnUserID = user.OnUserID;
             this.IsIT = user.IsIT;
+            this._policies = policies ?? new List<FunctionPolicy>();
+            this.CurrencyList = currencies;
+
+            _menus = new List<FunctionMenu>();
+            InitializeFunctionMenuItems();
         }
 
-        /// <summary>
-        /// Gets or sets Customer ID.
-        /// </summary>
-        /// <value>Return Customer ID.</value>
-        public int CustID
+        public int CustID { get; set; }
+
+        public string Username { get; set; }
+
+        public string Email { get; set; }
+
+        public int OnUserID { get; set; }
+
+        public bool IsIT { get; set; }
+
+        public IEnumerable<Currency> CurrencyList { get; private set; }
+
+        public AffiliateSession Affiliate { get; set; }
+
+        public IEnumerable<FunctionMenu> FunctionMenus
         {
             get
             {
-                return Convert.ToInt32(HttpContext.Current.Session["CustID"]);
-            }
-
-            set
-            {
-                HttpContext.Current.Session["CustID"] = value;
+                return _menus;
             }
         }
 
-        /// <summary>
-        /// Gets or sets UserName.
-        /// </summary>
-        /// <value>Return UserName.</value>
-        public string Username
+        public bool HasReadPolicy(string functionName)
         {
-            get
-            {
-                return Convert.ToString(HttpContext.Current.Session["Username"]);
-            }
-
-            set
-            {
-                HttpContext.Current.Session["Username"] = value;
-            }
+            return this._policies.Any(i => i.FuncName == functionName && i.CanRead);
         }
 
-        /// <summary>
-        /// Gets or sets Email.
-        /// </summary>
-        /// <value>Return Email.</value>
-        public string Email
+        public bool HasHostPolicy(string functionName)
         {
-            get
-            {
-                return Convert.ToString(HttpContext.Current.Session["Email"]);
-            }
-
-            set
-            {
-                HttpContext.Current.Session["Email"] = value;
-            }
+            return this._policies.Any(i => i.FuncName == functionName && i.CanHost);
         }
 
-        /// <summary>
-        /// Gets or sets OnUser.
-        /// </summary>
-        /// <value>Return OnUser.</value>
-        public int OnUserID
+        private void InitializeFunctionMenuItems()
         {
-            get
+            _menus.Add(new FunctionMenu()
             {
-                return Convert.ToInt32(HttpContext.Current.Session["OnUserID"]);
+                Name = "Home",
+                Link = "~/"
+            });
+
+            if (_policies.Any() == false)
+            {
+                return;
             }
 
-            set
+            if (IsIT || CurrencyList.Any())
             {
-                HttpContext.Current.Session["OnUserID"] = value;
+                AddFunctionMenu(FunctionPolicyNames.Affiliate, "AffiliateInfo", "~/AffiliateInfo");
+                AddFunctionMenu(FunctionPolicyNames.Affiliate, "AffManagement", "~/Affiliate");
+
+                AddFunctionMenu(FunctionPolicyNames.Payment, "Payment", "~/Payment");
+                AddFunctionMenu(FunctionPolicyNames.CommissionGroup, "CommissionGroup", "~/CommGroup");
+                AddFunctionMenu(FunctionPolicyNames.AffReport, "Reports", "~/Report");
             }
+
+            AddFunctionMenu(FunctionPolicyNames.Media, "MarketingTools", "~/Media/BannerList");
+            AddFunctionMenu(FunctionPolicyNames.HotNews, "Message", "~/Message");
+
+            if (IsIT || CurrencyList.Any())
+            {
+                AddFunctionMenu(FunctionPolicyNames.AffExchangeRate, "Currency", "~/Exchange");
+            }
+
+            AddFunctionMenu(FunctionPolicyNames.SystemSettings, "Configurations", "~/Configuration");
+            AddFunctionMenu(FunctionPolicyNames.Domain, "Domain", "~/Domain/AffDomain");
+            AddFunctionMenu(FunctionPolicyNames.UserControl, "UserManagement", "~/Management/Users");
         }
 
-        public bool IsIT
+        private void AddFunctionMenu(string functionName, string name, string link)
         {
-            get
+            if (HasReadPolicy(functionName))
             {
-                return Convert.ToBoolean(HttpContext.Current.Session["IsIT"]);
-            }
-
-            set
-            {
-                HttpContext.Current.Session["IsIT"] = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets List supported currency by Admin user Id.
-        /// </summary>
-        /// <value>Supported currency.</value>
-        public List<Currency> CurrencyList
-        {
-            get
-            {
-                return (List<Currency>)HttpContext.Current.Session["CurrencyList"];
-            }
-
-            set
-            {
-                HttpContext.Current.Session["CurrencyList"] = value;
-            }
-        }
-
-        public List<FunctionPolicy> RoleAccess
-        {
-            get
-            {
-                return this._roleAccess;
-            }
-
-            set
-            {
-                _roleAccess = value;
-            }
-        }
-
-        public AffiliateSession Affiliate
-        {
-            get
-            {
-                return (AffiliateSession)HttpContext.Current.Session["Affiliate"];
-            }
-
-            set
-            {
-                HttpContext.Current.Session["Affiliate"] = value;
+                _menus.Add(new FunctionMenu()
+                {
+                    Name = name,
+                    Link = link
+                });
             }
         }
     }

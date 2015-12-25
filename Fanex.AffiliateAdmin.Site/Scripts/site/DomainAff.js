@@ -26,7 +26,7 @@ var DOMAIN = (function ($) {
                     AFFILIATE.PreHandleAjaxResult(data);
 
                     gridOption.pagerOption = {
-                        itemsPerPage: itemsPerPage,
+                        itemsPerPage: itemsPerPage || AFFILIATE.pageSizes[0],
                         itemsPerPageArray: AFFILIATE.pageSizes,
                         currentPage: currentPage,
                         maxItemsPerPage: 200,

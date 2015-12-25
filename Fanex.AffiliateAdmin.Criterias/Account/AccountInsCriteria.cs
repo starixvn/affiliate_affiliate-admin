@@ -8,17 +8,11 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class AccountInsCriteria : CriteriaBase
     {
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
         public string UserName { get; set; }
 
         public int CustId { get; set; }
 
         public int UserId { get; set; }
-
-        public int GroupId { get; set; }
 
         public string Ip { get; set; }
 
@@ -28,6 +22,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         [SpParam(SqlParamName = "UserPwd")]
         public string Password { get; set; }
+
+        public string UserSalt { get; set; }
 
         /// <summary>
         /// Get Setting Key.

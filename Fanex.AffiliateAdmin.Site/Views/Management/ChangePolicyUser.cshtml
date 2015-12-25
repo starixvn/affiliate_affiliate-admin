@@ -5,28 +5,27 @@
 }
 @using Fanex.AffiliateAdmin.Core.Utilities
 @model Fanex.AffiliateAdmin.Models.PolicyViewModel
-
-@RazorHelper.ListPopupMenu(SubMenu.Permission, 0, new Dictionary<string, object> { { "custid", Model.CustId } })
-
+@RazorHelper.ListPopupMenu(Model.Menus, 0, new Dictionary<string, object> { { "custid", Model.CustId } })
 @Html.ValidationSummary()
-
-<div id="gridId" class="freegrid"></div>
-
+<div id="gridId" class="freegrid">
+</div>
 @using (Html.BeginForm("ChangePolicyUser", "Management", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.HiddenFor(m => m.CustId)
-
+    if (ViewBag.CanUpdateData)
+    {
     <div class="control-group action-grp">
         <div class="controls">
             <button type="submit" id="btnUpdate" class="btn">@Lang.Submit</button>
             <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
         </div>
     </div>
-    <input type="hidden" id="IndividualPolicy" name="IndividualPolicy"/>
+    }
+    <input type="hidden" id="IndividualPolicy" name="IndividualPolicy" />
 }
-
 @section scripts{
     <script type="text/javascript">
+        var disabledAttribute = "@(ViewBag.CanUpdateData ? "" : "disabled")";
         var gridOption = {
             language: '@AppSession.Language',
             customizeHeader: true,
@@ -48,7 +47,7 @@
                             return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' checked=checked disabled=disabled/>";
                         }
                             
-                        return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' " + ( cell.Value ? "checked=checked" : "") + " />";
+                        return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualRead' " + ( cell.Value ? "checked=checked " : " ") + disabledAttribute + " />";
                     } 
                 },
                 { HeaderText: "@Lang.Host", Width: 80, Name: "IndividualHost", CellAlign: "center", Formatter:
@@ -57,7 +56,7 @@
                             return "<input type='checkbox' class='p-check' id='ir_" + rowData.FuncID + "' name='IndividualHost' checked=checked disabled=disabled/>";
                         }
                             
-                        return "<input type='checkbox' class='p-check' id='ih_" + rowData.FuncID + "' name='IndividualHost' " + (cell.Value ? "checked=checked" : "") + " />";
+                        return "<input type='checkbox' class='p-check' id='ih_" + rowData.FuncID + "' name='IndividualHost' " + (cell.Value ? "checked=checked " : " ") + disabledAttribute + " />";
                     } 
                 },
                 { HeaderText: "@Lang.Read", Width: 80, Name: "GroupRead", CellAlign: "center", Formatter:
@@ -75,9 +74,7 @@
             hideYBackGroundScroller : true
         }
     </script>
-
     @Scripts.Render("~/scripts/userpolicy")
-
     @if (ViewBag.Result != null)
     {
         var result = (ResultViewModel)ViewBag.Result;

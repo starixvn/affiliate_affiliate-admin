@@ -52,7 +52,8 @@ var BannerList = (function ($) {
         validateFileSize: function () {
             var maxFileSize = parseInt(window.MSG.MaxFileSize, 10);
             var size = BannerList.findFileSize();
-            if (size <= 0 && $("#BannerId").length === 0) {
+            
+            if ($("#File").val() === "" && $("#BannerId").length === 0) {
                 alert(window.MSG.BannerFileRequiredMsg);
                 return false;
             }

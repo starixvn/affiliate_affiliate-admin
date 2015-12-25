@@ -11,8 +11,11 @@
 namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Criterias;
     using DTO;
+    using Fanex.AffiliateAdmin.Criterias.Account;
+    using Fanex.AffiliateAdmin.Models;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -20,12 +23,23 @@ namespace Fanex.AffiliateAdmin.Services
     /// </summary>
     public interface IAccountService
     {
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
+        ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account);
+
         /// <summary>
         /// Get statistics for Affiliate.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Return object.</returns>
-        Account Login(LoginCriteria criteria);
+        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
+        ResultViewModel Login(LoginCriteria criteria, out Account account, string logInToken);
+
+        /// <summary>
+        /// Get by username.
+        /// </summary>
+        /// <param name="userName">Username value.</param>
+        /// <returns>Account value.</returns>
+        Account GetByUsername(string userName);
 
         /// <summary>
         /// Logout user.
@@ -39,6 +53,8 @@ namespace Fanex.AffiliateAdmin.Services
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List function policy.</returns>
         IEnumerable<FunctionPolicy> UserPolicySel(UserPolicyCriteria criteria);
+
+        int CheckIn(CheckInCriteria criteria);
 
         /// <summary>
         /// Auto kicked out previous user.
@@ -54,30 +70,19 @@ namespace Fanex.AffiliateAdmin.Services
         /// <returns>List Account.</returns>
         IEnumerable<Account> GetListAccountManagement(SelByGroupIDCriteria criteria);
 
-        /// <summary>
-        /// Get account info.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>Account information.</returns>
         Account GetAccountInfo(SelByCustIDCriteria criteria);
 
         /// <summary>
         /// Update account.
         /// </summary>
-        /// <param name="criteria">Account criteria.</param>
-        void AccountUpdate(AccountUpdCriteria criteria);
+        /// <param name="criteria">Input criteria.</param>
+        void AccountUpdate(AccountUpdateCriteria criteria);
 
         /// <summary>
         /// Insert new account.
         /// </summary>
         /// <param name="criteria">Account criteria.</param>
         void AccountInsert(AccountInsCriteria criteria);
-
-        /// <summary>
-        /// Update account status.
-        /// </summary>
-        /// <param name="criteria">Account criteria.</param>
-        void AccountUpdateStatus(AccountUpdClosedCriteria criteria);
 
         /// <summary>
         /// Update account password.

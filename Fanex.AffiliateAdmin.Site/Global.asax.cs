@@ -11,14 +11,15 @@ namespace Fanex.AffiliateAdmin.Site
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
     using CasinoSetting;
     using Core.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Helpers;
     using Fanex.Data.Configuration;
-    using Fanex.Logging;
 
     /// <summary>
     /// Global configuration.
@@ -60,11 +61,14 @@ namespace Fanex.AffiliateAdmin.Site
         protected void Application_Error(object sender, EventArgs e)
         {
             var exception = Server.GetLastError();
-            if (exception != null)
+
+            var httpException = exception as HttpException;
+            if (httpException != null && httpException.GetHttpCode() == 404)
             {
-                var message = exception.Message + Environment.NewLine + exception.StackTrace;
-                LogService.Error("Affiliate Admin " + AppSettings.GetValue("AffiliateName") + Environment.NewLine + message);
+                return;
             }
+
+            LogHelper.WriteError(exception);
         }
     }
 }

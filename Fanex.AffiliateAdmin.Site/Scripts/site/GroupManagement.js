@@ -14,6 +14,11 @@ var Management = (function ($) {
             $(".main-content").on("click", ".icon-add-group", function () {
                 Management.addGroup();
             });
+
+            if (!canUpdateData) {
+                gridOption.columns.removeItem('Name', 'Update');
+                gridOption.titleInfo.customButtons = null;
+            }
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
@@ -61,8 +66,8 @@ var Management = (function ($) {
             var param = {
                 groupId: groupId
             };
-
-            AFFILIATE.openDialogFrame("Management/UserInGroup?" + jQuery.param(param),  window.MSG.Group + ' - ' + groupName, { width: 960, height: 600 });
+            
+            AFFILIATE.openDialogFrame("Management/UserInGroup?" + jQuery.param(param), window.MSG.Group + ' - ' + groupName, { width: 540, height: 600 });
         },
         editRolePolicy: function (groupId, groupName) {
             var param = {

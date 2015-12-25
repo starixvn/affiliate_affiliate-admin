@@ -60,11 +60,14 @@ var AFFINFO = (function ($) {
                             AFFILIATE.PreHandleAjaxResult(data);
 
                             if (data.Success) {
-                                alert(data.Message);
                                 $("#spLanguage").html($("#slLanguage").find(":selected").text());
                                 $("#slLanguage").hide();
                                 $("#spLanguage").show();
                             }
+                            else {
+                                alert(data.Message);
+                            }
+
                             $('#slLanguage').blur();
                         },
                         complete: function () {
@@ -168,8 +171,10 @@ var AFFINFO = (function ($) {
                         AFFILIATE.PreHandleAjaxResult(data);
 
                         if (data.Success) {
-                            alert(data.Message);
                             document.location.reload();
+                        }
+                        else {
+                            alert(data.Message);
                         }
                     },
                     complete: function () {
@@ -222,7 +227,7 @@ var AFFINFO = (function ($) {
             if (!isShow) {
                 langTimeOut = setTimeout(function () { AFFINFO.changeAffType(false, true); }, 4000);
             } else {
-                langTimeOut = setTimeout(function() { AFFINFO.changeAffType(true, false); }, 4000);
+                langTimeOut = setTimeout(function () { AFFINFO.changeAffType(true, false); }, 4000);
             }
         },
         changeStatus: function (isChange, setValue) {

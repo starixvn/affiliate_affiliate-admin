@@ -14,20 +14,20 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Linq;
     using System.Web.Mvc;
     using System.Xml.Linq;
-    using Core.Configurations;
-    using Core.Filter;
-    using Core.Session;
-    using Core.Utilities;
-    using Criterias;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.Models;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Common;
-    using Models;
-    using Resources;
 
     /// <summary>
     /// Affiliate Controller.
-    /// </summary>    
-    [FunctionAuth(Function = "[Affiliate]")]
+    /// </summary>
+    [FunctionAuth(Function = FunctionPolicyNames.Affiliate, CurrenciesRequired = true)]
     public partial class AffiliateController : BaseController
     {
         #region Services
@@ -51,6 +51,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             _service = service ?? new AffiliateService();
         }
+
         #endregion Constructor
 
         [HttpGet]
@@ -70,6 +71,7 @@ namespace Fanex.AffiliateAdmin.Controller
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
             criteria.UserId = SessionManager.CurrentSession.CustID;
+            criteria.LicenseeId = AppSettings.LicenseeID;
             var result = _service.GetAffiliateList(criteria);
 
             var approveStatusList = new List<string> { "approved", "closed", "lockedout" };
@@ -111,6 +113,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         public ActionResult GetCommGroups(CommGroupCurrencyCriteria criteria)
         {
+            criteria.LicenseeId = AppSettings.LicenseeID;
             return Json(new
             {
                 List = AppSettings.GetCommGroups(criteria)
@@ -181,6 +184,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.Ip = Remote.GetClientIPAddress();
                 criteria.UserId = SessionManager.CurrentSession.CustID;
+                criteria.LicenseeId = AppSettings.LicenseeID;
                 _service.ChangeAccountType(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
@@ -226,7 +230,10 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.UserId = SessionManager.CurrentSession.CustID;
+                criteria.LicenseeId = AppSettings.LicenseeID;
+
                 _service.ChangeCommissionGroup(criteria);
+
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
             else
@@ -315,17 +322,19 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult MemberList(MemberListCriteria criteria)
         {
+            var session = SessionManager.CurrentSession;
             if (criteria.ByAffiliate)
             {
-                criteria.AffUsername = this.CurrentSession.Affiliate.Username;
+                criteria.AffUsername = session.Affiliate.Username;
                 criteria.AffType = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.ExcludeTest = false;
             }
 
-            criteria.IsITAdmin = this.CurrentSession.IsIT;
+            criteria.IsITAdmin = session.IsIT;
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
-            criteria.UserId = SessionManager.CurrentSession.CustID;
+            criteria.UserId = session.CustID;
+            criteria.LicenseeId = AppSettings.LicenseeID;
 
             var result = _service.CustomerList(criteria);
 
@@ -343,6 +352,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="username">Username of customer.</param>
         /// <returns>Action Result.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.Affiliate, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult CustomerRemove(string username)
         {
@@ -350,7 +360,8 @@ namespace Fanex.AffiliateAdmin.Controller
                                             {
                                                 UserId = SessionManager.CurrentSession.CustID,
                                                 Username = username,
-                                                IP = Remote.GetClientIPAddress()
+                                                IP = Remote.GetClientIPAddress(),
+                                                LicenseeId = AppSettings.LicenseeID
                                             };
             _service.CustomerRemove(criteria);
 
@@ -364,11 +375,12 @@ namespace Fanex.AffiliateAdmin.Controller
             return Json(GetResultViewModel(criteria.ErrCode));
         }
 
+        [FunctionAuth(Function = FunctionPolicyNames.Affiliate, IsHostPolicy = true)]
         public ActionResult AssignMember(AssignMemberViewModel model)
         {
             if (model.ByAffiliate)
             {
-                model.AffName = CurrentSession.Affiliate.Username;
+                model.AffName = SessionManager.CurrentSession.Affiliate.Username;
             }
 
             return View(model);
@@ -379,6 +391,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Result Message.</returns>
+        [FunctionAuth(Function = FunctionPolicyNames.Affiliate, IsHostPolicy = true)]
         [HttpPost]
         public ActionResult AssignMember(CheckMemberExistCriteria criteria)
         {
@@ -450,8 +463,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult ChangeCommissionApprove(ChangeCommissionGroupViewModel model)
         {
-            model.Currency = CurrentSession.Affiliate.CurrencyID.ToString();
-            model.UserId = SessionManager.CurrentSession.CustID;
+            var session = SessionManager.CurrentSession;
+            model.Currency = session.Affiliate.CurrencyID.ToString();
+            model.UserId = session.CustID;
             return View(model);
         }
 
@@ -470,9 +484,11 @@ namespace Fanex.AffiliateAdmin.Controller
                 case "closed":
                     message = Lang.AffClosed;
                     break;
+
                 case "approved":
                     message = Lang.AffApproved;
                     break;
+
                 default:
                     var status = Lang.ResourceManager.GetString(affiliateStatus);
                     message = string.Format(Lang.AffiliateIs, string.IsNullOrEmpty(status) ? affiliateStatus.ToLower() : status);
@@ -487,7 +503,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <param name="affid">Affiliate ID.</param>
         /// <param name="affname">Affiliate Name.</param>
-        /// <param name="customerName">Member Name.</param>      
+        /// <param name="customerName">Member Name.</param>
         /// <returns>Error code.</returns>
         private int TestInsertMember(int affid, string affname, string customerName)
         {
@@ -692,6 +708,6 @@ namespace Fanex.AffiliateAdmin.Controller
             return true;
         }
 
-        #endregion
+        #endregion Private Methods
     }
 }

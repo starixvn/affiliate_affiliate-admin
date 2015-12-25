@@ -18,6 +18,8 @@ namespace Fanex.AffiliateAdmin.Criterias.Configuration.Product
     {
         public string Name { get; set; }
 
+        public int LicenseeId { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_ProductSelAll";

@@ -27,6 +27,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int ErrCode { get; set; }
 
+        public int LicenseeId { get; set; }
+
         /// <summary>
         /// Get Setting Key.
         /// </summary>

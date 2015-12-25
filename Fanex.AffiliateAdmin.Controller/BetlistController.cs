@@ -29,7 +29,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Report Controller.
     /// </summary>
-    [FunctionAuth(Function = "[AffReport]")]
+    [FunctionAuth(Function = FunctionPolicyNames.AffReport)]
     public class BetListController : BaseController
     {
         private readonly IBetListService _betListService;
@@ -495,7 +495,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var criteria = new ValidationCriteria
             {
                 AffId = affId,
-                AdminName = CurrentSession.Username,
+                AdminName = SessionManager.CurrentSession.Username,
                 MemberName = username ?? string.Empty
             };
 

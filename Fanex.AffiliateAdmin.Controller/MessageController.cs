@@ -24,7 +24,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [FunctionAuth(Function = "[HotNews]")]
+    [FunctionAuth(Function = FunctionPolicyNames.HotNews)]
     public class MessageController : BaseController
     {
         private readonly IMessageService _messageService = new MessageService();
@@ -57,7 +57,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 FromDate = model.DateChecked ? (DateTime?)model.FromDate : null,
                 ToDate = model.DateChecked ? (DateTime?)model.ToDate : null,
                 PageIndex = model.PageIndex == 0 ? 1 : model.PageIndex,
-                PageSize = model.PageSize == 0 ? AppSettings.PageSize : model.PageSize
+                PageSize = model.PageSize == 0 ? AppSettings.PageSize : model.PageSize,
+                LicenseeId = AppSettings.LicenseeID
             };
 
             var data = _messageService.GetMessages(criteria);
@@ -100,14 +101,15 @@ namespace Fanex.AffiliateAdmin.Controller
                         Important = values["Important"].ToLower().Contains("true"),
                         Xml = messageXml,
                         UserID = SessionManager.CurrentSession.CustID,
-                        IP = Remote.GetClientIPAddress()
+                        IP = Remote.GetClientIPAddress(),
+                        LicenseeId = AppSettings.LicenseeID
                     };
 
                     _messageService.AddMessage(criteria);
                     ViewBag.Result = new ResultViewModel
                     {
                         ErrorCode = criteria.ErrCode,
-                        Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
+                        Message = criteria.ErrCode == 0 ? Lang.AddSucc : ErrorMessage(criteria.ErrCode)
                     };
                 }
             }
@@ -120,7 +122,8 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var criteria = new MessageDetailCriteria
             {
-                MsgId = msgId
+                MsgId = msgId,
+                LicenseeId = AppSettings.LicenseeID
             };
 
             var model = _messageService.MessageDetail(criteria);
@@ -153,7 +156,8 @@ namespace Fanex.AffiliateAdmin.Controller
                         Important = values["Important"].ToLower().Contains("true"),
                         Xml = messageXml,
                         UserID = SessionManager.CurrentSession.CustID,
-                        IP = Remote.GetClientIPAddress()
+                        IP = Remote.GetClientIPAddress(),
+                        LicenseeId = AppSettings.LicenseeID
                     };
 
                     _messageService.UpdateMessage(criteria);
@@ -182,7 +186,8 @@ namespace Fanex.AffiliateAdmin.Controller
                 {
                     MsgIds = model.MsgIds,
                     UserID = SessionManager.CurrentSession.CustID,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _messageService.DeleteMessage(criteria);

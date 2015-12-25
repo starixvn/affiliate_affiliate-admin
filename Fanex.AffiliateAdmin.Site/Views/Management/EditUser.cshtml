@@ -1,4 +1,4 @@
-﻿@using Fanex.AffiliateAdmin.Models
+﻿﻿@using Fanex.AffiliateAdmin.Models
 @{
     ViewBag.Title = Lang.EditUser;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
@@ -10,20 +10,7 @@
 {
     @Html.ValidationSummary()
     <fieldset>
-        <div class="clearfix"></div>
          <div class="control-group">
-            <label class="control-label" for="FirstName">@Lang.FirstName</label>
-            <div class="controls">
-                @Html.TextBoxFor(m => m.FirstName)
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="LastName">@Lang.LastName</label>
-            <div class="controls">
-                @Html.TextBoxFor(m => m.LastName)
-            </div>
-        </div>
-        <div class="control-group">
             <label class="control-label" for="GroupId">@Lang.GroupName</label>
             <div class="controls">
                 @RazorHelper.DropDownListGroup(Model.GroupList.ToList(), Model.GroupID, new Dictionary<string, object> { { "id", "GroupId" } })

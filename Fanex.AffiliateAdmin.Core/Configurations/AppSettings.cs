@@ -21,7 +21,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
     using Criterias.Configuration.Product;
     using Criterias.Configuration.SystemSetting;
     using DTO;
-    using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Services;
@@ -69,7 +68,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             _affSystemAllSupportedCurrencies = new Lazy<IEnumerable<Currency>>(() => SystemSetting.GetAffSystemAllSupportedCurrencyList(new AllSystemCurrencyCriteria()));
             _affSystemSupportedCurrencies = new Lazy<IEnumerable<Currency>>(() =>
             {
-                var criteria = new SystemSupportedCurrencyCriteria { UserId = SessionManager.CurrentSession.CustID };
+                var criteria = new SystemSupportedCurrencyCriteria { UserId = SessionManager.CurrentSession.CustID, LicenseeId = LicenseeID };
 
                 return SystemSetting.GetAffSystemSupportedCurrencyList(criteria);
             });
@@ -100,7 +99,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
                         Environment = Environment
                     }));
             _playerCurrencies = new Lazy<IEnumerable<Currency>>(() => SystemSetting.GetPlayerCurrencyList(new PlayerCurrencyCriteria()));
-            _products = new Lazy<IEnumerable<Product>>(() => SystemSetting.GetProductList(new ProductSelectCriteria()));
+            _products = new Lazy<IEnumerable<Product>>(() => SystemSetting.GetProductList(new ProductSelectCriteria { LicenseeId = LicenseeID }));
             _systemName = new Lazy<string>(() => GetSettingValue(new SystemSettingsSelByNameCriteria { Name = "SystemName" }));
             _systemDisplayName = new Lazy<string>(() =>
             {
@@ -502,11 +501,20 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 
         public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
         {
+            criteria.LicenseeId = LicenseeID;
             return SystemSetting.GetActiveCommGroups(criteria);
         }
 
         public static IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)
         {
+            if (criteria == null)
+            {
+                criteria = new CommGroupCurrencyCriteria { Currency = "All" };
+            }
+
+            criteria.UserId = SessionManager.CurrentSession.CustID;
+            criteria.LicenseeId = LicenseeID;
+
             return SystemSetting.GetCommGroups(criteria);
         }
 

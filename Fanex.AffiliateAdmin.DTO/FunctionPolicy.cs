@@ -18,6 +18,10 @@ namespace Fanex.AffiliateAdmin.DTO
     [Serializable]
     public class FunctionPolicy
     {
+        private const int ReadPolicy = 1;
+
+        private const int HostPolicy = 3;
+
         public int FuncID { get; set; }
 
         public string FuncName { get; set; }
@@ -49,11 +53,27 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string GroupName { get; set; }
 
+        public bool CanRead
+        {
+            get
+            {
+                return this.Actual_Policy == ReadPolicy || this.Actual_Policy == HostPolicy;
+            }
+        }
+
+        public bool CanHost
+        {
+            get
+            {
+                return this.Actual_Policy == HostPolicy;
+            }
+        }
+
         public bool IndividualRead 
         {
             get 
             {
-                return this.Policy >= 1;
+                return this.Policy == ReadPolicy || this.Policy == HostPolicy;
             }
         }
 
@@ -61,7 +81,7 @@ namespace Fanex.AffiliateAdmin.DTO
         {
             get
             {
-                return this.Policy >= 2;
+                return this.Policy == HostPolicy;
             }
         }
 
@@ -69,7 +89,7 @@ namespace Fanex.AffiliateAdmin.DTO
         {
             get
             {
-                return this.GPolicy >= 1;
+                return this.GPolicy == ReadPolicy || this.GPolicy == HostPolicy;
             }
         }
 
@@ -77,7 +97,7 @@ namespace Fanex.AffiliateAdmin.DTO
         {
             get
             {
-                return this.GPolicy >= 2;
+                return this.GPolicy == HostPolicy;
             }
         }
     }

@@ -17,10 +17,10 @@ namespace Fanex.AffiliateAdmin.DataAccess
     using Data;
     using DTO;
     using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Common.Extensions;
     using Fanex.Common.Helper;
     using Models;
-    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// Account data access.
@@ -339,6 +339,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
             return statistics;
         }
 
-        #endregion
+        #endregion Helpers
     }
 }

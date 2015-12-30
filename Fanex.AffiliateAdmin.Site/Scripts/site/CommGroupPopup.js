@@ -603,8 +603,8 @@ var CommGroupPopup = (function ($) {
                 disableCopyCheckboxes();
             });
 
-            $tabheader.on("change", "input[type=checkbox]", function () {
-                var productid = parseInt(this.id, 10);
+            $tabheader.on("change", "input.copy", function () {
+                var productid = this.id;
 
                 for (var i = 0; i < window.PRODUCTS.length; i++) {
                     var id = window.PRODUCTS[i];
@@ -631,13 +631,8 @@ var CommGroupPopup = (function ($) {
             $tabcontent.on("blur", "input.maxAM, input.maxQM", changeMaxAMTAndMaxQM);
 
             $tabcontent.on("change", ".psp-deduction", function () {
-                if ($(this).val() === "0.00") {
-                    $('.totaldeposit').prop("disabled", true);
-                    $('.totalwithdrawal').prop("disabled", true);
-                } else {
-                    $('.totaldeposit').prop("disabled", false);
-                    $('.totalwithdrawal').prop("disabled", false);
-                }
+                var disabled = $(this).val() === "0.00";
+                $('.totaldeposit, .totalwithdrawal').prop("disabled", disabled);
             });
 
             $("#btnSubmit").click(function () {

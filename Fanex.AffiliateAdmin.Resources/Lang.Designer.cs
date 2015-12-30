@@ -841,6 +841,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AG Casino.
+        /// </summary>
+        public static string AGCasino {
+            get {
+                return ResourceManager.GetString("AGCasino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string All {
@@ -3744,6 +3753,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gold Deluxe.
+        /// </summary>
+        public static string GoldDeluxe {
+            get {
+                return ResourceManager.GetString("GoldDeluxe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Go To Page.
         /// </summary>
         public static string GoToPage {
@@ -4338,6 +4356,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keno.
+        /// </summary>
+        public static string Keno {
+            get {
+                return ResourceManager.GetString("Keno", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Key.
         /// </summary>
         public static string Key {
@@ -4604,6 +4631,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string LogType {
             get {
                 return ResourceManager.GetString("LogType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Macau.
+        /// </summary>
+        public static string Macau {
+            get {
+                return ResourceManager.GetString("Macau", resourceCulture);
             }
         }
         
@@ -6153,6 +6189,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string Racebook {
             get {
                 return ResourceManager.GetString("Racebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Racing.
+        /// </summary>
+        public static string Racing {
+            get {
+                return ResourceManager.GetString("Racing", resourceCulture);
             }
         }
         

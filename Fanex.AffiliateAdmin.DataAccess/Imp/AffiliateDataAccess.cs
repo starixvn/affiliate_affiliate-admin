@@ -296,11 +296,11 @@ namespace Fanex.AffiliateAdmin.DataAccess
         private IEnumerable<Product> GetProductList(IDataReader reader)
         {
             var productList = new List<Product>();
-
+            var resourceManager = Lang.ResourceManager;
             while (reader.Read())
             {
                 var productName = reader.ToString("ProductName");
-                productName = Lang.ResourceManager.GetString(productName.Replace(" ", string.Empty));
+                productName = resourceManager.GetString(productName.Replace(" ", string.Empty));
                 productList.Add(new Product
                 {
                     ProductID = reader.ToByte("ProductID"),

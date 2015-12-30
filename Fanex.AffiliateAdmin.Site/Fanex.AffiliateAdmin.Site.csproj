@@ -3524,7 +3524,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.local.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.uat.config" />

@@ -71,7 +71,6 @@ namespace Fanex.AffiliateAdmin.Core.Services
 
                 if (string.IsNullOrWhiteSpace(startTime))
                 {
-                    Logging.LogService.Error("UM service has problems!");
                     return false;
                 }
 

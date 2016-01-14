@@ -132,4 +132,23 @@
   <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_ExchangeAutoRefreshUpd" Suffix="_xtest"></item>
   <item LicenseeName="goobet" Environment="production" SpName="Aff_User_OnUserSelNetSessionID" Suffix="_xtest"></item>
   <item LicenseeName="goobet" Environment="production" SpName="Aff_User_AffiliateInternalLogin" Suffix="_xtest"></item>
+
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_CommGroup_SelActiveList" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="Aff_CommGroupAssign" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_SystemSettingsUpd" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_SystemSettingsDel" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_CountryUpd" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_CountryIns" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_CountryDel" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_ProductUpd" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_ProductIns" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_ProductDel" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_LanguageSelAll" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_LanguageUpd" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_LanguageIns" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_LanguageDel" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_AffTypeSelAll" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_AffTypeUpd" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_AffTypeIns" Suffix="_xtest"></item>
+  <item LicenseeName="goobet" Environment="production" SpName="AffAdmin_AffTypeDel" Suffix="_xtest"></item>
 </Root>

@@ -36,7 +36,7 @@
     <Setting Key="AffAdmin_CommGroupDel" SpName="AffAdmin_CommGroupDel_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupAssign" SpName="AffAdmin_CommGroupAssign_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupSelByID" SpName="AffAdmin_CommGroupSelByID_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_CommGroup_SelActiveList" SpName="AffAdmin_CommGroup_SelActiveList" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroup_SelActiveList" SpName="AffAdmin_CommGroup_SelActiveList_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Affiliate">
     <Setting Key="AffAdmin_AffiliateUpdPwd" SpName="AffAdmin_AffiliateUpdPwd_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
@@ -66,28 +66,28 @@
     <Setting Key="AffAdmin_SystemSettingsSelByType" SpName="AffAdmin_SystemSettingsSelByType" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemSettingsSelByID" SpName="AffAdmin_SystemSettingsSelByID" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemSettingsIns" SpName="AffAdmin_SystemSettingsIns" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_SystemSettingsUpd" SpName="AffAdmin_SystemSettingsUpd" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_SystemSettingsDel" SpName="AffAdmin_SystemSettingsDel" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsUpd" SpName="AffAdmin_SystemSettingsUpd_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSettingsDel" SpName="AffAdmin_SystemSettingsDel_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemSettingsSelAll" SpName="AffAdmin_SystemSettingsSelAll" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CountrySelAll" SpName="AffAdmin_CountrySelAll" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_CountryUpd" SpName="AffAdmin_CountryUpd" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_CountryIns" SpName="AffAdmin_CountryIns" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_CountryDel" SpName="AffAdmin_CountryDel" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CountryUpd" SpName="AffAdmin_CountryUpd_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CountryIns" SpName="AffAdmin_CountryIns_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CountryDel" SpName="AffAdmin_CountryDel_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CountrySelByID" SpName="AffAdmin_CountrySelByID" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_ProductSelAll" SpName="AffAdmin_ProductSelAll_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_ProductUpd" SpName="AffAdmin_ProductUpd" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_ProductIns" SpName="AffAdmin_ProductIns" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_ProductDel" SpName="AffAdmin_ProductDel" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ProductUpd" SpName="AffAdmin_ProductUpd_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ProductIns" SpName="AffAdmin_ProductIns_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_ProductDel" SpName="AffAdmin_ProductDel_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_ProductSelByID" SpName="AffAdmin_ProductSelByID" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_LanguageSelAll" SpName="AffAdmin_LanguageSelAll" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_LanguageUpd" SpName="AffAdmin_LanguageUpd" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_LanguageIns" SpName="AffAdmin_LanguageIns" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_LanguageDel" SpName="AffAdmin_LanguageDel" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_LanguageSelAll" SpName="AffAdmin_LanguageSelAll_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_LanguageUpd" SpName="AffAdmin_LanguageUpd_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_LanguageIns" SpName="AffAdmin_LanguageIns_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_LanguageDel" SpName="AffAdmin_LanguageDel_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_LanguageSelByID" SpName="AffAdmin_LanguageSelByID" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_AffTypeSelAll" SpName="AffAdmin_AffTypeSelAll" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_AffTypeUpd" SpName="AffAdmin_AffTypeUpd" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_AffTypeIns" SpName="AffAdmin_AffTypeIns" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_AffTypeDel" SpName="AffAdmin_AffTypeDel" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeSelAll" SpName="AffAdmin_AffTypeSelAll_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeUpd" SpName="AffAdmin_AffTypeUpd_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeIns" SpName="AffAdmin_AffTypeIns_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffTypeDel" SpName="AffAdmin_AffTypeDel_xtest" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffTypeSelByID" SpName="AffAdmin_AffTypeSelByID" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemSettingsExchange" SpName="AffAdmin_SystemSettingsExchange" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_MemberSupportedLanguagesSel" SpName="AffAdmin_MemberSupportedLanguagesSel" DbName="DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet" Plain="0" />

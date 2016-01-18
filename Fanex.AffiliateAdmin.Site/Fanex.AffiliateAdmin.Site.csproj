@@ -3519,7 +3519,9 @@
     <Content Include="GameData\VideoPoker\RV010\Settings.ini" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.production.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.production.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.master.config" />
@@ -4101,7 +4103,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

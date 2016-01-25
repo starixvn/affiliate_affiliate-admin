@@ -21,15 +21,45 @@
 			"unobet"
 		};
 
-	var environments = new string[] { "uat", "production" };
+	var dbAlias = new string[] {
+		"DBAFF9BET.Affiliate_9Bet.bodbAdminNet", 
+		"DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet",
+		"DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet",
+		"DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet",
+		"DBAFFBE7.Affiliate_BE7.bodbAdminNet",
+		"DBAFFGOOBET.Affiliate_Goobet.bodbAdminNet",
+		"DBAFFITCBET.Affiliate_itcbet.bodbAdminNet",
+		"DBAFFM8BOLA.Affiliate_M8bola.bodbAdminNet",
+		"DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet",
+		"DBAFFNBCBET.Affiliate_NBCBet.bodbAdminNet",
+		"DBAFFQ8BOLA.Affiliate_Q8Bola.bodbAdminNet",
+		"DBAFFUNOBET.Affiliate_Unobet.bodbAdminNet"
+	};
 
+	var dbNames = new string[] {
+		"9bet", 
+		"allbetclub",
+		"aoncash",
+		"athena000",
+		"be7",
+		"goobet",
+		"itcbet",
+		"m8bola",
+		"macaubet",
+		"nbcbet",
+		"q8bola",
+		"unobet"
+	};
+
+	var environments = new string[] { "uat", "production" };
+	var index = 0;
 	foreach(var licenseeName in licenseeNames)
 	{
 		foreach(var environment in environments)
 		{
 			var fileName = string.Format("Web.ConnectionString.{0}.{1}.config", licenseeName, environment);
 			manager.StartNewFile(fileName);
-			var licenseeDb = string.Format("<add name=\"DBAFF{0}.Affiliate_{0}.bodbAdminNet\" connectionString=\"packet size=4096; Data Source=10.40.40.224;Initial Catalog=Affiliate_{0};integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;\" providerName=\"System.Data.SqlClient\" />", licenseeName.ToUpper());
+			var licenseeDb = string.Format("<add name=\"{0}\" connectionString=\"packet size=4096; Data Source=10.40.40.224;Initial Catalog=Affiliate_{1};integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;\" providerName=\"System.Data.SqlClient\" />", dbAlias[index], dbNames[index]);
 #>
 <connectionStrings>
 	<#= licenseeDb #>
@@ -45,6 +75,8 @@
 </connectionStrings>
 		<#
 		}
+
+		index++;
 	}
 	manager.Process();
 #>

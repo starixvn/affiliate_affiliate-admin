@@ -6,8 +6,8 @@
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.unobet.uat.config
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.q8bola.production.config
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.q8bola.uat.config
-// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.nbcbet.production.config
-// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.nbcbet.uat.config
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aiabet.production.config
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aiabet.uat.config
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.production.config
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.uat.config
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.m8bola.production.config

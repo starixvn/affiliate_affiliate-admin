@@ -4,7 +4,7 @@
 // Generated items
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.unobet.production.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.q8bola.production.xml
-// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.nbcbet.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aiabet.production.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.production.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.m8bola.production.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.production.xml
@@ -16,7 +16,7 @@
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.9bet.production.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.unobet.uat.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.q8bola.uat.xml
-// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.nbcbet.uat.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aiabet.uat.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.uat.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.m8bola.uat.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.uat.xml

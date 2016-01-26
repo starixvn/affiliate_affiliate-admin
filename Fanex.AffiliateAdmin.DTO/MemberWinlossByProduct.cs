@@ -106,7 +106,9 @@ namespace Fanex.MemberAdmin.DTO
                 totalMemberWinLoss.PlayerUsername = sampleWinLoss.PlayerUsername;
                 totalMemberWinLoss.AffCurrencyId = sampleWinLoss.AffCurrencyId;
                 totalMemberWinLoss.PlayerCurrencyId = sampleWinLoss.PlayerCurrencyId;
+                totalMemberWinLoss.PlayerCurrency = sampleWinLoss.PlayerCurrency;
                 totalMemberWinLoss.ProductName = string.Join(",", MemberWinLossByProductList.Select(t => t.ProductName).Distinct());
+                totalMemberWinLoss.OriginalProductName = string.Join(",", MemberWinLossByProductList.Select(t => t.OriginalProductName).Distinct());
                 totalMemberWinLoss.WinlostDate = sampleWinLoss.WinlostDate;
             }
 

@@ -32,6 +32,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// <summary>
     /// Account controller.
     /// </summary>
+    [Undermaintenance]
     public class AccountController : Controller
     {
         #region Services
@@ -71,16 +72,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Login()
         {
-            string startTime = string.Empty, endTime = string.Empty;
-
-            if (UnderMaintenanceService.GetDownTime(ref startTime, ref endTime))
-            {
-                ViewBag.StartTime = startTime;
-                ViewBag.EndTime = endTime;
-
-                return Redirect("~/Notify");
-            }
-            else if (!Regex.IsMatch(Request.UserHostAddress, AppSettings.GetValue("CompanyIPRange")))
+            if (!Regex.IsMatch(Request.UserHostAddress, AppSettings.GetValue("CompanyIPRange")))
             {
                 return Redirect("~/Notify/AccessDenied");
             }

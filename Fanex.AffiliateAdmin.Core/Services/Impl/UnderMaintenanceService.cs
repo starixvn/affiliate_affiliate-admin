@@ -68,6 +68,12 @@ namespace Fanex.AffiliateAdmin.Core.Services
             {
                 underMaintenance = maintenanceController.isUnderMaintainence(Sites.Affiliate, AppSettings.LBUrl.ToString(), ref startTime, ref endTime);
                 _memoryCache.Add("IsUM", underMaintenance, DateTime.Now.AddSeconds(_TimeCacheUM));
+
+                if (string.IsNullOrWhiteSpace(startTime))
+                {
+                    return false;
+                }
+
                 _memoryCache.Add("StartTime", startTime, DateTime.Now.AddSeconds(_TimeCacheUM));
                 _memoryCache.Add("EndTime", endTime, DateTime.Now.AddSeconds(_TimeCacheUM));
             }

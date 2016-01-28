@@ -31,7 +31,7 @@
 		"DBAFFITCBET.Affiliate_itcbet.bodbAdminNet",
 		"DBAFFM8BOLA.Affiliate_M8bola.bodbAdminNet",
 		"DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet",
-		"DBAFFNBCBET.Affiliate_NBCBet.bodbAdminNet",
+		"DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet",
 		"DBAFFQ8BOLA.Affiliate_Q8Bola.bodbAdminNet",
 		"DBAFFUNOBET.Affiliate_Unobet.bodbAdminNet"
 	};

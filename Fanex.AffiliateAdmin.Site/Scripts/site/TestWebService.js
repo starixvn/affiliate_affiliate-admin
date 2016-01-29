@@ -24,8 +24,6 @@ var TestWebService = (function ($) {
                     type: 'post',
                     data: paras,
                     success: function (result) {
-                        AFFILIATE.PreHandleAjaxResult(result);
-                        
                         $('#result').text(result);
                     },
                     error: function () {

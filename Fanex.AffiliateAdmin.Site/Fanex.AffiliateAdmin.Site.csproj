@@ -287,6 +287,12 @@
     <Content Include="Configurations\SpNames\SpName.9bet.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.aiabet.production.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.aiabet.uat.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\SpNames\SpName.allbetclub.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
@@ -334,12 +340,6 @@
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.macaubet.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.nbcbet.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.nbcbet.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.q8bola.production.xml">
@@ -705,19 +705,19 @@
     <Content Include="Content\_Sites\allbetclub\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\allbetclub\images\notify.png" />
     <Content Include="Content\_Sites\allbetclub\images\panel.png" />
-    <Content Include="Content\_Sites\nbcbet\images\banner_top.png" />
-    <Content Include="Content\_Sites\nbcbet\images\best-browsers.png" />
-    <Content Include="Content\_Sites\nbcbet\images\bodybg.jpg" />
-    <Content Include="Content\_Sites\nbcbet\images\btbg.png" />
-    <Content Include="Content\_Sites\nbcbet\images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\nbcbet\images\emailBg.jpg" />
-    <Content Include="Content\_Sites\nbcbet\images\favicon.jpg" />
-    <Content Include="Content\_Sites\nbcbet\images\headerbg.jpg" />
-    <Content Include="Content\_Sites\nbcbet\images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\nbcbet\images\logo.jpg" />
-    <Content Include="Content\_Sites\nbcbet\images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\nbcbet\images\notify.png" />
-    <Content Include="Content\_Sites\nbcbet\images\panel.png" />
+    <Content Include="Content\_Sites\aiabet\images\banner_top.png" />
+    <Content Include="Content\_Sites\aiabet\images\best-browsers.png" />
+    <Content Include="Content\_Sites\aiabet\images\bodybg.jpg" />
+    <Content Include="Content\_Sites\aiabet\images\btbg.png" />
+    <Content Include="Content\_Sites\aiabet\images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\aiabet\images\emailBg.jpg" />
+    <Content Include="Content\_Sites\aiabet\images\favicon.jpg" />
+    <Content Include="Content\_Sites\aiabet\images\headerbg.jpg" />
+    <Content Include="Content\_Sites\aiabet\images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\aiabet\images\logo.jpg" />
+    <Content Include="Content\_Sites\aiabet\images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\aiabet\images\notify.png" />
+    <Content Include="Content\_Sites\aiabet\images\panel.png" />
     <Content Include="Content\_Sites\q8bola\images\banner_top.png" />
     <Content Include="Content\_Sites\q8bola\images\best-browsers.png" />
     <Content Include="Content\_Sites\q8bola\images\bodybg.jpg" />
@@ -3513,8 +3513,8 @@
     <Content Include="Deployment.ignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\_Sites\nbcbet\Login.less" />
-    <Content Include="Content\_Sites\nbcbet\Notify.less" />
+    <Content Include="Content\_Sites\aiabet\Login.less" />
+    <Content Include="Content\_Sites\aiabet\Notify.less" />
     <Content Include="GameData\GlobalSetting.ini" />
     <Content Include="GameData\VideoPoker\RV009\Settings.ini" />
     <Content Include="GameData\VideoPoker\RV010\Settings.ini" />
@@ -3550,10 +3550,10 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.nbcbet.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.nbcbet.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.nbcbet.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.nbcbet.uat.config">
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.master.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.production.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.uat.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.local.config" />
@@ -3592,10 +3592,10 @@
     <Content Include="Configurations\WebConfigs\Web.macaubet.master.config" />
     <Content Include="Configurations\WebConfigs\Web.macaubet.production.config" />
     <Content Include="Configurations\WebConfigs\Web.macaubet.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.nbcbet.local.config" />
-    <Content Include="Configurations\WebConfigs\Web.nbcbet.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.nbcbet.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.nbcbet.uat.config" />
+    <Content Include="Configurations\WebConfigs\Web.aiabet.local.config" />
+    <Content Include="Configurations\WebConfigs\Web.aiabet.master.config" />
+    <Content Include="Configurations\WebConfigs\Web.aiabet.production.config" />
+    <Content Include="Configurations\WebConfigs\Web.aiabet.uat.config" />
     <Content Include="Configurations\WebConfigs\Web.q8bola.local.config" />
     <Content Include="Configurations\WebConfigs\Web.q8bola.master.config" />
     <Content Include="Configurations\WebConfigs\Web.q8bola.production.config" />
@@ -3696,12 +3696,6 @@
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.nbcbet.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.nbcbet.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.q8bola.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
@@ -3712,6 +3706,12 @@
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.uat.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aiabet.production.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aiabet.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
@@ -4104,7 +4104,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

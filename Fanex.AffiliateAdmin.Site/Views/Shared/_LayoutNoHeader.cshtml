@@ -7,7 +7,6 @@
         <link href="@Url.Content(string.Format("~/Content/_Sites/{0}/images/favicon.jpg?{1}", AppSettings.Layout, DateTime.Now.Ticks))" rel="shortcut icon" type="image/jpg" />
         <meta name="viewport" content="width=device-width" />
         <meta http-equiv="refresh" content="60" />
-        @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/headjs")
         @RenderSection("css", required: false)
     </head>
@@ -15,19 +14,5 @@
         <!--content html-->
         @RenderBody()
         @RenderSection("scripts", required: false)
-        <script type="text/javascript">
-            var Lang = {
-                ChangePassword: "@Lang.ChangePassword",
-                Close: "@Lang.Close"
-            };
-
-            $(document).ready(function() {
-                AFFILIATE.getAbsoluteUrl = function(relativeUrl) {
-                    return '@Url.Content("~/")' + relativeUrl;
-                };
-
-                AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
-            });
-        </script>
     </body>
 </html>

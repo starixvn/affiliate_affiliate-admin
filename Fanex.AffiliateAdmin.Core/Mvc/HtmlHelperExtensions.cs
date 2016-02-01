@@ -412,7 +412,7 @@ namespace Fanex.AffiliateAdmin.Core.Mvc
             object htmlAttributes = null)
         {
             var metaData = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
-            var value = metaData.Model is DateTime? ? (DateTime?)metaData.Model : null;
+            var value = (metaData.Model is DateTime?) ? (DateTime?)metaData.Model : null;
 
             return html.MonthPicker(metaData.PropertyName, value, minDate, maxDate, htmlAttributes);
         }

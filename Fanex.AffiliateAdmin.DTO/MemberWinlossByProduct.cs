@@ -64,9 +64,7 @@ namespace Fanex.MemberAdmin.DTO
         private MemberWinLossItem GetTotalMemberWinLoss()
         {
             var properties = typeof(MemberWinLossItem).GetProperties().Where(IsPropertyAbleSumUp).ToList();
-
             var totalMemberWinLoss = new MemberWinLossItem();
-
             foreach (var property in properties)
             {
                 if (property.Name.EndsWith("ActivePlayers", StringComparison.OrdinalIgnoreCase) || property.Name.EndsWith("BetCount", StringComparison.OrdinalIgnoreCase))

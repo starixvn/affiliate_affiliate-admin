@@ -11,6 +11,7 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configurations;
@@ -286,6 +287,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="affId">The affiliate id.</param>
         /// <param name="refId">The preference unique identifier.</param>
         /// <param name="transferAmount">The amount.</param>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
         private ResultViewModel UpdatePayment(PaymentUpdateCriteria criteria, long affId, long refId, decimal transferAmount)
         {
             ResultViewModel result;

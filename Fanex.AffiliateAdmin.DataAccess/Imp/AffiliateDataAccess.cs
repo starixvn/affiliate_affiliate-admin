@@ -35,7 +35,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
         public AffiliateInfoViewModel GetAffiliateGeneralInfo(AffiliateInfoCriteria criteria)
         {
             var affiliateInfo = new AffiliateInfoViewModel();
-
             Check.Argument.IsNotNull(criteria, "criteria");
 
             if (criteria.IsValid())

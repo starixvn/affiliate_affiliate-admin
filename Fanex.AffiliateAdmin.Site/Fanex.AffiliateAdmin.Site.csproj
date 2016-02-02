@@ -3568,47 +3568,37 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.aoncash.local.config" />
     <Content Include="Configurations\WebConfigs\Web.aoncash.master.config" />
     <Content Include="Configurations\WebConfigs\Web.aoncash.production.config" />
     <Content Include="Configurations\WebConfigs\Web.aoncash.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.athena000.local.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Configurations\WebConfigs\Web.athena000.master.config" />
     <Content Include="Configurations\WebConfigs\Web.athena000.production.config" />
     <Content Include="Configurations\WebConfigs\Web.athena000.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.be7.local.config" />
     <Content Include="Configurations\WebConfigs\Web.be7.master.config" />
     <Content Include="Configurations\WebConfigs\Web.be7.production.config" />
     <Content Include="Configurations\WebConfigs\Web.be7.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.goobet.local.config" />
     <Content Include="Configurations\WebConfigs\Web.goobet.master.config" />
     <Content Include="Configurations\WebConfigs\Web.goobet.production.config" />
     <Content Include="Configurations\WebConfigs\Web.goobet.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.itcbet.local.config" />
     <Content Include="Configurations\WebConfigs\Web.itcbet.master.config" />
     <Content Include="Configurations\WebConfigs\Web.itcbet.production.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\WebConfigs\Web.itcbet.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.m8bola.local.config" />
     <Content Include="Configurations\WebConfigs\Web.m8bola.master.config" />
     <Content Include="Configurations\WebConfigs\Web.m8bola.production.config" />
     <Content Include="Configurations\WebConfigs\Web.m8bola.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.macaubet.local.config" />
     <Content Include="Configurations\WebConfigs\Web.macaubet.master.config" />
     <Content Include="Configurations\WebConfigs\Web.macaubet.production.config" />
     <Content Include="Configurations\WebConfigs\Web.macaubet.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.aiabet.local.config" />
     <Content Include="Configurations\WebConfigs\Web.aiabet.master.config" />
     <Content Include="Configurations\WebConfigs\Web.aiabet.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.aiabet.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.q8bola.local.config" />
+    <Content Include="Configurations\WebConfigs\Web.aiabet.uat.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\WebConfigs\Web.q8bola.master.config" />
     <Content Include="Configurations\WebConfigs\Web.q8bola.production.config" />
     <Content Include="Configurations\WebConfigs\Web.q8bola.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.unobet.local.config" />
     <Content Include="Configurations\WebConfigs\Web.unobet.master.config" />
     <Content Include="Content\_Sites\athena000\Login.less" />
     <Content Include="Content\_Sites\athena000\Notify.less" />
@@ -3622,7 +3612,6 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.uat.config" />
     <Content Include="Content\_Sites\unobet\Login.less" />
     <Content Include="Content\_Sites\unobet\Notify.less" />
-    <Content Include="Configurations\WebConfigs\Web.allbetclub.local.config" />
     <Content Include="Configurations\WebConfigs\Web.allbetclub.master.config" />
     <Content Include="Configurations\WebConfigs\Web.allbetclub.production.config">
       <SubType>Designer</SubType>
@@ -3639,9 +3628,6 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.9bet.local.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Configurations\WebConfigs\Web.9bet.master.config" />
     <Content Include="Configurations\WebConfigs\Web.9bet.production.config">
       <SubType>Designer</SubType>
@@ -4109,7 +4095,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

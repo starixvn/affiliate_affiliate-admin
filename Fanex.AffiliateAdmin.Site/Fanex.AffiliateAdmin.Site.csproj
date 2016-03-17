@@ -125,8 +125,9 @@
     <Reference Include="ILogger">
       <HintPath>..\packages\ILogger.1.0.0.0\lib\net40\ILogger.dll</HintPath>
     </Reference>
-    <Reference Include="LiveCasinoLibrary">
-      <HintPath>..\packages\LiveCasinoLibrary.1.0.0.15\lib\net40\LiveCasinoLibrary.dll</HintPath>
+    <Reference Include="LiveCasinoLibrary, Version=1.0.0.18, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCasinoLibrary.1.0.0.18\lib\net40\LiveCasinoLibrary.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.9.0\lib\net11\log4net.dll</HintPath>
@@ -190,8 +191,9 @@
     <Reference Include="MvcPager, Version=1.5.0.28157, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvcPager.1.5.0.28157\lib\net40\MvcPager.dll</HintPath>
     </Reference>
-    <Reference Include="NetUtility">
-      <HintPath>..\packages\HandHistoryLibrary.2014.11.11.1541\lib\net40\NetUtility.dll</HintPath>
+    <Reference Include="NetUtility, Version=1.0.4199.22106, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetUtility.1.0.4199.22106\lib\net40\NetUtility.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -4095,7 +4097,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

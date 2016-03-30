@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     using Fanex.AffiliateAdmin.Core.Entities;
     using Fanex.AffiliateAdmin.Core.Enumerations;
     using RazorEngine;
+    using RazorEngine.Templating;
 
     /// <summary>
     /// TODO: Update summary.
@@ -73,10 +74,10 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                               language);
             var virtualBodyPath = string.Format(
                 "~/Views/Shared/Email/{0}/{1}/Body.{2}.cshtml",
-                TemplateType.ToString(), 
+                TemplateType.ToString(),
                 FormatType.ToString(),
                 language);
-          
+
             _subjectPath = server.MapPath(virtualSubjectPath);
             _bodyPath = server.MapPath(virtualBodyPath);
 
@@ -103,15 +104,8 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// <returns>Return content after replacing.</returns>
         private string ParseTemplate(string templatePath, EmailTemplateInfo info)
         {
-            try
-            {
-                var template = File.ReadAllText(templatePath);
-                return Razor.Parse(template, info);
-            }
-            catch
-            {
-                throw;
-            }
+            var template = File.ReadAllText(templatePath);
+            return Engine.Razor.RunCompile(template, templatePath, typeof(EmailTemplateInfo), info);
         }
     }
 }

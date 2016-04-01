@@ -390,10 +390,15 @@
     <Content Include="Content\_Sites\be7th\images\best-browsers.png" />
     <Content Include="Content\_Sites\be7th\images\bodybg.jpg" />
     <Content Include="Content\_Sites\be7th\images\btbg.png" />
+    <Content Include="Content\_Sites\be7th\images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\be7th\images\emailBg.jpg" />
     <Content Include="Content\_Sites\be7th\images\favicon.jpg" />
+    <Content Include="Content\_Sites\be7th\images\headerbg-notify.jpg" />
     <Content Include="Content\_Sites\be7th\images\headerbg.jpg" />
     <Content Include="Content\_Sites\be7th\images\logo-afterlogin.png" />
+    <Content Include="Content\_Sites\be7th\images\logo-notify.jpg" />
     <Content Include="Content\_Sites\be7th\images\logo.jpg" />
+    <Content Include="Content\_Sites\be7th\images\notify.png" />
     <Content Include="Content\_Sites\be7th\images\panel.png" />
     <Content Include="Content\_Sites\unobet\images\banner_top.png" />
     <Content Include="Content\_Sites\unobet\images\best-browsers.png" />
@@ -4101,7 +4106,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

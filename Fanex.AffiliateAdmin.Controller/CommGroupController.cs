@@ -67,8 +67,8 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>Group Information.</returns>
         public ActionResult Add()
         {
-            var serializer = new JavaScriptSerializer();
-            ViewBag.ProductIDList = serializer.Serialize(AppSettings.Products.Where(t => t.IsEnabled).Select(x => x.ProductID).ToArray());
+            ViewBag.ProductIDList = string.Join(",", AppSettings.Products.Where(x => x.IsEnabled).Select(x => x.ProductID));
+
             var currency = SessionManager.CurrentSession.CurrencyList.First();
 
             var criteria = new GetDefaultPspExchangeCriteria
@@ -161,8 +161,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>Group Information.</returns>
         public ActionResult Edit(int groupid)
         {
-            var serializer = new JavaScriptSerializer();
-            ViewBag.ProductIDList = serializer.Serialize(AppSettings.Products.Select(x => x.ProductID).ToArray());
+            ViewBag.ProductIDList = string.Join(",", AppSettings.Products.Where(x => x.IsEnabled).Select(x => x.ProductID));
 
             var group = _commGroupService.GetListData<CommGroupInfo>(new CommGroupInfoCriteria()
             {

@@ -203,7 +203,7 @@
             UncheckCopyAllTierSettings: "@Lang.UncheckCopyAllTierSettings"
         };
 
-        var PRODUCTS = JSON.parse("@(ViewBag.ProductIDList)");
+        var PRODUCTS = "@(ViewBag.ProductIDList)".split(',');
         var HasCashback = @(Model.HasCashback > 0 ? "true" : "false");
     </script>
 

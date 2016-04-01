@@ -17,6 +17,7 @@ namespace Fanex.AffiliateAdmin.Core.Mailinator
     using Fanex.AffiliateAdmin.Core.Enumerations;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using RazorEngine;
+    using RazorEngine.Templating;
 
     /// <summary>
     /// TODO: Update summary.
@@ -117,15 +118,8 @@ namespace Fanex.AffiliateAdmin.Core.Mailinator
         /// <returns>Return content after replacing.</returns>
         private string ParseTemplate(string templatePath, EmailTemplateInfo info)
         {
-            try
-            {
-                var template = File.ReadAllText(templatePath);
-                return Razor.Parse(template, info);
-            }
-            catch
-            {
-                throw;
-            }
+            var template = File.ReadAllText(templatePath);
+            return Engine.Razor.RunCompile(template, templatePath, typeof(EmailTemplateInfo), info);
         }
     }
 }

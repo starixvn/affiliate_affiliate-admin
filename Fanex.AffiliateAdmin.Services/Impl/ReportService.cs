@@ -14,6 +14,9 @@ namespace Fanex.AffiliateAdmin.Services
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.DataAccess;
+    using Fanex.Common.Extensions;
+    using Fanex.Common.Helper;
+    using Fanex.Data;
 
     /// <summary>
     /// TODO: Update summary.
@@ -88,7 +91,48 @@ namespace Fanex.AffiliateAdmin.Services
 
         public IEnumerable<QualifiedMember> GetQualifiedMembers(QualifiedMembersReportCriteria criteria)
         {
-            return GetData<QualifiedMember>(criteria);
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            if (!criteria.IsValid())
+            {
+                return new List<QualifiedMember>();
+            }
+
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                using (var reader = objectDb.ExecuteReader(criteria.GetSpParams()))
+                {
+                    var dataList = new List<QualifiedMember>();
+                    QualifiedMember member = null;
+
+                    while (reader.Read())
+                    {
+                        var username = reader.ToString("Username");
+                        if (member == null || !member.Username.Equals(username, System.StringComparison.OrdinalIgnoreCase))
+                        {
+                            member = new QualifiedMember();
+                            member.Username = username;
+                            member.Currency = reader.ToString("Currency");
+                            member.QualifiedAmount = reader.ToDecimal("QualifiedAmount");
+                            member.QualifiedAmountBase = reader.ToDouble("QualifiedAmountBase");
+                            dataList.Add(member);
+                        }
+
+                        var productId = reader.ToInt("ProductId");
+                        member.QualifiedMemberProducts.Add(
+                            productId,
+                            new QualifiedMemberProduct()
+                        {
+                            ProductId = productId,
+                            ProductName = reader.ToString("ProductName"),
+                            Turnover = reader.ToDouble("Turnover"),
+                            TurnoverBase = reader.ToDouble("TurnoverBase")
+                        });
+                    }
+
+                    return dataList;
+                }
+            }
         }
 
         public AffiliateCommissionResult GetAffiliateCommission(AffiliateCommissionCriteria criteria)

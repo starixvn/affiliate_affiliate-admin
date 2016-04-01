@@ -17,6 +17,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
     using Data;
     using DTO;
     using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Resources;
     using Fanex.Common.Extensions;
     using Fanex.Common.Helper;
     using Models;
@@ -34,7 +35,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
         public AffiliateInfoViewModel GetAffiliateGeneralInfo(AffiliateInfoCriteria criteria)
         {
             var affiliateInfo = new AffiliateInfoViewModel();
-
             Check.Argument.IsNotNull(criteria, "criteria");
 
             if (criteria.IsValid())
@@ -100,7 +100,7 @@ namespace Fanex.AffiliateAdmin.DataAccess
                     var param = criteria.GetSpParams();
                     using (var reader = objectDb.ExecuteReader(param))
                     {
-                        affiliateStatistic.AddProducts(GetProductList(reader));
+                        affiliateStatistic.Products = GetProductList(reader);
 
                         affiliateStatistic.CommGroupInfo = GetCommGroup(reader);
                     }
@@ -292,16 +292,18 @@ namespace Fanex.AffiliateAdmin.DataAccess
         /// </summary>
         /// <param name="reader">Data reader.</param>
         /// <returns>Product List.</returns>
-        private IList<Product> GetProductList(IDataReader reader)
+        private IEnumerable<Product> GetProductList(IDataReader reader)
         {
             var productList = new List<Product>();
-
+            var resourceManager = Lang.ResourceManager;
             while (reader.Read())
             {
+                var productName = reader.ToString("ProductName");
+                productName = resourceManager.GetString(productName.Replace(" ", string.Empty));
                 productList.Add(new Product
                 {
                     ProductID = reader.ToByte("ProductID"),
-                    ProductName = reader.ToString("ProductName"),
+                    ProductName = productName,
                     TotalQualifiedMembers = reader.ToInt("TotalQualifiedMembers")
                 });
             }
@@ -336,6 +338,6 @@ namespace Fanex.AffiliateAdmin.DataAccess
             return statistics;
         }
 
-        #endregion
+        #endregion Helpers
     }
 }

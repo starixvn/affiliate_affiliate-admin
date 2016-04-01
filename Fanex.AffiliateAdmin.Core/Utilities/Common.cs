@@ -14,14 +14,11 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
-    using System.Linq;
     using System.Resources;
     using System.Text;
-    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Enumerations;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.MailDeliver.MailClient.API;
-    using RazorEngine;
 
     /// <summary>
     /// Common class.
@@ -118,25 +115,6 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                     return Lang.Current;
                 default:
                     return status;
-            }
-        }
-
-        /// <summary>
-        /// Get email body use RAZOR.
-        /// </summary>
-        /// <param name="templatePath">Template Path.</param>
-        /// <param name="model">Model to bind data.</param>
-        /// <returns>Body content of email.</returns>
-        public static string GetEmailBody(string templatePath, dynamic model)
-        {
-            try
-            {
-                var template = File.ReadAllText(templatePath);
-                return Razor.Parse(template, model);
-            }
-            catch
-            {
-                throw;
             }
         }
 

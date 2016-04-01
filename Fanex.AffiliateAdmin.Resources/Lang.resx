@@ -2830,4 +2830,19 @@
   <data name="PleaseSelectUser" xml:space="preserve">
     <value>Please select at least one user!</value>
   </data>
+  <data name="AGCasino" xml:space="preserve">
+    <value>AG Casino</value>
+  </data>
+  <data name="GoldDeluxe" xml:space="preserve">
+    <value>Gold Deluxe</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>Keno</value>
+  </data>
+  <data name="Macau" xml:space="preserve">
+    <value>Macau</value>
+  </data>
+  <data name="Racing" xml:space="preserve">
+    <value>Racing</value>
+  </data>
 </root>

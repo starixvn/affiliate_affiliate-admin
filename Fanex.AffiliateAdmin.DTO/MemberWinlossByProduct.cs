@@ -64,9 +64,7 @@ namespace Fanex.MemberAdmin.DTO
         private MemberWinLossItem GetTotalMemberWinLoss()
         {
             var properties = typeof(MemberWinLossItem).GetProperties().Where(IsPropertyAbleSumUp).ToList();
-
             var totalMemberWinLoss = new MemberWinLossItem();
-
             foreach (var property in properties)
             {
                 if (property.Name.EndsWith("ActivePlayers", StringComparison.OrdinalIgnoreCase) || property.Name.EndsWith("BetCount", StringComparison.OrdinalIgnoreCase))
@@ -106,7 +104,9 @@ namespace Fanex.MemberAdmin.DTO
                 totalMemberWinLoss.PlayerUsername = sampleWinLoss.PlayerUsername;
                 totalMemberWinLoss.AffCurrencyId = sampleWinLoss.AffCurrencyId;
                 totalMemberWinLoss.PlayerCurrencyId = sampleWinLoss.PlayerCurrencyId;
+                totalMemberWinLoss.PlayerCurrency = sampleWinLoss.PlayerCurrency;
                 totalMemberWinLoss.ProductName = string.Join(",", MemberWinLossByProductList.Select(t => t.ProductName).Distinct());
+                totalMemberWinLoss.OriginalProductName = string.Join(",", MemberWinLossByProductList.Select(t => t.OriginalProductName).Distinct());
                 totalMemberWinLoss.WinlostDate = sampleWinLoss.WinlostDate;
             }
 

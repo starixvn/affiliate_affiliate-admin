@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
-  <item LicenseeName="" Environment="production" SpName="Test" Suffix="_xtest"></item>  
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT" SpName="AffAdmin_QualifiedMembersReport" Suffix="_xtest"></item> 
 </Root>

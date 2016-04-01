@@ -85,18 +85,29 @@
                             </td>    
                             @foreach (var product in selectedProducts)
                             {
-                                var turnover = (double) @member.GetPropertyValue(product.ProductName.Replace(" ", "") + "Turnover");
-                                var turnoverBase = (double) @member.GetPropertyValue(product.ProductName.Replace(" ", "") + "TurnoverBase");
-
-                                var isQualified = (decimal) turnover >= member.QualifiedAmount;
+                                QualifiedMemberProduct memberProduct;
+                                if(member.QualifiedMemberProducts.ContainsKey(product.ProductID))
+                                {
+                                    memberProduct = member.QualifiedMemberProducts[product.ProductID];
+                                }
+                                else
+                                {
+                                    memberProduct = new QualifiedMemberProduct();
+                                }
+                                    
+                                var isQualified = (decimal)memberProduct.Turnover >= member.QualifiedAmount;
                                 var style = isQualified ? "style=color:green" : null;
                                 if (!totalData.ContainsKey(product.ProductID))
+                                {
                                     totalData.Add(product.ProductID, isQualified ? 1 : 0);
+                                }
                                 else
+                                {
                                     totalData[product.ProductID] += isQualified ? 1 : 0;
+                                }
 
                                 <td class="" width="@(selectedProducts.Count > 1 ? "100px" : "160px")" align="right" @style >
-                                    @(ViewBag.BaseCurrency == 2 ? turnover.ToString("N", CultureInfo.InvariantCulture) : turnoverBase.ToString("N", CultureInfo.InvariantCulture))
+                                    @(ViewBag.BaseCurrency == 2 ? memberProduct.Turnover.ToString("N", CultureInfo.InvariantCulture) : memberProduct.TurnoverBase.ToString("N", CultureInfo.InvariantCulture))
                                 </td>
                             }
                         </tr>

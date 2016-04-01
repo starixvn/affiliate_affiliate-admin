@@ -3,12 +3,12 @@
 <#@ include file="_SpNameConfiguration.ttinclude" #>
 <#
     var manager = TemplateFileManager.Create(this);	
+	var spConfigs = Helper.GetListOfSpConfig();
+		var allSpNames = Helper.GetAllSpNames();
     foreach(var site in sites)
     {        
         var fileName = site.Environment == "DEV" ? "SpName.xml" : string.Format("SpName.{0}.{1}.xml", site.LicenseeName, site.Environment);
-		var spConfigs = Helper.GetListOfSpConfig();
-		var allSpNames = Helper.GetAllSpNames();
-        manager.StartNewFile(fileName);
+		manager.StartNewFile(fileName);
 		#>
 <#=site.GenerateSpName(allSpNames, spConfigs)#>
 		<#

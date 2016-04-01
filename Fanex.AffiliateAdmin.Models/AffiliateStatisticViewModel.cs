@@ -17,19 +17,7 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class AffiliateStatisticViewModel
     {
-        #region Fields
-
-        private IList<Product> _products;
-
-        #endregion Fields
-
-        public IList<Product> Products
-        {
-            get
-            {
-                return _products;
-            }
-        }
+        public IEnumerable<Product> Products { get; set; }
 
         public AffiliateStatistic Statistic { get; set; }
 
@@ -59,18 +47,6 @@ namespace Fanex.AffiliateAdmin.Models
                 Month = value.Month;
                 Year = value.Year;
             }
-        }
-
-        public void AddProducts(IList<Product> products)
-        {
-            _products = products.Select(t => new Product()
-                {
-                    ProductID = t.ProductID,
-                    ProductName = Lang.ResourceManager.GetString(t.ProductName.Replace(" ", string.Empty)),
-                    TotalQualifiedMembers = t.TotalQualifiedMembers,
-                    QMDeposit = t.QMDeposit,
-                    QMTurnOver = t.QMTurnOver
-                }).ToList();
         }
     }
 }

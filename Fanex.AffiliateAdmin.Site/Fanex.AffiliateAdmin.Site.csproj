@@ -3725,23 +3725,23 @@
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aiabet.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <None Include="Configurations\AppSettings\Web.AppSetting.be7th.local.config" />
-    <None Include="Configurations\AppSettings\Web.AppSetting.be7th.master.config" />
-    <None Include="Configurations\AppSettings\Web.AppSetting.be7th.production.config" />
-    <None Include="Configurations\AppSettings\Web.AppSetting.be7th.uat.config" />
-    <None Include="Configurations\ConnectionStrings\Web.ConnectionString.be7th.production.config">
+    <Content Include="Configurations\AppSettings\Web.AppSetting.be7th.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.be7th.master.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.be7th.production.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.be7th.uat.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7th.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\ConnectionStrings\Web.ConnectionString.be7th.uat.config">
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7th.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </None>
+    </Content>
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
     <Content Include="Content\_Sites\be7th\Login.less" />
     <Content Include="Content\_Sites\be7th\Notify.less" />
-    <None Include="Configurations\WebConfigs\Web.be7th.master.config" />
-    <None Include="Configurations\WebConfigs\Web.be7th.production.config" />
-    <None Include="Configurations\WebConfigs\Web.be7th.uat.config" />
+    <Content Include="Configurations\WebConfigs\Web.be7th.master.config" />
+    <Content Include="Configurations\WebConfigs\Web.be7th.production.config" />
+    <Content Include="Configurations\WebConfigs\Web.be7th.uat.config" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -4126,7 +4126,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

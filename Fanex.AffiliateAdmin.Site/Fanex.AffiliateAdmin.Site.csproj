@@ -321,6 +321,12 @@
     <Content Include="Configurations\SpNames\SpName.be7.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.be7th.production.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.be7th.uat.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\SpNames\SpName.goobet.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
@@ -3723,6 +3729,12 @@
     <None Include="Configurations\AppSettings\Web.AppSetting.be7th.master.config" />
     <None Include="Configurations\AppSettings\Web.AppSetting.be7th.production.config" />
     <None Include="Configurations\AppSettings\Web.AppSetting.be7th.uat.config" />
+    <None Include="Configurations\ConnectionStrings\Web.ConnectionString.be7th.production.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\ConnectionStrings\Web.ConnectionString.be7th.uat.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </None>
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
     <Content Include="Content\_Sites\be7th\Login.less" />
@@ -4114,7 +4126,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

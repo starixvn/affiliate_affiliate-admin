@@ -203,7 +203,6 @@
     <Compile Include="Enumerations\ErrorCode.cs" />
     <Compile Include="Enumerations\PaymentStatus.cs" />
     <Compile Include="Filter\AuthorizationAttribute.cs" />
-    <Compile Include="Filter\UndermaintenanceAttribute.cs" />
     <Compile Include="Session\ICurrentSession.cs" />
     <Compile Include="LanguageManager.cs" />
     <Compile Include="Mvc\CustomRazorViewEngine.cs" />
@@ -213,7 +212,6 @@
     <Compile Include="Services\Impl\ServiceBase.cs" />
     <Compile Include="Services\Impl\SystemSettingService.cs" />
     <Compile Include="Services\Interface\ISystemSettingService.cs" />
-    <Compile Include="Services\Impl\UnderMaintenanceService.cs" />
     <Compile Include="Session\SessionManager.cs" />
     <Compile Include="Utilities\BannerStorage.cs" />
     <Compile Include="Utilities\Common.cs" />

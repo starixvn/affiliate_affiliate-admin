@@ -436,14 +436,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        public static bool SkipCheckUMTime
-        {
-            get
-            {
-                return GetValue("SkipCheckUMTime").Equals("1");
-            }
-        }
-
         public static string SystemName
         {
             get
@@ -473,22 +465,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             get
             {
                 return GetValue("Theme");
-            }
-        }
-
-        public static DateTime UMEndTime
-        {
-            get
-            {
-                return Convert.ToDateTime(GetValue("UM_EndTime"));
-            }
-        }
-
-        public static DateTime UMStartTime
-        {
-            get
-            {
-                return Convert.ToDateTime(GetValue("UM_StartTime"));
             }
         }
 

@@ -189,12 +189,20 @@
     <Reference Include="Nini, Version=1.1.0.0, Culture=neutral, PublicKeyToken=691faec150a7fa7b, processorArchitecture=MSIL">
       <HintPath>..\packages\Trove.Nini.1.1.0.0\lib\net20\Nini.dll</HintPath>
     </Reference>
+    <Reference Include="ONEbook.UM, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ONEbook.UM.1.0.1.4\lib\net40\ONEbook.UM.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RazorEngine, Version=3.7.6.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorEngine.3.7.6\lib\net40\RazorEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RemotingRef">
       <HintPath>..\packages\RemotingRef.1.0.0.1\lib\net40\RemotingRef.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -3645,7 +3653,9 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.9bet.master.config" />
+    <Content Include="Configurations\WebConfigs\Web.9bet.master.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\WebConfigs\Web.9bet.production.config">
       <SubType>Designer</SubType>
     </Content>

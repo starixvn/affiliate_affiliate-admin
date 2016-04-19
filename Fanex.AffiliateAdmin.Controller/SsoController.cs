@@ -25,6 +25,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Logging;
     using Models;
+    using ONEbook.UM.Filters;
     using Resources;
     using RSACryptoPad;
 
@@ -32,6 +33,7 @@ namespace Fanex.AffiliateAdmin.Controller
     /// Account controller.
     /// </summary>
     [AllowAnonymous]
+    [CheckUMFilter]
     public class SsoController : Controller
     {
         private const string InvalidSettingsMessage = "Invalid settings!";
@@ -111,19 +113,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Login()
         {
-            string startTime = string.Empty, endTime = string.Empty;
-
-            if (UnderMaintenanceService.GetDownTime(ref startTime, ref endTime))
-            {
-                ViewBag.StartTime = startTime;
-                ViewBag.EndTime = endTime;
-
-                return Redirect("~/Notify");
-            }
-            else
-            {
-                return SSO();
-            }
+            return SSO();
         }
 
         /// <summary>

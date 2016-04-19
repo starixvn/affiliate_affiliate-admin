@@ -17,14 +17,15 @@ namespace Fanex.AffiliateAdmin.Controller
     using Core.Filter;
     using Core.Session;
     using Models;
+    using ONEbook.UM.Filters;
     using Resources;
 
     /// <summary>
     /// Base Controller.
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
-    [Undermaintenance]
     [Authorization]
+    [CheckUMFilter]
     public class BaseController : Controller
     {
         /// <summary>

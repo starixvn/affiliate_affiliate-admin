@@ -19,17 +19,26 @@ var RECHECKIN = (function ($) {
                             alert(result.Message);
                             top.location.href = AFFILIATE.getAbsoluteUrl("Account/Login");
                         }
-
-                        if (result.ErrorMessage === "UM") {
-                            top.location.href = AFFILIATE.getAbsoluteUrl("Notify");
-                        }
                     }
                 },
-                error: function () {
+                error: function (response) {
+                    if (RECHECKIN.isUndermaintenance(response)) {
+                        top.location.href = AFFILIATE.getAbsoluteUrl("Notify");
+                    }
                 },
                 complete: function () {
                 }
             });
+        },
+        isUndermaintenance: function (response) {
+            var undermaintenanceCode = 999999;
+
+            if (response) {
+                var result = $.parseJSON(response.responseText);
+                return result.code === undermaintenanceCode;
+            }
+
+            return false;
         }
     };
 })(jQuery);

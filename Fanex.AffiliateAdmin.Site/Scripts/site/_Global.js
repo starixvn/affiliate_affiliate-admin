@@ -28,6 +28,12 @@ var AFFILIATE = (function ($) {
         },
         init: function(){
             _isIT = $("#IsIT").val() === '1';
+
+            $(document).ajaxError(function (event, xhr) {
+                if (AFFILIATE.isUndermaintenance(xhr)) {
+                    top.location.href = AFFILIATE.getAbsoluteUrl("Notify");
+                }
+            });
         },
         initDatePicker: function () {
             var datePickers = $('.datepicker');
@@ -523,6 +529,17 @@ var AFFILIATE = (function ($) {
             } else {
                 $("#gridId").fanexGrid('resizeHeight', colHeight);
             }
+        },
+        isUndermaintenance: function (xhr) {
+            var undermaintenanceCode = 999999;
+
+            if (xhr) {
+                console.log(xhr);
+                var result = $.parseJSON(xhr.responseText);
+                return result.code === undermaintenanceCode;
+            }
+
+            return false;
         }
     };
 })(jQuery);

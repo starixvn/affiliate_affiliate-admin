@@ -21,24 +21,11 @@ var RECHECKIN = (function ($) {
                         }
                     }
                 },
-                error: function (response) {
-                    if (RECHECKIN.isUndermaintenance(response)) {
-                        top.location.href = AFFILIATE.getAbsoluteUrl("Notify");
-                    }
+                error: function () {
                 },
                 complete: function () {
                 }
             });
-        },
-        isUndermaintenance: function (response) {
-            var undermaintenanceCode = 999999;
-
-            if (response) {
-                var result = $.parseJSON(response.responseText);
-                return result.code === undermaintenanceCode;
-            }
-
-            return false;
         }
     };
 })(jQuery);

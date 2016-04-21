@@ -534,7 +534,6 @@ var AFFILIATE = (function ($) {
             var undermaintenanceCode = 999999;
 
             if (xhr) {
-                console.log(xhr);
                 var result = $.parseJSON(xhr.responseText);
                 return result.code === undermaintenanceCode;
             }

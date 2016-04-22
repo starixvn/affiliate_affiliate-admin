@@ -19,10 +19,6 @@ var RECHECKIN = (function ($) {
                             alert(result.Message);
                             top.location.href = AFFILIATE.getAbsoluteUrl("Account/Login");
                         }
-
-                        if (result.ErrorMessage === "UM") {
-                            top.location.href = AFFILIATE.getAbsoluteUrl("Notify");
-                        }
                     }
                 },
                 error: function () {

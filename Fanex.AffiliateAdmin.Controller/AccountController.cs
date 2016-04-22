@@ -27,12 +27,12 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Core;
     using Fanex.AffiliateAdmin.Services;
     using Models;
+    using ONEbook.UM.Filters;
     using Resources;
 
     /// <summary>
     /// Account controller.
     /// </summary>
-    [Undermaintenance]
     public class AccountController : Controller
     {
         #region Services
@@ -70,6 +70,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>Login form.</returns>
         [HttpGet]
+        [UMBackdoorFilter]
         public ActionResult Login()
         {
             if (!Regex.IsMatch(Request.UserHostAddress, AppSettings.GetValue("CompanyIPRange")))
@@ -90,6 +91,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="password">Password login.</param>
         /// <returns>Return Result view model.</returns>
         [HttpPost]
+        [CheckUMFilter]
         public ActionResult Login(string username, string password, string logInToken)
         {
             ResultViewModel result = null;
@@ -151,6 +153,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="userName">User name value.</param>
         /// <returns>String value.</returns>
         [HttpGet]
+        [CheckUMFilter]
         public string GetUserSalt(string userName)
         {
             return GetSalt(userName);
@@ -161,6 +164,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>Return change password form.</returns>
         [HttpGet]
+        [CheckUMFilter]
         [Authorization]
         [ITAuth]
         public ActionResult ChangePassword()
@@ -174,6 +178,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="model">Input parameter.</param>
         /// <returns>Return change password form.</returns>
         [HttpPost]
+        [CheckUMFilter]
         [Authorization]
         [ITAuth]
         public ActionResult ChangePassword(AccountPasswordViewModel model)
@@ -211,6 +216,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// Logout admin.
         /// </summary>
         /// <returns>Return login form.</returns>
+        [CheckUMFilter]
         public ActionResult Logout()
         {
             DoLogOut();
@@ -222,18 +228,12 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>Kicked out or not.</returns>
         [HttpPost]
+        [CheckUMFilter]
         public ActionResult ReCheckIn()
         {
             var result = new ResultViewModel();
 
             KickedOutSession(result);
-
-            if (result.Success)
-            {
-                return Json(result);
-            }
-
-            KickedOutDownTime(result);
 
             return Json(result);
         }
@@ -273,21 +273,6 @@ namespace Fanex.AffiliateAdmin.Controller
                     // Signout and clean all session.
                     DoLogOut();
                 }
-            }
-        }
-
-        /// <summary>
-        /// Kicked out down time.
-        /// </summary>
-        /// <param name="result">Kick-out result.</param>
-        private void KickedOutDownTime(ResultViewModel result)
-        {
-            string startTime = string.Empty, endTime = string.Empty;
-            result.Success = UnderMaintenanceService.GetDownTime(ref startTime, ref endTime);
-            if (result.Success)
-            {
-                result.Message = "Under-maintenance";
-                result.ErrorMessage = "UM";
             }
         }
 

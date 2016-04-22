@@ -1,45 +1,45 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="NotifyController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Johnny.Trinh" date="2013.8.2">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Controller
+﻿namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.SessionState;
-    using Core.Services;
-    using Fanex.AffiliateAdmin.Core;
-    using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
-    using Fanex.AffiliateAdmin.Criterias;
-    using Fanex.AffiliateAdmin.Services;
+    using ONEbook.UM.Services;
+    using ONEbook.UM.Services.Impl;
 
     /// <summary>
     /// Notify Controller class.
     /// </summary>
     [SessionState(SessionStateBehavior.Default)]
-    [AllowAnonymous]    
+    [AllowAnonymous]
     public class NotifyController : Controller
     {
+        private readonly IMaintenanceService _maintenanceService;
+
+        public NotifyController() 
+            : this(null)
+        {
+        }
+
+        public NotifyController(IMaintenanceService maintenanceService)
+        {
+            _maintenanceService = maintenanceService ?? new MaintenanceService();
+        }
+
         /// <summary>
         /// Under maintenance.
         /// </summary>
         /// <returns>Under maintenance page.</returns>
         public ActionResult Index()
         {
-            string startTime = string.Empty, endTime = string.Empty;
+            var underMaintenanceTime = _maintenanceService.GetUnderMaintenanceTime();
 
-            if (UnderMaintenanceService.GetDownTime(ref startTime, ref endTime))
+            if (underMaintenanceTime.IsUnderMaintenanceTime)
             {
                 LogOutWhenUMTime();
 
-                ViewBag.StartTime = startTime;
-                ViewBag.EndTime = endTime;
+                ViewBag.StartTime = underMaintenanceTime.From;
+                ViewBag.EndTime = underMaintenanceTime.To;
 
                 return View();
             }

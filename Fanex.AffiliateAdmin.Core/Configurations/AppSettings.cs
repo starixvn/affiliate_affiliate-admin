@@ -331,14 +331,6 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
             }
         }
 
-        public static Uri LBUrl
-        {
-            get
-            {
-                return string.IsNullOrEmpty(GetValue("LBUrl")) ? null : new Uri(GetValue("LBUrl"));
-            }
-        }
-
         public static int LeftString
         {
             get

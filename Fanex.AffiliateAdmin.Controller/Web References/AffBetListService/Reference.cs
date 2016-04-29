@@ -36,6 +36,8 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         private System.Threading.SendOrPostCallback GetBetlistParlayOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetNewBetlistParlayOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetBetlistSystemParlayOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetBetListRngCasinoDetailOperationCompleted;
@@ -92,6 +94,9 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         /// <remarks/>
         public event GetBetlistParlayCompletedEventHandler GetBetlistParlayCompleted;
+        
+        /// <remarks/>
+        public event GetNewBetlistParlayCompletedEventHandler GetNewBetlistParlayCompleted;
         
         /// <remarks/>
         public event GetBetlistSystemParlayCompletedEventHandler GetBetlistSystemParlayCompleted;
@@ -200,6 +205,49 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
             if ((this.GetBetlistParlayCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetBetlistParlayCompleted(this, new GetBetlistParlayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetNewBetlistParlay", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetNewBetlistParlay(string affiliateName, string transactionId, string exchangeRate, string betTeam, string betCheck, decimal handicap1, decimal handicap2, string language) {
+            object[] results = this.Invoke("GetNewBetlistParlay", new object[] {
+                        affiliateName,
+                        transactionId,
+                        exchangeRate,
+                        betTeam,
+                        betCheck,
+                        handicap1,
+                        handicap2,
+                        language});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetNewBetlistParlayAsync(string affiliateName, string transactionId, string exchangeRate, string betTeam, string betCheck, decimal handicap1, decimal handicap2, string language) {
+            this.GetNewBetlistParlayAsync(affiliateName, transactionId, exchangeRate, betTeam, betCheck, handicap1, handicap2, language, null);
+        }
+        
+        /// <remarks/>
+        public void GetNewBetlistParlayAsync(string affiliateName, string transactionId, string exchangeRate, string betTeam, string betCheck, decimal handicap1, decimal handicap2, string language, object userState) {
+            if ((this.GetNewBetlistParlayOperationCompleted == null)) {
+                this.GetNewBetlistParlayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetNewBetlistParlayOperationCompleted);
+            }
+            this.InvokeAsync("GetNewBetlistParlay", new object[] {
+                        affiliateName,
+                        transactionId,
+                        exchangeRate,
+                        betTeam,
+                        betCheck,
+                        handicap1,
+                        handicap2,
+                        language}, this.GetNewBetlistParlayOperationCompleted, userState);
+        }
+        
+        private void OnGetNewBetlistParlayOperationCompleted(object arg) {
+            if ((this.GetNewBetlistParlayCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetNewBetlistParlayCompleted(this, new GetNewBetlistParlayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1144,6 +1192,32 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         private object[] results;
         
         internal GetBetlistParlayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void GetNewBetlistParlayCompletedEventHandler(object sender, GetNewBetlistParlayCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetNewBetlistParlayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetNewBetlistParlayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

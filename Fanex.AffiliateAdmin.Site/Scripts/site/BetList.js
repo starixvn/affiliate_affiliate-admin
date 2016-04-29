@@ -151,6 +151,46 @@ var BetList = (function ($) {
             });
         },
 
+        showNewParlayDetail: function (transId, transIndex, refNo, handicap1, handicap2, betcheck, betteam) {
+            var $detaillDiv = $('#divEvent_' + transId + "" + transIndex);
+            var $nameDiv = $('#combinationOfferName_' + transId + transIndex);
+            $detaillDiv.addClass("mx-parlay"); //to make line-through for void-parlay-ticket
+
+            if ($detaillDiv.is(':hidden')) {
+                var para = $('form').serializeObject2();
+                var url = AFFILIATE.getAbsoluteUrl('Account/NewBetListParlay');
+                url = QueryString.setParam(url, "transId", transId);
+                url = QueryString.setParam(url, "refno", refNo);
+                url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
+                url = QueryString.setParam(url, "handicap1", handicap1);
+                url = QueryString.setParam(url, "handicap2", handicap2);
+                url = QueryString.setParam(url, "betcheck", betcheck);
+                url = QueryString.setParam(url, "betteam", betteam);
+                $.ajax({
+                    type: "GET",
+                    contentType: 'application/json',
+                    dataType: "text",
+                    cache: false,
+                    url: url,
+                    error: function () {
+                    },
+                    success: function (response) {
+                        $detaillDiv.html(response).show();
+                        $nameDiv.hide();
+                    },
+                    beforeSend: function () {
+
+                    },
+                    complete: function () {
+                    }
+                });
+            }
+            else {
+                $detaillDiv.hide().html("");
+                $nameDiv.show();
+            }
+        },
+
         ViewCasinoHandHistory: function (refNo) {
             var url = AFFILIATE.getAbsoluteUrl('BetList/RNGCasinoData');
             var para = $('form').serializeObject2();
@@ -218,4 +258,5 @@ var showCombMP = function (transId, index) {
 
 var showCombMPDetail = BetList.showSystemParlayDetail;
 var showRnGCasinoDetails = BetList.showRnGCasinoDetails;
-var showAGCasinoDetails = BetList.showAGCasinoDetails;
+var showAGCasinoDetails = BetList.showAGCasinoDetails;var showCombMPDetail = BetList.showSystemParlayDetail;
+var showNewCombMP = BetList.showNewParlayDetail;

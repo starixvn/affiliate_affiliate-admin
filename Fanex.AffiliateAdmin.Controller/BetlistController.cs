@@ -16,6 +16,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using AffBetListService;
+    using BetList.Core.TicketHelper;
     using Core.Filter;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
@@ -64,11 +65,11 @@ namespace Fanex.AffiliateAdmin.Controller
             }
 
             var exchangeRate = _betListService.GetExchangeRate(new GetExchangeRateCriteria
-                {
-                    Date = model.WinlostDate,
-                    FromCurrency = model.FromCurrencyId,
-                    ToCurrency = model.ToCurrencyId
-                });
+            {
+                Date = model.WinlostDate,
+                FromCurrency = model.FromCurrencyId,
+                ToCurrency = model.ToCurrencyId
+            });
 
             var supportedProducts = GetSupportedProductsForWebService();
 
@@ -126,23 +127,23 @@ namespace Fanex.AffiliateAdmin.Controller
             var exchangeRate = model.ExchangeRate;
 
             var criteria = new BetListSystemParlayDetailCriteria
-                {
-                    AffiliateGroup = model.AffiliateGroup,
-                    BalanceUpDay = model.BalanceUpDay,
-                    BetId = model.BetId,
-                    CustId = model.CustId,
-                    MoveBetsDay = model.MoveBetsDay,
-                    Outstanding = model.Outstanding,
-                    RefNo = model.RefNo,
-                    TransId = model.TransId,
-                    UserId = model.UserId
-                };
+            {
+                AffiliateGroup = model.AffiliateGroup,
+                BalanceUpDay = model.BalanceUpDay,
+                BetId = model.BetId,
+                CustId = model.CustId,
+                MoveBetsDay = model.MoveBetsDay,
+                Outstanding = model.Outstanding,
+                RefNo = model.RefNo,
+                TransId = model.TransId,
+                UserId = model.UserId
+            };
 
             var affBetlistService = new AffiliateAPI();
             var systemParlayDataText = affBetlistService.GetBetlistSystemParlay(
                 AppSettings.AffiliateName,
                 exchangeRate.ToString(),
-                criteria, 
+                criteria,
                 AppSession.Language);
 
             ViewBag.Data = systemParlayDataText;
@@ -189,6 +190,26 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         #endregion
+        [HttpGet]
+        public dynamic NewBetListParlay(long transId, string betTeam, string betCheck, decimal handicap1, decimal handicap2, string exchangeRate)
+        {
+            var texts = CacheRef.GetCombinationTypeCombo(betTeam, betCheck, Convert.ToInt32(handicap1), Convert.ToInt32(handicap2));
+
+            var affBetlistService = new AffBetListService.AffiliateAPI();
+            var tickets = affBetlistService.GetNewBetlistParlay(
+                AppSettings.AffiliateName,
+                transId.ToString(),
+                exchangeRate,
+                betTeam,
+                betCheck,
+                handicap1,
+                handicap2,
+                AppSession.Language);
+
+            return tickets;
+        }
+
+        #endregion BetList
 
         #region BetList Results
 
@@ -231,7 +252,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 AppSession.Language);
         }
 
-        #endregion
+        #endregion BetList Results
 
         #region BetList.Results.RNGCasino
 
@@ -283,10 +304,10 @@ namespace Fanex.AffiliateAdmin.Controller
             ViewBag.ToCurrencyCode = criteria.ToCurrencyCode;
 
             var model = new BetListResultsRNGCasinoViewModel(data, totalAmount, criteria)
-                {
-                    Currency = criteria.ToCurrencyCode,
-                    AffId = affId
-                };
+            {
+                Currency = criteria.ToCurrencyCode,
+                AffId = affId
+            };
 
             return View("~/Views/BetList/BetListResults_RNGCasino.cshtml", model);
         }
@@ -439,54 +460,71 @@ namespace Fanex.AffiliateAdmin.Controller
                 case (int)CasinoGameType.MiniBlackjack:
                 case (int)CasinoGameType.MiniCasinoHoldEm:
                     return "1";
+
                 case (int)CasinoGameType.TexasHoldEm:
                     return "1-1";
+
                 case (int)CasinoGameType.RedDog:
                 case (int)CasinoGameType.MiniRoulette:
                 case (int)CasinoGameType.FishPrawnCrab:
                 case (int)CasinoGameType.CardWheel:
                 case (int)CasinoGameType.FanTan:
                     return "2";
+
                 case (int)CasinoGameType.MoneySlot:
                 case (int)CasinoGameType.Engagement:
                 case (int)CasinoGameType.FoxForce5:
                 case (int)CasinoGameType.TattooArt:
                 case (int)CasinoGameType.MiniMoneySlot:
                     return "3";
+
                 case (int)CasinoGameType.Champions:
                 case (int)CasinoGameType.WaterMargin:
                     return "4";
+
                 case (int)CasinoGameType.WesternZodiac:
                     return "4-1";
+
                 case (int)CasinoGameType.MoneyWheel:
                     return "5";
+
                 case (int)CasinoGameType.JourneytotheWest:
                     return "6";
+
                 case (int)CasinoGameType.ChineseZodiac:
                     return "6-1";
+
                 case (int)CasinoGameType.JacksorBetter:
                     return "7-0";
+
                 case (int)CasinoGameType.JungleWild:
                 case (int)CasinoGameType.GodofProsperity:
                     return "7-1";
+
                 case (int)CasinoGameType.No4_LineJacksorBetter:
                 case (int)CasinoGameType.No25_LineJacksorBetter:
                 case (int)CasinoGameType.No50_LineJacksorBetter:
                     return "7-2";
+
                 case (int)CasinoGameType.No_10sOrBetter:
                     return "7-3";
+
                 case (int)CasinoGameType.MonkeyHiLo:
                 case (int)CasinoGameType.MahjongHiLo:
                     return "7-4";
+
                 case (int)CasinoGameType.KenoChinese:
                 case (int)CasinoGameType.KenoCamera:
                     return "7-5";
+
                 case (int)CasinoGameType.TurfKing:
                     return "7-6";
+
                 case (int)CasinoGameType.MamakCorner:
                 case (int)CasinoGameType.WinterSlot:
                 case (int)CasinoGameType.DragonSlot:
                     return "7-8";
+
                 case (int)CasinoGameType.MayaPush:
                 case (int)CasinoGameType.Knock2Eggs:
                 case (int)CasinoGameType.HoHoHo:
@@ -495,16 +533,18 @@ namespace Fanex.AffiliateAdmin.Controller
                 case (int)CasinoGameType.FruitScratch:
                 case (int)CasinoGameType.FlamesofOlympics:
                     return "8";
+
                 case (int)CasinoGameType.PenaltyHat_Trick:
                 case (int)CasinoGameType.FancyScratch:
                 case (int)CasinoGameType.LoveStory:
                     return "9";
+
                 default:
                     return string.Empty;
             }
         }
 
-        #endregion
+        #endregion BetList.Results.RNGCasino
 
         #region Helpers
 
@@ -543,6 +583,6 @@ namespace Fanex.AffiliateAdmin.Controller
             return criteria.BelongLevel1 && criteria.BelongLevel2;
         }
 
-        #endregion
+        #endregion Helpers
     }
 }

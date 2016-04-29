@@ -73,6 +73,27 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetNewBetlistParlay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="affiliateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transactionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="exchangeRate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="betTeam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="betCheck" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="handicap1" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="handicap2" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="language" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNewBetlistParlayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNewBetlistParlayResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetBetlistSystemParlay">
         <s:complexType>
           <s:sequence>
@@ -244,6 +265,12 @@
   <wsdl:message name="GetBetlistParlaySoapOut">
     <wsdl:part name="parameters" element="tns:GetBetlistParlayResponse" />
   </wsdl:message>
+  <wsdl:message name="GetNewBetlistParlaySoapIn">
+    <wsdl:part name="parameters" element="tns:GetNewBetlistParlay" />
+  </wsdl:message>
+  <wsdl:message name="GetNewBetlistParlaySoapOut">
+    <wsdl:part name="parameters" element="tns:GetNewBetlistParlayResponse" />
+  </wsdl:message>
   <wsdl:message name="GetBetlistSystemParlaySoapIn">
     <wsdl:part name="parameters" element="tns:GetBetlistSystemParlay" />
   </wsdl:message>
@@ -286,6 +313,10 @@
     <wsdl:operation name="GetBetlistParlay">
       <wsdl:input message="tns:GetBetlistParlaySoapIn" />
       <wsdl:output message="tns:GetBetlistParlaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNewBetlistParlay">
+      <wsdl:input message="tns:GetNewBetlistParlaySoapIn" />
+      <wsdl:output message="tns:GetNewBetlistParlaySoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetBetlistSystemParlay">
       <wsdl:input message="tns:GetBetlistSystemParlaySoapIn" />
@@ -330,6 +361,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetBetlistParlay">
       <soap:operation soapAction="http://tempuri.org/GetBetlistParlay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewBetlistParlay">
+      <soap:operation soapAction="http://tempuri.org/GetNewBetlistParlay" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -405,6 +445,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetBetlistParlay">
       <soap12:operation soapAction="http://tempuri.org/GetBetlistParlay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewBetlistParlay">
+      <soap12:operation soapAction="http://tempuri.org/GetNewBetlistParlay" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

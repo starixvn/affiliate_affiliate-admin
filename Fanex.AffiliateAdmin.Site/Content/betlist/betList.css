@@ -457,3 +457,15 @@ div.mx-parlay div.reject > div.match, div.mx-parlay div.reject div.firstGoal, di
 {
     text-decoration: none;
 }
+.mx-parlay .system-parlay-ticket-infor{
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 15px;
+    color: #000000;
+    font-weight: bold;
+}
+
+.mx-parlay .system-parlay-ticket-infor .system-parlay-unit-stake{
+    color: #003399;
+}
+/********** ------------------ **************/

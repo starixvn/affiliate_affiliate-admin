@@ -147,7 +147,7 @@ var BetList = (function ($) {
             $(dialogForm).dialog({
                 modal: true,
                 width: width + 25,
-                height: height + 50
+                height: height + 70
             });
         },
 
@@ -158,7 +158,7 @@ var BetList = (function ($) {
 
             if ($detaillDiv.is(':hidden')) {
                 var para = $('form').serializeObject2();
-                var url = AFFILIATE.getAbsoluteUrl('Account/NewBetListParlay');
+                var url = AFFILIATE.getAbsoluteUrl('BetList/NewBetListParlay');
                 url = QueryString.setParam(url, "transId", transId);
                 url = QueryString.setParam(url, "refno", refNo);
                 url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
@@ -179,9 +179,10 @@ var BetList = (function ($) {
                         $nameDiv.hide();
                     },
                     beforeSend: function () {
-
+                        $.blockUI();
                     },
                     complete: function () {
+                        $.unblockUI();
                     }
                 });
             }

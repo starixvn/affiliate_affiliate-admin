@@ -464,8 +464,17 @@ div.mx-parlay div.reject > div.match, div.mx-parlay div.reject div.firstGoal, di
     color: #000000;
     font-weight: bold;
 }
-
 .mx-parlay .system-parlay-ticket-infor .system-parlay-unit-stake{
     color: #003399;
+}
+.combinationLink .offer-name-list{
+    font-weight: bold;
+}
+.detail .detail-link{
+    color: #755200;
+    font-weight: bold;
+}
+.combinationLink a, a.detail-link{
+    text-decoration: none;
 }
 /********** ------------------ **************/

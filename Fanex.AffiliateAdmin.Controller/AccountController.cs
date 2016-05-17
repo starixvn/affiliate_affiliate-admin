@@ -70,7 +70,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>Login form.</returns>
         [HttpGet]
-        [UMBackdoorFilter]
+        [CheckUMFilter]
         public ActionResult Login()
         {
             if (!Regex.IsMatch(Request.UserHostAddress, AppSettings.GetValue("CompanyIPRange")))

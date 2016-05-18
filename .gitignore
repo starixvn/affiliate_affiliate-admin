@@ -43,3 +43,4 @@ MSBUILD.SUMMARY.email
 SUMMARY.DISPLAY.xml
 /.vs
 /packages
+node_modules

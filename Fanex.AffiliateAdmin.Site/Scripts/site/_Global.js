@@ -1,4 +1,4 @@
-﻿/*global MSG,moment,subTotalStatus,Lang,moment,COLLAPSE_SUBTOTAL_STATUS,sysGmt,sysYear,sysMonth,sysDay,sysHour,sysMinute,sysSecond,sysMonthName*/
+﻿/*global moment,subTotalStatus,Lang,moment,COLLAPSE_SUBTOTAL_STATUS,sysGmt,sysYear,sysMonth,sysDay,sysHour,sysMinute,sysSecond,sysMonthName*/
 var AFFILIATE = (function ($) {
     "use strict";
 

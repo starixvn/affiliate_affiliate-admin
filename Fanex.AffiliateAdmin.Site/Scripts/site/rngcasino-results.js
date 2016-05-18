@@ -8,7 +8,7 @@
 //   <change who="" date=""></change>
 // </history>
 
-/*global AFFILIATE, QueryString*/
+/*global AFFILIATE, QueryString, MSG*/
 "use strict";
 
 var RNGCasinoResults = (function ($) {

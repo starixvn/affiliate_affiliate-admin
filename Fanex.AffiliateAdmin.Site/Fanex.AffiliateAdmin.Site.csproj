@@ -839,6 +839,7 @@
     <Content Include="Form\HistoryImage_ePoker.aspx" />
     <Content Include="Form\LiveGenHistoryImg.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Gruntfile.js" />
     <Content Include="img\Bingo\Ball\00.jpg" />
     <Content Include="img\Bingo\Ball\01.jpg" />
     <Content Include="img\Bingo\Ball\02.jpg" />
@@ -3763,6 +3764,7 @@
     <Content Include="Configurations\WebConfigs\Web.be7th.master.config" />
     <Content Include="Configurations\WebConfigs\Web.be7th.production.config" />
     <Content Include="Configurations\WebConfigs\Web.be7th.uat.config" />
+    <Content Include="GruntFilters.json" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -3773,6 +3775,7 @@
     <None Include="img\Slot\S0007\old image backup\40x40\icon_40x40_doubleWild.jpg.exclude" />
     <None Include="img\Slot\S0032\Thumbs.db" />
     <None Include="img\Slot\S0033\Thumbs.db" />
+    <Content Include="package.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -4148,7 +4151,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

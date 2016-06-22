@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SystemDateTimeCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Muller.Nguyen" date="2013.07.10">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Criterias
+﻿namespace Fanex.AffiliateAdmin.Criterias
 {
     using Fanex.Data.Repository;
 

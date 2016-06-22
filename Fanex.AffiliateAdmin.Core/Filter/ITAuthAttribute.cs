@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="FunctionAuthAttribute.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2014.1.8">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Core.Filter
+﻿namespace Fanex.AffiliateAdmin.Core.Filter
 {
     using System;
     using System.Web.Mvc;

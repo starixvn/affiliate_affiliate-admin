@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="EmailColorPalette.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2014.3.6">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Core.Mailinator
+﻿namespace Fanex.AffiliateAdmin.Core.Mailinator
 {
     using Fanex.AffiliateAdmin.Core.Configurations;
 

@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MemberWinlossByProduct.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2014.9.19">Created</change>
-// </history>
-
-namespace Fanex.MemberAdmin.DTO
+﻿namespace Fanex.MemberAdmin.DTO
 {
     using System;
     using System.Collections.Generic;

@@ -1,14 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Kaden.Trinh" date="2013.05.30">Created</change>
-//   <change who="Kaden.Trinh" date="2013.06.11">Implement funcion get Current Commission Setting</change>
-// </history>
-
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 

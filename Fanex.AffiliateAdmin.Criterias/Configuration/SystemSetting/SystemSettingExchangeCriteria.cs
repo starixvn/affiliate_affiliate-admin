@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SystemSettingExchangeCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Johnny.Trinh" date="2013.09.26">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
+﻿namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
 {
     using Fanex.Data.Repository;
 

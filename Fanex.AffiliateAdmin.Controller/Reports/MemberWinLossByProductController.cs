@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MemberWinLossByProductController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2014.9.19">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Controller
+﻿namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Collections.Generic;
     using System.Linq;

@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="QueryService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Johnny.Trinh" date="2013.08.22">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Core.Services
+﻿namespace Fanex.AffiliateAdmin.Core.Services
 {
     using System;
     using System.Collections.Generic;

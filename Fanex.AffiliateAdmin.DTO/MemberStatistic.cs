@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MemberStatistic.cs" company="Nexcel Solution">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.AffiliateAdmin.DTO
+﻿namespace Fanex.AffiliateAdmin.DTO
 {
     using System;
 

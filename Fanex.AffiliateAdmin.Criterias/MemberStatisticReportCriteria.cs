@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MemberStatisticReportCriteria.cs" company="Nexcel Solution">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.AffiliateAdmin.Criterias
+﻿namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
     using Fanex.Data.Repository;

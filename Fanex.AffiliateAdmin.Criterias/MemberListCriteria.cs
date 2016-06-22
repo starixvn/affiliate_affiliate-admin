@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MemberListCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Johnny.Trinh" date="2013.08.14">Created</change>
-//   <change who="Brian.Dinh" date="2013.11.27">Created</change>
-// </history>
-namespace Fanex.AffiliateAdmin.Criterias
+﻿namespace Fanex.AffiliateAdmin.Criterias
 {
     using System;
     using Fanex.Data.Repository;

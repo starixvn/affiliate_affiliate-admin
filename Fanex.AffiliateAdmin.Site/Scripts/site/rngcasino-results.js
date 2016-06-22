@@ -1,14 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="RNGCasinoResults.js" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-// <history>
-//   <change who="Long.Luu" date="2013/12/10">Created</change>
-//   <change who="" date=""></change>
-// </history>
-
-/*global AFFILIATE, QueryString, MSG*/
+﻿/*global AFFILIATE, QueryString, MSG*/
 "use strict";
 
 var RNGCasinoResults = (function ($) {

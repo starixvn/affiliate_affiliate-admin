@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AffiliateCurrenciesSelCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2015.2.2">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Criterias
+﻿namespace Fanex.AffiliateAdmin.Criterias
 {
     using Fanex.Data.Repository;
 

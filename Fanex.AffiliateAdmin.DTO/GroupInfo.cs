@@ -1,13 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="GroupInfo.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-// <history>
-//   <change who="Muller.Nguyen" date="2013.8.20">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.DTO
+﻿namespace Fanex.AffiliateAdmin.DTO
 {
     /// <summary>
     /// TODO: Update summary.

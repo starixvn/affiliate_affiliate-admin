@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MediaSettings.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.8.19">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Core.Configurations
+﻿namespace Fanex.AffiliateAdmin.Core.Configurations
 {
     using System;
     using System.Collections.Generic;

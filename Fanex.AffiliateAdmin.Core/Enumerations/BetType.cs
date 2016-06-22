@@ -1,14 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="BetType.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-// <history>
-//   <change who="Long.Luu" date="2013/11/19">Created</change>
-//   <change who="" date=""></change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Enumerations
+﻿namespace Fanex.AffiliateAdmin.Enumerations
 {
     using System.Diagnostics.CodeAnalysis;
 

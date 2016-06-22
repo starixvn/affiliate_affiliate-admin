@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CheckMemberExistCriteria.cs" company="Nexcel Solution Vietnam">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.AffiliateAdmin.Criterias
+﻿namespace Fanex.AffiliateAdmin.Criterias
 {
     using Fanex.Data.Repository;
 

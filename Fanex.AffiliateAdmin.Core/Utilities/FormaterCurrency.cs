@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="FormaterCurrency.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Kaden.Trinh" date="2013.06.11">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Core.Utilities
+﻿namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System.Collections.Generic;
     using System.Globalization;

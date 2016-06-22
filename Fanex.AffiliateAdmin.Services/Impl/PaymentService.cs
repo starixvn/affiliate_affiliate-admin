@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="PaymentService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.7.31">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Services
+﻿namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using System.Linq;

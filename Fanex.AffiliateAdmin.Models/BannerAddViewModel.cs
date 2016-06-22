@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="BannerAddViewModel.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.8.30">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Models
+﻿namespace Fanex.AffiliateAdmin.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

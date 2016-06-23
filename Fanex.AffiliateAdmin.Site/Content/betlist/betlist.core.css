@@ -28,6 +28,17 @@
     display: inline;
     text-align: right;
 }
+.light-blue 
+{
+    color: #0000CD;
+	font-family: tahoma;
+	font-size: 11px;
+}
+.excluding-choices 
+{
+    color: #000;
+    font-weight: normal;
+}
 .handicap .odds
 {
     color: #003399;

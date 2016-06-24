@@ -131,7 +131,7 @@ table.fn-rs tbody .cl-match-mt.home
 }
 table.fn-rs tbody .cl-match-mt.away 
 {
-    color: #4169e1;
+    color: #0000ff;
 }
 table.fn-rs tbody .cl-match-mt.win 
 {
@@ -230,7 +230,7 @@ table.fn-rs .cl-status
 }
 table.fn-rs .cl-status .ko 
 {
-    color: #0000CD;
+    color: #0000ff;
 	font-size: 10px;
 }
 table.fn-rs .cl-status .detail-link

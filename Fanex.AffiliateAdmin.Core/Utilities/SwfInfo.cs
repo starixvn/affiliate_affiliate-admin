@@ -12,7 +12,7 @@
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "3rd source code")]
     [SuppressMessage("StyleCop.CSharp.OrderingRules", "*", Justification = "3rd source code")]
-    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "*", Justification = "3rd source code")]
+    [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "*", Justification = "3rd source code")]
     public class SwfInfo
     {
         #region Properties

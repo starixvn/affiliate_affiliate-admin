@@ -40,6 +40,8 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         private System.Threading.SendOrPostCallback GetBetListRngCasinoDetailOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetRngCasinoSingleWalletResultOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetBetlistResultsOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
@@ -94,6 +96,9 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         /// <remarks/>
         public event GetBetListRngCasinoDetailCompletedEventHandler GetBetListRngCasinoDetailCompleted;
+        
+        /// <remarks/>
+        public event GetRngCasinoSingleWalletResultCompletedEventHandler GetRngCasinoSingleWalletResultCompleted;
         
         /// <remarks/>
         public event GetBetlistResultsCompletedEventHandler GetBetlistResultsCompleted;
@@ -256,6 +261,35 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
             if ((this.GetBetListRngCasinoDetailCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetBetListRngCasinoDetailCompleted(this, new GetBetListRngCasinoDetailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetRngCasinoSingleWalletResult", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetRngCasinoSingleWalletResult(string refNo) {
+            object[] results = this.Invoke("GetRngCasinoSingleWalletResult", new object[] {
+                        refNo});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetRngCasinoSingleWalletResultAsync(string refNo) {
+            this.GetRngCasinoSingleWalletResultAsync(refNo, null);
+        }
+        
+        /// <remarks/>
+        public void GetRngCasinoSingleWalletResultAsync(string refNo, object userState) {
+            if ((this.GetRngCasinoSingleWalletResultOperationCompleted == null)) {
+                this.GetRngCasinoSingleWalletResultOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetRngCasinoSingleWalletResultOperationCompleted);
+            }
+            this.InvokeAsync("GetRngCasinoSingleWalletResult", new object[] {
+                        refNo}, this.GetRngCasinoSingleWalletResultOperationCompleted, userState);
+        }
+        
+        private void OnGetRngCasinoSingleWalletResultOperationCompleted(object arg) {
+            if ((this.GetRngCasinoSingleWalletResultCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetRngCasinoSingleWalletResultCompleted(this, new GetRngCasinoSingleWalletResultCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1126,6 +1160,32 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         private object[] results;
         
         internal GetBetListRngCasinoDetailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void GetRngCasinoSingleWalletResultCompletedEventHandler(object sender, GetRngCasinoSingleWalletResultCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetRngCasinoSingleWalletResultCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetRngCasinoSingleWalletResultCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

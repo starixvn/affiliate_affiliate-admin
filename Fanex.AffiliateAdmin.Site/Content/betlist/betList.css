@@ -223,7 +223,7 @@
     white-space: nowrap;
 }
 
-a {
+a:link, a:visited {
     text-decoration: none;
 }
 

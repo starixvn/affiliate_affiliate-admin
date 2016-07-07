@@ -164,6 +164,14 @@ namespace Fanex.AffiliateAdmin.Controller
             return View();
         }
 
+        [HttpPost]
+        public ActionResult RngCasinoSingleWalletResult(string refNo)
+        {
+            var affBetlistService = new AffBetListService.AffiliateAPI();
+            var result = affBetlistService.GetRngCasinoSingleWalletResult(refNo);
+            return Content(result, "application/json");
+        }
+
         #endregion
 
         #region BetList Results

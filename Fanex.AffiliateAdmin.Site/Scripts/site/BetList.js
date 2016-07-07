@@ -1,8 +1,12 @@
 ﻿/* global AFFILIATE, QueryString */
-/* exported showCombMP, showCombMPDetail, showMP, ViewResult */
+/* exported showCombMP, showCombMPDetail, showMP, showRnGCasinoDetails, ViewResult */
 "use strict";
 
 var BetList = (function ($) {
+    var SPORT_RNG_GAME = 208;
+    var SPORT_RNG_MINIGAME = 209;
+    var SPORT_RNG_MOBILE = 210;
+
     return {
         initialize: function () {
         },
@@ -34,13 +38,57 @@ var BetList = (function ($) {
             return url;
         },
 
-        showResult: function (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright) {
-            var url = bettype === 9 || bettype === 29
-                    ? BetList.getMixParlayResultUrl(refnoMixParlay, winlostdate, bettype, username)
-                    : BetList.getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username);
-
+        showResult: function (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay,
+                                league, isOutright, betid, betcheck, custid) {
             var title = MSG.Results;
-            AFFILIATE.openDialogUrl(url, title, { width: 720, height: 400 });
+            if (sporttype === SPORT_RNG_GAME || sporttype === SPORT_RNG_MINIGAME || sporttype === SPORT_RNG_MOBILE) {
+                BetList.viewRngCasinoResult(title, refno);
+            }
+            else {
+                var url = bettype === 9 || bettype === 29
+                        ? BetList.getMixParlayResultUrl(refnoMixParlay, winlostdate, bettype, username)
+                        : BetList.getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username);
+              
+                AFFILIATE.openDialogUrl(url, title, { width: 720, height: 400 });
+            }
+        },
+
+        viewRngCasinoResult: function (title, refno) {
+            var url = AFFILIATE.getAbsoluteUrl('BetList/RngCasinoSingleWalletResult');
+
+            var params = { "refNo": refno };
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json',
+                dataType: "json",
+                data: JSON.stringify(params),
+                cache: false,
+                url: url,
+                success: function (response) {
+                    if (response.Success) {
+                        BetList.showRngCasinoResultPopup(title, response.Result);
+                    }
+                },
+                beforeSend: function () {
+                    $.blockUI();
+                },
+                complete: function () {
+                    $.unblockUI();
+                }
+            });
+        },
+
+        showRngCasinoResultPopup: function (title, url) {
+            if (url === "") {
+                return;
+            }
+
+            var dialogForm = '<div title="' + title + '"><iframe frameborder="0" style="width:100%; height:99%;" src="' + url + '" ></iframe></div></div>';
+            $(dialogForm).dialog({
+                modal: true,
+                width: 800,
+                height: 450
+            });
         },
 
         showMixParlayDetail: function (transId, divEvent) {

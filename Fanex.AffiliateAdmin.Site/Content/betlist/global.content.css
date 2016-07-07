@@ -34,20 +34,23 @@ table {
 
 a {
     text-decoration: none;
+    color: #1E1EEB;
     font-size: 11px;
+    white-space: nowrap;
+    cursor: pointer;
 }
 
     a:hover {
         text-decoration: none;
     }
 
-    a:link, a:visited, .link {
-        cursor: pointer;
-        text-decoration: underline;
-        white-space: nowrap;
-        color: #1E1EEB;
-        font-weight: bold;
-    }
+.link {
+    cursor: pointer;
+    text-decoration: underline;
+    white-space: nowrap;
+    color: #1E1EEB;
+    font-weight: bold;
+}
 
 input[type=password] {
     width: 120px;

@@ -252,13 +252,13 @@ namespace Fanex.AffiliateAdmin.Site
         private static void GetBundleForBetList(BundleCollection bundles)
         {
             bundles.Add(new LessBundle("~/css/betlist")
-           .Include("~/Content/betlist/betlist.css")
-           .Include("~/Content/betlist/betlist.core.css")
-           .Include("~/Content/betlist/global.content.css")
-           .Include("~/Content/betlist/systemparlay.detail.css")
-           .Include("~/Content/betlist/rngcasino.handhistory.css")
-           .Include("~/Content/betlist/fanex.result.css")
-           .Include("~/Content/betlist/custom-betlist.css"));
+               .Include("~/Content/betlist/global.content.css")
+               .Include("~/Content/betlist/betlist.core.css")
+               .Include("~/Content/betlist/betlist.css")
+               .Include("~/Content/betlist/systemparlay.detail.css")
+               .Include("~/Content/betlist/rngcasino.handhistory.css")
+               .Include("~/Content/betlist/fanex.result.css")
+               .Include("~/Content/betlist/custom-betlist.css"));
 
             bundles.Add(new Bundle("~/js/betlist")
                 .Include("~/Scripts/site/betlist.js"));

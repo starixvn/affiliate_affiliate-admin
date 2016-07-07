@@ -112,11 +112,11 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="criteria" type="tns:BetListRngCasinoDetailCriteria" />
+            <s:element minOccurs="0" maxOccurs="1" name="criteria" type="tns:BetListDetailCriteria" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="BetListRngCasinoDetailCriteria">
+      <s:complexType name="BetListDetailCriteria">
         <s:complexContent mixed="false">
           <s:extension base="tns:BetListCriteria">
             <s:sequence>
@@ -172,6 +172,21 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetRngCasinoSingleWalletResultResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBetListAgCasinoDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="criteria" type="tns:BetListDetailCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBetListAgCasinoDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBetListAgCasinoDetailResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -247,6 +262,12 @@
   <wsdl:message name="GetRngCasinoSingleWalletResultSoapOut">
     <wsdl:part name="parameters" element="tns:GetRngCasinoSingleWalletResultResponse" />
   </wsdl:message>
+  <wsdl:message name="GetBetListAgCasinoDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBetListAgCasinoDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetBetListAgCasinoDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBetListAgCasinoDetailResponse" />
+  </wsdl:message>
   <wsdl:message name="GetBetlistResultsSoapIn">
     <wsdl:part name="parameters" element="tns:GetBetlistResults" />
   </wsdl:message>
@@ -277,6 +298,10 @@
     <wsdl:operation name="GetRngCasinoSingleWalletResult">
       <wsdl:input message="tns:GetRngCasinoSingleWalletResultSoapIn" />
       <wsdl:output message="tns:GetRngCasinoSingleWalletResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBetListAgCasinoDetail">
+      <wsdl:input message="tns:GetBetListAgCasinoDetailSoapIn" />
+      <wsdl:output message="tns:GetBetListAgCasinoDetailSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetBetlistResults">
       <wsdl:input message="tns:GetBetlistResultsSoapIn" />
@@ -332,6 +357,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRngCasinoSingleWalletResult">
       <soap:operation soapAction="http://tempuri.org/GetRngCasinoSingleWalletResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBetListAgCasinoDetail">
+      <soap:operation soapAction="http://tempuri.org/GetBetListAgCasinoDetail" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -398,6 +432,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRngCasinoSingleWalletResult">
       <soap12:operation soapAction="http://tempuri.org/GetRngCasinoSingleWalletResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBetListAgCasinoDetail">
+      <soap12:operation soapAction="http://tempuri.org/GetBetListAgCasinoDetail" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

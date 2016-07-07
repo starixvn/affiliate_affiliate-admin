@@ -42,6 +42,8 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         private System.Threading.SendOrPostCallback GetRngCasinoSingleWalletResultOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetBetListAgCasinoDetailOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetBetlistResultsOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
@@ -99,6 +101,9 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         /// <remarks/>
         public event GetRngCasinoSingleWalletResultCompletedEventHandler GetRngCasinoSingleWalletResultCompleted;
+        
+        /// <remarks/>
+        public event GetBetListAgCasinoDetailCompletedEventHandler GetBetListAgCasinoDetailCompleted;
         
         /// <remarks/>
         public event GetBetlistResultsCompletedEventHandler GetBetlistResultsCompleted;
@@ -235,7 +240,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetListRngCasinoDetail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string GetBetListRngCasinoDetail(string userName, BetListRngCasinoDetailCriteria criteria) {
+        public string GetBetListRngCasinoDetail(string userName, BetListDetailCriteria criteria) {
             object[] results = this.Invoke("GetBetListRngCasinoDetail", new object[] {
                         userName,
                         criteria});
@@ -243,12 +248,12 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         }
         
         /// <remarks/>
-        public void GetBetListRngCasinoDetailAsync(string userName, BetListRngCasinoDetailCriteria criteria) {
+        public void GetBetListRngCasinoDetailAsync(string userName, BetListDetailCriteria criteria) {
             this.GetBetListRngCasinoDetailAsync(userName, criteria, null);
         }
         
         /// <remarks/>
-        public void GetBetListRngCasinoDetailAsync(string userName, BetListRngCasinoDetailCriteria criteria, object userState) {
+        public void GetBetListRngCasinoDetailAsync(string userName, BetListDetailCriteria criteria, object userState) {
             if ((this.GetBetListRngCasinoDetailOperationCompleted == null)) {
                 this.GetBetListRngCasinoDetailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBetListRngCasinoDetailOperationCompleted);
             }
@@ -290,6 +295,37 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
             if ((this.GetRngCasinoSingleWalletResultCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetRngCasinoSingleWalletResultCompleted(this, new GetRngCasinoSingleWalletResultCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetListAgCasinoDetail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetBetListAgCasinoDetail(string userName, BetListDetailCriteria criteria) {
+            object[] results = this.Invoke("GetBetListAgCasinoDetail", new object[] {
+                        userName,
+                        criteria});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBetListAgCasinoDetailAsync(string userName, BetListDetailCriteria criteria) {
+            this.GetBetListAgCasinoDetailAsync(userName, criteria, null);
+        }
+        
+        /// <remarks/>
+        public void GetBetListAgCasinoDetailAsync(string userName, BetListDetailCriteria criteria, object userState) {
+            if ((this.GetBetListAgCasinoDetailOperationCompleted == null)) {
+                this.GetBetListAgCasinoDetailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBetListAgCasinoDetailOperationCompleted);
+            }
+            this.InvokeAsync("GetBetListAgCasinoDetail", new object[] {
+                        userName,
+                        criteria}, this.GetBetListAgCasinoDetailOperationCompleted, userState);
+        }
+        
+        private void OnGetBetListAgCasinoDetailOperationCompleted(object arg) {
+            if ((this.GetBetListAgCasinoDetailCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBetListAgCasinoDetailCompleted(this, new GetBetListAgCasinoDetailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -512,7 +548,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BetListResultsCriteria))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BetListCriteria))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BetListRngCasinoDetailCriteria))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BetListDetailCriteria))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BetListSystemParlayDetailCriteria))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
     [System.SerializableAttribute()]
@@ -644,7 +680,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BetListRngCasinoDetailCriteria))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BetListDetailCriteria))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -911,7 +947,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class BetListRngCasinoDetailCriteria : BetListCriteria {
+    public partial class BetListDetailCriteria : BetListCriteria {
         
         private long refNoField;
         
@@ -1186,6 +1222,32 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         private object[] results;
         
         internal GetRngCasinoSingleWalletResultCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void GetBetListAgCasinoDetailCompletedEventHandler(object sender, GetBetListAgCasinoDetailCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBetListAgCasinoDetailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBetListAgCasinoDetailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

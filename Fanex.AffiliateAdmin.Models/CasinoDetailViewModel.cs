@@ -1,6 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
-    public class RngCasinoDetailViewModel
+    public class CasinoDetailViewModel
     {
         public long TransId { get; set; }
 

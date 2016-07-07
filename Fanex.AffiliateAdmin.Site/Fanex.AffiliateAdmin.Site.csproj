@@ -3901,7 +3901,7 @@
     </Content>
     <Content Include="Views\Sso\DenyAccess.cshtml" />
     <Content Include="Views\Management\EditUser.cshtml" />
-    <Content Include="Views\BetList\RngCasinoDetailTicket.cshtml" />
+    <Content Include="Views\BetList\CasinoDetailTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

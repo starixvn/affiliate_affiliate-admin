@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
+    using AffBetListService;
     using Core.Filter;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
@@ -73,7 +74,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             ViewBag.SupportedProducts = string.Join(",", supportedProducts.Select(t => t.ProductName));
 
-            var betlistSoap = new AffBetListService.BetlistSOAP
+            var betlistSoap = new BetlistSOAP
             {
                 AffiliateName = AppSettings.AffiliateName.ToLower(),
                 Username = model.Username,
@@ -85,7 +86,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 Language = AppSession.Language
             };
 
-            var betlistService = new AffBetListService.AffiliateAPI();
+            var betlistService = new AffiliateAPI();
 
             ViewBag.Data = betlistService.GetBetlist(betlistSoap);
 
@@ -104,7 +105,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var exchangeRate = model.ExchangeRate;
 
-            var affBetlistService = new AffBetListService.AffiliateAPI();
+            var affBetlistService = new AffiliateAPI();
             var tickets = affBetlistService.GetBetlistParlay(
                 AppSettings.AffiliateName,
                 model.TransId.ToString(),
@@ -124,7 +125,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var exchangeRate = model.ExchangeRate;
 
-            var criteria = new AffBetListService.BetListSystemParlayDetailCriteria
+            var criteria = new BetListSystemParlayDetailCriteria
                 {
                     AffiliateGroup = model.AffiliateGroup,
                     BalanceUpDay = model.BalanceUpDay,
@@ -137,7 +138,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     UserId = model.UserId
                 };
 
-            var affBetlistService = new AffBetListService.AffiliateAPI();
+            var affBetlistService = new AffiliateAPI();
             var systemParlayDataText = affBetlistService.GetBetlistSystemParlay(
                 AppSettings.AffiliateName,
                 exchangeRate.ToString(),
@@ -150,26 +151,41 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         [HttpGet]
-        public ActionResult RngCasinoDetailTicket(RngCasinoDetailViewModel model)
+        public ActionResult RngCasinoDetailTicket(CasinoDetailViewModel model)
         {
-            var criteria = new AffBetListService.BetListRngCasinoDetailCriteria
+            var criteria = new BetListDetailCriteria
             {
                 CustId = model.CustId,
                 RefNo = model.TransId,
             };
 
-            var affBetlistService = new AffBetListService.AffiliateAPI();
+            var affBetlistService = new AffiliateAPI();
             ViewBag.Data = affBetlistService.GetBetListRngCasinoDetail(SessionManager.CurrentSession.Username, criteria);
 
-            return View();
+            return View("~/Views/BetList/CasinoDetailTicket.cshtml");
         }
 
         [HttpPost]
         public ActionResult RngCasinoSingleWalletResult(string refNo)
         {
-            var affBetlistService = new AffBetListService.AffiliateAPI();
+            var affBetlistService = new AffiliateAPI();
             var result = affBetlistService.GetRngCasinoSingleWalletResult(refNo);
             return Content(result, "application/json");
+        }
+
+        [HttpGet]
+        public ActionResult AgCasinoDetailTicket(CasinoDetailViewModel model)
+        {
+            var criteria = new BetListDetailCriteria
+            {
+                CustId = model.CustId,
+                RefNo = model.TransId,
+            };
+
+            var affBetlistService = new AffiliateAPI();
+            ViewBag.Data = affBetlistService.GetBetListAgCasinoDetail(SessionManager.CurrentSession.Username, criteria);
+
+            return View("~/Views/BetList/CasinoDetailTicket.cshtml");
         }
 
         #endregion
@@ -206,7 +222,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <returns>HTML formatted of data.</returns>
         public string GetPopUpData(AffBetListService.BetListResultsCriteria criteria)
         {
-            var affBetlistService = new AffBetListService.AffiliateAPI();
+            var affBetlistService = new AffiliateAPI();
 
             return affBetlistService.GetBetlistResults(
                 AppSettings.AffiliateName,

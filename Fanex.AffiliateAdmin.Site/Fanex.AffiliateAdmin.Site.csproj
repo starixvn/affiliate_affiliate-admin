@@ -387,6 +387,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\SpNames\_SpNameOriginal.xml" />
+    <Content Include="Content\betlist\betList.css" />
     <Content Include="Content\_Sites\9bet\images\banner_top.png" />
     <Content Include="Content\_Sites\9bet\images\best-browsers.png" />
     <Content Include="Content\_Sites\9bet\images\bodybg.jpg" />
@@ -525,7 +526,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\betlist\betlist.core.css" />
-    <Content Include="Content\betlist\betList.css" />
     <Content Include="Content\betlist\fanex.result.css" />
     <Content Include="Content\betlist\global.content.css" />
     <Content Include="Content\betlist\images\1F.gif" />
@@ -3901,6 +3901,7 @@
     </Content>
     <Content Include="Views\Sso\DenyAccess.cshtml" />
     <Content Include="Views\Management\EditUser.cshtml" />
+    <Content Include="Views\BetList\RngCasinoDetailTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

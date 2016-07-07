@@ -424,6 +424,10 @@ Format styles
     font-weight: bold;
 }
 
+.gamegroupname{
+    color: #008000;
+}
+
 .combinationLink a
 {
     color: #0000FF;

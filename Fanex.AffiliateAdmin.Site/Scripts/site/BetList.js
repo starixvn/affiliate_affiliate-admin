@@ -116,7 +116,26 @@ var BetList = (function ($) {
 
             var title = MSG.Results;
             AFFILIATE.openDialogUrl(url, title, { width: 1097, height: 500 });
-        }
+        },
+
+        showRnGCasinoDetails: function (transId, winlostDate, custId, transType) {
+            var url = AFFILIATE.getAbsoluteUrl('BetList/RngCasinoDetailTicket');
+            url = QueryString.setParam(url, "transId", transId);
+            url = QueryString.setParam(url, "winlostDate", winlostDate);
+            url = QueryString.setParam(url, "custId", custId);
+            url = QueryString.setParam(url, "transType", transType);
+
+            var popH = Math.min($(window).height() - 100, 550), popW = 1020;
+            var title = MSG.TitleRngCasinoTicketDetail;
+            var dialogForm = '<div title="' + title + '"><iframe scrolling="yes" frameborder="0" width="' +
+                             popW + '" height="' + popH + '" src="' + url + '" ></iframe></div>';
+
+            $(dialogForm).dialog({
+                modal: true,
+                width: popW + 10,
+                height: popH + 55
+            });
+        },
     };
 })(jQuery);
 
@@ -135,3 +154,4 @@ var showCombMP = function (transId, index) {
 };
 
 var showCombMPDetail = BetList.showSystemParlayDetail;
+var showRnGCasinoDetails = BetList.showRnGCasinoDetails;

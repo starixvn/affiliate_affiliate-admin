@@ -149,6 +149,21 @@ namespace Fanex.AffiliateAdmin.Controller
             return View();
         }
 
+        [HttpGet]
+        public ActionResult RngCasinoDetailTicket(RngCasinoDetailViewModel model)
+        {
+            var criteria = new AffBetListService.BetListRngCasinoDetailCriteria
+            {
+                CustId = model.CustId,
+                RefNo = model.TransId,
+            };
+
+            var affBetlistService = new AffBetListService.AffiliateAPI();
+            ViewBag.Data = affBetlistService.GetBetListRngCasinoDetail(SessionManager.CurrentSession.Username, criteria);
+
+            return View();
+        }
+
         #endregion
 
         #region BetList Results

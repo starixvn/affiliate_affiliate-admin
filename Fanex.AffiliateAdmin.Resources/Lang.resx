@@ -2845,4 +2845,7 @@
   <data name="Racing" xml:space="preserve">
     <value>Racing</value>
   </data>
+  <data name="TitleRngCasinoTicketDetail" xml:space="preserve">
+    <value>Bet List - RNG Casino - Ticket Detail</value>
+  </data>
 </root>

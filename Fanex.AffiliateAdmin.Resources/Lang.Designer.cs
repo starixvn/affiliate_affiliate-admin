@@ -7123,6 +7123,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet List - AG Casino - TicketDetail.
+        /// </summary>
+        public static string TitleAgCasinoTicketDetail {
+            get {
+                return ResourceManager.GetString("TitleAgCasinoTicketDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet List - RNG Casino - Ticket Detail.
         /// </summary>
         public static string TitleRngCasinoTicketDetail {

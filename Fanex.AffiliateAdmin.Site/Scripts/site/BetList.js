@@ -189,7 +189,7 @@ var BetList = (function ($) {
             url = QueryString.setParam(url, "custid", custId);
 
             var popH = Math.min($(window).height() - 100, 550), popW = 1020;
-            var title = "Bet List - AG Casino - TicketDetail";
+            var title = MSG.TitleAgCasinoTicketDetail;
             var dialogForm = '<div title="' + title + '"><iframe scrolling="no" frameborder="0" width="' +
                              popW + '" height="99%" src="' + url + '" ></iframe></div>';
 

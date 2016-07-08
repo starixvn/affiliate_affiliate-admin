@@ -2848,4 +2848,8 @@
   <data name="TitleRngCasinoTicketDetail" xml:space="preserve">
     <value>Bet List - RNG Casino - Ticket Detail</value>
   </data>
+  <data name="TitleAgCasinoTicketDetail" xml:space="preserve">
+    <value>Bet List - AG Casino - TicketDetail</value>
+    <comment>#54368</comment>
+  </data>
 </root>

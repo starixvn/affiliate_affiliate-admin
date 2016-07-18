@@ -223,7 +223,7 @@
     white-space: nowrap;
 }
 
-a {
+a:link, a:visited {
     text-decoration: none;
 }
 
@@ -422,6 +422,10 @@ Format styles
 .status
 {
     font-weight: bold;
+}
+
+.gamegroupname{
+    color: #008000;
 }
 
 .combinationLink a

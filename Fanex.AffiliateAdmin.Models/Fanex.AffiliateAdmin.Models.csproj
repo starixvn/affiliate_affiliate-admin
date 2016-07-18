@@ -164,6 +164,7 @@
     <Compile Include="BetListResultsRNGCasinoViewModel.cs" />
     <Compile Include="BetListResultsRNGCasinoDetailViewModel.cs" />
     <Compile Include="PolicyUpdateViewModel.cs" />
+    <Compile Include="CasinoDetailViewModel.cs" />
     <Compile Include="SystemParlayDetailViewModel.cs" />
     <Compile Include="ExchangeRateViewModel.cs" />
     <Compile Include="AffiliateCommissionViewModel.cs" />

@@ -106,7 +106,8 @@ table.fn-rs tbody .cl-team
 {
     text-align: left;
 }
-table.fn-rs tbody .cl-match
+table.fn-rs tbody .cl-match,
+table.fn-rs tbody .cl-match-mt
 {
     text-align: left;
     font-size: 12px;
@@ -121,6 +122,18 @@ table.fn-rs tbody .cl-match.away
     color: #008d95;
 }
 table.fn-rs tbody .cl-match.win
+{
+    font-weight: bold;
+}
+table.fn-rs tbody .cl-match-mt.home 
+{
+    color: #c00;
+}
+table.fn-rs tbody .cl-match-mt.away 
+{
+    color: #0000ff;
+}
+table.fn-rs tbody .cl-match-mt.win 
 {
     font-weight: bold;
 }
@@ -214,6 +227,11 @@ table.fn-rs .cl-status
 {
     text-transform: capitalize;
     width: 94px;
+}
+table.fn-rs .cl-status .ko 
+{
+    color: #0000ff;
+	font-size: 10px;
 }
 table.fn-rs .cl-status .detail-link
 {

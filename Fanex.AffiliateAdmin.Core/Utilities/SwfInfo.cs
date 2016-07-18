@@ -135,6 +135,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2201:DoNotRaiseReservedExceptionTypes", Justification = "Accept this method")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
         public void LoadSwf(string filename)
         {
             _filename = filename;

@@ -59,7 +59,7 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         #endregion Define variable
 
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Reviewed.")]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
         static AppSettings()
         {
             _systemSetting = new Lazy<ISystemSettingService>(() => new SystemSettingService());

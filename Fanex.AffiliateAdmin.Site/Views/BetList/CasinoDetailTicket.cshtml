@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+
+@section css{
+    @Styles.Render("~/css/betlist")
+}
+
+@section scripts{
+    <script type="text/javascript">
+        var MSG = {
+            Results: "@Lang.BetListResults"
+        };
+    </script>
+    @Scripts.Render("~/js/betlist")
+}
+
+
+@if (string.IsNullOrEmpty(ViewBag.Data))
+{
+    <p style="font-size: 12px; font-weight: bold; text-align: center;">@Lang.NoInfo</p>
+}
+else
+{
+    @Html.Raw(ViewBag.Data)
+}

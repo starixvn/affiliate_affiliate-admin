@@ -180,7 +180,6 @@
             return View("~/Views/BetList/CasinoDetailTicket.cshtml");
         }
 
-        #endregion
         [HttpGet]
         public dynamic NewBetListParlay(long transId, string betTeam, string betCheck, decimal handicap1, decimal handicap2, string exchangeRate)
         {

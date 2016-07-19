@@ -16,7 +16,7 @@
     {
         private readonly IMaintenanceService _maintenanceService;
 
-        public NotifyController() 
+        public NotifyController()
             : this(null)
         {
         }
@@ -32,12 +32,11 @@
         /// <returns>Under maintenance page.</returns>
         public ActionResult Index()
         {
-            var underMaintenanceTime = _maintenanceService.GetUnderMaintenanceTime();
-
-            if (underMaintenanceTime.IsUnderMaintenanceTime)
+            if (_maintenanceService.IsUnderMaintenance())
             {
                 LogOutWhenUMTime();
 
+                var underMaintenanceTime = _maintenanceService.GetUnderMaintenanceTime();
                 ViewBag.StartTime = underMaintenanceTime.From;
                 ViewBag.EndTime = underMaintenanceTime.To;
 

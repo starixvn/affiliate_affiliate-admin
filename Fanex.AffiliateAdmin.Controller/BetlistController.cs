@@ -7,7 +7,6 @@
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using AffBetListService;
-    using BetList.Core.TicketHelper;
     using Core.Filter;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
@@ -183,8 +182,6 @@
         [HttpGet]
         public dynamic NewBetListParlay(long transId, string betTeam, string betCheck, decimal handicap1, decimal handicap2, string exchangeRate)
         {
-            var texts = CacheRef.GetCombinationTypeCombo(betTeam, betCheck, Convert.ToInt32(handicap1), Convert.ToInt32(handicap2));
-
             var affBetlistService = new AffBetListService.AffiliateAPI();
             var tickets = affBetlistService.GetNewBetlistParlay(
                 AppSettings.AffiliateName,

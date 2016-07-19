@@ -431,6 +431,7 @@ Format styles
 .combinationLink a
 {
     color: #0000FF;
+    font-weight: bold;
 }
 
 .tblBetList tr td a

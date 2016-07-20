@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AffiliateDataAccess.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Joseph.Pham" date="2013.8.1">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.DataAccess
+﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
     using System;
     using System.Collections.Generic;

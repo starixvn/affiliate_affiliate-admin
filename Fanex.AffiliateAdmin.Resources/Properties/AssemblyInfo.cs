@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Johnny.Trinh" date="2013.08.20">Created</change>
-// </history>
-
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -16,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Fanex.AffiliateAdmin.Resources")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Nexcel")]
+[assembly: AssemblyCompany("Excel")]
 [assembly: AssemblyProduct("Fanex.AffiliateAdmin.Resources")]
-[assembly: AssemblyCopyright("Copyright © Nexcel 2011")]
+[assembly: AssemblyCopyright("Copyright © Excel 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="MemberWinLossItem.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2013.11.6">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.DTO
+﻿namespace Fanex.AffiliateAdmin.DTO
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

@@ -189,16 +189,17 @@
     <Reference Include="Nini, Version=1.1.0.0, Culture=neutral, PublicKeyToken=691faec150a7fa7b, processorArchitecture=MSIL">
       <HintPath>..\packages\Trove.Nini.1.1.0.0\lib\net20\Nini.dll</HintPath>
     </Reference>
-    <Reference Include="ONEbook.UM, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ONEbook.UM.1.0.1.4\lib\net40\ONEbook.UM.dll</HintPath>
+    <Reference Include="ONEbook.UM, Version=2.0.2.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ONEbook.UM.2.0.2.6\lib\net40\ONEbook.UM.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RazorEngine, Version=3.7.6.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorEngine.3.7.6\lib\net40\RazorEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RemotingRef">
-      <HintPath>..\packages\RemotingRef.1.0.0.1\lib\net40\RemotingRef.dll</HintPath>
+    <Reference Include="RemotingRef, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RemotingRef.1.0.0.9\lib\net40\RemotingRef.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
@@ -226,6 +227,8 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -271,10 +274,6 @@
     <Reference Include="TplCore">
       <HintPath>..\packages\TplCore.1.0.4694.29951\lib\net40\TplCore.dll</HintPath>
     </Reference>
-    <Reference Include="UMControllerLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UMControllerLibrary.1.0.0.1\lib\net40\UMControllerLibrary.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
@@ -283,6 +282,11 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Service References\AffBetListService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Content Include="Configurations\ConnectionStrings\_ConnectionString.xml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>_ConnectionString.xml.txt</LastGenOutput>
@@ -830,6 +834,7 @@
     <Content Include="Form\HistoryImage_ePoker.aspx" />
     <Content Include="Form\LiveGenHistoryImg.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Gruntfile.js" />
     <Content Include="img\Bingo\Ball\00.jpg" />
     <Content Include="img\Bingo\Ball\01.jpg" />
     <Content Include="img\Bingo\Ball\02.jpg" />
@@ -3494,6 +3499,13 @@
     <Content Include="Scripts\site\Query.string.js" />
     <Content Include="Scripts\site\ViewLog.js" />
     <Content Include="Scripts\site\_Global.js" />
+    <None Include="Service References\AffBetListService\AffiliateAPI.disco" />
+    <None Include="Service References\AffBetListService\configuration91.svcinfo" />
+    <None Include="Service References\AffBetListService\configuration.svcinfo" />
+    <None Include="Service References\AffBetListService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.en-US.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.th-TH.cshtml" />
@@ -3603,7 +3615,9 @@
     <Content Include="Configurations\WebConfigs\Web.be7.production.config" />
     <Content Include="Configurations\WebConfigs\Web.be7.uat.config" />
     <Content Include="Configurations\WebConfigs\Web.goobet.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.goobet.production.config" />
+    <Content Include="Configurations\WebConfigs\Web.goobet.production.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\WebConfigs\Web.goobet.uat.config" />
     <Content Include="Configurations\WebConfigs\Web.itcbet.master.config" />
     <Content Include="Configurations\WebConfigs\Web.itcbet.production.config">
@@ -3752,6 +3766,7 @@
     <Content Include="Configurations\WebConfigs\Web.be7th.master.config" />
     <Content Include="Configurations\WebConfigs\Web.be7th.production.config" />
     <Content Include="Configurations\WebConfigs\Web.be7th.uat.config" />
+    <Content Include="GruntFilters.json" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -3762,6 +3777,7 @@
     <None Include="img\Slot\S0007\old image backup\40x40\icon_40x40_doubleWild.jpg.exclude" />
     <None Include="img\Slot\S0032\Thumbs.db" />
     <None Include="img\Slot\S0033\Thumbs.db" />
+    <Content Include="package.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -3902,6 +3918,7 @@
     <Content Include="Views\Sso\DenyAccess.cshtml" />
     <Content Include="Views\Management\EditUser.cshtml" />
     <Content Include="Views\BetList\CasinoDetailTicket.cshtml" />
+    <None Include="Service References\AffBetListService\AffiliateAPI.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -4110,7 +4127,12 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AffBetListService\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

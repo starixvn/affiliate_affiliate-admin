@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SwfInfo.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Leo.Vo" date="2013.8.30">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Core.Utilities
+﻿namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System;
     using System.Collections;
@@ -21,7 +12,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "3rd source code")]
     [SuppressMessage("StyleCop.CSharp.OrderingRules", "*", Justification = "3rd source code")]
-    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "*", Justification = "3rd source code")]
+    [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "*", Justification = "3rd source code")]
     public class SwfInfo
     {
         #region Properties

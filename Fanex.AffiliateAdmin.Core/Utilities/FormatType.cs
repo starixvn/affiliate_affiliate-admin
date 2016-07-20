@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="FormatType.cs" company="Nexcel Solution">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.AffiliateAdmin.Core.Utilities
+﻿namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using Fanex.Common.Extensions;
 

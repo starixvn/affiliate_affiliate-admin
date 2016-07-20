@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="EmailTemplateInfo.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Johnny.Trinh" date="2013.08.22">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Core.Entities
+﻿namespace Fanex.AffiliateAdmin.Core.Entities
 {
     using System;
     using Fanex.AffiliateAdmin.Core.Configurations;

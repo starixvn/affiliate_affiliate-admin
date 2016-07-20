@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CountrySelectCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2013.9.9">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Criterias.Configuration.Country
+﻿namespace Fanex.AffiliateAdmin.Criterias.Configuration.Country
 {
     using Fanex.Data.Repository;
 

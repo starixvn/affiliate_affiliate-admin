@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SsoController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-
-namespace Fanex.AffiliateAdmin.Controller
+﻿namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
     using System.Collections.Specialized;

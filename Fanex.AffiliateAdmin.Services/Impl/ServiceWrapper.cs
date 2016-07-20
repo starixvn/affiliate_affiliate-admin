@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ServiceWrapper.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Kaden.Trinh" date="2013.07.04">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Services
+﻿namespace Fanex.AffiliateAdmin.Services
 {
     using System;
     using System.Xml.Linq;

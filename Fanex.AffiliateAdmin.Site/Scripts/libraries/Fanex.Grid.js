@@ -1,20 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="Fanex.Grid.js" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// Revision:
-//          + 01/10/2014: Auto re-size column.
-//          + 01/21/2014: Supported Sort with SortType for each column.
-//          + 01/22/2014: Fixed bug Auto reset scroller when resize grid.
-//          + 02/06/2014: Customize Render footer when auto paging + Update initialize footer.
-//          + 02/06/2014: Customize Render footer when auto paging + Update initialize footer.
-//          + 02/27/2014: Update show "..." when auto truncate.
-//          + 03/19/2014: Support Time Zone Config
-//          + 04/08/2014: Support auto resize to full-screen width
-//          + 04/11/2014: Remove class "Container" 
-//          + 04/16/2014: Auto fix header height, fix bug collapse/expand
-// </copyright>
-// --------------------------------------------------------------------------
-/*jshint maxdepth:false, maxstatements:false*/
+﻿/*jshint maxdepth:false, maxstatements:false*/
 /*global fanexGridLanguage, moment,numeral*/
 
 var fanexGridCurrentLanguage = fanexGridCurrentLanguage || {};

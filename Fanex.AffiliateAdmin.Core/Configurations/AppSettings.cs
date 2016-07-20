@@ -1,15 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AppSettings.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Kaden.Trinh" date="2013.05.29">Created</change>
-//   <change who="Kaden.Trinh" date="2013.06.24">Add setting key for e-mail</change>
-//   <change who="Kaden.Trinh" date="2013.06.25">Load all setting default from DB</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Core.Configurations
+﻿namespace Fanex.AffiliateAdmin.Core.Configurations
 {
     using System;
     using System.Collections.Generic;

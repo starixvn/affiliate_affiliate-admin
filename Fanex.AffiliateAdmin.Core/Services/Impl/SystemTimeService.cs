@@ -1,22 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SystemTimeService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2014.10.1">Created</change>
-// </history>
-
-// --------------------------------------------------------------------------
-// <copyright file="SystemTimeService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2014.10.1">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Services
+﻿namespace Fanex.AffiliateAdmin.Services
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

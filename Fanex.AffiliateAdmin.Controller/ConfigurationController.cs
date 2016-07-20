@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="ConfigurationController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2013.8.28">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Controller
+﻿namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;

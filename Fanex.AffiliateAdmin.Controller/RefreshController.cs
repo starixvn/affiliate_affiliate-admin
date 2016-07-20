@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="RefreshController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2014.9.30">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Controller
+﻿namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
     using System.Web.Mvc;

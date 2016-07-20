@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="CurrentSession.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Kaden.Trinh" date="2013.05.28">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Core.Session
+﻿namespace Fanex.AffiliateAdmin.Core.Session
 {
     using System;
     using System.Collections.Generic;

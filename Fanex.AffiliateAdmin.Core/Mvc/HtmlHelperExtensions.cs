@@ -1,14 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="HtmlHelperExtensions.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Kaden.Trinh" date="2013.05.28">Created</change>
-//   <change who="Kaden.Trinh" date="2013.06.14">Add new extension DropDownListFor</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Core.Mvc
+﻿namespace Fanex.AffiliateAdmin.Core.Mvc
 {
     using System;
     using System.Collections.Generic;

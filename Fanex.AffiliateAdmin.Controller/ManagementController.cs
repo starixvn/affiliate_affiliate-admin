@@ -1,14 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ManagementController.cs" company="Nexcel Solutions Vietnam">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Muller.Nguyen" date="2013.09.01">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Controller
+﻿namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
     using System.Collections.Generic;

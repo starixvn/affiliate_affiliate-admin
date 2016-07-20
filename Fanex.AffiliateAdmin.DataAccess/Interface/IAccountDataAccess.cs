@@ -1,14 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="IAccountDataAccess.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Kaden.Trinh" date="2013.05.30">Created</change>
-//   <change who="Kaden.Trinh" date="2013.06.10">Implement funcion get statistics overview account</change>
-//   <change who="Kaden.Trinh" date="2013.06.11">Implement funcion get Current Commission Setting</change>
-// </history>
-namespace Fanex.AffiliateAdmin.DataAccess
+﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
     using System.Diagnostics.CodeAnalysis;
     using Criterias;

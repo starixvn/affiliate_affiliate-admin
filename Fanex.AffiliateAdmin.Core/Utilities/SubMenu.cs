@@ -1,14 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="SubMenu.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Kaden.Trinh" date="2013.06.25">Created</change>
-//   <change who="Leo.Vo" date="2013.06.30">GetLanguageOriginal</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Core.Utilities
+﻿namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System.Collections.Generic;
     using System.Linq;

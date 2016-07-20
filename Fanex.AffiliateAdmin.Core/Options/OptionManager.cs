@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="OptionManager.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2014.3.14">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Core.Options
+﻿namespace Fanex.AffiliateAdmin.Core.Options
 {
     using System.Collections.Generic;
     using System.Web.Mvc;

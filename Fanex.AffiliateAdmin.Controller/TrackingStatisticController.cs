@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TrackingStatisticController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2013.12.19">Created</change>
-// </history>
-
-namespace Fanex.AffiliateAdmin.Controller
+﻿namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Linq;
     using System.Web.Mvc;

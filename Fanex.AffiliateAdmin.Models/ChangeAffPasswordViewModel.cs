@@ -20,7 +20,7 @@
 
         [DataType(DataType.Password)]
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ConfirmPasswordIsRequired")]
-        [Compare("Password", ErrorMessageResourceName = "PassConfirm", ErrorMessageResourceType = typeof(Lang))]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessageResourceName = "PassConfirm", ErrorMessageResourceType = typeof(Lang))]
         [Display(ResourceType = typeof(Lang), Name = "ConfirmPass")]
         public string ConfirmPassword { get; set; }
     }

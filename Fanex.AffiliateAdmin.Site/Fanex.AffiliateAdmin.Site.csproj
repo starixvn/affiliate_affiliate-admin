@@ -216,10 +216,6 @@
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nini, Version=1.1.0.0, Culture=neutral, PublicKeyToken=691faec150a7fa7b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Trove.Nini.1.1.0.0\lib\net20\Nini.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="NPOI, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
       <Private>True</Private>
@@ -3664,44 +3660,11 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.aoncash.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.aoncash.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.aoncash.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.athena000.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.athena000.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.athena000.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.be7.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.be7.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.be7.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.goobet.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.goobet.production.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.goobet.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.itcbet.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.itcbet.production.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.itcbet.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.m8bola.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.m8bola.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.m8bola.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.macaubet.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.macaubet.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.macaubet.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.aiabet.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.aiabet.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.aiabet.uat.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.q8bola.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.q8bola.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.q8bola.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.unobet.master.config" />
+    <Content Include="Configurations\WebConfigs\Web.master.config" />
+    <Content Include="Configurations\WebConfigs\Web.production.config" />
+    <Content Include="Configurations\WebConfigs\Web.uat.config" />
     <Content Include="Content\_Sites\athena000\Login.less" />
     <Content Include="Content\_Sites\athena000\Notify.less" />
-    <Content Include="Configurations\WebConfigs\Web.unobet.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.unobet.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.production.config">
@@ -3710,11 +3673,6 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.uat.config" />
     <Content Include="Content\_Sites\unobet\Login.less" />
     <Content Include="Content\_Sites\unobet\Notify.less" />
-    <Content Include="Configurations\WebConfigs\Web.allbetclub.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.allbetclub.production.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.allbetclub.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.production.config" />
@@ -3726,13 +3684,6 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.uat.config" />
-    <Content Include="Configurations\WebConfigs\Web.9bet.master.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.9bet.production.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.9bet.uat.config" />
     <Content Include="Content\_Sites\9bet\Login.less" />
     <Content Include="Content\_Sites\9bet\Notify.less" />
     <Content Include="Integration\PrivateKey\12bet.snk" />
@@ -3822,9 +3773,6 @@
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
     <Content Include="Content\_Sites\be7th\Login.less" />
     <Content Include="Content\_Sites\be7th\Notify.less" />
-    <Content Include="Configurations\WebConfigs\Web.be7th.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.be7th.production.config" />
-    <Content Include="Configurations\WebConfigs\Web.be7th.uat.config" />
     <Content Include="GruntFilters.json" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
@@ -4210,7 +4158,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

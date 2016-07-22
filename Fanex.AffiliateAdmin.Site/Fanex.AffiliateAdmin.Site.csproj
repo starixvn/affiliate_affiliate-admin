@@ -453,6 +453,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\SpNames\_SpNameOriginal.xml" />
+    <Content Include="Configurations\WebConfigs\_Webconfig.xml.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>_Webconfig.xml.txt</LastGenOutput>
+    </Content>
+    <Content Include="Configurations\WebConfigs\_Webconfig.xml.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Content\betlist\betList.css" />
     <Content Include="Content\_Sites\9bet\images\banner_top.png" />
     <Content Include="Content\_Sites\9bet\images\best-browsers.png" />
@@ -3774,6 +3783,123 @@
     <Content Include="Content\_Sites\be7th\Login.less" />
     <Content Include="Content\_Sites\be7th\Notify.less" />
     <Content Include="GruntFilters.json" />
+    <None Include="Configurations\WebConfigs\Web.9bet.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.9bet.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.9bet.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.aiabet.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.aiabet.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.aiabet.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.allbetclub.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.allbetclub.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.allbetclub.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.aoncash.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.aoncash.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.aoncash.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.athena000.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.athena000.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.athena000.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.be7.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.be7.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.be7.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.be7th.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.be7th.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.be7th.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.goobet.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.goobet.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.goobet.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.itcbet.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.itcbet.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.itcbet.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.m8bola.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.m8bola.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.m8bola.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.macaubet.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.macaubet.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.macaubet.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.q8bola.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.q8bola.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.q8bola.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.unobet.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.unobet.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.unobet.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />

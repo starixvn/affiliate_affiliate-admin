@@ -1,0 +1,43 @@
+﻿<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".txt" #>
+<#@ import namespace="System" #>
+<#@ include file="$(SolutionDir)\Packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
+
+<#
+	string path = Host.ResolveAssemblyReference("$(SolutionDir)");
+	Directory.SetCurrentDirectory(path);
+	var manager = TemplateFileManager.Create(this);
+
+	var licenseeNames = new string[] {
+			"9bet", 
+			"allbetclub",
+			"aoncash",
+			"athena000",
+			"be7",
+			"be7th",
+			"goobet",
+			"itcbet",
+			"m8bola",
+			"macaubet",
+			"aiabet",
+			"q8bola",
+			"unobet"
+		};
+
+	var environments = new string[] { "master", "uat", "production" };
+
+	foreach(var licenseeName in licenseeNames)
+	{
+		foreach(var environment in environments)
+		{
+			var templateFile = string.Format(@"Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.{0}.config", environment);
+			var configText = System.IO.File.ReadAllText(templateFile);
+			var fileName = string.Format("Web.{0}.{1}.config", licenseeName, environment);
+			manager.StartNewFile(fileName);
+			#>
+<#= configText #>
+		<#
+		}
+	}
+	manager.Process();
+#>

@@ -486,9 +486,7 @@ var MemberWinLossByProduct = (function ($) {
 
     return {
         submitRequest: function (dataRequest) {
-
-            $.extend(true, submitOptions, dataRequest);
-
+            submitOptions = dataRequest;
             MemberWinLossByProduct.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
 

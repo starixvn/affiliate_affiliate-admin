@@ -3766,123 +3766,123 @@
     <Content Include="Content\_Sites\be7th\Login.less" />
     <Content Include="Content\_Sites\be7th\Notify.less" />
     <Content Include="GruntFilters.json" />
-    <None Include="Configurations\WebConfigs\Web.9bet.master.config">
+    <Content Include="Configurations\WebConfigs\Web.9bet.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.9bet.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.9bet.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.9bet.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.9bet.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.aiabet.master.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.aiabet.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.aiabet.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.aiabet.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.aiabet.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.aiabet.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.allbetclub.master.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.allbetclub.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.allbetclub.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.allbetclub.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.allbetclub.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.allbetclub.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.aoncash.master.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.aoncash.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.aoncash.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.aoncash.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.aoncash.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.aoncash.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.athena000.master.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.athena000.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.athena000.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.athena000.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.athena000.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.athena000.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.be7.master.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.be7.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.be7.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.be7.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.be7.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.be7.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.be7th.master.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.be7th.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.be7th.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.be7th.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.be7th.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.be7th.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.goobet.master.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.goobet.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.goobet.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.goobet.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.goobet.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.goobet.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.itcbet.master.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.itcbet.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.itcbet.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.itcbet.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.itcbet.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.itcbet.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.m8bola.master.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.m8bola.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.m8bola.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.m8bola.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.m8bola.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.m8bola.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.macaubet.master.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.macaubet.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.macaubet.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.macaubet.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.macaubet.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.macaubet.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.q8bola.master.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.q8bola.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.q8bola.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.q8bola.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.q8bola.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.q8bola.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.unobet.master.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.unobet.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.unobet.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.unobet.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.unobet.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.unobet.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
+    </Content>
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -4267,7 +4267,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

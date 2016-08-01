@@ -4,14 +4,21 @@
 }
 
 @model Fanex.AffiliateAdmin.Models.AffiliateMasterViewModel
+    @{ 
+        var urlInfo = Url.Content("~/AffiliateInfo/Info");
+        if(!string.IsNullOrEmpty(Model.UserName))
+        {
+            urlInfo += "?username=" + Model.UserName;
+        }
+    }
 
 <div class="panel">
     <div id="l-panel" class="l-panel">
         <!--[if IE]>
-            <iframe id="ifAffInfo" frameborder="0" class="span12 affInfo" src="@(Model.GetUrl("AffiliateInfo", "Info"))" ></iframe>
+            <iframe id="ifAffInfo" frameborder="0" class="span12 affInfo" src="@urlInfo" ></iframe>
         <![endif]-->
         <!--[if !IE]>-->
-           <iframe id="ifAffInfo" seamless="seamless" style="border: none;" class="span12 affInfo" src="@(Model.GetUrl("AffiliateInfo", "Info"))" ></iframe>
+           <iframe id="ifAffInfo" seamless="seamless" style="border: none;" class="span12 affInfo" src="@urlInfo"></iframe>
         <!-- <![endif]-->
     </div>
     @if (!string.IsNullOrEmpty(Model.UserName))
@@ -46,7 +53,6 @@
             ChangePassword: "@Lang.ChangePassword"
         };
 
-        var domain = "@Model.SiteDomainUrl";
         $(document).ready(function() {
             window.Mgmt = {
                 ifStatistic: $('iframe#ifStatistic'),

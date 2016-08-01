@@ -64,7 +64,7 @@
         [CheckUMFilter]
         public ActionResult Login()
         {
-            if (!Regex.IsMatch(Request.UserHostAddress, AppSettings.GetValue("CompanyIPRange")))
+            if (AppSettings.IsProduction && !Regex.IsMatch(Request.UserHostAddress, AppSettings.GetValue("CompanyIPRange")))
             {
                 return Redirect("~/Notify/AccessDenied");
             }

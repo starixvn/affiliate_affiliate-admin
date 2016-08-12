@@ -188,10 +188,11 @@
             TempData["Message"] = message;
             return Redirect("~/Notify/AccessDenied?code=" + code);
         }
-
+        
         private NameValueCollection GetQueryParams()
         {
             string parameter = HttpContext.Request["key"] ?? string.Empty;
+            parameter = HttpUtility.UrlDecode(parameter);
             if (string.IsNullOrEmpty(parameter))
             {
                 return null;
@@ -228,11 +229,11 @@
 
             var criteria = new LoginInternalCriteria()
             {
-                LicenseeName = queryParams["licenseename"] ?? string.Empty,
-                Username = queryParams["username"] ?? string.Empty,
-                Password = queryParams["password"] ?? string.Empty,
-                LoginDomain = queryParams["loginurl"] ?? string.Empty,
-                Language = queryParams["language"],
+                LicenseeName = queryParams["lic"] ?? string.Empty,
+                Username = queryParams["user"] ?? string.Empty,
+                Password = queryParams["pwd"] ?? string.Empty,
+                LoginDomain = queryParams["url"] ?? string.Empty,
+                Language = queryParams["lang"],
                 LoginIP = HttpContext.Request.UserHostAddress,
                 BrowserName = HttpContext.Request.Browser.Browser,
                 Platform = HttpContext.Request.Browser.Platform
@@ -267,7 +268,7 @@
             }
 
             long timeSpan;
-            long.TryParse(queryParams["timestamp"], out timeSpan);
+            long.TryParse(queryParams["time"], out timeSpan);
             criteria.LoginTime = new DateTime(timeSpan);
 
             var result = InternalLogin(criteria);

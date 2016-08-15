@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Configurations\IIntegrationSettings.cs" />
     <Compile Include="Configurations\IntegrationSettings.cs" />
-    <Compile Include="Constans.cs" />
     <Compile Include="IRequestSsoModel.cs" />
     <Compile Include="IUrlFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

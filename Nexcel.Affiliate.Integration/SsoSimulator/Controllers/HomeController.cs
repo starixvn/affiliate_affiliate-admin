@@ -4,7 +4,6 @@
     using System.Configuration;
     using System.Data;
     using System.Data.SqlClient;
-    using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
     using Nexcel.Affiliate.Integration;
@@ -33,7 +32,7 @@
                 return View();
             }
 
-            var encryptedPassword = GetEncryptedPassword(username, "Athena000"); // "754A738BF99D986D8716FE00A81BC5CA32916BF6";
+            var encryptedPassword = GetEncryptedPassword(username, "spondemo"); // "754A738BF99D986D8716FE00A81BC5CA32916BF6";
             if (string.IsNullOrEmpty(encryptedPassword))
             {
                 ViewBag.Message = "Username is not existed!";
@@ -61,7 +60,7 @@
         {
             var requestModel = new RequestSsoModel();
             requestModel.Username = HttpContext.User.Identity.Name;
-            requestModel.EncryptedPassword = HttpContext.Session["password"].ToString();
+            requestModel.EncryptedPassword = "754A738BF99D986D8716FE00A81BC5CA32916BF6";//HttpContext.Session["password"].ToString();
             requestModel.Timestamp = GetDbTimeStamp();
             requestModel.LanguageCode = "zh-CN";
 

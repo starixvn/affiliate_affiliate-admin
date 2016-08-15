@@ -2,13 +2,13 @@
 {
     using System;
     using System.IO;
-    using System.Text.RegularExpressions;
+    using System.Web;
     using Nexcel.Affiliate.Integration.Configurations;
     using RSACryptoPad;
 
     public class UrlFactory : IUrlFactory
     {
-        private const string EncryptedParamPattern = "licenseename={0}&username={1}&password={2}&timestamp={3}&loginurl={4}&language={5}";
+        private const string EncryptedParamPattern = "lic={0}&user={1}&pwd={2}&time={3}&url={4}&lang={5}";
 
         private IIntegrationSettings _settings;
 
@@ -42,7 +42,7 @@
             }
 
             string inputString = string.Format(
-                EncryptedParamPattern, 
+                EncryptedParamPattern,
                 this._settings.LicenseeName,
                 model.Username,
                 model.EncryptedPassword,
@@ -52,7 +52,7 @@
 
             var encryptionThread = new EncryptionThread();
             string str = encryptionThread.EncryptString(inputString, 1024, publicKeyPath);
-            return this._settings.SsoUrl + "?key=" + str;
+            return this._settings.SsoUrl + "?key=" + HttpUtility.UrlEncode(str);
         }
     }
 }

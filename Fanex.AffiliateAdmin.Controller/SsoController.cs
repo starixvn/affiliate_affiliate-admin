@@ -1,14 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
-    using System.Collections.Specialized;
-    using System.Configuration;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Security;
     using Core.Configurations;
+    using Core.Mvc;
     using Core.Services;
     using Core.Services.Interface;
     using Core.Session;
@@ -22,7 +15,14 @@
     using ONEbook.UM.Filters;
     using Resources;
     using RSACryptoPad;
-    using Core.Mvc;
+    using System;
+    using System.Collections.Specialized;
+    using System.Configuration;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Security;
 
     /// <summary>
     /// Account controller.
@@ -106,6 +106,7 @@
         /// </summary>
         /// <returns>Login form.</returns>
         [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult Login()
         {
             return SSO();
@@ -144,9 +145,10 @@
                     ServerId = user.ServerId
                 });
 
-                FormsAuthentication.SetAuthCookie(user.Username, true);
-
                 InitializeSession(user);
+
+                FormsAuthentication.SetAuthCookie(user.Username, true);
+                
             }
 
             return result;
@@ -189,7 +191,7 @@
             TempData["Message"] = message;
             return Redirect("~/Notify/AccessDenied?code=" + code);
         }
-        
+
         private NameValueCollection GetQueryParams()
         {
             string parameter = HttpContext.Request["key"] ?? string.Empty;
@@ -219,13 +221,15 @@
         {
             if (string.IsNullOrEmpty(_keyPath))
             {
-                return RedirectToErrorPage(DisableSsoErrorCode, InvalidSettingsMessage);
+                TempData["Message"] = InvalidSettingsMessage;
+                return new CustomRedirectResult("~/Notify/AccessDenied?code=" + DisableSsoErrorCode);
             }
 
             var queryParams = GetQueryParams();
             if (queryParams == null)
             {
-                return RedirectToErrorPage(InvalidParamErrorCode, InvalidParametersMessage);
+                TempData["Message"] = InvalidParametersMessage;
+                return new CustomRedirectResult("~/Notify/AccessDenied?code=" + InvalidParamErrorCode);
             }
 
             var criteria = new LoginInternalCriteria()
@@ -242,7 +246,8 @@
 
             if (string.IsNullOrEmpty(criteria.Username) || string.IsNullOrEmpty(criteria.Password))
             {
-                return RedirectToErrorPage(InvalidParamErrorCode, InvalidParametersMessage);
+                TempData["Message"] = InvalidParametersMessage;
+                return new CustomRedirectResult("~/Notify/AccessDenied?code=" + InvalidParamErrorCode);
             }
 
             if (!IsValidLanguage(criteria.Language))
@@ -250,22 +255,19 @@
                 criteria.Language = DefaultLanguage;
             }
 
-            if (IsUserAuthenticated)
+            if (IsUserAuthenticated && criteria.Username == CurrentUserName)
             {
-                if (criteria.Username == CurrentUserName)
+                AppSession.Language = criteria.Language;
+                var session = SessionManager.CurrentSession;
+                var account = new Account()
                 {
-                    AppSession.Language = criteria.Language;
-                    var session = SessionManager.CurrentSession;
-                    var account = new Account()
-                    {
-                        CustID = session.CustID,
-                        Username = session.Username,
-                        OnUserID = session.OnUserID,
-                        IsIT = session.IsIT
-                    };
-                    InitializeSession(account);
-                    return new CustomRedirectResult("~/Home/Index");
-                }
+                    CustID = session.CustID,
+                    Username = session.Username,
+                    OnUserID = session.OnUserID,
+                    IsIT = session.IsIT
+                };
+                InitializeSession(account);
+                return new CustomRedirectResult("~/Home/Index");
             }
 
             long timeSpan;
@@ -289,10 +291,10 @@
                      "\r\nLanguage: " + criteria.Language;
 
                 LogService.Info(message);
-
-                return RedirectToErrorPage(result.ErrorCode, result.ErrorMessage);
+                TempData["Message"] = message;
+                return new CustomRedirectResult("~/Notify/AccessDenied?code=" + result.ErrorCode);
             }
-        }
 
+        }
     }
 }

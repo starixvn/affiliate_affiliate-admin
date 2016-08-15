@@ -22,6 +22,7 @@
     using ONEbook.UM.Filters;
     using Resources;
     using RSACryptoPad;
+    using Core.Mvc;
 
     /// <summary>
     /// Account controller.
@@ -214,7 +215,7 @@
         [SuppressMessage("Microsoft.Usage", "CA1806:DoNotIgnoreMethodResults",
             Justification = "Reviewed. Suppression is OK here.")]
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
-        private RedirectResult SSO()
+        private ActionResult SSO()
         {
             if (string.IsNullOrEmpty(_keyPath))
             {
@@ -263,7 +264,7 @@
                         IsIT = session.IsIT
                     };
                     InitializeSession(account);
-                    return Redirect("~/Home/Index");
+                    return new CustomRedirectResult("~/Home/Index");
                 }
             }
 
@@ -274,7 +275,7 @@
             var result = InternalLogin(criteria);
             if (result.ErrorCode == 0)
             {
-                return Redirect("~/Home/Index");
+                return new CustomRedirectResult("~/Home/Index");
             }
             else
             {
@@ -292,5 +293,6 @@
                 return RedirectToErrorPage(result.ErrorCode, result.ErrorMessage);
             }
         }
+
     }
 }

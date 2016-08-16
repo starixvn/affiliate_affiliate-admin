@@ -32,6 +32,7 @@
     public class SsoController : Controller
     {
         private const string InvalidSettingsMessage = "Invalid settings!";
+        private const string Pass = "2conthanhlanconduanhaucanchoi";
 
         private const string InvalidParametersMessage = "Invalid parameters!";
 
@@ -105,12 +106,13 @@
         /// Return form login.
         /// </summary>
         /// <returns>Login form.</returns>
-        [HttpGet]
         [OutputCache(NoStore = true, Duration = 0)]
+        [HttpGet]
         public ActionResult Login(string key)
         {
             return SSO(key);
         }
+
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult Index(string key)
@@ -197,16 +199,12 @@
 
         private NameValueCollection GetQueryParams(string key)
         {
-            var parameter = HttpUtility.UrlDecode(key);
-            if (string.IsNullOrEmpty(parameter))
+            if (string.IsNullOrEmpty(key))
             {
                 return null;
             }
-
-            var privateKeyPath = Server.MapPath("~/" + _keyPath);
-
-            parameter = parameter.Replace(" ", "+");
-            var descryptParam = new EncryptionThread().DecryptString(parameter, DecryptKeySize, privateKeyPath);
+            var parameter = key.Replace(" ", "+");
+            var descryptParam = new Crypt().Decrypt(parameter, Pass);
 
             return HttpUtility.ParseQueryString(descryptParam);
         }
@@ -237,7 +235,6 @@
                 LicenseeName = queryParams["lic"] ?? string.Empty,
                 Username = queryParams["user"] ?? string.Empty,
                 Password = queryParams["pwd"] ?? string.Empty,
-                LoginDomain = queryParams["url"] ?? string.Empty,
                 Language = queryParams["lang"],
                 LoginIP = HttpContext.Request.UserHostAddress,
                 BrowserName = HttpContext.Request.Browser.Browser,
@@ -288,7 +285,6 @@
                     "\r\nLicensee: " + criteria.LicenseeName +
                      "\r\nUserName: " + criteria.Username +
                      "\r\nTimeSpan: " + timeSpan +
-                     "\r\nDomain: " + criteria.LoginDomain +
                      "\r\nLanguage: " + criteria.Language;
 
                 LogService.Info(message);

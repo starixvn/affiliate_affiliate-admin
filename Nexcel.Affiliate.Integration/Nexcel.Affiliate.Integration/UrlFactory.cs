@@ -4,12 +4,11 @@
     using System.IO;
     using System.Web;
     using Nexcel.Affiliate.Integration.Configurations;
-    using RSACryptoPad;
-
+    using System.Security.Cryptography;
     public class UrlFactory : IUrlFactory
     {
-        private const string EncryptedParamPattern = "lic={0}&user={1}&pwd={2}&time={3}&url={4}&lang={5}";
-
+        private const string EncryptedParamPattern = "lic={0}&user={1}&pwd={2}&time={3}&lang={4}";
+        private const string Pass = "2conthanhlanconduanhaucanchoi";
         private IIntegrationSettings _settings;
 
         public UrlFactory()
@@ -47,12 +46,12 @@
                 model.Username,
                 model.EncryptedPassword,
                 model.Timestamp,
-                this._settings.InternalLoginUrl,
                 model.LanguageCode);
 
-            var encryptionThread = new EncryptionThread();
-            string str = encryptionThread.EncryptString(inputString, 1024, publicKeyPath);
-            return this._settings.SsoUrl + "?key=" + HttpUtility.UrlEncode(str);
+
+            var encryptionThread = new Crypt();
+            string str = encryptionThread.Encrypt(inputString, Pass);
+            return this._settings.SsoUrl + "?key=" + str;
         }
     }
 }

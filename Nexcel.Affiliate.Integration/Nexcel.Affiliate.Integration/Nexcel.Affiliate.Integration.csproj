@@ -37,10 +37,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RSACryptoPad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\RSACryptoPad.1.0.0.0\lib\net40\RSACryptoPad.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -50,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Configurations\IIntegrationSettings.cs" />
     <Compile Include="Configurations\IntegrationSettings.cs" />
+    <Compile Include="Crypt.cs" />
     <Compile Include="IRequestSsoModel.cs" />
     <Compile Include="IUrlFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

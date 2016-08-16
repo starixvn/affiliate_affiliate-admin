@@ -107,16 +107,20 @@
         /// <returns>Login form.</returns>
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0)]
-        public ActionResult Login()
+        public ActionResult Login(string key)
         {
-            return SSO();
+            return SSO(key);
         }
-
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0)]
+        public ActionResult Index(string key)
+        {
+            return SSO(key);
+        }
         /// <summary>
         /// The denied page.
         /// </summary>
         /// <returns>The denied message.</returns>
-        [AllowAnonymous]
         public ActionResult DenyAccess()
         {
             int code;
@@ -147,8 +151,7 @@
 
                 InitializeSession(user);
 
-                FormsAuthentication.SetAuthCookie(user.Username, true);
-                
+                FormsAuthentication.SetAuthCookie(user.Username, false);
             }
 
             return result;
@@ -192,10 +195,9 @@
             return Redirect("~/Notify/AccessDenied?code=" + code);
         }
 
-        private NameValueCollection GetQueryParams()
+        private NameValueCollection GetQueryParams(string key)
         {
-            string parameter = HttpContext.Request["key"] ?? string.Empty;
-            parameter = HttpUtility.UrlDecode(parameter);
+            var parameter = HttpUtility.UrlDecode(key);
             if (string.IsNullOrEmpty(parameter))
             {
                 return null;
@@ -217,19 +219,17 @@
         [SuppressMessage("Microsoft.Usage", "CA1806:DoNotIgnoreMethodResults",
             Justification = "Reviewed. Suppression is OK here.")]
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
-        private ActionResult SSO()
+        private RedirectResult SSO(string key)
         {
             if (string.IsNullOrEmpty(_keyPath))
             {
-                TempData["Message"] = InvalidSettingsMessage;
-                return new CustomRedirectResult("~/Notify/AccessDenied?code=" + DisableSsoErrorCode);
+                return RedirectToErrorPage(DisableSsoErrorCode, InvalidSettingsMessage);
             }
 
-            var queryParams = GetQueryParams();
+            var queryParams = GetQueryParams(key);
             if (queryParams == null)
             {
-                TempData["Message"] = InvalidParametersMessage;
-                return new CustomRedirectResult("~/Notify/AccessDenied?code=" + InvalidParamErrorCode);
+                return RedirectToErrorPage(InvalidParamErrorCode, InvalidParametersMessage);
             }
 
             var criteria = new LoginInternalCriteria()
@@ -246,8 +246,7 @@
 
             if (string.IsNullOrEmpty(criteria.Username) || string.IsNullOrEmpty(criteria.Password))
             {
-                TempData["Message"] = InvalidParametersMessage;
-                return new CustomRedirectResult("~/Notify/AccessDenied?code=" + InvalidParamErrorCode);
+                return RedirectToErrorPage(InvalidParamErrorCode, InvalidParametersMessage);
             }
 
             if (!IsValidLanguage(criteria.Language))
@@ -267,7 +266,9 @@
                     IsIT = session.IsIT
                 };
                 InitializeSession(account);
-                return new CustomRedirectResult("~/Home/Index");
+
+                FormsAuthentication.SetAuthCookie(session.Username, false);
+                return Redirect("~/Home/Index");
             }
 
             long timeSpan;
@@ -277,7 +278,7 @@
             var result = InternalLogin(criteria);
             if (result.ErrorCode == 0)
             {
-                return new CustomRedirectResult("~/Home/Index");
+                return Redirect("~/Home/Index");
             }
             else
             {
@@ -292,9 +293,8 @@
 
                 LogService.Info(message);
                 TempData["Message"] = message;
-                return new CustomRedirectResult("~/Notify/AccessDenied?code=" + result.ErrorCode);
+                return RedirectToErrorPage(result.ErrorCode, message);
             }
-
         }
     }
 }

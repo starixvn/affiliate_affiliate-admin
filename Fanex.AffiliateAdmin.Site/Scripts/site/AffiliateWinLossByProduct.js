@@ -400,9 +400,7 @@ var AffiliateWinLossByProduct = (function ($) {
 
     return {
         submitRequest: function (dataRequest) {
-
-            $.extend(true, submitOptions, dataRequest);
-
+            submitOptions = dataRequest;
             AffiliateWinLossByProduct.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },
         GetGridOption: function () {

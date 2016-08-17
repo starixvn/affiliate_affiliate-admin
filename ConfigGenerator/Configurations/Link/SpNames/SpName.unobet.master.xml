@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<Functions>
-  <Function Name="Aff-Link">
-    <Setting Key="Aff_Link_AffiliateInsClickStatistics" SpName="Aff_Link_AffiliateInsClickStatistics" DbName="DBAFFUNOBET.Affiliate_unobet.bodbDownlineNet" Plain="0" />
-  </Function>
-</Functions>

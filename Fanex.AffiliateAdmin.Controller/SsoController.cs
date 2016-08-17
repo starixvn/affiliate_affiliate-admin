@@ -32,6 +32,7 @@
     public class SsoController : Controller
     {
         private const string InvalidSettingsMessage = "Invalid settings!";
+        private const string Pass = "2conthanhlanconduanhaucanchoi";
 
         private const string InvalidParametersMessage = "Invalid parameters!";
 
@@ -105,18 +106,24 @@
         /// Return form login.
         /// </summary>
         /// <returns>Login form.</returns>
+        [OutputCache(NoStore = true, Duration = 0)]
+        [HttpGet]
+        public ActionResult Login(string key)
+        {
+            return SSO(key);
+        }
+
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0)]
-        public ActionResult Login()
+        public ActionResult Index(string key)
         {
-            return SSO();
+            return SSO(key);
         }
 
         /// <summary>
         /// The denied page.
         /// </summary>
         /// <returns>The denied message.</returns>
-        [AllowAnonymous]
         public ActionResult DenyAccess()
         {
             int code;
@@ -147,8 +154,7 @@
 
                 InitializeSession(user);
 
-                FormsAuthentication.SetAuthCookie(user.Username, true);
-                
+                FormsAuthentication.SetAuthCookie(user.Username, false);
             }
 
             return result;
@@ -192,19 +198,15 @@
             return Redirect("~/Notify/AccessDenied?code=" + code);
         }
 
-        private NameValueCollection GetQueryParams()
+        private NameValueCollection GetQueryParams(string key)
         {
-            string parameter = HttpContext.Request["key"] ?? string.Empty;
-            parameter = HttpUtility.UrlDecode(parameter);
-            if (string.IsNullOrEmpty(parameter))
+            if (string.IsNullOrEmpty(key))
             {
                 return null;
             }
 
-            var privateKeyPath = Server.MapPath("~/" + _keyPath);
-
-            parameter = parameter.Replace(" ", "+");
-            var descryptParam = new EncryptionThread().DecryptString(parameter, DecryptKeySize, privateKeyPath);
+            var parameter = key.Replace(" ", "+");
+            var descryptParam = new Crypt().Decrypt(parameter, Pass);
 
             return HttpUtility.ParseQueryString(descryptParam);
         }
@@ -217,19 +219,17 @@
         [SuppressMessage("Microsoft.Usage", "CA1806:DoNotIgnoreMethodResults",
             Justification = "Reviewed. Suppression is OK here.")]
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
-        private ActionResult SSO()
+        private RedirectResult SSO(string key)
         {
             if (string.IsNullOrEmpty(_keyPath))
             {
-                TempData["Message"] = InvalidSettingsMessage;
-                return new CustomRedirectResult("~/Notify/AccessDenied?code=" + DisableSsoErrorCode);
+                return RedirectToErrorPage(DisableSsoErrorCode, InvalidSettingsMessage);
             }
 
-            var queryParams = GetQueryParams();
+            var queryParams = GetQueryParams(key);
             if (queryParams == null)
             {
-                TempData["Message"] = InvalidParametersMessage;
-                return new CustomRedirectResult("~/Notify/AccessDenied?code=" + InvalidParamErrorCode);
+                return RedirectToErrorPage(InvalidParamErrorCode, InvalidParametersMessage);
             }
 
             var criteria = new LoginInternalCriteria()
@@ -237,7 +237,6 @@
                 LicenseeName = queryParams["lic"] ?? string.Empty,
                 Username = queryParams["user"] ?? string.Empty,
                 Password = queryParams["pwd"] ?? string.Empty,
-                LoginDomain = queryParams["url"] ?? string.Empty,
                 Language = queryParams["lang"],
                 LoginIP = HttpContext.Request.UserHostAddress,
                 BrowserName = HttpContext.Request.Browser.Browser,
@@ -246,8 +245,7 @@
 
             if (string.IsNullOrEmpty(criteria.Username) || string.IsNullOrEmpty(criteria.Password))
             {
-                TempData["Message"] = InvalidParametersMessage;
-                return new CustomRedirectResult("~/Notify/AccessDenied?code=" + InvalidParamErrorCode);
+                return RedirectToErrorPage(InvalidParamErrorCode, InvalidParametersMessage);
             }
 
             if (!IsValidLanguage(criteria.Language))
@@ -267,7 +265,9 @@
                     IsIT = session.IsIT
                 };
                 InitializeSession(account);
-                return new CustomRedirectResult("~/Home/Index");
+
+                FormsAuthentication.SetAuthCookie(session.Username, false);
+                return Redirect("~/Home/Index");
             }
 
             long timeSpan;
@@ -277,7 +277,7 @@
             var result = InternalLogin(criteria);
             if (result.ErrorCode == 0)
             {
-                return new CustomRedirectResult("~/Home/Index");
+                return Redirect("~/Home/Index");
             }
             else
             {
@@ -287,14 +287,12 @@
                     "\r\nLicensee: " + criteria.LicenseeName +
                      "\r\nUserName: " + criteria.Username +
                      "\r\nTimeSpan: " + timeSpan +
-                     "\r\nDomain: " + criteria.LoginDomain +
                      "\r\nLanguage: " + criteria.Language;
 
                 LogService.Info(message);
                 TempData["Message"] = message;
-                return new CustomRedirectResult("~/Notify/AccessDenied?code=" + result.ErrorCode);
+                return RedirectToErrorPage(result.ErrorCode, message);
             }
-
         }
     }
 }

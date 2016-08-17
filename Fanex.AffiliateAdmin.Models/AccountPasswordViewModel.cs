@@ -26,7 +26,7 @@ namespace Fanex.AffiliateAdmin.Models
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Compare("NewPassword", ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "PassConfirm")]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "PassConfirm")]
         [Display(ResourceType = typeof(Lang), Name = "ConfirmPass")]
         public string ConfirmPassword { get; set; }
     }

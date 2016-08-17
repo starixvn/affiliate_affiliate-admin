@@ -1,4 +1,4 @@
-﻿/*global AFFILIATE,domain*/
+﻿/*global AFFILIATE*/
 var AFFMASTER = (function ($) {
     "use strict";
     return {
@@ -21,11 +21,11 @@ var AFFMASTER = (function ($) {
         },
         loadPages: function (status) {
             if (status === 'approved') {
-                $("#ifStatistic").attr("src", domain + "AffiliateInfo/Statistic");
-                $("#ifReport").attr("src", domain + "Statement");
+                $("#ifStatistic").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic"));
+                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("Statement"));
                 $("#ifStatistic").attr("class", "statistic-exp");
             } else {
-                $("#ifReport").attr("src", domain + "AffiliateInfo/Edit");
+                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Edit"));
                 $("#ifStatistic").attr("class", "statistic-hide");
             }
         },

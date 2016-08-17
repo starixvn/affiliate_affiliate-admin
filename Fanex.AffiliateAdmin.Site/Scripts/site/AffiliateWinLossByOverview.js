@@ -302,8 +302,7 @@ var AffiliateWinLossByOverview = (function ($) {
 
     return {
         submitRequest: function (dataRequest) {
-
-            $.extend(true, submitOptions, dataRequest);
+            submitOptions = dataRequest;
 
             AffiliateWinLossByOverview.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
         },

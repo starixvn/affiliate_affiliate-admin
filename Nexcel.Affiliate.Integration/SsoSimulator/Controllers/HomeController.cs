@@ -60,7 +60,7 @@
         {
             var requestModel = new RequestSsoModel();
             requestModel.Username = HttpContext.User.Identity.Name;
-            requestModel.EncryptedPassword = "754A738BF99D986D8716FE00A81BC5CA32916BF6";//HttpContext.Session["password"].ToString();
+            requestModel.EncryptedPassword = "754A738BF99D986D8716FE00A81BC5CA32916BF6"; // HttpContext.Session["password"].ToString();
             requestModel.Timestamp = GetDbTimeStamp();
             requestModel.LanguageCode = "zh-CN";
 

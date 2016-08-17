@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<Functions>
-  <Function Name="Aff-Banner">
-    <Setting Key="Aff_Banner_UpdateStatistic" SpName="Aff_Banner_UpdateStatistic" DbName="DBAFFUNOBET.Affiliate_unobet.bodbDownlineNet" Plain="0" />
-    <Setting Key="Aff_Banner_SelInfo" SpName="Aff_Banner_SelInfo" DbName="DBAFFUNOBET.Affiliate_unobet.bodbDownlineNet" Plain="0" />
-    <Setting Key="Aff_Banner_GetSystemName" SpName="Aff_Banner_GetSystemName" DbName="DBAFFUNOBET.Affiliate_unobet.bodbDownlineNet" Plain="0" />
-  </Function>
-</Functions>

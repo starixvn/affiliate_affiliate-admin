@@ -79,23 +79,13 @@ namespace Fanex.AffiliateAdmin.Controller
             var affiliateSession = SessionManager.CurrentSession.Affiliate;
             var isKiosk = affiliateSession != null && affiliateSession.AffTypeName.Equals("kiosk", StringComparison.CurrentCultureIgnoreCase);
 
-            var siteDomainInfo = SiteDomainInfo.Parse(this, isKiosk);
-
             if (string.IsNullOrEmpty(userName) && affiliateSession != null)
             {
                 userName = affiliateSession.Username;
             }
 
-            var baseUrl = siteDomainInfo.AdminSiteUrl.ToString();
-
-            if (baseUrl.LastIndexOf('/') != baseUrl.Length - 1)
-            {
-                baseUrl = baseUrl + "/";
-            }
-
             return View(new AffiliateMasterViewModel
             {
-                SiteDomainUrl = new Uri(baseUrl),
                 UserName = userName
             });
         }

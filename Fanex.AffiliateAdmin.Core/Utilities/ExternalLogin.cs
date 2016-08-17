@@ -7,6 +7,7 @@
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Security;
     using Fanex.AffiliateAdmin.Core.Entities;
 
@@ -28,7 +29,9 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
 
             const string LINKFORMAT = "{0}/User/AdminLogin?chalengeStr={1}&accKey={2}&custName={3}&accId={4}&accOnId={5}";
 
+#pragma warning disable 0618 // Type or member is obsolete
             var accKey = FormsAuthentication.HashPasswordForStoringInConfigFile(loginInfo.SessionID + chalengeStr, "MD5");
+#pragma warning restore 0618 // Type or member is obsolete
 
             var siteInfo = SiteDomainInfo.Parse(loginInfo.Controller, loginInfo.IsKiosk());
 

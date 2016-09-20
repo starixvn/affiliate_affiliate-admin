@@ -45,7 +45,10 @@
         {
             get
             {
-                return AppSettings.GetValue("BannerDomain");
+                return AppSettings.GetSettingValue(new SystemSettingsSelByNameCriteria
+                {
+                    Name = "BannerDomain",
+                });
             }
         }
 

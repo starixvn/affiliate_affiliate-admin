@@ -16,7 +16,7 @@
         private static IEnumerable<MediaType> _bannerCategories = _mediaSettingService.GetBannerCategories();
         private static IEnumerable<MediaType> _bannerTypes = _mediaSettingService.GetBannerTypes();
         private static IEnumerable<MediaType> _bannerSizes = _mediaSettingService.GetBannerSizes();
-        
+
         public static IEnumerable<MediaType> BannerCategories
         {
             get
@@ -45,21 +45,16 @@
         {
             get
             {
-                return AppSettings.GetSettingValue(new SystemSettingsSelByNameCriteria
-                {
-                    Name = "BannerDomain",
-                });
+                return AppSettings.GetValue("BannerDomain");
             }
         }
 
-        public static string BannerDirectory
+        public static IEnumerable<string> BannerFolders
         {
             get
             {
-                return AppSettings.GetSettingValue(new SystemSettingsSelByNameCriteria
-                {
-                    Name = "BannerDirectory",
-                }).Replace("/", "\\");
+                var value = AppSettings.GetValue("BannerFolders");
+                return string.IsNullOrWhiteSpace(value) ? new string[] { } : value.Split(';');
             }
         }
 

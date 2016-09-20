@@ -16,7 +16,6 @@ marketing-tools
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.Media, 0, "MarketingTools")
 }
-
 <div class="search-panel search-bannerList">
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
@@ -148,7 +147,8 @@ marketing-tools
             var width = parseInt(size[0]);
             var height = parseInt(size[1]);
             var objectFormat = '';
-            var imgUrl = '@MediaSettings.BannerDomain' + record.Content;
+            var bannerDomain = '@MediaSettings.BannerDomain';
+            var imgUrl = bannerDomain + record.Content;
 
             var heightRatio = thumbnailHeight / height;
             var widthRatio = thumbnailWidth / width;
@@ -162,7 +162,7 @@ marketing-tools
 
             if (record.ImageType == window.MSG.Image) {
                 if (record.Thumbnail) {
-                    var thumbnailUrl = '@MediaSettings.BannerDomain' + record.Thumbnail;
+                    var thumbnailUrl = bannerDomain + record.Thumbnail;
                     objectFormat = '<img style="cursor: pointer; max-width: 300px" src="{0}" alt="{1}" onclick="javascript:BannerList.viewImage(this, {2}, {3});" title="{4}" />';
                     return objectFormat.format(thumbnailUrl, imgUrl, width, height, "@Lang.ViewOriginalSize");
                 } else {

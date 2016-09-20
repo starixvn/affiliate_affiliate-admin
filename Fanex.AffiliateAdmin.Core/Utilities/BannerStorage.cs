@@ -1,5 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Utilities
 {
+    using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
     using System.Linq;
@@ -35,24 +36,11 @@
 
         public short? SubCategory { get; set; }
 
-        public string BannerFile { get; set; }
+        public string BannerFileName { get; set; }
 
         public HttpPostedFileBase File { get; set; }
 
         public short BannerType { get; set; }
-
-        public string BannerName
-        {
-            get
-            {
-                return Path.GetFileNameWithoutExtension(BannerFile);
-            }
-        }
-
-        public string BannerExtension
-        {
-            get { return Path.GetExtension(BannerFile); }
-        }
 
         public string BannerSize
         {
@@ -60,19 +48,19 @@
             set { _bannerSize = value; }
         }
 
-        public string ThumbnailFile
+        public string RelativeBannerPath
         {
             get
             {
-                return string.Format(ThumbNailFormat, BannerName, BannerExtension);
+                return Path.Combine(BannerFolder, BannerFileName);
             }
         }
 
-        public string MediaFolder
+        private string ThumbnailFileName
         {
             get
             {
-                return MediaSettings.BannerDirectory.Replace('/', '\\');
+                return GetThumbnailFileName(BannerFileName);
             }
         }
 
@@ -80,7 +68,7 @@
         /// <summary>
         /// Gets relative banner folder value.
         /// </summary>
-        public string BannerFolder
+        private string BannerFolder
         {
             get
             {
@@ -122,103 +110,96 @@
             }
         }
 
-        public string RelativeBannerPath
-        {
-            get
-            {
-                return Path.Combine(BannerFolder, BannerFile);
-            }
-        }
-
         /// <value>Full banner folder.</value>
         /// <summary>
         /// Gets full banner folder.
         /// </summary>
-        public string BannerPath
+        private IEnumerable<string> BannerFullPaths
         {
             get
             {
-                return Path.Combine(MediaFolder, BannerFolder, BannerFile);
+                return MediaSettings.BannerFolders.Select(x => Path.Combine(x, BannerFolder, BannerFileName));
             }
         }
 
-        public string ThumbnailPath
+        private IEnumerable<string> ThumbnailFullPaths
         {
             get
             {
-                return Path.Combine(MediaFolder, BannerFolder, ThumbnailFile);
+                return MediaSettings.BannerFolders.Select(x => Path.Combine(x, BannerFolder, ThumbnailFileName));
             }
         }
 
-        public bool HasExistedBannerFile()
+        public static string GetThumbnailFileName(string fileName)
         {
-            if (System.IO.File.Exists(BannerPath) || System.IO.File.Exists(ThumbnailPath))
-            {
-                return true;
-            }
+            return string.Format(
+                ThumbNailFormat,
+                Path.GetFileNameWithoutExtension(fileName),
+                Path.GetExtension(fileName));
+        }
 
-            return false;
+        private bool HasExistedBannerFile()
+        {
+            return Common.AnyFileExists(BannerFullPaths) || Common.AnyFileExists(ThumbnailFullPaths);
         }
 
         public bool IsValidExtension()
         {
-            var extension = BannerExtension.ToLower();
+            var extension = Path.GetExtension(BannerFileName).ToLower();
             return AllowedExtensions.Any(x => x == extension);
         }
 
-        public bool HasExceedSizeLimit()
+        private bool HasExceedSizeLimit()
         {
             return File.ContentLength > MediaSettings.MaxImageSize;
         }
 
-        /// <summary>
-        /// Upload banner file.
-        /// </summary>
-        /// <returns>The uploading result.</returns>
         public string UploadBanner()
         {
-            // Check the valid extension.
             if (!IsValidExtension())
             {
                 return Lang.errFileExtension;
             }
 
-            // Check the maximum file size.
             if (HasExceedSizeLimit())
             {
                 return string.Format(Lang.MaxFileSizeLimit, MediaSettings.MaxImageSize);
             }
 
-            // Check the banner file exist.
             if (HasExistedBannerFile())
             {
                 return Lang.FileNameExisted;
             }
 
-            // Create banner directory.
-            var bannerDir = Path.Combine(MediaFolder, BannerFolder);
-
-            if (Directory.Exists(bannerDir) == false)
+            foreach (var item in MediaSettings.BannerFolders)
             {
-                Directory.CreateDirectory(bannerDir);
-            }
+                var bannerFile = Path.Combine(item, BannerFolder, BannerFileName);
 
-            // Save the banner file.
-            File.SaveAs(BannerPath);
+                var bannerDir = Path.Combine(item, BannerFolder);
 
-            // Get banner size.
-            // 1. is image file.
-            // 2. is flash file.
-            if (BannerType == 1)
-            {
-                var bitmap = new Bitmap(File.InputStream);
-                _bannerSize = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
-                ThumbnailCreator.CreateThumbnailFromImage(bitmap, ThumbnailPath);
-            }
-            else
-            {
-                var swfInfo = new SwfInfo(BannerPath);
-                _bannerSize = string.Format("{0}x{1}", swfInfo.Width, swfInfo.Height);
+                if (Directory.Exists(bannerDir) == false)
+                {
+                    Directory.CreateDirectory(bannerDir);
+                }
+
+                // Save the banner file.
+                File.SaveAs(bannerFile);
+
+                // Get banner size.
+                // 1. is image file.
+                // 2. is flash file.
+                if (BannerType == 1)
+                {
+                    var bitmap = new Bitmap(File.InputStream);
+                    _bannerSize = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
+                    var thumbnailPath = Path.Combine(item, BannerFolder, ThumbnailFileName);
+                    ThumbnailCreator.CreateThumbnailFromImage(bitmap, thumbnailPath);
+                }
+                else
+                {
+                    var swfInfo = new SwfInfo(bannerFile);
+                    _bannerSize = string.Format("{0}x{1}", swfInfo.Width, swfInfo.Height);
+                }
             }
 
             return string.Empty;
@@ -227,10 +208,10 @@
         /// <summary>
         /// Delete the banner file.
         /// </summary>
-        public void DeleteBanner()
+        public void DeleteBanners()
         {
-            Common.DeleteFile(BannerPath);
-            Common.DeleteFile(ThumbnailPath);
+            Common.DeleteFiles(BannerFullPaths);
+            Common.DeleteFiles(ThumbnailFullPaths);
         }
 
         /// <summary>
@@ -239,30 +220,56 @@
         /// <param name="oldBannerPath">The old banner path.</param>
         /// <param name="oldThumbnailPath">The old thumbnail path.</param>
         /// <returns>The moving result.</returns>
-        public string MoveBannerFile(string oldBannerPath, string oldThumbnailPath)
+        public string MoveBannerFile(string oldRelativeBannerPath)
         {
-            if (!BannerPath.Equals(oldBannerPath))
+            oldRelativeBannerPath = oldRelativeBannerPath.Replace('/', '\\');
+            var newRelativeBannerPath = Path.Combine(BannerFolder, BannerFileName);
+            if (!newRelativeBannerPath.Equals(oldRelativeBannerPath, System.StringComparison.OrdinalIgnoreCase))
             {
                 // Banner Type is image.
                 if (BannerType == 1)
                 {
-                    if (System.IO.File.Exists(oldThumbnailPath))
+                    MoveThumbnailFiles(oldRelativeBannerPath);
+                }
+
+                var isFileExist = false;
+                foreach (var folder in MediaSettings.BannerFolders)
+                {
+                    var oldFullPath = Path.Combine(folder, oldRelativeBannerPath);
+                    var newFullPath = Path.Combine(folder, BannerFolder, BannerFileName);
+
+                    if (System.IO.File.Exists(oldFullPath))
                     {
-                        Common.MoveFile(oldThumbnailPath, ThumbnailPath);
+                        isFileExist = true;
+                        Common.MoveFile(oldFullPath, newFullPath);
                     }
                 }
 
-                if (System.IO.File.Exists(oldBannerPath))
+                if (isFileExist == false)
                 {
-                    Common.MoveFile(oldBannerPath, BannerPath);
-
-                    return string.Empty;
+                    return string.Format(Lang.CouldNotFindPath, oldRelativeBannerPath.Replace("\\", "/"));
                 }
-
-                return string.Format(Lang.CouldNotFindPath, oldBannerPath.Replace("\\", "/"));
             }
 
             return string.Empty;
+        }
+
+        private void MoveThumbnailFiles(string oldRelativeBannerPath)
+        {
+            var oldThumbnailFileName = GetThumbnailFileName(oldRelativeBannerPath);
+            var oldBannerFileName = Path.GetFileName(oldRelativeBannerPath);
+            var oldThumbnailRelativePath = oldRelativeBannerPath.Replace(oldBannerFileName, oldThumbnailFileName);
+            var newThumbnailRelativePath = Path.Combine(BannerFolder, GetThumbnailFileName(BannerFileName));
+
+            foreach (var folder in MediaSettings.BannerFolders)
+            {
+                var oldThumbnailFullPath = Path.Combine(folder, oldThumbnailRelativePath);
+                var newThumbnailFullPath = Path.Combine(folder, newThumbnailRelativePath);
+                if (System.IO.File.Exists(oldThumbnailFullPath))
+                {
+                    Common.MoveFile(oldThumbnailFullPath, newThumbnailFullPath);
+                }
+            }
         }
     }
 }

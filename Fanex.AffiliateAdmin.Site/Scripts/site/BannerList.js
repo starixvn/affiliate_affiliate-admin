@@ -47,6 +47,7 @@ var BannerList = (function ($) {
                 var inputs = $(this).find(':disabled');
                 // enable them
                 inputs.prop('disabled', false);
+                $('#btnUpdate, #btnCancel').prop('disabled', true);
             });
         },
         validateFileSize: function () {

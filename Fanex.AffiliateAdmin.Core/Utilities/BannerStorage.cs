@@ -1,5 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Utilities
 {
+    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
@@ -9,6 +10,7 @@
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Resources;
+    using Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -171,17 +173,31 @@
                 return Lang.FileNameExisted;
             }
 
-            foreach (var item in MediaSettings.BannerFolders)
+            foreach (var folder in MediaSettings.BannerFolders)
             {
-                var bannerFile = Path.Combine(item, BannerFolder, BannerFileName);
+                var bannerFile = Path.Combine(folder, BannerFolder, BannerFileName);
 
-                var bannerDir = Path.Combine(item, BannerFolder);
+                var bannerDir = Path.Combine(folder, BannerFolder);
 
                 if (Directory.Exists(bannerDir) == false)
                 {
                     Directory.CreateDirectory(bannerDir);
                 }
 
+                if (UploadFile(folder, bannerFile) == false)
+                {
+                    return Lang.ErrorRequest;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        private bool UploadFile(string folder, string bannerFile)
+        {
+            var thumbnailPath = string.Empty;
+            try
+            {
                 // Save the banner file.
                 File.SaveAs(bannerFile);
 
@@ -192,7 +208,7 @@
                 {
                     var bitmap = new Bitmap(File.InputStream);
                     _bannerSize = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
-                    var thumbnailPath = Path.Combine(item, BannerFolder, ThumbnailFileName);
+                    thumbnailPath = Path.Combine(folder, BannerFolder, ThumbnailFileName);
                     ThumbnailCreator.CreateThumbnailFromImage(bitmap, thumbnailPath);
                 }
                 else
@@ -200,9 +216,21 @@
                     var swfInfo = new SwfInfo(bannerFile);
                     _bannerSize = string.Format("{0}x{1}", swfInfo.Width, swfInfo.Height);
                 }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Common.DeleteFile(bannerFile);
+                if (string.IsNullOrEmpty(thumbnailPath) == false)
+                {
+                    Common.DeleteFile(thumbnailPath);
+                }
+
+                LogHelper.WriteError(ex);
             }
 
-            return string.Empty;
+            return false;
         }
 
         /// <summary>

@@ -173,16 +173,14 @@
                 return Lang.FileNameExisted;
             }
 
+            if (!EnsureFoldersExisted(BannerFolder))
+            {
+                return Lang.AccessDenied;
+            }
+
             foreach (var folder in MediaSettings.BannerFolders)
             {
                 var bannerFile = Path.Combine(folder, BannerFolder, BannerFileName);
-
-                var bannerDir = Path.Combine(folder, BannerFolder);
-
-                if (Directory.Exists(bannerDir) == false)
-                {
-                    Directory.CreateDirectory(bannerDir);
-                }
 
                 if (UploadFile(folder, bannerFile) == false)
                 {
@@ -191,6 +189,29 @@
             }
 
             return string.Empty;
+        }
+
+        private bool EnsureFoldersExisted(string bannerFolder)
+        {
+            foreach (var folder in MediaSettings.BannerFolders)
+            {
+                var bannerDir = Path.Combine(folder, bannerFolder);
+
+                if (Directory.Exists(bannerDir) == false)
+                {
+                    try
+                    {
+                        Directory.CreateDirectory(bannerDir);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logging.LogService.Error(ex.Message, ex);
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private bool UploadFile(string folder, string bannerFile)
@@ -254,6 +275,11 @@
             var newRelativeBannerPath = Path.Combine(BannerFolder, BannerFileName);
             if (!newRelativeBannerPath.Equals(oldRelativeBannerPath, System.StringComparison.OrdinalIgnoreCase))
             {
+                if (!EnsureFoldersExisted(BannerFolder))
+                {
+                    return Lang.AccessDenied;
+                }
+
                 // Banner Type is image.
                 if (BannerType == 1)
                 {

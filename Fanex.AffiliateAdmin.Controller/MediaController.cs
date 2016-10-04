@@ -1,5 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Web;
@@ -146,7 +147,7 @@
             var bannerDetail = _mediaService.GetBannerDetail(new BannerDetailCriteria
             {
                 BannerId = id
-            });           
+            });
 
             var model = new TextEditViewModel
             {
@@ -250,17 +251,8 @@
                 var filename = Path.GetFileNameWithoutExtension(content);
                 var extension = Path.GetExtension(content);
                 var thumbnailFile = string.Format(BannerStorage.ThumbNailFormat, filename, extension);
-                string bannerPath, thumbnailPath;
-                GetBannerPath(banner.Content, out bannerPath, out thumbnailPath);
 
-                if (AppSettings.IsProduction && System.IO.File.Exists(thumbnailPath))
-                {
-                    banner.Thumbnail = Path.Combine(Path.GetDirectoryName(content), thumbnailFile).Replace('\\', '/');
-                }
-                else
-                {
-                    banner.Thumbnail = Path.Combine(Path.GetDirectoryName(content), thumbnailFile).Replace('\\', '/');
-                }
+                banner.Thumbnail = Path.Combine(Path.GetDirectoryName(content), thumbnailFile).Replace('\\', '/');
             }
 
             return Json(new
@@ -313,25 +305,25 @@
                 else
                 {
                     var criteria = new BannerInsCriteria
-                        {
-                            Category = model.GetCategory,
-                            Currency = model.Currency,
-                            AffType = model.AffType,
-                            ImageType = model.ImageType,
-                            Content = bannerStorage.RelativeBannerPath.Replace('\\', '/'),
-                            Size = bannerStorage.BannerSize,
-                            UserId = SessionManager.CurrentSession.CustID,
-                            Ip = Remote.GetClientIPAddress(),
-                            Language = model.Language,
-                            LicenseeId = AppSettings.LicenseeID
-                        };
+                    {
+                        Category = model.GetCategory,
+                        Currency = model.Currency,
+                        AffType = model.AffType,
+                        ImageType = model.ImageType,
+                        Content = bannerStorage.RelativeBannerPath.Replace('\\', '/'),
+                        Size = bannerStorage.BannerSize,
+                        UserId = SessionManager.CurrentSession.CustID,
+                        Ip = Remote.GetClientIPAddress(),
+                        Language = model.Language,
+                        LicenseeId = AppSettings.LicenseeID
+                    };
 
                     _mediaService.AddBanner(criteria);
 
                     if (criteria.ErrCode != 0)
                     {
                         // delete banner if failed
-                        bannerStorage.DeleteBanner();
+                        bannerStorage.DeleteBanners();
                     }
 
                     ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
@@ -409,25 +401,25 @@
                 else
                 {
                     var criteria = new BannerUpdateCriteria
-                        {
-                            BannerId = bannerDetail.BannerID,
-                            Category = model.GetCategory,
-                            Currency = model.Currency,
-                            Language = model.Language,
-                            AffType = model.AffType,
-                            ImageType = model.ImageType,
-                            Content = bannerStorage.RelativeBannerPath.Replace('\\', '/'),
-                            Size = bannerStorage.BannerSize,
-                            UserId = SessionManager.CurrentSession.CustID,
-                            Ip = Remote.GetClientIPAddress(),
-                            LicenseeId = AppSettings.LicenseeID
-                        };
+                    {
+                        BannerId = bannerDetail.BannerID,
+                        Category = model.GetCategory,
+                        Currency = model.Currency,
+                        Language = model.Language,
+                        AffType = model.AffType,
+                        ImageType = model.ImageType,
+                        Content = bannerStorage.RelativeBannerPath.Replace('\\', '/'),
+                        Size = bannerStorage.BannerSize,
+                        UserId = SessionManager.CurrentSession.CustID,
+                        Ip = Remote.GetClientIPAddress(),
+                        LicenseeId = AppSettings.LicenseeID
+                    };
 
                     _mediaService.EditBanner(criteria);
 
                     if (criteria.ErrCode != 0)
                     {
-                        bannerStorage.DeleteBanner();
+                        bannerStorage.DeleteBanners();
                     }
 
                     ViewBag.Result = GetResultViewModel(criteria.ErrCode);
@@ -500,11 +492,11 @@
         /// <param name="content">The relative banner path.</param>
         private void DeleteBannerFile(string content)
         {
-            string bannerPath, thumbnailPath;
-            GetBannerPath(content, out bannerPath, out thumbnailPath);
+            IEnumerable<string> bannerPaths, thumbnailPaths;
+            GetBannerPaths(content, out bannerPaths, out thumbnailPaths);
 
-            Common.DeleteFile(bannerPath);
-            Common.DeleteFile(thumbnailPath);
+            Common.DeleteFiles(bannerPaths);
+            Common.DeleteFiles(thumbnailPaths);
         }
 
         /// <summary>
@@ -520,7 +512,7 @@
                 AffType = model.AffType,
                 Category = model.Category,
                 SubCategory = model.SubCategory,
-                BannerFile = model.FileName,
+                BannerFileName = model.FileName,
                 File = model.File,
                 BannerType = model.ImageType
             };
@@ -545,7 +537,7 @@
                 AffType = model.AffType,
                 Category = model.Category,
                 SubCategory = model.SubCategory,
-                BannerFile = model.FileName,
+                BannerFileName = model.FileName,
                 File = model.File,
                 BannerType = model.ImageType
             };
@@ -565,14 +557,9 @@
                         bannerStorage.BannerSize = mediaType.Value;
                     }
 
-                    // Update the position of banner file.
-                    // Determine the old banner/thumbnail path.
-                    string oldBannerPath, oldThumbnailPath;
-                    GetBannerPath(bannerDetail.Content, out oldBannerPath, out oldThumbnailPath);
-
                     if (bannerDetail.ImageType.HasValue)
                     {
-                        errorMessage = bannerStorage.MoveBannerFile(oldBannerPath, oldThumbnailPath);
+                        errorMessage = bannerStorage.MoveBannerFile(bannerDetail.Content);
                     }
                 }
             }
@@ -593,20 +580,20 @@
         /// Get banner path, thumbnail path.
         /// </summary>
         /// <param name="content">The relative banner path.</param>
-        /// <param name="bannerPath">The banner path.</param>
-        /// <param name="thumbnailPath">The thumbnail path.</param>
-        private void GetBannerPath(string content, out string bannerPath, out string thumbnailPath)
+        /// <param name="bannerPaths">The banner path.</param>
+        /// <param name="thumbnailPaths">The thumbnail path.</param>
+        private void GetBannerPaths(
+            string content,
+            out IEnumerable<string> bannerPaths,
+            out IEnumerable<string> thumbnailPaths)
         {
             var oldContent = content.Replace('/', '\\');
 
             var oldBannerFile = Path.GetFileName(oldContent);
-            var oldThumbnailFile = string.Format(
-                BannerStorage.ThumbNailFormat,
-                Path.GetFileNameWithoutExtension(oldContent),
-                Path.GetExtension(oldContent));
+            var oldThumbnailFile = BannerStorage.GetThumbnailFileName(oldContent);
 
-            bannerPath = Path.Combine(MediaSettings.BannerDirectory, oldContent);
-            thumbnailPath = bannerPath.Replace(oldBannerFile, oldThumbnailFile);
+            bannerPaths = MediaSettings.BannerFolders.Select(x => Path.Combine(x, oldContent));
+            thumbnailPaths = bannerPaths.Select(x => x.Replace(oldBannerFile, oldThumbnailFile));
         }
 
         #endregion Banner Helpers

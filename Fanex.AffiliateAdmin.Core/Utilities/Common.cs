@@ -1,6 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
@@ -55,9 +56,9 @@
 
             if (firstDay < minDate)
             {
-                 return minDate;
+                return minDate;
             }
-            
+
             return firstDay;
         }
 
@@ -93,16 +94,22 @@
                 case "running":
                 case "pending":
                     return Lang.Processing;
+
                 case "completed":
                     return Lang.Approved;
+
                 case "cancelled":
                     return Lang.Cancelled;
+
                 case "approved":
                     return Lang.Approved;
+
                 case "rejected":
                     return Lang.Rejected;
+
                 case "current":
                     return Lang.Current;
+
                 default:
                     return status;
             }
@@ -196,14 +203,19 @@
             {
                 case "pending":
                     return Lang.Processing;
+
                 case "completed":
                     return Lang.Approved;
+
                 case "cancelled":
                     return Lang.Cancelled;
+
                 case "approved":
                     return Lang.Approved;
+
                 case "rejected":
                     return Lang.Rejected;
+
                 default:
                     return status;
             }
@@ -220,12 +232,23 @@
             {
                 case "pending":
                     return "affPending";
+
                 case "cancelled":
                     return "affCancelled";
+
                 case "rejected":
                     return "affRejected";
+
                 default:
                     return string.Empty;
+            }
+        }
+
+        public static void DeleteFiles(IEnumerable<string> filePaths)
+        {
+            foreach (var file in filePaths)
+            {
+                DeleteFile(file);
             }
         }
 
@@ -255,10 +278,23 @@
             {
                 Directory.CreateDirectory(directory);
             }
-            
+
             DeleteFile(newFilePath);
 
             File.Move(oldFilePath, newFilePath);
+        }
+
+        public static bool AnyFileExists(IEnumerable<string> filePaths)
+        {
+            foreach (var file in filePaths)
+            {
+                if (File.Exists(file))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -296,12 +332,16 @@
             {
                 case ReportType.CompanyWinLoss:
                     return string.Format(Lang.CompanyWinLossReportInfo, string.Empty);
+
                 case ReportType.MemberWinLoss:
                     return string.Format(Lang.MemberWinLessReportInfo, string.Empty);
+
                 case ReportType.AffiliateWinLoss:
                     return string.Format(Lang.AffiliateWinLossReportInfo, string.Empty);
+
                 case ReportType.AffiliateCommission:
                     return Lang.AffiliateCommissionReportInfo;
+
                 default:
                     return string.Empty;
             }

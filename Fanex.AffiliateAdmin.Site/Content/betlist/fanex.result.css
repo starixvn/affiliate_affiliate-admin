@@ -324,3 +324,6 @@ table .row-noinfo
     text-align: center;
     padding: 4px;
 }
+table.fn-rs .data.cl-group-name{
+    background: #cce5ec;
+}

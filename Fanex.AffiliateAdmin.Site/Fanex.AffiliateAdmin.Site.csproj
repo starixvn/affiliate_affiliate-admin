@@ -372,6 +372,7 @@
     <Content Include="Configurations\SpNames\SpName.athena000.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.athena000.sit.xml" />
     <Content Include="Configurations\SpNames\SpName.athena000.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
       <SubType>Designer</SubType>
@@ -3706,6 +3707,7 @@
     </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.athena000.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
@@ -3764,6 +3766,10 @@
     </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7th.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.sit.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.athena000.sit.config">
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
@@ -3887,6 +3893,7 @@
     <Content Include="Configurations\WebConfigs\Web.unobet.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\WebConfigs\Web.athena000.sit.config" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />

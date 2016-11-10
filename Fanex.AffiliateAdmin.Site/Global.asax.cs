@@ -38,7 +38,8 @@
             log4net.Config.XmlConfigurator.Configure();
             log4net.LogManager.GetLogger("GeneralLog").Info("Start");
 
-            if (AppSettings.Environment.IndexOf("Local", StringComparison.OrdinalIgnoreCase) < 0)
+            if (AppSettings.Environment.IndexOf("Local", StringComparison.OrdinalIgnoreCase) < 0 &&
+                !AppSettings.Environment.Equals("SIT", StringComparison.OrdinalIgnoreCase))
             {
                 SettingMgr.GetInstance().Initialize(SiteEnum.AgentSite);
             }

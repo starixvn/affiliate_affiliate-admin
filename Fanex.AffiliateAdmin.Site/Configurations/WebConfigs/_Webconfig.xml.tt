@@ -9,6 +9,7 @@
 	var manager = TemplateFileManager.Create(this);
 
 	var licenseeNames = new string[] {
+			"spondemo",
 			"9bet", 
 			"allbetclub",
 			"aoncash",

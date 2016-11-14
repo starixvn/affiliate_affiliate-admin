@@ -7,6 +7,7 @@
 	var manager = TemplateFileManager.Create(this);
 
 	var licenseeNames = new string[] {
+			"spondemo",
 			"9bet", 
 			"allbetclub",
 			"aoncash",
@@ -23,6 +24,7 @@
 		};
 
 	var dbAlias = new string[] {
+		"DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet", 
 		"DBAFF9BET.Affiliate_9Bet.bodbAdminNet", 
 		"DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet",
 		"DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet",
@@ -39,6 +41,7 @@
 	};
 
 	var dbNames = new string[] {
+		"spondemo",
 		"9bet", 
 		"allbetclub",
 		"aoncash",

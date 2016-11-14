@@ -479,6 +479,18 @@
     <Content Include="Content\_Sites\9bet\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\9bet\images\notify.png" />
     <Content Include="Content\_Sites\9bet\images\panel.png" />
+    <Content Include="Content\_Sites\spondemo\Images\banner_top.png" />
+    <Content Include="Content\_Sites\spondemo\Images\best-browsers.png" />
+    <Content Include="Content\_Sites\spondemo\Images\bodybg.jpg" />
+    <Content Include="Content\_Sites\spondemo\Images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\spondemo\Images\emailBg.jpg" />
+    <Content Include="Content\_Sites\spondemo\Images\favicon.jpg" />
+    <Content Include="Content\_Sites\spondemo\Images\headerbg.jpg" />
+    <Content Include="Content\_Sites\spondemo\Images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\spondemo\Images\logo.jpg" />
+    <Content Include="Content\_Sites\spondemo\Images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\spondemo\Images\notify.png" />
+    <Content Include="Content\_Sites\spondemo\Images\panel.png" />
     <Content Include="Content\_Sites\be7th\images\banner_top.png" />
     <Content Include="Content\_Sites\be7th\images\best-browsers.png" />
     <Content Include="Content\_Sites\be7th\images\bodybg.jpg" />
@@ -3786,9 +3798,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.spondemo.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.spondemo.local.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.spondemo.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.spondemo.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.spondemo.sit.config" />
@@ -3934,6 +3943,8 @@
     <Content Include="Configurations\WebConfigs\Web.spondemo.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Content\_Sites\spondemo\Login.less" />
+    <Content Include="Content\_Sites\spondemo\Notify.less" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -4085,6 +4096,9 @@
     <Content Include="Views\BetList\CasinoDetailTicket.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.ConnectionString.spondemo.local.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.AppSetting.spondemo.local.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

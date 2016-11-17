@@ -34,7 +34,7 @@
                 {
                     using (var reader = objectDb.ExecuteReader(criteria.GetSpParams()))
                     {
-                        while (reader.Read())
+                        if (reader.Read())
                         {
                             affiliateInfo.AffiliateInfo = new Affiliate
                             {

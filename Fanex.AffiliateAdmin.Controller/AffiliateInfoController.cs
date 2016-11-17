@@ -33,17 +33,11 @@ namespace Fanex.AffiliateAdmin.Controller
     [FunctionAuth(Function = FunctionPolicyNames.Affiliate, CurrenciesRequired = true)]
     public class AffiliateInfoController : BaseController
     {
-        #region Services
-
         private readonly IAffiliateService _affiliateService;
 
         private readonly ICountryService _countryService;
 
         private readonly ISystemSettingService _systemSettingService;
-
-        #endregion Services
-
-        #region Constructor
 
         public AffiliateInfoController()
             : this(null, null, null)
@@ -65,8 +59,6 @@ namespace Fanex.AffiliateAdmin.Controller
             _countryService = countryService ?? new CountryService();
             _systemSettingService = systemSettingService ?? new SystemSettingService();
         }
-
-        #endregion Constructor
 
         /// <summary>
         /// Load main page.
@@ -225,7 +217,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     {
                         Status = criteria.Status,
                         Username = session.Affiliate.Username,
-                        FirstName = session.Affiliate.FirstName,
+                        FirstName = criteria.FirstName,
                         Password = password,
                         AdminSiteUrl = siteInfo.AdminSiteUrl,
                         AffiliateSiteUrl = siteInfo.AffiliateSiteUrl,
@@ -491,16 +483,13 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 AffiliateId = affiliateInfo.AffId,
                 Username = affiliateInfo.Username,
-                FirstName = affiliateInfo.FirstName,
                 Prefix = affiliateInfo.Prefix,
                 Status = affiliateInfo.Status,
                 PrefferredLanguage = affiliateInfo.PreferredLanguage,
-                AffType = affiliateInfo.AffType,
                 AffTypeName = AppSettings.AffTypes.FirstOrDefault(t => t.TypeID == affiliateInfo.AffType).Name,
                 MailOption = affiliateInfo.MailOption,
                 Email = affiliateInfo.Email,
                 PrefferredPayment = affiliateInfo.PreferredPayment,
-                GroupID = affiliateInfo.GroupId,
                 CurrencyID = affiliateInfo.Currency,
                 Currency = affiliateInfo.CurrencyCode
             };

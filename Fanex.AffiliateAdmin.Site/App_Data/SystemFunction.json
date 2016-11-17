@@ -1,0 +1,50 @@
+﻿[
+  {
+    "Name": "Home",
+    "Link": "~/"
+  },
+  {
+    "Name": "AffiliateInfo",
+    "Link": "~/AffiliateInfo"
+  },
+  {
+    "Name": "AffManagement",
+    "Link": "~/Affiliate"
+  },
+  {
+    "Name": "Payment",
+    "Link": "~/Payment"
+  },
+  {
+    "Name": "CommissionGroup",
+    "Link": "~/CommGroup"
+  },
+  {
+    "Name": "Reports",
+    "Link": "~/Report"
+  },
+  {
+    "Name": "MarketingTools",
+    "Link": "~/Media/BannerList"
+  },
+  {
+    "Name": "Message",
+    "Link": "~/Message"
+  },
+  {
+    "Name": "Currency",
+    "Link": "~/Exchange"
+  },
+  {
+    "Name": "Configurations",
+    "Link": "~/Configuration"
+  },
+  {
+    "Name": "Domain",
+    "Link": "~/Domain/AffDomain"
+  },
+  {
+    "Name": "UserManagement",
+    "Link": "~/Management/Users"
+  }
+]

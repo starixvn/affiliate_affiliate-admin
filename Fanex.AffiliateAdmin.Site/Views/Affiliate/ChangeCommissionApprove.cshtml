@@ -3,17 +3,16 @@
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
 @using Fanex.AffiliateAdmin.Core.Mvc
-@using Fanex.AffiliateAdmin.Models 
 
 @model Fanex.AffiliateAdmin.Models.ChangeCommissionGroupViewModel
 
-
 @using (Html.BeginForm("ChangeStatus", "AffiliateInfo", FormMethod.Post, new { id = "ActionBannerForm", @class = "form-horizontal form-popup", enctype = "multipart/form-data" }))
-{    
+{
     @Html.ValidationSummary()
 
     @Html.HiddenFor(m => m.Status)
-    <span class="information">@Lang.MsgApproveAffiliate</span>     
+    @Html.HiddenFor(m => m.FirstName)
+    <span class="information">@Lang.MsgApproveAffiliate</span>
     <fieldset>
         <legend>@Lang.Assignee</legend>
         <div class="row-fluid">
@@ -45,7 +44,11 @@
 @section scripts{
     <script type="text/javascript">
         $('#btnSave').click(function () {
-            parent.AFFMASTER.changeAffInfo($("#GroupId").val(), $("#Status").val());
+            parent.AFFMASTER.changeAffInfo({
+                groupid: $("#GroupId").val(),
+                status: $("#Status").val(),
+                firstname: $("#FirstName").val()
+            });
         });
     </script>
 }

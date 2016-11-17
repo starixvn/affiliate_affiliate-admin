@@ -42,11 +42,7 @@ var AFFMASTER = (function ($) {
         changePassword: function (userName) {
             AFFILIATE.openDialogFrame("AffiliateInfo/ChangePassword", userName + ' - ' + window.Lang.ChangePassword, { width: 500, height: 280 });
         },
-        changeAffInfo: function (groupId, status) {
-            var param = {
-                status: status,
-                groupid: groupId
-            };
+        changeAffInfo: function (param) {
             this.updateAffInfo(param, true);
         },
         updateAffInfo: function (param, isReload) {

@@ -336,6 +336,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="App_Data\SystemFunction.json" />
     <Content Include="Configurations\ConnectionStrings\_ConnectionString.xml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>_ConnectionString.xml.txt</LastGenOutput>

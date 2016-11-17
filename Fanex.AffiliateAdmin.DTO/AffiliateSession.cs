@@ -2,20 +2,13 @@
 {
     using System;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [Serializable]
     public class AffiliateSession
     {
         public int AffiliateId { get; set; }
 
         public string Username { get; set; }
-
-        public string Password { get; set; }
-
-        public string FirstName { get; set; }
-
+        
         public string Prefix { get; set; }
 
         public string Currency { get; set; }
@@ -24,11 +17,7 @@
 
         public string Status { get; set; }
 
-        public int AffType { get; set; }
-
         public string AffTypeName { get; set; }
-
-        public int GroupID { get; set; }
 
         public string PrefferredLanguage { get; set; }
 

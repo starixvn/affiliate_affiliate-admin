@@ -4,8 +4,10 @@
 @using Fanex.AffiliateAdmin.Resources
 @using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Enumerations
+@using Fanex.AffiliateAdmin.Core.Configurations
 @helper ListSubmenu(IEnumerable<Menu> list, int selectedMenuIndex, string activeMenu = "Home", int selectedSubMenuIndex = -1)
     {
+        var queryString = Request.QueryString.ToString();
         var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
         var menuLength = list.Count();
         if (selectedMenuIndex >= menuLength)
@@ -20,21 +22,21 @@
 
             if (item.SubMenu == null || item.SubMenu.Count == 0)
             {
-            <li @(new HtmlString(activeText))><a href="@(url.Content(item.Link))"><span>@item.Text</span></a>
+            <li @(new HtmlString(activeText))><a href="@(url.Content(item.Link + "?" + queryString))"><span>@item.Text</span></a>
             </li>
             }
             else
             {
                 var link = (i == selectedMenuIndex && selectedSubMenuIndex != -1) ? item.SubMenu[selectedSubMenuIndex].Link : item.Link;
                 
-            <li @(new HtmlString(activeText))><a href="@(url.Content(link))"><span>@item.Text</span></a>
+            <li @(new HtmlString(activeText))><a href="@(url.Content(link + "?" + queryString))"><span>@item.Text</span></a>
                 <ul class="inner-submenu">
                     @for (int j = 0; j < item.SubMenu.Count; j++)
                     {
                         activeText = (j == selectedSubMenuIndex ? "class=\"current\"" : string.Empty);
                         var ele = item.SubMenu[j];
                             
-                        <li @(new HtmlString(activeText))><a href="@(url.Content(ele.Link))">&raquo; @ele.Text</a>
+                        <li @(new HtmlString(activeText))><a href="@(url.Content(ele.Link + "?" + queryString))">&raquo; @ele.Text</a>
                         </li>
                     }
                 </ul>
@@ -231,6 +233,12 @@
             }
         }        
 }
+@helper GetCurrencyNotification(string currencyCode)
+{
+    var currency =  AppSettings.AffSystemSupportedCurrencies.FirstOrDefault(c => c.CurrencyCode == currencyCode);
+    GetCurrencyNotification(currency);
+}
+
 @helper GetCurrencyNotification(Currency currency)
     {
         if (currency != null && currency.MultipliedBy > 1)

@@ -19,13 +19,14 @@ var AFFMASTER = (function ($) {
                 $("#l-panel").removeClass("l-panel-hide");
             });
         },
-        loadPages: function (status) {
-            if (status === 'approved') {
-                $("#ifStatistic").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic"));
-                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("Statement"));
+        loadPages: function (param) {
+            var queryString = $.param(param);
+            if (param.Status === 'approved') {
+                $("#ifStatistic").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic") + "?" + queryString);
+                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("Statement") + "?" + queryString);
                 $("#ifStatistic").attr("class", "statistic-exp");
             } else {
-                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Edit"));
+                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Edit") + "?" + queryString);
                 $("#ifStatistic").attr("class", "statistic-hide");
             }
         },

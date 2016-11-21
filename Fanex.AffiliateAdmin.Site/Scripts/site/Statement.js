@@ -34,7 +34,7 @@ var STATEMENT = (function ($) {
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Statement/ListStatement"),
                 type: 'post',
-                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
+                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage + "&affid=" + QueryString.getParam(window.location.href, "affid"),
                 beforeSend: function () {
                     $.blockUI();
                 },

@@ -21,10 +21,8 @@
     </div>
 }
 
-@using (Html.BeginForm("", "Adjustment", FormMethod.Post, new { @class = "iframe-content" }))
-{
-    @Html.ValidationSummary()
-    <div class="row-fluid">
+<form method="post" action='@Url.Content("~/Adjustment?" + Request.QueryString)' class = "iframe-content">
+      @Html.ValidationSummary()  <div class="row-fluid">
         <div class="span12">
             <fieldset>
                 <legend>@Model.AffName</legend>
@@ -36,7 +34,7 @@
                         </colgroup>
                         <tr>
                             <td><label class="control-label">@Lang.BalanceForward</label></td>
-                            <td>@MvcHtmlString.Create(FormaterCurrency.Format(Model.Adjustment.BalBroughtForward, Model.Currency.CurrencyCode))</td>
+                            <td>@MvcHtmlString.Create(FormaterCurrency.Format(Model.Adjustment.BalBroughtForward, Model.CurrencyCode))</td>
                         </tr>
                         <tr>
                             <td>@Html.LabelFor(m => m.Amount, Lang.Adjustment, new { @class = "control-label" }) </td>
@@ -48,8 +46,8 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="required">
-                                @string.Format(Lang.AdjustAmountUpTo, FormaterCurrency.Format(Model.Adjustment.MaxAmount, Model.Currency.CurrencyCode))
-                                @RazorHelper.GetCurrencyNotification(Model.Currency)
+                                @string.Format(Lang.AdjustAmountUpTo, FormaterCurrency.Format(Model.Adjustment.MaxAmount, Model.CurrencyCode))
+                                @RazorHelper.GetCurrencyNotification(Model.CurrencyCode)
                             </td>
                         </tr>
                     </table>
@@ -59,13 +57,13 @@
             </fieldset>
         </div>
     </div>
-    
+
     <div class="row-fluid row-form btn-action">
         <div class="span12">
             <button type="submit" class="btn" id="btnSubmit">@Lang.Submit</button>
         </div>
     </div>
-}
+</form>
 @section scripts{
     @Scripts.Render("~/scripts/adjustment")
 

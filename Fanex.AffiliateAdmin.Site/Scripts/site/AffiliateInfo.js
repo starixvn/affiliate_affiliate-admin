@@ -35,7 +35,7 @@ var AFFINFO = (function ($) {
                 $(this).hide();
             });
             $('#slStatus').change(function () {
-                AFFINFO.updateStatus($("#AffId").val(), $("#Username").val(), $("#Currency").val(), $("#FirstName").val());
+                AFFINFO.updateStatus($("#AffId").val(), $("#Username").val(), $("#Currency").val());
             });
             $('#slStatus').blur(function () {
                 AFFINFO.setStatusTimeOut(false);
@@ -279,7 +279,7 @@ var AFFINFO = (function ($) {
                 $("#spAffType").show();
             }
         },
-        updateStatus: function (affID, userName, currency, firstName) {
+        updateStatus: function (affID, userName, currency) {
             if (confirm(MSG.ConfirmChangeStatus)) {
                 var status = $('#slStatus').val();
                 var param = {};
@@ -288,8 +288,7 @@ var AFFINFO = (function ($) {
                         affID: affID,
                         usernames: userName,
                         currency: currency,
-                        status: status,
-                        firstName: firstName
+                        status: status
                     };
                     parent.AFFILIATE.openDialogFrame("Affiliate/ChangeCommissionApprove?" + jQuery.param(param), MSG.AssignComGroup, { width: 550, height: 300 });  // jshint ignore:line
                 } else {

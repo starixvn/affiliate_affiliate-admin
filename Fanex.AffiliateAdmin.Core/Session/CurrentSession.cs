@@ -10,9 +10,7 @@
     public class CurrentSession : ICurrentSession
     {
         private readonly IEnumerable<FunctionPolicy> _policies;
-
-        private readonly IEnumerable<FunctionMenu> _menus;
-
+        
         public CurrentSession(
             Account user,
             IEnumerable<FunctionPolicy> policies,

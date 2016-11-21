@@ -51,9 +51,9 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string status)
         {
-            ViewBag.Status = SessionManager.CurrentSession.Affiliate.Status;
+            ViewBag.Status = status;
 
             return View();
         }

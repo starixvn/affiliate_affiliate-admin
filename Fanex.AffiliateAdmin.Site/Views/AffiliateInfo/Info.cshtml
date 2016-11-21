@@ -142,7 +142,6 @@
             @Html.HiddenFor(m => m.AffiliateInfo.Currency, new { id = "Currency" })
             @Html.HiddenFor(m => m.AffiliateInfo.CurrencyCode, new { id = "CurrencyCode" })
             @Html.HiddenFor(m => m.AffiliateInfo.GroupId, new { id = "GroupId" })
-            @Html.HiddenFor(m => m.AffiliateInfo.FirstName, new { id = "FirstName" });
         </div>
         <div class="l-panel-row l-panel-bottom">
         </div>
@@ -191,7 +190,13 @@
     @if (ViewBag.IsLoadOtherPage != "1")
     {
         <script type="text/javascript">
-            parent.AFFMASTER.loadPages("@Model.AffiliateInfo.Status");
+            parent.AFFMASTER.loadPages({
+                AffId: @Model.AffiliateInfo.AffId,
+                Status: "@Model.AffiliateInfo.Status",
+                AffName: "@HttpUtility.UrlEncode(Model.AffiliateInfo.Username)",
+                CurrencyCode: "@Model.AffiliateInfo.CurrencyCode",
+                CurrencySymbol: "@HttpUtility.UrlEncode(Model.AffiliateInfo.Prefix)"
+            });
         </script>
     }
 }

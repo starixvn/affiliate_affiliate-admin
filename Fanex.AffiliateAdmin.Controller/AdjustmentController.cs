@@ -7,7 +7,9 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
+    using DTO;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -51,21 +53,21 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int affId, string currencyCode, string affName)
         {
             var affiliateSession = SessionManager.CurrentSession.Affiliate;
             var adjustment = this._adjustmentService.GetAdjustmentBalance(new AdjustmentCriteria
             {
-                AffId = affiliateSession.AffiliateId,
-                Currency = affiliateSession.Currency
+                AffId = affId,
+                Currency = currencyCode
             });
-
             return View(new AdjustmentViewModel
             {
-                AffName = affiliateSession.Username,
+                AffId = affId,
+                AffName = HttpUtility.UrlDecode(affName),
                 Adjustment = adjustment,
                 Description = string.Empty,
-                Currency = AppSettings.AffSystemSupportedCurrencies.FirstOrDefault(c => c.CurrencyCode == affiliateSession.Currency)
+                CurrencyCode = currencyCode
             });
         }
 
@@ -81,10 +83,10 @@ namespace Fanex.AffiliateAdmin.Controller
             var criteria = new AdjustmentEditCriteria()
             {
                 Ip = Remote.GetClientIPAddress(),
-                AffId = session.Affiliate.AffiliateId,
+                AffId = model.AffId,
                 AdminId = session.CustID,
                 Amount = model.Amount,
-                Description = model.Description,
+                Description = HttpUtility.UrlDecode(model.Description),
                 LicenseeId = AppSettings.LicenseeID
             };
 
@@ -94,7 +96,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             ModelState.Clear();
 
-            return this.Index();
+            return this.Index(model.AffId, model.CurrencyCode, model.AffName);
         }
     }
 }

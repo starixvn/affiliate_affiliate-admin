@@ -74,7 +74,7 @@
         /// <param name="model">Company View Model.</param>
         /// <returns>Company win loss page.</returns>
         [HttpGet]
-        public ActionResult CompanyWinlossByAffiliate(CompanyWLByAffiliateViewModel model)
+        public ActionResult CompanyWinlossByAffiliate(string currencyCode)
         {
             var serializer = new JavaScriptSerializer();
 
@@ -84,13 +84,14 @@
                 Name = x.ProductName
             }));
 
-            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(SessionManager.CurrentSession.Affiliate.Currency);
+            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(currencyCode);
 
-            var baseCurrencyList = GetBaseCurrencyList();
+            var baseCurrencyList = GetBaseCurrencyList(currencyCode);
 
-            model.AddBaseCurrencyList(baseCurrencyList);
+            var viewModel = new CompanyWLByAffiliateViewModel();
+            viewModel.AddBaseCurrencyList(baseCurrencyList);
 
-            return View("CompanyWinlossByAffiliate", model);
+            return View("CompanyWinlossByAffiliate", viewModel);
         }
 
         /// <summary>
@@ -131,10 +132,11 @@
         /// <param name="model">Model input.</param>
         /// <returns>Member win loss page.</returns>
         [HttpGet]
-        public ActionResult MemberWinlossByAffiliate(MemberWinlossByAffiliateViewModel model)
+        public ActionResult MemberWinlossByAffiliate(string currencyCode)
         {
-            var baseCurrencyList = GetBaseCurrencyList();
+            var baseCurrencyList = GetBaseCurrencyList(currencyCode);
 
+            var model = new MemberWinlossByAffiliateViewModel();
             model.AddBaseCurrencyList(baseCurrencyList);
 
             var serializer = new JavaScriptSerializer();
@@ -145,7 +147,7 @@
                 Name = x.ProductName
             }));
 
-            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(SessionManager.CurrentSession.Affiliate.Currency);
+            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(currencyCode);
 
             return View("MemberWinlossByAffiliate", model);
         }
@@ -231,7 +233,7 @@
         /// <param name="model">Model Input.</param>
         /// <returns>Commission By Affiliate Result.</returns>
         [HttpGet]
-        public ActionResult AffiliateWinLossByAffiliate(AffiliateWLByAffiliateViewModel model)
+        public ActionResult AffiliateWinLossByAffiliate(string currencyCode)
         {
             var serializer = new JavaScriptSerializer();
 
@@ -245,9 +247,10 @@
 
             var baseCurrencyList = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0",  Text = SessionManager.CurrentSession.Affiliate.Currency }
+                new SelectListItem { Value = "0",  Text = currencyCode }
             };
 
+            var model = new AffiliateWLByAffiliateViewModel();
             model.AddBaseCurrencyList(baseCurrencyList);
 
             return View(model);
@@ -300,7 +303,7 @@
         /// <param name="model">Model Input.</param>
         /// <returns>Commission By Affiliate Result.</returns>
         [HttpGet]
-        public ActionResult AffiliateCommissionByAffiliate(AffiliateCommissionByAffiliateViewModel model)
+        public ActionResult AffiliateCommissionByAffiliate(string currencyCode)
         {
             var serializer = new JavaScriptSerializer();
 
@@ -314,9 +317,10 @@
 
             var baseCurrencyList = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0",  Text = SessionManager.CurrentSession.Affiliate.Currency }
+                new SelectListItem { Value = "0",  Text = currencyCode }
             };
 
+            var model = new AffiliateCommissionByAffiliateViewModel();
             model.AddBaseCurrencyList(baseCurrencyList);
 
             return View(model);
@@ -330,11 +334,10 @@
         /// Get base currency list.
         /// </summary>
         /// <returns>Base currency list.</returns>
-        private List<SelectListItem> GetBaseCurrencyList()
+        private List<SelectListItem> GetBaseCurrencyList(string currencyCode)
         {
             List<SelectListItem> baseCurrencyList;
-            var session = SessionManager.CurrentSession;
-            if (session.Affiliate.Currency.Equals(AppSettings.BaseExchange.Code))
+            if (currencyCode.Equals(AppSettings.BaseExchange.Code))
             {
                 baseCurrencyList = new List<SelectListItem>
                     {
@@ -348,7 +351,7 @@
                     {
                         new SelectListItem { Value = "0", Text = Lang.Member },
                         new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
-                        new SelectListItem { Value = "2", Text = session.Affiliate.Currency }
+                        new SelectListItem { Value = "2", Text = currencyCode }
                     };
             }
 

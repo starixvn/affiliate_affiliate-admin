@@ -89,7 +89,6 @@
                         ServerId = user.ServerId
                     });
                     FormsAuthentication.SetAuthCookie(username, true);
-
                     SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
                 }
                 else
@@ -250,6 +249,11 @@
 
                 FormsAuthentication.SignOut();
                 SessionManager.ClearAll();
+                var cookies = Request.Cookies.AllKeys;
+                foreach (string cookie in cookies)
+                {
+                    Response.Cookies[cookie].Expires = DateTime.Now.AddDays(-1);
+                }
             }
         }
 

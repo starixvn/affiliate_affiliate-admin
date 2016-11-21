@@ -316,7 +316,6 @@
             var session = SessionManager.CurrentSession;
             if (criteria.ByAffiliate)
             {
-                criteria.AffUsername = session.Affiliate.Username;
                 criteria.AffType = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.ExcludeTest = false;
             }
@@ -369,11 +368,6 @@
         [FunctionAuth(Function = FunctionPolicyNames.Affiliate, IsHostPolicy = true)]
         public ActionResult AssignMember(AssignMemberViewModel model)
         {
-            if (model.ByAffiliate)
-            {
-                model.AffName = SessionManager.CurrentSession.Affiliate.Username;
-            }
-
             return View(model);
         }
 

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
+    using Core.Configurations;
     using Criterias;
     using Data;
     using DTO;
@@ -25,7 +26,7 @@
         /// <returns>Affiliate Information View Model.</returns>
         public AffiliateInfoViewModel GetAffiliateGeneralInfo(AffiliateInfoCriteria criteria)
         {
-            var affiliateInfo = new AffiliateInfoViewModel();
+            var viewModel = new AffiliateInfoViewModel();
             Check.Argument.IsNotNull(criteria, "criteria");
 
             if (criteria.IsValid())
@@ -36,43 +37,50 @@
                     {
                         if (reader.Read())
                         {
-                            affiliateInfo.AffiliateInfo = new Affiliate
-                            {
-                                IsClosed = reader.ToBool("closed"),
-                                IsLocked = reader.ToBool("IsLocked"),
-                                Username = reader.ToString("Username"),
-                                AffId = reader.ToInt("AffID"),
-                                FirstName = reader.ToString("firstname"),
-                                LastName = reader.ToString("lastname"),
-                                Prefix = reader.ToString("Prefix"),
-                                Gender = reader.ToBool("gender"),
-                                Email = reader.ToString("email"),
-                                Phone = reader.ToString("phone"),
-                                MobilePhone = reader.ToString("mobilephone"),
-                                SiteLink = reader.ToString("siteurl"),
-                                LastLoginDate = reader.ToDateTime("lastlogindate"),
-                                LastLoginIp = reader.ToString("lastloginip"),
-                                PreferredLanguage = reader.ToString("PreferredLanguage"),
-                                PreferredPayment = reader.ToString("PreferredPayment"),
-                                Player_Username = reader.ToString("Player_Username"),
-                                Status = reader.ToString("status").ToLower(),
-                                MailOption = reader.ToBool("MailOption"),
-                                GroupName = reader.ToString("GroupName"),
-                                GroupId = reader.ToInt("GroupId"),
-                                AffType = reader.ToByte("AffType"),
-                                CurrencyCode = reader.ToString("CurrencyCode"),
-                                Currency = reader.ToShort("Currency"),
-                                AffLevel = reader.ToShort("TestLevel"),
-                                BalanceBF = reader.ToDecimal("BalBroughtForward")
-                            };
+                            ReadAffiliateInfo(viewModel, reader);
                         }
 
-                        GetAffiliateOnUser(reader, affiliateInfo);
+                        GetAffiliateOnUser(reader, viewModel);
                     }
                 }
             }
 
-            return affiliateInfo;
+            return viewModel;
+        }
+
+        private static void ReadAffiliateInfo(AffiliateInfoViewModel viewModel, IDataReader reader)
+        {
+            viewModel.AffiliateInfo = new Affiliate
+            {
+                IsClosed = reader.ToBool("closed"),
+                IsLocked = reader.ToBool("IsLocked"),
+                Username = reader.ToString("Username"),
+                AffId = reader.ToInt("AffID"),
+                FirstName = reader.ToString("firstname"),
+                LastName = reader.ToString("lastname"),
+                Prefix = reader.ToString("Prefix"),
+                Gender = reader.ToBool("gender"),
+                Email = reader.ToString("email"),
+                Phone = reader.ToString("phone"),
+                MobilePhone = reader.ToString("mobilephone"),
+                SiteLink = reader.ToString("siteurl"),
+                LastLoginDate = reader.ToDateTime("lastlogindate"),
+                LastLoginIp = reader.ToString("lastloginip"),
+                PreferredLanguage = reader.ToString("PreferredLanguage"),
+                PreferredPayment = reader.ToString("PreferredPayment"),
+                Player_Username = reader.ToString("Player_Username"),
+                Status = reader.ToString("status").ToLower(),
+                MailOption = reader.ToBool("MailOption"),
+                GroupName = reader.ToString("GroupName"),
+                GroupId = reader.ToInt("GroupId"),
+                AffType = reader.ToByte("AffType"),
+                CurrencyCode = reader.ToString("CurrencyCode"),
+                Currency = reader.ToShort("Currency"),
+                AffLevel = reader.ToShort("TestLevel"),
+                BalanceBF = reader.ToDecimal("BalBroughtForward")
+            };
+
+            viewModel.AffiliateInfo.AffTypeName = AppSettings.AffTypes.FirstOrDefault(t => t.TypeID == viewModel.AffiliateInfo.AffType).Name;
         }
 
         /// <summary>
@@ -125,7 +133,6 @@
                     criteria.AffMinCheque = Convert.ToDecimal(param["AFF_MinCheque"]);
                     criteria.AffMinMoneyBookers = Convert.ToDecimal(param["AFF_MinMoneybookers"]);
                     criteria.AffMinPlayer = Convert.ToDecimal(param["AFF_MinPlayer"]);
-
                     return affiliate;
                 }
             }

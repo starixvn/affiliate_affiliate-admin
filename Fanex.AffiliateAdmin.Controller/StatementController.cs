@@ -56,7 +56,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult Index(string currencyCode, string currencySymbol)
+        public ActionResult Index(string currencyCode)
         {
             var session = SessionManager.CurrentSession;
             var baseCurrencyList = new List<SelectListItem>
@@ -69,8 +69,6 @@ namespace Fanex.AffiliateAdmin.Controller
             var model = new StatementViewModel();
             model.AddBaseCurrencyList(baseCurrencyList);
             model.AddTransTypeList(transTypeList.ToList());
-
-            ViewBag.AffCurrencySymbol = HttpUtility.UrlDecode(currencySymbol);
 
             return View(model);
         }

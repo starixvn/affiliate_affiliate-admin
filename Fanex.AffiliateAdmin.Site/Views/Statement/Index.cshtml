@@ -90,7 +90,6 @@ affiliate-info
             NoInfo: "@Lang.NoInfo"
         };
 
-        var currencySymbol = "@ViewBag.AffCurrencySymbol";
         var gridOption = {
             language: '@AppSession.Language',
             timeZone: AFFILIATE.TimeZone,
@@ -146,7 +145,9 @@ affiliate-info
                         var href = AFFILIATE.getAbsoluteUrl("Report/AffiliateCommissionByAffiliate");
                         var transdate = window.moment(rowData.TransDateStr).format(AFFILIATE.DATE_FORMAT_MONTH);
                         
-                        href += "?FromDate=" + transdate + "&ToDate=" + transdate;
+                        href += "?FromDate=" + transdate + "&ToDate=" + transdate +
+                            "&" + QueryString.getQueryString(window.location.href);
+
                         return "<a href=\"{0}\">".format(href) + currentValue + "</a>";
                     } else if (rowData.TransType == 202) {
                         return "<a href=\"javascript:STATEMENT.showDetail(" + rowData.TransId + ");\">" + currentValue + "</a>";

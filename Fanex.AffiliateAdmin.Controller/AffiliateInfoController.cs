@@ -20,7 +20,6 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
-    using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
@@ -106,7 +105,6 @@ namespace Fanex.AffiliateAdmin.Controller
                 if (model != null && model.AffiliateInfo != null)
                 {
                     AffiliateInfoCookieHelper.AddAffiliateInfoToCookie(HttpContext, userName);
-                    UpdateAffiliateSession(model.AffiliateInfo);
 
                     FormaterCurrency.SetDefaultCurrency(model.AffiliateInfo.CurrencyCode);
 
@@ -184,10 +182,8 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult ChangeStatus(AffiliateUpdStatusCriteria criteria)
         {
             const int PASSWORD_LENGTH = 6;
-            var session = SessionManager.CurrentSession;
             var password = Generator.GetRandomString(PASSWORD_LENGTH);
-            criteria.UserId = session.CustID;
-            criteria.AffId = session.Affiliate.AffiliateId;
+            criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.Ip = Remote.GetClientIPAddress();
             criteria.LicenseeId = AppSettings.LicenseeID;
             criteria.Password = Cryptography.CfsEnCode(password);
@@ -324,11 +320,6 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 _affiliateService.UpdateAffiliateInfo(criteria);
 
-                if (criteria.ErrCode == 0)
-                {
-                    UpdateAffiliateSession(affiliate);
-                }
-
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdAffSuccess, affiliate.Username));
             }
 
@@ -350,12 +341,6 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.LicenseeId = AppSettings.LicenseeID;
 
                 this._affiliateService.ChangeAffiliateLanguage(criteria);
-
-                if (criteria.ErrCode == 0)
-                {
-                    var affiliateInfo = _affiliateService.GetAffiliateInfo(new AffiliateSelCriteria { AffId = criteria.AffId });
-                    UpdateAffiliateSession(affiliateInfo);
-                }
             }
 
             return Json(GetResultViewModel(criteria.ErrCode, Lang.ErrLanguageSucc));
@@ -376,12 +361,6 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.LicenseeId = AppSettings.LicenseeID;
 
                 this._affiliateService.ChangeAffType(criteria);
-
-                if (criteria.ErrCode == 0)
-                {
-                    var affiliateInfo = _affiliateService.GetAffiliateInfo(new AffiliateSelCriteria { AffId = criteria.AffId });
-                    UpdateAffiliateSession(affiliateInfo);
-                }
             }
 
             return Json(GetResultViewModel(criteria.ErrCode, Lang.UpdateAffType));
@@ -405,21 +384,5 @@ namespace Fanex.AffiliateAdmin.Controller
 
             return Json(GetResultViewModel(criteria.ErrCode));
         }
-
-        #region Helpers
-
-        /// <summary>
-        /// Update Affiliate Session.
-        /// </summary>
-        /// <param name="affiliateInfo">Affiliate info.</param>
-        private void UpdateAffiliateSession(Affiliate affiliateInfo)
-        {
-            SessionManager.CurrentSession.Affiliate = new AffiliateSession
-            {
-                AffiliateId = affiliateInfo.AffId
-            };
-        }
-
-        #endregion Helpers
     }
 }

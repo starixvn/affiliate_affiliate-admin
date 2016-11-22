@@ -15,8 +15,6 @@
 
         public string Usernames { get; set; }
 
-        public string FirstName { get; set; }
-
         public int GroupId { get; set; }
 
         public int UserId { get; set; }
@@ -30,17 +28,17 @@
             get
             {
                 var comGroups = AppSettings.GetActiveCommGroups(new CommGroupSelActiveListCriteria
-                    {
-                        UserId = UserId,
-                        Currency = Currency
-                    });
+                {
+                    UserId = UserId,
+                    Currency = Currency
+                });
 
                 return comGroups.Select(t => new SelectListItem
-                        {
-                            Text = t.GroupName,
-                            Value = t.GroupID.ToString(),
-                            Selected = t.GroupID == GroupId
-                        });
+                {
+                    Text = t.GroupName,
+                    Value = t.GroupID.ToString(),
+                    Selected = t.GroupID == GroupId
+                });
             }
         }
     }

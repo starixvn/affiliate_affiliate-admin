@@ -63,11 +63,11 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>View model.</returns>
         [HttpPost]
-        public ActionResult ListNote()
+        public ActionResult ListNote(int affId)
         {
             return Json(new
             {
-                List = this._noteService.GetNoteList(new NoteListCriteria { AffId = SessionManager.CurrentSession.Affiliate.AffiliateId, LicenseeId = AppSettings.LicenseeID })
+                List = this._noteService.GetNoteList(new NoteListCriteria { AffId = affId, LicenseeId = AppSettings.LicenseeID })
             });
         }
 

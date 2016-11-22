@@ -22,6 +22,9 @@ var NOTE = (function ($) {
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Note/ListNote"),
                 type: 'post',
+                data: {
+                    affid: QueryString.getCurrentParam('affid')
+                },
                 beforeSend: function () {
                     $.blockUI();
                 },

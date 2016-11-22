@@ -281,7 +281,7 @@ var AFFINFO = (function ($) {
                 var param = {};
                 if (status === "Approved") {
                     param = {
-                        affID: affID,
+                        affIDs: affID,
                         usernames: userName,
                         currency: currency,
                         status: status
@@ -289,6 +289,7 @@ var AFFINFO = (function ($) {
                     parent.AFFILIATE.openDialogFrame("Affiliate/ChangeCommissionApprove?" + jQuery.param(param), MSG.AssignComGroup, { width: 550, height: 300 });  // jshint ignore:line
                 } else {
                     param = {
+                        affID: affID,
                         status: $("#slStatus").val()
                     };
                     parent.AFFMASTER.updateAffInfo(param, false);

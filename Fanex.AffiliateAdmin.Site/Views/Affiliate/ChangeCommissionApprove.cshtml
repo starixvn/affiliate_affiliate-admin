@@ -37,13 +37,14 @@
             <button type="button" id="btnSave" class="btn">@Lang.Save</button>
         </div>
     </div>
-
+    @Html.Hidden("AffId", Model.AffIds)
 }
 
 @section scripts{
     <script type="text/javascript">
         $('#btnSave').click(function () {
             parent.AFFMASTER.changeAffInfo({
+                affid: $("#AffId").val(),
                 groupid: $("#GroupId").val(),
                 status: $("#Status").val()
             });

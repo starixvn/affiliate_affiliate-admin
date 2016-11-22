@@ -25,7 +25,7 @@ var STATISTIC = (function ($) {
                 url: siteUrl,
                 type: 'post',
                 data: "SportCode=" + $("#CustomerPage").val() + "&LanguageCode=" + $("#BaseLanguage").val() +
-                    "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val(),
+                    "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() + "&affid=" + QueryString.getCurrentParam("AffId"),
                 beforeSend: function() {
                     $.blockUI();
                 },
@@ -42,6 +42,7 @@ var STATISTIC = (function ($) {
         },
         showReferrerDetail: function(domainReferrer) {
             var param = {
+                affid: QueryString.getCurrentParam("AffId"),
                 domain: domainReferrer,
                 fromDate: $("#FromDate").val(),
                 toDate: $("#ToDate").val()
@@ -50,6 +51,7 @@ var STATISTIC = (function ($) {
         },
         showLandingPageDetail: function(sportCode, languageCode) {
             var param = {
+                affid: QueryString.getCurrentParam("AffId"),
                 sportCode: sportCode,
                 fromDate: $("#FromDate").val(),
                 toDate: $("#ToDate").val(),

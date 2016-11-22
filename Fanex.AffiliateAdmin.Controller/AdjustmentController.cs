@@ -6,10 +6,8 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Linq;
     using System.Web;
     using System.Web.Mvc;
-    using DTO;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -55,7 +53,6 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Index(int affId, string currencyCode, string affName)
         {
-            var affiliateSession = SessionManager.CurrentSession.Affiliate;
             var adjustment = this._adjustmentService.GetAdjustmentBalance(new AdjustmentCriteria
             {
                 AffId = affId,

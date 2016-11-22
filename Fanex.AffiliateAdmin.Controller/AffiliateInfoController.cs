@@ -91,7 +91,6 @@ namespace Fanex.AffiliateAdmin.Controller
             if (!string.IsNullOrEmpty(userName))
             {
                 var session = SessionManager.CurrentSession;
-                session.Affiliate = null;
                 AffiliateInfoCookieHelper.DeleteAffiliateInfoCookie(HttpContext);
                 var model = _affiliateService.GetAffiliateGeneralInfo(new AffiliateInfoCriteria
                 {

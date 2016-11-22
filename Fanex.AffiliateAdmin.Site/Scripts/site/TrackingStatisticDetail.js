@@ -11,7 +11,8 @@ var STATISTICDETAIL = (function ($) {
                 type: 'post',
                 data: "SportCode=" + $("#SportCode").val() + "&LanguageCode=" + $("#LanguageCode").val() +
                     "&FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val() +
-                    "&Domain=" + $("#Domain").val() + "&PageIndex=" + (currentPage + 1) + "&PageSize=" + itemsPerPage,
+                    "&Domain=" + $("#Domain").val() + "&PageIndex=" + (currentPage + 1) + "&PageSize=" + itemsPerPage +
+                     "&affid=" + $("#AffId").val(),
                 beforeSend: function() {
                     $.blockUI();
                 },

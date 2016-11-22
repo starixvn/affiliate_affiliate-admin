@@ -13,6 +13,8 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class TrackingStatisticDetailViewModel
     {
+        public int AffId { get; set; }
+
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }

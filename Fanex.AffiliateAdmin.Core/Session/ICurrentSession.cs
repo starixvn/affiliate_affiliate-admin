@@ -19,8 +19,6 @@
 
         IEnumerable<Currency> CurrencyList { get; }
 
-        AffiliateSession Affiliate { get; set; }
-
         IEnumerable<FunctionMenu> FunctionMenus { get; }
 
         bool HasReadPolicy(string functionName);

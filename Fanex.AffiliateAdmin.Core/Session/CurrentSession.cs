@@ -10,7 +10,7 @@
     public class CurrentSession : ICurrentSession
     {
         private readonly IEnumerable<FunctionPolicy> _policies;
-        
+
         public CurrentSession(
             Account user,
             IEnumerable<FunctionPolicy> policies,
@@ -36,8 +36,6 @@
         public bool IsIT { get; set; }
 
         public IEnumerable<Currency> CurrencyList { get; private set; }
-
-        public AffiliateSession Affiliate { get; set; }
 
         public IEnumerable<FunctionMenu> FunctionMenus { get; private set; }
 

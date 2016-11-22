@@ -76,9 +76,9 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult AddNote()
+        public ActionResult AddNote(int affId)
         {
-            return View(new NoteViewModel());
+            return View(new NoteViewModel { AffId = affId });
         }
 
         /// <summary>
@@ -91,10 +91,8 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid && criteria.IsValid())
             {
-                var session = SessionManager.CurrentSession;
                 criteria.Ip = Remote.GetClientIPAddress();
-                criteria.AffId = session.Affiliate.AffiliateId;
-                criteria.UpdatedBy = session.CustID;
+                criteria.UpdatedBy = SessionManager.CurrentSession.CustID;
                 criteria.LicenseeId = AppSettings.LicenseeID;
 
                 this._noteService.InsertNote(criteria);
@@ -105,7 +103,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 };
             }
 
-            return AddNote();
+            return AddNote(criteria.AffId);
         }
 
         /// <summary>
@@ -114,16 +112,16 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="noteId">Note Input Id.</param>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult EditNote(int noteId)
+        public ActionResult EditNote(int affId, int noteId)
         {
             var note = this._noteService.GetNote(new NoteSelCriteria
             {
-                AffId = SessionManager.CurrentSession.Affiliate.AffiliateId,
+                AffId = affId,
                 NoteId = noteId,
                 LicenseeId = AppSettings.LicenseeID
             });
 
-            return View(new NoteViewModel { Content = note.Content, NoteId = noteId });
+            return View(new NoteViewModel { AffId = affId, Content = note.Content, NoteId = noteId });
         }
 
         /// <summary>
@@ -134,10 +132,8 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult EditNote(NoteUpdCriteria criteria)
         {
-            var session = SessionManager.CurrentSession;
             criteria.Ip = Remote.GetClientIPAddress();
-            criteria.AffId = session.Affiliate.AffiliateId;
-            criteria.UpdatedBy = session.CustID;
+            criteria.UpdatedBy = SessionManager.CurrentSession.CustID;
             criteria.LicenseeId = AppSettings.LicenseeID;
 
             this._noteService.UpdateNote(criteria);

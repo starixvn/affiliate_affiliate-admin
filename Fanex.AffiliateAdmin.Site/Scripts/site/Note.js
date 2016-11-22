@@ -40,11 +40,11 @@ var NOTE = (function ($) {
             });
         },
         addNote: function () {
-            AFFILIATE.openDialogFrame("Note/AddNote", MSG.AddNote, { width: 600, height: 220 });
+            AFFILIATE.openDialogFrame("Note/AddNote?affid=" + QueryString.getCurrentParam("AffId"), MSG.AddNote, { width: 600, height: 220 });
             return false;
         },
         editNote: function (noteId) {
-            AFFILIATE.openDialogFrame("Note/EditNote?noteId=" + noteId, MSG.EditNote, { width: 600, height: 220 });
+            AFFILIATE.openDialogFrame("Note/EditNote?noteId=" + noteId + "&affid=" + QueryString.getCurrentParam("AffId"), MSG.EditNote, { width: 600, height: 220 });
             return false;
         }
     };

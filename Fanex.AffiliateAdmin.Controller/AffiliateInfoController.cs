@@ -374,9 +374,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult UnLocked(AffiliateUnlockCriteria criteria)
         {
-            var session = SessionManager.CurrentSession;
-            criteria.UserId = session.CustID;
-            criteria.AffId = session.Affiliate.AffiliateId;
+            criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.Ip = Remote.GetClientIPAddress();
             criteria.LicenseeId = AppSettings.LicenseeID;
 

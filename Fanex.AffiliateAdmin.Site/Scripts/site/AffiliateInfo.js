@@ -184,6 +184,9 @@ var AFFINFO = (function ($) {
                 $.ajax({
                     url: AFFILIATE.getAbsoluteUrl("AffiliateInfo/UnLocked"),
                     type: 'post',
+                    data: {
+                        affId: $("#AffId").val()
+                    },
                     beforeSend: function () {
                         $.blockUI();
                     },

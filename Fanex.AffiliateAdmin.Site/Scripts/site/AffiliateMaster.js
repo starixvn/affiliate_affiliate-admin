@@ -40,8 +40,8 @@ var AFFMASTER = (function ($) {
         expContent: function () {
             $("#ifStatistic").attr("class", "statistic-exp");
         },
-        changePassword: function (userName) {
-            AFFILIATE.openDialogFrame("AffiliateInfo/ChangePassword", userName + ' - ' + window.Lang.ChangePassword, { width: 500, height: 280 });
+        changePassword: function (affId, affName) {
+            AFFILIATE.openDialogFrame("AffiliateInfo/ChangePassword?affid=" + affId + "&affname=" + affName, affName + ' - ' + window.Lang.ChangePassword, { width: 500, height: 280 });
         },
         changeAffInfo: function (param) {
             this.updateAffInfo(param, true);

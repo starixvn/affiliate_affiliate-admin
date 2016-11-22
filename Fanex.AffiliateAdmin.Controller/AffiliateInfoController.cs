@@ -140,15 +140,12 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="confirmPassword">Confirm password.</param>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult ChangePassword(string password, string confirmPassword)
+        public ActionResult ChangePassword(int affId, string affName)
         {
-            var affiliateSession = SessionManager.CurrentSession.Affiliate;
             return View(new PasswordViewModel
             {
-                CustId = affiliateSession.AffiliateId,
-                UserName = affiliateSession.Username,
-                Password = password,
-                ConfirmPass = confirmPassword
+                CustId = affId,
+                UserName = affName
             });
         }
 
@@ -162,11 +159,10 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid)
             {
-                var session = SessionManager.CurrentSession;
                 var criteria = new ChangeAffPasswordCriteria
                 {
-                    UserId = session.CustID,
-                    Id = session.Affiliate.AffiliateId,
+                    UserId = SessionManager.CurrentSession.CustID,
+                    Id = model.CustId,
                     ConfirmPassword = Cryptography.CfsEnCode(model.Password),
                     Password = null,
                     Ip = Remote.GetClientIPAddress()
@@ -177,7 +173,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.ResetPassSuccess);
             }
 
-            return ChangePassword(model.Password, model.ConfirmPass);
+            return ChangePassword(model.CustId, model.UserName);
         }
 
         /// <summary>

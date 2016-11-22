@@ -121,11 +121,7 @@ var AFFINFO = (function ($) {
 
 
             $('#spPassword').click(function () {
-                var username = $("#lnkUN").html();
-                if (username === undefined) {
-                    username = $("#spUN").html();
-                }
-                parent.AFFMASTER.changePassword(username);
+                parent.AFFMASTER.changePassword($("#AffId").val(), $("#Username").val());
             });
 
             $('#spEdit').click(function () {

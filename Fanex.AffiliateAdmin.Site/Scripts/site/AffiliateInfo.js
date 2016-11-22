@@ -52,7 +52,7 @@ var AFFINFO = (function ($) {
                     $.ajax({
                         url: AFFILIATE.getAbsoluteUrl("AffiliateInfo/ChangeLanguage"),
                         type: 'post',
-                        data: "PreferredLanguage=" + $(this).val(),
+                        data: "PreferredLanguage=" + $(this).val() + "&affid=" + $("#AffId").val(),
                         beforeSend: function () {
                             $.blockUI();
                         },
@@ -93,7 +93,7 @@ var AFFINFO = (function ($) {
                     $.ajax({
                         url: AFFILIATE.getAbsoluteUrl("AffiliateInfo/ChangeAffType"),
                         type: 'post',
-                        data: "AffType=" + $(this).val(),
+                        data: "AffType=" + $(this).val() + "&affid=" + $("#AffId").val(),
                         beforeSend: function () {
                             $.blockUI();
                         },

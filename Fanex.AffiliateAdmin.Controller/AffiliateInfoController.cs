@@ -356,12 +356,10 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ChangeLanguage(AffiliateUpdLanguageCriteria criteria)
         {
-            var session = SessionManager.CurrentSession;
             if (ModelState.IsValid)
             {
                 criteria.Ip = Remote.GetClientIPAddress();
-                criteria.AffId = session.Affiliate.AffiliateId;
-                criteria.UserId = session.CustID;
+                criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.LicenseeId = AppSettings.LicenseeID;
 
                 this._affiliateService.ChangeAffiliateLanguage(criteria);
@@ -373,7 +371,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
 
-            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.ErrLanguageSucc, session.Affiliate.Username)));
+            return Json(GetResultViewModel(criteria.ErrCode, Lang.ErrLanguageSucc));
         }
 
         /// <summary>
@@ -384,12 +382,10 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ChangeAffType(AffiliateUpdAffTypeCriteria criteria)
         {
-            var session = SessionManager.CurrentSession;
             if (ModelState.IsValid)
             {
                 criteria.Ip = Remote.GetClientIPAddress();
-                criteria.AffId = session.Affiliate.AffiliateId;
-                criteria.UserId = session.CustID;
+                criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.LicenseeId = AppSettings.LicenseeID;
 
                 this._affiliateService.ChangeAffType(criteria);
@@ -401,7 +397,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
 
-            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdateAffType, session.Affiliate.Username)));
+            return Json(GetResultViewModel(criteria.ErrCode, Lang.UpdateAffType));
         }
 
         /// <summary>

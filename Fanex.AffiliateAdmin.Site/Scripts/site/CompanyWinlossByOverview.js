@@ -532,7 +532,7 @@ var CompanyWinlossByOverview = (function ($) {
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("CompanyWinLossByOverview/GetData"),
                 type: 'post',
-                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
+                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage + "&affname=" + QueryString.getCurrentParam("AffName"),
                 beforeSend: function () {
                     $.blockUI();
                 },

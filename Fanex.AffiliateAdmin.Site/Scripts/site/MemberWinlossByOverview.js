@@ -430,7 +430,7 @@ var MemberWinLossByOverview = (function ($) {
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("MemberWinLossByOverview/GetData"),
                 type: 'post',
-                data: jQuery.param(submitOptions),
+                data: jQuery.param(submitOptions) + "&affname=" + QueryString.getCurrentParam("AffName"),
                 beforeSend: function () {
                     $.blockUI();
                 },

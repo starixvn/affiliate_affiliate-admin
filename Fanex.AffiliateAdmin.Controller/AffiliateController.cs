@@ -448,9 +448,7 @@
         [HttpGet]
         public ActionResult ChangeCommissionApprove(ChangeCommissionGroupViewModel model)
         {
-            var session = SessionManager.CurrentSession;
-            model.Currency = session.Affiliate.CurrencyID.ToString();
-            model.UserId = session.CustID;
+            model.UserId = SessionManager.CurrentSession.CustID;
             return View(model);
         }
 

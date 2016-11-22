@@ -64,12 +64,9 @@
         public ActionResult GetDataByAffiliate(AffiliateWinLossOverviewCriteria criteria)
         {
             const int GroupByMonth = 1;
-            var session = SessionManager.CurrentSession;
-            criteria.AffName = session.Affiliate.Username;
             criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
             criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
             criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
-            criteria.Currencies = session.Affiliate.CurrencyID.ToString();
             criteria.GroupBy = GroupByMonth;
 
             return GetData(criteria);

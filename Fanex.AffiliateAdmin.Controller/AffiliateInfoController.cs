@@ -486,8 +486,7 @@ namespace Fanex.AffiliateAdmin.Controller
             SessionManager.CurrentSession.Affiliate = new AffiliateSession
             {
                 AffiliateId = affiliateInfo.AffId,
-                Username = affiliateInfo.Username,
-                CurrencyID = affiliateInfo.Currency
+                Username = affiliateInfo.Username
             };
         }
 

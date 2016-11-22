@@ -315,7 +315,8 @@ var AffiliateWinLossByOverview = (function ($) {
             $.ajax({
                 url: getUrl(),
                 type: 'post',
-                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
+                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage +
+                    "&Currencies=" + QueryString.getCurrentParam("currencyid") + "&affname=" + QueryString.getCurrentParam("affname"),
                 beforeSend: function () {
                     $.blockUI();
                 },

@@ -31,6 +31,19 @@
         return index < 0 ? url : url.substring(0, index);
     };
 
+    function getParam(url, name) {
+        var queryString = getQueryString(url);
+        var args = parseQueryString(queryString);
+
+        for (var key in args) {
+            if (key.toLowerCase() === name.toLowerCase()) {
+                return args[key];
+            }
+        }
+
+        return null;
+    }
+
     return {
         getQueryString: getQueryString,
         getRawUrl: getRawUrl,
@@ -72,17 +85,9 @@
 
             return rawUrl + "?" + queryArray.join("&");
         },
-        getParam: function(url, name) {
-            var queryString = getQueryString(url);
-            var args = parseQueryString(queryString);
-
-            for (var key in args) {
-                if (key.toLowerCase() === name.toLowerCase()) {
-                    return args[key];
-                }
-            }
-
-            return null;
-        }
+        getCurrentParam: function(name) {
+            return getParam(window.location.href, name);
+        },
+        getParam: getParam
     };
 })(jQuery);

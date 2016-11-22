@@ -8,7 +8,5 @@
         public int AffiliateId { get; set; }
 
         public string Username { get; set; }
-        
-        public int CurrencyID { get; set; }
     }
 }

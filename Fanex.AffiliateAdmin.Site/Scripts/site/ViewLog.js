@@ -16,7 +16,7 @@ var LOG = (function ($) {
                 url: AFFILIATE.getAbsoluteUrl("ViewLog/ListLog"),
                 type: 'post',
                 data: "LogType=" + $("#LogType").val() + "&DateFrom=" + $("#DateFrom").val() +
-                    "&DateTo=" + $("#DateTo").val() + "&PageIndex=" + (currentPage + 1) + "&PageSize=" + itemsPerPage,
+                    "&DateTo=" + $("#DateTo").val() + "&PageIndex=" + (currentPage + 1) + "&PageSize=" + itemsPerPage + "&affid=" + QueryString.getCurrentParam("AffId"),
                 beforeSend: function() {
                     $.blockUI();
                 },

@@ -66,8 +66,6 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ListLog(ViewLogListCriteria criteria)
         {
-            criteria.AffId = SessionManager.CurrentSession.Affiliate.AffiliateId;
-
             var logList = this._viewLogService.GetViewLogList(criteria);
 
             return Json(new

@@ -163,7 +163,7 @@ var AFFINFO = (function ($) {
                 $.ajax({
                     url: AFFILIATE.getAbsoluteUrl("AffiliateInfo/ChangeOpenClose"),
                     type: 'post',
-                    data: "Closed=" + status,
+                    data: "Closed=" + status + "&affid=" + $("#AffId").val(),
                     beforeSend: function () {
                         $.blockUI();
                     },

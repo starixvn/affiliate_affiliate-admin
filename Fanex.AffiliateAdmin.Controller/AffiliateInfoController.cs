@@ -245,15 +245,13 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ChangeOpenClose(AffiliateUpdClosedStatusCriteria criteria)
         {
-            var session = SessionManager.CurrentSession;
-            criteria.UserId = session.CustID;
-            criteria.AffId = session.Affiliate.AffiliateId;
+            criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.Ip = Remote.GetClientIPAddress();
             criteria.LicenseeId = AppSettings.LicenseeID;
 
             this._affiliateService.ChangeAffiliateOpenClose(criteria);
 
-            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdateStaSucc, session.Affiliate.Username)));
+            return Json(GetResultViewModel(criteria.ErrCode, Lang.UpdateStaSucc));
         }
 
         /// <summary>

@@ -26,6 +26,8 @@ namespace Fanex.AffiliateAdmin.Models
 
         #region Properties
 
+        public int AffId { get; set; }
+
         public Affiliate Affiliate { get; set; }
 
         public IEnumerable<SelectListItem> Countries
@@ -35,16 +37,6 @@ namespace Fanex.AffiliateAdmin.Models
                 return _countries;
             }
         }
-
-        public decimal AffMinWire { get; set; }
-
-        public decimal AffMinNeteller { get; set; }
-
-        public decimal AffMinCheque { get; set; }
-
-        public decimal AffMinMoneyBookers { get; set; }
-
-        public decimal AffMinPlayer { get; set; }
 
         public IEnumerable<SelectListItem> PaymentMethodListItem
         {

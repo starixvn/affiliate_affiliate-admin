@@ -6,7 +6,5 @@
     public class AffiliateSession
     {
         public int AffiliateId { get; set; }
-
-        public string Username { get; set; }
     }
 }

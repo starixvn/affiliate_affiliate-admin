@@ -124,16 +124,7 @@
             {
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    var param = criteria.GetSpParams();
-
-                    var affiliate = objectDb.Query<Affiliate>(criteria.GetSpParams()).FirstOrDefault();
-
-                    criteria.AffMinCheque = Convert.ToDecimal(param["AFF_MinWire"]);
-                    criteria.AffMinNeteller = Convert.ToDecimal(param["Aff_MinNeteller"]);
-                    criteria.AffMinCheque = Convert.ToDecimal(param["AFF_MinCheque"]);
-                    criteria.AffMinMoneyBookers = Convert.ToDecimal(param["AFF_MinMoneybookers"]);
-                    criteria.AffMinPlayer = Convert.ToDecimal(param["AFF_MinPlayer"]);
-                    return affiliate;
+                    return objectDb.Query<Affiliate>(criteria.GetSpParams()).FirstOrDefault();
                 }
             }
 

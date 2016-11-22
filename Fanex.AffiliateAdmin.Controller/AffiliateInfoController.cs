@@ -8,7 +8,6 @@ namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Fanex.AffiliateAdmin.Core.Configurations;
@@ -284,19 +283,14 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 var criteria = new AffiliateSelCriteria
                 {
-                    AffId = SessionManager.CurrentSession.Affiliate.AffiliateId
+                    AffId = model.AffId
                 };
 
                 var affiliate = _affiliateService.GetAffiliateInfo(criteria);
 
                 model = new AffiliateEditViewModel
                 {
-                    Affiliate = affiliate,
-                    AffMinCheque = criteria.AffMinCheque,
-                    AffMinMoneyBookers = criteria.AffMinMoneyBookers,
-                    AffMinNeteller = criteria.AffMinNeteller,
-                    AffMinPlayer = criteria.AffMinPlayer,
-                    AffMinWire = criteria.AffMinWire
+                    Affiliate = affiliate
                 };
 
                 model.AddCountries(_countryService.GetAll(new CountryCriteria()));
@@ -317,17 +311,14 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult Edit(AffiliateUpdCriteria criteria)
         {
-            var model = CacheUserInput(criteria);
             criteria.HtmlEncode();
 
             if (ModelState.IsValid)
             {
                 var affiliate = _affiliateService.GetAffiliateInfo(new AffiliateSelCriteria { AffId = criteria.AffId });
 
-                var session = SessionManager.CurrentSession;
                 criteria.Ip = Remote.GetClientIPAddress();
-                criteria.AffId = session.Affiliate.AffiliateId;
-                criteria.UserId = session.CustID;
+                criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.PreferredPayment = criteria.PreferredPayment ?? affiliate.PreferredPayment;
                 criteria.LicenseeId = AppSettings.LicenseeID;
 
@@ -341,7 +332,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdAffSuccess, affiliate.Username));
             }
 
-            return this.Edit(model);
+            return this.Edit(new AffiliateEditViewModel { AffId = criteria.AffId });
         }
 
         /// <summary>
@@ -418,56 +409,6 @@ namespace Fanex.AffiliateAdmin.Controller
         #region Helpers
 
         /// <summary>
-        /// Cache user input when editing affiliate.
-        /// </summary>
-        /// <param name="criteria">Criteria input.</param>
-        /// <returns>Model Object.</returns>
-        private AffiliateEditViewModel CacheUserInput(AffiliateUpdCriteria criteria)
-        {
-            var affiliateSession = SessionManager.CurrentSession.Affiliate;
-            var selectCriteria = new AffiliateSelCriteria
-            {
-                AffId = affiliateSession.AffiliateId
-            };
-
-            var affiliate = _affiliateService.GetAffiliateInfo(selectCriteria);
-            affiliate.AffId = affiliateSession.AffiliateId;
-            affiliate.Username = affiliateSession.Username;
-            affiliate.FirstName = criteria.FirstName;
-            affiliate.LastName = criteria.LastName;
-            affiliate.Address = criteria.Address;
-            affiliate.City = criteria.City;
-            affiliate.State = criteria.State;
-            affiliate.Gender = criteria.Gender;
-            affiliate.Email = criteria.Email;
-            affiliate.Phone = criteria.Phone;
-            affiliate.MobilePhone = criteria.MobilePhone;
-            affiliate.Postal = criteria.Postal;
-            affiliate.CountryId = criteria.Country;
-            affiliate.Currency = short.Parse(criteria.Currency);
-            affiliate.MailOption = criteria.MailOption;
-            affiliate.SiteLink = criteria.SiteLink;
-            affiliate.MoreSiteURLs = criteria.MoreSiteUrls;
-            affiliate.PreferredPayment = criteria.PreferredPayment;
-            affiliate.Player_Username = criteria.PlayerUserName;
-
-            var model = new AffiliateEditViewModel
-            {
-                Affiliate = affiliate,
-                AffMinCheque = selectCriteria.AffMinCheque,
-                AffMinMoneyBookers = selectCriteria.AffMinMoneyBookers,
-                AffMinNeteller = selectCriteria.AffMinNeteller,
-                AffMinPlayer = selectCriteria.AffMinPlayer,
-                AffMinWire = selectCriteria.AffMinWire
-            };
-
-            model.AddCountries(_countryService.GetAll(new CountryCriteria()));
-
-            model.AddPaymentMethods(_systemSettingService.GetPaymentMethod(new PaymentMethodCriteria()));
-            return model;
-        }
-
-        /// <summary>
         /// Update Affiliate Session.
         /// </summary>
         /// <param name="affiliateInfo">Affiliate info.</param>
@@ -475,8 +416,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             SessionManager.CurrentSession.Affiliate = new AffiliateSession
             {
-                AffiliateId = affiliateInfo.AffId,
-                Username = affiliateInfo.Username
+                AffiliateId = affiliateInfo.AffId
             };
         }
 

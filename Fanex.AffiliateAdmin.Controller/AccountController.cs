@@ -2,7 +2,6 @@
 {
     using System;
     using System.Globalization;
-    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using System.Web.Security;
@@ -15,6 +14,7 @@
     using DTO;
     using Fanex.AffiliateAdmin.Core;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
     using Models;
     using ONEbook.UM.Filters;
     using Resources;
@@ -88,6 +88,7 @@
                         NetSessionId = Session.SessionID,
                         ServerId = user.ServerId
                     });
+                    AffiliateInfoCookieHelper.DeleteAffiliateInfoCookie(HttpContext);
                     FormsAuthentication.SetAuthCookie(username, true);
                     SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
                 }

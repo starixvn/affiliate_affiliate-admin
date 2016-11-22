@@ -26,6 +26,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Common;
+    using Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -93,6 +94,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 var session = SessionManager.CurrentSession;
                 session.Affiliate = null;
+                AffiliateInfoCookieHelper.DeleteAffiliateInfoCookie(HttpContext);
                 var model = _affiliateService.GetAffiliateGeneralInfo(new AffiliateInfoCriteria
                 {
                     Username = userName,
@@ -104,7 +106,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 if (model != null && model.AffiliateInfo != null)
                 {
-                    AddAffiliateInfoToCookie(userName);
+                    AffiliateInfoCookieHelper.AddAffiliateInfoToCookie(HttpContext, userName);
                     UpdateAffiliateSession(model.AffiliateInfo);
 
                     FormaterCurrency.SetDefaultCurrency(model.AffiliateInfo.CurrencyCode);
@@ -472,7 +474,6 @@ namespace Fanex.AffiliateAdmin.Controller
             model.AddCountries(_countryService.GetAll(new CountryCriteria()));
 
             model.AddPaymentMethods(_systemSettingService.GetPaymentMethod(new PaymentMethodCriteria()));
-
             return model;
         }
 
@@ -488,14 +489,6 @@ namespace Fanex.AffiliateAdmin.Controller
                 Username = affiliateInfo.Username,
                 CurrencyID = affiliateInfo.Currency
             };
-        }
-
-        private void AddAffiliateInfoToCookie(string userName)
-        {
-            var cookie = new HttpCookie("AffInfo");
-            cookie["AffName"] = userName;
-            cookie.Expires = DateTime.Now.AddDays(1d);
-            Response.Cookies.Add(cookie);
         }
 
         #endregion Helpers

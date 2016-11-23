@@ -1,6 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
+    using System.Web.Script.Serialization;
     using Core.Configurations;
     using Core.Constants;
     using DTO.Common;
@@ -42,6 +43,9 @@
             if (!string.IsNullOrWhiteSpace(token))
             {
                 var tokenInfo = _oneAuthenticationService.GetTokenInfo(token);
+                var serializer = new JavaScriptSerializer();
+                var logData = serializer.Serialize(tokenInfo);
+                Logging.LogService.Info(logData);
                 if (tokenInfo != null && VerifyToken(tokenInfo))
                 {
                     var siteNameInfo = _oneAuthenticationService.SingleLicenseeSiteName(tokenInfo.SiteName);

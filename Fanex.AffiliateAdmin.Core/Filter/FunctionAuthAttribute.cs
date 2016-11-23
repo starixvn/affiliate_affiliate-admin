@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
+    using Enumerations;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Resources;
 
@@ -41,7 +42,7 @@
                 }
             }
 
-            if (!hasPermission)
+            if (currentSession.ApplicationMode == AppMode.Self && !hasPermission)
             {
                 if (filterContext.HttpContext.Request.IsAjaxRequest())
                 {

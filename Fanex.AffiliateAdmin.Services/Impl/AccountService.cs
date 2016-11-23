@@ -215,9 +215,6 @@
                 CustID = user.CustID,
                 LicenseeId = licenseeId
             });
-            var serializer = new JavaScriptSerializer();
-            var policyString = serializer.Serialize(policies);
-            Logging.LogService.Info(policyString);
             var currencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
             {
                 UserId = user.CustID,
@@ -225,7 +222,9 @@
             }).ToList();
 
             var menuList = GetMenuList();
-            return new CurrentSession(user, policies, currencyList, menuList);
+            var session = new CurrentSession(user, policies, currencyList, menuList);
+            session.ApplicationMode = appMode;
+            return session;
         }
 
         private IEnumerable<FunctionPolicy> GetUserPolicyList(UserPolicyCriteria criteria)

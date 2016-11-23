@@ -2,7 +2,7 @@
 {
     using System.Configuration;
     using DTO.Common;
-    using Interface.Core;
+    using Interface;
     using ONEbook.Security;
 
     public class OneBookSecurityWrapper : IOneBookSecurityWrapper

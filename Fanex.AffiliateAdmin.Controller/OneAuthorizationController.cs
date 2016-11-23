@@ -8,7 +8,7 @@
     using ONEbook.UM.Services;
     using ONEbook.UM.Services.Impl;
     using Services.Impl.Core;
-    using Services.Interface.Core;
+    using Services.Interface;
 
     public class OneAuthorizationController : Controller
     {

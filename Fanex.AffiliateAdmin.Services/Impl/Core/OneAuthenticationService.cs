@@ -15,7 +15,7 @@
     using DTO;
     using DTO.Common;
     using Fanex.Caching;
-    using Interface.Core;
+    using Interface;
     using Newtonsoft.Json;
     using Resources;
 

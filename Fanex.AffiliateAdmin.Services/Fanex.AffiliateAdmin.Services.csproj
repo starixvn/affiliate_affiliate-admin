@@ -216,8 +216,8 @@
     <Compile Include="Impl\TrackingStatisticService.cs" />
     <Compile Include="Impl\TransTypeService.cs" />
     <Compile Include="Impl\ViewLogService.cs" />
-    <Compile Include="Interface\Core\IOneAuthenticationService.cs" />
-    <Compile Include="Interface\Core\IOneBookSecurityWrapper.cs" />
+    <Compile Include="Interface\IOneAuthenticationService.cs" />
+    <Compile Include="Interface\IOneBookSecurityWrapper.cs" />
     <Compile Include="Interface\IProductService.cs" />
     <Compile Include="Interface\IBetListService.cs" />
     <Compile Include="Interface\IMemberService.cs" />

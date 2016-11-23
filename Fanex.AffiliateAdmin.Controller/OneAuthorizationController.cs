@@ -37,7 +37,7 @@
                 return new RedirectResult("~/Notify");
             }
 
-            var returnUrl = "~/Utility/OneTokenRestriction?code=";
+            var returnUrl = "~/Notify/OneTokenRestriction?code=";
             var errMsg = string.Empty;
             if (!string.IsNullOrWhiteSpace(token))
             {

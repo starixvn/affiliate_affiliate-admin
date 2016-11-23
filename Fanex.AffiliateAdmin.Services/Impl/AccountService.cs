@@ -5,8 +5,10 @@
     using System.IO;
     using System.Linq;
     using System.Web.Hosting;
+    using System.Web.Script.Serialization;
     using Common;
     using Common.Helper;
+    using Core.Enumerations;
     using Core.Services;
     using Core.Services.Interface;
     using Core.Session;
@@ -206,13 +208,16 @@
             ExecuteOutput(criteria);
         }
 
-        public ICurrentSession CreateSession(Account user, int licenseeId)
+        public ICurrentSession CreateSession(Account user, int licenseeId, AppMode appMode = AppMode.Self)
         {
             var policies = GetUserPolicyList(new UserPolicyCriteria
             {
                 CustID = user.CustID,
                 LicenseeId = licenseeId
             });
+            var serializer = new JavaScriptSerializer();
+            var policyString = serializer.Serialize(policies);
+            Logging.LogService.Info(policyString);
             var currencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
             {
                 UserId = user.CustID,

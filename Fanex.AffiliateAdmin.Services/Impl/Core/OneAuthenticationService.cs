@@ -154,7 +154,10 @@
                 IsIT = false,
                 Username = tokenInfo.UserName
             };
-            SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
+            var session = _accountService.CreateSession(user, AppSettings.LicenseeID, AppMode.Parasitic);
+            session.VendorID = tokenInfo.VendorID;
+            session.VendorIdentityID = tokenInfo.UserID;
+            SessionManager.CurrentSession = session;
         }
 
         private IList<LicenseeSiteName> GetLiceseeSiteNameList(string filePath)

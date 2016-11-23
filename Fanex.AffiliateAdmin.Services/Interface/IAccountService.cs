@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Core.Enumerations;
     using Core.Session;
     using Criterias;
     using DTO;
@@ -42,6 +43,6 @@
 
         void AccountUpdatePassword(AccountPasswordCriteria criteria);
 
-        ICurrentSession CreateSession(Account user, int licenseeId);
+        ICurrentSession CreateSession(Account user, int licenseeId, AppMode appMode = AppMode.Self);
     }
 }

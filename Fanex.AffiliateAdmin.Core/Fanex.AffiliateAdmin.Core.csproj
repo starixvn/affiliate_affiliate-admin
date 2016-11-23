@@ -174,7 +174,9 @@
     <Compile Include="Configurations\AffiliateSettings.cs" />
     <Compile Include="Configurations\FunctionPolicyNames.cs" />
     <Compile Include="Configurations\GetAppSettings.cs" />
+    <Compile Include="Constants\OneAuthorizationErrorCode.cs" />
     <Compile Include="Crypt.cs" />
+    <Compile Include="Enumerations\AppMode.cs" />
     <Compile Include="Enumerations\CasinoGameType.cs" />
     <Compile Include="Enumerations\BetType.cs" />
     <Compile Include="Enumerations\ReportType.cs" />

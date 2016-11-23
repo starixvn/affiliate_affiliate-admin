@@ -4527,6 +4527,24 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Licensee is not existed.
+        /// </summary>
+        public static string LicenseeIsNotExisted {
+            get {
+                return ResourceManager.GetString("LicenseeIsNotExisted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licensee does not offered currency.
+        /// </summary>
+        public static string LicenseeNotOfferedCurrency {
+            get {
+                return ResourceManager.GetString("LicenseeNotOfferedCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You could only see report from .
         /// </summary>
         public static string LimitDate {
@@ -4541,6 +4559,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string LiveCasino {
             get {
                 return ResourceManager.GetString("LiveCasino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Access to this website is restricted. Please contact {0} for further enquiries..
+        /// </summary>
+        public static string LocationRestrictionMsg {
+            get {
+                return ResourceManager.GetString("LocationRestrictionMsg", resourceCulture);
             }
         }
         
@@ -5673,6 +5700,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string OldRequire {
             get {
                 return ResourceManager.GetString("OldRequire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Who let you here ?.
+        /// </summary>
+        public static string OneTokenRestrictionDefaultMsg {
+            get {
+                return ResourceManager.GetString("OneTokenRestrictionDefaultMsg", resourceCulture);
             }
         }
         
@@ -7177,6 +7213,24 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Token is invalid.
+        /// </summary>
+        public static string TokenIsInValid {
+            get {
+                return ResourceManager.GetString("TokenIsInValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token was expired.
+        /// </summary>
+        public static string TokenWasExpired {
+            get {
+                return ResourceManager.GetString("TokenWasExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total.
         /// </summary>
         public static string Total {
@@ -8172,6 +8226,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string Yesterday {
             get {
                 return ResourceManager.GetString("Yesterday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not allowed to access this page !!.
+        /// </summary>
+        public static string YouAreNotAllowToAccessThisPage {
+            get {
+                return ResourceManager.GetString("YouAreNotAllowToAccessThisPage", resourceCulture);
             }
         }
         

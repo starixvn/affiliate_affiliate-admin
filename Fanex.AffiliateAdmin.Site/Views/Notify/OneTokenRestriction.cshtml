@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = Lang.Error;
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bundles/notify")
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="header">
+    <a href="@Url.Content("~/Home")" class="no-underline">
+        <div class="logo">@Lang.SystemIsNotAvailable</div>
+    </a>
+    <div class="seperator">
+    </div>
+</div>
+<div class="content">
+        <div class="icon error">
+        </div>
+        <div class="text">
+            <ul class="notify-content">
+                <li><span>@ViewBag.Message </span></li>
+                <li class="end"><span>죄송합니다. 시스템을 현재 사용할 수 없습니다. 나중에 다시 시도하시거나 관리자에게 연락을 주시기 바랍니다 </span></li>                
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

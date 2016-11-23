@@ -3,9 +3,11 @@
     using System.Web.Mvc;
     using System.Web.Security;
     using System.Web.SessionState;
+    using Core.Constants;
     using Fanex.AffiliateAdmin.Core.Session;
     using ONEbook.UM.Services;
     using ONEbook.UM.Services.Impl;
+    using Resources;
 
     /// <summary>
     /// Notify Controller class.
@@ -46,6 +48,13 @@
             return RedirectPermanent(Url.Content("~/"));
         }
 
+        public ActionResult OneTokenRestriction(string code)
+        {
+            ViewBag.Message = GetMessageRestriction(code);
+
+            return View();
+        }
+
         /// <summary>
         /// Error page.
         /// </summary>
@@ -71,6 +80,33 @@
         public ActionResult AccessDenied()
         {
             return View();
+        }
+
+        private static string GetMessageRestriction(string code)
+        {
+            switch (code)
+            {
+                case OneAuthorizationErrorCode.TokenWasExpired:
+                    return Lang.TokenWasExpired;
+
+                case OneAuthorizationErrorCode.LicenseeIsNotExisted:
+                    return Lang.LicenseeIsNotExisted;
+
+                case OneAuthorizationErrorCode.TokenIsInValid:
+                    return Lang.TokenIsInValid;
+
+                case OneAuthorizationErrorCode.LocationRestrictionMsg:
+                    return string.Format(Lang.LocationRestrictionMsg, Lang.Administrator);
+
+                case OneAuthorizationErrorCode.LicenseeNotOfferedCurrency:
+                    return Lang.LicenseeNotOfferedCurrency;
+
+                case OneAuthorizationErrorCode.YouAreNotAllowToAccessThisPage:
+                    return Lang.YouAreNotAllowToAccessThisPage;
+
+                default:
+                    return Lang.OneTokenRestrictionDefaultMsg;
+            }
         }
 
         private void LogOutWhenUMTime()

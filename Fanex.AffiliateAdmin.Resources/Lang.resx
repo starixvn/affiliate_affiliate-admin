@@ -2852,4 +2852,25 @@
     <value>Bet List - AG Casino - TicketDetail</value>
     <comment>#54368</comment>
   </data>
+  <data name="LicenseeIsNotExisted" xml:space="preserve">
+    <value>Licensee is not existed</value>
+  </data>
+  <data name="LicenseeNotOfferedCurrency" xml:space="preserve">
+    <value>Licensee does not offered currency</value>
+  </data>
+  <data name="LocationRestrictionMsg" xml:space="preserve">
+    <value>Direct Access to this website is restricted. Please contact {0} for further enquiries.</value>
+  </data>
+  <data name="OneTokenRestrictionDefaultMsg" xml:space="preserve">
+    <value>Who let you here ?</value>
+  </data>
+  <data name="TokenIsInValid" xml:space="preserve">
+    <value>Token is invalid</value>
+  </data>
+  <data name="TokenWasExpired" xml:space="preserve">
+    <value>Token was expired</value>
+  </data>
+  <data name="YouAreNotAllowToAccessThisPage" xml:space="preserve">
+    <value>You are not allowed to access this page !!</value>
+  </data>
 </root>

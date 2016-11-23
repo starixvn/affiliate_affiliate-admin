@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Enumerations;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
 
@@ -26,6 +27,12 @@
 
             FunctionMenus = menus;
         }
+
+        public AppMode ApplicationMode { get; set; }
+
+        public string VendorID { get; set; }
+
+        public string VendorIdentityID { get; set; }
 
         public int CustID { get; set; }
 

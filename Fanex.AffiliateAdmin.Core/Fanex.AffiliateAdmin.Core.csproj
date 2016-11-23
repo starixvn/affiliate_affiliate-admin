@@ -171,6 +171,7 @@
     <Compile Include="..\Fanex.AffiliateAdmin.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Filter\AuthorizeRestrictionAttribute.cs" />
     <Compile Include="Configurations\AffiliateSettings.cs" />
     <Compile Include="Configurations\FunctionPolicyNames.cs" />
     <Compile Include="Configurations\GetAppSettings.cs" />

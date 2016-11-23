@@ -15,7 +15,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
-    using RestSharp.Extensions.MonoHttp;
+    using Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -56,12 +56,13 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult Index(string currencyCode)
+        public ActionResult Index()
         {
+            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             var session = SessionManager.CurrentSession;
             var baseCurrencyList = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0", Text = currencyCode }
+                new SelectListItem { Value = "0", Text = affiliate.CurrencyCode }
             };
 
             var transTypeList = _transTypeService.GetTransTypes(new TransTypeCriteria());

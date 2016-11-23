@@ -7,6 +7,7 @@
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// Report Controller.
@@ -64,6 +65,9 @@
         public ActionResult GetDataByAffiliate(AffiliateWinLossOverviewCriteria criteria)
         {
             const int GroupByMonth = 1;
+            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
+            criteria.AffName = affiliate.Username;
+            criteria.Currencies = affiliate.Currency.ToString();
             criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
             criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
             criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));

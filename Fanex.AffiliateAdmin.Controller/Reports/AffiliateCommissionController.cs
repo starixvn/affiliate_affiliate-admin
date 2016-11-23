@@ -9,6 +9,7 @@
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// Affiliate Commission Controller.
@@ -72,9 +73,12 @@
         public ActionResult GetDataByAffiliate(AffiliateCommissionCriteria criteria)
         {
             const int GroupByMonth = 1;
+            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
+            criteria.AffName = affiliate.Username;
             criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
             criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
             criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
+            criteria.Currencies = affiliate.Currency.ToString();
             criteria.GroupBy = GroupByMonth;
 
             return GetData(criteria);

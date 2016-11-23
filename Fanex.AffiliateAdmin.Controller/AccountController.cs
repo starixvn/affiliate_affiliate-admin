@@ -88,7 +88,7 @@
                         NetSessionId = Session.SessionID,
                         ServerId = user.ServerId
                     });
-                    AffiliateInfoCookieHelper.DeleteAffiliateInfoCookie(HttpContext);
+                    AffiliateInfoCookieHelper.DeleteAffiliate(HttpContext);
                     FormsAuthentication.SetAuthCookie(username, true);
                     SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
                 }

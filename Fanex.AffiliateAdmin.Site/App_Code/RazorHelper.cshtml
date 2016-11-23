@@ -8,7 +8,7 @@
 @using Fanex.AffiliateAdmin.Core.Configurations
 @helper ListSubmenu(IEnumerable<Menu> list, int selectedMenuIndex, string activeMenu = "Home", int selectedSubMenuIndex = -1)
     {
-        var allowedParams = new string[] { "affid", "affname", "status", "currencyid", "currencycode" };
+        var allowedParams = new string[] { "affid", "affname", "status" };
         var queryStringBuilder = new StringBuilder();
         foreach (string keyName in Request.QueryString.Keys)
         {

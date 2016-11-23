@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -51,20 +52,21 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult Index(int affId, string currencyCode, string affName)
+        public ActionResult Index(int affId)
         {
+            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             var adjustment = this._adjustmentService.GetAdjustmentBalance(new AdjustmentCriteria
             {
                 AffId = affId,
-                Currency = currencyCode
+                Currency = affiliate.CurrencyCode
             });
             return View(new AdjustmentViewModel
             {
                 AffId = affId,
-                AffName = HttpUtility.UrlDecode(affName),
+                AffName = affiliate.Username,
                 Adjustment = adjustment,
                 Description = string.Empty,
-                CurrencyCode = currencyCode
+                CurrencyCode = affiliate.CurrencyCode
             });
         }
 
@@ -93,7 +95,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             ModelState.Clear();
 
-            return this.Index(model.AffId, model.CurrencyCode, model.AffName);
+            return this.Index(model.AffId);
         }
     }
 }

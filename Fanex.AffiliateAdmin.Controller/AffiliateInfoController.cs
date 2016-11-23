@@ -68,10 +68,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Index(string userName)
         {
-            var cookie = Request.Cookies["AffInfo"];
-            if (string.IsNullOrEmpty(userName) && cookie != null)
+            if (string.IsNullOrEmpty(userName))
             {
-                userName = cookie["AffName"];
+                userName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Username;
             }
 
             return View(new AffiliateMasterViewModel
@@ -91,7 +90,7 @@ namespace Fanex.AffiliateAdmin.Controller
             if (!string.IsNullOrEmpty(userName))
             {
                 var session = SessionManager.CurrentSession;
-                AffiliateInfoCookieHelper.DeleteAffiliateInfoCookie(HttpContext);
+                AffiliateInfoCookieHelper.DeleteAffiliate(HttpContext);
                 var model = _affiliateService.GetAffiliateGeneralInfo(new AffiliateInfoCriteria
                 {
                     Username = userName,
@@ -103,7 +102,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 if (model != null && model.AffiliateInfo != null)
                 {
-                    AffiliateInfoCookieHelper.AddAffiliateInfoToCookie(HttpContext, userName);
+                    AffiliateInfoCookieHelper.SaveAffiliate(HttpContext, model.AffiliateInfo);
 
                     FormaterCurrency.SetDefaultCurrency(model.AffiliateInfo.CurrencyCode);
 

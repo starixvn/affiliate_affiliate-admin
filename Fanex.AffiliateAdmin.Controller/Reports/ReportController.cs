@@ -15,6 +15,7 @@
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// Report Controller.
@@ -74,7 +75,7 @@
         /// <param name="model">Company View Model.</param>
         /// <returns>Company win loss page.</returns>
         [HttpGet]
-        public ActionResult CompanyWinlossByAffiliate(string currencyCode)
+        public ActionResult CompanyWinlossByAffiliate(CompanyWLByAffiliateViewModel model)
         {
             var serializer = new JavaScriptSerializer();
 
@@ -83,15 +84,14 @@
                 Id = x.ProductID,
                 Name = x.ProductName
             }));
-
+            var currencyCode = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).CurrencyCode;
             ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(currencyCode);
 
             var baseCurrencyList = GetBaseCurrencyList(currencyCode);
 
-            var viewModel = new CompanyWLByAffiliateViewModel();
-            viewModel.AddBaseCurrencyList(baseCurrencyList);
+            model.AddBaseCurrencyList(baseCurrencyList);
 
-            return View("CompanyWinlossByAffiliate", viewModel);
+            return View("CompanyWinlossByAffiliate", model);
         }
 
         /// <summary>
@@ -132,11 +132,11 @@
         /// <param name="model">Model input.</param>
         /// <returns>Member win loss page.</returns>
         [HttpGet]
-        public ActionResult MemberWinlossByAffiliate(string currencyCode)
+        public ActionResult MemberWinlossByAffiliate(MemberWinlossByAffiliateViewModel model)
         {
+            var currencyCode = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).CurrencyCode;
             var baseCurrencyList = GetBaseCurrencyList(currencyCode);
 
-            var model = new MemberWinlossByAffiliateViewModel();
             model.AddBaseCurrencyList(baseCurrencyList);
 
             var serializer = new JavaScriptSerializer();
@@ -233,7 +233,7 @@
         /// <param name="model">Model Input.</param>
         /// <returns>Commission By Affiliate Result.</returns>
         [HttpGet]
-        public ActionResult AffiliateWinLossByAffiliate(string currencyCode)
+        public ActionResult AffiliateWinLossByAffiliate(AffiliateWLByAffiliateViewModel model)
         {
             var serializer = new JavaScriptSerializer();
 
@@ -245,12 +245,12 @@
 
             ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
 
+            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             var baseCurrencyList = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0",  Text = currencyCode }
+                new SelectListItem { Value = "0",  Text = affiliate.CurrencyCode }
             };
 
-            var model = new AffiliateWLByAffiliateViewModel();
             model.AddBaseCurrencyList(baseCurrencyList);
 
             return View(model);
@@ -303,7 +303,7 @@
         /// <param name="model">Model Input.</param>
         /// <returns>Commission By Affiliate Result.</returns>
         [HttpGet]
-        public ActionResult AffiliateCommissionByAffiliate(string currencyCode)
+        public ActionResult AffiliateCommissionByAffiliate(AffiliateCommissionByAffiliateViewModel model)
         {
             var serializer = new JavaScriptSerializer();
 
@@ -315,12 +315,12 @@
 
             ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
 
+            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             var baseCurrencyList = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0",  Text = currencyCode }
+                new SelectListItem { Value = "0",  Text = affiliate.CurrencyCode }
             };
 
-            var model = new AffiliateCommissionByAffiliateViewModel();
             model.AddBaseCurrencyList(baseCurrencyList);
 
             return View(model);

@@ -467,8 +467,7 @@ var AffiliateCommissionByProduct = (function ($) {
             $.ajax({
                 url: getUrl(),
                 type: 'post',
-                data: jQuery.param(submitOptions) + "&pageCurrent=" + (currentPage + 1) + "&pageSize=" + itemsPerPage +
-                    "&Currencies=" + QueryString.getCurrentParam("currencyid") + "&affname=" + QueryString.getCurrentParam("affname"),
+                data: jQuery.param(submitOptions) + "&pageCurrent=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 beforeSend: function () {
                     $.blockUI();
                 },

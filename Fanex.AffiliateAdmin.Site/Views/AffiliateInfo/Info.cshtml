@@ -193,9 +193,7 @@
             parent.AFFMASTER.loadPages({
                 AffId: @Model.AffiliateInfo.AffId,
                 Status: "@Model.AffiliateInfo.Status",
-                AffName: "@HttpUtility.UrlEncode(Model.AffiliateInfo.Username)",
-                CurrencyId: "@Model.AffiliateInfo.Currency",
-                CurrencyCode: "@Model.AffiliateInfo.CurrencyCode"
+                AffName: "@HttpUtility.UrlEncode(Model.AffiliateInfo.Username)"
             });
         </script>
     }

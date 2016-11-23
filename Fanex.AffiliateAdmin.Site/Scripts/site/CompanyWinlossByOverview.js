@@ -288,7 +288,7 @@ var CompanyWinlossByOverview = (function ($) {
                 request.FromDate = fromDate;
                 request.ToDate = toDate;
 
-                var url = playerWinlossUrl + "?" + jQuery.param(request);
+                var url = playerWinlossUrl + "?" + jQuery.param(request) + "&" + QueryString.getQueryString(window.location.href);
 
                 return "<a href='{0}' target='_blank'>".format(url) + cell.Value + "</a>";
             }

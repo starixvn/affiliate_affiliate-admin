@@ -14,7 +14,7 @@
         {
             if(allowedParams.Contains(keyName.ToLower()))
             {
-                queryStringBuilder.AppendFormat("{0}={1}&", keyName, Request.QueryString[keyName]);
+                queryStringBuilder.AppendFormat("{0}={1}&", keyName, Request.QueryString.GetValues(keyName).FirstOrDefault());
             }
         }
         var queryString = queryStringBuilder.ToString().TrimEnd('&');

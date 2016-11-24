@@ -141,7 +141,7 @@
 
             var sessionValidation = currentSession != null && currentSession.CustID > 0 &&
                 !string.IsNullOrEmpty(currentSession.VendorID) && !string.IsNullOrEmpty(currentSession.VendorIdentityID)
-                && currentSession.IsIT && currentSession.ApplicationMode == AppMode.Parasitic;
+                && !currentSession.IsIT && currentSession.ApplicationMode == AppMode.Parasitic;
 
             return identityValidation && sessionValidation;
         }

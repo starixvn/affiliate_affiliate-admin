@@ -33,6 +33,7 @@
             //// Register my types, for instance:
             ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
 
+            BundleTable.EnableOptimizations = AppSettings.GetValue("DisableOptimizations") != "1";
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             log4net.Config.XmlConfigurator.Configure();

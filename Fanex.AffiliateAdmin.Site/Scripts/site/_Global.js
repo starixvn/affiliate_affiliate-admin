@@ -566,7 +566,7 @@ $(function () {
         }
     });
 
-    if ($(".ic-open-window") && parent.AFFMASTER === undefined) {
+    if ($(".ic-open-window") && window === window.top) {
         $(".ic-open-window").hide();
     }
 

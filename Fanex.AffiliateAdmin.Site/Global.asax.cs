@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Web;
+    using System.Web.Helpers;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
@@ -38,6 +39,8 @@
 
             log4net.Config.XmlConfigurator.Configure();
             log4net.LogManager.GetLogger("GeneralLog").Info("Start");
+
+            AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
 
             if (AppSettings.Environment.IndexOf("Local", StringComparison.OrdinalIgnoreCase) < 0 &&
                 !AppSettings.Environment.Equals("SIT", StringComparison.OrdinalIgnoreCase))

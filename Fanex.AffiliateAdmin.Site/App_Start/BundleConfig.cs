@@ -187,8 +187,7 @@
                                   "~/Scripts/libraries/head.js",
                                   "~/Scripts/site/Query.string.js",
                                   "~/Scripts/site/Paging.js",
-                                  "~/Scripts/site/_Global.js",
-                                  "~/Scripts/site/RecheckIn.js"));
+                                  "~/Scripts/site/_Global.js"));
         }
 
         /// <summary>

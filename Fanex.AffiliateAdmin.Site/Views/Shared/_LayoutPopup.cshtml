@@ -1,4 +1,7 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Configurations
+@{
+    var currentSession = Fanex.AffiliateAdmin.Core.Session.SessionManager.CurrentSession;
+}
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -11,13 +14,17 @@
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()
 </head>
 <body class="popup">
-    @Html.Hidden("IsIT", SessionManager.CurrentSession.IsIT ? 1 : 0)
+    @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
     <div class="container-fluid">
         <div class="box-insite">
             @RenderBody()
         </div>
     </div>
     @Scripts.Render("~/bundles/js")
+    @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
+    {
+        @Scripts.Render("~/Scripts/site/RecheckIn.js")
+    }
     @Scripts.Render("~/scripts/closedialog")
 
     <script type="text/ecmascript">

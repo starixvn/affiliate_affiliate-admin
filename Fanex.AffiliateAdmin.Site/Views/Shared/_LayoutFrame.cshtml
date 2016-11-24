@@ -14,7 +14,7 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-    @Html.Hidden("IsIT", SessionManager.CurrentSession.IsIT ? 1 : 0)
+    @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
     <div class="container" style="overflow-x: hidden">
         <div class="row-fulid">
             <div class="span12 content w-none">
@@ -36,7 +36,10 @@
     </div>
 
     @Scripts.Render("~/bundles/js")
-
+    @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
+    {
+        @Scripts.Render("~/Scripts/site/RecheckIn.js")
+    }
     <script type="text/javascript">
         $.unblockUI();
 

@@ -20,7 +20,11 @@
         <div class="ic-open-window" title="@Lang.FullScreen"></div>
     </div>
 }
-
+@if (ViewBag.Result != null)
+{
+    var result = (ResultViewModel)ViewBag.Result;
+    <input type="hidden" id="ResultCode" value="@result.ErrorCode" data-message="@result.Message" />
+}
 <form method="post" action='@Url.Content("~/Adjustment?" + Request.QueryString)' class = "iframe-content">
       @Html.ValidationSummary()  <div class="row-fluid">
         <div class="span12">
@@ -66,22 +70,4 @@
 </form>
 @section scripts{
     @Scripts.Render("~/scripts/adjustment")
-
-    @if (ViewBag.Result != null)
-    {
-        var result = (ResultViewModel)ViewBag.Result;
-        if (result.ErrorCode == 0)
-        {
-            <script type="text/javascript">
-                AFFILIATE.showUpdateStatus(@(result.ErrorCode), "@result.Message", top.AFFMASTER.reloadAffInfo);
-                ADJUST.hideMsg();
-            </script>
-        }
-        else
-        {
-            <script type="text/javascript">
-                AFFILIATE.showUpdateStatus(@(result.ErrorCode), "@result.Message", ADJUST.hideMsg);
-            </script>
-        }
-    }
 }

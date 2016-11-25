@@ -56,10 +56,11 @@ var AffiliateList = (function ($) {
 
             // resize browser
             $("#gridId").resize(function () {
-                if ($("#gridId").width() > parent.AFFILIATE.MIN_CONTENT_WIDTH) {
+                
+                if ($("#gridId").width() >  AFFILIATE.MIN_CONTENT_WIDTH) {
                     $(".search-panel").width($("#gridId").width());
                 } else {
-                    $(".search-panel").width(parent.AFFILIATE.MIN_CONTENT_WIDTH);
+                    $(".search-panel").width(AFFILIATE.MIN_CONTENT_WIDTH);
                 }
             });
 

@@ -77,7 +77,8 @@
                         </td>
                         <td class="col-right">
                             @{
-                                var firstLanguageName = AppSettings.AffLanguages.Where(l => l.LanguageID == Model.AffiliateInfo.PreferredLanguage).FirstOrDefault().LanguageName;
+                                var language = AppSettings.AffLanguages.Where(l => l.LanguageID == Model.AffiliateInfo.PreferredLanguage).FirstOrDefault();
+                                var firstLanguageName = language == null? "INVALID!" : language.LanguageName;
                             }
                             @if (Model.HasHostAffiliatePolicy)
                             {

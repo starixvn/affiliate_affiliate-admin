@@ -66,7 +66,7 @@ var AffType = (function ($) {
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, parent.AffType.ReRenderAfterPaged);
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, AffType.ReRenderAfterPaged);
                             }
                         }
                     });

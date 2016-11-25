@@ -77,7 +77,7 @@ var Country = (function ($) {
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, parent.Country.ReRenderAfterPaged);
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, Country.ReRenderAfterPaged);
                             }
                         }
                     });

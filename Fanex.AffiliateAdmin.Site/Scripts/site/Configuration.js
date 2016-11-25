@@ -76,7 +76,7 @@ var Configuration = (function ($) {
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, parent.Configuration.ReRenderAfterPaged);
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, Configuration.ReRenderAfterPaged);
                             }
                         }
                     });

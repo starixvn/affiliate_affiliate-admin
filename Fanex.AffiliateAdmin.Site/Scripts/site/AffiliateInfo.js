@@ -7,7 +7,7 @@ var AFFINFO = (function ($) {
         init: function () {
             $('#btnAdd').click(function () {
                 $("#AffiliateInfo_Username").val($.trim($("#AffiliateInfo_Username").val()));
-                window.top.location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo") + "?Username=" + $("#AffiliateInfo_Username").val();
+                parent.location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo") + "?Username=" + $("#AffiliateInfo_Username").val();
                 return false;
             });
 

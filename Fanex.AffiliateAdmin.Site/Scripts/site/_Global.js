@@ -14,6 +14,10 @@ var AFFILIATE = (function ($) {
     }
     var _isIT = false;
 
+    function getParentWindow() {
+        return $("body").hasClass("popup") ? parent : window;
+    }
+
     return {
         pageSizes: [20, 50, 100],
         DATE_FORMAT: "MM/DD/YYYY",
@@ -26,12 +30,12 @@ var AFFILIATE = (function ($) {
         scrollTop: function () {
             $('html, body').animate({ scrollTop: $('.container-flsuid').offset().top }, 400);
         },
-        init: function(){
+        init: function () {
             _isIT = $("#IsIT").val() === '1';
 
             $(document).ajaxError(function (event, xhr) {
                 if (AFFILIATE.isUndermaintenance(xhr)) {
-                    top.location.href = AFFILIATE.getAbsoluteUrl("Notify");
+                    window.location.href = AFFILIATE.getAbsoluteUrl("Notify");
                 }
             });
         },
@@ -179,8 +183,11 @@ var AFFILIATE = (function ($) {
             }
             return AFFILIATE.openDialog(frame, title, options);
         },
-        closeDialog: function (target) {
-            target.dialog("close");
+        closeDialog: function () {
+            var parentWindow = getParentWindow();
+            if (parentWindow.AFFILIATE.currentOpenDialog) {
+                parentWindow.AFFILIATE.currentOpenDialog.dialog("close");
+            }
         },
         resizeDialog: function (width, height) {
             if (AFFILIATE.currentOpenDialog && AFFILIATE.currentOpenDialog.dialog("isOpen")) {
@@ -305,7 +312,7 @@ var AFFILIATE = (function ($) {
                             Value: (indexNumberColumn === j) ? rIndex + 1 : record[colName],
                             CustomCellRender: AFFILIATE.getCustomCellRender(rIndex, rowData, col)
                         });
-                    } ());
+                    }());
                 }
 
                 bodyRows.push({
@@ -365,22 +372,17 @@ var AFFILIATE = (function ($) {
                 AFFILIATE.showSuccessMsg(msg);
 
                 if (callback) {
-                    callback(0, parent.$("#itemperpage").val()); //Refresh parent page
+                    callback(0, getParentWindow().$("#itemperpage").val()); //Refresh parent page
                 }
 
-                setTimeout(AFFILIATE.refreshParent, timeout || 3000);
+                setTimeout(AFFILIATE.closeDialog, timeout || 3000);
             }
             else {
                 AFFILIATE.showErrorMsg(msg);
 
                 if (callback) {
-                    callback(0, parent.$("#itemperpage").val());
+                    callback(0, getParentWindow().$("#itemperpage").val());
                 }
-            }
-        },
-        refreshParent: function () {
-            if (parent.AFFILIATE.currentOpenDialog) {
-                parent.AFFILIATE.currentOpenDialog.dialog("close");
             }
         },
         closeDialogNotMsg: function (errCode, msg) {
@@ -388,9 +390,7 @@ var AFFILIATE = (function ($) {
                 AFFILIATE.showErrorMsg(msg);
             }
             else {
-                if (parent.AFFILIATE.currentOpenDialog) {
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-                }
+                AFFILIATE.closeDialog();
             }
         },
         ChangePassword: function () {
@@ -509,8 +509,7 @@ var AFFILIATE = (function ($) {
         PreHandleAjaxResult: function (data) {
             if (typeof data === "object") {
                 if (data.hasOwnProperty("Error") && data.hasOwnProperty("LogOnUrl")) {
-                    window.top.location.href = AFFILIATE.getAbsoluteUrl(data.LogOnUrl);
-
+                    getParentWindow().location.href = AFFILIATE.getAbsoluteUrl(data.LogOnUrl);
                 }
             }
         },
@@ -560,8 +559,9 @@ $(function () {
         if (parent.AFFMASTER !== undefined) {
             var submitOptions = $('form').serializeObject2();
             submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
-            var url = location.href + "?" + $.param(submitOptions);
-
+            var url = location.href;
+            url += url.indexOf('?') < 0 ? '?' : '&';
+            url += $.param(submitOptions);
             parent.AFFMASTER.openNewWindow(url);
         }
     });
@@ -654,7 +654,7 @@ if (!String.prototype.format) {
             return typeof args[number] !== 'undefined'
         ? args[number]
         : match
-      ;
+            ;
         });
     };
 }
@@ -708,11 +708,10 @@ Array.prototype.removeItem = function (propertyName, propertyValue) {
     "use strict";
     var i = 0;
     while (i < this.length) {
-        if(this[i][propertyName] == propertyValue) {
+        if (this[i][propertyName] == propertyValue) {
             this.splice(i, 1);
         }
-        else
-        {
+        else {
             i++;
         }
     }
@@ -774,7 +773,7 @@ $.fn.createDropdownchecklist = function () {
             uncheckAllText: window.Lang.Uncheck,
             selectedText: "# " + window.Lang.Selected
         };
-        
+
         if ($el.hasClass('single-select')) {
             if ($el.hasClass('width-140')) {
                 $el.multiselect($.extend({

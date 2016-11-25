@@ -129,29 +129,5 @@
             session.VendorIdentityID = tokenInfo.UserID;
             SessionManager.CurrentSession = session;
         }
-
-        private IList<LicenseeSiteName> GetLiceseeSiteNameList(string filePath)
-        {
-            const string LicenseeSiteNameCacheKey = "OneAuthenticationService_LicenseeSiteNameCacheKey";
-            const int CacheTimeoutMinute = 30;
-            var cacheService = GetMemCacheService();
-
-            var result = cacheService.Get<IList<LicenseeSiteName>>(LicenseeSiteNameCacheKey);
-
-            if (result == null || !result.Any())
-            {
-                var temp = GetStringFromFile(filePath);
-                if (!string.IsNullOrEmpty(temp))
-                {
-                    result = JsonConvert.DeserializeObject<IList<LicenseeSiteName>>(temp);
-                    if (result.Any())
-                    {
-                        cacheService.Set(LicenseeSiteNameCacheKey, result, DateTime.Now.AddMinutes(CacheTimeoutMinute));
-                    }
-                }
-            }
-
-            return result;
-        }
     }
 }

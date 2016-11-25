@@ -5,9 +5,7 @@
 
     public interface IOneAuthenticationService
     {
-        LicenseeSiteName SingleLicenseeSiteName(string siteName);
-
-        ResultInfo SignIn(HttpContextBase currentContext, int licenseeId, OneAuthenticationToken tokenInfo);
+        ResultInfo SignIn(HttpContextBase currentContext, OneAuthenticationToken tokenInfo);
 
         OneAuthenticationToken GetTokenInfo(string token);
     }

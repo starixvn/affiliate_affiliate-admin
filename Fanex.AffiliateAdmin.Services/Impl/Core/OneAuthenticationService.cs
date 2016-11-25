@@ -9,7 +9,6 @@
     using System.Web.Security;
     using AffiliateAdmin.Core;
     using AffiliateAdmin.Core.Configurations;
-    using AffiliateAdmin.Core.Constants;
     using AffiliateAdmin.Core.Enumerations;
     using AffiliateAdmin.Core.Session;
     using DTO;
@@ -17,7 +16,6 @@
     using Fanex.Caching;
     using Interface;
     using Newtonsoft.Json;
-    using Resources;
 
     public class OneAuthenticationService : IOneAuthenticationService
     {
@@ -52,14 +50,14 @@
             }
         }
 
-        public ResultInfo SignIn(HttpContextBase currentContext, int licenseeId, OneAuthenticationToken tokenInfo)
+        public ResultInfo SignIn(HttpContextBase currentContext, OneAuthenticationToken tokenInfo)
         {
             var language = MapLanguages.Where(i => i.Value.Equals(tokenInfo.Language))
                        .Select(i => i.Key).DefaultIfEmpty<string>("en-Us").FirstOrDefault();
             var currentSession = SessionManager.CurrentSession;
             if (IsAuthenticated(currentContext, currentSession))
             {
-                var isSameSession = VerifySessionWithToken(currentSession, tokenInfo, licenseeId);
+                var isSameSession = VerifySessionWithToken(currentSession, tokenInfo);
                 if (isSameSession)
                 {
                     if (!language.Equals(AppSession.Language))
@@ -76,25 +74,7 @@
                 }
             }
 
-            return SetAuthorize(licenseeId, tokenInfo);
-        }
-
-        public LicenseeSiteName SingleLicenseeSiteName(string siteName)
-        {
-            const string SiteNameFilePath = "~/App_Data/LicenseeSiteName.json";
-            var defaultValue = new LicenseeSiteName();
-            if (!string.IsNullOrWhiteSpace(siteName))
-            {
-                var items = GetLiceseeSiteNameList(SiteNameFilePath);
-
-                if (items != null)
-                {
-                    var item = items.FirstOrDefault(i => i.SiteName.Equals(siteName, StringComparison.OrdinalIgnoreCase));
-                    return item != null ? item : defaultValue;
-                }
-            }
-
-            return defaultValue;
+            return SetAuthorize(tokenInfo);
         }
 
         public OneAuthenticationToken GetTokenInfo(string token)
@@ -103,17 +83,8 @@
             return oneBookService.Authenticate(token);
         }
 
-        protected internal virtual ResultInfo SetAuthorize(int licenseeId, OneAuthenticationToken tokenInfo)
+        protected internal virtual ResultInfo SetAuthorize(OneAuthenticationToken tokenInfo)
         {
-            if (AppSettings.LicenseeID != licenseeId)
-            {
-                return new ResultInfo
-                {
-                    Code = int.Parse(OneAuthorizationErrorCode.LicenseeIsNotExisted),
-                    Message = Lang.LicenseeIsNotExisted
-                };
-            }
-
             CreateSession(tokenInfo);
             var authName = $"{tokenInfo.UserName}_{tokenInfo.VendorID}_{tokenInfo.SiteName}";
             FormsAuthentication.SetAuthCookie(authName, false);
@@ -127,11 +98,10 @@
         [CLSCompliant(false)]
         protected internal virtual ICache GetMemCacheService() => CacheService.CreateInstance(CacheType.MemoryCache);
 
-        private static bool VerifySessionWithToken(ICurrentSession currentSession, OneAuthenticationToken tokenInfo, int licenseeId)
+        private static bool VerifySessionWithToken(ICurrentSession currentSession, OneAuthenticationToken tokenInfo)
         {
             return currentSession.CustID == tokenInfo.UserSEQ && currentSession.Username == tokenInfo.UserName
-                && currentSession.VendorID == tokenInfo.VendorID && currentSession.VendorIdentityID == tokenInfo.UserID
-                && AppSettings.LicenseeID == licenseeId;
+                && currentSession.VendorID == tokenInfo.VendorID && currentSession.VendorIdentityID == tokenInfo.UserID;
         }
 
         private static bool IsAuthenticated(HttpContextBase currentContext, ICurrentSession currentSession)

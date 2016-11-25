@@ -43,19 +43,15 @@
             if (!string.IsNullOrWhiteSpace(token))
             {
                 var tokenInfo = _oneAuthenticationService.GetTokenInfo(token);
-                var serializer = new JavaScriptSerializer();
-                var logData = serializer.Serialize(tokenInfo);
-                Logging.LogService.Info(logData);
                 if (tokenInfo != null && VerifyToken(tokenInfo))
                 {
-                    var siteNameInfo = _oneAuthenticationService.SingleLicenseeSiteName(tokenInfo.SiteName);
-                    if (siteNameInfo.LicenseeID <= 0)
+                    if (!tokenInfo.SiteName.Equals(AppSettings.SystemName, System.StringComparison.OrdinalIgnoreCase))
                     {
                         returnUrl += OneAuthorizationErrorCode.LicenseeIsNotExisted;
                     }
                     else
                     {
-                        var result = _oneAuthenticationService.SignIn(HttpContext, siteNameInfo.LicenseeID, tokenInfo);
+                        var result = _oneAuthenticationService.SignIn(HttpContext, tokenInfo);
                         returnUrl = result.IsSuccessful ? "~/" + result.ExtendedData : returnUrl += result.Code;
                     }
                 }

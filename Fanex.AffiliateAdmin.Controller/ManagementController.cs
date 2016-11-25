@@ -2,9 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Web.Mvc;
     using System.Xml;
+    using Core.Enumerations;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -21,6 +21,7 @@
     /// TODO: Update summary.
     /// </summary>
     [FunctionAuth(Function = FunctionPolicyNames.UserControl)]
+    [AuthorizeRestriction(AppMode.Self)]
     public class ManagementController : BaseController
     {
         #region Static Fields
@@ -170,9 +171,9 @@
         public ActionResult AddUser(string password)
         {
             return View(new AccountViewModel
-                {
-                    Password = password
-                });
+            {
+                Password = password
+            });
         }
 
         /// <summary>
@@ -189,14 +190,14 @@
             {
                 var salt = Cryptography.CreateSalt();
                 var criteria = new AccountInsCriteria
-                    {
-                        UserId = SessionManager.CurrentSession.CustID,
-                        Ip = Remote.GetClientIPAddress(),
-                        Password = Cryptography.CreateHash(model.Password, salt),
-                        CustId = model.CustID,
-                        UserName = model.Username,
-                        UserSalt = salt
-                    };
+                {
+                    UserId = SessionManager.CurrentSession.CustID,
+                    Ip = Remote.GetClientIPAddress(),
+                    Password = Cryptography.CreateHash(model.Password, salt),
+                    CustId = model.CustID,
+                    UserName = model.Username,
+                    UserSalt = salt
+                };
 
                 _accountService.AccountInsert(criteria);
 
@@ -359,12 +360,12 @@
         public ActionResult ChangePassword(int custId, string userName, string password, string confirmPassword)
         {
             return View(new PasswordViewModel
-                {
-                    CustId = custId,
-                    UserName = userName,
-                    Password = password,
-                    ConfirmPass = confirmPassword
-                });
+            {
+                CustId = custId,
+                UserName = userName,
+                Password = password,
+                ConfirmPass = confirmPassword
+            });
         }
 
         /// <summary>
@@ -381,14 +382,14 @@
             {
                 var salt = Cryptography.CreateSalt();
                 var criteria = new ChangePasswordCriteria
-                    {
-                        CustId = model.CustId,
-                        UserName = model.UserName,
-                        UserId = SessionManager.CurrentSession.CustID,
-                        Ip = Remote.GetClientIPAddress(),
-                        Password = Cryptography.CreateHash(model.Password, salt),
-                        UserSalt = salt
-                    };
+                {
+                    CustId = model.CustId,
+                    UserName = model.UserName,
+                    UserId = SessionManager.CurrentSession.CustID,
+                    Ip = Remote.GetClientIPAddress(),
+                    Password = Cryptography.CreateHash(model.Password, salt),
+                    UserSalt = salt
+                };
 
                 _accountService.AccountUpdatePassword(criteria);
 
@@ -407,8 +408,8 @@
         [HttpGet]
         public ActionResult UserInGroup(int groupId)
         {
-            ViewBag.CanUpdateData = 
-                SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl) && 
+            ViewBag.CanUpdateData =
+                SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.UserControl) &&
                 _groupService.IsItGroup(groupId);
             return View(new UserManagementViewModel { GroupId = groupId });
         }
@@ -458,13 +459,13 @@
             if (ModelState.IsValid)
             {
                 var criteria = new GroupInfoInsCriteria
-                    {
-                        GroupName = model.GroupName,
-                        GroupDesc = model.Description,
-                        UserId = SessionManager.CurrentSession.CustID,
-                        Ip = Remote.GetClientIPAddress(),
-                        LicenseeId = AppSettings.LicenseeID
-                    };
+                {
+                    GroupName = model.GroupName,
+                    GroupDesc = model.Description,
+                    UserId = SessionManager.CurrentSession.CustID,
+                    Ip = Remote.GetClientIPAddress(),
+                    LicenseeId = AppSettings.LicenseeID
+                };
 
                 _groupService.GroupInsert(criteria);
 

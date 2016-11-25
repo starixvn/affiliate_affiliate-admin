@@ -217,32 +217,32 @@
     <Compile Include="Impl\TrackingStatisticService.cs" />
     <Compile Include="Impl\TransTypeService.cs" />
     <Compile Include="Impl\ViewLogService.cs" />
-    <Compile Include="Interface\IOneAuthenticationService.cs" />
-    <Compile Include="Interface\IOneBookSecurityWrapper.cs" />
-    <Compile Include="Interface\IProductService.cs" />
-    <Compile Include="Interface\IBetListService.cs" />
-    <Compile Include="Interface\IMemberService.cs" />
-    <Compile Include="Interface\IReportService.cs" />
-    <Compile Include="Interface\IAdjustmentService.cs" />
-    <Compile Include="Interface\ICommGroupService.cs" />
-    <Compile Include="Interface\ICountryService.cs" />
-    <Compile Include="Interface\IExchangeRateService.cs" />
-    <Compile Include="Interface\IDomainService.cs" />
-    <Compile Include="Interface\IAffiliateService.cs" />
-    <Compile Include="Interface\IEmailHistoryService.cs" />
-    <Compile Include="Interface\IGroupService.cs" />
-    <Compile Include="Interface\IHomeService.cs" />
-    <Compile Include="Interface\IAccountService.cs" />
-    <Compile Include="Interface\IMediaService.cs" />
-    <Compile Include="Interface\IMessageService.cs" />
-    <Compile Include="Interface\INoteService.cs" />
-    <Compile Include="Interface\IPaymentService.cs" />
-    <Compile Include="Interface\IPolicyService.cs" />
-    <Compile Include="Interface\IPermissionCurrencyService.cs" />
-    <Compile Include="Interface\IStatementService.cs" />
-    <Compile Include="Interface\ITrackingStatisticService.cs" />
-    <Compile Include="Interface\ITransTypeService.cs" />
-    <Compile Include="Interface\IViewLogService.cs" />
+    <Compile Include="Interfaces\IOneAuthenticationService.cs" />
+    <Compile Include="Interfaces\IOneBookSecurityWrapper.cs" />
+    <Compile Include="Interfaces\IProductService.cs" />
+    <Compile Include="Interfaces\IBetListService.cs" />
+    <Compile Include="Interfaces\IMemberService.cs" />
+    <Compile Include="Interfaces\IReportService.cs" />
+    <Compile Include="Interfaces\IAdjustmentService.cs" />
+    <Compile Include="Interfaces\ICommGroupService.cs" />
+    <Compile Include="Interfaces\ICountryService.cs" />
+    <Compile Include="Interfaces\IExchangeRateService.cs" />
+    <Compile Include="Interfaces\IDomainService.cs" />
+    <Compile Include="Interfaces\IAffiliateService.cs" />
+    <Compile Include="Interfaces\IEmailHistoryService.cs" />
+    <Compile Include="Interfaces\IGroupService.cs" />
+    <Compile Include="Interfaces\IHomeService.cs" />
+    <Compile Include="Interfaces\IAccountService.cs" />
+    <Compile Include="Interfaces\IMediaService.cs" />
+    <Compile Include="Interfaces\IMessageService.cs" />
+    <Compile Include="Interfaces\INoteService.cs" />
+    <Compile Include="Interfaces\IPaymentService.cs" />
+    <Compile Include="Interfaces\IPolicyService.cs" />
+    <Compile Include="Interfaces\IPermissionCurrencyService.cs" />
+    <Compile Include="Interfaces\IStatementService.cs" />
+    <Compile Include="Interfaces\ITrackingStatisticService.cs" />
+    <Compile Include="Interfaces\ITransTypeService.cs" />
+    <Compile Include="Interfaces\IViewLogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\MemberSiteService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -331,7 +331,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

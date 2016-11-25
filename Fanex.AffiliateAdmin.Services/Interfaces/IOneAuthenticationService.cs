@@ -1,4 +1,4 @@
-﻿namespace Fanex.AffiliateAdmin.Services.Interface
+﻿namespace Fanex.AffiliateAdmin.Services.Interfaces
 {
     using System.Web;
     using Fanex.AffiliateAdmin.DTO.Common;

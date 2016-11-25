@@ -14,7 +14,7 @@
     using DTO;
     using DTO.Common;
     using Fanex.Caching;
-    using Interface;
+    using Interfaces;
     using Newtonsoft.Json;
 
     public class OneAuthenticationService : IOneAuthenticationService

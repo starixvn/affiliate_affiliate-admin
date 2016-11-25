@@ -145,17 +145,17 @@
     <Compile Include="Imp\MemberWinLoss\MemberWinLossOverviewDataAccess.cs" />
     <Compile Include="Imp\MessageDataAccess.cs" />
     <Compile Include="Imp\ReportDataAccess.cs" />
-    <Compile Include="Interface\IBetListDataAccess.cs" />
-    <Compile Include="Interface\IAffiliateCommissionDataAccess.cs" />
-    <Compile Include="Interface\IMemberWinLossByProductDataAccess.cs" />
-    <Compile Include="Interface\IMemberWinLossOverviewDataAccess.cs" />
-    <Compile Include="Interface\IAffiliateWinLossByProductDataAccess.cs" />
-    <Compile Include="Interface\IAffiliateWinLossOverviewDataAccess.cs" />
-    <Compile Include="Interface\ICompanyWinLossOverviewDataAccess.cs" />
-    <Compile Include="Interface\ICompanyWinLossByProductDataAccess.cs" />
-    <Compile Include="Interface\IAffiliateDataAccess.cs" />
-    <Compile Include="Interface\IAccountDataAccess.cs" />
-    <Compile Include="Interface\IMessageDataAccess.cs" />
+    <Compile Include="Interfaces\IBetListDataAccess.cs" />
+    <Compile Include="Interfaces\IAffiliateCommissionDataAccess.cs" />
+    <Compile Include="Interfaces\IMemberWinLossByProductDataAccess.cs" />
+    <Compile Include="Interfaces\IMemberWinLossOverviewDataAccess.cs" />
+    <Compile Include="Interfaces\IAffiliateWinLossByProductDataAccess.cs" />
+    <Compile Include="Interfaces\IAffiliateWinLossOverviewDataAccess.cs" />
+    <Compile Include="Interfaces\ICompanyWinLossOverviewDataAccess.cs" />
+    <Compile Include="Interfaces\ICompanyWinLossByProductDataAccess.cs" />
+    <Compile Include="Interfaces\IAffiliateDataAccess.cs" />
+    <Compile Include="Interfaces\IAccountDataAccess.cs" />
+    <Compile Include="Interfaces\IMessageDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -212,7 +212,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

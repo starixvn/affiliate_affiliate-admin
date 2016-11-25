@@ -210,19 +210,27 @@
 
         public ICurrentSession CreateSession(Account user, int licenseeId, AppMode appMode = AppMode.Self)
         {
-            var policies = GetUserPolicyList(new UserPolicyCriteria
+            IEnumerable<FunctionPolicy> policies;
+
+            if (appMode == AppMode.Self)
             {
-                CustID = user.CustID,
-                LicenseeId = licenseeId
-            });
+                policies = GetUserPolicyList(new UserPolicyCriteria
+                {
+                    CustID = user.CustID,
+                    LicenseeId = licenseeId
+                });
+            }
+            else
+            {
+                policies = GetSystemFunctions();
+            }
+
             var currencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
             {
                 UserId = user.CustID,
                 LicenseeId = licenseeId
             }).ToList();
-
-            var menuList = GetMenuList();
-            var session = new CurrentSession(user, policies, currencyList, menuList);
+            var session = new CurrentSession(user, policies, currencyList);
             session.ApplicationMode = appMode;
             return session;
         }
@@ -233,17 +241,17 @@
             return GetData<FunctionPolicy>(criteria);
         }
 
-        private IEnumerable<FunctionMenu> GetMenuList()
+        private IEnumerable<FunctionPolicy> GetSystemFunctions()
         {
             const string FunctionFilePath = "~/App_Data/SystemFunction.json";
 
             var fileContent = File.ReadAllText(HostingEnvironment.MapPath(FunctionFilePath));
             if (!string.IsNullOrWhiteSpace(fileContent))
             {
-                return JsonConvert.DeserializeObject<IList<FunctionMenu>>(fileContent);
+                return JsonConvert.DeserializeObject<IList<FunctionPolicy>>(fileContent);
             }
 
-            return new List<FunctionMenu>();
+            return new List<FunctionPolicy>();
         }
     }
 }

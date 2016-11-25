@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Configurations;
     using Enumerations;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
@@ -15,8 +16,7 @@
         public CurrentSession(
             Account user,
             IEnumerable<FunctionPolicy> policies,
-            IEnumerable<Currency> currencies,
-            IEnumerable<FunctionMenu> menus)
+            IEnumerable<Currency> currencies)
         {
             this.CustID = user.CustID;
             this.Username = user.Username;
@@ -24,8 +24,7 @@
             this.IsIT = user.IsIT;
             this._policies = policies ?? new List<FunctionPolicy>();
             this.CurrencyList = currencies;
-
-            FunctionMenus = menus;
+            this.FunctionMenus = CreateFunctionMenus();
         }
 
         public AppMode ApplicationMode { get; set; }
@@ -54,6 +53,56 @@
         public bool HasHostPolicy(string functionName)
         {
             return this._policies.Any(i => i.FuncName == functionName && i.CanHost);
+        }
+
+        private IEnumerable<FunctionMenu> CreateFunctionMenus()
+        {
+            var menuList = new List<FunctionMenu>();
+            menuList.Add(new FunctionMenu()
+            {
+                Name = "Home",
+                Link = "~/"
+            });
+
+            if (_policies.Any() == false)
+            {
+                return menuList;
+            }
+
+            if (IsIT || CurrencyList.Any())
+            {
+                AddFunctionMenu(menuList, FunctionPolicyNames.Affiliate, "AffiliateInfo", "~/AffiliateInfo");
+                AddFunctionMenu(menuList, FunctionPolicyNames.Affiliate, "AffManagement", "~/Affiliate");
+                AddFunctionMenu(menuList, FunctionPolicyNames.Payment, "Payment", "~/Payment");
+                AddFunctionMenu(menuList, FunctionPolicyNames.CommissionGroup, "CommissionGroup", "~/CommGroup");
+                AddFunctionMenu(menuList, FunctionPolicyNames.AffReport, "Reports", "~/Report");
+            }
+
+            AddFunctionMenu(menuList, FunctionPolicyNames.Media, "MarketingTools", "~/Media/BannerList");
+            AddFunctionMenu(menuList, FunctionPolicyNames.HotNews, "Message", "~/Message");
+
+            if (IsIT || CurrencyList.Any())
+            {
+                AddFunctionMenu(menuList, FunctionPolicyNames.AffExchangeRate, "Currency", "~/Exchange");
+            }
+
+            AddFunctionMenu(menuList, FunctionPolicyNames.SystemSettings, "Configurations", "~/Configuration");
+            AddFunctionMenu(menuList, FunctionPolicyNames.Domain, "Domain", "~/Domain/AffDomain");
+            AddFunctionMenu(menuList, FunctionPolicyNames.UserControl, "UserManagement", "~/Management/Users");
+
+            return menuList;
+        }
+
+        private void AddFunctionMenu(List<FunctionMenu> menus, string functionName, string name, string link)
+        {
+            if (HasReadPolicy(functionName))
+            {
+                menus.Add(new FunctionMenu()
+                {
+                    Name = name,
+                    Link = link
+                });
+            }
         }
     }
 }

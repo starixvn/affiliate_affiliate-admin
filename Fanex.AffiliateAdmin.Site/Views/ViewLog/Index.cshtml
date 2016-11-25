@@ -14,7 +14,7 @@ affiliate-info
     var now = SystemTimeService.GetSystemDateTime();
 }
 @section submenu{
-    @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 7)
+    @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 7, isIncludeQueryString: true)
     <div class="line line-statement">
         <div class="ic-open-window" title="@Lang.FullScreen"></div>
         <div class="ic-reload" title="@Lang.RefreshPage"></div>

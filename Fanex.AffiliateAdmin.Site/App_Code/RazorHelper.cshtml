@@ -6,24 +6,28 @@
 @using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Enumerations
 @using Fanex.AffiliateAdmin.Core.Configurations
-@helper ListSubmenu(IEnumerable<Menu> list, int selectedMenuIndex, string activeMenu = "Home", int selectedSubMenuIndex = -1)
+@helper ListSubmenu(IEnumerable<Menu> list, int selectedMenuIndex, string activeMenu = "Home", int selectedSubMenuIndex = -1, bool isIncludeQueryString = false)
+    {
+    var queryString = string.Empty;
+    if (isIncludeQueryString)
     {
         var allowedParams = new string[] { "affid", "affname", "status" };
         var queryStringBuilder = new StringBuilder();
         foreach (string keyName in Request.QueryString.Keys)
         {
-            if(allowedParams.Contains(keyName.ToLower()))
+            if (allowedParams.Contains(keyName.ToLower()))
             {
                 queryStringBuilder.AppendFormat("{0}={1}&", keyName, Request.QueryString.GetValues(keyName).FirstOrDefault());
             }
         }
-        var queryString = queryStringBuilder.ToString().TrimEnd('&');
-        var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
-        var menuLength = list.Count();
-        if (selectedMenuIndex >= menuLength)
-        {
-            selectedMenuIndex = menuLength - 1;
-        }
+        queryString = "?" + queryStringBuilder.ToString().TrimEnd('&');
+    }
+    var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
+    var menuLength = list.Count();
+    if (selectedMenuIndex >= menuLength)
+    {
+        selectedMenuIndex = menuLength - 1;
+    }
     <ul>
         @for (var i = 0; i < menuLength; i++)
         {
@@ -32,21 +36,21 @@
 
             if (item.SubMenu == null || item.SubMenu.Count == 0)
             {
-            <li @(new HtmlString(activeText))><a href="@(url.Content(item.Link + "?" + queryString))"><span>@item.Text</span></a>
+            <li @(new HtmlString(activeText))><a href="@(url.Content(item.Link + queryString))"><span>@item.Text</span></a>
             </li>
             }
             else
             {
                 var link = (i == selectedMenuIndex && selectedSubMenuIndex != -1) ? item.SubMenu[selectedSubMenuIndex].Link : item.Link;
                 
-            <li @(new HtmlString(activeText))><a href="@(url.Content(link + "?" + queryString))"><span>@item.Text</span></a>
+            <li @(new HtmlString(activeText))><a href="@(url.Content(link + queryString))"><span>@item.Text</span></a>
                 <ul class="inner-submenu">
                     @for (int j = 0; j < item.SubMenu.Count; j++)
                     {
                         activeText = (j == selectedSubMenuIndex ? "class=\"current\"" : string.Empty);
                         var ele = item.SubMenu[j];
                             
-                        <li @(new HtmlString(activeText))><a href="@(url.Content(ele.Link + "?" + queryString))">&raquo; @ele.Text</a>
+                        <li @(new HtmlString(activeText))><a href="@(url.Content(ele.Link + queryString))">&raquo; @ele.Text</a>
                         </li>
                     }
                 </ul>

@@ -12,11 +12,11 @@
 @section submenu{
     @if(String.Equals(Convert.ToString(ViewBag.Status), "approved", StringComparison.OrdinalIgnoreCase))
     {
-         @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 2)
+         @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 2, isIncludeQueryString: true)
     }
     else
     {
-        @RazorHelper.ListSubmenu(SubMenu.AffiliateNotApprove, 1)
+        @RazorHelper.ListSubmenu(SubMenu.AffiliateNotApprove, 1, isIncludeQueryString: true)
     }
     <div class="line line-statement">
         <div class="ic-open-window" title="@Lang.FullScreen"></div>

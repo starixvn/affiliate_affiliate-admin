@@ -22,7 +22,7 @@ var AffiliateWinLossReport = (function ($) {
                     groupid: $(this).data("groupid"),
                     date: $(this).data("date")
                 };
-                parent.AFFILIATE.openDialogFrame("CommGroup/ViewSetting?"
+                AFFILIATE.openDialogFrame("CommGroup/ViewSetting?"
                     + jQuery.param(param), MSG.CommGroupSettingFor.replace("{0}", '"'
                     + $(this).html() + '" ' + $(this).data("date")), { width: 900, height: 450 });
             });

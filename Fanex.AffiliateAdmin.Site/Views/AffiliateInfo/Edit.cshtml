@@ -14,11 +14,11 @@ affiliate-info
 @section submenu{
     @if (Model.Affiliate.Status.Equals("approved", StringComparison.CurrentCultureIgnoreCase))
     {
-        @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 1)
+        @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 1, isIncludeQueryString: true)
     }
     else
     {
-        @RazorHelper.ListSubmenu(SubMenu.AffiliateNotApprove, 0)
+        @RazorHelper.ListSubmenu(SubMenu.AffiliateNotApprove, 0, isIncludeQueryString: true)
     }
     <div class="line line-statement">
         <div class="ic-open-window" title="@Lang.FullScreen">

@@ -21,7 +21,7 @@
 }
 
 @section submenu{
-    @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 5, string.Empty, 0)
+    @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 5, string.Empty, 0, isIncludeQueryString: true)
     <div class="line line-statement">
         <div class="ic-open-window" title="@Lang.FullScreen"></div>
         <div class="ic-reload" title="@Lang.RefreshPage"></div>

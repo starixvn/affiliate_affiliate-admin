@@ -56,7 +56,6 @@ var AffiliateList = (function ($) {
 
             // resize browser
             $("#gridId").resize(function () {
-                
                 if ($("#gridId").width() >  AFFILIATE.MIN_CONTENT_WIDTH) {
                     $(".search-panel").width($("#gridId").width());
                 } else {

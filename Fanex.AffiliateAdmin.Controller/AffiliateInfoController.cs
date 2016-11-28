@@ -249,18 +249,18 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="criteria">Affiliate statistic criteria.</param>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult Statistic(int affId, string affName, string currencyCode)
+        public ActionResult Statistic(AffiliateStatisticCriteria criteria)
         {
-            var criteria = new AffiliateStatisticCriteria();
-            criteria.AffId = affId;
+            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
+            criteria.AffId = affiliate.AffId;
             criteria.MonthDate = criteria.GetFullDate(SystemTimeService.GetSystemDateTime());
 
             var model = _affiliateService.GetAffiliateStatistic(criteria);
             model.FullDateTime = criteria.GetFullDate(SystemTimeService.GetSystemDateTime());
-            model.AffId = affId;
-            model.AffName = affName;
+            model.AffId = affiliate.AffId;
+            model.AffName = affiliate.Username;
             model.BaseCurrency = AppSettings.BaseExchange.Code;
-            model.AffCurrency = currencyCode;
+            model.AffCurrency = affiliate.CurrencyCode;
 
             return View(model);
         }
@@ -277,7 +277,7 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 var criteria = new AffiliateSelCriteria
                 {
-                    AffId = model.AffId
+                    AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId
                 };
 
                 var affiliate = _affiliateService.GetAffiliateInfo(criteria);
@@ -309,6 +309,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             if (ModelState.IsValid)
             {
+                criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
                 var affiliate = _affiliateService.GetAffiliateInfo(new AffiliateSelCriteria { AffId = criteria.AffId });
 
                 criteria.Ip = Remote.GetClientIPAddress();
@@ -321,7 +322,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdAffSuccess, affiliate.Username));
             }
 
-            return this.Edit(new AffiliateEditViewModel { AffId = criteria.AffId });
+            return this.Edit(new AffiliateEditViewModel());
         }
 
         /// <summary>

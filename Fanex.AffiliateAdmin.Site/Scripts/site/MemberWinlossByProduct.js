@@ -502,7 +502,7 @@ var MemberWinLossByProduct = (function ($) {
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("MemberWinLossByProduct/GetData"),
                 type: 'post',
-                data: jQuery.param(submitOptions) + "&affname=" + QueryString.getCurrentParam("AffName"),
+                data: jQuery.param(submitOptions),
                 beforeSend: function () {
                     $.blockUI();
                 },

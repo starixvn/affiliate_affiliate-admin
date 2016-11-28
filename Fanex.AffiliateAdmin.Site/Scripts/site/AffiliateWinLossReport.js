@@ -41,7 +41,7 @@ var AffiliateWinLossReport = (function ($) {
                 var lastDateObj = toDateObj.add("months", 1).add("days", -1);
                 params["ToDate"] = lastDateObj.format("DD MMM YYYY");
 
-                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/MemberWinlossByAffiliate?" : "Report/MemberWinloss?") + jQuery.param(params) + "&" + QueryString.getQueryString(window.location.href);
+                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/MemberWinlossByAffiliate?" : "Report/MemberWinloss?") + jQuery.param(params);
                 window.open(url, "_blank");
             });
 
@@ -60,7 +60,7 @@ var AffiliateWinLossReport = (function ($) {
 
                 params["FromDate"] = firstDay;
                 params["ToDate"] = lastDay;
-                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/MemberWinlossByAffiliate?" : "Report/MemberWinloss?") + jQuery.param(params) + "&" + QueryString.getQueryString(window.location.href);
+                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/MemberWinlossByAffiliate?" : "Report/MemberWinloss?") + jQuery.param(params);
                 window.open(url, "_blank");
             });
 

@@ -15,7 +15,7 @@
 @model Fanex.AffiliateAdmin.Models.AdjustmentViewModel
 
 @section submenu{
-    @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 3, isIncludeQueryString: true)
+    @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 3)
     <div class="line line-statement">
         <div class="ic-open-window" title="@Lang.FullScreen"></div>
     </div>
@@ -25,7 +25,7 @@
     var result = (ResultViewModel)ViewBag.Result;
     <input type="hidden" id="ResultCode" value="@result.ErrorCode" data-message="@result.Message" />
 }
-<form method="post" action='@Url.Content("~/Adjustment?" + Request.QueryString)' class = "iframe-content">
+<form method="post" action='@Url.Content("~/Adjustment")' class = "iframe-content">
       @Html.ValidationSummary()  <div class="row-fluid">
         <div class="span12">
             <fieldset>

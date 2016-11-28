@@ -26,8 +26,6 @@ namespace Fanex.AffiliateAdmin.Models
 
         #region Properties
 
-        public int AffId { get; set; }
-
         public Affiliate Affiliate { get; set; }
 
         public IEnumerable<SelectListItem> Countries

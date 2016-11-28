@@ -22,11 +22,11 @@ var AFFMASTER = (function ($) {
         loadPages: function (param) {
             var queryString = $.param(param);
             if (param.Status === 'approved') {
-                $("#ifStatistic").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic") + "?" + queryString);
-                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("Statement") + "?" + queryString);
+                $("#ifStatistic").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic"));
+                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("Statement"));
                 $("#ifStatistic").attr("class", "statistic-exp");
             } else {
-                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Edit") + "?" + queryString);
+                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Edit"));
                 $("#ifStatistic").attr("class", "statistic-hide");
             }
         },

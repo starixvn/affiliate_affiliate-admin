@@ -13,8 +13,6 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class NoteViewModel
     {
-        public int AffId { get; set; }
-
         public int NoteId { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrNoteEmpty")]

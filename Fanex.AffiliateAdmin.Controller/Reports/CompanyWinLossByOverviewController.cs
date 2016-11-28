@@ -11,6 +11,7 @@
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// Report Controller.
@@ -76,6 +77,7 @@
             var session = SessionManager.CurrentSession;
             if (criteria.ByAffiliate)
             {
+                criteria.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Username;
                 criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
                 criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));

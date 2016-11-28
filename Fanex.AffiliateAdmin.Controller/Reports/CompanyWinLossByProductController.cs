@@ -13,6 +13,7 @@
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// Report Controller.
@@ -44,15 +45,15 @@
             var companyWinlossByProduct = GroupDataCompanyWinlossByProduct(criteria, data.CompanyWinlossList);
 
             var total = new CompanyWinlossReportByProduct
+            {
+                GroupInfo = Lang.Total,
+                Level = "All",
+                CompanyWinlossInMemberCurrencies = GroupDataByCurrency(data.TotalCompanyWinlossInMemberCurrencies),
+                CompanyWinlossInSystemCurrency = new CompanyWinlossByCurrency
                 {
-                    GroupInfo = Lang.Total,
-                    Level = "All",
-                    CompanyWinlossInMemberCurrencies = GroupDataByCurrency(data.TotalCompanyWinlossInMemberCurrencies),
-                    CompanyWinlossInSystemCurrency = new CompanyWinlossByCurrency
-                        {
-                            CompanyWinlossByProductList = GroupDataByProducts(data.TotalCompanyWinlossInSystemCurrency)
-                        }
-                };
+                    CompanyWinlossByProductList = GroupDataByProducts(data.TotalCompanyWinlossInSystemCurrency)
+                }
+            };
 
             var firstCurrency = total.CompanyWinlossInMemberCurrencies.FirstOrDefault();
 
@@ -82,6 +83,7 @@
             var session = SessionManager.CurrentSession;
             if (criteria.ByAffiliate)
             {
+                criteria.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Username;
                 criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
                 criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));

@@ -14,8 +14,6 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class AdjustmentViewModel
     {
-        public int AffId { get; set; }
-
         public string AffName { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "RequiredAmount")]

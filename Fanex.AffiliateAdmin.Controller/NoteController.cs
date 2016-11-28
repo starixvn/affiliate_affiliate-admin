@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -51,9 +52,9 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult Index(string status)
+        public ActionResult Index()
         {
-            ViewBag.Status = status;
+            ViewBag.Status = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Status;
 
             return View();
         }
@@ -63,8 +64,9 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>View model.</returns>
         [HttpPost]
-        public ActionResult ListNote(int affId)
+        public ActionResult ListNote()
         {
+            var affId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
             return Json(new
             {
                 List = this._noteService.GetNoteList(new NoteListCriteria { AffId = affId, LicenseeId = AppSettings.LicenseeID })
@@ -76,9 +78,9 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult AddNote(int affId)
+        public ActionResult AddNote()
         {
-            return View(new NoteViewModel { AffId = affId });
+            return View(new NoteViewModel());
         }
 
         /// <summary>
@@ -91,6 +93,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid && criteria.IsValid())
             {
+                criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
                 criteria.Ip = Remote.GetClientIPAddress();
                 criteria.UpdatedBy = SessionManager.CurrentSession.CustID;
                 criteria.LicenseeId = AppSettings.LicenseeID;
@@ -103,7 +106,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 };
             }
 
-            return AddNote(criteria.AffId);
+            return AddNote();
         }
 
         /// <summary>
@@ -112,16 +115,15 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="noteId">Note Input Id.</param>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult EditNote(int affId, int noteId)
+        public ActionResult EditNote(int noteId)
         {
             var note = this._noteService.GetNote(new NoteSelCriteria
             {
-                AffId = affId,
                 NoteId = noteId,
                 LicenseeId = AppSettings.LicenseeID
             });
 
-            return View(new NoteViewModel { AffId = affId, Content = note.Content, NoteId = noteId });
+            return View(new NoteViewModel { Content = note.Content, NoteId = noteId });
         }
 
         /// <summary>
@@ -132,6 +134,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult EditNote(NoteUpdCriteria criteria)
         {
+            criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
             criteria.Ip = Remote.GetClientIPAddress();
             criteria.UpdatedBy = SessionManager.CurrentSession.CustID;
             criteria.LicenseeId = AppSettings.LicenseeID;

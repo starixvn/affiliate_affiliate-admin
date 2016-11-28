@@ -14,11 +14,11 @@ affiliate-info
 @section submenu{
     @if (Model.Affiliate.Status.Equals("approved", StringComparison.CurrentCultureIgnoreCase))
     {
-        @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 1, isIncludeQueryString: true)
+        @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 1)
     }
     else
     {
-        @RazorHelper.ListSubmenu(SubMenu.AffiliateNotApprove, 0, isIncludeQueryString: true)
+        @RazorHelper.ListSubmenu(SubMenu.AffiliateNotApprove, 0)
     }
     <div class="line line-statement">
         <div class="ic-open-window" title="@Lang.FullScreen">
@@ -42,7 +42,7 @@ affiliate-info
     Model.Affiliate.Player_Username = HttpUtility.HtmlDecode(Model.Affiliate.Player_Username);
 }
 @Html.ValidationSummary()
-<form method="post" action="@Url.Content("~/AffiliateInfo/Edit?" + Request.QueryString)" class="iframe-content">
+<form method="post" action="@Url.Content("~/AffiliateInfo/Edit")" class="iframe-content">
     <div class="row-fluid">
         <div class="span6">
             <fieldset>

@@ -30,7 +30,7 @@ var CUSTOMER = (function ($) {
                 var url = "Affiliate/AssignMember";
 
                 if ($('#ByAffiliate').length > 0) {
-                    url += "?ByAffiliate=True&affname=" + encodeURI(QueryString.getCurrentParam("affname"));
+                    url += "?ByAffiliate=True";
                 }
 
                 AFFILIATE.openDialogFrame(url, window.MSG.AssignMemToAff, { width: 420, height: 260 });
@@ -49,11 +49,10 @@ var CUSTOMER = (function ($) {
             AFFILIATE.trimBeforeSubmit();
             submitOptions = $('form').serializeObject2();
 
-            var affname = encodeURI(QueryString.getCurrentParam("affname"));
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Affiliate/MemberList"),
                 type: 'post',
-                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage + "&affusername=" + affname,
+                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, CUSTOMER.ReRenderAfterPaged);

@@ -52,17 +52,16 @@ namespace Fanex.AffiliateAdmin.Controller
         /// </summary>
         /// <returns>View model.</returns>
         [HttpGet]
-        public ActionResult Index(int affId)
+        public ActionResult Index()
         {
             var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             var adjustment = this._adjustmentService.GetAdjustmentBalance(new AdjustmentCriteria
             {
-                AffId = affId,
+                AffId = affiliate.AffId,
                 Currency = affiliate.CurrencyCode
             });
             return View(new AdjustmentViewModel
             {
-                AffId = affId,
                 AffName = affiliate.Username,
                 Adjustment = adjustment,
                 Description = string.Empty,
@@ -82,7 +81,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var criteria = new AdjustmentEditCriteria()
             {
                 Ip = Remote.GetClientIPAddress(),
-                AffId = model.AffId,
+                AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId,
                 AdminId = session.CustID,
                 Amount = model.Amount,
                 Description = HttpUtility.UrlDecode(model.Description),
@@ -95,7 +94,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
             ModelState.Clear();
 
-            return this.Index(model.AffId);
+            return this.Index();
         }
     }
 }

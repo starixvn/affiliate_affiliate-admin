@@ -7,8 +7,8 @@
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.DTO;
-    using Fanex.AffiliateAdmin.Services;
     using Fanex.MemberAdmin.DTO;
+    using Helpers;
 
     /// <summary>
     /// Report Controller.
@@ -28,6 +28,7 @@
             var session = SessionManager.CurrentSession;
             if (criteria.ByAffiliate)
             {
+                criteria.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Username;
                 criteria.ExcludeTest = false;
                 criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
@@ -52,10 +53,10 @@
             {
                 Groups = GroupDataByMember(data.MemberWinlossList),
                 TotalRowData = new MemberWinLossByProduct
-                    {
-                        Currency = AppSettings.BaseExchange.Code,
-                        MemberWinLossByProductList = data.TotalMemberWinlossInSystemCurrency
-                    },
+                {
+                    Currency = AppSettings.BaseExchange.Code,
+                    MemberWinLossByProductList = data.TotalMemberWinlossInSystemCurrency
+                },
                 SubTotalData = GroupDataByCurrency(data.TotalMemberWinlossInMemberCurrencies),
                 HasMultipleRows = groups.Count() > 1,
                 HasMultipleCurrencyRows = groupsByCurrency.Count() > 1,
@@ -88,18 +89,18 @@
                     var first = groupByMember.First();
 
                     list.Add(new MemberWinLossByProduct
-                        {
-                            AffExRate = first.AffExRate,
-                            Currency = first.Currency,
-                            ExRate = first.ExRate,
-                            PlayerCurrency = first.PlayerCurrency,
-                            PlayerUsername = first.PlayerUsername,
-                            Username = first.Username,
-                            WinlostDate = first.WinlostDate,
-                            ProductId = first.ProductId,
-                            ProductName = first.ProductName,
-                            MemberWinLossByProductList = groupByMember
-                        });
+                    {
+                        AffExRate = first.AffExRate,
+                        Currency = first.Currency,
+                        ExRate = first.ExRate,
+                        PlayerCurrency = first.PlayerCurrency,
+                        PlayerUsername = first.PlayerUsername,
+                        Username = first.Username,
+                        WinlostDate = first.WinlostDate,
+                        ProductId = first.ProductId,
+                        ProductName = first.ProductName,
+                        MemberWinLossByProductList = groupByMember
+                    });
                 }
             }
 

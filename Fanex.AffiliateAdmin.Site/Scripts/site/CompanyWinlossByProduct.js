@@ -278,7 +278,7 @@ var CompanyWinlossByProduct = (function ($) {
                 request.FromDate = fromDate;
                 request.ToDate = toDate;
 
-                var url = playerWinlossUrl + "?" + jQuery.param(request) + "&" + QueryString.getQueryString(window.location.href);
+                var url = playerWinlossUrl + "?" + jQuery.param(request);
 
                 return "<a href='{0}' target='_blank'>".format(url) + cell.Value + "</a>";
             }
@@ -534,7 +534,7 @@ var CompanyWinlossByProduct = (function ($) {
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("CompanyWinlossByProduct/GetData"),
                 type: 'post',
-                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage + "&affname=" + QueryString.getCurrentParam("AffName"),
+                data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 beforeSend: function () {
                     $.blockUI();
                 },

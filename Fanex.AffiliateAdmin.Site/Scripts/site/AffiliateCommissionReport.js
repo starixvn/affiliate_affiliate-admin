@@ -74,8 +74,7 @@ var AffiliateCommissionReport = (function ($) {
                 delete params.SortBy;
                 delete params.TransferStatus;
 
-                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/AffiliateWinlossByAffiliate?" : "Report/AffiliateWinloss?") +
-                    jQuery.param(params) + "&" + QueryString.getQueryString(window.location.href);
+                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/AffiliateWinlossByAffiliate?" : "Report/AffiliateWinloss?") + jQuery.param(params);
                 window.open(url, "_blank");
             });
 
@@ -89,8 +88,7 @@ var AffiliateCommissionReport = (function ($) {
                 delete params.SortBy;
                 delete params.TransferStatus;
 
-                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/AffiliateWinlossByAffiliate?" : "Report/AffiliateWinloss?") +
-                    jQuery.param(params) + "&" + QueryString.getQueryString(window.location.href);
+                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/AffiliateWinlossByAffiliate?" : "Report/AffiliateWinloss?") + jQuery.param(params);
                 window.open(url, "_blank");
             });
         },

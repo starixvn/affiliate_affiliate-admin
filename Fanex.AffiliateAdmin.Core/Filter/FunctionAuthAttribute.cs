@@ -42,7 +42,7 @@
                 }
             }
 
-            if (currentSession.ApplicationMode == AppMode.Self && !hasPermission)
+            if (!hasPermission)
             {
                 if (filterContext.HttpContext.Request.IsAjaxRequest())
                 {

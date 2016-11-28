@@ -5,7 +5,7 @@
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Session;
-    using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// Report Controller.
@@ -25,6 +25,7 @@
             var session = SessionManager.CurrentSession;
             if (criteria.ByAffiliate)
             {
+                criteria.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Username;
                 criteria.ExcludeTest = false;
                 criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));

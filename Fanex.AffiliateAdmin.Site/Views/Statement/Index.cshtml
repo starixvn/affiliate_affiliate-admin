@@ -15,7 +15,7 @@ affiliate-info
     var now = SystemTimeService.GetSystemDateTime();
 }
 @section submenu{
-    @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 0, isIncludeQueryString: true)
+    @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 0)
     <div class="line line-statement">
         <div class="ic-open-window" title="@Lang.FullScreen">
         </div>
@@ -145,8 +145,7 @@ affiliate-info
                         var href = AFFILIATE.getAbsoluteUrl("Report/AffiliateCommissionByAffiliate");
                         var transdate = window.moment(rowData.TransDateStr).format(AFFILIATE.DATE_FORMAT_MONTH);
                         
-                        href += "?FromDate=" + transdate + "&ToDate=" + transdate +
-                            "&" + QueryString.getQueryString(window.location.href);
+                        href += "?FromDate=" + transdate + "&ToDate=" + transdate;
 
                         return "<a href=\"{0}\">".format(href) + currentValue + "</a>";
                     } else if (rowData.TransType == 202) {

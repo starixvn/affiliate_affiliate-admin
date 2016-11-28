@@ -30,10 +30,6 @@ var AFFMASTER = (function ($) {
                 $("#ifStatistic").attr("class", "statistic-hide");
             }
         },
-        searchPages: function () {
-            $("#ifStatistic").attr("src", "");
-            $("#ifReport").attr("src", "");
-        },
         colContent: function () {
             $("#ifStatistic").attr("class", "statistic-col");
         },

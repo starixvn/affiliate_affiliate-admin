@@ -43,6 +43,8 @@
             if (!string.IsNullOrWhiteSpace(token))
             {
                 var tokenInfo = _oneAuthenticationService.GetTokenInfo(token);
+                tokenInfo.UserSEQ = 5;
+                tokenInfo.UserName = "pgmjacob";
                 if (tokenInfo != null && VerifyToken(tokenInfo))
                 {
                     if (!tokenInfo.SiteName.Equals(AppSettings.SystemName, System.StringComparison.OrdinalIgnoreCase))

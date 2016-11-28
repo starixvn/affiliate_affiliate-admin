@@ -43,9 +43,9 @@
     {
         var result = (ResultViewModel) ViewBag.Result;
         <script type="text/javascript">
-            if(top.location.href.toLowerCase().indexOf("affiliateinfo") >= 0)
+            if(parent.location.href.toLowerCase().indexOf("affiliateinfo") >= 0)
             {
-                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", top.document.getElementById("ifAffInfo").contentWindow.location.reload(false));
+                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.document.getElementById("ifAffInfo").contentWindow.location.reload(false));
             } else {
                 AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.AffiliateList.ReRenderAfterPaged);
             }

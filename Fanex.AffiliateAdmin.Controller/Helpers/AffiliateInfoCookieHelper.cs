@@ -8,6 +8,8 @@
         public static void SaveAffiliate(HttpContextBase context, DTO.Affiliate affiliate)
         {
             var cookie = new HttpCookie("AffInfo");
+            cookie["AffId"] = affiliate.AffId.ToString();
+            cookie["Status"] = affiliate.Status;
             cookie["AffName"] = affiliate.Username;
             cookie["CurrencyId"] = affiliate.Currency.ToString();
             cookie["CurrencyCode"] = affiliate.CurrencyCode;
@@ -33,6 +35,8 @@
 
             return new DTO.Affiliate
             {
+                AffId = int.Parse(cookie["AffId"]),
+                Status = cookie["Status"],
                 Username = cookie["AffName"],
                 Currency = short.Parse(cookie["CurrencyId"]),
                 CurrencyCode = cookie["CurrencyCode"]

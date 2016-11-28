@@ -230,7 +230,7 @@ var AFFINFO = (function ($) {
             }
         },
         changeStatus: function (isChange, setValue) {
-            statusTimeOut = null;
+            clearTimeout(statusTimeOut);
             if (isChange) {
                 $("#slStatus").show();
                 $("#spStatus").hide();

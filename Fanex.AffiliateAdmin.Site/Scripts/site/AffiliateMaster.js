@@ -59,7 +59,7 @@ var AFFMASTER = (function ($) {
                     if (data.Success) {
                         alert(data.Message);
                         if (isReload) {
-                            parent.location.href = parent.location.href;
+                            window.location.reload();
                         }
                         window[0].AFFINFO.setStatus();
                     } else {

@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configurations;
+    using Core.Enumerations;
     using Core.Filter;
     using Core.Services.Interface;
     using Core.Session;
@@ -18,9 +19,7 @@
     using Models;
     using Resources;
 
-    /// <summary>
-    /// Configuration Controller.
-    /// </summary>
+    [AuthorizeRestriction(AppMode.Self)]
     [FunctionAuth(Function = FunctionPolicyNames.SystemSettings)]
     public class ConfigurationController : BaseController
     {
@@ -104,17 +103,17 @@
             var systemSetting = _systemSettingService.GetSystemSetting(criteria);
 
             var model = new SystemSettingUpdateViewModel
+            {
+                SId = systemSetting.SId,
+                SName = systemSetting.SName,
+                SValue = systemSetting.SValue,
+                Description = systemSetting.Description,
+                Environment = systemSetting.Environment,
+                EnvironmentList = _systemSettingService.GetSystemSettingList(new SystemSettingsSelByTypeCriteria
                 {
-                    SId = systemSetting.SId,
-                    SName = systemSetting.SName,
-                    SValue = systemSetting.SValue,
-                    Description = systemSetting.Description,
-                    Environment = systemSetting.Environment,
-                    EnvironmentList = _systemSettingService.GetSystemSettingList(new SystemSettingsSelByTypeCriteria
-                        {
-                            Type = "Environment"
-                        })
-                };
+                    Type = "Environment"
+                })
+            };
 
             return View("ConfigurationDetail", model);
         }
@@ -527,16 +526,16 @@
             var language = _systemSettingService.GetLanguage(criteria);
 
             var model = new LanguageUpdateViewModel
+            {
+                LanguageID = language.LanguageID,
+                LanguageName = language.LanguageName,
+                CountryID = language.CountryID,
+                CountryList = _systemSettingService.GetCountryList(new CountrySelectCriteria
                 {
-                    LanguageID = language.LanguageID,
-                    LanguageName = language.LanguageName,
-                    CountryID = language.CountryID,
-                    CountryList = _systemSettingService.GetCountryList(new CountrySelectCriteria
-                        {
-                            PageIndex = 1,
-                            PageSize = short.MaxValue
-                        })
-                };
+                    PageIndex = 1,
+                    PageSize = short.MaxValue
+                })
+            };
 
             return View("LanguageDetail", model);
         }
@@ -575,10 +574,10 @@
             var model = new LanguageAddViewModel
             {
                 CountryList = _systemSettingService.GetCountryList(new CountrySelectCriteria
-                    {
-                        PageIndex = 1,
-                        PageSize = short.MaxValue
-                    })
+                {
+                    PageIndex = 1,
+                    PageSize = short.MaxValue
+                })
             };
 
             return View(model);

@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
-    using System.Web.SessionState;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -11,10 +10,6 @@
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Services;
 
-    /// <summary>
-    /// Home Controller class.
-    /// </summary>
-    [SessionState(SessionStateBehavior.Default)]
     [NoCache]
     public class HomeController : BaseController
     {

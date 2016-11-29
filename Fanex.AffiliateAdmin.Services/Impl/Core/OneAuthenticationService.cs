@@ -16,6 +16,8 @@
     using Fanex.Caching;
     using Interfaces;
     using Newtonsoft.Json;
+    using Fanex.AffiliateAdmin.Core.Constants;
+    using Fanex.AffiliateAdmin.Resources;
 
     public class OneAuthenticationService : IOneAuthenticationService
     {
@@ -73,8 +75,35 @@
                     };
                 }
             }
+            var licenseeId = AppSettings.LicenseeID;
 
+            var userCheckingResult = CheckAndSyncUserInfo(licenseeId, tokenInfo.SiteName, tokenInfo.UserName);
+
+            if (!userCheckingResult.IsSuccessful)
+            {
+                return userCheckingResult;
+            }
+
+            tokenInfo.UserSEQ = int.Parse(userCheckingResult.ExtendedData);
             return SetAuthorize(tokenInfo);
+        }
+        private ResultInfo CheckAndSyncUserInfo(int licenseeId, string siteName, string userName)
+        {
+            var temp = _accountService.GetByUsername(userName, licenseeId);
+            if (temp != null)
+            {
+                return new ResultInfo
+                {
+                    ExtendedData = temp.CustID.ToString()
+                };
+            }
+
+            var result = _accountService.SyncUserInfo(siteName, userName);
+            return result.IsSuccessful ? CheckAndSyncUserInfo(licenseeId, siteName, userName) : new ResultInfo
+            {
+                Code = int.Parse(OneAuthorizationErrorCode.NotFoundUser),
+                Message = Lang.NotFoundUser
+            };
         }
 
         public OneAuthenticationToken GetTokenInfo(string token)

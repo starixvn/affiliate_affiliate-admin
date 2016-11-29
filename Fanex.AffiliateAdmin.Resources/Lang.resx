@@ -2873,4 +2873,7 @@
   <data name="YouAreNotAllowToAccessThisPage" xml:space="preserve">
     <value>You are not allowed to access this page !!</value>
   </data>
+  <data name="NotFoundUser" xml:space="preserve">
+    <value>Not found user</value>
+  </data>
 </root>

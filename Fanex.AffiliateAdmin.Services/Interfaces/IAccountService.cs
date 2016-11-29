@@ -9,6 +9,7 @@
     using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.Data.Repository;
+    using Fanex.AffiliateAdmin.DTO.Common;
 
     /// <summary>
     /// Interface Account service.
@@ -21,10 +22,10 @@
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
         ResultViewModel Login(LoginCriteria criteria, out Account account, string logInToken);
 
-        Account GetByUsername(string userName);
+        Account GetByUsername(string userName, int licenseeId = 0);
 
         void UserLogOut(LogOutCriteria criteria);
-        
+
         int CheckIn(CheckInCriteria criteria);
 
         bool ReCheckIn(ReCheckInCriteria criteria);
@@ -44,5 +45,6 @@
         void AccountUpdatePassword(AccountPasswordCriteria criteria);
 
         ICurrentSession CreateSession(Account user, int licenseeId, AppMode appMode = AppMode.Self);
+        ResultInfo SyncUserInfo(string licenseeName, string userName);
     }
 }

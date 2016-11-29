@@ -8,5 +8,7 @@
         public const string LocationRestrictionMsg = "400";
         public const string LicenseeNotOfferedCurrency = "600";
         public const string YouAreNotAllowToAccessThisPage = "700";
+
+        public static string NotFoundUser { get; set; }
     }
 }

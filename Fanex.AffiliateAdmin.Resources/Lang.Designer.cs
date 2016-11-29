@@ -5578,6 +5578,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not found user.
+        /// </summary>
+        public static string NotFoundUser {
+            get {
+                return ResourceManager.GetString("NotFoundUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, Your browser does not handle frames!.
         /// </summary>
         public static string NotHandleFrames {

@@ -20,6 +20,9 @@
     using Fanex.Data;
     using Fanex.Data.Repository;
     using Newtonsoft.Json;
+    using Fanex.AffiliateAdmin.DTO.Common;
+    using System.Data;
+    using Fanex.Logging;
 
     /// <summary>
     /// Account Service.
@@ -77,11 +80,12 @@
         /// </summary>
         /// <param name="userName">Username value.</param>
         /// <returns>User value.</returns>
-        public Account GetByUsername(string userName)
+        public Account GetByUsername(string userName, int licenseeId = 0)
         {
             var param = new
             {
                 Username = userName,
+                LicenseeId = licenseeId
             };
 
             using (var objectDb = new ObjectDb("AffAdmin_UserInfoSelByUserName"))
@@ -210,6 +214,11 @@
         {
             IEnumerable<FunctionPolicy> policies;
             IEnumerable<Currency> currencies;
+            currencies = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
+            {
+                UserId = user.CustID,
+                LicenseeId = licenseeId
+            }).ToList();
 
             if (appMode == AppMode.Self)
             {
@@ -218,26 +227,42 @@
                     CustID = user.CustID,
                     LicenseeId = licenseeId
                 });
-                currencies = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
-                {
-                    UserId = user.CustID,
-                    LicenseeId = licenseeId
-                }).ToList();
+               
             }
             else
             {
                 policies = GetSystemFunctions();
-                currencies = _systemSettingService.GetLicenseeSupportedCurrencyList(new LicenseeSupportedCurrencyCriteria
-                {
-                    LicenseeId = licenseeId
-                }).ToList();
             }
 
             var session = new CurrentSession(user, policies, currencies);
             session.ApplicationMode = appMode;
             return session;
         }
+        public ResultInfo SyncUserInfo(string licenseeName, string userName)
+        {
+            const string UspName = "Aff_SyncInternalUser";
+            const string DefaultPass = "754A738BF99D986D8716FE00A81BC5CA32916BF6";//1234aa
+            using (var db = new ObjectDb(UspName))
+            {
+                db.AddInParameter("LicenseeName", DbType.String, licenseeName);
+                db.AddInParameter("Username", DbType.String, userName);
+                db.AddInParameter("EncryptedPassword", DbType.String, DefaultPass);
+                db.AddOutParameter("ErrCode", DbType.Int32, 4);
+                db.AddOutParameter("ErrMsg", DbType.String, 4000);
 
+                db.ExecuteNonQuery();
+
+                var errorCode = db.GetParameterValue("ErrCode");
+                var errorMessage = db.GetParameterValue("ErrMsg");
+
+                return new ResultInfo
+                {
+                    Code = Converter.ToInt(errorCode),
+                    Message = Converter.ToString2(errorMessage)
+                };
+            }
+
+        }
         private IEnumerable<FunctionPolicy> GetUserPolicyList(UserPolicyCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");

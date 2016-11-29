@@ -67,7 +67,7 @@
 
             var betlistSoap = new BetlistSOAP
             {
-                AffiliateName = AppSettings.AffiliateName.ToLower(),
+                AffiliateName = AppSettings.SystemName.ToLower(),
                 Username = model.Username,
                 Product = model.Product,
                 FromDate = model.WinlostDate.HasValue ? model.WinlostDate.Value : DateTime.Now,
@@ -98,7 +98,7 @@
 
             var affBetlistService = new AffiliateAPI();
             var tickets = affBetlistService.GetBetlistParlay(
-                AppSettings.AffiliateName,
+                AppSettings.SystemName,
                 model.TransId.ToString(),
                 exchangeRate.ToString(),
                 AppSession.Language);
@@ -131,7 +131,7 @@
 
             var affBetlistService = new AffiliateAPI();
             var systemParlayDataText = affBetlistService.GetBetlistSystemParlay(
-                AppSettings.AffiliateName,
+                AppSettings.SystemName,
                 exchangeRate.ToString(),
                 criteria,
                 AppSession.Language);
@@ -184,7 +184,7 @@
         {
             var affBetlistService = new AffBetListService.AffiliateAPI();
             var tickets = affBetlistService.GetNewBetlistParlay(
-                AppSettings.AffiliateName,
+                AppSettings.SystemName,
                 transId.ToString(),
                 exchangeRate,
                 betTeam,
@@ -233,7 +233,7 @@
             var affBetlistService = new AffiliateAPI();
 
             return affBetlistService.GetBetlistResults(
-                AppSettings.AffiliateName,
+                AppSettings.SystemName,
                 AppSession.Language,
                 criteria,
                 AppSession.Language);
@@ -261,7 +261,7 @@
                 return View("~/Views/BetList/BetListResults_RNGCasino.cshtml", null);
             }
 
-            var customerInfoBetList = _betListService.GetPlayerIbcInfo(AppSettings.AffiliateName + "$" + criteria.UserName);
+            var customerInfoBetList = _betListService.GetPlayerIbcInfo(AppSettings.SystemName + "$" + criteria.UserName);
             criteria.BaseCurrency = criteria.BaseCurrency ?? string.Empty;
             criteria.ExternalId = customerInfoBetList.Username;
             criteria.CurrencyId = customerInfoBetList.CurrencyId;

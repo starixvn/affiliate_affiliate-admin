@@ -131,11 +131,6 @@
             }
         }
 
-        public static string AffiliateName
-        {
-            get { return SystemName; }
-        }
-
         public static IEnumerable<Language> AffLanguages
         {
             get

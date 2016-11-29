@@ -9,7 +9,7 @@
 @{
     Model.AffiliateInfo.FirstName = HttpUtility.HtmlDecode(Model.AffiliateInfo.FirstName);
     Model.AffiliateInfo.LastName = HttpUtility.HtmlDecode(Model.AffiliateInfo.LastName);
-
+    var isIT = SessionManager.CurrentSession.IsIT;
 }
 <div id="left_show" class="left_show">
     <div class="left-show-d">
@@ -29,7 +29,7 @@
                         <th class="col-left">@Lang.Affiliate
                         </th>
                         <th class="col-right">
-                            @if (Model.AffiliateInfo.Status.Equals("approved", StringComparison.OrdinalIgnoreCase) && !Model.AffiliateInfo.IsClosed)
+                            @if (isIT && Model.AffiliateInfo.Status.Equals("approved", StringComparison.OrdinalIgnoreCase) && !Model.AffiliateInfo.IsClosed)
                             {
                                 <a href="@Html.Raw(Model.ExternalLoginUrl)" id="lnkUN" target="_blank" class="upper b" title="@Lang.ViewAffiliateWebsite">@Model.AffiliateInfo.Username</a>
                             }

@@ -146,7 +146,7 @@ customer
                     Width: 70,
                     Name: "AffUserName",
                     Formatter: function (rowIndex, rowData, cell, cellFormated) {
-                        return "<a href=\"" + AFFILIATE.baseUrl + "AffiliateInfo?username=" + cellFormated + "\">" + cellFormated + "</a>";
+                        return "<a href=\"" + AFFILIATE.getAbsoluteUrl() + "AffiliateInfo?username=" + cellFormated + "\">" + cellFormated + "</a>";
                     }
                 },
                 { HeaderText: "@Lang.Currency", Width: 60, Name: "Currency", CellAlign: "center" },

@@ -113,7 +113,7 @@ var COMMGROUP = function ($) {
                             } else if (colName == "NoOfAffiliate") {
                                 var date = $("#Date").monthpicker("getDate");
                                 if (date.getMonth() === (new Date()).getMonth()) {
-                                    value = "<a href='" + AFFILIATE.baseUrl + "Affiliate?ExcludeTest=false&Status=approved,closed,lockedOut&groupid=" + data.GroupID + "'>" + data[colName] + "</a>";
+                                    value = "<a href='" + AFFILIATE.getAbsoluteUrl() + "Affiliate?ExcludeTest=false&Status=approved,closed,lockedOut&groupid=" + data.GroupID + "'>" + data[colName] + "</a>";
                                 } else {
                                     value = data[colName];
                                 }

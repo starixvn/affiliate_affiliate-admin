@@ -16,6 +16,8 @@
 </head>
 <body>
     @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
+    @Html.Hidden("BaseUrl", Url.Content("~/"))
+    @Html.Hidden("TimeZone", AppSettings.ServerTimeZone)
     <div class="container">
         <div class="row-fulid">
             @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
@@ -62,18 +64,6 @@
             CollapseExpandDataRows: "@Lang.CollapseExpandDataRows",
             Close: "@Lang.Close"
         };
-
-        $(document).ready(function () {
-            $.unblockUI();
-            AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
-                return '@Url.Content("~/")' + relativeUrl;
-            };
-
-            AFFILIATE.baseUrl = '@Url.Content("~/")';
-
-            AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
-        });
-
     </script>
     @RenderSection("scripts", required: false)
     @if(currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)

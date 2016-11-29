@@ -13,6 +13,8 @@
 </head>
 <body>
     @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
+    @Html.Hidden("BaseUrl", Url.Content("~/"))
+    @Html.Hidden("TimeZone", AppSettings.ServerTimeZone)
     <!--content html-->
     @RenderBody()
     @Scripts.Render("~/bundles/js")
@@ -25,14 +27,6 @@
         var Lang = {
             ChangePassword: "@Lang.ChangePassword"
         };
-
-        $(document).ready(function () {
-            AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
-                return '@Url.Content("~/")' + relativeUrl;
-            };
-
-            AFFILIATE.TimeZone = '@Fanex.AffiliateAdmin.Core.Configurations.AppSettings.ServerTimeZone';
-        });
     </script>
     @if (string.IsNullOrWhiteSpace(AppSettings.PiwikSiteId) == false && AppSettings.Environment.Equals("Production", StringComparison.OrdinalIgnoreCase))
     {

@@ -1,7 +1,6 @@
 ﻿/*global moment,subTotalStatus,Lang,moment,COLLAPSE_SUBTOTAL_STATUS,sysGmt,sysYear,sysMonth,sysDay,sysHour,sysMinute,sysSecond,sysMonthName*/
 var AFFILIATE = (function ($) {
     "use strict";
-
     if (window.sysGmt !== undefined) {
         var systemGmt = window.sysGmt;
         var systemYear = window.sysYear;
@@ -13,7 +12,7 @@ var AFFILIATE = (function ($) {
         var systemMonthName = window.sysMonthName;
     }
     var _isIT = false;
-
+    var _baseUrl;
     function getParentWindow() {
         return $("body").hasClass("popup") ? parent : window;
     }
@@ -31,6 +30,8 @@ var AFFILIATE = (function ($) {
             $('html, body').animate({ scrollTop: $('.container-flsuid').offset().top }, 400);
         },
         init: function () {
+            AFFILIATE.TimeZone = $("#TimeZone").val();
+            _baseUrl = $("#BaseUrl").val();
             _isIT = $("#IsIT").val() === '1';
 
             $(document).ajaxError(function (event, xhr) {
@@ -38,6 +39,10 @@ var AFFILIATE = (function ($) {
                     window.location.href = AFFILIATE.getAbsoluteUrl("Notify");
                 }
             });
+            $.unblockUI();
+        },
+        getAbsoluteUrl: function (relativeUrl) {
+            return _baseUrl + (relativeUrl || "");
         },
         initDatePicker: function () {
             var datePickers = $('.datepicker');
@@ -708,7 +713,7 @@ Array.prototype.removeItem = function (propertyName, propertyValue) {
     "use strict";
     var i = 0;
     while (i < this.length) {
-        if (this[i][propertyName] == propertyValue) {
+        if (this[i][propertyName] === propertyValue) {
             this.splice(i, 1);
         }
         else {

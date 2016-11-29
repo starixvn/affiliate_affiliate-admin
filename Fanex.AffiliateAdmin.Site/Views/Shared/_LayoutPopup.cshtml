@@ -15,6 +15,8 @@
 </head>
 <body class="popup">
     @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
+    @Html.Hidden("BaseUrl", Url.Content("~/"))
+    @Html.Hidden("TimeZone", AppSettings.ServerTimeZone)
     <div class="container-fluid">
         <div class="box-insite">
             @RenderBody()
@@ -43,14 +45,6 @@
             SelectAnOption: "@Lang.SelectAnOption",
             Close: "@Lang.Close"
         };
-        
-        $(document).ready(function () {
-            AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
-                return '@Url.Content("~/")' + relativeUrl;
-            };
-
-            AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
-        });
     </script>
     
     

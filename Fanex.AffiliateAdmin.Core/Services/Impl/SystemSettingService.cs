@@ -279,6 +279,12 @@
             return this.GetData<Currency>(criteria);
         }
 
+        public IEnumerable<Currency> GetLicenseeSupportedCurrencyList(LicenseeSupportedCurrencyCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+            return this.GetData<Currency>(criteria);
+        }
+
         public IEnumerable<Currency> GetAffSystemAllSupportedCurrencyList(AllSystemCurrencyCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");

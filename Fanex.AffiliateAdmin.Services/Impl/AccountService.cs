@@ -5,14 +5,12 @@
     using System.IO;
     using System.Linq;
     using System.Web.Hosting;
-    using System.Web.Script.Serialization;
     using Common;
     using Common.Helper;
     using Core.Enumerations;
     using Core.Services;
     using Core.Services.Interface;
     using Core.Session;
-    using Core.Utilities;
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Criterias.Account;
@@ -211,6 +209,7 @@
         public ICurrentSession CreateSession(Account user, int licenseeId, AppMode appMode = AppMode.Self)
         {
             IEnumerable<FunctionPolicy> policies;
+            IEnumerable<Currency> currencies;
 
             if (appMode == AppMode.Self)
             {
@@ -219,18 +218,22 @@
                     CustID = user.CustID,
                     LicenseeId = licenseeId
                 });
+                currencies = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
+                {
+                    UserId = user.CustID,
+                    LicenseeId = licenseeId
+                }).ToList();
             }
             else
             {
                 policies = GetSystemFunctions();
+                currencies = _systemSettingService.GetLicenseeSupportedCurrencyList(new LicenseeSupportedCurrencyCriteria
+                {
+                    LicenseeId = licenseeId
+                }).ToList();
             }
 
-            var currencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
-            {
-                UserId = user.CustID,
-                LicenseeId = licenseeId
-            }).ToList();
-            var session = new CurrentSession(user, policies, currencyList);
+            var session = new CurrentSession(user, policies, currencies);
             session.ApplicationMode = appMode;
             return session;
         }

@@ -100,7 +100,8 @@
                     {
                         Username = user.Username,
                         Password = user.Password,
-                        UserSalt = user.UserSalt
+                        UserSalt = user.UserSalt,
+                        CustID = user.UserID
                     };
                 }
 
@@ -227,7 +228,7 @@
                     CustID = user.CustID,
                     LicenseeId = licenseeId
                 });
-               
+
             }
             else
             {

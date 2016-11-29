@@ -54,6 +54,8 @@
     <Setting Key="AffAdmin_CustomerInsMemberManually" SpName="AffAdmin_CustomerInsMemberManually" DbName="DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateUpdAccountType" SpName="AffAdmin_AffiliateUpdAccountType" DbName="DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet" Plain="0" />
     <Setting Key="Aff_CustomerSelByUserName" SpName="Aff_CustomerSelByUserName" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_SyncInternalUser" SpName="Aff_SyncInternalUser" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+
   </Function>
   <Function Name="System Settings">
     <Setting Key="AffAdmin_GetLicenseeSupportedCurrencies" SpName="AffAdmin_GetLicenseeSupportedCurrencies" DbName="DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet" Plain="0" />

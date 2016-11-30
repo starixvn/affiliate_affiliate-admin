@@ -11,6 +11,6 @@ namespace Fanex.AffiliateAdmin.DTO
         public int UserId { get; set; }
         public string UserName { get; set; }
         public string UserSalt { get; set; }
-        public string UserPwd { get; set; }
+        public string Password { get; set; }
     }
 }

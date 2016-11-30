@@ -94,7 +94,7 @@
                     {
                         UserSalt = user.UserSalt,
                         CustID = user.UserId,
-                        Password = user.UserPwd,
+                        Password = user.Password,
                         Username = user.UserName
                     };
                 }

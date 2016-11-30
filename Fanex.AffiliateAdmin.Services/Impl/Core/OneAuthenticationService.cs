@@ -95,7 +95,7 @@
 
         private ResultInfo CheckAndSyncUserInfo(int licenseeId, string siteName, string userName)
         {
-            var temp = _accountService.GetByUsername(userName, licenseeId);
+            var temp = _accountService.GetByUsername(userName, licenseeId, true);
             if (temp != null)
             {
                 return new ResultInfo

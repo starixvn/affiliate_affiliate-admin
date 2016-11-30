@@ -75,12 +75,13 @@
             };
         }
 
-        public Account GetByUsername(string userName, int licenseeId = 0)
+        public Account GetByUsername(string userName, int licenseeId = 0, bool isInternal = false)
         {
             var param = new
             {
                 Username = userName,
-                LicenseeId = licenseeId
+                LicenseeId = licenseeId,
+                isInternal = isInternal
             };
 
             using (var objectDb = new ObjectDb("AffAdmin_UserInfoSelByUserName"))

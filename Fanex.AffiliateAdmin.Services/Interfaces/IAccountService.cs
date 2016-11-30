@@ -22,7 +22,7 @@
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
         ResultViewModel Login(LoginCriteria criteria, out Account account, string logInToken);
 
-        Account GetByUsername(string userName, int licenseeId = 0);
+        Account GetByUsername(string userName, int licenseeId = 0, bool isInternal = false);
 
         void UserLogOut(LogOutCriteria criteria);
 

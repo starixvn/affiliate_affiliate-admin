@@ -73,8 +73,6 @@
                     if (!language.Equals(AppSession.Language))
                     {
                         AppSession.Language = language;
-                        var langManager = new LanguageManager();
-                        langManager.SetCulture(language);
                     }
 
                     return new ResultInfo

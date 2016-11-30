@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = Lang.AffiliateInfo;
-    Layout = "~/Views/Shared/_LayoutFrameNoHeader.cshtml";
+    Layout = null;
 }
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.Core.Configurations
@@ -19,7 +19,7 @@
             <div class="left-search">
                 @using (Html.BeginForm("Index", "AffiliateInfo", FormMethod.Get, new { target = "_top" }))
                 {
-                    @Html.TextBox("Username", Model.AffiliateInfo.Username, new { id = "AffiliateInfo_Username" })
+                    @Html.TextBox("Username", Model.AffiliateInfo.UserName, new { id = "AffiliateInfo_Username" })
                     <button id="btnAdd" name="btnAdd" class="btn btn-default" type="submit">@Lang.Submit</button>
                 }
             </div>
@@ -31,11 +31,11 @@
                         <th class="col-right">
                             @if (isIT && Model.AffiliateInfo.Status.Equals("approved", StringComparison.OrdinalIgnoreCase) && !Model.AffiliateInfo.IsClosed)
                             {
-                                <a href="@Html.Raw(Model.ExternalLoginUrl)" id="lnkUN" target="_blank" class="upper b" title="@Lang.ViewAffiliateWebsite">@Model.AffiliateInfo.Username</a>
+                                <a href="@Html.Raw(Model.ExternalLoginUrl)" id="lnkUN" target="_blank" class="upper b" title="@Lang.ViewAffiliateWebsite">@Model.AffiliateInfo.UserName</a>
                             }
                             else
                             {
-                                <span id="spUN">@Model.AffiliateInfo.Username</span>
+                                <span id="spUN">@Model.AffiliateInfo.UserName</span>
                             }
                             &nbsp;[<span id="affID">@Model.AffiliateInfo.AffId</span>]
                         </th>
@@ -139,7 +139,7 @@
                 @Html.Partial("_OnlineList", Model)
             }
             @Html.HiddenFor(m => m.AffiliateInfo.AffId, new { id = "AffId" })
-            @Html.HiddenFor(m => m.AffiliateInfo.Username, new { id = "Username" })
+            @Html.HiddenFor(m => m.AffiliateInfo.UserName, new { id = "Username" })
             @Html.HiddenFor(m => m.AffiliateInfo.Currency, new { id = "Currency" })
             @Html.HiddenFor(m => m.AffiliateInfo.CurrencyCode, new { id = "CurrencyCode" })
             @Html.HiddenFor(m => m.AffiliateInfo.GroupId, new { id = "GroupId" })
@@ -160,42 +160,3 @@
     <div id="left_hide_i" class="left_hide_i">
     </div>
 </div>
-@section scripts{
-    @Scripts.Render("~/scripts/affiliateinfo")
-    <script type="text/javascript">
-
-        $(window).resize(function () {
-            setHeightBox();
-        });
-
-        function setHeightBox() {
-            $("#left_hide").css("height", ($(window).height() - 50));
-        }
-
-        var MSG = {
-            No: "@Lang.No",
-            Yes: "@Lang.Yes",
-            ConfirmChangeStatus: "@Lang.ConfirmChangeStatusAff",
-            ConfirmChangeLanguage: "@Lang.ConfirmChangeLanguageAff",
-            ConfirmChangeAffType: "@Lang.ConfirmUpdateTypeAff",
-            ConfirmClose: "@Lang.ConfirmCloseAff",
-            ConfirmOpen: "@Lang.ConfirmOpenAff",
-            ConfirmUnLocked: "@Lang.ConfirmUnlockAff",
-            ChangeComGroup: "@Lang.ChangeComGroup",
-            CommissionGroup: "@Lang.CommissionGroup",
-            ChangeAccountType: "@Lang.ChangeAccountType",
-            AssignComGroup: "@Lang.AssignComGroup",
-            ChangePassword: "@Lang.ChangePassword"
-        };
-    </script>
-    @if (ViewBag.IsLoadOtherPage != "1")
-    {
-        <script type="text/javascript">
-            parent.AFFMASTER.loadPages({
-                AffId: @Model.AffiliateInfo.AffId,
-                Status: "@Model.AffiliateInfo.Status",
-                AffName: "@HttpUtility.UrlEncode(Model.AffiliateInfo.Username)"
-            });
-        </script>
-    }
-}

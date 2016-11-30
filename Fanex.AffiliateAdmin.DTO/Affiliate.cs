@@ -13,7 +13,7 @@
     {
         public int AffId { get; set; }
 
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrFName")]
         [Display(Name = "FirstName", ResourceType = typeof(Lang))]

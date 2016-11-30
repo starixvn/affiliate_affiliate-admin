@@ -10,7 +10,7 @@
             var cookie = new HttpCookie("AffInfo");
             cookie["AffId"] = affiliate.AffId.ToString();
             cookie["Status"] = affiliate.Status;
-            cookie["AffName"] = affiliate.Username;
+            cookie["AffName"] = affiliate.UserName;
             cookie["CurrencyId"] = affiliate.Currency.ToString();
             cookie["CurrencyCode"] = affiliate.CurrencyCode;
             cookie.Expires = DateTime.Now.AddDays(1d);
@@ -37,7 +37,7 @@
             {
                 AffId = int.Parse(cookie["AffId"]),
                 Status = cookie["Status"],
-                Username = cookie["AffName"],
+                UserName = cookie["AffName"],
                 Currency = short.Parse(cookie["CurrencyId"]),
                 CurrencyCode = cookie["CurrencyCode"]
             };

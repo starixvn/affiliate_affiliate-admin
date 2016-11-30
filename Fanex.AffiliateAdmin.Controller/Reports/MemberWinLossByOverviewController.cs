@@ -25,7 +25,7 @@
             var session = SessionManager.CurrentSession;
             if (criteria.ByAffiliate)
             {
-                criteria.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Username;
+                criteria.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).UserName;
                 criteria.ExcludeTest = false;
                 criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));

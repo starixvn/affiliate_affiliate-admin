@@ -62,7 +62,7 @@ namespace Fanex.AffiliateAdmin.Controller
             });
             return View(new AdjustmentViewModel
             {
-                AffName = affiliate.Username,
+                AffName = affiliate.UserName,
                 Adjustment = adjustment,
                 Description = string.Empty,
                 CurrencyCode = affiliate.CurrencyCode

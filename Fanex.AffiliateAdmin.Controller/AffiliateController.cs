@@ -317,7 +317,7 @@
             var session = SessionManager.CurrentSession;
             if (criteria.ByAffiliate)
             {
-                criteria.AffUsername = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Username;
+                criteria.AffUsername = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).UserName;
                 criteria.AffType = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.ExcludeTest = false;
             }
@@ -372,7 +372,7 @@
         {
             if (model.ByAffiliate)
             {
-                model.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Username;
+                model.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).UserName;
             }
 
             return View(model);

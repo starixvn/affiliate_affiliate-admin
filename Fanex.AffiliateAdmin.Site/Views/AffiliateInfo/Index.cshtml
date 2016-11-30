@@ -3,43 +3,30 @@
     Layout = "~/Views/Shared/_LayoutNoSubMenu.cshtml";
 }
 
-@model Fanex.AffiliateAdmin.Models.AffiliateMasterViewModel
-    @{ 
-        var urlInfo = Url.Content("~/AffiliateInfo/Info");
-        if(!string.IsNullOrEmpty(Model.UserName))
-        {
-            urlInfo += "?username=" + Model.UserName;
-        }
-    }
+@model Fanex.AffiliateAdmin.Models.AffiliateInfoViewModel
+
 
 <div class="panel">
     <div id="l-panel" class="l-panel">
-        <!--[if IE]>
-            <iframe id="ifAffInfo" frameborder="0" class="span12 affInfo" src="@urlInfo" ></iframe>
-        <![endif]-->
-        <!--[if !IE]>-->
-           <iframe id="ifAffInfo" seamless="seamless" style="border: none;" class="span12 affInfo" src="@urlInfo"></iframe>
-        <!-- <![endif]-->
+        @if (Model.AffiliateInfo == null)
+        {
+            @Html.Partial("~/Views/AffiliateInfo/_Search.cshtml");
+        }
+        else
+        {
+            <input type="hidden" id="UserName" value="@Model.AffiliateInfo.UserName" />
+            @Html.Partial("~/Views/AffiliateInfo/_Info.cshtml");
+        }
     </div>
-    @if (!string.IsNullOrEmpty(Model.UserName))
+    @if (Model.AffiliateInfo != null && !string.IsNullOrEmpty(Model.AffiliateInfo.UserName))
     {
         <div id="c-panel" class="c-panel">
-            <!--[if IE]>
-                <div class="span12 t-panel">
-                    <iframe id="ifStatistic" scrolling="no" class="span12 statistic-exp" frameborder="0"></iframe>
+               <div id="StatisticPanel" class="span12 t-panel">
+                   @*@Html.Action("Statistic", "AffiliateInfo")*@
                 </div>
-                <div class="span12 b-panel">
-                    <iframe id="ifReport" class="span12 report" style="overflow-x: hidden;" frameborder="0"></iframe>    
-                </div>
-            <![endif]-->
-            <!--[if !IE]>-->
-               <div class="span12 t-panel">
-                    <iframe id="ifStatistic" class="span12 statistic-exp" seamless="seamless" style="border: none;"></iframe>
-                </div>
-                <div class="span12 b-panel">
+                <div id="ReportPanel" class="span12 b-panel">
                     <iframe id="ifReport" class="span12 report" seamless="seamless" style="border: none; overflow-x: hidden;"></iframe>
                 </div>
-            <!-- <![endif]-->
         </div>
     }
 </div>
@@ -47,10 +34,28 @@
 @section scripts{
 
     @Scripts.Render("~/scripts/affiliatemaster")
-    
+    @Scripts.Render("~/scripts/affiliateinfo")
     <script type="text/javascript">
         var Lang = {
             ChangePassword: "@Lang.ChangePassword"
+        };
+
+        var MSG = {
+            No: "@Lang.No",
+            Yes: "@Lang.Yes",
+            ConfirmChangeStatus: "@Lang.ConfirmChangeStatusAff",
+            ConfirmChangeLanguage: "@Lang.ConfirmChangeLanguageAff",
+            ConfirmChangeAffType: "@Lang.ConfirmUpdateTypeAff",
+            ConfirmClose: "@Lang.ConfirmCloseAff",
+            ConfirmOpen: "@Lang.ConfirmOpenAff",
+            ConfirmUnLocked: "@Lang.ConfirmUnlockAff",
+            ChangeComGroup: "@Lang.ChangeComGroup",
+            CommissionGroup: "@Lang.CommissionGroup",
+            ChangeAccountType: "@Lang.ChangeAccountType",
+            AssignComGroup: "@Lang.AssignComGroup",
+            ChangePassword: "@Lang.ChangePassword",
+            AffQualifiedMemReportDetailFor: "@Html.Raw(Lang.AffQualifiedMemReportDetailFor)",
+            Currency: "@Lang.Currency"
         };
 
         $(document).ready(function() {
@@ -58,6 +63,20 @@
                 ifStatistic: $('iframe#ifStatistic'),
                 ifReport: $('iframe#ifReport')
             };
+            setHeightBox();
+
+            function setHeightBox() {
+                $("#left_hide").css("height", ($(window).height() - 50));
+            }
+
+           // if (status === 'approved') {
+                //$("#ifStatistic").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic"));
+          //      $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("Statement"));
+                //$("#ifStatistic").attr("class", "statistic-exp");
+          //  } else {
+          //      $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Edit"));
+                //$("#ifStatistic").attr("class", "statistic-hide");
+          //  }
         });
     </script>
 }

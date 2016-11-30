@@ -19,17 +19,6 @@ var AFFMASTER = (function ($) {
                 $("#l-panel").removeClass("l-panel-hide");
             });
         },
-        loadPages: function (param) {
-            var queryString = $.param(param);
-            if (param.Status === 'approved') {
-                $("#ifStatistic").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic"));
-                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("Statement"));
-                $("#ifStatistic").attr("class", "statistic-exp");
-            } else {
-                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Edit"));
-                $("#ifStatistic").attr("class", "statistic-hide");
-            }
-        },
         colContent: function () {
             $("#ifStatistic").attr("class", "statistic-col");
         },
@@ -69,19 +58,6 @@ var AFFMASTER = (function ($) {
         },
         openNewWindow: function (url) {
             window.open(url);
-        },
-        reloadAffInfo: function () {
-            var url = '';
-            var date = new Date();
-            if ($("#ifAffInfo").attr("src").indexOf("IsLoadOtherPage") >= 0) {
-                url = $("#ifAffInfo").attr("src");
-                url = url.substring(0, url.indexOf("&timestamp")) + "&timestamp=" + date.getTime();
-                $("#ifAffInfo").attr("src", url);
-            } else {
-                url = $("#ifAffInfo").attr("src") + ($("#ifAffInfo").attr("src").indexOf("?") >= 0 ? "&IsLoadOtherPage=1" : "?IsLoadOtherPage=1");
-                url += "&timestamp=" + date.getTime();
-                $("#ifAffInfo").attr("src", url);
-            }
         }
     };
 })(jQuery);

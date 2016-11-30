@@ -64,25 +64,6 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Index(string userName)
         {
-            if (string.IsNullOrEmpty(userName))
-            {
-                userName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Username;
-            }
-
-            return View(new AffiliateMasterViewModel
-            {
-                UserName = userName
-            });
-        }
-
-        /// <summary>
-        /// Get affiliate information.
-        /// </summary>
-        /// <param name="userName">Affiliate username.</param>
-        /// <returns>Action Result.</returns>
-        [HttpGet]
-        public ActionResult Info(string userName)
-        {
             if (!string.IsNullOrEmpty(userName))
             {
                 var session = SessionManager.CurrentSession;
@@ -105,7 +86,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     model.ExternalLoginUrl = ExternalLogin.ExternalLoginUrl(new ExternalLoginInfo
                     {
                         Controller = this,
-                        Username = model.AffiliateInfo.Username,
+                        Username = model.AffiliateInfo.UserName,
                         CustId = session.CustID,
                         OnUserID = session.OnUserID,
                         SessionID = Session.SessionID,
@@ -121,7 +102,10 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
 
-            return View("Search");
+            return View(new AffiliateInfoViewModel
+            {
+                ExternalLoginUrl = new Uri("http://google.com")
+            });
         }
 
         /// <summary>
@@ -206,7 +190,7 @@ namespace Fanex.AffiliateAdmin.Controller
                     mailinator.EmailTemplateInfo = new EmailTemplateInfo
                     {
                         Status = criteria.Status,
-                        Username = affiliate.Username,
+                        Username = affiliate.UserName,
                         FirstName = affiliate.FirstName,
                         Password = password,
                         AdminSiteUrl = siteInfo.AdminSiteUrl,
@@ -219,7 +203,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
 
-            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdateStaSucc, affiliate.Username)));
+            return Json(GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdateStaSucc, affiliate.UserName)));
         }
 
         /// <summary>
@@ -254,7 +238,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var model = _affiliateService.GetAffiliateStatistic(criteria);
             model.FullDateTime = criteria.GetFullDate(SystemTimeService.GetSystemDateTime());
             model.AffId = affiliate.AffId;
-            model.AffName = affiliate.Username;
+            model.AffName = affiliate.UserName;
             model.BaseCurrency = AppSettings.BaseExchange.Code;
             model.AffCurrency = affiliate.CurrencyCode;
 
@@ -315,7 +299,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 _affiliateService.UpdateAffiliateInfo(criteria);
 
-                ViewBag.Result = GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdAffSuccess, affiliate.Username));
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode, string.Format(Lang.UpdAffSuccess, affiliate.UserName));
             }
 
             return this.Edit(new AffiliateEditViewModel());

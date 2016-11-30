@@ -54,7 +54,7 @@
             {
                 IsClosed = reader.ToBool("closed"),
                 IsLocked = reader.ToBool("IsLocked"),
-                Username = reader.ToString("Username"),
+                UserName = reader.ToString("Username"),
                 AffId = reader.ToInt("AffID"),
                 FirstName = reader.ToString("firstname"),
                 LastName = reader.ToString("lastname"),

@@ -156,6 +156,7 @@
     <Compile Include="Statement.cs" />
     <Compile Include="SystemDateTime.cs" />
     <Compile Include="TransType.cs" />
+    <Compile Include="UserInfo.cs" />
     <Compile Include="UserOnline.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Currency.cs" />

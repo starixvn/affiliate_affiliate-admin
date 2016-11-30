@@ -75,11 +75,6 @@
             };
         }
 
-        /// <summary>
-        /// Get by username.
-        /// </summary>
-        /// <param name="userName">Username value.</param>
-        /// <returns>User value.</returns>
         public Account GetByUsername(string userName, int licenseeId = 0)
         {
             var param = new
@@ -90,22 +85,7 @@
 
             using (var objectDb = new ObjectDb("AffAdmin_UserInfoSelByUserName"))
             {
-                var user = objectDb.Query<User>(param).FirstOrDefault();
-
-                Account account = null;
-
-                if (user != null)
-                {
-                    account = new Account
-                    {
-                        Username = user.Username,
-                        Password = user.Password,
-                        UserSalt = user.UserSalt,
-                        CustID = user.UserID
-                    };
-                }
-
-                return account;
+                return objectDb.Query<Account>(param).FirstOrDefault();
             }
         }
 
@@ -235,13 +215,15 @@
                 policies = GetSystemFunctions();
             }
 
-            var session = new CurrentSession(user, policies, currencies);
-            session.ApplicationMode = appMode;
+            var session = new CurrentSession(user, policies, currencies)
+            {
+                ApplicationMode = appMode
+            };
             return session;
         }
         public ResultInfo SyncUserInfo(string licenseeName, string userName)
         {
-            const string UspName = "Aff_SyncInternalUser";
+            const string UspName = @"Aff_SyncInternalUser";
             const string DefaultPass = "754A738BF99D986D8716FE00A81BC5CA32916BF6";//1234aa
             using (var db = new ObjectDb(UspName))
             {

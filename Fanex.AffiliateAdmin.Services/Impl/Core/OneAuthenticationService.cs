@@ -13,11 +13,10 @@
     using AffiliateAdmin.Core.Session;
     using DTO;
     using DTO.Common;
-    using Fanex.Caching;
-    using Interfaces;
-    using Newtonsoft.Json;
     using Fanex.AffiliateAdmin.Core.Constants;
     using Fanex.AffiliateAdmin.Resources;
+    using Fanex.Caching;
+    using Interfaces;
 
     public class OneAuthenticationService : IOneAuthenticationService
     {
@@ -54,6 +53,15 @@
 
         public ResultInfo SignIn(HttpContextBase currentContext, OneAuthenticationToken tokenInfo)
         {
+            if (!tokenInfo.SiteName.Equals(AppSettings.SystemName))
+            {
+                return new ResultInfo
+                {
+                    Code = int.Parse(OneAuthorizationErrorCode.LicenseeIsNotExisted),
+                    Message = Lang.LicenseeIsNotExisted
+                };
+            }
+
             var language = MapLanguages.Where(i => i.Value.Equals(tokenInfo.Language))
                        .Select(i => i.Key).DefaultIfEmpty<string>("en-Us").FirstOrDefault();
             var currentSession = SessionManager.CurrentSession;
@@ -75,9 +83,8 @@
                     };
                 }
             }
-            var licenseeId = AppSettings.LicenseeID;
 
-            var userCheckingResult = CheckAndSyncUserInfo(licenseeId, tokenInfo.SiteName, tokenInfo.UserName);
+            var userCheckingResult = CheckAndSyncUserInfo(AppSettings.LicenseeID, tokenInfo.SiteName, tokenInfo.UserName);
 
             if (!userCheckingResult.IsSuccessful)
             {
@@ -87,6 +94,7 @@
             tokenInfo.UserSEQ = int.Parse(userCheckingResult.ExtendedData);
             return SetAuthorize(tokenInfo);
         }
+
         private ResultInfo CheckAndSyncUserInfo(int licenseeId, string siteName, string userName)
         {
             var temp = _accountService.GetByUsername(userName, licenseeId);
@@ -129,7 +137,7 @@
 
         private static bool VerifySessionWithToken(ICurrentSession currentSession, OneAuthenticationToken tokenInfo)
         {
-            return currentSession.CustID == tokenInfo.UserSEQ && currentSession.Username == tokenInfo.UserName
+            return currentSession.Username == tokenInfo.UserName
                 && currentSession.VendorID == tokenInfo.VendorID && currentSession.VendorIdentityID == tokenInfo.UserID;
         }
 

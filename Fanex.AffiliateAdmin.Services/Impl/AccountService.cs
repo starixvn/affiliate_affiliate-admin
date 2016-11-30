@@ -223,6 +223,7 @@
 
         public ResultInfo SyncUserInfo(string licenseeName, string userName)
         {
+            const int AdminGroup = 1;
             const string UspName = @"Aff_SyncInternalUser";
 
             // 1234aa
@@ -232,6 +233,7 @@
                 db.AddInParameter("LicenseeName", DbType.String, licenseeName);
                 db.AddInParameter("Username", DbType.String, userName);
                 db.AddInParameter("EncryptedPassword", DbType.String, DefaultPass);
+                db.AddInParameter("AffGroup", DbType.Int32, AdminGroup);
                 db.AddOutParameter("ErrCode", DbType.Int32, 4);
                 db.AddOutParameter("ErrMsg", DbType.String, 4000);
 

@@ -7,7 +7,6 @@
     using System.Web;
     using System.Web.Hosting;
     using System.Web.Security;
-    using AffiliateAdmin.Core;
     using AffiliateAdmin.Core.Configurations;
     using AffiliateAdmin.Core.Enumerations;
     using AffiliateAdmin.Core.Session;
@@ -95,17 +94,33 @@
 
         private ResultInfo CheckAndSyncUserInfo(int licenseeId, string siteName, string userName)
         {
-            var temp = _accountService.GetByUsername(userName, licenseeId, true);
-            if (temp != null)
+            var result = GetUser(licenseeId, siteName, userName);
+            if (result.IsSuccessful)
+            {
+                return result;
+            }
+
+            result = _accountService.SyncUserInfo(siteName, userName);
+
+            return result.IsSuccessful ? GetUser(licenseeId, siteName, userName) : new ResultInfo
+            {
+                Code = int.Parse(OneAuthorizationErrorCode.NotFoundUser),
+                Message = Lang.NotFoundUser
+            };
+        }
+
+        private ResultInfo GetUser(int licenseeId, string siteName, string userName)
+        {
+            var user = _accountService.GetByUsername(userName, licenseeId, true);
+            if (user != null)
             {
                 return new ResultInfo
                 {
-                    ExtendedData = temp.CustID.ToString()
+                    ExtendedData = user.CustID.ToString()
                 };
             }
 
-            var result = _accountService.SyncUserInfo(siteName, userName);
-            return result.IsSuccessful ? CheckAndSyncUserInfo(licenseeId, siteName, userName) : new ResultInfo
+            return new ResultInfo
             {
                 Code = int.Parse(OneAuthorizationErrorCode.NotFoundUser),
                 Message = Lang.NotFoundUser

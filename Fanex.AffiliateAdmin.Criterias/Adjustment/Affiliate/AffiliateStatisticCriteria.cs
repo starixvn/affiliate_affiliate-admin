@@ -61,11 +61,5 @@ namespace Fanex.AffiliateAdmin.Criterias
         {
             return true;
         }
-
-        public DateTime GetFullDate(DateTime now)
-        {
-            return (Year == 0 || Month == 0) ? new DateTime(now.Year, now.Month, 1)
-                : new DateTime(Year, Month, 1);
-        }
     }
 }

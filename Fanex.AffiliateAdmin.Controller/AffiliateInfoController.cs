@@ -9,7 +9,6 @@ namespace Fanex.AffiliateAdmin.Controller
     using System;
     using System.Linq;
     using System.Web.Mvc;
-    using System.Web.SessionState;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Entities;
     using Fanex.AffiliateAdmin.Core.Enumerations;
@@ -64,6 +63,13 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Index(string userName)
         {
+            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
+            
+            if (string.IsNullOrEmpty(userName))
+            {
+                userName = affiliate.UserName;
+            }
+
             if (!string.IsNullOrEmpty(userName))
             {
                 var session = SessionManager.CurrentSession;
@@ -93,6 +99,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         AffTypeName = model.AffiliateInfo.AffTypeName
                     });
 
+                    model.StatisticViewModel = GetStatisticViewModel(model.AffiliateInfo);
                     ViewBag.IsLoadOtherPage = Request["IsLoadOtherPage"];
                     return View(model);
                 }
@@ -102,10 +109,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 }
             }
 
-            return View(new AffiliateInfoViewModel
-            {
-                ExternalLoginUrl = new Uri("http://google.com")
-            });
+            return View();
         }
 
         /// <summary>
@@ -224,28 +228,6 @@ namespace Fanex.AffiliateAdmin.Controller
         }
 
         /// <summary>
-        /// Load statistic.
-        /// </summary>
-        /// <param name="criteria">Affiliate statistic criteria.</param>
-        /// <returns>View model.</returns>
-        [HttpGet]
-        public ActionResult Statistic(AffiliateStatisticCriteria criteria)
-        {
-            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
-            criteria.AffId = affiliate.AffId;
-            criteria.MonthDate = criteria.GetFullDate(SystemTimeService.GetSystemDateTime());
-
-            var model = _affiliateService.GetAffiliateStatistic(criteria);
-            model.FullDateTime = criteria.GetFullDate(SystemTimeService.GetSystemDateTime());
-            model.AffId = affiliate.AffId;
-            model.AffName = affiliate.UserName;
-            model.BaseCurrency = AppSettings.BaseExchange.Code;
-            model.AffCurrency = affiliate.CurrencyCode;
-
-            return View(model);
-        }
-
-        /// <summary>
         /// Load affiliate information.
         /// </summary>
         /// <param name="model">Model input.</param>
@@ -360,6 +342,31 @@ namespace Fanex.AffiliateAdmin.Controller
             this._affiliateService.AffiliateUnLocked(criteria);
 
             return Json(GetResultViewModel(criteria.ErrCode));
+        }
+
+        private static DateTime GetFullDate(int year, int month, DateTime date)
+        {
+            return (year == 0 || month == 0) ? new DateTime(date.Year, date.Month, 1)
+                : new DateTime(year, month, 1);
+        }
+
+        private AffiliateStatisticViewModel GetStatisticViewModel(DTO.Affiliate affiliate)
+        {
+            var criteria = new AffiliateStatisticCriteria
+            {
+                AffId = affiliate.AffId
+            };
+
+            criteria.MonthDate = GetFullDate(criteria.Year, criteria.Month, SystemTimeService.GetSystemDateTime());
+
+            var model = _affiliateService.GetAffiliateStatistic(criteria);
+            model.FullDateTime = criteria.MonthDate;
+            model.AffId = affiliate.AffId;
+            model.AffName = affiliate.UserName;
+            model.BaseCurrency = AppSettings.BaseExchange.Code;
+            model.AffCurrency = affiliate.CurrencyCode;
+
+            return model;
         }
     }
 }

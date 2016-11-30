@@ -23,7 +23,7 @@ namespace Fanex.AffiliateAdmin.Models
 
         #endregion Fields
 
-        #region Properties
+        public AffiliateStatisticViewModel StatisticViewModel { get; set; }
 
         public IList<AffiliateOnUser> OnUsers
         {
@@ -44,16 +44,10 @@ namespace Fanex.AffiliateAdmin.Models
                 return SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.Affiliate);
             }
         }
-
-        #endregion Properties
-
-        #region Methods
-
+        
         public void AddOnlineUsers(IList<AffiliateOnUser> onlineUsers)
         {
             _onlineUsers = onlineUsers;
         }
-
-        #endregion Methods
     }
 }

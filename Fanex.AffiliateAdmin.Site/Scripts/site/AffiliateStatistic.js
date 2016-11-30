@@ -134,7 +134,7 @@ var AFFSTATISTIC = (function ($) {
                 month: date.format("MM"),
                 year: date.format("YYYY")
             };
-            location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic") + "?" + $.param(param);
+            location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo/Index") + "?" + $.param(param);
         }
     };
 })(jQuery);

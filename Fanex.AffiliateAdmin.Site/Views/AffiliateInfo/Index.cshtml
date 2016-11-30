@@ -5,10 +5,9 @@
 
 @model Fanex.AffiliateAdmin.Models.AffiliateInfoViewModel
 
-
 <div class="panel">
     <div id="l-panel" class="l-panel">
-        @if (Model.AffiliateInfo == null)
+        @if (Model == null)
         {
             @Html.Partial("~/Views/AffiliateInfo/_Search.cshtml");
         }
@@ -18,11 +17,11 @@
             @Html.Partial("~/Views/AffiliateInfo/_Info.cshtml");
         }
     </div>
-    @if (Model.AffiliateInfo != null && !string.IsNullOrEmpty(Model.AffiliateInfo.UserName))
+    @if (Model != null && !string.IsNullOrEmpty(Model.AffiliateInfo.UserName))
     {
         <div id="c-panel" class="c-panel">
                <div id="StatisticPanel" class="span12 t-panel">
-                   @*@Html.Action("Statistic", "AffiliateInfo")*@
+                   @Html.Partial("~/Views/AffiliateInfo/_Statistic.cshtml", Model.StatisticViewModel);
                 </div>
                 <div id="ReportPanel" class="span12 b-panel">
                     <iframe id="ifReport" class="span12 report" seamless="seamless" style="border: none; overflow-x: hidden;"></iframe>
@@ -35,6 +34,7 @@
 
     @Scripts.Render("~/scripts/affiliatemaster")
     @Scripts.Render("~/scripts/affiliateinfo")
+    @Scripts.Render("~/scripts/affiliatestatistic")
     <script type="text/javascript">
         var Lang = {
             ChangePassword: "@Lang.ChangePassword"

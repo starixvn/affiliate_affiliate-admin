@@ -53,7 +53,7 @@
 
         public ResultInfo SignIn(HttpContextBase currentContext, OneAuthenticationToken tokenInfo)
         {
-            if (!tokenInfo.SiteName.Equals(AppSettings.SystemName))
+            if (!tokenInfo.SiteName.Equals(AppSettings.SystemName, StringComparison.OrdinalIgnoreCase))
             {
                 return new ResultInfo
                 {

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.IO;
     using System.Linq;
     using System.Web.Hosting;
@@ -15,14 +16,12 @@
     using DTO;
     using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.AffiliateAdmin.DataAccess;
+    using Fanex.AffiliateAdmin.DTO.Common;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data;
     using Fanex.Data.Repository;
     using Newtonsoft.Json;
-    using Fanex.AffiliateAdmin.DTO.Common;
-    using System.Data;
-    using Fanex.Logging;
 
     /// <summary>
     /// Account Service.
@@ -86,22 +85,8 @@
 
             using (var objectDb = new ObjectDb("AffAdmin_UserInfoSelByUserName"))
             {
-                var user = objectDb.Query<UserInfo>(param).FirstOrDefault();
-
-                if (user != null)
-                {
-                    return new Account
-                    {
-                        UserSalt = user.UserSalt,
-                        CustID = user.UserId,
-                        Password = user.Password,
-                        Username = user.UserName
-                    };
-                }
-
+                return objectDb.QueryEntity<Account>(param);
             }
-
-            return null;
         }
 
         /// <summary>
@@ -223,7 +208,6 @@
                     CustID = user.CustID,
                     LicenseeId = licenseeId
                 });
-
             }
             else
             {
@@ -236,10 +220,13 @@
             };
             return session;
         }
+
         public ResultInfo SyncUserInfo(string licenseeName, string userName)
         {
             const string UspName = @"Aff_SyncInternalUser";
-            const string DefaultPass = "754A738BF99D986D8716FE00A81BC5CA32916BF6";//1234aa
+
+            // 1234aa
+            const string DefaultPass = "754A738BF99D986D8716FE00A81BC5CA32916BF6";
             using (var db = new ObjectDb(UspName))
             {
                 db.AddInParameter("LicenseeName", DbType.String, licenseeName);
@@ -259,8 +246,8 @@
                     Message = Converter.ToString2(errorMessage)
                 };
             }
-
         }
+
         private IEnumerable<FunctionPolicy> GetUserPolicyList(UserPolicyCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");

@@ -24,24 +24,6 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public string UserSalt { get; set; }
 
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public bool Status { get; set; }
-
-        public string Creator { get; set; }
-
-        public DateTime CreateDate { get; set; }
-
-        public string CreateDateStr
-        {
-            get
-            {
-                return CreateDate.ToString(DateFormatManager.DateFormatFull);
-            }
-        }
-
         public int GroupID { get; set; }
 
         public string GroupName { get; set; }

@@ -86,8 +86,22 @@
 
             using (var objectDb = new ObjectDb("AffAdmin_UserInfoSelByUserName"))
             {
-                return objectDb.Query<Account>(param).FirstOrDefault();
+                var user = objectDb.Query<UserInfo>(param).FirstOrDefault();
+
+                if (user != null)
+                {
+                    return new Account
+                    {
+                        UserSalt = user.UserSalt,
+                        CustID = user.UserId,
+                        Password = user.UserPwd,
+                        Username = user.UserName
+                    };
+                }
+
             }
+
+            return null;
         }
 
         /// <summary>

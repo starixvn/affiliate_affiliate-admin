@@ -82,7 +82,7 @@
                 }
             }
 
-            var userCheckingResult = CheckAndSyncUserInfo(AppSettings.LicenseeID, tokenInfo.SiteName, tokenInfo.UserName);
+            var userCheckingResult = CheckAndSyncUserInfo(AppSettings.LicenseeID, tokenInfo.SiteName, tokenInfo.UserID);
 
             if (!userCheckingResult.IsSuccessful)
             {

@@ -61,7 +61,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="userName">User name.</param>
         /// <returns>View main page.</returns>
         [HttpGet]
-        public ActionResult Index(string userName)
+        public ActionResult Index(string userName, int year, int month)
         {
             var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             
@@ -99,7 +99,7 @@ namespace Fanex.AffiliateAdmin.Controller
                         AffTypeName = model.AffiliateInfo.AffTypeName
                     });
 
-                    model.StatisticViewModel = GetStatisticViewModel(model.AffiliateInfo);
+                    model.StatisticViewModel = GetStatisticViewModel(model.AffiliateInfo, year, month);
                     ViewBag.IsLoadOtherPage = Request["IsLoadOtherPage"];
                     return View(model);
                 }
@@ -350,14 +350,14 @@ namespace Fanex.AffiliateAdmin.Controller
                 : new DateTime(year, month, 1);
         }
 
-        private AffiliateStatisticViewModel GetStatisticViewModel(DTO.Affiliate affiliate)
+        private AffiliateStatisticViewModel GetStatisticViewModel(DTO.Affiliate affiliate, int year, int month)
         {
             var criteria = new AffiliateStatisticCriteria
             {
                 AffId = affiliate.AffId
             };
 
-            criteria.MonthDate = GetFullDate(criteria.Year, criteria.Month, SystemTimeService.GetSystemDateTime());
+            criteria.MonthDate = GetFullDate(year, month, SystemTimeService.GetSystemDateTime());
 
             var model = _affiliateService.GetAffiliateStatistic(criteria);
             model.FullDateTime = criteria.MonthDate;

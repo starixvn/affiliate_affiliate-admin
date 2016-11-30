@@ -136,7 +136,7 @@
         protected internal virtual ResultInfo SetAuthorize(OneAuthenticationToken tokenInfo)
         {
             CreateSession(tokenInfo);
-            var authName = $"{tokenInfo.UserName}_{tokenInfo.VendorID}_{tokenInfo.SiteName}";
+            var authName = $"{tokenInfo.UserID}_{tokenInfo.VendorID}_{tokenInfo.SiteName}";
             FormsAuthentication.SetAuthCookie(authName, false);
 
             return new ResultInfo
@@ -150,7 +150,7 @@
 
         private static bool VerifySessionWithToken(ICurrentSession currentSession, OneAuthenticationToken tokenInfo)
         {
-            return currentSession.Username == tokenInfo.UserName
+            return currentSession.Username == tokenInfo.UserID
                 && currentSession.VendorID == tokenInfo.VendorID && currentSession.VendorIdentityID == tokenInfo.UserID;
         }
 
@@ -172,7 +172,7 @@
             {
                 CustID = tokenInfo.UserSEQ,
                 IsIT = false,
-                Username = tokenInfo.UserName
+                Username = tokenInfo.UserID
             };
             var session = _accountService.CreateSession(user, AppSettings.LicenseeID, AppMode.Parasitic);
             session.VendorID = tokenInfo.VendorID;

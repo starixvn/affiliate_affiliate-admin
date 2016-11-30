@@ -46,12 +46,6 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int TotalClicks { get; set; }
 
-        [SpParam(Ignored = true)]
-        public int Month { get; set; }
-
-        [SpParam(Ignored = true)]
-        public int Year { get; set; }
-
         public override string GetSettingKey()
         {
             return "AffAdmin_StatisticsSel";

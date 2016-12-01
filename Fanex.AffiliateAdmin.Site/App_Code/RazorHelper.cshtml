@@ -6,6 +6,28 @@
 @using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Enumerations
 @using Fanex.AffiliateAdmin.Core.Configurations
+
+@helper RenderPiwikScript(AppMode appMode)
+{
+    var piwikId = appMode == AppMode.Self ? AppSettings.PiwikSiteId : AppSettings.CommonPiwikSiteId.ToString();
+
+    if (string.IsNullOrWhiteSpace(piwikId) == false && AppSettings.Environment.Equals("Production", StringComparison.OrdinalIgnoreCase))
+    {
+        <script type="text/ecmascript">
+            var _paq = _paq || [];
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function () {
+                var u = "https://pw.detecas.com/";
+                _paq.push(['setTrackerUrl', u + 'piwik.php']);
+                _paq.push(['setSiteId', @piwikId]);
+                var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+                g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
+            })();
+        </script>
+        <noscript><p><img src="https://pw.detecas.com/piwik.php?idsite=@(piwikId)" style="border:0;" alt="" /></p></noscript>
+    }
+}
 @helper ListSubmenu(IEnumerable<Menu> list, int selectedMenuIndex, string activeMenu = "Home", int selectedSubMenuIndex = -1, bool isIncludeQueryString = false)
     {
     var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);

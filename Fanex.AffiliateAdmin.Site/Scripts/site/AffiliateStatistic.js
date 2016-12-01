@@ -80,11 +80,9 @@ var AFFSTATISTIC = (function ($) {
                 if ($(this).attr("class") === 'statistic-show') {
                     $(this).attr("class", 'statistic-hide');
                     $("#stContent").hide();
-                    parent.AFFMASTER.colContent();
                 } else {
                     $(this).attr("class", 'statistic-show');
                     $("#stContent").show();
-                    parent.AFFMASTER.expContent();
                 }
             });
         },

@@ -561,13 +561,13 @@ $(function () {
     });
 
     $(".ic-open-window").click(function () {
-        if (parent.AFFMASTER !== undefined) {
+        if (parent.AFFINFO !== undefined) {
             var submitOptions = $('form').serializeObject2();
             submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
             var url = location.href;
             url += url.indexOf('?') < 0 ? '?' : '&';
             url += $.param(submitOptions);
-            parent.AFFMASTER.openNewWindow(url);
+            parent.AFFINFO.openNewWindow(url);
         }
     });
 

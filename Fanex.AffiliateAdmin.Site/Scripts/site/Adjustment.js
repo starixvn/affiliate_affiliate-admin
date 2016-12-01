@@ -11,7 +11,7 @@ var ADJUST = (function ($) {
         var code = Number($result.val());
         if (code === 0)
         {
-            AFFILIATE.showUpdateStatus(code, $result.data("message"), parent.window.location.reload);
+            AFFILIATE.showUpdateStatus(code, $result.data("message"));
             ADJUST.hideMsg();
         }
         else

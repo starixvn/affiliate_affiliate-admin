@@ -9,7 +9,7 @@ var AFFINFO = (function ($) {
         $("#left_hide").show();
         $("#c-panel").animate({
             left: "20px"
-        }, 300, function () {
+        }, 100, function () {
             $("#l-panel").addClass("l-panel-hide");
         });
     }
@@ -19,7 +19,7 @@ var AFFINFO = (function ($) {
         $("#left_show").show();
         $("#c-panel").animate({
             left: "256px"
-        }, 300, function () {
+        }, 100, function () {
             $("#l-panel").removeClass("l-panel-hide");
         });
     }

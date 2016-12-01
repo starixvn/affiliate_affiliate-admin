@@ -21,7 +21,7 @@
     @if (Model != null && !string.IsNullOrEmpty(Model.AffiliateInfo.UserName))
     {
         <div id="c-panel" class="c-panel">
-               <div id="StatisticPanel" class="span12 t-panel">
+               <div id="StatisticPanel" class="span12 t-panel statistic-exp">
                    @if (Model.AffiliateInfo.Status.Equals("approved", StringComparison.OrdinalIgnoreCase))
                    {
                     @Html.Partial("~/Views/AffiliateInfo/_Statistic.cshtml", Model.StatisticViewModel)
@@ -36,7 +36,6 @@
 
 @section scripts{
 
-    @Scripts.Render("~/scripts/affiliatemaster")
     @Scripts.Render("~/scripts/affiliateinfo")
     @Scripts.Render("~/scripts/affiliatestatistic")
     <script type="text/javascript">

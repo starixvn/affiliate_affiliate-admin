@@ -28,7 +28,7 @@ var AFFINFO = (function ($) {
         init: function () {
             $('#btnAdd').click(function () {
                 $("#AffiliateInfo_Username").val($.trim($("#AffiliateInfo_Username").val()));
-                parent.location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo") + "?Username=" + $("#AffiliateInfo_Username").val();
+                window.location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo") + "?Username=" + $("#AffiliateInfo_Username").val();
                 return false;
             });
 
@@ -148,14 +148,14 @@ var AFFINFO = (function ($) {
                     groupId: $("#GroupId").val()
                 };
 
-                parent.AFFILIATE.openDialogFrame("Affiliate/ChangeCommissionGroup?" + jQuery.param(param), MSG.ChangeComGroup, { width: 450, height: 300 });
+                AFFILIATE.openDialogFrame("Affiliate/ChangeCommissionGroup?" + jQuery.param(param), MSG.ChangeComGroup, { width: 450, height: 300 });
             });
 
             $('#groupLink').click(function () {
                 var param = {
                     groupid: $("#GroupId").val()
                 };
-                parent.AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommissionGroup, { width: 1000, height: 450 });
+                AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommissionGroup, { width: 1000, height: 450 });
             });
 
             $('#accountType').click(function () {
@@ -164,7 +164,7 @@ var AFFINFO = (function ($) {
                     usernames: $("#Username").val(),
                     testlevel: $(this).data('test-level')
                 };
-                parent.AFFILIATE.openDialogFrame("Affiliate/ChangeAccountType?" + jQuery.param(param), MSG.ChangeAccountType, { width: 500, height: 300 });
+                AFFILIATE.openDialogFrame("Affiliate/ChangeAccountType?" + jQuery.param(param), MSG.ChangeAccountType, { width: 500, height: 300 });
             });
         },
         changePassword: function (affId, affName) {

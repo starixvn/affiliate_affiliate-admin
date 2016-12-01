@@ -71,14 +71,13 @@
             function setHeightBox() {
                 $("#left_hide").css("height", ($(window).height() - 50));
             }
-            var status = $("#Status").val().toLowerCase();
-           if (status === 'approved') {
-                //$("#ifStatistic").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic"));
-                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("Statement"));
-                //$("#ifStatistic").attr("class", "statistic-exp");
-            } else {
-                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Edit"));
-                //$("#ifStatistic").attr("class", "statistic-hide");
+            var status = $("#Status").val();
+            if (status) {
+                if (status.toLowerCase() === 'approved') {
+                    $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("Statement"));
+                } else {
+                    $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Edit"));
+                }
             }
         });
     </script>

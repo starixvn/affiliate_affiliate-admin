@@ -48,7 +48,7 @@
             return RedirectPermanent(Url.Content("~/"));
         }
 
-        public ActionResult OneTokenRestriction(string code)
+        public ActionResult OneTokenRestriction(int code)
         {
             ViewBag.Message = GetMessageRestriction(code);
 
@@ -82,7 +82,7 @@
             return View();
         }
 
-        private static string GetMessageRestriction(string code)
+        private static string GetMessageRestriction(int code)
         {
             switch (code)
             {

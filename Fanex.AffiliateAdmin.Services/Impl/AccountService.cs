@@ -218,6 +218,7 @@
             {
                 ApplicationMode = appMode
             };
+
             return session;
         }
 

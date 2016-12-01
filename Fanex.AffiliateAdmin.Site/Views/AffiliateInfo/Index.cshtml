@@ -14,6 +14,7 @@
         else
         {
             <input type="hidden" id="UserName" value="@Model.AffiliateInfo.UserName" />
+            <input type="hidden" id="Status" value="@Model.AffiliateInfo.Status" />
             @Html.Partial("~/Views/AffiliateInfo/_Info.cshtml");
         }
     </div>
@@ -21,7 +22,10 @@
     {
         <div id="c-panel" class="c-panel">
                <div id="StatisticPanel" class="span12 t-panel">
-                   @Html.Partial("~/Views/AffiliateInfo/_Statistic.cshtml", Model.StatisticViewModel);
+                   @if (Model.AffiliateInfo.Status.Equals("approved", StringComparison.OrdinalIgnoreCase))
+                   {
+                    @Html.Partial("~/Views/AffiliateInfo/_Statistic.cshtml", Model.StatisticViewModel)
+                   }
                 </div>
                 <div id="ReportPanel" class="span12 b-panel">
                     <iframe id="ifReport" class="span12 report" seamless="seamless" style="border: none; overflow-x: hidden;"></iframe>
@@ -68,15 +72,15 @@
             function setHeightBox() {
                 $("#left_hide").css("height", ($(window).height() - 50));
             }
-
-           // if (status === 'approved') {
+            var status = $("#Status").val().toLowerCase();
+           if (status === 'approved') {
                 //$("#ifStatistic").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic"));
-          //      $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("Statement"));
+                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("Statement"));
                 //$("#ifStatistic").attr("class", "statistic-exp");
-          //  } else {
-          //      $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Edit"));
+            } else {
+                $("#ifReport").attr("src", AFFILIATE.getAbsoluteUrl("AffiliateInfo/Edit"));
                 //$("#ifStatistic").attr("class", "statistic-hide");
-          //  }
+            }
         });
     </script>
 }

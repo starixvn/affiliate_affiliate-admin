@@ -56,7 +56,7 @@
             {
                 return new ResultInfo
                 {
-                    Code = int.Parse(OneAuthorizationErrorCode.LicenseeIsNotExisted),
+                    Code = OneAuthorizationErrorCode.LicenseeIsNotExisted,
                     Message = Lang.LicenseeIsNotExisted
                 };
             }
@@ -104,7 +104,7 @@
 
             return result.IsSuccessful ? GetUser(licenseeId, siteName, userName) : new ResultInfo
             {
-                Code = int.Parse(OneAuthorizationErrorCode.NotFoundUser),
+                Code = OneAuthorizationErrorCode.NotFoundUser,
                 Message = Lang.NotFoundUser
             };
         }
@@ -122,7 +122,7 @@
 
             return new ResultInfo
             {
-                Code = int.Parse(OneAuthorizationErrorCode.NotFoundUser),
+                Code = OneAuthorizationErrorCode.NotFoundUser,
                 Message = Lang.NotFoundUser
             };
         }

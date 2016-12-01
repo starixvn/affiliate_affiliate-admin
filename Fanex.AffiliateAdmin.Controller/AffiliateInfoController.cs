@@ -63,11 +63,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Index(string userName, int year = 0, int month = 0)
         {
-            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
-            
             if (string.IsNullOrEmpty(userName))
             {
-                userName = affiliate.UserName;
+                userName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).UserName;
             }
 
             if (!string.IsNullOrEmpty(userName))

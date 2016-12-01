@@ -51,7 +51,7 @@
                 AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.AffiliateList.ReRenderAfterPaged);
             }
             else if(parent[0] != undefined) {
-                 AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent[0].AFFINFO.refreshPage);
+                 AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.AFFINFO.refreshPage);
             }
         </script>
     }

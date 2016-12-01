@@ -14,6 +14,7 @@
     public class OneAuthorizationController : Controller
     {
         private readonly IMaintenanceService _maintenanceService;
+
         private readonly IOneAuthenticationService _oneAuthenticationService;
 
         public OneAuthorizationController() : this(null, null)

@@ -46,7 +46,7 @@ var AFFMASTER = (function ($) {
                         if (isReload) {
                             window.location.reload();
                         }
-                        window[0].AFFINFO.setStatus();
+                        AFFINFO.setStatus();
                     } else {
                         alert(data.Message);
                     }

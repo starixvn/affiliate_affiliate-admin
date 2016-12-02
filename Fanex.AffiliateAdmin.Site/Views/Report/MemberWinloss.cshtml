@@ -335,7 +335,7 @@ report
                             var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
                             var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&toCurrencyId={4}&fromCurrencyId={5}&toCurrencyCode={6}".format(record.AffId, record.PlayerUsername, productNames.join(','), record.WinlostDateStr, toCurrencyId, fromCurrencyId, toCurrencyCode);
                             url = url + para;
-                            return "<a href='{0}' alt='{1}'>{2}</a>".format(url, currentValue, currentValue);
+                            return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, currentValue, currentValue);
                         }
 
                         return currentValue;

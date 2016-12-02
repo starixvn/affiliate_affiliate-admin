@@ -7,9 +7,9 @@
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Criterias.Account;
+    using Fanex.AffiliateAdmin.DTO.Common;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.Data.Repository;
-    using Fanex.AffiliateAdmin.DTO.Common;
 
     /// <summary>
     /// Interface Account service.
@@ -45,6 +45,7 @@
         void AccountUpdatePassword(AccountPasswordCriteria criteria);
 
         ICurrentSession CreateSession(Account user, int licenseeId, AppMode appMode = AppMode.Self);
+
         ResultInfo SyncUserInfo(string licenseeName, string userName);
     }
 }

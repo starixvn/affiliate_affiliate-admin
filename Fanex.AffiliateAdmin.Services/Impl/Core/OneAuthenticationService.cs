@@ -14,7 +14,6 @@
     using DTO.Common;
     using Fanex.AffiliateAdmin.Core.Constants;
     using Fanex.AffiliateAdmin.Resources;
-    using Fanex.Caching;
     using Interfaces;
 
     public class OneAuthenticationService : IOneAuthenticationService
@@ -92,41 +91,6 @@
             return SetAuthorize(tokenInfo);
         }
 
-        private ResultInfo CheckAndSyncUserInfo(int licenseeId, string siteName, string userName)
-        {
-            var result = GetUser(licenseeId, siteName, userName);
-            if (result.IsSuccessful)
-            {
-                return result;
-            }
-
-            result = _accountService.SyncUserInfo(siteName, userName);
-
-            return result.IsSuccessful ? GetUser(licenseeId, siteName, userName) : new ResultInfo
-            {
-                Code = OneAuthorizationErrorCode.NotFoundUser,
-                Message = Lang.NotFoundUser
-            };
-        }
-
-        private ResultInfo GetUser(int licenseeId, string siteName, string userName)
-        {
-            var user = _accountService.GetByUsername(userName, licenseeId, true);
-            if (user != null)
-            {
-                return new ResultInfo
-                {
-                    ExtendedData = user.CustID.ToString()
-                };
-            }
-
-            return new ResultInfo
-            {
-                Code = OneAuthorizationErrorCode.NotFoundUser,
-                Message = Lang.NotFoundUser
-            };
-        }
-
         public OneAuthenticationToken GetTokenInfo(string token)
         {
             var oneBookService = new OneBookSecurityWrapper();
@@ -144,9 +108,6 @@
                 ExtendedData = tokenInfo.ActionLink
             };
         }
-
-        [CLSCompliant(false)]
-        protected internal virtual ICache GetMemCacheService() => CacheService.CreateInstance(CacheType.MemoryCache);
 
         private static bool VerifySessionWithToken(ICurrentSession currentSession, OneAuthenticationToken tokenInfo)
         {
@@ -178,6 +139,41 @@
             session.VendorID = tokenInfo.VendorID;
             session.VendorIdentityID = tokenInfo.UserID;
             SessionManager.CurrentSession = session;
+        }
+
+        private ResultInfo CheckAndSyncUserInfo(int licenseeId, string siteName, string userName)
+        {
+            var result = GetUser(licenseeId, userName);
+            if (result.IsSuccessful)
+            {
+                return result;
+            }
+
+            result = _accountService.SyncUserInfo(siteName, userName);
+
+            return result.IsSuccessful ? GetUser(licenseeId, userName) : new ResultInfo
+            {
+                Code = OneAuthorizationErrorCode.NotFoundUser,
+                Message = Lang.NotFoundUser
+            };
+        }
+
+        private ResultInfo GetUser(int licenseeId, string userName)
+        {
+            var user = _accountService.GetByUsername(userName, licenseeId, true);
+            if (user != null)
+            {
+                return new ResultInfo
+                {
+                    ExtendedData = user.CustID.ToString()
+                };
+            }
+
+            return new ResultInfo
+            {
+                Code = OneAuthorizationErrorCode.NotFoundUser,
+                Message = Lang.NotFoundUser
+            };
         }
     }
 }

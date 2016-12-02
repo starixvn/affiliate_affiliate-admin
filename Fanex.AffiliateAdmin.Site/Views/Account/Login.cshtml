@@ -14,6 +14,7 @@
     @Styles.Render("~/bundles/login")
 </head>
 <body>
+    @Html.Hidden("RootUrl", Url.Content("~/"))
     @using (Html.BeginForm())
     {
         <div class="login">
@@ -57,12 +58,6 @@
             ChangePassword: "@Lang.ChangePassword",
             Close: "@Lang.Close"
         };
-
-        $(document).ready(function () {
-            LOGIN.getAbsoluteUrl = function (relativeUrl) {
-                return '@Url.Content("~/")' + relativeUrl;
-            };
-        });
     </script>
 </body>
 </html>

@@ -119,6 +119,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var note = this._noteService.GetNote(new NoteSelCriteria
             {
+                AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId,
                 NoteId = noteId,
                 LicenseeId = AppSettings.LicenseeID
             });

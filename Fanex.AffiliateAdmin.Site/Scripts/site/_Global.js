@@ -560,21 +560,6 @@ $(function () {
         }
     });
 
-    $(".ic-open-window").click(function () {
-        if (parent.AFFINFO !== undefined) {
-            var submitOptions = $('form').serializeObject2();
-            submitOptions["ExcludeTest"] = $('#ExcludeTest').prop('checked');
-            var url = location.href;
-            url += url.indexOf('?') < 0 ? '?' : '&';
-            url += $.param(submitOptions);
-            window.open(url);
-        }
-    });
-
-    if ($(".ic-open-window") && window === window.top) {
-        $(".ic-open-window").hide();
-    }
-
     // scroll top page
     $('#changePassword').click(function () {
         AFFILIATE.ChangePassword();

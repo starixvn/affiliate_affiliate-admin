@@ -198,9 +198,6 @@ var AFFINFO = (function ($) {
                 }
             });
         },
-        openNewWindow: function (url) {
-            window.open(url);
-        },
         changeOpenClose: function () {
             var status = $("#spClosed").html() === MSG.Yes ? false : true;
             var msg = status ? MSG.ConfirmClose : MSG.ConfirmOpen;

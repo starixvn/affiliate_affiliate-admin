@@ -27,7 +27,7 @@ var AffiliateWinLossReport = (function ($) {
                     + $(this).html() + '" ' + $(this).data("date")), { width: 900, height: 450 });
             });
 
-            $maincontent.on("click", "a.afflink", function () {
+            $maincontent.on("click", ".afflink", function () {
                 var params = $('form').serializeObject2();
                 params.AffName = $(this).data("affname");
                 params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
@@ -41,11 +41,10 @@ var AffiliateWinLossReport = (function ($) {
                 var lastDateObj = toDateObj.add("months", 1).add("days", -1);
                 params["ToDate"] = lastDateObj.format("DD MMM YYYY");
 
-                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/MemberWinlossByAffiliate?" : "Report/MemberWinloss?") + jQuery.param(params);
-                window.open(url, "_blank");
+                window.location = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/MemberWinlossByAffiliate?" : "Report/MemberWinloss?") + jQuery.param(params);
             });
 
-            $maincontent.on("click", "a.monthlink", function () {
+            $maincontent.on("click", ".monthlink", function () {
                 var params = $('form').serializeObject2();
                 params.AffName = $(this).data("affname");
                 params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
@@ -60,8 +59,7 @@ var AffiliateWinLossReport = (function ($) {
 
                 params["FromDate"] = firstDay;
                 params["ToDate"] = lastDay;
-                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/MemberWinlossByAffiliate?" : "Report/MemberWinloss?") + jQuery.param(params);
-                window.open(url, "_blank");
+                window.location = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/MemberWinlossByAffiliate?" : "Report/MemberWinloss?") + jQuery.param(params);
             });
 
             $maincontent.on("click", "a.qm", function () {

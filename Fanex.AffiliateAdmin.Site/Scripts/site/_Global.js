@@ -567,7 +567,7 @@ $(function () {
             var url = location.href;
             url += url.indexOf('?') < 0 ? '?' : '&';
             url += $.param(submitOptions);
-            parent.AFFINFO.openNewWindow(url);
+            window.open(url);
         }
     });
 

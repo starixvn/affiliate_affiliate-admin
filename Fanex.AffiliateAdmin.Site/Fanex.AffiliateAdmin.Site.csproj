@@ -3524,6 +3524,7 @@
     <Content Include="Scripts\libraries\monpickr.js" />
     <Content Include="Scripts\libraries\placeholder_fixer.js" />
     <Content Include="Scripts\libraries\ui.dropdownchecklist.js" />
+    <Content Include="Scripts\site\BannerAdd.js" />
     <Content Include="Scripts\site\BetList.js" />
     <Content Include="Scripts\site\CloseDialog.js" />
     <Content Include="Scripts\site\Adjustment.js" />

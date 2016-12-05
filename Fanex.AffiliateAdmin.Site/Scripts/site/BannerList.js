@@ -18,83 +18,6 @@ var BannerList = (function ($) {
                 BannerList.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
                 return false;
             });
-
-            $('#Category').change(function () {
-                if ($('#Category').val()) {
-                    var isShowAll = false;
-                    if ($('#gridId').length > 0) {
-                        isShowAll = true;
-                    }
-                    BannerList.getSubCategories($('#Category').val(), isShowAll);
-                } else {
-                    $('#divSubCategories').hide().html();
-                }
-            });
-
-            $('#File').change(function () {
-                if (BannerList.validateFileSize()) {
-                    BannerList.validateFileExtension(this);
-                }
-            });
-
-            $('#ActionBannerForm').submit(function () {
-                if (!BannerList.validateFileSize()) {
-                    return false;
-                }
-
-                AFFILIATE.trimBeforeSubmit();
-                // find disabled inputs
-                var inputs = $(this).find(':disabled');
-                // enable them
-                inputs.prop('disabled', false);
-                $('#btnUpdate, #btnCancel').prop('disabled', true);
-            });
-        },
-        validateFileSize: function () {
-            var maxFileSize = parseInt(window.MSG.MaxFileSize, 10);
-            var size = BannerList.findFileSize();
-            
-            if ($("#File").val() === "" && $("#BannerId").length === 0) {
-                alert(window.MSG.BannerFileRequiredMsg);
-                return false;
-            }
-
-            if (size > maxFileSize) {
-                alert(window.MSG.MaxFileSizeMsg);
-                return false;
-            }
-
-            return true;
-        },
-        findFileSize: function () {
-            var size = 0;
-            if ($.browser.msie) {
-                return size;
-            } else {
-                var fileInput = $("#File")[0];
-                size = fileInput.files && fileInput.files.length > 0 ? fileInput.files[0].size : size;
-                return size;
-            }
-        },
-        getSubCategories: function (category, isShowAll) {
-            $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Media/SubCategories"),
-                type: 'post',
-                data: { category: category, isShowAll: isShowAll },
-                beforeSend: function () {
-                },
-                success: function (data) {
-                    AFFILIATE.PreHandleAjaxResult(data);
-                    if (data.length > 0) {
-                        $('#divSubCategories').html(data).show();
-                        $(".dropdownchecklist").createDropdownchecklist();
-                    } else {
-                        $('#divSubCategories').hide().html('');
-                    }
-                },
-                complete: function () {
-                }
-            });
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
@@ -141,40 +64,6 @@ var BannerList = (function ($) {
             var url = $(element).attr('alt');
             var htmlContent = BannerList.createFlashHtml(url, width, height);
             AFFILIATE.openDialogContent(htmlContent, "Orginal View", { width: 800, height: 600 });
-        },
-
-        validateFileExtension: function (fileElement) {
-            var fullFilename = $(fileElement).val();
-            var temp = fullFilename.split("\\");
-            var fileName = temp[temp.length - 1];
-
-            if (fileName !== "") {
-                var ext = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length).toLowerCase();
-                var allowedExtensions = ["jpg", "jpeg", "png", "gif", "swf"];
-
-                if (allowedExtensions.indexOf(ext) === -1) {
-                    alert(MSG.errFileExtension);
-                    $("#FileName").val("");
-                    $('#btnUpload').attr("disabled", "disabled");
-                    $(fileElement).val(null);
-                    return false;
-                } else {
-
-                    $("#FileName").val(fileName);
-                    if (ext === "swf") {
-                        $('#ImageType').val("2");
-                    } else {
-                        $('#ImageType').val("1");
-                    }
-                    $('#ImageType').createDropdownchecklist();
-
-                    if ($('#btnUpload').length > 0) {
-                        $('#btnUpload').removeAttr("disabled");
-                    }
-                }
-            }
-
-            return true;
         },
         addBanner: function () {
             AFFILIATE.openDialogFrame("Media/AddBanner", MSG.AddBanner, { width: 580, height: 500 });

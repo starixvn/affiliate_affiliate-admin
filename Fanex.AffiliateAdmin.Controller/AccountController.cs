@@ -180,7 +180,7 @@
         public ActionResult Logout()
         {
             DoLogOut();
-            return View();
+            return Redirect(FormsAuthentication.LoginUrl);
         }
 
         /// <summary>

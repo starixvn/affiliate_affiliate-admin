@@ -44,6 +44,7 @@
     </div>
 
     @Scripts.Render("~/bundles/js")
+    
     <script type="text/javascript">
         var System = {
             Currency: '@AppSettings.BaseExchange.Code',
@@ -69,6 +70,10 @@
     @if(currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
     {
         @Scripts.Render("~/Scripts/site/RecheckIn.js")
+    }
+    else
+    {
+        @Scripts.Render("~/Scripts/site/_Session.js")
     }
     @RazorHelper.RenderPiwikScript(currentSession.ApplicationMode)      
 </body>

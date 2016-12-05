@@ -3586,6 +3586,7 @@
     <Content Include="Scripts\site\Query.string.js" />
     <Content Include="Scripts\site\ViewLog.js" />
     <Content Include="Scripts\site\_Global.js" />
+    <Content Include="Scripts\site\_Session.js" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.en-US.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.th-TH.cshtml" />

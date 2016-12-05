@@ -39,6 +39,10 @@
     {
         @Scripts.Render("~/Scripts/site/RecheckIn.js")
     }
+    else
+    {
+        @Scripts.Render("~/Scripts/site/_Session.js")
+    }
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
         var Lang = {

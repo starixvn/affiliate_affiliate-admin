@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
+    using Core.Enumerations;
     using Core.Services.Interface;
     using Core.Session;
     using Core.Utilities;
@@ -16,10 +17,8 @@
     using Models;
     using Resources;
 
-    /// <summary>
-    /// Domain Controller.
-    /// </summary>
     [FunctionAuth(Function = FunctionPolicyNames.Domain)]
+    [AuthorizeRestriction(AppMode.Self)]
     public partial class DomainController : BaseController
     {
         #region Services
@@ -49,30 +48,18 @@
 
         #endregion Constructor
 
-        /// <summary>
-        /// Default Index view.
-        /// </summary>
-        /// <returns>Index view.</returns>
         [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
-        /// <summary>
-        /// Affiliate domain page.
-        /// </summary>
-        /// <returns>Return affiliate domain name.</returns>
         [HttpGet]
         public ActionResult AffDomain()
         {
             return View();
         }
 
-        /// <summary>
-        /// Get list affiliate domain.
-        /// </summary>
-        /// <returns>Return affiliate domain list.</returns>
         [HttpPost]
         public ActionResult AffDomainList()
         {
@@ -331,10 +318,10 @@
             };
 
             model.AddCountryList(_systemSettingService.GetCountryList(new CountrySelectCriteria
-                {
-                    PageSize = 300,
-                    PageIndex = 1
-                }).ToList());
+            {
+                PageSize = 300,
+                PageIndex = 1
+            }).ToList());
 
             model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
             model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());

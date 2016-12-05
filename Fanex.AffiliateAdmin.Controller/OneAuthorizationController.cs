@@ -29,6 +29,12 @@
             _oneAuthenticationService = oneAuthenticationService ?? new OneAuthenticationService();
         }
 
+        [HttpGet]
+        public ActionResult SessionIsAlive()
+        {
+            return Json(HttpContext.User.Identity.IsAuthenticated, JsonRequestBehavior.AllowGet);
+        }
+
         [AllowAnonymous]
         [HttpGet]
         [Route("Auth/CreateSession")]

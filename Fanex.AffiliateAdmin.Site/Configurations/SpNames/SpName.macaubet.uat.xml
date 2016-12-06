@@ -17,7 +17,7 @@
     <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="Aff_InternalLogin" SpName="Aff_InternalLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" >
+    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName_xtest" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" >
       <Mapping DataField="UserID" ObjectProperty="CustID"/>
     </Setting>
   </Function>

@@ -4,8 +4,42 @@ var BannerList = (function ($) {
 
     var submitOptions = {};
 
+    function getSubCategories(category, isShowAll) {
+        $.ajax({
+            url: AFFILIATE.getAbsoluteUrl("Media/SubCategories"),
+            type: 'post',
+            data: { category: category, isShowAll: isShowAll },
+            beforeSend: function () {
+            },
+            success: function (data) {
+                AFFILIATE.PreHandleAjaxResult(data);
+                if (data.length > 0) {
+                    $('#divSubCategories').html(data).show();
+                    $(".dropdownchecklist").createDropdownchecklist();
+                } else {
+                    $('#divSubCategories').hide().html('');
+                }
+            },
+            complete: function () {
+            }
+        });
+    }
+
     return {
         init: function () {
+            $('#Category').change(function () {
+                if ($('#Category').val()) {
+                    var isShowAll = false;
+                    if ($('#gridId').length > 0) {
+                        isShowAll = true;
+                    }
+                    getSubCategories($('#Category').val(), isShowAll);
+                } else {
+                    $('#divSubCategories').hide().html();
+                }
+            });
+
+
             if ($('#gridId').length > 0) {
                 BannerList.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
             }

@@ -1,7 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item LicenseeName="spondemo" Environment="DEV,LOCAL,UAT,SIT" SpName="Aff_SyncInternalUser" Suffix=""></item>
-  <item LicenseeName="MacauBet" Environment="UAT" SpName="AffAdmin_GetLicenseeSupportedCurrencies" Suffix="_xtest"></item>
-  <item LicenseeName="MacauBet" Environment="UAT" SpName="AffAdmin_UserInfoSelByUserName" Suffix="_xtest"></item>
-  <item LicenseeName="MacauBet" Environment="UAT" SpName="Aff_SyncInternalUser" Suffix="_xtest"></item>
 </Root>

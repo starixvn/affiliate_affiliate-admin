@@ -17,7 +17,7 @@
     <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="Aff_InternalLogin" SpName="Aff_InternalLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName_xtest" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" >
+    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" >
       <Mapping DataField="UserID" ObjectProperty="CustID"/>
     </Setting>
   </Function>
@@ -56,11 +56,11 @@
     <Setting Key="AffAdmin_CustomerInsMemberManually" SpName="AffAdmin_CustomerInsMemberManually" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateUpdAccountType" SpName="AffAdmin_AffiliateUpdAccountType" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="Aff_CustomerSelByUserName" SpName="Aff_CustomerSelByUserName" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
-    <Setting Key="Aff_SyncInternalUser" SpName="Aff_SyncInternalUser_xtest" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Aff_SyncInternalUser" SpName="Aff_SyncInternalUser" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
 
   </Function>
   <Function Name="System Settings">
-    <Setting Key="AffAdmin_GetLicenseeSupportedCurrencies" SpName="AffAdmin_GetLicenseeSupportedCurrencies_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_GetLicenseeSupportedCurrencies" SpName="AffAdmin_GetLicenseeSupportedCurrencies" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemAllSupportedCurrencies" SpName="AffAdmin_SystemAllSupportedCurrencies" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemSupportedCurrencies" SpName="AffAdmin_SystemSupportedCurrencies" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateCurrenciesSel" SpName="AffAdmin_AffiliateCurrenciesSel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />

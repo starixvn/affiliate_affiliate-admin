@@ -3,23 +3,40 @@ var AFFINFO = (function ($) {
     "use strict";
     var statusTimeOut;
     var langTimeOut;
+
+    function hideLeftPanel() {
+        $("#left_show").hide();
+        $("#left_hide").show();
+        $("#c-panel").animate({
+            left: "20px"
+        }, 100, function () {
+            $("#l-panel").addClass("l-panel-hide");
+        });
+    }
+
+    function showLeftPanel() {
+        $("#left_hide").hide();
+        $("#left_show").show();
+        $("#c-panel").animate({
+            left: "256px"
+        }, 100, function () {
+            $("#l-panel").removeClass("l-panel-hide");
+        });
+    }
+
     return {
         init: function () {
             $('#btnAdd').click(function () {
                 $("#AffiliateInfo_Username").val($.trim($("#AffiliateInfo_Username").val()));
-                window.top.location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo") + "?Username=" + $("#AffiliateInfo_Username").val();
+                window.location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo") + "?Username=" + $("#AffiliateInfo_Username").val();
                 return false;
             });
 
             $('#left_show_i').click(function () {
-                $("#left_show").hide();
-                $("#left_hide").show();
-                parent.AFFMASTER.colBox();
+                hideLeftPanel();
             });
             $('#left_hide_i').click(function () {
-                $("#left_hide").hide();
-                $("#left_show").show();
-                parent.AFFMASTER.expBox();
+                showLeftPanel();
             });
             $('#spClosed').click(function () {
                 AFFINFO.changeOpenClose();
@@ -52,7 +69,7 @@ var AFFINFO = (function ($) {
                     $.ajax({
                         url: AFFILIATE.getAbsoluteUrl("AffiliateInfo/ChangeLanguage"),
                         type: 'post',
-                        data: "PreferredLanguage=" + $(this).val(),
+                        data: "PreferredLanguage=" + $(this).val() + "&affid=" + $("#AffId").val(),
                         beforeSend: function () {
                             $.blockUI();
                         },
@@ -93,7 +110,7 @@ var AFFINFO = (function ($) {
                     $.ajax({
                         url: AFFILIATE.getAbsoluteUrl("AffiliateInfo/ChangeAffType"),
                         type: 'post',
-                        data: "AffType=" + $(this).val(),
+                        data: "AffType=" + $(this).val() + "&affid=" + $("#AffId").val(),
                         beforeSend: function () {
                             $.blockUI();
                         },
@@ -119,13 +136,8 @@ var AFFINFO = (function ($) {
                 AFFINFO.setAffTypeTimeOut(true);
             });
 
-
             $('#spPassword').click(function () {
-                var username = $("#lnkUN").html();
-                if (username === undefined) {
-                    username = $("#spUN").html();
-                }
-                parent.AFFMASTER.changePassword(username);
+                AFFINFO.changePassword($("#AffId").val(), $("#Username").val());
             });
 
             $('#spEdit').click(function () {
@@ -136,14 +148,14 @@ var AFFINFO = (function ($) {
                     groupId: $("#GroupId").val()
                 };
 
-                parent.AFFILIATE.openDialogFrame("Affiliate/ChangeCommissionGroup?" + jQuery.param(param), MSG.ChangeComGroup, { width: 450, height: 300 });
+                AFFILIATE.openDialogFrame("Affiliate/ChangeCommissionGroup?" + jQuery.param(param), MSG.ChangeComGroup, { width: 450, height: 300 });
             });
 
             $('#groupLink').click(function () {
                 var param = {
                     groupid: $("#GroupId").val()
                 };
-                parent.AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommissionGroup, { width: 1000, height: 450 });
+                AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommissionGroup, { width: 1000, height: 450 });
             });
 
             $('#accountType').click(function () {
@@ -152,7 +164,38 @@ var AFFINFO = (function ($) {
                     usernames: $("#Username").val(),
                     testlevel: $(this).data('test-level')
                 };
-                parent.AFFILIATE.openDialogFrame("Affiliate/ChangeAccountType?" + jQuery.param(param), MSG.ChangeAccountType, { width: 500, height: 300 });
+                AFFILIATE.openDialogFrame("Affiliate/ChangeAccountType?" + jQuery.param(param), MSG.ChangeAccountType, { width: 500, height: 300 });
+            });
+        },
+        changePassword: function (affId, affName) {
+            AFFILIATE.openDialogFrame("AffiliateInfo/ChangePassword?affid=" + affId + "&affname=" + affName, affName + ' - ' + window.Lang.ChangePassword, { width: 500, height: 280 });
+        },
+        changeAffInfo: function (param) {
+            AFFINFO.updateAffInfo(param, true);
+        },
+        updateAffInfo: function (param, isReload) {
+            $.ajax({
+                url: AFFILIATE.getAbsoluteUrl("AffiliateInfo/ChangeStatus"),
+                type: 'post',
+                data: jQuery.param(param),
+                beforeSend: function () {
+                    $.blockUI();
+                },
+                success: function (data) {
+                    AFFILIATE.PreHandleAjaxResult(data);
+                    if (data.Success) {
+                        alert(data.Message);
+                        if (isReload) {
+                            window.location.reload();
+                        }
+                        AFFINFO.setStatus();
+                    } else {
+                        alert(data.Message);
+                    }
+                },
+                complete: function () {
+                    $.unblockUI();
+                }
             });
         },
         changeOpenClose: function () {
@@ -163,7 +206,7 @@ var AFFINFO = (function ($) {
                 $.ajax({
                     url: AFFILIATE.getAbsoluteUrl("AffiliateInfo/ChangeOpenClose"),
                     type: 'post',
-                    data: "Closed=" + status,
+                    data: "Closed=" + status + "&affid=" + $("#AffId").val(),
                     beforeSend: function () {
                         $.blockUI();
                     },
@@ -188,6 +231,9 @@ var AFFINFO = (function ($) {
                 $.ajax({
                     url: AFFILIATE.getAbsoluteUrl("AffiliateInfo/UnLocked"),
                     type: 'post',
+                    data: {
+                        affId: $("#AffId").val()
+                    },
                     beforeSend: function () {
                         $.blockUI();
                     },
@@ -231,7 +277,7 @@ var AFFINFO = (function ($) {
             }
         },
         changeStatus: function (isChange, setValue) {
-            statusTimeOut = null;
+            clearTimeout(statusTimeOut);
             if (isChange) {
                 $("#slStatus").show();
                 $("#spStatus").hide();
@@ -285,17 +331,18 @@ var AFFINFO = (function ($) {
                 var param = {};
                 if (status === "Approved") {
                     param = {
-                        affID: affID,
+                        affIDs: affID,
                         usernames: userName,
                         currency: currency,
                         status: status
                     };
-                    parent.AFFILIATE.openDialogFrame("Affiliate/ChangeCommissionApprove?" + jQuery.param(param), MSG.AssignComGroup, { width: 550, height: 300 });  // jshint ignore:line
+                    AFFILIATE.openDialogFrame("Affiliate/ChangeCommissionApprove?" + jQuery.param(param), MSG.AssignComGroup, { width: 550, height: 300 });  // jshint ignore:line
                 } else {
                     param = {
+                        affID: affID,
                         status: $("#slStatus").val()
                     };
-                    parent.AFFMASTER.updateAffInfo(param, false);
+                    AFFINFO.updateAffInfo(param, false);
                 }
             } else {
                 $('#slStatus').val($('#spStatus').text());

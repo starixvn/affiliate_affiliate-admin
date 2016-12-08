@@ -79,7 +79,7 @@ var Message = (function ($) {
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, parent.Message.ReRenderAfterPaged);
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, Message.ReRenderAfterPaged);
                             }
                         }
                     });

@@ -15,9 +15,14 @@
 </head>
 <body >
     @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
+    @Html.Hidden("BaseUrl", Url.Content("~/"))
+    @Html.Hidden("TimeZone", AppSettings.ServerTimeZone)
     <div class="container">
         <div class="row-fulid">
+          @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
+          {
             @Html.Partial("_Header")
+          }
             <div class="span12 content narrow-padding">
                 <!--content html-->
                 <div class="row-fluid main-content">
@@ -30,7 +35,14 @@
     </div>
 
     @Scripts.Render("~/bundles/js")
-    
+    @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
+    {
+        @Scripts.Render("~/Scripts/site/RecheckIn.js")
+    }
+    else
+    {
+        @Scripts.Render("~/Scripts/site/_Session.js")
+    }
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
         var Lang = {
@@ -44,36 +56,9 @@
         };
 
         $(document).ready(function() {
-            $.unblockUI();
-
-            AFFILIATE.getAbsoluteUrl = function(relativeUrl) {
-                return '@Url.Content("~/")' + relativeUrl;
-            };
-
-            AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
             $("#AffiliateInfo").addClass("active");
         });
     </script>
-    @if (string.IsNullOrWhiteSpace(AppSettings.PiwikSiteId) == false && AppSettings.Environment.Equals("Production", StringComparison.OrdinalIgnoreCase))
-    {
-        <script type="text/ecmascript">
-            var piwikSiteId = '@AppSettings.PiwikSiteId';
-
-            var _paq = _paq || [];
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function () {
-                var u = "https://pw.detecas.com/";
-                _paq.push(['setTrackerUrl', u + 'piwik.php']);
-                _paq.push(['setSiteId', piwikSiteId]);
-                var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-                g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
-            })();           
-        </script>    
-        <noscript>
-            <p>
-                <img src="https://pw.detecas.com/piwik.php?idsite=@(AppSettings.PiwikSiteId)'  style="border:0;" alt="" /></p>
-        </noscript>
-    }
+    @RazorHelper.RenderPiwikScript(currentSession.ApplicationMode)
 </body>
 </html>

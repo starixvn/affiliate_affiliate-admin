@@ -171,16 +171,20 @@
     <Compile Include="..\Fanex.AffiliateAdmin.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Filter\AuthorizeRestrictionAttribute.cs" />
     <Compile Include="Configurations\AffiliateSettings.cs" />
     <Compile Include="Configurations\FunctionPolicyNames.cs" />
     <Compile Include="Configurations\GetAppSettings.cs" />
+    <Compile Include="Constants\OneAuthorizationErrorCode.cs" />
     <Compile Include="Crypt.cs" />
+    <Compile Include="Enumerations\AppMode.cs" />
     <Compile Include="Enumerations\CasinoGameType.cs" />
     <Compile Include="Enumerations\BetType.cs" />
     <Compile Include="Enumerations\ReportType.cs" />
     <Compile Include="Filter\ITAuthAttribute.cs" />
     <Compile Include="Filter\FunctionAuthAttribute.cs" />
     <Compile Include="Filter\NoCacheAttribute.cs" />
+    <Compile Include="Filter\XFrameOptionAttribute.cs" />
     <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Mailinator\AffiliateMailinator.cs" />
     <Compile Include="Mailinator\EmailColorPalette.cs" />
@@ -315,7 +319,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

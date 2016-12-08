@@ -17,8 +17,6 @@ affiliate-info
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 0)
     <div class="line line-statement">
-        <div class="ic-open-window" title="@Lang.FullScreen">
-        </div>
         <div class="ic-reload" title="@Lang.RefreshPage">
         </div>
     </div>
@@ -90,7 +88,6 @@ affiliate-info
             NoInfo: "@Lang.NoInfo"
         };
 
-        var currencySymbol = "@ViewBag.AffCurrencySymbol";
         var gridOption = {
             language: '@AppSession.Language',
             timeZone: AFFILIATE.TimeZone,
@@ -147,6 +144,7 @@ affiliate-info
                         var transdate = window.moment(rowData.TransDateStr).format(AFFILIATE.DATE_FORMAT_MONTH);
                         
                         href += "?FromDate=" + transdate + "&ToDate=" + transdate;
+
                         return "<a href=\"{0}\">".format(href) + currentValue + "</a>";
                     } else if (rowData.TransType == 202) {
                         return "<a href=\"javascript:STATEMENT.showDetail(" + rowData.TransId + ");\">" + currentValue + "</a>";

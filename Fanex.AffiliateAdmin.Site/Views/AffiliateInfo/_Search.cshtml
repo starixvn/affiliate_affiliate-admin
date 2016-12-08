@@ -1,9 +1,8 @@
 ﻿@{
     ViewBag.Title = Lang.AffiliateInfo;
-    Layout = "~/Views/Shared/_LayoutFrameNoHeader.cshtml";
+    Layout = null;
 }
 
-@Styles.Render("~/bundles/css")
 <div id="left_show" class="left_show">
     <div class="left-show-d">
         <div class="l-panel-row l-panel-top"></div>
@@ -22,11 +21,3 @@
         <div class="l-panel-row l-panel-bottom"></div>
     </div>
 </div>
-
-@section scripts{
-    @Scripts.Render("~/scripts/affiliateinfo")
-
-    <script type="text/javascript">
-        parent.AFFMASTER.searchPages();
-    </script>
-}

@@ -11,6 +11,7 @@
     using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -65,8 +66,7 @@
         [HttpPost]
         public ActionResult ReferrerList(ClickStatisticBySiteCriteria criteria)
         {
-            criteria.AffId = SessionManager.CurrentSession.Affiliate.AffiliateId;
-
+            criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
             var data = this._trackingService.GetReferrers(criteria);
 
             return Json(new { List = data });
@@ -98,8 +98,7 @@
         [HttpPost]
         public ActionResult LandingPageList(ClickStatisticByPageCriteria criteria)
         {
-            criteria.AffId = SessionManager.CurrentSession.Affiliate.AffiliateId;
-
+            criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
             var data = this._trackingService.GetLandingPages(criteria);
 
             return Json(new { List = data });
@@ -124,8 +123,7 @@
         [HttpPost]
         public ActionResult StatisticDetailList(ClickStatisticDetailCriteria criteria)
         {
-            criteria.AffId = SessionManager.CurrentSession.Affiliate.AffiliateId;
-
+            criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
             var data = this._trackingService.GetTrackingStatisticDetails(criteria);
 
             return Json(new

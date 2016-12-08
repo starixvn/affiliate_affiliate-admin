@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -57,10 +58,11 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Index()
         {
+            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             var session = SessionManager.CurrentSession;
             var baseCurrencyList = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0", Text = session.Affiliate.Currency }
+                new SelectListItem { Value = "0", Text = affiliate.CurrencyCode }
             };
 
             var transTypeList = _transTypeService.GetTransTypes(new TransTypeCriteria());
@@ -68,8 +70,6 @@ namespace Fanex.AffiliateAdmin.Controller
             var model = new StatementViewModel();
             model.AddBaseCurrencyList(baseCurrencyList);
             model.AddTransTypeList(transTypeList.ToList());
-
-            ViewBag.AffCurrencySymbol = session.Affiliate.Prefix;
 
             return View(model);
         }
@@ -82,7 +82,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ListStatement(StatementCriteria criteria)
         {
-            criteria.AffId = SessionManager.CurrentSession.Affiliate.AffiliateId;
+            criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
             criteria.LicenseeId = AppSettings.LicenseeID;
 
             var data = _statementService.GetAffiliateStatement(criteria);

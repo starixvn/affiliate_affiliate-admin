@@ -4,9 +4,7 @@ var CloseDialog = (function ($) {
     return {
         init: function () {
             $(".popup #btnCancel").click(function () {
-                if (parent.AFFILIATE.currentOpenDialog) {
-                    parent.AFFILIATE.currentOpenDialog.dialog("close");
-                }
+                AFFILIATE.closeDialog();
             });
         }
     };

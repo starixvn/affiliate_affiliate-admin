@@ -36,16 +36,6 @@ namespace Fanex.AffiliateAdmin.Models
             }
         }
 
-        public decimal AffMinWire { get; set; }
-
-        public decimal AffMinNeteller { get; set; }
-
-        public decimal AffMinCheque { get; set; }
-
-        public decimal AffMinMoneyBookers { get; set; }
-
-        public decimal AffMinPlayer { get; set; }
-
         public IEnumerable<SelectListItem> PaymentMethodListItem
         {
             get

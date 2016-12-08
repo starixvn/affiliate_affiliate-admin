@@ -53,8 +53,8 @@ var AFFSTATISTIC = (function ($) {
             });
 
             $('.link').click(function () {
-                var href = parent.location.protocol + "//" + parent.location.host + $(this).attr("href");
-                parent.window.Mgmt.ifReport.attr('src', href);
+                var href = window.location.protocol + "//" + window.location.host + $(this).attr("href");
+                window.Mgmt.ifReport.attr('src', href);
                 return false;
             });
 
@@ -71,7 +71,7 @@ var AFFSTATISTIC = (function ($) {
                 };
                 var title = MSG.AffQualifiedMemReportDetailFor.format($(this).data("affname"), 
                     param.monthdate, $(this).data("currency"), $(this).data("commgroup"));
-                parent.AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });
+                AFFILIATE.openDialogFrame("Report/QualifiedMembers?" + jQuery.param(param), title, { width: 900, height: 450 });
                 
                 
             });
@@ -80,11 +80,9 @@ var AFFSTATISTIC = (function ($) {
                 if ($(this).attr("class") === 'statistic-show') {
                     $(this).attr("class", 'statistic-hide');
                     $("#stContent").hide();
-                    parent.AFFMASTER.colContent();
                 } else {
                     $(this).attr("class", 'statistic-show');
                     $("#stContent").show();
-                    parent.AFFMASTER.expContent();
                 }
             });
         },
@@ -134,7 +132,7 @@ var AFFSTATISTIC = (function ($) {
                 month: date.format("MM"),
                 year: date.format("YYYY")
             };
-            location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo/Statistic") + "?" + $.param(param);
+            location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo/Index") + "?" + $.param(param);
         }
     };
 })(jQuery);

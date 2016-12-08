@@ -2,18 +2,26 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
+    using System.IO;
     using System.Linq;
+    using System.Web.Hosting;
     using Common;
     using Common.Helper;
+    using Core.Enumerations;
     using Core.Services;
+    using Core.Services.Interface;
+    using Core.Session;
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.AffiliateAdmin.DataAccess;
+    using Fanex.AffiliateAdmin.DTO.Common;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data;
     using Fanex.Data.Repository;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Account Service.
@@ -22,35 +30,21 @@
     {
         private const int WrongUserPasswordErrorCode = 101;
 
-        #region Fields
-
-        /// <summary>
-        /// Define Account DataAccess.
-        /// </summary>
         private readonly IAccountDataAccess _accountDataAccess;
 
-        #endregion Fields
+        private readonly ISystemSettingService _systemSettingService;
 
-        #region Constructor
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AccountService" /> class.
-        /// </summary>
         public AccountService()
-            : this(null)
+            : this(null, null)
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AccountService" /> class.
-        /// </summary>
-        /// <param name="accountDataAccess">Account data access.</param>
-        private AccountService(IAccountDataAccess accountDataAccess)
+        private AccountService(IAccountDataAccess accountDataAccess, ISystemSettingService systemSettingService)
         {
             _accountDataAccess = accountDataAccess ?? new AccountDataAccess();
-        }
 
-        #endregion Constructor
+            _systemSettingService = systemSettingService ?? new SystemSettingService();
+        }
 
         public ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account)
         {
@@ -58,11 +52,6 @@
             return _accountDataAccess.LoginInternal(criteria, out account);
         }
 
-        /// <summary>
-        /// Login user.
-        /// </summary>
-        /// <param name="criteria">Login criteria.</param>
-        /// <returns>Account info.</returns>
         public ResultViewModel Login(LoginCriteria criteria, out Account account, string logInToken)
         {
             ResultViewModel result = null;
@@ -85,35 +74,18 @@
             };
         }
 
-        /// <summary>
-        /// Get by username.
-        /// </summary>
-        /// <param name="userName">Username value.</param>
-        /// <returns>User value.</returns>
-        public Account GetByUsername(string userName)
+        public Account GetByUsername(string userName, int licenseeId = 0, bool isInternal = false)
         {
             var param = new
             {
                 Username = userName,
+                LicenseeId = licenseeId,
+                isInternal = isInternal
             };
 
             using (var objectDb = new ObjectDb("AffAdmin_UserInfoSelByUserName"))
             {
-                var user = objectDb.Query<User>(param).FirstOrDefault();
-
-                Account account = null;
-
-                if (user != null)
-                {
-                    account = new Account
-                    {
-                        Username = user.Username,
-                        Password = user.Password,
-                        UserSalt = user.UserSalt
-                    };
-                }
-
-                return account;
+                return objectDb.QueryEntity<Account>(param);
             }
         }
 
@@ -125,17 +97,6 @@
         {
             Check.Argument.IsNotNull(criteria, "criteria");
             _accountDataAccess.UserLogOut(criteria);
-        }
-
-        /// <summary>
-        /// Get role access of user.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>List function policy.</returns>
-        public IEnumerable<FunctionPolicy> UserPolicySel(UserPolicyCriteria criteria)
-        {
-            Check.Argument.IsNotNull(criteria, "criteria");
-            return GetData<FunctionPolicy>(criteria);
         }
 
         public int CheckIn(CheckInCriteria criteria)
@@ -228,6 +189,85 @@
         public void AccountUpdatePassword(AccountPasswordCriteria criteria)
         {
             ExecuteOutput(criteria);
+        }
+
+        public ICurrentSession CreateSession(Account user, int licenseeId, AppMode appMode = AppMode.Self)
+        {
+            IEnumerable<FunctionPolicy> policies;
+            IEnumerable<Currency> currencies;
+            currencies = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
+            {
+                UserId = user.CustID,
+                LicenseeId = licenseeId
+            }).ToList();
+
+            if (appMode == AppMode.Self)
+            {
+                policies = GetUserPolicyList(new UserPolicyCriteria
+                {
+                    CustID = user.CustID,
+                    LicenseeId = licenseeId
+                });
+            }
+            else
+            {
+                policies = GetSystemFunctions();
+            }
+
+            var session = new CurrentSession(user, policies, currencies)
+            {
+                ApplicationMode = appMode
+            };
+
+            return session;
+        }
+
+        public ResultInfo SyncUserInfo(string licenseeName, string userName)
+        {
+            const int AdminGroup = 1;
+            const string UspName = @"Aff_SyncInternalUser";
+
+            // 1234aa
+            const string DefaultPass = "754A738BF99D986D8716FE00A81BC5CA32916BF6";
+            using (var db = new ObjectDb(UspName))
+            {
+                db.AddInParameter("LicenseeName", DbType.String, licenseeName);
+                db.AddInParameter("Username", DbType.String, userName);
+                db.AddInParameter("EncryptedPassword", DbType.String, DefaultPass);
+                db.AddInParameter("AffGroup", DbType.Int32, AdminGroup);
+                db.AddOutParameter("ErrCode", DbType.Int32, 4);
+                db.AddOutParameter("ErrMsg", DbType.String, 4000);
+
+                db.ExecuteNonQuery();
+
+                var errorCode = db.GetParameterValue("ErrCode");
+                var errorMessage = db.GetParameterValue("ErrMsg");
+
+                return new ResultInfo
+                {
+                    Code = Converter.ToInt(errorCode),
+                    Message = Converter.ToString2(errorMessage)
+                };
+            }
+        }
+
+        private IEnumerable<FunctionPolicy> GetUserPolicyList(UserPolicyCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+            return GetData<FunctionPolicy>(criteria);
+        }
+
+        private IEnumerable<FunctionPolicy> GetSystemFunctions()
+        {
+            const string FunctionFilePath = "~/App_Data/SystemFunction.json";
+
+            var fileContent = File.ReadAllText(HostingEnvironment.MapPath(FunctionFilePath));
+            if (!string.IsNullOrWhiteSpace(fileContent))
+            {
+                return JsonConvert.DeserializeObject<IList<FunctionPolicy>>(fileContent);
+            }
+
+            return new List<FunctionPolicy>();
         }
     }
 }

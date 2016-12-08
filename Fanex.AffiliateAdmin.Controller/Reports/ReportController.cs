@@ -15,6 +15,7 @@
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// Report Controller.
@@ -83,10 +84,10 @@
                 Id = x.ProductID,
                 Name = x.ProductName
             }));
+            var currencyCode = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).CurrencyCode;
+            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(currencyCode);
 
-            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(SessionManager.CurrentSession.Affiliate.Currency);
-
-            var baseCurrencyList = GetBaseCurrencyList();
+            var baseCurrencyList = GetBaseCurrencyList(currencyCode);
 
             model.AddBaseCurrencyList(baseCurrencyList);
 
@@ -133,7 +134,8 @@
         [HttpGet]
         public ActionResult MemberWinlossByAffiliate(MemberWinlossByAffiliateViewModel model)
         {
-            var baseCurrencyList = GetBaseCurrencyList();
+            var currencyCode = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).CurrencyCode;
+            var baseCurrencyList = GetBaseCurrencyList(currencyCode);
 
             model.AddBaseCurrencyList(baseCurrencyList);
 
@@ -145,7 +147,7 @@
                 Name = x.ProductName
             }));
 
-            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(SessionManager.CurrentSession.Affiliate.Currency);
+            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(currencyCode);
 
             return View("MemberWinlossByAffiliate", model);
         }
@@ -243,9 +245,10 @@
 
             ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
 
+            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             var baseCurrencyList = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0",  Text = SessionManager.CurrentSession.Affiliate.Currency }
+                new SelectListItem { Value = "0",  Text = affiliate.CurrencyCode }
             };
 
             model.AddBaseCurrencyList(baseCurrencyList);
@@ -312,9 +315,10 @@
 
             ViewBag.HasCashbackDeduction = AppSettings.DeductionTypes.Any(x => x.ProductID == 0);
 
+            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             var baseCurrencyList = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0",  Text = SessionManager.CurrentSession.Affiliate.Currency }
+                new SelectListItem { Value = "0",  Text = affiliate.CurrencyCode }
             };
 
             model.AddBaseCurrencyList(baseCurrencyList);
@@ -330,11 +334,10 @@
         /// Get base currency list.
         /// </summary>
         /// <returns>Base currency list.</returns>
-        private List<SelectListItem> GetBaseCurrencyList()
+        private List<SelectListItem> GetBaseCurrencyList(string currencyCode)
         {
             List<SelectListItem> baseCurrencyList;
-            var session = SessionManager.CurrentSession;
-            if (session.Affiliate.Currency.Equals(AppSettings.BaseExchange.Code))
+            if (currencyCode.Equals(AppSettings.BaseExchange.Code))
             {
                 baseCurrencyList = new List<SelectListItem>
                     {
@@ -348,7 +351,7 @@
                     {
                         new SelectListItem { Value = "0", Text = Lang.Member },
                         new SelectListItem { Value = "1", Text = AppSettings.BaseExchange.Code },
-                        new SelectListItem { Value = "2", Text = session.Affiliate.Currency }
+                        new SelectListItem { Value = "2", Text = currencyCode }
                     };
             }
 

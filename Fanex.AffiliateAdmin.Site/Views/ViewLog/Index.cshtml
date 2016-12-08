@@ -16,7 +16,6 @@ affiliate-info
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 7)
     <div class="line line-statement">
-        <div class="ic-open-window" title="@Lang.FullScreen"></div>
         <div class="ic-reload" title="@Lang.RefreshPage"></div>
     </div>
 }
@@ -110,7 +109,7 @@ affiliate-info
                     CanResize: true,
                     Formatter:
                         function(rowIndex, rowData, cell, cellFormated) {
-                            return "<a href=\"" + ipCheckUrl.replace("{0}", cell.Value) + "\" target=\"_blank\" >" + cell.Value + "</a>";
+                            return "<a href=\"" + ipCheckUrl.replace("{0}", cell.Value) + "\">" + cell.Value + "</a>";
                         }
                 }
             ],

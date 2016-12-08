@@ -19,6 +19,8 @@
             routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
             routes.IgnoreRoute("{*ieccs3}", new { ieccs3 = @"(.*/)?ie-css3.htc(/.*)?" });
 
+            routes.MapMvcAttributeRoutes();
+
             routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

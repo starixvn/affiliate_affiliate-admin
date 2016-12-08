@@ -6,7 +6,7 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -53,19 +54,18 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Index()
         {
-            var affiliateSession = SessionManager.CurrentSession.Affiliate;
+            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             var adjustment = this._adjustmentService.GetAdjustmentBalance(new AdjustmentCriteria
             {
-                AffId = affiliateSession.AffiliateId,
-                Currency = affiliateSession.Currency
+                AffId = affiliate.AffId,
+                Currency = affiliate.CurrencyCode
             });
-
             return View(new AdjustmentViewModel
             {
-                AffName = affiliateSession.Username,
+                AffName = affiliate.UserName,
                 Adjustment = adjustment,
                 Description = string.Empty,
-                Currency = AppSettings.AffSystemSupportedCurrencies.FirstOrDefault(c => c.CurrencyCode == affiliateSession.Currency)
+                CurrencyCode = affiliate.CurrencyCode
             });
         }
 
@@ -81,10 +81,10 @@ namespace Fanex.AffiliateAdmin.Controller
             var criteria = new AdjustmentEditCriteria()
             {
                 Ip = Remote.GetClientIPAddress(),
-                AffId = session.Affiliate.AffiliateId,
+                AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId,
                 AdminId = session.CustID,
                 Amount = model.Amount,
-                Description = model.Description,
+                Description = HttpUtility.UrlDecode(model.Description),
                 LicenseeId = AppSettings.LicenseeID
             };
 

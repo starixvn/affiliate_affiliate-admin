@@ -80,26 +80,3 @@ var CUSTOMER = (function ($) {
         }
     };
 }) (jQuery);
-
-/////// ASSIGN MEMBER TO AFFILIATE //////////////////////
-
-/*jshint ignore:start */
-var AssignMemberPopup = (function ($) {
-    "use strict";
-    return {
-        init: function() {
-            $("form").submit(function() {
-                var data = $(".popup-content input").serializeData();
-                if (!data.MemberName) {
-                    AFFILIATE.showErrorMsg(MSG.InputMem);
-                    return false;
-                }
-                if (!data.AffName) {
-                    AFFILIATE.showErrorMsg(MSG.InputAff);
-                    return false;
-                }
-            });
-        }
-    };
-})(jQuery);
-/*jshint ignore:end */

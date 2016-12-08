@@ -9,6 +9,9 @@
     {
         public int AffId { get; set; }
 
+        [SpParam(Ignored = true)]
+        public string AffName { get; set; }
+
         public int UserId { get; set; }
 
         public bool Closed { get; set; }

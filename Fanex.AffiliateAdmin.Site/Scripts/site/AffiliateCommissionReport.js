@@ -66,7 +66,7 @@ var AffiliateCommissionReport = (function ($) {
                     + $(this).html() + '" ' + $(this).data("date")), { width: 1000, height: 450 });
             });
 
-            mainContentObject.on("click", "a.afflink", function () {
+            mainContentObject.on("click", ".afflink", function () {
                 var params = $('form').serializeObject2();
                 params.AffName = $(this).data("affname");
                 params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
@@ -74,11 +74,10 @@ var AffiliateCommissionReport = (function ($) {
                 delete params.SortBy;
                 delete params.TransferStatus;
 
-                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/AffiliateWinlossByAffiliate?" : "Report/AffiliateWinloss?") + jQuery.param(params);
-                window.open(url, "_blank");
+                window.location = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/AffiliateWinlossByAffiliate?" : "Report/AffiliateWinloss?") + jQuery.param(params);
             });
 
-            mainContentObject.on("click", "a.monthlink", function () {
+            mainContentObject.on("click", ".monthlink", function () {
                 var params = $('form').serializeObject2();
                 params.AffName = $(this).data("affname");
                 params["ExcludeTest"] = $('#ExcludeTest').prop('checked');
@@ -88,8 +87,7 @@ var AffiliateCommissionReport = (function ($) {
                 delete params.SortBy;
                 delete params.TransferStatus;
 
-                var url = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/AffiliateWinlossByAffiliate?" : "Report/AffiliateWinloss?") + jQuery.param(params);
-                window.open(url, "_blank");
+                window.location = AFFILIATE.getAbsoluteUrl(byAffiliate() ? "Report/AffiliateWinlossByAffiliate?" : "Report/AffiliateWinloss?") + jQuery.param(params);
             });
         },
 

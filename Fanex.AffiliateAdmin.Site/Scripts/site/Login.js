@@ -1,8 +1,12 @@
 ﻿/*global CryptoJS*/
 var LOGIN = (function ($) {
     "use strict";
+    var _rootUrl;
+
     return {
         init: function () {
+            _rootUrl = $("#RootUrl").val();
+
             if ($("#Username").val() === "") {
                 $("#Username").focus();
             } else {
@@ -19,6 +23,9 @@ var LOGIN = (function ($) {
                     LOGIN.submitForm();
                 }
             });
+        },
+        getAbsoluteUrl: function (relativeUrl) {
+            return _rootUrl + (relativeUrl || "");
         },
         submitForm: function () {
             var $userName = $("#Username");

@@ -15,6 +15,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -53,7 +54,7 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.Status = SessionManager.CurrentSession.Affiliate.Status;
+            ViewBag.Status = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Status;
 
             return View();
         }
@@ -65,9 +66,10 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult ListNote()
         {
+            var affId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
             return Json(new
             {
-                List = this._noteService.GetNoteList(new NoteListCriteria { AffId = SessionManager.CurrentSession.Affiliate.AffiliateId, LicenseeId = AppSettings.LicenseeID })
+                List = this._noteService.GetNoteList(new NoteListCriteria { AffId = affId, LicenseeId = AppSettings.LicenseeID })
             });
         }
 
@@ -91,10 +93,9 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             if (ModelState.IsValid && criteria.IsValid())
             {
-                var session = SessionManager.CurrentSession;
+                criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
                 criteria.Ip = Remote.GetClientIPAddress();
-                criteria.AffId = session.Affiliate.AffiliateId;
-                criteria.UpdatedBy = session.CustID;
+                criteria.UpdatedBy = SessionManager.CurrentSession.CustID;
                 criteria.LicenseeId = AppSettings.LicenseeID;
 
                 this._noteService.InsertNote(criteria);
@@ -118,7 +119,7 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             var note = this._noteService.GetNote(new NoteSelCriteria
             {
-                AffId = SessionManager.CurrentSession.Affiliate.AffiliateId,
+                AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId,
                 NoteId = noteId,
                 LicenseeId = AppSettings.LicenseeID
             });
@@ -134,10 +135,9 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult EditNote(NoteUpdCriteria criteria)
         {
-            var session = SessionManager.CurrentSession;
+            criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
             criteria.Ip = Remote.GetClientIPAddress();
-            criteria.AffId = session.Affiliate.AffiliateId;
-            criteria.UpdatedBy = session.CustID;
+            criteria.UpdatedBy = SessionManager.CurrentSession.CustID;
             criteria.LicenseeId = AppSettings.LicenseeID;
 
             this._noteService.UpdateNote(criteria);

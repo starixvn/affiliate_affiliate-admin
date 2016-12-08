@@ -90,6 +90,8 @@
     <Compile Include="AffiliateWinLossItem.cs" />
     <Compile Include="BetList\RNGCasinoResultWinlossDetailHeader.cs" />
     <Compile Include="BetList\RNGCasinoResultWinlossDetail.cs" />
+    <Compile Include="Common\OneAuthenticationToken.cs" />
+    <Compile Include="Common\ResultInfo.cs" />
     <Compile Include="CompanyWinlossByCurrency.cs" />
     <Compile Include="CompanyWinlossReportByOverview.cs" />
     <Compile Include="Account.cs" />
@@ -98,7 +100,6 @@
     <Compile Include="Affiliate.cs" />
     <Compile Include="AffiliateInfo.cs" />
     <Compile Include="AffiliateOnUser.cs" />
-    <Compile Include="AffiliateSession.cs" />
     <Compile Include="AffiliateStatistic.cs" />
     <Compile Include="AffType.cs" />
     <Compile Include="BannerDetail.cs" />
@@ -155,7 +156,6 @@
     <Compile Include="Statement.cs" />
     <Compile Include="SystemDateTime.cs" />
     <Compile Include="TransType.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="UserOnline.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Currency.cs" />
@@ -203,7 +203,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

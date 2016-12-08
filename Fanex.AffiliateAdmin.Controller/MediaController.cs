@@ -458,6 +458,8 @@
                     DeleteBannerFile(content);
                 }
 
+                MediaSettings.RefreshBannerSizes();
+
                 return ModelResult(criteria.ErrCode);
             }
 

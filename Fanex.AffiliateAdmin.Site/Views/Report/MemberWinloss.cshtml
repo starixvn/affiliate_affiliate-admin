@@ -220,7 +220,7 @@ report
                     CellAlign: "left",
                     Formatter: function(rIndex, record) {
                         var url = AFFILIATE.getAbsoluteUrl("AffiliateInfo?UserName={0}".format(record.Username));
-                        return "<a href='{0}' target='_blank'>{1}</a>".format(url, record.Username);
+                        return "<a href='{0}'>{1}</a>".format(url, record.Username);
                     }
                 },
                 { HeaderText: "@Lang.Currency", Width: 70, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
@@ -402,7 +402,7 @@ report
                     CellAlign: "left",
                     Formatter: function(rIndex, record) {
                         var url = AFFILIATE.getAbsoluteUrl("AffiliateInfo?UserName={0}".format(record.Username));
-                        return "<a href='{0}' target='_blank'>{1}</a>".format(url, record.Username);
+                        return "<a href='{0}'>{1}</a>".format(url, record.Username);
                     }
                 },
                 { HeaderText: "@Lang.Currency", Width: 70, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
@@ -501,7 +501,7 @@ report
                             var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
                             var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&toCurrencyId={4}&fromCurrencyId={5}&toCurrencyCode={6}".format(record.AffId, record.PlayerUsername, record.OriginalProductName, record.WinlostDateStr, toCurrencyId, fromCurrencyId, toCurrencyCode);
                             url = url + para;
-                            return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, currentValue, currentValue);
+                            return "<a href='{0}' alt='{1}'>{2}</a>".format(url, currentValue, currentValue);
                         }
 
                         return currentValue;

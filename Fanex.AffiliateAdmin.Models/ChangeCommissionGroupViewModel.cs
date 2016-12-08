@@ -28,17 +28,17 @@
             get
             {
                 var comGroups = AppSettings.GetActiveCommGroups(new CommGroupSelActiveListCriteria
-                    {
-                        UserId = UserId,
-                        Currency = Currency
-                    });
+                {
+                    UserId = UserId,
+                    Currency = Currency
+                });
 
                 return comGroups.Select(t => new SelectListItem
-                        {
-                            Text = t.GroupName,
-                            Value = t.GroupID.ToString(),
-                            Selected = t.GroupID == GroupId
-                        });
+                {
+                    Text = t.GroupName,
+                    Value = t.GroupID.ToString(),
+                    Selected = t.GroupID == GroupId
+                });
             }
         }
     }

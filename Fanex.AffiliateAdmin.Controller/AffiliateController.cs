@@ -14,6 +14,7 @@
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Common;
+    using Helpers;
 
     /// <summary>
     /// Affiliate Controller.
@@ -316,7 +317,7 @@
             var session = SessionManager.CurrentSession;
             if (criteria.ByAffiliate)
             {
-                criteria.AffUsername = session.Affiliate.Username;
+                criteria.AffUsername = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).UserName;
                 criteria.AffType = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
                 criteria.ExcludeTest = false;
             }
@@ -371,7 +372,7 @@
         {
             if (model.ByAffiliate)
             {
-                model.AffName = SessionManager.CurrentSession.Affiliate.Username;
+                model.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).UserName;
             }
 
             return View(model);
@@ -454,9 +455,8 @@
         [HttpGet]
         public ActionResult ChangeCommissionApprove(ChangeCommissionGroupViewModel model)
         {
-            var session = SessionManager.CurrentSession;
-            model.Currency = session.Affiliate.CurrencyID.ToString();
-            model.UserId = session.CustID;
+            model.Currency = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Currency.ToString();
+            model.UserId = SessionManager.CurrentSession.CustID;
             return View(model);
         }
 

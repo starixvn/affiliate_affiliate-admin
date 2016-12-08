@@ -67,7 +67,7 @@
 
             var betlistSoap = new BetlistSOAP
             {
-                AffiliateName = AppSettings.AffiliateName.ToLower(),
+                AffiliateName = AppSettings.SystemName.ToLower(),
                 Username = model.Username,
                 Product = model.Product,
                 FromDate = model.WinlostDate.HasValue ? model.WinlostDate.Value : DateTime.Now,
@@ -77,9 +77,10 @@
                 Language = AppSession.Language
             };
 
-            var betlistService = new AffiliateAPI();
-
-            ViewBag.Data = betlistService.GetBetlist(betlistSoap);
+            using (var betlistService = new AffiliateAPI())
+            {
+                ViewBag.Data = betlistService.GetBetlist(betlistSoap);
+            }
 
             model.ExchangeRate = exchangeRate;
 
@@ -96,14 +97,16 @@
         {
             var exchangeRate = model.ExchangeRate;
 
-            var affBetlistService = new AffiliateAPI();
-            var tickets = affBetlistService.GetBetlistParlay(
-                AppSettings.AffiliateName,
-                model.TransId.ToString(),
-                exchangeRate.ToString(),
-                AppSession.Language);
+            using (var affBetlistService = new AffiliateAPI())
+            {
+                var tickets = affBetlistService.GetBetlistParlay(
+                    AppSettings.SystemName,
+                    model.TransId.ToString(),
+                    exchangeRate.ToString(),
+                    AppSession.Language);
 
-            return tickets;
+                return tickets;
+            }
         }
 
         /// <summary>
@@ -129,14 +132,16 @@
                 UserId = model.UserId
             };
 
-            var affBetlistService = new AffiliateAPI();
-            var systemParlayDataText = affBetlistService.GetBetlistSystemParlay(
-                AppSettings.AffiliateName,
-                exchangeRate.ToString(),
-                criteria,
-                AppSession.Language);
+            using (var affBetlistService = new AffiliateAPI())
+            {
+                var systemParlayDataText = affBetlistService.GetBetlistSystemParlay(
+                        AppSettings.SystemName,
+                        exchangeRate.ToString(),
+                        criteria,
+                        AppSession.Language);
 
-            ViewBag.Data = systemParlayDataText;
+                ViewBag.Data = systemParlayDataText;
+            }
 
             return View();
         }
@@ -150,8 +155,10 @@
                 RefNo = model.TransId,
             };
 
-            var affBetlistService = new AffiliateAPI();
-            ViewBag.Data = affBetlistService.GetBetListRngCasinoDetail(SessionManager.CurrentSession.Username, criteria);
+            using (var affBetlistService = new AffiliateAPI())
+            {
+                ViewBag.Data = affBetlistService.GetBetListRngCasinoDetail(SessionManager.CurrentSession.Username, criteria);
+            }
 
             return View("~/Views/BetList/CasinoDetailTicket.cshtml");
         }
@@ -159,9 +166,11 @@
         [HttpPost]
         public ActionResult RngCasinoSingleWalletResult(string refNo)
         {
-            var affBetlistService = new AffiliateAPI();
-            var result = affBetlistService.GetRngCasinoSingleWalletResult(refNo);
-            return Content(result, "application/json");
+            using (var affBetlistService = new AffiliateAPI())
+            {
+                var result = affBetlistService.GetRngCasinoSingleWalletResult(refNo);
+                return Content(result, "application/json");
+            }
         }
 
         [HttpGet]
@@ -173,8 +182,10 @@
                 RefNo = model.TransId,
             };
 
-            var affBetlistService = new AffiliateAPI();
-            ViewBag.Data = affBetlistService.GetBetListAgCasinoDetail(SessionManager.CurrentSession.Username, criteria);
+            using (var affBetlistService = new AffiliateAPI())
+            {
+                ViewBag.Data = affBetlistService.GetBetListAgCasinoDetail(SessionManager.CurrentSession.Username, criteria); 
+            }
 
             return View("~/Views/BetList/CasinoDetailTicket.cshtml");
         }
@@ -182,18 +193,20 @@
         [HttpGet]
         public dynamic NewBetListParlay(long transId, string betTeam, string betCheck, decimal handicap1, decimal handicap2, string exchangeRate)
         {
-            var affBetlistService = new AffBetListService.AffiliateAPI();
-            var tickets = affBetlistService.GetNewBetlistParlay(
-                AppSettings.AffiliateName,
-                transId.ToString(),
-                exchangeRate,
-                betTeam,
-                betCheck,
-                handicap1,
-                handicap2,
-                AppSession.Language);
+            using (var affBetlistService = new AffBetListService.AffiliateAPI())
+            {
+                var tickets = affBetlistService.GetNewBetlistParlay(
+                        AppSettings.SystemName,
+                        transId.ToString(),
+                        exchangeRate,
+                        betTeam,
+                        betCheck,
+                        handicap1,
+                        handicap2,
+                        AppSession.Language);
 
-            return tickets;
+                return tickets; 
+            }
         }
 
         #endregion BetList
@@ -230,13 +243,14 @@
         /// <returns>HTML formatted of data.</returns>
         public string GetPopUpData(AffBetListService.BetListResultsCriteria criteria)
         {
-            var affBetlistService = new AffiliateAPI();
-
-            return affBetlistService.GetBetlistResults(
-                AppSettings.AffiliateName,
-                AppSession.Language,
-                criteria,
-                AppSession.Language);
+            using (var affBetlistService = new AffiliateAPI())
+            {
+                return affBetlistService.GetBetlistResults(
+                        AppSettings.SystemName,
+                        AppSession.Language,
+                        criteria,
+                        AppSession.Language); 
+            }
         }
 
         #endregion BetList Results
@@ -261,7 +275,7 @@
                 return View("~/Views/BetList/BetListResults_RNGCasino.cshtml", null);
             }
 
-            var customerInfoBetList = _betListService.GetPlayerIbcInfo(AppSettings.AffiliateName + "$" + criteria.UserName);
+            var customerInfoBetList = _betListService.GetPlayerIbcInfo(AppSettings.SystemName + "$" + criteria.UserName);
             criteria.BaseCurrency = criteria.BaseCurrency ?? string.Empty;
             criteria.ExternalId = customerInfoBetList.Username;
             criteria.CurrencyId = customerInfoBetList.CurrencyId;

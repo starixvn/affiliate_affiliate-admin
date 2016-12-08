@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = Lang.Statistics;
-    Layout = "~/Views/Shared/_LayoutFrameNoHeader.cshtml";
+    Layout = null;
 }
 @using System.Globalization
 @using Fanex.AffiliateAdmin.Core.Configurations
@@ -109,15 +109,3 @@
         </tr>
     </tbody>
 </table>
-
-
-@section scripts{
-    <script type="text/javascript">
-        var MSG = {
-            AffQualifiedMemReportDetailFor: "@Html.Raw(Lang.AffQualifiedMemReportDetailFor)",
-            Currency: "@Lang.Currency"
-        };
-    </script>
-
-    @Scripts.Render("~/scripts/affiliatestatistic")
-}

@@ -17,7 +17,9 @@
     <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="Aff_InternalLogin" SpName="Aff_InternalLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet" Plain="0" />
-    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" >
+      <Mapping DataField="UserID" ObjectProperty="CustID"/>
+    </Setting>
   </Function>
   <Function Name="Home Function">
     <Setting Key="AffAdmin_HomeGeneralInfo" SpName="AffAdmin_HomeGeneralInfo" DbName="DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet" Plain="0" />
@@ -54,8 +56,11 @@
     <Setting Key="AffAdmin_CustomerInsMemberManually" SpName="AffAdmin_CustomerInsMemberManually" DbName="DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateUpdAccountType" SpName="AffAdmin_AffiliateUpdAccountType" DbName="DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet" Plain="0" />
     <Setting Key="Aff_CustomerSelByUserName" SpName="Aff_CustomerSelByUserName" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_SyncInternalUser" SpName="Aff_SyncInternalUser" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+
   </Function>
   <Function Name="System Settings">
+    <Setting Key="AffAdmin_GetLicenseeSupportedCurrencies" SpName="AffAdmin_GetLicenseeSupportedCurrencies" DbName="DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet" Plain="0" />
     <Setting Key="AffAdmin_SystemAllSupportedCurrencies" SpName="AffAdmin_SystemAllSupportedCurrencies" DbName="DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet" Plain="0" />
     <Setting Key="AffAdmin_SystemSupportedCurrencies" SpName="AffAdmin_SystemSupportedCurrencies" DbName="DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateCurrenciesSel" SpName="AffAdmin_AffiliateCurrenciesSel" DbName="DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet" Plain="0" />

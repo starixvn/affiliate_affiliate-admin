@@ -141,6 +141,8 @@
         /// <returns>Currency list.</returns>
         IEnumerable<Currency> GetAffSystemSupportedCurrencyList(SystemSupportedCurrencyCriteria criteria);
 
+        IEnumerable<Currency> GetLicenseeSupportedCurrencyList(LicenseeSupportedCurrencyCriteria criteria);
+
         /// <summary>
         /// Get system supported currencies (without currency permission).
         /// </summary>

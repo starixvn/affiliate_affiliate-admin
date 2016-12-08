@@ -17,6 +17,7 @@
     [SessionState(SessionStateBehavior.ReadOnly)]
     [Authorization]
     [CheckUMFilter]
+    [XFrameOption]
     public class BaseController : Controller
     {
         /// <summary>

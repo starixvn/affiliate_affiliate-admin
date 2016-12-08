@@ -19,17 +19,11 @@
 
         public string FuncDesc { get; set; }
 
-        public string FileNames { get; set; }
-
         public int ParentId { get; set; }
 
         public int DisplayOrder { get; set; }
 
         public int SubFuncCount { get; set; }
-
-        public string System { get; set; }
-
-        public string Username { get; set; }
 
         public byte Policy { get; set; }
 
@@ -37,12 +31,6 @@
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public byte Actual_Policy { get; set; }
-
-        public DateTime CreateDate { get; set; }
-
-        public DateTime ModifyDate { get; set; }
-
-        public string GroupName { get; set; }
 
         public bool CanRead
         {
@@ -60,9 +48,9 @@
             }
         }
 
-        public bool IndividualRead 
+        public bool IndividualRead
         {
-            get 
+            get
             {
                 return this.Policy == ReadPolicy || this.Policy == HostPolicy;
             }

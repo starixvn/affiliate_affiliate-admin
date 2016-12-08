@@ -13,11 +13,6 @@
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
         ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account);
 
-        /// <summary>
-        /// Get statistics for Affiliate.
-        /// </summary>
-        /// <param name="criteria">Login Criteria.</param>
-        /// <returns>Return Account.</returns>
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
         ResultViewModel Login(LoginCriteria criteria, out Account account);
 

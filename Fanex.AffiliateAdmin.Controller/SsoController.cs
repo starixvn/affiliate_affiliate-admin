@@ -1,9 +1,14 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
+    using System;
+    using System.Collections.Specialized;
+    using System.Configuration;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Security;
     using Core.Configurations;
-    using Core.Mvc;
-    using Core.Services;
-    using Core.Services.Interface;
     using Core.Session;
     using Fanex.AffiliateAdmin.Core;
     using Fanex.AffiliateAdmin.Core.Utilities;
@@ -14,15 +19,6 @@
     using Models;
     using ONEbook.UM.Filters;
     using Resources;
-    using RSACryptoPad;
-    using System;
-    using System.Collections.Specialized;
-    using System.Configuration;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Security;
 
     /// <summary>
     /// Account controller.
@@ -47,30 +43,20 @@
 
         private readonly string _keyPath = string.Empty;
 
-        #region Services
-
         private readonly IAccountService _accountService;
-        private readonly ISystemSettingService _systemSettingService;
-
-        #endregion Services
-
-        #region Constructor
 
         public SsoController()
-            : this(null, null)
+            : this(null)
         {
             _keyPath = ConfigurationManager.AppSettings["SSOKeyPath"] ?? string.Empty;
             var langManager = new LanguageManager();
             langManager.SetCulture(AppSession.Language);
         }
 
-        public SsoController(IAccountService accountService, ISystemSettingService systemSettingService)
+        public SsoController(IAccountService accountService)
         {
             _accountService = accountService ?? new AccountService();
-            _systemSettingService = systemSettingService ?? new SystemSettingService();
         }
-
-        #endregion Constructor
 
         private static string CurrentUserName
         {
@@ -152,7 +138,7 @@
                     ServerId = user.ServerId
                 });
 
-                InitializeSession(user);
+                SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
 
                 FormsAuthentication.SetAuthCookie(user.Username, false);
             }
@@ -162,17 +148,7 @@
 
         private void InitializeSession(Account user)
         {
-            var policies = _accountService.UserPolicySel(new UserPolicyCriteria
-            {
-                CustID = user.CustID,
-                LicenseeId = AppSettings.LicenseeID
-            });
-            var currencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
-            {
-                UserId = user.CustID,
-                LicenseeId = AppSettings.LicenseeID
-            }).ToList();
-            SessionManager.CurrentSession = new CurrentSession(user, policies, currencyList);
+            SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
         }
 
         private string ErrorMessage(int errCode)
@@ -264,7 +240,7 @@
                     OnUserID = session.OnUserID,
                     IsIT = session.IsIT
                 };
-                InitializeSession(account);
+                SessionManager.CurrentSession = _accountService.CreateSession(account, AppSettings.LicenseeID);
 
                 FormsAuthentication.SetAuthCookie(session.Username, false);
                 return Redirect("~/Home/Index");

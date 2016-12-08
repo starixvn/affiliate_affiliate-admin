@@ -20,7 +20,7 @@ else
         </div>
         <div class="control-group">
             <label class="control-label">@Lang.From</label>
-            <div class="controls">@HttpUtility.HtmlDecode(Model.Sender.Replace("&amp;", "&")) &nbsp;(<a href="javascript:DETAIL.openMail('mailto:@Model.Email')">@Model.Email</a>)
+            <div class="controls">@HttpUtility.HtmlDecode(Model.Sender.Replace("&amp;", "&")) &nbsp;(<a href="mailto:@Model.Email">@Model.Email</a>)
             </div>
         </div>
         <div class="control-group">

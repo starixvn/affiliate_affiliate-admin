@@ -17,14 +17,15 @@
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 3)
     <div class="line line-statement">
-        <div class="ic-open-window" title="@Lang.FullScreen"></div>
     </div>
 }
-
-@using (Html.BeginForm("", "Adjustment", FormMethod.Post, new { @class = "iframe-content" }))
+@if (ViewBag.Result != null)
 {
-    @Html.ValidationSummary()
-    <div class="row-fluid">
+    var result = (ResultViewModel)ViewBag.Result;
+    <input type="hidden" id="ResultCode" value="@result.ErrorCode" data-message="@result.Message" />
+}
+<form method="post" action='@Url.Content("~/Adjustment")' class = "iframe-content">
+      @Html.ValidationSummary()  <div class="row-fluid">
         <div class="span12">
             <fieldset>
                 <legend>@Model.AffName</legend>
@@ -36,7 +37,7 @@
                         </colgroup>
                         <tr>
                             <td><label class="control-label">@Lang.BalanceForward</label></td>
-                            <td>@MvcHtmlString.Create(FormaterCurrency.Format(Model.Adjustment.BalBroughtForward, Model.Currency.CurrencyCode))</td>
+                            <td>@MvcHtmlString.Create(FormaterCurrency.Format(Model.Adjustment.BalBroughtForward, Model.CurrencyCode))</td>
                         </tr>
                         <tr>
                             <td>@Html.LabelFor(m => m.Amount, Lang.Adjustment, new { @class = "control-label" }) </td>
@@ -48,8 +49,8 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="required">
-                                @string.Format(Lang.AdjustAmountUpTo, FormaterCurrency.Format(Model.Adjustment.MaxAmount, Model.Currency.CurrencyCode))
-                                @RazorHelper.GetCurrencyNotification(Model.Currency)
+                                @string.Format(Lang.AdjustAmountUpTo, FormaterCurrency.Format(Model.Adjustment.MaxAmount, Model.CurrencyCode))
+                                @RazorHelper.GetCurrencyNotification(Model.CurrencyCode)
                             </td>
                         </tr>
                     </table>
@@ -59,31 +60,13 @@
             </fieldset>
         </div>
     </div>
-    
+
     <div class="row-fluid row-form btn-action">
         <div class="span12">
             <button type="submit" class="btn" id="btnSubmit">@Lang.Submit</button>
         </div>
     </div>
-}
+</form>
 @section scripts{
     @Scripts.Render("~/scripts/adjustment")
-
-    @if (ViewBag.Result != null)
-    {
-        var result = (ResultViewModel)ViewBag.Result;
-        if (result.ErrorCode == 0)
-        {
-            <script type="text/javascript">
-                AFFILIATE.showUpdateStatus(@(result.ErrorCode), "@result.Message", top.AFFMASTER.reloadAffInfo);
-                ADJUST.hideMsg();
-            </script>
-        }
-        else
-        {
-            <script type="text/javascript">
-                AFFILIATE.showUpdateStatus(@(result.ErrorCode), "@result.Message", ADJUST.hideMsg);
-            </script>
-        }
-    }
 }

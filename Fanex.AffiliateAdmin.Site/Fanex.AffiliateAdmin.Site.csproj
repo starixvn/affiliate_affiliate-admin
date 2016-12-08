@@ -336,6 +336,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="App_Data\SystemFunction.json" />
     <Content Include="Configurations\ConnectionStrings\_ConnectionString.xml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>_ConnectionString.xml.txt</LastGenOutput>
@@ -3523,6 +3524,7 @@
     <Content Include="Scripts\libraries\monpickr.js" />
     <Content Include="Scripts\libraries\placeholder_fixer.js" />
     <Content Include="Scripts\libraries\ui.dropdownchecklist.js" />
+    <Content Include="Scripts\site\BannerAdd.js" />
     <Content Include="Scripts\site\BetList.js" />
     <Content Include="Scripts\site\CloseDialog.js" />
     <Content Include="Scripts\site\Adjustment.js" />
@@ -3534,7 +3536,6 @@
     <Content Include="Scripts\site\Configuration.js" />
     <Content Include="Scripts\site\AffType.js" />
     <Content Include="Scripts\libraries\jquery.mtz.monthpicker.seph.custom.js" />
-    <Content Include="Scripts\site\AffiliateMaster.js" />
     <Content Include="Scripts\site\AffiliateWinLossReport.js" />
     <Content Include="Scripts\site\CompanyWinlossReport.js" />
     <Content Include="Scripts\site\CommGroupPopup.js" />
@@ -3543,6 +3544,7 @@
     <Content Include="Scripts\site\AffiliateWinLossByOverview.js" />
     <Content Include="Scripts\site\AffiliateWinLossByProduct.js" />
     <Content Include="Scripts\site\AffiliateCommissionByProduct.js" />
+    <Content Include="Scripts\site\AssignMember.js" />
     <Content Include="Scripts\site\MemberWinlossByProduct.js" />
     <Content Include="Scripts\site\MemberWinlossByOverview.js" />
     <Content Include="Scripts\site\MemberWinlossReport.js" />
@@ -3585,6 +3587,7 @@
     <Content Include="Scripts\site\Query.string.js" />
     <Content Include="Scripts\site\ViewLog.js" />
     <Content Include="Scripts\site\_Global.js" />
+    <Content Include="Scripts\site\_Session.js" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.en-US.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Subject.ApprovalEmail.th-TH.cshtml" />
@@ -3612,8 +3615,8 @@
     <Content Include="Views\Media\AddText.cshtml" />
     <Content Include="Views\Media\EditText.cshtml" />
     <Content Include="Views\AffiliateInfo\Index.cshtml" />
-    <Content Include="Views\AffiliateInfo\Info.cshtml" />
-    <Content Include="Views\AffiliateInfo\Statistic.cshtml" />
+    <Content Include="Views\AffiliateInfo\_Info.cshtml" />
+    <Content Include="Views\AffiliateInfo\_Statistic.cshtml" />
     <Content Include="Views\AffiliateInfo\_Commission.cshtml" />
     <Content Include="Views\Media\EditBanner.cshtml" />
     <None Include=".jshintignore" />
@@ -3977,7 +3980,7 @@
     <Content Include="Views\Adjustment\Index.cshtml" />
     <Content Include="Views\Affiliate\MemberListByAffiliate.cshtml" />
     <Content Include="Views\Affiliate\ChangeAccountType.cshtml" />
-    <Content Include="Views\AffiliateInfo\Search.cshtml" />
+    <Content Include="Views\AffiliateInfo\_Search.cshtml" />
     <Content Include="Views\CommGroup\ViewSetting.cshtml" />
     <Content Include="Views\Affiliate\ChangeCommissionGroup.cshtml" />
     <Content Include="Views\Affiliate\ChangePassword.cshtml" />
@@ -4032,7 +4035,6 @@
     <Content Include="Views\Management\ChangePassword.cshtml" />
     <Content Include="Views\Management\AddUser.cshtml" />
     <Content Include="Views\Shared\_LayoutFrame.cshtml" />
-    <Content Include="Views\Shared\_LayoutFrameNoHeader.cshtml" />
     <Content Include="Views\Shared\_LayoutNoSubMenu.cshtml" />
     <Content Include="Views\Statement\Index.cshtml" />
     <Content Include="Views\TrackingStatistic\Referrer.cshtml" />
@@ -4102,6 +4104,7 @@
     <Content Include="Web.AppSetting.spondemo.local.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Notify\OneTokenRestriction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj">
@@ -4188,7 +4191,6 @@
     <Content Include="Views\Shared\_LayoutNoHeader.cshtml" />
     <Content Include="Views\Affiliate\Index.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Account\Logout.cshtml" />
     <Content Include="Views\Home\Language.cshtml" />
     <Content Include="Views\EmailHistory\Index.cshtml" />
     <Content Include="Views\EmailHistory\Detail.cshtml" />

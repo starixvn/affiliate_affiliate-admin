@@ -44,7 +44,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -152,6 +152,9 @@
       <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ONEbook.Security">
+      <HintPath>..\DLLs\ONEbook.Security\ONEbook.Security.dll</HintPath>
+    </Reference>
     <Reference Include="RazorEngine, Version=3.7.6.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorEngine.3.7.6\lib\net45\RazorEngine.dll</HintPath>
       <Private>True</Private>
@@ -174,6 +177,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
@@ -190,6 +195,8 @@
     <Compile Include="Impl\AffiliateService.cs" />
     <Compile Include="Impl\CommGroupService.cs" />
     <Compile Include="Impl\BetListService.cs" />
+    <Compile Include="Impl\Core\OneAuthenticationService.cs" />
+    <Compile Include="Impl\Core\OneBookSecurityWrapper.cs" />
     <Compile Include="Impl\ProductService.cs" />
     <Compile Include="Impl\MemberService.cs" />
     <Compile Include="Impl\ReportService.cs" />
@@ -210,30 +217,32 @@
     <Compile Include="Impl\TrackingStatisticService.cs" />
     <Compile Include="Impl\TransTypeService.cs" />
     <Compile Include="Impl\ViewLogService.cs" />
-    <Compile Include="Interface\IProductService.cs" />
-    <Compile Include="Interface\IBetListService.cs" />
-    <Compile Include="Interface\IMemberService.cs" />
-    <Compile Include="Interface\IReportService.cs" />
-    <Compile Include="Interface\IAdjustmentService.cs" />
-    <Compile Include="Interface\ICommGroupService.cs" />
-    <Compile Include="Interface\ICountryService.cs" />
-    <Compile Include="Interface\IExchangeRateService.cs" />
-    <Compile Include="Interface\IDomainService.cs" />
-    <Compile Include="Interface\IAffiliateService.cs" />
-    <Compile Include="Interface\IEmailHistoryService.cs" />
-    <Compile Include="Interface\IGroupService.cs" />
-    <Compile Include="Interface\IHomeService.cs" />
-    <Compile Include="Interface\IAccountService.cs" />
-    <Compile Include="Interface\IMediaService.cs" />
-    <Compile Include="Interface\IMessageService.cs" />
-    <Compile Include="Interface\INoteService.cs" />
-    <Compile Include="Interface\IPaymentService.cs" />
-    <Compile Include="Interface\IPolicyService.cs" />
-    <Compile Include="Interface\IPermissionCurrencyService.cs" />
-    <Compile Include="Interface\IStatementService.cs" />
-    <Compile Include="Interface\ITrackingStatisticService.cs" />
-    <Compile Include="Interface\ITransTypeService.cs" />
-    <Compile Include="Interface\IViewLogService.cs" />
+    <Compile Include="Interfaces\IOneAuthenticationService.cs" />
+    <Compile Include="Interfaces\IOneBookSecurityWrapper.cs" />
+    <Compile Include="Interfaces\IProductService.cs" />
+    <Compile Include="Interfaces\IBetListService.cs" />
+    <Compile Include="Interfaces\IMemberService.cs" />
+    <Compile Include="Interfaces\IReportService.cs" />
+    <Compile Include="Interfaces\IAdjustmentService.cs" />
+    <Compile Include="Interfaces\ICommGroupService.cs" />
+    <Compile Include="Interfaces\ICountryService.cs" />
+    <Compile Include="Interfaces\IExchangeRateService.cs" />
+    <Compile Include="Interfaces\IDomainService.cs" />
+    <Compile Include="Interfaces\IAffiliateService.cs" />
+    <Compile Include="Interfaces\IEmailHistoryService.cs" />
+    <Compile Include="Interfaces\IGroupService.cs" />
+    <Compile Include="Interfaces\IHomeService.cs" />
+    <Compile Include="Interfaces\IAccountService.cs" />
+    <Compile Include="Interfaces\IMediaService.cs" />
+    <Compile Include="Interfaces\IMessageService.cs" />
+    <Compile Include="Interfaces\INoteService.cs" />
+    <Compile Include="Interfaces\IPaymentService.cs" />
+    <Compile Include="Interfaces\IPolicyService.cs" />
+    <Compile Include="Interfaces\IPermissionCurrencyService.cs" />
+    <Compile Include="Interfaces\IStatementService.cs" />
+    <Compile Include="Interfaces\ITrackingStatisticService.cs" />
+    <Compile Include="Interfaces\ITransTypeService.cs" />
+    <Compile Include="Interfaces\IViewLogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\MemberSiteService\Reference.cs">
       <AutoGen>True</AutoGen>

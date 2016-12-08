@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
+    using Enumerations;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Resources;
 

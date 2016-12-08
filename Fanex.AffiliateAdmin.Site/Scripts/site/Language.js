@@ -66,7 +66,7 @@ var Language = (function ($) {
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, parent.Language.ReRenderAfterPaged);
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, Language.ReRenderAfterPaged);
                             }
                         }
                     });

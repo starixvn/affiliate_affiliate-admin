@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Web;
+    using System.Web.Helpers;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
@@ -33,10 +34,13 @@
             //// Register my types, for instance:
             ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
 
+            BundleTable.EnableOptimizations = AppSettings.GetValue("DisableOptimizations") != "1";
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             log4net.Config.XmlConfigurator.Configure();
             log4net.LogManager.GetLogger("GeneralLog").Info("Start");
+
+            AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
 
             if (AppSettings.Environment.IndexOf("Local", StringComparison.OrdinalIgnoreCase) < 0 &&
                 !AppSettings.Environment.Equals("SIT", StringComparison.OrdinalIgnoreCase))

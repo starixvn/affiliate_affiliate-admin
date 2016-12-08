@@ -10,12 +10,20 @@
     @RenderSection("css", required: false)
     @Scripts.Render("~/bundles/jquery")
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()
+    @{ 
+        var currentSession = SessionManager.CurrentSession;
+    }
 </head>
 <body>
-    @Html.Hidden("IsIT", SessionManager.CurrentSession.IsIT ? 1 : 0)
+    @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
+    @Html.Hidden("BaseUrl", Url.Content("~/"))
+    @Html.Hidden("TimeZone", AppSettings.ServerTimeZone)
     <div class="container">
         <div class="row-fulid">
-            @Html.Partial("_Header")
+            @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
+            {
+             @Html.Partial("_Header")
+            }
             <div class="span12 content">
                 <!--Submenu box-->
                 <div class="row-fluid submenu">
@@ -36,6 +44,7 @@
     </div>
 
     @Scripts.Render("~/bundles/js")
+    
     <script type="text/javascript">
         var System = {
             Currency: '@AppSettings.BaseExchange.Code',
@@ -56,37 +65,16 @@
             CollapseExpandDataRows: "@Lang.CollapseExpandDataRows",
             Close: "@Lang.Close"
         };
-
-        $(document).ready(function () {
-            $.unblockUI();
-            AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
-                return '@Url.Content("~/")' + relativeUrl;
-            };
-
-            AFFILIATE.baseUrl = '@Url.Content("~/")';
-
-            AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
-        });
-
     </script>
     @RenderSection("scripts", required: false)
-    @if (string.IsNullOrWhiteSpace(AppSettings.PiwikSiteId) == false && AppSettings.Environment.Equals("Production", StringComparison.OrdinalIgnoreCase))
+    @if(currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
     {
-        <script type="text/ecmascript">
-            var piwikSiteId = '@AppSettings.PiwikSiteId';
-                        
-            var _paq = _paq || [];
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function () {
-                var u = "https://pw.detecas.com/";
-                _paq.push(['setTrackerUrl', u + 'piwik.php']);
-                _paq.push(['setSiteId', piwikSiteId]);            
-                var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-                g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
-            })();           
-        </script>    
-        <noscript><p><img src="https://pw.detecas.com/piwik.php?idsite=@(AppSettings.PiwikSiteId)'  style="border:0;" alt="" /></p></noscript>
-    }       
+        @Scripts.Render("~/Scripts/site/RecheckIn.js")
+    }
+    else
+    {
+        @Scripts.Render("~/Scripts/site/_Session.js")
+    }
+    @RazorHelper.RenderPiwikScript(currentSession.ApplicationMode)      
 </body>
 </html>

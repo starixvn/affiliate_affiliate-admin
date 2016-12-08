@@ -1,4 +1,7 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Configurations
+@{
+    var currentSession = Fanex.AffiliateAdmin.Core.Session.SessionManager.CurrentSession;
+}
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -11,13 +14,23 @@
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()
 </head>
 <body class="popup">
-    @Html.Hidden("IsIT", SessionManager.CurrentSession.IsIT ? 1 : 0)
+    @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
+    @Html.Hidden("BaseUrl", Url.Content("~/"))
+    @Html.Hidden("TimeZone", AppSettings.ServerTimeZone)
     <div class="container-fluid">
         <div class="box-insite">
             @RenderBody()
         </div>
     </div>
     @Scripts.Render("~/bundles/js")
+    @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
+    {
+        @Scripts.Render("~/Scripts/site/RecheckIn.js")
+    }
+    else
+    {
+        @Scripts.Render("~/Scripts/site/_Session.js")
+    }
     @Scripts.Render("~/scripts/closedialog")
 
     <script type="text/ecmascript">
@@ -36,14 +49,6 @@
             SelectAnOption: "@Lang.SelectAnOption",
             Close: "@Lang.Close"
         };
-        
-        $(document).ready(function () {
-            AFFILIATE.getAbsoluteUrl = function (relativeUrl) {
-                return '@Url.Content("~/")' + relativeUrl;
-            };
-
-            AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
-        });
     </script>
     
     

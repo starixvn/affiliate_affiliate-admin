@@ -21,6 +21,8 @@
     /// </summary>
     public static class AppSettings
     {
+        public const int CommonPiwikSiteId = 50;
+
         #region Define variable
 
         private static Lazy<ISystemSettingService> _systemSetting;
@@ -129,11 +131,6 @@
             {
                 return _affiliateCurrencies.Value;
             }
-        }
-
-        public static string AffiliateName
-        {
-            get { return SystemName; }
         }
 
         public static IEnumerable<Language> AffLanguages

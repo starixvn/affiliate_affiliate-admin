@@ -129,7 +129,7 @@ report
                 { HeaderText: "@Lang.Affiliate", Width: 80, Name: "Username", HeaderAlign: "center",
                     Formatter: function (rIndex, record, cell, cellFormated) {
                         var affInfoUrl = AFFILIATE.getAbsoluteUrl("AffiliateInfo?username=");
-                        return "<a href='" + affInfoUrl + record.Username + "' target='_blank'>" + cellFormated + "</a>";
+                        return "<a href='" + affInfoUrl + record.Username + "'>" + cellFormated + "</a>";
                     } 
                 },
                 { HeaderText: "@Lang.AffType", Width: 100, Name: "AffType", HeaderAlign: "center" },

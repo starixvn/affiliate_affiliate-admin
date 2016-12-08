@@ -35,9 +35,6 @@ var DETAIL = (function ($) {
                 
                 deleteMessage($("#Mid").val());
             });
-        },
-        openMail: function (url) {
-            window.open(url, "_blank");
         }
     };
 })(jQuery);

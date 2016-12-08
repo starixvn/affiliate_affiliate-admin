@@ -93,7 +93,7 @@
 }
 
 @section scripts{
-    @Scripts.Render("~/scripts/bannerlist")
+    @Scripts.Render("~/scripts/banneradd")
 
     <script type="text/javascript">
         var MSG = {
@@ -108,7 +108,7 @@
     {
         var result = (ResultViewModel)ViewBag.Result;
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.BannerList.ReRenderAfterPaged);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.location.reload(false));
         </script>
     }
 }

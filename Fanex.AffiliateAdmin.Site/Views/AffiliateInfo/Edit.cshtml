@@ -21,8 +21,6 @@ affiliate-info
         @RazorHelper.ListSubmenu(SubMenu.AffiliateNotApprove, 0)
     }
     <div class="line line-statement">
-        <div class="ic-open-window" title="@Lang.FullScreen">
-        </div>
     </div>
 }
 @{
@@ -42,8 +40,7 @@ affiliate-info
     Model.Affiliate.Player_Username = HttpUtility.HtmlDecode(Model.Affiliate.Player_Username);
 }
 @Html.ValidationSummary()
-@using (Html.BeginForm("Edit", "AffiliateInfo", FormMethod.Post, new { @class = "iframe-content" }))
-{
+<form method="post" action="@Url.Content("~/AffiliateInfo/Edit")" class="iframe-content">
     <div class="row-fluid">
         <div class="span6">
             <fieldset>
@@ -60,278 +57,289 @@ affiliate-info
                         <td>
                             <label class="control-label">@Lang.Username</label>
                         </td>
+                        <td></td>
                         <td>
-                        </td>
-                        <td>
-                            <label>@Model.Affiliate.Username</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Affiliate.FirstName, Lang.FirstName, new { @class = "control-label" })
-                        </td>
-                        <td class="required">
-                            *
-                        </td>
-                        <td>
-                            @Html.TextBox("FirstName", Model.Affiliate.FirstName, new { id = "Affiliate_FirstName", @class = "control-text", maxlength = "50" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Affiliate.LastName, Lang.LastName, new { @class = "control-label" })
-                        </td>
-                        <td class="required">
-                            *
-                        </td>
-                        <td>
-                            @Html.TextBox("LastName", Model.Affiliate.LastName, new { id = "Affiliate_LastName", @class = "control-text", maxlength = "50" })
+                            <label>@Model.Affiliate.UserName</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label class="control-label">@Lang.Gender</label>
-                        </td>
-                        <td class="required">
-                            *
-                        </td>
-                        <td>
-                            @Html.RadioButton("Gender", "false", Model.Affiliate.Gender == false, new { id = "Female" })
-                            <label for="Female">@Lang.Female</label>
-                            @Html.RadioButton("Gender", "true", Model.Affiliate.Gender == true, new { id = "Male" })
-                            <label for="Male">@Lang.Male</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Affiliate.Email, Lang.EmailAddress, new { @for = "Email", @class = "control-label" })
-                        </td>
-                        <td class="required">
-                            *
-                        </td>
-                        <td>@Html.TextBox("Email", Model.Affiliate.Email, new { @class = "control-text", maxlength = "50" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Affiliate.Phone, Lang.ContactNumber, new { @for = "Phone", @class = "control-label" })
-                        </td>
-                        <td class="required">
-                            *
-                        </td>
-                        <td>
-                            @Html.TextBox("Phone", Model.Affiliate.Phone, new { @class = "control-text", maxlength = "50" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Affiliate.MobilePhone, Lang.Mobile, new { @for = "MobilePhone", @class = "control-label" })
-                        </td>
-                        <td class="required">
-                            *
-                        </td>
-                        <td>@Html.TextBox("MobilePhone", Model.Affiliate.MobilePhone, new { @class = "control-text", maxlength = "50" })
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
+                            @Html.LabelFor(m => m.Affiliate.FirstName, Lang.FirstName, new { @class = "control-label" })
+                    </td>
+                    <td class="required">
+                        *
+                    </td>
+                    <td>
+                        @Html.TextBox("FirstName", Model.Affiliate.FirstName, new { id = "Affiliate_FirstName", @class = "control-text", maxlength = "50" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Affiliate.LastName, Lang.LastName, new { @class = "control-label" })
+                </td>
+                <td class="required">
+                    *
+                </td>
+                <td>
+                    @Html.TextBox("LastName", Model.Affiliate.LastName, new { id = "Affiliate_LastName", @class = "control-text", maxlength = "50" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="control-label">@Lang.Gender</label>
+                </td>
+                <td class="required">
+                    *
+                </td>
+                <td>
+                    @Html.RadioButton("Gender", "false", Model.Affiliate.Gender == false, new { id = "Female" })
+                    <label for="Female">@Lang.Female</label>
+                    @Html.RadioButton("Gender", "true", Model.Affiliate.Gender == true, new { id = "Male" })
+                    <label for="Male">@Lang.Male</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Affiliate.Email, Lang.EmailAddress, new { @for = "Email", @class = "control-label" })
+            </td>
+            <td class="required">
+                *
+            </td>
+            <td>
+                @Html.TextBox("Email", Model.Affiliate.Email, new { @class = "control-text", maxlength = "50" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.Affiliate.Phone, Lang.ContactNumber, new { @for = "Phone", @class = "control-label" })
+    </td>
+    <td class="required">
+        *
+    </td>
+    <td>
+        @Html.TextBox("Phone", Model.Affiliate.Phone, new { @class = "control-text", maxlength = "50" })
+    </td>
+</tr>
+<tr>
+    <td>
+        @Html.LabelFor(m => m.Affiliate.MobilePhone, Lang.Mobile, new { @for = "MobilePhone", @class = "control-label" })
+</td>
+<td class="required">
+    *
+</td>
+<td>
+    @Html.TextBox("MobilePhone", Model.Affiliate.MobilePhone, new { @class = "control-text", maxlength = "50" })
+</td>
+</tr>
+</table>
+</fieldset>
+</div>
+<div class="span6">
+    <fieldset>
+        <legend>@Lang.AdditionalInfo</legend>
+        <div class="clearfix">
         </div>
-        <div class="span6">
-            <fieldset>
-                <legend>@Lang.AdditionalInfo</legend>
-                <div class="clearfix">
-                </div>
-                <table>
-                    <colgroup>
-                        <col style="width: 100px;" />
-                        <col style="width: 10px;" />
-                        <col />
-                    </colgroup>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Affiliate.Address, Lang.Address, new { @for = "Address", @class = "control-label" })
-                        </td>
-                        <td class="required">
-                            *
-                        </td>
-                        <td>@Html.TextBox("Address", Model.Affiliate.Address, new { @class = "control-text", maxlength = "50" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Affiliate.City, Lang.City, new { @for = "City", @class = "control-label" })
-                        </td>
-                        <td class="required">
-                            *
-                        </td>
-                        <td>@Html.TextBox("City", Model.Affiliate.City, new { @class = "control-text", maxlength = "50" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @Html.LabelFor(m => m.Affiliate.State, Lang.State, new { @for = "State", @class = "control-label" })
-                        </td>
-                        <td class="required">
-                            *
-                        </td>
-                        <td>@Html.TextBox("State", Model.Affiliate.State, new { @class = "control-text", maxlength = "50" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Affiliate.Postal, Lang.Postal, new { @for = "Postal", @class = "control-label" })
-                        </td>
-                        <td class="required">
-                            *
-                        </td>
-                        <td>@Html.TextBox("Postal", Model.Affiliate.Postal, new {@class = "control-text", maxlength = "50" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.LabelFor(m => m.Affiliate.CountryId, Lang.Country, new { @for = "Country", @class = "control-label" })
-                        </td>
-                        <td class="required">
-                            *
-                        </td>
-                        <td>
-                            @RazorHelper.DropDownListCountry(Model.Countries, Model.Affiliate.CountryId, new Dictionary<string, object> { { "id", "Country" }, { "class", "dropdownchecklist single-select" } })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="control-label">@Lang.Securequestion</label>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            <label class="control-label">@HttpUtility.HtmlDecode(Model.Affiliate.Question)</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class = "control-label">@Lang.Answer</label>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            <label class="control-label">@HttpUtility.HtmlDecode(Model.Affiliate.Answer)</label>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-        </div>
+        <table>
+            <colgroup>
+                <col style="width: 100px;" />
+                <col style="width: 10px;" />
+                <col />
+            </colgroup>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Affiliate.Address, Lang.Address, new { @for = "Address", @class = "control-label" })
+            </td>
+            <td class="required">
+                *
+            </td>
+            <td>
+                @Html.TextBox("Address", Model.Affiliate.Address, new { @class = "control-text", maxlength = "50" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.Affiliate.City, Lang.City, new { @for = "City", @class = "control-label" })
+    </td>
+    <td class="required">
+        *
+    </td>
+    <td>
+        @Html.TextBox("City", Model.Affiliate.City, new { @class = "control-text", maxlength = "50" })
+</td>
+</tr>
+<tr>
+    <td>
+        @Html.LabelFor(m => m.Affiliate.State, Lang.State, new { @for = "State", @class = "control-label" })
+    </td>
+    <td class="required">
+        *
+    </td>
+    <td>
+        @Html.TextBox("State", Model.Affiliate.State, new { @class = "control-text", maxlength = "50" })
+</td>
+</tr>
+<tr>
+    <td>
+        @Html.LabelFor(m => m.Affiliate.Postal, Lang.Postal, new { @for = "Postal", @class = "control-label" })
+</td>
+<td class="required">
+    *
+</td>
+<td>
+    @Html.TextBox("Postal", Model.Affiliate.Postal, new { @class = "control-text", maxlength = "50" })
+</td>
+</tr>
+<tr>
+    <td>
+        @Html.LabelFor(m => m.Affiliate.CountryId, Lang.Country, new { @for = "Country", @class = "control-label" })
+</td>
+<td class="required">
+    *
+</td>
+<td>
+    @RazorHelper.DropDownListCountry(Model.Countries, Model.Affiliate.CountryId, new Dictionary<string, object> { { "id", "Country" }, { "class", "dropdownchecklist single-select" } })
+</td>
+</tr>
+<tr>
+    <td>
+        <label class="control-label">@Lang.Securequestion</label>
+    </td>
+    <td></td>
+    <td>
+        <label class="control-label">@HttpUtility.HtmlDecode(Model.Affiliate.Question)</label>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label class="control-label">@Lang.Answer</label>
+    </td>
+    <td></td>
+    <td>
+        <label class="control-label">@HttpUtility.HtmlDecode(Model.Affiliate.Answer)</label>
+    </td>
+</tr>
+</table>
+</fieldset>
+</div>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+        <fieldset>
+            <legend>@Lang.Preference</legend>
+            <div class="clearfix">
+            </div>
+            <table>
+                <colgroup>
+                    <col style="width: 100px;" />
+                    <col style="width: 10px;" />
+                    <col />
+                </colgroup>
+                <tr>
+                    <td>
+                        <label for="Currency" class="control-label">@Lang.Currency</label>
+                    </td>
+                    <td></td>
+                    <td>
+                        @if (Model.Affiliate.Status.Equals("approved", StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            @Html.DropDownCheckList("Currency", new SelectList(AppSettings.AffiliateCurrencies.Where(c => c.ExchangeID == Model.Affiliate.Currency), "ExchangeId", "Code"), false, false, new { @class = "width-140" })
+                        }
+                        else
+                        {
+                            @Html.DropDownCheckList("Currency", new SelectList(AppSettings.AffiliateCurrencies, "ExchangeId", "Code", Model.Affiliate.Currency.ToString()), false, false, new { @class = "width-140" })
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="control-label">@Lang.EmailFormat</label>
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.RadioButton("MailOption", "true", Model.Affiliate.MailOption == true, new { id = "PlainText" })
+                        <label for="PlainText">@Lang.PlainText</label>
+                        @Html.RadioButton("MailOption", "false", Model.Affiliate.MailOption == false, new { id = "HtmlFormat" })
+                        <label for="HtmlFormat">@Lang.HtmlFormat</label>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
     </div>
-    <div class="row-fluid">
-        <div class="span12">
-            <fieldset>
-                <legend>@Lang.Preference</legend>
-                <div class="clearfix">
-                </div>
-                <table>
-                    <colgroup>
-                        <col style="width: 100px;" />
-                        <col style="width: 10px;" />
-                        <col />
-                    </colgroup>
-                    <tr>
-                        <td>
-                            <label for="Currency" class = "control-label">@Lang.Currency</label>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            @if (Model.Affiliate.Status.Equals("approved", StringComparison.CurrentCultureIgnoreCase))
-                            {
-                                @Html.DropDownCheckList("Currency", new SelectList(AppSettings.AffiliateCurrencies.Where(c => c.ExchangeID == Model.Affiliate.Currency), "ExchangeId", "Code"), false, false, new { @class = "width-140" })
-                            }
-                            else
-                            {
-                                @Html.DropDownCheckList("Currency", new SelectList(AppSettings.AffiliateCurrencies, "ExchangeId", "Code", Model.Affiliate.Currency.ToString()), false, false, new { @class = "width-140" })
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="control-label">@Lang.EmailFormat</label>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            @Html.RadioButton("MailOption", "true", Model.Affiliate.MailOption == true, new { id = "PlainText" })
-                            <label for="PlainText">@Lang.PlainText</label>
-                            @Html.RadioButton("MailOption", "false", Model.Affiliate.MailOption == false, new { id = "HtmlFormat" })
-                            <label for="HtmlFormat">@Lang.HtmlFormat</label>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-        </div>
-    </div>    
-    <div class="row-fluid">
-        <div class="span12">
-            <fieldset>
-                <legend>@Lang.SiteInfo</legend>
-                <div class="clearfix">
-                </div>
-                <table id="siteinfo">
-                    <colgroup>
-                        <col style="width: 100px;" />
-                        <col style="width: 10px;" />
-                        <col style="width: 160px;" />
-                        <col />
-                    </colgroup>
-                    <tr>
-                        <td>
-                            <label for="SiteLink" class="control-label">@Lang.SiteUrl</label>
-                        </td>
-                        <td class="required">
-                            *
-                        </td>
-                        <td>@Html.TextBox("SiteLink", Model.Affiliate.SiteLink, new { @class = "control-text sites", maxlength = "50" })
-                        </td>
-                        <td>
-                            <button type="button" id="btnAddSite" class="btn btn-default" style="vertical-align: top">@Lang.AddUrl</button>
-                        </td>
-                    </tr>
-                    @RazorHelper.GetMoreUrls(Model.Affiliate.MoreSiteURLs)
-                </table>
-            </fieldset>
-        </div>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+        <fieldset>
+            <legend>@Lang.SiteInfo</legend>
+            <div class="clearfix">
+            </div>
+            <table id="siteinfo">
+                <colgroup>
+                    <col style="width: 100px;" />
+                    <col style="width: 10px;" />
+                    <col style="width: 160px;" />
+                    <col />
+                </colgroup>
+                <tr>
+                    <td>
+                        <label for="SiteLink" class="control-label">@Lang.SiteUrl</label>
+                    </td>
+                    <td class="required">
+                        *
+                    </td>
+                    <td>
+                        @Html.TextBox("SiteLink", Model.Affiliate.SiteLink, new { @class = "control-text sites", maxlength = "50" })
+                </td>
+                <td>
+                    <button type="button" id="btnAddSite" class="btn btn-default" style="vertical-align: top">@Lang.AddUrl</button>
+                </td>
+            </tr>
+            @RazorHelper.GetMoreUrls(Model.Affiliate.MoreSiteURLs)
+        </table>
+    </fieldset>
+</div>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+        <fieldset>
+            <legend>@Lang.PaymentInfo</legend>
+            <div class="clearfix">
+            </div>
+            <table>
+                <colgroup>
+                    <col style="width: 180px;" />
+                    <col style="width: 10px;" />
+                    <col />
+                </colgroup>
+                <tr>
+                    <td>
+                        <label for="PreferredPayment" class="control-label">@Lang.PreferredPaymentMethod</label>
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.DropDownCheckList("PreferredPayment", Model.PaymentMethodListItem, false, false, new { @class = "width-90 single-select dropdownchecklist" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="PlayerUsername" class="control-label">@Lang.PlayerUserName</label>
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.TextBox("PlayerUsername", Model.Affiliate.Player_Username, new { @class = "control-text", maxlength = "50" })
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+</div>
+<div class="row-fluid row-form btn-action">
+    <div class="span12">
+        <button type="submit" id="btnSubmit" class="btn btn-default" style="vertical-align: top">@Lang.Submit</button>
     </div>
-    <div class="row-fluid">
-        <div class="span12">
-            <fieldset>
-                <legend>@Lang.PaymentInfo</legend>
-                <div class="clearfix">
-                </div>
-                <table>
-                    <colgroup>
-                        <col style="width: 180px;" />
-                        <col style="width: 10px;" />
-                        <col />
-                    </colgroup>
-                    <tr>
-                        <td>
-                            <label for="PreferredPayment" class="control-label">@Lang.PreferredPaymentMethod</label>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            @Html.DropDownCheckList("PreferredPayment", Model.PaymentMethodListItem, false, false, new { @class = "width-90 single-select dropdownchecklist" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="PlayerUsername" class = "control-label">@Lang.PlayerUserName</label>
-                        </td>
-                        <td>
-                        </td>
-                        <td>@Html.TextBox("PlayerUsername", Model.Affiliate.Player_Username, new { @class = "control-text", maxlength = "50" })
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-        </div>
-    </div>
-    <div class="row-fluid row-form btn-action">
-        <div class="span12">
-            <button type="submit" id="btnSubmit" class="btn btn-default" style="vertical-align: top">@Lang.Submit</button>
-        </div>
-    </div>
-    <input type="hidden" id="moreSiteUrls" name="MoreSiteURLs" />
-}
+</div>
+<input type="hidden" id="moreSiteUrls" name="MoreSiteURLs" />
+</form>
+
 @section scripts{
     @Scripts.Render("~/scripts/affiliateedit")
     <script type="text/javascript">

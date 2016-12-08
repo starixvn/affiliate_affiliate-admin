@@ -2,59 +2,38 @@
 {
     using System;
     using System.Globalization;
-    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using System.Web.Security;
     using Common;
     using Core.Configurations;
     using Core.Filter;
-    using Core.Services;
-    using Core.Services.Interface;
     using Core.Session;
     using Core.Utilities;
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Core;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
     using Models;
     using ONEbook.UM.Filters;
     using Resources;
 
-    /// <summary>
-    /// Account controller.
-    /// </summary>
     public class AccountController : Controller
     {
-        #region Services
-
         private readonly IAccountService _accountService;
-        private readonly ISystemSettingService _systemSettingService;
-
-        #endregion Services
-
-        #region Constructor
 
         public AccountController()
-            : this(null, null)
+            : this(null)
         {
-            ////Set default language
             var langManager = new LanguageManager();
             langManager.SetCulture(AppSession.Language);
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AccountController" /> class.
-        /// </summary>
-        /// <param name="accountService">Account Service.</param>
-        /// <param name="systemSettingService">System Setting Service.</param>
-        public AccountController(IAccountService accountService, ISystemSettingService systemSettingService)
+        public AccountController(IAccountService accountService)
         {
             _accountService = accountService ?? new AccountService();
-            _systemSettingService = systemSettingService ?? new SystemSettingService();
         }
-
-        #endregion Constructor
 
         /// <summary>
         /// Return form login.
@@ -91,12 +70,12 @@
             if (ModelState.IsValid)
             {
                 var criteria = new LoginCriteria
-                                {
-                                    Username = username,
-                                    UserPwd = password,
-                                    LoginIP = Remote.GetClientIPAddress(),
-                                    LoginDomain = Request.UserHostName,
-                                };
+                {
+                    Username = username,
+                    UserPwd = password,
+                    LoginIP = Remote.GetClientIPAddress(),
+                    LoginDomain = Request.UserHostName,
+                };
 
                 result = _accountService.Login(criteria, out user, logInToken);
                 result.Success = result.ErrorCode == 0;
@@ -109,19 +88,9 @@
                         NetSessionId = Session.SessionID,
                         ServerId = user.ServerId
                     });
+                    AffiliateInfoCookieHelper.DeleteAffiliate(HttpContext);
                     FormsAuthentication.SetAuthCookie(username, true);
-
-                    var policies = _accountService.UserPolicySel(new UserPolicyCriteria
-                        {
-                            CustID = user.CustID,
-                            LicenseeId = AppSettings.LicenseeID
-                        });
-                    var currencyList = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
-                        {
-                            UserId = user.CustID,
-                            LicenseeId = AppSettings.LicenseeID
-                        }).ToList();
-                    SessionManager.CurrentSession = new CurrentSession(user, policies, currencyList);
+                    SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
                 }
                 else
                 {
@@ -179,21 +148,21 @@
                 if (model.NewPassword.Equals(model.OldPassword))
                 {
                     ViewBag.Result = new ResultViewModel
-                        {
-                            ErrorCode = 16,
-                            Message = Lang.NewPassworDifferOldPassword
-                        };
+                    {
+                        ErrorCode = 16,
+                        Message = Lang.NewPassworDifferOldPassword
+                    };
                 }
                 else
                 {
                     var oldSalt = GetSalt(SessionManager.CurrentSession.Username);
                     var criteria = new AccountPasswordCriteria
-                        {
-                            CustId = SessionManager.CurrentSession.CustID,
-                            OldPassword = Cryptography.CreateHash(model.OldPassword, oldSalt),
-                            NewPassword = Cryptography.CreateHash(model.NewPassword, oldSalt),
-                            Ip = Remote.GetClientIPAddress()
-                        };
+                    {
+                        CustId = SessionManager.CurrentSession.CustID,
+                        OldPassword = Cryptography.CreateHash(model.OldPassword, oldSalt),
+                        NewPassword = Cryptography.CreateHash(model.NewPassword, oldSalt),
+                        Ip = Remote.GetClientIPAddress()
+                    };
 
                     _accountService.AccountUpdatePassword(criteria);
                     ViewBag.Result = GetResultViewModel(criteria.ErrCode);
@@ -211,7 +180,7 @@
         public ActionResult Logout()
         {
             DoLogOut();
-            return View();
+            return Redirect(FormsAuthentication.LoginUrl);
         }
 
         /// <summary>
@@ -281,6 +250,11 @@
 
                 FormsAuthentication.SignOut();
                 SessionManager.ClearAll();
+                var cookies = Request.Cookies.AllKeys;
+                foreach (string cookie in cookies)
+                {
+                    Response.Cookies[cookie].Expires = DateTime.Now.AddDays(-1);
+                }
             }
         }
 

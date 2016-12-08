@@ -14,7 +14,9 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-    @Html.Hidden("IsIT", SessionManager.CurrentSession.IsIT ? 1 : 0)
+    @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
+    @Html.Hidden("BaseUrl", Url.Content("~/"))
+    @Html.Hidden("TimeZone", AppSettings.ServerTimeZone)
     <div class="container" style="overflow-x: hidden">
         <div class="row-fulid">
             <div class="span12 content w-none">
@@ -36,9 +38,15 @@
     </div>
 
     @Scripts.Render("~/bundles/js")
-
+    @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
+    {
+        @Scripts.Render("~/Scripts/site/RecheckIn.js")
+    }
+    else
+    {
+        @Scripts.Render("~/Scripts/site/_Session.js")
+    }
     <script type="text/javascript">
-        $.unblockUI();
 
         var Lang = {
             NoDataInfo: '@Html.Raw(Lang.NoInfo)',
@@ -59,18 +67,8 @@
             Prefix: '@AppSettings.BaseExchange.Prefix',
             CurrencyId: '@AppSettings.BaseExchange.ExchangeID'
         };
-
-        $(document).ready(function() {
-            AFFILIATE.getAbsoluteUrl = function(relativeUrl) {
-                return '@Url.Content("~/")' + relativeUrl;
-            };
-
-            AFFILIATE.TimeZone = '@AppSettings.ServerTimeZone';
-        });
-        
     </script>
 
      @RenderSection("scripts", required: false)
-
 </body>
 </html>

@@ -290,7 +290,7 @@ var CompanyWinlossByOverview = (function ($) {
 
                 var url = playerWinlossUrl + "?" + jQuery.param(request);
 
-                return "<a href='{0}' target='_blank'>".format(url) + cell.Value + "</a>";
+                return "<a href='{0}'>".format(url) + cell.Value + "</a>";
             }
         }, sampleDateColumn);
 

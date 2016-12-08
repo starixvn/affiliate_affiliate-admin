@@ -82,7 +82,7 @@ var TextList = (function ($) {
                             if (!result.Success) {
                                 alert(result.Message);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, parent.TextList.ReRenderAfterPaged);
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, TextList.ReRenderAfterPaged);
                             }
                         }
                     });

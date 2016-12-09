@@ -224,7 +224,7 @@
 
         public ResultInfo SyncUserInfo(string licenseeName, string userName)
         {
-            const int AdminGroup = 1;
+            const int AdminGroup = 0;
             const string UspName = @"Aff_SyncInternalUser";
 
             // 1234aa

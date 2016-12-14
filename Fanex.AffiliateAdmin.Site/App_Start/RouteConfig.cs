@@ -18,7 +18,7 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
             routes.IgnoreRoute("{*ieccs3}", new { ieccs3 = @"(.*/)?ie-css3.htc(/.*)?" });
-
+            routes.Ignore("bundles/{*catch}");
             routes.MapMvcAttributeRoutes();
 
             routes.MapHttpRoute(

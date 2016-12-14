@@ -89,7 +89,7 @@
                         ServerId = user.ServerId
                     });
                     AffiliateInfoCookieHelper.DeleteAffiliate(HttpContext);
-                    FormsAuthentication.SetAuthCookie(username, true);
+                    FormsAuthentication.SetAuthCookie(username, false);
                     SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
                 }
                 else

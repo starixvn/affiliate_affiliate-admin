@@ -61,6 +61,7 @@ namespace Fanex.AffiliateAdmin.Controller
         /// <param name="userName">User name.</param>
         /// <returns>View main page.</returns>
         [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult Index(string userName, int year = 0, int month = 0)
         {
             if (string.IsNullOrEmpty(userName))

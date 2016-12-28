@@ -24,7 +24,7 @@ var BetList = (function ($) {
             return url;
         },
 
-        getSportBookResultUrl: function (matchid, bettype, raceNo, sporttype, league, isOutright, username) {
+        getSportBookResultUrl: function (matchid, bettype, raceNo, sporttype, league, isOutright, username, betid) {
             var para = $('form').serializeObject2();
             var url = AFFILIATE.getAbsoluteUrl('BetList/BetListResults');
             url = QueryString.setParam(url, "matchid", matchid);
@@ -34,6 +34,7 @@ var BetList = (function ($) {
             url = QueryString.setParam(url, "isoutright", isOutright);
             url = QueryString.setParam(url, "username", username);
             url = QueryString.setParam(url, "affId", para.AffId);
+            url = QueryString.setParam(url, "betid", betid);
 
             return url;
         },
@@ -47,7 +48,7 @@ var BetList = (function ($) {
             else {
                 var url = bettype === 9 || bettype === 29
                         ? BetList.getMixParlayResultUrl(refnoMixParlay, winlostdate, bettype, username)
-                        : BetList.getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username);
+                        : BetList.getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username, betid);
               
                 AFFILIATE.openDialogUrl(url, title, { width: 720, height: 400 });
             }

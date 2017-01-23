@@ -22,7 +22,8 @@
 			"macaubet",
 			"aiabet",
 			"q8bola",
-			"unobet"
+			"unobet",
+			"indowin"
 		};
 
 	var environments = new string[] { "master", "uat", "production" };

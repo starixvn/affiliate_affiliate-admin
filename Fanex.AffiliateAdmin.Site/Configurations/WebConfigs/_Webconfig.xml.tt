@@ -23,7 +23,8 @@
 			"aiabet",
 			"q8bola",
 			"unobet",
-			"indowin"
+			"indowin",
+			"aragon88"
 		};
 
 	var environments = new string[] { "master", "uat", "production" };

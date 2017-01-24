@@ -2,6 +2,7 @@
 
 // Generated helper templates
 // Generated items
+// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aragon88.production.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.indowin.production.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.unobet.production.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.q8bola.production.xml
@@ -17,6 +18,7 @@
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.allbetclub.production.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.9bet.production.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.production.xml
+// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aragon88.uat.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.indowin.uat.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.unobet.uat.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.q8bola.uat.xml

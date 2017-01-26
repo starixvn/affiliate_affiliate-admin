@@ -35,6 +35,13 @@
             _accountService = accountService ?? new AccountService();
         }
 
+        [HttpPost]
+        public ActionResult ChangeLanguage(string lang)
+        {
+            AppSession.Language = lang;
+            return Json(string.Empty);
+        }
+
         /// <summary>
         /// Return form login.
         /// </summary>

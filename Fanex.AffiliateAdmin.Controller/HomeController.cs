@@ -59,18 +59,6 @@
         }
 
         /// <summary>
-        /// Change language.
-        /// </summary>
-        /// <param name="lang">Set language.</param>
-        /// <returns>Change language of page.</returns>
-        [HttpPost]
-        public ActionResult ChangeLanguage(string lang)
-        {
-            AppSession.Language = lang;
-            return Json(string.Empty);
-        }
-
-        /// <summary>
         /// Menu of page.
         /// </summary>
         /// <returns>Main menu of page.</returns>

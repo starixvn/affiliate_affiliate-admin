@@ -2,6 +2,12 @@
 
 // Generated helper templates
 // Generated items
+// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aragon88.production.config
+// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aragon88.uat.config
+// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aragon88.master.config
+// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.indowin.production.config
+// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.indowin.uat.config
+// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.indowin.master.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.unobet.production.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.unobet.uat.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.unobet.master.config

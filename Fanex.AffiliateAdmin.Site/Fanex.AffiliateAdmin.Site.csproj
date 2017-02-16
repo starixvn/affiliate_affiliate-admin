@@ -370,6 +370,12 @@
     <Content Include="Configurations\SpNames\SpName.aoncash.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.aragon88.production.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.aragon88.uat.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\SpNames\SpName.athena000.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
@@ -396,6 +402,12 @@
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.goobet.uat.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.indowin.production.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.indowin.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.itcbet.production.xml">
@@ -480,6 +492,32 @@
     <Content Include="Content\_Sites\9bet\images\logoNotify.jpg" />
     <Content Include="Content\_Sites\9bet\images\notify.png" />
     <Content Include="Content\_Sites\9bet\images\panel.png" />
+    <Content Include="Content\_Sites\aragon88\Images\best-browsers.png" />
+    <Content Include="Content\_Sites\aragon88\Images\bodybg.jpg" />
+    <Content Include="Content\_Sites\aragon88\Images\btbg.png" />
+    <Content Include="Content\_Sites\aragon88\Images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\aragon88\Images\emailBg.jpg" />
+    <Content Include="Content\_Sites\aragon88\Images\favicon.jpg" />
+    <Content Include="Content\_Sites\aragon88\Images\headerbg.jpg" />
+    <Content Include="Content\_Sites\aragon88\Images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\aragon88\Images\banner_top.png" />
+    <Content Include="Content\_Sites\aragon88\Images\logo.jpg" />
+    <Content Include="Content\_Sites\aragon88\Images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\aragon88\Images\notify.png" />
+    <Content Include="Content\_Sites\aragon88\Images\panel.png" />
+    <Content Include="Content\_Sites\indowin\Images\best-browsers.png" />
+    <Content Include="Content\_Sites\indowin\Images\bodybg.jpg" />
+    <Content Include="Content\_Sites\indowin\Images\btbg.png" />
+    <Content Include="Content\_Sites\indowin\Images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\indowin\Images\emailBg.jpg" />
+    <Content Include="Content\_Sites\indowin\Images\favicon.jpg" />
+    <Content Include="Content\_Sites\indowin\Images\headerbg.jpg" />
+    <Content Include="Content\_Sites\indowin\Images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\indowin\Images\banner_top.png" />
+    <Content Include="Content\_Sites\indowin\Images\logo.jpg" />
+    <Content Include="Content\_Sites\indowin\Images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\indowin\Images\notify.png" />
+    <Content Include="Content\_Sites\indowin\Images\panel.png" />
     <Content Include="Content\_Sites\spondemo\Images\banner_top.png" />
     <Content Include="Content\_Sites\spondemo\Images\best-browsers.png" />
     <Content Include="Content\_Sites\spondemo\Images\bodybg.jpg" />
@@ -3814,6 +3852,26 @@
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.spondemo.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\AppSettings\Web.AppSetting.indowin.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.indowin.master.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.indowin.production.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.indowin.uat.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.indowin.production.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.indowin.uat.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aragon88.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aragon88.master.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aragon88.production.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aragon88.uat.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aragon88.production.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aragon88.uat.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
     <Content Include="Content\_Sites\be7th\Login.less" />
@@ -3949,6 +4007,28 @@
     </Content>
     <Content Include="Content\_Sites\spondemo\Login.less" />
     <Content Include="Content\_Sites\spondemo\Notify.less" />
+    <Content Include="Content\_Sites\indowin\Login.less" />
+    <Content Include="Content\_Sites\indowin\Notify.less" />
+    <Content Include="Configurations\WebConfigs\Web.indowin.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.indowin.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.indowin.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Content\_Sites\aragon88\Login.less" />
+    <Content Include="Content\_Sites\aragon88\Notify.less" />
+    <Content Include="Configurations\WebConfigs\Web.aragon88.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.aragon88.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <None Include="Configurations\WebConfigs\Web.aragon88.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -4105,6 +4185,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Notify\OneTokenRestriction.cshtml" />
+    <Content Include="Scripts\libraries\Language\Fanex.Grid.Lang.id-ID.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj">

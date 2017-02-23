@@ -6,6 +6,7 @@
     using System.IO;
     using System.Linq;
     using System.Web;
+    using Controller.Helpers;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
@@ -158,7 +159,7 @@
 
         public string UploadBanner()
         {
-            if (!IsValidExtension())
+            if (!IsValidExtension() || !MimeTypeHelper.IsValidMimeType(File.InputStream))
             {
                 return Lang.errFileExtension;
             }

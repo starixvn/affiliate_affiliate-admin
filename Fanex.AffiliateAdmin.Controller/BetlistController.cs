@@ -153,6 +153,7 @@
             {
                 CustId = model.CustId,
                 RefNo = model.TransId,
+                ExchangeRate = model.ExchangeRate
             };
 
             using (var affBetlistService = new AffiliateAPI())
@@ -180,11 +181,12 @@
             {
                 CustId = model.CustId,
                 RefNo = model.TransId,
+                ExchangeRate = model.ExchangeRate
             };
 
             using (var affBetlistService = new AffiliateAPI())
             {
-                ViewBag.Data = affBetlistService.GetBetListAgCasinoDetail(SessionManager.CurrentSession.Username, criteria); 
+                ViewBag.Data = affBetlistService.GetBetListAgCasinoDetail(SessionManager.CurrentSession.Username, criteria);
             }
 
             return View("~/Views/BetList/CasinoDetailTicket.cshtml");
@@ -205,7 +207,7 @@
                         handicap2,
                         AppSession.Language);
 
-                return tickets; 
+                return tickets;
             }
         }
 
@@ -249,7 +251,7 @@
                         AppSettings.SystemName,
                         AppSession.Language,
                         criteria,
-                        AppSession.Language); 
+                        AppSession.Language);
             }
         }
 

@@ -999,6 +999,8 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         private long refNoField;
         
+        private decimal exchangeRateField;
+        
         /// <remarks/>
         public long RefNo {
             get {
@@ -1006,6 +1008,16 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
             }
             set {
                 this.refNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal ExchangeRate {
+            get {
+                return this.exchangeRateField;
+            }
+            set {
+                this.exchangeRateField = value;
             }
         }
     }

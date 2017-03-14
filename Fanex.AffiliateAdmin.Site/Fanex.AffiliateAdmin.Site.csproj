@@ -3691,7 +3691,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.production.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.production.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.be7.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.be7.master.config" />
@@ -3715,7 +3717,9 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.local.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.uat.config">
@@ -3745,7 +3749,9 @@
     <Content Include="App_Browsers\BrowserFile.browser" />
     <Content Include="App_Browsers\ie.browser" />
     <Content Include="App_Browsers\ie11.browser" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.local.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.uat.config" />
@@ -4419,7 +4425,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

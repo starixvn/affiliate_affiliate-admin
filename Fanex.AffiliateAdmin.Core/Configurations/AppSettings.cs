@@ -16,13 +16,8 @@
     using Services.Interface;
     using Session;
 
-    /// <summary>
-    /// AppSettings class.
-    /// </summary>
     public static class AppSettings
     {
-        public const int CommonPiwikSiteId = 50;
-
         #region Define variable
 
         private static Lazy<ISystemSettingService> _systemSetting;
@@ -218,14 +213,6 @@
             get
             {
                 return _baseExchange.Value;
-            }
-        }
-
-        public static string PiwikSiteId
-        {
-            get
-            {
-                return GetValue("PiwikSiteId");
             }
         }
 

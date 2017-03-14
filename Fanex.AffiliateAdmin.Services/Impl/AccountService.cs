@@ -226,9 +226,9 @@
         {
             const int AdminGroup = 0;
             const string UspName = @"Aff_SyncInternalUser";
-
-            // 1234aa
-            const string DefaultPass = "754A738BF99D986D8716FE00A81BC5CA32916BF6";
+            
+            const string DefaultPass = "J0NilQZC1ywhNqNu8XMBqIvesaErM+DGia1za8P+tH8=";
+            Logging.Logger.Log.Info($"Synced user from LAP system - userName={userName}");
             using (var db = new ObjectDb(UspName))
             {
                 db.AddInParameter("LicenseeName", DbType.String, licenseeName);
@@ -249,6 +249,7 @@
                     Message = Converter.ToString2(errorMessage)
                 };
             }
+
         }
 
         private IEnumerable<FunctionPolicy> GetUserPolicyList(UserPolicyCriteria criteria)

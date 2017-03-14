@@ -209,9 +209,11 @@ var BetList = (function ($) {
         },
 
         showRnGCasinoDetails: function (transId, winlostDate, custId, transType) {
+            var para = $('form').serializeObject2();
             var url = AFFILIATE.getAbsoluteUrl('BetList/RngCasinoDetailTicket');
             url = QueryString.setParam(url, "transId", transId);
             url = QueryString.setParam(url, "custId", custId);
+            url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
 
             var popH = Math.min($(window).height() - 100, 550), popW = 1020;
             var title = MSG.TitleRngCasinoTicketDetail;
@@ -226,9 +228,11 @@ var BetList = (function ($) {
         },
 
         showAGCasinoDetails: function (transId, winlostDate, custId, transType) {
+            var para = $('form').serializeObject2();
             var url = AFFILIATE.getAbsoluteUrl('BetList/AgCasinoDetailTicket');
             url = QueryString.setParam(url, "transid", transId);
             url = QueryString.setParam(url, "custid", custId);
+            url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
 
             var popH = Math.min($(window).height() - 100, 550), popW = 1020;
             var title = MSG.TitleAgCasinoTicketDetail;

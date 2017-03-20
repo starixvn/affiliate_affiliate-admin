@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
-    using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
     using Fanex.AffiliateAdmin.DTO;
 
     /// <summary>

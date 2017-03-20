@@ -1,11 +1,25 @@
-﻿@using System.Text
-@using System.Linq
+﻿@using System.Linq
 @using System.Web.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.Resources
 @using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Enumerations
 @using Fanex.AffiliateAdmin.Core.Configurations
+
+@functions{
+    public static string GetBannerUrl()
+    {
+        var url = MediaSettings.BannerDomain;
+        if (AppSettings.IsProduction)
+        {
+            var secondLevelDomain = Request.Url.Host.Split('.')[1];
+            var defaultSecondLevelDomain = url.Split('.')[1];
+            url = url.Replace("." + defaultSecondLevelDomain + ".", "." + secondLevelDomain + ".");
+        }
+
+        return url;
+    }
+}
 
 @helper ListSubmenu(IEnumerable<Menu> list, int selectedMenuIndex, string activeMenu = "Home", int selectedSubMenuIndex = -1, bool isIncludeQueryString = false)
     {

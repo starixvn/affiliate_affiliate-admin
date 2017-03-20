@@ -222,22 +222,12 @@
 
         #region Banner List
 
-        /// <summary>
-        /// Get banner list page.
-        /// </summary>
-        /// <param name="model">The model object.</param>
-        /// <returns>Return banner list.</returns>
         [HttpGet]
         public ActionResult BannerList(BannerListViewModel model)
         {
             return View(model);
         }
 
-        /// <summary>
-        /// Get banner data.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Return banner list data.</returns>
         [HttpPost]
         public ActionResult BannerDataList(BannerListCriteria criteria)
         {

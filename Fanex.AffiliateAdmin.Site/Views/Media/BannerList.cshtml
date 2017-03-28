@@ -64,12 +64,11 @@ marketing-tools
         </div>
     }
 </div>
-
-
 <div id="gridId" class="freegrid">
 </div>
 @section scripts{
     <script type="text/javascript">
+        var BANNER_URL = "@RazorHelper.GetBannerUrl()";
         var MSG = {
             AddBanner: "@Lang.AddBanner",
             EditBanner: "@Lang.EditBanner",
@@ -147,8 +146,7 @@ marketing-tools
             var width = parseInt(size[0]);
             var height = parseInt(size[1]);
             var objectFormat = '';
-            var bannerDomain = '@MediaSettings.BannerDomain';
-            var imgUrl = bannerDomain + record.Content;
+            var imgUrl = BANNER_URL + record.Content;
 
             var heightRatio = thumbnailHeight / height;
             var widthRatio = thumbnailWidth / width;
@@ -162,7 +160,7 @@ marketing-tools
 
             if (record.ImageType == window.MSG.Image) {
                 if (record.Thumbnail) {
-                    var thumbnailUrl = bannerDomain + record.Thumbnail;
+                    var thumbnailUrl = BANNER_URL + record.Thumbnail;
                     objectFormat = '<img style="cursor: pointer; max-width: 300px" src="{0}" alt="{1}" onclick="javascript:BannerList.viewImage(this, {2}, {3});" title="{4}" />';
                     return objectFormat.format(thumbnailUrl, imgUrl, width, height, "@Lang.ViewOriginalSize");
                 } else {

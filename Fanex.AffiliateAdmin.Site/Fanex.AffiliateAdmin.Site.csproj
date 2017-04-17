@@ -3751,7 +3751,9 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.uat.config" />
     <Content Include="Configurations\WebConfigs\Web.master.config" />
-    <Content Include="Configurations\WebConfigs\Web.production.config" />
+    <Content Include="Configurations\WebConfigs\Web.production.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\WebConfigs\Web.uat.config" />
     <Content Include="Content\_Sites\athena000\Login.less" />
     <Content Include="Content\_Sites\athena000\Notify.less" />

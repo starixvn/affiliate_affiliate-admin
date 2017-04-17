@@ -1,12 +1,13 @@
 ﻿namespace Fanex.AffiliateAdmin.Services.Interfaces
 {
     using System.Web;
+    using DTO.OneAuth;
     using Fanex.AffiliateAdmin.DTO.Common;
 
     public interface IOneAuthenticationService
     {
-        ResultInfo SignIn(HttpContextBase currentContext, OneAuthenticationToken tokenInfo);
+        ResultInfo SignIn(HttpContextBase currentContext, OneAuthToken tokenInfo);
 
-        OneAuthenticationToken GetTokenInfo(string token);
+        OneAuthToken GetTokenInfo(string token);
     }
 }

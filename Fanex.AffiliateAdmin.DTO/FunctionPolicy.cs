@@ -3,15 +3,12 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
 
-    /// <summary>
-    /// Function policy info.
-    /// </summary>
     [Serializable]
     public class FunctionPolicy
     {
-        private const int ReadPolicy = 1;
+        public const int ReadPolicy = 1;
 
-        private const int HostPolicy = 3;
+        public const int HostPolicy = 3;
 
         public int FuncID { get; set; }
 

@@ -1,9 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Services.Interfaces
 {
-    using Fanex.AffiliateAdmin.DTO.Common;
+    using DTO.OneAuth;
 
     public interface IOneBookSecurityWrapper
     {
-        OneAuthenticationToken Authenticate(string token);
+        OneAuthToken Authenticate(string token);
     }
 }

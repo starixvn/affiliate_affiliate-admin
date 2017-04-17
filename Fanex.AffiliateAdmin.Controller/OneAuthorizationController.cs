@@ -1,10 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
-    using System.Web.Script.Serialization;
     using Core.Configurations;
     using Core.Constants;
-    using DTO.Common;
+    using DTO.OneAuth;
     using Newtonsoft.Json;
     using ONEbook.UM.Services;
     using ONEbook.UM.Services.Impl;
@@ -77,7 +76,7 @@
             return Redirect(Url.Content(returnUrl));
         }
 
-        private static bool VerifyToken(OneAuthenticationToken tokenInfo)
+        private static bool VerifyToken(OneAuthToken tokenInfo)
         {
             return !string.IsNullOrEmpty(tokenInfo.SiteName) && tokenInfo.UserSEQ > 0
                 && !string.IsNullOrEmpty(tokenInfo.VendorID) && !string.IsNullOrEmpty(tokenInfo.UserID)

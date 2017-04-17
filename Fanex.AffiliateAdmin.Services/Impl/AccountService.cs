@@ -264,7 +264,15 @@
             var fileContent = File.ReadAllText(HostingEnvironment.MapPath(FunctionFilePath));
             if (!string.IsNullOrWhiteSpace(fileContent))
             {
-                return JsonConvert.DeserializeObject<IList<FunctionPolicy>>(fileContent);
+                var policyList = JsonConvert.DeserializeObject<IList<FunctionPolicy>>(fileContent);
+                foreach (var item in policyList)
+                {
+                    item.Actual_Policy = FunctionPolicy.HostPolicy;
+                    item.Policy = FunctionPolicy.HostPolicy;
+                    item.GPolicy = FunctionPolicy.HostPolicy;
+                }
+
+                return policyList;
             }
 
             return new List<FunctionPolicy>();

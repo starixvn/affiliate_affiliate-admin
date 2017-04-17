@@ -12,6 +12,7 @@
     using AffiliateAdmin.Core.Session;
     using DTO;
     using DTO.Common;
+    using DTO.OneAuth;
     using Fanex.AffiliateAdmin.Core.Constants;
     using Fanex.AffiliateAdmin.Resources;
     using Interfaces;
@@ -32,13 +33,16 @@
 
         private readonly IAccountService _accountService;
 
-        public OneAuthenticationService() : this(null)
+        private readonly IOneBookSecurityWrapper _oneBookSecurityWrapper;
+
+        public OneAuthenticationService() : this(null, null)
         {
         }
 
-        public OneAuthenticationService(IAccountService accountService)
+        public OneAuthenticationService(IAccountService accountService, IOneBookSecurityWrapper oneBookSecurityWrapper)
         {
             _accountService = accountService ?? new AccountService();
+            _oneBookSecurityWrapper = oneBookSecurityWrapper ?? new OneBookSecurityWrapper();
         }
 
         protected internal virtual string GetStringFromFile(string path)
@@ -49,7 +53,7 @@
             }
         }
 
-        public ResultInfo SignIn(HttpContextBase currentContext, OneAuthenticationToken tokenInfo)
+        public ResultInfo SignIn(HttpContextBase currentContext, OneAuthToken tokenInfo)
         {
             if (!tokenInfo.SiteName.Equals(AppSettings.SystemName, StringComparison.OrdinalIgnoreCase))
             {
@@ -91,13 +95,12 @@
             return SetAuthorize(tokenInfo);
         }
 
-        public OneAuthenticationToken GetTokenInfo(string token)
+        public OneAuthToken GetTokenInfo(string token)
         {
-            var oneBookService = new OneBookSecurityWrapper();
-            return oneBookService.Authenticate(token);
+            return _oneBookSecurityWrapper.Authenticate(token);
         }
 
-        protected internal virtual ResultInfo SetAuthorize(OneAuthenticationToken tokenInfo)
+        protected internal virtual ResultInfo SetAuthorize(OneAuthToken tokenInfo)
         {
             CreateSession(tokenInfo);
             var authName = $"{tokenInfo.UserID}_{tokenInfo.VendorID}_{tokenInfo.SiteName}";
@@ -109,7 +112,7 @@
             };
         }
 
-        private static bool VerifySessionWithToken(ICurrentSession currentSession, OneAuthenticationToken tokenInfo)
+        private static bool VerifySessionWithToken(ICurrentSession currentSession, OneAuthToken tokenInfo)
         {
             return currentSession.Username == tokenInfo.UserID
                 && currentSession.VendorID == tokenInfo.VendorID && currentSession.VendorIdentityID == tokenInfo.UserID;
@@ -127,7 +130,7 @@
             return identityValidation && sessionValidation;
         }
 
-        private void CreateSession(OneAuthenticationToken tokenInfo)
+        private void CreateSession(OneAuthToken tokenInfo)
         {
             var user = new Account
             {

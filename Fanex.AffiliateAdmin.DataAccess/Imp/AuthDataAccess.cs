@@ -8,10 +8,7 @@
     using DTO;
     using Fanex.AffiliateAdmin.Models;
 
-    /// <summary>
-    /// Account data access.
-    /// </summary>
-    public class AccountDataAccess : IAccountDataAccess
+    public class AuthDataAccess : IAuthDataAccess
     {
         public ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account)
         {

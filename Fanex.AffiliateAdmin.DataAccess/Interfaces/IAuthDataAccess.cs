@@ -8,7 +8,7 @@
     /// <summary>
     /// Interface Account.
     /// </summary>
-    public interface IAccountDataAccess
+    public interface IAuthDataAccess
     {
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
         ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account);

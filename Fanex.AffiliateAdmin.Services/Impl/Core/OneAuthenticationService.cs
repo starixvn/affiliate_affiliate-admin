@@ -30,7 +30,7 @@
             { "vi-VN", "vn" }
         };
 
-        private readonly IAccountService _accountService;
+        private readonly IAuthService _authService;
 
         private readonly IOneBookSecurityWrapper _oneBookSecurityWrapper;
 
@@ -38,9 +38,9 @@
         {
         }
 
-        public OneAuthenticationService(IAccountService accountService, IOneBookSecurityWrapper oneBookSecurityWrapper)
+        public OneAuthenticationService(IAuthService authService, IOneBookSecurityWrapper oneBookSecurityWrapper)
         {
-            _accountService = accountService ?? new AccountService();
+            _authService = authService ?? new AuthService();
             _oneBookSecurityWrapper = oneBookSecurityWrapper ?? new OneBookSecurityWrapper();
         }
 
@@ -128,7 +128,7 @@
                 IsIT = false,
                 Username = tokenInfo.UserID
             };
-            var session = _accountService.CreateOneAuthSession(tokenInfo, user, AppSettings.LicenseeID);
+            var session = _authService.CreateOneAuthSession(tokenInfo, user, AppSettings.LicenseeID);
             session.VendorID = tokenInfo.VendorID;
             session.VendorIdentityID = tokenInfo.UserID;
             SessionManager.CurrentSession = session;
@@ -142,7 +142,7 @@
                 return result;
             }
 
-            result = _accountService.SyncUserInfo(siteName, userName);
+            result = _authService.SyncUserInfo(siteName, userName);
 
             return result.IsSuccessful ? GetUser(licenseeId, userName) : new ResultInfo
             {
@@ -153,7 +153,7 @@
 
         private ResultInfo GetUser(int licenseeId, string userName)
         {
-            var user = _accountService.GetByUsername(userName, licenseeId, true);
+            var user = _authService.GetByUsername(userName, licenseeId, true);
             if (user != null)
             {
                 return new ResultInfo

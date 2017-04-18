@@ -1,35 +1,13 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using Core.Session;
     using Criterias;
     using DTO;
-    using DTO.OneAuth;
     using Fanex.AffiliateAdmin.Criterias.Account;
-    using Fanex.AffiliateAdmin.DTO.Common;
-    using Fanex.AffiliateAdmin.Models;
     using Fanex.Data.Repository;
 
-    /// <summary>
-    /// Interface Account service.
-    /// </summary>
     public interface IAccountService
     {
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
-        ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account);
-
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
-        ResultViewModel Login(LoginCriteria criteria, out Account account, string logInToken);
-
-        Account GetByUsername(string userName, int licenseeId = 0, bool isInternal = false);
-
-        void UserLogOut(LogOutCriteria criteria);
-
-        int CheckIn(CheckInCriteria criteria);
-
-        bool ReCheckIn(ReCheckInCriteria criteria);
-
         IEnumerable<Account> GetListAccountManagement(SelByGroupIDCriteria criteria);
 
         Account GetAccountInfo(SelByCustIDCriteria criteria);
@@ -43,11 +21,5 @@
         void AccountUpdatePolicy(ICriteria criteria);
 
         void AccountUpdatePassword(AccountPasswordCriteria criteria);
-
-        ICurrentSession CreateOneAuthSession(OneAuthToken token, Account user, int licenseeId);
-
-        ICurrentSession CreateInternalSession(Account user, int licenseeId);
-
-        ResultInfo SyncUserInfo(string licenseeName, string userName);
     }
 }

@@ -14,6 +14,7 @@
     using Core.Session;
     using Criterias;
     using DTO;
+    using DTO.OneAuth;
     using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.AffiliateAdmin.DataAccess;
     using Fanex.AffiliateAdmin.DTO.Common;
@@ -23,9 +24,6 @@
     using Fanex.Data.Repository;
     using Newtonsoft.Json;
 
-    /// <summary>
-    /// Account Service.
-    /// </summary>
     public class AccountService : QueryService, IAccountService
     {
         private const int WrongUserPasswordErrorCode = 101;
@@ -89,10 +87,6 @@
             }
         }
 
-        /// <summary>
-        /// Logout user.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
         public void UserLogOut(LogOutCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -104,21 +98,11 @@
             return _accountDataAccess.CheckIn(criteria);
         }
 
-        /// <summary>
-        /// ReCheckIn: kick out the previous login user.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>Return Is Kicked out.</returns>
         public bool ReCheckIn(ReCheckInCriteria criteria)
         {
             return _accountDataAccess.ReCheckIn(criteria);
         }
 
-        /// <summary>
-        /// Get List Account Management.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>List Account.</returns>
         public IEnumerable<Account> GetListAccountManagement(SelByGroupIDCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -133,11 +117,6 @@
             return result;
         }
 
-        /// <summary>
-        /// Get account info.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>Account info.</returns>
         public Account GetAccountInfo(SelByCustIDCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -146,77 +125,81 @@
             return data.FirstOrDefault();
         }
 
-        /// <summary>
-        /// Update account.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
         public void AccountUpdate(AccountUpdateCriteria criteria)
         {
             ExecuteOutput(criteria);
         }
 
-        /// <summary>
-        /// Insert new account.
-        /// </summary>
-        /// <param name="criteria">Account criteria.</param>
         public void AccountInsert(AccountInsCriteria criteria)
         {
             ExecuteOutput(criteria);
         }
 
-        /// <summary>
-        /// Update Account Password.
-        /// </summary>
-        /// <param name="criteria">Change password criteria.</param>
         public void AccountUpdatePassword(ChangePasswordCriteria criteria)
         {
             ExecuteOutput(criteria);
         }
 
-        /// <summary>
-        /// Update Account Policy.
-        /// </summary>
-        /// <param name="criteria">Policy update criteria.</param>
         public void AccountUpdatePolicy(ICriteria criteria)
         {
             ExecuteOutput(criteria);
         }
 
-        /// <summary>
-        /// Admin update him/herself password.
-        /// </summary>
-        /// <param name="criteria">Account Password Criteria.</param>
         public void AccountUpdatePassword(AccountPasswordCriteria criteria)
         {
             ExecuteOutput(criteria);
         }
 
-        public ICurrentSession CreateSession(Account user, int licenseeId, AppMode appMode = AppMode.Self)
+        public ICurrentSession CreateOneAuthSession(OneAuthToken token, Account user, int licenseeId)
         {
             IEnumerable<FunctionPolicy> policies;
             IEnumerable<Currency> currencies;
-            currencies = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
+            var allCurrencies = _systemSettingService.GetLicenseeSupportedCurrencyList(new LicenseeSupportedCurrencyCriteria
+            {
+                LicenseeId = licenseeId
+            });
+
+            if (token.IsAdminstrator)
+            {
+                currencies = allCurrencies;
+                policies = GetSystemFunctions();
+            }
+            else
+            {
+                currencies = allCurrencies.Where(x => token.Currency.Any(y => y.Currency.Equals(x.CurrencyCode, StringComparison.OrdinalIgnoreCase))).ToList();
+                policies = token.Permissions.Select(x => new FunctionPolicy
+                {
+                    FuncName = x.FunctionKey,
+                    Actual_Policy = FunctionPolicy.HostPolicy,
+                    Policy = FunctionPolicy.HostPolicy,
+                    GPolicy = FunctionPolicy.HostPolicy
+                });
+            }
+
+            var session = new CurrentSession(user, policies, currencies)
+            {
+                ApplicationMode = AppMode.Parasitic
+            };
+
+            return session;
+        }
+
+        public ICurrentSession CreateInternalSession(Account user, int licenseeId)
+        {
+            var policies = GetUserPolicyList(new UserPolicyCriteria
+            {
+                CustID = user.CustID,
+                LicenseeId = licenseeId
+            });
+            var currencies = _systemSettingService.GetAffSystemSupportedCurrencyList(new SystemSupportedCurrencyCriteria
             {
                 UserId = user.CustID,
                 LicenseeId = licenseeId
             }).ToList();
 
-            if (appMode == AppMode.Self)
-            {
-                policies = GetUserPolicyList(new UserPolicyCriteria
-                {
-                    CustID = user.CustID,
-                    LicenseeId = licenseeId
-                });
-            }
-            else
-            {
-                policies = GetSystemFunctions();
-            }
-
             var session = new CurrentSession(user, policies, currencies)
             {
-                ApplicationMode = appMode
+                ApplicationMode = AppMode.Self
             };
 
             return session;

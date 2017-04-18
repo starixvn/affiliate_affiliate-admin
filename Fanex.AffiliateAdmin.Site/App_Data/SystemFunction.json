@@ -1,54 +1,54 @@
 ﻿[
   {
     "FuncID": 5,
-    "FunctionKey": "[AffEx.Rate]"
+    "FuncName": "[AffEx.Rate]"
   },
   {
     "FuncID": 2,
-    "FunctionKey": "[Affiliate]"
+    "FuncName": "[Affiliate]"
   },
   {
     "FuncID": 8,
-    "FunctionKey": "[AffReport]"
+    "FuncName": "[AffReport]"
   },
   {
     "FuncID": 7,
-    "FunctionKey": "[CommissionGroup]"
+    "FuncName": "[CommissionGroup]"
   },
   {
     "FuncID": 12,
-    "FunctionKey": "[Country]"
+    "FuncName": "[Country]"
   },
   {
     "FuncID": 11,
-    "FunctionKey": "[Domain]"
+    "FuncName": "[Domain]"
   },
   {
     "FuncID": 6,
-    "FunctionKey": "[HotNews]"
+    "FuncName": "[HotNews]"
   },
   {
     "FuncID": 4,
-    "FunctionKey": "[Media]"
+    "FuncName": "[Media]"
   },
   {
     "FuncID": 3,
-    "FunctionKey": "[Payment]"
+    "FuncName": "[Payment]"
   },
   {
     "FuncID": 9,
-    "FunctionKey": "[Resources]"
+    "FuncName": "[Resources]"
   },
   {
     "FuncID": 10,
-    "FunctionKey": "[SystemSettings]"
+    "FuncName": "[SystemSettings]"
   },
   {
     "FuncID": 1,
-    "FunctionKey": "[UserControl]"
+    "FuncName": "[UserControl]"
   },
   {
     "FuncID": 13,
-    "FunctionKey": "[MonthlyTransfer]"
+    "FuncName": "[MonthlyTransfer]"
   }
 ]

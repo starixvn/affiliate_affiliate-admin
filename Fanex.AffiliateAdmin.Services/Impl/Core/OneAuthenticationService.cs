@@ -1,6 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Services.Impl.Core
 {
-    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -55,15 +54,6 @@
 
         public ResultInfo SignIn(HttpContextBase currentContext, OneAuthToken tokenInfo)
         {
-            if (!tokenInfo.SiteName.Equals(AppSettings.SystemName, StringComparison.OrdinalIgnoreCase))
-            {
-                return new ResultInfo
-                {
-                    Code = OneAuthorizationErrorCode.LicenseeIsNotExisted,
-                    Message = Lang.LicenseeIsNotExisted
-                };
-            }
-
             var language = MapLanguages.Where(i => i.Value.Equals(tokenInfo.Language))
                        .Select(i => i.Key).DefaultIfEmpty<string>("en-Us").FirstOrDefault();
             var currentSession = SessionManager.CurrentSession;
@@ -138,7 +128,7 @@
                 IsIT = false,
                 Username = tokenInfo.UserID
             };
-            var session = _accountService.CreateSession(user, AppSettings.LicenseeID, AppMode.Parasitic);
+            var session = _accountService.CreateOneAuthSession(tokenInfo, user, AppSettings.LicenseeID);
             session.VendorID = tokenInfo.VendorID;
             session.VendorIdentityID = tokenInfo.UserID;
             SessionManager.CurrentSession = session;

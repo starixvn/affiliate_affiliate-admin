@@ -2,10 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using Core.Enumerations;
     using Core.Session;
     using Criterias;
     using DTO;
+    using DTO.OneAuth;
     using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.AffiliateAdmin.DTO.Common;
     using Fanex.AffiliateAdmin.Models;
@@ -44,7 +44,9 @@
 
         void AccountUpdatePassword(AccountPasswordCriteria criteria);
 
-        ICurrentSession CreateSession(Account user, int licenseeId, AppMode appMode = AppMode.Self);
+        ICurrentSession CreateOneAuthSession(OneAuthToken token, Account user, int licenseeId);
+
+        ICurrentSession CreateInternalSession(Account user, int licenseeId);
 
         ResultInfo SyncUserInfo(string licenseeName, string userName);
     }

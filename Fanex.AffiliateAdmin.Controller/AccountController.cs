@@ -98,7 +98,7 @@
                     });
                     AffiliateInfoCookieHelper.DeleteAffiliate(HttpContext);
                     FormsAuthentication.SetAuthCookie(username, false);
-                    SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
+                    SessionManager.CurrentSession = _accountService.CreateInternalSession(user, AppSettings.LicenseeID);
                 }
                 else
                 {

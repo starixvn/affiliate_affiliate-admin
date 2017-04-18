@@ -138,7 +138,7 @@
                     ServerId = user.ServerId
                 });
 
-                SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
+                SessionManager.CurrentSession = _accountService.CreateInternalSession(user, AppSettings.LicenseeID);
 
                 FormsAuthentication.SetAuthCookie(user.Username, false);
             }
@@ -148,7 +148,7 @@
 
         private void InitializeSession(Account user)
         {
-            SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
+            SessionManager.CurrentSession = _accountService.CreateInternalSession(user, AppSettings.LicenseeID);
         }
 
         private string ErrorMessage(int errCode)
@@ -240,7 +240,7 @@
                     OnUserID = session.OnUserID,
                     IsIT = session.IsIT
                 };
-                SessionManager.CurrentSession = _accountService.CreateSession(account, AppSettings.LicenseeID);
+                SessionManager.CurrentSession = _accountService.CreateInternalSession(account, AppSettings.LicenseeID);
 
                 FormsAuthentication.SetAuthCookie(session.Username, false);
                 return Redirect("~/Home/Index");

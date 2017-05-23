@@ -345,7 +345,17 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
                 this.GetRngCasinoSingleWalletResultCompleted(this, new GetRngCasinoSingleWalletResultCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
-        
+
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetListAgCasinoDetail", RequestNamespace = "http://tempuri.org/", ResponseNamespace = "http://tempuri.org/", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetBetListCashOutDetail(string userName, BetListDetailCriteria criteria)
+        {
+            object[] results = this.Invoke("GetBetListCashOutDetail", new object[] {
+                        userName,
+                        criteria});
+            return ((string)(results[0]));
+        }
+
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetListAgCasinoDetail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string GetBetListAgCasinoDetail(string userName, BetListDetailCriteria criteria) {
@@ -1020,6 +1030,12 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
                 this.exchangeRateField = value;
             }
         }
+
+        public long TranId { get; set; }
+
+        public long OriginalTransId { get; set; }
+
+        public long BetType { get; set; }
     }
     
     /// <remarks/>

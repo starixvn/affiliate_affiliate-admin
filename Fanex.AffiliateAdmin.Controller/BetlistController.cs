@@ -193,6 +193,25 @@
         }
 
         [HttpGet]
+        public ActionResult CashOutDetailTicket(CashOutDetailViewModel model)
+        {
+            var criteria = new BetListDetailCriteria
+            {
+                TranId = model.TranId,
+                RefNo = model.RefNo,
+                BetType = model.BetType,
+                OriginalTransId = model.OriginalTransId
+            };
+
+            using (var affBetlistService = new AffiliateAPI())
+            {
+                ViewBag.Data = affBetlistService.GetBetListCashOutDetail(SessionManager.CurrentSession.Username, criteria);
+            }
+
+            return View("~/Views/BetList/Index.cshtml");
+        }
+
+        [HttpGet]
         public dynamic NewBetListParlay(long transId, string betTeam, string betCheck, decimal handicap1, decimal handicap2, string exchangeRate)
         {
             using (var affBetlistService = new AffBetListService.AffiliateAPI())

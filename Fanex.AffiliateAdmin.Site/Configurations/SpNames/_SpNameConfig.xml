@@ -1,4 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item LicenseeName="spondemo" Environment="DEV,LOCAL,UAT,SIT" SpName="Aff_SyncInternalUser" Suffix=""></item>
+
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_AffiliateSelGeneralInfo" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_StatisticsSel" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_StatementHistorySel" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_AffiliateCommissionReport" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_AffiliateSel" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_CommGroupIns" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_CommGroupUpd" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_CompanyWinlossReport" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_CompanyWinLossByProductReport" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_AffiliateWinLossReport" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_AffiliateWinLossByProductReport" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_MemberWinLossReport" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_MemberWinLossByProductReport" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_AffiliateCommissionReport" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_QualifiedMembersReport" Suffix="_xtest"></item>
 </Root>

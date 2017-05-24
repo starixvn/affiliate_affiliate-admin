@@ -46,6 +46,8 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         private System.Threading.SendOrPostCallback GetBetListAgCasinoDetailOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetBetListCashOutDetailOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetBetlistResultsOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
@@ -109,6 +111,9 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         /// <remarks/>
         public event GetBetListAgCasinoDetailCompletedEventHandler GetBetListAgCasinoDetailCompleted;
+        
+        /// <remarks/>
+        public event GetBetListCashOutDetailCompletedEventHandler GetBetListCashOutDetailCompleted;
         
         /// <remarks/>
         public event GetBetlistResultsCompletedEventHandler GetBetlistResultsCompleted;
@@ -345,17 +350,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
                 this.GetRngCasinoSingleWalletResultCompleted(this, new GetRngCasinoSingleWalletResultCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
-
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetListCashOutDetail", RequestNamespace = "http://tempuri.org/", ResponseNamespace = "http://tempuri.org/", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string GetBetListCashOutDetail(string userName, BetListDetailCriteria criteria)
-        {
-            object[] results = this.Invoke("GetBetListCashOutDetail", new object[] {
-                        userName,
-                        criteria});
-            return ((string)(results[0]));
-        }
-
+        
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetListAgCasinoDetail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string GetBetListAgCasinoDetail(string userName, BetListDetailCriteria criteria) {
@@ -384,6 +379,37 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
             if ((this.GetBetListAgCasinoDetailCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetBetListAgCasinoDetailCompleted(this, new GetBetListAgCasinoDetailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetListCashOutDetail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetBetListCashOutDetail(string userName, BetListDetailCriteria criteria) {
+            object[] results = this.Invoke("GetBetListCashOutDetail", new object[] {
+                        userName,
+                        criteria});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBetListCashOutDetailAsync(string userName, BetListDetailCriteria criteria) {
+            this.GetBetListCashOutDetailAsync(userName, criteria, null);
+        }
+        
+        /// <remarks/>
+        public void GetBetListCashOutDetailAsync(string userName, BetListDetailCriteria criteria, object userState) {
+            if ((this.GetBetListCashOutDetailOperationCompleted == null)) {
+                this.GetBetListCashOutDetailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBetListCashOutDetailOperationCompleted);
+            }
+            this.InvokeAsync("GetBetListCashOutDetail", new object[] {
+                        userName,
+                        criteria}, this.GetBetListCashOutDetailOperationCompleted, userState);
+        }
+        
+        private void OnGetBetListCashOutDetailOperationCompleted(object arg) {
+            if ((this.GetBetListCashOutDetailCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBetListCashOutDetailCompleted(this, new GetBetListCashOutDetailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1011,6 +1037,12 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         private decimal exchangeRateField;
         
+        private long transIdField;
+        
+        private long originalTransIdField;
+        
+        private int betTypeField;
+        
         /// <remarks/>
         public long RefNo {
             get {
@@ -1030,12 +1062,36 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
                 this.exchangeRateField = value;
             }
         }
-
-        public long TransId { get; set; }
-
-        public long OriginalTransId { get; set; }
-
-        public long BetType { get; set; }
+        
+        /// <remarks/>
+        public long TransId {
+            get {
+                return this.transIdField;
+            }
+            set {
+                this.transIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long OriginalTransId {
+            get {
+                return this.originalTransIdField;
+            }
+            set {
+                this.originalTransIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int BetType {
+            get {
+                return this.betTypeField;
+            }
+            set {
+                this.betTypeField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -1350,6 +1406,32 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         private object[] results;
         
         internal GetBetListAgCasinoDetailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void GetBetListCashOutDetailCompletedEventHandler(object sender, GetBetListCashOutDetailCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBetListCashOutDetailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBetListCashOutDetailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

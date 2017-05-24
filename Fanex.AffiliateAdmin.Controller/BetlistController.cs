@@ -209,7 +209,7 @@
                 ViewBag.Data = affBetlistService.GetBetListCashOutDetail(SessionManager.CurrentSession.Username, criteria);
             }
 
-            return View("~/Views/BetList/Index.cshtml");
+            return View("~/Views/BetList/BetListResults.cshtml");
         }
 
         [HttpGet]

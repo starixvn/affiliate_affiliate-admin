@@ -244,6 +244,27 @@ var BetList = (function ($) {
                 width: popW + 10,
                 height: popH + 50
             });
+        },
+
+        viewCashOutHistory: function (transId, refNo, betType, betdapId) {
+            var para = $('form').serializeObject2();
+            var url = AFFILIATE.getAbsoluteUrl('BetList/CashOutDetailTicket');
+            url = QueryString.setParam(url, "transId", transId);
+            url = QueryString.setParam(url, "refNo", refNo);
+            url = QueryString.setParam(url, "betType", betType);
+            url = QueryString.setParam(url, "originalTransId", refNo);
+            url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
+
+            var popH = Math.min($(window).height() - 100, 550), popW = 1020;
+            var title = betType;
+            var dialogForm = '<div title="' + title + '"><iframe scrolling="no" frameborder="0" width="' +
+                             popW + '" height="99%" src="' + url + '" ></iframe></div>';
+
+            $(dialogForm).dialog({
+                modal: true,
+                width: popW + 10,
+                height: popH + 50
+            });
         }
     };
 })(jQuery);
@@ -266,3 +287,4 @@ var showCombMPDetail = BetList.showSystemParlayDetail;
 var showRnGCasinoDetails = BetList.showRnGCasinoDetails;
 var showAGCasinoDetails = BetList.showAGCasinoDetails;var showCombMPDetail = BetList.showSystemParlayDetail;
 var showNewCombMP = BetList.showNewParlayDetail;
+var ViewCashOutHistory = BetList.viewCashOutHistory;

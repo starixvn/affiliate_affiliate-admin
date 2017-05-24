@@ -479,3 +479,15 @@ div.mx-parlay div.reject > div.match, div.mx-parlay div.reject div.firstGoal, di
     text-decoration: none;
 }
 /********** ------------------ **************/
+
+/*Stylt for Cash out detail*/
+.tblCashOutDetail {
+    margin-left: 20px;
+    margin-bottom: 30px;
+    min-width: 900px;
+}
+
+.tblCashOutDetail th {
+    padding: 0;
+}
+/********** ------------------ **************/

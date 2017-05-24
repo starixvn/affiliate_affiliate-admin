@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Text;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
@@ -70,6 +71,8 @@
             criteria.Description = criteria.Description.Encode();
 
             criteria.LicenseeId = AppSettings.LicenseeID;
+
+            criteria.DeductionList = BuildDeductionListXml(criteria.DeductionSettingList);
 
             _commGroupService.ExecuteOutput(criteria);
 
@@ -169,6 +172,8 @@
 
             criteria.LicenseeId = AppSettings.LicenseeID;
 
+            criteria.DeductionList = BuildDeductionListXml(criteria.DeductionSettingList);
+
             _commGroupService.ExecuteOutput(criteria);
 
             var errorMsg = string.Empty;
@@ -246,6 +251,21 @@
             var date = criteria.Date == null ? SystemTimeService.GetSystemDateTime() : criteria.Date.Value;
             _commGroupService.BuildGroupData(groups, date, criteria.GroupID.ToString());
             return View(groups.FirstOrDefault());
+        }
+
+        private static string BuildDeductionListXml(string deductionSettingList)
+        {
+            var xmlContent = new StringBuilder("<root>");
+            var deductionList = deductionSettingList.TrimEnd('|').Split('|');
+            foreach (var deduction in deductionList)
+            {
+                var values = deduction.Split(';');
+                xmlContent.Append($"<row id='{values[0]}' percent='{values[1]}' />");
+            }
+
+            xmlContent.Append("</root>");
+
+            return xmlContent.ToString();
         }
 
         /// <summary>

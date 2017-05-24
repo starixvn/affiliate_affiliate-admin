@@ -124,7 +124,6 @@ var CommGroupPopup = (function ($) {
         $tab.data("copied", false);
 
         if (!$tab.data("disabled")) {
-
             $("#fieldsetTier" + productId).show();
 
             $tab.find("#" + productId).prop("disabled", false);
@@ -337,38 +336,27 @@ var CommGroupPopup = (function ($) {
     };
 
     var getDeductionSetting = function (productid) {
-        var deductionList = "", deductedPercentageList = "";
+        var deductionList = ""
         var $deductions = $("#tab_content" + productid + " .deductions input[type=checkbox]:checked");
-
         $deductions.each(function () {
             var percent = $(this).closest("tr").find("select.deductionlist").val();
-            deductionList += $(this).data("id") + ",";
-
-            deductedPercentageList += percent + ",";
+            deductionList += $(this).data("id") + ";" + percent + "|";
         });
 
-        return {
-            deductionList: deductionList,
-            deductedPercentageList: deductedPercentageList
-        };
+        return deductionList
     };
 
     var collectDeductionSettings = function (products) {
-        var deductionList = "", deductedPercentageList = "";
+        var deductionList = ""
         var finalProducts = [];
 
         finalProducts = finalProducts.concat(products);
 
         for (var i = 0; i < finalProducts.length; i++) {
-            var localSetting = getDeductionSetting(finalProducts[i]);
-            deductionList += localSetting.deductionList;
-            deductedPercentageList += localSetting.deductedPercentageList;
+            deductionList += getDeductionSetting(finalProducts[i]);
         }
 
-        return {
-            deductionList: deductionList,
-            deductedPercentageList: deductedPercentageList
-        };
+        return deductionList;
     };
 
     var getTierSetting = function (productid) {
@@ -451,7 +439,8 @@ var CommGroupPopup = (function ($) {
     };
 
     var changeCurrency = function (currencyId, currencyCode) {
-        $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/GetCurrencyNotification"),
+        $.ajax({
+            url: AFFILIATE.getAbsoluteUrl("CommGroup/GetCurrencyNotification"),
             type: 'get',
             cache: false,
             data: {
@@ -469,7 +458,8 @@ var CommGroupPopup = (function ($) {
             }
         });
 
-        $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/GetDefaultPspExchange"),
+        $.ajax({
+            url: AFFILIATE.getAbsoluteUrl("CommGroup/GetDefaultPspExchange"),
             type: 'get',
             cache: false,
             data: {
@@ -503,7 +493,6 @@ var CommGroupPopup = (function ($) {
             for (i = 0; i < window.PRODUCTS.length; i++) {
                 enableProduct(window.PRODUCTS[i]);
             }
-
         } else {
             var all = true;
 
@@ -521,7 +510,6 @@ var CommGroupPopup = (function ($) {
 
     return {
         init: function () {
-
             $("#Currency").change(function () {
                 changeCurrency(this.value, $(this).find(":selected").text());
             });
@@ -598,9 +586,7 @@ var CommGroupPopup = (function ($) {
             });
 
             $("#ActiveAll").change(function () {
-
                 changeActiveAll(this.checked);
-
 
                 disableCopyCheckboxes();
             });
@@ -638,7 +624,6 @@ var CommGroupPopup = (function ($) {
             });
 
             $("#btnSubmit").click(function () {
-
                 if (!checkRequiredFields()) {
                     return;
                 }
@@ -656,7 +641,9 @@ var CommGroupPopup = (function ($) {
 
                 var data = collectCommGroupInfo(products);
 
-                var deductionSettings = collectDeductionSettings(products);
+                var deductionSettings = {
+                    deductionSettingList: collectDeductionSettings(products)
+                };
 
                 var tierSettings = collectTierSettings(products);
 

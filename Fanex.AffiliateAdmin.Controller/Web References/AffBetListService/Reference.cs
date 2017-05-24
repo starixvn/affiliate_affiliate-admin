@@ -347,7 +347,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         }
 
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetListAgCasinoDetail", RequestNamespace = "http://tempuri.org/", ResponseNamespace = "http://tempuri.org/", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetListCashOutDetail", RequestNamespace = "http://tempuri.org/", ResponseNamespace = "http://tempuri.org/", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string GetBetListCashOutDetail(string userName, BetListDetailCriteria criteria)
         {
             object[] results = this.Invoke("GetBetListCashOutDetail", new object[] {
@@ -1031,7 +1031,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
             }
         }
 
-        public long TranId { get; set; }
+        public long TransId { get; set; }
 
         public long OriginalTransId { get; set; }
 

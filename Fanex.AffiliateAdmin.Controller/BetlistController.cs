@@ -197,10 +197,11 @@
         {
             var criteria = new BetListDetailCriteria
             {
-                TranId = model.TranId,
+                TransId = model.TransId,
                 RefNo = model.RefNo,
                 BetType = model.BetType,
-                OriginalTransId = model.OriginalTransId
+                OriginalTransId = model.OriginalTransId,
+                ExchangeRate = model.ExchangeRate
             };
 
             using (var affBetlistService = new AffiliateAPI())

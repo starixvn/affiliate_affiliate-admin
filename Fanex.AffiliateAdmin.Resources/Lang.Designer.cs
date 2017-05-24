@@ -1327,6 +1327,24 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cash Out WinLoss.
+        /// </summary>
+        public static string CashOutWinLoss {
+            get {
+                return ResourceManager.GetString("CashOutWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Out Win Loss Share.
+        /// </summary>
+        public static string CashOutWinLossShare {
+            get {
+                return ResourceManager.GetString("CashOutWinLossShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Casino.
         /// </summary>
         public static string Casino {
@@ -2327,6 +2345,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string DeductionBonus {
             get {
                 return ResourceManager.GetString("DeductionBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Has Cash Out Win Loss Share for SportsBook.
+        /// </summary>
+        public static string DeductionCashOutWinLossShare {
+            get {
+                return ResourceManager.GetString("DeductionCashOutWinLossShare", resourceCulture);
             }
         }
         

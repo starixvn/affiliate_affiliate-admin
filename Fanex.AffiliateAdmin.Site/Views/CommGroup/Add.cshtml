@@ -102,7 +102,7 @@
                                             <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList((decimal)item.DeductedPercentage, (decimal)0.01, className, "disabled")
                                             </td>
                                             <td style="text-align: left;">
-                                                @RazorHelper.AdditionalSharingFee(item.DTypeName, (decimal)Model.DepositPercent, (decimal)Model.WithdrawalPercent, "disabled")
+                                                @RazorHelper.AdditionalSharingFee(item.DTypeID, (decimal)Model.DepositPercent, (decimal)Model.WithdrawalPercent, "disabled")
                                             </td>
                                         </tr>
                                     }

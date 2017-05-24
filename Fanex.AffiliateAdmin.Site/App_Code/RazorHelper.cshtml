@@ -5,7 +5,6 @@
 @using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Enumerations
 @using Fanex.AffiliateAdmin.Core.Configurations
-@using Fanex.AffiliateAdmin.Core.DbConstants
 
 @functions{
     public static string GetBannerUrl()
@@ -266,36 +265,4 @@
                         FormaterCurrency.Format(number * currency.MultipliedBy, currency.CurrencyCode))
     </p>
         }
-}
-@helper PercentageDropDownList(decimal percent, decimal step, string className, string disabled)
-    {
-        decimal num = 0;
-    <select style="margin-left: 10px; width: 70px" class="@className" @disabled>
-        @while (num <= (decimal)1.00)
-        {
-            var val = string.Format("{0:0.00}", num);
-            <option value="@val" @(num == percent ? "selected" : null)>@val</option>
-            num += step;
-        }
-    </select>
-}
-@helper AdditionalSharingFee(int deductionType, decimal percentDeposit, decimal percentWithdrawl, string disabled)
-{
-    switch (deductionType)
-    {
-        case DeductionTypeConstant.Marketing:
-        case DeductionTypeConstant.OddsFee:
-                <span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|@Lang.Winloss|</span>
-            break;
-        case DeductionTypeConstant.PSP:
-                <span>
-                    &nbsp;&nbsp;&nbsp;* ( @Lang.TotalDeposit * @PercentageDropDownList(percentDeposit, (decimal)0.01, "totaldeposit", disabled)
-                    + @Lang.TotalWithdrawal * @PercentageDropDownList(percentWithdrawl, (decimal)0.01, "totalwithdrawal", disabled)
-                    )
-                </span>
-            break;
-        case DeductionTypeConstant.CashOutWinLossShare:
-                <span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|@Lang.CashOutWinLoss|</span>
-            break;
-    }
 }

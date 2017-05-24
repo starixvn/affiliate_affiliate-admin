@@ -99,10 +99,10 @@
                                                 <label title="@(Lang.ResourceManager.GetString("Deduction" + item.DTypeName.Replace(" ", string.Empty)))">
                                                     @(Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)))
                                                 </label></td>
-                                            <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList((decimal)item.DeductedPercentage, (decimal)0.01, className, "disabled")
+                                            <td style="text-align: left;"> = @CommGroupRazorHelper.PercentageDropDownList((decimal)item.DeductedPercentage, (decimal)0.01, className, "disabled")
                                             </td>
                                             <td style="text-align: left;">
-                                                @RazorHelper.AdditionalSharingFee(item.DTypeID, (decimal)Model.DepositPercent, (decimal)Model.WithdrawalPercent, "disabled")
+                                                @CommGroupRazorHelper.AdditionalSharingFee(item.DTypeID, (decimal)Model.DepositPercent, (decimal)Model.WithdrawalPercent, "disabled")
                                             </td>
                                         </tr>
                                     }

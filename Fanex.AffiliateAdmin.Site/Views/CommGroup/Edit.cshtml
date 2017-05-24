@@ -126,10 +126,10 @@
                                             @(Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)))
                                         </label>
                                     </td>
-                                    <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList(percent, (decimal)0.01, className, check ? string.Empty : "disabled")
+                                    <td style="text-align: left;"> = @CommGroupRazorHelper.PercentageDropDownList(percent, (decimal)0.01, className, check ? string.Empty : "disabled")
                                     </td>
                                     <td style="text-align: left;">
-                                        @RazorHelper.AdditionalSharingFee(item.DTypeID, (decimal)Model.DepositPercent, (decimal)Model.WithdrawalPercent, check ? string.Empty : "disabled")
+                                        @CommGroupRazorHelper.AdditionalSharingFee(item.DTypeID, (decimal)Model.DepositPercent, (decimal)Model.WithdrawalPercent, check ? string.Empty : "disabled")
                                     </td>
                                 </tr>
                             }
@@ -185,7 +185,7 @@
                                             <input type="checkbox"  @(!isLast ? "disabled" : null) @(ismax ? "checked" : null) />∞
                                         </td>
                                         <td style="max-width: 100px">
-                                            @RazorHelper.PercentageDropDownList(tier.Commission, (decimal)0.01, "commission", string.Empty)
+                                            @CommGroupRazorHelper.PercentageDropDownList(tier.Commission, (decimal)0.01, "commission", string.Empty)
                                         </td>            
                                         <td>
                                             <a href="javascript:void(0);" class="icon-remove  @(!isLast ? "icon-white" : string.Empty)"></a>

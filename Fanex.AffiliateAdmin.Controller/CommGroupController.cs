@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Core.DbConstants;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -17,6 +18,11 @@
     [FunctionAuth(Function = FunctionPolicyNames.CommissionGroup, CurrenciesRequired = true)]
     public partial class CommGroupController : BaseController
     {
+        private static readonly int[] IgnoredProducts = new int[]
+        {
+            ProductTypeConstant.CashOut
+        };
+
         private readonly ICommGroupService _commGroupService;
 
         private readonly IExchangeRateService _exchangeRateService;
@@ -35,8 +41,7 @@
         [HttpGet]
         public ActionResult Add()
         {
-            ViewBag.ProductIDList = string.Join(",", AppSettings.Products.Where(x => x.IsEnabled).Select(x => x.ProductID));
-
+            ViewBag.ProductList = AppSettings.Products.Where(x => x.IsEnabled && !IgnoredProducts.Contains(x.ProductID));
             var currency = SessionManager.CurrentSession.CurrencyList.First();
 
             var criteria = new GetDefaultPspExchangeCriteria
@@ -118,8 +123,6 @@
         [HttpGet]
         public ActionResult Edit(int groupid)
         {
-            ViewBag.ProductIDList = string.Join(",", AppSettings.Products.Where(x => x.IsEnabled).Select(x => x.ProductID));
-
             var group = _commGroupService.GetListData<CommGroupInfo>(new CommGroupInfoCriteria()
             {
                 GroupId = groupid
@@ -134,16 +137,14 @@
             {
                 GroupId = groupid
             });
-
             group.DeductionSettings = _commGroupService.GetListData<DeductionSetting>(new DeductionSettingCriteria()
             {
                 GroupIDList = groupid.ToString(CultureInfo.InvariantCulture)
             });
-
             group.GroupName = group.GroupName.Decode();
-
             group.Description = group.Description.Decode();
 
+            ViewBag.ProductList = AppSettings.Products.Where(x => x.IsEnabled && !IgnoredProducts.Contains(x.ProductID));
             return View("Edit", group);
         }
 

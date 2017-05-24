@@ -21,7 +21,7 @@
         }
     }
 
-    var products = AppSettings.Products.Where(t => t.IsEnabled);
+    var productList = ViewBag.ProductList as IEnumerable<Product>;
 }
 
 @using (Html.BeginForm("Edit", "CommGroup", FormMethod.Post, new { @class = "form-horizontal", id="CommGroupSettingsForm" }))
@@ -71,7 +71,7 @@
  
     <div class="control-group red" id="currNotify" style="display:none;margin: 5px 5px 15px 25px">
     </div>
-    @foreach (var product in products)
+    @foreach (var product in productList)
     {
         var hasTier = Model.GroupSettings.Count(x => x.ProductID == product.ProductID) > 0;
         var headerIcon = hasTier ? "icon-ok-circle" : "icon-ban-circle";
@@ -268,7 +268,7 @@
             UncheckCopyAllTierSettings: "@Lang.UncheckCopyAllTierSettings"
         };
 
-        var PRODUCTS = "@(ViewBag.ProductIDList)".split(',');
+        var PRODUCTS = "@(string.Join(",", productList.Select(x => x.ProductID)))".split(',');
         var HasCashback = @(Model.HasCashback > 0 ? "true" : "false");
     </script>
 

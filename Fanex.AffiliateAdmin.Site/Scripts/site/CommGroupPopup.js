@@ -452,7 +452,8 @@ var CommGroupPopup = (function ($) {
 
     var changeCurrency = function (currencyId, currencyCode) {
         $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/GetCurrencyNotification"),
-            type: 'post',
+            type: 'get',
+            cache: false,
             data: {
                 currencyid: currencyId
             },
@@ -469,7 +470,8 @@ var CommGroupPopup = (function ($) {
         });
 
         $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/GetDefaultPspExchange"),
-            type: 'post',
+            type: 'get',
+            cache: false,
             data: {
                 CurrencyCode: currencyCode
             },

@@ -484,10 +484,10 @@ div.mx-parlay div.reject > div.match, div.mx-parlay div.reject div.firstGoal, di
 .tblCashOutDetail {
     margin-left: 20px;
     margin-bottom: 30px;
-    min-width: 900px;
+    min-width: 880px;
 }
 
-.tblCashOutDetail th {
-    padding: 0;
-}
+    .tblCashOutDetail th {
+        padding: 0;
+    }
 /********** ------------------ **************/

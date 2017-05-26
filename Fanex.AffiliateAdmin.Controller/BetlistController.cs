@@ -206,7 +206,7 @@
 
             using (var affBetlistService = new AffiliateAPI())
             {
-                ViewBag.Data = affBetlistService.GetBetListCashOutDetail(SessionManager.CurrentSession.Username, criteria);
+                ViewBag.Data = affBetlistService.GetBetListCashOutDetail(criteria);
             }
 
             return View("~/Views/BetList/BetListResults.cshtml");

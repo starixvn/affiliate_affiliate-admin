@@ -348,25 +348,23 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetListCashOutDetail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string GetBetListCashOutDetail(string userName, BetListDetailCriteria criteria) {
+        public string GetBetListCashOutDetail(BetListDetailCriteria criteria) {
             object[] results = this.Invoke("GetBetListCashOutDetail", new object[] {
-                        userName,
                         criteria});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void GetBetListCashOutDetailAsync(string userName, BetListDetailCriteria criteria) {
-            this.GetBetListCashOutDetailAsync(userName, criteria, null);
+        public void GetBetListCashOutDetailAsync(BetListDetailCriteria criteria) {
+            this.GetBetListCashOutDetailAsync(criteria, null);
         }
         
         /// <remarks/>
-        public void GetBetListCashOutDetailAsync(string userName, BetListDetailCriteria criteria, object userState) {
+        public void GetBetListCashOutDetailAsync(BetListDetailCriteria criteria, object userState) {
             if ((this.GetBetListCashOutDetailOperationCompleted == null)) {
                 this.GetBetListCashOutDetailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBetListCashOutDetailOperationCompleted);
             }
             this.InvokeAsync("GetBetListCashOutDetail", new object[] {
-                        userName,
                         criteria}, this.GetBetListCashOutDetailOperationCompleted, userState);
         }
         

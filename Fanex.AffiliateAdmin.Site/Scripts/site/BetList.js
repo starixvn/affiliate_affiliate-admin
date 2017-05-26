@@ -6,6 +6,7 @@ var BetList = (function ($) {
     var SPORT_RNG_GAME = 208;
     var SPORT_RNG_MINIGAME = 209;
     var SPORT_RNG_MOBILE = 210;
+    var BETTYPE_CASHOUT = 911;
 
     return {
         initialize: function () {
@@ -252,11 +253,13 @@ var BetList = (function ($) {
             url = QueryString.setParam(url, "transId", transId);
             url = QueryString.setParam(url, "refNo", refNo);
             url = QueryString.setParam(url, "betType", betType);
-            url = QueryString.setParam(url, "originalTransId", refNo);
+            url = QueryString.setParam(url, "originalTransId", betdapId);
             url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
 
             var popH = Math.min($(window).height() - 100, 550), popW = 1020;
-            var title = betType;
+            var isCashOut = betdapId < 1 || betType === BETTYPE_CASHOUT;;           
+            var title = isCashOut ? MSG.TitleCashOutTicketDetail : MSG.TitleBoughtTicketDetail;
+
             var dialogForm = '<div title="' + title + '"><iframe scrolling="no" frameborder="0" width="' +
                              popW + '" height="99%" src="' + url + '" ></iframe></div>';
 

@@ -334,7 +334,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Code\CommGroupRazorHelper.cshtml" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="App_Data\SystemFunction.json" />
@@ -3880,6 +3879,7 @@
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aragon88.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
+    <Content Include="App_Code\CommGroupRazorHelper.cshtml" />
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
     <Content Include="Content\_Sites\be7th\Login.less" />

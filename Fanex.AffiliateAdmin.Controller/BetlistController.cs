@@ -200,16 +200,17 @@
                 TransId = model.TransId,
                 RefNo = model.RefNo,
                 BetType = model.BetType,
-                OriginalTransId = model.OriginalTransId,
+                BetdaqId = model.BetdaqId,
                 ExchangeRate = model.ExchangeRate
             };
 
             using (var affBetlistService = new AffiliateAPI())
             {
-                ViewBag.Data = affBetlistService.GetBetListCashOutDetail(criteria);
+                ViewBag.Data = affBetlistService.GetBetListCashOutDetail(criteria, model.IsCashOut);
+                ViewBag.IsCashOut = model.IsCashOut;
             }
 
-            return View("~/Views/BetList/BetListResults.cshtml");
+            return View("~/Views/BetList/CashOutDetailTicket.cshtml");
         }
 
         [HttpGet]

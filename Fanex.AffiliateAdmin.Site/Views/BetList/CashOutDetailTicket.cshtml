@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = ViewBag.IsCashOut ? Lang.CashOutDetails : Lang.BoughtDetails;
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+
+@Styles.Render("~/css/betlist")
+
+<style type="text/css">
+    .popup .container-fluid {
+        width: auto !important;
+    }
+
+        .popup .container-fluid .span12.contents .leftColumn {
+            width: 715px !important;
+        }
+</style>
+
+@if (string.IsNullOrEmpty(ViewBag.Data))
+{
+    <p style="font-size: 12px; font-weight: bold; text-align: center;">@Lang.NoInfo</p>
+}
+else
+{
+    @Html.Raw(ViewBag.Data)
+}
+
+@Scripts.Render("~/js/betlist")

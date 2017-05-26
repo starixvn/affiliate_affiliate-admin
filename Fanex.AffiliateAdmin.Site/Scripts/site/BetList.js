@@ -247,17 +247,18 @@ var BetList = (function ($) {
             });
         },
 
-        viewCashOutHistory: function (transId, refNo, betType, betdapId) {
+        viewCashOutHistory: function (transId, refNo, betType, betdaqId) {
+            var isCashOut = betdaqId < 1 || betType === BETTYPE_CASHOUT;;
             var para = $('form').serializeObject2();
             var url = AFFILIATE.getAbsoluteUrl('BetList/CashOutDetailTicket');
             url = QueryString.setParam(url, "transId", transId);
             url = QueryString.setParam(url, "refNo", refNo);
             url = QueryString.setParam(url, "betType", betType);
-            url = QueryString.setParam(url, "originalTransId", betdapId);
+            url = QueryString.setParam(url, "isCashOut", isCashOut);
+            url = QueryString.setParam(url, "betdaqId", betdaqId);
             url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
 
-            var popH = Math.min($(window).height() - 100, 550), popW = 1020;
-            var isCashOut = betdapId < 1 || betType === BETTYPE_CASHOUT;;           
+            var popH = Math.min($(window).height() - 100, 550), popW = 1020;                      
             var title = isCashOut ? MSG.TitleCashOutTicketDetail : MSG.TitleBoughtTicketDetail;
 
             var dialogForm = '<div title="' + title + '"><iframe scrolling="no" frameborder="0" width="' +

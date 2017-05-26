@@ -8,7 +8,9 @@
 
         public long TransId { get; set; }
 
-        public long OriginalTransId { get; set; }
+        public bool IsCashOut { get; set; }
+
+        public long BetdaqId { get; set; }
 
         public int BetType { get; set; }
     }

@@ -23,7 +23,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="AffiliateAPISoap", Namespace="http://tempuri.org/")]
@@ -348,24 +348,26 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetListCashOutDetail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string GetBetListCashOutDetail(BetListDetailCriteria criteria) {
+        public string GetBetListCashOutDetail(BetListDetailCriteria criteria, bool isCashOut) {
             object[] results = this.Invoke("GetBetListCashOutDetail", new object[] {
-                        criteria});
+                        criteria,
+                        isCashOut});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void GetBetListCashOutDetailAsync(BetListDetailCriteria criteria) {
-            this.GetBetListCashOutDetailAsync(criteria, null);
+        public void GetBetListCashOutDetailAsync(BetListDetailCriteria criteria, bool isCashOut) {
+            this.GetBetListCashOutDetailAsync(criteria, isCashOut, null);
         }
         
         /// <remarks/>
-        public void GetBetListCashOutDetailAsync(BetListDetailCriteria criteria, object userState) {
+        public void GetBetListCashOutDetailAsync(BetListDetailCriteria criteria, bool isCashOut, object userState) {
             if ((this.GetBetListCashOutDetailOperationCompleted == null)) {
                 this.GetBetListCashOutDetailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBetListCashOutDetailOperationCompleted);
             }
             this.InvokeAsync("GetBetListCashOutDetail", new object[] {
-                        criteria}, this.GetBetListCashOutDetailOperationCompleted, userState);
+                        criteria,
+                        isCashOut}, this.GetBetListCashOutDetailOperationCompleted, userState);
         }
         
         private void OnGetBetListCashOutDetailOperationCompleted(object arg) {
@@ -430,7 +432,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -535,7 +537,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -596,7 +598,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BetListCriteria))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BetListDetailCriteria))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BetListSystemParlayDetailCriteria))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -605,7 +607,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -727,7 +729,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BetListDetailCriteria))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -988,7 +990,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1001,7 +1003,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         private long transIdField;
         
-        private long originalTransIdField;
+        private long betdaqIdField;
         
         private int betTypeField;
         
@@ -1036,12 +1038,12 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         }
         
         /// <remarks/>
-        public long OriginalTransId {
+        public long BetdaqId {
             get {
-                return this.originalTransIdField;
+                return this.betdaqIdField;
             }
             set {
-                this.originalTransIdField = value;
+                this.betdaqIdField = value;
             }
         }
         
@@ -1057,7 +1059,7 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1174,11 +1176,11 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetBetlistCompletedEventHandler(object sender, GetBetlistCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBetlistCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1200,11 +1202,11 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetBetlistParlayCompletedEventHandler(object sender, GetBetlistParlayCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBetlistParlayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1226,11 +1228,11 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetNewBetlistParlayCompletedEventHandler(object sender, GetNewBetlistParlayCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetNewBetlistParlayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1252,11 +1254,11 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetBetlistSystemParlayCompletedEventHandler(object sender, GetBetlistSystemParlayCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBetlistSystemParlayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1278,11 +1280,11 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetBetListRngCasinoDetailCompletedEventHandler(object sender, GetBetListRngCasinoDetailCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBetListRngCasinoDetailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1304,11 +1306,11 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetRngCasinoSingleWalletResultCompletedEventHandler(object sender, GetRngCasinoSingleWalletResultCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetRngCasinoSingleWalletResultCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1330,11 +1332,11 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetBetListAgCasinoDetailCompletedEventHandler(object sender, GetBetListAgCasinoDetailCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBetListAgCasinoDetailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1356,11 +1358,11 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetBetListCashOutDetailCompletedEventHandler(object sender, GetBetListCashOutDetailCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBetListCashOutDetailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1382,11 +1384,11 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void GetBetlistResultsCompletedEventHandler(object sender, GetBetlistResultsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBetlistResultsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

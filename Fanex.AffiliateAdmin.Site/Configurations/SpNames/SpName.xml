@@ -28,10 +28,10 @@
   <Function Name="Commission Group">
     <Setting Key="AffAdmin_CommGroupSelListNormal" SpName="AffAdmin_CommGroupSelListNormal" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupSel" SpName="AffAdmin_CommGroupSel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_DeductionTypeSel" SpName="AffAdmin_DeductionTypeSel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_DeductionTypeSel" SpName="AffAdmin_DeductionTypeSel_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_DeductionSettingSel" SpName="AffAdmin_DeductionSettingSel_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupList_SettingDetail" SpName="AffAdmin_CommGroupList_SettingDetail" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_CommGroupSelDetail" SpName="AffAdmin_CommGroupSelDetail_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupSelDetail" SpName="AffAdmin_CommGroupSelDetail" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupIns" SpName="AffAdmin_CommGroupIns_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupUpd" SpName="AffAdmin_CommGroupUpd_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_GroupSettingSel" SpName="AffAdmin_GroupSettingSel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />

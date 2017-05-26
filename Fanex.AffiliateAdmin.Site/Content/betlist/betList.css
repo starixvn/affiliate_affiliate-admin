@@ -1,15 +1,14 @@
-﻿
-#betlist-title {
-    font-weight: bold; 
-    padding: 5px 0px; 
-    margin-top: 3px; 
-    color: #b66c61; 
+﻿#betlist-title {
+    font-weight: bold;
+    padding: 5px 0px;
+    margin-top: 3px;
+    color: #b66c61;
     font-size: 15px;
 }
 
-#betlist-title span {
-    color: #20385e;
-}
+    #betlist-title span {
+        color: #20385e;
+    }
 
 .tblBetList {
     border-collapse: collapse;
@@ -18,23 +17,23 @@
     min-width: 980px;
 }
 
-.tblBetList th {
-    background: #0d94c3;
-    border: solid 1px #BABABA;
-    border-top: 0;
-    font-size: 11px;
-    color: #FFF;
-    text-align: center;
-    padding: 2px 2px 0 2px;
-    height: 33px;
-}
+    .tblBetList th {
+        background: #0d94c3;
+        border: solid 1px #BABABA;
+        border-top: 0;
+        font-size: 11px;
+        color: #FFF;
+        text-align: center;
+        padding: 2px 2px 0 2px;
+        height: 33px;
+    }
 
-.tblBetList td {
-    vertical-align: top;
-    border: solid 1px #BABABA;
-    text-align: right;
-    padding: 2px 2px 0 2px;
-}
+    .tblBetList td {
+        vertical-align: top;
+        border: solid 1px #BABABA;
+        text-align: right;
+        padding: 2px 2px 0 2px;
+    }
 
 .tblBetList2 td {
     vertical-align: top;
@@ -66,8 +65,7 @@
     font-weight: bold;
 }
 
-.rngcasino_headerlabel 
-{
+.rngcasino_headerlabel {
     text-align: left !important;
     background: #F8E4D4;
     font-weight: bold;
@@ -81,9 +79,9 @@
     min-width: 1028px !important;
 }
 
-.rngcasino_headerlabel input[type="checkbox"] {
-    margin: 0px 0 0 !important;
-}
+    .rngcasino_headerlabel input[type="checkbox"] {
+        margin: 0px 0 0 !important;
+    }
 
 .bl_btype {
     color: #003399;
@@ -106,9 +104,9 @@
     color: #3B5998;
 }
 
-.iplink:hover {
-    text-decoration: underline;
-}
+    .iplink:hover {
+        text-decoration: underline;
+    }
 
 .bl_ip {
     color: #434343;
@@ -180,7 +178,7 @@
     width: 14px;
 }
 
-.first-half-last-goal{
+.first-half-last-goal {
     background: url(images/1L.gif) no-repeat scroll center center transparent;
     display: inline;
     height: 10px;
@@ -209,9 +207,9 @@
     font-weight: bold;
 }
 
-.bl_status b {
-    color: #01122B;
-}
+    .bl_status b {
+        color: #01122B;
+    }
 
 .hand {
     cursor: pointer;
@@ -231,6 +229,7 @@ a:link, a:visited {
     color: #666666;
     line-height: 15px;
 }
+
 .bl_footertotal {
     color: #333;
     font-weight: bold;
@@ -238,7 +237,6 @@ a:link, a:visited {
 }
 
 tr#tr_footer {
-
     height: 25px;
     border-top: 2px solid #FF6600;
     vertical-align: middle;
@@ -261,8 +259,7 @@ tr#tr_footer {
     color: rgb(27, 164, 237);
 }
 
-#betlist .line 
-{
+#betlist .line {
     background-color: transparent;
     border-top: #999 dashed 1px;
     height: 10px;
@@ -287,18 +284,18 @@ tr#tr_footer {
     padding-left: 15px;
 }
 
-.tblBetList a.plus:hover {
-    background: transparent url(images/plus.png) no-repeat 0 -39px;
-}
+    .tblBetList a.plus:hover {
+        background: transparent url(images/plus.png) no-repeat 0 -39px;
+    }
 
 .tblBetList a.minus {
     background: transparent url(images/plus.png) no-repeat 0 0;
     padding-left: 15px;
 }
 
-.tblBetList a.minus:hover {
-    background: transparent url(images/plus.png) no-repeat 0 -27px;
-}
+    .tblBetList a.minus:hover {
+        background: transparent url(images/plus.png) no-repeat 0 -27px;
+    }
 
 /***************************
 Combination Mix Parlay
@@ -356,14 +353,14 @@ Combination Mix Parlay
     padding-bottom: 10px;
 }
 
-.tblBetList .btnCollapseWrp a {
-    background: transparent url(images/up.png) no-repeat 0 0;
-    padding-left: 15px;
-}
+    .tblBetList .btnCollapseWrp a {
+        background: transparent url(images/up.png) no-repeat 0 0;
+        padding-left: 15px;
+    }
 
-.tblBetList .btnCollapseWrp a:hover {
-    background: transparent url(images/up.png) no-repeat 0 -18px;
-}
+        .tblBetList .btnCollapseWrp a:hover {
+            background: transparent url(images/up.png) no-repeat 0 -18px;
+        }
 
 .tblBetList .btnCombParlayDetailWrp {
     /*border: 1px solid #333;
@@ -380,102 +377,100 @@ Combination Mix Parlay
     padding: 0 0 2px 18px;
 }
 
-.tblBetList a.btnCombParlayDetail:hover {
-    background: transparent url(images/link_14x14.png) no-repeat 0 -16px;
-}
+    .tblBetList a.btnCombParlayDetail:hover {
+        background: transparent url(images/link_14x14.png) no-repeat 0 -16px;
+    }
 
 /***************************
 Format styles
 */
 .over-under-no {
-    color: #555;    
+    color: #555;
 }
 
 /********** Betlist core style **************/
 
 /* Choice */
-.favorite
-{
+.favorite {
     color: #B50000;
     font-weight: bold;
 }
-.handicap
-{
+
+.handicap {
     color: #606060;
 }
-.bettype
-{
+
+.bettype {
     color: #003399;
     font-weight: bold;
 }
-.sport
-{
+
+.sport {
     color: #0066CC;
 }
 /* Odds */
-.oddstype
-{
+.oddstype {
     color: #586985;
 }
 
 /* Status */
-.status
-{
+.status {
     font-weight: bold;
 }
 
-.gamegroupname{
+.gamegroupname {
     color: #008000;
 }
 
-.combinationLink a
-{
+.combinationLink a {
     color: #0000FF;
     font-weight: bold;
 }
 
-.tblBetList tr td a
-{
+.tblBetList tr td a {
     color: #0000FF;
 }
 /********** ------------------ **************/
 
-
 /*to make line-through for void-parlay-ticket*/
-div.mx-parlay div.refund span, div.mx-parlay div.refund div
-{
+div.mx-parlay div.refund span, div.mx-parlay div.refund div {
     text-decoration: line-through;
 }
-div.mx-parlay div.refund > div.match, div.mx-parlay div.refund div.firstGoal, div.mx-parlay div.refund div.lastGoal
-{
-    text-decoration: none;
-}
-div.mx-parlay div.reject span, div.mx-parlay div.reject div
-{
+
+    div.mx-parlay div.refund > div.match, div.mx-parlay div.refund div.firstGoal, div.mx-parlay div.refund div.lastGoal {
+        text-decoration: none;
+    }
+
+div.mx-parlay div.reject span, div.mx-parlay div.reject div {
     text-decoration: line-through;
 }
-div.mx-parlay div.reject > div.match, div.mx-parlay div.reject div.firstGoal, div.mx-parlay div.reject div.lastGoal
-{
-    text-decoration: none;
-}
-.mx-parlay .system-parlay-ticket-infor{
+
+    div.mx-parlay div.reject > div.match, div.mx-parlay div.reject div.firstGoal, div.mx-parlay div.reject div.lastGoal {
+        text-decoration: none;
+    }
+
+.mx-parlay .system-parlay-ticket-infor {
     margin-top: 0;
     margin-bottom: 0;
     line-height: 15px;
     color: #000000;
     font-weight: bold;
 }
-.mx-parlay .system-parlay-ticket-infor .system-parlay-unit-stake{
-    color: #003399;
-}
-.combinationLink .offer-name-list{
+
+    .mx-parlay .system-parlay-ticket-infor .system-parlay-unit-stake {
+        color: #003399;
+    }
+
+.combinationLink .offer-name-list {
     font-weight: bold;
 }
-.detail .detail-link{
+
+.detail .detail-link {
     color: #755200;
     font-weight: bold;
 }
-.combinationLink a, a.detail-link{
+
+.combinationLink a, a.detail-link {
     text-decoration: none;
 }
 /********** ------------------ **************/
@@ -484,10 +479,13 @@ div.mx-parlay div.reject > div.match, div.mx-parlay div.reject div.firstGoal, di
 .tblCashOutDetail {
     margin-left: 20px;
     margin-bottom: 30px;
-    min-width: 880px;
 }
 
-    .tblCashOutDetail th {
-        padding: 0;
-    }
+.original-ticket .tblCashOutDetail {
+    min-width: 940px;
+}
+
+.cashout-ticket .tblCashOutDetail {
+    min-width: 850px;
+}
 /********** ------------------ **************/

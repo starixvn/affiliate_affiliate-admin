@@ -542,7 +542,6 @@ var AFFILIATE = (function ($) {
                     var result = $.parseJSON(xhr.responseText);
                     return result.code === undermaintenanceCode;
                 } catch (e) {
-                    alert('Server error!');
                 }
             }
 

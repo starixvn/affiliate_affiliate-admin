@@ -52,7 +52,7 @@ var AFFINFO = (function ($) {
                 $(this).hide();
             });
             $('#slStatus').change(function () {
-                AFFINFO.updateStatus($("#AffId").val(), $("#Username").val(), $("#Currency").val());
+                AFFINFO.updateStatus($("#AffId").val(), $("#Username").val(), $("#AffCurrencyId").val());
             });
             $('#slStatus').blur(function () {
                 AFFINFO.setStatusTimeOut(false);
@@ -144,7 +144,7 @@ var AFFINFO = (function ($) {
                 var param = {
                     affids: $("#AffId").val(),
                     usernames: $("#Username").val(),
-                    currency: $("#Currency").val(),
+                    currency: $("#AffCurrencyId").val(),
                     groupId: $("#GroupId").val()
                 };
 

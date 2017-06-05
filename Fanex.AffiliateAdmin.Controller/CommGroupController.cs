@@ -256,6 +256,11 @@
 
         private static string BuildDeductionListXml(string deductionSettingList)
         {
+            if(string.IsNullOrEmpty(deductionSettingList))
+            {
+                return null;
+            }
+
             var xmlContent = new StringBuilder("<root>");
             var deductionList = deductionSettingList.TrimEnd('|').Split('|');
             foreach (var deduction in deductionList)

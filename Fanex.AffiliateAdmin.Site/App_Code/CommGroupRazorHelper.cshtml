@@ -20,17 +20,17 @@ decimal num = 0;
     {
         case DeductionTypeConstant.Marketing:
         case DeductionTypeConstant.OddsFee:
-<span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|@Lang.Winloss|</span>
+                <span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|@Lang.Winloss|</span>
             break;
         case DeductionTypeConstant.PSP:
-<span>
-    &nbsp;&nbsp;&nbsp;* ( @Lang.TotalDeposit * @PercentageDropDownList(percentDeposit, (decimal)0.01, "totaldeposit", disabled)
-    + @Lang.TotalWithdrawal * @PercentageDropDownList(percentWithdrawl, (decimal)0.01, "totalwithdrawal", disabled)
-    )
-</span>
+                <span>
+                    &nbsp;&nbsp;&nbsp;* ( @Lang.TotalDeposit * @PercentageDropDownList(percentDeposit, (decimal)0.01, "totaldeposit", disabled)
+                    + @Lang.TotalWithdrawal * @PercentageDropDownList(percentWithdrawl, (decimal)0.01, "totalwithdrawal", disabled)
+                    )
+                </span>
             break;
         case DeductionTypeConstant.CashOutWinLossShare:
-<span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|@Lang.CashOutWinLoss|</span>
-            break;
-    }
+                <span>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|@Lang.Winloss|</span>
+        break;
+}
 }

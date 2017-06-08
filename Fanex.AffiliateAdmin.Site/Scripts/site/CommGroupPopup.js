@@ -3,6 +3,7 @@ var CommGroupPopup = (function ($) {
     "use strict";
 
     var MaxTier = 50;
+    var CashOutDeductionTypeId = 11;
 
     function formatInt(value) {
         return numeral(value).format(AFFILIATE.FORMAT_INT_NUMBER);
@@ -335,15 +336,65 @@ var CommGroupPopup = (function ($) {
         return true;
     };
 
+    var getDeductionFromDeductionArrayById = function (id, deductions) {
+        for (var i = 0; i<deductions.length; i++){
+            var deduction = deductions[i];
+            if(deduction.id === id) {
+                return deduction;
+            }
+        }
+
+        return null;
+    }
+
+    var convertDeductionArrayToString = function (deductions) {
+        var deductionList = "";
+
+        for (var i = 0; i < deductions.length; i++) {
+            var deduction = deductions[i];
+            deductionList += deduction.id + ";" + deduction.percent + ";" + deduction.nextpercent + "|";
+        }
+
+        return deductionList;
+    }
+
     var getDeductionSetting = function (productid) {
-        var deductionList = ""
+        var deductions = [];
         var $deductions = $("#tab_content" + productid + " .deductions input[type=checkbox]:checked");
         $deductions.each(function () {
-            var percent = $(this).closest("tr").find("select.deductionlist").val();
-            deductionList += $(this).data("id") + ";" + percent + "|";
-        });
+            var $this = $(this);
+            var id = $this.data("id");
+            var percent = $this.closest("tr").find("select.deductionlist").val();
 
-        return deductionList
+            if (id > 0) {
+                if(percent === undefined)
+                {
+                    percent = $this.data("percent");
+                }
+
+                deductions.push({
+                    id : id,
+                    percent: percent,
+                    nextpercent: ""
+                });
+            }
+            else {
+                var nextpercent = $this.closest("tr").find("select.nextdeductionlist").val();
+                var deduction = getDeductionFromDeductionArrayById(-id, deductions);
+                if (deduction) {
+                    deduction.nextpercent = nextpercent;
+                }
+                else {
+                    deductions.push({
+                        id: -id,
+                        percent: "",
+                        nextpercent: nextpercent
+                    });
+                }
+            }
+        });
+        
+        return convertDeductionArrayToString(deductions);
     };
 
     var collectDeductionSettings = function (products) {

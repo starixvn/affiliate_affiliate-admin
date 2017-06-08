@@ -2896,4 +2896,8 @@
     <value>Cash Out Details</value>
     <comment>#74874</comment>
   </data>
+  <data name="NextMonthSetting" xml:space="preserve">
+    <value>Next month setting</value>
+    <comment>#74874</comment>
+  </data>
 </root>

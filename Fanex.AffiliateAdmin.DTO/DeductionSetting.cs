@@ -11,6 +11,8 @@
 
         public int GroupID { get; set; }
 
-        public decimal DeductedPercentage { get; set; }
+        public decimal? DeductedPercentage { get; set; }
+
+        public decimal? NextDeductedPercentage { get; set; }
     }
 }

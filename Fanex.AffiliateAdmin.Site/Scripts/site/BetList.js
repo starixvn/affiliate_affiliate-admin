@@ -7,6 +7,7 @@ var BetList = (function ($) {
     var SPORT_RNG_MINIGAME = 209;
     var SPORT_RNG_MOBILE = 210;
     var BETTYPE_CASHOUT = 911;
+    var BETTYPE_BOUGHT = 912;
 
     return {
         initialize: function () {
@@ -248,7 +249,7 @@ var BetList = (function ($) {
         },
 
         viewCashOutHistory: function (transId, refNo, betType, betdaqId) {
-            var isCashOut = betdaqId < 1 || betType === BETTYPE_CASHOUT;;
+            var isCashOut = betType === BETTYPE_CASHOUT || (betdaqId < 1 && betType !== BETTYPE_BOUGHT);
             var para = $('form').serializeObject2();
             var url = AFFILIATE.getAbsoluteUrl('BetList/CashOutDetailTicket');
             url = QueryString.setParam(url, "transId", transId);

@@ -5461,6 +5461,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next month setting.
+        /// </summary>
+        public static string NextMonthSetting {
+            get {
+                return ResourceManager.GetString("NextMonthSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string No {

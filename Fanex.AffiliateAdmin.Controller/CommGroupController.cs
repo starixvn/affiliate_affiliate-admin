@@ -123,7 +123,7 @@
         [HttpGet]
         public ActionResult Edit(int groupid)
         {
-            var group = _commGroupService.GetListData<CommGroupInfo>(new CommGroupInfoCriteria()
+            var group = _commGroupService.GetListData<CommGroupInfo>(new CommGroupInfoCriteria
             {
                 GroupId = groupid
             }).FirstOrDefault();
@@ -133,11 +133,11 @@
                 return Content("Group is null");
             }
 
-            group.GroupSettings = _commGroupService.GetListData<GroupSetting>(new GroupSettingCriteria()
+            group.GroupSettings = _commGroupService.GetListData<GroupSetting>(new GroupSettingCriteria
             {
                 GroupId = groupid
             });
-            group.DeductionSettings = _commGroupService.GetListData<DeductionSetting>(new DeductionSettingCriteria()
+            group.DeductionSettings = _commGroupService.GetListData<DeductionSetting>(new DeductionSettingCriteria
             {
                 GroupIDList = groupid.ToString(CultureInfo.InvariantCulture)
             });
@@ -256,7 +256,7 @@
 
         private static string BuildDeductionListXml(string deductionSettingList)
         {
-            if(string.IsNullOrEmpty(deductionSettingList))
+            if (string.IsNullOrEmpty(deductionSettingList))
             {
                 return null;
             }
@@ -266,7 +266,10 @@
             foreach (var deduction in deductionList)
             {
                 var values = deduction.Split(';');
-                xmlContent.Append($"<row id='{values[0]}' percent='{values[1]}' />");
+                xmlContent.Append($"<row id='{values[0]}'"
+                    + (string.IsNullOrEmpty(values[1]) ? string.Empty : $" percent='{values[1]}'")
+                    + (string.IsNullOrEmpty(values[2]) ? string.Empty : $" nextpercent='{values[2]}'")
+                    + " />");
             }
 
             xmlContent.Append("</root>");

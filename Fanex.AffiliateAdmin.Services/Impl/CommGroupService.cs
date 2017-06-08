@@ -96,14 +96,16 @@
             {
                 var deduction = new Dictionary<string, decimal>();
                 var deductions = allDeductions.Where(x => x.ProductID == 0);
-                if (deductions.Count() > 0)
+                if (deductions.Any())
                 {
                     var settings = deductionSettings.Where(x => x.GroupID == group.GroupID).ToList();
 
                     foreach (var item in deductions)
                     {
-                        var setting = settings.Where(x => x.DeductionID == item.DTypeID).FirstOrDefault();
-                        deduction.Add(Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)), setting == null ? -1 : setting.DeductedPercentage);
+                        var setting = settings.FirstOrDefault(x => x.DeductionID == item.DTypeID);
+                        deduction.Add(
+                            Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)),
+                            (setting != null && setting.DeductedPercentage != null) ? setting.DeductedPercentage.Value : -1);
                     }
                 }
 
@@ -120,14 +122,16 @@
             var deduction = new Dictionary<string, decimal>();
             var deductions = allDeductions.Where(x => x.ProductID == detail.ProductID);
 
-            if (deductions.Count() > 0)
+            if (deductions.Any())
             {
                 var settings = deductionSettings.Where(x => x.GroupID == group.GroupID);
 
                 foreach (var item in deductions)
                 {
-                    var setting = settings.Where(x => x.DeductionID == item.DTypeID).FirstOrDefault();
-                    deduction.Add(Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)), setting == null ? -1 : setting.DeductedPercentage);
+                    var setting = settings.FirstOrDefault(x => x.DeductionID == item.DTypeID);
+                    deduction.Add(
+                        Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)), 
+                        (setting != null && setting.DeductedPercentage != null) ? setting.DeductedPercentage.Value : -1);
                 }
             }
 

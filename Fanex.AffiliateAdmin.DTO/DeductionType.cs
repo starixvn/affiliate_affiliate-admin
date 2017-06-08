@@ -18,5 +18,7 @@
         public byte ProductID { get; set; }
 
         public DateTime? RemovedDate { get; set; }
+
+        public double NextDeductedPercentage { get; set; }
     }
 }

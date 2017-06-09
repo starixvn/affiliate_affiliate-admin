@@ -92,8 +92,8 @@
                     {
                         CurrencyCode = AppSettings.BaseExchange.Code,
                         Currency = criteria.TotalAmount,
-                        Total = result.CurrencyList.ToList().Sum(t => t.Currency),
-                        TotalMembers = result.CurrencyList.ToList().Sum(t => t.TotalMembers)
+                        Total = result.CurrencyList.Sum(t => t.Currency),
+                        TotalMembers = result.CurrencyList.Sum(t => t.TotalMembers)
                     },
                 HasMultipleCurrency = hasMultipleCurrency,
                 HideTotalRows = hideTotalRows,

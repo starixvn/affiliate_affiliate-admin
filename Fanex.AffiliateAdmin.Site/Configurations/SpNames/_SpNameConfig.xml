@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
-  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_CommGroupIns" Suffix="_UAT5"></item>
-  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_CommGroupUpd" Suffix="_UAT5"></item>
-  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_DeductionSettingSel" Suffix="_UAT5"></item>
-  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_DeductionTypeSel" Suffix="_UAT5"></item>
-  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_AffiliateCommissionReport" Suffix="_UAT5"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_CommGroupIns" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_CommGroupUpd" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_DeductionSettingSel" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,LOCAL,UAT,SIT" SpName="AffAdmin_DeductionTypeSel" Suffix="_xtest"></item>
 </Root>

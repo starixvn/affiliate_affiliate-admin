@@ -41,8 +41,8 @@
 		"DBAFFAIABET.Affiliate_AIAbet.bodbDownlineNet",
 		"DBAFFQ8BOLA.Affiliate_Q8Bola.bodbAdminNet",
 		"DBAFFUNOBET.Affiliate_Unobet.bodbAdminNet",
-		"DBAFFUNOBET.Affiliate_Indowin.bodbAdminNet",
-		"DBAFFUNOBET.Affiliate_Aragon88.bodbAdminNet",
+		"DBAFFINDOWIN.Affiliate_Indowin.bodbAdminNet",
+		"DBAFFARAGON88.Affiliate_Aragon88.bodbAdminNet",
 		"DBAFFBOLANATION.Affiliate_Bolanation.bodbAdminNet"
 	};
 

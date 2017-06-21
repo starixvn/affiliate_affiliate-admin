@@ -65,12 +65,7 @@
             }
         }
 
-        /// <summary>
-        /// Login user.
-        /// </summary>
-        /// <param name="username">Username login.</param>
-        /// <param name="password">Password login.</param>
-        /// <returns>Return Result view model.</returns>
+       
         [HttpPost]
         [CheckUMFilter]
         public ActionResult Login(string username, string password, string logInToken)
@@ -251,7 +246,7 @@
             };
         }
 
-        private string GetErrorMessage(int errCode)
+        private static string GetErrorMessage(int errCode)
         {
             return ErrorMsg.ResourceManager.GetString("Msg" + errCode);
         }

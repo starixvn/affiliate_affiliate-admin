@@ -123,7 +123,7 @@
                     Actual_Policy = FunctionPolicy.HostPolicy,
                     Policy = FunctionPolicy.HostPolicy,
                     GPolicy = FunctionPolicy.HostPolicy
-                });
+                }).ToList();
             }
 
             var session = new CurrentSession(user, policies, currencies)

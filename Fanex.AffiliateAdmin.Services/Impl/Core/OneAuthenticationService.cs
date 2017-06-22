@@ -1,10 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Services.Impl.Core
 {
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Web;
-    using System.Web.Hosting;
     using System.Web.Security;
     using AffiliateAdmin.Core.Configurations;
     using AffiliateAdmin.Core.Enumerations;
@@ -44,22 +42,14 @@
             _oneBookSecurityWrapper = oneBookSecurityWrapper ?? new OneBookSecurityWrapper();
         }
 
-        protected internal virtual string GetStringFromFile(string path)
+        public ResultInfo SignIn(HttpContextBase currentContext, OneAuthToken token)
         {
-            using (var reader = new StreamReader(HostingEnvironment.MapPath(path)))
-            {
-                return reader.ReadToEnd();
-            }
-        }
-
-        public ResultInfo SignIn(HttpContextBase currentContext, OneAuthToken tokenInfo)
-        {
-            var language = MapLanguages.Where(i => i.Value.Equals(tokenInfo.Language))
+            var language = MapLanguages.Where(i => i.Value.Equals(token.Language))
                        .Select(i => i.Key).DefaultIfEmpty<string>("en-Us").FirstOrDefault();
             var currentSession = SessionManager.CurrentSession;
             if (IsAuthenticated(currentContext, currentSession))
             {
-                var isSameSession = VerifySessionWithToken(currentSession, tokenInfo);
+                var isSameSession = VerifySessionWithToken(currentSession, token);
                 if (isSameSession)
                 {
                     if (!language.Equals(AppSession.Language))
@@ -67,22 +57,23 @@
                         AppSession.Language = language;
                     }
 
+                    currentSession.SetPolicyList(_authService.GetPolicyList(token));
                     return new ResultInfo
                     {
-                        ExtendedData = tokenInfo.ActionLink
+                        ExtendedData = token.ActionLink
                     };
                 }
             }
 
-            var userCheckingResult = CheckAndSyncUserInfo(AppSettings.LicenseeID, tokenInfo.SiteName, tokenInfo.UserID);
+            var userCheckingResult = CheckAndSyncUserInfo(AppSettings.LicenseeID, token.SiteName, token.UserID);
 
             if (!userCheckingResult.IsSuccessful)
             {
                 return userCheckingResult;
             }
 
-            tokenInfo.UserSEQ = int.Parse(userCheckingResult.ExtendedData);
-            return SetAuthorize(tokenInfo);
+            token.UserSEQ = int.Parse(userCheckingResult.ExtendedData);
+            return SetAuthorize(token);
         }
 
         public OneAuthToken GetTokenInfo(string token)

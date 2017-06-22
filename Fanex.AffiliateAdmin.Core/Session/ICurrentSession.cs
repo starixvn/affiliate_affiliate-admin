@@ -28,5 +28,7 @@
         bool HasReadPolicy(string functionName);
 
         bool HasHostPolicy(string functionName);
+
+        void SetPolicyList(IEnumerable<FunctionPolicy> policyList);
     }
 }

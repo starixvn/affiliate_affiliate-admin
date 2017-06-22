@@ -11,7 +11,7 @@
     [Serializable]
     public class CurrentSession : ICurrentSession
     {
-        private readonly IEnumerable<FunctionPolicy> _policies;
+        private IEnumerable<FunctionPolicy> _policyList;
 
         public CurrentSession(
             Account user,
@@ -22,9 +22,8 @@
             this.Username = user.Username;
             this.OnUserID = user.OnUserID;
             this.IsIT = user.IsIT;
-            this._policies = policies ?? new List<FunctionPolicy>();
             this.CurrencyList = currencies;
-            this.FunctionMenus = CreateFunctionMenus();
+            SetPolicyList(policies ?? new List<FunctionPolicy>());
         }
 
         public AppMode ApplicationMode { get; set; }
@@ -47,12 +46,18 @@
 
         public bool HasReadPolicy(string functionName)
         {
-            return this._policies.Any(i => i.FuncName == functionName && i.CanRead);
+            return this._policyList.Any(i => i.FuncName == functionName && i.CanRead);
         }
 
         public bool HasHostPolicy(string functionName)
         {
-            return this._policies.Any(i => i.FuncName == functionName && i.CanHost);
+            return this._policyList.Any(i => i.FuncName == functionName && i.CanHost);
+        }
+
+        public void SetPolicyList(IEnumerable<FunctionPolicy> policyList)
+        {
+            _policyList = policyList;
+            FunctionMenus = CreateFunctionMenus();
         }
 
         private IEnumerable<FunctionMenu> CreateFunctionMenus()
@@ -64,7 +69,7 @@
                 Link = "~/"
             });
 
-            if (_policies.Any() == false)
+            if (_policyList.Any() == false)
             {
                 return menuList;
             }

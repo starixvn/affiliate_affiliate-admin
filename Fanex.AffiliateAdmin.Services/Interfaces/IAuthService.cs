@@ -1,5 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Core.Session;
     using Criterias;
@@ -29,5 +30,7 @@
         ICurrentSession CreateInternalSession(Account user, int licenseeId);
 
         ResultInfo SyncUserInfo(string licenseeName, string userName);
+
+        IEnumerable<FunctionPolicy> GetPolicyList(OneAuthToken token);
     }
 }

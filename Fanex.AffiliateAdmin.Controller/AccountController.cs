@@ -65,7 +65,6 @@
             }
         }
 
-       
         [HttpPost]
         [CheckUMFilter]
         public ActionResult Login(string username, string password, string logInToken)
@@ -177,9 +176,21 @@
             return Json(result);
         }
 
-        private string CreateToken()
+        private static ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
         {
-            return Guid.NewGuid().ToString("N", CultureInfo.CurrentCulture);
+            return new ResultViewModel
+            {
+                ErrorCode = errCode,
+                Message = errCode == 0 ?
+                    (string.IsNullOrEmpty(messageSuccess) ? Lang.UpdateSucc : messageSuccess) :
+                    (string.IsNullOrEmpty(errorMessage) ? GetErrorMessage(errCode) : errorMessage),
+                Success = errCode == 0
+            };
+        }
+
+        private static string GetErrorMessage(int errCode)
+        {
+            return ErrorMsg.ResourceManager.GetString("Msg" + errCode);
         }
 
         private string GetSalt(string userName)
@@ -234,21 +245,9 @@
             }
         }
 
-        private ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
+        private string CreateToken()
         {
-            return new ResultViewModel
-            {
-                ErrorCode = errCode,
-                Message = errCode == 0 ?
-                    (string.IsNullOrEmpty(messageSuccess) ? Lang.UpdateSucc : messageSuccess) :
-                    (string.IsNullOrEmpty(errorMessage) ? GetErrorMessage(errCode) : errorMessage),
-                Success = errCode == 0
-            };
-        }
-
-        private static string GetErrorMessage(int errCode)
-        {
-            return ErrorMsg.ResourceManager.GetString("Msg" + errCode);
+            return Guid.NewGuid().ToString("N", CultureInfo.CurrentCulture);
         }
     }
 }

@@ -102,31 +102,16 @@
 
         public ICurrentSession CreateOneAuthSession(OneAuthToken token, Account user, int licenseeId)
         {
-            IEnumerable<FunctionPolicy> policies;
-            IEnumerable<Currency> currencies;
             var allCurrencies = _systemSettingService.GetLicenseeSupportedCurrencyList(new LicenseeSupportedCurrencyCriteria
             {
                 LicenseeId = licenseeId
             });
 
-            if (token.IsAdminstrator)
-            {
-                currencies = allCurrencies;
-                policies = GetSystemFunctions();
-            }
-            else
-            {
-                currencies = allCurrencies.Where(x => token.Currency.Any(y => y.Currency.Equals(x.CurrencyCode, StringComparison.OrdinalIgnoreCase))).ToList();
-                policies = token.Permissions.Select(x => new FunctionPolicy
-                {
-                    FuncName = x.FunctionKey,
-                    Actual_Policy = FunctionPolicy.HostPolicy,
-                    Policy = FunctionPolicy.HostPolicy,
-                    GPolicy = FunctionPolicy.HostPolicy
-                }).ToList();
-            }
-
-            var session = new CurrentSession(user, policies, currencies)
+            var currencies = token.IsAdminstrator ?
+                allCurrencies :
+                allCurrencies.Where(x => token.Currency.Any(y => y.Currency.Equals(x.CurrencyCode, StringComparison.OrdinalIgnoreCase))).ToList();
+            var policyList = GetPolicyList(token);
+            var session = new CurrentSession(user, policyList, currencies)
             {
                 ApplicationMode = AppMode.Parasitic
             };
@@ -182,6 +167,17 @@
                     Message = Converter.ToString2(errorMessage)
                 };
             }
+        }
+
+        public IEnumerable<FunctionPolicy> GetPolicyList(OneAuthToken token)
+        {
+            return token.IsAdminstrator ? GetSystemFunctions() : token.Permissions.Select(x => new FunctionPolicy
+            {
+                FuncName = x.FunctionKey,
+                Actual_Policy = FunctionPolicy.HostPolicy,
+                Policy = FunctionPolicy.HostPolicy,
+                GPolicy = FunctionPolicy.HostPolicy
+            }).ToList();
         }
 
         private IEnumerable<FunctionPolicy> GetUserPolicyList(UserPolicyCriteria criteria)

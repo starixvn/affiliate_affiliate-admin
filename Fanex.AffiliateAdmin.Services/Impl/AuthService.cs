@@ -102,21 +102,19 @@
 
         public ICurrentSession CreateOneAuthSession(OneAuthToken token, Account user, int licenseeId)
         {
-            var allCurrencies = _systemSettingService.GetLicenseeSupportedCurrencyList(new LicenseeSupportedCurrencyCriteria
-            {
-                LicenseeId = licenseeId
-            });
-
-            var currencies = token.IsAdminstrator ?
-                allCurrencies :
-                allCurrencies.Where(x => token.Currency.Any(y => y.Currency.Equals(x.CurrencyCode, StringComparison.OrdinalIgnoreCase))).ToList();
+            var currencyList = GetCurrencyList(token, licenseeId);
             var policyList = GetPolicyList(token);
-            var session = new CurrentSession(user, policyList, currencies)
+            return new CurrentSession(user, policyList, currencyList)
             {
                 ApplicationMode = AppMode.Parasitic
             };
+        }
 
-            return session;
+        public void UpdateOneAuthSession(ICurrentSession session, OneAuthToken token, int licenseeId)
+        {
+            var currencyList = GetCurrencyList(token, licenseeId);
+            var policyList = GetPolicyList(token);
+            session.SetPermissions(currencyList, policyList);
         }
 
         public ICurrentSession CreateInternalSession(Account user, int licenseeId)
@@ -169,7 +167,19 @@
             }
         }
 
-        public IEnumerable<FunctionPolicy> GetPolicyList(OneAuthToken token)
+        private IEnumerable<Currency> GetCurrencyList(OneAuthToken token, int licenseeId)
+        {
+            var allCurrencies = _systemSettingService.GetLicenseeSupportedCurrencyList(new LicenseeSupportedCurrencyCriteria
+            {
+                LicenseeId = licenseeId
+            });
+
+            return token.IsAdminstrator ?
+                allCurrencies :
+                allCurrencies.Where(x => token.Currency.Any(y => y.Currency.Equals(x.CurrencyCode, StringComparison.OrdinalIgnoreCase))).ToList();
+        }
+
+        private IEnumerable<FunctionPolicy> GetPolicyList(OneAuthToken token)
         {
             return token.IsAdminstrator ? GetSystemFunctions() : token.Permissions.Select(x => new FunctionPolicy
             {

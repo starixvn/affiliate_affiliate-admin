@@ -29,6 +29,6 @@
 
         bool HasHostPolicy(string functionName);
 
-        void SetPolicyList(IEnumerable<FunctionPolicy> policyList);
+        void SetPermissions(IEnumerable<Currency> currencyList, IEnumerable<FunctionPolicy> policyList);
     }
 }

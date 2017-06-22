@@ -57,7 +57,7 @@
                         AppSession.Language = language;
                     }
 
-                    currentSession.SetPolicyList(_authService.GetPolicyList(token));
+                    _authService.UpdateOneAuthSession(currentSession, token, AppSettings.LicenseeID);
                     return new ResultInfo
                     {
                         ExtendedData = token.ActionLink

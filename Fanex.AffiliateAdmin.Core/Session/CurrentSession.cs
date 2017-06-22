@@ -22,8 +22,7 @@
             this.Username = user.Username;
             this.OnUserID = user.OnUserID;
             this.IsIT = user.IsIT;
-            this.CurrencyList = currencies;
-            SetPolicyList(policies ?? new List<FunctionPolicy>());
+            SetPermissions(currencies, policies);
         }
 
         public AppMode ApplicationMode { get; set; }
@@ -54,8 +53,9 @@
             return this._policyList.Any(i => i.FuncName == functionName && i.CanHost);
         }
 
-        public void SetPolicyList(IEnumerable<FunctionPolicy> policyList)
+        public void SetPermissions(IEnumerable<Currency> currencyList, IEnumerable<FunctionPolicy> policyList)
         {
+            CurrencyList = currencyList;
             _policyList = policyList;
             FunctionMenus = CreateFunctionMenus();
         }

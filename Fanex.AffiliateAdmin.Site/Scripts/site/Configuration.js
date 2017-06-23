@@ -32,7 +32,7 @@ var Configuration = (function ($) {
         },
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
             // resize height of datagrid
-            gridOption = parent.AFFILIATE.resizeHeightDataGrid(gridOption); // jshint ignore:line
+            gridOption = AFFILIATE.resizeHeightDataGrid(gridOption); // jshint ignore:line
 
             AFFILIATE.trimBeforeSubmit();
             submitOptions = $('form').serializeObject();

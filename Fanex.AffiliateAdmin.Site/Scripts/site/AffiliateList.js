@@ -276,8 +276,7 @@ var AffiliateList = (function ($) {
             var param = {
                 groupid: groupId
             };
-
-            parent.AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommissionGroup, { width: 900, height: 450 });
+            AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommissionGroup, { width: 900, height: 450 });
         },
         changeFavorite: function (me, affid) {
             // Convention: 

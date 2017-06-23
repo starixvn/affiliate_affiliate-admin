@@ -348,26 +348,28 @@ namespace Fanex.AffiliateAdmin.Controller.AffBetListService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetListCashOutDetail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string GetBetListCashOutDetail(BetListDetailCriteria criteria, bool isCashOut) {
+        public string GetBetListCashOutDetail(BetListDetailCriteria criteria, bool isCashOut, string language) {
             object[] results = this.Invoke("GetBetListCashOutDetail", new object[] {
                         criteria,
-                        isCashOut});
+                        isCashOut,
+                        language});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void GetBetListCashOutDetailAsync(BetListDetailCriteria criteria, bool isCashOut) {
-            this.GetBetListCashOutDetailAsync(criteria, isCashOut, null);
+        public void GetBetListCashOutDetailAsync(BetListDetailCriteria criteria, bool isCashOut, string language) {
+            this.GetBetListCashOutDetailAsync(criteria, isCashOut, language, null);
         }
         
         /// <remarks/>
-        public void GetBetListCashOutDetailAsync(BetListDetailCriteria criteria, bool isCashOut, object userState) {
+        public void GetBetListCashOutDetailAsync(BetListDetailCriteria criteria, bool isCashOut, string language, object userState) {
             if ((this.GetBetListCashOutDetailOperationCompleted == null)) {
                 this.GetBetListCashOutDetailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBetListCashOutDetailOperationCompleted);
             }
             this.InvokeAsync("GetBetListCashOutDetail", new object[] {
                         criteria,
-                        isCashOut}, this.GetBetListCashOutDetailOperationCompleted, userState);
+                        isCashOut,
+                        language}, this.GetBetListCashOutDetailOperationCompleted, userState);
         }
         
         private void OnGetBetListCashOutDetailOperationCompleted(object arg) {

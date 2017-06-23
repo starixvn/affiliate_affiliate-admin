@@ -206,7 +206,7 @@
 
             using (var affBetlistService = new AffiliateAPI())
             {
-                ViewBag.Data = affBetlistService.GetBetListCashOutDetail(criteria, model.IsCashOut);
+                ViewBag.Data = affBetlistService.GetBetListCashOutDetail(criteria, model.IsCashOut, AppSession.Language);
                 ViewBag.IsCashOut = model.IsCashOut;
             }
 

@@ -52,15 +52,13 @@
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept this method")]
         protected string GetModelErrorMessage()
         {
-            foreach (ModelState modelState in ViewData.ModelState.Values)
+            var modelState = ViewData.ModelState.Values.FirstOrDefault();
+            if(modelState == null || !modelState.Errors.Any())
             {
-                foreach (ModelError error in modelState.Errors)
-                {
-                    return error.ErrorMessage;
-                }
+                return "Undefined Error";
             }
 
-            return "Undefined Error";
+            return modelState.Errors.First().ErrorMessage;
         }
 
         protected string[] GetModelErrorMessages()

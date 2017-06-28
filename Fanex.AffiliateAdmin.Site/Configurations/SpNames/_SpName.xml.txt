@@ -2,6 +2,7 @@
 
 // Generated helper templates
 // Generated items
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.bolanation.production.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aragon88.production.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.indowin.production.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.unobet.production.xml
@@ -18,6 +19,7 @@
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.allbetclub.production.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.9bet.production.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.production.xml
+// D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.bolanation.uat.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aragon88.uat.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.indowin.uat.xml
 // D:\GITLab\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.unobet.uat.xml

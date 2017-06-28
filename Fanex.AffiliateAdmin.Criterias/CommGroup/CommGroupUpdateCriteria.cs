@@ -2,9 +2,6 @@
 {
     using Fanex.Data.Repository;
 
-    /// <summary>
-    /// COMMGroupAddCriteria class.
-    /// </summary>
     public class CommGroupUpdateCriteria : CriteriaBase
     {
         [SpParam(Ignored = true)]
@@ -26,7 +23,8 @@
 
         public string DeductionList { get; set; }
 
-        public string DeductedPercentageList { get; set; }
+        [SpParam(Ignored = true)]
+        public string DeductionSettingList { get; set; }
 
         public string TierList { get; set; }
 

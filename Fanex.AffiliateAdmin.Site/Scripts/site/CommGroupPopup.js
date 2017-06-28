@@ -3,6 +3,7 @@ var CommGroupPopup = (function ($) {
     "use strict";
 
     var MaxTier = 50;
+    var CashOutDeductionTypeId = 11;
 
     function formatInt(value) {
         return numeral(value).format(AFFILIATE.FORMAT_INT_NUMBER);
@@ -124,7 +125,6 @@ var CommGroupPopup = (function ($) {
         $tab.data("copied", false);
 
         if (!$tab.data("disabled")) {
-
             $("#fieldsetTier" + productId).show();
 
             $tab.find("#" + productId).prop("disabled", false);
@@ -336,39 +336,78 @@ var CommGroupPopup = (function ($) {
         return true;
     };
 
+    var getDeductionFromDeductionArrayById = function (id, deductions) {
+        for (var i = 0; i<deductions.length; i++){
+            var deduction = deductions[i];
+            if(deduction.id === id) {
+                return deduction;
+            }
+        }
+
+        return null;
+    }
+
+    var convertDeductionArrayToString = function (deductions) {
+        var deductionList = "";
+
+        for (var i = 0; i < deductions.length; i++) {
+            var deduction = deductions[i];
+            deductionList += deduction.id + ";" + deduction.percent + ";" + deduction.nextpercent + "|";
+        }
+
+        return deductionList;
+    }
+
     var getDeductionSetting = function (productid) {
-        var deductionList = "", deductedPercentageList = "";
+        var deductions = [];
         var $deductions = $("#tab_content" + productid + " .deductions input[type=checkbox]:checked");
-
         $deductions.each(function () {
-            var percent = $(this).closest("tr").find("select.deductionlist").val();
-            deductionList += $(this).data("id") + ",";
+            var $this = $(this);
+            var id = $this.data("id");
+            var percent = $this.closest("tr").find("select.deductionlist").val();
 
-            deductedPercentageList += percent + ",";
+            if (id > 0) {
+                if(percent === undefined)
+                {
+                    percent = $this.data("percent");
+                }
+
+                deductions.push({
+                    id : id,
+                    percent: percent,
+                    nextpercent: ""
+                });
+            }
+            else {
+                var nextpercent = $this.closest("tr").find("select.nextdeductionlist").val();
+                var deduction = getDeductionFromDeductionArrayById(-id, deductions);
+                if (deduction) {
+                    deduction.nextpercent = nextpercent;
+                }
+                else {
+                    deductions.push({
+                        id: -id,
+                        percent: "",
+                        nextpercent: nextpercent
+                    });
+                }
+            }
         });
-
-        return {
-            deductionList: deductionList,
-            deductedPercentageList: deductedPercentageList
-        };
+        
+        return convertDeductionArrayToString(deductions);
     };
 
     var collectDeductionSettings = function (products) {
-        var deductionList = "", deductedPercentageList = "";
+        var deductionList = ""
         var finalProducts = [];
 
         finalProducts = finalProducts.concat(products);
 
         for (var i = 0; i < finalProducts.length; i++) {
-            var localSetting = getDeductionSetting(finalProducts[i]);
-            deductionList += localSetting.deductionList;
-            deductedPercentageList += localSetting.deductedPercentageList;
+            deductionList += getDeductionSetting(finalProducts[i]);
         }
 
-        return {
-            deductionList: deductionList,
-            deductedPercentageList: deductedPercentageList
-        };
+        return deductionList;
     };
 
     var getTierSetting = function (productid) {
@@ -451,8 +490,10 @@ var CommGroupPopup = (function ($) {
     };
 
     var changeCurrency = function (currencyId, currencyCode) {
-        $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/GetCurrencyNotification"),
-            type: 'post',
+        $.ajax({
+            url: AFFILIATE.getAbsoluteUrl("CommGroup/GetCurrencyNotification"),
+            type: 'get',
+            cache: false,
             data: {
                 currencyid: currencyId
             },
@@ -468,8 +509,10 @@ var CommGroupPopup = (function ($) {
             }
         });
 
-        $.ajax({ url: AFFILIATE.getAbsoluteUrl("CommGroup/GetDefaultPspExchange"),
-            type: 'post',
+        $.ajax({
+            url: AFFILIATE.getAbsoluteUrl("CommGroup/GetDefaultPspExchange"),
+            type: 'get',
+            cache: false,
             data: {
                 CurrencyCode: currencyCode
             },
@@ -501,7 +544,6 @@ var CommGroupPopup = (function ($) {
             for (i = 0; i < window.PRODUCTS.length; i++) {
                 enableProduct(window.PRODUCTS[i]);
             }
-
         } else {
             var all = true;
 
@@ -519,7 +561,6 @@ var CommGroupPopup = (function ($) {
 
     return {
         init: function () {
-
             $("#Currency").change(function () {
                 changeCurrency(this.value, $(this).find(":selected").text());
             });
@@ -596,9 +637,7 @@ var CommGroupPopup = (function ($) {
             });
 
             $("#ActiveAll").change(function () {
-
                 changeActiveAll(this.checked);
-
 
                 disableCopyCheckboxes();
             });
@@ -636,7 +675,6 @@ var CommGroupPopup = (function ($) {
             });
 
             $("#btnSubmit").click(function () {
-
                 if (!checkRequiredFields()) {
                     return;
                 }
@@ -654,7 +692,9 @@ var CommGroupPopup = (function ($) {
 
                 var data = collectCommGroupInfo(products);
 
-                var deductionSettings = collectDeductionSettings(products);
+                var deductionSettings = {
+                    deductionSettingList: collectDeductionSettings(products)
+                };
 
                 var tierSettings = collectTierSettings(products);
 

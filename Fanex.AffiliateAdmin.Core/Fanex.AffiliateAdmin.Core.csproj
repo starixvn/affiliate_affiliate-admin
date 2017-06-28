@@ -171,6 +171,8 @@
     <Compile Include="..\Fanex.AffiliateAdmin.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="DbConstants\DeductionTypeConstant.cs" />
+    <Compile Include="DbConstants\ProductTypeConstant.cs" />
     <Compile Include="Filter\AuthorizeRestrictionAttribute.cs" />
     <Compile Include="Configurations\AffiliateSettings.cs" />
     <Compile Include="Configurations\FunctionPolicyNames.cs" />

@@ -6,11 +6,10 @@
 @using Fanex.AffiliateAdmin.Core.Mvc
 @model CommGroupInfo 
 @{
-    long MAXAM = 100000000000000;
     var currencyDropDownAttr = new Dictionary<string, object>();
     currencyDropDownAttr.Add("class", "width-140 dropdownchecklist single-select");
-    
-    var products = AppSettings.Products.Where(t => t.IsEnabled);
+
+    var productList = ViewBag.ProductList as IEnumerable<Product>;
 }
 
 @using (Html.BeginForm("Add", "CommGroup", FormMethod.Post, new { @class = "form-horizontal", id = "CommGroupSettingsForm" }))
@@ -53,7 +52,7 @@
     <div class="control-group red" id="currNotify" style="display:none;margin: 5px 5px 15px 25px">    
     </div>
 
-    @foreach (var product in products)
+    @foreach (var product in productList)
     {
         var productName = @Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty));
         productName = string.IsNullOrEmpty(productName) ? product.ProductName : productName;
@@ -99,10 +98,10 @@
                                                 <label title="@(Lang.ResourceManager.GetString("Deduction" + item.DTypeName.Replace(" ", string.Empty)))">
                                                     @(Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)))
                                                 </label></td>
-                                            <td style="text-align: left;"> = @RazorHelper.PercentageDropDownList((decimal)item.DeductedPercentage, (decimal)0.01, className, "disabled")
+                                            <td style="text-align: left;"> = @CommGroupRazorHelper.PercentageDropDownList((decimal)item.DeductedPercentage, (decimal)0.01, className, "disabled")
                                             </td>
                                             <td style="text-align: left;">
-                                                @RazorHelper.AdditionalSharingFee(item.DTypeName, (decimal)Model.DepositPercent, (decimal)Model.WithdrawalPercent, "disabled")
+                                                @CommGroupRazorHelper.AdditionalSharingFee(item.DTypeID, (decimal)Model.DepositPercent, (decimal)Model.WithdrawalPercent, "disabled")
                                             </td>
                                         </tr>
                                     }
@@ -203,7 +202,7 @@
             UncheckCopyAllTierSettings: "@Lang.UncheckCopyAllTierSettings"
         };
 
-        var PRODUCTS = "@(ViewBag.ProductIDList)".split(',');
+        var PRODUCTS = "@(string.Join(",", productList.Select(x => x.ProductID)))".split(',');
         var HasCashback = @(Model.HasCashback > 0 ? "true" : "false");
     </script>
 

@@ -538,8 +538,11 @@ var AFFILIATE = (function ($) {
             var undermaintenanceCode = 999999;
 
             if (xhr) {
-                var result = $.parseJSON(xhr.responseText);
-                return result.code === undermaintenanceCode;
+                try {
+                    var result = $.parseJSON(xhr.responseText);
+                    return result.code === undermaintenanceCode;
+                } catch (e) {
+                }
             }
 
             return false;

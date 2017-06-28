@@ -1273,6 +1273,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bought Details.
+        /// </summary>
+        public static string BoughtDetails {
+            get {
+                return ResourceManager.GetString("BoughtDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Browser.
         /// </summary>
         public static string Browser {
@@ -1323,6 +1332,33 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string CashbackAmount {
             get {
                 return ResourceManager.GetString("CashbackAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Out Details.
+        /// </summary>
+        public static string CashOutDetails {
+            get {
+                return ResourceManager.GetString("CashOutDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Out WinLoss.
+        /// </summary>
+        public static string CashOutWinLoss {
+            get {
+                return ResourceManager.GetString("CashOutWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Out Win Loss Share.
+        /// </summary>
+        public static string CashOutWinLossShare {
+            get {
+                return ResourceManager.GetString("CashOutWinLossShare", resourceCulture);
             }
         }
         
@@ -2327,6 +2363,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string DeductionBonus {
             get {
                 return ResourceManager.GetString("DeductionBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Has Cash Out Win Loss Share for SportsBook.
+        /// </summary>
+        public static string DeductionCashOutWinLossShare {
+            get {
+                return ResourceManager.GetString("DeductionCashOutWinLossShare", resourceCulture);
             }
         }
         
@@ -5412,6 +5457,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string NewSignup {
             get {
                 return ResourceManager.GetString("NewSignup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next month setting.
+        /// </summary>
+        public static string NextMonthSetting {
+            get {
+                return ResourceManager.GetString("NextMonthSetting", resourceCulture);
             }
         }
         

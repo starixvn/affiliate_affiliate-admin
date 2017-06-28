@@ -2876,4 +2876,28 @@
   <data name="NotFoundUser" xml:space="preserve">
     <value>Not found user</value>
   </data>
+  <data name="CashOutWinLossShare" xml:space="preserve">
+    <value>Cash Out Win Loss Share</value>
+    <comment>#74874</comment>
+  </data>
+  <data name="DeductionCashOutWinLossShare" xml:space="preserve">
+    <value>Has Cash Out Win Loss Share for SportsBook</value>
+    <comment>#74874</comment>
+  </data>
+  <data name="CashOutWinLoss" xml:space="preserve">
+    <value>Cash Out WinLoss</value>
+    <comment>#74874</comment>
+  </data>
+  <data name="BoughtDetails" xml:space="preserve">
+    <value>Bought Details</value>
+    <comment>#74874</comment>
+  </data>
+  <data name="CashOutDetails" xml:space="preserve">
+    <value>Cash Out Details</value>
+    <comment>#74874</comment>
+  </data>
+  <data name="NextMonthSetting" xml:space="preserve">
+    <value>Next month setting</value>
+    <comment>#74874</comment>
+  </data>
 </root>

@@ -163,6 +163,7 @@
     <Compile Include="AffTypeViewModel.cs" />
     <Compile Include="AffTypeAddViewModel.cs" />
     <Compile Include="AccountPasswordViewModel.cs" />
+    <Compile Include="CashOutDetailViewModel.cs" />
     <Compile Include="ChangeAccountTypeViewModel.cs" />
     <Compile Include="ChangeAffPasswordViewModel.cs" />
     <Compile Include="ChangeCommissionGroupViewModel.cs" />

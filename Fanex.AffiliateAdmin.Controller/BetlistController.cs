@@ -193,6 +193,27 @@
         }
 
         [HttpGet]
+        public ActionResult CashOutDetailTicket(CashOutDetailViewModel model)
+        {
+            var criteria = new BetListDetailCriteria
+            {
+                TransId = model.TransId,
+                RefNo = model.RefNo,
+                BetType = model.BetType,
+                BetdaqId = model.BetdaqId,
+                ExchangeRate = model.ExchangeRate
+            };
+
+            using (var affBetlistService = new AffiliateAPI())
+            {
+                ViewBag.Data = affBetlistService.GetBetListCashOutDetail(criteria, model.IsCashOut, AppSession.Language);
+                ViewBag.IsCashOut = model.IsCashOut;
+            }
+
+            return View("~/Views/BetList/CashOutDetailTicket.cshtml");
+        }
+
+        [HttpGet]
         public dynamic NewBetListParlay(long transId, string betTeam, string betCheck, decimal handicap1, decimal handicap2, string exchangeRate)
         {
             using (var affBetlistService = new AffBetListService.AffiliateAPI())

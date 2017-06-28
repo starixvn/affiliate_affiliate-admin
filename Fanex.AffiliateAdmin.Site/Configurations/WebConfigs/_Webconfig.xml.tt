@@ -24,7 +24,8 @@
 			"q8bola",
 			"unobet",
 			"indowin",
-			"aragon88"
+			"aragon88",
+			"bolanation"
 		};
 
 	var environments = new string[] { "master", "uat", "production" };

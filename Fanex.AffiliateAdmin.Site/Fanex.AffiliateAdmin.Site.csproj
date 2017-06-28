@@ -398,6 +398,12 @@
     <Content Include="Configurations\SpNames\SpName.be7th.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.bolanation.production.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.bolanation.uat.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\SpNames\SpName.goobet.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
@@ -505,6 +511,20 @@
     <Content Include="Content\_Sites\aragon88\Images\logoNotify.jpg" />
     <Content Include="Content\_Sites\aragon88\Images\notify.png" />
     <Content Include="Content\_Sites\aragon88\Images\panel.png" />
+    <Content Include="Content\_Sites\bolanation\Images\best-browsers.png" />
+    <Content Include="Content\_Sites\bolanation\Images\bodybg.jpg" />
+    <Content Include="Content\_Sites\bolanation\Images\btbg.png" />
+    <Content Include="Content\_Sites\bolanation\Images\emailBanner.jpg" />
+    <Content Include="Content\_Sites\bolanation\Images\emailBg.jpg" />
+    <Content Include="Content\_Sites\bolanation\Images\favicon.ico" />
+    <Content Include="Content\_Sites\bolanation\Images\favicon.jpg" />
+    <Content Include="Content\_Sites\bolanation\Images\headerbg.jpg" />
+    <Content Include="Content\_Sites\bolanation\Images\headerbg_notify.png" />
+    <Content Include="Content\_Sites\bolanation\Images\banner_top.png" />
+    <Content Include="Content\_Sites\bolanation\Images\logo.jpg" />
+    <Content Include="Content\_Sites\bolanation\Images\logoNotify.jpg" />
+    <Content Include="Content\_Sites\bolanation\Images\notify.png" />
+    <Content Include="Content\_Sites\bolanation\Images\panel.png" />
     <Content Include="Content\_Sites\indowin\Images\best-browsers.png" />
     <Content Include="Content\_Sites\indowin\Images\bodybg.jpg" />
     <Content Include="Content\_Sites\indowin\Images\btbg.png" />
@@ -3880,6 +3900,16 @@
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
     <Content Include="App_Code\CommGroupRazorHelper.cshtml" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.bolanation.production.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.bolanation.uat.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSettings\Web.AppSetting.bolanation.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.bolanation.master.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.bolanation.production.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.bolanation.uat.config" />
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
     <Content Include="Content\_Sites\be7th\Login.less" />
@@ -4037,6 +4067,17 @@
     <None Include="Configurations\WebConfigs\Web.aragon88.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </None>
+    <Content Include="Content\_Sites\bolanation\Login.less" />
+    <Content Include="Content\_Sites\bolanation\Notify.less" />
+    <Content Include="Configurations\WebConfigs\Web.bolanation.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.bolanation.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.bolanation.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -4427,7 +4468,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

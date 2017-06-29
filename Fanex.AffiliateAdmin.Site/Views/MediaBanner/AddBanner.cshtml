@@ -1,36 +1,38 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Configurations
-@using Fanex.AffiliateAdmin.Models
 @using Fanex.AffiliateAdmin.Core.Mvc
-@using Fanex.AffiliateAdmin.Core.Services.Impl
-@model BannerEditViewModel
+@using Fanex.AffiliateAdmin.Models
+
+@model BannerAddViewModel
 @{
-    ViewBag.Title = Lang.EditBanner;
+    ViewBag.Title = Lang.AddBanner;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 
     var style = "style='display:none;'";
-
+    
     if (Model.SubCategories != null && Model.SubCategories.Any())
     {
         style = string.Empty;
     }
 }
 
-@using (Html.BeginForm("EditBanner", "Media", FormMethod.Post, new { id = "ActionBannerForm", @class = "form-horizontal form-popup", enctype = "multipart/form-data" }))
-{
+@using (Html.BeginForm("AddBanner", "MediaBanner", FormMethod.Post, new { id = "ActionBannerForm", @class = "form-horizontal form-popup", enctype = "multipart/form-data" }))
+{    
     @Html.ValidationSummary()
     <div class="popup-content">
-        @Html.HiddenFor(m => m.BannerId)
-        <div class="control-group">
+        <div  class="control-group">
             <div class="controls">
-                <strong>[@Lang.ValidTypes: .gif, .jpg, .png, .jpeg, .swf]
+                <strong>
+                    [@Lang.ValidTypes: .gif, .jpg, .png, .jpeg, .swf]
                     <br />
-                    [@Lang.FileSizeLimit: 3MB] </strong>
+                    [@Lang.FileSizeLimit: 3MB]
+                </strong>
             </div>
-        </div>
+        </div>       
         <div class="control-group">
             @Html.LabelFor(m => m.File, new { @class = "control-label" })
             <div class="controls">
                 @Html.TextBoxFor(m => m.File, new { @class = "form-control", type = "file" })
+                <img id="myImage" src="" style="display:none;" />
             </div>
         </div>
         <div class="control-group">
@@ -39,18 +41,21 @@
                 @Html.DropDownCheckList("Category", Model.BannerCategoryOptionList, false, false)
             </div>
         </div>
+        
         <div class="control-group" id="divSubCategories" @Html.Raw(style)>
             @Html.LabelFor(m => m.SubCategory, new { @class = "control-label" })
             <div class="controls" id="subCategories">
                 @Html.DropDownCheckList("SubCategory", Model.BannerSubCategoryOptionList, false, false)
             </div>
         </div>
+         
         <div class="control-group">
             @Html.LabelFor(m => m.AffType, new { @class = "control-label" })
             <div class="controls">
                 @Html.DropDownCheckList("AffType", Model.AffiliateTypeOptionList, false, false)
             </div>
         </div>
+    
         <div class="control-group">
             @Html.LabelFor(m => m.Language, new { @class = "control-label" })
             <div class="controls">
@@ -66,7 +71,7 @@
         <div class="control-group">
             @Html.LabelFor(m => m.ImageType, new { @class = "control-label" })
             <div class="controls">
-                @Html.DropDownCheckList("ImageType", Model.BannerTypeOptionList, false, false, new { disabled = "disabled" })
+                @Html.DropDownCheckList("ImageType", Model.BannerTypeOptionList, false, false, new { disabled="disabled" })
             </div>
         </div>
         <div class="control-group">
@@ -80,12 +85,13 @@
     <div class="popup-footer">
         <div class="control-group">
             <div class="controls">
-                <button type="submit" id="btnUpdate" class="btn">@Lang.Update</button>
+                <button type="submit" id="btnUpdate" class="btn">@Lang.Add</button>
                 <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
             </div>
         </div>
     </div>
 }
+
 @section scripts{
     @Scripts.Render("~/scripts/banneradd")
 
@@ -93,15 +99,16 @@
         var MSG = {
             errFileExtension: "@Html.Raw(Lang.errFileExtension)",
             MaxFileSize: "@MediaSettings.MaxImageSize",
-            MaxFileSizeMsg: "@string.Format(Lang.MaxFileSizeLimit, string.Format("{0:#,##0}", MediaSettings.MaxImageSize))"
+            MaxFileSizeMsg: "@string.Format(Lang.MaxFileSizeLimit, string.Format("{0:#,##0}", MediaSettings.MaxImageSize))",
+            BannerFileRequiredMsg: "@Lang.BannerFileRequiredMsg"
         };
-        
     </script>
+
     @if (ViewBag.Result != null)
     {
         var result = (ResultViewModel)ViewBag.Result;
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.BannerList.ReRenderAfterPaged);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.location.reload(false));
         </script>
     }
 }

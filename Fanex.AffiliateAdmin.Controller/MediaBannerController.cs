@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
     using Core.Configurations;
     using Core.Services.Interface;
@@ -17,219 +16,34 @@
     using Models;
     using Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [FunctionAuth(Function = FunctionPolicyNames.Media)]
-    public class MediaController : BaseController
+    public class MediaBannerController : BaseController
     {
-        #region Fields
-
-        private readonly IMediaService _mediaService;
+        private readonly IMediaBannerService _mediaService;
 
         private readonly IMediaSettingService _mediaSettingService;
 
-        #endregion Fields
-
-        #region Constructors
-
-        public MediaController()
+        public MediaBannerController()
             : this(null, null)
         {
         }
 
-        public MediaController(IMediaService mediaService, IMediaSettingService mediaSettingService)
+        public MediaBannerController(IMediaBannerService mediaService, IMediaSettingService mediaSettingService)
         {
-            _mediaService = mediaService ?? new MediaService();
+            _mediaService = mediaService ?? new MediaBannerService();
             _mediaSettingService = mediaSettingService ?? new MediaSettingService();
         }
 
-        #endregion Constructors
-
-        /// <summary>
-        /// Banner List.
-        /// </summary>
-        /// <param name="model">Input model.</param>
-        /// <returns>Banner list page.</returns>
         [HttpGet]
         public ActionResult Index(BannerListViewModel model)
         {
-            return View("BannerList", model);
-        }
-
-        #region Text List
-
-        /// <summary>
-        /// Text list.
-        /// </summary>
-        /// <returns>Html page of text list.</returns>
-        [HttpGet]
-        public ActionResult TextList()
-        {
-            return View(new TextListViewModel());
-        }
-
-        /// <summary>
-        /// Text list data.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>Returns a list of text.</returns>
-        [HttpPost]
-        public ActionResult TextDataList(TextListViewModel model)
-        {
-            var criteria = new BannerListCriteria
-            {
-                Category = model.Category,
-                Language = model.Language,
-                Currency = model.Currency,
-                PageIndex = model.PageIndex == 0 ? 1 : model.PageIndex,
-                PageSize = model.PageSize == 0 ? AppSettings.PageSize : model.PageSize
-            };
-
-            var data = _mediaService.GetTexts(criteria);
-            return Json(new
-            {
-                List = data,
-                CurrentPage = criteria.PageIndex - 1,
-                ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.NRows
-            });
-        }
-
-        /// <summary>
-        /// Adds the banner text.
-        /// </summary>
-        /// <returns>Page html.</returns>
-        [HttpGet]
-        public ActionResult AddText()
-        {
-            var model = new TextAddViewModel();
             return View(model);
         }
-
-        /// <summary>
-        /// Adds the text.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>Return result.</returns>
-        [HttpPost]
-        public ActionResult AddText(TextAddViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var criteria = new BannerInsCriteria
-                {
-                    UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress(),
-                    Content = HttpUtility.HtmlEncode(model.Content),
-                    Category = model.Category,
-                    Currency = model.Currency,
-                    Language = model.Language,
-                    AffType = 0, // banner text
-                    LicenseeId = AppSettings.LicenseeID
-                };
-
-                _mediaService.AddBanner(criteria);
-                ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
-            }
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Action Get EditText.
-        /// </summary>
-        /// <param name="id">Text Id value.</param>
-        /// <returns>Action result.</returns>
-        [HttpGet]
-        public ActionResult EditText(int id)
-        {
-            var bannerDetail = _mediaService.GetBannerDetail(new BannerDetailCriteria
-            {
-                BannerId = id
-            });
-
-            var model = new TextEditViewModel
-            {
-                Content = HttpUtility.HtmlDecode(bannerDetail.Content),
-                Category = bannerDetail.GetCategory,
-                Language = bannerDetail.Language,
-                Currency = bannerDetail.Currency.Value,
-                BannerId = id
-            };
-
-            var selectedCurrency = model.PlayerCurrencyOptionList.FirstOrDefault(t => t.Value == model.Currency.ToString());
-            if (selectedCurrency != null)
-            {
-                selectedCurrency.Selected = true;
-            }
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Action POST EditText.
-        /// </summary>
-        /// <param name="model">Text Edit View Model.</param>
-        /// <returns>Action result.</returns>
-        [HttpPost]
-        public ActionResult EditText(TextEditViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var criteria = new BannerUpdateCriteria
-                {
-                    BannerId = model.BannerId,
-                    Category = model.Category,
-                    Content = HttpUtility.HtmlEncode(model.Content),
-                    Language = model.Language,
-                    Currency = model.Currency,
-                    UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress(),
-                    LicenseeId = AppSettings.LicenseeID
-                };
-
-                _mediaService.EditBanner(criteria);
-                ViewBag.Result = GetResultViewModel(criteria.ErrCode);
-            }
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Action POST DeleteText.
-        /// </summary>
-        /// <param name="criteria">BannerDeleteCriteria object.</param>
-        /// <returns>Action result.</returns>
-        [HttpPost]
-        public ActionResult DeleteText(BannerDeleteCriteria criteria)
-        {
-            if (ModelState.IsValid && criteria.IsValid())
-            {
-                criteria.UserId = SessionManager.CurrentSession.CustID;
-                criteria.Ip = Remote.GetClientIPAddress();
-                criteria.LicenseeId = AppSettings.LicenseeID;
-
-                _mediaService.DeleteBanner(criteria);
-
-                return ModelResult(criteria.ErrCode);
-            }
-
-            return InvalidModelResult();
-        }
-
-        #endregion Text List
 
         #region Banner List
 
-        [HttpGet]
-        public ActionResult BannerList(BannerListViewModel model)
-        {
-            return View(model);
-        }
-
         [HttpPost]
-        public ActionResult BannerDataList(BannerListCriteria criteria)
+        public ActionResult DataList(BannerListCriteria criteria)
         {
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
@@ -254,10 +68,6 @@
             });
         }
 
-        /// <summary>
-        /// Adds the banner.
-        /// </summary>
-        /// <returns>Page html.</returns>
         [HttpGet]
         public ActionResult AddBanner()
         {
@@ -273,11 +83,6 @@
             return View(model);
         }
 
-        /// <summary>
-        /// Adds the banner.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>Return result.</returns>
         [HttpPost]
         public ActionResult AddBanner(BannerAddViewModel model)
         {
@@ -325,11 +130,6 @@
             return View(model);
         }
 
-        /// <summary>
-        /// Edit banner.
-        /// </summary>
-        /// <param name="id">Banner id.</param>
-        /// <returns>Edit banner view.</returns>
         [HttpGet]
         public ActionResult EditBanner(int id)
         {
@@ -368,11 +168,6 @@
             return null;
         }
 
-        /// <summary>
-        /// Edit banner.
-        /// </summary>
-        /// <param name="model">Model input.</param>
-        /// <returns>Edit banner view.</returns>
         [HttpPost]
         public ActionResult EditBanner(BannerEditViewModel model)
         {
@@ -421,11 +216,6 @@
             return View(model);
         }
 
-        /// <summary>
-        /// Delete banner.
-        /// </summary>
-        /// <param name="model">Model input.</param>
-        /// <returns>Delete banner view.</returns>
         [HttpPost]
         public ActionResult DeleteBanner(BannerDeleteViewModel model)
         {
@@ -456,12 +246,6 @@
             return InvalidModelResult();
         }
 
-        /// <summary>
-        /// Render sub category list by category.
-        /// </summary>
-        /// <param name="category">Category Id.</param>
-        /// <param name="isShowAll">Has/ don't have All item in sub category.</param>
-        /// <returns>Sub category view.</returns>
         [HttpPost]
         public ActionResult SubCategories(short category, bool isShowAll)
         {
@@ -478,10 +262,6 @@
 
         #region Banner Helpers
 
-        /// <summary>
-        /// Delete the banner/thumbnail file.
-        /// </summary>
-        /// <param name="content">The relative banner path.</param>
         private void DeleteBannerFile(string content)
         {
             IEnumerable<string> bannerPaths, thumbnailPaths;
@@ -491,12 +271,6 @@
             Common.DeleteFiles(thumbnailPaths);
         }
 
-        /// <summary>
-        /// Upload new banner file.
-        /// </summary>
-        /// <param name="model">The model object.</param>
-        /// <param name="errorMessage">The error message.</param>
-        /// <returns>The uploading result.</returns>
         private BannerStorage UploadBannerFile(BannerAddViewModel model, out string errorMessage)
         {
             var bannerStorage = new BannerStorage
@@ -514,13 +288,6 @@
             return bannerStorage;
         }
 
-        /// <summary>
-        /// Update banner file.
-        /// </summary>
-        /// <param name="model">The model object.</param>
-        /// <param name="bannerDetail">The banner detail.</param>
-        /// <param name="errorMessage">The error message.</param>
-        /// <returns>The updating result.</returns>
         private BannerStorage UpdateBannerFile(BannerEditViewModel model, BannerDetail bannerDetail, out string errorMessage)
         {
             errorMessage = string.Empty;
@@ -568,12 +335,6 @@
             return bannerStorage;
         }
 
-        /// <summary>
-        /// Get banner path, thumbnail path.
-        /// </summary>
-        /// <param name="content">The relative banner path.</param>
-        /// <param name="bannerPaths">The banner path.</param>
-        /// <param name="thumbnailPaths">The thumbnail path.</param>
         private void GetBannerPaths(
             string content,
             out IEnumerable<string> bannerPaths,

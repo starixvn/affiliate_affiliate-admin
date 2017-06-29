@@ -125,8 +125,8 @@
             {
                 return new List<Menu>
                 {
-                    new Menu { Text = Lang.BannerList, Link = "~/Media/BannerList" },
-                    new Menu { Text = Lang.TextList, Link = "~/Media/TextList" }
+                    new Menu { Text = Lang.BannerList, Link = "~/MediaBanner" },
+                    new Menu { Text = Lang.TextList, Link = "~/MediaText" }
                 };
             }
         }

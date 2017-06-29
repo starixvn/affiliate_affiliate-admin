@@ -6,7 +6,7 @@ var BannerList = (function ($) {
 
     function getSubCategories(category, isShowAll) {
         $.ajax({
-            url: AFFILIATE.getAbsoluteUrl("Media/SubCategories"),
+            url: AFFILIATE.getAbsoluteUrl("MediaBanner/SubCategories"),
             type: 'post',
             data: { category: category, isShowAll: isShowAll },
             beforeSend: function () {
@@ -61,7 +61,7 @@ var BannerList = (function ($) {
             submitOptions = $('form').serializeObject();
 
             $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Media/BannerDataList"),
+                url: AFFILIATE.getAbsoluteUrl("MediaBanner/DataList"),
                 type: 'post',
                 data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 beforeSend: function () {
@@ -100,10 +100,10 @@ var BannerList = (function ($) {
             AFFILIATE.openDialogContent(htmlContent, "Orginal View", { width: 800, height: 600 });
         },
         addBanner: function () {
-            AFFILIATE.openDialogFrame("Media/AddBanner", MSG.AddBanner, { width: 580, height: 500 });
+            AFFILIATE.openDialogFrame("MediaBanner/AddBanner", MSG.AddBanner, { width: 580, height: 500 });
         },
         editBanner: function (bannerId) {
-            AFFILIATE.openDialogFrame("Media/EditBanner/" + bannerId, MSG.EditBanner, { width: 580, height: 500 });
+            AFFILIATE.openDialogFrame("MediaBanner/EditBanner/" + bannerId, MSG.EditBanner, { width: 580, height: 500 });
         },
         deleteBanner: function (id, content, totalRequest) {
             if (id === undefined) {
@@ -120,7 +120,7 @@ var BannerList = (function ($) {
                         contents: content
                     };
                     $.ajax({
-                        url: AFFILIATE.getAbsoluteUrl("Media/DeleteBanner"),
+                        url: AFFILIATE.getAbsoluteUrl("MediaBanner/DeleteBanner"),
                         type: 'post',
                         data: param,
                         success: function (result) {

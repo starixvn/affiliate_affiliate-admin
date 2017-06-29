@@ -21,7 +21,7 @@ marketing-tools
     </div>
     @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
 
-    @using (Html.BeginForm("BannerDataList", "Media", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
+    @using (Html.BeginForm("DataList", "MediaBanner", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
     {
         <div class="span12 search-form">
             <div class="row-fluid row-form">

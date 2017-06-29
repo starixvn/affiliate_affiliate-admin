@@ -206,7 +206,7 @@
     <Compile Include="Impl\EmailHistoryService.cs" />
     <Compile Include="Impl\GroupService.cs" />
     <Compile Include="Impl\HomeService.cs" />
-    <Compile Include="Impl\MediaService.cs" />
+    <Compile Include="Impl\MediaBannerService.cs" />
     <Compile Include="Impl\MessageService.cs" />
     <Compile Include="Impl\NoteService.cs" />
     <Compile Include="Impl\PaymentService.cs" />
@@ -217,6 +217,7 @@
     <Compile Include="Impl\TrackingStatisticService.cs" />
     <Compile Include="Impl\TransTypeService.cs" />
     <Compile Include="Impl\ViewLogService.cs" />
+    <Compile Include="Interfaces\IMediaTextService.cs" />
     <Compile Include="Interfaces\IOneAuthenticationService.cs" />
     <Compile Include="Interfaces\IOneBookSecurityWrapper.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
@@ -233,7 +234,7 @@
     <Compile Include="Interfaces\IGroupService.cs" />
     <Compile Include="Interfaces\IHomeService.cs" />
     <Compile Include="Interfaces\IAccountService.cs" />
-    <Compile Include="Interfaces\IMediaService.cs" />
+    <Compile Include="Interfaces\IMediaBannerService.cs" />
     <Compile Include="Interfaces\IMessageService.cs" />
     <Compile Include="Interfaces\INoteService.cs" />
     <Compile Include="Interfaces\IPaymentService.cs" />
@@ -331,7 +332,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

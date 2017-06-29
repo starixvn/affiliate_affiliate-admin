@@ -89,7 +89,7 @@
                 result.Success = result.ErrorCode == 0;
                 if (result.ErrorCode == 0 && user.CustID > 0)
                 {
-                    user.OnUserID = _accountService.CheckIn(new CheckInCriteria()
+                    user.OnUserID = _accountService.CheckIn(new CheckInCriteria
                     {
                         CustId = user.CustID,
                         IP = Remote.GetClientIPAddress(),

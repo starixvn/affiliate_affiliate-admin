@@ -185,6 +185,7 @@
     <Compile Include="BaseController.cs" />
     <Compile Include="AffiliateController.cs" />
     <Compile Include="Helpers\AffiliateInfoCookieHelper.cs" />
+    <Compile Include="Helpers\BannerHelper.cs" />
     <Compile Include="MediaTextController.cs" />
     <Compile Include="OneAuthorizationController.cs" />
     <Compile Include="SsoController.cs" />

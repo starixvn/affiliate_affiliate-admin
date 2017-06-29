@@ -4,8 +4,6 @@
     using System.Web;
     using System.Web.Mvc;
     using Core.Configurations;
-    using Core.Services.Impl;
-    using Core.Services.Interface;
     using Core.Session;
     using Core.Utilities;
     using Criterias;
@@ -19,17 +17,14 @@
     {
         private readonly IMediaBannerService _mediaService;
 
-        private readonly IMediaSettingService _mediaSettingService;
-
         public MediaTextController()
-            : this(null, null)
+            : this(null)
         {
         }
 
-        public MediaTextController(IMediaBannerService mediaService, IMediaSettingService mediaSettingService)
+        public MediaTextController(IMediaBannerService mediaService)
         {
             _mediaService = mediaService ?? new MediaBannerService();
-            _mediaSettingService = mediaSettingService ?? new MediaSettingService();
         }
 
         [HttpGet]

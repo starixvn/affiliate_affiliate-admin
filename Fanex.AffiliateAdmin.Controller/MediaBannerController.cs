@@ -1,6 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Web.Mvc;
@@ -9,10 +8,10 @@
     using Core.Session;
     using Core.Utilities;
     using Criterias;
-    using DTO;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Services;
+    using Helpers;
     using Models;
     using Resources;
 
@@ -39,8 +38,6 @@
         {
             return View(model);
         }
-
-        #region Banner List
 
         [HttpPost]
         public ActionResult DataList(BannerListCriteria criteria)
@@ -91,7 +88,7 @@
             if (ModelState.IsValid)
             {
                 string errorMessage;
-                var bannerStorage = UploadBannerFile(model, out errorMessage);
+                var bannerStorage = BannerHelper.UploadBannerFile(model, out errorMessage);
 
                 if (!string.IsNullOrEmpty(errorMessage))
                 {
@@ -177,7 +174,7 @@
             {
                 string errorMessage;
                 var bannerDetail = _mediaService.GetBannerDetail(new BannerDetailCriteria { BannerId = model.BannerId });
-                var bannerStorage = UpdateBannerFile(model, bannerDetail, out errorMessage);
+                var bannerStorage = BannerHelper.UpdateBannerFile(model, bannerDetail, out errorMessage);
 
                 if (!string.IsNullOrEmpty(errorMessage))
                 {
@@ -235,7 +232,7 @@
                 var contents = model.Contents.Split(',');
                 foreach (var content in contents)
                 {
-                    DeleteBannerFile(content);
+                    BannerHelper.DeleteBannerFile(content);
                 }
 
                 MediaSettings.RefreshBannerSizes();
@@ -257,98 +254,5 @@
 
             return PartialView(model);
         }
-
-        #endregion Banner List
-
-        #region Banner Helpers
-
-        private void DeleteBannerFile(string content)
-        {
-            IEnumerable<string> bannerPaths, thumbnailPaths;
-            GetBannerPaths(content, out bannerPaths, out thumbnailPaths);
-
-            Common.DeleteFiles(bannerPaths);
-            Common.DeleteFiles(thumbnailPaths);
-        }
-
-        private BannerStorage UploadBannerFile(BannerAddViewModel model, out string errorMessage)
-        {
-            var bannerStorage = new BannerStorage
-            {
-                AffType = model.AffType,
-                Category = model.Category,
-                SubCategory = model.SubCategory,
-                BannerFileName = model.FileName,
-                File = model.File,
-                BannerType = model.ImageType
-            };
-
-            errorMessage = bannerStorage.UploadBanner();
-
-            return bannerStorage;
-        }
-
-        private BannerStorage UpdateBannerFile(BannerEditViewModel model, BannerDetail bannerDetail, out string errorMessage)
-        {
-            errorMessage = string.Empty;
-            var bannerStorage = new BannerStorage
-            {
-                AffType = model.AffType,
-                Category = model.Category,
-                SubCategory = model.SubCategory,
-                BannerFileName = model.FileName,
-                File = model.File,
-                BannerType = model.ImageType
-            };
-
-            if (bannerStorage.File == null)
-            {
-                // Check the valid extension.
-                if (!bannerStorage.IsValidExtension())
-                {
-                    errorMessage = Lang.errFileExtension;
-                }
-                else
-                {
-                    var mediaType = MediaSettings.BannerSizes.FirstOrDefault(t => t.TypeId == bannerDetail.Size);
-                    if (mediaType != null)
-                    {
-                        bannerStorage.BannerSize = mediaType.Value;
-                    }
-
-                    if (bannerDetail.ImageType.HasValue)
-                    {
-                        errorMessage = bannerStorage.MoveBannerFile(bannerDetail.Content);
-                    }
-                }
-            }
-            else
-            {
-                errorMessage = bannerStorage.UploadBanner();
-                if (string.IsNullOrEmpty(errorMessage))
-                {
-                    // Delete the old banner file.
-                    DeleteBannerFile(bannerDetail.Content);
-                }
-            }
-
-            return bannerStorage;
-        }
-
-        private void GetBannerPaths(
-            string content,
-            out IEnumerable<string> bannerPaths,
-            out IEnumerable<string> thumbnailPaths)
-        {
-            var oldContent = content.Replace('/', '\\');
-
-            var oldBannerFile = Path.GetFileName(oldContent);
-            var oldThumbnailFile = BannerStorage.GetThumbnailFileName(oldContent);
-
-            bannerPaths = MediaSettings.BannerFolders.Select(x => Path.Combine(x, oldContent));
-            thumbnailPaths = bannerPaths.Select(x => x.Replace(oldBannerFile, oldThumbnailFile));
-        }
-
-        #endregion Banner Helpers
     }
 }

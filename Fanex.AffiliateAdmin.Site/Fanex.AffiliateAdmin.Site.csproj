@@ -3583,7 +3583,7 @@
     <Content Include="Scripts\libraries\monpickr.js" />
     <Content Include="Scripts\libraries\placeholder_fixer.js" />
     <Content Include="Scripts\libraries\ui.dropdownchecklist.js" />
-    <Content Include="Scripts\site\BannerAdd.js" />
+    <Content Include="Scripts\site\MediaBannerAdd.js" />
     <Content Include="Scripts\site\BetList.js" />
     <Content Include="Scripts\site\CloseDialog.js" />
     <Content Include="Scripts\site\Adjustment.js" />
@@ -3591,7 +3591,7 @@
     <Content Include="Scripts\site\AffiliateInfo.js" />
     <Content Include="Scripts\site\AffiliateList.js" />
     <Content Include="Scripts\site\AffiliateStatistic.js" />
-    <Content Include="Scripts\site\BannerList.js" />
+    <Content Include="Scripts\site\MediaBannerList.js" />
     <Content Include="Scripts\site\Configuration.js" />
     <Content Include="Scripts\site\AffType.js" />
     <Content Include="Scripts\libraries\jquery.mtz.monthpicker.seph.custom.js" />
@@ -3635,7 +3635,7 @@
     <Content Include="Scripts\libraries\moment.js" />
     <Content Include="Scripts\libraries\numeral.js" />
     <Content Include="Scripts\site\GroupManagement.js" />
-    <Content Include="Scripts\site\TextList.js" />
+    <Content Include="Scripts\site\MediaText.js" />
     <Content Include="Scripts\site\GroupPolicy.js" />
     <Content Include="Scripts\site\UserManagement.js" />
     <Content Include="Scripts\site\Message.js" />

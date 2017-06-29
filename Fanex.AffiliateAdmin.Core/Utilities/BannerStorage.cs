@@ -13,9 +13,6 @@
     using Fanex.AffiliateAdmin.Resources;
     using Helpers;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class BannerStorage
     {
         /// <summary>
@@ -30,9 +27,7 @@
         private readonly IMediaSettingService _mediaSettingService = new MediaSettingService();
 
         private string _bannerFolder;
-
-        private string _bannerSize;
-
+        
         public short AffType { get; set; }
 
         public short Category { get; set; }
@@ -45,11 +40,7 @@
 
         public short BannerType { get; set; }
 
-        public string BannerSize
-        {
-            get { return _bannerSize; }
-            set { _bannerSize = value; }
-        }
+        public string BannerSize { get; set; }
 
         public string RelativeBannerPath
         {
@@ -113,10 +104,6 @@
             }
         }
 
-        /// <value>Full banner folder.</value>
-        /// <summary>
-        /// Gets full banner folder.
-        /// </summary>
         private IEnumerable<string> BannerFullPaths
         {
             get
@@ -151,12 +138,7 @@
             var extension = Path.GetExtension(BannerFileName).ToLower();
             return AllowedExtensions.Any(x => x == extension);
         }
-
-        private bool HasExceedSizeLimit()
-        {
-            return File.ContentLength > MediaSettings.MaxImageSize;
-        }
-
+        
         public string UploadBanner()
         {
             if (!IsValidExtension() || !MimeTypeHelper.IsValidMimeType(File.InputStream))
@@ -164,7 +146,7 @@
                 return Lang.errFileExtension;
             }
 
-            if (HasExceedSizeLimit())
+            if (File.ContentLength > MediaSettings.MaxImageSize)
             {
                 return string.Format(Lang.MaxFileSizeLimit, MediaSettings.MaxImageSize);
             }
@@ -220,7 +202,6 @@
             var thumbnailPath = string.Empty;
             try
             {
-                // Save the banner file.
                 File.SaveAs(bannerFile);
 
                 // Get banner size.
@@ -229,14 +210,14 @@
                 if (BannerType == 1)
                 {
                     var bitmap = new Bitmap(File.InputStream);
-                    _bannerSize = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
+                    BannerSize = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
                     thumbnailPath = Path.Combine(folder, BannerFolder, ThumbnailFileName);
                     ThumbnailCreator.CreateThumbnailFromImage(bitmap, thumbnailPath);
                 }
                 else
                 {
                     var swfInfo = new SwfInfo(bannerFile);
-                    _bannerSize = string.Format("{0}x{1}", swfInfo.Width, swfInfo.Height);
+                    BannerSize = string.Format("{0}x{1}", swfInfo.Width, swfInfo.Height);
                 }
 
                 return true;
@@ -255,21 +236,12 @@
             return false;
         }
 
-        /// <summary>
-        /// Delete the banner file.
-        /// </summary>
         public void DeleteBanners()
         {
             Common.DeleteFiles(BannerFullPaths);
             Common.DeleteFiles(ThumbnailFullPaths);
         }
 
-        /// <summary>
-        /// Move banner file to another position.
-        /// </summary>
-        /// <param name="oldBannerPath">The old banner path.</param>
-        /// <param name="oldThumbnailPath">The old thumbnail path.</param>
-        /// <returns>The moving result.</returns>
         public string MoveBannerFile(string oldRelativeBannerPath)
         {
             oldRelativeBannerPath = oldRelativeBannerPath.Replace('/', '\\');

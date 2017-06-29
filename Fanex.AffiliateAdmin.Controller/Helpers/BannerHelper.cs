@@ -11,7 +11,7 @@
 
     public static class BannerHelper
     {
-        public static BannerStorage UploadBannerFile(BannerAddViewModel model, out string errorMessage)
+        public static BannerStorage UploadFile(BannerAddViewModel model, out string errorMessage)
         {
             var bannerStorage = new BannerStorage
             {
@@ -28,7 +28,7 @@
             return bannerStorage;
         }
 
-        public static BannerStorage UpdateBannerFile(BannerEditViewModel model, BannerDetail bannerDetail, out string errorMessage)
+        public static BannerStorage UpdateFile(BannerEditViewModel model, BannerDetail bannerDetail, out string errorMessage)
         {
             errorMessage = string.Empty;
             var bannerStorage = new BannerStorage
@@ -68,23 +68,23 @@
                 if (string.IsNullOrEmpty(errorMessage))
                 {
                     // Delete the old banner file.
-                    DeleteBannerFile(bannerDetail.Content);
+                    DeleteFile(bannerDetail.Content);
                 }
             }
 
             return bannerStorage;
         }
 
-        public static void DeleteBannerFile(string content)
+        public static void DeleteFile(string content)
         {
             IEnumerable<string> bannerPaths, thumbnailPaths;
-            GetBannerPaths(content, out bannerPaths, out thumbnailPaths);
+            GetPaths(content, out bannerPaths, out thumbnailPaths);
 
             Common.DeleteFiles(bannerPaths);
             Common.DeleteFiles(thumbnailPaths);
         }
 
-        private static void GetBannerPaths(
+        private static void GetPaths(
             string content,
             out IEnumerable<string> bannerPaths,
             out IEnumerable<string> thumbnailPaths)

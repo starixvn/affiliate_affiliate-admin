@@ -7,7 +7,7 @@
     ViewBag.Title = Lang.EditText;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
-@using (Html.BeginForm("EditText", "Media", FormMethod.Post, new { @class = "form-horizontal form-popup" }))
+@using (Html.BeginForm("EditText", "MediaText", FormMethod.Post, new { @class = "form-horizontal form-popup" }))
 {
     
     @Html.ValidationSummary()

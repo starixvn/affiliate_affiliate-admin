@@ -88,7 +88,7 @@
             if (ModelState.IsValid)
             {
                 string errorMessage;
-                var bannerStorage = BannerHelper.UploadBannerFile(model, out errorMessage);
+                var bannerStorage = BannerHelper.UploadFile(model, out errorMessage);
 
                 if (!string.IsNullOrEmpty(errorMessage))
                 {
@@ -174,7 +174,7 @@
             {
                 string errorMessage;
                 var bannerDetail = _mediaService.GetBannerDetail(new BannerDetailCriteria { BannerId = model.BannerId });
-                var bannerStorage = BannerHelper.UpdateBannerFile(model, bannerDetail, out errorMessage);
+                var bannerStorage = BannerHelper.UpdateFile(model, bannerDetail, out errorMessage);
 
                 if (!string.IsNullOrEmpty(errorMessage))
                 {
@@ -232,7 +232,7 @@
                 var contents = model.Contents.Split(',');
                 foreach (var content in contents)
                 {
-                    BannerHelper.DeleteBannerFile(content);
+                    BannerHelper.DeleteFile(content);
                 }
 
                 MediaSettings.RefreshBannerSizes();

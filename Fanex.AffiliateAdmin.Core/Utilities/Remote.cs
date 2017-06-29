@@ -20,53 +20,52 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
         /// <summary>
         /// Contains all operating system mapping.
         /// </summary>
-        private static IDictionary<string, string> _operatingSystemMapping = new Dictionary<string, string> 
-        { 
+        private static IDictionary<string, string> _operatingSystemMapping = new Dictionary<string, string>
+        {
                 { "Windows NT 6.1", "Windows 7" },
-                { "Windows NT 6.0", "Windows Vista" }, 
-                { "Windows NT 5.1", "Windows XP" }, 
-                { "Windows NT 5.0", "Windows 2000" }, 
-                { "Windows NT 4.1", "Windows 98" }, 
-                { "iPhone", "iOS" }, 
-                { "iPad", "iOS" }, 
-                { "iPod", "iOS" }, 
-                { "Mac OS", "Mac OS" }, 
-                { "BlackBerry", "BlackBerry" }, 
-                { "Android", "Android" }, 
-                { "Linux", "Linux" }, 
+                { "Windows NT 6.0", "Windows Vista" },
+                { "Windows NT 5.1", "Windows XP" },
+                { "Windows NT 5.0", "Windows 2000" },
+                { "Windows NT 4.1", "Windows 98" },
+                { "iPhone", "iOS" },
+                { "iPad", "iOS" },
+                { "iPod", "iOS" },
+                { "Mac OS", "Mac OS" },
+                { "BlackBerry", "BlackBerry" },
+                { "Android", "Android" },
+                { "Linux", "Linux" },
                 { "Ubuntu", "Ubuntu" }
         };
 
         /// <summary>
         /// Contains all device mapping.
         /// </summary>
-        private static IDictionary<string, string> _deviceMapping = new Dictionary<string, string> 
-        { 
-                { "iPhone", "iPhone" }, 
-                { "iPad", "iPad" }, 
-                { "iPod", "iPod" },  
-                { "BlackBerry", "BlackBerry" }, 
-                { "HTC", "HTC" }, 
-                { "Motorola", "Motorola" }, 
+        private static IDictionary<string, string> _deviceMapping = new Dictionary<string, string>
+        {
+                { "iPhone", "iPhone" },
+                { "iPad", "iPad" },
+                { "iPod", "iPod" },
+                { "BlackBerry", "BlackBerry" },
+                { "HTC", "HTC" },
+                { "Motorola", "Motorola" },
                 { "Nokia", "Nokia" }
         };
 
-        /// <summary>
-        /// Get client request IP address.
-        /// </summary>
-        /// <returns>Client IP address.</returns>
         public static string GetClientIPAddress()
         {
-            var request = HttpContext.Current.Request;
-            var ip = request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-            if (ip == null)
+            var context = HttpContext.Current;
+            string ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+            if (!string.IsNullOrEmpty(ipAddress))
             {
-                ip = request.UserHostAddress;
+                string[] addresses = ipAddress.Split(',');
+                if (addresses.Length != 0)
+                {
+                    return addresses[0];
+                }
             }
 
-            return ip.Equals("::1")
-                ? @"127.0.0.1"
-                : ip;
+            return context.Request.ServerVariables["REMOTE_ADDR"];
         }
 
         /// <summary>

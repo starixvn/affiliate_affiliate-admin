@@ -19,6 +19,30 @@
 
         return url;
     }
+
+    public static string GetStatus(string status)
+    {
+        switch (status.ToLower())
+        {
+            case "pending":
+                return Lang.Processing;
+
+            case "completed":
+                return Lang.Approved;
+
+            case "cancelled":
+                return Lang.Cancelled;
+
+            case "approved":
+                return Lang.Approved;
+
+            case "rejected":
+                return Lang.Rejected;
+
+            default:
+                return status;
+        }
+    }
 }
 
 @helper ListSubmenu(IEnumerable<Menu> list, int selectedMenuIndex, string activeMenu = "Home", int selectedSubMenuIndex = -1, bool isIncludeQueryString = false)

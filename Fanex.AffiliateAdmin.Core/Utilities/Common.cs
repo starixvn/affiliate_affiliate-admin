@@ -319,32 +319,5 @@
                 FormaterCurrency.Format(sampleValue * multipliedby, currencycode));
             return s.Append("</p>").ToString();
         }
-
-        /// <summary>
-        /// Get report information.
-        /// </summary>
-        /// <param name="reportType">Report type.</param>
-        /// <returns>Report information.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept this function")]
-        public static string GetReportInfo(ReportType reportType)
-        {
-            switch (reportType)
-            {
-                case ReportType.CompanyWinLoss:
-                    return string.Format(Lang.CompanyWinLossReportInfo, string.Empty);
-
-                case ReportType.MemberWinLoss:
-                    return string.Format(Lang.MemberWinLessReportInfo, string.Empty);
-
-                case ReportType.AffiliateWinLoss:
-                    return string.Format(Lang.AffiliateWinLossReportInfo, string.Empty);
-
-                case ReportType.AffiliateCommission:
-                    return Lang.AffiliateCommissionReportInfo;
-
-                default:
-                    return string.Empty;
-            }
-        }
     }
 }

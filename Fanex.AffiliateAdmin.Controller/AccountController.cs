@@ -50,8 +50,9 @@
         [CheckUMFilter]
         public ActionResult Login()
         {
-            if (AppSettings.IsProduction && !Regex.IsMatch(Request.UserHostAddress, AppSettings.GetValue("CompanyIPRange")))
+            if (AppSettings.IsProduction && !Regex.IsMatch(Remote.GetClientIPAddress(), AppSettings.GetValue("CompanyIPRange")))
             {
+                Logging.LogService.Info($"Access Denied: {AppSettings.SystemName}; IP: {Remote.GetClientIPAddress()}");
                 return Redirect("~/Notify/AccessDenied");
             }
             else
@@ -88,7 +89,7 @@
                 result.Success = result.ErrorCode == 0;
                 if (result.ErrorCode == 0 && user.CustID > 0)
                 {
-                    user.OnUserID = _accountService.CheckIn(new CheckInCriteria()
+                    user.OnUserID = _accountService.CheckIn(new CheckInCriteria
                     {
                         CustId = user.CustID,
                         IP = Remote.GetClientIPAddress(),
@@ -107,11 +108,6 @@
             }
 
             return Json(result);
-        }
-
-        private string CreateToken()
-        {
-            return Guid.NewGuid().ToString("N", CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -179,10 +175,6 @@
             return View(model);
         }
 
-        /// <summary>
-        /// Logout admin.
-        /// </summary>
-        /// <returns>Return login form.</returns>
         [CheckUMFilter]
         public ActionResult Logout()
         {
@@ -190,10 +182,6 @@
             return Redirect(FormsAuthentication.LoginUrl);
         }
 
-        /// <summary>
-        /// RecheckIn user.
-        /// </summary>
-        /// <returns>Kicked out or not.</returns>
         [HttpPost]
         [CheckUMFilter]
         public ActionResult ReCheckIn()
@@ -203,6 +191,11 @@
             KickedOutSession(result);
 
             return Json(result);
+        }
+
+        private string CreateToken()
+        {
+            return Guid.NewGuid().ToString("N", CultureInfo.CurrentCulture);
         }
 
         private string GetSalt(string userName)

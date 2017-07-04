@@ -137,13 +137,6 @@ marketing-tools
             RowHeight: rowHeight
         };
 
-        function base64EncodeUnicode(str) {
-            return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
-                function toSolidBytes(match, p1) {
-                    return String.fromCharCode('0x' + p1);
-                }));
-        }
-
         function rowHeight(rIndex, record) {
             return thumbnailHeight;
         }
@@ -153,7 +146,7 @@ marketing-tools
             var width = parseInt(size[0]);
             var height = parseInt(size[1]);
             var objectFormat = '';
-            var imgUrl = BANNER_URL + base64EncodeUnicode(record.Content);
+            var imgUrl = BANNER_URL + encodeURIComponent(record.Content);
 
             var heightRatio = thumbnailHeight / height;
             var widthRatio = thumbnailWidth / width;
@@ -167,7 +160,7 @@ marketing-tools
 
             if (record.ImageType == window.MSG.Image) {
                 if (record.Thumbnail) {
-                    var thumbnailUrl = BANNER_URL + base64EncodeUnicode(record.Thumbnail);
+                    var thumbnailUrl = BANNER_URL + encodeURIComponent(record.Thumbnail);
                     objectFormat = '<img style="cursor: pointer; max-width: 300px" src="{0}" alt="{1}" onclick="javascript:BannerList.viewImage(this, {2}, {3});" title="{4}" />';
                     return objectFormat.format(thumbnailUrl, imgUrl, width, height, "@Lang.ViewOriginalSize");
                 } else {

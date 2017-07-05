@@ -46,3 +46,19 @@
 {
     background-color: #B2DFEF;
 }
+
+.note-block {
+    margin-top: 5px;
+}
+
+.note-content {
+    font-weight: bold;
+}
+
+.asterisk {
+    color: red;
+}
+
+.note-block p {
+    margin: 0;
+}

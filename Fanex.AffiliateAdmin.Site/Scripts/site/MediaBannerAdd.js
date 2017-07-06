@@ -34,6 +34,10 @@ var BannerAdd = (function ($) {
                 inputs.prop('disabled', false);
                 $('#btnUpdate, #btnCancel').prop('disabled', true);
             });
+
+            $("#FileName").blur(function () {
+                this.value = this.value.replace(/\s/g, '');
+            });
         },
         validateFileSize: function () {
             var maxFileSize = parseInt(window.MSG.MaxFileSize, 10);
@@ -63,11 +67,9 @@ var BannerAdd = (function ($) {
         },
         getSubCategories: function (category, isShowAll) {
             $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Media/SubCategories"),
+                url: AFFILIATE.getAbsoluteUrl("MediaBanner/SubCategories"),
                 type: 'post',
                 data: { category: category, isShowAll: isShowAll },
-                beforeSend: function () {
-                },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
                     if (data.length > 0) {
@@ -76,15 +78,13 @@ var BannerAdd = (function ($) {
                     } else {
                         $('#divSubCategories').hide().html('');
                     }
-                },
-                complete: function () {
                 }
             });
         },
         validateFileExtension: function (fileElement) {
             var fullFilename = $(fileElement).val();
             var temp = fullFilename.split("\\");
-            var fileName = temp[temp.length - 1];
+            var fileName = temp[temp.length - 1].replace(/\s/g, '');
 
             if (fileName !== "") {
                 var ext = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length).toLowerCase();

@@ -68,18 +68,15 @@
             {
                 if (string.IsNullOrEmpty(_bannerFolder))
                 {
-                    // get category name
                     string subCategoryName, affTypeName;
                     string categoryName = subCategoryName = affTypeName = string.Empty;
 
-                    // get sub category name.
                     var categoryEntity = MediaSettings.BannerCategories.FirstOrDefault(x => x.TypeId == Category);
                     if (categoryEntity != null)
                     {
                         categoryName = categoryEntity.Value;
                     }
 
-                    // get sub category name.
                     var subCategories = _mediaSettingService.GetBannerSubCategories(Category);
                     var subCategoryEntity =
                         subCategories.FirstOrDefault(x => SubCategory != null && x.TypeId == SubCategory.Value);
@@ -89,7 +86,6 @@
                         subCategoryName = SubCategory != null ? subCategoryEntity.Value : string.Empty;
                     }
 
-                    // get affiliate type name.
                     var firstAffType = AppSettings.AffTypes.FirstOrDefault(x => x.TypeID == AffType);
 
                     if (firstAffType != null)

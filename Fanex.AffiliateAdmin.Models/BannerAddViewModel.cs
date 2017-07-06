@@ -41,7 +41,7 @@
         public short ImageType { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrmsgFileNameEmpty")]
-        [RegularExpression(@"^([a-zA-Z0-9-_. ]+)$", ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "InvalidFileName")]
+        [RegularExpression(@"^([a-zA-Z0-9-_.]+)$", ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "InvalidFileName")]
         [Display(Name = "filename", ResourceType = typeof(Lang))]
         public string FileName { get; set; }
 

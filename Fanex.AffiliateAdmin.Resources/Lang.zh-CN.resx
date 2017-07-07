@@ -2250,7 +2250,7 @@
     <value>无效国家</value>
   </data>
   <data name="InvalidFileName" xml:space="preserve">
-    <value>文件名只接受字母数字, 连接线(-),底线(_),句点(.)和空格</value>
+    <value>档案名称只能接受字母数字，连字符（ - ），下划线（_）和点（.）。</value>
   </data>
   <data name="InvalidID" xml:space="preserve">
     <value>无效ID</value>

@@ -78,7 +78,7 @@
                 AddFunctionMenu(menuList, FunctionPolicyNames.AffReport, "Reports", "~/Report");
             }
 
-            AddFunctionMenu(menuList, FunctionPolicyNames.Media, "MarketingTools", "~/Media/BannerList");
+            AddFunctionMenu(menuList, FunctionPolicyNames.Media, "MarketingTools", "~/MediaBanner");
             AddFunctionMenu(menuList, FunctionPolicyNames.HotNews, "Message", "~/Message");
 
             if (IsIT || CurrencyList.Any())

@@ -3583,7 +3583,7 @@
     <Content Include="Scripts\libraries\monpickr.js" />
     <Content Include="Scripts\libraries\placeholder_fixer.js" />
     <Content Include="Scripts\libraries\ui.dropdownchecklist.js" />
-    <Content Include="Scripts\site\BannerAdd.js" />
+    <Content Include="Scripts\site\MediaBannerAdd.js" />
     <Content Include="Scripts\site\BetList.js" />
     <Content Include="Scripts\site\CloseDialog.js" />
     <Content Include="Scripts\site\Adjustment.js" />
@@ -3591,7 +3591,7 @@
     <Content Include="Scripts\site\AffiliateInfo.js" />
     <Content Include="Scripts\site\AffiliateList.js" />
     <Content Include="Scripts\site\AffiliateStatistic.js" />
-    <Content Include="Scripts\site\BannerList.js" />
+    <Content Include="Scripts\site\MediaBannerList.js" />
     <Content Include="Scripts\site\Configuration.js" />
     <Content Include="Scripts\site\AffType.js" />
     <Content Include="Scripts\libraries\jquery.mtz.monthpicker.seph.custom.js" />
@@ -3635,7 +3635,7 @@
     <Content Include="Scripts\libraries\moment.js" />
     <Content Include="Scripts\libraries\numeral.js" />
     <Content Include="Scripts\site\GroupManagement.js" />
-    <Content Include="Scripts\site\TextList.js" />
+    <Content Include="Scripts\site\MediaText.js" />
     <Content Include="Scripts\site\GroupPolicy.js" />
     <Content Include="Scripts\site\UserManagement.js" />
     <Content Include="Scripts\site\Message.js" />
@@ -3657,10 +3657,10 @@
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Message\AddMessage.cshtml" />
     <Content Include="Views\Message\EditMessage.cshtml" />
-    <Content Include="Views\Media\BannerList.cshtml" />
-    <Content Include="Views\Media\TextList.cshtml" />
-    <Content Include="Views\Media\AddBanner.cshtml" />
-    <Content Include="Views\Media\SubCategories.cshtml" />
+    <Content Include="Views\MediaBanner\Index.cshtml" />
+    <Content Include="Views\MediaText\Index.cshtml" />
+    <Content Include="Views\MediaBanner\AddBanner.cshtml" />
+    <Content Include="Views\MediaBanner\SubCategories.cshtml" />
     <Content Include="Views\Management\AddGroup.cshtml" />
     <Content Include="Views\Management\ChangePolicyGroup.cshtml" />
     <Content Include="Views\Management\EditGroup.cshtml" />
@@ -3671,13 +3671,13 @@
     <Content Include="Content\themes\Default\commgroup.less" />
     <Content Include="Content\_Sites\itcbet\Notify.less" />
     <Content Include="Views\Exchange\UpdateExRate.cshtml" />
-    <Content Include="Views\Media\AddText.cshtml" />
-    <Content Include="Views\Media\EditText.cshtml" />
+    <Content Include="Views\MediaText\AddText.cshtml" />
+    <Content Include="Views\MediaText\EditText.cshtml" />
     <Content Include="Views\AffiliateInfo\Index.cshtml" />
     <Content Include="Views\AffiliateInfo\_Info.cshtml" />
     <Content Include="Views\AffiliateInfo\_Statistic.cshtml" />
     <Content Include="Views\AffiliateInfo\_Commission.cshtml" />
-    <Content Include="Views\Media\EditBanner.cshtml" />
+    <Content Include="Views\MediaBanner\EditBanner.cshtml" />
     <None Include=".jshintignore" />
     <Content Include="Content\_Sites\aoncash\Login.less" />
     <Content Include="Content\_Sites\aoncash\Notify.less" />
@@ -4468,7 +4468,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

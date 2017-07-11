@@ -141,8 +141,8 @@
                 {
                     TransId = model.TransId,
                     Status = model.Status,
-                    AdminRemark = Common.CutLongText(model.AdminRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
-                    AffRemark = Common.CutLongText(model.AffRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
+                    AdminRemark = CutLongText(model.AdminRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
+                    AffRemark = CutLongText(model.AffRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
                     PreferredLanguage = paymentDetail.PreferredLanguage,
                     UserId = SessionManager.CurrentSession.CustID,
                     IP = Remote.GetClientIPAddress()
@@ -182,6 +182,16 @@
         }
 
         #region Helpers
+
+        private static string CutLongText(string strText, int maxLength)
+        {
+            if (strText.Length <= maxLength - 3)
+            {
+                return strText;
+            }
+
+            return strText.Substring(0, maxLength - 3) + "...";
+        }
 
         /// <summary>
         /// Determines whether [is exist licensee customer information] [the specified site name].

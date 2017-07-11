@@ -4257,7 +4257,7 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File name only accept the alphanumeric characters, hyphen(-), undercore(_), dot(.) and space..
+        ///   Looks up a localized string similar to File name only accept the alphanumeric characters, hyphen(-), undercore(_) and dot(.)..
         /// </summary>
         public static string InvalidFileName {
             get {

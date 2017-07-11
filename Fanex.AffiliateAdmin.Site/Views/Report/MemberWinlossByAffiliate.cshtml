@@ -47,7 +47,7 @@
     </div>
 }
 <div class="search-panel search-company-winloss no-border">
-    @RazorHelper.SearchPanel(".search-form", Common.GetReportInfo(ReportType.MemberWinLoss), false, true)
+    @RazorHelper.SearchPanel(".search-form", string.Format(Lang.MemberWinLessReportInfo, string.Empty), false, true)
     @using (Html.BeginForm("MemberWinloss", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
     {            
         <div class="span12 search-form">

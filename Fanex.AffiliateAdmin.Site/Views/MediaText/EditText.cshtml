@@ -2,15 +2,17 @@
 @using Fanex.AffiliateAdmin.Models
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Services.Impl
-@model TextAddViewModel
+@model TextEditViewModel
 @{
-    ViewBag.Title = Lang.AddText;
+    ViewBag.Title = Lang.EditText;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
-@using (Html.BeginForm("AddText", "Media", FormMethod.Post, new { @class = "form-horizontal form-popup" }))
+@using (Html.BeginForm("EditText", "MediaText", FormMethod.Post, new { @class = "form-horizontal form-popup" }))
 {
+    
     @Html.ValidationSummary()
     <div class="popup-content">
+        @Html.HiddenFor(m => m.BannerId)
         <div class="control-group">
             @Html.LabelFor(m => m.Content, new { @class = "control-label" })
             <div class="controls">
@@ -21,14 +23,14 @@
         <div class="control-group">
             @Html.LabelFor(m => m.Category, new { @class = "control-label" })
             <div class="controls">
-                @Html.DropDownListFor(m => m.Category, Model.BannerCategoryOptionList, new { @class = "dropdownchecklist single-select" })
+                @Html.DropDownListFor(m => m.Category, Model.BannerCategoryOptionList, new { @class = "width-140 dropdownchecklist single-select" })
                 <span class="required">*</span>
             </div>
         </div>
         <div class="control-group">
             @Html.LabelFor(m => m.Language, new { @class = "control-label" })
             <div class="controls">
-                @Html.DropDownListFor(m => m.Language, Model.MemberSiteSupportedLanguageOptionList, new { @class = "dropdownchecklist single-select" })
+                @Html.DropDownListFor(m => m.Language, Model.MemberSiteSupportedLanguageOptionList, new { @class = "width-140 dropdownchecklist single-select" })
             </div>
         </div>
         <div class="control-group">
@@ -42,14 +44,14 @@
     <div class="popup-footer">
         <div class="control-group">
             <div class="controls">
-                <button type="submit" id="btnUpdate" class="btn">@Lang.Add</button>
+                <button type="submit" id="btnUpdate" class="btn">@Lang.Update</button>
                 <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
             </div>
         </div>
     </div>
 }
 @section scripts{
-    @Scripts.Render("~/scripts/textlist")
+    @Scripts.Render("~/scripts/mediatext")
     @if (ViewBag.Result != null)
     {
         var result = (ResultViewModel)ViewBag.Result;

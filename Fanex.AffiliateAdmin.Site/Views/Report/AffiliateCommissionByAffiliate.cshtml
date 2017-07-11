@@ -40,7 +40,6 @@ report
 }
 
 @using Fanex.AffiliateAdmin.Core.Configurations
-@using Fanex.AffiliateAdmin.Core.Enumerations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.Services
@@ -48,7 +47,7 @@ report
 <div class="search-panel search-company-winloss" style="min-width: 800px" >
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
-    @RazorHelper.SearchPanel("#SearchForm .search-form", Common.GetReportInfo(ReportType.AffiliateWinLoss), false, true)
+    @RazorHelper.SearchPanel("#SearchForm .search-form", Lang.AffiliateCommissionReportInfo, false, true)
     @using (Html.BeginForm("AffiliateWinLossByAffiliate", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
     {
         <div class="span12 search-form  end-search">

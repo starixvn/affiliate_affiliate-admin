@@ -7,16 +7,8 @@
     using DTO;
     using Fanex.AffiliateAdmin.Resources;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
-    public class MediaService : QueryService, IMediaService
+    public class MediaBannerService : QueryService, IMediaBannerService
     {
-        /// <summary>
-        /// Get Banners.
-        /// </summary>
-        /// <param name="criteria">Banner Criteria.</param>
-        /// <returns>Banner List.</returns>
         public IEnumerable<Banner> GetBanners(BannerListCriteria criteria)
         {
             var result = GetDataOutput<Banner>(criteria);

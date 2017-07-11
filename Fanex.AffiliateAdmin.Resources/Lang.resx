@@ -1341,7 +1341,7 @@
     <value>Invalid Country</value>
   </data>
   <data name="InvalidFileName" xml:space="preserve">
-    <value>File name only accept the alphanumeric characters, hyphen(-), undercore(_), dot(.) and space.</value>
+    <value>File name only accept the alphanumeric characters, hyphen(-), undercore(_) and dot(.).</value>
   </data>
   <data name="InvalidID" xml:space="preserve">
     <value>Invalid ID</value>

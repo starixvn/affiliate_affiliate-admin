@@ -2251,7 +2251,7 @@
     <value>無效國家</value>
   </data>
   <data name="InvalidFileName" xml:space="preserve">
-    <value>檔案名只接受字母數位, 連接線(-),底線(_),句點(.)和空格</value>
+    <value>檔案名稱只能接受字母數字，連字號（ - ），下劃線（_）和點（.）。</value>
   </data>
   <data name="InvalidID" xml:space="preserve">
     <value>無效ID</value>

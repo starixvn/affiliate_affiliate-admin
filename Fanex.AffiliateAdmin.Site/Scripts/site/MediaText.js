@@ -35,7 +35,7 @@ var TextList = (function ($) {
             submitOptions = $('form').serializeObject();
 
             $.ajax({
-                url: AFFILIATE.getAbsoluteUrl("Media/TextDataList"),
+                url: AFFILIATE.getAbsoluteUrl("MediaText/DataList"),
                 type: 'post',
                 data: jQuery.param(submitOptions) + "&pageIndex=" + (currentPage + 1) + "&pageSize=" + itemsPerPage,
                 beforeSend: function () {
@@ -52,11 +52,11 @@ var TextList = (function ($) {
             });
         },
         addText: function () {
-            AFFILIATE.openDialogFrame("Media/AddText", MSG.AddText, { width: 580, height: 420 });
+            AFFILIATE.openDialogFrame("MediaText/AddText", MSG.AddText, { width: 580, height: 420 });
         },
 
         editText: function (textId) {
-            AFFILIATE.openDialogFrame("Media/EditText/" + textId, MSG.EditText, { width: 580, height: 400 });
+            AFFILIATE.openDialogFrame("MediaText/EditText/" + textId, MSG.EditText, { width: 580, height: 400 });
         },
 
         deleteText: function (id, totalRequest) {
@@ -73,7 +73,7 @@ var TextList = (function ($) {
                     var param = { bannerIds: id };
 
                     $.ajax({
-                        url: AFFILIATE.getAbsoluteUrl("Media/DeleteText"),
+                        url: AFFILIATE.getAbsoluteUrl("MediaText/DeleteText"),
                         type: 'post',
                         data: param,
                         success: function (result) {

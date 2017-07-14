@@ -16,14 +16,6 @@
     "FuncName": "[CommissionGroup]"
   },
   {
-    "FuncID": 12,
-    "FuncName": "[Country]"
-  },
-  {
-    "FuncID": 11,
-    "FuncName": "[Domain]"
-  },
-  {
     "FuncID": 6,
     "FuncName": "[HotNews]"
   },
@@ -34,21 +26,6 @@
   {
     "FuncID": 3,
     "FuncName": "[Payment]"
-  },
-  {
-    "FuncID": 9,
-    "FuncName": "[Resources]"
-  },
-  {
-    "FuncID": 10,
-    "FuncName": "[SystemSettings]"
-  },
-  {
-    "FuncID": 1,
-    "FuncName": "[UserControl]"
-  },
-  {
-    "FuncID": 13,
-    "FuncName": "[MonthlyTransfer]"
   }
+  
 ]

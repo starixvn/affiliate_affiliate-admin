@@ -63,13 +63,13 @@
         private IEnumerable<FunctionMenu> CreateFunctionMenus()
         {
             var menuList = new List<FunctionMenu>();
-            menuList.Add(new FunctionMenu()
+            menuList.Add(new FunctionMenu
             {
                 Name = "Home",
                 Link = "~/"
             });
 
-            if (_policyList.Any() == false)
+            if (!_policyList.Any())
             {
                 return menuList;
             }
@@ -81,19 +81,20 @@
                 AddFunctionMenu(menuList, FunctionPolicyNames.Payment, "Payment", "~/Payment");
                 AddFunctionMenu(menuList, FunctionPolicyNames.CommissionGroup, "CommissionGroup", "~/CommGroup");
                 AddFunctionMenu(menuList, FunctionPolicyNames.AffReport, "Reports", "~/Report");
+                AddFunctionMenu(menuList, FunctionPolicyNames.AffExchangeRate, "Currency", "~/Exchange");
+
             }
 
             AddFunctionMenu(menuList, FunctionPolicyNames.Media, "MarketingTools", "~/MediaBanner");
             AddFunctionMenu(menuList, FunctionPolicyNames.HotNews, "Message", "~/Message");
-
-            if (IsIT || CurrencyList.Any())
-            {
-                AddFunctionMenu(menuList, FunctionPolicyNames.AffExchangeRate, "Currency", "~/Exchange");
-            }
-
-            AddFunctionMenu(menuList, FunctionPolicyNames.SystemSettings, "Configurations", "~/Configuration");
-            AddFunctionMenu(menuList, FunctionPolicyNames.Domain, "Domain", "~/Domain/AffDomain");
             AddFunctionMenu(menuList, FunctionPolicyNames.UserControl, "UserManagement", "~/Management/Users");
+
+            if (IsIT)
+            {
+                AddFunctionMenu(menuList, FunctionPolicyNames.SystemSettings, "Configurations", "~/Configuration");
+                AddFunctionMenu(menuList, FunctionPolicyNames.Domain, "Domain", "~/Domain/AffDomain");
+
+            }
 
             return menuList;
         }
@@ -102,7 +103,7 @@
         {
             if (HasReadPolicy(functionName))
             {
-                menus.Add(new FunctionMenu()
+                menus.Add(new FunctionMenu
                 {
                     Name = name,
                     Link = link

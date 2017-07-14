@@ -251,7 +251,6 @@
     <Compile Include="GetDefaultPSPExchangeCriteria.cs" />
     <Compile Include="TestWebServiceCriteria.cs" />
     <Compile Include="CustomerSelByUserNameCriteria.cs" />
-    <Compile Include="MonthlyTransferCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AffiliateCommissionCriteria.cs" />
     <Compile Include="FavoriteCriteria.cs" />
     <Compile Include="CountryCriteria.cs" />

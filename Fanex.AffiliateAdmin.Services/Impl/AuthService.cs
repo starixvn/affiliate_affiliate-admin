@@ -176,7 +176,7 @@
 
             return token.IsAdminstrator ?
                 allCurrencies :
-                allCurrencies.Where(x => token.Currency.Any(y => y.Currency.Equals(x.CurrencyCode, StringComparison.OrdinalIgnoreCase))).ToList();
+                allCurrencies.Where(x => token.Currency.Any(y => y.CurrencyId == x.OriginalCurrencyID)).ToList();
         }
 
         private IEnumerable<FunctionPolicy> GetPolicyList(OneAuthToken token)

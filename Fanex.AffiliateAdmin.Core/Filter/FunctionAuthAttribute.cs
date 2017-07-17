@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
+    using Configurations;
     using Enumerations;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Resources;
@@ -40,6 +41,11 @@
                 {
                     hasPermission = currentSession.CurrencyList.Any();
                 }
+
+                if (!currentSession.IsIT && Function == FunctionPolicyNames.UserControl)
+                {
+                    hasPermission = false;
+                }
             }
 
             if (!hasPermission)
@@ -47,7 +53,7 @@
                 if (filterContext.HttpContext.Request.IsAjaxRequest())
                 {
                     var data = new { ErrorCode = AccessDeniedErrorCode, Message = ErrorMsg.Msg500 };
-                    filterContext.Result = new JsonResult() { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                    filterContext.Result = new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 }
                 else
                 {

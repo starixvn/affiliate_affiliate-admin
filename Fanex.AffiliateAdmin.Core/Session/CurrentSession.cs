@@ -87,12 +87,12 @@
 
             AddFunctionMenu(menuList, FunctionPolicyNames.Media, "MarketingTools", "~/MediaBanner");
             AddFunctionMenu(menuList, FunctionPolicyNames.HotNews, "Message", "~/Message");
-            AddFunctionMenu(menuList, FunctionPolicyNames.UserControl, "UserManagement", "~/Management/Users");
 
             if (IsIT)
             {
                 AddFunctionMenu(menuList, FunctionPolicyNames.SystemSettings, "Configurations", "~/Configuration");
                 AddFunctionMenu(menuList, FunctionPolicyNames.Domain, "Domain", "~/Domain/AffDomain");
+                AddFunctionMenu(menuList, FunctionPolicyNames.UserControl, "UserManagement", "~/Management/Users");
 
             }
 

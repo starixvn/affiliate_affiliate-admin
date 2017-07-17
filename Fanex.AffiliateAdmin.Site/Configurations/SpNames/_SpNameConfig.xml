@@ -2,5 +2,65 @@
 <Root>
   <item LicenseeName="spondemo" Environment="SIT" SpName="test" Suffix="_xtest"></item>
 
-  
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffiliateUpdInfo" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffiliateUpdStatus" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CommGroupAssign" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CommGroupIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CommGroupUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CopyRateFromMarket" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_MemberDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="Task_Aff_MonthlyTransfer" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_NoteUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_UpdAffType" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_NoteDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CommGroupDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_PreferLangUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_NoteIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_DomainControlUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CountryDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_LanguageIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AdjustmentIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_ProductIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_ExchangeUpdate" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffTypeIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_ProductDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_DomainAffDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffTypeUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_EmailHistoryDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_DomainAffIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CountryIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_DomainMemIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_HotNewsUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_PaymentRequestUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_ProductUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_DomainControlDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CountryUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_DomainControlIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_SystemSettingsDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffiliateUpdAccountType" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_SystemSettingsUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffiliateUpdPwd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_DomainMemUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_LanguageDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_DomainAffUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_SystemSettingsIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_ExchangeAutoRefreshUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_DomainMemDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffiliateUnlock" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_LanguageUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_HotNewsDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffTypeDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_HotNewsIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="Aff_User_AffiliateUpdInfo" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_BannerIns" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AccountUpdPwd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_Con_AccountUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="Aff_User_PaymentRequestUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_BannerUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_BannerDel" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffiliateUpdClosedStatus" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="Aff_CommGroupAssign" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_Con_GroupPolicyUpd" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_Con_AccountUpdClosed" Suffix="_xtest"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_Con_PolicyUpd" Suffix="_xtest"></item>
 </Root>

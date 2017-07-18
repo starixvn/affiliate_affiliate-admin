@@ -53,31 +53,31 @@ else
     var span = 4 * count;
                     <tr>
                         <th colspan="@span" class="l">
-                            <span class="ico-home-banner"></span>@Lang.BannerStatc (@Html.Raw(string.Format(Lang.NumBannerInProgram, @Html.ActionLink(Model.BannerNum.ToString(), "BannerList", "Media"))))
+                            <span class="ico-home-banner"></span>@Lang.BannerStatc (@Html.Raw(string.Format(Lang.NumBannerInProgram, @Html.ActionLink(Model.BannerNum.ToString(), "Index", "MediaBanner"))))
                         </th>
                     </tr>
                     <tr>
                         <td>@Lang.NormalImageBanner
                         </td>
                         <td>
-                            <strong>@Html.ActionLink(Model.ImageBannerNum.ToString(), "BannerList", "Media", new { ImageType = 1, AffType = 1 }, new { })</strong>
+                            <strong>@Html.ActionLink(Model.ImageBannerNum.ToString(), "Index", "MediaBanner", new { ImageType = 1, AffType = 1 }, new { })</strong>
                         </td>
                         <td>@Lang.NormalFlashBanner
                         </td>
                         <td>
-                            <strong>@Html.ActionLink(Model.FlashBannerNum.ToString(), "BannerList", "Media", new { ImageType = 2, AffType = 1 }, new { })</strong>
+                            <strong>@Html.ActionLink(Model.FlashBannerNum.ToString(), "Index", "MediaBanner", new { ImageType = 2, AffType = 1 }, new { })</strong>
                         </td>
                         @if (count == 2)
                         {
                             <td>@Lang.KioskImageBanner
                             </td>
                             <td>
-                                <strong>@Html.ActionLink(Model.KioskImageBannerNum.ToString(), "BannerList", "Media", new { ImageType = 1, AffType = 3 }, new { })</strong>
+                                <strong>@Html.ActionLink(Model.KioskImageBannerNum.ToString(), "Index", "MediaBanner", new { ImageType = 1, AffType = 3 }, new { })</strong>
                             </td>
                             <td>@Lang.KioskFlashBanner
                             </td>
                             <td>
-                                <strong>@Html.ActionLink(Model.KioskFlashBannerNum.ToString(), "BannerList", "Media", new { ImageType = 2, AffType = 3 }, new { })</strong>
+                                <strong>@Html.ActionLink(Model.KioskFlashBannerNum.ToString(), "Index", "MediaBanner", new { ImageType = 2, AffType = 3 }, new { })</strong>
                             </td>
                         }
                     </tr>

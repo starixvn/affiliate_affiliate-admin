@@ -7,7 +7,7 @@
     var dateFormat = "MM/dd/yyyy";
 }
 
-@using (Html.BeginForm("AddBanner", "Media", FormMethod.Post, new {id = "ActionBannerForm", @class = "form-horizontal form-popup", enctype = "multipart/form-data"}))
+@using (Html.BeginForm("AddBanner", "MediaBanner", FormMethod.Post, new {id = "ActionBannerForm", @class = "form-horizontal form-popup", enctype = "multipart/form-data"}))
 {
     if (Model != null && !string.IsNullOrEmpty(Model.UserName))
     {

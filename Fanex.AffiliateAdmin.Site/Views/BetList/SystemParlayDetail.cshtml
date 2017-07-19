@@ -8,6 +8,13 @@
     @Styles.Render("~/css/systemparlaydetails")
 </head>
 <body>
-    @Html.Raw(ViewBag.Data)
+    <div class="content-data">
+        @Html.Raw(ViewBag.Data)
+    </div>
+
+    <div class="note-block">
+        <p class="note-content"><span class="asterisk">* </span><span class="note-title">@Lang.Note2</span></p>
+        <p class="text-content">@Lang.SystemParlayDetailNote</p>
+    </div>
 </body>
 </html>

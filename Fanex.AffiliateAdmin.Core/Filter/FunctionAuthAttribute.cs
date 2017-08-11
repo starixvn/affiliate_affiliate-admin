@@ -41,11 +41,7 @@
                 {
                     hasPermission = currentSession.CurrencyList.Any();
                 }
-
-                if (!currentSession.IsIT && Function == FunctionPolicyNames.UserControl)
-                {
-                    hasPermission = false;
-                }
+                
             }
 
             if (!hasPermission)

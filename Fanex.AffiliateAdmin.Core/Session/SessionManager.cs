@@ -1,6 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Session
 {
+    using System.Runtime.Serialization;
     using System.Web;
+    using Logging;
 
     /// <summary>
     /// Session Manager.
@@ -16,7 +18,16 @@
         {
             get
             {
-                return (ICurrentSession)HttpContext.Current.Session[_AffiliateCurrentSessionKey];
+                try
+                {
+                    return (ICurrentSession)HttpContext.Current.Session[_AffiliateCurrentSessionKey];
+                }
+                catch (SerializationException exception)
+                {
+                    LogService.Info("Session Error: " + exception.Message);
+                }
+
+                return null;
             }
 
             set

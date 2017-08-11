@@ -193,6 +193,7 @@
     <Compile Include="Impl\AccountService.cs" />
     <Compile Include="Impl\AdjustmentService.cs" />
     <Compile Include="Impl\AffiliateService.cs" />
+    <Compile Include="Impl\AuthService.cs" />
     <Compile Include="Impl\CommGroupService.cs" />
     <Compile Include="Impl\BetListService.cs" />
     <Compile Include="Impl\Core\OneAuthenticationService.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="Impl\TransTypeService.cs" />
     <Compile Include="Impl\ViewLogService.cs" />
     <Compile Include="Interfaces\IMediaTextService.cs" />
+    <Compile Include="Interfaces\IAuthService.cs" />
     <Compile Include="Interfaces\IOneAuthenticationService.cs" />
     <Compile Include="Interfaces\IOneBookSecurityWrapper.cs" />
     <Compile Include="Interfaces\IProductService.cs" />

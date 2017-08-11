@@ -1,9 +1,9 @@
-﻿namespace Fanex.AffiliateAdmin.DTO.Common
+﻿namespace Fanex.AffiliateAdmin.DTO.OneAuth
 {
     using System;
 
     [Serializable]
-    public class OneAuthenticationToken
+    public class OneAuthToken
     {
         public int UserSEQ { get; set; }
 
@@ -16,5 +16,11 @@
         public string ActionLink { get; set; }
 
         public string SiteName { get; set; }
+
+        public bool IsAdminstrator { get; set; }
+
+        public OneAuthCurrency[] Currency { get; set; }
+
+        public OneAuthPermission[] Permissions { get; set; }
     }
 }

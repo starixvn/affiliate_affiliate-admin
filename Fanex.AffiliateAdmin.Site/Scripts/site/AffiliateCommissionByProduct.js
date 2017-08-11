@@ -522,14 +522,6 @@ var AffiliateCommissionByProduct = (function ($) {
                     $.unblockUI();
                 }
             });
-        },
-
-        showCommGroup: function (groupId) {
-            var param = {
-                groupid: groupId
-            };
-            parent.AFFILIATE.openDialogFrame(AFFILIATE.getAbsoluteUrl("CommGroup/ViewSetting?")
-                + $.param(param), window.MSG.CommissionGroup, { width: 1000, height: 450 });
         }
     };
 })(jQuery);

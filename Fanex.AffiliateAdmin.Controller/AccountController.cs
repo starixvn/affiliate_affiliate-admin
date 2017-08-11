@@ -21,17 +21,20 @@
 
     public class AccountController : Controller
     {
+        private readonly IAuthService _authService;
+
         private readonly IAccountService _accountService;
 
         public AccountController()
-            : this(null)
+            : this(null, null)
         {
             var langManager = new LanguageManager();
             langManager.SetCulture(AppSession.Language);
         }
 
-        public AccountController(IAccountService accountService)
+        public AccountController(IAuthService authService, IAccountService accountService)
         {
+            _authService = authService ?? new AuthService();
             _accountService = accountService ?? new AccountService();
         }
 
@@ -62,12 +65,6 @@
             }
         }
 
-        /// <summary>
-        /// Login user.
-        /// </summary>
-        /// <param name="username">Username login.</param>
-        /// <param name="password">Password login.</param>
-        /// <returns>Return Result view model.</returns>
         [HttpPost]
         [CheckUMFilter]
         public ActionResult Login(string username, string password, string logInToken)
@@ -85,11 +82,11 @@
                     LoginDomain = Request.UserHostName,
                 };
 
-                result = _accountService.Login(criteria, out user, logInToken);
+                result = _authService.Login(criteria, out user, logInToken);
                 result.Success = result.ErrorCode == 0;
                 if (result.ErrorCode == 0 && user.CustID > 0)
                 {
-                    user.OnUserID = _accountService.CheckIn(new CheckInCriteria
+                    user.OnUserID = _authService.CheckIn(new CheckInCriteria
                     {
                         CustId = user.CustID,
                         IP = Remote.GetClientIPAddress(),
@@ -98,7 +95,7 @@
                     });
                     AffiliateInfoCookieHelper.DeleteAffiliate(HttpContext);
                     FormsAuthentication.SetAuthCookie(username, false);
-                    SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
+                    SessionManager.CurrentSession = _authService.CreateInternalSession(user, AppSettings.LicenseeID);
                 }
                 else
                 {
@@ -110,11 +107,6 @@
             return Json(result);
         }
 
-        /// <summary>
-        /// Get User Salt.
-        /// </summary>
-        /// <param name="userName">User name value.</param>
-        /// <returns>String value.</returns>
         [HttpGet]
         [CheckUMFilter]
         public string GetUserSalt(string userName)
@@ -122,10 +114,6 @@
             return GetSalt(userName);
         }
 
-        /// <summary>
-        /// Change password.
-        /// </summary>
-        /// <returns>Return change password form.</returns>
         [HttpGet]
         [CheckUMFilter]
         [Authorization]
@@ -135,11 +123,6 @@
             return View(new AccountPasswordViewModel());
         }
 
-        /// <summary>
-        /// Change password.
-        /// </summary>
-        /// <param name="model">Input parameter.</param>
-        /// <returns>Return change password form.</returns>
         [HttpPost]
         [CheckUMFilter]
         [Authorization]
@@ -193,14 +176,26 @@
             return Json(result);
         }
 
-        private string CreateToken()
+        private static ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
         {
-            return Guid.NewGuid().ToString("N", CultureInfo.CurrentCulture);
+            return new ResultViewModel
+            {
+                ErrorCode = errCode,
+                Message = errCode == 0 ?
+                    (string.IsNullOrEmpty(messageSuccess) ? Lang.UpdateSucc : messageSuccess) :
+                    (string.IsNullOrEmpty(errorMessage) ? GetErrorMessage(errCode) : errorMessage),
+                Success = errCode == 0
+            };
+        }
+
+        private static string GetErrorMessage(int errCode)
+        {
+            return ErrorMsg.ResourceManager.GetString("Msg" + errCode);
         }
 
         private string GetSalt(string userName)
         {
-            var user = _accountService.GetByUsername(userName);
+            var user = _authService.GetByUsername(userName);
             if (user != null)
             {
                 return user.UserSalt;
@@ -209,10 +204,6 @@
             return string.Empty;
         }
 
-        /// <summary>
-        /// Kicked out session.
-        /// </summary>
-        /// <param name="result">Kick-out result.</param>
         private void KickedOutSession(ResultViewModel result)
         {
             var criteria = new ReCheckInCriteria
@@ -220,7 +211,7 @@
                 OnUserID = SessionManager.CurrentSession == null ? 0 : SessionManager.CurrentSession.OnUserID
             };
 
-            var isKickedOut = _accountService.ReCheckIn(criteria);
+            var isKickedOut = _authService.ReCheckIn(criteria);
 
             if (!AppSettings.LocalTest)
             {
@@ -230,20 +221,16 @@
                     result.Success = isKickedOut;
                     result.ErrorMessage = "Expired";
 
-                    // Signout and clean all session.
                     DoLogOut();
                 }
             }
         }
 
-        /// <summary>
-        /// Sign out and clear all session.
-        /// </summary>
         private void DoLogOut()
         {
             if (SessionManager.CurrentSession != null)
             {
-                _accountService.UserLogOut(new LogOutCriteria
+                _authService.LogOut(new LogOutCriteria
                 {
                     OnUserId = SessionManager.CurrentSession.OnUserID
                 });
@@ -258,21 +245,9 @@
             }
         }
 
-        private ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
+        private string CreateToken()
         {
-            return new ResultViewModel
-            {
-                ErrorCode = errCode,
-                Message = errCode == 0 ?
-                    (string.IsNullOrEmpty(messageSuccess) ? Lang.UpdateSucc : messageSuccess) :
-                    (string.IsNullOrEmpty(errorMessage) ? GetErrorMessage(errCode) : errorMessage),
-                Success = errCode == 0
-            };
-        }
-
-        private string GetErrorMessage(int errCode)
-        {
-            return ErrorMsg.ResourceManager.GetString("Msg" + errCode);
+            return Guid.NewGuid().ToString("N", CultureInfo.CurrentCulture);
         }
     }
 }

@@ -17,7 +17,7 @@
     /// Currency Rate Controller.
     /// </summary>
     [FunctionAuth(Function = FunctionPolicyNames.AffExchangeRate, CurrenciesRequired = true)]
-    public partial class ExchangeController : BaseController
+    public class ExchangeController : BaseController
     {
         private static Dictionary<string, int> _multipliedCurrencies = new Dictionary<string, int>();
 

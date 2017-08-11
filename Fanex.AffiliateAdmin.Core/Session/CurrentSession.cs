@@ -11,7 +11,7 @@
     [Serializable]
     public class CurrentSession : ICurrentSession
     {
-        private readonly IEnumerable<FunctionPolicy> _policies;
+        private IEnumerable<FunctionPolicy> _policyList;
 
         public CurrentSession(
             Account user,
@@ -22,9 +22,7 @@
             this.Username = user.Username;
             this.OnUserID = user.OnUserID;
             this.IsIT = user.IsIT;
-            this._policies = policies ?? new List<FunctionPolicy>();
-            this.CurrencyList = currencies;
-            this.FunctionMenus = CreateFunctionMenus();
+            SetPermissions(currencies, policies);
         }
 
         public AppMode ApplicationMode { get; set; }
@@ -47,24 +45,31 @@
 
         public bool HasReadPolicy(string functionName)
         {
-            return this._policies.Any(i => i.FuncName == functionName && i.CanRead);
+            return this._policyList.Any(i => i.FuncName == functionName && i.CanRead);
         }
 
         public bool HasHostPolicy(string functionName)
         {
-            return this._policies.Any(i => i.FuncName == functionName && i.CanHost);
+            return this._policyList.Any(i => i.FuncName == functionName && i.CanHost);
+        }
+
+        public void SetPermissions(IEnumerable<Currency> currencyList, IEnumerable<FunctionPolicy> policyList)
+        {
+            CurrencyList = currencyList;
+            _policyList = policyList;
+            FunctionMenus = CreateFunctionMenus();
         }
 
         private IEnumerable<FunctionMenu> CreateFunctionMenus()
         {
             var menuList = new List<FunctionMenu>();
-            menuList.Add(new FunctionMenu()
+            menuList.Add(new FunctionMenu
             {
                 Name = "Home",
                 Link = "~/"
             });
 
-            if (_policies.Any() == false)
+            if (!_policyList.Any())
             {
                 return menuList;
             }
@@ -76,19 +81,20 @@
                 AddFunctionMenu(menuList, FunctionPolicyNames.Payment, "Payment", "~/Payment");
                 AddFunctionMenu(menuList, FunctionPolicyNames.CommissionGroup, "CommissionGroup", "~/CommGroup");
                 AddFunctionMenu(menuList, FunctionPolicyNames.AffReport, "Reports", "~/Report");
+                AddFunctionMenu(menuList, FunctionPolicyNames.AffExchangeRate, "Currency", "~/Exchange");
+
             }
 
             AddFunctionMenu(menuList, FunctionPolicyNames.Media, "MarketingTools", "~/MediaBanner");
             AddFunctionMenu(menuList, FunctionPolicyNames.HotNews, "Message", "~/Message");
-
-            if (IsIT || CurrencyList.Any())
-            {
-                AddFunctionMenu(menuList, FunctionPolicyNames.AffExchangeRate, "Currency", "~/Exchange");
-            }
-
-            AddFunctionMenu(menuList, FunctionPolicyNames.SystemSettings, "Configurations", "~/Configuration");
-            AddFunctionMenu(menuList, FunctionPolicyNames.Domain, "Domain", "~/Domain/AffDomain");
             AddFunctionMenu(menuList, FunctionPolicyNames.UserControl, "UserManagement", "~/Management/Users");
+
+            if (IsIT)
+            {
+                AddFunctionMenu(menuList, FunctionPolicyNames.SystemSettings, "Configurations", "~/Configuration");
+                AddFunctionMenu(menuList, FunctionPolicyNames.Domain, "Domain", "~/Domain/AffDomain");
+
+            }
 
             return menuList;
         }
@@ -97,7 +103,7 @@
         {
             if (HasReadPolicy(functionName))
             {
-                menus.Add(new FunctionMenu()
+                menus.Add(new FunctionMenu
                 {
                     Name = name,
                     Link = link

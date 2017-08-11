@@ -11,9 +11,6 @@ namespace Fanex.AffiliateAdmin.DTO
 {
     using System;
 
-    /// <summary>
-    /// Admin Account.
-    /// </summary>
     public class Account
     {
         public int CustID { get; set; }

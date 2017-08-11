@@ -43,7 +43,7 @@
 
         private readonly string _keyPath = string.Empty;
 
-        private readonly IAccountService _accountService;
+        private readonly IAuthService _accountService;
 
         public SsoController()
             : this(null)
@@ -53,9 +53,9 @@
             langManager.SetCulture(AppSession.Language);
         }
 
-        public SsoController(IAccountService accountService)
+        public SsoController(IAuthService authService)
         {
-            _accountService = accountService ?? new AccountService();
+            _accountService = authService ?? new AuthService();
         }
 
         private static string CurrentUserName
@@ -88,10 +88,6 @@
             }
         }
 
-        /// <summary>
-        /// Return form login.
-        /// </summary>
-        /// <returns>Login form.</returns>
         [OutputCache(NoStore = true, Duration = 0)]
         [HttpGet]
         public ActionResult Login(string key)
@@ -106,10 +102,6 @@
             return SSO(key);
         }
 
-        /// <summary>
-        /// The denied page.
-        /// </summary>
-        /// <returns>The denied message.</returns>
         public ActionResult DenyAccess()
         {
             int code;
@@ -138,7 +130,7 @@
                     ServerId = user.ServerId
                 });
 
-                SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
+                SessionManager.CurrentSession = _accountService.CreateInternalSession(user, AppSettings.LicenseeID);
 
                 FormsAuthentication.SetAuthCookie(user.Username, false);
             }
@@ -148,7 +140,7 @@
 
         private void InitializeSession(Account user)
         {
-            SessionManager.CurrentSession = _accountService.CreateSession(user, AppSettings.LicenseeID);
+            SessionManager.CurrentSession = _accountService.CreateInternalSession(user, AppSettings.LicenseeID);
         }
 
         private string ErrorMessage(int errCode)
@@ -240,7 +232,7 @@
                     OnUserID = session.OnUserID,
                     IsIT = session.IsIT
                 };
-                SessionManager.CurrentSession = _accountService.CreateSession(account, AppSettings.LicenseeID);
+                SessionManager.CurrentSession = _accountService.CreateInternalSession(account, AppSettings.LicenseeID);
 
                 FormsAuthentication.SetAuthCookie(session.Username, false);
                 return Redirect("~/Home/Index");

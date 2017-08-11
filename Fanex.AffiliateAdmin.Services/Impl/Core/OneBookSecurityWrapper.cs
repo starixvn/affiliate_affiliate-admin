@@ -1,18 +1,18 @@
 ﻿namespace Fanex.AffiliateAdmin.Services.Impl.Core
 {
     using System.Configuration;
-    using DTO.Common;
+    using DTO.OneAuth;
     using Interfaces;
     using ONEbook.Security;
 
     public class OneBookSecurityWrapper : IOneBookSecurityWrapper
     {
-        public OneAuthenticationToken Authenticate(string token)
+        public OneAuthToken Authenticate(string token)
         {
-            OneAuthenticationToken result = null;
+            OneAuthToken result = null;
 
             var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString_ClearinghouseDB"].ConnectionString;
-            Auth<OneAuthenticationToken> oneBookSecurity = new Auth<OneAuthenticationToken>(connectionString);
+            Auth<OneAuthToken> oneBookSecurity = new Auth<OneAuthToken>(connectionString);
             oneBookSecurity.Authenticate(token, ref result);
 
             return result;

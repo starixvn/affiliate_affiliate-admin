@@ -1,17 +1,15 @@
 ﻿namespace Fanex.AffiliateAdmin.Services.Impl.Core
 {
-    using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Web;
-    using System.Web.Hosting;
     using System.Web.Security;
     using AffiliateAdmin.Core.Configurations;
     using AffiliateAdmin.Core.Enumerations;
     using AffiliateAdmin.Core.Session;
     using DTO;
     using DTO.Common;
+    using DTO.OneAuth;
     using Fanex.AffiliateAdmin.Core.Constants;
     using Fanex.AffiliateAdmin.Resources;
     using Interfaces;
@@ -30,42 +28,38 @@
             { "vi-VN", "vn" }
         };
 
-        private readonly IAccountService _accountService;
+        private readonly IAuthService _authService;
 
-        public OneAuthenticationService() : this(null)
+        private readonly IOneBookSecurityWrapper _oneBookSecurityWrapper;
+
+        public OneAuthenticationService() : this(null, null)
         {
         }
 
-        public OneAuthenticationService(IAccountService accountService)
+        public OneAuthenticationService(IAuthService authService, IOneBookSecurityWrapper oneBookSecurityWrapper)
         {
-            _accountService = accountService ?? new AccountService();
+            _authService = authService ?? new AuthService();
+            _oneBookSecurityWrapper = oneBookSecurityWrapper ?? new OneBookSecurityWrapper();
         }
 
-        protected internal virtual string GetStringFromFile(string path)
+        public ResultInfo SignIn(HttpContextBase currentContext, OneAuthToken token)
         {
-            using (var reader = new StreamReader(HostingEnvironment.MapPath(path)))
-            {
-                return reader.ReadToEnd();
-            }
-        }
-
-        public ResultInfo SignIn(HttpContextBase currentContext, OneAuthenticationToken tokenInfo)
-        {
-            if (!tokenInfo.SiteName.Equals(AppSettings.SystemName, StringComparison.OrdinalIgnoreCase))
-            {
-                return new ResultInfo
-                {
-                    Code = OneAuthorizationErrorCode.LicenseeIsNotExisted,
-                    Message = Lang.LicenseeIsNotExisted
-                };
-            }
-
-            var language = MapLanguages.Where(i => i.Value.Equals(tokenInfo.Language))
+            var language = MapLanguages.Where(i => i.Value.Equals(token.Language))
                        .Select(i => i.Key).DefaultIfEmpty<string>("en-Us").FirstOrDefault();
+
+            var userCheckingResult = CheckAndSyncUserInfo(AppSettings.LicenseeID, token.SiteName, token.UserID);
+
+            if (!userCheckingResult.IsSuccessful)
+            {
+                return userCheckingResult;
+            }
+
+            token.UserSEQ = int.Parse(userCheckingResult.ExtendedData);
+
             var currentSession = SessionManager.CurrentSession;
             if (IsAuthenticated(currentContext, currentSession))
             {
-                var isSameSession = VerifySessionWithToken(currentSession, tokenInfo);
+                var isSameSession = VerifySessionWithToken(currentSession, token);
                 if (isSameSession)
                 {
                     if (!language.Equals(AppSession.Language))
@@ -73,31 +67,24 @@
                         AppSession.Language = language;
                     }
 
+                    _authService.UpdateOneAuthSession(currentSession, token, AppSettings.LicenseeID);
                     return new ResultInfo
                     {
-                        ExtendedData = tokenInfo.ActionLink
+                        ExtendedData = token.ActionLink
                     };
                 }
             }
 
-            var userCheckingResult = CheckAndSyncUserInfo(AppSettings.LicenseeID, tokenInfo.SiteName, tokenInfo.UserID);
-
-            if (!userCheckingResult.IsSuccessful)
-            {
-                return userCheckingResult;
-            }
-
-            tokenInfo.UserSEQ = int.Parse(userCheckingResult.ExtendedData);
-            return SetAuthorize(tokenInfo);
+          
+            return SetAuthorize(token);
         }
 
-        public OneAuthenticationToken GetTokenInfo(string token)
+        public OneAuthToken GetTokenInfo(string token)
         {
-            var oneBookService = new OneBookSecurityWrapper();
-            return oneBookService.Authenticate(token);
+            return _oneBookSecurityWrapper.Authenticate(token);
         }
 
-        protected internal virtual ResultInfo SetAuthorize(OneAuthenticationToken tokenInfo)
+        protected internal virtual ResultInfo SetAuthorize(OneAuthToken tokenInfo)
         {
             CreateSession(tokenInfo);
             var authName = $"{tokenInfo.UserID}_{tokenInfo.VendorID}_{tokenInfo.SiteName}";
@@ -109,7 +96,7 @@
             };
         }
 
-        private static bool VerifySessionWithToken(ICurrentSession currentSession, OneAuthenticationToken tokenInfo)
+        private static bool VerifySessionWithToken(ICurrentSession currentSession, OneAuthToken tokenInfo)
         {
             return currentSession.Username == tokenInfo.UserID
                 && currentSession.VendorID == tokenInfo.VendorID && currentSession.VendorIdentityID == tokenInfo.UserID;
@@ -127,7 +114,7 @@
             return identityValidation && sessionValidation;
         }
 
-        private void CreateSession(OneAuthenticationToken tokenInfo)
+        private void CreateSession(OneAuthToken tokenInfo)
         {
             var user = new Account
             {
@@ -135,7 +122,7 @@
                 IsIT = false,
                 Username = tokenInfo.UserID
             };
-            var session = _accountService.CreateSession(user, AppSettings.LicenseeID, AppMode.Parasitic);
+            var session = _authService.CreateOneAuthSession(tokenInfo, user, AppSettings.LicenseeID);
             session.VendorID = tokenInfo.VendorID;
             session.VendorIdentityID = tokenInfo.UserID;
             SessionManager.CurrentSession = session;
@@ -149,7 +136,7 @@
                 return result;
             }
 
-            result = _accountService.SyncUserInfo(siteName, userName);
+            result = _authService.SyncUserInfo(siteName, userName);
 
             return result.IsSuccessful ? GetUser(licenseeId, userName) : new ResultInfo
             {
@@ -160,7 +147,7 @@
 
         private ResultInfo GetUser(int licenseeId, string userName)
         {
-            var user = _accountService.GetByUsername(userName, licenseeId, true);
+            var user = _authService.GetByUsername(userName, licenseeId, true);
             if (user != null)
             {
                 return new ResultInfo

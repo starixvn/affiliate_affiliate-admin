@@ -28,5 +28,7 @@
         bool HasReadPolicy(string functionName);
 
         bool HasHostPolicy(string functionName);
+
+        void SetPermissions(IEnumerable<Currency> currencyList, IEnumerable<FunctionPolicy> policyList);
     }
 }

@@ -46,6 +46,16 @@
         {
             var language = MapLanguages.Where(i => i.Value.Equals(token.Language))
                        .Select(i => i.Key).DefaultIfEmpty<string>("en-Us").FirstOrDefault();
+
+            var userCheckingResult = CheckAndSyncUserInfo(AppSettings.LicenseeID, token.SiteName, token.UserID);
+
+            if (!userCheckingResult.IsSuccessful)
+            {
+                return userCheckingResult;
+            }
+
+            token.UserSEQ = int.Parse(userCheckingResult.ExtendedData);
+
             var currentSession = SessionManager.CurrentSession;
             if (IsAuthenticated(currentContext, currentSession))
             {
@@ -65,14 +75,7 @@
                 }
             }
 
-            var userCheckingResult = CheckAndSyncUserInfo(AppSettings.LicenseeID, token.SiteName, token.UserID);
-
-            if (!userCheckingResult.IsSuccessful)
-            {
-                return userCheckingResult;
-            }
-
-            token.UserSEQ = int.Parse(userCheckingResult.ExtendedData);
+          
             return SetAuthorize(token);
         }
 

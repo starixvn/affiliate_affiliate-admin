@@ -42,24 +42,26 @@
             _oneBookSecurityWrapper = oneBookSecurityWrapper ?? new OneBookSecurityWrapper();
         }
 
-        public ResultInfo SignIn(HttpContextBase currentContext, OneAuthToken token)
+        public ResultInfo SignIn(HttpContextBase currentContext, OneAuthToken tokenInfo)
         {
-            var language = MapLanguages.Where(i => i.Value.Equals(token.Language))
+            var language = MapLanguages.Where(i => i.Value.Equals(tokenInfo.Language))
                        .Select(i => i.Key).DefaultIfEmpty<string>("en-Us").FirstOrDefault();
 
-            var userCheckingResult = CheckAndSyncUserInfo(AppSettings.LicenseeID, token.SiteName, token.UserID);
-
-            if (!userCheckingResult.IsSuccessful)
+            if (tokenInfo.IsAdminstrator)
             {
-                return userCheckingResult;
+                var userCheckingResult = CheckAndSyncUserInfo(AppSettings.LicenseeID, tokenInfo.SiteName, tokenInfo.UserID);
+
+                if (!userCheckingResult.IsSuccessful)
+                {
+                    return userCheckingResult;
+                }
+
+                tokenInfo.UserSEQ = int.Parse(userCheckingResult.ExtendedData);
             }
-
-            token.UserSEQ = int.Parse(userCheckingResult.ExtendedData);
-
             var currentSession = SessionManager.CurrentSession;
             if (IsAuthenticated(currentContext, currentSession))
             {
-                var isSameSession = VerifySessionWithToken(currentSession, token);
+                var isSameSession = VerifySessionWithToken(currentSession, tokenInfo);
                 if (isSameSession)
                 {
                     if (!language.Equals(AppSession.Language))
@@ -67,16 +69,16 @@
                         AppSession.Language = language;
                     }
 
-                    _authService.UpdateOneAuthSession(currentSession, token, AppSettings.LicenseeID);
+                    _authService.UpdateOneAuthSession(currentSession, tokenInfo, AppSettings.LicenseeID);
                     return new ResultInfo
                     {
-                        ExtendedData = token.ActionLink
+                        ExtendedData = tokenInfo.ActionLink
                     };
                 }
             }
 
-          
-            return SetAuthorize(token);
+
+            return SetAuthorize(tokenInfo);
         }
 
         public OneAuthToken GetTokenInfo(string token)

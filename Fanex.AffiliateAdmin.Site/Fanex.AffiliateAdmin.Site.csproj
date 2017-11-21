@@ -352,12 +352,6 @@
     <Content Include="Configurations\SpNames\SpName.9bet.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\SpNames\SpName.aiabet.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.aiabet.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\SpNames\SpName.allbetclub.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
@@ -404,12 +398,6 @@
     <Content Include="Configurations\SpNames\SpName.bolanation.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\SpNames\SpName.goobet.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.goobet.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\SpNames\SpName.indowin.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
@@ -422,22 +410,10 @@
     <Content Include="Configurations\SpNames\SpName.itcbet.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\SpNames\SpName.m8bola.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.m8bola.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\SpNames\SpName.macaubet.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.macaubet.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.q8bola.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.q8bola.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.spondemo.local.xml">
@@ -450,12 +426,6 @@
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.spondemo.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.unobet.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.unobet.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.xml">
@@ -3720,36 +3690,16 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.be7.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.be7.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.be7.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.goobet.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.goobet.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.goobet.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.goobet.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.local.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.m8bola.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.m8bola.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.m8bola.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.m8bola.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.local.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aiabet.uat.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.q8bola.uat.config" />
     <Content Include="Configurations\WebConfigs\Web.master.config" />
     <Content Include="Configurations\WebConfigs\Web.production.config">
       <SubType>Designer</SubType>
@@ -3757,12 +3707,6 @@
     <Content Include="Configurations\WebConfigs\Web.uat.config" />
     <Content Include="Content\_Sites\athena000\Login.less" />
     <Content Include="Content\_Sites\athena000\Notify.less" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.production.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\AppSettings\Web.AppSetting.unobet.uat.config" />
     <Content Include="Content\_Sites\unobet\Login.less" />
     <Content Include="Content\_Sites\unobet\Notify.less" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.local.config" />
@@ -3812,46 +3756,16 @@
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.goobet.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.goobet.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.m8bola.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.m8bola.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.q8bola.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.q8bola.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.unobet.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aiabet.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aiabet.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.be7th.local.config" />
@@ -3926,15 +3840,6 @@
     <Content Include="Configurations\WebConfigs\Web.9bet.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\WebConfigs\Web.aiabet.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.aiabet.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.aiabet.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\WebConfigs\Web.allbetclub.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
@@ -3980,15 +3885,6 @@
     <Content Include="Configurations\WebConfigs\Web.be7th.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\WebConfigs\Web.goobet.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.goobet.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.goobet.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\WebConfigs\Web.itcbet.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
@@ -3998,15 +3894,6 @@
     <Content Include="Configurations\WebConfigs\Web.itcbet.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\WebConfigs\Web.m8bola.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.m8bola.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.m8bola.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\WebConfigs\Web.macaubet.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
@@ -4014,24 +3901,6 @@
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\WebConfigs\Web.macaubet.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.q8bola.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.q8bola.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.q8bola.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.unobet.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.unobet.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.unobet.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\WebConfigs\Web.athena000.sit.config" />
@@ -4470,7 +4339,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

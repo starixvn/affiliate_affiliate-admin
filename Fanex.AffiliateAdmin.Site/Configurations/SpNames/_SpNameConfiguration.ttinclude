@@ -4,35 +4,20 @@
 #>
 <#@ import namespace="System" #>
 <#
-	
-    var licenseeNames = new string[] {
-		"spondemo",
-		"9bet", 
-		"allbetclub",
-		"aoncash",
-		"athena000",
-		"be7",
-		"be7th",
-		"itcbet",
-		"macaubet",
-		"indowin",
-		"aragon88",
-		"bolanation"
-	};
-
-	var dbNames = new string[] {
-		"DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet",
-		"DBAFF9BET.Affiliate_9Bet.bodbAdminNet", 
-		"DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet",
-		"DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet",
-		"DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet",
-		"DBAFFBE7.Affiliate_BE7.bodbAdminNet",
-		"DBAFFBE7TH.Affiliate_BE7TH.bodbAdminNet",
-		"DBAFFITCBET.Affiliate_itcbet.bodbAdminNet",
-		"DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet",
-		"DBAFFINDOWIN.Affiliate_Indowin.bodbAdminNet",
-		"DBAFFARAGON88.Affiliate_Aragon88.bodbAdminNet",
-		"DBAFFBOLANATION.Affiliate_Bolanation.bodbAdminNet"
+	var licenseeDbNameList = new System.Collections.Generic.Dictionary<string, string>
+	{
+		{"spondemo", "DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet"},
+		{"9bet", "DBAFF9BET.Affiliate_9Bet.bodbAdminNet"}, 
+		{"allbetclub", "DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet"},
+		{"aoncash", "DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet"},
+		{"athena000", "DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet"},
+		{"be7", "DBAFFBE7.Affiliate_BE7.bodbAdminNet"},
+		{"be7th", "DBAFFBE7TH.Affiliate_BE7TH.bodbAdminNet"},
+		{"itcbet", "DBAFFITCBET.Affiliate_itcbet.bodbAdminNet"},
+		{"macaubet", "DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet"},
+		{"indowin", "DBAFFINDOWIN.Affiliate_Indowin.bodbAdminNet"},
+		{"aragon88", "DBAFFARAGON88.Affiliate_Aragon88.bodbAdminNet"},
+		{"bolanation", "DBAFFBOLANATION.Affiliate_Bolanation.bodbAdminNet"}
 	};
 
 	var environments = new string[] { "uat", "production" };
@@ -62,15 +47,12 @@
 
 	foreach(var environment in environments)
 	{
-		for(var i = 0; i < licenseeNames.Length; i++)
+		foreach(var licenseeDbName in licenseeDbNameList)
 		{
-			var licenseeName = licenseeNames[i];
-			var dbName = dbNames[i];
-
 			sites.Add(new SiteInfo(){
 				Environment = environment,
-				LicenseeName = licenseeName,
-				DbName = dbName
+				LicenseeName = licenseeDbName.Key,
+				DbName = licenseeDbName.Value
 			});
 		}
 	}

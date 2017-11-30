@@ -195,6 +195,7 @@
     <Compile Include="GroupInfoDelCriteria.cs" />
     <Compile Include="GroupInfoInsCriteria.cs" />
     <Compile Include="GroupInfoUpdCriteria.cs" />
+    <Compile Include="PaymentCheckInProgressCriteria.cs" />
     <Compile Include="Policy\GroupPolicySelCriteria.cs" />
     <Compile Include="Policy\GroupPolicyUpdCriteria.cs" />
     <Compile Include="Media\BannerDeleteCriteria.cs" />

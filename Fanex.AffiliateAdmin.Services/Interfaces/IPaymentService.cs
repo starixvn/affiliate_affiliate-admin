@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using Criterias;
     using DTO;
+    using Models;
 
     /// <summary>
     /// TODO: Update summary.
@@ -18,5 +19,7 @@
         int GetCustIDByUsername(DummyAccIdCriteria criteria);
 
         void UpdatePayment(PaymentUpdateCriteria criteria);
+
+        ResultViewModel CheckPaymentInProgress(PaymentCheckInProgressCriteria criteria);
     }
 }

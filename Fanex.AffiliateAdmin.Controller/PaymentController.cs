@@ -299,6 +299,7 @@
         {
             ResultViewModel result;
 
+            criteria.IsSuccess = true;
             if (criteria.Status.ToLower() == "approved")
             {
                 var playerPayoutInfo = _paymentService.GetPlayerPayoutInfo(new PlayerPayoutInfoSelCriteria
@@ -311,6 +312,19 @@
                 {
                     Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
                 });
+
+                var checkInProgressResult = _paymentService.CheckPaymentInProgress(new PaymentCheckInProgressCriteria
+                {
+                    TransId = criteria.TransId,
+                    UserId = criteria.UserId,
+                    IP = criteria.IP
+                });
+
+                if (checkInProgressResult.ErrorCode != 0)
+                {
+                    checkInProgressResult.Success = false;
+                    return checkInProgressResult;
+                }
 
                 long ibcRefNo = 0, ibcTransId = 0;
                 result = TransferToPlayerAcc(
@@ -341,7 +355,14 @@
                     else
                     {
                         result.ErrorMessage = errorMessage;
+                        criteria.IsSuccess = false;
+                        _paymentService.UpdatePayment(criteria);
                     }
+                }
+                else
+                {
+                    criteria.IsSuccess = false;
+                    _paymentService.UpdatePayment(criteria);
                 }
             }
             else

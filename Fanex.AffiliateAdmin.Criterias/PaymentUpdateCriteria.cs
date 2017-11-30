@@ -37,6 +37,8 @@
 
         public string AdminUserName { get; set; }
 
+        public bool IsSuccess { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_PaymentRequestUpd";

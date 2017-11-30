@@ -107,6 +107,7 @@
     <Setting Key="Task_Aff_MonthlyTransfer" SpName="Task_Aff_MonthlyTransfer" DbName="DBAFFINDOWIN.Affiliate_Indowin.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_IsMonthlyTransfer" SpName="AffAdmin_IsMonthlyTransfer" DbName="DBAFFINDOWIN.Affiliate_Indowin.bodbAdminNet" Plain="0" />
     <Setting Key="Aff_DummyAccID" SpName="Aff_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_PaymentRequest_CheckInProgress" SpName="AffAdmin_PaymentRequest_CheckInProgress" DbName="DBAFFINDOWIN.Affiliate_Indowin.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Message">
     <Setting Key="AffAdmin_HotNewsSel" SpName="AffAdmin_HotNewsSel" DbName="DBAFFINDOWIN.Affiliate_Indowin.bodbAdminNet" Plain="0" />

@@ -47,10 +47,5 @@ namespace Fanex.AffiliateAdmin.Core.Helpers
 
             LogService.Error(message, exception);
         }
-
-        public static void WriteLog(string messageContent)
-        {
-            LogService.Info(messageContent);
-        }
     }
 }

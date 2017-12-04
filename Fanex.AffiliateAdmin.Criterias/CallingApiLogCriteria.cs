@@ -2,7 +2,7 @@
 {
     using Fanex.Data.Repository;
 
-    public class CallingApiLogCriteria : CriteriaBase
+    public class PaymentLogCriteria : CriteriaBase
     {
         public int UserId { get; set; }
 

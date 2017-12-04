@@ -11,7 +11,6 @@
     using Core.Entities;
     using Core.Enumerations;
     using Core.Filter;
-    using Core.Helpers;
     using Core.Services.Impl;
     using Core.Services.Interface;
     using Core.Session;
@@ -28,6 +27,7 @@
     [FunctionAuth(Function = FunctionPolicyNames.Payment, CurrenciesRequired = true)]
     public class PaymentController : BaseController
     {
+        private const string ModelErrorKey = "ErrMsg";
         private static readonly IEnumerable<string> AllowedStatusListToUpdate = new List<string> { PaymentStatusText.Approved, PaymentStatusText.Rejected };
         private readonly IPaymentService _paymentService;
         private readonly IDbLogger _databaseLogger;
@@ -149,18 +149,17 @@
             });
             model.PaymentDetail = paymentDetail;
 
-            var currentStatus = paymentDetail.Status;
-            var statusToUpdate = model.Status.ToLower();
-
-            if (!IsValidStatus(currentStatus, statusToUpdate.ToLower()))
-            {
-                ModelState.AddModelError("ErrMsg", Lang.InValidPaymentRequestStatus);
-
-                return View(model);
-            }
-
             if (ModelState.IsValid)
             {
+                var currentStatus = paymentDetail.Status;
+                var statusToUpdate = model.Status.ToLower();
+
+                if (!IsValidStatus(currentStatus, statusToUpdate.ToLower()))
+                {
+                    ModelState.AddModelError(ModelErrorKey, Lang.InValidPaymentRequestStatus);
+                    return View(model);
+                }
+
                 var session = SessionManager.CurrentSession;
 
                 var checkInProgressResult = _paymentService.CheckPaymentInProgress(new PaymentCheckInProgressCriteria
@@ -172,24 +171,12 @@
 
                 if (checkInProgressResult.ErrorCode != 0)
                 {
-                    ModelState.AddModelError("ErrMsg", Lang.PaymentRequestBeingProcessed);
-
+                    ModelState.AddModelError(ModelErrorKey, Lang.PaymentRequestBeingProcessed);
                     return View(model);
                 }
 
-                var criteria = new PaymentUpdateCriteria
-                {
-                    TransId = model.TransId,
-                    Status = model.Status,
-                    AdminRemark = CutLongText(model.AdminRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
-                    AffRemark = CutLongText(model.AffRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
-                    PreferredLanguage = paymentDetail.PreferredLanguage,
-                    UserId = session.CustID,
-                    AdminUserName = session.Username,
-                    IP = Remote.GetClientIPAddress()
-                };
-
-                var result = UpdatePayment(criteria, paymentDetail.AffId, paymentDetail.RefId, paymentDetail.TransferAmount);
+                var criteria = GetPaymentUpdateCriteria(model, paymentDetail);
+                var result = ProcessUpdatePayment(criteria, paymentDetail);
 
                 if (result.Success)
                 {
@@ -199,8 +186,7 @@
                 else
                 {
                     var message = string.IsNullOrEmpty(result.ErrorMessage) ? Common.GetErrorMsg(result.ErrorCode) : result.ErrorMessage;
-
-                    ModelState.AddModelError("ErrMsg", string.IsNullOrEmpty(message) ? "Error" + result.ErrorCode + ": " + Lang.ErrorRequest : message);
+                    ModelState.AddModelError(ModelErrorKey, string.IsNullOrEmpty(message) ? "Error" + result.ErrorCode + ": " + Lang.ErrorRequest : message);
                 }
             }
 
@@ -208,6 +194,20 @@
         }
 
         #region Helpers
+        private static PaymentUpdateCriteria GetPaymentUpdateCriteria(PaymentUpdateViewModel model, PaymentDetail paymentDetail)
+        {
+            return new PaymentUpdateCriteria
+            {
+                TransId = model.TransId,
+               	Status = model.Status,
+             	AdminRemark = CutLongText(model.AdminRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
+              	AffRemark = CutLongText(model.AffRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
+             	PreferredLanguage = paymentDetail.PreferredLanguage,
+               	UserId = session.CustID,
+              	AdminUserName = session.Username,
+              	IP = Remote.GetClientIPAddress()
+            };
+        }
 
         private static bool IsValidStatus(string currentStatus, string statusToUpdate)
         {
@@ -320,7 +320,7 @@
         /// <param name="refId">The preference unique identifier.</param>
         /// <param name="transferAmount">The amount.</param>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
-        private ResultViewModel UpdatePayment(PaymentUpdateCriteria criteria, long affId, long refId, decimal transferAmount)
+        private ResultViewModel ProcessUpdatePayment(PaymentUpdateCriteria criteria, PaymentDetail paymentDetail)
         {
             ResultViewModel result;
 
@@ -328,8 +328,8 @@
             {
                 var playerPayoutInfo = _paymentService.GetPlayerPayoutInfo(new PlayerPayoutInfoSelCriteria
                 {
-                    AffId = affId,
-                    RefId = refId
+                    AffId = paymentDetail.AffId,
+                    RefId = paymentDetail.RefId
                 });
 
                 var balAccCustId = _paymentService.GetCustIDByUsername(new DummyAccIdCriteria
@@ -337,26 +337,21 @@
                     Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
                 });
 
-                var startingCallLogContent = BuildStartingCallLogContent("Transfer", criteria.UserId, playerPayoutInfo);
-                startingCallLogContent.AppendLine($"Amount: ${transferAmount}");
-                WriteLog(criteria.UserId, startingCallLogContent.ToString());
-
                 long ibcRefNo = 0, ibcTransId = 0;
                 result = TransferToPlayerAcc(
                     playerPayoutInfo.SystemName,
                     playerPayoutInfo.PlayerUsername,
-                    Math.Abs(Convert.ToDouble(transferAmount)),
+                    Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount)),
                     balAccCustId,
                     ref ibcRefNo,
                     ref ibcTransId);
 
-                var resultLogContent = BuildLogContentByResult(result, criteria.UserId);
-                WriteLog(criteria.UserId, resultLogContent.ToString());
+                var methodName = "Transfer";
+                var resultLogContent = BuildLogContentByResult(methodName, criteria.UserId, result, paymentDetail);
+                _databaseLogger.WritePaymentLog(new PaymentLogCriteria { UserId = criteria.UserId, LogContent = resultLogContent });
 
                 if (result.Success)
                 {
-                    startingCallLogContent = BuildStartingCallLogContent("GetLicenseeCustInfo", criteria.UserId, playerPayoutInfo);
-                    WriteLog(criteria.UserId, startingCallLogContent.ToString());
                     string ibcUsername = string.Empty, playerCurrency = string.Empty, errorMessage = string.Empty;
 
                     // Update IbcUsername for the payout with non-deposited Acc
@@ -378,8 +373,9 @@
                         result.ErrorMessage = errorMessage;
                     }
 
-                    resultLogContent = BuildLogContentByResult(result, criteria.UserId);
-                    WriteLog(criteria.UserId, resultLogContent.ToString());
+                    methodName = "GetLicenseeCustInfo";
+                    resultLogContent = BuildLogContentByResult(methodName, criteria.UserId, result, paymentDetail);
+                    _databaseLogger.WritePaymentLog(new PaymentLogCriteria { UserId = criteria.UserId, LogContent = resultLogContent });
                 }
             }
             else
@@ -393,26 +389,16 @@
             return result;
         }
 
-        private StringBuilder BuildStartingCallLogContent(string methodName, int userId, PlayerPayoutInfo playerPayoutInfo)
+        private string BuildLogContentByResult(string methodName, int userId, ResultViewModel result, PaymentDetail paymentDetail)
         {
             var builder = new StringBuilder();
 
-            builder.AppendLine("Start Call Transfer Method");
+            builder.AppendLine($"Complete Call Method {methodName}");
             builder.AppendLine("Infor:");
             builder.AppendLine($"UserId: ${userId}");
-            builder.AppendLine($"Method: ${methodName}");
-            builder.AppendLine($"SystemName: ${playerPayoutInfo.SystemName}");
-            builder.AppendLine($"PlayerUsername: ${playerPayoutInfo.PlayerUsername}");
-
-            return builder;
-        }
-
-        private StringBuilder BuildLogContentByResult(ResultViewModel result, int userId)
-        {
-            var builder = new StringBuilder();
-
-            builder.AppendLine("Complete Call Transfer Method");
-            builder.AppendLine($"UserId: ${userId}");
+            builder.AppendLine($"SystemName: ${paymentDetail.SystemName}");
+            builder.AppendLine($"AffUserName: ${paymentDetail.AffUserName}");
+            builder.AppendLine($"Transfer Amount: ${paymentDetail.TransferAmount}");
             builder.AppendLine("Result:");
             builder.AppendLine($"Success: {result.Success.ToString()}");
 
@@ -422,13 +408,7 @@
                 builder.AppendLine($"ErrorMessage: {result.ErrorMessage}");
             }
 
-            return builder;
-        }
-
-        private void WriteLog(int userId, string messageContent)
-        {
-            _databaseLogger.WriteLogForCallingApi(new CallingApiLogCriteria { UserId = userId, LogContent = messageContent });
-            LogHelper.WriteLog(messageContent);
+            return builder.ToString();
         }
 
         private void SendEmail(PaymentDetail paymentDetail, PaymentUpdateCriteria criteria)

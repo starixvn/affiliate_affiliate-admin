@@ -5,7 +5,7 @@ namespace Fanex.AffiliateAdmin.Core.Services.Impl
 {
     public class DbLogger : QueryService, IDbLogger
     {
-        public void WriteLogForCallingApi(CallingApiLogCriteria criteria)
+        public void WritePaymentLog(PaymentLogCriteria criteria)
         {
             ExecuteOutput(criteria);
         }

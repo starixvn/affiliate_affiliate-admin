@@ -4,6 +4,6 @@
 
     public interface IDbLogger
     {
-        void WriteLogForCallingApi(CallingApiLogCriteria criteria);
+        void WritePaymentLog(PaymentLogCriteria criteria);
     }
 }

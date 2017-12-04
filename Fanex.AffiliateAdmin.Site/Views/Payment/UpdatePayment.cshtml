@@ -2,13 +2,14 @@
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Models
+@using Fanex.AffiliateAdmin.Core.Constants
 @model PaymentUpdateViewModel
 @{
     ViewBag.Title = Lang.UpdatePayment;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 
     var paymentDetail = Model.PaymentDetail;
-    var disabled = paymentDetail != null && paymentDetail.Status.ToLower() != "pending";
+    var disabled = paymentDetail != null && paymentDetail.Status.ToLower() != PaymentStatusText.Pending;
     var showUpdateButton = !disabled && ViewBag.Result == null;
 }
 @if (paymentDetail == null)
@@ -110,7 +111,7 @@
                 @FormaterCurrency.Format(Math.Abs(paymentDetail.TransferAmount), paymentDetail.PlayerCurrencyCode)
             </div>
         </div>
-        @if (paymentDetail.Status.ToLower() == "pending")
+        @if (paymentDetail.Status.ToLower() == PaymentStatusText.Pending)
         {
             <label class="radio inline">
                 @Html.RadioButtonFor(m => m.Status, "Approved", new { @class= "rdStatus" }.DisabledIf(disabled))

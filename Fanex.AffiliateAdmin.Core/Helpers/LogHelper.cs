@@ -9,7 +9,6 @@ namespace Fanex.AffiliateAdmin.Core.Helpers
     using System;
     using System.Data.SqlClient;
     using System.Web;
-    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.Logging;
 
@@ -47,6 +46,11 @@ namespace Fanex.AffiliateAdmin.Core.Helpers
             }
 
             LogService.Error(message, exception);
+        }
+
+        public static void WriteLog(string messageContent)
+        {
+            LogService.Info(messageContent);
         }
     }
 }

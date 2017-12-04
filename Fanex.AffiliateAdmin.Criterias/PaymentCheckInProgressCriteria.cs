@@ -16,7 +16,7 @@
 
         public override string GetSettingKey()
         {
-            return "AffAdmin_PaymentRequest_CheckInProgress";
+            return "AffAdmin_PaymentRequest_InProgress";
         }
 
         public override bool IsValid()

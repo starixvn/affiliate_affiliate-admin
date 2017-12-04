@@ -1,16 +1,23 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Text;
     using System.Web.Mvc;
     using Core.Configurations;
+    using Core.Constants;
     using Core.Entities;
     using Core.Enumerations;
     using Core.Filter;
+    using Core.Helpers;
+    using Core.Services.Impl;
+    using Core.Services.Interface;
     using Core.Session;
     using Core.Utilities;
     using Criterias;
+    using DTO;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Models;
@@ -21,12 +28,14 @@
     [FunctionAuth(Function = FunctionPolicyNames.Payment, CurrenciesRequired = true)]
     public class PaymentController : BaseController
     {
+        private static readonly IEnumerable<string> AllowedStatusListToUpdate = new List<string> { PaymentStatusText.Approved, PaymentStatusText.Rejected };
         private readonly IPaymentService _paymentService;
+        private readonly IDbLogger _databaseLogger;
 
         #region Constructor
 
         public PaymentController()
-            : this(null)
+            : this(null, null)
         {
         }
 
@@ -34,9 +43,10 @@
         /// Initializes a new instance of the <see cref="PaymentController" /> class.
         /// </summary>
         /// <param name="service">Payment service.</param>
-        public PaymentController(IPaymentService service)
+        public PaymentController(IPaymentService service, IDbLogger databaseLogger)
         {
             _paymentService = service ?? new PaymentService();
+            _databaseLogger = databaseLogger ?? new DbLogger();
         }
 
         #endregion Constructor
@@ -128,6 +138,7 @@
         /// <param name="model">Payment Update View Model.</param>
         /// <returns>Action Result.</returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [FunctionAuth(Function = FunctionPolicyNames.Payment, IsHostPolicy = true)]
         public ActionResult UpdatePayment(PaymentUpdateViewModel model)
         {
@@ -136,12 +147,35 @@
                 TransId = model.TransId,
                 LicenseeId = AppSettings.LicenseeID
             });
-
             model.PaymentDetail = paymentDetail;
+
+            var currentStatus = paymentDetail.Status;
+            var statusToUpdate = model.Status.ToLower();
+
+            if (!IsValidStatus(currentStatus, statusToUpdate.ToLower()))
+            {
+                ModelState.AddModelError("ErrMsg", Lang.InValidPaymentRequestStatus);
+
+                return View(model);
+            }
 
             if (ModelState.IsValid)
             {
                 var session = SessionManager.CurrentSession;
+
+                var checkInProgressResult = _paymentService.CheckPaymentInProgress(new PaymentCheckInProgressCriteria
+                {
+                    TransId = model.TransId,
+                    UserId = SessionManager.CurrentSession.CustID,
+                    IP = Remote.GetClientIPAddress()
+                });
+
+                if (checkInProgressResult.ErrorCode != 0)
+                {
+                    ModelState.AddModelError("ErrMsg", Lang.PaymentRequestBeingProcessed);
+
+                    return View(model);
+                }
 
                 var criteria = new PaymentUpdateCriteria
                 {
@@ -159,22 +193,7 @@
 
                 if (result.Success)
                 {
-                    var emailType = criteria.Status.ToLower() == "approved" ? EmailTemplateType.PaymentApprove : EmailTemplateType.PaymentCancel;
-                    var emailTemplate = new EmailTemplate(emailType, criteria.PreferredLanguage, criteria.MailOption);
-                    var siteInfo = SiteDomainInfo.Parse(this, false);
-                    var emailTemplateInfo = new EmailTemplateInfo
-                    {
-                        TransId = criteria.TransId,
-                        FirstName = paymentDetail.Firstname,
-                        WinlostDate = paymentDetail.Transdate,
-                        Amount = FormaterCurrency.Format(paymentDetail.Amt, paymentDetail.AffCurrency),
-                        AdminSiteUrl = siteInfo.AdminSiteUrl,
-                        AffiliateSiteUrl = siteInfo.AffiliateSiteUrl,
-                        MemberSiteUrl = siteInfo.MemberSiteUrl,
-                        MemberSiteDomain = siteInfo.MemberSiteDomain
-                    };
-
-                    emailTemplate.ResolvePath(Server).Send(paymentDetail.Email, emailTemplateInfo);
+                    SendEmail(paymentDetail, criteria);
                     ViewBag.Result = GetResultViewModel(result.ErrorCode, result.ErrorMessage);
                 }
                 else
@@ -189,6 +208,12 @@
         }
 
         #region Helpers
+
+        private static bool IsValidStatus(string currentStatus, string statusToUpdate)
+        {
+            return currentStatus.Equals(PaymentStatusText.Pending, StringComparison.OrdinalIgnoreCase)
+                && AllowedStatusListToUpdate.Contains(statusToUpdate);
+        }
 
         private static string CutLongText(string strText, int maxLength)
         {
@@ -299,8 +324,7 @@
         {
             ResultViewModel result;
 
-            criteria.IsSuccess = true;
-            if (criteria.Status.ToLower() == "approved")
+            if (criteria.Status.ToLower() == PaymentStatusText.Approved)
             {
                 var playerPayoutInfo = _paymentService.GetPlayerPayoutInfo(new PlayerPayoutInfoSelCriteria
                 {
@@ -313,18 +337,9 @@
                     Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
                 });
 
-                var checkInProgressResult = _paymentService.CheckPaymentInProgress(new PaymentCheckInProgressCriteria
-                {
-                    TransId = criteria.TransId,
-                    UserId = criteria.UserId,
-                    IP = criteria.IP
-                });
-
-                if (checkInProgressResult.ErrorCode != 0)
-                {
-                    checkInProgressResult.Success = false;
-                    return checkInProgressResult;
-                }
+                var startingCallLogContent = BuildStartingCallLogContent("Transfer", criteria.UserId, playerPayoutInfo);
+                startingCallLogContent.AppendLine($"Amount: ${transferAmount}");
+                WriteLog(criteria.UserId, startingCallLogContent.ToString());
 
                 long ibcRefNo = 0, ibcTransId = 0;
                 result = TransferToPlayerAcc(
@@ -335,8 +350,13 @@
                     ref ibcRefNo,
                     ref ibcTransId);
 
+                var resultLogContent = BuildLogContentByResult(result, criteria.UserId);
+                WriteLog(criteria.UserId, resultLogContent.ToString());
+
                 if (result.Success)
                 {
+                    startingCallLogContent = BuildStartingCallLogContent("GetLicenseeCustInfo", criteria.UserId, playerPayoutInfo);
+                    WriteLog(criteria.UserId, startingCallLogContent.ToString());
                     string ibcUsername = string.Empty, playerCurrency = string.Empty, errorMessage = string.Empty;
 
                     // Update IbcUsername for the payout with non-deposited Acc
@@ -354,15 +374,12 @@
                     }
                     else
                     {
+                        result.Success = false;
                         result.ErrorMessage = errorMessage;
-                        criteria.IsSuccess = false;
-                        _paymentService.UpdatePayment(criteria);
                     }
-                }
-                else
-                {
-                    criteria.IsSuccess = false;
-                    _paymentService.UpdatePayment(criteria);
+
+                    resultLogContent = BuildLogContentByResult(result, criteria.UserId);
+                    WriteLog(criteria.UserId, resultLogContent.ToString());
                 }
             }
             else
@@ -374,6 +391,64 @@
             result.ErrorCode = criteria.ErrCode;
             result.Success = result.ErrorCode == 0;
             return result;
+        }
+
+        private StringBuilder BuildStartingCallLogContent(string methodName, int userId, PlayerPayoutInfo playerPayoutInfo)
+        {
+            var builder = new StringBuilder();
+
+            builder.AppendLine("Start Call Transfer Method");
+            builder.AppendLine("Infor:");
+            builder.AppendLine($"UserId: ${userId}");
+            builder.AppendLine($"Method: ${methodName}");
+            builder.AppendLine($"SystemName: ${playerPayoutInfo.SystemName}");
+            builder.AppendLine($"PlayerUsername: ${playerPayoutInfo.PlayerUsername}");
+
+            return builder;
+        }
+
+        private StringBuilder BuildLogContentByResult(ResultViewModel result, int userId)
+        {
+            var builder = new StringBuilder();
+
+            builder.AppendLine("Complete Call Transfer Method");
+            builder.AppendLine($"UserId: ${userId}");
+            builder.AppendLine("Result:");
+            builder.AppendLine($"Success: {result.Success.ToString()}");
+
+            if (!result.Success)
+            {
+                builder.AppendLine($"ErrorCode: {result.ErrorCode}");
+                builder.AppendLine($"ErrorMessage: {result.ErrorMessage}");
+            }
+
+            return builder;
+        }
+
+        private void WriteLog(int userId, string messageContent)
+        {
+            _databaseLogger.WriteLogForCallingApi(new CallingApiLogCriteria { UserId = userId, LogContent = messageContent });
+            LogHelper.WriteLog(messageContent);
+        }
+
+        private void SendEmail(PaymentDetail paymentDetail, PaymentUpdateCriteria criteria)
+        {
+            var emailType = criteria.Status.ToLower() == PaymentStatusText.Approved ? EmailTemplateType.PaymentApprove : EmailTemplateType.PaymentCancel;
+            var emailTemplate = new EmailTemplate(emailType, criteria.PreferredLanguage, criteria.MailOption);
+            var siteInfo = SiteDomainInfo.Parse(this, false);
+            var emailTemplateInfo = new EmailTemplateInfo
+            {
+                TransId = criteria.TransId,
+                FirstName = paymentDetail.Firstname,
+                WinlostDate = paymentDetail.Transdate,
+                Amount = FormaterCurrency.Format(paymentDetail.Amt, paymentDetail.AffCurrency),
+                AdminSiteUrl = siteInfo.AdminSiteUrl,
+                AffiliateSiteUrl = siteInfo.AffiliateSiteUrl,
+                MemberSiteUrl = siteInfo.MemberSiteUrl,
+                MemberSiteDomain = siteInfo.MemberSiteDomain
+            };
+
+            emailTemplate.ResolvePath(Server).Send(paymentDetail.Email, emailTemplateInfo);
         }
 
         #endregion Helpers

@@ -2908,4 +2908,10 @@
     <value>Win Loss is rounded for reference only. Therefore, Sub Total amount may be different from the sum of Win Loss when it sums all the actual Win Loss amounts.</value>
     <comment>78976</comment>
   </data>
+  <data name="PaymentRequestBeingProcessed" xml:space="preserve">
+    <value>Payment Request is being processed</value>
+  </data>
+  <data name="InValidPaymentRequestStatus" xml:space="preserve">
+    <value>Invalid Payment Request Status</value>
+  </data>
 </root>

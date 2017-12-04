@@ -4293,6 +4293,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Payment Request Status.
+        /// </summary>
+        public static string InValidPaymentRequestStatus {
+            get {
+                return ResourceManager.GetString("InValidPaymentRequestStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Product.
         /// </summary>
         public static string InvalidProduct {
@@ -5946,6 +5955,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string PaymentRequest {
             get {
                 return ResourceManager.GetString("PaymentRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Request is being processed.
+        /// </summary>
+        public static string PaymentRequestBeingProcessed {
+            get {
+                return ResourceManager.GetString("PaymentRequestBeingProcessed", resourceCulture);
             }
         }
         

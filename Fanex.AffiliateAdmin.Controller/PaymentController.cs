@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
@@ -347,7 +348,7 @@
                     ref ibcTransId);
 
                 var methodName = "Transfer";
-                var resultLogContent = BuildLogContentByResult(methodName, criteria.UserId, result, paymentDetail);
+                var resultLogContent = BuildLogContentByResult(methodName, criteria.UserId, result, paymentDetail, ibcTransId, ibcRefNo);
                 _databaseLogger.WritePaymentLog(new PaymentLogCriteria { UserId = criteria.UserId, LogContent = resultLogContent });
 
                 if (result.Success)
@@ -389,16 +390,26 @@
             return result;
         }
 
-        private string BuildLogContentByResult(string methodName, int userId, ResultViewModel result, PaymentDetail paymentDetail)
+        private string BuildLogContentByResult(string methodName, int userId, ResultViewModel result, PaymentDetail paymentDetail, long ibcTransId = 0, long ibcRefNo = 0)
         {
             var builder = new StringBuilder();
 
-            builder.AppendLine($"Complete Call Method {methodName}");
+            builder.AppendLine($"Complete Call Method {methodName} at {DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture)}");
             builder.AppendLine("Infor:");
-            builder.AppendLine($"UserId: ${userId}");
-            builder.AppendLine($"SystemName: ${paymentDetail.SystemName}");
-            builder.AppendLine($"AffUserName: ${paymentDetail.AffUserName}");
-            builder.AppendLine($"Transfer Amount: ${paymentDetail.TransferAmount}");
+            builder.AppendLine($"TransId: {paymentDetail.Transid}");
+            builder.AppendLine($"UserId: {userId}");
+            builder.AppendLine($"TransDate: {paymentDetail.Transdate}");
+            builder.AppendLine($"CompletedDate: {paymentDetail.CompletedDate}");
+            builder.AppendLine($"SystemName: {paymentDetail.SystemName}");
+            builder.AppendLine($"AffUserName: {paymentDetail.AffUserName}");
+            builder.AppendLine($"Transfer Amount: {paymentDetail.TransferAmount}");
+
+            if (ibcTransId != 0 || ibcRefNo != 0)
+            {
+                builder.AppendLine($"ibcTransId: {ibcTransId}");
+                builder.AppendLine($"ibcRefNo: {ibcRefNo}");
+            }
+
             builder.AppendLine("Result:");
             builder.AppendLine($"Success: {result.Success.ToString()}");
 

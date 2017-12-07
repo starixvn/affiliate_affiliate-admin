@@ -161,8 +161,6 @@
                     return View(model);
                 }
 
-                var session = SessionManager.CurrentSession;
-
                 var checkInProgressResult = _paymentService.CheckPaymentInProgress(new PaymentCheckInProgressCriteria
                 {
                     TransId = model.TransId,
@@ -204,8 +202,8 @@
              	AdminRemark = CutLongText(model.AdminRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
               	AffRemark = CutLongText(model.AffRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
              	PreferredLanguage = paymentDetail.PreferredLanguage,
-               	UserId = session.CustID,
-              	AdminUserName = session.Username,
+               	UserId = SessionManager.CurrentSession.CustID,
+              	AdminUserName = SessionManager.CurrentSession.Username,
               	IP = Remote.GetClientIPAddress()
             };
         }
@@ -226,15 +224,6 @@
             return strText.Substring(0, maxLength - 3) + "...";
         }
 
-        /// <summary>
-        /// Determines whether [is exist licensee customer information] [the specified site name].
-        /// </summary>
-        /// <param name="siteName">Name of the site.</param>
-        /// <param name="userName">Name of the user.</param>
-        /// <param name="ibcUsername">The IBC username.</param>
-        /// <param name="player_Currency">The player_ currency.</param>
-        /// <param name="errMsg">The error MSG.</param>
-        /// <returns>Returns whether the customer is existed.</returns>
         private bool IsExistLicenseeCustInfo(
             long transId,
             string siteName,
@@ -248,41 +237,38 @@
                 return true;
             }
 
-            var xml = ServiceWrapper.GetLicenseeCustInfo(siteName, userName);
-
-            var methodName = "GetLicenseeCustInfo";
-            var userId = SessionManager.CurrentSession.CustID;
-            var paramInfo = $"siteName={siteName}, userName={userName}";
-            var resultLogContent = BuildLogContentByResult(methodName, userId, transId, paramInfo, xml?.ToString());
-            _databaseLogger.WritePaymentLog(new PaymentLogCriteria { UserId = userId, LogContent = resultLogContent });
-
-            if (xml == null || xml.IsEmpty)
+            try
             {
-                return false;
+                var xml = ServiceWrapper.GetLicenseeCustInfo(siteName, userName);
+
+                var methodName = "GetLicenseeCustInfo";
+                var userId = SessionManager.CurrentSession.CustID;
+                var paramInfo = $"siteName={siteName}, userName={userName}";
+                var resultLogContent = BuildLogContentByResult(methodName, userId, transId, paramInfo, xml?.ToString());
+                _databaseLogger.WritePaymentLog(new PaymentLogCriteria { UserId = userId, LogContent = resultLogContent });
+
+                if (xml == null || xml.IsEmpty)
+                {
+                    return false;
+                }
+
+                var errCode = Convert.ToInt32(xml.Element("ReturnCode").Value);
+                errMsg = xml.Element("ReturnMessage").Value;
+                if (errCode == 0)
+                {
+                    ibcUsername = Convert.ToString(xml.Element("IBCusername").Value);
+                    player_Currency = Convert.ToString(xml.Element("Currency").Value);
+                    return true;
+                }
             }
-
-            int errCode = Convert.ToInt32(xml.Element("ReturnCode").Value);
-            errMsg = xml.Element("ReturnMessage").Value;
-            if (errCode == 0)
+            catch (Exception ex)
             {
-                ibcUsername = Convert.ToString(xml.Element("IBCusername").Value);
-                player_Currency = Convert.ToString(xml.Element("Currency").Value);
-                return true;
+                Logging.LogService.Error(ex.Message, ex);
             }
 
             return false;
         }
 
-        /// <summary>
-        /// Transfers the automatic player account.
-        /// </summary>
-        /// <param name="systemName">Name of the system.</param>
-        /// <param name="playerUsername">The player username.</param>
-        /// <param name="amount">The amount.</param>
-        /// <param name="balAccCustId">The balance account customer id.</param>
-        /// <param name="ibcRefNo">The IBC preference no.</param>
-        /// <param name="ibcTransId">The IBC trans id.</param>
-        /// <returns>Returns result when calling service to transfer amount to player account.</returns>
         private ResultViewModel TransferToPlayerAcc(
             PlayerPayoutInfo playerPayoutInfo,
             long transId,
@@ -298,50 +284,50 @@
                 result.Success = true;
                 return result;
             }
-
-            var siteName = playerPayoutInfo.SystemName;
-            var licenseeUserName = playerPayoutInfo.PlayerUsername;
-            var xml = ServiceWrapper.Transfer(siteName, licenseeUserName, amount, balAccCustId);
-
-            var methodName = "Transfer";
-            var userId = SessionManager.CurrentSession.CustID;
-            var paramInfo = $"siteName={siteName}, licenseeUserName={licenseeUserName}, amount={amount}, dummyAccount={balAccCustId}";
-            var resultLogContent = BuildLogContentByResult(methodName, userId, transId, paramInfo, xml?.ToString());
-            _databaseLogger.WritePaymentLog(new PaymentLogCriteria { UserId = userId, LogContent = resultLogContent });
-
-            if (xml == null || xml.IsEmpty)
+            try
             {
-                result.ErrorMessage = "Empty result from API!";
-                return result;
+                var siteName = playerPayoutInfo.SystemName;
+                var licenseeUserName = playerPayoutInfo.PlayerUsername;
+                var xml = ServiceWrapper.Transfer(siteName, licenseeUserName, amount, balAccCustId);
+
+                var methodName = "Transfer";
+                var userId = SessionManager.CurrentSession.CustID;
+                var paramInfo = $"siteName={siteName}, licenseeUserName={licenseeUserName}, amount={amount}, dummyAccount={balAccCustId}";
+                var resultLogContent = BuildLogContentByResult(methodName, userId, transId, paramInfo, xml?.ToString());
+                _databaseLogger.WritePaymentLog(new PaymentLogCriteria { UserId = userId, LogContent = resultLogContent });
+
+                if (xml == null || xml.IsEmpty)
+                {
+                    result.ErrorMessage = "Empty result from API!";
+                    return result;
+                }
+
+                result.ErrorCode = Convert.ToInt32(xml.Element("ReturnCode").Value);
+                if (result.ErrorCode == 0)
+                {
+                    result.Success = true;
+                    ibcRefNo = Convert.ToInt64(xml.Element("IBCRefNo").Value);
+                    ibcTransId = Convert.ToInt64(xml.Element("IBCTransId").Value);
+                }
+                else
+                {
+                    result.ErrorMessage = xml.Element("ReturnMessage").Value;
+                }
+
             }
-
-            result.ErrorCode = Convert.ToInt32(xml.Element("ReturnCode").Value);
-            if (result.ErrorCode == 0)
+            catch (Exception ex)
             {
-                result.Success = true;
-                ibcRefNo = Convert.ToInt64(xml.Element("IBCRefNo").Value);
-                ibcTransId = Convert.ToInt64(xml.Element("IBCTransId").Value);
-            }
-            else
-            {
-                result.ErrorMessage = xml.Element("ReturnMessage").Value;
+                result.Success = false;
+                Logging.LogService.Error(ex.Message, ex);
             }
 
             return result;
         }
 
-        /// <summary>
-        /// Updates the payment status.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <param name="affId">The affiliate id.</param>
-        /// <param name="refId">The preference unique identifier.</param>
-        /// <param name="transferAmount">The amount.</param>
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
         private ResultViewModel ProcessUpdatePayment(PaymentUpdateCriteria criteria, PaymentDetail paymentDetail)
         {
-            ResultViewModel result;
-
+            var isUpdatedPaymentStatus = criteria.Status.ToLower() != PaymentStatusText.Approved;
             if (criteria.Status.ToLower() == PaymentStatusText.Approved)
             {
                 var playerPayoutInfo = _paymentService.GetPlayerPayoutInfo(new PlayerPayoutInfoSelCriteria
@@ -356,7 +342,11 @@
                 });
 
                 long ibcRefNo = 0, ibcTransId = 0;
-                result = TransferToPlayerAcc(
+                var ibcUsername = string.Empty;
+                var playerCurrency = string.Empty;
+                var errorMessage = string.Empty;
+
+                var isSuccessfulTransferPayment = TransferToPlayerAcc(
                     playerPayoutInfo,
                     paymentDetail.Transid,
                     Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount)),
@@ -364,44 +354,39 @@
                     ref ibcRefNo,
                     ref ibcTransId);
 
-                if (result.Success)
-                {
-                    string ibcUsername = string.Empty, playerCurrency = string.Empty, errorMessage = string.Empty;
-
-                    var isCustomerExisted = IsExistLicenseeCustInfo(
+                isUpdatedPaymentStatus = isSuccessfulTransferPayment.Success && IsExistLicenseeCustInfo(
                                                 paymentDetail.Transid,
                                                 playerPayoutInfo.SystemName,
                                                 playerPayoutInfo.PlayerUsername,
                                                 ref ibcUsername,
                                                 ref playerCurrency,
                                                 ref errorMessage);
-                    // Update IbcUsername for the payout with non-deposited Acc
-                    if (isCustomerExisted)
-                    {
-                        criteria.IbcRefNo = ibcRefNo;
-                        criteria.IbcTransId = ibcTransId;
-                        criteria.IbcUsername = ibcUsername;
-                        _paymentService.UpdatePayment(criteria);
-                    }
-                    else
-                    {
-                        result.Success = false;
-                        result.ErrorMessage = errorMessage;
-                    }
+                if (isUpdatedPaymentStatus)
+                {
+                    criteria.IbcRefNo = ibcRefNo;
+                    criteria.IbcTransId = ibcTransId;
+                    criteria.IbcUsername = ibcUsername;
                 }
             }
-            else
+
+            if (isUpdatedPaymentStatus)
             {
-                result = new ResultViewModel();
                 _paymentService.UpdatePayment(criteria);
+                return new ResultViewModel
+                {
+                    ErrorCode = criteria.ErrCode,
+                    Success = criteria.ErrCode == 0,
+                };
             }
 
-            result.ErrorCode = criteria.ErrCode;
-            result.Success = result.ErrorCode == 0;
-            return result;
+            return new ResultViewModel
+            {
+                Success = false
+            };
         }
 
-        private string BuildLogContentByResult(string methodName, int userId, long transId, string paramInfo, string resultContent)
+
+        private static string BuildLogContentByResult(string methodName, int userId, long transId, string paramInfo, string resultContent)
         {
             var builder = new StringBuilder();
 

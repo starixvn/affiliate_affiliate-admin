@@ -336,6 +336,15 @@
                     RefId = paymentDetail.RefId
                 });
 
+                if (string.IsNullOrEmpty(playerPayoutInfo.DummyBalAcc))
+                {
+                    return new ResultViewModel
+                    {
+                        Success = false,
+                        ErrorCode = 2005
+                    };
+                }
+
                 var balAccCustId = _paymentService.GetCustIDByUsername(new DummyAccIdCriteria
                 {
                     Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc

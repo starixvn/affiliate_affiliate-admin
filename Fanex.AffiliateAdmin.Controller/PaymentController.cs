@@ -292,7 +292,7 @@
 
                 var methodName = "Transfer";
                 var userId = SessionManager.CurrentSession.CustID;
-                var paramInfo = $"siteName={siteName}, licenseeUserName={licenseeUserName}, amount={amount}, dummyAccount={balAccCustId}";
+                var paramInfo = $"siteName={siteName}, licenseeUserName={licenseeUserName}, Transfer Amount={amount}, dummyAccount={balAccCustId}";
                 var resultLogContent = BuildLogContentByResult(methodName, userId, transId, paramInfo, xml?.ToString());
                 _databaseLogger.WritePaymentLog(new PaymentLogCriteria { UserId = userId, LogContent = resultLogContent });
 
@@ -346,7 +346,7 @@
                 var playerCurrency = string.Empty;
                 var errorMessage = string.Empty;
 
-                var isSuccessfulTransferPayment = TransferToPlayerAcc(
+                var transferPaymentResult = TransferToPlayerAcc(
                     playerPayoutInfo,
                     paymentDetail.Transid,
                     Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount)),
@@ -354,7 +354,7 @@
                     ref ibcRefNo,
                     ref ibcTransId);
 
-                isUpdatedPaymentStatus = isSuccessfulTransferPayment.Success && IsExistLicenseeCustInfo(
+                isUpdatedPaymentStatus = transferPaymentResult.Success && IsExistLicenseeCustInfo(
                                                 paymentDetail.Transid,
                                                 playerPayoutInfo.SystemName,
                                                 playerPayoutInfo.PlayerUsername,

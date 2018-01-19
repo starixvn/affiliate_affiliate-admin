@@ -26,6 +26,7 @@
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.allbetclub.uat.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.9bet.uat.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.uat.xml
+// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.sit.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.sit.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.sit.xml
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.local.xml

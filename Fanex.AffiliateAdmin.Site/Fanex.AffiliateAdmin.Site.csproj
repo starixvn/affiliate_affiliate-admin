@@ -407,6 +407,9 @@
     <Content Include="Configurations\SpNames\SpName.itcbet.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.itcbet.sit.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\SpNames\SpName.itcbet.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
@@ -3754,7 +3757,9 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.bolanation.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.bolanation.production.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.bolanation.uat.config" />
+    <None Include="Configurations\AppSettings\Web.AppSetting.itcbet.sit.config" />
     <None Include="Configurations\AppSettings\Web.AppSetting.macaubet.sit.config" />
+    <None Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.sit.config" />
     <None Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.sit .config" />
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
@@ -3879,6 +3884,7 @@
     <Content Include="Configurations\WebConfigs\Web.bolanation.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
+    <None Include="Configurations\WebConfigs\Web.itcbet.sit.config" />
     <None Include="Configurations\WebConfigs\Web.macaubet.sit.config" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
@@ -4270,7 +4276,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

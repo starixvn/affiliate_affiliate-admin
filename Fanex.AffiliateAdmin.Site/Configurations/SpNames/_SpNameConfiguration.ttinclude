@@ -44,6 +44,11 @@
 				LicenseeName = "spondemo",
 				DbName = "DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet"
 			});
+	sites.Add(new SiteInfo(){
+				Environment = "sit",
+				LicenseeName = "macaubet",
+				DbName = "DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet"
+			});
 
 	foreach(var environment in environments)
 	{

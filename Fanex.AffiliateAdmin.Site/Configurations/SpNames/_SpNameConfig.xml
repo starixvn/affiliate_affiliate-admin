@@ -5,4 +5,12 @@
   <item LicenseeName="athena000" Environment="DEV,UAT,SIT" SpName="AffAdmin_PaymentRequestUpd" Suffix="_xtest"></item>
   <item LicenseeName="athena000" Environment="DEV,UAT,SIT" SpName="AffAdmin_PaymentRequest_InProgress" Suffix="_xtest"></item>
   <item LicenseeName="athena000" Environment="DEV,UAT,SIT" SpName="Aff_WebAPI_WriteLog" Suffix="_xtest"></item>
+
+  <item LicenseeName="macaubet" Environment="SIT" SpName="AffAdmin_PaymentRequestUpd" Suffix="_xtest"></item>
+  <item LicenseeName="macaubet" Environment="SIT" SpName="AffAdmin_PaymentRequest_InProgress" Suffix="_xtest"></item>
+  <item LicenseeName="macaubet" Environment="SIT" SpName="Aff_WebAPI_WriteLog" Suffix="_xtest"></item>
+
+  <item LicenseeName="itcbet" Environment="SIT" SpName="AffAdmin_PaymentRequestUpd" Suffix="_xtest"></item>
+  <item LicenseeName="itcbet" Environment="SIT" SpName="AffAdmin_PaymentRequest_InProgress" Suffix="_xtest"></item>
+  <item LicenseeName="itcbet" Environment="SIT" SpName="Aff_WebAPI_WriteLog" Suffix="_xtest"></item>
 </Root>

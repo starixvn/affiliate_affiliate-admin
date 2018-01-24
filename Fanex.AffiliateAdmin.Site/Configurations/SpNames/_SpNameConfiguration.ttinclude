@@ -27,22 +27,32 @@
 	sites.Add(new SiteInfo(){
 				Environment = "DEV",
 				LicenseeName = "athena000",
-				DbName = "DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet"
+				DbName = licenseeDbNameList["athena000"]
 			});
 	sites.Add(new SiteInfo(){
 				Environment = "sit",
 				LicenseeName = "athena000",
-				DbName = "DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet"
+				DbName = licenseeDbNameList["athena000"]
 			});
 	sites.Add(new SiteInfo(){
 				Environment = "local",
 				LicenseeName = "spondemo",
-				DbName = "DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet"
+				DbName = licenseeDbNameList["spondemo"]
 			});
 	sites.Add(new SiteInfo(){
 				Environment = "sit",
 				LicenseeName = "spondemo",
-				DbName = "DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet"
+				DbName = licenseeDbNameList["spondemo"]
+			});
+	sites.Add(new SiteInfo(){
+				Environment = "sit",
+				LicenseeName = "macaubet",
+				DbName = licenseeDbNameList["macaubet"]
+			});
+	sites.Add(new SiteInfo(){
+				Environment = "sit",
+				LicenseeName = "itcbet",
+				DbName = licenseeDbNameList["itcbet"]
 			});
 
 	foreach(var environment in environments)

@@ -1,10 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Core.Configurations;
-    using Fanex.AffiliateAdmin.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
@@ -23,23 +20,6 @@
 
         public string Status { get; set; }
 
-        public IEnumerable<SelectListItem> CommissionGroupOptionList
-        {
-            get
-            {
-                var comGroups = AppSettings.GetActiveCommGroups(new CommGroupSelActiveListCriteria
-                {
-                    UserId = UserId,
-                    Currency = Currency
-                });
-
-                return comGroups.Select(t => new SelectListItem
-                {
-                    Text = t.GroupName,
-                    Value = t.GroupID.ToString(),
-                    Selected = t.GroupID == GroupId
-                });
-            }
-        }
+        public IEnumerable<SelectListItem> CommissionGroupOptionList { get; set; }
     }
 }

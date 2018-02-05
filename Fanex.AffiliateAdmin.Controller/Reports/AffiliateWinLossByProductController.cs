@@ -29,6 +29,7 @@
             var session = SessionManager.CurrentSession;
             criteria.UserId = session.CustID;
             criteria.IsITAdmin = session.IsIT;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
             criteria.LicenseeId = AppSettings.LicenseeID;
             criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
             criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
@@ -46,10 +47,10 @@
                 Groups = groups,
                 SubTotalData = groupsByCurrency,
                 TotalRowData = new AffiliateWinLossByProduct
-                    {
-                        Currency = AppSettings.BaseExchange.Code,
-                        AffiliateWinLossByProductList = data.AffiliateWinLossInSystemCurrency
-                    },
+                {
+                    Currency = AppSettings.BaseExchange.Code,
+                    AffiliateWinLossByProductList = data.AffiliateWinLossInSystemCurrency
+                },
                 HasMultipleRows = groups.Count() > 1,
                 HasMultipleCurrencyRows = groupsByCurrency.Count() > 1,
                 FirstCurrency = firstCurrency != null ? firstCurrency.Currency : string.Empty,
@@ -95,19 +96,19 @@
                 var first = groupByAffiliate.First();
 
                 list.Add(new AffiliateWinLossByProduct
-                    {
-                        AffId = first.AffId,
-                        Username = first.Username,
-                        AffType = first.AffType,
-                        CurrencyId = first.CurrencyId,
-                        Currency = first.Currency,
-                        GroupID = first.GroupID,
-                        GroupName = first.GroupName,
-                        Language = first.Language,
-                        Status = first.Status,
-                        WinlostDate = first.WinlostDate,
-                        AffiliateWinLossByProductList = groupByAffiliate
-                    });
+                {
+                    AffId = first.AffId,
+                    Username = first.Username,
+                    AffType = first.AffType,
+                    CurrencyId = first.CurrencyId,
+                    Currency = first.Currency,
+                    GroupID = first.GroupID,
+                    GroupName = first.GroupName,
+                    Language = first.Language,
+                    Status = first.Status,
+                    WinlostDate = first.WinlostDate,
+                    AffiliateWinLossByProductList = groupByAffiliate
+                });
             }
 
             return list;

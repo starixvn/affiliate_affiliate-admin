@@ -60,6 +60,11 @@
             FunctionMenus = CreateFunctionMenus();
         }
 
+        public string BuildUserCurrencyParam()
+        {
+            return CurrencyList == null || !CurrencyList.Any() ? string.Empty : string.Join(",", CurrencyList.Select(x => x.CurrencyID));
+        }
+
         private IEnumerable<FunctionMenu> CreateFunctionMenus()
         {
             var menuList = new List<FunctionMenu>();
@@ -82,7 +87,6 @@
                 AddFunctionMenu(menuList, FunctionPolicyNames.CommissionGroup, "CommissionGroup", "~/CommGroup");
                 AddFunctionMenu(menuList, FunctionPolicyNames.AffReport, "Reports", "~/Report");
                 AddFunctionMenu(menuList, FunctionPolicyNames.AffExchangeRate, "Currency", "~/Exchange");
-
             }
 
             AddFunctionMenu(menuList, FunctionPolicyNames.Media, "MarketingTools", "~/MediaBanner");
@@ -93,7 +97,6 @@
             {
                 AddFunctionMenu(menuList, FunctionPolicyNames.SystemSettings, "Configurations", "~/Configuration");
                 AddFunctionMenu(menuList, FunctionPolicyNames.Domain, "Domain", "~/Domain/AffDomain");
-
             }
 
             return menuList;

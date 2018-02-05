@@ -11,8 +11,10 @@
 
         public string Currency { get; set; }
 
-        public int LicenseeId { get; set; } 
-        
+        public int LicenseeId { get; set; }
+
+        public string UserCurrencies { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_CommGroup_SelActiveList";

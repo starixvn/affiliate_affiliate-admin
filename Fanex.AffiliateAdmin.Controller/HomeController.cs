@@ -38,7 +38,8 @@
             var model = _homeService.GeneralInfoSel(new HomeGeneralInfoCriteria
             {
                 UserId = SessionManager.CurrentSession.CustID,
-                LicenseeId = AppSettings.LicenseeID
+                LicenseeId = AppSettings.LicenseeID,
+                UserCurrencies = SessionManager.CurrentSession.BuildUserCurrencyParam()
             });
 
             return View(model);
@@ -87,6 +88,7 @@
             criteria.UserId = session.CustID;
             criteria.IsIT = session.IsIT;
             criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
             var listUseronlines = _homeService.UserOnlineList(criteria).ToList();
 
             return Json(new

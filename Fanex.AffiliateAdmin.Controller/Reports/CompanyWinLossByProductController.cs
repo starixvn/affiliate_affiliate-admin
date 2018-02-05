@@ -99,6 +99,7 @@
 
             criteria.UserId = session.CustID;
             criteria.IsITAdmin = session.IsIT;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
             criteria.LicenseeId = AppSettings.LicenseeID;
         }
 

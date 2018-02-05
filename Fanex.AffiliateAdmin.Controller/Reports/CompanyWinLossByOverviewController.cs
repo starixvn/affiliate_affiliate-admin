@@ -43,11 +43,11 @@
             var companyWinlossByProduct = GroupDataCompanyWinlossByOverview(criteria, data.CompanyWinlossList);
 
             var total = new CompanyWinlossReportByOverview
-                {
-                    GroupInfo = Lang.Total,
-                    Level = "All",
-                    CompanyWinlossInMemberCurrencies = data.TotalCompanyWinlossInMemberCurrencies
-                };
+            {
+                GroupInfo = Lang.Total,
+                Level = "All",
+                CompanyWinlossInMemberCurrencies = data.TotalCompanyWinlossInMemberCurrencies
+            };
 
             var firstCurrency = total.CompanyWinlossInMemberCurrencies.FirstOrDefault();
 
@@ -93,6 +93,7 @@
 
             criteria.UserId = session.CustID;
             criteria.IsITAdmin = session.IsIT;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
             criteria.LicenseeId = AppSettings.LicenseeID;
         }
 

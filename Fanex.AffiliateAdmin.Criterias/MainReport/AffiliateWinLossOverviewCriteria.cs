@@ -48,6 +48,8 @@
 
         public int LicenseeId { get; set; }
 
+        public string UserCurrencies { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_AffiliateWinLossReport";

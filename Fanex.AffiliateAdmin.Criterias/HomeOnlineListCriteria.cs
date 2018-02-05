@@ -21,6 +21,8 @@
 
         public int LicenseeId { get; set; }
 
+        public string UserCurrencies { get; set; }
+
         /// <summary>
         /// Store procedure Name.
         /// </summary>

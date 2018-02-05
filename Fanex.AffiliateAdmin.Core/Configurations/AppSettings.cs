@@ -63,10 +63,10 @@
             {
                 var affType = SystemSetting.GetAffTypeList(new AffTypeCriteria());
                 return affType.Select(t => new AffType()
-                   {
-                       TypeID = t.TypeID,
-                       Name = Lang.ResourceManager.GetString(t.Name)
-                   });
+                {
+                    TypeID = t.TypeID,
+                    Name = Lang.ResourceManager.GetString(t.Name)
+                });
             });
             _baseExchange = new Lazy<Exchange>(() => SystemSetting.GetSystemBaseExchange(new SystemSettingExchangeCriteria()));
             _baseLanguage = new Lazy<IEnumerable<Language>>(() => SystemSetting.GetLanguageList(new AdminSupportedLanguagesSelCriteria()));
@@ -74,17 +74,17 @@
             _licenseeId = new Lazy<int>(() =>
             {
                 var licensee = SystemSetting.GetSystemSetting(new SystemSettingsSelByNameCriteria
-                    {
-                        Name = "LicenseeID",
-                    });
+                {
+                    Name = "LicenseeID",
+                });
 
                 return int.Parse(licensee.SValue);
             });
             _memberSiteSupportedLanguage = new Lazy<IEnumerable<Language>>(() => SystemSetting.GetMemberSiteSupportedLanguageList(
                 new MemberSiteLanguageCriteria
-                    {
-                        Environment = Environment
-                    }));
+                {
+                    Environment = Environment
+                }));
             _playerCurrencies = new Lazy<IEnumerable<Currency>>(() => SystemSetting.GetPlayerCurrencyList(new PlayerCurrencyCriteria()));
             _products = new Lazy<IEnumerable<Product>>(() => SystemSetting.GetProductList(new ProductSelectCriteria { LicenseeId = LicenseeID }));
             _systemName = new Lazy<string>(() => GetSettingValue(new SystemSettingsSelByNameCriteria { Name = "SystemName" }));
@@ -102,9 +102,9 @@
             _systemStartDate = new Lazy<DateTime>(() =>
             {
                 var systemSetting = SystemSetting.GetSystemSetting(new SystemSettingsSelByNameCriteria
-                    {
-                        Name = "SystemStartDate"
-                    });
+                {
+                    Name = "SystemStartDate"
+                });
 
                 return string.IsNullOrEmpty(systemSetting.SValue)
                                            ? SystemTimeService.GetSystemDateTime()
@@ -454,7 +454,9 @@
                 criteria = new CommGroupCurrencyCriteria { Currency = "All" };
             }
 
-            criteria.UserId = SessionManager.CurrentSession.CustID;
+            var session = SessionManager.CurrentSession;
+            criteria.UserId = session.CustID;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
             criteria.LicenseeId = LicenseeID;
 
             return SystemSetting.GetCommGroups(criteria);

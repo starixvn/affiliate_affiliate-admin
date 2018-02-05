@@ -37,6 +37,7 @@
             var session = SessionManager.CurrentSession;
             criteria.UserId = session.CustID;
             criteria.IsITAdmin = session.IsIT;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
             criteria.LicenseeId = AppSettings.LicenseeID;
             criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
             criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());

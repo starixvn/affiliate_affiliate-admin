@@ -64,6 +64,8 @@
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
             criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.UserCurrencies = SessionManager.CurrentSession.BuildUserCurrencyParam();
+
             var result = _service.GetAffiliateList(criteria);
 
             var approveStatusList = new List<string> { "approved", "closed", "lockedout" };
@@ -89,12 +91,12 @@
                 List = result.AffiliateList,
                 SubTotal = result.CurrencyList,
                 Total = new
-                    {
-                        CurrencyCode = AppSettings.BaseExchange.Code,
-                        Currency = criteria.TotalAmount,
-                        Total = result.CurrencyList.Sum(t => t.Currency),
-                        TotalMembers = result.CurrencyList.Sum(t => t.TotalMembers)
-                    },
+                {
+                    CurrencyCode = AppSettings.BaseExchange.Code,
+                    Currency = criteria.TotalAmount,
+                    Total = result.CurrencyList.Sum(t => t.Currency),
+                    TotalMembers = result.CurrencyList.Sum(t => t.TotalMembers)
+                },
                 HasMultipleCurrency = hasMultipleCurrency,
                 HideTotalRows = hideTotalRows,
                 CurrentPage = criteria.PageIndex - 1,
@@ -106,6 +108,7 @@
         public ActionResult GetCommGroups(CommGroupCurrencyCriteria criteria)
         {
             criteria.LicenseeId = AppSettings.LicenseeID;
+
             return Json(new
             {
                 List = AppSettings.GetCommGroups(criteria)
@@ -123,12 +126,12 @@
         public ActionResult ChangePassword(int id, string username, string password, string confirmPassword)
         {
             return View(new ChangeAffPasswordViewModel
-                {
-                    Id = id,
-                    Username = username,
-                    Password = password,
-                    ConfirmPassword = confirmPassword
-                });
+            {
+                Id = id,
+                Username = username,
+                Password = password,
+                ConfirmPassword = confirmPassword
+            });
         }
 
         /// <summary>
@@ -142,14 +145,14 @@
             if (ModelState.IsValid)
             {
                 var criteria = new ChangeAffPasswordCriteria
-                    {
-                        Id = model.Id,
-                        Username = model.Username,
-                        Password = null,
-                        Ip = Remote.GetClientIPAddress(),
-                        UserId = SessionManager.CurrentSession.CustID,
-                        ConfirmPassword = Cryptography.CfsEnCode(model.ConfirmPassword)
-                    };
+                {
+                    Id = model.Id,
+                    Username = model.Username,
+                    Password = null,
+                    Ip = Remote.GetClientIPAddress(),
+                    UserId = SessionManager.CurrentSession.CustID,
+                    ConfirmPassword = Cryptography.CfsEnCode(model.ConfirmPassword)
+                };
 
                 _service.ChangePassword(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
@@ -191,11 +194,11 @@
             }
 
             return ChangeAccountType(new ChangeAccountTypeViewModel
-                {
-                    AffIds = criteria.AffIds,
-                    Usernames = criteria.Usernames,
-                    TestLevel = criteria.TestLevel
-                });
+            {
+                AffIds = criteria.AffIds,
+                Usernames = criteria.Usernames,
+                TestLevel = criteria.TestLevel
+            });
         }
 
         /// <summary>
@@ -206,7 +209,22 @@
         [HttpGet]
         public ActionResult ChangeCommissionGroup(ChangeCommissionGroupViewModel model)
         {
-            model.UserId = SessionManager.CurrentSession.CustID;
+            var session = SessionManager.CurrentSession;
+
+            var comGroups = AppSettings.GetActiveCommGroups(new CommGroupSelActiveListCriteria
+            {
+                UserId = session.CustID,
+                Currency = model.Currency,
+                UserCurrencies = session.BuildUserCurrencyParam()
+            });
+
+            model.CommissionGroupOptionList = comGroups.Select(t => new SelectListItem
+            {
+                Text = t.GroupName,
+                Value = t.GroupID.ToString(),
+                Selected = t.GroupID == model.GroupId
+            });
+
             return View(model);
         }
 
@@ -242,7 +260,8 @@
             {
                 AffIds = criteria.AffIds,
                 Usernames = criteria.Usernames,
-                Currency = criteria.Currency
+                Currency = criteria.Currency,
+                GroupId = criteria.GroupId
             });
         }
 
@@ -262,11 +281,11 @@
             }
 
             return Json(new ResultViewModel
-                {
-                    ErrorCode = 16,
-                    Success = false,
-                    Message = Lang.InvalidRequest
-                });
+            {
+                ErrorCode = 16,
+                Success = false,
+                Message = Lang.InvalidRequest
+            });
         }
 
         /// <summary>
@@ -349,12 +368,12 @@
         public ActionResult CustomerRemove(string username)
         {
             var criteria = new CustomerRemoveCriteria
-                                            {
-                                                UserId = SessionManager.CurrentSession.CustID,
-                                                Username = username,
-                                                IP = Remote.GetClientIPAddress(),
-                                                LicenseeId = AppSettings.LicenseeID
-                                            };
+            {
+                UserId = SessionManager.CurrentSession.CustID,
+                Username = username,
+                IP = Remote.GetClientIPAddress(),
+                LicenseeId = AppSettings.LicenseeID
+            };
             _service.CustomerRemove(criteria);
 
             var model = GetResultViewModel(criteria.ErrCode);
@@ -429,11 +448,11 @@
             ViewBag.Result = errorCode == 0 ? GetResultViewModel(string.IsNullOrEmpty(message) ? 0 : 1, null, message) : GetResultViewModel(errorCode);
 
             return AssignMember(new AssignMemberViewModel
-                {
-                    MemberName = criteria.MemberName,
-                    AffName = criteria.AffName,
-                    ByAffiliate = criteria.ByAffiliate
-                });
+            {
+                MemberName = criteria.MemberName,
+                AffName = criteria.AffName,
+                ByAffiliate = criteria.ByAffiliate
+            });
         }
 
         /// <summary>
@@ -455,8 +474,11 @@
         [HttpGet]
         public ActionResult ChangeCommissionApprove(ChangeCommissionGroupViewModel model)
         {
+            var session = SessionManager.CurrentSession;
+
             model.Currency = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Currency.ToString();
-            model.UserId = SessionManager.CurrentSession.CustID;
+            model.UserId = session.CustID;
+
             return View(model);
         }
 

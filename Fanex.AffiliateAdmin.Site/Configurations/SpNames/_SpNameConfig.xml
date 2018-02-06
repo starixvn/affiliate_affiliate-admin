@@ -63,4 +63,27 @@
   <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_Con_GroupPolicyUpd" Suffix="_xtest"></item>
   <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_Con_AccountUpdClosed" Suffix="_xtest"></item>
   <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_Con_PolicyUpd" Suffix="_xtest"></item>
+
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffiliateSel" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CommGroupSel" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CommGroupSelByID" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_QualifiedMembersReport" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CommGroupSelListNormal" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffiliateCommissionReport" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffiliateWinLossReport" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffiliateWinLossByProductReport" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CompanyWinlossReport" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CompanyWinLossByProductReport" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_MemberWinLossReport" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_MemberWinLossByProductReport" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_MemberStatisticsReport" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_CommGroup_SelActiveList" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_MemberDel" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffiliateUpdInfo" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_PaymentRequestUpd" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_MemberListSel" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_AffiliateSelGeneralInfo" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT" SpName="Aff_BetList_CheckBelonging" Suffix="_xpre"></item>
 </Root>

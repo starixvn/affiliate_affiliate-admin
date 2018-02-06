@@ -15,7 +15,9 @@ namespace Fanex.AffiliateAdmin.DTO
     public class Currency
     {
         public short CurrencyID { get; set; }
+
         public int OriginalCurrencyID { get; set; }
+
         public string CurrencyCode { get; set; }
 
         public string CurrencyName { get; set; }

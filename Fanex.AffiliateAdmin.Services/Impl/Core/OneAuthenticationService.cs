@@ -58,6 +58,7 @@
 
                 tokenInfo.UserSEQ = int.Parse(userCheckingResult.ExtendedData);
             }
+
             var currentSession = SessionManager.CurrentSession;
             if (IsAuthenticated(currentContext, currentSession))
             {
@@ -76,7 +77,6 @@
                     };
                 }
             }
-
 
             return SetAuthorize(tokenInfo);
         }

@@ -53,7 +53,7 @@
         protected string GetModelErrorMessage()
         {
             var modelState = ViewData.ModelState.Values.FirstOrDefault();
-            if(modelState == null || !modelState.Errors.Any())
+            if (modelState == null || !modelState.Errors.Any())
             {
                 return "Undefined Error";
             }

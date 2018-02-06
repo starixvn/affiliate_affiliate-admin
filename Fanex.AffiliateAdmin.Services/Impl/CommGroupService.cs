@@ -66,7 +66,7 @@
         }
 
         private static void GetCommGroupSettings(
-            List<CommGroupTierSetting> tierSettings,
+            IEnumerable<CommGroupTierSetting> tierSettings,
             Dictionary<string, object> products,
             CommGroup group,
             IEnumerable<DeductionSetting> deductionSettings)
@@ -130,7 +130,7 @@
                 {
                     var setting = settings.FirstOrDefault(x => x.DeductionID == item.DTypeID);
                     deduction.Add(
-                        Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)), 
+                        Lang.ResourceManager.GetString(item.DTypeName.Replace(" ", string.Empty)),
                         (setting != null && setting.DeductedPercentage != null) ? setting.DeductedPercentage.Value : -1);
                 }
             }

@@ -25,10 +25,8 @@
         public ActionResult GetData(AffiliateWinLossOverviewCriteria criteria)
         {
             var session = SessionManager.CurrentSession;
-            criteria.UserId = session.CustID;
             criteria.IsITAdmin = session.IsIT;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
-            criteria.LicenseeId = AppSettings.LicenseeID;
             criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
             criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
 
@@ -70,7 +68,7 @@
             criteria.AffName = affiliate.UserName;
             criteria.Currencies = affiliate.Currency.ToString();
             criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
-            criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
+            criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups().Select(t => t.GroupID));
             criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
             criteria.GroupBy = GroupByMonth;
 

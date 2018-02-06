@@ -72,7 +72,7 @@
             {
                 if (_commissionGroupOptionList == null)
                 {
-                    _commissionGroupOptionList = new MultiSelectList(AppSettings.GetCommGroups(null), "GroupID", "GroupName");
+                    _commissionGroupOptionList = new MultiSelectList(AppSettings.GetCommGroups(), "GroupID", "GroupName");
                 }
 
                 return _commissionGroupOptionList;

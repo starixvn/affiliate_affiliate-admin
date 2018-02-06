@@ -75,7 +75,7 @@
         {
             get
             {
-                var groups = AppSettings.GetCommGroups(null);
+                var groups = AppSettings.GetCommGroups();
 
                 var commGroupList = string.IsNullOrEmpty(CommGroups)
                                        ? new List<int>()

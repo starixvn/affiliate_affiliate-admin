@@ -171,10 +171,8 @@
         public ActionResult MemberStatistics(MemberStatisticReportCriteria criteria)
         {
             var session = SessionManager.CurrentSession;
-            criteria.UserId = session.CustID;
             criteria.IsITAdmin = session.IsIT;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
-            criteria.LicenseeId = AppSettings.LicenseeID;
 
             if (criteria.GroupBy == 2)
             {
@@ -268,9 +266,7 @@
             criteria.Products = string.Join(",", products);
 
             var session = SessionManager.CurrentSession;
-            criteria.UserId = session.CustID;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
-            criteria.LicenseeId = AppSettings.LicenseeID;
 
             var members = _reportService.GetQualifiedMembers(criteria);
 

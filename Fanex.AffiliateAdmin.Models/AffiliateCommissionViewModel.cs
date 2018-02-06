@@ -112,7 +112,7 @@
             {
                 if (_commissionGroupOptions == null)
                 {
-                    var groups = AppSettings.GetCommGroups(null);
+                    var groups = AppSettings.GetCommGroups();
 
                     _commissionGroupOptions = new MultiSelectList(groups, "GroupID", "GroupName");
                 }

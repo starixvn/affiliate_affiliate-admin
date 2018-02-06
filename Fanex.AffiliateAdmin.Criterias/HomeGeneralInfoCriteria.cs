@@ -7,10 +7,6 @@
     /// </summary>
     public class HomeGeneralInfoCriteria : CriteriaBase
     {
-        public int UserId { get; set; }
-
-        public int LicenseeId { get; set; }
-
         public string UserCurrencies { get; set; }
 
         /// <summary>

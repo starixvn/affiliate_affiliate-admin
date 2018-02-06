@@ -7,8 +7,6 @@
     /// </summary>
     public class HomeOnlineListCriteria : CriteriaBase
     {
-        public int UserId { get; set; }
-
         public int PageIndex { get; set; }
 
         public int TotalPages { get; set; }

@@ -7,11 +7,7 @@
     /// </summary>
     public class CommGroupCurrencyCriteria : CriteriaBase
     {
-        public int UserId { get; set; }
-
-        public string Currency { get; set; }
-
-        public int LicenseeId { get; set; }
+        public string Currencies { get; set; }
 
         public string UserCurrencies { get; set; }
 

@@ -16,8 +16,6 @@
 
         public string Currencies { get; set; }
 
-        public int UserId { get; set; }
-
         public string AffTypes { get; set; }
 
         public byte SortBy { get; set; }
@@ -29,8 +27,6 @@
         public string AffName { get; set; }
 
         public bool IsITAdmin { get; set; }
-
-        public int LicenseeId { get; set; }
 
         public string UserCurrencies { get; set; }
 

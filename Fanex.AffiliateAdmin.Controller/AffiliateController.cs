@@ -60,18 +60,16 @@
         [HttpPost]
         public ActionResult AffiliateList(AffiliateListCriteria criteria)
         {
+            var session = SessionManager.CurrentSession;
+
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
-            criteria.UserId = SessionManager.CurrentSession.CustID;
+            criteria.UserId = session.CustID;
             criteria.LicenseeId = AppSettings.LicenseeID;
-            criteria.UserCurrencies = SessionManager.CurrentSession.BuildUserCurrencyParam();
-
-            var result = _service.GetAffiliateList(criteria);
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
             var approveStatusList = new List<string> { "approved", "closed", "lockedout" };
-
             var hideTotalRows = true;
-
             if (!string.IsNullOrEmpty(criteria.Status))
             {
                 var selectedStatusList = criteria.Status.Split(',');
@@ -80,6 +78,8 @@
                     hideTotalRows = false;
                 }
             }
+
+            var result = _service.GetAffiliateList(criteria);
 
             var hasMultipleCurrency = result.AffiliateList
                                             .GroupBy(t => t.Currency)
@@ -107,8 +107,6 @@
 
         public ActionResult GetCommGroups(CommGroupCurrencyCriteria criteria)
         {
-            criteria.LicenseeId = AppSettings.LicenseeID;
-
             return Json(new
             {
                 List = AppSettings.GetCommGroups(criteria)
@@ -333,9 +331,7 @@
             criteria.IsITAdmin = session.IsIT;
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
-            criteria.UserId = session.CustID;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
-            criteria.LicenseeId = AppSettings.LicenseeID;
 
             var result = _service.CustomerList(criteria);
 
@@ -361,8 +357,7 @@
             {
                 UserId = SessionManager.CurrentSession.CustID,
                 Username = username,
-                IP = Remote.GetClientIPAddress(),
-                LicenseeId = AppSettings.LicenseeID
+                IP = Remote.GetClientIPAddress()
             };
             _service.CustomerRemove(criteria);
 
@@ -472,14 +467,13 @@
 
         #region Private Methods
 
-        private static IEnumerable<SelectListItem> GetCommGroupList(string currency, int groupId)
+        private static IEnumerable<SelectListItem> GetCommGroupList(string currencies, int groupId)
         {
             var session = SessionManager.CurrentSession;
 
             var comGroups = AppSettings.GetActiveCommGroups(new CommGroupSelActiveListCriteria
             {
-                UserId = session.CustID,
-                Currency = currency,
+                Currencies = currencies,
                 UserCurrencies = session.BuildUserCurrencyParam()
             });
 

@@ -443,21 +443,18 @@
 
         public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
         {
-            criteria.LicenseeId = LicenseeID;
             return SystemSetting.GetActiveCommGroups(criteria);
         }
 
-        public static IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)
+        public static IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria = null)
         {
             if (criteria == null)
             {
-                criteria = new CommGroupCurrencyCriteria { Currency = "All" };
+                criteria = new CommGroupCurrencyCriteria { Currencies = "All" };
             }
 
             var session = SessionManager.CurrentSession;
-            criteria.UserId = session.CustID;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
-            criteria.LicenseeId = LicenseeID;
 
             return SystemSetting.GetCommGroups(criteria);
         }

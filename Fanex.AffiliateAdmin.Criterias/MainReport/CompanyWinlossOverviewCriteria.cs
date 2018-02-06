@@ -8,8 +8,6 @@
     /// </summary>
     public class CompanyWinlossOverviewCriteria : CriteriaBase
     {
-        public int UserId { get; set; }
-
         public string AffName { get; set; }
 
         public string AffTypes { get; set; }
@@ -48,8 +46,6 @@
 
         [SpParam(SqlParamName = "ProductIds")]
         public string Products { get; set; }
-
-        public int LicenseeId { get; set; }
 
         public string UserCurrencies { get; set; }
 

@@ -7,7 +7,6 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
-    using System.Linq;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Entities;
@@ -76,10 +75,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 var model = _affiliateService.GetAffiliateGeneralInfo(new AffiliateInfoCriteria
                 {
                     Username = userName,
-                    UserId = session.CustID,
-                    Currencies = string.Join(",", session.CurrencyList.Select(c => c.CurrencyID).ToArray()),
                     IsITAdmin = session.IsIT,
-                    LicenseeId = AppSettings.LicenseeID,
                     UserCurrencies = session.BuildUserCurrencyParam()
                 });
 
@@ -277,7 +273,6 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.Ip = Remote.GetClientIPAddress();
                 criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.PreferredPayment = criteria.PreferredPayment ?? affiliate.PreferredPayment;
-                criteria.LicenseeId = AppSettings.LicenseeID;
 
                 _affiliateService.UpdateAffiliateInfo(criteria);
 

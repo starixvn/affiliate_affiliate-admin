@@ -257,6 +257,7 @@
 
             var groups = _commGroupService.GetById(criteria);
             var date = criteria.Date == null ? SystemTimeService.GetSystemDateTime() : criteria.Date.Value;
+
             _commGroupService.BuildGroupData(groups, date, criteria.GroupID.ToString());
 
             return View(groups.FirstOrDefault());

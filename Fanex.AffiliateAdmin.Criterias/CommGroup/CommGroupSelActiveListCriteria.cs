@@ -7,11 +7,7 @@
     /// </summary>
     public class CommGroupSelActiveListCriteria : CriteriaBase
     {
-        public int UserId { get; set; }
-
-        public string Currency { get; set; }
-
-        public int LicenseeId { get; set; }
+        public string Currencies { get; set; }
 
         public string UserCurrencies { get; set; }
 
@@ -22,7 +18,7 @@
 
         public override bool IsValid()
         {
-            return UserId > 0 && !string.IsNullOrEmpty(Currency);
+            return !string.IsNullOrEmpty(Currencies);
         }
     }
 }

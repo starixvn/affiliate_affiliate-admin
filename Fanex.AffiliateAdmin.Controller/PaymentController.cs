@@ -77,20 +77,20 @@
             var totalRow = from x in data
                            group x by 1
                                into g
-                               select new
-                               {
-                                   Currency = AppSettings.BaseExchange.Code,
-                                   Amt = g.Sum(y => y.ConvertedAmt),
-                                   ConvertedAmt = g.Sum(p => p.ConvertedAmt)
-                               };
+                           select new
+                           {
+                               Currency = AppSettings.BaseExchange.Code,
+                               Amt = g.Sum(y => y.ConvertedAmt),
+                               ConvertedAmt = g.Sum(p => p.ConvertedAmt)
+                           };
 
             return Json(
                 new
-                    {
-                        List = data,
-                        SubTotal = subTotalRow,
-                        Total = totalRow
-                    },
+                {
+                    List = data,
+                    SubTotal = subTotalRow,
+                    Total = totalRow
+                },
             JsonRequestBehavior.AllowGet);
         }
 
@@ -292,7 +292,6 @@
         {
             ResultViewModel result;
 
-            criteria.LicenseeId = AppSettings.LicenseeID;
             if (criteria.Status.ToLower() == "approved")
             {
                 var playerPayoutInfo = _paymentService.GetPlayerPayoutInfo(new PlayerPayoutInfoSelCriteria

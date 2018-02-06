@@ -209,21 +209,7 @@
         [HttpGet]
         public ActionResult ChangeCommissionGroup(ChangeCommissionGroupViewModel model)
         {
-            var session = SessionManager.CurrentSession;
-
-            var comGroups = AppSettings.GetActiveCommGroups(new CommGroupSelActiveListCriteria
-            {
-                UserId = session.CustID,
-                Currency = model.Currency,
-                UserCurrencies = session.BuildUserCurrencyParam()
-            });
-
-            model.CommissionGroupOptionList = comGroups.Select(t => new SelectListItem
-            {
-                Text = t.GroupName,
-                Value = t.GroupID.ToString(),
-                Selected = t.GroupID == model.GroupId
-            });
+            model.CommissionGroupOptionList = GetCommGroupList(model.Currency, model.GroupId);
 
             return View(model);
         }
@@ -275,8 +261,11 @@
         {
             if (criteria.IsValid())
             {
-                criteria.UserId = SessionManager.CurrentSession.CustID;
+                var session = SessionManager.CurrentSession;
+                criteria.UserId = session.CustID;
+
                 _service.AddFavorite(criteria);
+
                 return Json(GetResultViewModel(criteria.ErrCode));
             }
 
@@ -345,6 +334,7 @@
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
             criteria.UserId = session.CustID;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
             criteria.LicenseeId = AppSettings.LicenseeID;
 
             var result = _service.CustomerList(criteria);
@@ -474,15 +464,32 @@
         [HttpGet]
         public ActionResult ChangeCommissionApprove(ChangeCommissionGroupViewModel model)
         {
-            var session = SessionManager.CurrentSession;
-
             model.Currency = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Currency.ToString();
-            model.UserId = session.CustID;
+            model.CommissionGroupOptionList = GetCommGroupList(model.Currency, model.GroupId);
 
             return View(model);
         }
 
         #region Private Methods
+
+        private static IEnumerable<SelectListItem> GetCommGroupList(string currency, int groupId)
+        {
+            var session = SessionManager.CurrentSession;
+
+            var comGroups = AppSettings.GetActiveCommGroups(new CommGroupSelActiveListCriteria
+            {
+                UserId = session.CustID,
+                Currency = currency,
+                UserCurrencies = session.BuildUserCurrencyParam()
+            });
+
+            return comGroups.Select(t => new SelectListItem
+            {
+                Text = t.GroupName,
+                Value = t.GroupID.ToString(),
+                Selected = t.GroupID == groupId
+            });
+        }
 
         /// <summary>
         /// Get message from affiliate status.

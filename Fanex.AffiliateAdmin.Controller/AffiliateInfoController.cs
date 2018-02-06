@@ -79,7 +79,8 @@ namespace Fanex.AffiliateAdmin.Controller
                     UserId = session.CustID,
                     Currencies = string.Join(",", session.CurrencyList.Select(c => c.CurrencyID).ToArray()),
                     IsITAdmin = session.IsIT,
-                    LicenseeId = AppSettings.LicenseeID
+                    LicenseeId = AppSettings.LicenseeID,
+                    UserCurrencies = session.BuildUserCurrencyParam()
                 });
 
                 if (model != null && model.AffiliateInfo != null)

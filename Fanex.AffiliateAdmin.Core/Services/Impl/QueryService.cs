@@ -6,6 +6,7 @@
     using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.Data.Repository;
+    using Helpers;
 
     /// <summary>
     /// Query Service class.
@@ -100,8 +101,9 @@
                         }
                     }
                 }
-                catch
+                catch (Exception exception)
                 {
+                    LogHelper.WriteError(exception);
                 }
 
                 return list;

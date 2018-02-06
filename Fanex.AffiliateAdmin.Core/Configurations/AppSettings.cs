@@ -468,9 +468,9 @@
         public static string GetSettingValue(SystemSettingsSelByNameCriteria detailCriteria)
         {
             string value = string.Empty;
-            var systemSettings = SystemSetting.GetSystemSettingList(detailCriteria) as List<SystemSetting>;
+            var systemSettings = SystemSetting.GetSystemSettingList(detailCriteria);
 
-            if (systemSettings != null && systemSettings.Count > 0)
+            if (systemSettings != null && systemSettings.Any())
             {
                 var selectedSystemSetting = systemSettings.FirstOrDefault(x => x.Environment.Equals(Environment, StringComparison.OrdinalIgnoreCase));
 

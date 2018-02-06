@@ -18,9 +18,6 @@
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
 
-    /// <summary>
-    /// Report Controller.
-    /// </summary>
     [FunctionAuth(Function = FunctionPolicyNames.AffReport)]
     public class BetListController : BaseController
     {
@@ -38,11 +35,6 @@
 
         #region BetList
 
-        /// <summary>
-        /// Get bet list.
-        /// </summary>
-        /// <param name="model">Model input.</param>
-        /// <returns>Action result.</returns>
         public ActionResult Index(BetListViewModel model)
         {
             var isValid = GetValidationResult(model.AffId, model.Username);
@@ -87,11 +79,6 @@
             return View(model);
         }
 
-        /// <summary>
-        /// Get data for running mix parlay bet list.
-        /// </summary>
-        /// <param name="model">Model input.</param>
-        /// <returns>Dynamic objects, contain Mix Parlay result.</returns>
         [HttpGet]
         public dynamic BetListParlay(BetListParlayViewModel model)
         {
@@ -109,11 +96,6 @@
             }
         }
 
-        /// <summary>
-        /// Action Get for System Parlay Detail.
-        /// </summary>
-        /// <param name="model">The metal model.</param>
-        /// <returns>The action result.</returns>
         [HttpGet]
         public ActionResult SystemParlayDetail(SystemParlayDetailViewModel model)
         {
@@ -236,12 +218,6 @@
 
         #region BetList Results
 
-        /// <summary>
-        /// The pop up result page.
-        /// </summary>
-        /// <param name="criteria">The metal model.</param>
-        /// <param name="affId">The affiliate id.</param>
-        /// <returns>The action result.</returns>
         [HttpGet]
         public ActionResult BetListResults(AffBetListService.BetListResultsCriteria criteria, int affId)
         {
@@ -259,11 +235,6 @@
             return View();
         }
 
-        /// <summary>
-        /// Get data for pop-up page.
-        /// </summary>
-        /// <param name="criteria">The metal model.</param>
-        /// <returns>HTML formatted of data.</returns>
         public string GetPopUpData(AffBetListService.BetListResultsCriteria criteria)
         {
             using (var affBetlistService = new AffiliateAPI())
@@ -280,12 +251,6 @@
 
         #region BetList.Results.RNGCasino
 
-        /// <summary>
-        /// Get RNG Casino data.
-        /// </summary>
-        /// <param name="criteria">The meta model.</param>
-        /// <param name="affId">The affiliate id.</param>
-        /// <returns>The data string.</returns>
         [HttpGet]
         public ActionResult RNGCasinoData(BetListResultsRNGCasinoCriteria criteria, int affId)
         {
@@ -336,11 +301,6 @@
             return View("~/Views/BetList/BetListResults_RNGCasino.cshtml", model);
         }
 
-        /// <summary>
-        /// Exchange RNG Casino Values.
-        /// </summary>
-        /// <param name="originalData">Original data.</param>
-        /// <param name="exchangeRate">Exchange rate.</param>
         public void ExchangeRNGCasinoValues(List<RNGCasinoResult> originalData, decimal exchangeRate)
         {
             foreach (var item in originalData)
@@ -354,13 +314,6 @@
             }
         }
 
-        /// <summary>
-        /// RNG Casino detail.
-        /// </summary>
-        /// <param name="criteria">The meta model.</param>
-        /// <param name="affId">The affiliate id.</param>
-        /// <param name="username">The user name.</param>
-        /// <returns>The action result.</returns>
         [HttpGet]
         public ViewResult RNGCasinoDetail(BetListResultsRNGCasinoDetailCriteria criteria, int affId, string username)
         {
@@ -397,11 +350,6 @@
                 : View("~/Views/BetList/RNGCasinoDetail/Noinfo.cshtml");
         }
 
-        /// <summary>
-        /// Exchange RNG Casino detail Values.
-        /// </summary>
-        /// <param name="originalData">Original data.</param>
-        /// <param name="exchangeRate">Exchange rate.</param>
         public void ExchangeRNGCasinoDetailValues(BetListResultsRNGCasinoDetailViewModel originalData, decimal exchangeRate)
         {
             foreach (var detailItem in originalData.CasinoDetailList)
@@ -435,12 +383,6 @@
             }
         }
 
-        /// <summary>
-        /// Exchange Value Including Currency code.
-        /// </summary>
-        /// <param name="originalValue">Value including currency code.</param>
-        /// <param name="exchangeRate">Exchange rate.</param>
-        /// <returns>Exchanged value.</returns>
         public string ExchangeValueIncludingCurrency(string originalValue, decimal exchangeRate)
         {
             var regexRemoveLetters = new Regex(@"[a-zA-Z\s]");
@@ -450,11 +392,6 @@
                 : (decimal.Parse(regexRemoveLetters.Replace(originalValue, string.Empty)) * exchangeRate).ToString();
         }
 
-        /// <summary>
-        /// Get game type Id.
-        /// </summary>
-        /// <param name="gameTypeId">The game type Id.</param>
-        /// <returns>The game type id.</returns>
         [SuppressMessage(
               "StyleCop.CSharp.StylecopPlus.Rules",
               "SP2101:MethodMustNotContainMoreLinesThan",
@@ -572,10 +509,6 @@
 
         #region Helpers
 
-        /// <summary>
-        /// Get supported products for web service.
-        /// </summary>
-        /// <returns>Product list.</returns>
         private AffBetListService.Product[] GetSupportedProductsForWebService()
         {
             var supportedProducts = AppSettings.Products.Select(product => new AffBetListService.Product
@@ -587,18 +520,12 @@
             return supportedProducts.ToArray();
         }
 
-        /// <summary>
-        /// Get Validation Result.
-        /// </summary>
-        /// <param name="affId">The affiliate id.</param>
-        /// <param name="username">User name.</param>
-        /// <returns>Validation result.</returns>
         private bool GetValidationResult(int affId, string username)
         {
             var criteria = new ValidationCriteria
             {
                 AffId = affId,
-                AdminName = SessionManager.CurrentSession.Username,
+                UserCurrencies = SessionManager.CurrentSession.BuildUserCurrencyParam(),
                 MemberName = username ?? string.Empty
             };
 

@@ -70,7 +70,7 @@
                         AppSession.Language = language;
                     }
 
-                    _authService.UpdateOneAuthSession(currentSession, tokenInfo, AppSettings.LicenseeID);
+                    _authService.UpdateOneAuthSession(currentSession, tokenInfo);
                     return new ResultInfo
                     {
                         ExtendedData = tokenInfo.ActionLink
@@ -124,7 +124,7 @@
                 IsIT = false,
                 Username = tokenInfo.UserID
             };
-            var session = _authService.CreateOneAuthSession(tokenInfo, user, AppSettings.LicenseeID);
+            var session = _authService.CreateOneAuthSession(tokenInfo, user);
             session.VendorID = tokenInfo.VendorID;
             session.VendorIdentityID = tokenInfo.UserID;
             SessionManager.CurrentSession = session;

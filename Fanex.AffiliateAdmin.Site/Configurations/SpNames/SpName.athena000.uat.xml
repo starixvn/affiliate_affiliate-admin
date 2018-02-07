@@ -60,7 +60,7 @@
 
   </Function>
   <Function Name="System Settings">
-    <Setting Key="AffAdmin_GetLicenseeSupportedCurrencies" SpName="AffAdmin_GetLicenseeSupportedCurrencies" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_GetLicenseeSupportedCurrencies" SpName="AffAdmin_GetLicenseeSupportedCurrencies_xpre" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemAllSupportedCurrencies" SpName="AffAdmin_SystemAllSupportedCurrencies" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemSupportedCurrencies" SpName="AffAdmin_SystemSupportedCurrencies" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateCurrenciesSel" SpName="AffAdmin_AffiliateCurrenciesSel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />

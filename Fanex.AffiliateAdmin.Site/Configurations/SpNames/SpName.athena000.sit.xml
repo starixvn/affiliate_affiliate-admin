@@ -187,7 +187,7 @@
   </Function>
 
   <Function name="AffiliateNotes">
-    <Setting Key="AffAdmin_NoteSel" SpName="AffAdmin_NoteSel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_NoteSel" SpName="AffAdmin_NoteSel_xpre" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_NoteIns" SpName="AffAdmin_NoteIns" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_NoteUpd" SpName="AffAdmin_NoteUpd" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_NoteDel" SpName="AffAdmin_NoteDel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />

@@ -29,6 +29,7 @@
   <item LicenseeName="spondemo" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
   <item LicenseeName="spondemo" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="spondemo" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="spondemo" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
 
   <item LicenseeName="athena000" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
   <item LicenseeName="athena000" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
@@ -57,6 +58,7 @@
   <item LicenseeName="athena000" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
   <item LicenseeName="athena000" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="athena000" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="athena000" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
 
   <item LicenseeName="9bet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
   <item LicenseeName="9bet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
@@ -85,6 +87,7 @@
   <item LicenseeName="9bet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
   <item LicenseeName="9bet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="9bet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="9bet" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
 
   <item LicenseeName="allbetclub" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
   <item LicenseeName="allbetclub" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
@@ -113,6 +116,7 @@
   <item LicenseeName="allbetclub" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
   <item LicenseeName="allbetclub" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="allbetclub" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="allbetclub" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
 
   <item LicenseeName="aoncash" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
   <item LicenseeName="aoncash" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
@@ -141,6 +145,7 @@
   <item LicenseeName="aoncash" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
   <item LicenseeName="aoncash" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="aoncash" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="aoncash" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
 
   <item LicenseeName="be7" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
   <item LicenseeName="be7" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
@@ -169,6 +174,7 @@
   <item LicenseeName="be7" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
   <item LicenseeName="be7" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="be7" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="be7" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
 
   <item LicenseeName="be7th" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
   <item LicenseeName="be7th" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
@@ -197,6 +203,7 @@
   <item LicenseeName="be7th" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
   <item LicenseeName="be7th" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="be7th" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="be7th" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
 
   <item LicenseeName="itcbet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
   <item LicenseeName="itcbet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
@@ -225,6 +232,7 @@
   <item LicenseeName="itcbet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
   <item LicenseeName="itcbet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="itcbet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="itcbet" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
 
   <item LicenseeName="macaubet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
   <item LicenseeName="macaubet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
@@ -253,6 +261,7 @@
   <item LicenseeName="macaubet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
   <item LicenseeName="macaubet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="macaubet" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="macaubet" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
 
   <item LicenseeName="indowin" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
   <item LicenseeName="indowin" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
@@ -281,6 +290,7 @@
   <item LicenseeName="indowin" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
   <item LicenseeName="indowin" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="indowin" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="indowin" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
 
   <item LicenseeName="aragon88" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
   <item LicenseeName="aragon88" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
@@ -309,6 +319,7 @@
   <item LicenseeName="aragon88" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
   <item LicenseeName="aragon88" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="aragon88" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="aragon88" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
 
   <item LicenseeName="bolanation" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
   <item LicenseeName="bolanation" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
@@ -337,4 +348,5 @@
   <item LicenseeName="bolanation" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
   <item LicenseeName="bolanation" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="bolanation" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="bolanation" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
 </Root>

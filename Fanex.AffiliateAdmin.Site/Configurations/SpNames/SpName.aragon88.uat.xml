@@ -106,7 +106,7 @@
     <Setting Key="AffAdmin_AffiliateCommissionReport" SpName="AffAdmin_AffiliateCommissionReport_xpre" DbName="DBAFFARAGON88.Affiliate_Aragon88.bodbAdminNet" Plain="0" />
     <Setting Key="Task_Aff_MonthlyTransfer" SpName="Task_Aff_MonthlyTransfer" DbName="DBAFFARAGON88.Affiliate_Aragon88.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_IsMonthlyTransfer" SpName="AffAdmin_IsMonthlyTransfer" DbName="DBAFFARAGON88.Affiliate_Aragon88.bodbAdminNet" Plain="0" />
-    <Setting Key="Aff_DummyAccID" SpName="Aff_DummyAccID" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Aff_DummyAccID" SpName="Aff_DummyAccID_xpre" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Message">
     <Setting Key="AffAdmin_HotNewsSel" SpName="AffAdmin_HotNewsSel" DbName="DBAFFARAGON88.Affiliate_Aragon88.bodbAdminNet" Plain="0" />

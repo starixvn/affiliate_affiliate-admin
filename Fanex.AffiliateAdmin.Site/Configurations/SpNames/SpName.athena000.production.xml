@@ -47,7 +47,7 @@
     <Setting Key="AffAdmin_AffiliateSel" SpName="AffAdmin_AffiliateSel_xpre" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateSelFavorite" SpName="AffAdmin_AffiliateSelFavorite" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_EmailHistorySel" SpName="AffAdmin_EmailHistorySel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_EmailHistoryDel" SpName="AffAdmin_EmailHistoryDel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_EmailHistoryDel" SpName="AffAdmin_EmailHistoryDel_xpre" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_MemberListSel" SpName="AffAdmin_MemberListSel_xpre" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_GetMemberDetail" SpName="AffAdmin_GetMemberDetail" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_MemberDel" SpName="AffAdmin_MemberDel_xpre" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
@@ -113,7 +113,7 @@
     <Setting Key="AffAdmin_HotNewsIns" SpName="AffAdmin_HotNewsIns" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_HotNewsDetail" SpName="AffAdmin_HotNewsDetail" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_HotNewsUpd" SpName="AffAdmin_HotNewsUpd" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_HotNewsDel" SpName="AffAdmin_HotNewsDel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_HotNewsDel" SpName="AffAdmin_HotNewsDel_xpre" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Domain">
     <Setting Key="AffAdmin_DomainAffSel" SpName="AffAdmin_DomainAffSel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
@@ -157,7 +157,7 @@
     <Setting Key="AffAdmin_BannerSelDetail" SpName="AffAdmin_BannerSelDetail" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_BannerIns" SpName="AffAdmin_BannerIns" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_BannerUpd" SpName="AffAdmin_BannerUpd" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_BannerDel" SpName="AffAdmin_BannerDel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_BannerDel" SpName="AffAdmin_BannerDel_xpre" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_BannerTypeSel" SpName="AffAdmin_BannerTypeSel" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
   </Function>
 

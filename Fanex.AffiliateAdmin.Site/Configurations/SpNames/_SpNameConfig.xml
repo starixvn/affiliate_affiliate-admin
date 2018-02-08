@@ -423,4 +423,70 @@
   <item LicenseeName="bolanation" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
   <item LicenseeName="bolanation" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
   <item LicenseeName="bolanation" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
+
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HomeGeneralInfo" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_UserOnlineList" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_AffiliateSel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_CommGroupSel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_CommGroupSelByID" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_QualifiedMembersReport" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_CommGroupSelListNormal" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_AffiliateCommissionReport" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_AffiliateWinLossReport" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_AffiliateWinLossByProductReport" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_CompanyWinlossReport" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_CompanyWinLossByProductReport" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_MemberWinLossReport" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_MemberWinLossByProductReport" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_MemberStatisticsReport" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_CommGroup_SelActiveList" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_MemberDel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_AffiliateUpdInfo" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_PaymentRequestUpd" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_MemberListSel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_AffiliateSelGeneralInfo" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="Aff_BetList_CheckBelonging" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_GetLicenseeSupportedCurrencies" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_EmailHistoryDel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_BannerDel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="SIT,UAT,PRODUCTION" SpName="Aff_DummyAccID" Suffix="_xpre"></item>
+
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_FavoriteIns" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_FavoriteDel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_PaymentRequestSelDetail" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_PaymentRequestSelList" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_PaymentRequestUpd" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_AdjustmentIns" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="Aff_User_AffiliateStatementHistorySel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_StatementHistorySel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_CommGroupSel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_CommGroupSelByID" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_CommGroupIns" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_DomainAffIns" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_DomainAffUpd" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_DomainAffSel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_DomainAffSelById" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_DomainControlIns" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_DomainControlSel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_DomainControlUpd" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_DomainMemSel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_DomainMemSelById" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_DomainMemIns" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_DomainMemUpd" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_LanguageSelAll" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_LanguageIns" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_AffTypeSelAll" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_AffTypeIns" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_GetMemberDetail" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsIns" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsDetail" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsSel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_HotNewsUpd" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteSel" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteIns" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_NoteUpd" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_ProductIns" Suffix="_xpre"></item>
+  <item LicenseeName="" Environment="DEV,SIT,UAT,PRODUCTION" SpName="AffAdmin_ProductSelAll" Suffix="_xpre"></item>
 </Root>

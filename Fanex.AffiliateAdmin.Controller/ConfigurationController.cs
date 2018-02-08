@@ -370,7 +370,6 @@
         [HttpPost]
         public ActionResult GetProductList(ProductSelectCriteria criteria)
         {
-            criteria.LicenseeId = AppSettings.LicenseeID;
             var data = _systemSettingService.GetProductList(criteria);
 
             return Json(new
@@ -439,8 +438,10 @@
         {
             if (ModelState.IsValid && criteria.IsValid())
             {
+                var session = SessionManager.CurrentSession;
+                criteria.AdminUserName = session.Username;
                 criteria.IP = Remote.GetClientIPAddress();
-                criteria.Updatedby = SessionManager.CurrentSession.CustID;
+                criteria.Updatedby = session.CustID;
 
                 _systemSettingService.InsertProduct(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
@@ -593,8 +594,10 @@
         {
             if (ModelState.IsValid && criteria.IsValid())
             {
+                var session = SessionManager.CurrentSession;
+                criteria.AdminUserName = session.Username;
                 criteria.IP = Remote.GetClientIPAddress();
-                criteria.Updatedby = SessionManager.CurrentSession.CustID;
+                criteria.Updatedby = session.CustID;
 
                 _systemSettingService.InsertLanguage(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
@@ -724,8 +727,11 @@
         {
             if (ModelState.IsValid && criteria.IsValid())
             {
+                var session = SessionManager.CurrentSession;
+
+                criteria.AdminUserName = session.Username;
                 criteria.IP = Remote.GetClientIPAddress();
-                criteria.Updatedby = SessionManager.CurrentSession.CustID;
+                criteria.Updatedby = session.CustID;
 
                 _systemSettingService.InsertAffType(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);

@@ -131,12 +131,18 @@
         [FunctionAuth(Function = FunctionPolicyNames.Payment, IsHostPolicy = true)]
         public ActionResult UpdatePayment(PaymentUpdateViewModel model)
         {
-            var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria { TransId = model.TransId, LicenseeId = AppSettings.LicenseeID });
+            var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria
+            {
+                TransId = model.TransId,
+                LicenseeId = AppSettings.LicenseeID
+            });
 
             model.PaymentDetail = paymentDetail;
 
             if (ModelState.IsValid)
             {
+                var session = SessionManager.CurrentSession;
+
                 var criteria = new PaymentUpdateCriteria
                 {
                     TransId = model.TransId,
@@ -144,7 +150,8 @@
                     AdminRemark = CutLongText(model.AdminRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
                     AffRemark = CutLongText(model.AffRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
                     PreferredLanguage = paymentDetail.PreferredLanguage,
-                    UserId = SessionManager.CurrentSession.CustID,
+                    UserId = session.CustID,
+                    AdminUserName = session.Username,
                     IP = Remote.GetClientIPAddress()
                 };
 

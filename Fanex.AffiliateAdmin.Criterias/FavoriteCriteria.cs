@@ -13,6 +13,8 @@
 
         public int ErrCode { get; set; }
 
+        public string AdminUserName { get; set; }
+
         [SpParam(Ignored = true)]
         public CriteriaType Type { get; set; }
 

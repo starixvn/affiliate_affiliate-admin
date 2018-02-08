@@ -2,9 +2,6 @@
 {
     using Fanex.Data.Repository;
 
-    /// <summary>
-    /// ProductAdd Criteria class.
-    /// </summary>
     public class ProductAddCriteria : CriteriaBase
     {
         public int Updatedby { get; set; }
@@ -22,6 +19,8 @@
         public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
+
+        public string AdminUserName { get; set; }
 
         public override string GetSettingKey()
         {

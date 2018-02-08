@@ -48,8 +48,7 @@
                 FromDate = model.DateChecked ? (DateTime?)model.FromDate : null,
                 ToDate = model.DateChecked ? (DateTime?)model.ToDate : null,
                 PageIndex = model.PageIndex == 0 ? 1 : model.PageIndex,
-                PageSize = model.PageSize == 0 ? AppSettings.PageSize : model.PageSize,
-                LicenseeId = AppSettings.LicenseeID
+                PageSize = model.PageSize == 0 ? AppSettings.PageSize : model.PageSize
             };
 
             var data = _messageService.GetMessages(criteria);
@@ -87,13 +86,15 @@
                 }
                 else
                 {
+                    var session = SessionManager.CurrentSession;
+
                     var criteria = new MessageAddCriteria
                     {
                         Important = values["Important"].ToLower().Contains("true"),
                         Xml = messageXml,
-                        UserID = SessionManager.CurrentSession.CustID,
-                        IP = Remote.GetClientIPAddress(),
-                        LicenseeId = AppSettings.LicenseeID
+                        UserID = session.CustID,
+                        AdminUserName = session.Username,
+                        IP = Remote.GetClientIPAddress()
                     };
 
                     _messageService.AddMessage(criteria);
@@ -113,8 +114,7 @@
         {
             var criteria = new MessageDetailCriteria
             {
-                MsgId = msgId,
-                LicenseeId = AppSettings.LicenseeID
+                MsgId = msgId
             };
 
             var model = _messageService.MessageDetail(criteria);
@@ -141,14 +141,16 @@
                 }
                 else
                 {
+                    var session = SessionManager.CurrentSession;
+
                     var criteria = new MessageUpdateCriteria
                     {
                         MsgId = Convert.ToInt32(values["MsgId"]),
                         Important = values["Important"].ToLower().Contains("true"),
                         Xml = messageXml,
-                        UserID = SessionManager.CurrentSession.CustID,
+                        UserID = session.CustID,
+                        AdminUserName = session.Username,
                         IP = Remote.GetClientIPAddress(),
-                        LicenseeId = AppSettings.LicenseeID
                     };
 
                     _messageService.UpdateMessage(criteria);

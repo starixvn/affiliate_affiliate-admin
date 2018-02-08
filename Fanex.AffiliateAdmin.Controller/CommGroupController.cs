@@ -67,16 +67,12 @@
         {
             CopyTierSettingsForAllProducts(criteria);
 
-            criteria.UserId = SessionManager.CurrentSession.CustID;
-
+            var session = SessionManager.CurrentSession;
+            criteria.AdminUserName = session.Username;
+            criteria.UserId = session.CustID;
             criteria.IP = Remote.GetClientIPAddress();
-
             criteria.GroupName = criteria.GroupName.Encode();
-
             criteria.Description = criteria.Description.Encode();
-
-            criteria.LicenseeId = AppSettings.LicenseeID;
-
             criteria.DeductionList = BuildDeductionListXml(criteria.DeductionSettingList);
 
             _commGroupService.ExecuteOutput(criteria);

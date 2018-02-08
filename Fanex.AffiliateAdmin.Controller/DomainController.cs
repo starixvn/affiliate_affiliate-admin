@@ -63,7 +63,7 @@
         [HttpPost]
         public ActionResult AffDomainList()
         {
-            var result = _domainService.AffDomainList(new DomainAffSelCriteria { LicenseeId = AppSettings.LicenseeID });
+            var result = _domainService.AffDomainList(new DomainAffSelCriteria());
             return Json(new { List = result });
         }
 
@@ -87,12 +87,14 @@
         {
             if (ModelState.IsValid)
             {
+                var session = SessionManager.CurrentSession;
+
                 var criteria = new DomainAffInsCriteria
                 {
-                    UserID = SessionManager.CurrentSession.CustID,
+                    UserID = session.CustID,
                     DomainName = domain.DomainName,
                     IP = Remote.GetClientIPAddress(),
-                    LicenseeId = AppSettings.LicenseeID
+                    AdminUserName = session.Username
                 };
 
                 _domainService.AffDomainAdd(criteria);
@@ -113,8 +115,7 @@
         {
             Domain result = _domainService.AffDomainSelectById(new DomainAffSelByIdCriteria
             {
-                DomainId = id,
-                LicenseeId = AppSettings.LicenseeID
+                DomainId = id
             });
 
             return View(new DomainViewModel { DomainID = result.DomainID, DomainName = result.DomainName });
@@ -130,13 +131,15 @@
         {
             if (ModelState.IsValid)
             {
+                var session = SessionManager.CurrentSession;
+
                 var criteria = new DomainAffUpdCriteria
                 {
-                    UserID = SessionManager.CurrentSession.CustID,
+                    UserID = session.CustID,
                     DomainID = domain.DomainID,
                     DomainName = domain.DomainName,
                     IP = Remote.GetClientIPAddress(),
-                    LicenseeId = AppSettings.LicenseeID
+                    AdminUserName = session.Username
                 };
 
                 _domainService.AffDomainUpdate(criteria);
@@ -186,7 +189,7 @@
         [HttpPost]
         public ActionResult MemDomainList()
         {
-            var result = _domainService.MemDomainList(new DomainMemSelCriteria { LicenseeId = AppSettings.LicenseeID });
+            var result = _domainService.MemDomainList(new DomainMemSelCriteria());
             return Json(new { List = result });
         }
 
@@ -210,12 +213,14 @@
         {
             if (ModelState.IsValid)
             {
+                var session = SessionManager.CurrentSession;
+
                 var criteria = new DomainMemInsCriteria
                 {
-                    UserID = SessionManager.CurrentSession.CustID,
+                    UserID = session.CustID,
                     DomainName = domain.DomainName,
                     IP = Remote.GetClientIPAddress(),
-                    LicenseeId = AppSettings.LicenseeID
+                    AdminUserName = session.Username
                 };
 
                 _domainService.MemDomainAdd(criteria);
@@ -236,8 +241,7 @@
         {
             Domain result = _domainService.MemDomainSelectById(new DomainMemSelByIdCriteria
             {
-                DomainId = id,
-                LicenseeId = AppSettings.LicenseeID
+                DomainId = id
             });
 
             return View(new DomainViewModel { DomainID = result.DomainID, DomainName = result.DomainName });
@@ -253,13 +257,15 @@
         {
             if (ModelState.IsValid)
             {
+                var session = SessionManager.CurrentSession;
+
                 var criteria = new DomainMemUpdCriteria
                 {
-                    UserID = SessionManager.CurrentSession.CustID,
+                    UserID = session.CustID,
                     DomainID = domain.DomainID,
                     DomainName = domain.DomainName,
                     IP = Remote.GetClientIPAddress(),
-                    LicenseeId = AppSettings.LicenseeID
+                    AdminUserName = session.Username
                 };
 
                 _domainService.MemDomainUpdate(criteria);
@@ -301,7 +307,7 @@
         [HttpPost]
         public ActionResult DomainControlList()
         {
-            var result = _domainService.DomainControlList(new DomainControlSelCriteria { LicenseeId = AppSettings.LicenseeID });
+            var result = _domainService.DomainControlList(new DomainControlSelCriteria());
             return Json(new { List = result });
         }
 
@@ -323,8 +329,8 @@
                 PageIndex = 1
             }).ToList());
 
-            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
-            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
+            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria()).ToList());
+            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria()).ToList());
 
             return View(model);
         }
@@ -339,15 +345,17 @@
         {
             if (ModelState.IsValid)
             {
+                var session = SessionManager.CurrentSession;
+
                 var criteria = new DomainControlInsCriteria
                 {
-                    UserID = SessionManager.CurrentSession.CustID,
+                    UserID = session.CustID,
                     CountryID = domain.Country,
                     AffDomainID = domain.AffDomain,
                     MemberDomainID = domain.MemberDomain,
                     Status = domain.Status,
                     IP = Remote.GetClientIPAddress(),
-                    LicenseeId = AppSettings.LicenseeID
+                    AdminUserName = session.Username
                 };
 
                 _domainService.DomainControlAdd(criteria);
@@ -386,9 +394,9 @@
                 PageIndex = 1
             }).ToList());
 
-            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
+            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria()).ToList());
 
-            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria { LicenseeId = AppSettings.LicenseeID }).ToList());
+            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria()).ToList());
 
             return View(model);
         }
@@ -403,16 +411,18 @@
         {
             if (ModelState.IsValid)
             {
+                var session = SessionManager.CurrentSession;
+
                 var criteria = new DomainControlUpdCriteria
                 {
-                    UserID = SessionManager.CurrentSession.CustID,
+                    UserID = session.CustID,
                     ID = domain.ID,
                     CountryID = domain.Country,
                     MemberDomainID = domain.MemberDomain,
                     AffDomainID = domain.AffDomain,
                     Status = domain.Status,
                     IP = Remote.GetClientIPAddress(),
-                    LicenseeId = AppSettings.LicenseeID
+                    AdminUserName = session.Username
                 };
 
                 _domainService.DomainControlUpdate(criteria);

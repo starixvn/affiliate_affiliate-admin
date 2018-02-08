@@ -261,6 +261,7 @@
             {
                 var session = SessionManager.CurrentSession;
                 criteria.UserId = session.CustID;
+                criteria.AdminUserName = session.Username;
 
                 _service.AddFavorite(criteria);
 
@@ -285,8 +286,12 @@
         {
             if (criteria.IsValid())
             {
-                criteria.UserId = SessionManager.CurrentSession.CustID;
+                var session = SessionManager.CurrentSession;
+                criteria.UserId = session.CustID;
+                criteria.AdminUserName = session.Username;
+
                 _service.RemoveFavorite(criteria);
+
                 return Json(GetResultViewModel(criteria.ErrCode));
             }
 
@@ -353,10 +358,13 @@
         [HttpPost]
         public ActionResult CustomerRemove(string username)
         {
+            var session = SessionManager.CurrentSession;
+
             var criteria = new CustomerRemoveCriteria
             {
-                UserId = SessionManager.CurrentSession.CustID,
+                UserId = session.CustID,
                 Username = username,
+                AdminUserName = session.Username,
                 IP = Remote.GetClientIPAddress()
             };
             _service.CustomerRemove(criteria);

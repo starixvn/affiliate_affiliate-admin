@@ -83,7 +83,6 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult ListStatement(StatementCriteria criteria)
         {
             criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
-            criteria.LicenseeId = AppSettings.LicenseeID;
 
             var data = _statementService.GetAffiliateStatement(criteria);
 

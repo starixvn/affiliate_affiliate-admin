@@ -155,7 +155,7 @@
                 var currentStatus = paymentDetail.Status;
                 var statusToUpdate = model.Status.ToLower();
 
-                if (!IsValidStatus(currentStatus, statusToUpdate.ToLower()))
+                if (!IsValidStatus(currentStatus, statusToUpdate))
                 {
                     ModelState.AddModelError(ModelErrorKey, Lang.InValidPaymentRequestStatus);
                     return View(model);
@@ -193,18 +193,19 @@
         }
 
         #region Helpers
+
         private static PaymentUpdateCriteria GetPaymentUpdateCriteria(PaymentUpdateViewModel model, PaymentDetail paymentDetail)
         {
             return new PaymentUpdateCriteria
             {
                 TransId = model.TransId,
-               	Status = model.Status,
-             	AdminRemark = CutLongText(model.AdminRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
-              	AffRemark = CutLongText(model.AffRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
-             	PreferredLanguage = paymentDetail.PreferredLanguage,
-               	UserId = SessionManager.CurrentSession.CustID,
-              	AdminUserName = SessionManager.CurrentSession.Username,
-              	IP = Remote.GetClientIPAddress()
+                Status = model.Status,
+                AdminRemark = CutLongText(model.AdminRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
+                AffRemark = CutLongText(model.AffRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
+                PreferredLanguage = paymentDetail.PreferredLanguage,
+                UserId = SessionManager.CurrentSession.CustID,
+                AdminUserName = SessionManager.CurrentSession.Username,
+                IP = Remote.GetClientIPAddress()
             };
         }
 
@@ -313,7 +314,6 @@
                 {
                     result.ErrorMessage = xml.Element("ReturnMessage").Value;
                 }
-
             }
             catch (Exception ex)
             {
@@ -327,7 +327,7 @@
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
         private ResultViewModel ProcessUpdatePayment(PaymentUpdateCriteria criteria, PaymentDetail paymentDetail)
         {
-            var isUpdatedPaymentStatus = criteria.Status.ToLower() != PaymentStatusText.Approved;
+            var paymentIsUpdated = criteria.Status.ToLower() != PaymentStatusText.Approved;
             if (criteria.Status.ToLower() == PaymentStatusText.Approved)
             {
                 var playerPayoutInfo = _paymentService.GetPlayerPayoutInfo(new PlayerPayoutInfoSelCriteria
@@ -338,10 +338,12 @@
 
                 if (string.IsNullOrEmpty(playerPayoutInfo.DummyBalAcc))
                 {
+                    const int UserNotExistedCode = 2005;
+
                     return new ResultViewModel
                     {
                         Success = false,
-                        ErrorCode = 2005
+                        ErrorCode = UserNotExistedCode
                     };
                 }
 
@@ -363,14 +365,14 @@
                     ref ibcRefNo,
                     ref ibcTransId);
 
-                isUpdatedPaymentStatus = transferPaymentResult.Success && IsExistLicenseeCustInfo(
+                paymentIsUpdated = transferPaymentResult.Success && IsExistLicenseeCustInfo(
                                                 paymentDetail.Transid,
                                                 playerPayoutInfo.SystemName,
                                                 playerPayoutInfo.PlayerUsername,
                                                 ref ibcUsername,
                                                 ref playerCurrency,
                                                 ref errorMessage);
-                if (isUpdatedPaymentStatus)
+                if (paymentIsUpdated)
                 {
                     criteria.IbcRefNo = ibcRefNo;
                     criteria.IbcTransId = ibcTransId;
@@ -378,7 +380,7 @@
                 }
             }
 
-            if (isUpdatedPaymentStatus)
+            if (paymentIsUpdated)
             {
                 _paymentService.UpdatePayment(criteria);
                 return new ResultViewModel
@@ -393,7 +395,6 @@
                 Success = false
             };
         }
-
 
         private static string BuildLogContentByResult(string methodName, int userId, long transId, string paramInfo, string resultContent)
         {

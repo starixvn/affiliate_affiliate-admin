@@ -100,9 +100,9 @@
             }
         }
 
-        public ICurrentSession CreateOneAuthSession(OneAuthToken token, Account user, int licenseeId)
+        public ICurrentSession CreateOneAuthSession(OneAuthToken token, Account user)
         {
-            var currencyList = GetCurrencyList(token, licenseeId);
+            var currencyList = GetCurrencyList(token);
             var policyList = GetPolicyList(token);
             return new CurrentSession(user, policyList, currencyList)
             {
@@ -110,9 +110,9 @@
             };
         }
 
-        public void UpdateOneAuthSession(ICurrentSession session, OneAuthToken token, int licenseeId)
+        public void UpdateOneAuthSession(ICurrentSession session, OneAuthToken token)
         {
-            var currencyList = GetCurrencyList(token, licenseeId);
+            var currencyList = GetCurrencyList(token);
             var policyList = GetPolicyList(token);
             session.SetPermissions(currencyList, policyList);
         }
@@ -167,12 +167,9 @@
             }
         }
 
-        private IEnumerable<Currency> GetCurrencyList(OneAuthToken token, int licenseeId)
+        private IEnumerable<Currency> GetCurrencyList(OneAuthToken token)
         {
-            var allCurrencies = _systemSettingService.GetLicenseeSupportedCurrencyList(new LicenseeSupportedCurrencyCriteria
-            {
-                LicenseeId = licenseeId
-            });
+            var allCurrencies = _systemSettingService.GetLicenseeSupportedCurrencyList(new LicenseeSupportedCurrencyCriteria());
 
             return token.IsAdminstrator ?
                 allCurrencies :

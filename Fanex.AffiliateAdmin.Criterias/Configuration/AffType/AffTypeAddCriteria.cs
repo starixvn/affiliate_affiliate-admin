@@ -2,9 +2,6 @@
 {
     using Fanex.Data.Repository;
 
-    /// <summary>
-    /// Add criteria class.
-    /// </summary>
     public class AffTypeAddCriteria : CriteriaBase
     {
         public int Updatedby { get; set; }
@@ -18,6 +15,8 @@
         public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
+
+        public string AdminUserName { get; set; }
 
         public override string GetSettingKey()
         {

@@ -38,7 +38,6 @@
 
         public ActionResult Index(GetMemberDetailCriteria criteria)
         {
-            criteria.LicenseeId = AppSettings.LicenseeID;
             return View(_service.GetMemberDetail(criteria));
         }
     }

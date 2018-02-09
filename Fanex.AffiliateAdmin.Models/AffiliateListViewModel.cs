@@ -33,9 +33,9 @@
             new SelectListItem { Value = "2", Text = Lang.ApprovalDate }
         };
 
-        private readonly List<SelectListItem> _sortByOptionList = new List<SelectListItem> 
+        private readonly List<SelectListItem> _sortByOptionList = new List<SelectListItem>
                 {
-                    new SelectListItem 
+                    new SelectListItem
                     {
                         Text = Lang.Affiliate,
                         Value = "0"
@@ -100,8 +100,8 @@
         {
             get
             {
-                var statusList = string.IsNullOrEmpty(Status) 
-                    ? new List<string>() 
+                var statusList = string.IsNullOrEmpty(Status)
+                    ? new List<string>()
                     : Status.ToLower().Split(',').ToList();
 
                 if (IsFavorite)
@@ -110,25 +110,25 @@
                     return OptionManager.AffiliateStatuses
                         .Where(t => _favoriteStatusList.Contains(t.Value.ToLower()))
                         .Select(t => new SelectListItem
-                    {
-                        Text = t.Text,
-                        Value = t.Value,
-                        Selected =
+                        {
+                            Text = t.Text,
+                            Value = t.Value,
+                            Selected =
                                 statusList.Count == 0
                                 ? _defaultStatusList.Contains(t.Value.ToLower())
                                 : statusList.Contains(t.Value.ToLower())
-                    });
+                        });
                 }
 
                 return OptionManager.AffiliateStatuses.Select(t => new SelectListItem
-                    {
-                        Text = t.Text,
-                        Value = t.Value,
-                        Selected =
+                {
+                    Text = t.Text,
+                    Value = t.Value,
+                    Selected =
                             statusList.Count == 0
                                 ? _defaultStatusList.Contains(t.Value.ToLower())
                                 : statusList.Contains(t.Value.ToLower())
-                    });
+                });
             }
         }
 
@@ -136,12 +136,12 @@
         {
             get
             {
-                return AppSettings.GetCommGroups(null).Select(t => new SelectListItem
-                    {
-                        Text = t.GroupName,
-                        Value = t.GroupID.ToString(),
-                        Selected = GroupId <= 0 || t.GroupID == GroupId
-                    });
+                return AppSettings.GetCommGroups().Select(t => new SelectListItem
+                {
+                    Text = t.GroupName,
+                    Value = t.GroupID.ToString(),
+                    Selected = GroupId <= 0 || t.GroupID == GroupId
+                });
             }
         }
     }

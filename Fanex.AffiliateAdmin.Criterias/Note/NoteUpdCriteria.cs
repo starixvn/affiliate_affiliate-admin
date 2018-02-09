@@ -21,7 +21,7 @@
 
         public int ErrCode { get; set; }
 
-        public int LicenseeId { get; set; }
+        public string AdminUserName { get; set; }
 
         public override string GetSettingKey()
         {

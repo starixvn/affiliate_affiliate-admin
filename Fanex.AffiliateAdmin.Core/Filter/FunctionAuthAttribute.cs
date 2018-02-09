@@ -3,8 +3,6 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
-    using Configurations;
-    using Enumerations;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Resources;
 
@@ -41,7 +39,6 @@
                 {
                     hasPermission = currentSession.CurrencyList.Any();
                 }
-                
             }
 
             if (!hasPermission)

@@ -29,6 +29,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public int LicenseeId { get; set; }
 
+        public string AdminUserName { get; set; }
+
         /// <summary>
         /// Get Setting Key.
         /// </summary>

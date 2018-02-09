@@ -4,8 +4,6 @@
 
     public class LicenseeSupportedCurrencyCriteria : CriteriaBase
     {
-        public int LicenseeId { get; set; }
-
         public override string GetSettingKey()
         {
             return "AffAdmin_GetLicenseeSupportedCurrencies";
@@ -13,7 +11,7 @@
 
         public override bool IsValid()
         {
-            return LicenseeId > 0;
+            return true;
         }
     }
 }

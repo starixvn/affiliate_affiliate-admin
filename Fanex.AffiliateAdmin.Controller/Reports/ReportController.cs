@@ -171,9 +171,8 @@
         public ActionResult MemberStatistics(MemberStatisticReportCriteria criteria)
         {
             var session = SessionManager.CurrentSession;
-            criteria.UserId = session.CustID;
             criteria.IsITAdmin = session.IsIT;
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
             if (criteria.GroupBy == 2)
             {
@@ -264,9 +263,11 @@
         public ActionResult QualifiedMembers(QualifiedMembersReportCriteria criteria)
         {
             var products = GetValidProducts(criteria.GroupId, criteria.MonthDate, criteria.Products);
-            criteria.UserId = SessionManager.CurrentSession.CustID;
             criteria.Products = string.Join(",", products);
-            criteria.LicenseeId = AppSettings.LicenseeID;
+
+            var session = SessionManager.CurrentSession;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
+
             var members = _reportService.GetQualifiedMembers(criteria);
 
             ViewBag.SymbolCurrency = FormaterCurrency.GetCurrencySymbol(criteria.Currency);

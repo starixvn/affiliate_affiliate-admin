@@ -22,11 +22,13 @@
 
         public int PageSize { get; set; }
 
-        public int PageIndex { get; set; } 
+        public int PageIndex { get; set; }
 
         public int NRows { get; set; }
 
         public int LicenseeId { get; set; }
+
+        public string UserCurrencies { get; set; }
 
         public override string GetSettingKey()
         {

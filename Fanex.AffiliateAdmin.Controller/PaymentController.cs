@@ -77,20 +77,20 @@
             var totalRow = from x in data
                            group x by 1
                                into g
-                               select new
-                               {
-                                   Currency = AppSettings.BaseExchange.Code,
-                                   Amt = g.Sum(y => y.ConvertedAmt),
-                                   ConvertedAmt = g.Sum(p => p.ConvertedAmt)
-                               };
+                           select new
+                           {
+                               Currency = AppSettings.BaseExchange.Code,
+                               Amt = g.Sum(y => y.ConvertedAmt),
+                               ConvertedAmt = g.Sum(p => p.ConvertedAmt)
+                           };
 
             return Json(
                 new
-                    {
-                        List = data,
-                        SubTotal = subTotalRow,
-                        Total = totalRow
-                    },
+                {
+                    List = data,
+                    SubTotal = subTotalRow,
+                    Total = totalRow
+                },
             JsonRequestBehavior.AllowGet);
         }
 
@@ -131,12 +131,18 @@
         [FunctionAuth(Function = FunctionPolicyNames.Payment, IsHostPolicy = true)]
         public ActionResult UpdatePayment(PaymentUpdateViewModel model)
         {
-            var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria { TransId = model.TransId, LicenseeId = AppSettings.LicenseeID });
+            var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria
+            {
+                TransId = model.TransId,
+                LicenseeId = AppSettings.LicenseeID
+            });
 
             model.PaymentDetail = paymentDetail;
 
             if (ModelState.IsValid)
             {
+                var session = SessionManager.CurrentSession;
+
                 var criteria = new PaymentUpdateCriteria
                 {
                     TransId = model.TransId,
@@ -144,7 +150,8 @@
                     AdminRemark = CutLongText(model.AdminRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
                     AffRemark = CutLongText(model.AffRemark.Replace("\r\n", "<br>").Replace("\n", "<br>"), 55),
                     PreferredLanguage = paymentDetail.PreferredLanguage,
-                    UserId = SessionManager.CurrentSession.CustID,
+                    UserId = session.CustID,
+                    AdminUserName = session.Username,
                     IP = Remote.GetClientIPAddress()
                 };
 
@@ -292,7 +299,6 @@
         {
             ResultViewModel result;
 
-            criteria.LicenseeId = AppSettings.LicenseeID;
             if (criteria.Status.ToLower() == "approved")
             {
                 var playerPayoutInfo = _paymentService.GetPlayerPayoutInfo(new PlayerPayoutInfoSelCriteria

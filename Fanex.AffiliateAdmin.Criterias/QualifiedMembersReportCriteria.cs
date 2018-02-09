@@ -8,8 +8,6 @@
     /// </summary>
     public class QualifiedMembersReportCriteria : CriteriaBase
     {
-        public int UserId { get; set; }
-
         public int AffId { get; set; }
 
         public byte BaseCurrency { get; set; }
@@ -25,7 +23,7 @@
         [SpParam(Ignored = true)]
         public int GroupId { get; set; }
 
-        public int LicenseeId { get; set; }
+        public string UserCurrencies { get; set; }
 
         public override string GetSettingKey()
         {

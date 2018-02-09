@@ -63,10 +63,10 @@
             {
                 var affType = SystemSetting.GetAffTypeList(new AffTypeCriteria());
                 return affType.Select(t => new AffType()
-                   {
-                       TypeID = t.TypeID,
-                       Name = Lang.ResourceManager.GetString(t.Name)
-                   });
+                {
+                    TypeID = t.TypeID,
+                    Name = Lang.ResourceManager.GetString(t.Name)
+                });
             });
             _baseExchange = new Lazy<Exchange>(() => SystemSetting.GetSystemBaseExchange(new SystemSettingExchangeCriteria()));
             _baseLanguage = new Lazy<IEnumerable<Language>>(() => SystemSetting.GetLanguageList(new AdminSupportedLanguagesSelCriteria()));
@@ -74,19 +74,19 @@
             _licenseeId = new Lazy<int>(() =>
             {
                 var licensee = SystemSetting.GetSystemSetting(new SystemSettingsSelByNameCriteria
-                    {
-                        Name = "LicenseeID",
-                    });
+                {
+                    Name = "LicenseeID",
+                });
 
                 return int.Parse(licensee.SValue);
             });
             _memberSiteSupportedLanguage = new Lazy<IEnumerable<Language>>(() => SystemSetting.GetMemberSiteSupportedLanguageList(
                 new MemberSiteLanguageCriteria
-                    {
-                        Environment = Environment
-                    }));
+                {
+                    Environment = Environment
+                }));
             _playerCurrencies = new Lazy<IEnumerable<Currency>>(() => SystemSetting.GetPlayerCurrencyList(new PlayerCurrencyCriteria()));
-            _products = new Lazy<IEnumerable<Product>>(() => SystemSetting.GetProductList(new ProductSelectCriteria { LicenseeId = LicenseeID }));
+            _products = new Lazy<IEnumerable<Product>>(() => SystemSetting.GetProductList(new ProductSelectCriteria()));
             _systemName = new Lazy<string>(() => GetSettingValue(new SystemSettingsSelByNameCriteria { Name = "SystemName" }));
             _systemDisplayName = new Lazy<string>(() =>
             {
@@ -102,9 +102,9 @@
             _systemStartDate = new Lazy<DateTime>(() =>
             {
                 var systemSetting = SystemSetting.GetSystemSetting(new SystemSettingsSelByNameCriteria
-                    {
-                        Name = "SystemStartDate"
-                    });
+                {
+                    Name = "SystemStartDate"
+                });
 
                 return string.IsNullOrEmpty(systemSetting.SValue)
                                            ? SystemTimeService.GetSystemDateTime()
@@ -443,19 +443,18 @@
 
         public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
         {
-            criteria.LicenseeId = LicenseeID;
             return SystemSetting.GetActiveCommGroups(criteria);
         }
 
-        public static IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)
+        public static IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria = null)
         {
             if (criteria == null)
             {
-                criteria = new CommGroupCurrencyCriteria { Currency = "All" };
+                criteria = new CommGroupCurrencyCriteria { Currencies = "All" };
             }
 
-            criteria.UserId = SessionManager.CurrentSession.CustID;
-            criteria.LicenseeId = LicenseeID;
+            var session = SessionManager.CurrentSession;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
             return SystemSetting.GetCommGroups(criteria);
         }
@@ -469,9 +468,9 @@
         public static string GetSettingValue(SystemSettingsSelByNameCriteria detailCriteria)
         {
             string value = string.Empty;
-            var systemSettings = SystemSetting.GetSystemSettingList(detailCriteria) as List<SystemSetting>;
+            var systemSettings = SystemSetting.GetSystemSettingList(detailCriteria);
 
-            if (systemSettings != null && systemSettings.Count > 0)
+            if (systemSettings != null && systemSettings.Any())
             {
                 var selectedSystemSetting = systemSettings.FirstOrDefault(x => x.Environment.Equals(Environment, StringComparison.OrdinalIgnoreCase));
 

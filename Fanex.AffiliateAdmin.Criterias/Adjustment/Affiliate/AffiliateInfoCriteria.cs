@@ -8,20 +8,13 @@ namespace Fanex.AffiliateAdmin.Criterias
 {
     using Fanex.Data.Repository;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AffiliateInfoCriteria : CriteriaBase
     {
         public string Username { get; set; }
 
-        public int UserId { get; set; }
-
-        public string Currencies { get; set; }
-
         public bool IsITAdmin { get; set; }
 
-        public int LicenseeId { get; set; }
+        public string UserCurrencies { get; set; }
 
         public override string GetSettingKey()
         {

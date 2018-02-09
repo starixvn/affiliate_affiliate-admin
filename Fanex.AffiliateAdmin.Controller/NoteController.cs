@@ -69,7 +69,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var affId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
             return Json(new
             {
-                List = this._noteService.GetNoteList(new NoteListCriteria { AffId = affId, LicenseeId = AppSettings.LicenseeID })
+                List = this._noteService.GetNoteList(new NoteListCriteria { AffId = affId })
             });
         }
 
@@ -95,8 +95,10 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
                 criteria.Ip = Remote.GetClientIPAddress();
-                criteria.UpdatedBy = SessionManager.CurrentSession.CustID;
-                criteria.LicenseeId = AppSettings.LicenseeID;
+
+                var session = SessionManager.CurrentSession;
+                criteria.AdminUserName = session.Username;
+                criteria.UpdatedBy = session.CustID;
 
                 this._noteService.InsertNote(criteria);
                 ViewBag.Result = new ResultViewModel
@@ -120,8 +122,7 @@ namespace Fanex.AffiliateAdmin.Controller
             var note = this._noteService.GetNote(new NoteSelCriteria
             {
                 AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId,
-                NoteId = noteId,
-                LicenseeId = AppSettings.LicenseeID
+                NoteId = noteId
             });
 
             return View(new NoteViewModel { Content = note.Content, NoteId = noteId });
@@ -137,8 +138,10 @@ namespace Fanex.AffiliateAdmin.Controller
         {
             criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
             criteria.Ip = Remote.GetClientIPAddress();
-            criteria.UpdatedBy = SessionManager.CurrentSession.CustID;
-            criteria.LicenseeId = AppSettings.LicenseeID;
+
+            var session = SessionManager.CurrentSession;
+            criteria.UpdatedBy = session.CustID;
+            criteria.AdminUserName = session.Username;
 
             this._noteService.UpdateNote(criteria);
 

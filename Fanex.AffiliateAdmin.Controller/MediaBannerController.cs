@@ -222,8 +222,7 @@
                 {
                     BannerIds = model.BannerIds,
                     UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress(),
-                    LicenseeId = AppSettings.LicenseeID
+                    Ip = Remote.GetClientIPAddress()
                 };
 
                 _mediaService.DeleteBanner(criteria);

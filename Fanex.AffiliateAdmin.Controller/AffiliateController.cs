@@ -60,16 +60,16 @@
         [HttpPost]
         public ActionResult AffiliateList(AffiliateListCriteria criteria)
         {
+            var session = SessionManager.CurrentSession;
+
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
-            criteria.UserId = SessionManager.CurrentSession.CustID;
+            criteria.UserId = session.CustID;
             criteria.LicenseeId = AppSettings.LicenseeID;
-            var result = _service.GetAffiliateList(criteria);
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
             var approveStatusList = new List<string> { "approved", "closed", "lockedout" };
-
             var hideTotalRows = true;
-
             if (!string.IsNullOrEmpty(criteria.Status))
             {
                 var selectedStatusList = criteria.Status.Split(',');
@@ -78,6 +78,8 @@
                     hideTotalRows = false;
                 }
             }
+
+            var result = _service.GetAffiliateList(criteria);
 
             var hasMultipleCurrency = result.AffiliateList
                                             .GroupBy(t => t.Currency)
@@ -89,12 +91,12 @@
                 List = result.AffiliateList,
                 SubTotal = result.CurrencyList,
                 Total = new
-                    {
-                        CurrencyCode = AppSettings.BaseExchange.Code,
-                        Currency = criteria.TotalAmount,
-                        Total = result.CurrencyList.Sum(t => t.Currency),
-                        TotalMembers = result.CurrencyList.Sum(t => t.TotalMembers)
-                    },
+                {
+                    CurrencyCode = AppSettings.BaseExchange.Code,
+                    Currency = criteria.TotalAmount,
+                    Total = result.CurrencyList.Sum(t => t.Currency),
+                    TotalMembers = result.CurrencyList.Sum(t => t.TotalMembers)
+                },
                 HasMultipleCurrency = hasMultipleCurrency,
                 HideTotalRows = hideTotalRows,
                 CurrentPage = criteria.PageIndex - 1,
@@ -105,7 +107,6 @@
 
         public ActionResult GetCommGroups(CommGroupCurrencyCriteria criteria)
         {
-            criteria.LicenseeId = AppSettings.LicenseeID;
             return Json(new
             {
                 List = AppSettings.GetCommGroups(criteria)
@@ -123,12 +124,12 @@
         public ActionResult ChangePassword(int id, string username, string password, string confirmPassword)
         {
             return View(new ChangeAffPasswordViewModel
-                {
-                    Id = id,
-                    Username = username,
-                    Password = password,
-                    ConfirmPassword = confirmPassword
-                });
+            {
+                Id = id,
+                Username = username,
+                Password = password,
+                ConfirmPassword = confirmPassword
+            });
         }
 
         /// <summary>
@@ -142,14 +143,14 @@
             if (ModelState.IsValid)
             {
                 var criteria = new ChangeAffPasswordCriteria
-                    {
-                        Id = model.Id,
-                        Username = model.Username,
-                        Password = null,
-                        Ip = Remote.GetClientIPAddress(),
-                        UserId = SessionManager.CurrentSession.CustID,
-                        ConfirmPassword = Cryptography.CfsEnCode(model.ConfirmPassword)
-                    };
+                {
+                    Id = model.Id,
+                    Username = model.Username,
+                    Password = null,
+                    Ip = Remote.GetClientIPAddress(),
+                    UserId = SessionManager.CurrentSession.CustID,
+                    ConfirmPassword = Cryptography.CfsEnCode(model.ConfirmPassword)
+                };
 
                 _service.ChangePassword(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
@@ -191,11 +192,11 @@
             }
 
             return ChangeAccountType(new ChangeAccountTypeViewModel
-                {
-                    AffIds = criteria.AffIds,
-                    Usernames = criteria.Usernames,
-                    TestLevel = criteria.TestLevel
-                });
+            {
+                AffIds = criteria.AffIds,
+                Usernames = criteria.Usernames,
+                TestLevel = criteria.TestLevel
+            });
         }
 
         /// <summary>
@@ -206,7 +207,8 @@
         [HttpGet]
         public ActionResult ChangeCommissionGroup(ChangeCommissionGroupViewModel model)
         {
-            model.UserId = SessionManager.CurrentSession.CustID;
+            model.CommissionGroupOptionList = GetCommGroupList(model.Currency, model.GroupId);
+
             return View(model);
         }
 
@@ -242,7 +244,8 @@
             {
                 AffIds = criteria.AffIds,
                 Usernames = criteria.Usernames,
-                Currency = criteria.Currency
+                Currency = criteria.Currency,
+                GroupId = criteria.GroupId
             });
         }
 
@@ -256,17 +259,21 @@
         {
             if (criteria.IsValid())
             {
-                criteria.UserId = SessionManager.CurrentSession.CustID;
+                var session = SessionManager.CurrentSession;
+                criteria.UserId = session.CustID;
+                criteria.AdminUserName = session.Username;
+
                 _service.AddFavorite(criteria);
+
                 return Json(GetResultViewModel(criteria.ErrCode));
             }
 
             return Json(new ResultViewModel
-                {
-                    ErrorCode = 16,
-                    Success = false,
-                    Message = Lang.InvalidRequest
-                });
+            {
+                ErrorCode = 16,
+                Success = false,
+                Message = Lang.InvalidRequest
+            });
         }
 
         /// <summary>
@@ -279,8 +286,12 @@
         {
             if (criteria.IsValid())
             {
-                criteria.UserId = SessionManager.CurrentSession.CustID;
+                var session = SessionManager.CurrentSession;
+                criteria.UserId = session.CustID;
+                criteria.AdminUserName = session.Username;
+
                 _service.RemoveFavorite(criteria);
+
                 return Json(GetResultViewModel(criteria.ErrCode));
             }
 
@@ -325,8 +336,7 @@
             criteria.IsITAdmin = session.IsIT;
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
-            criteria.UserId = session.CustID;
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
             var result = _service.CustomerList(criteria);
 
@@ -348,13 +358,15 @@
         [HttpPost]
         public ActionResult CustomerRemove(string username)
         {
+            var session = SessionManager.CurrentSession;
+
             var criteria = new CustomerRemoveCriteria
-                                            {
-                                                UserId = SessionManager.CurrentSession.CustID,
-                                                Username = username,
-                                                IP = Remote.GetClientIPAddress(),
-                                                LicenseeId = AppSettings.LicenseeID
-                                            };
+            {
+                UserId = session.CustID,
+                Username = username,
+                AdminUserName = session.Username,
+                IP = Remote.GetClientIPAddress()
+            };
             _service.CustomerRemove(criteria);
 
             var model = GetResultViewModel(criteria.ErrCode);
@@ -429,11 +441,11 @@
             ViewBag.Result = errorCode == 0 ? GetResultViewModel(string.IsNullOrEmpty(message) ? 0 : 1, null, message) : GetResultViewModel(errorCode);
 
             return AssignMember(new AssignMemberViewModel
-                {
-                    MemberName = criteria.MemberName,
-                    AffName = criteria.AffName,
-                    ByAffiliate = criteria.ByAffiliate
-                });
+            {
+                MemberName = criteria.MemberName,
+                AffName = criteria.AffName,
+                ByAffiliate = criteria.ByAffiliate
+            });
         }
 
         /// <summary>
@@ -456,11 +468,30 @@
         public ActionResult ChangeCommissionApprove(ChangeCommissionGroupViewModel model)
         {
             model.Currency = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).Currency.ToString();
-            model.UserId = SessionManager.CurrentSession.CustID;
+            model.CommissionGroupOptionList = GetCommGroupList(model.Currency, model.GroupId);
+
             return View(model);
         }
 
         #region Private Methods
+
+        private static IEnumerable<SelectListItem> GetCommGroupList(string currencies, int groupId)
+        {
+            var session = SessionManager.CurrentSession;
+
+            var comGroups = AppSettings.GetActiveCommGroups(new CommGroupSelActiveListCriteria
+            {
+                Currencies = currencies,
+                UserCurrencies = session.BuildUserCurrencyParam()
+            });
+
+            return comGroups.Select(t => new SelectListItem
+            {
+                Text = t.GroupName,
+                Value = t.GroupID.ToString(),
+                Selected = t.GroupID == groupId
+            });
+        }
 
         /// <summary>
         /// Get message from affiliate status.

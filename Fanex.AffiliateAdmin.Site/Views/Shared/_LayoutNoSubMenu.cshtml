@@ -13,16 +13,16 @@
     @RenderSection("css", required: false)
     @Scripts.Render("~/bundles/jquery")
 </head>
-<body >
+<body>
     @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
     @Html.Hidden("BaseUrl", Url.Content("~/"))
     @Html.Hidden("TimeZone", AppSettings.ServerTimeZone)
     <div class="container">
         <div class="row-fulid">
-          @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
-          {
-            @Html.Partial("_Header")
-          }
+            @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
+            {
+                @Html.Partial("_Header")
+            }
             <div class="span12 content narrow-padding">
                 <!--content html-->
                 <div class="row-fluid main-content">
@@ -55,9 +55,18 @@
             ChangePassword: "@Lang.ChangePassword"
         };
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#AffiliateInfo").addClass("active");
         });
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-93927620-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-93927620-2');
     </script>
 </body>
 </html>

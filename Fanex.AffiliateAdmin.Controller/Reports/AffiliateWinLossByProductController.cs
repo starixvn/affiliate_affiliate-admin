@@ -27,9 +27,8 @@
         public ActionResult GetData(AffiliateWinLossByProductCriteria criteria)
         {
             var session = SessionManager.CurrentSession;
-            criteria.UserId = session.CustID;
             criteria.IsITAdmin = session.IsIT;
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
             criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
             criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
 
@@ -46,10 +45,10 @@
                 Groups = groups,
                 SubTotalData = groupsByCurrency,
                 TotalRowData = new AffiliateWinLossByProduct
-                    {
-                        Currency = AppSettings.BaseExchange.Code,
-                        AffiliateWinLossByProductList = data.AffiliateWinLossInSystemCurrency
-                    },
+                {
+                    Currency = AppSettings.BaseExchange.Code,
+                    AffiliateWinLossByProductList = data.AffiliateWinLossInSystemCurrency
+                },
                 HasMultipleRows = groups.Count() > 1,
                 HasMultipleCurrencyRows = groupsByCurrency.Count() > 1,
                 FirstCurrency = firstCurrency != null ? firstCurrency.Currency : string.Empty,
@@ -71,7 +70,7 @@
             var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             criteria.AffName = affiliate.UserName;
             criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
-            criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups(null).Select(t => t.GroupID));
+            criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups().Select(t => t.GroupID));
             criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
             criteria.Currencies = affiliate.Currency.ToString();
             criteria.GroupBy = GroupByMonth;
@@ -95,19 +94,19 @@
                 var first = groupByAffiliate.First();
 
                 list.Add(new AffiliateWinLossByProduct
-                    {
-                        AffId = first.AffId,
-                        Username = first.Username,
-                        AffType = first.AffType,
-                        CurrencyId = first.CurrencyId,
-                        Currency = first.Currency,
-                        GroupID = first.GroupID,
-                        GroupName = first.GroupName,
-                        Language = first.Language,
-                        Status = first.Status,
-                        WinlostDate = first.WinlostDate,
-                        AffiliateWinLossByProductList = groupByAffiliate
-                    });
+                {
+                    AffId = first.AffId,
+                    Username = first.Username,
+                    AffType = first.AffType,
+                    CurrencyId = first.CurrencyId,
+                    Currency = first.Currency,
+                    GroupID = first.GroupID,
+                    GroupName = first.GroupName,
+                    Language = first.Language,
+                    Status = first.Status,
+                    WinlostDate = first.WinlostDate,
+                    AffiliateWinLossByProductList = groupByAffiliate
+                });
             }
 
             return list;

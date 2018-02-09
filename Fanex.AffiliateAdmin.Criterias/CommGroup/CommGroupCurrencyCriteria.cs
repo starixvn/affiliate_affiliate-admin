@@ -7,20 +7,18 @@
     /// </summary>
     public class CommGroupCurrencyCriteria : CriteriaBase
     {
-         public int UserId { get; set; }
+        public string Currencies { get; set; }
 
-         public string Currency { get; set; }
+        public string UserCurrencies { get; set; }
 
-         public int LicenseeId { get; set; }
+        public override string GetSettingKey()
+        {
+            return "AffAdmin_CommGroupSelListNormal";
+        }
 
-         public override string GetSettingKey()
-         {
-             return "AffAdmin_CommGroupSelListNormal";
-         }
-
-         public override bool IsValid()
-         {
-             return true;
-         }
+        public override bool IsValid()
+        {
+            return true;
+        }
     }
 }

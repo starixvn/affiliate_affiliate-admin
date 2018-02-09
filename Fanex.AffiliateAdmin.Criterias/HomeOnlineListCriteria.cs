@@ -7,8 +7,6 @@
     /// </summary>
     public class HomeOnlineListCriteria : CriteriaBase
     {
-        public int UserId { get; set; }
-
         public int PageIndex { get; set; }
 
         public int TotalPages { get; set; }
@@ -20,6 +18,8 @@
         public bool IsIT { get; set; }
 
         public int LicenseeId { get; set; }
+
+        public string UserCurrencies { get; set; }
 
         /// <summary>
         /// Store procedure Name.

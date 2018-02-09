@@ -67,16 +67,12 @@
         {
             CopyTierSettingsForAllProducts(criteria);
 
-            criteria.UserId = SessionManager.CurrentSession.CustID;
-
+            var session = SessionManager.CurrentSession;
+            criteria.AdminUserName = session.Username;
+            criteria.UserId = session.CustID;
             criteria.IP = Remote.GetClientIPAddress();
-
             criteria.GroupName = criteria.GroupName.Encode();
-
             criteria.Description = criteria.Description.Encode();
-
-            criteria.LicenseeId = AppSettings.LicenseeID;
-
             criteria.DeductionList = BuildDeductionListXml(criteria.DeductionSettingList);
 
             _commGroupService.ExecuteOutput(criteria);
@@ -219,10 +215,13 @@
         [HttpPost]
         public ActionResult GetList(CommGroupCriteria criteria)
         {
-            criteria.UserId = SessionManager.CurrentSession.CustID;
+            var session = SessionManager.CurrentSession;
+
+            criteria.UserId = session.CustID;
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
             criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
             var groups = GetGridData(criteria);
 
@@ -246,11 +245,17 @@
 
         public ActionResult ViewSetting(CommGroupSelByIdCriteria criteria)
         {
-            criteria.UserId = SessionManager.CurrentSession.CustID;
+            var session = SessionManager.CurrentSession;
+
+            criteria.UserId = session.CustID;
             criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
+
             var groups = _commGroupService.GetById(criteria);
             var date = criteria.Date == null ? SystemTimeService.GetSystemDateTime() : criteria.Date.Value;
+
             _commGroupService.BuildGroupData(groups, date, criteria.GroupID.ToString());
+
             return View(groups.FirstOrDefault());
         }
 

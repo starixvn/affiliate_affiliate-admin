@@ -130,8 +130,7 @@
             {
                 Listmid = listID.TrimEnd(','),
                 UserID = SessionManager.CurrentSession.CustID,
-                IP = Remote.GetClientIPAddress(),
-                LicenseeId = AppSettings.LicenseeID
+                IP = Remote.GetClientIPAddress()
             };
             _service.ExecuteSP(criteria);
 

@@ -24,9 +24,9 @@
 
         bool ReCheckIn(ReCheckInCriteria criteria);
 
-        ICurrentSession CreateOneAuthSession(OneAuthToken token, Account user, int licenseeId);
+        ICurrentSession CreateOneAuthSession(OneAuthToken token, Account user);
 
-        void UpdateOneAuthSession(ICurrentSession session, OneAuthToken token, int licenseeId);
+        void UpdateOneAuthSession(ICurrentSession session, OneAuthToken token);
 
         ICurrentSession CreateInternalSession(Account user, int licenseeId);
 

@@ -13,8 +13,6 @@
     [NoCache]
     public class HomeController : BaseController
     {
-        private const string HomeMenuName = "Home";
-
         private readonly IHomeService _homeService;
 
         public HomeController()
@@ -37,8 +35,7 @@
             FormaterCurrency.SetDefaultCurrency(AppSettings.BaseExchange.Code);
             var model = _homeService.GeneralInfoSel(new HomeGeneralInfoCriteria
             {
-                UserId = SessionManager.CurrentSession.CustID,
-                LicenseeId = AppSettings.LicenseeID
+                UserCurrencies = SessionManager.CurrentSession.BuildUserCurrencyParam()
             });
 
             return View(model);
@@ -84,10 +81,11 @@
         {
             var session = SessionManager.CurrentSession;
 
-            criteria.UserId = session.CustID;
             criteria.IsIT = session.IsIT;
             criteria.LicenseeId = AppSettings.LicenseeID;
-            var listUseronlines = _homeService.UserOnlineList(criteria).ToList();
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
+
+            var listUseronlines = _homeService.UserOnlineList(criteria);
 
             return Json(new
             {

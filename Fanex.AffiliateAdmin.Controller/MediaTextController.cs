@@ -143,7 +143,6 @@
             {
                 criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.Ip = Remote.GetClientIPAddress();
-                criteria.LicenseeId = AppSettings.LicenseeID;
 
                 _mediaService.DeleteBanner(criteria);
 

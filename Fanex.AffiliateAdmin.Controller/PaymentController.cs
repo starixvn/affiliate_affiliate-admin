@@ -165,7 +165,8 @@
                 {
                     TransId = model.TransId,
                     UserId = SessionManager.CurrentSession.CustID,
-                    IP = Remote.GetClientIPAddress()
+                    IP = Remote.GetClientIPAddress(),
+                    AdminUserName = SessionManager.CurrentSession.Username
                 });
 
                 if (checkInProgressResult.ErrorCode != 0)

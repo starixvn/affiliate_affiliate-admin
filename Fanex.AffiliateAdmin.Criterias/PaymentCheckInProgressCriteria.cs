@@ -14,6 +14,8 @@
 
         public string ErrMsg { get; set; }
 
+        public string AdminUserName { get; set; }
+
         public override string GetSettingKey()
         {
             return "AffAdmin_PaymentRequest_InProgress";

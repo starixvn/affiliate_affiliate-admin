@@ -30,6 +30,5 @@
 
         ICurrentSession CreateInternalSession(Account user, int licenseeId);
 
-        ResultInfo SyncUserInfo(string licenseeName, string userName);
     }
 }

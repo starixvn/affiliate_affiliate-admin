@@ -47,17 +47,6 @@
             var language = MapLanguages.Where(i => i.Value.Equals(tokenInfo.Language))
                        .Select(i => i.Key).DefaultIfEmpty<string>("en-Us").FirstOrDefault();
 
-            if (tokenInfo.IsAdminstrator)
-            {
-                var userCheckingResult = CheckAndSyncUserInfo(AppSettings.LicenseeID, tokenInfo.SiteName, tokenInfo.UserID);
-
-                if (!userCheckingResult.IsSuccessful)
-                {
-                    return userCheckingResult;
-                }
-
-                tokenInfo.UserSEQ = int.Parse(userCheckingResult.ExtendedData);
-            }
 
             var currentSession = SessionManager.CurrentSession;
             if (IsAuthenticated(currentContext, currentSession))
@@ -130,39 +119,6 @@
             SessionManager.CurrentSession = session;
         }
 
-        private ResultInfo CheckAndSyncUserInfo(int licenseeId, string siteName, string userName)
-        {
-            var result = GetUser(licenseeId, userName);
-            if (result.IsSuccessful)
-            {
-                return result;
-            }
-
-            result = _authService.SyncUserInfo(siteName, userName);
-
-            return result.IsSuccessful ? GetUser(licenseeId, userName) : new ResultInfo
-            {
-                Code = OneAuthorizationErrorCode.NotFoundUser,
-                Message = Lang.NotFoundUser
-            };
-        }
-
-        private ResultInfo GetUser(int licenseeId, string userName)
-        {
-            var user = _authService.GetByUsername(userName, licenseeId, true);
-            if (user != null)
-            {
-                return new ResultInfo
-                {
-                    ExtendedData = user.CustID.ToString()
-                };
-            }
-
-            return new ResultInfo
-            {
-                Code = OneAuthorizationErrorCode.NotFoundUser,
-                Message = Lang.NotFoundUser
-            };
-        }
+     
     }
 }

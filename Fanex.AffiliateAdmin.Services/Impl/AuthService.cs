@@ -138,42 +138,11 @@
             return session;
         }
 
-        public ResultInfo SyncUserInfo(string licenseeName, string userName)
-        {
-            const int AdminGroup = 0;
-            const string UspName = @"Aff_SyncInternalUser";
-
-            const string DefaultPass = "J0NilQZC1ywhNqNu8XMBqIvesaErM+DGia1za8P+tH8=";
-            Logging.Logger.Log.Info($"Synced user from LAP system - userName={userName}");
-            using (var db = new ObjectDb(UspName))
-            {
-                db.AddInParameter("LicenseeName", DbType.String, licenseeName);
-                db.AddInParameter("Username", DbType.String, userName);
-                db.AddInParameter("EncryptedPassword", DbType.String, DefaultPass);
-                db.AddInParameter("AffGroup", DbType.Int32, AdminGroup);
-                db.AddOutParameter("ErrCode", DbType.Int32, 4);
-                db.AddOutParameter("ErrMsg", DbType.String, 4000);
-
-                db.ExecuteNonQuery();
-
-                var errorCode = db.GetParameterValue("ErrCode");
-                var errorMessage = db.GetParameterValue("ErrMsg");
-
-                return new ResultInfo
-                {
-                    Code = Converter.ToInt(errorCode),
-                    Message = Converter.ToString2(errorMessage)
-                };
-            }
-        }
-
         private IEnumerable<Currency> GetCurrencyList(OneAuthToken token)
         {
             var allCurrencies = _systemSettingService.GetLicenseeSupportedCurrencyList(new LicenseeSupportedCurrencyCriteria());
 
-            return token.IsAdminstrator ?
-                allCurrencies :
-                allCurrencies.Where(x => token.Currency.Any(y => y.CurrencyId == x.OriginalCurrencyID)).ToList();
+            return  allCurrencies.Where(x => token.Currency.Any(y => y.CurrencyId == x.OriginalCurrencyID)).ToList();
         }
 
         private IEnumerable<FunctionPolicy> GetPolicyList(OneAuthToken token)

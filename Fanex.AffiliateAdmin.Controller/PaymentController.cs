@@ -263,7 +263,7 @@
                 ServiceWrapper.GetLicenseeCustInfo(siteName, userName, transId);
         }
 
-        private ApiTransferInfo GetTransferInfo(
+        private ApiTransferInfo ProcessTransfer(
             PlayerPayoutInfo playerPayoutInfo,
             long transId,
             double amount,
@@ -284,21 +284,28 @@
                     Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
                 });
 
-                var transferInfo = GetTransferInfo(
-                    playerPayoutInfo,
-                    paymentDetail.Transid,
-                    Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount)),
-                    balAccCustId);
-
                 var custInfo = GetCustInfo(paymentDetail.Transid, playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername);
 
-                paymentIsUpdated = IsTransferCompleted(transferInfo) && HasCustomer(custInfo);
-
-                if (paymentIsUpdated)
+                if (HasCustomer(custInfo))
                 {
-                    criteria.IbcRefNo = transferInfo.IbcRefNo;
-                    criteria.IbcTransId = transferInfo.IbcTransId;
-                    criteria.IbcUsername = custInfo.IbcUserName;
+                    var transferInfo = ProcessTransfer(
+                        playerPayoutInfo,
+                        paymentDetail.Transid,
+                        Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount)),
+                        balAccCustId);
+
+                    paymentIsUpdated = IsTransferCompleted(transferInfo);
+
+                    if (paymentIsUpdated)
+                    {
+                        criteria.IbcRefNo = transferInfo.IbcRefNo;
+                        criteria.IbcTransId = transferInfo.IbcTransId;
+                        criteria.IbcUsername = custInfo.IbcUserName;
+                    }
+                }
+                else
+                {
+                    paymentIsUpdated = false;
                 }
             }
 

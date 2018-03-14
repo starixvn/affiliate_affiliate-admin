@@ -62,9 +62,12 @@
 
                 if (isValid)
                 {
-                    custInfo.ErrorMessage = xml.Element("ReturnMessage") != null ? xml.Element("ReturnMessage").Value : string.Empty;
                     custInfo.IbcUserName = xml.Element("IBCusername") != null ? xml.Element("IBCusername").Value : string.Empty;
                     custInfo.PlayerCurrency = xml.Element("Currency") != null ? xml.Element("Currency").Value : string.Empty;
+                }
+                else
+                {
+                    custInfo.ErrorMessage = xml?.Element("ReturnMessage")?.Value;
                 }
             }
             catch (Exception ex)
@@ -94,13 +97,16 @@
                 var resultLogContent = BuildLogContentByResult(methodName, userId, transId, paramInfo, xml?.ToString());
                 DbLogger.WritePaymentLog(new PaymentLogCriteria { UserId = userId, LogContent = resultLogContent });
 
-                transferInfo.ErrorMessage = xml?.Element("ReturnMessage")?.Value;
                 var isValid = IsValidApiResult(xml);
 
                 if (isValid)
                 {
                     transferInfo.IbcRefNo = Convert.ToInt64(xml.Element("IBCRefNo").Value);
                     transferInfo.IbcTransId = Convert.ToInt64(xml.Element("IBCTransId").Value);
+                }
+                else
+                {
+                    transferInfo.ErrorMessage = xml?.Element("ReturnMessage")?.Value;
                 }
             }
             catch (Exception ex)

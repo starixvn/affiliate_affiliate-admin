@@ -3,9 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
     using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
     using Core.Configurations;
     using Core.Constants;
@@ -18,6 +16,7 @@
     using Core.Utilities;
     using Criterias;
     using DTO;
+    using DTO.PaymentRequest;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Models;
@@ -29,6 +28,7 @@
     public class PaymentController : BaseController
     {
         private const string ModelErrorKey = "ErrMsg";
+        private const int UserNotExistedCode = 2005;
         private static readonly IEnumerable<string> AllowedStatusListToUpdate = new List<string> { PaymentStatusText.Approved, PaymentStatusText.Rejected };
         private readonly IPaymentService _paymentService;
         private readonly IDbLogger _databaseLogger;
@@ -141,6 +141,7 @@
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FunctionAuth(Function = FunctionPolicyNames.Payment, IsHostPolicy = true)]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
         public ActionResult UpdatePayment(PaymentUpdateViewModel model)
         {
             var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria
@@ -161,6 +162,19 @@
                     return View(model);
                 }
 
+                var playerPayoutInfo = _paymentService.GetPlayerPayoutInfo(new PlayerPayoutInfoSelCriteria
+                {
+                    AffId = paymentDetail.AffId,
+                    RefId = paymentDetail.RefId
+                });
+
+                var custInfo = GetCustInfo(paymentDetail.Transid, playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername);
+                if (string.IsNullOrEmpty(playerPayoutInfo.DummyBalAcc) || !HasCustomer(custInfo))
+                {
+                    ModelState.AddModelError(ModelErrorKey, Common.GetErrorMsg(UserNotExistedCode));
+                    return View(model);
+                }
+
                 var checkInProgressResult = _paymentService.CheckPaymentInProgress(new PaymentCheckInProgressCriteria
                 {
                     TransId = model.TransId,
@@ -176,7 +190,7 @@
                 }
 
                 var criteria = GetPaymentUpdateCriteria(model, paymentDetail);
-                var result = ProcessUpdatePayment(criteria, paymentDetail);
+                var result = ProcessUpdatePayment(criteria, paymentDetail, playerPayoutInfo);
 
                 if (result.Success)
                 {
@@ -226,158 +240,65 @@
             return strText.Substring(0, maxLength - 3) + "...";
         }
 
-        private bool IsExistLicenseeCustInfo(
-            long transId,
-            string siteName,
-            string userName,
-            ref string ibcUsername,
-            ref string player_Currency,
-            ref string errMsg)
+        private static bool HasCustomer(ApiCustInfo custInfo)
         {
-            if (AppSettings.LocalTest)
-            {
-                return true;
-            }
-
-            try
-            {
-                var xml = ServiceWrapper.GetLicenseeCustInfo(siteName, userName);
-
-                var methodName = "GetLicenseeCustInfo";
-                var userId = SessionManager.CurrentSession.CustID;
-                var paramInfo = $"siteName={siteName}, userName={userName}";
-                var resultLogContent = BuildLogContentByResult(methodName, userId, transId, paramInfo, xml?.ToString());
-                _databaseLogger.WritePaymentLog(new PaymentLogCriteria { UserId = userId, LogContent = resultLogContent });
-
-                if (xml == null || xml.IsEmpty)
-                {
-                    return false;
-                }
-
-                var errCode = Convert.ToInt32(xml.Element("ReturnCode").Value);
-                errMsg = xml.Element("ReturnMessage").Value;
-                if (errCode == 0)
-                {
-                    ibcUsername = Convert.ToString(xml.Element("IBCusername").Value);
-                    player_Currency = Convert.ToString(xml.Element("Currency").Value);
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logging.LogService.Error(ex.Message, ex);
-            }
-
-            return false;
+            return AppSettings.LocalTest ||
+                                        (!string.IsNullOrEmpty(custInfo.IbcUserName) &&
+                                        !string.IsNullOrEmpty(custInfo.PlayerCurrency) &&
+                                        string.IsNullOrEmpty(custInfo.ErrorMessage));
         }
 
-        private ResultViewModel TransferToPlayerAcc(
+        private static bool IsTransferCompleted(ApiTransferInfo transferInfo)
+        {
+            return AppSettings.LocalTest ||
+                (transferInfo.IbcRefNo != 0 &&
+                transferInfo.IbcTransId != 0 &&
+                string.IsNullOrEmpty(transferInfo.ErrorMessage));
+        }
+
+        private ApiCustInfo GetCustInfo(long transId, string siteName, string userName)
+        {
+            return AppSettings.LocalTest ?
+                new ApiCustInfo { PlayerCurrency = "USD" } :
+                ServiceWrapper.GetLicenseeCustInfo(siteName, userName, transId);
+        }
+
+        private ApiTransferInfo GetTransferInfo(
             PlayerPayoutInfo playerPayoutInfo,
             long transId,
             double amount,
-            int balAccCustId,
-            ref long ibcRefNo,
-            ref long ibcTransId)
+            int balAccCustId)
         {
-            var result = new ResultViewModel();
-
-            if (AppSettings.LocalTest)
-            {
-                result.Success = true;
-                return result;
-            }
-            try
-            {
-                var siteName = playerPayoutInfo.SystemName;
-                var licenseeUserName = playerPayoutInfo.PlayerUsername;
-                var xml = ServiceWrapper.Transfer(siteName, licenseeUserName, amount, balAccCustId);
-
-                var methodName = "Transfer";
-                var userId = SessionManager.CurrentSession.CustID;
-                var paramInfo = $"siteName={siteName}, licenseeUserName={licenseeUserName}, Transfer Amount={amount}, dummyAccount={balAccCustId}";
-                var resultLogContent = BuildLogContentByResult(methodName, userId, transId, paramInfo, xml?.ToString());
-                _databaseLogger.WritePaymentLog(new PaymentLogCriteria { UserId = userId, LogContent = resultLogContent });
-
-                if (xml == null || xml.IsEmpty)
-                {
-                    result.ErrorMessage = "Empty result from API!";
-                    return result;
-                }
-
-                result.ErrorCode = Convert.ToInt32(xml.Element("ReturnCode").Value);
-                if (result.ErrorCode == 0)
-                {
-                    result.Success = true;
-                    ibcRefNo = Convert.ToInt64(xml.Element("IBCRefNo").Value);
-                    ibcTransId = Convert.ToInt64(xml.Element("IBCTransId").Value);
-                }
-                else
-                {
-                    result.ErrorMessage = xml.Element("ReturnMessage").Value;
-                }
-            }
-            catch (Exception ex)
-            {
-                result.Success = false;
-                Logging.LogService.Error(ex.Message, ex);
-            }
-
-            return result;
+            return AppSettings.LocalTest ?
+                new ApiTransferInfo() :
+                ServiceWrapper.Transfer(playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername, amount, balAccCustId, transId);
         }
 
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
-        private ResultViewModel ProcessUpdatePayment(PaymentUpdateCriteria criteria, PaymentDetail paymentDetail)
+        private ResultViewModel ProcessUpdatePayment(PaymentUpdateCriteria criteria, PaymentDetail paymentDetail, PlayerPayoutInfo playerPayoutInfo)
         {
-            var paymentIsUpdated = criteria.Status.ToLower() != PaymentStatusText.Approved;
+            var paymentIsUpdated = criteria.Status.ToLower() == PaymentStatusText.Rejected;
             if (criteria.Status.ToLower() == PaymentStatusText.Approved)
             {
-                var playerPayoutInfo = _paymentService.GetPlayerPayoutInfo(new PlayerPayoutInfoSelCriteria
-                {
-                    AffId = paymentDetail.AffId,
-                    RefId = paymentDetail.RefId
-                });
-
-                if (string.IsNullOrEmpty(playerPayoutInfo.DummyBalAcc))
-                {
-                    const int UserNotExistedCode = 2005;
-
-                    return new ResultViewModel
-                    {
-                        Success = false,
-                        ErrorCode = UserNotExistedCode
-                    };
-                }
-
                 var balAccCustId = _paymentService.GetCustIDByUsername(new DummyAccIdCriteria
                 {
                     Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
                 });
 
-                long ibcRefNo = 0, ibcTransId = 0;
-                var ibcUsername = string.Empty;
-                var playerCurrency = string.Empty;
-                var errorMessage = string.Empty;
-
-                var transferPaymentResult = TransferToPlayerAcc(
+                var transferInfo = GetTransferInfo(
                     playerPayoutInfo,
                     paymentDetail.Transid,
                     Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount)),
-                    balAccCustId,
-                    ref ibcRefNo,
-                    ref ibcTransId);
+                    balAccCustId);
 
-                paymentIsUpdated = transferPaymentResult.Success && IsExistLicenseeCustInfo(
-                                                paymentDetail.Transid,
-                                                playerPayoutInfo.SystemName,
-                                                playerPayoutInfo.PlayerUsername,
-                                                ref ibcUsername,
-                                                ref playerCurrency,
-                                                ref errorMessage);
+                var custInfo = GetCustInfo(paymentDetail.Transid, playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername);
+
+                paymentIsUpdated = IsTransferCompleted(transferInfo) && HasCustomer(custInfo);
+
                 if (paymentIsUpdated)
                 {
-                    criteria.IbcRefNo = ibcRefNo;
-                    criteria.IbcTransId = ibcTransId;
-                    criteria.IbcUsername = ibcUsername;
+                    criteria.IbcRefNo = transferInfo.IbcRefNo;
+                    criteria.IbcTransId = transferInfo.IbcTransId;
+                    criteria.IbcUsername = custInfo.IbcUserName;
                 }
             }
 
@@ -395,21 +316,6 @@
             {
                 Success = false
             };
-        }
-
-        private static string BuildLogContentByResult(string methodName, int userId, long transId, string paramInfo, string resultContent)
-        {
-            var builder = new StringBuilder();
-
-            builder.AppendLine($"Complete Call Method {methodName} at {DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture)}");
-            builder.AppendLine("Infor:");
-            builder.AppendLine($"TransId: {transId}");
-            builder.AppendLine($"UserId: {userId}");
-            builder.AppendLine($"Param Info: {paramInfo}");
-
-            builder.AppendLine($"Result Content: {resultContent}");
-
-            return builder.ToString();
         }
 
         private void SendEmail(PaymentDetail paymentDetail, PaymentUpdateCriteria criteria)

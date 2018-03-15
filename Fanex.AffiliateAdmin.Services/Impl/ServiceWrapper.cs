@@ -1,14 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
     using System;
-    using System.Globalization;
-    using System.Text;
     using System.Xml.Linq;
-    using Core.Services.Impl;
-    using Core.Services.Interface;
-    using Core.Session;
-    using Criterias;
     using DTO.PaymentRequest;
+    using Helpers;
 
     /// <summary>
     /// Service Wrapper.
@@ -17,16 +12,10 @@
     public class ServiceWrapper
     {
         private static MemberSiteService.ServiceSoapClient _client;
-        private static IDbLogger _dbLogger;
 
         private static MemberSiteService.ServiceSoapClient Client
         {
             get { return _client ?? (_client = new MemberSiteService.ServiceSoapClient("ServiceSoap")); }
-        }
-
-        private static IDbLogger DbLogger
-        {
-            get { return _dbLogger ?? (_dbLogger = new DbLogger()); }
         }
 
         public static XElement GetRegList(string siteName, DateTime targetDate)
@@ -51,23 +40,18 @@
             try
             {
                 var xml = Client.GetLicenseeCustInfo(siteName, licenseeUserName);
-
-                var methodName = "GetLicenseeCustInfo";
-                var userId = SessionManager.CurrentSession.CustID;
-                var paramInfo = $"siteName={siteName}, userName={licenseeUserName}";
-                var resultLogContent = BuildLogContentByResult(methodName, userId, transId, paramInfo, xml?.ToString());
-                DbLogger.WritePaymentLog(new PaymentLogCriteria { UserId = userId, LogContent = resultLogContent });
+                WriteLogAfterGettingCustInfo(siteName, licenseeUserName, transId, xml);
 
                 var isValid = IsValidApiResult(xml);
 
                 if (isValid)
                 {
-                    custInfo.IbcUserName = xml.Element("IBCusername") != null ? xml.Element("IBCusername").Value : string.Empty;
-                    custInfo.PlayerCurrency = xml.Element("Currency") != null ? xml.Element("Currency").Value : string.Empty;
+                    custInfo.IbcUserName = xml.Element("IBCusername")?.Value;
+                    custInfo.PlayerCurrency = xml.Element("Currency")?.Value;
                 }
                 else
                 {
-                    custInfo.ErrorMessage = xml?.Element("ReturnMessage")?.Value;
+                    custInfo.ErrorMessage = xml.Element("ReturnMessage")?.Value;
                 }
             }
             catch (Exception ex)
@@ -90,12 +74,7 @@
             try
             {
                 var xml = Client.Transfer(siteName, licenseeUserName, amount, dummyAccount);
-
-                var methodName = "Transfer";
-                var userId = SessionManager.CurrentSession.CustID;
-                var paramInfo = $"siteName={siteName}, licenseeUserName={licenseeUserName}, Transfer Amount={amount}, dummyAccount={dummyAccount}";
-                var resultLogContent = BuildLogContentByResult(methodName, userId, transId, paramInfo, xml?.ToString());
-                DbLogger.WritePaymentLog(new PaymentLogCriteria { UserId = userId, LogContent = resultLogContent });
+                WriteLogAfterTransfering(siteName, licenseeUserName, amount, dummyAccount, transId, xml);
 
                 var isValid = IsValidApiResult(xml);
 
@@ -106,7 +85,7 @@
                 }
                 else
                 {
-                    transferInfo.ErrorMessage = xml?.Element("ReturnMessage")?.Value;
+                    transferInfo.ErrorMessage = xml.Element("ReturnMessage")?.Value;
                 }
             }
             catch (Exception ex)
@@ -115,21 +94,6 @@
             }
 
             return transferInfo;
-        }
-
-        private static string BuildLogContentByResult(string methodName, int userId, long transId, string paramInfo, string resultContent)
-        {
-            var builder = new StringBuilder();
-
-            builder.AppendLine($"Complete Call Method {methodName} at {DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture)}");
-            builder.AppendLine("Infor:");
-            builder.AppendLine($"TransId: {transId}");
-            builder.AppendLine($"UserId: {userId}");
-            builder.AppendLine($"Param Info: {paramInfo}");
-
-            builder.AppendLine($"Result Content: {resultContent}");
-
-            return builder.ToString();
         }
 
         private static bool IsValidApiResult(XElement xmlResult)
@@ -146,6 +110,20 @@
             }
 
             return true;
+        }
+
+        private static void WriteLogAfterGettingCustInfo(string siteName, string licenseeUserName, long transId, XElement xml)
+        {
+            var methodName = "GetLicenseeCustInfo";
+            var paramInfo = $"siteName={siteName},userName={licenseeUserName}";
+            PaymentLogHelper.WriteLog(methodName, paramInfo, transId, xml?.ToString());
+        }
+
+        private static void WriteLogAfterTransfering(string siteName, string licenseeUserName, double amount, int dummyAccount, long transId, XElement xml)
+        {
+            var methodName = "Transfer";
+            var paramInfo = $"siteName={siteName},licenseeUserName={licenseeUserName},Transfer Amount={amount},dummyAccount={dummyAccount}";
+            PaymentLogHelper.WriteLog(methodName, paramInfo, transId, xml?.ToString());
         }
     }
 }

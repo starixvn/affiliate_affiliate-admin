@@ -21,9 +21,6 @@
     using Fanex.AffiliateAdmin.Services;
     using Models;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [FunctionAuth(Function = FunctionPolicyNames.Payment, CurrenciesRequired = true)]
     public class PaymentController : BaseController
     {
@@ -40,10 +37,6 @@
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentController" /> class.
-        /// </summary>
-        /// <param name="service">Payment service.</param>
         public PaymentController(IPaymentService service, IDbLogger databaseLogger)
         {
             _paymentService = service ?? new PaymentService();
@@ -52,11 +45,6 @@
 
         #endregion Constructor
 
-        /// <summary>
-        /// Payment index page.
-        /// </summary>
-        /// <param name="model">Payment View Model.</param>
-        /// <returns>Action Result.</returns>
         [HttpGet]
         public ActionResult Index(PaymentViewModel model)
         {
@@ -67,11 +55,6 @@
             return View(model);
         }
 
-        /// <summary>
-        /// Payment list.
-        /// </summary>
-        /// <param name="criteria">Payment Criteria.</param>
-        /// <returns>Action Result.</returns>
         [HttpPost]
         public ActionResult DataList(PaymentCriteria criteria)
         {
@@ -105,12 +88,6 @@
             JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Update Payment.
-        /// </summary>
-        /// <param name="transId">Payment Id.</param>
-        /// <param name="fromStatement">From Statement.</param>
-        /// <returns>Action Result.</returns>
         [HttpGet]
         public ActionResult UpdatePayment(int transId, bool fromStatement = false)
         {
@@ -133,11 +110,6 @@
             return View(model);
         }
 
-        /// <summary>
-        /// Update Payment information.
-        /// </summary>
-        /// <param name="model">Payment Update View Model.</param>
-        /// <returns>Action Result.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FunctionAuth(Function = FunctionPolicyNames.Payment, IsHostPolicy = true)]
@@ -154,9 +126,7 @@
             if (ModelState.IsValid)
             {
                 var currentStatus = paymentDetail.Status;
-                var statusToUpdate = model.Status.ToLower();
-
-                if (!IsValidStatus(currentStatus, statusToUpdate))
+                if (!IsValidStatus(currentStatus, model.Status.ToLower()))
                 {
                     ModelState.AddModelError(ModelErrorKey, Lang.InValidPaymentRequestStatus);
                     return View(model);
@@ -251,9 +221,9 @@
         private static bool IsTransferCompleted(ApiTransferInfo transferInfo)
         {
             return AppSettings.LocalTest ||
-                (transferInfo.IbcRefNo != 0 &&
-                transferInfo.IbcTransId != 0 &&
-                string.IsNullOrEmpty(transferInfo.ErrorMessage));
+                                        (transferInfo.IbcRefNo != 0 &&
+                                        transferInfo.IbcTransId != 0 &&
+                                        string.IsNullOrEmpty(transferInfo.ErrorMessage));
         }
 
         private ApiCustInfo GetCustInfo(long transId, string siteName, string userName)
@@ -263,11 +233,7 @@
                 ServiceWrapper.GetLicenseeCustInfo(siteName, userName, transId);
         }
 
-        private ApiTransferInfo ProcessTransfer(
-            PlayerPayoutInfo playerPayoutInfo,
-            long transId,
-            double amount,
-            int balAccCustId)
+        private ApiTransferInfo ProcessTransfer(PlayerPayoutInfo playerPayoutInfo, long transId, double amount, int balAccCustId)
         {
             return AppSettings.LocalTest ?
                 new ApiTransferInfo() :
@@ -276,18 +242,19 @@
 
         private ResultViewModel ProcessUpdatePayment(PaymentUpdateCriteria criteria, PaymentDetail paymentDetail, PlayerPayoutInfo playerPayoutInfo)
         {
-            var paymentIsUpdated = criteria.Status.ToLower() == PaymentStatusText.Rejected;
-            if (criteria.Status.ToLower() == PaymentStatusText.Approved)
+            var status = criteria.Status.ToLower();
+            var paymentIsUpdated = status == PaymentStatusText.Rejected;
+            if (status == PaymentStatusText.Approved)
             {
-                var balAccCustId = _paymentService.GetCustIDByUsername(new DummyAccIdCriteria
-                {
-                    Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
-                });
-
                 var custInfo = GetCustInfo(paymentDetail.Transid, playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername);
 
                 if (HasCustomer(custInfo))
                 {
+                    var balAccCustId = _paymentService.GetCustIDByUsername(new DummyAccIdCriteria
+                    {
+                        Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
+                    });
+
                     var transferInfo = ProcessTransfer(
                         playerPayoutInfo,
                         paymentDetail.Transid,

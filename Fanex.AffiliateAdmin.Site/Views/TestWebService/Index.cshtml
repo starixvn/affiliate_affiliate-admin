@@ -1,47 +1,63 @@
 ﻿﻿@using Fanex.AffiliateAdmin.Core.Configurations
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutNoHeader.cshtml";
+    Layout = null;
 }
 
-@using (Html.BeginForm("DataList", "Message", FormMethod.Post, new { id = "form1" }))
-{
-    <table>
-        <tr>
-        <td>Method: </td>
-        <td><select id="method" name="method">
-            <option value="GetRegList">GetRegList</option>
-            <option value="UpdateBtage">UpdateBtage</option>
-            <option value="GetLicenseeCustInfo">GetLicenseeCustInfo</option>
-            <option value="Transfer">Transfer</option>            
-        </select></td>
-        </tr>
-        <tr id="GetRegList" class="tab">               
-            <td>Date: </td>
-            <td><input type="date" name="date" value="" /> </td>
-        </tr>
-        <tr id="UpdateBtage" class="tab">            
-            <td>Licensee: </td><td><input type="text" name="licensee" value="" /></td>        
-            <td>New Btag: </td><td><input type="text" name="btag" value="" /></td>
-        </tr>
-        <tr id="GetLicenseeCustInfo" class="tab">            
-            <td>Licensee: </td><td><input type="text" name="licensee" value="" /></td>     
-        </tr>
-        <tr id="Transfer" class="tab">            
-            <td>Licensee: </td><td><input type="text" name="licensee" value="" />       </td>
-            <td>Amount: </td><td><input type="number" name="amount" value="" />       </td>
-            <td>Dummy Account: </td><td><input type="number" name="dummyaccount" value="" />  </td>
-        </tr>
-    </table>
-     <input type="button" id="submit" value="Submit Query"/>
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content(string.Format("~/Content/_Sites/{0}/images/favicon.jpg?{1}", AppSettings.Layout, DateTime.Now.Ticks))" rel="shortcut icon" type="image/jpg" />
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <form id="form1">
+        <table>
+            <tr>
+                <td>Method: </td>
+                <td>
+                    <select id="method" name="method">
+                        <option value="GetRegList">GetRegList</option>
+                        <option value="UpdateBtage">UpdateBtage</option>
+                        <option value="GetLicenseeCustInfo">GetLicenseeCustInfo</option>
+                        <option value="Transfer">Transfer</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="GetRegList" class="tab">
+                <td>Date: </td>
+                <td><input type="date" name="date" value="" /> </td>
+            </tr>
+            <tr id="UpdateBtage" class="tab">
+                <td>Licensee: </td>
+                <td><input type="text" name="licensee" value="" /></td>
+                <td>New Btag: </td>
+                <td><input type="text" name="btag" value="" /></td>
+            </tr>
+            <tr id="GetLicenseeCustInfo" class="tab">
+                <td>Licensee: </td>
+                <td><input type="text" name="licensee" value="" /></td>
+            </tr>
+            <tr id="Transfer" class="tab">
+                <td>Licensee: </td>
+                <td><input type="text" name="licensee" value="" />       </td>
+                <td>Amount: </td>
+                <td><input type="number" name="amount" value="" />       </td>
+                <td>Dummy Account: </td>
+                <td><input type="number" name="dummyaccount" value="" />  </td>
+            </tr>
+        </table>
+        <input type="button" id="submit" value="Submit Query" />
+    </form>
 
-<pre id="result" class="prettyprint" style="background-color: #000000; color: #89BDFF; border-radius: 8px;margin: 1em auto; padding: 1em; white-space: pre-wrap; width: 95%;"></pre> 
+    <pre id="result" class="prettyprint" style="background-color: #000000; color: #89BDFF; border-radius: 8px;margin: 1em auto; padding: 1em; white-space: pre-wrap; width: 95%;"></pre>
 
-@section scripts{    
+    <input type="hidden" value="@AppSettings.SystemName" />
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/scripts/testwebservice")
-    
+
     <script type="text/javascript">
         var MSG = {
             OccurErrorWhenCallWebAPI: "@Lang.OccurErrorWhenCallWebAPI"
@@ -54,5 +70,5 @@
             }
         });
     </script>
-}
-
+</body>
+</html>

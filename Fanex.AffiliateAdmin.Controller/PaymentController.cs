@@ -139,7 +139,7 @@
                 });
 
                 var custInfo = GetCustInfo(paymentDetail.Transid, playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername);
-                if (string.IsNullOrEmpty(playerPayoutInfo.DummyBalAcc) || !HasCustomer(custInfo))
+                if (string.IsNullOrEmpty(playerPayoutInfo.DummyBalAcc) || !IsValidCustomer(custInfo))
                 {
                     ModelState.AddModelError(ModelErrorKey, Common.GetErrorMsg(UserNotExistedCode));
                     return View(model);
@@ -210,11 +210,10 @@
             return strText.Substring(0, maxLength - 3) + "...";
         }
 
-        private static bool HasCustomer(ApiCustInfo custInfo)
+        private static bool IsValidCustomer(ApiCustInfo custInfo)
         {
             return AppSettings.LocalTest ||
-                                        (!string.IsNullOrEmpty(custInfo.IbcUserName) &&
-                                        !string.IsNullOrEmpty(custInfo.PlayerCurrency) &&
+                                        (!string.IsNullOrEmpty(custInfo.PlayerCurrency) &&
                                         string.IsNullOrEmpty(custInfo.ErrorMessage));
         }
 
@@ -248,7 +247,7 @@
             {
                 var custInfo = GetCustInfo(paymentDetail.Transid, playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername);
 
-                if (HasCustomer(custInfo))
+                if (IsValidCustomer(custInfo))
                 {
                     var balAccCustId = _paymentService.GetCustIDByUsername(new DummyAccIdCriteria
                     {
@@ -267,7 +266,7 @@
                     {
                         criteria.IbcRefNo = transferInfo.IbcRefNo;
                         criteria.IbcTransId = transferInfo.IbcTransId;
-                        criteria.IbcUsername = custInfo.IbcUserName;
+                        criteria.IbcUsername = custInfo.IbcUserName ?? string.Empty;
                     }
                 }
                 else

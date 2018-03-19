@@ -241,6 +241,7 @@
 
         private ResultViewModel ProcessUpdatePayment(PaymentUpdateCriteria criteria, PaymentDetail paymentDetail, PlayerPayoutInfo playerPayoutInfo)
         {
+            var apiErrorMessage = string.Empty;
             var status = criteria.Status.ToLower();
             var paymentIsUpdated = status == PaymentStatusText.Rejected;
             if (status == PaymentStatusText.Approved)
@@ -268,10 +269,15 @@
                         criteria.IbcTransId = transferInfo.IbcTransId;
                         criteria.IbcUsername = custInfo.IbcUserName ?? string.Empty;
                     }
+                    else
+                    {
+                        apiErrorMessage = transferInfo.ErrorMessage;
+                    }
                 }
                 else
                 {
                     paymentIsUpdated = false;
+                    apiErrorMessage = custInfo.ErrorMessage;
                 }
             }
 
@@ -287,7 +293,8 @@
 
             return new ResultViewModel
             {
-                Success = false
+                Success = false,
+                ErrorMessage = apiErrorMessage
             };
         }
 

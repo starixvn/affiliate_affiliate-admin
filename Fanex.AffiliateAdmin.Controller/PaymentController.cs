@@ -160,7 +160,7 @@
                 }
 
                 var criteria = GetPaymentUpdateCriteria(model, paymentDetail);
-                var result = ProcessUpdatePayment(criteria, paymentDetail, playerPayoutInfo);
+                var result = ProcessUpdatePayment(criteria, paymentDetail, playerPayoutInfo, custInfo);
 
                 if (result.Success)
                 {
@@ -239,34 +239,42 @@
                 ServiceWrapper.Transfer(playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername, amount, balAccCustId, transId);
         }
 
-        private ResultViewModel ProcessUpdatePayment(PaymentUpdateCriteria criteria, PaymentDetail paymentDetail, PlayerPayoutInfo playerPayoutInfo)
+        private ResultViewModel ProcessUpdatePayment(
+            PaymentUpdateCriteria criteria,
+            PaymentDetail paymentDetail,
+            PlayerPayoutInfo playerPayoutInfo,
+            ApiCustInfo custInfo)
         {
             var status = criteria.Status.ToLower();
             var paymentIsUpdated = status == PaymentStatusText.Rejected;
             if (status == PaymentStatusText.Approved)
             {
-                var custInfo = GetCustInfo(paymentDetail.Transid, playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername);
-
-                if (IsValidCustomer(custInfo))
+                var balAccCustId = _paymentService.GetCustIDByUsername(new DummyAccIdCriteria
                 {
-                    var balAccCustId = _paymentService.GetCustIDByUsername(new DummyAccIdCriteria
+                    Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
+                });
+
+                var transferInfo = ProcessTransfer(
+                    playerPayoutInfo,
+                    paymentDetail.Transid,
+                    Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount)),
+                    balAccCustId);
+
+                if (IsTransferCompleted(transferInfo))
+                {
+                    var ibcUsername = custInfo.IbcUserName;
+                    if (string.IsNullOrEmpty(ibcUsername))
                     {
-                        Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
-                    });
+                        var newCustInfo = GetCustInfo(paymentDetail.Transid, playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername);
+                        ibcUsername = IsValidCustomer(newCustInfo) ? newCustInfo.IbcUserName : string.Empty;
+                    }
 
-                    var transferInfo = ProcessTransfer(
-                        playerPayoutInfo,
-                        paymentDetail.Transid,
-                        Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount)),
-                        balAccCustId);
-
-                    paymentIsUpdated = IsTransferCompleted(transferInfo);
-
+                    paymentIsUpdated = !string.IsNullOrEmpty(ibcUsername);
                     if (paymentIsUpdated)
                     {
                         criteria.IbcRefNo = transferInfo.IbcRefNo;
                         criteria.IbcTransId = transferInfo.IbcTransId;
-                        criteria.IbcUsername = custInfo.IbcUserName ?? string.Empty;
+                        criteria.IbcUsername = ibcUsername;
                     }
                 }
             }

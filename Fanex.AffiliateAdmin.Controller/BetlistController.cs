@@ -242,8 +242,7 @@
                 return affBetlistService.GetBetlistResults(
                         AppSettings.SystemName,
                         AppSession.Language,
-                        criteria,
-                        AppSession.Language);
+                        criteria);
             }
         }
 

@@ -1,20 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item LicenseeName="spondemo" Environment="SIT" SpName="test" Suffix="_xtest"></item>
-
-  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_PaymentRequestUpd" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="SIT" SpName="AffAdmin_PaymentRequest_InProgress" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="SIT" SpName="Aff_WebAPI_WriteLog" Suffix="_xtest"></item>
-
-  <item LicenseeName="athena000" Environment="DEV,UAT,SIT" SpName="AffAdmin_PaymentRequestUpd" Suffix="_xtest"></item>
-  <item LicenseeName="athena000" Environment="DEV,UAT,SIT" SpName="AffAdmin_PaymentRequest_InProgress" Suffix="_xtest"></item>
-  <item LicenseeName="athena000" Environment="DEV,UAT,SIT" SpName="Aff_WebAPI_WriteLog" Suffix="_xtest"></item>
-
-  <item LicenseeName="macaubet" Environment="SIT" SpName="AffAdmin_PaymentRequestUpd" Suffix="_xtest"></item>
-  <item LicenseeName="macaubet" Environment="SIT" SpName="AffAdmin_PaymentRequest_InProgress" Suffix="_xtest"></item>
-  <item LicenseeName="macaubet" Environment="SIT" SpName="Aff_WebAPI_WriteLog" Suffix="_xtest"></item>
-
-  <item LicenseeName="itcbet" Environment="SIT" SpName="AffAdmin_PaymentRequestUpd" Suffix="_xtest"></item>
-  <item LicenseeName="itcbet" Environment="SIT" SpName="AffAdmin_PaymentRequest_InProgress" Suffix="_xtest"></item>
-  <item LicenseeName="itcbet" Environment="SIT" SpName="Aff_WebAPI_WriteLog" Suffix="_xtest"></item>
+  
+  <item LicenseeName="athena000" Environment="DEV,UAT,SIT,PRODUCTION" SpName="AffAdmin_PaymentRequestUpd" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,UAT,SIT,PRODUCTION" SpName="AffAdmin_PaymentRequest_InProgress" Suffix="_xtest"></item>
+  <item LicenseeName="athena000" Environment="DEV,UAT,SIT,PRODUCTION" SpName="Aff_WebAPI_WriteLog" Suffix="_xtest"></item>
 </Root>

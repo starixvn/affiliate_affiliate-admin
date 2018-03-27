@@ -1,11 +1,11 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Core.Services;
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Resources;
+    using Models;
 
     /// <summary>
     /// TODO: Update summary.
@@ -53,6 +53,17 @@
         public void UpdatePayment(PaymentUpdateCriteria criteria)
         {
             ExecuteOutput(criteria);
+        }
+
+        public ResultViewModel CheckPaymentInProgress(PaymentCheckInProgressCriteria criteria)
+        {
+            ExecuteOutput(criteria);
+
+            return new ResultViewModel
+            {
+                ErrorCode = criteria.ErrCode,
+                ErrorMessage = criteria.ErrMsg
+            };
         }
     }
 }

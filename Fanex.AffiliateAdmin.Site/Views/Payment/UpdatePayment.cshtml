@@ -2,13 +2,15 @@
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Models
+@using Fanex.AffiliateAdmin.Core.Constants
 @model PaymentUpdateViewModel
 @{
     ViewBag.Title = Lang.UpdatePayment;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 
     var paymentDetail = Model.PaymentDetail;
-    var disabled = paymentDetail != null && paymentDetail.Status.ToLower() == "pending" ? false : true;
+    var disabled = paymentDetail != null && paymentDetail.Status.ToLower() != PaymentStatusText.Pending;
+    var showUpdateButton = !disabled && ViewBag.Result == null;
 }
 @if (paymentDetail == null)
 {
@@ -18,8 +20,9 @@
     return;
 }
 
-@using (Html.BeginForm("UpdatePayment", "Payment", FormMethod.Post))
+@using (Html.BeginForm("UpdatePayment", "Payment", FormMethod.Post, new { id = "paymentRequestForm" }))
 {
+    @Html.AntiForgeryToken()
     @Html.ValidationSummary()
     @Html.HiddenFor(m => m.TransId)
     @Html.HiddenFor(m => m.FromStatement)
@@ -108,14 +111,14 @@
                 @FormaterCurrency.Format(Math.Abs(paymentDetail.TransferAmount), paymentDetail.PlayerCurrencyCode)
             </div>
         </div>
-        @if (paymentDetail.Status.ToLower() == "pending")
+        @if (paymentDetail.Status.ToLower() == PaymentStatusText.Pending)
         {
             <label class="radio inline">
-                @Html.RadioButtonFor(m => m.Status, "Approved", new { }.DisabledIf(disabled))
+                @Html.RadioButtonFor(m => m.Status, "Approved", new { @class= "rdStatus" }.DisabledIf(disabled))
                 @Lang.Approved
             </label>
             <label class="radio inline">
-                @Html.RadioButtonFor(m => m.Status, "Rejected", new { }.DisabledIf(disabled))
+                @Html.RadioButtonFor(m => m.Status, "Rejected", new { @class = "rdStatus" }.DisabledIf(disabled))
                 @Lang.Rejected
             </label>
         }
@@ -168,13 +171,17 @@
 
     <div class="popup-footer">
         <div class="row-fluid">
-            <button id="btnUpdate" type="submit" class="btn btn-default" disabled="@disabled">@Lang.Update</button>
+            @if (showUpdateButton)
+            {
+                <button id="btnUpdate" type="submit" class="btn btn-default">@Lang.Update</button>
+            }
             <button id="btnCancel" type="button" class="btn btn-default">@Lang.Cancel</button>
         </div>
     </div>
 }
 @section scripts{    
     @Scripts.Render("~/scripts/payment")
+    @Scripts.Render("~/scripts/updatepayment")
     @if (ViewBag.Result != null)
     {
         var result = (ResultViewModel)ViewBag.Result;

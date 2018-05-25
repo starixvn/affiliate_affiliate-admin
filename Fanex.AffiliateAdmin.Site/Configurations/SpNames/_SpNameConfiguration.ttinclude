@@ -15,7 +15,6 @@
 		{"be7th", "DBAFFBE7TH.Affiliate_BE7TH.bodbAdminNet"},
 		{"itcbet", "DBAFFITCBET.Affiliate_itcbet.bodbAdminNet"},
 		{"macaubet", "DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet"},
-		{"indowin", "DBAFFINDOWIN.Affiliate_Indowin.bodbAdminNet"},
 		{"aragon88", "DBAFFARAGON88.Affiliate_Aragon88.bodbAdminNet"},
 		{"bolanation", "DBAFFBOLANATION.Affiliate_Bolanation.bodbAdminNet"}
 	};

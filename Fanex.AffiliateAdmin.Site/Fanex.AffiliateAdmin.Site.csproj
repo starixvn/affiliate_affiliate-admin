@@ -398,12 +398,6 @@
     <Content Include="Configurations\SpNames\SpName.bolanation.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\SpNames\SpName.indowin.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.indowin.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\SpNames\SpName.itcbet.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
@@ -501,19 +495,6 @@
     <Content Include="Content\_Sites\bolanation\Images\logoNotify.jpg" />
     <Content Include="Content\_Sites\bolanation\Images\notify.png" />
     <Content Include="Content\_Sites\bolanation\Images\panel.png" />
-    <Content Include="Content\_Sites\indowin\Images\best-browsers.png" />
-    <Content Include="Content\_Sites\indowin\Images\bodybg.jpg" />
-    <Content Include="Content\_Sites\indowin\Images\btbg.png" />
-    <Content Include="Content\_Sites\indowin\Images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\indowin\Images\emailBg.jpg" />
-    <Content Include="Content\_Sites\indowin\Images\favicon.jpg" />
-    <Content Include="Content\_Sites\indowin\Images\headerbg.jpg" />
-    <Content Include="Content\_Sites\indowin\Images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\indowin\Images\banner_top.png" />
-    <Content Include="Content\_Sites\indowin\Images\logo.jpg" />
-    <Content Include="Content\_Sites\indowin\Images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\indowin\Images\notify.png" />
-    <Content Include="Content\_Sites\indowin\Images\panel.png" />
     <Content Include="Content\_Sites\spondemo\Images\banner_top.png" />
     <Content Include="Content\_Sites\spondemo\Images\best-browsers.png" />
     <Content Include="Content\_Sites\spondemo\Images\bodybg.jpg" />
@@ -3727,16 +3708,6 @@
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.spondemo.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSettings\Web.AppSetting.indowin.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.indowin.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.indowin.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.indowin.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.indowin.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.indowin.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.aragon88.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aragon88.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aragon88.production.config" />
@@ -3852,17 +3823,6 @@
     </Content>
     <Content Include="Content\_Sites\spondemo\Login.less" />
     <Content Include="Content\_Sites\spondemo\Notify.less" />
-    <Content Include="Content\_Sites\indowin\Login.less" />
-    <Content Include="Content\_Sites\indowin\Notify.less" />
-    <Content Include="Configurations\WebConfigs\Web.indowin.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.indowin.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.indowin.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Content\_Sites\aragon88\Login.less" />
     <Content Include="Content\_Sites\aragon88\Notify.less" />
     <Content Include="Configurations\WebConfigs\Web.aragon88.master.config">
@@ -4277,7 +4237,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

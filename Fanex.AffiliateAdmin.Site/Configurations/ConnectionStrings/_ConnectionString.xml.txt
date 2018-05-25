@@ -6,8 +6,6 @@
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.bolanation.uat.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aragon88.production.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aragon88.uat.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.indowin.production.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.indowin.uat.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.production.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.uat.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.production.config

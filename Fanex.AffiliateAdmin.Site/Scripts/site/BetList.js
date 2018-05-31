@@ -286,7 +286,6 @@ var showCombMP = function (transId, index) {
     BetList.showMixParlayDetail(transId, divEvent);
 };
 
-var showCombMPDetail = BetList.showSystemParlayDetail;
 var showRnGCasinoDetails = BetList.showRnGCasinoDetails;
 var showAGCasinoDetails = BetList.showAGCasinoDetails;
 var showCombMPDetail = BetList.showSystemParlayDetail;

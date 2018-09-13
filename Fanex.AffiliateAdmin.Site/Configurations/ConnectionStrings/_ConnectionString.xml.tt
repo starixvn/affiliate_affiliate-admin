@@ -9,16 +9,10 @@
 	var licenseeDbNameList = new System.Collections.Generic.Dictionary<string, string>
 	{
 		{"spondemo", "DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet"},
-		{"9bet", "DBAFF9BET.Affiliate_9Bet.bodbAdminNet"}, 
-		{"allbetclub", "DBAFFALLBETCLUB.Affiliate_AllbetClub.bodbAdminNet"},
 		{"aoncash", "DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet"},
 		{"athena000", "DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet"},
-		{"be7", "DBAFFBE7.Affiliate_BE7.bodbAdminNet"},
-		{"be7th", "DBAFFBE7TH.Affiliate_BE7TH.bodbAdminNet"},
 		{"itcbet", "DBAFFITCBET.Affiliate_itcbet.bodbAdminNet"},
-		{"macaubet", "DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet"},
-		{"aragon88", "DBAFFARAGON88.Affiliate_Aragon88.bodbAdminNet"},
-		{"bolanation", "DBAFFBOLANATION.Affiliate_Bolanation.bodbAdminNet"}
+		{"macaubet", "DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet"}
 	};
 
 	var environments = new string[] { "uat", "production" };

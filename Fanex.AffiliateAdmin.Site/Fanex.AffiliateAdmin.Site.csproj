@@ -346,28 +346,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\SpNames\SpName.9bet.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.9bet.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.allbetclub.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.allbetclub.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\SpNames\SpName.aoncash.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.aoncash.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.aragon88.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.aragon88.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.athena000.production.xml">
@@ -379,24 +361,6 @@
     <Content Include="Configurations\SpNames\SpName.athena000.uat.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.be7.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.be7.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.be7th.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.be7th.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.bolanation.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.bolanation.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.itcbet.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
@@ -3601,10 +3565,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.uat.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.be7.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.be7.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.be7.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.be7.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.local.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3622,34 +3582,12 @@
     <Content Include="Configurations\WebConfigs\Web.uat.config" />
     <Content Include="Content\_Sites\athena000\Login.less" />
     <Content Include="Content\_Sites\athena000\Notify.less" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.allbetclub.uat.config" />
     <Content Include="App_Browsers\BrowserFile.browser" />
     <Content Include="App_Browsers\ie.browser" />
     <Content Include="App_Browsers\ie11.browser" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.local.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.uat.config" />
     <Content Include="Content\_Sites\9bet\Login.less" />
     <Content Include="Content\_Sites\9bet\Notify.less" />
     <Content Include="Integration\PrivateKey\12bet.snk" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.allbetclub.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
@@ -3663,12 +3601,6 @@
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
@@ -3679,16 +3611,6 @@
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSettings\Web.AppSetting.be7th.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.be7th.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.be7th.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.be7th.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7th.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.be7th.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.sit.config" />
@@ -3708,27 +3630,7 @@
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.spondemo.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aragon88.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aragon88.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aragon88.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aragon88.uat.config" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aragon88.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aragon88.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
     <Content Include="App_Code\CommGroupRazorHelper.cshtml" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.bolanation.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.bolanation.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSettings\Web.AppSetting.bolanation.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.bolanation.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.bolanation.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.bolanation.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.itcbet.sit.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.sit.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.sit.config" />
@@ -3738,24 +3640,6 @@
     <Content Include="Content\_Sites\be7th\Login.less" />
     <Content Include="Content\_Sites\be7th\Notify.less" />
     <Content Include="GruntFilters.json" />
-    <Content Include="Configurations\WebConfigs\Web.9bet.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.9bet.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.9bet.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.allbetclub.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.allbetclub.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.allbetclub.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\WebConfigs\Web.aoncash.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
@@ -3772,24 +3656,6 @@
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\WebConfigs\Web.athena000.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.be7.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.be7.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.be7.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.be7th.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.be7th.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.be7th.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\WebConfigs\Web.itcbet.master.config">
@@ -3825,26 +3691,8 @@
     <Content Include="Content\_Sites\spondemo\Notify.less" />
     <Content Include="Content\_Sites\aragon88\Login.less" />
     <Content Include="Content\_Sites\aragon88\Notify.less" />
-    <Content Include="Configurations\WebConfigs\Web.aragon88.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.aragon88.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <None Include="Configurations\WebConfigs\Web.aragon88.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
     <Content Include="Content\_Sites\bolanation\Login.less" />
     <Content Include="Content\_Sites\bolanation\Notify.less" />
-    <Content Include="Configurations\WebConfigs\Web.bolanation.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.bolanation.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.bolanation.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\WebConfigs\Web.itcbet.sit.config" />
     <Content Include="Configurations\WebConfigs\Web.macaubet.sit.config" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
@@ -4237,7 +4085,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

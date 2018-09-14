@@ -10,16 +10,10 @@
 
 	var licenseeNames = new string[] {
 			"spondemo",
-			"9bet", 
-			"allbetclub",
 			"aoncash",
 			"athena000",
-			"be7",
-			"be7th",
 			"itcbet",
-			"macaubet",
-			"aragon88",
-			"bolanation"
+			"macaubet"
 		};
 
 	var environments = new string[] { "master", "uat", "production" };

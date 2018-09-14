@@ -2,36 +2,18 @@
 
 // Generated helper templates
 // Generated items
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.bolanation.production.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.bolanation.uat.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.bolanation.master.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aragon88.production.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aragon88.uat.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aragon88.master.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.macaubet.production.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.macaubet.uat.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.macaubet.master.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.itcbet.production.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.itcbet.uat.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.itcbet.master.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.be7th.production.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.be7th.uat.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.be7th.master.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.be7.production.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.be7.uat.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.be7.master.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.athena000.production.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.athena000.uat.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.athena000.master.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aoncash.production.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aoncash.uat.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aoncash.master.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.allbetclub.production.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.allbetclub.uat.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.allbetclub.master.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.9bet.production.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.9bet.uat.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.9bet.master.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.spondemo.production.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.spondemo.uat.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.spondemo.master.config

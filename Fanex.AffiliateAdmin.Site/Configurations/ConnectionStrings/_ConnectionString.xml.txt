@@ -8,7 +8,5 @@
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.uat.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.production.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.uat.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.uat.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.production.config
 // D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.uat.config

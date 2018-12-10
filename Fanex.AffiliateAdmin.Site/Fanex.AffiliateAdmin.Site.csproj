@@ -346,12 +346,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\SpNames\SpName.aoncash.production.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\SpNames\SpName.aoncash.uat.xml">
-      <DependentUpon>_SpName.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\SpNames\SpName.athena000.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
@@ -3551,12 +3545,6 @@
     <Content Include="GameData\GlobalSetting.ini" />
     <Content Include="GameData\VideoPoker\RV009\Settings.ini" />
     <Content Include="GameData\VideoPoker\RV010\Settings.ini" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.local.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.master.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.production.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.uat.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.athena000.local.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3588,12 +3576,6 @@
     <Content Include="Content\_Sites\9bet\Login.less" />
     <Content Include="Content\_Sites\9bet\Notify.less" />
     <Content Include="Integration\PrivateKey\12bet.snk" />
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.uat.config">
-      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.athena000.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
@@ -3640,15 +3622,6 @@
     <Content Include="Content\_Sites\be7th\Login.less" />
     <Content Include="Content\_Sites\be7th\Notify.less" />
     <Content Include="GruntFilters.json" />
-    <Content Include="Configurations\WebConfigs\Web.aoncash.master.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.aoncash.production.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\WebConfigs\Web.aoncash.uat.config">
-      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\WebConfigs\Web.athena000.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
@@ -4085,7 +4058,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

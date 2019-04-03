@@ -33,39 +33,40 @@ module.exports = env => {
         },
         module: {
             rules: [{
-                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/,
-                use: [{
-                    loader: "url-loader",
-                    options: {
-                        limit: 4096,
-                        name: "[name].[ext]",
-                        outputPath: relativeOutputPath + "/style/assets/",
-                        publicPath: "assets/"
-                    }
-                }]
-            },
-            {
-                test: /\.less$/,
-                use: [{
-                    loader: 'style-loader'
-                },
-                    {
-                        loader: MiniCssExtractPlugin.loader
-                    },
-                    {
-                        loader: 'css-loader',
+                    test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/,
+                    use: [{
+                        loader: "url-loader",
                         options: {
-                            sourceMap: isDevBuild
-                        }
-                    }, {
-                        loader: 'resolve-url-loader'
-                    }, {
-                        loader: 'less-loader',
-                        options: {
-                            sourceMap: isDevBuild
+                            limit: 4096,
+                            name: "[name].[ext]",
+                            outputPath: relativeOutputPath + "/style/assets/",
+                            publicPath: "assets/"
                         }
                     }]
-            }
+                },
+                {
+                    test: /\.less$/,
+                    use: [{
+                            loader: 'style-loader'
+                        },
+                        {
+                            loader: MiniCssExtractPlugin.loader
+                        },
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: isDevBuild
+                            }
+                        }, {
+                            loader: 'resolve-url-loader'
+                        }, {
+                            loader: 'less-loader',
+                            options: {
+                                sourceMap: isDevBuild
+                            }
+                        }
+                    ]
+                }
             ]
         },
 

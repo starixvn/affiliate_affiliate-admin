@@ -583,7 +583,26 @@
     <Content Include="www\dist\style\assets\ui-icons_454545_256x240.png" />
     <Content Include="www\dist\style\assets\ui-icons_888888_256x240.png" />
     <Content Include="www\dist\style\assets\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="www\dist\style\common\jquery-ui.css" />
+    <Content Include="www\dist\style\pages\common.css" />
+    <Content Include="www\dist\style\vendors\jquery-ui.css" />
+    <Content Include="www\source\style\assets\ajax-loader.gif" />
+    <Content Include="www\source\style\assets\fanexgrid\back-icon.png" />
+    <Content Include="www\source\style\assets\fanexgrid\collapse-icon.png" />
+    <Content Include="www\source\style\assets\fanexgrid\collapse-small.png" />
+    <Content Include="www\source\style\assets\fanexgrid\excel-icon.png" />
+    <Content Include="www\source\style\assets\fanexgrid\expand-icon.png" />
+    <Content Include="www\source\style\assets\fanexgrid\expand-small.png" />
+    <Content Include="www\source\style\assets\fanexgrid\go-hover-icon.png" />
+    <Content Include="www\source\style\assets\fanexgrid\more_buttons.png" />
+    <Content Include="www\source\style\assets\fanexgrid\send-mail.png" />
+    <Content Include="www\source\style\assets\fanexgrid\seperations.png" />
+    <Content Include="www\source\style\assets\fanexgrid\sort-icon-new3.png" />
+    <Content Include="www\source\style\pages\common\AffiliateAdmin.css" />
+    <Content Include="www\source\style\components\daterangepicker.css" />
+    <Content Include="www\source\style\components\Fanex.Grid.css" />
+    <Content Include="www\source\style\components\Fanex.Pagination.css" />
+    <Content Include="www\source\style\components\jquery.multiselect.css" />
+    <Content Include="www\source\style\components\monpickr.css" />
     <Content Include="www\source\style\vendors\jquery-ui\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="www\source\style\vendors\jquery-ui\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="www\source\style\vendors\jquery-ui\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -3861,6 +3880,7 @@
     <Content Include="Views\Notify\OneTokenRestriction.cshtml" />
     <Content Include="Scripts\libraries\Language\Fanex.Grid.Lang.id-ID.js" />
     <Content Include="www\source\style\vendors\jquery-ui\index.less" />
+    <Content Include="www\source\style\pages\common\index.less" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj">
@@ -4067,10 +4087,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Web References\" />
-    <Folder Include="www\source\style\assets\" />
-    <Folder Include="www\source\style\components\" />
     <Folder Include="www\source\style\fonts\" />
-    <Folder Include="www\source\style\pages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

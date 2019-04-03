@@ -10,4 +10,5 @@ module.exports = {
     [`${styleDist}/bootstrap`]: clientRoot + "/style/vendors/bootstrap/less/bootstrap.less",
 
     [`${styleDist}/common-pages`]: clientRoot + "/style/pages/common-pages/index.less",
+    [`${styleDist}/commgroup`]: clientRoot + "/style/pages/commgroup.less",
 }

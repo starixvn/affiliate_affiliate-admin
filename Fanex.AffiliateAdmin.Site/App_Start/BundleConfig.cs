@@ -30,8 +30,6 @@
 
             GetBundleForEachScriptFile(bundles);
 
-            GetBundleForCommissionGroup(bundles);
-
             GetBundleForCompanyWinLossJs(bundles);
 
             GetBundleForAffiliateWinLossJs(bundles);
@@ -192,16 +190,6 @@
                 bundle.Include(string.Format("~{0}/{1}", RelativeScriptPath, fileName));
                 bundles.Add(bundle);
             }
-        }
-
-        /// <summary>
-        /// Get bundle for each script file.
-        /// </summary>
-        /// <param name="bundles">Bundle collection.</param>
-        private static void GetBundleForCommissionGroup(BundleCollection bundles)
-        {
-            bundles.Add(new LessBundle("~/bundles/commgroup")
-                .Include("~/Content/themes/Default/commgroup.less"));
         }
 
         /// <summary>

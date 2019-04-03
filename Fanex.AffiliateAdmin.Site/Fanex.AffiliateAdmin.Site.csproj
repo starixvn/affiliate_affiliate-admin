@@ -590,9 +590,14 @@
     <Content Include="www\dist\style\assets\ui-icons_888888_256x240.png" />
     <Content Include="www\dist\style\assets\ui-icons_cd0a0a_256x240.png" />
     <Content Include="www\dist\style\bootstrap.css" />
+    <Content Include="www\dist\style\commgroup.css" />
     <Content Include="www\dist\style\common-pages.css" />
     <Content Include="www\dist\style\jquery-ui.css" />
     <Content Include="www\source\style\assets\ajax-loader.gif" />
+    <Content Include="www\source\style\assets\commgroup\a_bg.jpg" />
+    <Content Include="www\source\style\assets\commgroup\bg_box_tab.jpg" />
+    <Content Include="www\source\style\assets\commgroup\popup_menu01.jpg" />
+    <Content Include="www\source\style\assets\commgroup\popup_menu02.jpg" />
     <Content Include="www\source\style\assets\common-pages\arrow_left.jpg" />
     <Content Include="www\source\style\assets\common-pages\arrow_left_out.jpg" />
     <Content Include="www\source\style\assets\common-pages\arrUpDown.png" />
@@ -3968,6 +3973,7 @@
     <Content Include="www\source\style\vendors\bootstrap\less\utilities.less" />
     <Content Include="www\source\style\vendors\bootstrap\less\variables.less" />
     <Content Include="www\source\style\vendors\bootstrap\less\wells.less" />
+    <Content Include="www\source\style\pages\commgroup.less" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj">

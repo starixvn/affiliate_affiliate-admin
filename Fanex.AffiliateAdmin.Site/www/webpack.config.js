@@ -5,8 +5,10 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const merge = require("webpack-merge");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
-const { environment, projectPath } = require("./config-utils/constant");
+const { environment, projectPath, siteList } = require("./config-utils/constant");
 const entry = require("./config-utils/entry");
+
+const { generateUrlLoader } = require('./config-utils/generator');
 
 const pathToExclude = ['!**/www/dist/style/assets/ui-icons_*.png'];
 const pathsToClean = ['**/www/dist/js/**/*.*', '**/www/dist/style/**/*.*'].concat(pathToExclude);
@@ -19,31 +21,23 @@ const cleanOptions = {
 
 const relativeOutputPath = projectPath.relativeOutputPath;
 
+const generatePathBySiteName = (siteName) => siteName ? '/' + siteName : '';
+
 module.exports = env => {
     env = environment[env] || environment.development;
     const isDevBuild = !(env === environment.production);
 
-    const config = () => ({
+    const config = (siteName) => ({
         mode: env,
-        entry: entry,
+        entry: siteName ? entry.generateBySite(siteName) : entry.common,
         stats: { modules: false },
         output: {
             path: projectPath.rootPath,
             filename: "[name].js"
         },
         module: {
-            rules: [{
-                    test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/,
-                    use: [{
-                        loader: "url-loader",
-                        options: {
-                            limit: 4096,
-                            name: "[name].[ext]",
-                            outputPath: relativeOutputPath + "/style/assets/",
-                            publicPath: "assets/"
-                        }
-                    }]
-                },
+            rules: [
+                generateUrlLoader(siteName),
                 {
                     test: /\.less$/,
                     use: [{
@@ -76,5 +70,9 @@ module.exports = env => {
         devtool: isDevBuild ? "source-map" : "(none)"
     });
 
-    return config();
+    const configList = siteList.map(item => {
+        return config(item);
+    });
+
+    return [config(), ...configList];
 };

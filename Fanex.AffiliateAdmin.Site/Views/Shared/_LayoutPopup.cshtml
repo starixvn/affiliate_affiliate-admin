@@ -8,7 +8,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/bundles/css")
+    <link href="@Url.RenderLink("~/www/dist/style/jquery-ui.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.RenderLink("~/www/dist/style/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.RenderLink("~/www/dist/style/common-pages.css")" rel="stylesheet" type="text/css" />
     @RenderSection("css", required: false)
     @Scripts.Render("~/bundles/jquery")
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()

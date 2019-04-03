@@ -9,7 +9,9 @@
     <title>@ViewBag.Title</title>
     <link href="@Url.Content(string.Format("~/Content/_Sites/{0}/images/favicon.jpg?{1}", AppSettings.Layout, DateTime.Now.Ticks))" rel="shortcut icon" type="image/jpg" />
     <meta name="viewport" content="width=device-width" />
-    @Styles.Render("~/bundles/css")
+    <link href="@Url.RenderLink("~/www/dist/style/jquery-ui.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.RenderLink("~/www/dist/style/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.RenderLink("~/www/dist/style/common-pages.css")" rel="stylesheet" type="text/css" />
     @RenderSection("css", required: false)
     @Scripts.Render("~/bundles/jquery")
 </head>

@@ -24,8 +24,6 @@
 
             GetBundleForNotify(bundles);
 
-            GetBundleForCommonCss(bundles);
-
             GetBundleForCommonJs(bundles);
 
             GetBundleForDataRangeJs(bundles);
@@ -132,35 +130,6 @@
                             "~/Scripts/libraries/jquery-1.11.3.min.js",
                             "~/Scripts/libraries/jquery-ui.min.js",
                             "~/Scripts/libraries/jquery.blockUI.js"));
-        }
-
-        /// <summary>
-        /// Get bundle for common style.
-        /// </summary>
-        /// <param name="bundles">Bundle collection.</param>
-        private static void GetBundleForCommonCss(BundleCollection bundles)
-        {
-            bundles.Add(new LessBundle("~/bundles/css")
-                            .Include(
-                                "~/Content/themes/base/jquery.ui.core.css",
-                                "~/Content/themes/base/jquery.ui.resizable.css",
-                                "~/Content/themes/base/jquery.ui.selectable.css",
-                                "~/Content/themes/base/jquery.ui.accordion.css",
-                                "~/Content/themes/base/jquery.ui.autocomplete.css",
-                                "~/Content/themes/base/jquery.ui.button.css",
-                                "~/Content/themes/base/jquery.ui.dialog.css",
-                                "~/Content/themes/base/jquery.ui.slider.css",
-                                "~/Content/themes/base/jquery.ui.tabs.css",
-                                "~/Content/themes/base/jquery.ui.datepicker.css",
-                                "~/Content/themes/base/jquery.ui.progressbar.css",
-                                "~/Content/themes/base/jquery.ui.theme.css",
-                                "~/Content/themes/base/jquery.multiselect.css",
-                                "~/Content/themes/base/daterangepicker.css",
-                                "~/Content/themes/base/monpickr.css",
-                                "~/Content/themes/base/Fanex.Grid.css",
-                                "~/Content/themes/base/Fanex.Pagination.css",
-                                "~/Content/themes/base/AffiliateAdmin.css")
-                            .Include("~/Content/themes/Default/index.less"));
         }
 
         /// <summary>

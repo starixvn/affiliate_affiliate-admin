@@ -58,8 +58,6 @@ module.exports = env => {
                                 sourceMap: isDevBuild
                             }
                         }, {
-                            loader: 'resolve-url-loader'
-                        }, {
                             loader: 'less-loader',
                             options: {
                                 sourceMap: isDevBuild

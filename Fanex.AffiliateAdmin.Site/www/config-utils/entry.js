@@ -6,6 +6,8 @@ const styleDist = projectPath.relativeOutputPath + "/style";
 const clientRoot = projectPath.clientInputPath;
 
 module.exports = {
-    [`${styleDist}/vendors/jquery-ui`]: clientRoot + "/style/vendors/jquery-ui/index.less",
-    [`${styleDist}/pages/common`]: clientRoot + "/style/pages/common/index.less",
+    [`${styleDist}/jquery-ui`]: clientRoot + "/style/vendors/jquery-ui/index.less",
+    [`${styleDist}/bootstrap`]: clientRoot + "/style/vendors/bootstrap/less/bootstrap.less",
+
+    [`${styleDist}/common-pages`]: clientRoot + "/style/pages/common-pages/index.less",
 }

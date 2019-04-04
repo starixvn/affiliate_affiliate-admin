@@ -139,8 +139,8 @@
       <HintPath>..\packages\LiveCasinoLibrary.1.0.0.18\lib\net40\LiveCasinoLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="log4net, Version=1.2.9.0, Culture=neutral, PublicKeyToken=b32731d11ce58905">
-      <HintPath>..\packages\log4net.1.2.9.0\lib\net11\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -368,6 +368,7 @@
     </Content>
     <Content Include="Configurations\SpNames\SpName.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\SpNames\_SpName.xml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -381,7 +382,9 @@
     <Content Include="Configurations\SpNames\_SpNameConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Configurations\SpNames\_SpNameOriginal.xml" />
+    <Content Include="Configurations\SpNames\_SpNameOriginal.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configurations\WebConfigs\_Webconfig.xml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>_Webconfig.xml.txt</LastGenOutput>

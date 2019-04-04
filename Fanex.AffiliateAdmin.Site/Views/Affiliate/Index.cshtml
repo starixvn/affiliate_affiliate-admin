@@ -59,7 +59,7 @@
                     @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, true)
                 </div>
             </div>
-            <div class="row-fluid row-form end-search">
+            <div class="row-fluid row-form">
                 <div class="cell">
                     <label for="BaseCurrency" class="txt">@Lang.BaseCurrency</label>
                     @Html.DropDownCheckList("BaseCurrency", Model.BaseCurrencyOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
@@ -69,9 +69,15 @@
                     @Html.DropDownCheckList("Status", Model.StatusOptionList, true, true, new { @class = "width-140" })
                 </div>
                 <div class="cell">
+                    <label for="AffPlayer" class="txt">@Lang.AffPlayer</label>
+                    <input type="text" class="form-control width-140" id="AffPlayer" name="AffPlayer" placeholder="@Lang.All" maxlength="100" />
+                </div>
+                <div class="cell">
                     <label for="SortBy" class="txt width-90">@Lang.SortBy</label>
                     @Html.DropDownCheckList("SortBy", Model.SortByOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
                 </div>
+            </div>
+            <div class="row-fluid row-form end-search">
                 <div class="cell checkbox">
                     @Html.CheckBoxFor(m => m.ExcludeTest)
                     <label for="ExcludeTest">
@@ -220,6 +226,7 @@
                     }
                 },
                 { HeaderText: "@Lang.Currency", Width: 60, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
+                { HeaderText: "@Lang.AffPlayer", Width: 120, Name: "AffPlayer", HeaderAlign: "center", CellAlign: "left" },
                 {
                     HeaderCaption: "<span title='@Lang.BFTooltip'>@Lang.BF</span>",
                     HeaderText: "<span title='@Lang.BFTooltip'>@Lang.BF</span>",

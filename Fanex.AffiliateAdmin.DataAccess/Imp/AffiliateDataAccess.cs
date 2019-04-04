@@ -225,7 +225,8 @@
                         CurrencyId = reader.ToInt("CurrencyId"),
                         BF = reader.ToDecimal("BF"),
                         TotalMembers = reader.ToInt("TotalMembers"),
-                        Email = reader.ToString("Email")
+                        Email = reader.ToString("Email"),
+                        AffPlayer = reader.ToString("Player_Username")
                     });
                 }
             }

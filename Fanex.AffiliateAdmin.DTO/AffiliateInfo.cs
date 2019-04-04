@@ -64,5 +64,7 @@
         public int? TotalMembers { get; set; }
 
         public string Email { get; set; }
+
+        public string AffPlayer { get; set; }
     }
 }

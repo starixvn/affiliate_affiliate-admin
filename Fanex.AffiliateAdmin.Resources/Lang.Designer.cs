@@ -805,6 +805,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aff. Player.
+        /// </summary>
+        public static string AffPlayer {
+            get {
+                return ResourceManager.GetString("AffPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}&apos;s Qualified members report details for {1} - Currency: {2}, Commission Group: {3}.
         /// </summary>
         public static string AffQualifiedMemReportDetailFor {

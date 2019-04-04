@@ -2,17 +2,17 @@
 
 // Generated helper templates
 // Generated items
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.production.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.production.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.production.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.production.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.uat.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.uat.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.uat.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.uat.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.sit.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.sit.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.sit.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.local.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.sit.xml
-// D:\Projects\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.production.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.production.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.production.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.production.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.uat.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.uat.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.uat.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.uat.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.sit.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.sit.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.sit.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.local.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.sit.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.xml

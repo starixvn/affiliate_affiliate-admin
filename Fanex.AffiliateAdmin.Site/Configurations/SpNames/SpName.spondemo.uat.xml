@@ -44,7 +44,7 @@
     <Setting Key="AffAdmin_AffiliateUpdPwd" SpName="AffAdmin_AffiliateUpdPwd" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_FavoriteDel" SpName="AffAdmin_FavoriteDel" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_FavoriteIns" SpName="AffAdmin_FavoriteIns" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_AffiliateSel" SpName="AffAdmin_AffiliateSel" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSel" SpName="AffAdmin_AffiliateSel_xtest" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateSelFavorite" SpName="AffAdmin_AffiliateSelFavorite" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_EmailHistorySel" SpName="AffAdmin_EmailHistorySel" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_EmailHistoryDel" SpName="AffAdmin_EmailHistoryDel" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />

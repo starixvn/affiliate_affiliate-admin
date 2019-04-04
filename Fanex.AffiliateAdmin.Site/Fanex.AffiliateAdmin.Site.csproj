@@ -4128,6 +4128,7 @@
     <Content Include="www\source\style\pages\betlist\systemparlaydetail.index.less" />
     <Content Include="www\source\style\vendors\tipsy\index.less" />
     <Content Include="www\source\style\pages\betlist\rngcasino.handhistory.less" />
+    <Content Include="Views\EmailTesting\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj">

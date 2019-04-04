@@ -640,6 +640,7 @@
     <Content Include="www\dist\style\macaubet\assets\static\favicon.jpg" />
     <Content Include="www\dist\style\macaubet\login.css" />
     <Content Include="www\dist\style\macaubet\notify.css" />
+    <Content Include="www\dist\style\rngcasino.handhistory.css" />
     <Content Include="www\dist\style\spondemo\assets\best-browsers.png" />
     <Content Include="www\dist\style\spondemo\assets\bodybg.jpg" />
     <Content Include="www\dist\style\spondemo\assets\btbg.png" />
@@ -4126,6 +4127,7 @@
     <Content Include="www\source\style\pages\betlist\index.less" />
     <Content Include="www\source\style\pages\betlist\systemparlaydetail.index.less" />
     <Content Include="www\source\style\vendors\tipsy\index.less" />
+    <Content Include="www\source\style\pages\betlist\rngcasino.handhistory.less" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj">

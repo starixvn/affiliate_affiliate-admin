@@ -14,7 +14,8 @@ module.exports = {
             [`${styleDist}/common-pages`]: clientRoot + "/style/pages/common-pages/index.less",
             [`${styleDist}/commgroup`]: clientRoot + "/style/pages/commgroup.less",
             [`${styleDist}/betlist`]: clientRoot + "/style/pages/betlist/index.less",
-            [`${styleDist}/systemparlaydetail`]: clientRoot + "/style/pages/betlist/systemparlaydetail.index.less"
+            [`${styleDist}/systemparlaydetail`]: clientRoot + "/style/pages/betlist/systemparlaydetail.index.less",
+            [`${styleDist}/rngcasino.handhistory`]: clientRoot + "/style/pages/betlist/rngcasino.handhistory.less"
     },
     generateBySite: (siteName) => {
         return siteName ? {

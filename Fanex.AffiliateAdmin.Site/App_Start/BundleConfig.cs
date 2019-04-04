@@ -184,33 +184,15 @@
         /// <param name="bundles">Bundle input.</param>
         private static void GetBundleForBetList(BundleCollection bundles)
         {
-            bundles.Add(new LessBundle("~/css/betlist")
-               .Include("~/Content/betlist/global.content.css")
-               .Include("~/Content/betlist/betlist.core.css")
-               .Include("~/Content/betlist/betlist.css")
-               .Include("~/Content/betlist/systemparlay.detail.css")
-               .Include("~/Content/betlist/rngcasino.handhistory.css")
-               .Include("~/Content/betlist/fanex.result.css")
-               .Include("~/Content/betlist/custom-betlist.css"));
-
             bundles.Add(new Bundle("~/js/betlist")
                 .Include("~/Scripts/site/betlist.js"));
 
             bundles.Add(new ScriptBundle("~/js/betlistrngcasino")
                 .Include("~/Scripts/site/rngcasino-results.js"));
-
-            bundles.Add(new LessBundle("~/css/systemparlaydetails")
-
-           .Include("~/Content/betlist/global.content.css")
-           .Include("~/Content/betlist/systemparlay.detail.css"));
         }
 
         private static void GetBundleForToolTips(BundleCollection bundles)
         {
-            bundles.Add(new LessBundle("~/css/tooltip")
-                        .Include("~/Content/tipsy/tipsy.css")
-                        .Include("~/Content/tipsy/custom-tipsy.css"));
-
             bundles.Add(new ScriptBundle("~/js/tooltip")
                 .Include("~/Scripts/libraries/jquery.tipsy.js"));
         }

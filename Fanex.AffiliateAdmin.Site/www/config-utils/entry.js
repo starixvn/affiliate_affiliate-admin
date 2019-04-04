@@ -9,9 +9,12 @@ module.exports = {
     common: {
             [`${styleDist}/jquery-ui`]: clientRoot + "/style/vendors/jquery-ui/index.less",
             [`${styleDist}/bootstrap`]: clientRoot + "/style/vendors/bootstrap/less/bootstrap.less",
+            [`${styleDist}/tipsy`]: clientRoot + "/style/vendors/tipsy/index.less",
 
             [`${styleDist}/common-pages`]: clientRoot + "/style/pages/common-pages/index.less",
-            [`${styleDist}/commgroup`]: clientRoot + "/style/pages/commgroup.less"
+            [`${styleDist}/commgroup`]: clientRoot + "/style/pages/commgroup.less",
+            [`${styleDist}/betlist`]: clientRoot + "/style/pages/betlist/index.less",
+            [`${styleDist}/systemparlaydetail`]: clientRoot + "/style/pages/betlist/systemparlaydetail.index.less"
     },
     generateBySite: (siteName) => {
         return siteName ? {

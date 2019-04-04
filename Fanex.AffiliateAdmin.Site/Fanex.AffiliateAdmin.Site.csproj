@@ -579,6 +579,7 @@
     <Content Include="www\config-utils\constant.js" />
     <Content Include="www\config-utils\entry.js" />
     <Content Include="www\config-utils\generator.js" />
+    <Content Include="www\dist\style\assets\bar-loader.gif" />
     <Content Include="www\dist\style\assets\flag.png" />
     <Content Include="www\dist\style\assets\glyphicons-halflings-white.png" />
     <Content Include="www\dist\style\assets\glyphicons-halflings.png" />
@@ -604,6 +605,7 @@
     <Content Include="www\dist\style\athena000\assets\static\favicon.jpg" />
     <Content Include="www\dist\style\athena000\login.css" />
     <Content Include="www\dist\style\athena000\notify.css" />
+    <Content Include="www\dist\style\betlist.css" />
     <Content Include="www\dist\style\bootstrap.css" />
     <Content Include="www\dist\style\commgroup.css" />
     <Content Include="www\dist\style\common-pages.css" />
@@ -653,6 +655,8 @@
     <Content Include="www\dist\style\spondemo\assets\static\favicon.jpg" />
     <Content Include="www\dist\style\spondemo\login.css" />
     <Content Include="www\dist\style\spondemo\notify.css" />
+    <Content Include="www\dist\style\systemparlaydetail.css" />
+    <Content Include="www\dist\style\tipsy.css" />
     <Content Include="www\source\style\assets\ajax-loader.gif" />
     <Content Include="www\source\style\assets\commgroup\a_bg.jpg" />
     <Content Include="www\source\style\assets\commgroup\bg_box_tab.jpg" />
@@ -700,6 +704,30 @@
     <Content Include="www\source\style\assets\fanexgrid\send-mail.png" />
     <Content Include="www\source\style\assets\fanexgrid\seperations.png" />
     <Content Include="www\source\style\assets\fanexgrid\sort-icon-new3.png" />
+    <Content Include="www\source\style\pages\betlist\betlist.core.css" />
+    <Content Include="www\source\style\pages\betlist\betList.css" />
+    <Content Include="www\source\style\pages\betlist\custom-betlist.css" />
+    <Content Include="www\source\style\pages\betlist\fanex.result.css" />
+    <Content Include="www\source\style\pages\betlist\global.content.css" />
+    <Content Include="www\source\style\pages\betlist\images\1F.gif" />
+    <Content Include="www\source\style\pages\betlist\images\1L.gif" />
+    <Content Include="www\source\style\pages\betlist\images\bar-loader.gif" />
+    <Content Include="www\source\style\pages\betlist\images\bgHeader.jpg" />
+    <Content Include="www\source\style\pages\betlist\images\blank.gif" />
+    <Content Include="www\source\style\pages\betlist\images\firstGoal.gif" />
+    <Content Include="www\source\style\pages\betlist\images\goal-icon.png" />
+    <Content Include="www\source\style\pages\betlist\images\lastGoal.gif" />
+    <Content Include="www\source\style\pages\betlist\images\link_14x14.png" />
+    <Content Include="www\source\style\pages\betlist\images\link_16x16.png" />
+    <Content Include="www\source\style\pages\betlist\images\note.png" />
+    <Content Include="www\source\style\pages\betlist\images\plus.png" />
+    <Content Include="www\source\style\pages\betlist\images\q_Icon2_1.png" />
+    <Content Include="www\source\style\pages\betlist\images\q_Icon_2.png" />
+    <Content Include="www\source\style\pages\betlist\images\tab_topbg.gif" />
+    <Content Include="www\source\style\pages\betlist\images\undo.png" />
+    <Content Include="www\source\style\pages\betlist\images\up.png" />
+    <Content Include="www\source\style\pages\betlist\rngcasino.handhistory.css" />
+    <Content Include="www\source\style\pages\betlist\systemparlay.detail.css" />
     <Content Include="www\source\style\pages\common-pages\AffiliateAdmin.css" />
     <Content Include="www\source\style\components\daterangepicker.css" />
     <Content Include="www\source\style\components\Fanex.Grid.css" />
@@ -785,6 +813,8 @@
     <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.slider.css" />
     <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.tabs.css" />
     <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.theme.css" />
+    <Content Include="www\source\style\vendors\tipsy\custom-tipsy.css" />
+    <Content Include="www\source\style\vendors\tipsy\tipsy.css" />
     <Content Include="www\webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
@@ -4093,6 +4123,9 @@
     <Content Include="www\source\style\pages\sites\macaubet\Notify.less" />
     <Content Include="www\source\style\pages\sites\spondemo\Login.less" />
     <Content Include="www\source\style\pages\sites\spondemo\Notify.less" />
+    <Content Include="www\source\style\pages\betlist\index.less" />
+    <Content Include="www\source\style\pages\betlist\systemparlaydetail.index.less" />
+    <Content Include="www\source\style\vendors\tipsy\index.less" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj">
@@ -4299,7 +4332,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Web References\" />
-    <Folder Include="www\dist\style\pages\" />
     <Folder Include="www\source\style\fonts\" />
   </ItemGroup>
   <PropertyGroup>
@@ -4328,7 +4360,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

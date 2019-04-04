@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_LayoutNoSubMenu.cshtml";
 }
 
-@Styles.Render("~/css/betlist")
+<link href="@Url.RenderLink("~/www/dist/style/betlist.css")" rel="stylesheet" type="text/css" />
 @model Fanex.AffiliateAdmin.Models.BetListViewModel
 
 @if (string.IsNullOrEmpty(ViewBag.Data))

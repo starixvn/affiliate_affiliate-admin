@@ -8,9 +8,12 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const { environment, projectPath, siteList } = require("./config-utils/constant");
 const entry = require("./config-utils/entry");
 
-const { generateUrlLoader } = require('./config-utils/generator');
+const { generateUrlLoader, generateCopyPlugin } = require('./config-utils/generator');
 
-const pathToExclude = ['!**/www/dist/style/assets/ui-icons_*.png'];
+const excludePathBySite = siteList.map(item => {
+    return `!**/www/dist/style/${item}/assets/static/*`;
+});
+const pathToExclude = ['!**/www/dist/style/assets/ui-icons_*.png', '!**/www/dist/style/assets/static/*'].concat(excludePathBySite);
 const pathsToClean = ['**/www/dist/js/**/*.*', '**/www/dist/style/**/*.*'].concat(pathToExclude);
 
 const cleanOptions = {
@@ -66,7 +69,8 @@ module.exports = env => {
             new MiniCssExtractPlugin({
                 filename: "[name].css"
             })
-        ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin(), new CleanWebpackPlugin(cleanOptions)]),
+        ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin(), new CleanWebpackPlugin(cleanOptions)])
+        .concat(siteName ? [generateCopyPlugin(siteName)] : []),
         devtool: isDevBuild ? "source-map" : "(none)"
     });
 

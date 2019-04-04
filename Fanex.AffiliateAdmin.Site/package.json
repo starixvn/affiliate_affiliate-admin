@@ -11,6 +11,7 @@
   "license": "",
   "devDependencies": {
     "clean-webpack-plugin": "^2.0.1",
+    "copy-webpack-plugin": "^5.0.2",
     "css-loader": "^2.1.1",
     "file-loader": "^3.0.1",
     "grunt": "^1.0.1",

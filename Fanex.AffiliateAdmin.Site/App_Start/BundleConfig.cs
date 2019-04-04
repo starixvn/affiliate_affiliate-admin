@@ -3,7 +3,6 @@
     using System.IO;
     using System.Web;
     using System.Web.Optimization;
-    using Fanex.AffiliateAdmin.Core.Configurations;
 
     /// <summary>
     /// Bundle Config.
@@ -21,8 +20,6 @@
             GetBundleForHeadJs(bundles);
 
             GetBundleForLogin(bundles);
-
-            GetBundleForNotify(bundles);
 
             GetBundleForCommonJs(bundles);
 
@@ -49,22 +46,11 @@
         /// <param name="bundles">Bundle collection.</param>
         private static void GetBundleForLogin(BundleCollection bundles)
         {
-            bundles.Add(new LessBundle("~/bundles/login")
-                    .Include(
-                        string.Format("~/Content/_Sites/{0}/Login.less", AppSettings.Layout),
-                        "~/Content/themes/base/AffiliateAdmin.css"));
-
             bundles.Add(new ScriptBundle("~/bundles/loginJs").Include(
                 "~/Scripts/libraries/cryptoJS.js",
                 "~/Scripts/libraries/jquery.placeholder.js",
                 "~/Scripts/libraries/jquery.blockUI.js",
                 "~/Scripts/site/Login.js"));
-        }
-
-        private static void GetBundleForNotify(BundleCollection bundles)
-        {
-            bundles.Add(new LessBundle("~/bundles/notify")
-                .Include(string.Format("~/Content/_Sites/{0}/Notify.less", AppSettings.Layout)));
         }
 
         /// <summary>

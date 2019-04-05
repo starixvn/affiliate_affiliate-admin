@@ -148,14 +148,15 @@ else
         <input type="hidden" name="ExchangeRate" id="ExchangeRate" value="@Model.Param.ExchangeRate"/>
     }
 }
-    
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/js/betlistrngcasino")
 
-<script type="text/javascript">
-    var MSG = {
-        Results: "@Lang.BetListResults",
-        HandHistoryDetails: "@Lang.HandHistoryDetails"
-    };
-</script>
+@section scripts{
+    @Scripts.Render("~/js/betlistrngcasino")
+
+    <script type="text/javascript">
+        var MSG = {
+            Results: "@Lang.BetListResults",
+            HandHistoryDetails: "@Lang.HandHistoryDetails"
+        };
+    </script>
+}
 

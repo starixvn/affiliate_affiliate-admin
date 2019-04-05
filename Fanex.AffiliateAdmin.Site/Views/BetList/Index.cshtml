@@ -2,8 +2,9 @@
     ViewBag.Title = Lang.BetList;
     Layout = "~/Views/Shared/_LayoutNoSubMenu.cshtml";
 }
-
-<link href="@Url.RenderLink("~/www/dist/style/betlist.css")" rel="stylesheet" type="text/css" />
+@section css{
+    <link href="@Url.RenderLink("~/www/dist/style/betlist.css")" rel="stylesheet" type="text/css" />
+}
 @model Fanex.AffiliateAdmin.Models.BetListViewModel
 
 @if (string.IsNullOrEmpty(ViewBag.Data))
@@ -30,23 +31,24 @@ else
     @Html.HiddenFor(m => m.AffId)
 }
 
-@Scripts.Render("~/js/betlist")
+@section scripts{
+    @Scripts.Render("~/js/betlist")
+    <script type="text/javascript">
+        var MSG = {
+            Results: "@Lang.BetListResults",
+            HandHistoryDetails: "@Lang.HandHistoryDetails",
+            TitleRngCasinoTicketDetail: "@Lang.TitleRngCasinoTicketDetail",
+            TitleAgCasinoTicketDetail: "@Lang.TitleAgCasinoTicketDetail",
+            TitleCashOutTicketDetail: "@Lang.CashOutDetails",
+            TitleBoughtTicketDetail: "@Lang.BoughtDetails"
+        };
 
-<script type="text/javascript">
-    var MSG = {
-        Results: "@Lang.BetListResults",
-        HandHistoryDetails: "@Lang.HandHistoryDetails",
-        TitleRngCasinoTicketDetail: "@Lang.TitleRngCasinoTicketDetail",
-        TitleAgCasinoTicketDetail: "@Lang.TitleAgCasinoTicketDetail",
-        TitleCashOutTicketDetail: "@Lang.CashOutDetails",
-        TitleBoughtTicketDetail: "@Lang.BoughtDetails"
-    };
+        $(document).ready(function () {
+            setTimeout(function() {
+                $("#AffiliateInfo").removeClass("active");
+            }, 500);
 
-    $(document).ready(function () {
-        setTimeout(function() {
-            $("#AffiliateInfo").removeClass("active");
-        }, 500);
-
-    });
-</script>
+        });
+    </script>
+}
 

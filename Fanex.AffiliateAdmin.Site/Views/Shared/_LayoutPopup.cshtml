@@ -12,8 +12,6 @@
     <link href="@Url.RenderLink("~/www/dist/style/bootstrap.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.RenderLink("~/www/dist/style/common-pages.css")" rel="stylesheet" type="text/css" />
     @RenderSection("css", required: false)
-    @Scripts.Render("~/bundles/jquery")
-    @StackExchange.Profiling.MiniProfiler.RenderIncludes()
 </head>
 <body class="popup">
     @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
@@ -24,6 +22,8 @@
             @RenderBody()
         </div>
     </div>
+
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/js")
     @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
     {

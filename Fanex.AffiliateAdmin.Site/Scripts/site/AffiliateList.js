@@ -126,7 +126,7 @@ var AffiliateList = (function ($) {
                         gridOption.showFooter = false;
                         gridOption.footerRows = [];
                     } else {
-                        gridOption.footerRows = AffiliateList.getFooterRows(data.SubTotal, data.Total, 14, data.HasMultipleCurrency);
+                        gridOption.footerRows = AffiliateList.getFooterRows(data.SubTotal, data.Total, 15, data.HasMultipleCurrency);
                     }
 
                     gridObject.removeClass("noinfo").fanexGrid(gridOption);
@@ -167,7 +167,6 @@ var AffiliateList = (function ($) {
                             columns.push({ Value: window.Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });  // jshint ignore:line
                         }
                         columns.push({ Value: item.CurrencyCode, Name: "Currency" });
-                        idx === 0 && columns.push({ Value: "", Name: "AffPlayer", MergeColNumber: 1, MergeRowNumber: subTotalRowCount, TdClass: pseudoSubTotalclass });
                         columns.push({ Value: item.Total, Name: "BF" });
                         columns.push({ Value: item.TotalMembers, Name: "TotalMembers" });
                         footerRows.push({ Columns: columns, CssClass: "real-row" });
@@ -176,7 +175,6 @@ var AffiliateList = (function ($) {
                     columns = [];
                     columns.push({ Value: window.Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: 1, TdClass: pseudoSubTotalclass });
                     columns.push({ Value: "", Name: "Currency" });
-                    columns.push({ Value: "", Name: "AffPlayer" });
                     columns.push({ Value: "", Name: "BF" });
                     columns.push({ Value: "", Name: "TotalMembers" });
                     footerRows.push({ Columns: columns, CssClass: "pseudo-row" });
@@ -186,7 +184,6 @@ var AffiliateList = (function ($) {
             columns = [];
             columns.push({ Value: window.Lang.Total, Name: "ROW", MergeColNumber: colspan });
             columns.push({ Value: totalData.CurrencyCode, Name: "Currency" });
-            columns.push({ Value: "", Name: "AffPlayer" });
             columns.push({ Value: totalData.Currency, Name: "BF" });
             columns.push({ Value: totalData.TotalMembers, Name: "TotalMembers" });
             footerRows.push({ Columns: columns, CssClass: "total" });

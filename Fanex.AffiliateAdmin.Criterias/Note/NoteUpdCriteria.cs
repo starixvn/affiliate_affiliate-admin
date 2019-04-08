@@ -1,5 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias
 {
+    using System.ComponentModel.DataAnnotations;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -9,6 +10,7 @@
     {
         public int Noteid { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ErrNoteEmpty")]
         public string Content { get; set; }
 
         public int UpdatedBy { get; set; }

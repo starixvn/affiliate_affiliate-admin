@@ -136,20 +136,23 @@ namespace Fanex.AffiliateAdmin.Controller
         [HttpPost]
         public ActionResult EditNote(NoteUpdCriteria criteria)
         {
-            criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
-            criteria.Ip = Remote.GetClientIPAddress();
-
-            var session = SessionManager.CurrentSession;
-            criteria.UpdatedBy = session.CustID;
-            criteria.AdminUserName = session.Username;
-
-            this._noteService.UpdateNote(criteria);
-
-            ViewBag.Result = new ResultViewModel
+            if (ModelState.IsValid)
             {
-                ErrorCode = criteria.ErrCode,
-                Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
-            };
+                criteria.AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId;
+                criteria.Ip = Remote.GetClientIPAddress();
+
+                var session = SessionManager.CurrentSession;
+                criteria.UpdatedBy = session.CustID;
+                criteria.AdminUserName = session.Username;
+
+                this._noteService.UpdateNote(criteria);
+
+                ViewBag.Result = new ResultViewModel
+                {
+                    ErrorCode = criteria.ErrCode,
+                    Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
+                };
+            }
 
             return View();
         }

@@ -7,7 +7,6 @@
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
-    using CasinoSetting;
     using Core.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Helpers;
@@ -41,12 +40,6 @@
             log4net.LogManager.GetLogger("GeneralLog").Info("Start");
 
             AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
-
-            if (AppSettings.Environment.IndexOf("Local", StringComparison.OrdinalIgnoreCase) < 0 &&
-                !AppSettings.Environment.Equals("SIT", StringComparison.OrdinalIgnoreCase))
-            {
-                SettingMgr.GetInstance().Initialize(SiteEnum.AgentSite);
-            }
         }
 
         /// <summary>

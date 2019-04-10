@@ -181,7 +181,6 @@
     <Compile Include="Constants\OneAuthorizationErrorCode.cs" />
     <Compile Include="Crypt.cs" />
     <Compile Include="Enumerations\AppMode.cs" />
-    <Compile Include="Enumerations\CasinoGameType.cs" />
     <Compile Include="Enumerations\BetType.cs" />
     <Compile Include="Filter\ITAuthAttribute.cs" />
     <Compile Include="Filter\FunctionAuthAttribute.cs" />

@@ -4,7 +4,7 @@
 }
 @using Fanex.AffiliateAdmin.Core.Configurations
 @section css{
-    @Styles.Render("~/bundles/notify")
+    <link href="@Url.RenderLink(string.Format("~/www/dist/style/{0}/notify.css", AppSettings.Layout))" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 }
 

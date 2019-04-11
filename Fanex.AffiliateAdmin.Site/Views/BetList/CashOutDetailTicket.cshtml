@@ -3,17 +3,18 @@
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
 
-@Styles.Render("~/css/betlist")
-
-<style type="text/css">
-    .popup .container-fluid {
-        width: auto !important;
-    }
-
-        .popup .container-fluid .span12.contents .leftColumn {
-            width: 715px !important;
+@section css{
+    <link href="@Url.RenderLink("~/www/dist/style/betlist.css")" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .popup .container-fluid {
+            width: auto !important;
         }
-</style>
+
+            .popup .container-fluid .span12.contents .leftColumn {
+                width: 715px !important;
+            }
+    </style>
+}
 
 @if (string.IsNullOrEmpty(ViewBag.Data))
 {
@@ -24,4 +25,6 @@ else
     @Html.Raw(ViewBag.Data)
 }
 
-@Scripts.Render("~/js/betlist")
+@section scripts{
+    @Scripts.Render("~/js/betlist")
+}

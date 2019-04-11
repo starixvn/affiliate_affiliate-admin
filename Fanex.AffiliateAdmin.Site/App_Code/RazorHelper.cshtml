@@ -84,7 +84,17 @@
         }
     </ul>
     <script type="text/javascript">
-        $("#@(activeMenu)").addClass("active");
+        (function () {
+            var element, name, classNameList;
+            var element = document.getElementById('@(activeMenu)');
+            if (element) {
+                var name = "active";
+                var classNameList = element.className.split(" ");
+                if (classNameList.indexOf(name) == -1) {
+                    element.className += " " + name;
+                }
+            }
+        })()
     </script>
 }
 @helper PageSizeDropdownList(int selectedPageSize = 10, string id = "pageSize", string postAction = "")

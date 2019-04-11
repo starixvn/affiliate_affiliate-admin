@@ -55,14 +55,6 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="BundleTransformer.Core, Version=1.9.89.0, Culture=neutral, PublicKeyToken=973c344c93aac60d, processorArchitecture=MSIL">
-      <HintPath>..\packages\BundleTransformer.Core.1.9.89\lib\net40\BundleTransformer.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="BundleTransformer.Less, Version=1.6.26.0, Culture=neutral, PublicKeyToken=973c344c93aac60d, processorArchitecture=MSIL">
-      <HintPath>..\packages\BundleTransformer.Less.1.6.26\lib\net40\BundleTransformer.Less.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="CasinoLibrary, Version=1.0.2.14, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CasinoLibrary.1.0.2.14\lib\net40\CasinoLibrary.dll</HintPath>
       <Private>True</Private>
@@ -77,10 +69,6 @@
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\packages\CouchbaseNetClient.1.2.6\lib\net40\Couchbase.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="dotless.Core, Version=1.4.0.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
-      <HintPath>..\packages\dotless.1.4.0.0\lib\dotless.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Enyim.Caching, Version=2.12.0.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
@@ -187,10 +175,6 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MiniProfiler, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\MiniProfiler.2.1.0\lib\net40\MiniProfiler.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="MvcPager, Version=1.5.0.28157, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvcPager.1.5.0.28157\lib\net40\MvcPager.dll</HintPath>
       <Private>True</Private>
@@ -295,10 +279,6 @@
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Optimization.Less, Version=1.3.0.0, Culture=neutral, PublicKeyToken=9b7581e0240fe480, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Web.Optimization.Less.1.3.4\lib\net40\System.Web.Optimization.Less.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -411,89 +391,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Content\betlist\betList.css" />
-    <Content Include="Content\_Sites\9bet\images\banner_top.png" />
-    <Content Include="Content\_Sites\9bet\images\best-browsers.png" />
-    <Content Include="Content\_Sites\9bet\images\bodybg.jpg" />
-    <Content Include="Content\_Sites\9bet\images\btbg.png" />
-    <Content Include="Content\_Sites\9bet\images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\9bet\images\emailBg.jpg" />
-    <Content Include="Content\_Sites\9bet\images\favicon.jpg" />
-    <Content Include="Content\_Sites\9bet\images\headerbg.jpg" />
-    <Content Include="Content\_Sites\9bet\images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\9bet\images\logo-afterlogin.png" />
-    <Content Include="Content\_Sites\9bet\images\logo.jpg" />
-    <Content Include="Content\_Sites\9bet\images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\9bet\images\notify.png" />
-    <Content Include="Content\_Sites\9bet\images\panel.png" />
-    <Content Include="Content\_Sites\aragon88\Images\best-browsers.png" />
-    <Content Include="Content\_Sites\aragon88\Images\bodybg.jpg" />
-    <Content Include="Content\_Sites\aragon88\Images\btbg.png" />
-    <Content Include="Content\_Sites\aragon88\Images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\aragon88\Images\emailBg.jpg" />
-    <Content Include="Content\_Sites\aragon88\Images\favicon.jpg" />
-    <Content Include="Content\_Sites\aragon88\Images\headerbg.jpg" />
-    <Content Include="Content\_Sites\aragon88\Images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\aragon88\Images\banner_top.png" />
-    <Content Include="Content\_Sites\aragon88\Images\logo.jpg" />
-    <Content Include="Content\_Sites\aragon88\Images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\aragon88\Images\notify.png" />
-    <Content Include="Content\_Sites\aragon88\Images\panel.png" />
-    <Content Include="Content\_Sites\bolanation\Images\best-browsers.png" />
-    <Content Include="Content\_Sites\bolanation\Images\bodybg.jpg" />
-    <Content Include="Content\_Sites\bolanation\Images\btbg.png" />
-    <Content Include="Content\_Sites\bolanation\Images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\bolanation\Images\emailBg.jpg" />
-    <Content Include="Content\_Sites\bolanation\Images\favicon.ico" />
-    <Content Include="Content\_Sites\bolanation\Images\favicon.jpg" />
-    <Content Include="Content\_Sites\bolanation\Images\headerbg.jpg" />
-    <Content Include="Content\_Sites\bolanation\Images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\bolanation\Images\banner_top.png" />
-    <Content Include="Content\_Sites\bolanation\Images\logo.jpg" />
-    <Content Include="Content\_Sites\bolanation\Images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\bolanation\Images\notify.png" />
-    <Content Include="Content\_Sites\bolanation\Images\panel.png" />
-    <Content Include="Content\_Sites\spondemo\Images\banner_top.png" />
-    <Content Include="Content\_Sites\spondemo\Images\best-browsers.png" />
-    <Content Include="Content\_Sites\spondemo\Images\bodybg.jpg" />
-    <Content Include="Content\_Sites\spondemo\Images\btbg.png" />
-    <Content Include="Content\_Sites\spondemo\Images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\spondemo\Images\emailBg.jpg" />
-    <Content Include="Content\_Sites\spondemo\Images\favicon.jpg" />
-    <Content Include="Content\_Sites\spondemo\Images\headerbg.jpg" />
-    <Content Include="Content\_Sites\spondemo\Images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\spondemo\Images\logo.jpg" />
-    <Content Include="Content\_Sites\spondemo\Images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\spondemo\Images\notify.png" />
-    <Content Include="Content\_Sites\spondemo\Images\panel.png" />
-    <Content Include="Content\_Sites\be7th\images\banner_top.png" />
-    <Content Include="Content\_Sites\be7th\images\best-browsers.png" />
-    <Content Include="Content\_Sites\be7th\images\bodybg.jpg" />
-    <Content Include="Content\_Sites\be7th\images\btbg.png" />
-    <Content Include="Content\_Sites\be7th\images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\be7th\images\emailBg.jpg" />
-    <Content Include="Content\_Sites\be7th\images\favicon.jpg" />
-    <Content Include="Content\_Sites\be7th\images\headerbg-notify.jpg" />
-    <Content Include="Content\_Sites\be7th\images\headerbg.jpg" />
-    <Content Include="Content\_Sites\be7th\images\logo-afterlogin.png" />
-    <Content Include="Content\_Sites\be7th\images\logo-notify.jpg" />
-    <Content Include="Content\_Sites\be7th\images\logo.jpg" />
-    <Content Include="Content\_Sites\be7th\images\notify.png" />
-    <Content Include="Content\_Sites\be7th\images\panel.png" />
-    <Content Include="Content\tipsy\custom-tipsy.css" />
-    <Content Include="Content\tipsy\tipsy.css" />
-    <Content Include="Content\_Sites\athena000\Images\banner_top.png" />
-    <Content Include="Content\_Sites\athena000\Images\best-browsers.png" />
-    <Content Include="Content\_Sites\athena000\Images\bodybg.jpg" />
-    <Content Include="Content\_Sites\athena000\Images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\athena000\Images\emailBg.jpg" />
-    <Content Include="Content\_Sites\athena000\Images\favicon.jpg" />
-    <Content Include="Content\_Sites\athena000\Images\headerbg.jpg" />
-    <Content Include="Content\_Sites\athena000\Images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\athena000\Images\logo.jpg" />
-    <Content Include="Content\_Sites\athena000\Images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\athena000\Images\notify.png" />
-    <Content Include="Content\_Sites\athena000\Images\panel.png" />
     <Content Include="Form\GenHistoryImg.aspx.cs">
       <DependentUpon>GenHistoryImg.aspx</DependentUpon>
     </Content>
@@ -576,245 +473,249 @@
     <Compile Include="Properties\VersionInfo.cs" />
     <Content Include="Scripts\site\UpdatePayment.js" />
     <Content Include="Views\BetList\CashOutDetailTicket.cshtml" />
+    <Content Include="www\config-utils\constant.js" />
+    <Content Include="www\config-utils\entry.js" />
+    <Content Include="www\config-utils\generator.js" />
+    <Content Include="www\dist\style\assets\bar-loader.gif" />
+    <Content Include="www\dist\style\assets\flag.png" />
+    <Content Include="www\dist\style\assets\glyphicons-halflings-white.png" />
+    <Content Include="www\dist\style\assets\glyphicons-halflings.png" />
+    <Content Include="www\dist\style\assets\icon-button-more.png" />
+    <Content Include="www\dist\style\assets\line_left02.jpg" />
+    <Content Include="www\dist\style\assets\spritex.png" />
+    <Content Include="www\dist\style\assets\ui-icons_222222_256x240.png" />
+    <Content Include="www\dist\style\assets\ui-icons_2e83ff_256x240.png" />
+    <Content Include="www\dist\style\assets\ui-icons_454545_256x240.png" />
+    <Content Include="www\dist\style\assets\ui-icons_888888_256x240.png" />
+    <Content Include="www\dist\style\assets\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="www\dist\style\athena000\assets\best-browsers.png" />
+    <Content Include="www\dist\style\athena000\assets\bodybg.jpg" />
+    <Content Include="www\dist\style\athena000\assets\headerbg.jpg" />
+    <Content Include="www\dist\style\athena000\assets\headerbg_notify.png" />
+    <Content Include="www\dist\style\athena000\assets\logo.jpg" />
+    <Content Include="www\dist\style\athena000\assets\logoNotify.jpg" />
+    <Content Include="www\dist\style\athena000\assets\notify.png" />
+    <Content Include="www\dist\style\athena000\assets\panel.png" />
+    <Content Include="www\dist\style\athena000\assets\static\banner_top.png" />
+    <Content Include="www\dist\style\athena000\assets\static\emailBanner.jpg" />
+    <Content Include="www\dist\style\athena000\assets\static\emailBg.jpg" />
+    <Content Include="www\dist\style\athena000\assets\static\favicon.jpg" />
+    <Content Include="www\dist\style\athena000\login.css" />
+    <Content Include="www\dist\style\athena000\notify.css" />
+    <Content Include="www\dist\style\betlist.css" />
+    <Content Include="www\dist\style\bootstrap.css" />
+    <Content Include="www\dist\style\commgroup.css" />
+    <Content Include="www\dist\style\common-pages.css" />
+    <Content Include="www\dist\style\itcbet\assets\best-browsers.png" />
+    <Content Include="www\dist\style\itcbet\assets\bodybg.jpg" />
+    <Content Include="www\dist\style\itcbet\assets\btbg.png" />
+    <Content Include="www\dist\style\itcbet\assets\headerbg.jpg" />
+    <Content Include="www\dist\style\itcbet\assets\headerbg_notify.png" />
+    <Content Include="www\dist\style\itcbet\assets\logo.jpg" />
+    <Content Include="www\dist\style\itcbet\assets\logoNotify.jpg" />
+    <Content Include="www\dist\style\itcbet\assets\notify.png" />
+    <Content Include="www\dist\style\itcbet\assets\panel.png" />
+    <Content Include="www\dist\style\itcbet\assets\static\banner_top.png" />
+    <Content Include="www\dist\style\itcbet\assets\static\emailBanner.jpg" />
+    <Content Include="www\dist\style\itcbet\assets\static\emailBg.jpg" />
+    <Content Include="www\dist\style\itcbet\assets\static\favicon.jpg" />
+    <Content Include="www\dist\style\itcbet\login.css" />
+    <Content Include="www\dist\style\itcbet\notify.css" />
+    <Content Include="www\dist\style\jquery-ui.css" />
+    <Content Include="www\dist\style\macaubet\assets\best-browsers.png" />
+    <Content Include="www\dist\style\macaubet\assets\bodybg.jpg" />
+    <Content Include="www\dist\style\macaubet\assets\btbg.png" />
+    <Content Include="www\dist\style\macaubet\assets\headerbg.jpg" />
+    <Content Include="www\dist\style\macaubet\assets\headerbg_notify.png" />
+    <Content Include="www\dist\style\macaubet\assets\logo.jpg" />
+    <Content Include="www\dist\style\macaubet\assets\logoNotify.jpg" />
+    <Content Include="www\dist\style\macaubet\assets\notify.png" />
+    <Content Include="www\dist\style\macaubet\assets\panel.png" />
+    <Content Include="www\dist\style\macaubet\assets\static\banner_top.png" />
+    <Content Include="www\dist\style\macaubet\assets\static\emailBanner.jpg" />
+    <Content Include="www\dist\style\macaubet\assets\static\emailBg.jpg" />
+    <Content Include="www\dist\style\macaubet\assets\static\favicon.jpg" />
+    <Content Include="www\dist\style\macaubet\login.css" />
+    <Content Include="www\dist\style\macaubet\notify.css" />
+    <Content Include="www\dist\style\rngcasino.handhistory.css" />
+    <Content Include="www\dist\style\spondemo\assets\best-browsers.png" />
+    <Content Include="www\dist\style\spondemo\assets\bodybg.jpg" />
+    <Content Include="www\dist\style\spondemo\assets\btbg.png" />
+    <Content Include="www\dist\style\spondemo\assets\headerbg.jpg" />
+    <Content Include="www\dist\style\spondemo\assets\headerbg_notify.png" />
+    <Content Include="www\dist\style\spondemo\assets\logo.jpg" />
+    <Content Include="www\dist\style\spondemo\assets\logoNotify.jpg" />
+    <Content Include="www\dist\style\spondemo\assets\notify.png" />
+    <Content Include="www\dist\style\spondemo\assets\panel.png" />
+    <Content Include="www\dist\style\spondemo\assets\static\banner_top.png" />
+    <Content Include="www\dist\style\spondemo\assets\static\emailBanner.jpg" />
+    <Content Include="www\dist\style\spondemo\assets\static\emailBg.jpg" />
+    <Content Include="www\dist\style\spondemo\assets\static\favicon.jpg" />
+    <Content Include="www\dist\style\spondemo\login.css" />
+    <Content Include="www\dist\style\spondemo\notify.css" />
+    <Content Include="www\dist\style\systemparlaydetail.css" />
+    <Content Include="www\dist\style\tipsy.css" />
+    <Content Include="www\source\style\assets\ajax-loader.gif" />
+    <Content Include="www\source\style\assets\commgroup\a_bg.jpg" />
+    <Content Include="www\source\style\assets\commgroup\bg_box_tab.jpg" />
+    <Content Include="www\source\style\assets\commgroup\popup_menu01.jpg" />
+    <Content Include="www\source\style\assets\commgroup\popup_menu02.jpg" />
+    <Content Include="www\source\style\assets\common-pages\arrow_left.jpg" />
+    <Content Include="www\source\style\assets\common-pages\arrow_left_out.jpg" />
+    <Content Include="www\source\style\assets\common-pages\arrUpDown.png" />
+    <Content Include="www\source\style\assets\common-pages\bg-btn.png" />
+    <Content Include="www\source\style\assets\common-pages\bg-dropdown.jpg" />
+    <Content Include="www\source\style\assets\common-pages\bg-pager-title-grid.png" />
+    <Content Include="www\source\style\assets\common-pages\bg-search-title.png" />
+    <Content Include="www\source\style\assets\common-pages\bg-search.png" />
+    <Content Include="www\source\style\assets\common-pages\bg_header_06.jpg" />
+    <Content Include="www\source\style\assets\common-pages\bg_left.jpg" />
+    <Content Include="www\source\style\assets\common-pages\bg_leftbottom.jpg" />
+    <Content Include="www\source\style\assets\common-pages\bg_lefttop.jpg" />
+    <Content Include="www\source\style\assets\common-pages\bg_menu.jpg" />
+    <Content Include="www\source\style\assets\common-pages\bg_search01.jpg" />
+    <Content Include="www\source\style\assets\common-pages\check.gif" />
+    <Content Include="www\source\style\assets\common-pages\Collapse_icon.png" />
+    <Content Include="www\source\style\assets\common-pages\ComboBox.png" />
+    <Content Include="www\source\style\assets\common-pages\Expand_icon.png" />
+    <Content Include="www\source\style\assets\common-pages\flag.png" />
+    <Content Include="www\source\style\assets\common-pages\icon-button-more.png" />
+    <Content Include="www\source\style\assets\common-pages\icon-calendar.png" />
+    <Content Include="www\source\style\assets\common-pages\left_btleft.gif" />
+    <Content Include="www\source\style\assets\common-pages\left_button.jpg" />
+    <Content Include="www\source\style\assets\common-pages\line_left02.jpg" />
+    <Content Include="www\source\style\assets\common-pages\main_left.jpg" />
+    <Content Include="www\source\style\assets\common-pages\main_right.jpg" />
+    <Content Include="www\source\style\assets\common-pages\pop_bgcenter.jpg" />
+    <Content Include="www\source\style\assets\common-pages\right_btleft.gif" />
+    <Content Include="www\source\style\assets\common-pages\right_button.jpg" />
+    <Content Include="www\source\style\assets\common-pages\spritex.png" />
+    <Content Include="www\source\style\assets\common-pages\uncheck.gif" />
+    <Content Include="www\source\style\assets\fanexgrid\back-icon.png" />
+    <Content Include="www\source\style\assets\fanexgrid\collapse-icon.png" />
+    <Content Include="www\source\style\assets\fanexgrid\collapse-small.png" />
+    <Content Include="www\source\style\assets\fanexgrid\excel-icon.png" />
+    <Content Include="www\source\style\assets\fanexgrid\expand-icon.png" />
+    <Content Include="www\source\style\assets\fanexgrid\expand-small.png" />
+    <Content Include="www\source\style\assets\fanexgrid\go-hover-icon.png" />
+    <Content Include="www\source\style\assets\fanexgrid\more_buttons.png" />
+    <Content Include="www\source\style\assets\fanexgrid\send-mail.png" />
+    <Content Include="www\source\style\assets\fanexgrid\seperations.png" />
+    <Content Include="www\source\style\assets\fanexgrid\sort-icon-new3.png" />
+    <Content Include="www\source\style\pages\betlist\betlist.core.css" />
+    <Content Include="www\source\style\pages\betlist\betList.css" />
+    <Content Include="www\source\style\pages\betlist\custom-betlist.css" />
+    <Content Include="www\source\style\pages\betlist\fanex.result.css" />
+    <Content Include="www\source\style\pages\betlist\global.content.css" />
+    <Content Include="www\source\style\pages\betlist\images\1F.gif" />
+    <Content Include="www\source\style\pages\betlist\images\1L.gif" />
+    <Content Include="www\source\style\pages\betlist\images\bar-loader.gif" />
+    <Content Include="www\source\style\pages\betlist\images\bgHeader.jpg" />
+    <Content Include="www\source\style\pages\betlist\images\blank.gif" />
+    <Content Include="www\source\style\pages\betlist\images\firstGoal.gif" />
+    <Content Include="www\source\style\pages\betlist\images\goal-icon.png" />
+    <Content Include="www\source\style\pages\betlist\images\lastGoal.gif" />
+    <Content Include="www\source\style\pages\betlist\images\link_14x14.png" />
+    <Content Include="www\source\style\pages\betlist\images\link_16x16.png" />
+    <Content Include="www\source\style\pages\betlist\images\note.png" />
+    <Content Include="www\source\style\pages\betlist\images\plus.png" />
+    <Content Include="www\source\style\pages\betlist\images\q_Icon2_1.png" />
+    <Content Include="www\source\style\pages\betlist\images\q_Icon_2.png" />
+    <Content Include="www\source\style\pages\betlist\images\tab_topbg.gif" />
+    <Content Include="www\source\style\pages\betlist\images\undo.png" />
+    <Content Include="www\source\style\pages\betlist\images\up.png" />
+    <Content Include="www\source\style\pages\betlist\rngcasino.handhistory.css" />
+    <Content Include="www\source\style\pages\betlist\systemparlay.detail.css" />
+    <Content Include="www\source\style\pages\common-pages\AffiliateAdmin.css" />
+    <Content Include="www\source\style\components\daterangepicker.css" />
+    <Content Include="www\source\style\components\Fanex.Grid.css" />
+    <Content Include="www\source\style\components\Fanex.Pagination.css" />
+    <Content Include="www\source\style\components\jquery.multiselect.css" />
+    <Content Include="www\source\style\components\monpickr.css" />
+    <Content Include="www\source\style\pages\sites\athena000\Images\static\banner_top.png" />
+    <Content Include="www\source\style\pages\sites\athena000\Images\best-browsers.png" />
+    <Content Include="www\source\style\pages\sites\athena000\Images\bodybg.jpg" />
+    <Content Include="www\source\style\pages\sites\athena000\Images\static\emailBanner.jpg" />
+    <Content Include="www\source\style\pages\sites\athena000\Images\static\emailBg.jpg" />
+    <Content Include="www\source\style\pages\sites\athena000\Images\static\favicon.jpg" />
+    <Content Include="www\source\style\pages\sites\athena000\Images\headerbg.jpg" />
+    <Content Include="www\source\style\pages\sites\athena000\Images\headerbg_notify.png" />
+    <Content Include="www\source\style\pages\sites\athena000\Images\logo.jpg" />
+    <Content Include="www\source\style\pages\sites\athena000\Images\logoNotify.jpg" />
+    <Content Include="www\source\style\pages\sites\athena000\Images\notify.png" />
+    <Content Include="www\source\style\pages\sites\athena000\Images\panel.png" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\static\banner_top.png" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\best-browsers.png" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\bodybg.jpg" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\btbg.png" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\static\emailBanner.jpg" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\static\emailBg.jpg" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\static\favicon.jpg" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\headerbg.jpg" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\headerbg_notify.png" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\logo.jpg" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\logoNotify.jpg" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\notify.png" />
+    <Content Include="www\source\style\pages\sites\itcbet\images\panel.png" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\static\banner_top.png" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\best-browsers.png" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\bodybg.jpg" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\btbg.png" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\static\emailBanner.jpg" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\static\emailBg.jpg" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\static\favicon.jpg" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\headerbg.jpg" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\headerbg_notify.png" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\logo.jpg" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\logoNotify.jpg" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\notify.png" />
+    <Content Include="www\source\style\pages\sites\macaubet\images\panel.png" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\static\banner_top.png" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\best-browsers.png" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\bodybg.jpg" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\btbg.png" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\static\emailBanner.jpg" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\static\emailBg.jpg" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\static\favicon.jpg" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\headerbg.jpg" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\headerbg_notify.png" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\logo.jpg" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\logoNotify.jpg" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\notify.png" />
+    <Content Include="www\source\style\pages\sites\spondemo\Images\panel.png" />
+    <Content Include="www\source\style\vendors\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="www\source\style\vendors\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-icons_222222_256x240.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-icons_454545_256x240.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-icons_888888_256x240.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.multiselect.css" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.accordion.css" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.autocomplete.css" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.button.css" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.core.css" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.datepicker.css" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.dialog.css" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.progressbar.css" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.resizable.css" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.selectable.css" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.slider.css" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.tabs.css" />
+    <Content Include="www\source\style\vendors\jquery-ui\jquery.ui.theme.css" />
+    <Content Include="www\source\style\vendors\tipsy\custom-tipsy.css" />
+    <Content Include="www\source\style\vendors\tipsy\tipsy.css" />
+    <Content Include="www\webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\betlist\betlist.core.css" />
-    <Content Include="Content\betlist\fanex.result.css" />
-    <Content Include="Content\betlist\global.content.css" />
-    <Content Include="Content\betlist\images\1F.gif" />
-    <Content Include="Content\betlist\images\1L.gif" />
-    <Content Include="Content\betlist\images\bar-loader.gif" />
-    <Content Include="Content\betlist\images\bgHeader.jpg" />
-    <Content Include="Content\betlist\images\blank.gif" />
-    <Content Include="Content\betlist\images\firstGoal.gif" />
-    <Content Include="Content\betlist\images\goal-icon.png" />
-    <Content Include="Content\betlist\images\lastGoal.gif" />
-    <Content Include="Content\betlist\images\link_14x14.png" />
-    <Content Include="Content\betlist\images\link_16x16.png" />
-    <Content Include="Content\betlist\images\note.png" />
-    <Content Include="Content\betlist\images\plus.png" />
-    <Content Include="Content\betlist\images\q_Icon2_1.png" />
-    <Content Include="Content\betlist\images\q_Icon_2.png" />
-    <Content Include="Content\betlist\images\tab_topbg.gif" />
-    <Content Include="Content\betlist\images\undo.png" />
-    <Content Include="Content\betlist\images\up.png" />
-    <Content Include="Content\betlist\rngcasino.handhistory.css" />
-    <Content Include="Content\betlist\systemparlay.detail.css" />
-    <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
-    <Content Include="Content\Fanex.Result\images\goal-icon.png" />
-    <Content Include="Content\themes\base\AffiliateAdmin.css" />
-    <Content Include="Content\themes\base\Fanex.Grid.css" />
-    <Content Include="Content\themes\base\Fanex.Pagination.css" />
-    <Content Include="Content\themes\base\images\ajax-loader.gif" />
-    <Content Include="Content\themes\base\images\animated-overlay.gif" />
-    <Content Include="Content\themes\base\images\bg-demo-docs-param.gif" />
-    <Content Include="Content\themes\base\images\demo-spindown-closed.gif" />
-    <Content Include="Content\themes\base\images\demo-spindown-open.gif" />
-    <Content Include="Content\themes\base\images\fanexgrid\1350530947_page_excel.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\ajax-loader.gif" />
-    <Content Include="Content\themes\base\images\fanexgrid\back-icon.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\bgtitle.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\bg_gloss_wave.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\check-box.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\collapse-icon.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\collapse-small.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\email.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\excel-icon.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\expand-icon.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\expand-small.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\go-hover-icon.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\icn_add.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\icn_del.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\icn_edit.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\icon_page.gif" />
-    <Content Include="Content\themes\base\images\fanexgrid\more_buttons.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\refresh_icon.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\report_check.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\send-mail.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\seperations.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\setting.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\sort-icon-new.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\sort-icon-new1.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\sort-icon-new3.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\sort-icon.png" />
-    <Content Include="Content\themes\base\images\fanexgrid\sorting_asc.gif" />
-    <Content Include="Content\themes\base\images\fanexgrid\sorting_bg.gif" />
-    <Content Include="Content\themes\base\images\fanexgrid\sorting_desc.gif" />
-    <Content Include="Content\themes\base\images\fanexgrid\white-top-bottom.gif" />
-    <Content Include="Content\themes\base\images\seperations.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\jquery-ui.css" />
-    <Content Include="Content\themes\base\jquery.multiselect.css" />
-    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
-    <Content Include="Content\themes\base\jquery.ui.all.css" />
-    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
-    <Content Include="Content\themes\base\jquery.ui.base.css" />
-    <Content Include="Content\themes\base\jquery.ui.button.css" />
-    <Content Include="Content\themes\base\jquery.ui.core.css" />
-    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
-    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
-    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
-    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
-    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
-    <Content Include="Content\themes\base\jquery.ui.slider.css" />
-    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
-    <Content Include="Content\themes\base\jquery.ui.theme.css" />
-    <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
-    <Content Include="Content\themes\base\monpickr.css" />
-    <Content Include="Content\themes\base\ui.dropdownchecklist.standalone.css" />
-    <Content Include="Content\themes\base\daterangepicker.css" />
-    <Content Include="Content\themes\Default\images\arrow_left.jpg" />
-    <Content Include="Content\themes\Default\images\arrow_left_out.jpg" />
-    <Content Include="Content\themes\Default\images\arrUpDown.png" />
-    <Content Include="Content\themes\Default\images\a_bg.jpg" />
-    <Content Include="Content\themes\Default\images\banner_top.png" />
-    <Content Include="Content\themes\Default\images\bg-btn.png" />
-    <Content Include="Content\themes\Default\images\bg-dropdown.jpg" />
-    <Content Include="Content\themes\Default\images\bg-pager-title-grid.png" />
-    <Content Include="Content\themes\Default\images\bg-search-title.png" />
-    <Content Include="Content\themes\Default\images\bg-search.png" />
-    <Content Include="Content\themes\Default\images\bg_header_06.jpg" />
-    <Content Include="Content\themes\Default\images\bg_left.jpg" />
-    <Content Include="Content\themes\Default\images\bg_leftbottom.jpg" />
-    <Content Include="Content\themes\Default\images\bg_lefttop.jpg" />
-    <Content Include="Content\themes\Default\images\calendar.gif" />
-    <Content Include="Content\themes\Default\images\check.gif" />
-    <Content Include="Content\themes\Default\images\checkbox.png" />
-    <Content Include="Content\themes\Default\images\Collapse_icon.png" />
-    <Content Include="Content\themes\Default\images\dialog-title.png" />
-    <Content Include="Content\themes\Default\images\dialog-title2.png" />
-    <Content Include="Content\themes\Default\images\email_bg.png" />
-    <Content Include="Content\themes\Default\images\bg_box_tab.jpg" />
-    <Content Include="Content\themes\Default\images\bg_menu.jpg" />
-    <Content Include="Content\themes\Default\images\bg_search01.jpg" />
-    <Content Include="Content\themes\Default\images\bodybg.jpg" />
-    <Content Include="Content\themes\Default\images\btbg.png" />
-    <Content Include="Content\themes\Default\images\btDown.png" />
-    <Content Include="Content\themes\Default\images\clock.gif" />
-    <Content Include="Content\themes\Default\images\ComboBox.png" />
-    <Content Include="Content\themes\Default\images\Expand_icon.png" />
-    <Content Include="Content\themes\Default\images\flag.png" />
-    <Content Include="Content\themes\Default\images\glyphicons-halflings-gray-lighter.png" />
-    <Content Include="Content\themes\Default\images\glyphicons-halflings-gray.png" />
-    <Content Include="Content\themes\Default\images\headerbg.jpg" />
-    <Content Include="Content\themes\Default\images\icon-button-more.png" />
-    <Content Include="Content\themes\Default\images\icon-calendar.png" />
-    <Content Include="Content\themes\Default\images\icon_edit.png" />
-    <Content Include="Content\themes\Default\images\icon_refresh.png" />
-    <Content Include="Content\themes\Default\images\icon_top.png" />
-    <Content Include="Content\themes\Default\images\i_admin.png" />
-    <Content Include="Content\themes\Default\images\i_affiliateslist.png" />
-    <Content Include="Content\themes\Default\images\i_commg.png" />
-    <Content Include="Content\themes\Default\images\i_customer.png" />
-    <Content Include="Content\themes\Default\images\i_domain.jpg" />
-    <Content Include="Content\themes\Default\images\i_email_history.png" />
-    <Content Include="Content\themes\Default\images\i_ex_rate.png" />
-    <Content Include="Content\themes\Default\images\i_home.png" />
-    <Content Include="Content\themes\Default\images\i_media1.png" />
-    <Content Include="Content\themes\Default\images\i_member.png" />
-    <Content Include="Content\themes\Default\images\i_message.png" />
-    <Content Include="Content\themes\Default\images\i_pay_re.png" />
-    <Content Include="Content\themes\Default\images\i_report.png" />
-    <Content Include="Content\themes\Default\images\i_settings.png" />
-    <Content Include="Content\themes\Default\images\i_tran.png" />
-    <Content Include="Content\themes\Default\images\left_btleft.gif" />
-    <Content Include="Content\themes\Default\images\left_button.jpg" />
-    <Content Include="Content\themes\Default\images\line_left02.jpg" />
-    <Content Include="Content\themes\Default\images\line_popup.jpg" />
-    <Content Include="Content\themes\Default\images\listBt.png" />
-    <Content Include="Content\themes\Default\images\listRp.png" />
-    <Content Include="Content\themes\Default\images\listTop.png" />
-    <Content Include="Content\themes\Default\images\logo.jpg" />
-    <Content Include="Content\themes\Default\images\main_left.jpg" />
-    <Content Include="Content\themes\Default\images\main_right.jpg" />
-    <Content Include="Content\themes\Default\images\more_buttons.png" />
-    <Content Include="Content\themes\Default\images\panel.png" />
-    <Content Include="Content\themes\Default\images\popup_menu01.jpg" />
-    <Content Include="Content\themes\Default\images\popup_menu02.jpg" />
-    <Content Include="Content\themes\Default\images\pop_top.png" />
-    <Content Include="Content\themes\Default\images\pop_bgcenter.jpg" />
-    <Content Include="Content\themes\Default\images\right_btleft.gif" />
-    <Content Include="Content\themes\Default\images\right_button.jpg" />
-    <Content Include="Content\themes\Default\images\sprite.png" />
-    <Content Include="Content\themes\Default\images\spritex.png" />
-    <Content Include="Content\themes\Default\images\uncheck.gif" />
-    <Content Include="Content\_Sites\allbetclub\images\favicon.jpg" />
-    <Content Include="Content\_Sites\aoncash\images\favicon.jpg" />
-    <Content Include="Content\_Sites\be7\images\banner_top.png" />
-    <Content Include="Content\_Sites\be7\images\best-browsers.png" />
-    <Content Include="Content\_Sites\be7\images\bodybg.jpg" />
-    <Content Include="Content\_Sites\be7\images\btbg.png" />
-    <Content Include="Content\_Sites\be7\images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\be7\images\emailBg.jpg" />
-    <Content Include="Content\_Sites\be7\images\favicon.jpg" />
-    <Content Include="Content\_Sites\be7\images\headerbg.jpg" />
-    <Content Include="Content\_Sites\be7\images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\be7\images\logo.jpg" />
-    <Content Include="Content\_Sites\be7\images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\be7\images\notify.png" />
-    <Content Include="Content\_Sites\be7\images\panel.png" />
-    <Content Include="Content\_Sites\aoncash\images\banner_top.png" />
-    <Content Include="Content\_Sites\aoncash\images\best-browsers.png" />
-    <Content Include="Content\_Sites\aoncash\images\bodybg.jpg" />
-    <Content Include="Content\_Sites\aoncash\images\btbg.png" />
-    <Content Include="Content\_Sites\aoncash\images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\aoncash\images\emailBg.jpg" />
-    <Content Include="Content\_Sites\aoncash\images\headerbg.jpg" />
-    <Content Include="Content\_Sites\aoncash\images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\aoncash\images\logo.jpg" />
-    <Content Include="Content\_Sites\aoncash\images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\aoncash\images\notify.png" />
-    <Content Include="Content\_Sites\aoncash\images\panel.png" />
-    <Content Include="Content\_Sites\allbetclub\images\banner_top.png" />
-    <Content Include="Content\_Sites\allbetclub\images\best-browsers.png" />
-    <Content Include="Content\_Sites\allbetclub\images\bodybg.jpg" />
-    <Content Include="Content\_Sites\allbetclub\images\btbg.png" />
-    <Content Include="Content\_Sites\allbetclub\images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\allbetclub\images\emailBg.jpg" />
-    <Content Include="Content\_Sites\allbetclub\images\headerbg.jpg" />
-    <Content Include="Content\_Sites\allbetclub\images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\allbetclub\images\logo.jpg" />
-    <Content Include="Content\_Sites\allbetclub\images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\allbetclub\images\notify.png" />
-    <Content Include="Content\_Sites\allbetclub\images\panel.png" />
-    <Content Include="Content\_Sites\macaubet\images\favicon.jpg" />
-    <Content Include="Content\_Sites\itcbet\images\favicon.jpg" />
-    <Content Include="Content\_Sites\macaubet\images\banner_top.png" />
-    <Content Include="Content\_Sites\macaubet\images\best-browsers.png" />
-    <Content Include="Content\_Sites\macaubet\images\bodybg.jpg" />
-    <Content Include="Content\_Sites\macaubet\images\btbg.png" />
-    <Content Include="Content\_Sites\macaubet\images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\macaubet\images\emailBg.jpg" />
-    <Content Include="Content\_Sites\macaubet\images\headerbg.jpg" />
-    <Content Include="Content\_Sites\macaubet\images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\macaubet\images\logo.jpg" />
-    <Content Include="Content\_Sites\macaubet\images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\macaubet\images\notify.png" />
-    <Content Include="Content\_Sites\macaubet\images\panel.png" />
-    <Content Include="Content\_Sites\itcbet\images\banner_top.png" />
-    <Content Include="Content\_Sites\itcbet\images\best-browsers.png" />
-    <Content Include="Content\_Sites\itcbet\images\bodybg.jpg" />
-    <Content Include="Content\_Sites\itcbet\images\btbg.png" />
-    <Content Include="Content\_Sites\itcbet\images\emailBanner.jpg" />
-    <Content Include="Content\_Sites\itcbet\images\emailBg.jpg" />
-    <Content Include="Content\_Sites\itcbet\images\headerbg.jpg" />
-    <Content Include="Content\_Sites\itcbet\images\headerbg_notify.png" />
-    <Content Include="Content\_Sites\itcbet\images\logo.jpg" />
-    <Content Include="Content\_Sites\itcbet\images\logoNotify.jpg" />
-    <Content Include="Content\_Sites\itcbet\images\notify.png" />
-    <Content Include="Content\_Sites\itcbet\images\panel.png" />
     <Content Include="Form\GenHistoryImg.aspx" />
     <Content Include="Form\GenImage\GenHistoryImg_GenImage.aspx" />
     <Content Include="Form\GenImage\HistoryImage_BJ.aspx" />
@@ -3517,10 +3418,7 @@
     <Content Include="Views\Management\EditGroup.cshtml" />
     <Content Include="Views\Exchange\Index.cshtml" />
     <Content Include="Views\Management\UserInGroup.cshtml" />
-    <Content Include="Content\_Sites\itcbet\Login.less" />
     <Content Include="Views\Management\ChangeCurrencyUser.cshtml" />
-    <Content Include="Content\themes\Default\commgroup.less" />
-    <Content Include="Content\_Sites\itcbet\Notify.less" />
     <Content Include="Views\Exchange\UpdateExRate.cshtml" />
     <Content Include="Views\MediaText\AddText.cshtml" />
     <Content Include="Views\MediaText\EditText.cshtml" />
@@ -3530,15 +3428,6 @@
     <Content Include="Views\AffiliateInfo\_Commission.cshtml" />
     <Content Include="Views\MediaBanner\EditBanner.cshtml" />
     <None Include=".jshintignore" />
-    <Content Include="Content\_Sites\aoncash\Login.less" />
-    <Content Include="Content\_Sites\aoncash\Notify.less" />
-    <Content Include="Content\_Sites\allbetclub\Login.less" />
-    <Content Include="Content\_Sites\allbetclub\Notify.less" />
-    <Content Include="Content\themes\Default\main.less" />
-    <Content Include="Content\_Sites\be7\Login.less" />
-    <Content Include="Content\_Sites\be7\Notify.less" />
-    <Content Include="Content\_Sites\macaubet\Login.less" />
-    <Content Include="Content\_Sites\macaubet\Notify.less" />
     <Content Include="Deployment.ignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -3568,13 +3457,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Configurations\WebConfigs\Web.uat.config" />
-    <Content Include="Content\_Sites\athena000\Login.less" />
-    <Content Include="Content\_Sites\athena000\Notify.less" />
     <Content Include="App_Browsers\BrowserFile.browser" />
     <Content Include="App_Browsers\ie.browser" />
     <Content Include="App_Browsers\ie11.browser" />
-    <Content Include="Content\_Sites\9bet\Login.less" />
-    <Content Include="Content\_Sites\9bet\Notify.less" />
     <Content Include="Integration\PrivateKey\12bet.snk" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.athena000.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
@@ -3619,8 +3504,6 @@
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.sit.config" />
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
-    <Content Include="Content\_Sites\be7th\Login.less" />
-    <Content Include="Content\_Sites\be7th\Notify.less" />
     <Content Include="GruntFilters.json" />
     <Content Include="Configurations\WebConfigs\Web.athena000.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
@@ -3660,12 +3543,6 @@
     <Content Include="Configurations\WebConfigs\Web.spondemo.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Content\_Sites\spondemo\Login.less" />
-    <Content Include="Content\_Sites\spondemo\Notify.less" />
-    <Content Include="Content\_Sites\aragon88\Login.less" />
-    <Content Include="Content\_Sites\aragon88\Notify.less" />
-    <Content Include="Content\_Sites\bolanation\Login.less" />
-    <Content Include="Content\_Sites\bolanation\Notify.less" />
     <Content Include="Configurations\WebConfigs\Web.itcbet.sit.config" />
     <Content Include="Configurations\WebConfigs\Web.macaubet.sit.config" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
@@ -3825,6 +3702,69 @@
     </Content>
     <Content Include="Views\Notify\OneTokenRestriction.cshtml" />
     <Content Include="Scripts\libraries\Language\Fanex.Grid.Lang.id-ID.js" />
+    <Content Include="www\source\style\vendors\jquery-ui\index.less" />
+    <Content Include="www\source\style\base\_common.less" />
+    <Content Include="www\source\style\layout\_header.less" />
+    <Content Include="www\source\style\abstracts\_variables.less" />
+    <Content Include="www\source\style\abstracts\_mixins.less" />
+    <Content Include="www\source\style\pages\common-pages\index.less" />
+    <Content Include="www\source\style\base\_base.less" />
+    <Content Include="www\source\style\pages\common-pages\main-content.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\accordion.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\alerts.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\bootstrap.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\breadcrumbs.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\button-groups.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\buttons.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\carousel.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\close.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\code.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\component-animations.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\dropdowns.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\forms.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\grid.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\hero-unit.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\labels-badges.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\layouts.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\media.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\mixins.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\modals.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\navbar.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\navs.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\pager.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\pagination.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\popovers.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\progress-bars.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\reset.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\responsive-1200px-min.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\responsive-767px-max.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\responsive-768px-979px.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\responsive-navbar.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\responsive-utilities.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\responsive.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\scaffolding.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\sprites.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\tables.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\thumbnails.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\tooltip.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\type.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\utilities.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\variables.less" />
+    <Content Include="www\source\style\vendors\bootstrap\less\wells.less" />
+    <Content Include="www\source\style\pages\commgroup.less" />
+    <Content Include="www\source\style\pages\sites\athena000\Login.less" />
+    <Content Include="www\source\style\pages\sites\athena000\Notify.less" />
+    <Content Include="www\source\style\pages\sites\itcbet\Login.less" />
+    <Content Include="www\source\style\pages\sites\itcbet\Notify.less" />
+    <Content Include="www\source\style\pages\sites\macaubet\Login.less" />
+    <Content Include="www\source\style\pages\sites\macaubet\Notify.less" />
+    <Content Include="www\source\style\pages\sites\spondemo\Login.less" />
+    <Content Include="www\source\style\pages\sites\spondemo\Notify.less" />
+    <Content Include="www\source\style\pages\betlist\index.less" />
+    <Content Include="www\source\style\pages\betlist\systemparlaydetail.index.less" />
+    <Content Include="www\source\style\vendors\tipsy\index.less" />
+    <Content Include="www\source\style\pages\betlist\rngcasino.handhistory.less" />
+    <Content Include="Views\EmailTesting\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj">
@@ -3862,52 +3802,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\RazorHelper.cshtml" />
-    <Content Include="Content\bootstrap\less\accordion.less" />
-    <Content Include="Content\bootstrap\less\alerts.less" />
-    <Content Include="Content\bootstrap\less\bootstrap.less" />
-    <Content Include="Content\bootstrap\less\breadcrumbs.less" />
-    <Content Include="Content\bootstrap\less\button-groups.less" />
-    <Content Include="Content\bootstrap\less\buttons.less" />
-    <Content Include="Content\bootstrap\less\carousel.less" />
-    <Content Include="Content\bootstrap\less\close.less" />
-    <Content Include="Content\bootstrap\less\code.less" />
-    <Content Include="Content\bootstrap\less\component-animations.less" />
-    <Content Include="Content\bootstrap\less\dropdowns.less" />
-    <Content Include="Content\bootstrap\less\forms.less" />
-    <Content Include="Content\bootstrap\less\grid.less" />
-    <Content Include="Content\bootstrap\less\hero-unit.less" />
-    <Content Include="Content\bootstrap\less\labels-badges.less" />
-    <Content Include="Content\bootstrap\less\layouts.less" />
-    <Content Include="Content\bootstrap\less\media.less" />
-    <Content Include="Content\bootstrap\less\mixins.less" />
-    <Content Include="Content\bootstrap\less\modals.less" />
-    <Content Include="Content\bootstrap\less\navbar.less" />
-    <Content Include="Content\bootstrap\less\navs.less" />
-    <Content Include="Content\bootstrap\less\pager.less" />
-    <Content Include="Content\bootstrap\less\pagination.less" />
-    <Content Include="Content\bootstrap\less\popovers.less" />
-    <Content Include="Content\bootstrap\less\progress-bars.less" />
-    <Content Include="Content\bootstrap\less\reset.less" />
-    <Content Include="Content\bootstrap\less\responsive-1200px-min.less" />
-    <Content Include="Content\bootstrap\less\responsive-767px-max.less" />
-    <Content Include="Content\bootstrap\less\responsive-768px-979px.less" />
-    <Content Include="Content\bootstrap\less\responsive-navbar.less" />
-    <Content Include="Content\bootstrap\less\responsive-utilities.less" />
-    <Content Include="Content\bootstrap\less\responsive.less" />
-    <Content Include="Content\bootstrap\less\scaffolding.less" />
-    <Content Include="Content\bootstrap\less\sprites.less" />
-    <Content Include="Content\bootstrap\less\tables.less" />
-    <Content Include="Content\bootstrap\less\thumbnails.less" />
-    <Content Include="Content\bootstrap\less\tooltip.less" />
-    <Content Include="Content\bootstrap\less\type.less" />
-    <Content Include="Content\bootstrap\less\utilities.less" />
-    <Content Include="Content\bootstrap\less\variables.less" />
-    <Content Include="Content\bootstrap\less\wells.less" />
-    <Content Include="Content\themes\common.less" />
-    <Content Include="Content\themes\Default\header.less" />
-    <Content Include="Content\themes\Default\index.less" />
-    <Content Include="Content\themes\Default\mixins.less" />
-    <Content Include="Content\themes\Default\variables.less" />
     <Content Include="Views\Shared\_LayoutNoHeader.cshtml" />
     <Content Include="Views\Affiliate\Index.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
@@ -4031,6 +3925,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Web References\" />
+    <Folder Include="www\source\style\fonts\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

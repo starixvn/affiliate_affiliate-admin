@@ -1,0 +1,684 @@
+﻿@import "../abstracts/_variables";
+@import "../abstracts/_mixins";
+
+input.monthpicker {
+    background: url("../assets/common-pages/icon-calendar.png") no-repeat scroll right center white !important;
+    padding-left: 3px !important;
+    padding-right: 19px !important;
+    width: 68px !important;
+    cursor: default;
+}
+
+input[disabled].monthpicker {
+    background-color: @inputDisabledBackground !important;
+}
+
+.linkpopup {
+    color: #0079FF;
+    cursor: pointer;
+}
+
+.linkpopup:hover {
+    color: #FF6600;
+}
+
+form {
+    padding: 0;
+    margin: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.ui-dialog .ui-dialog-content {
+    padding: 0px;
+}
+
+.clear {
+    clear: both;
+}
+
+.c {
+    text-align: center !important;
+}
+
+.l {
+    text-align: left !important;
+}
+
+label, input, button, select, textarea {
+    font-size: @fontSize;
+}
+
+.mouse-pointer {
+    cursor: pointer;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* Validation summary valid */
+.input-validation-error {
+    border: 1px solid #f00 !important;
+    background-color: #fee !important;
+}
+
+.validation-summary-valid.success ul {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    border: solid 1px #4F8A10;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.validation-summary-errors ul {
+    padding: 5px 25px;
+    color: red;
+    background-color: #F9EED0;
+    border: 1px solid #ECE388;
+    .border-radius(3px);
+    .box-shadow(3px 3px 3px rgba(0, 0, 0, 0.5));
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.validation-summary-valid ul {
+    padding: 10px 30px;
+    line-height: 1.6em;
+    .border-radius(3px);
+    .box-shadow(1px 1px 3px rgba(0,0,0,0.6));
+    margin: 0 0 10px;
+    list-style-type: circle;
+    .transition(all 0.2s ease-in-out);
+    background-color: #F9EED0;
+    border: solid 1px #ECE388;
+}
+
+/* Datepicker */
+input.datepicker {
+    width: 68px !important;
+    cursor: pointer;
+}
+
+input[disabled].datepicker {
+    background-color: @inputDisabledBackground !important;
+}
+
+.ui-datepicker-trigger {
+    margin-left: 5px;
+}
+
+/* jQUERY UI TOOLTIP */
+.ui-widget.ui-tooltip {
+    #gradient.vertical(#fff, #f5f5f5);
+    border: 1px solid #777;
+    padding: 1px 8px;
+    .border-radius(3px);
+    .box-shadow(none);
+}
+
+.ui-widget.ui-tooltip.warning {
+    #gradient.vertical(#FFE691, lighten(#FFE691, 10%));
+    .box-shadow(~"0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.6) inset");
+    border-color: #F6DB7B;
+    color: #7D5912;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.underline {
+    text-decoration: underline !important;
+}
+
+.table th {
+    text-align: center;
+}
+
+.row-fluid [class*="span"] {
+    min-height: 0px;
+}
+
+.form-group {
+    padding-bottom: 10px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.grid-title {
+    margin: 0;
+    float: left;
+    border-color: #CACACA;
+    border-bottom: 0;
+    background: url(../assets/common-pages/bg-pager-title-grid.png) repeat-x center left;
+
+    .icon-customize {
+        background: url(../assets/common-pages/icon-button-more.png) no-repeat -157px -5px;
+        height: 18px;
+        width: 16px;
+        margin: 0 2px;
+        padding: 0 6px;
+    }
+
+    .icon-add-user {
+        .icon-customize;
+
+        &:hover {
+            background-position: -157px -32px;
+        }
+    }
+
+    .icon-add-group {
+        .icon-customize;
+        background-position: -129px -5px;
+        width: 18px;
+
+        &:hover {
+            background-position: -129px -32px;
+        }
+    }
+
+    .icon-add-config {
+        .icon-customize;
+        background-position: -183px -5px;
+        width: 22px;
+
+        &:hover {
+            background-position: -183px -32px;
+        }
+    }
+
+    .icon-add-affDomain {
+        .icon-customize;
+        background-position: -97px -5px;
+        width: 22px;
+
+        &:hover {
+            background-position: -97px -32px;
+        }
+    }
+
+    .icon-add-message {
+        .icon-customize;
+        background-position: -65px -7px;
+        width: 22px;
+
+        &:hover {
+            background-position: -65px -34px;
+        }
+    }
+
+    .icon-add-banner {
+        .icon-customize;
+        background-position: -35px -5px;
+        width: 22px;
+
+        &:hover {
+            background-position: -35px -32px;
+        }
+    }
+
+    .icon-add-commgrp {
+        .icon-customize;
+        background-position: -3px -5px;
+        width: 22px;
+
+        &:hover {
+            background-position: -3px -32px;
+        }
+    }
+
+    .icon-edit-message {
+        .icon-customize;
+        background-position: -210px -7px;
+        width: 22px;
+        border: none;
+        outline: none;
+
+        &:hover {
+            background-position: -210px -34px;
+        }
+    }
+
+    .icon-assign-permission-to-multi-user {
+        .icon-customize;
+        background-position: -286px -5px;
+        width: 22px;
+        border: none;
+        outline: none;
+
+        &:hover {
+            background-position: -286px -32px;
+        }
+    }
+
+    .simplemode {
+        .setIcon(-185px, -416px, 20px, 16px);
+        cursor: pointer;
+    }
+
+    .fullmode {
+        .setIcon(-165px, -416px, 20px, 16px);
+        cursor: pointer;
+    }
+
+    .icon-edit-account-type {
+        .icon-customize;
+        background-position: -237px -5px;
+        width: 22px;
+        border: none;
+        outline: none;
+
+        &:hover {
+            background-position: -237px -32px;
+        }
+    }
+
+    .icon-edit-commission-group {
+        .icon-customize;
+        background-position: -263px -5px;
+        width: 22px;
+        border: none;
+        outline: none;
+
+        &:hover {
+            background-position: -263px -32px;
+        }
+    }
+
+    .tab-title {
+        display: inline-block;
+        padding: 0 10px;
+        height: 25px;
+        line-height: 25px;
+        left: -15px;
+        margin-left: -4px;
+        margin-top: -5px;
+        margin-right: 4px;
+        cursor: pointer;
+        border-right: 1px solid gray;
+    }
+
+    .focus-tab-title {
+        background-color: #cfcfcf;
+        color: #1d3a90;
+    }
+}
+
+.freegrid {
+    font-size: 1.0em;
+    display: none;
+    border-color: #CACACA;
+    clear: both;
+
+    .row-gray td {
+        background-color: #b0b0b0 !important;
+    }
+
+    .free-top-left table thead th, .col_header table thead th {
+        background: #DDEBF8;
+        color: #343434;
+        border-color: #c4d8f1;
+        font-weight: normal;
+    }
+
+    td, .grid-fixed-table td {
+        border-color: #EBEAE6;
+    }
+
+    .freegrid-even td {
+        background-color: #F0F0F0;
+        border-color: #e3e3e3;
+    }
+
+    .sub-total-group td {
+        background-color: #dbe5f0;
+        border-color: #e3e3e3;
+        font-weight: bold;
+    }
+
+    .total-of-currencies td {
+        background-color: #fee1c3;
+    }
+
+    .blue-color {
+        color: #3b97fc;
+    }
+
+    .blue-bold-color {
+        color: #1674d1;
+        font-weight: bold;
+    }
+
+    .amount-region {
+        .icon-edit:hover, .icon-ok:hover, .icon-remove:hover {
+            cursor: pointer;
+        }
+    }
+
+    .total-of-products td {
+        background-color: #c2d9eb;
+    }
+}
+
+.freegrid .row_footer table thead, .freegrid .col_footer table thead, .freegrid {
+    tr.total-whole-range {
+        th, td {
+            background-color: #fcc185 !important;
+        }
+    }
+}
+
+.noinfo {
+    border-color: #FFAF00;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 4px #FFAF00;
+    outline: 0 none;
+    text-align: center;
+    height: 25px !important;
+    line-height: 25px;
+    font-weight: bold;
+}
+
+.grid-title .grid-title-label {
+    color: #272727;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.freegrid .y-scrollbar, .freegrid .x-scrollbar {
+    border-left: 1px solid #CACACA;
+}
+
+.freegrid tr.highlight-row:hover td {
+    background-color: #fbf4e6 !important;
+}
+
+.freegrid .mousehoverbeyond td {
+    background-color: #fbf4e6 !important;
+}
+
+// pager
+.freegrid .grid-pager {
+    background: url(../assets/common-pages/bg-pager-title-grid.png) #E1E1E1 repeat-x top left;
+}
+//Row color in fanexgrid
+.freegrid .freegrid-even, .freegrid .highlight-row, .freegrid .grid-fixed-table .highlight-row {
+    &.pending td, &.proccessing td, &.processing td {
+        background-color: #DDEEC4;
+    }
+
+    &.approved td, &.bf td {
+        background-color: #fff;
+    }
+
+    &.rejected td, &.disapproved td, &.removed td {
+        background-color: #CCD0D3;
+    }
+
+    &.cancelled td {
+        background-color: #FED3CA;
+    }
+
+    &.locked td {
+        background-color: #CBFEFF;
+    }
+
+    &.closed td {
+        background-color: #DBE1F9;
+    }
+
+    &.total th {
+        background-color: #fcc185 !important;
+    }
+}
+
+.grid-status {
+    display: none;
+    float: left;
+    width: 100%;
+}
+
+ul.status {
+    padding-top: 10px;
+    width: 100%;
+    text-align: left;
+
+    li {
+        line-height: 20px;
+        padding-left: 0;
+        margin-right: 20px;
+        color: #333;
+        font-style: italic;
+
+        .pending, .approved, .rejected, .cancelled, .closed, .processing, .locked, .disapproved, .removed {
+            border-radius: 2px;
+            display: inline-block;
+            height: 14px;
+            width: 14px;
+            float: left;
+            margin: 2px 5px 0 0;
+            border: 1px solid #cacaca;
+        }
+
+        .pending, .processing {
+            background-color: #DDEEC4;
+        }
+
+        .approved {
+            background-color: #fff;
+        }
+
+        .rejected, .disapproved, .removed {
+            background-color: #CCD0D3;
+        }
+
+        .cancelled {
+            background-color: #FED3CA;
+        }
+
+        .locked {
+            background-color: #CBFEFF;
+        }
+
+        .closed {
+            background-color: #DBE1F9;
+        }
+    }
+}
+
+#itemperpage {
+    .border-radius(0);
+}
+
+.numberlist {
+    border: none;
+}
+
+#pagination {
+    color: #5C5C5C;
+
+    div.itemperpage {
+        color: #131313;
+        font-weight: normal;
+        margin-top: 1px;
+    }
+
+    div.detailtext {
+        margin: 1px 0 0;
+    }
+}
+
+/* Dropdown Check List */
+
+.ui-multiselect-menu {
+    padding: 0;
+    border-top: 0;
+}
+
+.ui-multiselect {
+    border-radius: 0;
+    height: 23px;
+    //margin-left: 4px;
+    position: relative;
+    color: #333335;
+    background: url(../assets/common-pages/bg-dropdown.jpg) repeat-x top center;
+    padding: 0 0 2px 4px;
+    font-size: 11px;
+}
+
+.ui-corner-all {
+    border-radius: 0;
+}
+
+.ui-widget-content {
+    border-color: #CDCDCD;
+}
+
+.ui-widget-content .ui-state-hover {
+    background: #e3ecf3;
+    .border-radius(0);
+    border: 0;
+}
+
+.ui-icon-triangle-1-s {
+    border-left: 1px solid #ccc;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 22px;
+    width: 19px;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active, .ui-state-hover {
+    border-color: #ccc;
+}
+
+.ui-widget-header {
+    background: #EFEFEF;
+    border-width: 0 0 1px 0;
+    border-bottom-color: #CCC;
+    .border-radius(0);
+    color: #222;
+    font-weight: normal;
+    padding: 2px 0 0px 4px;
+
+    a {
+        font-size: 11px;
+        line-height: 18px;
+    }
+}
+
+.ui-multiselect-checkboxes li {
+    padding-right: 0;
+    border-bottom: 1px solid #ebe9ea;
+    float: left;
+    min-width: 100%;
+
+    label {
+        padding: 0 2px;
+        border: 0;
+        margin: 0;
+        line-height: 20px;
+        white-space: nowrap;
+
+        input[type='checkbox'] {
+            margin-top: -2px;
+        }
+    }
+}
+
+.ui-multiselect-single .ui-multiselect-checkboxes label {
+    padding: 0 0 0 4px !important;
+    border-width: 1px 0 0;
+    border-top-color: #ebe9ea;
+}
+
+.required {
+    color: red;
+    margin-left: 3px;
+    font-weight: bold;
+}
+
+.small-textarea {
+    width: 320px;
+    height: 40px;
+}
+
+.medium-textarea {
+    width: 320px;
+    height: 60px;
+}
+
+.large-textarea {
+    width: 320px;
+    height: 100px;
+}
+
+.start-group {
+    margin-top: 10px;
+}
+
+.important {
+    color: Red;
+}
+
+.xsmall-textarea {
+    width: 170px;
+    height: 50px;
+}
+
+/*** Override css of jQuery UI dialog box ***/
+.ui-dialog {
+    border: 1px solid #747474;
+    .border-radius(2px);
+    .box-shadow(3px 3px 9px rgba(0,0,0, 0.5));
+    background: none repeat scroll 0 0 #E4EBF5;
+
+    &.ui-widget-content {
+        background: none repeat scroll 0 0 #E4EBF5;
+    }
+
+    .ui-widget-header {
+        background-color: #E4EBF5;
+        font-weight: bold;
+        color: #323433;
+        border: none;
+
+        .ui-state-default {
+            background: none repeat scroll 0 0 #E3ECF3;
+            border: none;
+            .border-radius(0);
+        }
+    }
+
+    .ui-dialog-content {
+        padding-top: 10px;
+        background-color: #fff;
+        margin: 2px;
+        border: 1px solid #c3c3c3;
+        color: #0b7dd5;
+    }
+}
+
+.ui-widget-overlay {
+    position: fixed;
+}

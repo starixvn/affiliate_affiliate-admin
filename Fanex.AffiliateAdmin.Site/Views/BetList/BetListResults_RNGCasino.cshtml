@@ -4,20 +4,19 @@
 @using Fanex.AffiliateAdmin.Core.Utilities
 @model Fanex.AffiliateAdmin.Models.BetListResultsRNGCasinoViewModel
 
-@Styles.Render("~/css/betlist")
+@section css{
+    <link href="@Url.RenderLink("~/www/dist/style/betlist.css")" rel="stylesheet" type="text/css" />
 
-<style type="text/css">
-    .popup .container-fluid
-    {
-        width : auto !important;
-    }
-    
-    .popup .container-fluid .span12.contents .leftColumn
-    {
-        width: 715px !important;
-    }
-    
-</style>
+    <style type="text/css">
+        .popup .container-fluid {
+            width: auto !important;
+        }
+
+            .popup .container-fluid .span12.contents .leftColumn {
+                width: 715px !important;
+            }
+    </style>
+}
 
 @if (Model == null)
 {
@@ -149,14 +148,15 @@ else
         <input type="hidden" name="ExchangeRate" id="ExchangeRate" value="@Model.Param.ExchangeRate"/>
     }
 }
-    
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/js/betlistrngcasino")
 
-<script type="text/javascript">
-    var MSG = {
-        Results: "@Lang.BetListResults",
-        HandHistoryDetails: "@Lang.HandHistoryDetails"
-    };
-</script>
+@section scripts{
+    @Scripts.Render("~/js/betlistrngcasino")
+
+    <script type="text/javascript">
+        var MSG = {
+            Results: "@Lang.BetListResults",
+            HandHistoryDetails: "@Lang.HandHistoryDetails"
+        };
+    </script>
+}
 

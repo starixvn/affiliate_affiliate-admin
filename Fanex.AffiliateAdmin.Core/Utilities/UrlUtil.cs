@@ -31,7 +31,7 @@
             }
 
             return new Uri(request.Url.Scheme + Uri.SchemeDelimiter + request.Url.Host
-                + ((request.Url.IsDefaultPort || AppSettings.Environment.Equals("Production", StringComparison.OrdinalIgnoreCase))
+                + ((request.Url.IsDefaultPort || !AppSettings.LocalTest)
                 ? string.Empty : ":" + request.Url.Port) + subDomainPath);
         }
     }

@@ -7,11 +7,12 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
-    <link href="@Url.Content(string.Format("~/Content/_Sites/{0}/images/favicon.jpg?{1}", AppSettings.Layout, DateTime.Now.Ticks))" rel="shortcut icon" type="image/jpg" />
+    <link href="@Url.RenderLink(string.Format("~/www/dist/style/{0}/assets/static/favicon.jpg", AppSettings.Layout))" rel="shortcut icon" type="image/jpg" />
     <meta name="viewport" content="width=device-width" />
-    @Styles.Render("~/bundles/css")
+    <link href="@Url.RenderLink("~/www/dist/style/jquery-ui.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.RenderLink("~/www/dist/style/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.RenderLink("~/www/dist/style/common-pages.css")" rel="stylesheet" type="text/css" />
     @RenderSection("css", required: false)
-    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
     @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
@@ -34,6 +35,7 @@
         </div>
     </div>
 
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/js")
     @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)
     {
@@ -43,7 +45,6 @@
     {
         @Scripts.Render("~/Scripts/site/_Session.js")
     }
-    @RenderSection("scripts", required: false)
     <script type="text/javascript">
         var Lang = {
             NoDataInfo: '@Html.Raw(Lang.NoInfo)',
@@ -59,6 +60,7 @@
             $("#AffiliateInfo").addClass("active");
         });
     </script>
+    @RenderSection("scripts", required: false)
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-93927620-2"></script>
     <script>

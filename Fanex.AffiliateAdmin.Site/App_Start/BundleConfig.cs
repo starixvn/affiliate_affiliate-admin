@@ -3,7 +3,6 @@
     using System.IO;
     using System.Web;
     using System.Web.Optimization;
-    using Fanex.AffiliateAdmin.Core.Configurations;
 
     /// <summary>
     /// Bundle Config.
@@ -22,17 +21,11 @@
 
             GetBundleForLogin(bundles);
 
-            GetBundleForNotify(bundles);
-
-            GetBundleForCommonCss(bundles);
-
             GetBundleForCommonJs(bundles);
 
             GetBundleForDataRangeJs(bundles);
 
             GetBundleForEachScriptFile(bundles);
-
-            GetBundleForCommissionGroup(bundles);
 
             GetBundleForCompanyWinLossJs(bundles);
 
@@ -53,22 +46,11 @@
         /// <param name="bundles">Bundle collection.</param>
         private static void GetBundleForLogin(BundleCollection bundles)
         {
-            bundles.Add(new LessBundle("~/bundles/login")
-                    .Include(
-                        string.Format("~/Content/_Sites/{0}/Login.less", AppSettings.Layout),
-                        "~/Content/themes/base/AffiliateAdmin.css"));
-
             bundles.Add(new ScriptBundle("~/bundles/loginJs").Include(
                 "~/Scripts/libraries/cryptoJS.js",
                 "~/Scripts/libraries/jquery.placeholder.js",
                 "~/Scripts/libraries/jquery.blockUI.js",
                 "~/Scripts/site/Login.js"));
-        }
-
-        private static void GetBundleForNotify(BundleCollection bundles)
-        {
-            bundles.Add(new LessBundle("~/bundles/notify")
-                .Include(string.Format("~/Content/_Sites/{0}/Notify.less", AppSettings.Layout)));
         }
 
         /// <summary>
@@ -135,35 +117,6 @@
         }
 
         /// <summary>
-        /// Get bundle for common style.
-        /// </summary>
-        /// <param name="bundles">Bundle collection.</param>
-        private static void GetBundleForCommonCss(BundleCollection bundles)
-        {
-            bundles.Add(new LessBundle("~/bundles/css")
-                            .Include(
-                                "~/Content/themes/base/jquery.ui.core.css",
-                                "~/Content/themes/base/jquery.ui.resizable.css",
-                                "~/Content/themes/base/jquery.ui.selectable.css",
-                                "~/Content/themes/base/jquery.ui.accordion.css",
-                                "~/Content/themes/base/jquery.ui.autocomplete.css",
-                                "~/Content/themes/base/jquery.ui.button.css",
-                                "~/Content/themes/base/jquery.ui.dialog.css",
-                                "~/Content/themes/base/jquery.ui.slider.css",
-                                "~/Content/themes/base/jquery.ui.tabs.css",
-                                "~/Content/themes/base/jquery.ui.datepicker.css",
-                                "~/Content/themes/base/jquery.ui.progressbar.css",
-                                "~/Content/themes/base/jquery.ui.theme.css",
-                                "~/Content/themes/base/jquery.multiselect.css",
-                                "~/Content/themes/base/daterangepicker.css",
-                                "~/Content/themes/base/monpickr.css",
-                                "~/Content/themes/base/Fanex.Grid.css",
-                                "~/Content/themes/base/Fanex.Pagination.css",
-                                "~/Content/themes/base/AffiliateAdmin.css")
-                            .Include("~/Content/themes/Default/index.less"));
-        }
-
-        /// <summary>
         /// Get bundle for common java-script.
         /// </summary>
         /// <param name="bundles">Bundle collection.</param>
@@ -226,48 +179,20 @@
         }
 
         /// <summary>
-        /// Get bundle for each script file.
-        /// </summary>
-        /// <param name="bundles">Bundle collection.</param>
-        private static void GetBundleForCommissionGroup(BundleCollection bundles)
-        {
-            bundles.Add(new LessBundle("~/bundles/commgroup")
-                .Include("~/Content/themes/Default/commgroup.less"));
-        }
-
-        /// <summary>
         /// Get Bundle for Bet List.
         /// </summary>
         /// <param name="bundles">Bundle input.</param>
         private static void GetBundleForBetList(BundleCollection bundles)
         {
-            bundles.Add(new LessBundle("~/css/betlist")
-               .Include("~/Content/betlist/global.content.css")
-               .Include("~/Content/betlist/betlist.core.css")
-               .Include("~/Content/betlist/betlist.css")
-               .Include("~/Content/betlist/systemparlay.detail.css")
-               .Include("~/Content/betlist/rngcasino.handhistory.css")
-               .Include("~/Content/betlist/fanex.result.css")
-               .Include("~/Content/betlist/custom-betlist.css"));
-
             bundles.Add(new Bundle("~/js/betlist")
                 .Include("~/Scripts/site/betlist.js"));
 
             bundles.Add(new ScriptBundle("~/js/betlistrngcasino")
                 .Include("~/Scripts/site/rngcasino-results.js"));
-
-            bundles.Add(new LessBundle("~/css/systemparlaydetails")
-
-           .Include("~/Content/betlist/global.content.css")
-           .Include("~/Content/betlist/systemparlay.detail.css"));
         }
 
         private static void GetBundleForToolTips(BundleCollection bundles)
         {
-            bundles.Add(new LessBundle("~/css/tooltip")
-                        .Include("~/Content/tipsy/tipsy.css")
-                        .Include("~/Content/tipsy/custom-tipsy.css"));
-
             bundles.Add(new ScriptBundle("~/js/tooltip")
                 .Include("~/Scripts/libraries/jquery.tipsy.js"));
         }

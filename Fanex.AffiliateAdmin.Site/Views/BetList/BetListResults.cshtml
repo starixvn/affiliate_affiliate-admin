@@ -2,19 +2,20 @@
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
 
-@Styles.Render("~/css/betlist")
-@Styles.Render("~/css/tooltip")
+@section css{
+    <link href="@Url.RenderLink("~/www/dist/style/betlist.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.RenderLink("~/www/dist/style/tipsy.css")" rel="stylesheet" type="text/css" />
 
-<style type="text/css">
-    .popup .container-fluid
-    {
-        width : auto !important;
-    }
-    .popup .container-fluid .span12.contents .leftColumn
-    {
-        width: 715px !important;
-    }
-</style>
+    <style type="text/css">
+        .popup .container-fluid {
+            width: auto !important;
+        }
+
+            .popup .container-fluid .span12.contents .leftColumn {
+                width: 715px !important;
+            }
+    </style>
+}
 
 @if (string.IsNullOrEmpty(ViewBag.Data))
 {
@@ -25,13 +26,15 @@ else
     @Html.Raw(ViewBag.Data)
 }
 
-@Scripts.Render("~/js/betlist")
-@Scripts.Render("~/js/tooltip")
+@section scripts{
+    @Scripts.Render("~/js/betlist")
+    @Scripts.Render("~/js/tooltip")
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.penalty-result').tipsy({ opacity: 1.0 });
-    });
-</script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.penalty-result').tipsy({ opacity: 1.0 });
+        });
+    </script>
+}
 
 

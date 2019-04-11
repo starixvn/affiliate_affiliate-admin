@@ -2,12 +2,13 @@
     ViewBag.Title = Lang.Error;
     Layout = null;
 }
+@using Fanex.AffiliateAdmin.Core.Configurations
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/bundles/notify")
+    <link href="@Url.RenderLink(string.Format("~/www/dist/style/{0}/notify.css", AppSettings.Layout))" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 </head>
 <body>

@@ -2914,4 +2914,7 @@
   <data name="InValidPaymentRequestStatus" xml:space="preserve">
     <value>Invalid Payment Request Status</value>
   </data>
+  <data name="AffPlayer" xml:space="preserve">
+    <value>Aff. Player</value>
+  </data>
 </root>

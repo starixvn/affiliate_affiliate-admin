@@ -126,7 +126,7 @@ var AffiliateList = (function ($) {
                         gridOption.showFooter = false;
                         gridOption.footerRows = [];
                     } else {
-                        gridOption.footerRows = AffiliateList.getFooterRows(data.SubTotal, data.Total, 14, data.HasMultipleCurrency);
+                        gridOption.footerRows = AffiliateList.getFooterRows(data.SubTotal, data.Total, 15, data.HasMultipleCurrency);
                     }
 
                     gridObject.removeClass("noinfo").fanexGrid(gridOption);
@@ -166,7 +166,6 @@ var AffiliateList = (function ($) {
                         if (idx === 0) {
                             columns.push({ Value: window.Lang.SubTotal, Name: "ROW", MergeColNumber: colspan, MergeRowNumber: subTotalRowCount, TdClass: realSubTotalclass });  // jshint ignore:line
                         }
-
                         columns.push({ Value: item.CurrencyCode, Name: "Currency" });
                         columns.push({ Value: item.Total, Name: "BF" });
                         columns.push({ Value: item.TotalMembers, Name: "TotalMembers" });

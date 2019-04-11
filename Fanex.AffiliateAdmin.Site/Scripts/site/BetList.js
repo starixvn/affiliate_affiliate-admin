@@ -193,21 +193,6 @@ var BetList = (function ($) {
             }
         },
 
-        ViewCasinoHandHistory: function (refNo) {
-            var url = AFFILIATE.getAbsoluteUrl('BetList/RNGCasinoData');
-            var para = $('form').serializeObject2();
-
-            var urlParam = $("#casino-hand-history-" + refNo).attr('url-param');
-            url += urlParam;
-            url = QueryString.setParam(url, "exchangeRate", para.ExchangeRate);
-            url = QueryString.setParam(url, "toCurrencyId", para.ToCurrencyId);
-            url = QueryString.setParam(url, "toCurrencyCode", para.ToCurrencyCode);
-            url = QueryString.setParam(url, "affId", para.AffId);
-
-            var title = MSG.Results;
-            AFFILIATE.openDialogUrl(url, title, { width: 1097, height: 500 });
-        },
-
         showRnGCasinoDetails: function (transId, winlostDate, custId, transType) {
             var para = $('form').serializeObject2();
             var url = AFFILIATE.getAbsoluteUrl('BetList/RngCasinoDetailTicket');

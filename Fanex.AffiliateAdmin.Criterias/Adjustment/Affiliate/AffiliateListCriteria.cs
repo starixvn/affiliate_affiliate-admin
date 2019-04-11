@@ -60,5 +60,8 @@
         {
             return true;
         }
+
+        [SpParam(SqlParamName = "Player_Username")]
+        public string AffPlayer { get; set; }
     }
 }

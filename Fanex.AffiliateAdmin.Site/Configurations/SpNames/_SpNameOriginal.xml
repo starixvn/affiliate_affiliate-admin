@@ -12,12 +12,12 @@
     <Setting Key="AffAdmin_GetDefaultPSPExchange" SpName="AffAdmin_GetDefaultPSPExchange" DbName="" Plain="0" />
   </Function>
   <Function Name="Aff-Account">
-    <Setting Key="AffAdmin_CheckIn" SpName="AffAdmin_CheckIn" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="Aff_InternalLogin" SpName="Aff_InternalLogin" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_CheckIn" SpName="AffAdmin_CheckIn" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Aff_InternalLogin" SpName="Aff_InternalLogin" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="" Plain="0" />
-    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" >
+    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" >
       <Mapping DataField="UserID" ObjectProperty="CustID"/>
     </Setting>
   </Function>
@@ -56,7 +56,6 @@
     <Setting Key="AffAdmin_CustomerInsMemberManually" SpName="AffAdmin_CustomerInsMemberManually" DbName="" Plain="0" />
     <Setting Key="AffAdmin_AffiliateUpdAccountType" SpName="AffAdmin_AffiliateUpdAccountType" DbName="" Plain="0" />
     <Setting Key="Aff_CustomerSelByUserName" SpName="Aff_CustomerSelByUserName" DbName="DBEXT.bodb02.bodbAdminNet" Plain="0" />
-    <Setting Key="Aff_SyncInternalUser" SpName="Aff_SyncInternalUser" DbName="DBLIC.bodb_Licensee.bodbLicenseeNet" Plain="0" />
 
   </Function>
   <Function Name="System Settings">

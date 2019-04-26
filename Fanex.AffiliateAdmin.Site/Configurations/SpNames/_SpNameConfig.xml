@@ -1,30 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item LicenseeName="spondemo" Environment="SIT" SpName="test" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_UserOnlineList" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="Aff_UserLogin" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_CheckIn" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_UserInfoSelByUserName" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_ReCheckIn" Suffix="_xtest"></item>
-
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_AccountUpdPwd" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_AdminUpdPwd" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_AccountIns" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_GroupInfoUpd" Suffix="_xtest"></item>
   
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_GroupPolicySel" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_GroupInfoDel" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_GroupInfoIns" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_SelByCustID" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_SystemSupportedCurrencies" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_UserCurrencyIns" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_UserCurrencySel" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_AdminPolicySelByCustID" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_Batch_PolicySel" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_SelByGroupID" Suffix="_xtest"></item>
-  
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_GroupInfoSel" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_GroupPolicyUpd" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_PolicySelByCustID" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL" SpName="AffAdmin_Con_PolicyUpd" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_UserOnlineList" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="Aff_UserLogin" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_CheckIn" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_UserInfoSelByUserName" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_ReCheckIn" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_AccountUpdPwd" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_AdminUpdPwd" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_AccountIns" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_GroupInfoUpd" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_GroupPolicySel" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_GroupInfoDel" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_GroupInfoIns" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_SelByCustID" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_SystemSupportedCurrencies" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_UserCurrencyIns" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_UserCurrencySel" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_AdminPolicySelByCustID" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_Batch_PolicySel" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_SelByGroupID" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_GroupInfoSel" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_GroupPolicyUpd" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_PolicySelByCustID" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_PolicyUpd" Suffix="_xtest"></item>
 </Root>

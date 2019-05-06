@@ -16,7 +16,7 @@
     <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="Aff_InternalLogin" SpName="Aff_InternalLogin" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" >
       <Mapping DataField="UserID" ObjectProperty="CustID"/>
     </Setting>
@@ -135,18 +135,18 @@
   <Function Name="Management">
     <Setting Key="AffAdmin_Con_AccountUpd" SpName="AffAdmin_Con_AccountUpd" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AccountIns" SpName="AffAdmin_Con_AccountIns" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_AccountUpdPwd" SpName="AffAdmin_AccountUpdPwd" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_GroupInfoIns" SpName="AffAdmin_Con_GroupInfoIns" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_GroupInfoUpd" SpName="AffAdmin_Con_GroupInfoUpd" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_GroupInfoDel" SpName="AffAdmin_Con_GroupInfoDel" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupPolicyUpd" SpName="AffAdmin_Con_GroupPolicyUpd" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupPolicyUpd" SpName="AffAdmin_Con_GroupPolicyUpd" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_Con_GroupPolicySel" SpName="AffAdmin_Con_GroupPolicySel" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_Batch_PolicySel" SpName="AffAdmin_Con_Batch_PolicySel" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_Batch_PolicySel" SpName="AffAdmin_Con_Batch_PolicySel" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_UserCurrencySel" SpName="AffAdmin_UserCurrencySel" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_UserCurrencyIns" SpName="AffAdmin_UserCurrencyIns" DbName="DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet" Plain="0" />
   </Function>

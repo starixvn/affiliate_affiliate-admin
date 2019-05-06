@@ -16,7 +16,7 @@
     <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_ReCheckIn_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="Aff_InternalLogin" SpName="Aff_InternalLogin" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" >
       <Mapping DataField="UserID" ObjectProperty="CustID"/>
     </Setting>
@@ -135,18 +135,18 @@
   <Function Name="Management">
     <Setting Key="AffAdmin_Con_AccountUpd" SpName="AffAdmin_Con_AccountUpd" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_Con_AccountIns" SpName="AffAdmin_Con_AccountIns_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_AccountUpdPwd" SpName="AffAdmin_AccountUpdPwd_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_GroupInfoIns" SpName="AffAdmin_Con_GroupInfoIns_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_GroupInfoUpd" SpName="AffAdmin_Con_GroupInfoUpd_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_Con_GroupInfoDel" SpName="AffAdmin_Con_GroupInfoDel_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupPolicyUpd" SpName="AffAdmin_Con_GroupPolicyUpd_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupPolicyUpd" SpName="AffAdmin_Con_GroupPolicyUpd_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_Con_GroupPolicySel" SpName="AffAdmin_Con_GroupPolicySel_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_Batch_PolicySel" SpName="AffAdmin_Con_Batch_PolicySel_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_Batch_PolicySel" SpName="AffAdmin_Con_Batch_PolicySel_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
     <Setting Key="AffAdmin_UserCurrencySel" SpName="AffAdmin_UserCurrencySel_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_UserCurrencyIns" SpName="AffAdmin_UserCurrencyIns_xtest" DbName="DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet" Plain="0" />
   </Function>

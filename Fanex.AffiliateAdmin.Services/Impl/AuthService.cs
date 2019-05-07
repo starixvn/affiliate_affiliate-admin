@@ -41,12 +41,6 @@
             _systemSettingService = systemSettingService ?? new SystemSettingService();
         }
 
-        public ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account)
-        {
-            Check.Argument.IsNotNull(criteria, "criteria");
-            return _authDataAccess.LoginInternal(criteria, out account);
-        }
-
         public ResultViewModel Login(LoginCriteria criteria, out Account account, string logInToken)
         {
             ResultViewModel result = null;

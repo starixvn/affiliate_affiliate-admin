@@ -11,9 +11,6 @@
     public interface IAuthDataAccess
     {
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
-        ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account);
-
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
         ResultViewModel Login(LoginCriteria criteria, out Account account);
 
         /// <summary>

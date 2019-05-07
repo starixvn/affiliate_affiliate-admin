@@ -25,4 +25,9 @@
   <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_GroupPolicyUpd" Suffix="_xtest"></item>
   <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_PolicySelByCustID" Suffix="_xtest"></item>
   <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_PolicyUpd" Suffix="_xtest"></item>
+
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_AffiliateSel" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_CommGroupSel" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_CommGroupSelByID" Suffix="_xtest"></item>
+  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_Con_AccountUpd" Suffix="_xtest"></item>
 </Root>

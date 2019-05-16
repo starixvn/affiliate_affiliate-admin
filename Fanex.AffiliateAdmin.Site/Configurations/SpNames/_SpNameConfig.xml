@@ -1,9 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item LicenseeName="spondemo" Environment="SIT" SpName="test" Suffix="_xtest"></item>
-  <item LicenseeName="athena000" Environment="LOCAL,SIT,UAT" SpName="AffAdmin_AffiliateSel" Suffix="_xtest"></item>
-  <item LicenseeName="itcbet" Environment="LOCAL,SIT,UAT" SpName="AffAdmin_AffiliateSel" Suffix="_xtest"></item>
-  <item LicenseeName="macaubet" Environment="LOCAL,SIT,UAT" SpName="AffAdmin_AffiliateSel" Suffix="_xtest"></item>
-  <item LicenseeName="spondemo" Environment="LOCAL,SIT,UAT" SpName="AffAdmin_AffiliateSel" Suffix="_xtest"></item>
-  <item LicenseeName="" Environment="DEV" SpName="AffAdmin_AffiliateSel" Suffix="_xtest"></item>
 </Root>

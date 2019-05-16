@@ -10,28 +10,6 @@
 
     public class AuthDataAccess : IAuthDataAccess
     {
-        public ResultViewModel LoginInternal(LoginInternalCriteria criteria, out Account account)
-        {
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                objectDb.ExecuteNonQuery(criteria.GetSpParams());
-                var outputParams = objectDb.GetOuputParams();
-                var result = new ResultViewModel();
-                account = new Account();
-                result.ErrorCode = Convert.ToInt32(outputParams["errcode"]);
-                result.ErrorMessage = Convert.ToString(outputParams["errmsg"]);
-                if (result.ErrorCode == 0)
-                {
-                    account.CustID = Convert.ToInt32(outputParams["userid"]);
-                    account.IsIT = false;
-                    account.ServerId = Convert.ToInt32(outputParams["serverid"]);
-                    account.Username = criteria.Username;
-                }
-
-                return result;
-            }
-        }
-
         public ResultViewModel Login(LoginCriteria criteria, out Account account)
         {
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))

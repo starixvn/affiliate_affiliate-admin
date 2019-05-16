@@ -2,7 +2,7 @@
 <Functions SiteId="34" SiteName="Affiliate - Athena - Admin">
   <Function Name="Core">
     <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_AdminUpdPwd" SpName="AffAdmin_AdminUpdPwd_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AdminUpdPwd" SpName="AffAdmin_AdminUpdPwd" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="ExchangeRate">
     <Setting Key="AffAdmin_ExchangeSel" SpName="AffAdmin_ExchangeSel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
@@ -12,21 +12,21 @@
     <Setting Key="AffAdmin_GetDefaultPSPExchange" SpName="AffAdmin_GetDefaultPSPExchange" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Aff-Account">
-    <Setting Key="AffAdmin_CheckIn" SpName="AffAdmin_CheckIn_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_ReCheckIn_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" >
+    <Setting Key="AffAdmin_CheckIn" SpName="AffAdmin_CheckIn" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" >
       <Mapping DataField="UserID" ObjectProperty="CustID"/>
     </Setting>
   </Function>
   <Function Name="Home Function">
     <Setting Key="AffAdmin_HomeGeneralInfo" SpName="AffAdmin_HomeGeneralInfo" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_UserOnlineList" SpName="AffAdmin_UserOnlineList_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_UserOnlineList" SpName="AffAdmin_UserOnlineList" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Commission Group">
     <Setting Key="AffAdmin_CommGroupSelListNormal" SpName="AffAdmin_CommGroupSelListNormal" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_CommGroupSel" SpName="AffAdmin_CommGroupSel_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupSel" SpName="AffAdmin_CommGroupSel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_DeductionTypeSel" SpName="AffAdmin_DeductionTypeSel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_DeductionSettingSel" SpName="AffAdmin_DeductionSettingSel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupList_SettingDetail" SpName="AffAdmin_CommGroupList_SettingDetail" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
@@ -36,14 +36,14 @@
     <Setting Key="AffAdmin_GroupSettingSel" SpName="AffAdmin_GroupSettingSel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupDel" SpName="AffAdmin_CommGroupDel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroupAssign" SpName="AffAdmin_CommGroupAssign" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_CommGroupSelByID" SpName="AffAdmin_CommGroupSelByID_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_CommGroupSelByID" SpName="AffAdmin_CommGroupSelByID" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_CommGroup_SelActiveList" SpName="AffAdmin_CommGroup_SelActiveList" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Affiliate">
     <Setting Key="AffAdmin_AffiliateUpdPwd" SpName="AffAdmin_AffiliateUpdPwd" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_FavoriteDel" SpName="AffAdmin_FavoriteDel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_FavoriteIns" SpName="AffAdmin_FavoriteIns" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_AffiliateSel" SpName="AffAdmin_AffiliateSel_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_AffiliateSel" SpName="AffAdmin_AffiliateSel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateSelFavorite" SpName="AffAdmin_AffiliateSelFavorite" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_EmailHistorySel" SpName="AffAdmin_EmailHistorySel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_EmailHistoryDel" SpName="AffAdmin_EmailHistoryDel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
@@ -60,7 +60,7 @@
   <Function Name="System Settings">
     <Setting Key="AffAdmin_GetLicenseeSupportedCurrencies" SpName="AffAdmin_GetLicenseeSupportedCurrencies" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_SystemAllSupportedCurrencies" SpName="AffAdmin_SystemAllSupportedCurrencies" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_SystemSupportedCurrencies" SpName="AffAdmin_SystemSupportedCurrencies_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_SystemSupportedCurrencies" SpName="AffAdmin_SystemSupportedCurrencies" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateCurrenciesSel" SpName="AffAdmin_AffiliateCurrenciesSel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_LanguageSel" SpName="AffAdmin_LanguageSel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
     <Setting Key="AffAdmin_AffiliateSelDBTime" SpName="AffAdmin_AffiliateSelDBTime" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
@@ -132,22 +132,22 @@
     <Setting Key="AffAdmin_DomainControlSelById" SpName="AffAdmin_DomainControlSelById" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Management">
-    <Setting Key="AffAdmin_Con_AccountUpd" SpName="AffAdmin_Con_AccountUpd_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_AccountIns" SpName="AffAdmin_Con_AccountIns_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_AccountUpdPwd" SpName="AffAdmin_AccountUpdPwd_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupInfoIns" SpName="AffAdmin_Con_GroupInfoIns_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupInfoUpd" SpName="AffAdmin_Con_GroupInfoUpd_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupInfoDel" SpName="AffAdmin_Con_GroupInfoDel_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupPolicyUpd" SpName="AffAdmin_Con_GroupPolicyUpd_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupPolicySel" SpName="AffAdmin_Con_GroupPolicySel_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_Con_Batch_PolicySel" SpName="AffAdmin_Con_Batch_PolicySel_xtest" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
-    <Setting Key="AffAdmin_UserCurrencySel" SpName="AffAdmin_UserCurrencySel_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
-    <Setting Key="AffAdmin_UserCurrencyIns" SpName="AffAdmin_UserCurrencyIns_xtest" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_AccountUpd" SpName="AffAdmin_Con_AccountUpd" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_AccountIns" SpName="AffAdmin_Con_AccountIns" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_AccountUpdPwd" SpName="AffAdmin_AccountUpdPwd" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoIns" SpName="AffAdmin_Con_GroupInfoIns" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoUpd" SpName="AffAdmin_Con_GroupInfoUpd" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoDel" SpName="AffAdmin_Con_GroupInfoDel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupPolicyUpd" SpName="AffAdmin_Con_GroupPolicyUpd" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupPolicySel" SpName="AffAdmin_Con_GroupPolicySel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_Con_Batch_PolicySel" SpName="AffAdmin_Con_Batch_PolicySel" DbName="DBCUST.bodb_Licensee.bodbLicenseeNet" Plain="0" />
+    <Setting Key="AffAdmin_UserCurrencySel" SpName="AffAdmin_UserCurrencySel" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
+    <Setting Key="AffAdmin_UserCurrencyIns" SpName="AffAdmin_UserCurrencyIns" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />
   </Function>
   <Function Name="Media">
     <Setting Key="AffAdmin_BannerSelType" SpName="AffAdmin_BannerSelType" DbName="DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet" Plain="0" />

@@ -5,10 +5,12 @@
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.production.xml
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.production.xml
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.production.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aoncash.production.xml
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.production.xml
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.uat.xml
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.uat.xml
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.uat.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aoncash.uat.xml
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.uat.xml
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.sit.xml
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.sit.xml

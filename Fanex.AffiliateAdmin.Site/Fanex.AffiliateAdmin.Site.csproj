@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -3503,16 +3503,16 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.sit.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.sit.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.sit.config" />
-    <None Include="Configurations\AppSettings\Web.AppSetting.aoncash.local.config" />
-    <None Include="Configurations\AppSettings\Web.AppSetting.aoncash.master.config" />
-    <None Include="Configurations\AppSettings\Web.AppSetting.aoncash.production.config" />
-    <None Include="Configurations\AppSettings\Web.AppSetting.aoncashh.uat.config" />
-    <None Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config">
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.master.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.production.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncashh.uat.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.uat.config">
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
-    </None>
+    </Content>
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
     <Content Include="GruntFilters.json" />
@@ -3556,15 +3556,15 @@
     </Content>
     <Content Include="Configurations\WebConfigs\Web.itcbet.sit.config" />
     <Content Include="Configurations\WebConfigs\Web.macaubet.sit.config" />
-    <None Include="Configurations\WebConfigs\Web.aoncash.master.config">
+    <Content Include="Configurations\WebConfigs\Web.aoncash.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.aoncash.production.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.aoncash.production.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\WebConfigs\Web.aoncash.uat.config">
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.aoncash.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
-    </None>
+    </Content>
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -3953,7 +3953,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

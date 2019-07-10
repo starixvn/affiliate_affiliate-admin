@@ -3506,13 +3506,13 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.local.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.master.config" />
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.production.config" />
-    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncashh.uat.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.uat.config">
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.uat.config" />
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
     <Content Include="GruntFilters.json" />
@@ -3953,7 +3953,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

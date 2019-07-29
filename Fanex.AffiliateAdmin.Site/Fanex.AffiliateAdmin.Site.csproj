@@ -294,6 +294,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.aoncash.production.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.aoncash.uat.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\SpNames\SpName.athena000.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
@@ -442,6 +448,23 @@
     <Content Include="www\config-utils\constant.js" />
     <Content Include="www\config-utils\entry.js" />
     <Content Include="www\config-utils\generator.js" />
+    <Content Include="www\dist\style\aoncash\assets\best-browsers.png" />
+    <Content Include="www\dist\style\aoncash\assets\bodybg.jpg" />
+    <Content Include="www\dist\style\aoncash\assets\btbg.png" />
+    <Content Include="www\dist\style\aoncash\assets\headerbg.jpg" />
+    <Content Include="www\dist\style\aoncash\assets\headerbg_notify.png" />
+    <Content Include="www\dist\style\aoncash\assets\logo.jpg" />
+    <Content Include="www\dist\style\aoncash\assets\logoNotify.jpg" />
+    <Content Include="www\dist\style\aoncash\assets\notify.png" />
+    <Content Include="www\dist\style\aoncash\assets\panel.png" />
+    <Content Include="www\dist\style\aoncash\assets\static\banner_top.png" />
+    <Content Include="www\dist\style\aoncash\assets\static\emailBanner.jpg" />
+    <Content Include="www\dist\style\aoncash\assets\static\emailBg.jpg" />
+    <Content Include="www\dist\style\aoncash\assets\static\favicon.jpg" />
+    <Content Include="www\dist\style\aoncash\login.css" />
+    <Content Include="www\dist\style\aoncash\login.js" />
+    <Content Include="www\dist\style\aoncash\notify.css" />
+    <Content Include="www\dist\style\aoncash\notify.js" />
     <Content Include="www\dist\style\assets\bar-loader.gif" />
     <Content Include="www\dist\style\assets\flag.png" />
     <Content Include="www\dist\style\assets\glyphicons-halflings-white.png" />
@@ -598,6 +621,19 @@
     <Content Include="www\source\style\components\Fanex.Pagination.css" />
     <Content Include="www\source\style\components\jquery.multiselect.css" />
     <Content Include="www\source\style\components\monpickr.css" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\static\banner_top.png" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\best-browsers.png" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\bodybg.jpg" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\btbg.png" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\static\emailBanner.jpg" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\static\emailBg.jpg" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\static\favicon.jpg" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\headerbg.jpg" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\headerbg_notify.png" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\logo.jpg" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\logoNotify.jpg" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\notify.png" />
+    <Content Include="www\source\style\pages\sites\aoncash\images\panel.png" />
     <Content Include="www\source\style\pages\sites\athena000\Images\static\banner_top.png" />
     <Content Include="www\source\style\pages\sites\athena000\Images\best-browsers.png" />
     <Content Include="www\source\style\pages\sites\athena000\Images\bodybg.jpg" />
@@ -3467,6 +3503,16 @@
     <Content Include="Configurations\AppSettings\Web.AppSetting.macaubet.sit.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.sit.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.sit.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.master.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.production.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.uat.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.uat.config" />
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
     <Content Include="GruntFilters.json" />
@@ -3510,6 +3556,15 @@
     </Content>
     <Content Include="Configurations\WebConfigs\Web.itcbet.sit.config" />
     <Content Include="Configurations\WebConfigs\Web.macaubet.sit.config" />
+    <Content Include="Configurations\WebConfigs\Web.aoncash.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.aoncash.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.aoncash.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -3708,6 +3763,8 @@
     <Content Include="www\source\style\vendors\tipsy\index.less" />
     <Content Include="www\source\style\pages\betlist\rngcasino.handhistory.less" />
     <Content Include="Views\EmailTesting\Index.cshtml" />
+    <Content Include="www\source\style\pages\sites\aoncash\Notify.less" />
+    <Content Include="www\source\style\pages\sites\aoncash\Login.less" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj">
@@ -3896,7 +3953,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

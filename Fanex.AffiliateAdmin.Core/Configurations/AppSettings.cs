@@ -441,6 +441,14 @@
             }
         }
 
+        public static bool IsHideBetList
+        {
+            get
+            {
+                return Convert.ToBoolean(GetValue("IsHideBetList"));
+            }
+        }
+
         public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
         {
             return SystemSetting.GetActiveCommGroups(criteria);

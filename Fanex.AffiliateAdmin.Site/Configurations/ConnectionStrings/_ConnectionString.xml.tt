@@ -22,7 +22,7 @@
 		{
 			var fileName = string.Format("Web.ConnectionString.{0}.{1}.config", licenseeDbName.Key, environment);
 			manager.StartNewFile(fileName);
-			var licenseeDb = string.Format("<add name=\"{0}\" connectionString=\"packet size=4096; Data Source=10.40.40.224;Initial Catalog=Affiliate_{1};integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;\" providerName=\"System.Data.SqlClient\" />", licenseeDbName.Value, licenseeDbName.Key);
+			var licenseeDb = string.Format("<add name=\"{0}\" connectionString=\"packet size=4096; Data Source=10.40.40.92;Initial Catalog=Affiliate_{1};integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;\" providerName=\"System.Data.SqlClient\" />", licenseeDbName.Value, licenseeDbName.Key);
 #>
 <connectionStrings>
 	<#= licenseeDb #>

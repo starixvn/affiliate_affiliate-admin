@@ -36,9 +36,6 @@
             BundleTable.EnableOptimizations = AppSettings.GetValue("DisableOptimizations") != "1";
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            log4net.Config.XmlConfigurator.Configure();
-            log4net.LogManager.GetLogger("GeneralLog").Info("Start");
-
             AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
         }
 

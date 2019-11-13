@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.AffiliateAdmin.Controller", "Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj", "{D7E60D7D-CD3D-40A7-AB59-B7281AA7A579}"
 EndProject
@@ -28,12 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysi
 		CodeAnalysis\CodeAnalysisConfiguration.xml = CodeAnalysis\CodeAnalysisConfiguration.xml
 		CodeAnalysis\FxCopDictionary.xml = CodeAnalysis\FxCopDictionary.xml
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nexcel.Affiliate.Integration", "Nexcel.Affiliate.Integration", "{9D71BFBB-690F-47FF-832C-E6B8904E08B3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexcel.Affiliate.Integration", "Nexcel.Affiliate.Integration\Nexcel.Affiliate.Integration\Nexcel.Affiliate.Integration.csproj", "{50CE695F-1458-4087-A945-3E4AB818DCCA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SsoSimulator", "Nexcel.Affiliate.Integration\SsoSimulator\SsoSimulator.csproj", "{143A1513-E9F6-46E5-9195-1F1F7059A07B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,35 +129,12 @@ Global
 		{36FEEA64-4934-4FAF-A8AE-1B25865C704F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{36FEEA64-4934-4FAF-A8AE-1B25865C704F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{36FEEA64-4934-4FAF-A8AE-1B25865C704F}.Release|x86.ActiveCfg = Release|Any CPU
-		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{50CE695F-1458-4087-A945-3E4AB818DCCA}.Release|x86.ActiveCfg = Release|Any CPU
-		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{143A1513-E9F6-46E5-9195-1F1F7059A07B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{50CE695F-1458-4087-A945-3E4AB818DCCA} = {9D71BFBB-690F-47FF-832C-E6B8904E08B3}
-		{143A1513-E9F6-46E5-9195-1F1F7059A07B} = {9D71BFBB-690F-47FF-832C-E6B8904E08B3}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF430EE1-8B14-48CD-89C2-52FEDCB303AC}
 		BuildVersion_UseGlobalSettings = True
 	EndGlobalSection
 EndGlobal

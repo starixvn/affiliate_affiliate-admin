@@ -23,6 +23,7 @@
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Allow underscore")]
         protected void Application_Start()
         {
+            LoggingConfig.RegisterSentry();
             // Start setting connect to DB
             DbSettingProviderManager.Current.Start();
 

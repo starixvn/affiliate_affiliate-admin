@@ -1199,34 +1199,7 @@ namespace Fanex.AffiliateAdmin.Resources {
                 return ResourceManager.GetString("BetCount", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet List.
-        /// </summary>
-        public static string BetList {
-            get {
-                return ResourceManager.GetString("BetList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Results.
-        /// </summary>
-        public static string BetListResults {
-            get {
-                return ResourceManager.GetString("BetListResults", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet List {0} - {1} - &lt;span&gt;View in {2}&lt;/span&gt;.
-        /// </summary>
-        public static string BetListTitle {
-            get {
-                return ResourceManager.GetString("BetListTitle", resourceCulture);
-            }
-        }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Bet Type List.
         /// </summary>
@@ -7263,24 +7236,6 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string TierSettingAtLeastTier {
             get {
                 return ResourceManager.GetString("TierSettingAtLeastTier", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet List - AG Casino - TicketDetail.
-        /// </summary>
-        public static string TitleAgCasinoTicketDetail {
-            get {
-                return ResourceManager.GetString("TitleAgCasinoTicketDetail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet List - RNG Casino - Ticket Detail.
-        /// </summary>
-        public static string TitleRngCasinoTicketDetail {
-            get {
-                return ResourceManager.GetString("TitleRngCasinoTicketDetail", resourceCulture);
             }
         }
         

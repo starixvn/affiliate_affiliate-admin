@@ -428,7 +428,6 @@
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Content Include="Scripts\site\UpdatePayment.js" />
-    <Content Include="Views\BetList\CashOutDetailTicket.cshtml" />
     <Content Include="www\config-utils\constant.js" />
     <Content Include="www\config-utils\entry.js" />
     <Content Include="www\config-utils\generator.js" />
@@ -475,7 +474,6 @@
     <Content Include="www\dist\style\athena000\assets\static\favicon.jpg" />
     <Content Include="www\dist\style\athena000\login.css" />
     <Content Include="www\dist\style\athena000\notify.css" />
-    <Content Include="www\dist\style\betlist.css" />
     <Content Include="www\dist\style\bootstrap.css" />
     <Content Include="www\dist\style\commgroup.css" />
     <Content Include="www\dist\style\common-pages.css" />
@@ -575,30 +573,6 @@
     <Content Include="www\source\style\assets\fanexgrid\send-mail.png" />
     <Content Include="www\source\style\assets\fanexgrid\seperations.png" />
     <Content Include="www\source\style\assets\fanexgrid\sort-icon-new3.png" />
-    <Content Include="www\source\style\pages\betlist\betlist.core.css" />
-    <Content Include="www\source\style\pages\betlist\betList.css" />
-    <Content Include="www\source\style\pages\betlist\custom-betlist.css" />
-    <Content Include="www\source\style\pages\betlist\fanex.result.css" />
-    <Content Include="www\source\style\pages\betlist\global.content.css" />
-    <Content Include="www\source\style\pages\betlist\images\1F.gif" />
-    <Content Include="www\source\style\pages\betlist\images\1L.gif" />
-    <Content Include="www\source\style\pages\betlist\images\bar-loader.gif" />
-    <Content Include="www\source\style\pages\betlist\images\bgHeader.jpg" />
-    <Content Include="www\source\style\pages\betlist\images\blank.gif" />
-    <Content Include="www\source\style\pages\betlist\images\firstGoal.gif" />
-    <Content Include="www\source\style\pages\betlist\images\goal-icon.png" />
-    <Content Include="www\source\style\pages\betlist\images\lastGoal.gif" />
-    <Content Include="www\source\style\pages\betlist\images\link_14x14.png" />
-    <Content Include="www\source\style\pages\betlist\images\link_16x16.png" />
-    <Content Include="www\source\style\pages\betlist\images\note.png" />
-    <Content Include="www\source\style\pages\betlist\images\plus.png" />
-    <Content Include="www\source\style\pages\betlist\images\q_Icon2_1.png" />
-    <Content Include="www\source\style\pages\betlist\images\q_Icon_2.png" />
-    <Content Include="www\source\style\pages\betlist\images\tab_topbg.gif" />
-    <Content Include="www\source\style\pages\betlist\images\undo.png" />
-    <Content Include="www\source\style\pages\betlist\images\up.png" />
-    <Content Include="www\source\style\pages\betlist\rngcasino.handhistory.css" />
-    <Content Include="www\source\style\pages\betlist\systemparlay.detail.css" />
     <Content Include="www\source\style\pages\common-pages\AffiliateAdmin.css" />
     <Content Include="www\source\style\components\daterangepicker.css" />
     <Content Include="www\source\style\components\Fanex.Grid.css" />
@@ -3322,7 +3296,6 @@
     <Content Include="Scripts\libraries\placeholder_fixer.js" />
     <Content Include="Scripts\libraries\ui.dropdownchecklist.js" />
     <Content Include="Scripts\site\MediaBannerAdd.js" />
-    <Content Include="Scripts\site\BetList.js" />
     <Content Include="Scripts\site\CloseDialog.js" />
     <Content Include="Scripts\site\Adjustment.js" />
     <Content Include="Scripts\site\AffiliateEdit.js" />
@@ -3663,9 +3636,6 @@
     <Content Include="Views\Configuration\Product.cshtml" />
     <Content Include="Views\Configuration\ProductDetail.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Html\Body.ApprovalEmail.en-US.cshtml" />
-    <Content Include="Views\BetList\Index.cshtml" />
-    <Content Include="Views\BetList\SystemParlayDetail.cshtml" />
-    <Content Include="Views\BetList\BetListResults.cshtml" />
     <Content Include="Web.AppSetting.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3674,7 +3644,6 @@
     </Content>
     <Content Include="Views\Sso\DenyAccess.cshtml" />
     <Content Include="Views\Management\EditUser.cshtml" />
-    <Content Include="Views\BetList\CasinoDetailTicket.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.ConnectionString.spondemo.local.config">
       <SubType>Designer</SubType>
@@ -3742,10 +3711,7 @@
     <Content Include="www\source\style\pages\sites\macaubet\Notify.less" />
     <Content Include="www\source\style\pages\sites\spondemo\Login.less" />
     <Content Include="www\source\style\pages\sites\spondemo\Notify.less" />
-    <Content Include="www\source\style\pages\betlist\index.less" />
-    <Content Include="www\source\style\pages\betlist\systemparlaydetail.index.less" />
     <Content Include="www\source\style\vendors\tipsy\index.less" />
-    <Content Include="www\source\style\pages\betlist\rngcasino.handhistory.less" />
     <Content Include="Views\EmailTesting\Index.cshtml" />
     <Content Include="www\source\style\pages\sites\aoncash\Notify.less" />
     <Content Include="www\source\style\pages\sites\aoncash\Login.less" />
@@ -3937,7 +3903,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

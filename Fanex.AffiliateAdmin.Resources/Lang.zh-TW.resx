@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1951,15 +1951,6 @@
   </data>
   <data name="BetCount" xml:space="preserve">
     <value>注數</value>
-  </data>
-  <data name="BetList" xml:space="preserve">
-    <value>下注清單</value>
-  </data>
-  <data name="BetListResults" xml:space="preserve">
-    <value>結果</value>
-  </data>
-  <data name="BetListTitle" xml:space="preserve">
-    <value>下注清單 {0} - {1} - &lt;span&gt;查看 {2}&lt;/span&gt;</value>
   </data>
   <data name="BFTooltip" xml:space="preserve">
     <value>帶出目前合作夥伴餘額</value>

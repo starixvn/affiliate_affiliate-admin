@@ -187,7 +187,6 @@
     <Compile Include="Reports\CompanyWinLossByOverviewController.cs" />
     <Compile Include="Reports\AffiliateWinLossByOverviewController.cs" />
     <Compile Include="Reports\AffiliateWinLossByProductController.cs" />
-    <Compile Include="BetListController.cs" />
     <Compile Include="Reports\MemberWinLossByOverviewController.cs" />
     <Compile Include="Reports\MemberWinLossByProductController.cs">
       <SubType>Code</SubType>
@@ -208,11 +207,6 @@
     <Compile Include="StatementController.cs" />
     <Compile Include="TrackingStatisticController.cs" />
     <Compile Include="ViewLogController.cs" />
-    <Compile Include="Web References\AffBetListService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Core\Fanex.AffiliateAdmin.Core.csproj">
@@ -269,11 +263,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\AffBetListService\AffiliateAPI.wsdl" />
-    <None Include="Web References\AffBetListService\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -281,26 +270,10 @@
   <ItemGroup>
     <WebReferences Include="Web References\" />
   </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:52390/AffiliateAPI.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\AffBetListService\</RelPath>
-      <UpdateFromURL>http://localhost:52390/AffiliateAPI.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Fanex_AffiliateAdmin_Controller_AffBetListService_AffiliateAPI</CachedSettingsPropName>
-    </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Web References\AffBetListService\AffiliateAPI.disco" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

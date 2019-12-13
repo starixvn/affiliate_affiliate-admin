@@ -2,6 +2,11 @@
 
 // Generated helper templates
 // Generated items
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.mnl.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.mnl.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.mnl.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aoncash.mnl.xml
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.mnl.xml
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.production.xml
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.production.xml
 // D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.production.xml

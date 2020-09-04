@@ -53,8 +53,6 @@
                 var isSameSession = VerifySessionWithToken(currentSession, tokenInfo);
                 if (isSameSession)
                 {
-
-                    Logging.LogService.Info($"IsAuthenticated = true");
                     if (!language.Equals(AppSession.Language))
                     {
                         AppSession.Language = language;
@@ -78,7 +76,6 @@
 
         protected internal virtual ResultInfo SetAuthorize(OneAuthToken tokenInfo)
         {
-            Logging.LogService.Info($"SetAuthorize = true");
             CreateSession(tokenInfo);
             var authName = $"{tokenInfo.UserID}_{tokenInfo.VendorID}_{tokenInfo.SiteName}";
             FormsAuthentication.SetAuthCookie(authName, false);
@@ -120,7 +117,5 @@
             session.VendorIdentityID = tokenInfo.UserID;
             SessionManager.CurrentSession = session;
         }
-
-
     }
 }

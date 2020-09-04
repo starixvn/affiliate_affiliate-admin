@@ -59,6 +59,8 @@
                     {
                         var result = _oneAuthenticationService.SignIn(HttpContext, tokenInfo);
                         returnUrl = result.IsSuccessful ? "~/" + result.ExtendedData : returnUrl + result.Code;
+                        Logging.LogService.Info($"Token Result = {result.IsSuccessful}/n" +
+                            $"Link = {result.ExtendedData}");
                     }
                 }
                 else

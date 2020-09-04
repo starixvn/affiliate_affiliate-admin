@@ -47,13 +47,14 @@
             var language = MapLanguages.Where(i => i.Value.Equals(tokenInfo.Language))
                        .Select(i => i.Key).DefaultIfEmpty<string>("en-Us").FirstOrDefault();
 
-
             var currentSession = SessionManager.CurrentSession;
             if (IsAuthenticated(currentContext, currentSession))
             {
                 var isSameSession = VerifySessionWithToken(currentSession, tokenInfo);
                 if (isSameSession)
                 {
+
+                    Logging.LogService.Info($"IsAuthenticated = true");
                     if (!language.Equals(AppSession.Language))
                     {
                         AppSession.Language = language;
@@ -77,6 +78,7 @@
 
         protected internal virtual ResultInfo SetAuthorize(OneAuthToken tokenInfo)
         {
+            Logging.LogService.Info($"SetAuthorize = true");
             CreateSession(tokenInfo);
             var authName = $"{tokenInfo.UserID}_{tokenInfo.VendorID}_{tokenInfo.SiteName}";
             FormsAuthentication.SetAuthCookie(authName, false);
@@ -119,6 +121,6 @@
             SessionManager.CurrentSession = session;
         }
 
-     
+
     }
 }

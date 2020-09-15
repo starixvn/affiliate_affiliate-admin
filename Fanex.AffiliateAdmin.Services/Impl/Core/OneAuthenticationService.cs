@@ -47,7 +47,6 @@
             var language = MapLanguages.Where(i => i.Value.Equals(tokenInfo.Language))
                        .Select(i => i.Key).DefaultIfEmpty<string>("en-Us").FirstOrDefault();
 
-
             var currentSession = SessionManager.CurrentSession;
             if (IsAuthenticated(currentContext, currentSession))
             {
@@ -118,7 +117,5 @@
             session.VendorIdentityID = tokenInfo.UserID;
             SessionManager.CurrentSession = session;
         }
-
-     
     }
 }

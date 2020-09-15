@@ -1,1 +1,24 @@
-﻿ErrorGeneratingOutput
+﻿
+
+// Generated helper templates
+// Generated items
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.macaubet.mnl.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.macaubet.production.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.macaubet.uat.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.macaubet.master.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.itcbet.mnl.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.itcbet.production.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.itcbet.uat.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.itcbet.master.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.athena000.mnl.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.athena000.production.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.athena000.uat.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.athena000.master.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aoncash.mnl.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aoncash.production.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aoncash.uat.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aoncash.master.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.spondemo.mnl.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.spondemo.production.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.spondemo.uat.config
+// D:\Projects\ATHENA\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.spondemo.master.config

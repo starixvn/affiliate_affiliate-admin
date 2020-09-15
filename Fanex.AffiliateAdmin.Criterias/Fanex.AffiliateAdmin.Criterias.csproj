@@ -167,7 +167,6 @@
     <Compile Include="Adjustment\Affiliate\AffiliateUpdLanguageCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AffiliateUpdStatusCriteria.cs" />
     <Compile Include="AllSystemCurrencyCriteria.cs" />
-    <Compile Include="BetList\ValidationCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingsSelByIdCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingsSelByNameCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingsSelByTypeCriteria.cs" />
@@ -214,7 +213,6 @@
     <Compile Include="MainReport\CompanyWinlossByProductCriteria.cs" />
     <Compile Include="AffiliateWinLossByProductCriteria.cs" />
     <Compile Include="GetProductByAffIdCriteria.cs" />
-    <Compile Include="BetList\GetExchangeRateCriteria.cs" />
     <Compile Include="GetMemberDetailCriteria.cs" />
     <Compile Include="MemberWinlossByProductCriteria.cs" />
     <Compile Include="MemberWinlossOverviewCriteria.cs" />
@@ -363,7 +361,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

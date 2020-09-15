@@ -13,7 +13,7 @@
 		{"macaubet", "DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet"}
 	};
 
-	var environments = new string[] { "uat", "production" };
+	var environments = new string[] { "uat", "production", "mnl" };
 
 	var sites = new List<SiteInfo>();
 	

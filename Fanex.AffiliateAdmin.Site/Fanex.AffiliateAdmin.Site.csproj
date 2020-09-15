@@ -72,8 +72,12 @@
       <HintPath>..\packages\Fanex.Data.DbSettingProviderExtension.1.0.0.1\lib\net40\Fanex.Data.DbSettingProviderExtension.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
+    <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging.Sentry.RavenClient, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Logging.Sentry.RavenClient.1.0.1\lib\net461\Fanex.Logging.Sentry.RavenClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
@@ -96,6 +100,11 @@
       <HintPath>..\packages\NPOI.2.0.6\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\EnterpriseLibrary.Caching.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
       <Private>True</Private>
@@ -152,6 +161,10 @@
       <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SharpRaven, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpRaven.2.4.0\lib\net45\SharpRaven.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SimpleInjector, Version=2.5.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.2.5.2\lib\net45\SimpleInjector.dll</HintPath>
       <Private>True</Private>
@@ -190,6 +203,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
@@ -248,6 +265,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\LoggingConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="App_Data\SystemFunction.json" />
     <Content Include="Configurations\ConnectionStrings\_ConnectionString.xml.tt">
@@ -259,10 +277,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.aoncash.mnl.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\SpNames\SpName.aoncash.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.aoncash.uat.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.athena000.mnl.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.athena000.production.xml">
@@ -275,6 +299,9 @@
       <DependentUpon>_SpName.xml.tt</DependentUpon>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.itcbet.mnl.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\SpNames\SpName.itcbet.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
@@ -282,6 +309,9 @@
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.itcbet.uat.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.macaubet.mnl.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.macaubet.production.xml">
@@ -294,6 +324,9 @@
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.spondemo.local.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.spondemo.mnl.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.spondemo.production.xml">
@@ -335,6 +368,7 @@
     </Content>
     <Content Include="Form\GenHistoryImg.aspx.cs">
       <DependentUpon>GenHistoryImg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Form\GenImage\GenHistoryImg_GenImage.aspx.cs">
       <DependentUpon>GenHistoryImg_GenImage.aspx</DependentUpon>
@@ -409,7 +443,6 @@
     </Compile>
     <Compile Include="Properties\VersionInfo.cs" />
     <Content Include="Scripts\site\UpdatePayment.js" />
-    <Content Include="Views\BetList\CashOutDetailTicket.cshtml" />
     <Content Include="www\config-utils\constant.js" />
     <Content Include="www\config-utils\entry.js" />
     <Content Include="www\config-utils\generator.js" />
@@ -456,7 +489,6 @@
     <Content Include="www\dist\style\athena000\assets\static\favicon.jpg" />
     <Content Include="www\dist\style\athena000\login.css" />
     <Content Include="www\dist\style\athena000\notify.css" />
-    <Content Include="www\dist\style\betlist.css" />
     <Content Include="www\dist\style\bootstrap.css" />
     <Content Include="www\dist\style\commgroup.css" />
     <Content Include="www\dist\style\common-pages.css" />
@@ -556,30 +588,6 @@
     <Content Include="www\source\style\assets\fanexgrid\send-mail.png" />
     <Content Include="www\source\style\assets\fanexgrid\seperations.png" />
     <Content Include="www\source\style\assets\fanexgrid\sort-icon-new3.png" />
-    <Content Include="www\source\style\pages\betlist\betlist.core.css" />
-    <Content Include="www\source\style\pages\betlist\betList.css" />
-    <Content Include="www\source\style\pages\betlist\custom-betlist.css" />
-    <Content Include="www\source\style\pages\betlist\fanex.result.css" />
-    <Content Include="www\source\style\pages\betlist\global.content.css" />
-    <Content Include="www\source\style\pages\betlist\images\1F.gif" />
-    <Content Include="www\source\style\pages\betlist\images\1L.gif" />
-    <Content Include="www\source\style\pages\betlist\images\bar-loader.gif" />
-    <Content Include="www\source\style\pages\betlist\images\bgHeader.jpg" />
-    <Content Include="www\source\style\pages\betlist\images\blank.gif" />
-    <Content Include="www\source\style\pages\betlist\images\firstGoal.gif" />
-    <Content Include="www\source\style\pages\betlist\images\goal-icon.png" />
-    <Content Include="www\source\style\pages\betlist\images\lastGoal.gif" />
-    <Content Include="www\source\style\pages\betlist\images\link_14x14.png" />
-    <Content Include="www\source\style\pages\betlist\images\link_16x16.png" />
-    <Content Include="www\source\style\pages\betlist\images\note.png" />
-    <Content Include="www\source\style\pages\betlist\images\plus.png" />
-    <Content Include="www\source\style\pages\betlist\images\q_Icon2_1.png" />
-    <Content Include="www\source\style\pages\betlist\images\q_Icon_2.png" />
-    <Content Include="www\source\style\pages\betlist\images\tab_topbg.gif" />
-    <Content Include="www\source\style\pages\betlist\images\undo.png" />
-    <Content Include="www\source\style\pages\betlist\images\up.png" />
-    <Content Include="www\source\style\pages\betlist\rngcasino.handhistory.css" />
-    <Content Include="www\source\style\pages\betlist\systemparlay.detail.css" />
     <Content Include="www\source\style\pages\common-pages\AffiliateAdmin.css" />
     <Content Include="www\source\style\components\daterangepicker.css" />
     <Content Include="www\source\style\components\Fanex.Grid.css" />
@@ -3303,7 +3311,6 @@
     <Content Include="Scripts\libraries\placeholder_fixer.js" />
     <Content Include="Scripts\libraries\ui.dropdownchecklist.js" />
     <Content Include="Scripts\site\MediaBannerAdd.js" />
-    <Content Include="Scripts\site\BetList.js" />
     <Content Include="Scripts\site\CloseDialog.js" />
     <Content Include="Scripts\site\Adjustment.js" />
     <Content Include="Scripts\site\AffiliateEdit.js" />
@@ -3478,6 +3485,23 @@
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.uat.config" />
+    <None Include="Configurations\AppSettings\Web.AppSetting.aoncash.mnl.config" />
+    <None Include="Configurations\AppSettings\Web.AppSetting.athena000.mnl.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Configurations\AppSettings\Web.AppSetting.itcbet.mnl.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Configurations\AppSettings\Web.AppSetting.macaubet.mnl.config" />
+    <None Include="Configurations\AppSettings\Web.AppSetting.spondemo.mnl.config" />
+    <None Include="Configurations\ConnectionStrings\Web.ConnectionString.athena000.mnl.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.mnl.config" />
+    <None Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.mnl.config" />
+    <None Include="Configurations\ConnectionStrings\Web.ConnectionString.spondemo.mnl.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Configurations\SpNames\_SpNameConfiguration.ttinclude" />
     <None Include="Configurations\TemplateFilemanager.CS.ttinclude" />
     <Content Include="GruntFilters.json" />
@@ -3530,6 +3554,24 @@
     <Content Include="Configurations\WebConfigs\Web.aoncash.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
+    <None Include="Configurations\WebConfigs\Web.aoncash.mnl.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.athena000.mnl.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.itcbet.mnl.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.macaubet.mnl.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.mnl.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Configurations\WebConfigs\Web.spondemo.mnl.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </None>
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -3644,9 +3686,6 @@
     <Content Include="Views\Configuration\Product.cshtml" />
     <Content Include="Views\Configuration\ProductDetail.cshtml" />
     <Content Include="Views\Shared\Email\AffiliateApprove\Html\Body.ApprovalEmail.en-US.cshtml" />
-    <Content Include="Views\BetList\Index.cshtml" />
-    <Content Include="Views\BetList\SystemParlayDetail.cshtml" />
-    <Content Include="Views\BetList\BetListResults.cshtml" />
     <Content Include="Web.AppSetting.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3655,7 +3694,6 @@
     </Content>
     <Content Include="Views\Sso\DenyAccess.cshtml" />
     <Content Include="Views\Management\EditUser.cshtml" />
-    <Content Include="Views\BetList\CasinoDetailTicket.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.ConnectionString.spondemo.local.config">
       <SubType>Designer</SubType>
@@ -3723,10 +3761,7 @@
     <Content Include="www\source\style\pages\sites\macaubet\Notify.less" />
     <Content Include="www\source\style\pages\sites\spondemo\Login.less" />
     <Content Include="www\source\style\pages\sites\spondemo\Notify.less" />
-    <Content Include="www\source\style\pages\betlist\index.less" />
-    <Content Include="www\source\style\pages\betlist\systemparlaydetail.index.less" />
     <Content Include="www\source\style\vendors\tipsy\index.less" />
-    <Content Include="www\source\style\pages\betlist\rngcasino.handhistory.less" />
     <Content Include="Views\EmailTesting\Index.cshtml" />
     <Content Include="www\source\style\pages\sites\aoncash\Notify.less" />
     <Content Include="www\source\style\pages\sites\aoncash\Login.less" />
@@ -3918,7 +3953,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" />
+      <UserProperties BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

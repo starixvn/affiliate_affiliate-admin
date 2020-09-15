@@ -35,8 +35,6 @@
 
             GetBundleForAffiliateCommissionJs(bundles);
 
-            GetBundleForBetList(bundles);
-
             GetBundleForToolTips(bundles);
         }
 
@@ -176,19 +174,6 @@
                 bundle.Include(string.Format("~{0}/{1}", RelativeScriptPath, fileName));
                 bundles.Add(bundle);
             }
-        }
-
-        /// <summary>
-        /// Get Bundle for Bet List.
-        /// </summary>
-        /// <param name="bundles">Bundle input.</param>
-        private static void GetBundleForBetList(BundleCollection bundles)
-        {
-            bundles.Add(new Bundle("~/js/betlist")
-                .Include("~/Scripts/site/betlist.js"));
-
-            bundles.Add(new ScriptBundle("~/js/betlistrngcasino")
-                .Include("~/Scripts/site/rngcasino-results.js"));
         }
 
         private static void GetBundleForToolTips(BundleCollection bundles)

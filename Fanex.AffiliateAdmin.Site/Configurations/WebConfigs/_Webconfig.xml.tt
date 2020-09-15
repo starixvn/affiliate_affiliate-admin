@@ -16,7 +16,7 @@
 			"macaubet"
 		};
 
-	var environments = new string[] { "master", "uat", "production" };
+	var environments = new string[] { "master", "uat", "production", "mnl" };
 
 	foreach(var licenseeName in licenseeNames)
 	{

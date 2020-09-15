@@ -2593,15 +2593,6 @@
   <data name="NumBannerInProgram" xml:space="preserve">
     <value>We have {0} banner(s) in the program</value>
   </data>
-  <data name="BetList" xml:space="preserve">
-    <value>Bet List</value>
-  </data>
-  <data name="BetListResults" xml:space="preserve">
-    <value>Results</value>
-  </data>
-  <data name="BetListTitle" xml:space="preserve">
-    <value>Bet List {0} - {1} - &lt;span&gt;View in {2}&lt;/span&gt;</value>
-  </data>
   <data name="Comm" xml:space="preserve">
     <value>Commission</value>
   </data>
@@ -2844,13 +2835,6 @@
   </data>
   <data name="Racing" xml:space="preserve">
     <value>Racing</value>
-  </data>
-  <data name="TitleRngCasinoTicketDetail" xml:space="preserve">
-    <value>Bet List - RNG Casino - Ticket Detail</value>
-  </data>
-  <data name="TitleAgCasinoTicketDetail" xml:space="preserve">
-    <value>Bet List - AG Casino - TicketDetail</value>
-    <comment>#54368</comment>
   </data>
   <data name="LicenseeIsNotExisted" xml:space="preserve">
     <value>Licensee is not existed</value>

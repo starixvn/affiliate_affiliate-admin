@@ -141,7 +141,6 @@
         var PRODUCTS = @(Html.Raw(ViewBag.Products));
         var COLLAPSE_SUBTOTAL_STATUS = 0, EXPAND_SUBTOTAL_STATUS = 1;
         var subTotalStatus = COLLAPSE_SUBTOTAL_STATUS;
-        var isHideBetList = '@AppSettings.IsHideBetList'.toLowerCase() === 'true';
 
         var sampleOverviewGridOption = {
             language: '@AppSession.Language',
@@ -305,14 +304,6 @@
                                 break;
                         }
 
-                        if (groupBy === '0' && (record.TotalTurnover !== 0 || record.MemberWinLoss !== 0) && !isHideBetList) {
-                            var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
-                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&toCurrencyId={4}&fromCurrencyId={5}&toCurrencyCode={6}".format(record.AffId, record.PlayerUsername, productNames.join(','), record.WinlostDateStr, toCurrencyId, fromCurrencyId, toCurrencyCode);
-                            url = url + para;
-                            return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, currentValue, currentValue);
-                        }
-
-
                         return currentValue;
                     }
                 }
@@ -469,13 +460,6 @@
                                 toCurrencyId = record.PlayerCurrencyId;
                                 toCurrencyCode = record.PlayerCurrency;
                                 break;
-                        }
-
-                        if (groupBy === '0' && (record.TotalTurnover !== 0 || record.MemberWinLoss !== 0) && !isHideBetList) {
-                            var url = AFFILIATE.getAbsoluteUrl("BetList/Index");
-                            var para = "?affId={0}&username={1}&product={2}&winlostDate={3}&toCurrencyId={4}&fromCurrencyId={5}&toCurrencyCode={6}".format(record.AffId, record.PlayerUsername, record.OriginalProductName, record.WinlostDateStr, toCurrencyId, fromCurrencyId, toCurrencyCode);
-                            url = url + para;
-                            return "<a href='{0}' alt='{1}' target='_blank'>{2}</a>".format(url, currentValue, currentValue);
                         }
 
                         return currentValue;

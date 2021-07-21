@@ -39,13 +39,12 @@
                 var words = host.Split('.');
                 if (words.Length > 2)
                 {
-                    return new SiteDomainInfo
+                    if(words.Length > 3 && string.Equals("bpadmin999", words[2], StringComparison.CurrentCultureIgnoreCase))
                     {
-                        MemberSiteDomain = string.Format("www.{0}.{1}", words[1], words[2]),
-                        MemberSiteUrl = new Uri(string.Format("{0}://www.{1}.{2}/vender.aspx", scheme, words[1], words[2])),
-                        AffiliateSiteUrl = new Uri(string.Format("{0}://{1}.{2}.{3}", scheme, isKiosk ? "agt" : "affiliate", words[1], words[2])),
-                        AdminSiteUrl = new Uri(string.Format("{0}://{1}.{2}.{3}", scheme, "affadmin", words[1], words[2]))
-                    };
+                        return GetSiteDomainInfo(scheme, isKiosk, words[1], words[3]);
+                    }
+
+                    return GetSiteDomainInfo(scheme, isKiosk, words[1], words[2]);
                 }
             }
 
@@ -55,6 +54,17 @@
                 MemberSiteUrl = memberSiteUrl,
                 AffiliateSiteUrl = isKiosk ? AppSettings.InternalUrlKiosk : AppSettings.InternalUrl,
                 AdminSiteUrl = adminSiteUrl
+            };
+        }
+
+        private static SiteDomainInfo GetSiteDomainInfo(string scheme, bool isKiosk, string arg1, string arg2)
+        {
+            return new SiteDomainInfo
+            {
+                MemberSiteDomain = string.Format("www.{0}.{1}", arg1, arg2),
+                MemberSiteUrl = new Uri(string.Format("{0}://www.{1}.{2}/vender.aspx", scheme, arg1, arg2)),
+                AffiliateSiteUrl = new Uri(string.Format("{0}://{1}.{2}.{3}", scheme, isKiosk ? "agt" : "affiliate", arg1, arg2)),
+                AdminSiteUrl = new Uri(string.Format("{0}://{1}.{2}.{3}", scheme, "affadmin", arg1, arg2))
             };
         }
     }

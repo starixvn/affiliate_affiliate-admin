@@ -12,9 +12,13 @@
         var url = MediaSettings.BannerDomain;
         if (AppSettings.IsProduction)
         {
-            var secondLevelDomain = Request.Url.Host.Split('.')[1];
-            var defaultSecondLevelDomain = url.Split('.')[1];
-            url = url.Replace("." + defaultSecondLevelDomain + ".", "." + secondLevelDomain + ".");
+            //var secondLevelDomain = Request.Url.Host.Split('.')[1];
+            //var defaultSecondLevelDomain = url.Split('.')[1];
+            //url = url.Replace("." + defaultSecondLevelDomain + ".", "." + secondLevelDomain + ".");
+
+            var scheme = Request.UrlReferrer.Scheme;
+
+            url = string.IsNullOrEmpty(scheme) ? url : url.Replace("https", scheme);
         }
 
         return url;
@@ -67,14 +71,14 @@
             else
             {
                 var link = (i == selectedMenuIndex && selectedSubMenuIndex != -1) ? item.SubMenu[selectedSubMenuIndex].Link : item.Link;
-                
+
             <li @(new HtmlString(activeText))><a href="@(url.Content(link))"><span>@item.Text</span></a>
                 <ul class="inner-submenu">
                     @for (int j = 0; j < item.SubMenu.Count; j++)
                     {
                         activeText = (j == selectedSubMenuIndex ? "class=\"current\"" : string.Empty);
                         var ele = item.SubMenu[j];
-                            
+
                         <li @(new HtmlString(activeText))><a href="@(url.Content(ele.Link))">&raquo; @ele.Text</a>
                         </li>
                     }
@@ -280,7 +284,7 @@
         </td>
     </tr>
             }
-        }        
+        }
 }
 @helper GetCurrencyNotification(string currencyCode)
 {

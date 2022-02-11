@@ -1,0 +1,16 @@
+﻿
+
+// Generated helper templates
+// Generated items
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.9bet.production.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.9bet.uat.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.production.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.uat.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.production.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.uat.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.production.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.uat.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.uat.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.production.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.uat.config

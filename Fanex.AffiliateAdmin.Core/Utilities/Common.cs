@@ -44,7 +44,6 @@
             {
                 MailTo = mailTo,
                 Subject = subject,
-                Title = subject,
                 Body = message,
                 MailBcc = mailBcc,
                 MailCc = mailCC,

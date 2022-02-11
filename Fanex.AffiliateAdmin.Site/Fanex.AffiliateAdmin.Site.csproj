@@ -285,13 +285,37 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.9bet.local.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.9bet.mnl.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.9bet.production.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.9bet.sit.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.9bet.uat.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.aoncash.local.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\SpNames\SpName.aoncash.mnl.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.aoncash.production.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.aoncash.sit.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\SpNames\SpName.aoncash.uat.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.athena000.local.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.athena000.mnl.xml">
@@ -307,6 +331,9 @@
       <DependentUpon>_SpName.xml.tt</DependentUpon>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Configurations\SpNames\SpName.itcbet.local.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\SpNames\SpName.itcbet.mnl.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
@@ -317,6 +344,9 @@
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.itcbet.uat.xml">
+      <DependentUpon>_SpName.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\SpNames\SpName.macaubet.local.xml">
       <DependentUpon>_SpName.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\SpNames\SpName.macaubet.mnl.xml">
@@ -455,6 +485,23 @@
     <Content Include="www\config-utils\constant.js" />
     <Content Include="www\config-utils\entry.js" />
     <Content Include="www\config-utils\generator.js" />
+    <Content Include="www\dist\style\9bet\assets\best-browsers.png" />
+    <Content Include="www\dist\style\9bet\assets\bodybg.jpg" />
+    <Content Include="www\dist\style\9bet\assets\btbg.png" />
+    <Content Include="www\dist\style\9bet\assets\headerbg.jpg" />
+    <Content Include="www\dist\style\9bet\assets\headerbg_notify.png" />
+    <Content Include="www\dist\style\9bet\assets\logo.jpg" />
+    <Content Include="www\dist\style\9bet\assets\logoNotify.jpg" />
+    <Content Include="www\dist\style\9bet\assets\notify.png" />
+    <Content Include="www\dist\style\9bet\assets\panel.png" />
+    <Content Include="www\dist\style\9bet\assets\static\banner_top.png" />
+    <Content Include="www\dist\style\9bet\assets\static\emailBanner.jpg" />
+    <Content Include="www\dist\style\9bet\assets\static\emailBg.jpg" />
+    <Content Include="www\dist\style\9bet\assets\static\favicon.jpg" />
+    <Content Include="www\dist\style\9bet\login.css" />
+    <Content Include="www\dist\style\9bet\login.js" />
+    <Content Include="www\dist\style\9bet\notify.css" />
+    <Content Include="www\dist\style\9bet\notify.js" />
     <Content Include="www\dist\style\aoncash\assets\best-browsers.png" />
     <Content Include="www\dist\style\aoncash\assets\bodybg.jpg" />
     <Content Include="www\dist\style\aoncash\assets\btbg.png" />
@@ -532,7 +579,6 @@
     <Content Include="www\dist\style\macaubet\assets\static\favicon.jpg" />
     <Content Include="www\dist\style\macaubet\login.css" />
     <Content Include="www\dist\style\macaubet\notify.css" />
-    <Content Include="www\dist\style\rngcasino.handhistory.css" />
     <Content Include="www\dist\style\spondemo\assets\best-browsers.png" />
     <Content Include="www\dist\style\spondemo\assets\bodybg.jpg" />
     <Content Include="www\dist\style\spondemo\assets\btbg.png" />
@@ -548,7 +594,6 @@
     <Content Include="www\dist\style\spondemo\assets\static\favicon.jpg" />
     <Content Include="www\dist\style\spondemo\login.css" />
     <Content Include="www\dist\style\spondemo\notify.css" />
-    <Content Include="www\dist\style\systemparlaydetail.css" />
     <Content Include="www\dist\style\tipsy.css" />
     <Content Include="www\source\style\assets\ajax-loader.gif" />
     <Content Include="www\source\style\assets\commgroup\a_bg.jpg" />
@@ -603,6 +648,19 @@
     <Content Include="www\source\style\components\Fanex.Pagination.css" />
     <Content Include="www\source\style\components\jquery.multiselect.css" />
     <Content Include="www\source\style\components\monpickr.css" />
+    <Content Include="www\source\style\pages\sites\9bet\images\best-browsers.png" />
+    <Content Include="www\source\style\pages\sites\9bet\images\bodybg.jpg" />
+    <Content Include="www\source\style\pages\sites\9bet\images\btbg.png" />
+    <Content Include="www\source\style\pages\sites\9bet\images\headerbg.jpg" />
+    <Content Include="www\source\style\pages\sites\9bet\images\headerbg_notify.png" />
+    <Content Include="www\source\style\pages\sites\9bet\images\logo.jpg" />
+    <Content Include="www\source\style\pages\sites\9bet\images\logoNotify.jpg" />
+    <Content Include="www\source\style\pages\sites\9bet\images\notify.png" />
+    <Content Include="www\source\style\pages\sites\9bet\images\panel.png" />
+    <Content Include="www\source\style\pages\sites\9bet\images\static\banner_top.png" />
+    <Content Include="www\source\style\pages\sites\9bet\images\static\emailBanner.jpg" />
+    <Content Include="www\source\style\pages\sites\9bet\images\static\emailBg.jpg" />
+    <Content Include="www\source\style\pages\sites\9bet\images\static\favicon.jpg" />
     <Content Include="www\source\style\pages\sites\aoncash\images\static\banner_top.png" />
     <Content Include="www\source\style\pages\sites\aoncash\images\best-browsers.png" />
     <Content Include="www\source\style\pages\sites\aoncash\images\bodybg.jpg" />
@@ -3494,7 +3552,14 @@
       <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.uat.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.local.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.master.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.production.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.uat.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.mnl.config" />
     <None Include="Configurations\AppSettings\Web.AppSetting.aoncash.mnl.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.9bet.sit.config" />
+    <Content Include="Configurations\AppSettings\Web.AppSetting.aoncash.sit.config" />
     <None Include="Configurations\AppSettings\Web.AppSetting.athena000.mnl.config">
       <SubType>Designer</SubType>
     </None>
@@ -3503,9 +3568,30 @@
     </None>
     <None Include="Configurations\AppSettings\Web.AppSetting.macaubet.mnl.config" />
     <None Include="Configurations\AppSettings\Web.AppSetting.spondemo.mnl.config" />
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.production.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.uat.config">
+      <DependentUpon>_ConnectionString.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.local.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.mnl.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.mnl.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Configurations\ConnectionStrings\Web.ConnectionString.athena000.mnl.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.sit.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.9bet.sit.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Configurations\ConnectionStrings\Web.ConnectionString.itcbet.mnl.config" />
     <None Include="Configurations\ConnectionStrings\Web.ConnectionString.macaubet.mnl.config" />
     <Content Include="Configurations\ConnectionStrings\Web.ConnectionString.aoncash.local.config">
@@ -3553,8 +3639,12 @@
     <Content Include="Configurations\WebConfigs\Web.macaubet.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\WebConfigs\Web.athena000.sit.config" />
-    <Content Include="Configurations\WebConfigs\Web.spondemo.sit.config" />
+    <Content Include="Configurations\WebConfigs\Web.athena000.sit.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.spondemo.sit.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\WebConfigs\Web.spondemo.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
@@ -3564,8 +3654,12 @@
     <Content Include="Configurations\WebConfigs\Web.spondemo.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\WebConfigs\Web.itcbet.sit.config" />
-    <Content Include="Configurations\WebConfigs\Web.macaubet.sit.config" />
+    <Content Include="Configurations\WebConfigs\Web.itcbet.sit.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.macaubet.sit.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
     <Content Include="Configurations\WebConfigs\Web.aoncash.master.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
@@ -3575,9 +3669,27 @@
     <Content Include="Configurations\WebConfigs\Web.aoncash.uat.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </Content>
+    <Content Include="Configurations\WebConfigs\Web.9bet.master.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.9bet.mnl.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.9bet.production.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.9bet.sit.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\WebConfigs\Web.9bet.uat.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
     <None Include="Configurations\WebConfigs\Web.aoncash.mnl.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </None>
+    <Content Include="Configurations\WebConfigs\Web.aoncash.sit.config">
+      <DependentUpon>_Webconfig.xml.tt</DependentUpon>
+    </Content>
     <None Include="Configurations\WebConfigs\Web.athena000.mnl.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </None>
@@ -3593,6 +3705,7 @@
     <None Include="Configurations\WebConfigs\Web.spondemo.mnl.config">
       <DependentUpon>_Webconfig.xml.tt</DependentUpon>
     </None>
+    <Content Include="Configurations\WebConfigs\Web.sit.config" />
     <None Include="img\Scratch\RH013\Thumbs.db" />
     <None Include="img\Slot8\S8004\Thumbs.db" />
     <None Include="img\Slot\H0005\Thumbs.db" />
@@ -3786,6 +3899,8 @@
     <Content Include="Views\EmailTesting\Index.cshtml" />
     <Content Include="www\source\style\pages\sites\aoncash\Notify.less" />
     <Content Include="www\source\style\pages\sites\aoncash\Login.less" />
+    <Content Include="www\source\style\pages\sites\9bet\Login.less" />
+    <Content Include="www\source\style\pages\sites\9bet\Notify.less" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj">

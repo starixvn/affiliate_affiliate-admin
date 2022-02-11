@@ -10,7 +10,8 @@
     using Core.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Helpers;
-    using Fanex.Data.Configuration;
+    using Fanex.Data;
+    using Fanex.Data.SqlServer;
 
     /// <summary>
     /// Global configuration.
@@ -20,13 +21,15 @@
         /// <summary>
         /// Application start.
         /// </summary>
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Allow underscore")]
         protected void Application_Start()
         {
             LoggingConfig.RegisterSentry();
             // Start setting connect to DB
-            DbSettingProviderManager.Current.Start();
-
+            DbSettingProviderManager
+                .StartNewSession()
+                .WithSqlServer("~/Configurations/SpNames/SpName.xml")
+                .Run();
+            UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             AreaRegistration.RegisterAllAreas();
 
             RouteConfig.RegisterRoutes(RouteTable.Routes);

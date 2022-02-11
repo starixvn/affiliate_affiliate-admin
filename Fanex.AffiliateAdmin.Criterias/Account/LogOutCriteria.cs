@@ -13,5 +13,10 @@
         {
             return "AffAdmin_Logout";
         }
+
+        public override bool IsValid()
+        {
+            return true;
+        }
     }
 }

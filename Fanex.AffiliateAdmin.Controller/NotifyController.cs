@@ -4,9 +4,9 @@
     using System.Web.Security;
     using System.Web.SessionState;
     using Core.Constants;
+    using Fanex.AffiliateAdmin.Controller.Helpers;
     using Fanex.AffiliateAdmin.Core.Session;
     using ONEbook.UM.Services;
-    using ONEbook.UM.Services.Impl;
     using Resources;
 
     /// <summary>
@@ -25,7 +25,7 @@
 
         public NotifyController(IMaintenanceService maintenanceService)
         {
-            _maintenanceService = maintenanceService ?? new MaintenanceService();
+            _maintenanceService = maintenanceService ?? MaintenanceServiceHelper.GetMaintenanceService();
         }
 
         /// <summary>

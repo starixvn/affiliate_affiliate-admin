@@ -8,5 +8,15 @@
     public class SimpleCriteriaBase : CriteriaBase
     {
         public int ErrCode { get; set; }
+
+        public override string GetSettingKey()
+        {
+            return string.Empty;
+        }
+
+        public override bool IsValid()
+        {
+            return true;
+        }
     }
 }

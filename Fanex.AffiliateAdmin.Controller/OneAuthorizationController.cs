@@ -4,9 +4,9 @@
     using Core.Configurations;
     using Core.Constants;
     using DTO.OneAuth;
+    using Fanex.AffiliateAdmin.Controller.Helpers;
     using Newtonsoft.Json;
     using ONEbook.UM.Services;
-    using ONEbook.UM.Services.Impl;
     using Services.Impl.Core;
     using Services.Interfaces;
 
@@ -24,7 +24,7 @@
             IMaintenanceService maintenanceService,
             IOneAuthenticationService oneAuthenticationService)
         {
-            _maintenanceService = maintenanceService ?? new MaintenanceService();
+            _maintenanceService = maintenanceService ?? MaintenanceServiceHelper.GetMaintenanceService();
             _oneAuthenticationService = oneAuthenticationService ?? new OneAuthenticationService();
         }
 

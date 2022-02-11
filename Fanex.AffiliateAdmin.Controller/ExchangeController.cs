@@ -19,9 +19,9 @@
     [FunctionAuth(Function = FunctionPolicyNames.AffExchangeRate, CurrenciesRequired = true)]
     public class ExchangeController : BaseController
     {
-        private static Dictionary<string, int> _multipliedCurrencies = new Dictionary<string, int>();
+        private static readonly Dictionary<string, int> _multipliedCurrencies = new Dictionary<string, int>();
 
-        private static StringBuilder _strNotify = new StringBuilder();
+        private static readonly StringBuilder _strNotify = new StringBuilder();
 
         #region Services
 

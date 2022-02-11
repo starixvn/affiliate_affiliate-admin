@@ -1,6 +1,7 @@
 ﻿// -----------------------------------------------------------------------
 namespace Fanex.AffiliateAdmin.Criterias
 {
+    using Fanex.Data;
     using Fanex.Data.Repository;
 
     /// <summary>

@@ -1,7 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
     using System;
-    using Fanex.Data.Repository;
+    using Fanex.Data;
 
     /// <summary>
     /// Update Exchange Rate View Model.

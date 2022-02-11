@@ -24,7 +24,7 @@
         /// <param name="objectDB">Object database.</param>
         protected void GetOutputParams(ICriteria criteria, ObjectDb objectDB)
         {
-            var outputParams = objectDB.GetOuputParams();
+            var outputParams = objectDB.GetOutputParams();
 
             if (outputParams != null)
             {

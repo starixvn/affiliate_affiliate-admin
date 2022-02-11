@@ -8,6 +8,7 @@
     using Criterias;
     using Data;
     using DTO;
+    using Fanex.Data.SqlServer;
 
     /// <summary>
     /// TODO: Update summary.
@@ -24,9 +25,9 @@
             Check.Argument.IsNotNull(criteria, "criteria");
             if (criteria.IsValid())
             {
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
                 {
-                    objectDb.AddInParameter("msgid", DbType.Int32, criteria.MsgId);
+                    objectDb.SetParameterValue("msgid", criteria.MsgId);
                     using (var reader = objectDb.ExecuteReader())
                     {
                         while (reader.Read())

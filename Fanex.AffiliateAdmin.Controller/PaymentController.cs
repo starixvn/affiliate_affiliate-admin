@@ -113,7 +113,6 @@
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FunctionAuth(Function = FunctionPolicyNames.Payment, IsHostPolicy = true)]
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
         public ActionResult UpdatePayment(PaymentUpdateViewModel model)
         {
             var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria

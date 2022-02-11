@@ -5,6 +5,7 @@
     using Criterias;
     using DTO;
     using Fanex.Data;
+    using Fanex.Data.SqlServer;
 
     /// <summary>
     /// Account data access.
@@ -22,11 +23,9 @@
 
             if (criteria.IsValid())
             {
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
                 {
-                    var param = criteria.GetSpParams();
-
-                    using (var reader = objectDb.ExecuteReader(param))
+                    using (var reader = objectDb.ExecuteReader(criteria))
                     {
                         memberWinlossReport.MemberWinlossList = GetMemberWinlossList(reader);
 

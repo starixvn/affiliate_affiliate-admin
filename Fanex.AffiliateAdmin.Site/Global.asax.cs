@@ -1,7 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Site
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using System.Web.Helpers;
     using System.Web.Mvc;

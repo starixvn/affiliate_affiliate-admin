@@ -19,7 +19,7 @@ namespace Fanex.AffiliateAdmin.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ErrorMsg {
@@ -237,6 +237,33 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string Msg103 {
             get {
                 return ResourceManager.GetString("Msg103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Name or API Product ID is existing..
+        /// </summary>
+        public static string Msg104 {
+            get {
+                return ResourceManager.GetString("Msg104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sports Lottery (API Product ID: 63) has been included in Sportsbook&apos;s figures..
+        /// </summary>
+        public static string Msg105 {
+            get {
+                return ResourceManager.GetString("Msg105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Out (API Product ID: 25) has been included in Sportsbook&apos;s figures..
+        /// </summary>
+        public static string Msg106 {
+            get {
+                return ResourceManager.GetString("Msg106", resourceCulture);
             }
         }
         

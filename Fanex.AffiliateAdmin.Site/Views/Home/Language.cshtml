@@ -4,7 +4,7 @@
     var selectedLang = Model.Item2;
     var systemDate = Model.Item3;
 }
-@if (languageList.Count() > 1)
+@*@if (languageList.Count() > 1)
 {
     <div class="langSelectLink">
         <div class="box">
@@ -15,7 +15,7 @@
     <div id="langList" class="langList">
         <div class="langListRp">
             @foreach (var item in languageList)
-            {                        
+            {
                 <a class="@(item.LanguageID)" href="javascript:void(0);">@item.LanguageName</a>
             }
         </div>
@@ -24,8 +24,9 @@
 else
 {
     <div class="langSelectLink"></div>
-}
-<script type="text/javascript">    
+}*@
+<div class="langSelectLink"></div>
+<script type="text/javascript">
     var sysGmt = '@systemDate.GMTOffSet';
     var sysYear = @systemDate.DatabaseDateTime.Year;
     var sysMonth = @systemDate.DatabaseDateTime.Month;

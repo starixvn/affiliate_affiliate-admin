@@ -227,7 +227,7 @@
         private ApiCustInfo GetCustInfo(long transId, string siteName, string userName)
         {
             return AppSettings.LocalTest ?
-                new ApiCustInfo { PlayerCurrency = "USD", IbcUserName = "ninatest" } :
+                new ApiCustInfo { PlayerCurrency = AppSettings.DefaultCurrency, IbcUserName = "ninatest" } :
                 ServiceWrapper.GetLicenseeCustInfo(siteName, userName, transId);
         }
 

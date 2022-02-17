@@ -439,6 +439,14 @@
             }
         }
 
+        public static string DefaultCurrency
+        {
+            get
+            {
+                return GetValue("DefaultCurrency");
+            }
+        }
+
         public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
         {
             return SystemSetting.GetActiveCommGroups(criteria);

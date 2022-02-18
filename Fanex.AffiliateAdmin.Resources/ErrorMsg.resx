@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -397,5 +397,14 @@
   <data name="Msg2003" xml:space="preserve">
     <value>Sorry! Cannot delete the member domain since it is being used.</value>
     <comment>bug #49268</comment>
+  </data>
+  <data name="Msg104" xml:space="preserve">
+    <value>Product Name or API Product ID is existing.</value>
+  </data>
+  <data name="Msg105" xml:space="preserve">
+    <value>Sports Lottery (API Product ID: 63) has been included in Sportsbook's figures.</value>
+  </data>
+  <data name="Msg106" xml:space="preserve">
+    <value>Cash Out (API Product ID: 25) has been included in Sportsbook's figures.</value>
   </data>
 </root>

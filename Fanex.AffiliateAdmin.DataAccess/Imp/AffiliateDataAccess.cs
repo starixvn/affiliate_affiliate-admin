@@ -318,7 +318,7 @@
             {
                 foreach (var property in properties)
                 {
-                    if (property.CanWrite && property.Name.ToLower() == outputParam)
+                    if (property.CanWrite && property.Name.ToUpper() == outputParam)
                     {
                         statistics.SetPropertyValue(property.Name, outputParams[outputParam]);
                     }

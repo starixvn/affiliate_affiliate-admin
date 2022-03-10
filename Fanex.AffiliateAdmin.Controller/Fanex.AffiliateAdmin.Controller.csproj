@@ -125,9 +125,6 @@
     <Reference Include="ONEBook.UM.NETFramework, Version=3.1.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ONEBook.UM.NETFramework.3.1.5\lib\net461\ONEBook.UM.NETFramework.dll</HintPath>
     </Reference>
-    <Reference Include="ONEbook.UM.Transport, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ONEbook.UM.Transport.3.1.1\lib\net461\ONEbook.UM.Transport.dll</HintPath>
-    </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
       <Private>True</Private>
@@ -202,7 +199,6 @@
     <Compile Include="EmailTestingController.cs" />
     <Compile Include="Helpers\AffiliateInfoCookieHelper.cs" />
     <Compile Include="Helpers\BannerHelper.cs" />
-    <Compile Include="Helpers\MaintenanceServiceHelper.cs" />
     <Compile Include="MediaTextController.cs" />
     <Compile Include="OneAuthorizationController.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

@@ -5,6 +5,7 @@
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.Data;
+    using Fanex.Data.SqlServer;
 
     /// <summary>
     /// Affiliate Win Loss Overview Data Access.
@@ -22,10 +23,9 @@
 
             if (criteria.IsValid())
             {
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
                 {
-                    var param = criteria.GetSpParams();
-                    using (var reader = objectDb.ExecuteReader(param))
+                    using (var reader = objectDb.ExecuteReader(criteria))
                     {
                         commissionReport.CommissionList = GetCommissionList(reader);
 

@@ -7,15 +7,16 @@
     using Data;
     using DTO;
     using Fanex.AffiliateAdmin.Models;
+    using Fanex.Data.SqlServer;
 
     public class AuthDataAccess : IAuthDataAccess
     {
         public ResultViewModel Login(LoginCriteria criteria, out Account account)
         {
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
             {
-                objectDb.ExecuteNonQuery(criteria.GetSpParams());
-                var outputParams = objectDb.GetOuputParams();
+                objectDb.ExecuteNonQuery(criteria);
+                var outputParams = objectDb.GetOutputParams();
                 var result = new ResultViewModel();
                 account = new Account();
                 result.ErrorCode = Convert.ToInt32(outputParams["errcode"]);
@@ -39,20 +40,19 @@
         public void UserLogOut(LogOutCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
             {
-                var currentParams = criteria.GetSpParams();
+                var currentParams = criteria;
                 objectDb.ExecuteNonQuery(currentParams);
             }
         }
 
         public int CheckIn(CheckInCriteria criteria)
         {
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
             {
-                var currentParams = criteria.GetSpParams();                
-                objectDb.ExecuteNonQuery(currentParams);
-                return Converter.ToInt(currentParams["on_userid"]);
+                objectDb.ExecuteNonQuery(criteria);
+                return Converter.ToInt(criteria.OnUserId);
             }
         }
 
@@ -63,11 +63,10 @@
         /// <returns>Return boolean.</returns>
         public bool ReCheckIn(ReCheckInCriteria criteria)
         {
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
             {
-                var currentParams = criteria.GetSpParams();
-                objectDb.ExecuteNonQuery(currentParams);
-                return Converter.ToBool(currentParams["iskickedout"]);
+                objectDb.ExecuteNonQuery(criteria);
+                return Converter.ToBool(criteria.IsKickedOut);
             }
         }
     }

@@ -11,5 +11,5 @@ module.exports = {
         clientOutputPath: path.resolve(__dirname, '../dist'),
         relativeOutputPath: 'www/dist'
     },
-    siteList: ['athena000', 'aoncash', 'itcbet', 'macaubet', 'spondemo']
+    siteList: ['9bet', 'athena000', 'aoncash', 'itcbet', 'macaubet', 'spondemo']
 }

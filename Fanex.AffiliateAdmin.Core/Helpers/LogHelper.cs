@@ -7,9 +7,13 @@
 namespace Fanex.AffiliateAdmin.Core.Helpers
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.SqlClient;
+    using System.Linq;
+    using System.Text;
     using System.Web;
     using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.Data;
     using Fanex.Logging;
 
     /// <summary>
@@ -17,35 +21,111 @@ namespace Fanex.AffiliateAdmin.Core.Helpers
     /// </summary>
     public static class LogHelper
     {
+        private const int LimitedLevelOfInnerException = 3;
+
         public static void WriteError(Exception exception)
         {
+            var content = BuildMessage(exception.Message);
+
+            AddDatabaseInfo(content, exception);
+            AddExceptionInfo(content, exception, LimitedLevelOfInnerException);
+
+            LogService.Error(content.ToString(), exception);
+        }
+
+        private static StringBuilder BuildMessage(string message)
+        {
             var request = HttpContext.Current.Request;
-            string message = exception.Message +
-                             "\r\nSOURCE: " + exception.Source +
-                             "\r\nDOMAIN: " + request.Headers["Host"] +
-                             "\r\nFORM: " + string.Join("~", request.Form) +
-                             "\r\nUrl: " + request.RawUrl +
-                             "\r\nQUERYSTRING: " + string.Join("~", request.QueryString) +
-                             "\r\nTARGETSITE: " + exception.TargetSite +
-                             "\r\nSTACKTRACE: " + exception.StackTrace +
-                             "\r\nBrowser:" + request.Browser.Type.ToString() +
-                             "\r\nBrowserVer:" + request.Browser.Version.ToString() +
-                             "\r\nAgent:" + request.UserAgent.ToString();
-            var sqlException = exception as SqlException;
-            if (sqlException != null)
-            {
-                message += "\r\nProcedure: " + sqlException.Procedure +
-                    "\r\nLine Number: " + sqlException.LineNumber +
-                    "\r\nServer: " + sqlException.Server;
-            }
+            var builder = new StringBuilder().AppendLine($"Error Message: {message}").AppendLine();
+
+
+            builder.AppendLine("REQUEST INFO")
+                   .AppendLine("Domain: " + request.Headers["Host"])
+                   .AppendLine("Form: " + string.Join("~", request.Form))
+                   .AppendLine("Url: " + request.RawUrl)
+                   .AppendLine("Referrer: " + request.UrlReferrer)
+                   .AppendLine("Query String: " + string.Join("~", request.QueryString))
+                   .AppendLine("Browser: " + request.Browser.Type)
+                   .AppendLine("BrowserVer: " + request.Browser.Version)
+                   .AppendLine("Agent: " + request.UserAgent)
+                   .AppendLine("IP Address: " + request.UserHostAddress);
 
             var session = SessionManager.CurrentSession;
             if (session != null)
             {
-                message += "\r\nSystemInfo:UserId=" + session.CustID + "-" + session.Username;
+                builder.AppendLine("\r\nUser Info: Id = " + session.CustID + ", Username -" + session.Username);
             }
 
-            LogService.Error(message, exception);
+            return builder;
+        }
+
+        private static void AddDatabaseInfo(StringBuilder builder, Exception exception)
+        {
+            builder.AppendLine();
+            builder.AppendLine("DATABASE INFO");
+
+            var dbInfo = GetDbExceptionInfo(exception);
+
+            foreach (var item in dbInfo)
+            {
+                builder.AppendLine($"{item.Key}: {item.Value}");
+            }
+        }
+
+        private static IDictionary<string, object> GetDbExceptionInfo(Exception exception)
+        {
+            var dbInfo = new Dictionary<string, object>();
+            BindSqlExceptionInfo(exception, dbInfo);
+            BindFanexDataExceptionInfo(exception, dbInfo);
+            return dbInfo;
+        }
+
+        private static void BindFanexDataExceptionInfo(Exception exception, IDictionary<string, object> dbInfo)
+        {
+            if (exception is ObjectDbException fanexDataException)
+            {
+                BindSqlExceptionInfo(exception.InnerException, dbInfo);
+
+                var connString = new SqlConnectionStringBuilder(fanexDataException.ConnectionString);
+
+                dbInfo["Server"] = connString.DataSource;
+                dbInfo["DbName"] = fanexDataException.DbName;
+                dbInfo["SpName"] = fanexDataException.SpName;
+                dbInfo["UserId"] = connString.UserID;
+                dbInfo["Parameters"] = GetParameters(fanexDataException.Parameters);
+                dbInfo["CommandTimeout"] = fanexDataException.CommandTimeout;
+            }
+        }
+
+        private static void BindSqlExceptionInfo(Exception exception, IDictionary<string, object> dbInfo)
+        {
+            if (exception is SqlException sqlException)
+            {
+                dbInfo["Server"] = sqlException.Server;
+                dbInfo["Procedure"] = sqlException.Procedure;
+                dbInfo["Line"] = sqlException.LineNumber;
+            }
+        }
+
+        private static string GetParameters(IDictionary<string, object> parameters)
+            => parameters?.Count > 0
+               ? parameters.Select(parameter => $"{parameter.Key}={parameter.Value}")
+                        .Aggregate((firstPair, secondPair) => $"{firstPair};{secondPair}")
+               : string.Empty;
+
+        private static void AddExceptionInfo(StringBuilder builder, Exception exception, int limitedInnerException)
+        {
+            builder.AppendLine();
+            builder.AppendLine($"EXCEPTION INFO LEVEL: {LimitedLevelOfInnerException - limitedInnerException}");
+            builder.AppendLine($"Message: {exception.Message}");
+            builder.AppendLine($"Source: {exception.Source}");
+            builder.AppendLine($"TargetSite: {exception.TargetSite}");
+            builder.AppendLine($"StackTrace: {exception.StackTrace}");
+
+            if (exception.InnerException != null && limitedInnerException > 0)
+            {
+                AddExceptionInfo(builder, exception.InnerException, --limitedInnerException);
+            }
         }
     }
 }

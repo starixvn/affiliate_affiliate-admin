@@ -5,8 +5,8 @@
     using System.Web.SessionState;
     using Core.Constants;
     using Fanex.AffiliateAdmin.Core.Session;
+    using ONEbook.UM;
     using ONEbook.UM.Services;
-    using ONEbook.UM.Services.Impl;
     using Resources;
 
     /// <summary>
@@ -18,14 +18,17 @@
     {
         private readonly IMaintenanceService _maintenanceService;
 
-        public NotifyController()
-            : this(null)
+        public NotifyController() : this(null)
         {
         }
 
         public NotifyController(IMaintenanceService maintenanceService)
         {
-            _maintenanceService = maintenanceService ?? new MaintenanceService();
+            _maintenanceService = maintenanceService ?? new MaintenanceService(
+                                      UMClientManager.RestClient,
+                                      UMClientManager.CacheService,
+                                      UMClientManager.UMClientConfigs,
+                                      UMClientManager.HttpContext);
         }
 
         /// <summary>

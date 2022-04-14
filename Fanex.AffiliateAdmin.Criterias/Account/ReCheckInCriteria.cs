@@ -1,5 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias
 {
+    using Fanex.Data;
     using Fanex.Data.Repository;
 
     /// <summary>
@@ -15,6 +16,11 @@
         public override string GetSettingKey()
         {
             return "AffAdmin_Recheckin";
+        }
+
+        public override bool IsValid()
+        {
+            return true;
         }
     }
 }

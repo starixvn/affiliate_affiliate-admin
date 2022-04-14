@@ -6,6 +6,7 @@
     using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.Data.Repository;
+    using Fanex.Data.SqlServer;
     using Helpers;
 
     /// <summary>
@@ -45,18 +46,16 @@
         /// <param name="criteria">Input criteria.</param>
         /// <param name="totalPages">Total page.</param>
         /// <returns>The list of founded entities and total page.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", Justification = "Accept type reference")]
         public IEnumerable<T> GetData<T>(ICriteria criteria, ref int totalPages)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
             if (criteria.IsValid())
             {
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
                 {
-                    var param = criteria.GetSpParams();
-                    var list = objectDb.Query<T>(param);
-                    totalPages = Convert.ToInt32(param["totalpages"]);
+                    var list = objectDb.Query<T>(criteria);
+                    totalPages = Convert.ToInt32(criteria);
                     return list;
                 }
             }
@@ -70,21 +69,19 @@
         /// <typeparam name="T">General type.</typeparam>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>The list of found entities and output values.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Temporarily, accept it")]
         public IEnumerable<T> GetDataOutput<T>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
             {
                 IEnumerable<T> list = new List<T>();
 
                 try
                 {
-                    var param = criteria.GetSpParams();
-                    list = objectDb.Query<T>(param);
+                    list = objectDb.Query<T>(criteria);
 
-                    var outputParams = objectDb.GetOuputParams();
+                    var outputParams = objectDb.GetOutputParams();
                     if (outputParams != null)
                     {
                         var properties = criteria.GetType().GetProperties();
@@ -93,9 +90,9 @@
                         {
                             foreach (var property in properties)
                             {
-                                if (property.CanWrite && property.Name.ToLower() == outputParam)
+                                if (property.CanWrite && property.Name.ToUpper() == outputParam)
                                 {
-                                    property.SetValue(criteria, param[outputParam], null);
+                                    property.SetValue(criteria, outputParams[outputParam], null);
                                 }
                             }
                         }
@@ -122,10 +119,9 @@
 
             if (criteria.IsValid())
             {
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
                 {
-                    var param = criteria.GetSpParams();
-                    var result = objectDb.QueryEntity<T>(param);
+                    var result = objectDb.QueryEntity<T>(criteria);
                     return result;
                 }
             }
@@ -141,20 +137,19 @@
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
             {
-                var param = criteria.GetSpParams();
-                objectDb.ExecuteNonQuery(param);
+                objectDb.ExecuteNonQuery(criteria);
 
-                var outputParams = objectDb.GetOuputParams();
+                var outputParams = objectDb.GetOutputParams();
                 var properties = criteria.GetType().GetProperties();
                 foreach (string outputParam in outputParams.Keys)
                 {
                     foreach (var property in properties)
                     {
-                        if (property.CanWrite && property.Name.ToLower() == outputParam)
+                        if (property.CanWrite && property.Name.ToUpper() == outputParam)
                         {
-                            property.SetValue(criteria, param[outputParam] == DBNull.Value ? null : param[outputParam], null);
+                            property.SetValue(criteria, outputParams[outputParam] == DBNull.Value ? null : outputParams[outputParam], null);
                         }
                     }
                 }

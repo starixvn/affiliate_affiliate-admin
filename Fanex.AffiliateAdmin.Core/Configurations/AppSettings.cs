@@ -20,32 +20,30 @@
     {
         #region Define variable
 
-        private static Lazy<ISystemSettingService> _systemSetting;
-        private static Lazy<IEnumerable<Exchange>> _affiliateCurrencies;
-        private static Lazy<IEnumerable<Language>> _affLanguage;
-        private static Lazy<IEnumerable<Language>> _affSupportLanguage;
-        private static Lazy<IEnumerable<Currency>> _affSystemAllSupportedCurrencies;
-        private static Lazy<IEnumerable<Currency>> _affSystemSupportedCurrencies;
-        private static Lazy<IEnumerable<AffType>> _affType;
-        private static Lazy<Exchange> _baseExchange;
-        private static Lazy<IEnumerable<Language>> _baseLanguage;
-        private static Lazy<IEnumerable<DeductionType>> _deductionTypes;
+        private static readonly Lazy<ISystemSettingService> _systemSetting;
+        private static readonly Lazy<IEnumerable<Exchange>> _affiliateCurrencies;
+        private static readonly Lazy<IEnumerable<Language>> _affLanguage;
+        private static readonly Lazy<IEnumerable<Language>> _affSupportLanguage;
+        private static readonly Lazy<IEnumerable<Currency>> _affSystemAllSupportedCurrencies;
+        private static readonly Lazy<IEnumerable<Currency>> _affSystemSupportedCurrencies;
+        private static readonly Lazy<IEnumerable<AffType>> _affType;
+        private static readonly Lazy<Exchange> _baseExchange;
+        private static readonly Lazy<IEnumerable<Language>> _baseLanguage;
+        private static readonly Lazy<IEnumerable<DeductionType>> _deductionTypes;
 
-        private static Lazy<int> _licenseeId;
+        private static readonly Lazy<int> _licenseeId;
 
-        private static Lazy<IEnumerable<Language>> _memberSiteSupportedLanguage;
+        private static readonly Lazy<IEnumerable<Language>> _memberSiteSupportedLanguage;
 
-        private static Lazy<IEnumerable<Currency>> _playerCurrencies;
-        private static Lazy<IEnumerable<Product>> _products;
-        private static Lazy<DateTime> _systemStartDate;
+        private static readonly Lazy<IEnumerable<Currency>> _playerCurrencies;
+        private static readonly Lazy<IEnumerable<Product>> _products;
+        private static readonly Lazy<DateTime> _systemStartDate;
 
-        private static Lazy<string> _systemName;
-        private static Lazy<string> _systemDisplayName;
+        private static readonly Lazy<string> _systemName;
+        private static readonly Lazy<string> _systemDisplayName;
 
         #endregion Define variable
 
-        [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Reviewed.")]
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
         static AppSettings()
         {
             _systemSetting = new Lazy<ISystemSettingService>(() => new SystemSettingService());
@@ -441,6 +439,14 @@
             }
         }
 
+        public static string DefaultCurrency
+        {
+            get
+            {
+                return GetValue("DefaultCurrency");
+            }
+        }
+
         public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
         {
             return SystemSetting.GetActiveCommGroups(criteria);
@@ -464,7 +470,6 @@
         /// </summary>
         /// <param name="detailCriteria">System Setting Detail Criteria.</param>
         /// <returns>Setting value.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Accepted")]
         public static string GetSettingValue(SystemSettingsSelByNameCriteria detailCriteria)
         {
             string value = string.Empty;

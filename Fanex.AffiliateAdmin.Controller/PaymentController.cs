@@ -113,7 +113,6 @@
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FunctionAuth(Function = FunctionPolicyNames.Payment, IsHostPolicy = true)]
-        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed.")]
         public ActionResult UpdatePayment(PaymentUpdateViewModel model)
         {
             var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria
@@ -228,7 +227,7 @@
         private ApiCustInfo GetCustInfo(long transId, string siteName, string userName)
         {
             return AppSettings.LocalTest ?
-                new ApiCustInfo { PlayerCurrency = "USD", IbcUserName = "ninatest" } :
+                new ApiCustInfo { PlayerCurrency = AppSettings.DefaultCurrency, IbcUserName = "ninatest" } :
                 ServiceWrapper.GetLicenseeCustInfo(siteName, userName, transId);
         }
 

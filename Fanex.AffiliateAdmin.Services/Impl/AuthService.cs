@@ -18,6 +18,7 @@
     using DTO;
     using DTO.Common;
     using DTO.OneAuth;
+    using Fanex.Data.SqlServer;
     using Models;
     using Newtonsoft.Json;
 
@@ -49,7 +50,7 @@
             var user = GetByUsername(criteria.Username);
             if (user != null)
             {
-                var hashPassword = Cryptography.CreateHash(user.Password + logInToken, user.UserSalt);
+                var hashPassword = Common.Cryptography.CreateHash(user.Password + logInToken, user.UserSalt);
 
                 if (criteria.UserPwd.Equals(hashPassword, StringComparison.OrdinalIgnoreCase))
                 {
@@ -85,10 +86,10 @@
             {
                 Username = userName,
                 LicenseeId = licenseeId,
-                isInternal = isInternal
+                isInternal
             };
 
-            using (var objectDb = new ObjectDb("AffAdmin_UserInfoSelByUserName"))
+            using (var objectDb = new SqlObjectDb("AffAdmin_UserInfoSelByUserName"))
             {
                 return objectDb.QueryEntity<Account>(param);
             }

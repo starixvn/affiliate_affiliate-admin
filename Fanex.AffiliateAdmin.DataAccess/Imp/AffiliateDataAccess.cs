@@ -12,6 +12,7 @@
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Common.Extensions;
     using Fanex.Common.Helper;
+    using Fanex.Data.SqlServer;
     using Models;
 
     /// <summary>
@@ -31,9 +32,9 @@
 
             if (criteria.IsValid())
             {
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
                 {
-                    using (var reader = objectDb.ExecuteReader(criteria.GetSpParams()))
+                    using (var reader = objectDb.ExecuteReader(criteria))
                     {
                         if (reader.Read())
                         {
@@ -94,10 +95,9 @@
 
             if (criteria.IsValid())
             {
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
                 {
-                    var param = criteria.GetSpParams();
-                    using (var reader = objectDb.ExecuteReader(param))
+                    using (var reader = objectDb.ExecuteReader(criteria))
                     {
                         affiliateStatistic.Products = GetProductList(reader);
 
@@ -122,9 +122,9 @@
 
             if (criteria.IsValid())
             {
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
                 {
-                    return objectDb.Query<Affiliate>(criteria.GetSpParams()).FirstOrDefault();
+                    return objectDb.Query<Affiliate>(criteria).FirstOrDefault();
                 }
             }
 
@@ -140,9 +140,9 @@
         {
             var result = new AffiliateListReportViewModel();
 
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
             {
-                using (var reader = objectDb.ExecuteReader(criteria.GetSpParams()))
+                using (var reader = objectDb.ExecuteReader(criteria))
                 {
                     // Read Currency Statistics.
                     result.AddCurrencyList(GetCurrencyList(reader));
@@ -152,7 +152,7 @@
                 }
 
                 // Read output parameters.
-                var outputParams = objectDb.GetOuputParams();
+                var outputParams = objectDb.GetOutputParams();
                 criteria.TotalPages = int.Parse(outputParams["totalpages"].ToString());
                 criteria.NRows = int.Parse(outputParams["nrows"].ToString());
                 criteria.TotalAmount = decimal.Parse(outputParams["totalamount"].ToString());
@@ -308,7 +308,7 @@
         /// <returns>Affiliate statistics.</returns>
         private AffiliateStatistic GetAffiliateStatistic(ObjectDb objectDb)
         {
-            var outputParams = objectDb.GetOuputParams();
+            var outputParams = objectDb.GetOutputParams();
 
             var statistics = new AffiliateStatistic();
 
@@ -318,7 +318,7 @@
             {
                 foreach (var property in properties)
                 {
-                    if (property.CanWrite && property.Name.ToLower() == outputParam)
+                    if (property.CanWrite && property.Name.ToUpper() == outputParam)
                     {
                         statistics.SetPropertyValue(property.Name, outputParams[outputParam]);
                     }

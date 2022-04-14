@@ -16,7 +16,7 @@
     using Fanex.AffiliateAdmin.Services;
     using Helpers;
     using Models;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
     using Resources;
 
     public class AccountController : Controller

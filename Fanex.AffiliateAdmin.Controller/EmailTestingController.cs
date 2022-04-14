@@ -79,7 +79,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 TransId = 123,
                 FirstName = "Walter",
                 WinlostDate = DateTime.Now,
-                Amount = FormaterCurrency.Format(12597, "USD"),
+                Amount = FormaterCurrency.Format(12597, AppSettings.DefaultCurrency),
                 AdminSiteUrl = siteInfo.AdminSiteUrl,
                 AffiliateSiteUrl = siteInfo.AffiliateSiteUrl,
                 MemberSiteUrl = siteInfo.MemberSiteUrl,

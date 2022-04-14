@@ -8,6 +8,7 @@
     using Fanex.Common.Extensions;
     using Fanex.Common.Helper;
     using Fanex.Data;
+    using Fanex.Data.SqlServer;
 
     /// <summary>
     /// TODO: Update summary.
@@ -89,9 +90,9 @@
                 return new List<QualifiedMember>();
             }
 
-            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
+            using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
             {
-                using (var reader = objectDb.ExecuteReader(criteria.GetSpParams()))
+                using (var reader = objectDb.ExecuteReader(criteria))
                 {
                     var dataList = new List<QualifiedMember>();
                     QualifiedMember member = null;
@@ -101,11 +102,13 @@
                         var username = reader.ToString("Username");
                         if (member == null || !member.Username.Equals(username, System.StringComparison.OrdinalIgnoreCase))
                         {
-                            member = new QualifiedMember();
-                            member.Username = username;
-                            member.Currency = reader.ToString("Currency");
-                            member.QualifiedAmount = reader.ToDecimal("QualifiedAmount");
-                            member.QualifiedAmountBase = reader.ToDouble("QualifiedAmountBase");
+                            member = new QualifiedMember
+                            {
+                                Username = username,
+                                Currency = reader.ToString("Currency"),
+                                QualifiedAmount = reader.ToDecimal("QualifiedAmount"),
+                                QualifiedAmountBase = reader.ToDouble("QualifiedAmountBase")
+                            };
                             dataList.Add(member);
                         }
 

@@ -24,7 +24,7 @@
         /// <param name="objectDB">Object database.</param>
         protected void GetOutputParams(ICriteria criteria, ObjectDb objectDB)
         {
-            var outputParams = objectDB.GetOuputParams();
+            var outputParams = objectDB.GetOutputParams();
 
             if (outputParams != null)
             {
@@ -34,7 +34,7 @@
                 {
                     foreach (var property in properties)
                     {
-                        if (property.CanWrite && property.Name.ToLower() == outputParam)
+                        if (property.CanWrite && property.Name.ToUpper() == outputParam)
                         {
                             property.SetValue(criteria, outputParams[outputParam], null);
                         }

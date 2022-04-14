@@ -8,7 +8,7 @@
     using Core.Filter;
     using Core.Session;
     using Models;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
     using Resources;
 
     /// <summary>

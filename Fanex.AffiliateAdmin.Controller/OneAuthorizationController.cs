@@ -5,26 +5,21 @@
     using Core.Constants;
     using DTO.OneAuth;
     using Newtonsoft.Json;
-    using ONEbook.UM.Services;
-    using ONEbook.UM.Services.Impl;
+    using ONEbook.UM.AspNetMVC.Filters;
     using Services.Impl.Core;
     using Services.Interfaces;
 
     public class OneAuthorizationController : Controller
     {
-        private readonly IMaintenanceService _maintenanceService;
-
         private readonly IOneAuthenticationService _oneAuthenticationService;
 
-        public OneAuthorizationController() : this(null, null)
+        public OneAuthorizationController() : this(null)
         {
         }
 
         internal OneAuthorizationController(
-            IMaintenanceService maintenanceService,
             IOneAuthenticationService oneAuthenticationService)
         {
-            _maintenanceService = maintenanceService ?? new MaintenanceService();
             _oneAuthenticationService = oneAuthenticationService ?? new OneAuthenticationService();
         }
 
@@ -36,14 +31,10 @@
 
         [AllowAnonymous]
         [HttpGet]
+        [CheckUMFilter]
         [Route("Auth/CreateSession")]
         public RedirectResult CreateSession(string token)
         {
-            if (_maintenanceService.IsUnderMaintenance())
-            {
-                return new RedirectResult("~/Notify");
-            }
-
             var returnUrl = "~/Notify/OneTokenRestriction?code=";
             var errMsg = string.Empty;
             if (!string.IsNullOrWhiteSpace(token))

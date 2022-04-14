@@ -13,10 +13,11 @@
 			"aoncash",
 			"athena000",
 			"itcbet",
-			"macaubet"
+			"macaubet",
+			"9bet"
 		};
 
-	var environments = new string[] { "master", "uat", "production", "mnl" };
+	var environments = new string[] { "master", "sit", "uat", "production", "mnl" };
 
 	foreach(var licenseeName in licenseeNames)
 	{

@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
+    using Fanex.AffiliateAdmin.Core.Constants;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Resources;
 
@@ -12,8 +13,6 @@
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class FunctionAuthAttribute : ActionFilterAttribute
     {
-        private const int AccessDeniedErrorCode = 500;
-
         public string Function { get; set; }
 
         public bool IsHostPolicy { get; set; }
@@ -45,7 +44,7 @@
             {
                 if (filterContext.HttpContext.Request.IsAjaxRequest())
                 {
-                    var data = new { ErrorCode = AccessDeniedErrorCode, Message = ErrorMsg.Msg500 };
+                    var data = new { ErrorCode = ErrorCodes.AccessDeniedErrorCode, Message = ErrorMsg.Msg500 };
                     filterContext.Result = new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 }
                 else

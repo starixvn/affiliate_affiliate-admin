@@ -9,7 +9,7 @@
 }
 @using (Html.BeginForm("EditText", "MediaText", FormMethod.Post, new { @class = "form-horizontal form-popup" }))
 {
-    
+
     @Html.ValidationSummary()
     <div class="popup-content">
         @Html.HiddenFor(m => m.BannerId)
@@ -56,7 +56,7 @@
     {
         var result = (ResultViewModel)ViewBag.Result;
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.TextList.ReRenderAfterPaged);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.TextList.ReRenderAfterPaged);
         </script>
     }
 }

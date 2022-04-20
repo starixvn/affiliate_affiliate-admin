@@ -10,7 +10,7 @@ var CUSTOMER = (function ($) {
             $("#gridId").resize(function () {
                 $(".search-panel").width($(this).width());
             });
-            
+
             CUSTOMER.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
 
             $('.search-panel form').submit(function () {
@@ -43,7 +43,7 @@ var CUSTOMER = (function ($) {
         },
 
         ReRenderAfterPaged: function (currentPage, itemsPerPage) {
-            // resize height of datagrid            
+            // resize height of datagrid
             gridOption = AFFILIATE.resizeHeightDataGrid(gridOption);  // jshint ignore:line
 
             AFFILIATE.trimBeforeSubmit();
@@ -68,11 +68,11 @@ var CUSTOMER = (function ($) {
                     data: "username=" + username,
                     success: function (result) {
                         AFFILIATE.PreHandleAjaxResult(result);
-                        
-                        if (!result.Success) {
-                            alert(result.Message);
-                        } else {
+
+                        if (result.IsSuccess) {
                             CUSTOMER.ReRenderAfterPaged();
+                        } else {
+                            alert(result.ErrorMessage);
                         }
                     }
                 });

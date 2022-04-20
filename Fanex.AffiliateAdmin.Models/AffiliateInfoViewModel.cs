@@ -17,21 +17,9 @@ namespace Fanex.AffiliateAdmin.Models
     /// </summary>
     public class AffiliateInfoViewModel
     {
-        #region Fields
-
-        private IList<AffiliateOnUser> _onlineUsers = new List<AffiliateOnUser>();
-
-        #endregion Fields
-
         public AffiliateStatisticViewModel StatisticViewModel { get; set; }
 
-        public IList<AffiliateOnUser> OnUsers
-        {
-            get
-            {
-                return _onlineUsers;
-            }
-        }
+        public IEnumerable<AffiliateOnUser> OnUsers { get; set; }
 
         public Affiliate AffiliateInfo { get; set; }
 
@@ -43,11 +31,6 @@ namespace Fanex.AffiliateAdmin.Models
             {
                 return SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.Affiliate);
             }
-        }
-        
-        public void AddOnlineUsers(IList<AffiliateOnUser> onlineUsers)
-        {
-            _onlineUsers = onlineUsers;
         }
     }
 }

@@ -18,14 +18,13 @@
     using DTO;
     using DTO.Common;
     using DTO.OneAuth;
+    using Fanex.AffiliateAdmin.Core.Constants;
     using Fanex.Data.SqlServer;
     using Models;
     using Newtonsoft.Json;
 
     public class AuthService : QueryService, IAuthService
     {
-        private const int WrongUserPasswordErrorCode = 101;
-
         private readonly IAuthDataAccess _authDataAccess;
 
         private readonly ISystemSettingService _systemSettingService;
@@ -60,7 +59,7 @@
 
             return result ?? new ResultViewModel()
             {
-                ErrorCode = WrongUserPasswordErrorCode
+                ErrorCode = ErrorCodes.WrongUserPasswordErrorCode
             };
         }
 

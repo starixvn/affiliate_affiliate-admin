@@ -41,7 +41,7 @@
     {
         var result = (ResultViewModel)ViewBag.Result;
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.Message.ReRenderAfterPaged);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.Message.ReRenderAfterPaged);
         </script>
     }
 }

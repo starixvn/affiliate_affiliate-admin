@@ -73,10 +73,10 @@ var Product = (function ($) {
                         success: function(result) {
                             AFFILIATE.PreHandleAjaxResult(result);
 
-                            if (!result.Success) {
-                                alert(result.Message);
+                            if (result.IsSuccess) {
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.ErrorMessage, Product.ReRenderAfterPaged);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, Product.ReRenderAfterPaged);
+                                alert(result.ErrorMessage);
                             }
                         }
                     });

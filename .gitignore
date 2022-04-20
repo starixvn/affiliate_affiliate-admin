@@ -44,3 +44,4 @@ SUMMARY.DISPLAY.xml
 /.vs
 /packages
 node_modules
+CoverageReport/

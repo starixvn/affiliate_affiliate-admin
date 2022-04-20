@@ -1,6 +1,6 @@
 ﻿/*global AFFILIATE,gridOption,lang*/
 var DOMAIN = (function ($) {
-    "use strict";  
+    "use strict";
     return {
         init: function() {
             // Event click login
@@ -52,10 +52,10 @@ var DOMAIN = (function ($) {
                     success: function(result) {
                         AFFILIATE.PreHandleAjaxResult(result);
 
-                        if (!result.Success) {
-                            alert(result.Message);
-                        } else {
+                        if (result.IsSuccess) {
                             DOMAIN.ReRenderAfterPaged(0, $("#itemperpage").val());
+                        } else {
+                            alert(result.ErrorMessage);
                         }
                     }
                 });
@@ -65,6 +65,6 @@ var DOMAIN = (function ($) {
 })(jQuery);
 
 $(function () {
-    "use strict";  
+    "use strict";
     DOMAIN.init();
 });

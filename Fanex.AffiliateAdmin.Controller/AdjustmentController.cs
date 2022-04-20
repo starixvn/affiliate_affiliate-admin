@@ -10,6 +10,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
@@ -25,24 +26,23 @@ namespace Fanex.AffiliateAdmin.Controller
     {
         #region Services
 
+        private readonly IAppSetting _appSetting;
         private readonly IAdjustmentService _adjustmentService;
 
         #endregion Services
 
         #region Constructor
-
-        public AdjustmentController()
-            : this(null)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AdjustmentController" /> class.
         /// </summary>
         /// <param name="adjustmentService">Adjustment Service.</param>
-        public AdjustmentController(IAdjustmentService adjustmentService)
+        public AdjustmentController(
+            IAppSetting appSetting,
+            IAdjustmentService adjustmentService,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-            _adjustmentService = adjustmentService ?? new AdjustmentService();
+            _appSetting = appSetting;
+            _adjustmentService = adjustmentService;
         }
 
         #endregion Constructor
@@ -55,7 +55,7 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult Index()
         {
             var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
-            var adjustment = this._adjustmentService.GetAdjustmentBalance(new AdjustmentCriteria
+            var adjustment = _adjustmentService.GetAdjustmentBalance(new AdjustmentCriteria
             {
                 AffId = affiliate.AffId,
                 Currency = affiliate.CurrencyCode
@@ -80,22 +80,22 @@ namespace Fanex.AffiliateAdmin.Controller
             var session = SessionManager.CurrentSession;
             var criteria = new AdjustmentEditCriteria()
             {
-                Ip = Remote.GetClientIPAddress(),
+                Ip = Remote.GetClientIPAddress(Request),
                 AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId,
                 AdminId = session.CustID,
                 Amount = model.Amount,
                 Description = HttpUtility.UrlDecode(model.Description),
-                LicenseeId = AppSettings.LicenseeID,
+                LicenseeId = _appSetting.LicenseeID,
                 AdminUserName = session.Username
             };
 
-            this._adjustmentService.UpdateAdjustment(criteria);
+            _adjustmentService.UpdateAdjustment(criteria);
 
             ViewBag.Result = GetResultViewModel(criteria.ErrCode);
 
             ModelState.Clear();
 
-            return this.Index();
+            return Index();
         }
     }
 }

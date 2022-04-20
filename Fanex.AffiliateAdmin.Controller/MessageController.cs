@@ -8,6 +8,7 @@
     using Core.Session;
     using Core.Utilities;
     using Criterias;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Services;
     using Models;
     using Resources;
@@ -18,7 +19,14 @@
     [FunctionAuth(Function = FunctionPolicyNames.HotNews)]
     public class MessageController : BaseController
     {
-        private readonly IMessageService _messageService = new MessageService();
+        private readonly IMessageService _messageService;
+
+        public MessageController(
+            IMessageService messageService,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
+        {
+            _messageService = messageService;
+        }
 
         [HttpGet]
         public ActionResult Index()
@@ -98,11 +106,7 @@
                     };
 
                     _messageService.AddMessage(criteria);
-                    ViewBag.Result = new ResultViewModel
-                    {
-                        ErrorCode = criteria.ErrCode,
-                        Message = criteria.ErrCode == 0 ? Lang.AddSucc : ErrorMessage(criteria.ErrCode)
-                    };
+                    ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
                 }
             }
 
@@ -154,11 +158,7 @@
                     };
 
                     _messageService.UpdateMessage(criteria);
-                    ViewBag.Result = new ResultViewModel
-                    {
-                        ErrorCode = criteria.ErrCode,
-                        Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
-                    };
+                    ViewBag.Result = GetResultViewModel(criteria.ErrCode);
                 }
             }
 

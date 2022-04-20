@@ -74,9 +74,8 @@
     <Reference Include="Fanex.Data, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.Data.4.2.2\lib\net461\Fanex.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.MailDeliver.MailClient.1.0.0.3\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
@@ -165,6 +164,7 @@
     <Compile Include="AffTypeViewModel.cs" />
     <Compile Include="AffTypeAddViewModel.cs" />
     <Compile Include="AccountPasswordViewModel.cs" />
+    <Compile Include="BannerInfoViewModel.cs" />
     <Compile Include="CashOutDetailViewModel.cs" />
     <Compile Include="ChangeAccountTypeViewModel.cs" />
     <Compile Include="ChangeAffPasswordViewModel.cs" />

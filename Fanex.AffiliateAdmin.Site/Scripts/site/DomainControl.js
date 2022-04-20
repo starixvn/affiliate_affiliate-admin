@@ -24,7 +24,7 @@ var DOMAINCONTROL = (function ($) {
                 type: 'post',
                 success: function(data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                   
+
                     gridOption.pagerOption = {
                         itemsPerPage: itemsPerPage || AFFILIATE.pageSizes[0],
                         itemsPerPageArray: AFFILIATE.pageSizes,
@@ -52,10 +52,10 @@ var DOMAINCONTROL = (function ($) {
                     success: function(result) {
                         AFFILIATE.PreHandleAjaxResult(result);
 
-                        if (!result.Success) {
-                            alert(result.Message);
-                        } else {
+                        if (result.IsSuccess) {
                             DOMAINCONTROL.ReRenderAfterPaged(0, $("#itemperpage").val());
+                        } else {
+                            alert(result.ErrorMessage);
                         }
                     }
                 });

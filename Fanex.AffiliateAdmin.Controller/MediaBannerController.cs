@@ -1,5 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Web.Mvc;
@@ -9,42 +10,42 @@
     using Core.Utilities;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Filter;
-    using Fanex.AffiliateAdmin.Core.Services.Impl;
+    using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Services;
     using Helpers;
     using Models;
     using Resources;
 
     [FunctionAuth(Function = FunctionPolicyNames.Media)]
-    public class MediaBannerController : BaseController
+    public class MediaBannerController : MediaBaseController
     {
-        private readonly IMediaBannerService _mediaService;
+        private int CustID => SessionManager.CurrentSession.CustID;
 
-        private readonly IMediaSettingService _mediaSettingService;
-
-        public MediaBannerController()
-            : this(null, null)
+        public MediaBannerController(
+            IAppSetting appSetting,
+            IMediaBannerService mediaBannerService,
+            IMediaSettingService mediaSettingService,
+            ISystemSettingService systemSettingService) : base(appSetting, mediaBannerService, mediaSettingService, systemSettingService)
         {
-        }
-
-        public MediaBannerController(IMediaBannerService mediaService, IMediaSettingService mediaSettingService)
-        {
-            _mediaService = mediaService ?? new MediaBannerService();
-            _mediaSettingService = mediaSettingService ?? new MediaSettingService();
         }
 
         [HttpGet]
         public ActionResult Index(BannerListViewModel model)
         {
+            AssignMediaListViewModel(model);
+
+            model.BannerSizeOptionList = GetBannerSizeOptionList();
+            model.AffiliateTypeOptionList = GetAffTypeOptionList(model.AffType);
+            model.BannerTypeOptionList = GetBannerTypeOptionList(model.ImageType);
+
             return View(model);
         }
 
         [HttpPost]
         public ActionResult DataList(BannerListCriteria criteria)
         {
-            criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
-            var data = _mediaService.GetBanners(criteria);
+            AssignBannerListCriteria(criteria);
+            var data = MediaBannerService.GetBanners(criteria);
 
             foreach (var banner in data)
             {
@@ -56,26 +57,22 @@
                 banner.Thumbnail = Path.Combine(Path.GetDirectoryName(content), thumbnailFile).Replace('\\', '/');
             }
 
-            return Json(new
-            {
-                List = data,
-                CurrentPage = criteria.PageIndex - 1,
-                ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.NRows
-            });
+            return GetJsonResult(data, criteria);
         }
 
         [HttpGet]
         public ActionResult AddBanner()
         {
-            var firstCategory = MediaSettings.BannerCategories.First().TypeId;
+            var categories = MediaSettingService.GetBannerCategories();
+            var selectedCategory = categories.First().TypeId;
 
             var model = new BannerAddViewModel
             {
-                Category = firstCategory, // must pass this value to get sub categories
-                SubCategories = _mediaSettingService.GetBannerSubCategories(firstCategory),
-                AffType = AppSettings.AffTypes.First().TypeID
+                Category = selectedCategory, // must pass this value to get sub categories
+                AffType = SystemSettingService.GetAffTypeList(new AffTypeCriteria()).First().TypeID
             };
+
+            AssignBannerViewModel(model, categories);
 
             return View(model);
         }
@@ -83,12 +80,11 @@
         [HttpPost]
         public ActionResult AddBanner(BannerAddViewModel model)
         {
-            model.SubCategories = _mediaSettingService.GetBannerSubCategories(model.Category);
+            AssignBannerViewModel(model);
 
             if (ModelState.IsValid)
             {
-                string errorMessage;
-                var bannerStorage = BannerHelper.UploadFile(model, out errorMessage);
+                var bannerStorage = BannerHelper.UploadFile(model, out string errorMessage);
 
                 if (!string.IsNullOrEmpty(errorMessage))
                 {
@@ -104,13 +100,13 @@
                         ImageType = model.ImageType,
                         Content = bannerStorage.RelativeBannerPath.Replace('\\', '/'),
                         Size = bannerStorage.BannerSize,
-                        UserId = SessionManager.CurrentSession.CustID,
-                        Ip = Remote.GetClientIPAddress(),
+                        UserId = CustID,
+                        Ip = Remote.GetClientIPAddress(Request),
                         Language = model.Language,
-                        LicenseeId = AppSettings.LicenseeID
+                        LicenseeId = AppSetting.LicenseeID
                     };
 
-                    _mediaService.AddBanner(criteria);
+                    MediaBannerService.AddBanner(criteria);
 
                     if (criteria.ErrCode != 0)
                     {
@@ -119,8 +115,6 @@
                     }
 
                     ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
-
-                    MediaSettings.RefreshBannerSizes();
                 }
             }
 
@@ -130,7 +124,7 @@
         [HttpGet]
         public ActionResult EditBanner(int id)
         {
-            var bannerDetail = _mediaService.GetBannerDetail(new BannerDetailCriteria
+            var bannerDetail = MediaBannerService.GetBannerDetail(new BannerDetailCriteria
             {
                 BannerId = id
             });
@@ -151,13 +145,13 @@
                 {
                     model.Category = bannerDetail.ParentID.Value;
                     model.SubCategory = bannerDetail.Category;
-                    model.SubCategories = _mediaSettingService.GetBannerSubCategories(model.Category);
                 }
                 else
                 {
                     model.Category = (short)(bannerDetail.Category != null ? bannerDetail.Category.Value : 0);
-                    model.SubCategories = _mediaSettingService.GetBannerSubCategories(model.Category);
                 }
+
+                AssignBannerViewModel(model);
 
                 return View("EditBanner", model);
             }
@@ -168,13 +162,12 @@
         [HttpPost]
         public ActionResult EditBanner(BannerEditViewModel model)
         {
-            model.SubCategories = _mediaSettingService.GetBannerSubCategories(model.Category);
+            AssignBannerViewModel(model);
 
             if (ModelState.IsValid)
             {
-                string errorMessage;
-                var bannerDetail = _mediaService.GetBannerDetail(new BannerDetailCriteria { BannerId = model.BannerId });
-                var bannerStorage = BannerHelper.UpdateFile(model, bannerDetail, out errorMessage);
+                var bannerDetail = MediaBannerService.GetBannerDetail(new BannerDetailCriteria { BannerId = model.BannerId });
+                var bannerStorage = BannerHelper.UpdateFile(model, bannerDetail, GetBannerSizeList(),  out string errorMessage);
 
                 if (!string.IsNullOrEmpty(errorMessage))
                 {
@@ -192,12 +185,12 @@
                         ImageType = model.ImageType,
                         Content = bannerStorage.RelativeBannerPath.Replace('\\', '/'),
                         Size = bannerStorage.BannerSize,
-                        UserId = SessionManager.CurrentSession.CustID,
-                        Ip = Remote.GetClientIPAddress(),
-                        LicenseeId = AppSettings.LicenseeID
+                        UserId = CustID,
+                        Ip = Remote.GetClientIPAddress(Request),
+                        LicenseeId = AppSetting.LicenseeID
                     };
 
-                    _mediaService.EditBanner(criteria);
+                    MediaBannerService.EditBanner(criteria);
 
                     if (criteria.ErrCode != 0)
                     {
@@ -205,8 +198,6 @@
                     }
 
                     ViewBag.Result = GetResultViewModel(criteria.ErrCode);
-
-                    MediaSettings.RefreshBannerSizes();
                 }
             }
 
@@ -221,11 +212,11 @@
                 var criteria = new BannerDeleteCriteria
                 {
                     BannerIds = model.BannerIds,
-                    UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress()
+                    UserId = CustID,
+                    Ip = Remote.GetClientIPAddress(Request)
                 };
 
-                _mediaService.DeleteBanner(criteria);
+                MediaBannerService.DeleteBanner(criteria);
 
                 // delete banner files
                 var contents = model.Contents.Split(',');
@@ -233,8 +224,6 @@
                 {
                     BannerHelper.DeleteFile(content);
                 }
-
-                MediaSettings.RefreshBannerSizes();
 
                 return ModelResult(criteria.ErrCode);
             }
@@ -248,10 +237,68 @@
             var model = new SubCategoriesViewModel
             {
                 IsShowAll = isShowAll,
-                SubCategories = _mediaSettingService.GetBannerSubCategories(category)
+                SubCategories = MediaSettingService.GetBannerSubCategories(category)
             };
 
             return PartialView(model);
+        }
+
+        private IEnumerable<SelectListItem> GetBannerCommonOptionList(IEnumerable<MediaType> mediaTypes, short? typeId)
+        {
+            var bannerOptionList = new List<SelectListItem>();
+            foreach (var media in mediaTypes)
+            {
+                var text = Lang.ResourceManager.GetString(media.Value.Replace(" ", string.Empty));
+
+                bannerOptionList.Add(new SelectListItem()
+                {
+                    Value = media.TypeId.ToString(),
+                    Text = string.IsNullOrEmpty(text) ? media.Value : text,
+                    Selected = typeId == media.TypeId
+                });
+            }
+
+            return bannerOptionList;
+        }
+
+        private SelectList GetMemberSiteSupportedLanguageOptionList(string language)
+        {
+            var languageList = SystemSettingService.GetMemberSiteSupportedLanguageList(
+                new MemberSiteLanguageCriteria
+            {
+                Environment = AppSetting.Environment
+            });
+
+            return new SelectList(languageList, "LanguageID", "LanguageName", language);
+        }
+
+        private SelectList GetPlayerCurrencyOptionList(short currency)
+        {
+            var playerCurrencyList = SystemSettingService.GetPlayerCurrencyList(new PlayerCurrencyCriteria());
+
+            return new SelectList(playerCurrencyList, "CurrencyID", "CurrencyCode", currency);
+        }
+
+        private SelectList GetAffiliateTypeOptionList(short affType)
+        {
+            var affTypeList = SystemSettingService.GetAffTypeList(new AffTypeCriteria());
+
+            return new SelectList(affTypeList, "TypeID", "Name", affType);
+        }
+
+        private void AssignBannerViewModel(BannerInfoViewModel model, IEnumerable<MediaType> categories = null)
+        {
+            var bannerTypes = MediaSettingService.GetBannerTypes();
+            categories = categories ?? MediaSettingService.GetBannerCategories();
+
+            model.SubCategories = model.SubCategories ?? MediaSettingService.GetBannerSubCategories(model.Category);
+
+            model.AffiliateTypeOptionList = GetAffiliateTypeOptionList(model.AffType);
+            model.PlayerCurrencyOptionList = GetPlayerCurrencyOptionList(model.Currency);
+            model.BannerTypeOptionList = GetBannerCommonOptionList(bannerTypes, model.ImageType);
+            model.BannerCategoryOptionList = GetBannerCommonOptionList(categories, model.Category);
+            model.BannerSubCategoryOptionList = GetBannerCommonOptionList(model.SubCategories, model.SubCategory);
+            model.MemberSiteSupportedLanguageOptionList = GetMemberSiteSupportedLanguageOptionList(model.Language);
         }
     }
 }

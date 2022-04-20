@@ -24,26 +24,20 @@
         #region Services
 
         private readonly IDomainService _domainService;
-        private readonly ISystemSettingService _systemSettingService;
 
         #endregion Services
 
         #region Constructor
 
-        public DomainController()
-            : this(null, null)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DomainController" /> class.
         /// </summary>
         /// <param name="service">Domain Service.</param>
-        /// <param name="systemSetting">System Setting Service.</param>
-        public DomainController(IDomainService service, ISystemSettingService systemSetting)
+        public DomainController(
+            IDomainService service,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-            _domainService = service ?? new DomainService();
-            _systemSettingService = systemSetting ?? new SystemSettingService();
+            _domainService = service;
         }
 
         #endregion Constructor
@@ -323,7 +317,7 @@
                 Status = true
             };
 
-            model.AddCountryList(_systemSettingService.GetCountryList(new CountrySelectCriteria
+            model.AddCountryList(SystemSettingService.GetCountryList(new CountrySelectCriteria
             {
                 PageSize = 300,
                 PageIndex = 1
@@ -388,7 +382,7 @@
                 AffDomain = result.AffDomainId
             };
 
-            model.AddCountryList(_systemSettingService.GetCountryList(new CountrySelectCriteria
+            model.AddCountryList(SystemSettingService.GetCountryList(new CountrySelectCriteria
             {
                 PageSize = 300,
                 PageIndex = 1

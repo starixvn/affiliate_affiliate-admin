@@ -21,7 +21,7 @@
 @if (ViewBag.Result != null)
 {
     var result = (ResultViewModel)ViewBag.Result;
-    <input type="hidden" id="ResultCode" value="@result.ErrorCode" data-message="@result.Message" />
+    <input type="hidden" id="ResultCode" value="@result.ErrorCode" data-message="@result.ErrorMessage" />
 }
 <form method="post" action='@Url.Content("~/Adjustment")' class = "iframe-content">
       @Html.ValidationSummary()  <div class="row-fluid">

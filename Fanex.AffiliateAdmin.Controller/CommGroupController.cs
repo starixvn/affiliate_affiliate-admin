@@ -8,6 +8,7 @@
     using Core.DbConstants;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
@@ -27,15 +28,13 @@
 
         private readonly IExchangeRateService _exchangeRateService;
 
-        public CommGroupController()
-            : this(null, null)
+        public CommGroupController
+            (ICommGroupService commGroupService,
+            IExchangeRateService exchangeRateService,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-        }
-
-        public CommGroupController(ICommGroupService commGroupService, IExchangeRateService exchangeRateService)
-        {
-            _commGroupService = commGroupService ?? new CommGroupService();
-            _exchangeRateService = exchangeRateService ?? new ExchangeRateService();
+            _commGroupService = commGroupService;
+            _exchangeRateService = exchangeRateService;
         }
 
         [HttpGet]

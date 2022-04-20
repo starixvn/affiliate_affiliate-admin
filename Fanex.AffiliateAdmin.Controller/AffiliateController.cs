@@ -6,7 +6,10 @@
     using System.Web.Mvc;
     using System.Xml.Linq;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Constants;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Options;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
@@ -24,24 +27,24 @@
     {
         #region Services
 
-        private readonly IAffiliateService _service;
+        private readonly IAppSetting _appSetting;
+        private readonly IAffiliateService _affiliateService;
 
         #endregion Services
 
         #region Constructor
 
-        public AffiliateController()
-            : this(null)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AffiliateController" /> class.
         /// </summary>
         /// <param name="service">Affiliate Service.</param>
-        public AffiliateController(IAffiliateService service)
+        public AffiliateController(
+            IAppSetting appSetting,
+            IAffiliateService affiliateService,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-            _service = service ?? new AffiliateService();
+            _appSetting = appSetting;
+            _affiliateService = affiliateService;
         }
 
         #endregion Constructor
@@ -49,6 +52,25 @@
         [HttpGet]
         public ActionResult Index(AffiliateListViewModel model)
         {
+            var statusList = string.IsNullOrEmpty(model.Status) ? new List<string>() : model.Status.ToLower().Split(',').ToList();
+            var affiliateStatuses = model.IsFavorite ? OptionManager.AffiliateFavoriteStatuses : OptionManager.AffiliateStatuses;
+
+            model.BaseCurrencyOptionList = GetBaseCurrencyOptionList(false);
+            model.StatusOptionList = affiliateStatuses.Select(t => new SelectListItem
+            {
+                Text = t.Text,
+                Value = t.Value,
+                Selected = statusList.Count == 0
+                                ? Constants.DefaultStatusList.Contains(t.Value)
+                                : statusList.Contains(t.Value)
+            });
+            model.CommissionGroupOptionList = SystemSettingService.GetCommGroups().Select(t => new SelectListItem
+            {
+                Text = t.GroupName,
+                Value = t.GroupID.ToString(),
+                Selected = model.GroupId <= 0 || t.GroupID == model.GroupId
+            });
+
             return View(model);
         }
 
@@ -63,9 +85,9 @@
             var session = SessionManager.CurrentSession;
 
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
+            criteria.PageSize = criteria.PageSize == 0 ? _appSetting.PageSize : criteria.PageSize;
             criteria.UserId = session.CustID;
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.LicenseeId = _appSetting.LicenseeID;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
             var approveStatusList = new List<string> { "approved", "closed", "lockedout" };
@@ -79,7 +101,7 @@
                 }
             }
 
-            var result = _service.GetAffiliateList(criteria);
+            var result = _affiliateService.GetAffiliateList(criteria);
 
             var hasMultipleCurrency = result.AffiliateList
                                             .GroupBy(t => t.Currency)
@@ -92,7 +114,7 @@
                 SubTotal = result.CurrencyList,
                 Total = new
                 {
-                    CurrencyCode = AppSettings.BaseExchange.Code,
+                    CurrencyCode = _appSetting.BaseExchange.Code,
                     Currency = criteria.TotalAmount,
                     Total = result.CurrencyList.Sum(t => t.Currency),
                     TotalMembers = result.CurrencyList.Sum(t => t.TotalMembers)
@@ -109,7 +131,7 @@
         {
             return Json(new
             {
-                List = AppSettings.GetCommGroups(criteria)
+                List = SystemSettingService.GetCommGroups(criteria)
             });
         }
 
@@ -152,7 +174,7 @@
                     ConfirmPassword = Cryptography.CfsEnCode(model.ConfirmPassword)
                 };
 
-                _service.ChangePassword(criteria);
+                _affiliateService.ChangePassword(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
 
@@ -177,17 +199,16 @@
             {
                 criteria.Ip = Remote.GetClientIPAddress();
                 criteria.UserId = SessionManager.CurrentSession.CustID;
-                criteria.LicenseeId = AppSettings.LicenseeID;
-                _service.ChangeAccountType(criteria);
+                criteria.LicenseeId = _appSetting.LicenseeID;
+                _affiliateService.ChangeAccountType(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
             else
             {
                 ViewBag.Result = new ResultViewModel
                 {
-                    ErrorCode = 16,
-                    Success = false,
-                    Message = Lang.InvalidRequest
+                    ErrorCode = ErrorCodes.InvalidRequest,
+                    ErrorMessage = Lang.InvalidRequest
                 };
             }
 
@@ -224,9 +245,9 @@
             {
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.UserId = SessionManager.CurrentSession.CustID;
-                criteria.LicenseeId = AppSettings.LicenseeID;
+                criteria.LicenseeId = _appSetting.LicenseeID;
 
-                _service.ChangeCommissionGroup(criteria);
+                _affiliateService.ChangeCommissionGroup(criteria);
 
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
@@ -234,9 +255,8 @@
             {
                 ViewBag.Result = new ResultViewModel
                 {
-                    ErrorCode = 16,
-                    Success = false,
-                    Message = "Invalid Request"
+                    ErrorCode = ErrorCodes.InvalidRequest,
+                    ErrorMessage = Lang.InvalidRequest
                 };
             }
 
@@ -263,16 +283,15 @@
                 criteria.UserId = session.CustID;
                 criteria.AdminUserName = session.Username;
 
-                _service.AddFavorite(criteria);
+                _affiliateService.AddFavorite(criteria);
 
                 return Json(GetResultViewModel(criteria.ErrCode));
             }
 
             return Json(new ResultViewModel
             {
-                ErrorCode = 16,
-                Success = false,
-                Message = Lang.InvalidRequest
+                ErrorCode = ErrorCodes.InvalidRequest,
+                ErrorMessage = Lang.InvalidRequest
             });
         }
 
@@ -290,16 +309,15 @@
                 criteria.UserId = session.CustID;
                 criteria.AdminUserName = session.Username;
 
-                _service.RemoveFavorite(criteria);
+                _affiliateService.RemoveFavorite(criteria);
 
                 return Json(GetResultViewModel(criteria.ErrCode));
             }
 
             return Json(new ResultViewModel
             {
-                ErrorCode = 16,
-                Success = false,
-                Message = Lang.InvalidRequest
+                ErrorCode = ErrorCodes.InvalidRequest,
+                ErrorMessage = Lang.InvalidRequest
             });
         }
 
@@ -329,16 +347,16 @@
             if (criteria.ByAffiliate)
             {
                 criteria.AffUsername = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).UserName;
-                criteria.AffType = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
+                criteria.AffType = string.Join(",", _appSetting.AffTypes.Select(t => t.TypeID));
                 criteria.ExcludeTest = false;
             }
 
             criteria.IsITAdmin = session.IsIT;
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
+            criteria.PageSize = criteria.PageSize == 0 ? _appSetting.PageSize : criteria.PageSize;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
-            var result = _service.CustomerList(criteria);
+            var result = _affiliateService.CustomerList(criteria);
 
             return Json(new
             {
@@ -367,13 +385,13 @@
                 AdminUserName = session.Username,
                 IP = Remote.GetClientIPAddress()
             };
-            _service.CustomerRemove(criteria);
+            _affiliateService.CustomerRemove(criteria);
 
             var model = GetResultViewModel(criteria.ErrCode);
 
-            if (!model.Success)
+            if (!model.IsSuccess)
             {
-                model.Message = model.Message ?? criteria.ErrMsg;
+                model.ErrorMessage = model.ErrorMessage ?? criteria.ErrMsg;
             }
 
             return Json(GetResultViewModel(criteria.ErrCode));
@@ -399,7 +417,7 @@
         [HttpPost]
         public ActionResult AssignMember(CheckMemberExistCriteria criteria)
         {
-            _service.CheckMemberExist(criteria);
+            _affiliateService.CheckMemberExist(criteria);
             var result = new ResultViewModel();
 
             if (!IsValidAffiliate(criteria, ref result) || !IsValidMember(criteria, ref result))
@@ -415,9 +433,9 @@
             }
 
             var message = string.Empty;
-            var errorCode = 0;
+            var errorCode = ErrorCodes.Success;
 
-            if (AppSettings.LocalTest)
+            if (_appSetting.LocalTest)
             {
                 errorCode = TestInsertMember(criteria.AffID, criteria.AffName, criteria.MemberName);
             }
@@ -432,13 +450,13 @@
                     AssignNewMemberToAffiliate(criteria, ref message, ref errorCode);
                 }
 
-                if (errorCode == 0 && string.IsNullOrEmpty(message))
+                if (errorCode == ErrorCodes.Success && string.IsNullOrEmpty(message))
                 {
-                    ServiceWrapper.UpdateBtage(AppSettings.SystemName, criteria.MemberName, string.Format("{0}_{1}_0", AppSettings.LicenseeID, criteria.AffID));
+                    ServiceWrapper.UpdateBtage(_appSetting.SystemName, criteria.MemberName, string.Format("{0}_{1}_0", _appSetting.LicenseeID, criteria.AffID));
                 }
             }
 
-            ViewBag.Result = errorCode == 0 ? GetResultViewModel(string.IsNullOrEmpty(message) ? 0 : 1, null, message) : GetResultViewModel(errorCode);
+            ViewBag.Result = errorCode == ErrorCodes.Success ? GetResultViewModel(string.IsNullOrEmpty(message) ? ErrorCodes.Success : ErrorCodes.GeneralErrorCode, null, message) : GetResultViewModel(errorCode);
 
             return AssignMember(new AssignMemberViewModel
             {
@@ -475,11 +493,11 @@
 
         #region Private Methods
 
-        private static IEnumerable<SelectListItem> GetCommGroupList(string currencies, int groupId)
+        private IEnumerable<SelectListItem> GetCommGroupList(string currencies, int groupId)
         {
             var session = SessionManager.CurrentSession;
 
-            var comGroups = AppSettings.GetActiveCommGroups(new CommGroupSelActiveListCriteria
+            var comGroups = SystemSettingService.GetActiveCommGroups(new CommGroupSelActiveListCriteria
             {
                 Currencies = currencies,
                 UserCurrencies = session.BuildUserCurrencyParam()
@@ -535,17 +553,17 @@
             {
                 AffUserName = affname,
                 Username = customerName,
-                Currency = AppSettings.BaseExchange.Code,
+                Currency = _appSetting.BaseExchange.Code,
                 IBCCustID = 0,
                 AgentID = 0,
-                Btag = string.Format("{0}_{1}_0", AppSettings.LicenseeID, affid),
+                Btag = string.Format("{0}_{1}_0", _appSetting.LicenseeID, affid),
                 CreatedDate = now,
                 RegisterDate = now,
                 AffAffectedDate = now,
                 IP = Remote.GetClientIPAddress()
             };
 
-            _service.InsertMember(insertCriteria);
+            _affiliateService.InsertMember(insertCriteria);
 
             return insertCriteria.ErrCode;
         }
@@ -567,7 +585,7 @@
                 IP = Remote.GetClientIPAddress()
             };
 
-            _service.InsertMember(insertCriteria);
+            _affiliateService.InsertMember(insertCriteria);
             return insertCriteria.ErrCode;
         }
 
@@ -579,7 +597,7 @@
         /// <param name="errorCode">Error code.</param>
         private void AssignNewMemberToAffiliate(CheckMemberExistCriteria criteria, ref string message, ref int errorCode)
         {
-            var xml = ServiceWrapper.GetLicenseeCustInfo(AppSettings.SystemName, criteria.MemberName);
+            var xml = ServiceWrapper.GetLicenseeCustInfo(_appSetting.SystemName, criteria.MemberName);
 
             if (xml.Element("ReturnCode").Value != "0")
             {
@@ -614,7 +632,7 @@
             };
 
             GetMoreCustomerInfo(xml, insertCriteria);
-            _service.InsertMember(insertCriteria);
+            _affiliateService.InsertMember(insertCriteria);
             errorCode = insertCriteria.ErrCode;
         }
 
@@ -629,7 +647,7 @@
             {
                 if (!string.IsNullOrEmpty(customerInfo.Element("IBCusername").Value))
                 {
-                    var customer = _service.GetCustomer(new CustomerSelByUserNameCriteria { UserName = customerInfo.Element("IBCusername").Value });
+                    var customer = _affiliateService.GetCustomer(new CustomerSelByUserNameCriteria { UserName = customerInfo.Element("IBCusername").Value });
 
                     return customer.CreatedDate.HasValue;
                 }
@@ -660,7 +678,7 @@
             {
                 if (!string.IsNullOrEmpty(customerInfo.Element("IBCusername").Value))
                 {
-                    var customer = _service.GetCustomer(new CustomerSelByUserNameCriteria { UserName = customerInfo.Element("IBCusername").Value });
+                    var customer = _affiliateService.GetCustomer(new CustomerSelByUserNameCriteria { UserName = customerInfo.Element("IBCusername").Value });
                     createdate = customer.CreatedDate;
                 }
             }

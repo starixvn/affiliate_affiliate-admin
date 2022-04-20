@@ -7,6 +7,7 @@
     using Core.Enumerations;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
@@ -26,7 +27,7 @@
     {
         #region Static Fields
 
-        private static IEnumerable<string> ignoredGroupNames = new string[] { "Administrator", "None", "Aff_IT_Dept" };
+        private static readonly IEnumerable<string> ignoredGroupNames = new string[] { "Administrator", "None", "Aff_IT_Dept" };
 
         #endregion Static Fields
 
@@ -44,11 +45,6 @@
 
         #region Constructor
 
-        public ManagementController()
-            : this(null, null, null, null)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ManagementController" /> class.
         /// </summary>
@@ -60,12 +56,13 @@
             IAccountService accountService,
             IGroupService groupService,
             IPolicyService policyService,
-            IPermissionCurrencyService permissionService)
+            IPermissionCurrencyService permissionService,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-            _accountService = accountService ?? new AccountService();
-            _groupService = groupService ?? new GroupService();
-            _policyService = policyService ?? new PolicyService();
-            _permissionService = permissionService ?? new PermissionCurrencyService();
+            _accountService = accountService;
+            _groupService = groupService;
+            _policyService = policyService;
+            _permissionService = permissionService;
         }
 
         #endregion Constructor
@@ -151,11 +148,7 @@
 
                 _accountService.AccountUpdate(criteria);
 
-                ViewBag.Result = new ResultViewModel
-                {
-                    ErrorCode = criteria.ErrCode,
-                    Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
-                };
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
 
             return EditUser(model.CustID);
@@ -201,11 +194,7 @@
 
                 _accountService.AccountInsert(criteria);
 
-                ViewBag.Result = new ResultViewModel
-                {
-                    ErrorCode = criteria.ErrCode,
-                    Message = criteria.ErrCode == 0 ? Lang.AddUserSuccess : ErrorMessage(criteria.ErrCode)
-                };
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddUserSuccess);
             }
 
             return AddUser(model.Password);
@@ -341,11 +330,7 @@
 
             _permissionService.UpdatePermissionCurrency(criteria);
 
-            ViewBag.Result = new ResultViewModel
-            {
-                ErrorCode = criteria.ErrCode,
-                Message = criteria.ErrCode == 0 ? Lang.UpdatePermissionSucc : ErrorMessage(criteria.ErrCode)
-            };
+            ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.UpdatePermissionSucc);
 
             return ChangeCurrencyUser(custId);
         }
@@ -393,11 +378,7 @@
 
                 _accountService.AccountUpdatePassword(criteria);
 
-                ViewBag.Result = new ResultViewModel
-                {
-                    ErrorCode = criteria.ErrCode,
-                    Message = criteria.ErrCode == 0 ? Lang.ResetPassSuccess : ErrorMessage(criteria.ErrCode)
-                };
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.ResetPassSuccess);
             }
 
             return ChangePassword(model.CustId, model.UserName, model.Password, model.ConfirmPass);
@@ -469,11 +450,7 @@
 
                 _groupService.GroupInsert(criteria);
 
-                ViewBag.Result = new ResultViewModel
-                {
-                    ErrorCode = criteria.ErrCode,
-                    Message = criteria.ErrCode == 0 ? Lang.GroupAddSucc : ErrorMessage(criteria.ErrCode)
-                };
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.GroupAddSucc);
             }
 
             return AddGroup();
@@ -516,15 +493,11 @@
                 GroupPolicys = groupPolicy
             };
 
-            var criteria2 = GetProperPolicyUpdateCriteria(viewModel);
+            var criteria = GetProperPolicyUpdateCriteria(viewModel);
 
-            _groupService.GroupUpdatePolicy(criteria2);
+            _groupService.GroupUpdatePolicy(criteria);
 
-            ViewBag.Result = new ResultViewModel
-            {
-                ErrorCode = criteria2.ErrCode,
-                Message = criteria2.ErrCode == 0 ? Lang.UpdateRolePolicySucc : ErrorMessage(criteria2.ErrCode)
-            };
+            ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.UpdateRolePolicySucc);
 
             return ChangePolicyGroup(new GroupPolicySelCriteria { GroupId = groupId });
         }
@@ -573,11 +546,7 @@
 
                 _groupService.GroupUpdate(criteria);
 
-                ViewBag.Result = new ResultViewModel
-                {
-                    ErrorCode = criteria.ErrCode,
-                    Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
-                };
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
 
             return EditGroup(Convert.ToInt32(criteria.GroupId));
@@ -599,11 +568,7 @@
 
             _groupService.GroupDelete(criteria);
 
-            return Json(new
-            {
-                ErrorCode = criteria.ErrCode,
-                Message = criteria.ErrCode == 0 ? string.Empty : ErrorMessage(criteria.ErrCode)
-            });
+            return Json(GetResultViewModel(criteria.ErrCode, Lang.DeleteSucc));
         }
 
         #endregion Group Management
@@ -616,22 +581,18 @@
         /// <param name="individualPolicy">Individual Policy.</param>
         private void UpdatePolicy(string individualPolicy)
         {
-            var criteria = new PolicyUpdateViewModel
+            var model = new PolicyUpdateViewModel
             {
                 UserId = SessionManager.CurrentSession.CustID,
                 Ip = Remote.GetClientIPAddress(),
                 MemPolicys = individualPolicy
             };
 
-            var criteria2 = GetProperPolicyUpdateCriteria(criteria);
+            var criteria = GetProperPolicyUpdateCriteria(model);
 
-            _accountService.AccountUpdatePolicy(criteria2);
+            _accountService.AccountUpdatePolicy(criteria);
 
-            ViewBag.Result = new ResultViewModel
-            {
-                ErrorCode = criteria2.ErrCode,
-                Message = criteria2.ErrCode == 0 ? Lang.UpdateRolePolicySucc : ErrorMessage(criteria2.ErrCode)
-            };
+            ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.UpdateRolePolicySucc);
         }
 
         /// <summary>
@@ -639,26 +600,26 @@
         /// </summary>
         /// <param name="criteria">Update Criteria.</param>
         /// <returns>Proper Update Criteria.</returns>
-        private SimpleCriteriaBase GetProperPolicyUpdateCriteria(PolicyUpdateViewModel criteria)
+        private SimpleCriteriaBase GetProperPolicyUpdateCriteria(PolicyUpdateViewModel model)
         {
-            if (string.IsNullOrEmpty(criteria.MemPolicys))
+            if (string.IsNullOrEmpty(model.MemPolicys))
             {
                 return new GroupPolicyUpdateCriteria
                 {
-                    GroupPolicys = criteria.GroupPolicys,
-                    IP = criteria.Ip,
-                    Language = criteria.Language,
-                    UserID = criteria.UserId,
+                    GroupPolicys = model.GroupPolicys,
+                    IP = model.Ip,
+                    Language = model.Language,
+                    UserID = model.UserId,
                     LicenseeId = AppSettings.LicenseeID
                 };
             }
 
             return new UserPolicyUpdateCriteria
             {
-                IP = criteria.Ip,
-                Language = criteria.Language,
-                MemPolicys = criteria.MemPolicys,
-                UserID = criteria.UserId,
+                IP = model.Ip,
+                Language = model.Language,
+                MemPolicys = model.MemPolicys,
+                UserID = model.UserId,
                 LicenseeId = AppSettings.LicenseeID
             };
         }

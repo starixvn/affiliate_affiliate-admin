@@ -149,10 +149,10 @@ var Management = (function ($) {
                 { width: 500, height: 350 });
         },
         showMsg: function (data) {
-            if (data.ErrorCode !== 0) {
-                AFFILIATE.showErrorMsg(data.Message);
+            if (data.IsSuccess) {
+                AFFILIATE.showSuccessMsg(data.ErrorMessage);
             } else {
-                AFFILIATE.showSuccessMsg(data.Message);
+                AFFILIATE.showErrorMsg(data.ErrorMessage);
             }
             setTimeout(AFFILIATE.hideMsg, 3000);
         }

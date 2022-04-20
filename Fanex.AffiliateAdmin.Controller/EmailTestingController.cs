@@ -5,6 +5,7 @@ using Fanex.AffiliateAdmin.Core.Entities;
 using Fanex.AffiliateAdmin.Core.Enumerations;
 using Fanex.AffiliateAdmin.Core.Filter;
 using Fanex.AffiliateAdmin.Core.Mailinator;
+using Fanex.AffiliateAdmin.Core.Services.Interface;
 using Fanex.AffiliateAdmin.Core.Session;
 using Fanex.AffiliateAdmin.Core.Utilities;
 
@@ -13,9 +14,8 @@ namespace Fanex.AffiliateAdmin.Controller
     [FunctionAuth(Function = FunctionPolicyNames.Affiliate, CurrenciesRequired = true)]
     public class EmailTestingController : BaseController
     {
-        public EmailTestingController()
+        public EmailTestingController(ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-
         }
 
         [HttpGet]

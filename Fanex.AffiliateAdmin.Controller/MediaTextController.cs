@@ -8,63 +8,53 @@
     using Core.Utilities;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Models;
     using Resources;
     using Services;
 
     [FunctionAuth(Function = FunctionPolicyNames.Media)]
-    public class MediaTextController : BaseController
+    public class MediaTextController : MediaBaseController
     {
-        private readonly IMediaBannerService _mediaService;
-
-        public MediaTextController()
-            : this(null)
+        public MediaTextController(
+            IAppSetting appSetting,
+            IMediaBannerService mediaBannerService,
+            IMediaSettingService mediaSettingService,
+            ISystemSettingService systemSettingService) : base(appSetting, mediaBannerService, mediaSettingService, systemSettingService)
         {
-        }
-
-        public MediaTextController(IMediaBannerService mediaService)
-        {
-            _mediaService = mediaService ?? new MediaBannerService();
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new TextListViewModel());
+            var model = new TextListViewModel();
+            AssignMediaListViewModel(model);
+
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult DataList(TextListViewModel model)
+        public ActionResult DataList(BannerListCriteria criteria)
         {
-            var criteria = new BannerListCriteria
-            {
-                Category = model.Category,
-                Language = model.Language,
-                Currency = model.Currency,
-                PageIndex = model.PageIndex == 0 ? 1 : model.PageIndex,
-                PageSize = model.PageSize == 0 ? AppSettings.PageSize : model.PageSize
-            };
+            AssignBannerListCriteria(criteria);
+            var data = MediaBannerService.GetTexts(criteria);
 
-            var data = _mediaService.GetTexts(criteria);
-            return Json(new
-            {
-                List = data,
-                CurrentPage = criteria.PageIndex - 1,
-                ItemsPerPage = criteria.PageSize,
-                TotalItem = criteria.NRows
-            });
+            return GetJsonResult(data, criteria);
         }
 
         [HttpGet]
         public ActionResult AddText()
         {
             var model = new TextAddViewModel();
+            AssignTextViewModel(model);
+
             return View(model);
         }
 
         [HttpPost]
         public ActionResult AddText(TextAddViewModel model)
         {
+            AssignTextViewModel(model);
             if (ModelState.IsValid)
             {
                 var criteria = new BannerInsCriteria
@@ -79,7 +69,7 @@
                     LicenseeId = AppSettings.LicenseeID
                 };
 
-                _mediaService.AddBanner(criteria);
+                MediaBannerService.AddBanner(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
 
@@ -89,7 +79,7 @@
         [HttpGet]
         public ActionResult EditText(int id)
         {
-            var bannerDetail = _mediaService.GetBannerDetail(new BannerDetailCriteria
+            var bannerDetail = MediaBannerService.GetBannerDetail(new BannerDetailCriteria
             {
                 BannerId = id
             });
@@ -102,6 +92,7 @@
                 Currency = bannerDetail.Currency.Value,
                 BannerId = id
             };
+            AssignTextViewModel(model);
 
             var selectedCurrency = model.PlayerCurrencyOptionList.FirstOrDefault(t => t.Value == model.Currency.ToString());
             if (selectedCurrency != null)
@@ -115,6 +106,7 @@
         [HttpPost]
         public ActionResult EditText(TextEditViewModel model)
         {
+            AssignTextViewModel(model);
             if (ModelState.IsValid)
             {
                 var criteria = new BannerUpdateCriteria
@@ -129,7 +121,7 @@
                     LicenseeId = AppSettings.LicenseeID
                 };
 
-                _mediaService.EditBanner(criteria);
+                MediaBannerService.EditBanner(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
 
@@ -144,12 +136,19 @@
                 criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.Ip = Remote.GetClientIPAddress();
 
-                _mediaService.DeleteBanner(criteria);
+                MediaBannerService.DeleteBanner(criteria);
 
                 return ModelResult(criteria.ErrCode);
             }
 
             return InvalidModelResult();
+        }
+
+        private void AssignTextViewModel(TextAddViewModel model)
+        {
+            model.BannerCategoryOptionList = GetBannerCategoryOptionList();
+            model.PlayerCurrencyOptionList = GetPlayerCurrencyOptionList();
+            model.MemberSiteSupportedLanguageOptionList = GetMemberSiteSupportedLanguageOptionList(false);
         }
     }
 }

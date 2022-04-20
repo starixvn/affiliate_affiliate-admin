@@ -8,6 +8,7 @@
     using Core.Utilities;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Models;
@@ -29,18 +30,15 @@
 
         #region Constructor
 
-        public EmailHistoryController()
-            : this(null)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="EmailHistoryController" /> class.
         /// </summary>
         /// <param name="service">Email History service.</param>
-        public EmailHistoryController(IEmailHistoryService service)
+        public EmailHistoryController(
+            IEmailHistoryService service,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-            _service = service ?? new EmailHistoryService();
+            _service = service;
         }
 
         #endregion Constructor

@@ -68,9 +68,8 @@
     <Reference Include="Fanex.Data.Repository, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.Data.Repository.4.2.2\lib\net461\Fanex.Data.Repository.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
@@ -199,6 +198,7 @@
     <Compile Include="EmailTestingController.cs" />
     <Compile Include="Helpers\AffiliateInfoCookieHelper.cs" />
     <Compile Include="Helpers\BannerHelper.cs" />
+    <Compile Include="MediaBaseController.cs" />
     <Compile Include="MediaTextController.cs" />
     <Compile Include="OneAuthorizationController.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

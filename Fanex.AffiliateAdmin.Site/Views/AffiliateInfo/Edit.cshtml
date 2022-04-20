@@ -354,7 +354,7 @@ affiliate-info
     {
         var result = (ResultViewModel)ViewBag.Result;
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", AFFEDIT.hideMsg);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", AFFEDIT.hideMsg);
         </script>
     }
 }

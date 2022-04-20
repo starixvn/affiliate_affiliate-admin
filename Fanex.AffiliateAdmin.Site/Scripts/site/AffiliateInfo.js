@@ -82,7 +82,7 @@ var AFFINFO = (function ($) {
                                 $("#spLanguage").show();
                             }
                             else {
-                                alert(data.Message);
+                                alert(data.ErrorMessage);
                             }
 
                             $('#slLanguage').blur();
@@ -117,7 +117,7 @@ var AFFINFO = (function ($) {
                         success: function (data) {
                             AFFILIATE.PreHandleAjaxResult(data);
                             if (!data.Success) {
-                                alert(data.Message);
+                                alert(data.ErrorMessage);
                             } else {
                                 $("#AffiliateInfo_Username").val($.trim($("#AffiliateInfo_Username").val()));
                                 window.top.location.href = AFFILIATE.getAbsoluteUrl("AffiliateInfo") + "?Username=" + $("#AffiliateInfo_Username").val();
@@ -184,13 +184,13 @@ var AFFINFO = (function ($) {
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
                     if (data.Success) {
-                        alert(data.Message);
+                        alert(data.ErrorMessage);
                         if (isReload) {
                             window.location.reload();
                         }
                         AFFINFO.setStatus();
                     } else {
-                        alert(data.Message);
+                        alert(data.ErrorMessage);
                     }
                 },
                 complete: function () {
@@ -217,7 +217,7 @@ var AFFINFO = (function ($) {
                             document.location.reload();
                         }
                         else {
-                            alert(data.Message);
+                            alert(data.ErrorMessage);
                         }
                     },
                     complete: function () {
@@ -243,7 +243,7 @@ var AFFINFO = (function ($) {
                             $("#spLockedOut").html(MSG.No).removeClass("link-box-active");
                             $("#spLockedOut").unbind("click");
                         } else {
-                            alert(data.Message);
+                            alert(data.ErrorMessage);
                         }
                     },
                     complete: function () {

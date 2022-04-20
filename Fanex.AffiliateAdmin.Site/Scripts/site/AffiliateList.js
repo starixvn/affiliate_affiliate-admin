@@ -119,7 +119,7 @@ var AffiliateList = (function ($) {
                     };
 
                     var bodyRows = AFFILIATE.genGridRows(data.List, gridOption);
-                    
+
                     gridOption.bodyRows = bodyRows;
 
                     if (data.HideTotalRows) {
@@ -278,7 +278,7 @@ var AffiliateList = (function ($) {
             AFFILIATE.openDialogFrame("CommGroup/ViewSetting?" + jQuery.param(param), MSG.CommissionGroup, { width: 900, height: 450 });
         },
         changeFavorite: function (me, affid) {
-            // Convention: 
+            // Convention:
             //   1: add favorite (default)
             //   -1: remove favorite
             var param = { affid: affid };
@@ -303,7 +303,7 @@ var AffiliateList = (function ($) {
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
                     if (!data.Success) {
-                        alert(data.Message);
+                        alert(data.ErrorMessage);
                         return;
                     }
 
@@ -329,7 +329,7 @@ var AffiliateList = (function ($) {
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
                     if (!data.Success) {
-                        alert(data.Message);
+                        alert(data.ErrorMessage);
                         return;
                     }
 

@@ -5,8 +5,10 @@
     using System.Web.Mvc;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Services;
     using Fanex.MemberAdmin.DTO;
     using Helpers;
 
@@ -15,6 +17,16 @@
     /// </summary>
     public class MemberWinlossByProductController : ReportController
     {
+        public MemberWinlossByProductController(
+            IAppSetting appSetting,
+            IReportService reportService,
+            ICommGroupService commGroupService,
+            ISystemSettingService systemSettingService
+            )
+            : base(appSetting, reportService, commGroupService, systemSettingService)
+        {
+        }
+
         #region Member Win Loss Report
 
         /// <summary>
@@ -30,9 +42,9 @@
             {
                 criteria.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).UserName;
                 criteria.ExcludeTest = false;
-                criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
-                criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups().Select(t => t.GroupID));
-                criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
+                criteria.AffTypes = string.Join(",", AppSetting.AffTypes.Select(t => t.TypeID));
+                criteria.CommGroups = string.Join(",", SystemSettingService.GetCommGroups().Select(t => t.GroupID));
+                criteria.PreferLanguages = string.Join(",", AppSetting.AffSupportLanguages.Select(t => t.LanguageID));
             }
 
             criteria.IsITAdmin = session.IsIT;
@@ -51,7 +63,7 @@
                 Groups = GroupDataByMember(data.MemberWinlossList),
                 TotalRowData = new MemberWinLossByProduct
                 {
-                    Currency = AppSettings.BaseExchange.Code,
+                    Currency = AppSetting.BaseExchange.Code,
                     MemberWinLossByProductList = data.TotalMemberWinlossInSystemCurrency
                 },
                 SubTotalData = GroupDataByCurrency(data.TotalMemberWinlossInMemberCurrencies),

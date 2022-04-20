@@ -14,11 +14,9 @@ var RECHECKIN = (function ($) {
                 success: function (result) {
                     AFFILIATE.PreHandleAjaxResult(result);
 
-                    if (result.Success) {
-                        if (result.ErrorMessage === "Expired") {
-                            alert(result.Message);
-                            top.location.href = AFFILIATE.getAbsoluteUrl("Account/Login");
-                        }
+                    if (result.IsSuccess) {
+                        alert(result.ErrorMessage);
+                        top.location.href = AFFILIATE.getAbsoluteUrl("Account/Login");
                     }
                 },
                 error: function () {

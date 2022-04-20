@@ -23,17 +23,17 @@
                 <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
             </div>
         </div>
-    </fieldset>    
+    </fieldset>
     @Html.HiddenFor(m => m.DomainID)
 }
 
 
-@section scripts{ 
+@section scripts{
     @Scripts.Render("~/scripts/domainaff")
     @if (ViewBag.Result != null){
         var result = (ResultViewModel)ViewBag.Result;
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.DOMAIN.ReRenderAfterPaged);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.DOMAIN.ReRenderAfterPaged);
         </script>
     }
 }

@@ -13,30 +13,12 @@
     {
         private static IMediaSettingService _mediaSettingService = new MediaSettingService();
         private static IEnumerable<MediaType> _bannerCategories = _mediaSettingService.GetBannerCategories();
-        private static IEnumerable<MediaType> _bannerTypes = _mediaSettingService.GetBannerTypes();
-        private static IEnumerable<MediaType> _bannerSizes = _mediaSettingService.GetBannerSizes();
 
         public static IEnumerable<MediaType> BannerCategories
         {
             get
             {
                 return _bannerCategories;
-            }
-        }
-
-        public static IEnumerable<MediaType> BannerTypes
-        {
-            get
-            {
-                return _bannerTypes;
-            }
-        }
-
-        public static IEnumerable<MediaType> BannerSizes
-        {
-            get
-            {
-                return _bannerSizes;
             }
         }
 
@@ -79,11 +61,6 @@
             {
                 return Convert.ToInt32(AppSettings.GetValue("ThumbnailWidth"));
             }
-        }
-
-        public static void RefreshBannerSizes()
-        {
-            _bannerSizes = _mediaSettingService.GetBannerSizes();
         }
     }
 }

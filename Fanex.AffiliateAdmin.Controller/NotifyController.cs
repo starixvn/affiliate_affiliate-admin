@@ -1,12 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Web.Mvc;
-    using System.Web.Security;
     using System.Web.SessionState;
     using Core.Constants;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
-    using ONEbook.UM;
-    using ONEbook.UM.Services;
     using Resources;
 
     /// <summary>
@@ -16,19 +14,15 @@
     [AllowAnonymous]
     public class NotifyController : Controller
     {
-        private readonly IMaintenanceService _maintenanceService;
+        private readonly IUnderMaintenanceService _underMaintenanceService;
+        private readonly IFormsAuthenticationWrapper _formsAuthenticationWrapper;
 
-        public NotifyController() : this(null)
+        public NotifyController(
+            IUnderMaintenanceService underMaintenanceService,
+            IFormsAuthenticationWrapper formsAuthenticationWrapper)
         {
-        }
-
-        public NotifyController(IMaintenanceService maintenanceService)
-        {
-            _maintenanceService = maintenanceService ?? new MaintenanceService(
-                                      UMClientManager.RestClient,
-                                      UMClientManager.CacheService,
-                                      UMClientManager.UMClientConfigs,
-                                      UMClientManager.HttpContext);
+            _underMaintenanceService = underMaintenanceService;
+            _formsAuthenticationWrapper = formsAuthenticationWrapper;
         }
 
         /// <summary>
@@ -37,11 +31,11 @@
         /// <returns>Under maintenance page.</returns>
         public ActionResult Index()
         {
-            if (_maintenanceService.IsUnderMaintenance())
+            if (_underMaintenanceService.IsUnderMaintenance())
             {
                 LogOutWhenUMTime();
 
-                var underMaintenanceTime = _maintenanceService.GetUnderMaintenanceTime();
+                var underMaintenanceTime = _underMaintenanceService.GetUnderMaintenanceTime();
                 ViewBag.StartTime = underMaintenanceTime.From;
                 ViewBag.EndTime = underMaintenanceTime.To;
 
@@ -89,22 +83,22 @@
         {
             switch (code)
             {
-                case OneAuthorizationErrorCode.TokenWasExpired:
+                case ErrorCodes.TokenWasExpired:
                     return Lang.TokenWasExpired;
 
-                case OneAuthorizationErrorCode.LicenseeIsNotExisted:
+                case ErrorCodes.LicenseeIsNotExisted:
                     return Lang.LicenseeIsNotExisted;
 
-                case OneAuthorizationErrorCode.TokenIsInValid:
+                case ErrorCodes.TokenIsInValid:
                     return Lang.TokenIsInValid;
 
-                case OneAuthorizationErrorCode.LocationRestrictionMsg:
+                case ErrorCodes.LocationRestrictionMsg:
                     return string.Format(Lang.LocationRestrictionMsg, Lang.Administrator);
 
-                case OneAuthorizationErrorCode.LicenseeNotOfferedCurrency:
+                case ErrorCodes.LicenseeNotOfferedCurrency:
                     return Lang.LicenseeNotOfferedCurrency;
 
-                case OneAuthorizationErrorCode.YouAreNotAllowToAccessThisPage:
+                case ErrorCodes.YouAreNotAllowToAccessThisPage:
                     return Lang.YouAreNotAllowToAccessThisPage;
 
                 default:
@@ -116,7 +110,7 @@
         {
             if (SessionManager.CurrentSession != null)
             {
-                FormsAuthentication.SignOut();
+                _formsAuthenticationWrapper.SignOut();
                 SessionManager.ClearAll();
             }
         }

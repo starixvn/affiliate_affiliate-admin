@@ -3,6 +3,7 @@
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Services;
 
@@ -20,18 +21,15 @@
 
         #region Constructor
 
-        public MemberController()
-            : this(null)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MemberController" /> class.
         /// </summary>
         /// <param name="service">Member Service.</param>
-        public MemberController(IMemberService service)
+        public MemberController(
+            IMemberService service,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-            _service = service ?? new MemberService();
+            _service = service;
         }
 
         #endregion Constructor

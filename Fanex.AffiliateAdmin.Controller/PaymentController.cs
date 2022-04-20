@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configurations;
@@ -10,7 +9,6 @@
     using Core.Entities;
     using Core.Enumerations;
     using Core.Filter;
-    using Core.Services.Impl;
     using Core.Services.Interface;
     using Core.Session;
     using Core.Utilities;
@@ -27,20 +25,22 @@
         private const string ModelErrorKey = "ErrMsg";
         private const int UserNotExistedCode = 2005;
         private static readonly IEnumerable<string> AllowedStatusListToUpdate = new List<string> { PaymentStatusText.Approved, PaymentStatusText.Rejected };
+
+        private readonly IDbLogger _dbLogger;
+        private readonly IAppSetting _appSetting;
         private readonly IPaymentService _paymentService;
-        private readonly IDbLogger _databaseLogger;
 
         #region Constructor
 
-        public PaymentController()
-            : this(null, null)
+        public PaymentController(
+            IDbLogger dbLogger,
+            IAppSetting appSetting,
+            IPaymentService paymentService,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-        }
-
-        public PaymentController(IPaymentService service, IDbLogger databaseLogger)
-        {
-            _paymentService = service ?? new PaymentService();
-            _databaseLogger = databaseLogger ?? new DbLogger();
+            _dbLogger = dbLogger;
+            _appSetting = appSetting;
+            _paymentService = paymentService;
         }
 
         #endregion Constructor
@@ -48,9 +48,9 @@
         [HttpGet]
         public ActionResult Index(PaymentViewModel model)
         {
-            model.ExcludeTest = true;
             model.FromDate = DateTime.Today.AddDays(-1);
             model.ToDate = DateTime.Today;
+            model.BaseCurrencyListSelectItem = GetBaseCurrencyOptionList(false);
 
             return View(model);
         }
@@ -161,7 +161,7 @@
                 var criteria = GetPaymentUpdateCriteria(model, paymentDetail);
                 var result = ProcessUpdatePayment(criteria, paymentDetail, playerPayoutInfo, custInfo);
 
-                if (result.Success)
+                if (result.IsSuccess)
                 {
                     SendEmail(paymentDetail, criteria);
                     ViewBag.Result = GetResultViewModel(result.ErrorCode, result.ErrorMessage);
@@ -281,17 +281,10 @@
             if (paymentIsUpdated)
             {
                 _paymentService.UpdatePayment(criteria);
-                return new ResultViewModel
-                {
-                    ErrorCode = criteria.ErrCode,
-                    Success = criteria.ErrCode == 0,
-                };
+                return GetResultViewModel(criteria.ErrCode);
             }
 
-            return new ResultViewModel
-            {
-                Success = false
-            };
+            return new ResultViewModel();
         }
 
         private void SendEmail(PaymentDetail paymentDetail, PaymentUpdateCriteria criteria)

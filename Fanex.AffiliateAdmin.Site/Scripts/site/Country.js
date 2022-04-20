@@ -33,7 +33,7 @@ var Country = (function ($) {
 
             AFFILIATE.trimBeforeSubmit();
             submitOptions = $('form').serializeObject();
-            
+
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Configuration/GetCountryList"),
                 type: 'post',
@@ -74,10 +74,10 @@ var Country = (function ($) {
                         type: 'post',
                         success: function (result) {
                             AFFILIATE.PreHandleAjaxResult(result);
-                            if (!result.Success) {
-                                alert(result.Message);
+                            if (result.IsSuccess) {
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.ErrorMessage, Country.ReRenderAfterPaged);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, Country.ReRenderAfterPaged);
+                                alert(result.ErrorMessage);
                             }
                         }
                     });

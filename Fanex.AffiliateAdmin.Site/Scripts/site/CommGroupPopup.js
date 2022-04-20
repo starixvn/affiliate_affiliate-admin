@@ -393,7 +393,7 @@ var CommGroupPopup = (function ($) {
                 }
             }
         });
-        
+
         return convertDeductionArrayToString(deductions);
     };
 
@@ -711,7 +711,7 @@ var CommGroupPopup = (function ($) {
                     data: data,
                     success: function (result) {
                         AFFILIATE.PreHandleAjaxResult(result);
-                        AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, (parent.COMMGROUP ? parent.COMMGROUP.ReRenderAfterPaged : undefined));
+                        AFFILIATE.showUpdateStatus(result.ErrorCode, result.ErrorMessage, (parent.COMMGROUP ? parent.COMMGROUP.ReRenderAfterPaged : undefined));
                     }
                 });
             });

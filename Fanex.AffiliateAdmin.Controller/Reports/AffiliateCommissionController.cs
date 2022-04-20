@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
@@ -16,13 +17,13 @@
     /// </summary>
     public class AffiliateCommissionController : ReportController
     {
-        public AffiliateCommissionController()
-            : this(null, null)
-        {
-        }
-
-        public AffiliateCommissionController(IReportService reportService, ICommGroupService commGroupService)
-            : base(reportService, commGroupService)
+        public AffiliateCommissionController(
+            IAppSetting appSetting,
+            IReportService reportService,
+            ICommGroupService commGroupService,
+            ISystemSettingService systemSettingService
+            )
+            : base(appSetting, reportService, commGroupService, systemSettingService)
         {
         }
 
@@ -38,7 +39,7 @@
             criteria.IsITAdmin = session.IsIT;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
-            criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
+            criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSetting.SystemStartDate);
             criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
 
             var data = ReportService.GetAffiliateCommission(criteria);
@@ -75,9 +76,9 @@
             const int GroupByMonth = 1;
             var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             criteria.AffName = affiliate.UserName;
-            criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
-            criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups().Select(t => t.GroupID));
-            criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
+            criteria.AffTypes = string.Join(",", AppSetting.AffTypes.Select(t => t.TypeID));
+            criteria.CommGroups = string.Join(",", SystemSettingService.GetCommGroups().Select(t => t.GroupID));
+            criteria.PreferLanguages = string.Join(",", AppSetting.AffSupportLanguages.Select(t => t.LanguageID));
             criteria.Currencies = affiliate.Currency.ToString();
             criteria.GroupBy = GroupByMonth;
 

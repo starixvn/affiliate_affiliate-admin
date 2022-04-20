@@ -5,6 +5,7 @@
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
@@ -13,16 +14,16 @@
     [NoCache]
     public class HomeController : BaseController
     {
+        private readonly IAppSetting _appSetting;
         private readonly IHomeService _homeService;
 
-        public HomeController()
-            : this(null)
+        public HomeController(
+            IAppSetting appSetting,
+            IHomeService homeService,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-        }
-
-        public HomeController(IHomeService homeService)
-        {
-            _homeService = homeService ?? new HomeService();
+            _appSetting = appSetting;
+            _homeService = homeService;
         }
 
         public ActionResult Index()
@@ -32,7 +33,7 @@
                 return new RedirectResult("~/Home/UserOnlineList");
             }
 
-            FormaterCurrency.SetDefaultCurrency(AppSettings.BaseExchange.Code);
+            FormaterCurrency.SetDefaultCurrency(_appSetting.BaseExchange.Code);
             var model = _homeService.GeneralInfoSel(new HomeGeneralInfoCriteria
             {
                 UserCurrencies = SessionManager.CurrentSession.BuildUserCurrencyParam()
@@ -48,7 +49,7 @@
         [ChildActionOnly]
         public ActionResult Language()
         {
-            var languageList = AppSettings.BaseLanguages;
+            var languageList = _appSetting.BaseLanguages;
             var selectedLang = languageList.FirstOrDefault(lang => lang.LanguageID == AppSession.Language);
             var languageName = selectedLang == null ? string.Empty : selectedLang.LanguageName;
             var sysDateTime = _homeService.GetSystemDateTime(new SystemDateTimeCriteria());
@@ -82,7 +83,7 @@
             var session = SessionManager.CurrentSession;
 
             criteria.IsIT = session.IsIT;
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.LicenseeId = _appSetting.LicenseeID;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
             var listUseronlines = _homeService.UserOnlineList(criteria);

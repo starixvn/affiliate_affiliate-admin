@@ -79,10 +79,10 @@ var TextList = (function ($) {
                         success: function (result) {
                             AFFILIATE.PreHandleAjaxResult(result);
 
-                            if (!result.Success) {
-                                alert(result.Message);
+                            if (result.IsSuccess) {
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.ErrorMessage, TextList.ReRenderAfterPaged);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, TextList.ReRenderAfterPaged);
+                                alert(result.ErrorMessage);
                             }
                         }
                     });

@@ -39,7 +39,7 @@ namespace Fanex.AffiliateAdmin.Models
         public short? DateOption { get; set; }
 
         [Display(Name = "BaseCurrency", ResourceType = typeof(Lang))]
-        public string BaseCurrency { get; set; }
+        public byte BaseCurrency { get; set; }
 
         [Display(Name = "From", ResourceType = typeof(Lang))]
         public DateTime FromDate { get; set; }

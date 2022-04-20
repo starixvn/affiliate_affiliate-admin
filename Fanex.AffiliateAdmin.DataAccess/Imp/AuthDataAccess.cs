@@ -6,6 +6,7 @@
     using Criterias;
     using Data;
     using DTO;
+    using Fanex.AffiliateAdmin.Core.Constants;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.Data.SqlServer;
 
@@ -21,7 +22,7 @@
                 account = new Account();
                 result.ErrorCode = Convert.ToInt32(outputParams["errcode"]);
                 result.ErrorMessage = Convert.ToString(outputParams["errmsg"]);
-                if (result.ErrorCode == 0)
+                if (result.ErrorCode == ErrorCodes.Success)
                 {
                     account.CustID = Convert.ToInt32(outputParams["userid"]);
                     account.IsIT = true;

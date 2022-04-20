@@ -21,7 +21,7 @@ var Configuration = (function ($) {
             $('.form-popup').submit(function () {
                 AFFILIATE.trimBeforeSubmit();
             });
-            
+
             $('#btnDeleteConfiguration').click(function () {
                 Configuration.deleteConfiguration();
             });
@@ -36,7 +36,7 @@ var Configuration = (function ($) {
 
             AFFILIATE.trimBeforeSubmit();
             submitOptions = $('form').serializeObject();
-            
+
             $.ajax({
                 url: AFFILIATE.getAbsoluteUrl("Configuration/GetSystemSettingList"),
                 type: 'post',
@@ -73,10 +73,10 @@ var Configuration = (function ($) {
                         data: param,
                         success: function (result) {
                             AFFILIATE.PreHandleAjaxResult(result);
-                            if (!result.Success) {
-                                alert(result.Message);
+                            if (result.IsSuccess) {
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.ErrorMessage, Configuration.ReRenderAfterPaged);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, Configuration.ReRenderAfterPaged);
+                                alert(result.ErrorMessage);
                             }
                         }
                     });

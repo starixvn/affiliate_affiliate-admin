@@ -7,17 +7,18 @@
 namespace Fanex.AffiliateAdmin.Controller
 {
     using System;
+    using System.Linq;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Entities;
     using Fanex.AffiliateAdmin.Core.Enumerations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Mailinator;
-    using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
+    using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
@@ -31,27 +32,18 @@ namespace Fanex.AffiliateAdmin.Controller
 
         private readonly ICountryService _countryService;
 
-        private readonly ISystemSettingService _systemSettingService;
-
-        public AffiliateInfoController()
-            : this(null, null, null)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AffiliateInfoController" /> class.
         /// </summary>
         /// <param name="affiliateService">Affiliate Service.</param>
         /// <param name="countryService">Country Service.</param>
-        /// <param name="systemSettingService">System Setting Service.</param>
         public AffiliateInfoController(
             IAffiliateService affiliateService,
             ICountryService countryService,
-            ISystemSettingService systemSettingService)
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-            _affiliateService = affiliateService ?? new AffiliateService();
-            _countryService = countryService ?? new CountryService();
-            _systemSettingService = systemSettingService ?? new SystemSettingService();
+            _affiliateService = affiliateService;
+            _countryService = countryService;
         }
 
         /// <summary>
@@ -242,12 +234,19 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 model = new AffiliateEditViewModel
                 {
-                    Affiliate = affiliate
+                    Affiliate = affiliate,
+                    Countries = _countryService.GetAll(new CountryCriteria()).Select(country => new SelectListItem
+                    {
+                        Value = country.CountryID,
+                        Text = country.CountryID == "-" ? Country.Others : Country.ResourceManager.GetString(country.CountryID)
+                    }),
+                    PaymentMethodListItem = SystemSettingService.GetPaymentMethod(new PaymentMethodCriteria()).Select(payment => new SelectListItem
+                    {
+                        Value = payment.SName,
+                        Text = payment.SValue,
+                        Selected = affiliate.PreferredPayment == payment.SName
+                    })
                 };
-
-                model.AddCountries(_countryService.GetAll(new CountryCriteria()));
-
-                model.AddPaymentMethods(_systemSettingService.GetPaymentMethod(new PaymentMethodCriteria()));
 
                 model.Affiliate.HtmlDecode();
             }
@@ -358,7 +357,7 @@ namespace Fanex.AffiliateAdmin.Controller
             model.FullDateTime = criteria.MonthDate;
             model.AffId = affiliate.AffId;
             model.AffName = affiliate.UserName;
-            model.BaseCurrency = AppSettings.BaseExchange.Code;
+            model.BaseCurrency = SystemSettingService.GetSystemBaseExchange(new SystemSettingExchangeCriteria()).Code;
             model.AffCurrency = affiliate.CurrencyCode;
 
             return model;

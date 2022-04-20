@@ -1,11 +1,12 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller.Helpers
 {
+    using Fanex.AffiliateAdmin.DTO;
     using System;
     using System.Web;
 
     public static class AffiliateInfoCookieHelper
     {
-        public static void SaveAffiliate(HttpContextBase context, DTO.Affiliate affiliate)
+        public static void SaveAffiliate(HttpContextBase context, Affiliate affiliate)
         {
             var cookie = new HttpCookie("AffInfo");
             cookie["AffId"] = affiliate.AffId.ToString();
@@ -25,15 +26,15 @@
             }
         }
 
-        public static DTO.Affiliate GetAffiliate(HttpContextBase context)
+        public static Affiliate GetAffiliate(HttpContextBase context)
         {
             var cookie = context.Request.Cookies["AffInfo"];
             if (cookie == null)
             {
-                return new DTO.Affiliate();
+                return new Affiliate();
             }
 
-            return new DTO.Affiliate
+            return new Affiliate
             {
                 AffId = int.Parse(cookie["AffId"]),
                 Status = cookie["Status"],

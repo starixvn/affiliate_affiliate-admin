@@ -172,9 +172,11 @@
         {
             if (reader.NextResult())
             {
+                var onlineUsers = new List<AffiliateOnUser>();
+
                 while (reader.Read())
                 {
-                    affiliateInfo.OnUsers.Add(new AffiliateOnUser
+                    onlineUsers.Add(new AffiliateOnUser
                     {
                         On_UserId = reader.ToInt("On_UserId"),
                         On_SessionId = reader.ToInt("On_SessionId"),
@@ -187,6 +189,8 @@
                         NetSessionID = reader.ToString("NetSessionID")
                     });
                 }
+
+                affiliateInfo.OnUsers = onlineUsers;
             }
         }
 

@@ -41,16 +41,16 @@
                 <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
             </div>
         </div>
-    </fieldset>    
+    </fieldset>
 }
 
 
-@section scripts{ 
+@section scripts{
     @Scripts.Render("~/scripts/domaincontrol")
     @if (ViewBag.Result != null){
         var result = (ResultViewModel)ViewBag.Result;
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.DOMAINCONTROL.ReRenderAfterPaged);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.DOMAINCONTROL.ReRenderAfterPaged);
         </script>
     }
 }

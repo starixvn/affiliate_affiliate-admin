@@ -63,10 +63,10 @@ var Language = (function ($) {
                         success: function(result) {
                             AFFILIATE.PreHandleAjaxResult(result);
 
-                            if (!result.Success) {
-                                alert(result.Message);
+                            if (result.IsSuccess) {
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.ErrorMessage, Language.ReRenderAfterPaged);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, Language.ReRenderAfterPaged);
+                                alert(result.ErrorMessage);
                             }
                         }
                     });

@@ -28,6 +28,7 @@
                 .StartNewSession()
                 .WithSqlServer("~/Configurations/SpNames/SpName.xml")
                 .Run();
+            IoCConfig.Register();
             UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             AreaRegistration.RegisterAllAreas();
 

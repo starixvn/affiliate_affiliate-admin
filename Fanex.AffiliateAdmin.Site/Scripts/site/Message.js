@@ -49,7 +49,7 @@ var Message = (function ($) {
                 },
                 success: function (data) {
                     AFFILIATE.PreHandleAjaxResult(data);
-                    
+
                     AFFILIATE.renderGrid($('#gridId'), data, gridOption, Message.ReRenderAfterPaged);
 
                     if (data.TotalItem === 0) {
@@ -75,11 +75,11 @@ var Message = (function ($) {
                         data: { msgids: id },
                         success: function (result) {
                             AFFILIATE.PreHandleAjaxResult(result);
-                            
-                            if (!result.Success) {
-                                alert(result.Message);
+
+                            if (result.IsSuccess) {
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.ErrorMessage, Message.ReRenderAfterPaged);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, Message.ReRenderAfterPaged);
+                                alert(result.ErrorMessage);
                             }
                         }
                     });

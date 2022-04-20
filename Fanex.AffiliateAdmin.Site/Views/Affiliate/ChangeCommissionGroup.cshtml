@@ -48,10 +48,10 @@
         var result = (ResultViewModel)ViewBag.Result;
         <script type="text/javascript">
             if (parent.AffiliateList != undefined) {
-                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.AffiliateList.ReRenderAfterPaged);
+                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.AffiliateList.ReRenderAfterPaged);
             }
             else if(parent[0] != undefined) {
-                 AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.AFFINFO.refreshPage);
+                 AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.AFFINFO.refreshPage);
             }
         </script>
     }

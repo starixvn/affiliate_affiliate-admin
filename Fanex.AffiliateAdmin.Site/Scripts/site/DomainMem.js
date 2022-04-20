@@ -53,10 +53,10 @@ var DOMAIN = (function ($) {
                     success: function(result) {
                         AFFILIATE.PreHandleAjaxResult(result);
 
-                        if (!result.Success) {
-                            alert(result.Message);
-                        } else {
+                        if (result.IsSuccess) {
                             DOMAIN.ReRenderAfterPaged(0, $("#itemperpage").val());
+                        } else {
+                            alert(result.ErrorMessage);
                         }
                     }
                 });

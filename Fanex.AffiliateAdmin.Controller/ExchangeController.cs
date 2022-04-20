@@ -7,6 +7,7 @@
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Services;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
@@ -36,18 +37,15 @@
 
         #region Constructor
 
-        public ExchangeController()
-            : this(null)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ExchangeController" /> class.
         /// </summary>
         /// <param name="service">Email History service.</param>
-        public ExchangeController(IExchangeRateService service)
+        public ExchangeController(
+            IExchangeRateService service,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-            _exchangeService = service ?? new ExchangeRateService();
+            _exchangeService = service;
             _service = new QueryService();
         }
 

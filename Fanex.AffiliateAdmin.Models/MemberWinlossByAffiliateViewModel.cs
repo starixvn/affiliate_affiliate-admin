@@ -31,7 +31,7 @@
 
         public string PlayerName { get; set; }
 
-        public int BaseCurrency { get; set; }
+        public byte BaseCurrency { get; set; }
 
         public IList<SelectListItem> BaseCurrencyList
         {

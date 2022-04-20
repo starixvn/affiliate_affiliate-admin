@@ -50,7 +50,7 @@
     @if (ViewBag.Result != null){
         var result = (ResultViewModel)ViewBag.Result;
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.DOMAINCONTROL.ReRenderAfterPaged);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.DOMAINCONTROL.ReRenderAfterPaged);
         </script>
     }
 }

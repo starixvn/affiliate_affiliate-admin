@@ -1,7 +1,6 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.902
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.AffiliateAdmin.Controller", "Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj", "{D7E60D7D-CD3D-40A7-AB59-B7281AA7A579}"
 EndProject
@@ -21,13 +20,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.AffiliateAdmin.Resour
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.AffiliateAdmin.Site", "Fanex.AffiliateAdmin.Site\Fanex.AffiliateAdmin.Site.csproj", "{36FEEA64-4934-4FAF-A8AE-1B25865C704F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AC3A092A-0803-4297-90BA-E3095020C6CD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{D04B69A5-CC6F-4C5C-A4DC-ED21D8FA57C9}"
 	ProjectSection(SolutionItems) = preProject
 		CodeAnalysis\CodeAnalysisConfiguration.xml = CodeAnalysis\CodeAnalysisConfiguration.xml
 		CodeAnalysis\FxCopDictionary.xml = CodeAnalysis\FxCopDictionary.xml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.AffiliateAdmin.Controller.UnitTests", "Fanex.AffiliateAdmin.Controller.UnitTests\Fanex.AffiliateAdmin.Controller.UnitTests.csproj", "{038FE488-57DC-42BE-AD9D-6F41470DE4BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{05581D51-D367-40AE-A5CA-0E2ECA472E82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,9 +130,24 @@ Global
 		{36FEEA64-4934-4FAF-A8AE-1B25865C704F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{36FEEA64-4934-4FAF-A8AE-1B25865C704F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{36FEEA64-4934-4FAF-A8AE-1B25865C704F}.Release|x86.ActiveCfg = Release|Any CPU
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF}.Debug|x86.Build.0 = Debug|Any CPU
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF}.Release|x86.ActiveCfg = Release|Any CPU
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{038FE488-57DC-42BE-AD9D-6F41470DE4BF} = {05581D51-D367-40AE-A5CA-0E2ECA472E82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BF430EE1-8B14-48CD-89C2-52FEDCB303AC}

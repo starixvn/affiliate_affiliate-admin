@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Configuration;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Criterias;
@@ -166,46 +165,6 @@
             }
         }
 
-        public static List<SelectListItem> BaseCurrencyInAffiliate
-        {
-            get
-            {
-                return new List<SelectListItem>
-                    {
-                        new SelectListItem
-                        {
-                            Text = Lang.Affiliate,
-                            Value = "0"
-                        },
-                        new SelectListItem
-                        {
-                            Text = BaseExchange.Code,
-                            Value = "1"
-                        }
-                    };
-            }
-        }
-
-        public static List<SelectListItem> BaseCurrencyInMember
-        {
-            get
-            {
-                return new List<SelectListItem>
-                    {
-                        new SelectListItem
-                            {
-                                Text = Lang.Member,
-                                Value = "0"
-                            },
-                        new SelectListItem
-                            {
-                                Text = BaseExchange.Code,
-                                Value = "1"
-                            }
-                    };
-            }
-        }
-
         public static Exchange BaseExchange
         {
             get
@@ -235,14 +194,6 @@
             get
             {
                 return GetValue("DefaultLanguage");
-            }
-        }
-
-        public static bool EnableTransformer
-        {
-            get
-            {
-                return int.Parse(GetValue("EnableTransformer")) == 1;
             }
         }
 
@@ -445,24 +396,6 @@
             {
                 return GetValue("DefaultCurrency");
             }
-        }
-
-        public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
-        {
-            return SystemSetting.GetActiveCommGroups(criteria);
-        }
-
-        public static IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria = null)
-        {
-            if (criteria == null)
-            {
-                criteria = new CommGroupCurrencyCriteria { Currencies = "All" };
-            }
-
-            var session = SessionManager.CurrentSession;
-            criteria.UserCurrencies = session.BuildUserCurrencyParam();
-
-            return SystemSetting.GetCommGroups(criteria);
         }
 
         /// <summary>

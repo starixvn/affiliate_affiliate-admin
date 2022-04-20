@@ -28,7 +28,7 @@
             return bannerStorage;
         }
 
-        public static BannerStorage UpdateFile(BannerEditViewModel model, BannerDetail bannerDetail, out string errorMessage)
+        public static BannerStorage UpdateFile(BannerEditViewModel model, BannerDetail bannerDetail, IEnumerable<MediaType> bannerSizes, out string errorMessage)
         {
             errorMessage = string.Empty;
             var bannerStorage = new BannerStorage
@@ -50,7 +50,7 @@
                 }
                 else
                 {
-                    var mediaType = MediaSettings.BannerSizes.FirstOrDefault(t => t.TypeId == bannerDetail.Size);
+                    var mediaType = bannerSizes.FirstOrDefault(t => t.TypeId == bannerDetail.Size);
                     if (mediaType != null)
                     {
                         bannerStorage.BannerSize = mediaType.Value;

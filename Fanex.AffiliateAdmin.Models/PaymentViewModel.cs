@@ -13,28 +13,17 @@
     /// </summary>
     public class PaymentViewModel
     {
-        private SelectList _baseCurrencyOptions;
-
-        private List<SelectListItem> _statusOptions;
-
+        public PaymentViewModel()
+        {
+            ExcludeTest = true;
+        }
         [Display(Name = "AffType", ResourceType = typeof(Lang))]
         public short? AffType { get; set; }
 
         [Display(Name = "BaseCurrency", ResourceType = typeof(Lang))]
-        public string BaseCurrency { get; set; }
+        public byte BaseCurrency { get; set; }
 
-        public SelectList BaseCurrencyListSelectItem
-        {
-            get
-            {
-                if (_baseCurrencyOptions == null)
-                {
-                    _baseCurrencyOptions = new SelectList(AppSettings.BaseCurrencyInAffiliate, "Value", "Text");
-                }
-
-                return _baseCurrencyOptions;
-            }
-        }
+        public SelectList BaseCurrencyListSelectItem { get; set; }
 
         [Display(Name = "Currency", ResourceType = typeof(Lang))]
         public int? Currency { get; set; }
@@ -60,23 +49,12 @@
         [Display(Name = "Status", ResourceType = typeof(Lang))]
         public string Status { get; set; }
 
-        public IEnumerable<SelectListItem> StatusList
+        public IEnumerable<SelectListItem> StatusList => PaymentSettings.ListStatus.Select(status => new SelectListItem
         {
-            get
-            {
-                if (_statusOptions == null)
-                {
-                    _statusOptions = PaymentSettings.ListStatus.Select(status => new SelectListItem
-                        {
-                            Value = status.Value,
-                            Text = status.Text,
-                            Selected = status.Value == Status
-                        }).ToList();
-                }
-
-                return _statusOptions.AsReadOnly();
-            }
-        }
+            Value = status.Value,
+            Text = status.Text,
+            Selected = status.Value == Status
+        });
 
         [Display(Name = "To", ResourceType = typeof(Lang))]
         public DateTime ToDate { get; set; }

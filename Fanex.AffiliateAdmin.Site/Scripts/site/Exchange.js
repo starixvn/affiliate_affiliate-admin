@@ -114,7 +114,7 @@ var EXCHANGE = (function ($) {
                         AFFILIATE.PreHandleAjaxResult(data);
 
                         if (!data.Success) {
-                            alert(data.Message);
+                            alert(data.ErrorMessage);
                         } else {
                             EXCHANGE.ReRenderAfterPaged();
                         }
@@ -143,7 +143,7 @@ var EXCHANGE = (function ($) {
                     AFFILIATE.PreHandleAjaxResult(data);
 
                     if (!data.Success) {
-                        alert(data.Message);
+                        alert(data.ErrorMessage);
                         self.checked = !self.checked;
                     }
                 }
@@ -204,6 +204,6 @@ var EXCHANGE = (function ($) {
 })(jQuery);
 
 $(function () {
-    "use strict";  
+    "use strict";
     EXCHANGE.init();
 });

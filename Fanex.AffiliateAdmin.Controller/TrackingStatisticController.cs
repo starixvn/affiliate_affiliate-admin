@@ -23,26 +23,20 @@
 
         private readonly ITrackingStatisticService _trackingService;
 
-        private readonly ISystemSettingService _systemSettingService;
-
         #endregion Services
 
         #region Constructor
-
-        public TrackingStatisticController()
-            : this(null, null)
-        {
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TrackingStatisticController" /> class.
         /// </summary>
         /// <param name="trackingService">Tracking Service.</param>
         /// <param name="systemSettingService">System setting Service.</param>
-        public TrackingStatisticController(ITrackingStatisticService trackingService, ISystemSettingService systemSettingService)
+        public TrackingStatisticController(
+            ITrackingStatisticService trackingService,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-            _trackingService = trackingService ?? new TrackingStatisticService();
-            _systemSettingService = systemSettingService ?? new SystemSettingService();
+            _trackingService = trackingService;
         }
 
         #endregion Constructor
@@ -79,7 +73,7 @@
         [HttpGet]
         public ActionResult LandingPage()
         {
-            var customerPages = this._systemSettingService.GetCustomerPages(new SystemSettingsSelByTypeCriteria
+            var customerPages = SystemSettingService.GetCustomerPages(new SystemSettingsSelByTypeCriteria
             {
                 Type = "CustomerPage"
             });

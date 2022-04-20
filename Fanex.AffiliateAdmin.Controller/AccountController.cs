@@ -4,16 +4,17 @@
     using System.Globalization;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
-    using System.Web.Security;
     using Common;
-    using Core.Configurations;
     using Core.Filter;
     using Core.Session;
     using Core.Utilities;
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Core;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Constants;
     using Fanex.AffiliateAdmin.Core.Helpers;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Services;
     using Helpers;
     using Models;
@@ -22,21 +23,24 @@
 
     public class AccountController : Controller
     {
+        private readonly IAppSetting _appSetting;
         private readonly IAuthService _authService;
-
         private readonly IAccountService _accountService;
+        private readonly IFormsAuthenticationWrapper _formsAuthenticationWrapper;
 
-        public AccountController()
-            : this(null, null)
+        public AccountController(
+            IAppSetting appSetting,
+            IAuthService authService,
+            IAccountService accountService,
+            IFormsAuthenticationWrapper formsAuthenticationWrapper)
         {
             var langManager = new LanguageManager();
             langManager.SetCulture(AppSession.Language);
-        }
 
-        public AccountController(IAuthService authService, IAccountService accountService)
-        {
-            _authService = authService ?? new AuthService();
-            _accountService = accountService ?? new AccountService();
+            _appSetting = appSetting;
+            _authService = authService;
+            _accountService = accountService;
+            _formsAuthenticationWrapper = formsAuthenticationWrapper;
         }
 
         [HttpPost]
@@ -54,9 +58,12 @@
         [CheckUMFilter]
         public ActionResult Login()
         {
-            if (AppSettings.IsProduction && !Regex.IsMatch(Remote.GetClientIPAddress(), AppSettings.GetValue("CompanyIPRange")))
+            var clientIPAddress = Remote.GetClientIPAddress(Request);
+
+            if (_appSetting.IsProduction && !Regex.IsMatch(clientIPAddress, _appSetting.GetValue("CompanyIPRange")))
             {
-                LogHelper.WriteInfo($"Access Denied: {AppSettings.SystemName}; IP: {Remote.GetClientIPAddress()}");
+                LogHelper.WriteInfo($"Access Denied: {_appSetting.SystemName}; IP: {clientIPAddress}");
+
                 return Redirect("~/Notify/AccessDenied");
             }
             else
@@ -71,36 +78,34 @@
         public ActionResult Login(string username, string password, string logInToken)
         {
             ResultViewModel result = null;
-            Account user = null;
-
             if (ModelState.IsValid)
             {
+                var clientIPAddress = Remote.GetClientIPAddress(Request);
                 var criteria = new LoginCriteria
                 {
                     Username = username,
                     UserPwd = password,
-                    LoginIP = Remote.GetClientIPAddress(),
+                    LoginIP = clientIPAddress,
                     LoginDomain = Request.UserHostName,
                 };
 
-                result = _authService.Login(criteria, out user, logInToken);
-                result.Success = result.ErrorCode == 0;
-                if (result.ErrorCode == 0 && user.CustID > 0)
+                result = _authService.Login(criteria, out Account user, logInToken);
+                if (result.IsSuccess && user.CustID > 0)
                 {
                     user.OnUserID = _authService.CheckIn(new CheckInCriteria
                     {
                         CustId = user.CustID,
-                        IP = Remote.GetClientIPAddress(),
+                        IP = clientIPAddress,
                         NetSessionId = Session.SessionID,
                         ServerId = user.ServerId
                     });
                     AffiliateInfoCookieHelper.DeleteAffiliate(HttpContext);
-                    FormsAuthentication.SetAuthCookie(username, false);
-                    SessionManager.CurrentSession = _authService.CreateInternalSession(user, AppSettings.LicenseeID);
+                    _formsAuthenticationWrapper.SetAuthCookie(username, false);
+                    SessionManager.CurrentSession = _authService.CreateInternalSession(user, _appSetting.LicenseeID);
                 }
                 else
                 {
-                    result = GetResultViewModel(result.ErrorCode, string.Empty, result.ErrorMessage);
+                    result = GetResultViewModel(result.ErrorCode, result.ErrorMessage);
                     ViewBag.LogInToken = CreateToken();
                 }
             }
@@ -136,8 +141,8 @@
                 {
                     ViewBag.Result = new ResultViewModel
                     {
-                        ErrorCode = 16,
-                        Message = Lang.NewPassworDifferOldPassword
+                        ErrorCode = ErrorCodes.InvalidRequest,
+                        ErrorMessage = Lang.NewPassworDifferOldPassword
                     };
                 }
                 else
@@ -163,29 +168,27 @@
         public ActionResult Logout()
         {
             DoLogOut();
-            return Redirect(FormsAuthentication.LoginUrl);
+            return Redirect(_formsAuthenticationWrapper.LoginUrl);
         }
 
         [HttpPost]
         [CheckUMFilter]
         public ActionResult ReCheckIn()
         {
-            var result = new ResultViewModel();
+            var result = new ResultViewModel { ErrorCode = ErrorCodes.GeneralErrorCode };
 
             KickedOutSession(result);
 
             return Json(result);
         }
 
-        private static ResultViewModel GetResultViewModel(int errCode, string messageSuccess = "", string errorMessage = "")
+        private static ResultViewModel GetResultViewModel(int errCode, string errorMessage = "")
         {
             return new ResultViewModel
             {
                 ErrorCode = errCode,
-                Message = errCode == 0 ?
-                    (string.IsNullOrEmpty(messageSuccess) ? Lang.UpdateSucc : messageSuccess) :
-                    (string.IsNullOrEmpty(errorMessage) ? GetErrorMessage(errCode) : errorMessage),
-                Success = errCode == 0
+                ErrorMessage = errCode == ErrorCodes.Success ? Lang.UpdateSucc :
+                    (string.IsNullOrEmpty(errorMessage) ? GetErrorMessage(errCode) : errorMessage)
             };
         }
 
@@ -214,16 +217,12 @@
 
             var isKickedOut = _authService.ReCheckIn(criteria);
 
-            if (!AppSettings.LocalTest)
+            if (!_appSetting.LocalTest && isKickedOut)
             {
-                result.Message = isKickedOut ? Lang.MsgKickout : string.Empty;
-                if (isKickedOut)
-                {
-                    result.Success = isKickedOut;
-                    result.ErrorMessage = "Expired";
+                result.ErrorCode = ErrorCodes.Success;
+                result.ErrorMessage = Lang.MsgKickout;
 
-                    DoLogOut();
-                }
+                DoLogOut();
             }
         }
 
@@ -236,7 +235,7 @@
                     OnUserId = SessionManager.CurrentSession.OnUserID
                 });
 
-                FormsAuthentication.SignOut();
+                _formsAuthenticationWrapper.SignOut();
                 SessionManager.ClearAll();
                 var cookies = Request.Cookies.AllKeys;
                 foreach (string cookie in cookies)

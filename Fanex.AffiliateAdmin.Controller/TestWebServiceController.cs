@@ -12,12 +12,16 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Services;
 
     [FunctionAuth(Function = FunctionPolicyNames.SystemSettings)]
     public class TestWebServiceController : BaseController
     {
+        public TestWebServiceController(ISystemSettingService systemSettingService) : base(systemSettingService)
+        {}
+
         /// <summary>
         /// Show view Note.
         /// </summary>

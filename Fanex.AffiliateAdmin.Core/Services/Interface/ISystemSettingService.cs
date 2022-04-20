@@ -119,7 +119,7 @@
         /// <param name="criteria">Deduction Type Criteria.</param>
         /// <returns>Return List Deduction Type.</returns>
         IEnumerable<DeductionType> GetDeductionTypes(DeductionTypeCriteria criteria);
-        
+
         /// <summary>
         /// Gets Affiliate Exchange.
         /// </summary>
@@ -149,10 +149,10 @@
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Currency list.</returns>
         IEnumerable<Currency> GetAffSystemAllSupportedCurrencyList(AllSystemCurrencyCriteria criteria);
-        
+
         IEnumerable<AffType> GetAffTypeList(AffTypeCriteria criteria);
 
-        IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria);
+        IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria = null);
 
         IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria);
 

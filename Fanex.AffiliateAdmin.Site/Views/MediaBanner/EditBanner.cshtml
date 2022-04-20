@@ -95,13 +95,13 @@
             MaxFileSize: "@MediaSettings.MaxImageSize",
             MaxFileSizeMsg: "@string.Format(Lang.MaxFileSizeLimit, string.Format("{0:#,##0}", MediaSettings.MaxImageSize))"
         };
-        
+
     </script>
     @if (ViewBag.Result != null)
     {
         var result = (ResultViewModel)ViewBag.Result;
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.BannerList.ReRenderAfterPaged);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.BannerList.ReRenderAfterPaged);
         </script>
     }
 }

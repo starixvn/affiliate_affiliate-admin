@@ -66,7 +66,7 @@ var Management = (function ($) {
             var param = {
                 groupId: groupId
             };
-            
+
             AFFILIATE.openDialogFrame("Management/UserInGroup?" + jQuery.param(param), window.MSG.Group + ' - ' + groupName, { width: 540, height: 600 });
         },
         editRolePolicy: function (groupId, groupName) {
@@ -138,11 +138,11 @@ var Management = (function ($) {
             return true;
         },
         showMsg: function (data) {
-            if (data.ErrorCode !== 0) {
-                AFFILIATE.showErrorMsg(data.Message);
-                setTimeout(AFFILIATE.hideMsg, 3000);
-            } else {
+            if (data.IsSuccess) {
                 Management.ReRenderAfterPaged(0, AFFILIATE.pageSizes[0]);
+            } else {
+                AFFILIATE.showErrorMsg(data.ErrorMessage);
+                setTimeout(AFFILIATE.hideMsg, 3000);
             }
         }
     };

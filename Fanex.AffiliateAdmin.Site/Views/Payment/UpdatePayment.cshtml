@@ -151,7 +151,7 @@
                     @Lang.VisibleOnlyToAdmin
                 </div>
                 <div class="row-fluid">
-                    @Html.TextAreaFor(m => m.AdminRemark, new { @class = "xsmall-textarea" }.DisabledIf(disabled))            
+                    @Html.TextAreaFor(m => m.AdminRemark, new { @class = "xsmall-textarea" }.DisabledIf(disabled))
                 </div>
             </fieldset>
         </div>
@@ -164,7 +164,7 @@
                 <div class="row-fluid">
                     @Html.TextAreaFor(m => m.AffRemark, new { @class = "xsmall-textarea" }.DisabledIf(disabled))
                 </div>
-                
+
             </fieldset>
         </div>
     </div>
@@ -179,7 +179,7 @@
         </div>
     </div>
 }
-@section scripts{    
+@section scripts{
     @Scripts.Render("~/scripts/payment")
     @Scripts.Render("~/scripts/updatepayment")
     @if (ViewBag.Result != null)
@@ -189,14 +189,14 @@
         {
             @Scripts.Render("~/scripts/payment")
             <script type="text/javascript">
-                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.Payment.ReRenderAfterPaged);
+                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.Payment.ReRenderAfterPaged);
             </script>
         }
         else
         {
             @Scripts.Render("~/scripts/statement")
             <script type="text/javascript">
-                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.STATEMENT.ReRenderAfterPaged);
+                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.STATEMENT.ReRenderAfterPaged);
             </script>
         }
     }

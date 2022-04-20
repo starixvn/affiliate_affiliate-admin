@@ -6,6 +6,7 @@
     using System.Web.Script.Serialization;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
@@ -18,6 +19,16 @@
     /// </summary>
     public class CompanyWinLossByOverviewController : ReportController
     {
+        public CompanyWinLossByOverviewController(
+            IAppSetting appSetting,
+            IReportService reportService,
+            ICommGroupService commGroupService,
+            ISystemSettingService systemSettingService
+            )
+            : base(appSetting, reportService, commGroupService, systemSettingService)
+        {
+        }
+
         #region Company Win Loss Report
 
         /// <summary>
@@ -34,7 +45,7 @@
 
             var serializer = new JavaScriptSerializer();
 
-            ViewBag.Products = serializer.Serialize(AppSettings.Products.Select(x => new
+            ViewBag.Products = serializer.Serialize(AppSetting.Products.Select(x => new
             {
                 Id = x.ProductID,
                 Name = x.ProductName
@@ -78,16 +89,16 @@
             if (criteria.ByAffiliate)
             {
                 criteria.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).UserName;
-                criteria.AffTypes = string.Join(",", AppSettings.AffTypes.Select(t => t.TypeID));
-                criteria.CommGroups = string.Join(",", AppSettings.GetCommGroups().Select(t => t.GroupID));
-                criteria.PreferLanguages = string.Join(",", AppSettings.AffSupportLanguages.Select(t => t.LanguageID));
+                criteria.AffTypes = string.Join(",", AppSetting.AffTypes.Select(t => t.TypeID));
+                criteria.CommGroups = string.Join(",", SystemSettingService.GetCommGroups().Select(t => t.GroupID));
+                criteria.PreferLanguages = string.Join(",", AppSetting.AffSupportLanguages.Select(t => t.LanguageID));
                 criteria.ExcludeTest = false;
             }
 
             if (criteria.GroupBy == 1)
             {
                 // If group by is month, we need to first day and last day of month.
-                criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSettings.SystemStartDate);
+                criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSetting.SystemStartDate);
                 criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
             }
 

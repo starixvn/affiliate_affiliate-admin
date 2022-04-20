@@ -11,6 +11,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
@@ -33,20 +34,18 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Constructor
 
-        public StatementController()
-            : this(null, null)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="StatementController" /> class.
         /// </summary>
         /// <param name="transTypeService">Transaction Service.</param>
         /// <param name="statementService">Statement Service.</param>
-        public StatementController(ITransTypeService transTypeService, IStatementService statementService)
+        public StatementController(
+            ITransTypeService transTypeService,
+            IStatementService statementService,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-            _transTypeService = transTypeService ?? new TransTypeService();
-            _statementService = statementService ?? new StatementService();
+            _transTypeService = transTypeService;
+            _statementService = statementService;
         }
 
         #endregion Constructor

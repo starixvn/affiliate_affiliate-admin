@@ -41,7 +41,7 @@
     {
         var result = (Fanex.AffiliateAdmin.Models.ResultViewModel)ViewBag.Result;
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.Language.ReRenderAfterPaged);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.Language.ReRenderAfterPaged);
         </script>
     }
     @Scripts.Render("~/scripts/language")

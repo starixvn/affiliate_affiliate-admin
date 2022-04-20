@@ -49,12 +49,12 @@ var LOGIN = (function ($) {
                     dataType: "json",
                     data: JSON.stringify(param),
                     success: function (result) {
-                        if (!result.Success) {
-                            $.unblockUI();
-                            alert(result.Message);
-                            $("#Password").val("");
-                        } else {
+                        if (result.IsSuccess) {
                             window.top.location = LOGIN.getAbsoluteUrl("Home");
+                        } else {
+                            $.unblockUI();
+                            alert(result.ErrorMessage);
+                            $("#Password").val("");
                         }
                     }
                 });

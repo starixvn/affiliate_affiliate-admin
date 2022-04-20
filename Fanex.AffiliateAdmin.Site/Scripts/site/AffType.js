@@ -1,7 +1,7 @@
 ﻿/*global AFFILIATE,gridOption,MSG*/
 var AffType = (function ($) {
     "use strict";
-    
+
     var submitOptions = {};
 
     return {
@@ -63,10 +63,10 @@ var AffType = (function ($) {
                         type: 'post',
                         success: function(result) {
                             AFFILIATE.PreHandleAjaxResult(result);
-                            if (!result.Success) {
-                                alert(result.Message);
+                            if (result.IsSuccess) {
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.ErrorMessage, AffType.ReRenderAfterPaged);
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, AffType.ReRenderAfterPaged);
+                                alert(result.ErrorMessage);
                             }
                         }
                     });

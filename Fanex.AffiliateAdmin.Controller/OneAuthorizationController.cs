@@ -14,14 +14,10 @@
     {
         private readonly IOneAuthenticationService _oneAuthenticationService;
 
-        public OneAuthorizationController() : this(null)
-        {
-        }
-
         internal OneAuthorizationController(
             IOneAuthenticationService oneAuthenticationService)
         {
-            _oneAuthenticationService = oneAuthenticationService ?? new OneAuthenticationService();
+            _oneAuthenticationService = oneAuthenticationService;
         }
 
         [HttpGet]
@@ -45,7 +41,7 @@
                 {
                     if (!tokenInfo.SiteName.Equals(AppSettings.SystemName, System.StringComparison.OrdinalIgnoreCase))
                     {
-                        returnUrl += OneAuthorizationErrorCode.LicenseeIsNotExisted;
+                        returnUrl += ErrorCodes.LicenseeIsNotExisted;
                     }
                     else
                     {
@@ -56,7 +52,7 @@
                 else
                 {
                     errMsg = tokenInfo != null ? JsonConvert.SerializeObject(tokenInfo) : "token is null";
-                    returnUrl += OneAuthorizationErrorCode.TokenIsInValid;
+                    returnUrl += ErrorCodes.TokenIsInValid;
                 }
             }
 

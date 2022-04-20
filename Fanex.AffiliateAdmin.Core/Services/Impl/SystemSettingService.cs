@@ -1,7 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Services
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
+    using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Criterias.Configuration.AffType;
     using Fanex.AffiliateAdmin.Criterias.Configuration.Country;
@@ -270,26 +272,30 @@
         public IEnumerable<AffType> GetAffTypeList(AffTypeCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return this.GetData<AffType>(criteria);
+            return GetData<AffType>(criteria).Select(t => new AffType()
+            {
+                TypeID = t.TypeID,
+                Name = Lang.ResourceManager.GetString(t.Name)
+            }); ;
         }
 
         public IEnumerable<Currency> GetAffSystemSupportedCurrencyList(SystemSupportedCurrencyCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return this.GetData<Currency>(criteria);
+            return GetData<Currency>(criteria);
         }
 
         public IEnumerable<Currency> GetLicenseeSupportedCurrencyList(LicenseeSupportedCurrencyCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return this.GetData<Currency>(criteria);
+            return GetData<Currency>(criteria);
         }
 
         public IEnumerable<Currency> GetAffSystemAllSupportedCurrencyList(AllSystemCurrencyCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            return this.GetData<Currency>(criteria);
+            return GetData<Currency>(criteria);
         }
 
         /// <summary>
@@ -297,8 +303,16 @@
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>List commission groups.</returns>
-        public IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria)
+        public IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria = null)
         {
+            if (criteria == null)
+            {
+                criteria = new CommGroupCurrencyCriteria { Currencies = "All" };
+            }
+
+            var session = SessionManager.CurrentSession;
+            criteria.UserCurrencies = session.BuildUserCurrencyParam();
+
             return GetData<CommGroup>(criteria);
         }
 
@@ -343,7 +357,7 @@
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            return this.GetData<SystemSetting>(criteria);
+            return GetData<SystemSetting>(criteria);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
@@ -7,6 +8,9 @@
     using Core;
     using Core.Filter;
     using Core.Session;
+    using Fanex.AffiliateAdmin.Core.Constants;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
+    using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
     using Models;
     using ONEbook.UM.AspNetMVC.Filters;
     using Resources;
@@ -20,15 +24,21 @@
     [XFrameOption]
     public class BaseController : Controller
     {
+        private readonly ISystemSettingService _systemSettingService;
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="BaseController" /> class.
         /// </summary>
-        public BaseController()
+        public BaseController(ISystemSettingService systemSettingService)
         {
             ////Set default language
             var langManager = new LanguageManager();
             langManager.SetCulture(AppSession.Language);
+
+            _systemSettingService = systemSettingService;
         }
+
+        protected ISystemSettingService SystemSettingService => _systemSettingService;
 
         protected string ErrorMessage(int errCode)
         {
@@ -71,10 +81,9 @@
             return new ResultViewModel
             {
                 ErrorCode = errCode,
-                Message = errCode == 0 ?
+                ErrorMessage = errCode == ErrorCodes.Success ?
                     (string.IsNullOrEmpty(messageSuccess) ? Lang.UpdateSucc : messageSuccess) :
                     (string.IsNullOrEmpty(errorMessage) ? ErrorMessage(errCode) : errorMessage),
-                Success = errCode == 0
             };
         }
 
@@ -82,9 +91,8 @@
         {
             var result = new ResultViewModel
             {
-                ErrorCode = -1,
-                Success = false,
-                Message = GetModelErrorMessage()
+                ErrorCode = ErrorCodes.GeneralErrorCode,
+                ErrorMessage = GetModelErrorMessage()
             };
 
             return Json(result);
@@ -92,14 +100,21 @@
 
         protected JsonResult ModelResult(int errCode)
         {
-            var result = new ResultViewModel
-            {
-                ErrorCode = errCode,
-                Success = errCode == 0,
-                Message = errCode == 0 ? "OK" : ErrorMessage(errCode)
-            };
+            var result = GetResultViewModel(errCode, "Ok");
 
             return Json(result);
+        }
+
+        protected SelectList GetBaseCurrencyOptionList(bool isInMember, byte? selectedBaseCurrency = null)
+        {
+            var exchange = SystemSettingService.GetSystemBaseExchange(new SystemSettingExchangeCriteria());
+            var baseCurrencyList = new List<SelectListItem>
+            {
+                new SelectListItem { Text = isInMember ? Lang.Member : Lang.Affiliate, Value = "0" },
+                new SelectListItem { Text = exchange.Code, Value = "1" }
+            };
+
+            return new SelectList(baseCurrencyList, "Value", "Text", selectedBaseCurrency);
         }
     }
 }

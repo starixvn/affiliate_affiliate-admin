@@ -11,7 +11,7 @@
     @Html.ValidationSummary()
     <fieldset>
          <div class="control-group">
-            @Html.LabelFor(m => m.DomainName, new { @class = "control-label" })            
+            @Html.LabelFor(m => m.DomainName, new { @class = "control-label" })
             <div class="controls">
                 @Html.TextBoxFor(m => m.DomainName)
             </div>
@@ -23,16 +23,16 @@
                 <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
             </div>
         </div>
-    </fieldset>    
+    </fieldset>
 }
 
 
-@section scripts{ 
+@section scripts{
     @Scripts.Render("~/scripts/domainaff")
     @if (ViewBag.Result != null){
         var result = (ResultViewModel)ViewBag.Result;
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.DOMAIN.ReRenderAfterPaged);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.DOMAIN.ReRenderAfterPaged);
         </script>
     }
 }

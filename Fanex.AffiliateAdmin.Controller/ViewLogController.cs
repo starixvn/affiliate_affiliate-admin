@@ -10,6 +10,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
@@ -29,18 +30,15 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Constructor
 
-        public ViewLogController()
-            : this(null)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewLogController" /> class.
         /// </summary>
         /// <param name="viewLogService">View log Service.</param>
-        public ViewLogController(IViewLogService viewLogService)
+        public ViewLogController(
+            IViewLogService viewLogService,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-            _viewLogService = viewLogService ?? new ViewLogService();
+            _viewLogService = viewLogService;
         }
 
         #endregion Constructor

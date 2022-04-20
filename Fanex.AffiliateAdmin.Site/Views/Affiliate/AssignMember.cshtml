@@ -50,7 +50,7 @@
     @if (result != null)
     {        
         <script type="text/javascript">
-            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.CUSTOMER.ReRenderAfterPaged);
+            AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.CUSTOMER.ReRenderAfterPaged);
         </script>
     }
     <script type="text/javascript">

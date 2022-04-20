@@ -9,6 +9,7 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
+    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
@@ -31,18 +32,15 @@ namespace Fanex.AffiliateAdmin.Controller
 
         #region Constructor
 
-        public NoteController()
-            : this(null)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="NoteController" /> class.
         /// </summary>
         /// <param name="noteService">Note Service.</param>
-        public NoteController(INoteService noteService)
+        public NoteController(
+            INoteService noteService,
+            ISystemSettingService systemSettingService) : base(systemSettingService)
         {
-            _noteService = noteService ?? new NoteService();
+            _noteService = noteService;
         }
 
         #endregion Constructor
@@ -101,11 +99,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 criteria.UpdatedBy = session.CustID;
 
                 this._noteService.InsertNote(criteria);
-                ViewBag.Result = new ResultViewModel
-                {
-                    ErrorCode = criteria.ErrCode,
-                    Message = criteria.ErrCode == 0 ? Lang.SuccNoteAdd : ErrorMessage(criteria.ErrCode)
-                };
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.SuccNoteAdd);
             }
 
             return AddNote();
@@ -147,11 +141,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
                 this._noteService.UpdateNote(criteria);
 
-                ViewBag.Result = new ResultViewModel
-                {
-                    ErrorCode = criteria.ErrCode,
-                    Message = criteria.ErrCode == 0 ? Lang.UpdateSucc : ErrorMessage(criteria.ErrCode)
-                };
+                ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
 
             return View();

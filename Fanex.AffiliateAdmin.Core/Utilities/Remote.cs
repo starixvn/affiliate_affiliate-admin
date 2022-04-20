@@ -51,10 +51,10 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 { "Nokia", "Nokia" }
         };
 
-        public static string GetClientIPAddress()
+        public static string GetClientIPAddress(HttpRequestBase httpRequest = null)
         {
-            var context = HttpContext.Current;
-            string ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            var request = httpRequest ?? new HttpRequestWrapper(HttpContext.Current.Request);
+            string ipAddress = request.ServerVariables["HTTP_X_FORWARDED_FOR"];
 
             if (!string.IsNullOrEmpty(ipAddress))
             {
@@ -65,7 +65,7 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
                 }
             }
 
-            return context.Request.ServerVariables["REMOTE_ADDR"];
+            return request.ServerVariables["REMOTE_ADDR"];
         }
 
         /// <summary>

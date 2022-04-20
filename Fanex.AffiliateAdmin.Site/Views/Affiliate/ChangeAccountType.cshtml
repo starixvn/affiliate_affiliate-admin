@@ -45,9 +45,9 @@
         <script type="text/javascript">
             if(parent.location.href.toLowerCase().indexOf("affiliateinfo") >= 0)
             {
-                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.location.reload(false));
+                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.location.reload(false));
             } else {
-                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.Message", parent.AffiliateList.ReRenderAfterPaged);
+                AFFILIATE.showUpdateStatus(@result.ErrorCode, "@result.ErrorMessage", parent.AffiliateList.ReRenderAfterPaged);
             }
         </script>
     }

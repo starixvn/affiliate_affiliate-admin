@@ -125,10 +125,10 @@ var BannerList = (function ($) {
                         data: param,
                         success: function (result) {
                             AFFILIATE.PreHandleAjaxResult(result);
-                            if (!result.Success) {
-                                alert(result.Message);
+                            if (result.IsSuccess) {
+                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.ErrorMessage, window.location.reload(false));
                             } else {
-                                AFFILIATE.showUpdateStatus(result.ErrorCode, result.Message, window.location.reload(false));
+                                alert(result.ErrorMessage);
                             }
                         }
                     });

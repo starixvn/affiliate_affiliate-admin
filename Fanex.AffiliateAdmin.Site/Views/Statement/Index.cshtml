@@ -6,13 +6,15 @@
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using System.Web.Script.Serialization
-@using Fanex.AffiliateAdmin.Services
-@model Fanex.AffiliateAdmin.Models.StatementViewModel
+
+@model Fanex.AffiliateAdmin.Models.AffiliateInfo.StatementViewModel
 @section iconcss{
 affiliate-info
 }
 @{
-    var now = SystemTimeService.GetSystemDateTime();
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var now = systemSettings.SystemDateTime;
+    var systemStartDate = systemSettings.SystemStartDate;
 }
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.AffiliateInfo, 0)
@@ -47,11 +49,11 @@ affiliate-info
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.FromDate, new { @class = "txt" })
-                    @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), AppSettings.SystemStartDate, now, true)
+                    @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), systemStartDate, now, true)
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.ToDate, new { @class = "txt" })
-                    @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, true)
+                    @Html.DatePicker("ToDate", now, systemStartDate, now, true)
                 </div>
             </div>
             <div class="row-fluid row-form btn-action">
@@ -126,7 +128,7 @@ affiliate-info
                 Formatter: function(rowIndex, rowData, cell, cellFormated) {
                     // handle the number format.
                     var currentValue = rowData.Amount;
-                    
+
                     if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
                         if (currentValue < 0) {
                             currentValue = -1 * currentValue;
@@ -134,7 +136,7 @@ affiliate-info
 
                         currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
                     }
-                    
+
                     if (rowData.Amount < 0) {
                         currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
                     }
@@ -142,7 +144,7 @@ affiliate-info
                     if (rowData.TransType == 201) {
                         var href = AFFILIATE.getAbsoluteUrl("Report/AffiliateCommissionByAffiliate");
                         var transdate = window.moment(rowData.TransDateStr).format(AFFILIATE.DATE_FORMAT_MONTH);
-                        
+
                         href += "?FromDate=" + transdate + "&ToDate=" + transdate;
 
                         return "<a href=\"{0}\">".format(href) + currentValue + "</a>";
@@ -154,7 +156,7 @@ affiliate-info
                 }
             },
             { HeaderText: "@Lang.Status", Width: 80, Name: "Status", HeaderAlign: "center" },
-            { HeaderText: "@Lang.CompletedDate", Width: 115, Name: "CompletedDateStr", HeaderAlign: "center", CellAlign: "center", 
+            { HeaderText: "@Lang.CompletedDate", Width: 115, Name: "CompletedDateStr", HeaderAlign: "center", CellAlign: "center",
                 Formatter: function (rIndex, record, cell, cellFormated) {
                     if (record["OriginalStatus"] === 'Processing') {
                         return null;
@@ -176,5 +178,5 @@ affiliate-info
         };
         var TransType = @(MvcHtmlString.Create(new JavaScriptSerializer().Serialize(Model.TransTypeList)));
     </script>
-    
+
 }

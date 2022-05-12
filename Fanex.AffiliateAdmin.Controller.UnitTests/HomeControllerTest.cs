@@ -1,8 +1,6 @@
 ﻿using Fanex.AffiliateAdmin.Controller.UnitTests.Helpers;
 using Fanex.AffiliateAdmin.Core.Configurations;
-using Fanex.AffiliateAdmin.Core.Services.Interface;
 using Fanex.AffiliateAdmin.Core.Session;
-using Fanex.AffiliateAdmin.Core.Utilities;
 using Fanex.AffiliateAdmin.Criterias;
 using Fanex.AffiliateAdmin.DTO;
 using Fanex.AffiliateAdmin.Models;
@@ -20,12 +18,12 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
 
         private readonly IAppSetting _appSetting;
         private readonly IHomeService _homeService;
-        private readonly ISystemSettingService _systemSettingService;
+        private readonly ISystemSettings _systemSettings;
         public HomeControllerTest()
         {
             _appSetting = Substitute.For<IAppSetting>();
             _homeService = Substitute.For<IHomeService>();
-            _systemSettingService = Substitute.For<ISystemSettingService>();
+            _systemSettings = MockingHelpers.GetSystemSettings();
         }
 
         [Fact]
@@ -37,9 +35,8 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
             currentSession.IsIT.Returns(true);
             currentSession.CurrencyList.Returns(new List<Currency>());
 
-            MockingHelpers.SetUpHttpContextSession(value: currentSession);
+            MockingHelpers.SetUpHttpContextSession(currentSession);
 
-            _appSetting.BaseExchange.Returns(new Exchange { Code = "USD" });
             _homeService.GeneralInfoSel(Arg.Any<HomeGeneralInfoCriteria>()).Returns(new HomeViewModel());
 
             //Action
@@ -60,7 +57,7 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
             currentSession.IsIT.Returns(false);
             currentSession.CurrencyList.Returns(new List<Currency>());
 
-            MockingHelpers.SetUpHttpContextSession(value: currentSession);
+            MockingHelpers.SetUpHttpContextSession(currentSession);
 
             //Action
             var controller = CreateController();
@@ -76,10 +73,10 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
         public void Language_WhenCall_RedirectResult(string languageId, string languageName)
         {
             //Arrange
-            _appSetting.BaseLanguages.Returns(new List<Language> { new Language { LanguageID = languageId, LanguageName = languageName } });
+            _systemSettings.BaseLanguages.Returns(new List<Language> { new Language { LanguageID = languageId, LanguageName = languageName } });
             _homeService.GetSystemDateTime(Arg.Any<SystemDateTimeCriteria>()).Returns(new SystemDateTime());
 
-            MockingHelpers.SetUpHttpContextSession("AffiliateLanguage", "en-US");
+            MockingHelpers.SetUpHttpContextSession("en-US", "AffiliateLanguage");
 
             //Action
             var controller = CreateController();
@@ -124,7 +121,7 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
         {
             //Arrange
             var currentSession = Substitute.For<ICurrentSession>();
-            MockingHelpers.SetUpHttpContextSession(value: currentSession);
+            MockingHelpers.SetUpHttpContextSession(currentSession);
             _homeService.UserOnlineList(Arg.Any<HomeOnlineListCriteria>()).Returns(prs =>
             {
                 var criteria = prs[0] as HomeOnlineListCriteria;
@@ -143,6 +140,6 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
         }
 
         private HomeController CreateController()
-            => new HomeController(_appSetting, _homeService, _systemSettingService);
+            => new HomeController(_appSetting, _homeService, _systemSettings);
     }
 }

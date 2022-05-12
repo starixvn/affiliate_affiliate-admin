@@ -1,5 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Services.Interface
 {
+    using System;
     using System.Collections.Generic;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Criterias.Configuration.AffType;
@@ -171,5 +172,12 @@
         /// <param name="criteria">System setting detail criteria.</param>
         /// <returns>List system setting.</returns>
         IEnumerable<SystemSetting> GetCustomerPages(SystemSettingsSelByTypeCriteria criteria);
+
+        /// <summary>
+        /// Get Affiliate System DateTime.
+        /// </summary>
+        /// <param name="criteria">Input criteria.</param>
+        /// <returns>Return System DateTime.</returns>
+        DateTime GetSystemDateTime();
     }
 }

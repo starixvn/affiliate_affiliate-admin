@@ -26,6 +26,7 @@
         /// <returns>Return Site domain info.</returns>
         public static SiteDomainInfo Parse(Controller controller, bool isKiosk)
         {
+            var appSetting = AppSetting.Instance;
             var siteUrl = controller.Request.Url;
             var scheme = siteUrl.Scheme;
             var host = siteUrl.Host;
@@ -34,7 +35,7 @@
             var memberSiteDomain = host;
             var memberSiteUrl = adminSiteUrl;
 
-            if (AppSettings.Environment.Equals("Production"))
+            if (appSetting.Environment.Equals("Production"))
             {
                 var words = host.Split('.');
                 if (words.Length > 2)
@@ -52,7 +53,7 @@
             {
                 MemberSiteDomain = memberSiteDomain,
                 MemberSiteUrl = memberSiteUrl,
-                AffiliateSiteUrl = isKiosk ? AppSettings.InternalUrlKiosk : AppSettings.InternalUrl,
+                AffiliateSiteUrl = isKiosk ? appSetting.InternalUrlKiosk : appSetting.InternalUrl,
                 AdminSiteUrl = adminSiteUrl
             };
         }

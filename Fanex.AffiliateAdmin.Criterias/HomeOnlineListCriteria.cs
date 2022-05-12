@@ -5,16 +5,8 @@
     /// <summary>
     /// Home Online List Criteria.
     /// </summary>
-    public class HomeOnlineListCriteria : CriteriaBase
+    public class HomeOnlineListCriteria : BaseCriteria
     {
-        public int PageIndex { get; set; }
-
-        public int TotalPages { get; set; }
-
-        public int PageSize { get; set; }
-
-        public int NRows { get; set; }
-
         public bool IsIT { get; set; }
 
         public int LicenseeId { get; set; }

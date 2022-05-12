@@ -15,9 +15,10 @@
     using Criterias;
     using DTO;
     using DTO.PaymentRequest;
-    using Fanex.AffiliateAdmin.Resources;
-    using Fanex.AffiliateAdmin.Services;
+    using Resources;
+    using Services;
     using Models;
+    using Models.Payment;
 
     [FunctionAuth(Function = FunctionPolicyNames.Payment, CurrenciesRequired = true)]
     public class PaymentController : BaseController
@@ -27,7 +28,7 @@
         private static readonly IEnumerable<string> AllowedStatusListToUpdate = new List<string> { PaymentStatusText.Approved, PaymentStatusText.Rejected };
 
         private readonly IDbLogger _dbLogger;
-        private readonly IAppSetting _appSetting;
+        private readonly ISystemSettings _systemSettings;
         private readonly IPaymentService _paymentService;
 
         #region Constructor
@@ -35,11 +36,11 @@
         public PaymentController(
             IDbLogger dbLogger,
             IAppSetting appSetting,
-            IPaymentService paymentService,
-            ISystemSettingService systemSettingService) : base(systemSettingService)
+            ISystemSettings systemSettings,
+            IPaymentService paymentService) : base(appSetting)
         {
             _dbLogger = dbLogger;
-            _appSetting = appSetting;
+            _systemSettings = systemSettings;
             _paymentService = paymentService;
         }
 
@@ -50,7 +51,7 @@
         {
             model.FromDate = DateTime.Today.AddDays(-1);
             model.ToDate = DateTime.Today;
-            model.BaseCurrencyListSelectItem = GetBaseCurrencyOptionList(false);
+            model.BaseCurrencyListSelectItem = _systemSettings.GetBaseCurrencyOptionList(false);
 
             return View(model);
         }
@@ -59,7 +60,7 @@
         public ActionResult DataList(PaymentCriteria criteria)
         {
             criteria.IsITAdmin = SessionManager.CurrentSession.IsIT;
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.LicenseeId = _systemSettings.LicenseeID;
 
             var data = _paymentService.GetPayments(criteria).ToList();
 
@@ -73,7 +74,7 @@
                                into g
                            select new
                            {
-                               Currency = AppSettings.BaseExchange.Code,
+                               Currency = _systemSettings.BaseExchange.Code,
                                Amt = g.Sum(y => y.ConvertedAmt),
                                ConvertedAmt = g.Sum(p => p.ConvertedAmt)
                            };
@@ -94,7 +95,7 @@
             var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria
             {
                 TransId = transId,
-                LicenseeId = AppSettings.LicenseeID
+                LicenseeId = _systemSettings.LicenseeID
             });
 
             var model = new PaymentUpdateViewModel
@@ -118,7 +119,7 @@
             var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria
             {
                 TransId = model.TransId,
-                LicenseeId = AppSettings.LicenseeID
+                LicenseeId = _systemSettings.LicenseeID
             });
             model.PaymentDetail = paymentDetail;
 
@@ -209,16 +210,16 @@
             return strText.Substring(0, maxLength - 3) + "...";
         }
 
-        private static bool IsValidCustomer(ApiCustInfo custInfo)
+        private bool IsValidCustomer(ApiCustInfo custInfo)
         {
-            return AppSettings.LocalTest ||
+            return AppSetting.LocalTest ||
                                         (!string.IsNullOrEmpty(custInfo.PlayerCurrency) &&
                                         string.IsNullOrEmpty(custInfo.ErrorMessage));
         }
 
-        private static bool IsTransferCompleted(ApiTransferInfo transferInfo)
+        private bool IsTransferCompleted(ApiTransferInfo transferInfo)
         {
-            return AppSettings.LocalTest ||
+            return AppSetting.LocalTest ||
                                         (transferInfo.IbcRefNo != 0 &&
                                         transferInfo.IbcTransId != 0 &&
                                         string.IsNullOrEmpty(transferInfo.ErrorMessage));
@@ -226,14 +227,14 @@
 
         private ApiCustInfo GetCustInfo(long transId, string siteName, string userName)
         {
-            return AppSettings.LocalTest ?
-                new ApiCustInfo { PlayerCurrency = AppSettings.DefaultCurrency, IbcUserName = "ninatest" } :
+            return AppSetting.LocalTest ?
+                new ApiCustInfo { PlayerCurrency = AppSetting.DefaultCurrency, IbcUserName = "ninatest" } :
                 ServiceWrapper.GetLicenseeCustInfo(siteName, userName, transId);
         }
 
         private ApiTransferInfo ProcessTransfer(PlayerPayoutInfo playerPayoutInfo, long transId, double amount, int balAccCustId)
         {
-            return AppSettings.LocalTest ?
+            return AppSetting.LocalTest ?
                 new ApiTransferInfo() :
                 ServiceWrapper.Transfer(playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername, amount, balAccCustId, transId);
         }
@@ -250,7 +251,7 @@
             {
                 var balAccCustId = _paymentService.GetCustIDByUsername(new DummyAccIdCriteria
                 {
-                    Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
+                    Username = AppSetting.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
                 });
 
                 var transferInfo = ProcessTransfer(

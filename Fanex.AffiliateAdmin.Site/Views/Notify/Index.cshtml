@@ -1,10 +1,16 @@
 ﻿@{
     ViewBag.Title = Lang.UnderMaintenance;
     Layout = "~/Views/Shared/_LayoutNoHeader.cshtml";
+
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+
+    var baseLanguages = systemSettings.BaseLanguages;
+    var baseLanguageNumbers = baseLanguages.Count() - 1;
 }
 @using Fanex.AffiliateAdmin.Core.Configurations
 @section css{
-    <link href="@Url.RenderLink(string.Format("~/www/dist/style/{0}/notify.css", AppSettings.Layout))" rel="stylesheet" type="text/css" />
+    <link href="@Url.RenderLink(string.Format("~/www/dist/style/{0}/notify.css", appSetting.Layout))" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 }
 
@@ -20,28 +26,28 @@
     </div>
     <div class="text">
         <ul class="notify-content">
-            @for (var i = 0; i <= AppSettings.BaseLanguages.Count() - 1; i++)
+            @for (var i = 0; i <= baseLanguageNumbers; i++)
             {
-                var lang = AppSettings.BaseLanguages.ElementAt(i);
-                <li class="@(i == (AppSettings.BaseLanguages.Count() - 1) ? "end" : string.Empty)">
+                var lang = baseLanguages.ElementAt(i);
+                <li class="@(i == baseLanguageNumbers ? "end" : string.Empty)">
                 @switch (lang.LanguageID)
                 {
                     case "en-US":
                         <span>We are having server maintenance, website will be unavailable until <span class="cont2">
                              @ViewBag.EndTime (HK Time GMT +8).</span>
-                            <br />Sorry for the inconveniences caused!</span> 
+                            <br />Sorry for the inconveniences caused!</span>
                         break;
                     case "id-ID":
                         <span>Kami sedang melakukan server maintenance, website tidak tersedia hingga pukul <span>@ViewBag.EndTime (HK Time GMT +8).</span><br />
-                                    Mohon maaf untuk ketidaknyamanan ini!</span> 
+                                    Mohon maaf untuk ketidaknyamanan ini!</span>
                         break;
                     case "th-TH":
                         <span>ทางเวบไซด์มีการปรับปรุงระบบขณะนี้ และไม่สามารถเข้าชมหรือใช้งานได้ไปจนถึงเวลา <span>@ViewBag.EndTime (HK Time GMT +8).</span><br />
-                                    ขออภัยในความไม่สะดวก คะ!</span> 
+                                    ขออภัยในความไม่สะดวก คะ!</span>
                         break;
                     case "vi-VN":
                         <span>Hệ thống công ty chúng tôi đang trong thời gian bảo trì đến <span class="cont2">@ViewBag.EndTime (HK Time GMT +8).</span><br />
-                    Thành thật xin lỗi những bất tiện gây ra. </span>                                                                                     
+                    Thành thật xin lỗi những bất tiện gây ra. </span>
                         break;
                     case "zh-CN":
                         <span>本公司正进行伺服器维护，时间至 <span>@ViewBag.EndTime (HK Time GMT +8).</span><br />
@@ -59,7 +65,7 @@
                     default:
                         <span>We are having server maintenance,<br />
 				            website will be unavailable until @ViewBag.EndTime (HK Time GMT +8).
-				            <br />Sorry for the inconveniences caused!</span> 
+				            <br />Sorry for the inconveniences caused!</span>
                                              break;
                 }
                 </li>

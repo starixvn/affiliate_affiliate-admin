@@ -6,7 +6,7 @@
     using Core.Configurations;
     using Core.Utilities;
     using DTO;
-    using Models;
+    using Models.MarketingTools;
     using Resources;
 
     public static class BannerHelper
@@ -77,8 +77,7 @@
 
         public static void DeleteFile(string content)
         {
-            IEnumerable<string> bannerPaths, thumbnailPaths;
-            GetPaths(content, out bannerPaths, out thumbnailPaths);
+            GetPaths(content, out IEnumerable<string> bannerPaths, out IEnumerable<string> thumbnailPaths);
 
             Common.DeleteFiles(bannerPaths);
             Common.DeleteFiles(thumbnailPaths);
@@ -94,7 +93,7 @@
             var oldBannerFile = Path.GetFileName(oldContent);
             var oldThumbnailFile = BannerStorage.GetThumbnailFileName(oldContent);
 
-            bannerPaths = MediaSettings.BannerFolders.Select(x => Path.Combine(x, oldContent));
+            bannerPaths = AppSetting.Instance.BannerFolders.Select(x => Path.Combine(x, oldContent));
             thumbnailPaths = bannerPaths.Select(x => x.Replace(oldBannerFile, oldThumbnailFile));
         }
     }

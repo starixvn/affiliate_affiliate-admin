@@ -7,16 +7,21 @@
     using Fanex.AffiliateAdmin.Core.Helpers;
     using Newtonsoft.Json;
     using ONEbook.UM.AspNetMVC.Filters;
-    using Services.Impl.Core;
     using Services.Interfaces;
 
     public class OneAuthorizationController : Controller
     {
+        private readonly IAppSetting _appSetting;
+        private readonly ISystemSettings _systemSettings;
         private readonly IOneAuthenticationService _oneAuthenticationService;
 
         internal OneAuthorizationController(
+            IAppSetting appSetting,
+            ISystemSettings systemSettings,
             IOneAuthenticationService oneAuthenticationService)
         {
+            _appSetting = appSetting;
+            _systemSettings = systemSettings;
             _oneAuthenticationService = oneAuthenticationService;
         }
 
@@ -39,7 +44,7 @@
                 var tokenInfo = _oneAuthenticationService.GetTokenInfo(token);
                 if (tokenInfo != null && VerifyToken(tokenInfo))
                 {
-                    if (!tokenInfo.SiteName.Equals(AppSettings.SystemName, System.StringComparison.OrdinalIgnoreCase))
+                    if (!tokenInfo.SiteName.Equals(_systemSettings.SystemName, System.StringComparison.OrdinalIgnoreCase))
                     {
                         returnUrl += ErrorCodes.LicenseeIsNotExisted;
                     }
@@ -56,7 +61,7 @@
                 }
             }
 
-            if (AppSettings.GetValue("EnableLogForOneAuthorization") == "1" && !string.IsNullOrEmpty(errMsg))
+            if (_appSetting.GetValue("EnableLogForOneAuthorization") == "1" && !string.IsNullOrEmpty(errMsg))
             {
                 LogHelper.WriteError("OneAuthorization Token is invalid - Token = " + errMsg);
             }

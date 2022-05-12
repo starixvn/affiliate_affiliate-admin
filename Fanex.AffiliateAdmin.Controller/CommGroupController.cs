@@ -8,7 +8,6 @@
     using Core.DbConstants;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
-    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
@@ -24,15 +23,17 @@
             ProductTypeConstant.CashOut
         };
 
+        private readonly ISystemSettings _systemSettings;
         private readonly ICommGroupService _commGroupService;
-
         private readonly IExchangeRateService _exchangeRateService;
 
-        public CommGroupController
-            (ICommGroupService commGroupService,
-            IExchangeRateService exchangeRateService,
-            ISystemSettingService systemSettingService) : base(systemSettingService)
+        public CommGroupController(
+            IAppSetting appSetting,
+            ISystemSettings systemSettings,
+            ICommGroupService commGroupService,
+            IExchangeRateService exchangeRateService) : base(appSetting)
         {
+            _systemSettings = systemSettings;
             _commGroupService = commGroupService;
             _exchangeRateService = exchangeRateService;
         }
@@ -40,7 +41,7 @@
         [HttpGet]
         public ActionResult Add()
         {
-            ViewBag.ProductList = AppSettings.Products.Where(x => x.IsEnabled && !IgnoredProducts.Contains(x.ProductID));
+            ViewBag.ProductList = _systemSettings.Products.Where(x => x.IsEnabled && !IgnoredProducts.Contains(x.ProductID));
             var currency = SessionManager.CurrentSession.CurrencyList.First();
 
             var criteria = new GetDefaultPspExchangeCriteria
@@ -102,7 +103,7 @@
                 GroupId = groupid,
                 UserId = SessionManager.CurrentSession.CustID,
                 IP = Remote.GetClientIPAddress(),
-                LicenseeId = AppSettings.LicenseeID
+                LicenseeId = _systemSettings.LicenseeID
             };
 
             _commGroupService.ExecuteOutput(criteria);
@@ -139,14 +140,14 @@
             group.GroupName = group.GroupName.Decode();
             group.Description = group.Description.Decode();
 
-            ViewBag.ProductList = AppSettings.Products.Where(x => x.IsEnabled && !IgnoredProducts.Contains(x.ProductID));
+            ViewBag.ProductList = _systemSettings.Products.Where(x => x.IsEnabled && !IgnoredProducts.Contains(x.ProductID));
             return View("Edit", group);
         }
 
         [HttpPost]
         public ActionResult Edit(CommGroupUpdateCriteria criteria)
         {
-            var productCount = AppSettings.Products.Count();
+            var productCount = _systemSettings.Products.Count();
 
             if (criteria.CopyForAllProducts)
             {
@@ -166,7 +167,7 @@
 
             criteria.Description = criteria.Description.Encode();
 
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.LicenseeId = _systemSettings.LicenseeID;
 
             criteria.DeductionList = BuildDeductionListXml(criteria.DeductionSettingList);
 
@@ -218,8 +219,8 @@
 
             criteria.UserId = session.CustID;
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.PageSize = criteria.PageSize == 0 ? AppSetting.PageSize : criteria.PageSize;
+            criteria.LicenseeId = _systemSettings.LicenseeID;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
             var groups = GetGridData(criteria);
@@ -247,11 +248,11 @@
             var session = SessionManager.CurrentSession;
 
             criteria.UserId = session.CustID;
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.LicenseeId = _systemSettings.LicenseeID;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
             var groups = _commGroupService.GetById(criteria);
-            var date = criteria.Date == null ? SystemTimeService.GetSystemDateTime() : criteria.Date.Value;
+            var date = criteria.Date == null ? _systemSettings.SystemDateTime : criteria.Date.Value;
 
             _commGroupService.BuildGroupData(groups, date, criteria.GroupID.ToString());
 
@@ -285,9 +286,9 @@
         /// Copy Tier Settings For All Enabled Products.
         /// </summary>
         /// <param name="criteria">Criteria input.</param>
-        private static void CopyTierSettingsForAllProducts(CommGroupInsertCriteria criteria)
+        private void CopyTierSettingsForAllProducts(CommGroupInsertCriteria criteria)
         {
-            var productCount = AppSettings.Products.Count();
+            var productCount = _systemSettings.Products.Count();
 
             if (criteria.CopyForAllProducts)
             {

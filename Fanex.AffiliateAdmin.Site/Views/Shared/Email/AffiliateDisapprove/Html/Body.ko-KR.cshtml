@@ -1,11 +1,15 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Configurations
 @model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+@{
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+    var layout = appSetting.Layout;
+}
 <table width="100%">
     <tr>
-        <td valign="top" align="center" background="@Model.AdminRootLink/www/dist/style/@AppSettings.Layout/assets/static/emailBg.jpg">
+        <td valign="top" align="center" background="@Model.AdminRootLink/www/dist/style/@(layout)/assets/static/emailBg.jpg">
             <table width="588" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                    <td height="77" background="@Model.AdminRootLink/www/dist/style/@AppSettings.Layout/assets/static/emailBanner.jpg">
+                    <td height="77" background="@Model.AdminRootLink/www/dist/style/@(layout)/assets/static/emailBanner.jpg">
                     </td>
                 </tr>
                 <tr>
@@ -14,8 +18,10 @@
                 </tr>
                 <tr>
                     <td align="left" bgcolor="@Model.HeaderBGColor" height="30">
-                        &nbsp;&nbsp;<strong><font style="color: @Model.HeaderFontColor; font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
-                            text-transform: uppercase;">귀하의 신청</font></strong>
+                        &nbsp;&nbsp;<strong>
+                            <font style="color: @Model.HeaderFontColor; font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
+                            text-transform: uppercase;">귀하의 신청</font>
+                        </strong>
                     </td>
                 </tr>
                 <tr>
@@ -28,14 +34,15 @@
                                         <br />
                                         @Model.SystemName 협력 프로그램에 참여하고자 하는 귀하의 신청이 미승인/거절되었음을 통보하여 죄송하게 생각합니다. 이 메일로 인해 불편함을 드림을 사죄드립니다. <br />
                                         <br />
-                                        
+
                                         귀하의 웹사이트가 요구되는 기준을 충족하지못한 데 대한 질문이 있으면, <a href="mailto:@Model.MailContact">@Model.MailContact</a> 로 저희에게 주저마시고 연락주시기 바랍니다.<br />
                                         <br />
                                         감사합니다,<br />
                                         <br />
-                                        
+
                                         @Model.SystemName 가맹자 팀 배상<br />
-                                        <a href="mailto:@Model.MailContact">@Model.MailContact</a> </font>
+                                        <a href="mailto:@Model.MailContact">@Model.MailContact</a>
+                                    </font>
                                 </td>
                             </tr>
                         </table>
@@ -51,7 +58,7 @@
                 <tr>
                     <td align="center" bgcolor="@Model.FooterBGColor" height="40">
                         <font style="font-size: 12px; color: @Model.FooterFontColor; font-family: Verdana,Arial,Helvetica,sans-serif;">
-                            이 공지는 시스템에서 자동으로 생성된 이메일입니다. 이 메일에 직접 회신하지 마십시오. 
+                            이 공지는 시스템에서 자동으로 생성된 이메일입니다. 이 메일에 직접 회신하지 마십시오.
                         </font>
                     </td>
                 </tr>

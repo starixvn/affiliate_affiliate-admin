@@ -41,13 +41,14 @@
                 Width = width,
                 Height = height
             };
+            var appSetting = AppSetting.Instance;
 
-            var heightRatio = MediaSettings.ThumbnailHeight * 1.0f / height;
-            var widthRatio = MediaSettings.ThumbnailWidth * 1.0f / width;
+            var heightRatio = appSetting.ThumbnailHeight * 1.0f / height;
+            var widthRatio = appSetting.ThumbnailWidth * 1.0f / width;
 
             var ratio = Math.Min(heightRatio, widthRatio);
 
-            // Determine the thumbnail size by the standard thumbnail height.            
+            // Determine the thumbnail size by the standard thumbnail height.
             if (ratio < 1)
             {
                 size.Width = (int)(ratio * width);

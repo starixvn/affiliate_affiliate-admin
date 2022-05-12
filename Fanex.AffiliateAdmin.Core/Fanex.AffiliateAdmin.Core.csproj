@@ -176,7 +176,10 @@
     <Compile Include="..\Fanex.AffiliateAdmin.Site\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Configurations\ISystemSettings.cs" />
+    <Compile Include="Configurations\SystemSettings.cs" />
     <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Constants\DefaultValues.cs" />
     <Compile Include="Constants\ErrorCodes.cs" />
     <Compile Include="Constants\PaymentStatusText.cs" />
     <Compile Include="DbConstants\DeductionTypeConstant.cs" />
@@ -205,7 +208,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Configurations\MediaSettings.cs" />
     <Compile Include="Configurations\MessageSettings.cs" />
     <Compile Include="Configurations\PaymentSettings.cs" />
     <Compile Include="Configurations\StatementSettings.cs" />
@@ -218,8 +220,6 @@
     <Compile Include="Services\Impl\AffiliateSettingService.cs" />
     <Compile Include="Services\Impl\DbLogger.cs" />
     <Compile Include="Services\Impl\MediaSettingService.cs" />
-    <Compile Include="Services\Impl\ServiceService.cs" />
-    <Compile Include="Services\Impl\SystemTimeService.cs" />
     <Compile Include="Services\Impl\UnderMaintenanceService.cs" />
     <Compile Include="Services\Interface\IAffiliateSettingService.cs" />
     <Compile Include="Services\Interface\IDbLogger.cs" />
@@ -227,9 +227,7 @@
     <Compile Include="Services\Impl\FormsAuthenticationWrapper.cs" />
     <Compile Include="Services\Interface\IFormsAuthenticationWrapper.cs" />
     <Compile Include="Services\Interface\IMediaSettingService.cs" />
-    <Compile Include="Services\Interface\IServerService.cs" />
     <Compile Include="Session\AppSession.cs" />
-    <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Session\CurrentSession.cs" />
     <Compile Include="Enumerations\ErrorCode.cs" />
     <Compile Include="Enumerations\PaymentStatus.cs" />
@@ -329,9 +327,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CodeAnalysis\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

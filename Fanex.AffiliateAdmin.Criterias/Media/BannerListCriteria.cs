@@ -6,7 +6,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BannerListCriteria : CriteriaBase
+    public class BannerListCriteria : BaseCriteria
     {
         public short? Category { get; set; }
 
@@ -22,14 +22,6 @@
         public short? ImageType { get; set; }
 
         public short? Size { get; set; }
-
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int TotalPages { get; set; }
-
-        public int NRows { get; set; }
 
         public override string GetSettingKey()
         {

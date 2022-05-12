@@ -7,7 +7,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class AffiliateWinLossOverviewCriteria : CriteriaBase
+    public class AffiliateWinLossOverviewCriteria : BaseCriteria
     {
         public string AffName { get; set; }
 
@@ -35,12 +35,8 @@
 
         public bool IsITAdmin { get; set; }
 
-        public int PageSize { get; set; }
-
         [SpParam(SqlParamName = "PageCurrent")]
-        public int PageIndex { get; set; }
-
-        public int NRows { get; set; }
+        public new int PageIndex { get; set; }
 
         [SpParam(SqlParamName = "ProductIds")]
         public string Products { get; set; }

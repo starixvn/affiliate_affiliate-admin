@@ -1,11 +1,15 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Configurations
 @model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+@{
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+    var layout = appSetting.Layout;
+}
 <table width="100%">
     <tr>
-        <td valign="top" align="center" background="@Model.AdminRootLink/www/dist/style/@AppSettings.Layout/assets/static/emailBg.jpg">
+        <td valign="top" align="center" background="@Model.AdminRootLink/www/dist/style/@(layout)/assets/static/emailBg.jpg">
             <table width="588" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                    <td height="77" background="@Model.AdminRootLink/www/dist/style/@AppSettings.Layout/assets/static/emailBanner.jpg">
+                    <td height="77" background="@Model.AdminRootLink/www/dist/style/@(layout)/assets/static/emailBanner.jpg">
                     </td>
                 </tr>
                 <tr>
@@ -14,8 +18,10 @@
                 </tr>
                 <tr>
                     <td align="left" bgcolor="@Model.HeaderBGColor" height="30">
-                        &nbsp;&nbsp;<strong><font style="color: @Model.HeaderFontColor; font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
-                            text-transform: uppercase;">가맹 공지</font></strong>
+                        &nbsp;&nbsp;<strong>
+                            <font style="color: @Model.HeaderFontColor; font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
+                            text-transform: uppercase;">가맹 공지</font>
+                        </strong>
                     </td>
                 </tr>
                 <tr>
@@ -31,23 +37,24 @@
                                         <br />
                                         <br />
                                         저희가 귀하에게 보다 낫게 조력하기 위해 개인 정보 상의 최근의 변경 사항을 업데이트하시고 저희의 @Model.SystemName
-                                        협력 사이트의 “내 계정” 내에 귀하의 추가 URL(있는 경우)을 포함시켜주십시오. 
+                                        협력 사이트의 “내 계정” 내에 귀하의 추가 URL(있는 경우)을 포함시켜주십시오.
                                         <br />
                                         <br />
-                                        @Model.SystemName 의 현수막을 내걸기를 계획하는 정확한 웹사이트 URL(들)을 <a href="mailto:@Model.MailContact">@Model.MailContact</a> 로 메일을 보내 공지해 주시기 바랍니다. 다른 크기의 현수막들이 필요하시면, 저희에게 연락해 주시면 빠른 시일 내에 마련해 드리겠습니다. 
+                                        @Model.SystemName 의 현수막을 내걸기를 계획하는 정확한 웹사이트 URL(들)을 <a href="mailto:@Model.MailContact">@Model.MailContact</a> 로 메일을 보내 공지해 주시기 바랍니다. 다른 크기의 현수막들이 필요하시면, 저희에게 연락해 주시면 빠른 시일 내에 마련해 드리겠습니다.
                                         <br />
                                         <br />
                                         만약 @Model.SystemName 현수막이 귀하의 등록 웹사이트나 기타의 공지된 URL에 가맹회원 승인일로부터 7일 이내에 게재되지 않으면 이를 @Model.SystemName 에 서면으로 설명하지 않는 한 귀하의 가맹 계정이 닫힐 수도 있다는 것을 주지하시기 바랍니다.
                                         <br />
                                         <br />
-                                        최선을 다하여 귀하의 웹 트래픽이 귀하에게 커다란 이익을 가져오길 기원합니다! 
+                                        최선을 다하여 귀하의 웹 트래픽이 귀하에게 커다란 이익을 가져오길 기원합니다!
                                         <br />
                                         <br />
                                         감사합니다.
                                         <br />
                                         <br />
                                         @Model.SystemName 가맹자 팀 배상 <br />
-                                        <a href="mailto:@Model.MailContact">@Model.MailContact</a> </font>
+                                        <a href="mailto:@Model.MailContact">@Model.MailContact</a>
+                                    </font>
                                 </td>
                             </tr>
                         </table>
@@ -63,7 +70,7 @@
                 <tr>
                     <td align="center" bgcolor="@Model.FooterBGColor" height="40">
                         <font style="font-size: 12px; color: @Model.FooterFontColor; font-family: Verdana,Arial,Helvetica,sans-serif;">
-                            이 공지는 시스템에서 자동으로 생성된 이메일입니다. 이 메일에 직접 회신하지 마십시오. 
+                            이 공지는 시스템에서 자동으로 생성된 이메일입니다. 이 메일에 직접 회신하지 마십시오.
                         </font>
                     </td>
                 </tr>

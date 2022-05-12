@@ -14,8 +14,8 @@
         /// <summary>
         /// Culture USA.
         /// </summary>
-        private static readonly CultureInfo _DefaultCulture = CultureInfo.CreateSpecificCulture(AppSettings.DefaultLanguage);
-        
+        private static readonly CultureInfo _DefaultCulture = CultureInfo.CreateSpecificCulture(AppSetting.Instance.DefaultLanguage);
+
         /// <summary>
         /// Resource mapper language.
         /// </summary>

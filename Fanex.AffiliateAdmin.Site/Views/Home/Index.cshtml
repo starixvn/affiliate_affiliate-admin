@@ -6,7 +6,10 @@
 @using Fanex.AffiliateAdmin.Core.Utilities
 @model Fanex.AffiliateAdmin.Models.HomeViewModel
 @section iconcss{
-home
+    home
+}
+@{
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
 }
 @if (Model == null)
 {
@@ -49,7 +52,7 @@ else
         <div class="span6">
             <table class="table table-bordered">
                 @{
-    var count = AppSettings.AffTypes.Count();
+    var count = systemSettings.AffTypes.Count();
     var span = 4 * count;
                     <tr>
                         <th colspan="@span" class="l">

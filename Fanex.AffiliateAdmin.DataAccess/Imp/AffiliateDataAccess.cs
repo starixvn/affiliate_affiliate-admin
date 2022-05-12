@@ -1,25 +1,29 @@
 ﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
-    using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
+    using System.Web.Mvc;
     using Core.Configurations;
     using Criterias;
     using Data;
     using DTO;
     using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Models.AffiliateInfo;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Common.Extensions;
     using Fanex.Common.Helper;
     using Fanex.Data.SqlServer;
-    using Models;
+    using Models.Reports;
+    using Models.AffiliateManagement;
 
     /// <summary>
     /// Account data access.
     /// </summary>
     public class AffiliateDataAccess : IAffiliateDataAccess
     {
+        private readonly ISystemSettings _systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+
         /// <summary>
         /// Get Affiliate General Information.
         /// </summary>
@@ -49,7 +53,7 @@
             return viewModel;
         }
 
-        private static void ReadAffiliateInfo(AffiliateInfoViewModel viewModel, IDataReader reader)
+        private void ReadAffiliateInfo(AffiliateInfoViewModel viewModel, IDataReader reader)
         {
             viewModel.AffiliateInfo = new Affiliate
             {
@@ -81,7 +85,7 @@
                 BalanceBF = reader.ToDecimal("BalBroughtForward")
             };
 
-            viewModel.AffiliateInfo.AffTypeName = AppSettings.AffTypes.FirstOrDefault(t => t.TypeID == viewModel.AffiliateInfo.AffType).Name;
+            viewModel.AffiliateInfo.AffTypeName = _systemSettings.AffTypes.FirstOrDefault(t => t.TypeID == viewModel.AffiliateInfo.AffType).Name;
         }
 
         /// <summary>
@@ -153,7 +157,6 @@
 
                 // Read output parameters.
                 var outputParams = objectDb.GetOutputParams();
-                criteria.TotalPages = int.Parse(outputParams["totalpages"].ToString());
                 criteria.NRows = int.Parse(outputParams["nrows"].ToString());
                 criteria.TotalAmount = decimal.Parse(outputParams["totalamount"].ToString());
             }
@@ -199,15 +202,15 @@
         /// </summary>
         /// <param name="reader">Input reader.</param>
         /// <returns>Affiliate List.</returns>
-        private List<AffiliateInfo> GetAffiliateList(IDataReader reader)
+        private List<AffInfo> GetAffiliateList(IDataReader reader)
         {
-            var result = new List<AffiliateInfo>();
+            var result = new List<AffInfo>();
 
             if (reader.NextResult())
             {
                 while (reader.Read())
                 {
-                    result.Add(new AffiliateInfo
+                    result.Add(new AffInfo
                     {
                         RowNo = reader.ToLong("RowNo"),
                         AffID = reader.ToInt("AffID"),

@@ -8,15 +8,14 @@
     using System.Web.Script.Serialization;
     using System.Web.SessionState;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Constants;
     using Fanex.AffiliateAdmin.Core.Filter;
-    using Fanex.AffiliateAdmin.Core.Services.Interface;
+    using Fanex.AffiliateAdmin.Core.Options;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
-    using Fanex.AffiliateAdmin.Criterias.Configuration.Product;
-    using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
     using Fanex.AffiliateAdmin.DTO;
-    using Fanex.AffiliateAdmin.Models;
+    using Fanex.AffiliateAdmin.Models.Reports;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Helpers;
@@ -28,8 +27,8 @@
     [FunctionAuth(Function = FunctionPolicyNames.AffReport, CurrenciesRequired = true)]
     public class ReportController : BaseController
     {
-        private readonly IAppSetting _appSetting;
         private readonly IReportService _reportService;
+        private readonly ISystemSettings _systemSettings;
         private readonly ICommGroupService _commGroupService;
 
         private ICurrentSession CurrentSession => SessionManager.CurrentSession;
@@ -37,15 +36,15 @@
         public ReportController(
             IAppSetting appSetting,
             IReportService reportService,
-            ICommGroupService commGroupService,
-            ISystemSettingService systemSettingService) : base(systemSettingService)
+            ISystemSettings systemSettings,
+            ICommGroupService commGroupService) : base(appSetting)
         {
-            _appSetting = appSetting;
             _reportService = reportService;
+            _systemSettings = systemSettings;
             _commGroupService = commGroupService;
         }
 
-        protected IAppSetting AppSetting => _appSetting;
+        protected ISystemSettings SystemSettings => _systemSettings;
         protected IReportService ReportService => _reportService;
 
         #region Company Win Loss Report.
@@ -57,7 +56,7 @@
         [HttpGet]
         public ActionResult CompanyWinloss()
         {
-            var products = SystemSettingService.GetProductList(new ProductSelectCriteria());
+            var products = SystemSettings.Products;
 
             var model = new CompanyWinlossViewModel
             {
@@ -65,11 +64,13 @@
                 PreferLanguageOptionList = GetPreferLanguageOptionList(),
                 PlayerCurrencyOptionList = GetPlayerCurrencyOptionList(),
                 CommissionGroupOptionList = GetCommissionGroupOptionList(),
-                BaseCurrencyOptionList = GetBaseCurrencyOptionList(true),
-                AffTypeOptionList = GetAffTypeOptionList()
+                BaseCurrencyOptionList = SystemSettings.GetBaseCurrencyOptionList(true),
+                AffTypeOptionList = GetAffTypeOptionList(),
+                DrawFilterOptionList = SelectListHelpers.GetCommonOptionList(OptionManager.DrawFilters, DefaultValues.Int.ToString()),
+                GroupByOptionList = SelectListHelpers.GetCommonOptionList(OptionManager.GroupByListByDateMonth, DefaultValues.Int.ToString())
             };
 
-            ViewBag.Products = GetProductsSerializer();
+            ViewBag.Products = GetProductsSerializer(products);
 
             return View(model);
         }
@@ -82,13 +83,18 @@
         [HttpGet]
         public ActionResult CompanyWinlossByAffiliate(CompanyWLByAffiliateViewModel model)
         {
-            ViewBag.Products = GetProductsSerializer();
             var currencyCode = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).CurrencyCode;
-            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(currencyCode);
-
             var baseCurrencyList = GetBaseCurrencyInMemberList(currencyCode);
+            var products = SystemSettings.Products;
 
-            model.AddBaseCurrencyList(baseCurrencyList);
+            model.ProductOptionList = GetProductOptionList(products, model.Products);
+            model.PlayerCurrencyOptionList = GetPlayerCurrencyOptionList(true, model.PlayerCurrencies);
+            model.BaseCurrencyOptionList = GetBaseCurrencyOptionByCookiesList(model.BaseCurrency, baseCurrencyList, currencyCode);
+            model.GroupByOptionList = SelectListHelpers.GetCommonOptionList(OptionManager.GroupByListByDateMonth, model.GroupBy.ToString());
+            model.DrawFilterOptionList = SelectListHelpers.GetCommonOptionList(OptionManager.DrawFilters, model.DrawFilter.ToString());
+
+            ViewBag.Products = GetProductsSerializer(products);
+            ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(currencyCode);
 
             return View("CompanyWinlossByAffiliate", model);
         }
@@ -114,13 +120,15 @@
         [HttpGet]
         public ActionResult MemberWinloss(MemberWinlossViewModel model)
         {
-            var products = SystemSettingService.GetProductList(new ProductSelectCriteria());
+            var products = SystemSettings.Products;
             model.ProductOptionList = GetProductOptionList(products, model.Products);
-            model.BaseCurrencyOptionList = GetBaseCurrencyOptionList(true);
+            model.BaseCurrencyOptionList = SystemSettings.GetBaseCurrencyOptionList(true);
             model.PlayerCurrencyOptionList = GetPlayerCurrencyOptionList(true, model.PlayerCurrencies);
             model.PreferLanguageOptionList = GetPreferLanguageOptionList(true, model.PreferLanguages);
             model.CommissionGroupOptionList = GetCommissionGroupOptionList(true, model.CommGroups);
             model.AffTypeOptionList = GetAffTypeOptionList(true, model.AffTypes);
+            model.GroupByOptionList = SelectListHelpers.GetCommonOptionList(OptionManager.GroupByListByDateMember, model.GroupBy.ToString());
+            model.DrawFilterOptionList = SelectListHelpers.GetCommonOptionList(OptionManager.DrawFilters, model.DrawFilter.ToString());
 
             ViewBag.Products = GetProductsSerializer(products);
 
@@ -135,12 +143,17 @@
         [HttpGet]
         public ActionResult MemberWinlossByAffiliate(MemberWinlossByAffiliateViewModel model)
         {
+            var products = SystemSettings.Products;
             var currencyCode = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).CurrencyCode;
             var baseCurrencyList = GetBaseCurrencyInMemberList(currencyCode);
 
-            model.AddBaseCurrencyList(baseCurrencyList);
+            model.ProductOptionList = GetProductOptionList(products, model.Products);
+            model.PlayerCurrencyOptionList = GetPlayerCurrencyOptionList(true, model.PlayerCurrencies);
+            model.BaseCurrencyOptionList = SelectListHelpers.GetCommonOptionList(baseCurrencyList, model.BaseCurrency.ToString());
+            model.DrawFilterOptionList = SelectListHelpers.GetCommonOptionList(OptionManager.DrawFilters, model.DrawFilter.ToString());
+            model.GroupByOptionList = SelectListHelpers.GetCommonOptionList(OptionManager.GroupByListByDateMember, model.GroupBy.ToString());
 
-            ViewBag.Products = GetProductsSerializer();
+            ViewBag.Products = GetProductsSerializer(products);
             ViewBag.AffiliateCurrencySymbol = FormaterCurrency.GetCurrencySymbol(currencyCode);
 
             return View("MemberWinlossByAffiliate", model);
@@ -153,7 +166,14 @@
         [HttpGet]
         public ActionResult MemberStatistics()
         {
-            return View(new MemberStatisticsViewModel());
+            var model = new MemberStatisticsViewModel
+            {
+                PreferLanguageOptionList = SelectListHelpers.GetLanguageOptionList(SystemSettings.AffSupportLanguages),
+                AffiliateTypeOptionList = SelectListHelpers.GetAffiliateTypeOptionList(SystemSettings.AffTypes),
+                CurrencyOptionList = SelectListHelpers.GetPlayerCurrencyOptionList(CurrentSession.CurrencyList)
+            };
+
+            return View(model);
         }
 
         /// <summary>
@@ -170,11 +190,11 @@
             if (criteria.GroupBy == 2)
             {
                 // If group by is month, we need to first day and last day of month.
-                criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, _appSetting.SystemStartDate);
-                criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
+                criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, SystemSettings.SystemStartDate);
+                criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemSettings.SystemDateTime);
             }
 
-            var data = _reportService.GetMemberStatistics(criteria).ToList();
+            var data = ReportService.GetMemberStatistics(criteria).ToList();
 
             return Json(new
             {
@@ -207,12 +227,12 @@
         [HttpGet]
         public ActionResult AffiliateWinLoss(AffiliateWinLossViewModel model)
         {
-            var products = SystemSettingService.GetProductList(new ProductSelectCriteria());
+            var products = SystemSettings.Products;
             model.ProductOptionList = GetProductOptionList(products, model.Products);
             model.AffTypeOptionList = GetAffTypeOptionList(true, model.AffTypes);
             model.PreferLanguageOptionList = GetPreferLanguageOptionList(true, model.PreferLanguages);
             model.CommissionGroupOptionList = GetCommissionGroupOptionList(true, model.CommGroups);
-            model.BaseCurrencyOptionList = GetBaseCurrencyOptionList(false, model.BaseCurrency);
+            model.BaseCurrencyOptionList = SystemSettings.GetBaseCurrencyOptionList(false, model.BaseCurrency);
 
             var currencyList = CurrentSession.CurrencyList;
             var selectedCurrencyList = string.IsNullOrEmpty(model.Currencies) ? currencyList.Select(t => t.CurrencyID) : model.Currencies.Split(',').Select(t => short.Parse(t));
@@ -231,13 +251,13 @@
         [HttpGet]
         public ActionResult AffiliateWinLossByAffiliate(AffiliateWLByAffiliateViewModel model)
         {
-            var products = SystemSettingService.GetProductList(new ProductSelectCriteria());
+            var products = SystemSettings.Products;
             model.ProductOptionList = GetProductOptionList(products, model.Products);
             model.AffTypeOptionList = GetAffTypeOptionList();
             model.BaseCurrencyOptionList = GetBaseCurrencyOptionByCookiesList(model.BaseCurrency);
 
-            ViewBag.Products = GetProductsSerializer();
-            ViewBag.HasCashbackDeduction = _appSetting.DeductionTypes.Any(x => x.ProductID == 0);
+            ViewBag.Products = GetProductsSerializer(products);
+            ViewBag.HasCashbackDeduction = SystemSettings.DeductionTypes.Any(x => x.ProductID == 0);
 
             return View(model);
         }
@@ -253,7 +273,7 @@
             criteria.Products = string.Join(",", products);
             criteria.UserCurrencies = CurrentSession.BuildUserCurrencyParam();
 
-            var members = _reportService.GetQualifiedMembers(criteria);
+            var members = ReportService.GetQualifiedMembers(criteria);
 
             ViewBag.SymbolCurrency = FormaterCurrency.GetCurrencySymbol(criteria.Currency);
             ViewBag.BaseCurrency = criteria.BaseCurrency;
@@ -272,14 +292,14 @@
         /// <returns>Processing Commission Page.</returns>
         public ActionResult AffiliateCommission()
         {
-            var products = SystemSettingService.GetProductList(new ProductSelectCriteria());
+            var products = SystemSettings.Products;
             ViewBag.Products = GetProductsSerializer(products);
 
             var model = new AffiliateCommissionViewModel
             {
                 ProductOptionList = GetProductOptionList(products),
                 AffTypeOptionList = GetAffTypeOptionList(true),
-                BaseCurrencyOptionList = GetBaseCurrencyOptionList(false),
+                BaseCurrencyOptionList = SystemSettings.GetBaseCurrencyOptionList(false),
                 PreferLanguageOptionList = GetPreferLanguageOptionList(),
                 CommissionGroupOptionList = GetCommissionGroupOptionList(),
                 AffiliateCurrencyOptionList = new MultiSelectList(CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode")
@@ -296,10 +316,10 @@
         [HttpGet]
         public ActionResult AffiliateCommissionByAffiliate(AffiliateCommissionByAffiliateViewModel model)
         {
-            var products = SystemSettingService.GetProductList(new ProductSelectCriteria());
+            var products = SystemSettings.Products;
 
             ViewBag.Products = GetProductsSerializer(products);
-            ViewBag.HasCashbackDeduction = _appSetting.DeductionTypes.Any(x => x.ProductID == 0);
+            ViewBag.HasCashbackDeduction = SystemSettings.DeductionTypes.Any(x => x.ProductID == 0);
 
             model.BaseCurrencyOptionList = GetBaseCurrencyOptionByCookiesList(model.BaseCurrency);
             model.ProductOptionList = GetProductOptionList(products, model.Products);
@@ -317,25 +337,19 @@
         /// <returns>Base currency list.</returns>
         private List<SelectListItem> GetBaseCurrencyInMemberList(string currencyCode)
         {
-            var exchange = SystemSettingService.GetSystemBaseExchange(new SystemSettingExchangeCriteria());
+            var exchange = SystemSettings.BaseExchange;
+            var currencyList = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "0", Text = Lang.Member },
+                        new SelectListItem { Value = "1", Text = exchange.Code },
+                    };
 
-            if (currencyCode.Equals(exchange.Code))
+            if (!currencyCode.Equals(exchange.Code))
             {
-                return new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "0", Text = Lang.Member },
-                        new SelectListItem { Value = "1", Text = exchange.Code },
-                    };
+                currencyList.Add(new SelectListItem { Value = "2", Text = currencyCode });
             }
-            else
-            {
-                return new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "0", Text = Lang.Member },
-                        new SelectListItem { Value = "1", Text = exchange.Code },
-                        new SelectListItem { Value = "2", Text = currencyCode }
-                    };
-            }
+
+            return currencyList;
         }
 
         /// <summary>
@@ -362,10 +376,9 @@
             return selectedProductList.Intersect(productListInCommGroup).ToList();
         }
 
-        private string GetProductsSerializer(IEnumerable<Product> products = null)
+        private string GetProductsSerializer(IEnumerable<Product> products)
         {
             var serializer = new JavaScriptSerializer();
-            products = products ?? SystemSettingService.GetProductList(new ProductSelectCriteria());
 
             return serializer.Serialize(products.Select(x => new
             {
@@ -395,7 +408,7 @@
 
         private MultiSelectList GetAffTypeOptionList(bool isUsingSelectedValues = false, string selectedAffTypes = null)
         {
-            var affTypeList = SystemSettingService.GetAffTypeList(new AffTypeCriteria());
+            var affTypeList = SystemSettings.AffTypes;
 
             if (isUsingSelectedValues)
             {
@@ -409,7 +422,7 @@
 
         private MultiSelectList GetPreferLanguageOptionList(bool isUsingSelectedValues = false, string preferLanguages = null)
         {
-            var affSupportLanguages = SystemSettingService.GetAffSupportLanguageList(new AffiliateLanguageCriteria());
+            var affSupportLanguages = SystemSettings.AffSupportLanguages;
 
             if (isUsingSelectedValues)
             {
@@ -423,7 +436,7 @@
 
         private MultiSelectList GetPlayerCurrencyOptionList(bool isUsingSelectedValues = false, string playerCurrencies = null)
         {
-            var playerCurrencyList = SystemSettingService.GetPlayerCurrencyList(new PlayerCurrencyCriteria());
+            var playerCurrencyList = SystemSettings.PlayerCurrencies;
 
             if (isUsingSelectedValues)
             {
@@ -437,7 +450,7 @@
 
         private MultiSelectList GetCommissionGroupOptionList(bool isUsingSelectedValues = false, string commGroups = null)
         {
-            var commGroupList = SystemSettingService.GetCommGroups();
+            var commGroupList = SystemSettings.GetCommGroups();
 
             if (isUsingSelectedValues)
             {
@@ -449,12 +462,12 @@
             return new MultiSelectList(commGroupList, "GroupID", "GroupName");
         }
 
-        private SelectList GetBaseCurrencyOptionByCookiesList(byte baseCurrency, IEnumerable<SelectListItem> baseCurrencyList = null)
+        private SelectList GetBaseCurrencyOptionByCookiesList(byte baseCurrency, IEnumerable<SelectListItem> baseCurrencyList = null, string currencyCode = null)
         {
-            var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
+            currencyCode = currencyCode ?? AffiliateInfoCookieHelper.GetAffiliate(HttpContext).CurrencyCode;
             baseCurrencyList = baseCurrencyList ?? new List<SelectListItem>
             {
-                new SelectListItem { Value = "0",  Text = affiliate.CurrencyCode }
+                new SelectListItem { Value = "0",  Text = currencyCode }
             };
 
             return new SelectList(baseCurrencyList, "Value", "Text", baseCurrency);

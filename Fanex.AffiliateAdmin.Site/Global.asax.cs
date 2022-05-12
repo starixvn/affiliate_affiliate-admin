@@ -15,7 +15,7 @@
     /// <summary>
     /// Global configuration.
     /// </summary>
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         /// <summary>
         /// Application start.
@@ -37,7 +37,7 @@
             //// Register my types, for instance:
             ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
 
-            BundleTable.EnableOptimizations = AppSettings.GetValue("DisableOptimizations") != "1";
+            BundleTable.EnableOptimizations = AppSetting.Instance.GetValue("DisableOptimizations") != "1";
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
@@ -52,8 +52,7 @@
         {
             var exception = Server.GetLastError();
 
-            var httpException = exception as HttpException;
-            if (httpException != null && httpException.GetHttpCode() == 404)
+            if (exception is HttpException httpException && httpException.GetHttpCode() == 404)
             {
                 return;
             }

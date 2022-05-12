@@ -4,7 +4,7 @@
     using Fanex.Data;
     using Fanex.Data.Repository;
 
-    public class MemberListCriteria : CriteriaBase
+    public class MemberListCriteria : BaseCriteria
     {
         public string AffUsername { get; set; }
 
@@ -27,14 +27,6 @@
         public bool ExcludeTest { get; set; }
 
         public bool IsITAdmin { get; set; }
-
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int TotalPages { get; set; }
-
-        public int NRows { get; set; }
 
         public string UserCurrencies { get; set; }
 

@@ -1,7 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
     using System;
-    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Email History ViewModel.
@@ -11,7 +10,6 @@
         public EmailHistoryViewModel()
         {
             SearchOption = -1;
-            FromDate = ToDate = SystemTimeService.GetSystemDateTime();
             IsAll = true;
         }
 

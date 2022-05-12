@@ -5,7 +5,6 @@ using Fanex.AffiliateAdmin.Core.Entities;
 using Fanex.AffiliateAdmin.Core.Enumerations;
 using Fanex.AffiliateAdmin.Core.Filter;
 using Fanex.AffiliateAdmin.Core.Mailinator;
-using Fanex.AffiliateAdmin.Core.Services.Interface;
 using Fanex.AffiliateAdmin.Core.Session;
 using Fanex.AffiliateAdmin.Core.Utilities;
 
@@ -14,7 +13,10 @@ namespace Fanex.AffiliateAdmin.Controller
     [FunctionAuth(Function = FunctionPolicyNames.Affiliate, CurrenciesRequired = true)]
     public class EmailTestingController : BaseController
     {
-        public EmailTestingController(ISystemSettingService systemSettingService) : base(systemSettingService)
+        private const int AMOUNT = 12597;
+        private const int TRANS_ID = 123;
+
+        public EmailTestingController(IAppSetting appSetting) : base(appSetting)
         {
         }
 
@@ -66,7 +68,7 @@ namespace Fanex.AffiliateAdmin.Controller
 
         private bool IsValidUser()
         {
-            return AppSettings.LocalTest || SessionManager.CurrentSession.IsIT;
+            return AppSetting.LocalTest || SessionManager.CurrentSession.IsIT;
         }
 
         private void SendPaymentEmail(TestCriteria criteria)
@@ -76,10 +78,10 @@ namespace Fanex.AffiliateAdmin.Controller
             var siteInfo = SiteDomainInfo.Parse(this, false);
             var emailTemplateInfo = new EmailTemplateInfo
             {
-                TransId = 123,
+                TransId = TRANS_ID,
                 FirstName = "Walter",
                 WinlostDate = DateTime.Now,
-                Amount = FormaterCurrency.Format(12597, AppSettings.DefaultCurrency),
+                Amount = FormaterCurrency.Format(AMOUNT, AppSetting.DefaultCurrency),
                 AdminSiteUrl = siteInfo.AdminSiteUrl,
                 AffiliateSiteUrl = siteInfo.AffiliateSiteUrl,
                 MemberSiteUrl = siteInfo.MemberSiteUrl,

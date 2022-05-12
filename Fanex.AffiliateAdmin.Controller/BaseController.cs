@@ -1,16 +1,14 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Core;
     using Core.Filter;
     using Core.Session;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Constants;
-    using Fanex.AffiliateAdmin.Core.Services.Interface;
-    using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
+    using Fanex.AffiliateAdmin.Criterias;
     using Models;
     using ONEbook.UM.AspNetMVC.Filters;
     using Resources;
@@ -24,21 +22,21 @@
     [XFrameOption]
     public class BaseController : Controller
     {
-        private readonly ISystemSettingService _systemSettingService;
+        private readonly IAppSetting _appSetting;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="BaseController" /> class.
         /// </summary>
-        public BaseController(ISystemSettingService systemSettingService)
+        public BaseController(IAppSetting appSetting)
         {
             ////Set default language
             var langManager = new LanguageManager();
             langManager.SetCulture(AppSession.Language);
 
-            _systemSettingService = systemSettingService;
+            _appSetting = appSetting;
         }
 
-        protected ISystemSettingService SystemSettingService => _systemSettingService;
+        protected IAppSetting AppSetting => _appSetting;
 
         protected string ErrorMessage(int errCode)
         {
@@ -59,7 +57,6 @@
         /// Get Error message.
         /// </summary>
         /// <returns>Error message string.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept this method")]
         protected string GetModelErrorMessage()
         {
             var modelState = ViewData.ModelState.Values.FirstOrDefault();
@@ -105,16 +102,10 @@
             return Json(result);
         }
 
-        protected SelectList GetBaseCurrencyOptionList(bool isInMember, byte? selectedBaseCurrency = null)
+        protected void AssignBaseCriteria(BaseCriteria criteria)
         {
-            var exchange = SystemSettingService.GetSystemBaseExchange(new SystemSettingExchangeCriteria());
-            var baseCurrencyList = new List<SelectListItem>
-            {
-                new SelectListItem { Text = isInMember ? Lang.Member : Lang.Affiliate, Value = "0" },
-                new SelectListItem { Text = exchange.Code, Value = "1" }
-            };
-
-            return new SelectList(baseCurrencyList, "Value", "Text", selectedBaseCurrency);
+            criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
+            criteria.PageSize = criteria.PageSize == 0 ? _appSetting.PageSize : criteria.PageSize;
         }
     }
 }

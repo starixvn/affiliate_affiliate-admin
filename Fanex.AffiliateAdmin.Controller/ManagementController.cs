@@ -7,13 +7,13 @@
     using Core.Enumerations;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
-    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Models;
+    using Fanex.AffiliateAdmin.Models.UserManagement;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Common;
@@ -39,6 +39,8 @@
 
         private readonly IPolicyService _policyService;
 
+        private readonly ISystemSettings _systemSettings;
+
         private readonly IPermissionCurrencyService _permissionService;
 
         #endregion Services
@@ -51,17 +53,20 @@
         /// <param name="accountService">Account Service.</param>
         /// <param name="groupService">Group Service.</param>
         /// <param name="policyService">Policy Service.</param>
+        /// <param name="systemSettings">System Settings.</param>
         /// <param name="permissionService">Permission Service.</param>
         public ManagementController(
+            IAppSetting appSetting,
             IAccountService accountService,
             IGroupService groupService,
             IPolicyService policyService,
-            IPermissionCurrencyService permissionService,
-            ISystemSettingService systemSettingService) : base(systemSettingService)
+            ISystemSettings systemSettings,
+            IPermissionCurrencyService permissionService) : base(appSetting)
         {
             _accountService = accountService;
             _groupService = groupService;
             _policyService = policyService;
+            _systemSettings = systemSettings;
             _permissionService = permissionService;
         }
 
@@ -90,7 +95,7 @@
         public ActionResult Users(SelByGroupIDCriteria criteria)
         {
             criteria.IsIt = SessionManager.CurrentSession.IsIT;
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.LicenseeId = _systemSettings.LicenseeID;
 
             return Json(new { List = _accountService.GetListAccountManagement(criteria) });
         }
@@ -115,7 +120,7 @@
             var groupListCriteria = new GroupListCriteria
             {
                 IsIt = SessionManager.CurrentSession.IsIT,
-                LicenseeId = AppSettings.LicenseeID
+                LicenseeId = _systemSettings.LicenseeID
             };
 
             return View(new EditUserViewModel
@@ -219,7 +224,7 @@
         [HttpPost]
         public ActionResult ListPolicyUser(UserPolicySelCriteria criteria)
         {
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.LicenseeId = _systemSettings.LicenseeID;
 
             return Json(new { List = _policyService.GetUserPolicyList(criteria) });
         }
@@ -245,7 +250,7 @@
         [HttpPost]
         public ActionResult ListPolicyMultiUser(PolicyMultiUserCriteria criteria)
         {
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            criteria.LicenseeId = _systemSettings.LicenseeID;
 
             return Json(new { List = _policyService.GetPolicyMultiUserList(criteria) });
         }
@@ -277,7 +282,7 @@
             var criteria = new UserCurrencySelCriteria
             {
                 UserId = custId,
-                LicenseeId = AppSettings.LicenseeID
+                LicenseeId = _systemSettings.LicenseeID
             };
             return View(new PermissionCurrencyViewModel
             {
@@ -325,7 +330,7 @@
                 UserId = custId,
                 Ip = Remote.GetClientIPAddress(),
                 CurrencyXML = doc.OuterXml,
-                LicenseeId = AppSettings.LicenseeID
+                LicenseeId = _systemSettings.LicenseeID
             };
 
             _permissionService.UpdatePermissionCurrency(criteria);
@@ -413,7 +418,7 @@
             var criteria = new GroupListCriteria
             {
                 IsIt = SessionManager.CurrentSession.IsIT,
-                LicenseeId = AppSettings.LicenseeID
+                LicenseeId = _systemSettings.LicenseeID
             };
 
             return Json(new { List = _groupService.GetListGroup(criteria, !SessionManager.CurrentSession.IsIT) });
@@ -445,7 +450,7 @@
                     GroupDesc = model.Description,
                     UserId = SessionManager.CurrentSession.CustID,
                     Ip = Remote.GetClientIPAddress(),
-                    LicenseeId = AppSettings.LicenseeID
+                    LicenseeId = _systemSettings.LicenseeID
                 };
 
                 _groupService.GroupInsert(criteria);
@@ -542,7 +547,7 @@
             {
                 criteria.UserId = SessionManager.CurrentSession.CustID;
                 criteria.Ip = Remote.GetClientIPAddress();
-                criteria.LicenseeId = AppSettings.LicenseeID;
+                criteria.LicenseeId = _systemSettings.LicenseeID;
 
                 _groupService.GroupUpdate(criteria);
 
@@ -610,7 +615,7 @@
                     IP = model.Ip,
                     Language = model.Language,
                     UserID = model.UserId,
-                    LicenseeId = AppSettings.LicenseeID
+                    LicenseeId = _systemSettings.LicenseeID
                 };
             }
 
@@ -620,7 +625,7 @@
                 Language = model.Language,
                 MemPolicys = model.MemPolicys,
                 UserID = model.UserId,
-                LicenseeId = AppSettings.LicenseeID
+                LicenseeId = _systemSettings.LicenseeID
             };
         }
 

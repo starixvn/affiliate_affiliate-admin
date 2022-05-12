@@ -2,9 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.Common.Helper;
-    using Fanex.Data;
     using Fanex.Data.Repository;
     using Fanex.Data.SqlServer;
     using Helpers;
@@ -34,30 +32,6 @@
             if (criteria.IsValid())
             {
                 return _repository.Fetch<T>(criteria);
-            }
-
-            return new List<T>();
-        }
-
-        /// <summary>
-        /// Get the list of founded entities and total page.
-        /// </summary>
-        /// <typeparam name="T">General type.</typeparam>
-        /// <param name="criteria">Input criteria.</param>
-        /// <param name="totalPages">Total page.</param>
-        /// <returns>The list of founded entities and total page.</returns>
-        public IEnumerable<T> GetData<T>(ICriteria criteria, ref int totalPages)
-        {
-            Check.Argument.IsNotNull(criteria, "criteria");
-
-            if (criteria.IsValid())
-            {
-                using (var objectDb = new SqlObjectDb(criteria.GetSettingKey()))
-                {
-                    var list = objectDb.Query<T>(criteria);
-                    totalPages = Convert.ToInt32(criteria);
-                    return list;
-                }
             }
 
             return new List<T>();

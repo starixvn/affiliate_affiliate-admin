@@ -1,13 +1,10 @@
 ﻿using Fanex.AffiliateAdmin.Controller.UnitTests.Helpers;
 using Fanex.AffiliateAdmin.Core.Configurations;
-using Fanex.AffiliateAdmin.Core.Services.Interface;
-using Fanex.AffiliateAdmin.Core.Session;
 using Fanex.AffiliateAdmin.Criterias;
 using Fanex.AffiliateAdmin.DTO;
-using Fanex.AffiliateAdmin.Models;
+using Fanex.AffiliateAdmin.Models.AffiliateInfo;
 using Fanex.AffiliateAdmin.Services;
 using NSubstitute;
-using System.Collections.Specialized;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
@@ -17,14 +14,14 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
     public class AdjustmentControllerTest
     {
         private readonly IAppSetting _appSetting;
+        private readonly ISystemSettings _systemSettings;
         private readonly IAdjustmentService _adjustmentService;
-        private readonly ISystemSettingService _systemSettingService;
 
         public AdjustmentControllerTest()
         {
             _appSetting = Substitute.For<IAppSetting>();
             _adjustmentService = Substitute.For<IAdjustmentService>();
-            _systemSettingService = Substitute.For<ISystemSettingService>();
+            _systemSettings = MockingHelpers.GetSystemSettings();
         }
 
         [Theory]
@@ -33,30 +30,14 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
         public void Index_GET_WhenCall_ReturnView(bool hasCookies)
         {
             //Arrange
-            var httpCookieCollection = new HttpCookieCollection();
-
-            if (hasCookies)
-            {
-                var affInfo = new HttpCookie("AffInfo");
-                affInfo["AffId"] = "123";
-                affInfo["Status"] = "Approved";
-                affInfo["AffName"] = "Test123";
-                affInfo["CurrencyId"] = "12";
-                affInfo["CurrencyCode"] = "USD";
-
-                httpCookieCollection = new HttpCookieCollection { affInfo };
-            }
-
-            var httpRequest = Substitute.For<HttpRequestBase>();
-            httpRequest.Cookies.Returns(httpCookieCollection);
-            var controllerContext = Substitute.For<ControllerContext>();
-            controllerContext.HttpContext.Request.Returns(httpRequest);
+            var httpCookieCollection = hasCookies ? new HttpCookieCollection() : Constants.HttpCookieCollection;
+            var httpRequest = MockingHelpers.GetHttpRequest(httpCookieCollection: httpCookieCollection);
 
             _adjustmentService.GetAdjustmentBalance(Arg.Any<AdjustmentCriteria>()).Returns(new Adjustment());
 
             //Action
             var controller = CreateController();
-            controller.ControllerContext = controllerContext;
+            controller.ControllerContext = MockingHelpers.GetControllerContext(httpRequest);
 
             var result = controller.Index() as ViewResult;
 
@@ -69,19 +50,14 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
         public void Index_POST_WhenCall_ReturnView()
         {
             //Arrange
-            MockingHelpers.SetUpHttpContextSession(value: Substitute.For<ICurrentSession>());
-
-            var httpRequest = Substitute.For<HttpRequestBase>();
-            httpRequest.Cookies.Returns(new HttpCookieCollection());
-            httpRequest.ServerVariables.Returns(new NameValueCollection { ["REMOTE_ADDR"] = "::1" });
-            var controllerContext = Substitute.For<ControllerContext>();
-            controllerContext.HttpContext.Request.Returns(httpRequest);
+            MockingHelpers.SetUpEmptyHttpContextSession();
+            var httpRequest = MockingHelpers.GetHttpRequest("REMOTE_ADDR", "::1", new HttpCookieCollection());
 
             _adjustmentService.GetAdjustmentBalance(Arg.Any<AdjustmentCriteria>()).Returns(new Adjustment());
 
             //Action
             var controller = CreateController();
-            controller.ControllerContext = controllerContext;
+            controller.ControllerContext = MockingHelpers.GetControllerContext(httpRequest);
 
             var result = controller.Index(new AdjustmentViewModel()) as ViewResult;
 
@@ -91,6 +67,6 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
         }
 
         private AdjustmentController CreateController()
-            => new AdjustmentController(_appSetting, _adjustmentService, _systemSettingService);
+            => new AdjustmentController(_appSetting, _systemSettings, _adjustmentService);
     }
 }

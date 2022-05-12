@@ -4,15 +4,14 @@
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Core.Configurations;
-    using Fanex.AffiliateAdmin.Core.Filter;
-    using Fanex.AffiliateAdmin.Core.Services;
-    using Fanex.AffiliateAdmin.Core.Services.Interface;
-    using Fanex.AffiliateAdmin.Core.Session;
-    using Fanex.AffiliateAdmin.Core.Utilities;
-    using Fanex.AffiliateAdmin.Criterias;
-    using Fanex.AffiliateAdmin.Models;
-    using Fanex.AffiliateAdmin.Services;
+    using Core.Configurations;
+    using Core.Filter;
+    using Core.Services;
+    using Core.Session;
+    using Core.Utilities;
+    using Criterias;
+    using Models.Exchange;
+    using Services;
 
     /// <summary>
     /// Currency Rate Controller.
@@ -29,7 +28,8 @@
         /// <summary>
         /// Service used to work with database.
         /// </summary>
-        private readonly IExchangeRateService _exchangeService;
+        private readonly ISystemSettings _systemSettings;
+        private readonly IExchangeRateService _exchangeRateService;
 
         private readonly QueryService _service;
 
@@ -40,12 +40,14 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ExchangeController" /> class.
         /// </summary>
-        /// <param name="service">Email History service.</param>
+        /// <param name="service">Exchange Rate service.</param>
         public ExchangeController(
-            IExchangeRateService service,
-            ISystemSettingService systemSettingService) : base(systemSettingService)
+            IAppSetting appSetting,
+            ISystemSettings systemSettings,
+            IExchangeRateService exchangeRateService) : base(appSetting)
         {
-            _exchangeService = service;
+            _systemSettings = systemSettings;
+            _exchangeRateService = exchangeRateService;
             _service = new QueryService();
         }
 
@@ -71,13 +73,13 @@
         {
             bool isToday = false;
 
-            if (criteria.Time.HasValue && SystemTimeService.GetSystemDateTime().Subtract(criteria.Time.Value).Days == 0)
+            if (criteria.Time.HasValue && _systemSettings.SystemDateTime.Subtract(criteria.Time.Value).Days == 0)
             {
                 criteria.Time = null;
                 isToday = true;
             }
 
-            var result = _exchangeService.GetList(criteria);
+            var result = _exchangeRateService.GetList(criteria);
 
             foreach (var item in result)
             {
@@ -92,7 +94,7 @@
             {
                 Notification = _strNotify.ToString(),
                 List = result,
-                Currencies = AppSettings.AffSystemAllSupportedCurrencies.Select(x => x.CurrencyCode).ToArray(),
+                Currencies = _systemSettings.AffSystemAllSupportedCurrencies.Select(x => x.CurrencyCode).ToArray(),
                 IsToday = isToday
             });
         }
@@ -106,7 +108,7 @@
         {
             if (_multipliedCurrencies.Count == 0)
             {
-                foreach (var obj in AppSettings.AffSystemAllSupportedCurrencies)
+                foreach (var obj in _systemSettings.AffSystemAllSupportedCurrencies)
                 {
                     if (obj.MultipliedBy > 1)
                     {
@@ -180,7 +182,7 @@
                     IP = criteria.Ip,
                     Rate = criteria.Rate,
                     UserId = criteria.UserId,
-                    LicenseeId = AppSettings.LicenseeID
+                    LicenseeId = _systemSettings.LicenseeID
                 };
             }
 
@@ -191,7 +193,7 @@
                     IP = criteria.Ip,
                     UserId = criteria.UserId,
                     ExchangeIdList = criteria.ExchangeIdList,
-                    LicenseeId = AppSettings.LicenseeID
+                    LicenseeId = _systemSettings.LicenseeID
                 };
             }
 

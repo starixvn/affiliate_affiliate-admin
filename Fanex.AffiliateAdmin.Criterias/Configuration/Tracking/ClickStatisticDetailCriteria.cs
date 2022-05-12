@@ -12,7 +12,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ClickStatisticDetailCriteria : CriteriaBase
+    public class ClickStatisticDetailCriteria : BaseCriteria
     {
         public int AffId { get; set; }
 
@@ -25,14 +25,6 @@ namespace Fanex.AffiliateAdmin.Criterias
         public string SportCode { get; set; }
 
         public string LanguageCode { get; set; }
-
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int TotalPages { get; set; }
-
-        public int NRows { get; set; }
 
         /// <summary>
         /// Get Setting Key.

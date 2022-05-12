@@ -47,7 +47,7 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
             _maintenanceService.GetUnderMaintenanceTime().Returns(new UnderMaintenanceTime { From = "13:00", To = "15:00" });
 
             var currentSession = isNeedLogOut ? Substitute.For<ICurrentSession>() : null;
-            MockingHelpers.SetUpHttpContextSession(value: currentSession);
+            MockingHelpers.SetUpHttpContextSession(currentSession);
 
             //Action
             var controller = CreateController();

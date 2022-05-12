@@ -2,11 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
     using Common.Helper;
     using Core.Configurations;
     using Criterias;
-    using Data;
     using DTO;
     using Fanex.Data.SqlServer;
 
@@ -15,6 +13,13 @@
     /// </summary>
     public class MessageDataAccess : IMessageDataAccess
     {
+        private readonly ISystemSettings _systemSettings;
+
+        public MessageDataAccess(ISystemSettings systemSettings)
+        {
+            _systemSettings = systemSettings;
+        }
+
         /// <summary>
         /// Get message detail.
         /// </summary>
@@ -38,7 +43,7 @@
                             var important = Convert.ToBoolean(reader["important"]);
                             var creatorName = Convert.ToString(reader["resourcekey"]);
                             var langMessages = new Dictionary<string, string>();
-                            foreach (var language in AppSettings.AffLanguages)
+                            foreach (var language in _systemSettings.AffLanguages)
                             {
                                 langMessages[language.LanguageID] = Convert.ToString(reader[language.LanguageID]);
                             }

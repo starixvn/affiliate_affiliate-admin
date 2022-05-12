@@ -17,10 +17,10 @@
         public MemberWinLossByOverviewController(
             IAppSetting appSetting,
             IReportService reportService,
-            ICommGroupService commGroupService,
-            ISystemSettingService systemSettingService
+            ISystemSettings systemSettings,
+            ICommGroupService commGroupService
             )
-            : base(appSetting, reportService, commGroupService, systemSettingService)
+            : base(appSetting, reportService, systemSettings, commGroupService)
         {
         }
 
@@ -39,9 +39,9 @@
             {
                 criteria.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).UserName;
                 criteria.ExcludeTest = false;
-                criteria.AffTypes = string.Join(",", AppSetting.AffTypes.Select(t => t.TypeID));
-                criteria.CommGroups = string.Join(",", SystemSettingService.GetCommGroups().Select(t => t.GroupID));
-                criteria.PreferLanguages = string.Join(",", AppSetting.AffSupportLanguages.Select(t => t.LanguageID));
+                criteria.AffTypes = string.Join(",", SystemSettings.AffTypes.Select(t => t.TypeID));
+                criteria.CommGroups = string.Join(",", SystemSettings.GetCommGroups().Select(t => t.GroupID));
+                criteria.PreferLanguages = string.Join(",", SystemSettings.AffSupportLanguages.Select(t => t.LanguageID));
             }
 
             criteria.IsITAdmin = session.IsIT;

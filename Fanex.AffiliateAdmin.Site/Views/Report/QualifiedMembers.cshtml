@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = Lang.QualifiedMembers;
-    Layout = "~/Views/Shared/_LayoutPopup.cshtml";   
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
 @using System.Globalization
 @using Fanex.AffiliateAdmin.Core.Utilities
@@ -13,14 +13,16 @@
 @model IEnumerable<QualifiedMember>
 
 @{
-    var products = ViewBag.Products as List<byte>;
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
 
-    var selectedProducts = AppSettings.Products
+
+    var products = ViewBag.Products as List<byte>;
+    var selectedProducts = systemSettings.Products
                                       .Where(t => products.Any(p => p == t.ProductID))
                                       .ToList();
     var productCount = selectedProducts.Count;
     var rowSpan = productCount > 1 ? 2 : 1;
-       
+
 }
 
 <div id="gridId" class="freegrid" colheight="200" expheight="350" style="width: 1249px;">
@@ -42,7 +44,7 @@
                         var turnoverTitle = productCount > 1
                             ? string.Format("{0} ({1})", Lang.Turnover, ViewBag.SymbolCurrency)
                             : string.Format("{0} {1} ({2})", productName, Lang.Turnover, ViewBag.SymbolCurrency);
-                        
+
                         <th colspan="@(selectedProducts.Count())">@turnoverTitle</th>
                     }
                 </tr>
@@ -53,7 +55,7 @@
                     {
                         var productName = Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty));
                         productName = string.IsNullOrEmpty(productName) ? product.ProductName : productName;
-                        
+
                         <th>@productName</th>
                     }
                     </tr>
@@ -78,11 +80,11 @@
                         className = count%2 == 1 ? "freegrid-odd" : "freegrid-even";
                         <tr class="@className" style="height: 21px">
                             <td align="center">@(count++)</td>
-                            <td class="">@member.Username</td>    
-                            <td class="" align="center">@member.Currency</td>    
+                            <td class="">@member.Username</td>
+                            <td class="" align="center">@member.Currency</td>
                             <td class="" align="right">
                                 @(ViewBag.BaseCurrency == 2 ? member.QualifiedAmount.ToString("N", CultureInfo.InvariantCulture) : member.QualifiedAmountBase.ToString("N", CultureInfo.InvariantCulture))
-                            </td>    
+                            </td>
                             @foreach (var product in selectedProducts)
                             {
                                 QualifiedMemberProduct memberProduct;
@@ -94,7 +96,7 @@
                                 {
                                     memberProduct = new QualifiedMemberProduct();
                                 }
-                                    
+
                                 var isQualified = (decimal)memberProduct.Turnover >= member.QualifiedAmount;
                                 var style = isQualified ? "style=color:green" : null;
                                 if (!totalData.ContainsKey(product.ProductID))
@@ -127,8 +129,8 @@
     </div>
 </div>
 
-@section css{    
-    <style>        
+@section css{
+    <style>
         .box-insite
         {
             border: 1px solid #CACACA;

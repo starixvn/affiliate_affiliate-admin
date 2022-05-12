@@ -1,6 +1,10 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Configurations
 @{
-    var currentSession = Fanex.AffiliateAdmin.Core.Session.SessionManager.CurrentSession;
+    var currentSession = SessionManager.CurrentSession;
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+
+    var baseExchange = systemSettings.BaseExchange;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -16,7 +20,7 @@
 <body class="popup">
     @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
     @Html.Hidden("BaseUrl", Url.Content("~/"))
-    @Html.Hidden("TimeZone", AppSettings.ServerTimeZone)
+    @Html.Hidden("TimeZone", appSetting.ServerTimeZone)
     <div class="container-fluid">
         <div class="box-insite">
             @RenderBody()
@@ -39,8 +43,8 @@
         $.unblockUI();
 
         var System = {
-            Currency: '@AppSettings.BaseExchange.Code',
-            Prefix: '@AppSettings.BaseExchange.Prefix'
+            Currency: '@baseExchange.Code',
+            Prefix: '@baseExchange.Prefix'
         };
 
         var Lang = {
@@ -52,8 +56,8 @@
             Close: "@Lang.Close"
         };
     </script>
-    
-    
+
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -11,7 +11,12 @@
     /// </summary>
     public class MessageService : QueryService, IMessageService
     {
-        private readonly IMessageDataAccess _messageDataAccess = new MessageDataAccess();
+        private readonly IMessageDataAccess _messageDataAccess;
+
+        public MessageService(IMessageDataAccess messageDataAccess)
+        {
+            _messageDataAccess = messageDataAccess;
+        }
 
         public IEnumerable<Message> GetMessages(MessageCriteria criteria)
         {

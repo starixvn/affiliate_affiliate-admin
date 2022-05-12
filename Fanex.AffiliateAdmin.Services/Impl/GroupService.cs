@@ -8,6 +8,7 @@ namespace Fanex.AffiliateAdmin.Services
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web.Mvc;
     using Common.Helper;
     using Core.Services;
     using Criterias;
@@ -23,13 +24,14 @@ namespace Fanex.AffiliateAdmin.Services
     public class GroupService : QueryService, IGroupService
     {
         private const string ItGroupName = "Aff_IT_Dept";
+        private readonly ISystemSettings _systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
 
         public bool IsItGroup(int groupId)
         {
             var criteria = new GroupListCriteria
             {
                 IsIt = SessionManager.CurrentSession.IsIT,
-                LicenseeId = AppSettings.LicenseeID,
+                LicenseeId = _systemSettings.LicenseeID,
                 GroupId = groupId
             };
 

@@ -14,16 +14,16 @@
     [NoCache]
     public class HomeController : BaseController
     {
-        private readonly IAppSetting _appSetting;
         private readonly IHomeService _homeService;
+        private readonly ISystemSettings _systemSettings;
 
         public HomeController(
             IAppSetting appSetting,
             IHomeService homeService,
-            ISystemSettingService systemSettingService) : base(systemSettingService)
+            ISystemSettings systemSettings) : base(appSetting)
         {
-            _appSetting = appSetting;
             _homeService = homeService;
+            _systemSettings = systemSettings;
         }
 
         public ActionResult Index()
@@ -33,7 +33,7 @@
                 return new RedirectResult("~/Home/UserOnlineList");
             }
 
-            FormaterCurrency.SetDefaultCurrency(_appSetting.BaseExchange.Code);
+            FormaterCurrency.SetDefaultCurrency(_systemSettings.BaseExchange.Code);
             var model = _homeService.GeneralInfoSel(new HomeGeneralInfoCriteria
             {
                 UserCurrencies = SessionManager.CurrentSession.BuildUserCurrencyParam()
@@ -49,7 +49,7 @@
         [ChildActionOnly]
         public ActionResult Language()
         {
-            var languageList = _appSetting.BaseLanguages;
+            var languageList = _systemSettings.BaseLanguages;
             var selectedLang = languageList.FirstOrDefault(lang => lang.LanguageID == AppSession.Language);
             var languageName = selectedLang == null ? string.Empty : selectedLang.LanguageName;
             var sysDateTime = _homeService.GetSystemDateTime(new SystemDateTimeCriteria());
@@ -83,7 +83,7 @@
             var session = SessionManager.CurrentSession;
 
             criteria.IsIT = session.IsIT;
-            criteria.LicenseeId = _appSetting.LicenseeID;
+            criteria.LicenseeId = _systemSettings.LicenseeID;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
             var listUseronlines = _homeService.UserOnlineList(criteria);

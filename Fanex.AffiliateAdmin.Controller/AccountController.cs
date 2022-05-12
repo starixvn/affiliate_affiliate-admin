@@ -26,12 +26,14 @@
         private readonly IAppSetting _appSetting;
         private readonly IAuthService _authService;
         private readonly IAccountService _accountService;
+        private readonly ISystemSettings _systemSettings;
         private readonly IFormsAuthenticationWrapper _formsAuthenticationWrapper;
 
         public AccountController(
             IAppSetting appSetting,
             IAuthService authService,
             IAccountService accountService,
+            ISystemSettings systemSettings,
             IFormsAuthenticationWrapper formsAuthenticationWrapper)
         {
             var langManager = new LanguageManager();
@@ -40,6 +42,7 @@
             _appSetting = appSetting;
             _authService = authService;
             _accountService = accountService;
+            _systemSettings = systemSettings;
             _formsAuthenticationWrapper = formsAuthenticationWrapper;
         }
 
@@ -62,7 +65,7 @@
 
             if (_appSetting.IsProduction && !Regex.IsMatch(clientIPAddress, _appSetting.GetValue("CompanyIPRange")))
             {
-                LogHelper.WriteInfo($"Access Denied: {_appSetting.SystemName}; IP: {clientIPAddress}");
+                LogHelper.WriteInfo($"Access Denied: {_systemSettings.SystemName}; IP: {clientIPAddress}");
 
                 return Redirect("~/Notify/AccessDenied");
             }
@@ -101,7 +104,7 @@
                     });
                     AffiliateInfoCookieHelper.DeleteAffiliate(HttpContext);
                     _formsAuthenticationWrapper.SetAuthCookie(username, false);
-                    SessionManager.CurrentSession = _authService.CreateInternalSession(user, _appSetting.LicenseeID);
+                    SessionManager.CurrentSession = _authService.CreateInternalSession(user, _systemSettings.LicenseeID);
                 }
                 else
                 {

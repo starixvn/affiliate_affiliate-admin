@@ -10,6 +10,12 @@
     Model.AffiliateInfo.FirstName = HttpUtility.HtmlDecode(Model.AffiliateInfo.FirstName);
     Model.AffiliateInfo.LastName = HttpUtility.HtmlDecode(Model.AffiliateInfo.LastName);
     var isIT = SessionManager.CurrentSession.IsIT;
+
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+
+    var leftString = appSetting.LeftString;
+    var affSupportLanguages = systemSettings.AffSupportLanguages;
 }
 <div id="left_show" class="left_show">
     <div class="left-show-d">
@@ -45,13 +51,13 @@
                     <tr>
                         <td>@Lang.FirstName
                         </td>
-                        <td class="col-right" title="@Model.AffiliateInfo.FirstName">@Model.AffiliateInfo.FirstName.LeftString(AppSettings.LeftString)
+                        <td class="col-right" title="@Model.AffiliateInfo.FirstName">@Model.AffiliateInfo.FirstName.LeftString(leftString)
                         </td>
                     </tr>
                     <tr>
                         <td>@Lang.LastName
                         </td>
-                        <td class="col-right" title="@Model.AffiliateInfo.LastName">@Model.AffiliateInfo.LastName.LeftString(AppSettings.LeftString)
+                        <td class="col-right" title="@Model.AffiliateInfo.LastName">@Model.AffiliateInfo.LastName.LeftString(leftString)
                         </td>
                     </tr>
                     <tr>
@@ -63,13 +69,13 @@
                     <tr>
                         <td>@Lang.ContactNumber
                         </td>
-                        <td class="col-right" title="@Model.AffiliateInfo.Phone">@Model.AffiliateInfo.Phone.LeftString(AppSettings.LeftString)
+                        <td class="col-right" title="@Model.AffiliateInfo.Phone">@Model.AffiliateInfo.Phone.LeftString(leftString)
                         </td>
                     </tr>
                     <tr>
                         <td>@Lang.Mobile
                         </td>
-                        <td class="col-right" title="@Model.AffiliateInfo.MobilePhone">@Model.AffiliateInfo.MobilePhone.LeftString(AppSettings.LeftString)
+                        <td class="col-right" title="@Model.AffiliateInfo.MobilePhone">@Model.AffiliateInfo.MobilePhone.LeftString(leftString)
                         </td>
                     </tr>
                     <tr>
@@ -77,13 +83,13 @@
                         </td>
                         <td class="col-right">
                             @{
-                                var language = AppSettings.AffLanguages.Where(l => l.LanguageID == Model.AffiliateInfo.PreferredLanguage).FirstOrDefault();
+                                var language = systemSettings.AffLanguages.Where(l => l.LanguageID == Model.AffiliateInfo.PreferredLanguage).FirstOrDefault();
                                 var firstLanguageName = language == null? "INVALID!" : language.LanguageName;
                             }
                             @if (Model.HasHostAffiliatePolicy)
                             {
                                 <select id="slLanguage" name="slLanguage" style="display: none;" class="width-ex-100 nopadding">
-                                    @foreach (var lang in AppSettings.AffSupportLanguages)
+                                    @foreach (var lang in affSupportLanguages)
                                     {
                                         <option value="@lang.LanguageID" @(lang.LanguageID == Model.AffiliateInfo.PreferredLanguage ? "selected" : string.Empty) >@lang.LanguageName</option>
                                     }
@@ -101,7 +107,7 @@
                         <td>@Lang.SiteUrl
                         </td>
                         <td class="col-right">
-                            <a href="@string.Format(AppSettings.SiteCheckerUrl.ToString(), Model.AffiliateInfo.SiteLink)" target="_blank" title="Check the link">@Model.AffiliateInfo.SiteLink.LeftString(AppSettings.LeftString)</a>
+                            <a href="@string.Format(appSetting.SiteCheckerUrl.ToString(), Model.AffiliateInfo.SiteLink)" target="_blank" title="Check the link">@Model.AffiliateInfo.SiteLink.LeftString(leftString)</a>
                         </td>
                     </tr>
                     <tr>
@@ -114,7 +120,7 @@
                         <td>@Lang.LastLoginIP
                         </td>
                         <td class="col-right">
-                            <a href="@string.Format(AppSettings.IPCheckerUrl.ToString(), Model.AffiliateInfo.LastLoginIp)" target="_blank" title="@Lang.CheckIp">@Model.AffiliateInfo.LastLoginIp</a>
+                            <a href="@string.Format(appSetting.IPCheckerUrl.ToString(), Model.AffiliateInfo.LastLoginIp)" target="_blank" title="@Lang.CheckIp">@Model.AffiliateInfo.LastLoginIp</a>
                         </td>
                     </tr>
                     @if (Model.AffiliateInfo.Status.Equals(AffiliateStatus.Approved.ToString(), StringComparison.CurrentCultureIgnoreCase))

@@ -9,8 +9,8 @@
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
     using System.Web.Routing;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Utilities;
-    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Implement html extension.
@@ -22,6 +22,8 @@
         /// DateTime Format.
         /// </summary>
         private static readonly DateTimeFormatInfo DateTimeFormat = DateTimeFormatInfo.GetInstance(CultureInfo.CurrentCulture);
+
+        private static readonly ISystemSettings _systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
 
         #region Dropdownlist
 
@@ -257,7 +259,7 @@
             DateTime? maxDate = null)
         {
             var metaData = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
-            DateTime? value = SystemTimeService.GetSystemDateTime();
+            DateTime? value = _systemSettings.SystemDateTime;
             if (metaData.Model is DateTime? || metaData.Model is DateTime)
             {
                 value = (DateTime?)metaData.Model;
@@ -287,7 +289,7 @@
             object htmlAttributes = null)
         {
             var list = new List<SelectListItem>();
-            var endYear = SystemTimeService.GetSystemDateTime().Year;
+            var endYear = _systemSettings.SystemDateTime.Year;
 
             for (var i = startYear; i <= endYear; i++)
             {
@@ -353,7 +355,7 @@
 
             if (!maxDate.HasValue)
             {
-                maxDate = SystemTimeService.GetSystemDateTime();
+                maxDate = _systemSettings.SystemDateTime;
             }
 
             attributes["data-maxdate"] = maxDate.Value.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture);
@@ -476,7 +478,7 @@
             object htmlAttributes = null)
         {
             var list = new List<SelectListItem>();
-            var endYear = SystemTimeService.GetSystemDateTime().Year;
+            var endYear = _systemSettings.SystemDateTime.Year;
 
             for (var i = startYear; i <= endYear; i++)
             {

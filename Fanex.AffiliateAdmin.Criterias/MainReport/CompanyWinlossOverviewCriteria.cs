@@ -7,7 +7,7 @@
     /// <summary>
     /// Company Win loss Report Criteria.
     /// </summary>
-    public class CompanyWinlossOverviewCriteria : CriteriaBase
+    public class CompanyWinlossOverviewCriteria : BaseCriteria
     {
         public string AffName { get; set; }
 
@@ -36,12 +36,8 @@
         [SpParam(Ignored = true)]
         public bool ByAffiliate { get; set; }
 
-        public int PageSize { get; set; }
-
         [SpParam(SqlParamName = "PageCurrent")]
-        public int PageIndex { get; set; }
-
-        public int NRows { get; set; }
+        public new int PageIndex { get; set; }
 
         public int Duration { get; set; }
 

@@ -11,7 +11,6 @@ using System;
 using System.Collections.Specialized;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 using Xunit;
 
 namespace Fanex.AffiliateAdmin.Controller.UnitTests
@@ -21,18 +20,15 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
         private readonly IAppSetting _appSetting;
         private readonly IAuthService _authService;
         private readonly IAccountService _accountService;
+        private readonly ISystemSettings _systemSettings;
         private readonly IFormsAuthenticationWrapper _formsAuthenticationWrapper;
-
-        private readonly HttpCookieCollection HTTP_COOKIE_COLLECTION = new HttpCookieCollection
-        {
-            new HttpCookie("AffInfo", "test")
-        };
 
         public AccountControllerTest()
         {
             _appSetting = Substitute.For<IAppSetting>();
             _authService = Substitute.For<IAuthService>();
             _accountService = Substitute.For<IAccountService>();
+            _systemSettings = MockingHelpers.GetSystemSettings();
             _formsAuthenticationWrapper = Substitute.For<IFormsAuthenticationWrapper>();
         }
 
@@ -72,22 +68,15 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
         public void Login_GET_WhenCallWithIsProduction_RedirectResult(string key, string value, string companyIPRange)
         {
             //Arrange
-            var httpRequest = Substitute.For<HttpRequestBase>();
-            httpRequest.ServerVariables.Returns(new NameValueCollection
-            {
-                [key] = value
-            });
+            var httpRequest = MockingHelpers.GetHttpRequest(key, value);
 
             _appSetting.IsProduction.Returns(true);
-            _appSetting.SystemName.Returns("Test");
+            _systemSettings.SystemName.Returns("Test");
             _appSetting.GetValue("CompanyIPRange").Returns(companyIPRange);
-
-            var controllerContext = Substitute.For<ControllerContext>();
-            controllerContext.HttpContext.Request.Returns(httpRequest);
 
             //Action
             var controller = CreateController();
-            controller.ControllerContext = controllerContext;
+            controller.ControllerContext = MockingHelpers.GetControllerContext(httpRequest);
 
             var result = controller.Login() as RedirectResult;
 
@@ -117,14 +106,7 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
         public void Login_POST_WhenCall_ReturnCorrectData(int errCode, string message, string expectedMessage)
         {
             //Arrange
-            var httpRequest = Substitute.For<HttpRequestBase>();
-            httpRequest.UserHostName.Returns("test.com");
-            httpRequest.ServerVariables.Returns(new NameValueCollection
-            {
-                ["REMOTE_ADDR"] = "::1"
-            });
-            var controllerContext = Substitute.For<ControllerContext>();
-            controllerContext.HttpContext.Request.Returns(httpRequest);
+            var httpRequest = MockingHelpers.GetHttpRequest("REMOTE_ADDR", "::1");
 
             _authService.Login(Arg.Any<LoginCriteria>(), out Arg.Any<Account>(), Arg.Any<string>()).Returns(prs => {
                 prs[1] = new Account();
@@ -133,7 +115,7 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
 
             //Action
             var controller = CreateController();
-            controller.ControllerContext = controllerContext;
+            controller.ControllerContext = MockingHelpers.GetControllerContext(httpRequest);
             var result = controller.Login("", "", "") as JsonResult;
             var data = result.Data as ResultViewModel;
 
@@ -147,22 +129,10 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
         public void Login_POST_WhenCall_LoginSuccess(bool isNull)
         {
             //Arrange
-            var httpCookieCollection = isNull ? new HttpCookieCollection() : HTTP_COOKIE_COLLECTION;
+            var httpCookieCollection = isNull ? new HttpCookieCollection() : Constants.HttpCookieCollection;
 
-            var httpRequest = Substitute.For<HttpRequestBase>();
-            httpRequest.UserHostName.Returns("test.com");
-            httpRequest.ServerVariables.Returns(new NameValueCollection
-            {
-                ["REMOTE_ADDR"] = "::1"
-            });
-            httpRequest.Cookies.Returns(httpCookieCollection);
-
-            var httpResponse = Substitute.For<HttpResponseBase>();
-            httpResponse.Cookies.Returns(httpCookieCollection);
-
-            var controllerContext = Substitute.For<ControllerContext>();
-            controllerContext.HttpContext.Request.Returns(httpRequest);
-            controllerContext.HttpContext.Response.Returns(httpResponse);
+            var httpRequest = MockingHelpers.GetHttpRequest("REMOTE_ADDR", "::1", httpCookieCollection);
+            var httpResponse = MockingHelpers.GetHttpResponse(httpCookieCollection);
 
             _authService.Login(Arg.Any<LoginCriteria>(), out Arg.Any<Account>(), Arg.Any<string>()).Returns(prs => {
                 prs[1] = new Account { CustID = 123 };
@@ -172,7 +142,7 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
 
             //Action
             var controller = CreateController();
-            controller.ControllerContext = controllerContext;
+            controller.ControllerContext = MockingHelpers.GetControllerContext(httpRequest, httpResponse);
             var result = controller.Login("", "", "") as JsonResult;
             var data = result.Data as ResultViewModel;
 
@@ -265,20 +235,14 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
         {
             //Arrange
             var currentSession = hasSession ? Substitute.For<ICurrentSession>() : null;
-            var httpRequest = Substitute.For<HttpRequestBase>();
-            httpRequest.Cookies.Returns(HTTP_COOKIE_COLLECTION);
-            var httpResponse = Substitute.For<HttpResponseBase>();
-            httpResponse.Cookies.Returns(HTTP_COOKIE_COLLECTION);
-
-            var controllerContext = Substitute.For<ControllerContext>();
-            controllerContext.HttpContext.Request.Returns(httpRequest);
-            controllerContext.HttpContext.Response.Returns(httpResponse);
+            var httpRequest = MockingHelpers.GetHttpRequest();
+            var httpResponse = MockingHelpers.GetHttpResponse();
 
             _formsAuthenticationWrapper.LoginUrl.Returns("~/Login");
 
             //Action
             var controller = CreateController(currentSession);
-            controller.ControllerContext = controllerContext;
+            controller.ControllerContext = MockingHelpers.GetControllerContext(httpRequest, httpResponse);
             var result = controller.Logout() as RedirectResult;
 
             //Assert
@@ -299,7 +263,6 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
 
             //Action
             var controller = CreateController(currentSession);
-            //controller.ControllerContext = controllerContext;
             var result = controller.ReCheckIn() as JsonResult;
             var data = result.Data as ResultViewModel;
 
@@ -309,8 +272,8 @@ namespace Fanex.AffiliateAdmin.Controller.UnitTests
 
         private AccountController CreateController(ICurrentSession currentSession = null)
         {
-            MockingHelpers.SetUpHttpContextSession(value: currentSession);
-            return new AccountController(_appSetting, _authService, _accountService, _formsAuthenticationWrapper);
+            MockingHelpers.SetUpHttpContextSession(currentSession);
+            return new AccountController(_appSetting, _authService, _accountService, _systemSettings, _formsAuthenticationWrapper);
         }
     }
 }

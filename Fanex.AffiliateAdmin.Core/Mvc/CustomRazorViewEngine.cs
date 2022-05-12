@@ -9,18 +9,20 @@
     /// </summary>
     public class CustomRazorViewEngine : RazorViewEngine
     {
+        private readonly IAppSetting _appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomRazorViewEngine"/> class.
         /// </summary>
         public CustomRazorViewEngine()
         {
-            this.ViewLocationFormats = new string[] 
+            this.ViewLocationFormats = new string[]
                                                 {
                                                  "~/Views/Layout%1/{1}/{0}.cshtml",
                                                  "~/Views/Layout%1/{1}/{0}.vbhtml",
                                                };
 
-            this.MasterLocationFormats = new string[] 
+            this.MasterLocationFormats = new string[]
                                                     {
                                                    "~/Views/Layout%1/{1}/{0}.cshtml",
                                                    "~/Views/Layout%1/{1}/{0}.vbhtml",
@@ -77,7 +79,7 @@
         /// <returns>Return View.</returns>
         protected override IView CreateView(ControllerContext controllerContext, string viewPath, string masterPath)
         {
-            return base.CreateView(controllerContext, viewPath.Replace("%1", AppSettings.Layout), masterPath);
+            return base.CreateView(controllerContext, viewPath.Replace("%1", _appSetting.Layout), masterPath);
         }
 
         /// <summary>
@@ -88,7 +90,7 @@
         /// <returns>Return Partial view.</returns>
         protected override IView CreatePartialView(ControllerContext controllerContext, string partialPath)
         {
-            return base.CreatePartialView(controllerContext, partialPath.Replace("%1", AppSettings.Layout));
+            return base.CreatePartialView(controllerContext, partialPath.Replace("%1", _appSetting.Layout));
         }
 
         /// <summary>
@@ -99,7 +101,7 @@
         /// <returns>Return File exists or not.</returns>
         protected override bool FileExists(ControllerContext controllerContext, string virtualPath)
         {
-            return base.FileExists(controllerContext, virtualPath.Replace("%1", AppSettings.Layout));
+            return base.FileExists(controllerContext, virtualPath.Replace("%1", _appSetting.Layout));
         }
     }
 }

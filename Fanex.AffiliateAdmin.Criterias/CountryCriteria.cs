@@ -11,7 +11,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class CountryCriteria : CriteriaBase
+    public class CountryCriteria : BaseCriteria
     {
         public CountryCriteria()
         {
@@ -20,14 +20,6 @@ namespace Fanex.AffiliateAdmin.Criterias
         }
 
         public string Name { get; set; }
-
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int TotalPages { get; set; }
-
-        public int NRows { get; set; }
 
         public override string GetSettingKey()
         {

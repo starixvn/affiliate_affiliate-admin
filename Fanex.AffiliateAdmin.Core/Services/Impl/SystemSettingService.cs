@@ -1,5 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
@@ -265,18 +266,13 @@
         public IEnumerable<Currency> GetPlayerCurrencyList(PlayerCurrencyCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            var list = GetData<Currency>(criteria);
-            return list;
+            return GetData<Currency>(criteria);
         }
 
         public IEnumerable<AffType> GetAffTypeList(AffTypeCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
-            return GetData<AffType>(criteria).Select(t => new AffType()
-            {
-                TypeID = t.TypeID,
-                Name = Lang.ResourceManager.GetString(t.Name)
-            }); ;
+            return GetData<AffType>(criteria);
         }
 
         public IEnumerable<Currency> GetAffSystemSupportedCurrencyList(SystemSupportedCurrencyCriteria criteria)
@@ -305,14 +301,6 @@
         /// <returns>List commission groups.</returns>
         public IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria = null)
         {
-            if (criteria == null)
-            {
-                criteria = new CommGroupCurrencyCriteria { Currencies = "All" };
-            }
-
-            var session = SessionManager.CurrentSession;
-            criteria.UserCurrencies = session.BuildUserCurrencyParam();
-
             return GetData<CommGroup>(criteria);
         }
 
@@ -358,6 +346,20 @@
             Check.Argument.IsNotNull(criteria, "criteria");
 
             return GetData<SystemSetting>(criteria);
+        }
+
+        /// <summary>
+        /// Get System Date time.
+        /// </summary>
+        /// <param name="criteria">System date time criteria.</param>
+        /// <returns>System date time.</returns>
+        public DateTime GetSystemDateTime()
+        {
+            var systemDateTimeList = GetData<SystemDateTime>(new SystemDateTimeCriteria());
+
+            var systemDateTime = systemDateTimeList.FirstOrDefault();
+
+            return systemDateTime != null ? systemDateTime.DatabaseDateTime : DateTime.Now;
         }
     }
 }

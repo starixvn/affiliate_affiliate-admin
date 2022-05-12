@@ -3,7 +3,9 @@
     using System.Collections.Generic;
     using Criterias;
     using DTO;
-    using Models;
+    using Models.Reports;
+    using Models.AffiliateInfo;
+    using Models.AffiliateManagement;
 
     /// <summary>
     /// Interface Affiliate service.
@@ -39,13 +41,13 @@
         /// <summary>
         /// Add affiliate to favorite.
         /// </summary>
-        /// <param name="criteria">Input criteria.</param>        
+        /// <param name="criteria">Input criteria.</param>
         void AddFavorite(FavoriteCriteria criteria);
 
         /// <summary>
         /// Remove affiliate from Favorite.
         /// </summary>
-        /// <param name="criteria">Input criteria.</param>        
+        /// <param name="criteria">Input criteria.</param>
         void RemoveFavorite(FavoriteCriteria criteria);
 
         /// <summary>
@@ -84,19 +86,19 @@
         /// </summary>
         /// <param name="criteria">Affiliate language criteria.</param>
         void ChangeAffiliateLanguage(AffiliateUpdLanguageCriteria criteria);
-        
+
         /// <summary>
         /// Change affiliate's account type.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        void ChangeAccountType(AffiliateUpdAccountTypeCriteria criteria);       
-        
+        void ChangeAccountType(AffiliateUpdAccountTypeCriteria criteria);
+
         /// <summary>
         /// Change affiliate's commission group.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         void ChangeCommissionGroup(CommGroupAssignCriteria criteria);
-        
+
          /// <summary>
         /// Change affiliate status.
         /// </summary>
@@ -126,6 +128,6 @@
         /// </summary>
         /// <param name="criteria">Input Criteria.</param>
         /// <returns>Customer Info.</returns>
-        Customer GetCustomer(CustomerSelByUserNameCriteria criteria);  
+        Customer GetCustomer(CustomerSelByUserNameCriteria criteria);
     }
 }

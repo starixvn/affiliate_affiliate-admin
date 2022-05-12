@@ -2,6 +2,7 @@
 {
     using System;
     using System.Web.Mvc;
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
@@ -9,15 +10,19 @@
     /// </summary>
     public class RefreshController : Controller
     {
-        /// <summary>
-        /// View System Time.
-        /// </summary>
-        /// <returns>System Time.</returns>
+        private readonly ISystemSettings _systemSettings;
+
+        public RefreshController(
+            ISystemSettings systemSettings)
+        {
+            _systemSettings = systemSettings;
+        }
+
         public ActionResult SystemTime()
         {
             var webTime = DateTime.Now;
 
-            var systemTime = SystemTimeService.GetSystemDateTime();
+            var systemTime = _systemSettings.SystemDateTime;
 
             return View(new Tuple<DateTime, DateTime>(webTime, systemTime));
         }

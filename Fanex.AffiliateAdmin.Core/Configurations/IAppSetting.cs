@@ -8,24 +8,6 @@
     using System.Web.Mvc;
     public interface IAppSetting
     {
-        IEnumerable<Exchange> AffiliateCurrencies { get; }
-
-        IEnumerable<Language> AffLanguages { get; }
-
-        IEnumerable<Language> AffSupportLanguages { get; }
-
-        IEnumerable<Currency> AffSystemAllSupportedCurrencies { get; }
-
-        IEnumerable<Currency> AffSystemSupportedCurrencies { get; }
-
-        IEnumerable<AffType> AffTypes { get; }
-
-        Exchange BaseExchange { get; }
-
-        IEnumerable<Language> BaseLanguages { get; }
-
-        IEnumerable<DeductionType> DeductionTypes { get; }
-
         string DefaultLanguage { get; }
 
         string Environment { get; }
@@ -44,33 +26,19 @@
 
         int LeftString { get; }
 
-        int LicenseeID { get; }
-
         bool LocalTest { get; }
 
         bool IsProduction { get; }
 
         string MailContact { get; }
 
-        IEnumerable<Language> MemberSiteSiteSupportedLanguages { get; }
-
         decimal MinimumWithdrawalAmount { get; }
 
         int PageSize { get; }
 
-        IEnumerable<Currency> PlayerCurrencies { get; }
-
-        IEnumerable<Product> Products { get; }
-
         int ServerId { get; }
 
         string ServerTimeZone { get; }
-
-        string SystemName { get; }
-
-        string SystemDisplayName { get; }
-
-        DateTime SystemStartDate { get; }
 
         string Theme { get; }
 
@@ -78,9 +46,15 @@
 
         string DefaultCurrency { get; }
 
-        IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria = null);
+        string BannerDomain { get; }
 
-        string GetSettingValue(SystemSettingsSelByNameCriteria detailCriteria);
+        IEnumerable<string> BannerFolders { get; }
+
+        long MaxImageSize { get; }
+
+        int ThumbnailHeight { get; }
+
+        int ThumbnailWidth { get; }
 
         string GetValue(string key);
     }

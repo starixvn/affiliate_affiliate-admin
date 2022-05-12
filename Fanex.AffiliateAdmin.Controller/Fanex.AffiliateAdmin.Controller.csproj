@@ -191,15 +191,16 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="AccountController.cs" />
-    <Compile Include="AdjustmentController.cs" />
-    <Compile Include="AffiliateInfoController.cs" />
+    <Compile Include="AffiliateInfo\AdjustmentController.cs" />
+    <Compile Include="AffiliateInfo\AffiliateInfoController.cs" />
     <Compile Include="BaseController.cs" />
-    <Compile Include="AffiliateController.cs" />
+    <Compile Include="AffiliateManagement\AffiliateController.cs" />
     <Compile Include="EmailTestingController.cs" />
     <Compile Include="Helpers\AffiliateInfoCookieHelper.cs" />
     <Compile Include="Helpers\BannerHelper.cs" />
-    <Compile Include="MediaBaseController.cs" />
-    <Compile Include="MediaTextController.cs" />
+    <Compile Include="Helpers\SelectListHelpers.cs" />
+    <Compile Include="MarketingTools\MediaBaseController.cs" />
+    <Compile Include="MarketingTools\MediaTextController.cs" />
     <Compile Include="OneAuthorizationController.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -209,7 +210,7 @@
     <Compile Include="RefreshController.cs" />
     <Compile Include="ConfigurationController.cs" />
     <Compile Include="CommGroupController.cs" />
-    <Compile Include="MemberController.cs" />
+    <Compile Include="AffiliateInfo\MemberController.cs" />
     <Compile Include="Reports\AffiliateCommissionController.cs" />
     <Compile Include="Reports\CompanyWinLossByProductController.cs" />
     <Compile Include="Reports\CompanyWinLossByOverviewController.cs" />
@@ -222,19 +223,19 @@
     <Compile Include="TestWebServiceController.cs" />
     <Compile Include="ExchangeController.cs" />
     <Compile Include="DomainController.cs" />
-    <Compile Include="MediaBannerController.cs" />
+    <Compile Include="MarketingTools\MediaBannerController.cs" />
     <Compile Include="MessageController.cs" />
-    <Compile Include="NoteController.cs" />
+    <Compile Include="AffiliateInfo\NoteController.cs" />
     <Compile Include="NotifyController.cs" />
-    <Compile Include="EmailHistoryController.cs" />
+    <Compile Include="AffiliateManagement\EmailHistoryController.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="PaymentController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ManagementController.cs" />
     <Compile Include="Reports\ReportController.cs" />
-    <Compile Include="StatementController.cs" />
-    <Compile Include="TrackingStatisticController.cs" />
-    <Compile Include="ViewLogController.cs" />
+    <Compile Include="AffiliateInfo\StatementController.cs" />
+    <Compile Include="AffiliateInfo\TrackingStatisticController.cs" />
+    <Compile Include="AffiliateInfo\ViewLogController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.AffiliateAdmin.Core\Fanex.AffiliateAdmin.Core.csproj">
@@ -295,9 +296,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup>
-    <WebReferences Include="Web References\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

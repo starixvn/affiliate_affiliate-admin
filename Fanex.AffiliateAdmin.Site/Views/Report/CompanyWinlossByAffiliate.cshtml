@@ -3,30 +3,30 @@
     Layout = "~/Views/Shared/_LayoutFrame.cshtml";
 }
 @using Fanex.AffiliateAdmin.Core.Configurations
-@using Fanex.AffiliateAdmin.Core.Enumerations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
-@using Fanex.AffiliateAdmin.Services
 
-@model Fanex.AffiliateAdmin.Models.CompanyWLByAffiliateViewModel
+@model Fanex.AffiliateAdmin.Models.Reports.CompanyWLByAffiliateViewModel
 
 @section iconcss{
     affiliate-info
 }
 
 @{
-    var now = SystemTimeService.GetSystemDateTime();
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var now = systemSettings.SystemDateTime;
+    var systemStartDate = systemSettings.SystemStartDate;
     var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : new DateTime(now.Year, now.Month, 1).AddMonths(-1);
     var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now;
 
-    if (fromDate < AppSettings.SystemStartDate)
+    if (fromDate < systemStartDate)
     {
-        fromDate = AppSettings.SystemStartDate;
+        fromDate = systemStartDate;
     }
 
-    if (toDate < AppSettings.SystemStartDate)
+    if (toDate < systemStartDate)
     {
-        toDate = AppSettings.SystemStartDate;
+        toDate = systemStartDate;
     }
 
     if (fromDate > now)
@@ -49,7 +49,7 @@
 <div class="search-panel search-company-winloss no-border">
     @RazorHelper.SearchPanel(".search-form", string.Format(Lang.CompanyWinLossReportInfo, string.Empty), false, true)
     @using (Html.BeginForm("CompanyWinloss", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
-    {            
+    {
         <div class="span12 search-form">
             <div class="row-fluid row-form">
                 <div class="cell ">
@@ -62,11 +62,11 @@
                 </div>
                 <div class="cell">
                     <label for="FromDate" class="txt">@Lang.From</label>
-                    @Html.DatePicker("FromDate", fromDate, AppSettings.SystemStartDate, now, false)
+                    @Html.DatePicker("FromDate", fromDate, systemStartDate, now, false)
                 </div>
                 <div class="cell width-160">
                     <label for="ToDate" class="txt" style="min-width: 50px;">@Lang.To</label>
-                    @Html.DatePicker("ToDate", toDate, AppSettings.SystemStartDate, now, false)
+                    @Html.DatePicker("ToDate", toDate, systemStartDate, now, false)
                 </div>
             </div>
             <div class="row-fluid row-form end-search">
@@ -300,7 +300,7 @@
             customPager: true,
             allowTruncate: false,
             gridExpandHeight: 250,
-            
+
             showFooter: true,
             customizeHeader: true,
             showDistinctRow: false
@@ -347,6 +347,6 @@
             IsAbs: true
         };
     </script>
-    
+
     @Scripts.Render("~/bundles/companywinloss")
 }

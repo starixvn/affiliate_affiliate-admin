@@ -5,15 +5,15 @@
     <div class="row-fluid">
         <div class="span12 info-header">
             <div class="span3">
-                <img style="margin-bottom: 2px;" src="@Url.Content(string.Format("~/www/dist/style/{0}/assets/static/banner_top.png", Fanex.AffiliateAdmin.Core.Configurations.AppSettings.Layout))" alt="Banner Top"/>
+                <img style="margin-bottom: 2px;" src="@Url.Content(string.Format("~/www/dist/style/{0}/assets/static/banner_top.png", Fanex.AffiliateAdmin.Core.Configurations.AppSetting.Instance.Layout))" alt="Banner Top"/>
             </div>
             <div class="span4 grp-welcome">
                 <span class="welcome"></span>
                 <div class="grp-info">
-                    <strong>@Lang.Welcome, @currentSession.Username</strong> 
+                    <strong>@Lang.Welcome, @currentSession.Username</strong>
                     @if (currentSession.IsIT)
                     {
-                        <a id="changePassword" href="#">[@Lang.ChangePassword]</a> 
+                        <a id="changePassword" href="#">[@Lang.ChangePassword]</a>
                         <a href="@Url.Content("~/Account/Logout")">[@Lang.Logout]</a>
                     }
                 </div>

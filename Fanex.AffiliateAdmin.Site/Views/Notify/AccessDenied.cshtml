@@ -2,10 +2,15 @@
 @{
     ViewBag.Title = Lang.AccessDenied;
     Layout = "~/Views/Shared/_LayoutNoHeader.cshtml";
+
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+
+    var baseLanguages = systemSettings.BaseLanguages;
 }
 
 @section css{
-    <link href="@Url.RenderLink(string.Format("~/www/dist/style/{0}/notify.css", AppSettings.Layout))" rel="stylesheet" type="text/css" />
+    <link href="@Url.RenderLink(string.Format("~/www/dist/style/{0}/notify.css", appSetting.Layout))" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 }
 <div class="header">
@@ -26,10 +31,11 @@
             }
             else
             {
-                for (var i = 0; i <= AppSettings.BaseLanguages.Count() - 1; i++)
+                var baseLanguageNumbers = baseLanguages.Count() - 1;
+                for (var i = 0; i <= baseLanguageNumbers; i++)
                 {
-                    var lang = AppSettings.BaseLanguages.ElementAt(i);
-                    <li class="@(i == (AppSettings.BaseLanguages.Count() - 1) ? "end" : string.Empty)">
+                    var lang = baseLanguages.ElementAt(i);
+                    <li class="@(i == baseLanguageNumbers ? "end" : string.Empty)">
                         @switch (lang.LanguageID)
                         {
                             case "zh-TW":

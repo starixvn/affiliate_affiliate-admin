@@ -44,7 +44,7 @@
         /// <summary>
         /// Send email to affiliate.
         /// </summary>
-        public void Send() 
+        public void Send()
         {
             if (EmailTemplateType == EmailTemplateType.AffiliateApprove)
             {
@@ -57,7 +57,7 @@
                 emailTemplate.ResolvePath(Server).Send(EmailOfAffiliate, EmailTemplateInfo);
             }
         }
-       
+
         public virtual void Approve()
         {
             // 1. ApprovalEmail
@@ -76,7 +76,7 @@
         protected void ResolvePath(string emailName)
         {
             Language = string.IsNullOrEmpty(Language) ? "en-US" : Language;
-            
+
             var virtualSubjectPath = string.Format(
                               "~/Views/Shared/Email/{0}/Subject.{1}.{2}.cshtml",
                               EmailTemplateType.ToString(),
@@ -85,7 +85,7 @@
 
             var virtualBodyPath = string.Format(
                 "~/Views/Shared/Email/{0}/{1}/Body.{2}.{3}.cshtml",
-                EmailTemplateType.ToString(), 
+                EmailTemplateType.ToString(),
                 FormatType.ToString(),
                 emailName,
                 Language);
@@ -98,7 +98,7 @@
         {
             var emailSubject = ParseTemplate(SubjectPath, info);
             var emailBody = ParseTemplate(BodyPath, info);
-            Utilities.Common.SendEmail(emailBody, mailTo, emailSubject, AppSettings.ITMail);
+            Common.SendEmail(emailBody, mailTo, emailSubject, AppSetting.Instance.ITMail);
         }
 
         /// <summary>

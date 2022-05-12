@@ -24,10 +24,10 @@
         public CompanyWinlossByProductController(
             IAppSetting appSetting,
             IReportService reportService,
-            ICommGroupService commGroupService,
-            ISystemSettingService systemSettingService
+            ISystemSettings systemSettings,
+            ICommGroupService commGroupService
             )
-            : base(appSetting, reportService, commGroupService, systemSettingService)
+            : base(appSetting, reportService, systemSettings, commGroupService)
         {
         }
 
@@ -47,7 +47,7 @@
 
             var serializer = new JavaScriptSerializer();
 
-            ViewBag.Products = serializer.Serialize(AppSetting.Products.Select(x => new
+            ViewBag.Products = serializer.Serialize(SystemSettings.Products.Select(x => new
             {
                 Id = x.ProductID,
                 Name = x.ProductName
@@ -95,17 +95,17 @@
             if (criteria.ByAffiliate)
             {
                 criteria.AffName = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).UserName;
-                criteria.AffTypes = string.Join(",", AppSetting.AffTypes.Select(t => t.TypeID));
-                criteria.CommGroups = string.Join(",", SystemSettingService.GetCommGroups().Select(t => t.GroupID));
-                criteria.PreferLanguages = string.Join(",", AppSetting.AffSupportLanguages.Select(t => t.LanguageID));
+                criteria.AffTypes = string.Join(",", SystemSettings.AffTypes.Select(t => t.TypeID));
+                criteria.CommGroups = string.Join(",", SystemSettings.GetCommGroups().Select(t => t.GroupID));
+                criteria.PreferLanguages = string.Join(",", SystemSettings.AffSupportLanguages.Select(t => t.LanguageID));
                 criteria.ExcludeTest = false;
             }
 
             if (criteria.GroupBy == 1)
             {
                 // If group by is month, we need to first day and last day of month.
-                criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSetting.SystemStartDate);
-                criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
+                criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, SystemSettings.SystemStartDate);
+                criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemSettings.SystemDateTime);
             }
 
             criteria.IsITAdmin = session.IsIT;

@@ -5,7 +5,6 @@
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
-@using Fanex.AffiliateAdmin.Services
 @section iconcss{
 commgroup
 }
@@ -13,14 +12,15 @@ commgroup
     @RazorHelper.ListSubmenu(SubMenu.CommGroup, 0, "CommissionGroup")
 }
 @{
-    var now = SystemTimeService.GetSystemDateTime();
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var now = systemSettings.SystemDateTime;
 }
 <div class="search-panel search-commgroup">
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
     @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
     @using (Html.BeginForm("GetList", "CommGroup", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
-    {    
+    {
         <div class="span12 search-form">
             <div class="row-fluid row-form end-search">
                 <div class="cell">
@@ -33,7 +33,7 @@ commgroup
                 </div>
                 <div class="cell">
                     <label for="Date" class="txt">@Lang.Month</label>
-                    @Html.MonthPicker("Date", now, AppSettings.SystemStartDate, now, new { @class = "width-140" })                
+                    @Html.MonthPicker("Date", now, systemSettings.SystemStartDate, now, new { @class = "width-140" })
                 </div>
             </div>
             <div class="row-fluid row-form btn-action">
@@ -122,14 +122,14 @@ commgroup
                      HeaderText: "<span title='@Lang.MinAMTTooltip'>@Lang.MinAmount</span>",
                      Width: 70, Name: "MinAmount", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true
                 },
-                { 
-                    HeaderText: "<span title='@Lang.MaxAMTTooltip'>@Lang.MaxAmount</span>", 
+                {
+                    HeaderText: "<span title='@Lang.MaxAMTTooltip'>@Lang.MaxAmount</span>",
                     Width: 70, Name: "MaxAmount", HeaderAlign: "center", CellAlign: "right", AllowTruncate: true },
-                { 
-                    HeaderText: "<span title='@Lang.MinQMTooltip'>@Lang.MinQM</span>", 
+                {
+                    HeaderText: "<span title='@Lang.MinQMTooltip'>@Lang.MinQM</span>",
                     Width: 70, Name: "MinQM", HeaderAlign: "center", CellAlign: "right" },
-                { 
-                    HeaderText: "<span title='@Lang.MaxQMTooltip'>@Lang.MaxQM</span>", 
+                {
+                    HeaderText: "<span title='@Lang.MaxQMTooltip'>@Lang.MaxQM</span>",
                     Width: 70, Name: "MaxQM", HeaderAlign: "center", CellAlign: "right" },
                 { HeaderText: "@Lang.Commission", Width: 70, Name: "Commission", HeaderAlign: "center", CellAlign: "center", FormatNumber: AFFILIATE.FORMATNUMBER, AllowTruncate: true },
                 { HeaderText: "@Lang.SharingFee", Width: 120, Name: "Deductions", HeaderAlign: "center", CellAlign: "left" },

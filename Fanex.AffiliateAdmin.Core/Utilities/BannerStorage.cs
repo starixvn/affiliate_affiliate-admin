@@ -6,6 +6,7 @@
     using System.IO;
     using System.Linq;
     using System.Web;
+    using System.Web.Mvc;
     using Controller.Helpers;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
@@ -24,7 +25,9 @@
 
         private static readonly string[] AllowedExtensions = new string[] { ".gif", ".jpg", ".png", ".jpeg", ".swf" };
 
-        private readonly IMediaSettingService _mediaSettingService = new MediaSettingService();
+        private readonly IAppSetting _appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+        private readonly ISystemSettings _systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+        private readonly IMediaSettingService _mediaSettingService = DependencyResolver.Current.GetService<IMediaSettingService>();
 
         private string _bannerFolder;
 
@@ -71,7 +74,7 @@
                     string subCategoryName, affTypeName;
                     string categoryName = subCategoryName = affTypeName = string.Empty;
 
-                    var categoryEntity = MediaSettings.BannerCategories.FirstOrDefault(x => x.TypeId == Category);
+                    var categoryEntity = _mediaSettingService.GetBannerCategories().FirstOrDefault(x => x.TypeId == Category);
                     if (categoryEntity != null)
                     {
                         categoryName = categoryEntity.Value;
@@ -86,7 +89,7 @@
                         subCategoryName = SubCategory != null ? subCategoryEntity.Value : string.Empty;
                     }
 
-                    var firstAffType = AppSettings.AffTypes.FirstOrDefault(x => x.TypeID == AffType);
+                    var firstAffType = _systemSettings.AffTypes.FirstOrDefault(x => x.TypeID == AffType);
 
                     if (firstAffType != null)
                     {
@@ -104,7 +107,7 @@
         {
             get
             {
-                return MediaSettings.BannerFolders.Select(x => Path.Combine(x, BannerFolder, BannerFileName));
+                return _appSetting.BannerFolders.Select(x => Path.Combine(x, BannerFolder, BannerFileName));
             }
         }
 
@@ -112,7 +115,7 @@
         {
             get
             {
-                return MediaSettings.BannerFolders.Select(x => Path.Combine(x, BannerFolder, ThumbnailFileName));
+                return _appSetting.BannerFolders.Select(x => Path.Combine(x, BannerFolder, ThumbnailFileName));
             }
         }
 
@@ -142,9 +145,9 @@
                 return Lang.errFileExtension;
             }
 
-            if (File.ContentLength > MediaSettings.MaxImageSize)
+            if (File.ContentLength > _appSetting.MaxImageSize)
             {
-                return string.Format(Lang.MaxFileSizeLimit, MediaSettings.MaxImageSize);
+                return string.Format(Lang.MaxFileSizeLimit, _appSetting.MaxImageSize);
             }
 
             if (HasExistedBannerFile())
@@ -157,7 +160,7 @@
                 return Lang.AccessDenied;
             }
 
-            foreach (var folder in MediaSettings.BannerFolders)
+            foreach (var folder in _appSetting.BannerFolders)
             {
                 var bannerFile = Path.Combine(folder, BannerFolder, BannerFileName);
 
@@ -172,7 +175,7 @@
 
         private bool EnsureFoldersExisted(string bannerFolder)
         {
-            foreach (var folder in MediaSettings.BannerFolders)
+            foreach (var folder in _appSetting.BannerFolders)
             {
                 var bannerDir = Path.Combine(folder, bannerFolder);
 
@@ -256,7 +259,7 @@
                 }
 
                 var isFileExist = false;
-                foreach (var folder in MediaSettings.BannerFolders)
+                foreach (var folder in _appSetting.BannerFolders)
                 {
                     var oldFullPath = Path.Combine(folder, oldRelativeBannerPath);
                     var newFullPath = Path.Combine(folder, BannerFolder, BannerFileName);
@@ -284,7 +287,7 @@
             var oldThumbnailRelativePath = oldRelativeBannerPath.Replace(oldBannerFileName, oldThumbnailFileName);
             var newThumbnailRelativePath = Path.Combine(BannerFolder, GetThumbnailFileName(BannerFileName));
 
-            foreach (var folder in MediaSettings.BannerFolders)
+            foreach (var folder in _appSetting.BannerFolders)
             {
                 var oldThumbnailFullPath = Path.Combine(folder, oldThumbnailRelativePath);
                 var newThumbnailFullPath = Path.Combine(folder, newThumbnailRelativePath);

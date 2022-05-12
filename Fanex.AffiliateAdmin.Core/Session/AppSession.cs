@@ -32,7 +32,7 @@
                     }
                 }
 
-                return AppSettings.DefaultLanguage;
+                return AppSetting.Instance.DefaultLanguage;
             }
 
             set

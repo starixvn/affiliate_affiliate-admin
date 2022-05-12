@@ -6,7 +6,7 @@
     /// <summary>
     /// Commission group criteria class.
     /// </summary>
-    public class CommGroupCriteria : CriteriaBase
+    public class CommGroupCriteria : BaseCriteria
     {
         public string GroupName { get; set; }
 
@@ -19,12 +19,6 @@
         public int GroupID { get; set; }
 
         public string GroupIDList { get; set; }
-
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int NRows { get; set; }
 
         public int LicenseeId { get; set; }
 

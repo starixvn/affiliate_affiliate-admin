@@ -1,11 +1,15 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Configurations
 @model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+@{
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+    var layout = appSetting.Layout;
+}
 <table width="100%">
     <tr>
-        <td valign="top" align="center" background="@Model.AdminRootLink/www/dist/style/@AppSettings.Layout/assets/static/emailBg.jpg">
+        <td valign="top" align="center" background="@Model.AdminRootLink/www/dist/style/@(layout)/assets/static/emailBg.jpg">
             <table width="588" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                    <td height="77" background="@Model.AdminRootLink/www/dist/style/@AppSettings.Layout/assets/static/emailBanner.jpg">
+                    <td height="77" background="@Model.AdminRootLink/www/dist/style/@(layout)/assets/static/emailBanner.jpg">
                     </td>
                 </tr>
                 <tr>
@@ -14,8 +18,10 @@
                 </tr>
                 <tr>
                     <td align="left" bgcolor="@Model.HeaderBGColor" height="30">
-                        &nbsp;&nbsp;<strong><font style="color: @Model.HeaderFontColor; font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
-                            text-transform: uppercase;">Thông tin của bạn</font></strong>
+                        &nbsp;&nbsp;<strong>
+                            <font style="color: @Model.HeaderFontColor; font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
+                            text-transform: uppercase;">Thông tin của bạn</font>
+                        </strong>
                     </td>
                 </tr>
                 <tr>
@@ -25,23 +31,24 @@
                                 <td style="background-color:@Model.ContentBGColor !important; padding: 20px 15px;">
                                     <font style="font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
                                         <font style="font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
-                                        <strong>Kính gửi @Model.FirstName,</strong><br />
-                                        <br />
-                                        Xin chúc mừng, đơn xin tham gia chương trình liên kết @Model.SystemName của bạn đã được chấp nhận.<br /><br />
+                                            <strong>Kính gửi @Model.FirstName,</strong><br />
+                                            <br />
+                                            Xin chúc mừng, đơn xin tham gia chương trình liên kết @Model.SystemName của bạn đã được chấp nhận.<br /><br />
 
-                                        Chúng tôi rất vui mừng vì bạn đã trở thành thành viên của chương trình kết nối @Model.SystemName  và hy vọng rằng chúng ta sẽ xây dựng được mối quan hệ kinh doanh tốt đẹp. Xin vui lòng sử dụng thông tin dưới đây để đăng nhập tài khoản Kết Nối:<br /><br />
+                                            Chúng tôi rất vui mừng vì bạn đã trở thành thành viên của chương trình kết nối @Model.SystemName  và hy vọng rằng chúng ta sẽ xây dựng được mối quan hệ kinh doanh tốt đẹp. Xin vui lòng sử dụng thông tin dưới đây để đăng nhập tài khoản Kết Nối:<br /><br />
 
-                                        Text link: <a href="@Model.AffiliateSiteUrl">@Model.AffiliateSiteUrl</a><br />
-                                        Tên tài khoản: @Model.Username<br />
-                                        Mật mã: @Model.Password<br /><br />
+                                            Text link: <a href="@Model.AffiliateSiteUrl">@Model.AffiliateSiteUrl</a><br />
+                                            Tên tài khoản: @Model.Username<br />
+                                            Mật mã: @Model.Password<br /><br />
 
-                                        Sau khi đăng nhập, bạn sẽ tìm thấy liên kết URL, biểu ngữ và tài liệu quảng cáo. Hãy gửi lưu lượng Web đến và bắt đầu kiếm tiền ngay hôm nay.<br /><br />
+                                            Sau khi đăng nhập, bạn sẽ tìm thấy liên kết URL, biểu ngữ và tài liệu quảng cáo. Hãy gửi lưu lượng Web đến và bắt đầu kiếm tiền ngay hôm nay.<br /><br />
 
-                                        Mọi thắc mắc và yêu cầu xin vui lòng liên hệ ngay với chúng tôi.<br /><br />
+                                            Mọi thắc mắc và yêu cầu xin vui lòng liên hệ ngay với chúng tôi.<br /><br />
 
-                                        Chân thành cảm ơn,<br /><br />
-                                        Bộ phận liên kết @Model.SystemName.<br />
-                                        <a href="mailto:@Model.MailContact">@Model.MailContact</a> </font>
+                                            Chân thành cảm ơn,<br /><br />
+                                            Bộ phận liên kết @Model.SystemName.<br />
+                                            <a href="mailto:@Model.MailContact">@Model.MailContact</a>
+                                        </font>
                                 </td>
                             </tr>
                         </table>

@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
-    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
@@ -20,10 +19,10 @@
         public AffiliateCommissionController(
             IAppSetting appSetting,
             IReportService reportService,
-            ICommGroupService commGroupService,
-            ISystemSettingService systemSettingService
+            ISystemSettings systemSettings,
+            ICommGroupService commGroupService
             )
-            : base(appSetting, reportService, commGroupService, systemSettingService)
+            : base(appSetting, reportService, systemSettings, commGroupService)
         {
         }
 
@@ -39,8 +38,8 @@
             criteria.IsITAdmin = session.IsIT;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
-            criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, AppSetting.SystemStartDate);
-            criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemTimeService.GetSystemDateTime());
+            criteria.FromDate = Common.GetFirstDayOfMonth(criteria.FromDate, SystemSettings.SystemStartDate);
+            criteria.ToDate = Common.GetLastDayOfMonth(criteria.ToDate, SystemSettings.SystemDateTime);
 
             var data = ReportService.GetAffiliateCommission(criteria);
             var groups = GroupByRowIndex(data.AffiliateCommissionList);
@@ -53,7 +52,7 @@
                 SubTotalData = groupsByCurrency,
                 TotalRowData = new AffiliateCommissionByProduct
                 {
-                    Currency = AppSettings.BaseExchange.Code,
+                    Currency = SystemSettings.BaseExchange.Code,
                     AffiliateCommissionByProductList = data.AffiliateCommissionInSystemCurrency
                 },
                 HasMultipleRows = groups.Count() > 1,
@@ -76,9 +75,9 @@
             const int GroupByMonth = 1;
             var affiliate = AffiliateInfoCookieHelper.GetAffiliate(HttpContext);
             criteria.AffName = affiliate.UserName;
-            criteria.AffTypes = string.Join(",", AppSetting.AffTypes.Select(t => t.TypeID));
-            criteria.CommGroups = string.Join(",", SystemSettingService.GetCommGroups().Select(t => t.GroupID));
-            criteria.PreferLanguages = string.Join(",", AppSetting.AffSupportLanguages.Select(t => t.LanguageID));
+            criteria.AffTypes = string.Join(",", SystemSettings.AffTypes.Select(t => t.TypeID));
+            criteria.CommGroups = string.Join(",", SystemSettings.GetCommGroups().Select(t => t.GroupID));
+            criteria.PreferLanguages = string.Join(",", SystemSettings.AffSupportLanguages.Select(t => t.LanguageID));
             criteria.Currencies = affiliate.Currency.ToString();
             criteria.GroupBy = GroupByMonth;
 

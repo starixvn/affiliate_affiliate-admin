@@ -7,7 +7,7 @@
     /// <summary>
     /// Member Win Loss Overview Criteria.
     /// </summary>
-    public class MemberWinLossOverviewCriteria : CriteriaBase
+    public class MemberWinLossOverviewCriteria : BaseCriteria
     {
         [SpParam(Ignored = true)]
         public bool ByAffiliate { get; set; }
@@ -38,12 +38,8 @@
 
         public bool IsITAdmin { get; set; }
 
-        public int PageSize { get; set; }
-
         [SpParam(SqlParamName = "PageCurrent")]
-        public int PageIndex { get; set; }
-
-        public int NRows { get; set; }
+        public new int PageIndex { get; set; }
 
         public int Duration { get; set; }
 

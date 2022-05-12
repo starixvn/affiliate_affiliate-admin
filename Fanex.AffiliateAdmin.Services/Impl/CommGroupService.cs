@@ -13,9 +13,11 @@
 
     public class CommGroupService : QueryService, ICommGroupService
     {
-        public CommGroupService()
-            : base(null)
+        private readonly ISystemSettings _systemSettings;
+
+        public CommGroupService(ISystemSettings systemSettings) : base(null)
         {
+            _systemSettings = systemSettings;
         }
 
         public IEnumerable<CommGroupTierSetting> GetTierSettings(TierSettingCriteria criteria)
@@ -65,13 +67,13 @@
             }
         }
 
-        private static void GetCommGroupSettings(
+        private void GetCommGroupSettings(
             IEnumerable<CommGroupTierSetting> tierSettings,
             Dictionary<string, object> products,
             CommGroup group,
             IEnumerable<DeductionSetting> deductionSettings)
         {
-            var allDeductions = AppSettings.DeductionTypes;
+            var allDeductions = _systemSettings.DeductionTypes;
 
             foreach (var detail in tierSettings)
             {

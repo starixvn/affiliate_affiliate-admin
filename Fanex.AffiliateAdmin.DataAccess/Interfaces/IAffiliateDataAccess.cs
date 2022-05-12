@@ -2,7 +2,9 @@
 {
     using Criterias;
     using DTO;
-    using Models;
+    using Models.Reports;
+    using Models.AffiliateManagement;
+    using Models.AffiliateInfo;
 
     /// <summary>
     /// Interface AffiliateDataAccess.

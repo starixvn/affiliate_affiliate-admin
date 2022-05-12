@@ -10,9 +10,10 @@ namespace Fanex.AffiliateAdmin.Site
     {
         public static void RegisterSentry()
         {
-            var env = AppSettings.Environment;
-            var dsn = AppSettings.GetValue("SentryDsn");
-            var category = AppSettings.GetValue("LoggingCategory");
+            var appSetting = AppSetting.Instance;
+            var env = appSetting.Environment;
+            var dsn = appSetting.GetValue("SentryDsn");
+            var category = appSetting.GetValue("LoggingCategory");
 
             if (!string.IsNullOrEmpty(dsn))
             {

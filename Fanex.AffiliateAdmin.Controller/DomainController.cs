@@ -12,9 +12,8 @@
     using DTO;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
-    using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Services;
-    using Models;
+    using Models.Domain;
     using Resources;
 
     [FunctionAuth(Function = FunctionPolicyNames.Domain)]
@@ -24,6 +23,8 @@
         #region Services
 
         private readonly IDomainService _domainService;
+        private readonly ISystemSettings _systemSettings;
+        private readonly ISystemSettingService _systemSettingService;
 
         #endregion Services
 
@@ -34,10 +35,14 @@
         /// </summary>
         /// <param name="service">Domain Service.</param>
         public DomainController(
+            IAppSetting appSetting,
             IDomainService service,
-            ISystemSettingService systemSettingService) : base(systemSettingService)
+            ISystemSettings systemSettings,
+            ISystemSettingService systemSettingService) : base(appSetting)
         {
             _domainService = service;
+            _systemSettings = systemSettings;
+            _systemSettingService = systemSettingService;
         }
 
         #endregion Constructor
@@ -157,7 +162,7 @@
                 UserID = SessionManager.CurrentSession.CustID,
                 DomainID = Convert.ToInt32(id),
                 IP = Remote.GetClientIPAddress(),
-                LicenseeId = AppSettings.LicenseeID
+                LicenseeId = _systemSettings.LicenseeID
             };
             _domainService.AffDomainDelete(criteria);
 
@@ -283,7 +288,7 @@
                 UserID = SessionManager.CurrentSession.CustID,
                 DomainID = Convert.ToInt32(id),
                 IP = Remote.GetClientIPAddress(),
-                LicenseeId = AppSettings.LicenseeID
+                LicenseeId = _systemSettings.LicenseeID
             };
             _domainService.MemDomainDelete(criteria);
 
@@ -317,7 +322,7 @@
                 Status = true
             };
 
-            model.AddCountryList(SystemSettingService.GetCountryList(new CountrySelectCriteria
+            model.AddCountryList(_systemSettingService.GetCountryList(new CountrySelectCriteria
             {
                 PageSize = 300,
                 PageIndex = 1
@@ -382,7 +387,7 @@
                 AffDomain = result.AffDomainId
             };
 
-            model.AddCountryList(SystemSettingService.GetCountryList(new CountrySelectCriteria
+            model.AddCountryList(_systemSettingService.GetCountryList(new CountrySelectCriteria
             {
                 PageSize = 300,
                 PageIndex = 1
@@ -440,7 +445,7 @@
                 UserID = SessionManager.CurrentSession.CustID,
                 Id = id,
                 IP = Remote.GetClientIPAddress(),
-                LicenseeId = AppSettings.LicenseeID
+                LicenseeId = _systemSettings.LicenseeID
             };
             _domainService.DomainControlDelete(criteria);
 

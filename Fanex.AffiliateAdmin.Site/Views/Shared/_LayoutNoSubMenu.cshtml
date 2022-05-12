@@ -1,13 +1,14 @@
-﻿@{
+﻿@using Fanex.AffiliateAdmin.Core.Configurations
+@{
     var currentSession = SessionManager.CurrentSession;
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
 }
-@using Fanex.AffiliateAdmin.Core.Configurations
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
-    <link href="@Url.RenderLink(string.Format("~/www/dist/style/{0}/assets/static/favicon.jpg", AppSettings.Layout))" rel="shortcut icon" type="image/jpg" />
+    <link href="@Url.RenderLink(string.Format("~/www/dist/style/{0}/assets/static/favicon.jpg", appSetting.Layout))" rel="shortcut icon" type="image/jpg" />
     <meta name="viewport" content="width=device-width" />
     <link href="@Url.RenderLink("~/www/dist/style/jquery-ui.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.RenderLink("~/www/dist/style/bootstrap.css")" rel="stylesheet" type="text/css" />
@@ -17,7 +18,7 @@
 <body>
     @Html.Hidden("IsIT", currentSession.IsIT ? 1 : 0)
     @Html.Hidden("BaseUrl", Url.Content("~/"))
-    @Html.Hidden("TimeZone", AppSettings.ServerTimeZone)
+    @Html.Hidden("TimeZone", appSetting.ServerTimeZone)
     <div class="container">
         <div class="row-fulid">
             @if (currentSession.ApplicationMode == Fanex.AffiliateAdmin.Core.Enumerations.AppMode.Self)

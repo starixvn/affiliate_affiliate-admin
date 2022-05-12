@@ -4,6 +4,9 @@
 @{
     ViewBag.Title = Lang.EditMessage;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var affSupportLanguages = systemSettings.AffSupportLanguages;
 }
 
 @using (Html.BeginForm("EditMessage", "Message", FormMethod.Post, new { @class = "form-horizontal" }))
@@ -17,7 +20,7 @@
                 @Html.CheckBoxFor(m => m.Important)
             </div>
         </div>
-        @foreach (var language in AppSettings.AffSupportLanguages)
+        @foreach (var language in affSupportLanguages)
         {
             <div class="control-group">
                 <label class="control-label">@language.LanguageName</label>

@@ -12,15 +12,20 @@ namespace Fanex.AffiliateAdmin.Controller
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
-    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Services;
 
     [FunctionAuth(Function = FunctionPolicyNames.SystemSettings)]
     public class TestWebServiceController : BaseController
     {
-        public TestWebServiceController(ISystemSettingService systemSettingService) : base(systemSettingService)
-        {}
+        private readonly ISystemSettings _systemSettings;
+
+        public TestWebServiceController(
+            IAppSetting appSetting,
+            ISystemSettings systemSettings) : base(appSetting)
+        {
+            _systemSettings = systemSettings;
+        }
 
         /// <summary>
         /// Show view Note.
@@ -40,22 +45,22 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 case "GetRegList":
                     {
-                        responseText = ServiceWrapper.GetRegList(AppSettings.SystemName, criteria.Date).ToString();
+                        responseText = ServiceWrapper.GetRegList(_systemSettings.SystemName, criteria.Date).ToString();
                         break;
                     }
                 case "UpdateBtage":
                     {
-                        responseText = ServiceWrapper.UpdateBtage(AppSettings.SystemName, criteria.Licensee, criteria.Btag).ToString();
+                        responseText = ServiceWrapper.UpdateBtage(_systemSettings.SystemName, criteria.Licensee, criteria.Btag).ToString();
                         break;
                     }
                 case "GetLicenseeCustInfo":
                     {
-                        responseText = ServiceWrapper.GetLicenseeCustInfo(AppSettings.SystemName, criteria.Licensee).ToString();
+                        responseText = ServiceWrapper.GetLicenseeCustInfo(_systemSettings.SystemName, criteria.Licensee).ToString();
                         break;
                     }
                 case "Transfer":
                     {
-                        responseText = ServiceWrapper.Transfer(AppSettings.SystemName, criteria.Licensee, criteria.Amount, criteria.DummyAccount).ToString();
+                        responseText = ServiceWrapper.Transfer(_systemSettings.SystemName, criteria.Licensee, criteria.Amount, criteria.DummyAccount).ToString();
                         break;
                     }
                 default:

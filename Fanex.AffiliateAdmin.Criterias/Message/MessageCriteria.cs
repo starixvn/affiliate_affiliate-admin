@@ -7,7 +7,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MessageCriteria : CriteriaBase
+    public class MessageCriteria : BaseCriteria
     {
         [SpParam(Ignored = true)]
         public int SearchBy { get; set; }
@@ -20,16 +20,6 @@
         public DateTime? ToDate { get; set; }
 
         public bool? Important { get; set; }
-
-        public string Language { get; set; }
-
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int TotalPages { get; set; }
-
-        public int NRows { get; set; }
 
         public override string GetSettingKey()
         {

@@ -5,17 +5,9 @@
     /// <summary>
     /// Select criteria class.
     /// </summary>
-    public class AffTypeSelectCriteria : CriteriaBase
+    public class AffTypeSelectCriteria : BaseCriteria
     {
         public string Name { get; set; }
-
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int TotalPages { get; set; }
-
-        public int NRows { get; set; }
 
         public override string GetSettingKey()
         {

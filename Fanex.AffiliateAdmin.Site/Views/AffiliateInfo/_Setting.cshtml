@@ -4,6 +4,11 @@
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.Core.Configurations
 
+@{
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var affTypes = systemSettings.AffTypes;
+}
+
 <div class="left-group">
     <div class="left-tab"><a href="#"><span>@Lang.Setting</span></a></div>
     <div class="left-tab-info">
@@ -15,7 +20,7 @@
                         @{
                             var currentAccountTypes = AffiliateSettings.AccountTypes.FirstOrDefault(a => a.TypeID == Model.AffiliateInfo.AffLevel);
                         }
-                         
+
                         <a title="@(currentAccountTypes.TypeName)" id="accountType" data-test-level="@currentAccountTypes.TypeID" href="javascript:void(0);">@(currentAccountTypes.TypeName.LeftString(12))</a>
                     </td>
                 </tr>
@@ -23,20 +28,20 @@
                 {
                     <tr>
                         <td>@Lang.AffType</td>
-                        <td class="col-right">  
+                        <td class="col-right">
                             <select id="slAffType" name="slAffType" style="display: none;" class="width-ex-70 nopadding">
-                                @foreach (var type in AppSettings.AffTypes)
+                                @foreach (var type in affTypes)
                                 {
                                 <option value="@type.TypeID" @(type.TypeID == Model.AffiliateInfo.AffType ? "selected" : string.Empty) >@type.Name</option>
                                 }
-                            </select>   
-                            @if (AppSettings.AffTypes.Count() > 1)
+                            </select>
+                            @if (affTypes.Count() > 1)
                             {
-                                <span class="link-box-active" id="spAffType" title="@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name)">@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name.LeftString(12))</span>
+                                <span class="link-box-active" id="spAffType" title="@(affTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name)">@(affTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name.LeftString(12))</span>
                             }
                             else
                             {
-                                <span title="@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name)">@(AppSettings.AffTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name.LeftString(12))</span>
+                                <span title="@(affTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name)">@(affTypes.Where(a => a.TypeID == Model.AffiliateInfo.AffType).FirstOrDefault().Name.LeftString(12))</span>
                             }
                         </td>
                     </tr>
@@ -74,12 +79,12 @@
                                 <option value="Disapproved" @(Model.AffiliateInfo.Status.Equals("disapproved", StringComparison.CurrentCultureIgnoreCase) ? "selected='selected'" : string.Empty)>@Lang.Disapproved</option>
                                 <option value="Pending" @(Model.AffiliateInfo.Status.Equals("pending", StringComparison.CurrentCultureIgnoreCase) ? "selected='selected'" : string.Empty)>@Lang.Pending</option>
                             </select>
-                            
+
                             <span class="link-box-active" id="spStatus">@RazorHelper.GetAffiiateStatus(Model.AffiliateInfo.Status)</span>
                         </td>
                     </tr>
                 }
-                
+
             </tbody>
         </table>
     </div>

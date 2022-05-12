@@ -1,18 +1,20 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Mvc
-@using Fanex.AffiliateAdmin.Models
-@using Fanex.AffiliateAdmin.Core.Services.Impl
-@using Fanex.AffiliateAdmin.Core.Configurations
+@using Fanex.AffiliateAdmin.Models.MarketingTools
 @using Fanex.AffiliateAdmin.Core.Utilities
+@using Fanex.AffiliateAdmin.Core.Configurations
 @model BannerListViewModel
 @{
     ViewBag.Title = Lang.BannerList;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section iconcss{
-marketing-tools
+    marketing-tools
 }
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.Media, 0, "MarketingTools")
+}
+@{
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
 }
 <div class="search-panel search-bannerList">
     <div class="ic-reload" title="@Lang.RefreshPage">
@@ -78,8 +80,8 @@ marketing-tools
             Image: "@Lang.Image"
         };
 
-        var thumbnailHeight = @MediaSettings.ThumbnailHeight;
-        var thumbnailWidth = @MediaSettings.ThumbnailWidth;
+        var thumbnailHeight = @appSetting.ThumbnailHeight;
+        var thumbnailWidth = @appSetting.ThumbnailWidth;
 
         var gridOption = {
             language: '@AppSession.Language',

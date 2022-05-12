@@ -14,18 +14,20 @@ report
 }
 
 @{
-    var now = SystemTimeService.GetSystemDateTime();
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var now = systemSettings.SystemDateTime;
+    var systemStartDate = systemSettings.SystemStartDate;
     var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : new DateTime(now.Year, now.Month, 1).AddMonths(-1);
     var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now;
 
-    if (fromDate < AppSettings.SystemStartDate)
+    if (fromDate < systemStartDate)
     {
-        fromDate = AppSettings.SystemStartDate;
+        fromDate = systemStartDate;
     }
 
-    if (toDate < AppSettings.SystemStartDate)
+    if (toDate < systemStartDate)
     {
-        toDate = AppSettings.SystemStartDate;
+        toDate = systemStartDate;
     }
 
     if (fromDate > now)
@@ -40,11 +42,10 @@ report
 }
 
 @using Fanex.AffiliateAdmin.Core.Configurations
-@using Fanex.AffiliateAdmin.Core.Enumerations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
-@using Fanex.AffiliateAdmin.Services
-@model Fanex.AffiliateAdmin.Models.AffiliateWLByAffiliateViewModel
+
+@model Fanex.AffiliateAdmin.Models.Reports.AffiliateWLByAffiliateViewModel
 <div class="search-panel search-company-winloss" style="min-width: 800px" >
     <div class="ic-reload" title="@Lang.RefreshPage">
     </div>
@@ -55,11 +56,11 @@ report
             <div class="row-fluid row-form">
                 <div class="cell">
                     <label for="FromDate" class="txt">@Lang.From</label>
-                    @Html.MonthPicker("FromDate", fromDate, AppSettings.SystemStartDate, now)
+                    @Html.MonthPicker("FromDate", fromDate, systemStartDate, now)
                 </div>
                 <div class="cell">
                     <label for="ToDate" class="txt">@Lang.To</label>
-                    @Html.MonthPicker("ToDate", toDate, AppSettings.SystemStartDate, now)
+                    @Html.MonthPicker("ToDate", toDate, systemStartDate, now)
                 </div>
                 <div class="cell">
                     <label for="BaseCurrency" class="txt">@Lang.BaseCurrency</label>

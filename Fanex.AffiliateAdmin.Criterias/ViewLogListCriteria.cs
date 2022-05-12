@@ -12,7 +12,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ViewLogListCriteria : CriteriaBase
+    public class ViewLogListCriteria : BaseCriteria
     {
         public int AffId { get; set; }
 
@@ -21,10 +21,6 @@ namespace Fanex.AffiliateAdmin.Criterias
         public DateTime DateFrom { get; set; }
 
         public DateTime DateTo { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int PageSize { get; set; }
 
         public int TotalPage { get; set; }
 

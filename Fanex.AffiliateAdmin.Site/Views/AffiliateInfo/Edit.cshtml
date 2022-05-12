@@ -38,6 +38,9 @@ affiliate-info
     Model.Affiliate.SiteLink = HttpUtility.HtmlDecode(Model.Affiliate.SiteLink);
     Model.Affiliate.MoreSiteURLs = HttpUtility.HtmlDecode(Model.Affiliate.MoreSiteURLs);
     Model.Affiliate.Player_Username = HttpUtility.HtmlDecode(Model.Affiliate.Player_Username);
+
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var affiliateCurrencies = systemSettings.AffiliateCurrencies;
 }
 @Html.ValidationSummary()
 <form method="post" action="@Url.Content("~/AffiliateInfo/Edit")" class="iframe-content">
@@ -242,11 +245,11 @@ affiliate-info
                     <td>
                         @if (Model.Affiliate.Status.Equals("approved", StringComparison.CurrentCultureIgnoreCase))
                         {
-                            @Html.DropDownCheckList("Currency", new SelectList(AppSettings.AffiliateCurrencies.Where(c => c.ExchangeID == Model.Affiliate.Currency), "ExchangeId", "Code"), false, false, new { @class = "width-140" })
+                            @Html.DropDownCheckList("Currency", new SelectList(affiliateCurrencies.Where(c => c.ExchangeID == Model.Affiliate.Currency), "ExchangeId", "Code"), false, false, new { @class = "width-140" })
                         }
                         else
                         {
-                            @Html.DropDownCheckList("Currency", new SelectList(AppSettings.AffiliateCurrencies, "ExchangeId", "Code", Model.Affiliate.Currency.ToString()), false, false, new { @class = "width-140" })
+                            @Html.DropDownCheckList("Currency", new SelectList(affiliateCurrencies, "ExchangeId", "Code", Model.Affiliate.Currency.ToString()), false, false, new { @class = "width-140" })
                         }
                     </td>
                 </tr>

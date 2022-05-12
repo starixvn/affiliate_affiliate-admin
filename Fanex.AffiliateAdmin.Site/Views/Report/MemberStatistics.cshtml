@@ -1,8 +1,7 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Utilities
-@using Fanex.AffiliateAdmin.Models
+@using Fanex.AffiliateAdmin.Models.Reports
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Configurations
-@using Fanex.AffiliateAdmin.Services
 
 @{
     ViewBag.Title = Lang.MemberStatistics;
@@ -15,7 +14,9 @@ report
     @RazorHelper.ListSubmenu(SubMenu.Reports, 1, "Reports")
 }
 @{
-    var now = SystemTimeService.GetSystemDateTime();
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var now = systemSettings.SystemDateTime;
+    var systemStartDate = systemSettings.SystemStartDate;
 }
 
 @model MemberStatisticsViewModel
@@ -50,21 +51,21 @@ report
                  <div class="hide" id="dateSearch">
                      <div class="cell">
                          @Html.Label("FromDate", Lang.From, new { @class = "txt" })
-                         @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), AppSettings.SystemStartDate, now, false)
+                         @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), systemStartDate, now, false)
                      </div>
                      <div class="cell" >
                          @Html.Label("ToDate", Lang.To, new { @class = "txt" })
-                         @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, false)
+                         @Html.DatePicker("ToDate", now, systemStartDate, now, false)
                      </div>
                 </div>
                  <div id="monthSearch" >
                      <div class="cell" >
                          @Html.Label("FromMonth", Lang.From, new { @class = "txt" })
-                         @Html.MonthPicker("FromMonth", now, AppSettings.SystemStartDate, now, new { id = "FromMonth" })
+                         @Html.MonthPicker("FromMonth", now, systemStartDate, now, new { id = "FromMonth" })
                      </div>
                      <div class="cell" >
                          @Html.Label("ToMonth", Lang.To, new { @class = "txt" })
-                         @Html.MonthPicker("ToMonth", now, AppSettings.SystemStartDate, now, new { id = "ToMonth" })
+                         @Html.MonthPicker("ToMonth", now, systemStartDate, now, new { id = "ToMonth" })
                      </div>
                 </div>
                  <input type="hidden" name="PreviousGroupBy" id="PreviousGroupBy" value="2"/>
@@ -114,7 +115,7 @@ report
             RangeTime3Months: "@Lang.RangeTime3Months",
             MemberStatisticsTitle: "@Lang.MemberStatistics"
         };
-        
+
         var sampleGridOption = {
             language: '@AppSession.Language',
             showTitle: true,
@@ -130,7 +131,7 @@ report
                     Formatter: function (rIndex, record, cell, cellFormated) {
                         var affInfoUrl = AFFILIATE.getAbsoluteUrl("AffiliateInfo?username=");
                         return "<a href='" + affInfoUrl + record.Username + "'>" + cellFormated + "</a>";
-                    } 
+                    }
                 },
                 { HeaderText: "@Lang.AffType", Width: 100, Name: "AffType", HeaderAlign: "center" },
                 { HeaderText: "@Lang.Language", Width: 100, Name: "Language", HeaderAlign: "center"},
@@ -152,7 +153,7 @@ report
             rowCssClass: function (rowIndex, rowData) {
                 return rowData.Status.toLowerCase();
             }
-        };   
+        };
     </script>
     @Scripts.Render("~/scripts/memberstatistics")
 }

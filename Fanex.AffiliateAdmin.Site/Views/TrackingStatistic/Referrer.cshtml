@@ -6,16 +6,17 @@
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
-@using Fanex.AffiliateAdmin.Services
 
-@model Fanex.AffiliateAdmin.Models.ReferrerViewModel
+@model Fanex.AffiliateAdmin.Models.AffiliateInfo.ReferrerViewModel
 
 @section iconcss{
     report
 }
 
 @{
-    var now = SystemTimeService.GetSystemDateTime();
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var now = systemSettings.SystemDateTime;
+    var systemStartDate = systemSettings.SystemStartDate;
     var fromDate = Model.FromDate.HasValue ? Model.FromDate.Value : new DateTime(now.Year, now.Month, 1);
     var toDate = Model.ToDate.HasValue ? Model.ToDate.Value : now;
 }
@@ -33,11 +34,11 @@
         <div class="row-fluid row-form end-search">
             <div class="cell">
                 @Html.LabelFor(m => m.FromDate, new { @class = "txt", style = "min-width: 50px;" })
-                @Html.DatePicker("FromDate", fromDate, AppSettings.SystemStartDate, now)
+                @Html.DatePicker("FromDate", fromDate, systemStartDate, now)
             </div>
             <div class="cell">
                 @Html.LabelFor(m => m.ToDate, new { @class="txt", style = "min-width: 50px;" })
-                @Html.DatePicker("ToDate", toDate, AppSettings.SystemStartDate, now)
+                @Html.DatePicker("ToDate", toDate, systemStartDate, now)
             </div>
         </div>
         <div class="row-fluid row-form btn-action">

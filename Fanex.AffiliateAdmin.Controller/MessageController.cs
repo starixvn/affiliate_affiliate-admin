@@ -8,9 +8,8 @@
     using Core.Session;
     using Core.Utilities;
     using Criterias;
-    using Fanex.AffiliateAdmin.Core.Services.Interface;
-    using Fanex.AffiliateAdmin.Services;
-    using Models;
+    using Services;
+    using Models.Message;
     using Resources;
 
     /// <summary>
@@ -19,12 +18,15 @@
     [FunctionAuth(Function = FunctionPolicyNames.HotNews)]
     public class MessageController : BaseController
     {
+        private readonly ISystemSettings _systemSettings;
         private readonly IMessageService _messageService;
 
         public MessageController(
-            IMessageService messageService,
-            ISystemSettingService systemSettingService) : base(systemSettingService)
+            IAppSetting appSetting,
+            ISystemSettings systemSettings,
+            IMessageService messageService) : base(appSetting)
         {
+            _systemSettings = systemSettings;
             _messageService = messageService;
         }
 
@@ -54,10 +56,9 @@
                 // Note: if its value is 0, User name option is selected.
                 Important = model.SearchBy == null ? null : (bool?)(model.SearchBy.Value == 1),
                 FromDate = model.DateChecked ? (DateTime?)model.FromDate : null,
-                ToDate = model.DateChecked ? (DateTime?)model.ToDate : null,
-                PageIndex = model.PageIndex == 0 ? 1 : model.PageIndex,
-                PageSize = model.PageSize == 0 ? AppSettings.PageSize : model.PageSize
+                ToDate = model.DateChecked ? (DateTime?)model.ToDate : null
             };
+            AssignBaseCriteria(criteria);
 
             var data = _messageService.GetMessages(criteria);
             return Json(new
@@ -137,8 +138,7 @@
             if (ModelState.IsValid)
             {
                 msgId = Convert.ToInt32(values["MsgId"]);
-                bool isValid;
-                var messageXml = GenMessageXml(values, out isValid);
+                var messageXml = GenMessageXml(values, out bool isValid);
                 if (!isValid)
                 {
                     ModelState.AddModelError("Message", Lang.AddEmptyMessError);
@@ -202,7 +202,7 @@
             var stringBuilder = new StringBuilder("<root>");
             foreach (var key in values.AllKeys)
             {
-                foreach (var language in AppSettings.AffLanguages)
+                foreach (var language in _systemSettings.AffLanguages)
                 {
                     if (key == string.Format("LangMessages[{0}]", language.LanguageID))
                     {

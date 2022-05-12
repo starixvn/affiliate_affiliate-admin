@@ -1,11 +1,15 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Configurations
 @model Fanex.AffiliateAdmin.Core.Entities.EmailTemplateInfo
+@{
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+    var layout = appSetting.Layout;
+}
 <table width="100%">
     <tr>
-        <td valign="top" align="center" background="@Model.AdminRootLink/www/dist/style/@AppSettings.Layout/assets/static/emailBg.jpg">
+        <td valign="top" align="center" background="@Model.AdminRootLink/www/dist/style/@(layout)/assets/static/emailBg.jpg">
             <table width="588" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                    <td height="77" background="@Model.AdminRootLink/www/dist/style/@AppSettings.Layout/assets/static/emailBanner.jpg">
+                    <td height="77" background="@Model.AdminRootLink/www/dist/style/@(layout)/assets/static/emailBanner.jpg">
                     </td>
                 </tr>
                 <tr>
@@ -14,8 +18,10 @@
                 </tr>
                 <tr>
                     <td align="left" bgcolor="@Model.HeaderBGColor" height="30">
-                        &nbsp;&nbsp;<strong><font style="color: @Model.HeaderFontColor; font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
-                            text-transform: uppercase;">您的合作夥伴帳戶信息</font></strong>
+                        &nbsp;&nbsp;<strong>
+                            <font style="color: @Model.HeaderFontColor; font-size: 11px; font-family: Verdana,Arial,Helvetica,sans-serif;
+                            text-transform: uppercase;">您的合作夥伴帳戶信息</font>
+                        </strong>
                     </td>
                 </tr>
                 <tr>
@@ -35,12 +41,13 @@
                                         密碼: @Model.Password<br /><br />
 
                                         您可在該帳戶內查詢到合作夥伴跟踪鏈接以及橫幅等促銷素材，無需猶豫，趕快利用您的流量開始賺錢吧！<br /><br />
-  
+
                                         如果您遇到任何疑問需要幫助，歡迎隨時聯繫我們. <br /><br />
 
                                         誠摯的,<br /><br />
                                         @(Model.SystemName)合作夥伴團隊<br />
-                                        <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a> </font>
+                                        <a href="mailto:@(Model.MailContact)">@(Model.MailContact)</a>
+                                    </font>
                                 </td>
                             </tr>
                         </table>

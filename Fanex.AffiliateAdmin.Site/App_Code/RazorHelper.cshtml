@@ -9,8 +9,9 @@
 @functions{
     public static string GetBannerUrl()
     {
-        var url = MediaSettings.BannerDomain;
-        if (AppSettings.IsProduction)
+        var appSetting = DependencyResolver.Current.GetService<IAppSetting>(); ;
+        var url = appSetting.BannerDomain;
+        if (appSetting.IsProduction)
         {
             //var secondLevelDomain = Request.Url.Host.Split('.')[1];
             //var defaultSecondLevelDomain = url.Split('.')[1];
@@ -288,7 +289,8 @@
 }
 @helper GetCurrencyNotification(string currencyCode)
 {
-    var currency =  AppSettings.AffSystemSupportedCurrencies.FirstOrDefault(c => c.CurrencyCode == currencyCode);
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var currency =  systemSettings.AffSystemSupportedCurrencies.FirstOrDefault(c => c.CurrencyCode == currencyCode);
     GetCurrencyNotification(currency);
 }
 

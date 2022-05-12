@@ -3,10 +3,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Fanex.AffiliateAdmin.Core.Utilities
-@using Fanex.AffiliateAdmin.DTO
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Configurations
-@using Fanex.AffiliateAdmin.Services
 
 @section iconcss{
 exchange-rate
@@ -15,7 +13,8 @@ exchange-rate
     @RazorHelper.ListSubmenu(SubMenu.Exchange, 0, "Currency")
 }
 @{
-    var now = SystemTimeService.GetSystemDateTime();
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var now = systemSettings.SystemDateTime;
 }
 <div class="search-panel" style="width: 1000px">
     <div class="ic-reload" title="@Lang.RefreshPage">
@@ -26,7 +25,7 @@ exchange-rate
         <div class="span12 search-form">
             <div class="row-fluid row-form end-search">
                 <div class="cell">
-                    @Html.DatePicker("Time", now, AppSettings.SystemStartDate, now)
+                    @Html.DatePicker("Time", now, systemSettings.SystemStartDate, now)
                     <button type="button" id="btnSubmit" class="btn btn-default" style="vertical-align: top">@Lang.Submit</button>
                 </div>
             </div>
@@ -53,7 +52,7 @@ exchange-rate
             Title: "@Lang.CurrencyRates",
             UpdateExRate: "@Lang.UpdateExRate"
         };
-        
+
         var canUpdateData = @(ViewBag.CanUpdateData ? "true" : "false");
         var sampleGridOption = {
             language: '@AppSession.Language',

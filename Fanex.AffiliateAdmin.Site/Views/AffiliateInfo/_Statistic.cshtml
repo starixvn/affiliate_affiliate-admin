@@ -6,14 +6,15 @@
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
-@using Fanex.AffiliateAdmin.Services
 
-@model Fanex.AffiliateAdmin.Models.AffiliateStatisticViewModel
+@model Fanex.AffiliateAdmin.Models.AffiliateInfo.AffiliateStatisticViewModel
 
 @{
-    var now = SystemTimeService.GetSystemDateTime();
     var lastDay = Model.FullDateTime.AddMonths(1).AddDays(-1);
-    var fromDate = Model.FullDateTime > AppSettings.SystemStartDate ? Model.FullDateTime.ToString("MMM dd yyyy", CultureInfo.InvariantCulture) : AppSettings.SystemStartDate.ToString("MMM dd yyyy", CultureInfo.InvariantCulture);
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var systemStartDate = systemSettings.SystemStartDate;
+    var now = systemSettings.SystemDateTime;
+    var fromDate = Model.FullDateTime > systemStartDate ? Model.FullDateTime.ToString("MMM dd yyyy", CultureInfo.InvariantCulture) : systemStartDate.ToString("MMM dd yyyy", CultureInfo.InvariantCulture);
     var toDate = lastDay < now ? lastDay.ToString("MMM dd yyyy", CultureInfo.InvariantCulture) : now.ToString("MMM dd yyyy", CultureInfo.InvariantCulture);
 }
 
@@ -27,7 +28,7 @@
         <tr>
             <td class="top_colexp"><span id="spStatistic" class="statistic-show"></span>@Lang.Statistics</td>
             <td class="col-data">
-                @Html.MonthPicker("monthyear", Model.FullDateTime, AppSettings.SystemStartDate, now, new { @class = "width-ex-90" })
+                @Html.MonthPicker("monthyear", Model.FullDateTime, systemStartDate, now, new { @class = "width-ex-90" })
             </td>
             <td class="col-data">@Lang.UpToNow</td>
         </tr>
@@ -42,7 +43,7 @@
                 @Html.ActionLink(Model.Statistic.TotalPlayer.ToString(), "MemberListByAffiliate", "Affiliate", new { DateOption = 0, TimeStamp = now.Ticks }, new { @class = "link" })/@Model.Statistic.TotalPlayerDepUp
             </td>
         </tr>
-        @if (Model.Statistic.TotalActivePlayer != 0 && Model.FullDateTime.CompareTo(AppSettings.SystemStartDate) >= 0)
+        @if (Model.Statistic.TotalActivePlayer != 0 && Model.FullDateTime.CompareTo(systemStartDate) >= 0)
         {
         <tr>
             <td class="col-label">@Lang.TotalActive</td>
@@ -68,9 +69,9 @@
                     const string hideClass = "class='qm hidden'";
                     const string noHideClass = "class='qm'";
                 }
-                <a @Html.Raw(Model.Products.FirstOrDefault().TotalQualifiedMembers > 0 ? noHideClass : hideClass) href="javascript:void(0)" data-date="@Model.FullDateTime.ToString("MMM yyyy", CultureInfo.InvariantCulture)" 
-                   data-affid="@Model.AffId" data-affname="@Model.AffName"  data-basecurrency="2" 
-                   data-currency="@Model.AffCurrency"  data-product="@Model.Products.FirstOrDefault().ProductID" 
+                <a @Html.Raw(Model.Products.FirstOrDefault().TotalQualifiedMembers > 0 ? noHideClass : hideClass) href="javascript:void(0)" data-date="@Model.FullDateTime.ToString("MMM yyyy", CultureInfo.InvariantCulture)"
+                   data-affid="@Model.AffId" data-affname="@Model.AffName"  data-basecurrency="2"
+                   data-currency="@Model.AffCurrency"  data-product="@Model.Products.FirstOrDefault().ProductID"
                    data-groupid="@Model.CommGroupInfo.GroupID" data-commgroup="@Model.CommGroupInfo.GroupName">
                     @Model.Products.FirstOrDefault().TotalQualifiedMembers
                 </a>

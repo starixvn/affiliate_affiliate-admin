@@ -1,6 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configurations;
@@ -15,18 +14,24 @@
     using Criterias.Configuration.Product;
     using Criterias.Configuration.SystemSetting;
     using DTO;
-    using Fanex.AffiliateAdmin.Core.Services;
-    using Models;
+    using Models.Configurations;
     using Resources;
 
     [AuthorizeRestriction(AppMode.Self)]
     [FunctionAuth(Function = FunctionPolicyNames.SystemSettings)]
     public class ConfigurationController : BaseController
     {
+        private readonly ISystemSettings _systemSettings;
+        private readonly ISystemSettingService _systemSettingService;
         #region Constructors
 
-        public ConfigurationController(ISystemSettingService systemSettingService) : base(systemSettingService)
+        public ConfigurationController(
+            IAppSetting appSetting,
+            ISystemSettings systemSettings,
+            ISystemSettingService systemSettingService) : base(appSetting)
         {
+            _systemSettings = systemSettings;
+            _systemSettingService = systemSettingService;
         }
 
         #endregion Constructors
@@ -44,7 +49,7 @@
         {
             var model = new ConfigurationViewModel
             {
-                TypeList = SystemSettingService.GetSystemSetting(new SystemSettingsSelByNameCriteria
+                TypeList = _systemSettingService.GetSystemSetting(new SystemSettingsSelByNameCriteria
                 {
                     Name = "ConfigurationTypeList"
                 })
@@ -62,9 +67,9 @@
         public ActionResult GetSystemSettingList(SystemSettingSelectCriteria criteria)
         {
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
+            criteria.PageSize = criteria.PageSize == 0 ? AppSetting.PageSize : criteria.PageSize;
 
-            var data = SystemSettingService.GetSystemSettingList(criteria);
+            var data = _systemSettingService.GetSystemSettingList(criteria);
 
             return Json(new
             {
@@ -87,7 +92,7 @@
         [HttpGet]
         public ActionResult ConfigurationDetail(SystemSettingsSelByIdCriteria criteria)
         {
-            var systemSetting = SystemSettingService.GetSystemSetting(criteria);
+            var systemSetting = _systemSettingService.GetSystemSetting(criteria);
 
             var model = new SystemSettingUpdateViewModel
             {
@@ -96,7 +101,7 @@
                 SValue = systemSetting.SValue,
                 Description = systemSetting.Description,
                 Environment = systemSetting.Environment,
-                EnvironmentList = SystemSettingService.GetSystemSettingList(new SystemSettingsSelByTypeCriteria
+                EnvironmentList = _systemSettingService.GetSystemSettingList(new SystemSettingsSelByTypeCriteria
                 {
                     Type = "Environment"
                 })
@@ -119,7 +124,7 @@
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
                 criteria.Language = AppSession.Language;
 
-                SystemSettingService.UpdateSystemSetting(criteria);
+                _systemSettingService.UpdateSystemSetting(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
 
@@ -143,7 +148,7 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
 
-                SystemSettingService.DeleteSystemSetting(criteria);
+                _systemSettingService.DeleteSystemSetting(criteria);
                 var result = GetResultViewModel(criteria.ErrCode, "OK");
 
                 return Json(result);
@@ -165,11 +170,11 @@
         {
             var model = new AddConfigurationViewModel
             {
-                TypeList = SystemSettingService.GetSystemSetting(new SystemSettingsSelByNameCriteria
+                TypeList = _systemSettingService.GetSystemSetting(new SystemSettingsSelByNameCriteria
                 {
                     Name = "ConfigurationTypeList",
                 }),
-                EnvironmentList = SystemSettingService.GetSystemSettingList(new SystemSettingsSelByTypeCriteria
+                EnvironmentList = _systemSettingService.GetSystemSettingList(new SystemSettingsSelByTypeCriteria
                 {
                     Type = "Environment"
                 })
@@ -191,9 +196,9 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
                 criteria.Language = AppSession.Language;
-                criteria.LicenseeId = AppSettings.LicenseeID;
+                criteria.LicenseeId = _systemSettings.LicenseeID;
 
-                SystemSettingService.InsertSystemSetting(criteria);
+                _systemSettingService.InsertSystemSetting(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
 
@@ -225,9 +230,9 @@
         public ActionResult GetCountryList(CountrySelectCriteria criteria)
         {
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
+            criteria.PageSize = criteria.PageSize == 0 ? AppSetting.PageSize : criteria.PageSize;
 
-            var data = SystemSettingService.GetCountryList(criteria);
+            var data = _systemSettingService.GetCountryList(criteria);
 
             return Json(new
             {
@@ -248,7 +253,7 @@
         [HttpGet]
         public ActionResult CountryDetail(CountryDetailCriteria criteria)
         {
-            return View("CountryDetail", SystemSettingService.GetCountry(criteria));
+            return View("CountryDetail", _systemSettingService.GetCountry(criteria));
         }
 
         /// <summary>
@@ -264,7 +269,7 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
 
-                SystemSettingService.UpdateCountry(criteria);
+                _systemSettingService.UpdateCountry(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
 
@@ -300,7 +305,7 @@
 
                 criteria.CountryID = Server.HtmlEncode(criteria.CountryID);
 
-                SystemSettingService.InsertCountry(criteria);
+                _systemSettingService.InsertCountry(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
 
@@ -324,7 +329,7 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
 
-                SystemSettingService.DeleteCountry(criteria);
+                _systemSettingService.DeleteCountry(criteria);
                 var result = GetResultViewModel(criteria.ErrCode, "OK");
 
                 return Json(result);
@@ -357,7 +362,7 @@
         [HttpPost]
         public ActionResult GetProductList(ProductSelectCriteria criteria)
         {
-            var data = SystemSettingService.GetProductList(criteria);
+            var data = _systemSettingService.GetProductList(criteria);
 
             return Json(new
             {
@@ -378,7 +383,7 @@
         [HttpGet]
         public ActionResult ProductDetail(ProductDetailCriteria criteria)
         {
-            return View("ProductDetail", SystemSettingService.GetProduct(criteria));
+            return View("ProductDetail", _systemSettingService.GetProduct(criteria));
         }
 
         /// <summary>
@@ -394,7 +399,7 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
 
-                SystemSettingService.UpdateProduct(criteria);
+                _systemSettingService.UpdateProduct(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
 
@@ -430,7 +435,7 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = session.CustID;
 
-                SystemSettingService.InsertProduct(criteria);
+                _systemSettingService.InsertProduct(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
 
@@ -454,7 +459,7 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
 
-                SystemSettingService.DeleteProduct(criteria);
+                _systemSettingService.DeleteProduct(criteria);
                 var result = GetResultViewModel(criteria.ErrCode, "OK");
 
                 return Json(result);
@@ -488,9 +493,9 @@
         public ActionResult GetLanguageList(LanguageSelectCriteria criteria)
         {
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
+            criteria.PageSize = criteria.PageSize == 0 ? AppSetting.PageSize : criteria.PageSize;
 
-            var data = SystemSettingService.GetLanguageList(criteria);
+            var data = _systemSettingService.GetLanguageList(criteria);
 
             return Json(new
             {
@@ -511,14 +516,14 @@
         [HttpGet]
         public ActionResult LanguageDetail(LanguageDetailCriteria criteria)
         {
-            var language = SystemSettingService.GetLanguage(criteria);
+            var language = _systemSettingService.GetLanguage(criteria);
 
             var model = new LanguageUpdateViewModel
             {
                 LanguageID = language.LanguageID,
                 LanguageName = language.LanguageName,
                 CountryID = language.CountryID,
-                CountryList = SystemSettingService.GetCountryList(new CountrySelectCriteria
+                CountryList = _systemSettingService.GetCountryList(new CountrySelectCriteria
                 {
                     PageIndex = 1,
                     PageSize = short.MaxValue
@@ -541,7 +546,7 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
 
-                SystemSettingService.UpdateLanguage(criteria);
+                _systemSettingService.UpdateLanguage(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
 
@@ -561,7 +566,7 @@
         {
             var model = new LanguageAddViewModel
             {
-                CountryList = SystemSettingService.GetCountryList(new CountrySelectCriteria
+                CountryList = _systemSettingService.GetCountryList(new CountrySelectCriteria
                 {
                     PageIndex = 1,
                     PageSize = short.MaxValue
@@ -586,7 +591,7 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = session.CustID;
 
-                SystemSettingService.InsertLanguage(criteria);
+                _systemSettingService.InsertLanguage(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
 
@@ -610,7 +615,7 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
 
-                SystemSettingService.DeleteLanguage(criteria);
+                _systemSettingService.DeleteLanguage(criteria);
                 var result = GetResultViewModel(criteria.ErrCode, "OK");
 
                 return Json(result);
@@ -644,9 +649,9 @@
         public ActionResult GetAffTypeList(AffTypeSelectCriteria criteria)
         {
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSettings.PageSize : criteria.PageSize;
+            criteria.PageSize = criteria.PageSize == 0 ? AppSetting.PageSize : criteria.PageSize;
 
-            var data = SystemSettingService.GetAffTypeList(criteria);
+            var data = _systemSettingService.GetAffTypeList(criteria);
 
             return Json(new
             {
@@ -667,7 +672,7 @@
         [HttpGet]
         public ActionResult AffTypeDetail(AffTypeDetailCriteria criteria)
         {
-            return View("AffTypeDetail", SystemSettingService.GetAffType(criteria));
+            return View("AffTypeDetail", _systemSettingService.GetAffType(criteria));
         }
 
         /// <summary>
@@ -683,7 +688,7 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
 
-                SystemSettingService.UpdateAffType(criteria);
+                _systemSettingService.UpdateAffType(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode);
             }
 
@@ -720,7 +725,7 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = session.CustID;
 
-                SystemSettingService.InsertAffType(criteria);
+                _systemSettingService.InsertAffType(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
             }
 
@@ -744,7 +749,7 @@
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
 
-                SystemSettingService.DeleteAffType(criteria);
+                _systemSettingService.DeleteAffType(criteria);
                 var result = GetResultViewModel(criteria.ErrCode, "OK");
 
                 return Json(result);

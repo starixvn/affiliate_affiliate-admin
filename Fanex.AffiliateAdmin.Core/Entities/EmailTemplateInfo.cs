@@ -1,6 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Entities
 {
     using System;
+    using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Mailinator;
 
@@ -9,14 +10,16 @@
     /// </summary>
     public class EmailTemplateInfo
     {
+        private readonly IAppSetting _appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+        private readonly ISystemSettings _systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
         /// <summary>
         /// Initializes a new instance of the <see cref="EmailTemplateInfo"/> class.
         /// </summary>
         public EmailTemplateInfo()
         {
-            SystemName = AppSettings.SystemDisplayName;
-            CsdEmail = AppSettings.MailContact;
-            MailContact = AppSettings.MailContact;
+            SystemName = _systemSettings.SystemDisplayName;
+            CsdEmail = _appSetting.MailContact;
+            MailContact = _appSetting.MailContact;
         }
 
         /// <summary>

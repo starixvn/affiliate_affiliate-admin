@@ -1,8 +1,7 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Utilities
-@using Fanex.AffiliateAdmin.Models
+@using Fanex.AffiliateAdmin.Models.Payment
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Mvc
-@using Fanex.AffiliateAdmin.Services
 @model PaymentViewModel
 @{
     ViewBag.Title = Lang.Payment;
@@ -13,7 +12,9 @@ payment
 }
 
 @{
-    var now = SystemTimeService.GetSystemDateTime();
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
+    var now = systemSettings.SystemDateTime;
+    var systemStartDate = systemSettings.SystemStartDate;
 }
 @section submenu{
     @RazorHelper.ListSubmenu(SubMenu.Payment, 0, "Payment")
@@ -32,7 +33,7 @@ payment
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.AffType, new {@class = "txt"})
-                    @Html.DropDownCheckList("AffType", new SelectList(AppSettings.AffTypes, "TypeID", "Name"), true, true, new {@class = "width-140"})
+                    @Html.DropDownCheckList("AffType", new SelectList(systemSettings.AffTypes, "TypeID", "Name"), true, true, new {@class = "width-140"})
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.Status, new {@class = "txt"})
@@ -40,7 +41,7 @@ payment
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.PreferredLanguage, new {@class = "txt"})
-                    @Html.DropDownCheckList("PreferredLanguage", new SelectList(AppSettings.AffSupportLanguages, "LanguageID", "LanguageName"), true, true, new {@class = "width-140"})
+                    @Html.DropDownCheckList("PreferredLanguage", new SelectList(systemSettings.AffSupportLanguages, "LanguageID", "LanguageName"), true, true, new {@class = "width-140"})
                 </div>
             </div>
             <div class="row-fluid row-form">
@@ -54,11 +55,11 @@ payment
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.FromDate, new {@class = "txt"})
-                    @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), AppSettings.SystemStartDate, now, false)
+                    @Html.DatePicker("FromDate", new DateTime(now.Year, now.Month, 1), systemStartDate, now, false)
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.ToDate, new { @class = "txt" })
-                    @Html.DatePicker("ToDate", now, AppSettings.SystemStartDate, now, false)
+                    @Html.DatePicker("ToDate", now, systemStartDate, now, false)
                 </div>
             </div>
             <div class="row-fluid row-form end-search">
@@ -101,7 +102,7 @@ payment
                 Width: 72,
                 Name: "Transid",
                 HeaderAlign: "center",
-                CellAlign: "center", 
+                CellAlign: "center",
                 Formatter: formatTransId },
             { HeaderText: "@Lang.Username", Width: 150, Name: "Username", HeaderAlign: "center" },
             { HeaderText: "@Lang.AffType", Width: 90, Name: "AffType", HeaderAlign: "center" },

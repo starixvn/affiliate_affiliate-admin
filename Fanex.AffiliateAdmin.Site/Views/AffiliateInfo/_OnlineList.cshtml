@@ -6,13 +6,13 @@
 <div class="left-group">
     <div class="left-tab"><a href="#"><span>@Lang.CurrOnlineList</span></a></div>
     <div class="left-tab-info" style="width: 215px;">
-        <table> 
+        <table>
             <colgroup>
                 <col style="width: 10px;"/>
                 <col style="width: 70px;"/>
                 <col/>
             </colgroup>
-            <thead> 
+            <thead>
                 <tr>
                     <td class="text-c">#</td>
                     <td class="text-c">@Lang.IP</td>
@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-               
+
                 @{
                     if (Model.OnUsers.Any())
                     {
@@ -28,10 +28,10 @@
                         foreach (var onUser in Model.OnUsers)
                         {
                             counter++;
-                        
+
                             <tr>
                                 <td class="text-c">@counter</td>
-                                <td class="text-c"><a target="_blank" href="@string.Format(AppSettings.IPCheckerUrl.ToString(), onUser.Ip)">@onUser.Ip</a></td>
+                                <td class="text-c"><a target="_blank" href="@string.Format(AppSetting.Instance.IPCheckerUrl.ToString(), onUser.Ip)">@onUser.Ip</a></td>
                                 <td class="text-c">@string.Format(FormatType.FULL_DATETIME_SPLASH_FORMAT.GetStringValue(), onUser.Reload_Time)</td>
                             </tr>
                         }

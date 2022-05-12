@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
-    <link href="@Url.RenderLink(string.Format("~/www/dist/style/{0}/notify.css", AppSettings.Layout))" rel="stylesheet" type="text/css" />
+    <link href="@Url.RenderLink(string.Format("~/www/dist/style/{0}/notify.css", AppSetting.Instance.Layout))" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -25,7 +25,7 @@
         <div class="text">
             <ul class="notify-content">
                 <li><span>@ViewBag.Message </span></li>
-                <li class="end"><span>죄송합니다. 시스템을 현재 사용할 수 없습니다. 나중에 다시 시도하시거나 관리자에게 연락을 주시기 바랍니다 </span></li>                
+                <li class="end"><span>죄송합니다. 시스템을 현재 사용할 수 없습니다. 나중에 다시 시도하시거나 관리자에게 연락을 주시기 바랍니다 </span></li>
             </ul>
         </div>
     </div>

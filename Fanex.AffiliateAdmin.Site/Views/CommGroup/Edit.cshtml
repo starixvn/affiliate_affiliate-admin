@@ -24,6 +24,7 @@
     }
 
     var productList = ViewBag.ProductList as IEnumerable<Product>;
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
 }
 
 @using (Html.BeginForm("Edit", "CommGroup", FormMethod.Post, new { @class = "form-horizontal", id = "CommGroupSettingsForm" }))
@@ -103,7 +104,7 @@
                 </div>
                 <div class="tab_content @toggleClass" id="tab_content@(product.ProductID)">
                     @{
-                        var deductions = AppSettings.DeductionTypes.Where(x => x.ProductID == product.ProductID).ToList();
+                        var deductions = systemSettings.DeductionTypes.Where(x => x.ProductID == product.ProductID).ToList();
 
                         if (deductions.Any())
                         {

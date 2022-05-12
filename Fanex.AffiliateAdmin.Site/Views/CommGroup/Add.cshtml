@@ -4,19 +4,20 @@
 }
 @using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Core.Mvc
-@model CommGroupInfo 
+@model CommGroupInfo
 @{
     var currencyDropDownAttr = new Dictionary<string, object>();
     currencyDropDownAttr.Add("class", "width-140 dropdownchecklist single-select");
 
     var productList = ViewBag.ProductList as IEnumerable<Product>;
+    var systemSettings = DependencyResolver.Current.GetService<ISystemSettings>();
 }
 
 @using (Html.BeginForm("Add", "CommGroup", FormMethod.Post, new { @class = "form-horizontal", id = "CommGroupSettingsForm" }))
 {
     @Html.ValidationSummary()
     <div class="popup-content" style="min-width:800px">
-   
+
    <div class="control-group">
         @Html.LabelFor(m => m.GroupName, Lang.GroupName, new { @class = "control-label" })
         <div class="controls">
@@ -41,34 +42,34 @@
             @Html.DropDownListFor(m => m.Currency, new SelectList(SessionManager.CurrentSession.CurrencyList, "CurrencyID", "CurrencyCode"), currencyDropDownAttr)
         </div>
     </div>
-   
+
     <div class="control-group">
         @Html.Label("ActiveAll", @Lang.ActiveAll, new { @class = "control-label" })
         <div class="controls">
             @Html.CheckBox("ActiveAll", true)
         </div>
     </div>
-    
-    <div class="control-group red" id="currNotify" style="display:none;margin: 5px 5px 15px 25px">    
+
+    <div class="control-group red" id="currNotify" style="display:none;margin: 5px 5px 15px 25px">
     </div>
 
     @foreach (var product in productList)
     {
         var productName = @Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty));
         productName = string.IsNullOrEmpty(productName) ? product.ProductName : productName;
-        
+
         <div class="control-group product">
             <div id="tab_header@(product.ProductID)" data-productid="@(product.ProductID)" class="tab_header" data-productname="@productName">
                 <div class="pull-left tab_title">
                     <div class="expand">
                         <span>
-                            <span id="product_header@(product.ProductID)" class="product_header" style="cursor: pointer"> 
+                            <span id="product_header@(product.ProductID)" class="product_header" style="cursor: pointer">
                                 <i id="header_icon@(product.ProductID)" class="header_icon icon-ok-circle"></i>
                                 @productName
                             </span>
                         </span>
                     </div>
-                </div>    
+                </div>
                 <div class="pull-right textcopy">
                     <label for="@(product.ProductID)">
                         <input type="checkbox" class="copy" id="@(product.ProductID)" />
@@ -78,7 +79,7 @@
             </div>
             <div class="tab_content" id="tab_content@(product.ProductID)">
                 @{
-                    var deductions = AppSettings.DeductionTypes.Where(x => x.ProductID == product.ProductID);
+                    var deductions = systemSettings.DeductionTypes.Where(x => x.ProductID == product.ProductID);
 
                     if (deductions.Any())
                     {
@@ -126,7 +127,7 @@
                                 <td style="width: 80px;" class="theader">@Lang.Action</td>
                             </tr>
                         </thead>
-                        <tbody>   
+                        <tbody>
                             <tr class="rnormal"><td class="c" colspan="7">@Lang.NoInfo</td></tr>
                         </tbody>
                     </table>
@@ -135,11 +136,11 @@
             </div>
         </div>
     }
-        
+
     </div>
    <div class="clear"></div>
     <div class="row-fluid row-form btn-action" style="margin: 10px">
-        <div class="span12">            
+        <div class="span12">
             <button class="btn btn-default" id="btnSubmit" type="button">@Lang.Add</button>
             <button class="btn btn-default" id="btnCancel" type="button" >@Lang.Cancel</button>
         </div>
@@ -150,7 +151,7 @@
     <select style="margin-left: 10px; width: 70px" class="commission single-select">
         @for (int i = 0; i < 100; i++)
         {
-            var val = string.Format("{0:0.00}", Convert.ToDecimal(i) / 100);<option value="@val">@val</option> 
+            var val = string.Format("{0:0.00}", Convert.ToDecimal(i) / 100);<option value="@val">@val</option>
         }
     </select>
 </div>
@@ -159,7 +160,7 @@
     <tr class="tier">
               <td class="tierOrder" >0</td>
               <td>
-                  <input type="text" disabled class="minAM"  maxlength="19" /></td> 
+                  <input type="text" disabled class="minAM"  maxlength="19" /></td>
               <td>
                   <input type="text" class="maxAM" maxlength="19" />
                   <input type="checkbox" />∞
@@ -173,7 +174,7 @@
               </td>
               <td class="commissionCol">
               </td>
-              <td>              
+              <td>
                   <a href="javascript:void(0);" class="icon-remove" title="@Lang.Remove"></a>
               </td>
           </tr>

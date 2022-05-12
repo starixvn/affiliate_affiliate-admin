@@ -8,8 +8,10 @@
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.DataAccess;
+    using Fanex.AffiliateAdmin.Models.AffiliateInfo;
     using Fanex.AffiliateAdmin.Resources;
-    using Models;
+    using Models.Reports;
+    using Models.AffiliateManagement;
 
     /// <summary>
     /// Affiliate Service.

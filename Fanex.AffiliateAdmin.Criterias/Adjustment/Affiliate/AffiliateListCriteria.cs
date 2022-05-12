@@ -7,7 +7,7 @@
     /// <summary>
     /// AffiliateList Criteria class.
     /// </summary>
-    public class AffiliateListCriteria : CriteriaBase
+    public class AffiliateListCriteria : BaseCriteria
     {
         public int UserId { get; set; }
 
@@ -37,14 +37,6 @@
         public bool IsFavorite { get; set; }
 
         public string Status { get; set; }
-
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int TotalPages { get; set; }
-
-        public int NRows { get; set; }
 
         public decimal TotalAmount { get; set; }
 

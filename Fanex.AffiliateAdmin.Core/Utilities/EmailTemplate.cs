@@ -84,7 +84,7 @@
         {
             var emailSubject = ParseTemplate(_subjectPath, info);
             var emailBody = ParseTemplate(_bodyPath, info);
-            Common.SendEmail(emailBody, mailTo, emailSubject, AppSettings.ITMail);
+            Common.SendEmail(emailBody, mailTo, emailSubject, AppSetting.Instance.ITMail);
         }
 
         /// <summary>

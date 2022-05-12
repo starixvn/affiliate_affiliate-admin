@@ -107,7 +107,7 @@ report
             Sportsbook: "@Lang.Sportsbook",
             NumberGame: "@Lang.NumberGame",
             LiveCasino: "@Lang.LiveCasino",
-            RNGCasino: "@Lang.RNGCasino",
+            RNGCasino: "@Lang.SabaCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
             VirtualSport: "@Lang.VirtualSports",
             SubTotal: "@Lang.SubTotal",
@@ -144,7 +144,7 @@ report
                         { HeaderText: "#", Name: "No", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Affiliate", Name: "Username", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Month", Name: "WinlostDateStr", MergeRowNumber: 2 },
-                        { 
+                        {
                             HeaderCaption: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
                             HeaderText: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
                             Name: "GroupName", MergeRowNumber: 2 },
@@ -174,10 +174,10 @@ report
                             MergeRowNumber: 2
                         },
                         {
-                            HeaderCaption: "@Lang.TotalPayment", 
-                            HeaderText: "@Lang.TotalPayment", 
-                            IsCurrency: true, 
-                            Name: "TotalPayment", 
+                            HeaderCaption: "@Lang.TotalPayment",
+                            HeaderText: "@Lang.TotalPayment",
+                            IsCurrency: true,
+                            Name: "TotalPayment",
                             NameCache: "TotalPayment",
                             MergeRowNumber: 2
                         }
@@ -222,31 +222,31 @@ report
                     FormatNegative: '($)',
                     IsAbs: true
                 },
-                { 
-                    HeaderCaption: '@Lang.CommPercent', 
+                {
+                    HeaderCaption: '@Lang.CommPercent',
                     HeaderText: '@Lang.CommPercent',
-                    Name: "CommissionPercent", 
-                    IsCurrency: false, 
+                    Name: "CommissionPercent",
+                    IsCurrency: false,
                     IsNA: true,
                     IsPercent: true,
-                    Width: 80, 
+                    Width: 80,
                     HeaderAlign: "center", CellAlign: "right",
                     FormatNumber: AFFILIATE.FORMATNUMBER
                 },
-                { 
+                {
                     HeaderCaption: '@Lang.Commission',
                     HeaderText: '@Lang.Commission',
-                    Name: "Commission", 
-                    NameCache: "Commission", 
+                    Name: "Commission",
+                    NameCache: "Commission",
                     IsCurrency: true,
-                    Width: 100, 
+                    Width: 100,
                     HeaderAlign: "center",
-                    CellAlign: "right", 
-                    FormatNumber: AFFILIATE.FORMATNUMBER, 
-                    FormatNegative: '($)', 
+                    CellAlign: "right",
+                    FormatNumber: AFFILIATE.FORMATNUMBER,
+                    FormatNegative: '($)',
                     IsAbs: true
                 },
-                { 
+                {
                     HeaderCaption: "@Lang.TotalPayment",
                     HeaderText: "@Lang.TotalPayment",
                     IsCurrency: true,
@@ -254,10 +254,10 @@ report
                     Name: "TotalPayment",
                     NameCache: "TotalPayment",
                     HeaderAlign: "center",
-                    CellAlign: "right", 
-                    FormatNumber: AFFILIATE.FORMATNUMBER, 
-                    FormatNegative: '($)', 
-                    IsAbs: true 
+                    CellAlign: "right",
+                    FormatNumber: AFFILIATE.FORMATNUMBER,
+                    FormatNegative: '($)',
+                    IsAbs: true
                 }
             ],
             showPager: true,

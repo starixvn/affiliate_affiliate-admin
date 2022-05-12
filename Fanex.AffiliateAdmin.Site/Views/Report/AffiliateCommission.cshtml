@@ -38,7 +38,7 @@ report
                 </div>
                 <div class="cell">
                     @Html.LabelFor(m => m.AffType, new { @class = "txt", @for = "AffTypes"})
-                    
+
                     @Html.DropDownCheckList("AffTypes", new SelectList(AppSettings.AffTypes, "TypeID", "Name"), true, true, new {@class = "width-140"})
                 </div>
                 <div class="cell">
@@ -117,7 +117,7 @@ report
             Sportsbook: "@Lang.Sportsbook",
             NumberGame: "@Lang.NumberGame",
             LiveCasino: "@Lang.LiveCasino",
-            RNGCasino: "@Lang.RNGCasino",
+            RNGCasino: "@Lang.SabaCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
             VirtualSport: "@Lang.VirtualSports",
             SubTotal: "@Lang.SubTotal",

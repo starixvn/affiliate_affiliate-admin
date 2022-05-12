@@ -49,7 +49,7 @@
 <div class="search-panel search-company-winloss no-border">
     @RazorHelper.SearchPanel(".search-form", string.Format(Lang.MemberWinLessReportInfo, string.Empty), false, true)
     @using (Html.BeginForm("MemberWinloss", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
-    {            
+    {
         <div class="span12 search-form">
             <div class="row-fluid row-form">
                 <div class="cell">
@@ -121,7 +121,7 @@
             Sportsbook: "@Lang.Sportsbook",
             NumberGame: "@Lang.NumberGame",
             LiveCasino: "@Lang.LiveCasino",
-            RNGCasino: "@Lang.RNGCasino",
+            RNGCasino: "@Lang.SabaCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
             VirtualSport: "@Lang.VirtualSports",
             CustomerWL: "@Lang.MemberWL",
@@ -218,16 +218,16 @@
                 { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Width: 90, Name: "Bonus", NameCache: "Bonus", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Width: 90, Name: "Adjustment", NameCache: "Adjustment", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderCaption: "@Lang.Turnover", 
-                    HeaderText: "@Lang.Turnover", 
+                { HeaderCaption: "@Lang.Turnover",
+                    HeaderText: "@Lang.Turnover",
                     IsCurrency: true,
-                    Width: 110, 
-                    Name: "TotalTurnover", 
-                    NameCache: "TotalTurnover", 
-                    HeaderAlign: "center", 
-                    CellAlign: "right", 
-                    FormatNumber: AFFILIATE.FORMATNUMBER, 
-                    FormatNegative: '($)', 
+                    Width: 110,
+                    Name: "TotalTurnover",
+                    NameCache: "TotalTurnover",
+                    HeaderAlign: "center",
+                    CellAlign: "right",
+                    FormatNumber: AFFILIATE.FORMATNUMBER,
+                    FormatNegative: '($)',
                     IsAbs: true
                 },
                 {
@@ -268,17 +268,17 @@
                                 productNames.push(item.Name);
                             }
                         });
-                        
+
                         // handle the number format.
                         var currentValue = record[cell.Name];
-                    
+
                         if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
                             if (currentValue < 0) {
                                 currentValue = -1 * currentValue;
                             }
                             currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
                         }
-                    
+
                         if (record[cell.Name] < 0) {
                             currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
                         }
@@ -318,7 +318,7 @@
             numberOfFrozenColumn: 6,
             bodyRowHeight: 27
         };
-        
+
         var sampleProductGridOption = {
             language: '@AppSession.Language',
             showTitle: true,
@@ -387,16 +387,16 @@
                 { HeaderText: "@Lang.UnitPerBaseCurrency".format(System.Currency), Width: 80, Name: "ExRate", HeaderAlign: "center", CellAlign: "right", IsExRate: true },
                 { HeaderText: "@Lang.Product", Width: 110, Name: "ProductName", HeaderAlign: "center", CellAlign: "left" },
                 { HeaderText: "@Lang.BetCount", Width: 110, Name: "BetCount", HeaderAlign: "center", CellAlign: "right" },
-                { HeaderCaption: "@Lang.Turnover", 
-                    HeaderText: "@Lang.Turnover", 
-                    IsCurrency: true, 
-                    Width: 110, 
-                    Name: "TotalTurnover", 
-                    NameCache: "TotalTurnover", 
-                    HeaderAlign: "center", 
-                    CellAlign: "right", 
-                    FormatNumber: AFFILIATE.FORMATNUMBER, 
-                    FormatNegative: '($)', 
+                { HeaderCaption: "@Lang.Turnover",
+                    HeaderText: "@Lang.Turnover",
+                    IsCurrency: true,
+                    Width: 110,
+                    Name: "TotalTurnover",
+                    NameCache: "TotalTurnover",
+                    HeaderAlign: "center",
+                    CellAlign: "right",
+                    FormatNumber: AFFILIATE.FORMATNUMBER,
+                    FormatNegative: '($)',
                     IsAbs: true
                 },
                 {
@@ -429,14 +429,14 @@
 
                         // handle the number format.
                         var currentValue = record[cell.Name];
-                    
+
                         if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
                             if (currentValue < 0) {
                                 currentValue = -1 * currentValue;
                             }
                             currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
                         }
-                    
+
                         if (record[cell.Name] < 0) {
                             currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
                         }
@@ -521,6 +521,6 @@
             IsAbs: true
         };
     </script>
-    
+
     @Scripts.Render("~/bundles/memberwinloss")
 }

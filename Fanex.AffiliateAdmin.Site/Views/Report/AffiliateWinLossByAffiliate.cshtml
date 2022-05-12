@@ -60,7 +60,7 @@ report
                 <div class="cell">
                     <label for="ToDate" class="txt">@Lang.To</label>
                     @Html.MonthPicker("ToDate", toDate, AppSettings.SystemStartDate, now)
-                </div>            
+                </div>
                 <div class="cell">
                     <label for="BaseCurrency" class="txt">@Lang.BaseCurrency</label>
                     @Html.DropDownCheckList("BaseCurrency", Model.BaseCurrencyOptionList, false, false, new { @class = "width-140 dropdownchecklist single-select" })
@@ -78,7 +78,7 @@ report
                 <div class="cell">
                     <label for="Products" class="txt">@Lang.Product</label>
                     @Html.DropDownCheckList("Products", Model.ProductOptionList, true, false, new { @class = "width-140" })
-                </div>                
+                </div>
             </div>
             <div class="row-fluid row-form btn-action">
                 <div class="span12">
@@ -107,7 +107,7 @@ report
             Sportsbook: "@Lang.Sportsbook",
             NumberGame: "@Lang.NumberGame",
             LiveCasino: "@Lang.LiveCasino",
-            RNGCasino: "@Lang.RNGCasino",
+            RNGCasino: "@Lang.SabaCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
             VirtualSport: "@Lang.VirtualSports",
             SubTotal: "@Lang.SubTotal",
@@ -143,15 +143,15 @@ report
                 {
                     Columns: [
                         { HeaderText: "@Lang.Month", Name: "WinlostDateStr", MergeRowNumber: 2 },
-                        { 
+                        {
                             HeaderCaption: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
                             HeaderText: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
                             Name: "GroupName", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Name: "Deposit", NameCache: "Deposit", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Withdrawal", HeaderText: "@Lang.Withdrawal", IsCurrency: true, Name: "Withdrawal", NameCache: "Withdrawal", MergeRowNumber: 2 },
-                        { HeaderCaption: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>", 
-                            HeaderText: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>", 
+                        { HeaderCaption: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>",
+                            HeaderText: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>",
                             IsCurrency: true, Name: "PSP", NameCache: "PSP", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Name: "Bonus", NameCache: "Bonus", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Name: "Adjustment", NameCache: "Adjustment", MergeRowNumber: 2 },
@@ -196,8 +196,8 @@ report
                 { HeaderText: "@Lang.Currency", Width: 80, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Width: 90, Name: "Deposit", NameCache: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderCaption: "@Lang.Withdrawal", HeaderText: "@Lang.Withdrawal", IsCurrency: true, Width: 90, Name: "Withdrawal", NameCache: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
-                { HeaderCaption: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>", 
-                    HeaderText: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>", 
+                { HeaderCaption: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>",
+                    HeaderText: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>",
                     IsCurrency: true, Width: 90, Name: "PSP", NameCache: "PSP", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Width: 90, Name: "Bonus", NameCache: "Bonus", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Width: 90, Name: "Adjustment", NameCache: "Adjustment", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
@@ -232,7 +232,7 @@ report
             },
             bodyRowHeight: 27
         };
-        
+
         var sampleProductGridOption = {
             language: '@AppSession.Language',
             showTitle: true,
@@ -245,7 +245,7 @@ report
                 {
                     Columns: [
                         { HeaderText: "@Lang.Month", Name: "WinlostDateStr", MergeRowNumber: 2 },
-                        { 
+                        {
                             HeaderCaption: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
                             HeaderText: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
                             Name: "GroupName", MergeRowNumber: 2 },
@@ -322,7 +322,7 @@ report
             },
             bodyRowHeight: 27
         };
-        
+
         var samplePlaytechCasinoHeader = { HeaderCaption: "@Lang.PlaytechCasino", HeaderAlign: "center", IsCurrency: true, Name: "PShare", NameCache: "PShare", MergeColNumber: 3 };
 
         var samplePShareCol = {
@@ -363,7 +363,7 @@ report
             FormatNegative: '($)',
             IsAbs: true
         };
-        
+
     </script>
     @Scripts.Render("~/bundles/affiliatewinloss")
 }

@@ -2458,8 +2458,8 @@
   <data name="RemoveFromMyFavorite" xml:space="preserve">
     <value>從我的最愛移除</value>
   </data>
-  <data name="RNGCasino" xml:space="preserve">
-    <value>電子娛樂</value>
+  <data name="SabaCasino" xml:space="preserve">
+    <value>沙巴娛樂城</value>
   </data>
   <data name="SelectAtLeastOneAffiliate" xml:space="preserve">
     <value>請最少選擇一個合作夥伴</value>

@@ -4,6 +4,7 @@
     using Core.Configurations;
     using Core.Constants;
     using DTO.OneAuth;
+    using Fanex.AffiliateAdmin.Core.Helpers;
     using Newtonsoft.Json;
     using ONEbook.UM.AspNetMVC.Filters;
     using Services.Impl.Core;
@@ -61,7 +62,7 @@
 
             if (AppSettings.GetValue("EnableLogForOneAuthorization") == "1" && !string.IsNullOrEmpty(errMsg))
             {
-                Logging.LogService.Error("OneAuthorization Token is invalid - Token = " + errMsg);
+                LogHelper.WriteError("OneAuthorization Token is invalid - Token = " + errMsg);
             }
 
             return Redirect(Url.Content(returnUrl));

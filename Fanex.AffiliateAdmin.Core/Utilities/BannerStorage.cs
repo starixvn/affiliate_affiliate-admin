@@ -27,7 +27,7 @@
         private readonly IMediaSettingService _mediaSettingService = new MediaSettingService();
 
         private string _bannerFolder;
-        
+
         public short AffType { get; set; }
 
         public short Category { get; set; }
@@ -134,7 +134,7 @@
             var extension = Path.GetExtension(BannerFileName).ToLower();
             return AllowedExtensions.Any(x => x == extension);
         }
-        
+
         public string UploadBanner()
         {
             if (!IsValidExtension() || !MimeTypeHelper.IsValidMimeType(File.InputStream))
@@ -184,7 +184,7 @@
                     }
                     catch (Exception ex)
                     {
-                        Logging.LogService.Error(ex.Message, ex);
+                        LogHelper.WriteError(ex);
                         return false;
                     }
                 }

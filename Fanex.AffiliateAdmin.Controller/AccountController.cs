@@ -13,6 +13,7 @@
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Core;
+    using Fanex.AffiliateAdmin.Core.Helpers;
     using Fanex.AffiliateAdmin.Services;
     using Helpers;
     using Models;
@@ -55,7 +56,7 @@
         {
             if (AppSettings.IsProduction && !Regex.IsMatch(Remote.GetClientIPAddress(), AppSettings.GetValue("CompanyIPRange")))
             {
-                Logging.LogService.Info($"Access Denied: {AppSettings.SystemName}; IP: {Remote.GetClientIPAddress()}");
+                LogHelper.WriteInfo($"Access Denied: {AppSettings.SystemName}; IP: {Remote.GetClientIPAddress()}");
                 return Redirect("~/Notify/AccessDenied");
             }
             else

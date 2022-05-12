@@ -12,7 +12,7 @@
     /// <summary>
     /// Query Service class.
     /// </summary>
-    public class QueryService : ServiceBase
+    public class QueryService
     {
         private readonly IDynamicRepository _repository;
 

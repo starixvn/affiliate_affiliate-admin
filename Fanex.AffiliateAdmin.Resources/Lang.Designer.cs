@@ -6553,11 +6553,12 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RNG Casino.
+        ///   Looks up a localized string similar to Saba Casino.
         /// </summary>
-        public static string RNGCasino {
+        public static string SabaCasino
+        {
             get {
-                return ResourceManager.GetString("RNGCasino", resourceCulture);
+                return ResourceManager.GetString("SabaCasino", resourceCulture);
             }
         }
         

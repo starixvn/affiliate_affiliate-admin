@@ -2776,4 +2776,7 @@
     <value>輸贏的進位值僅供參考。因此，所有輸贏相加的總計有可能和小計有差數。</value>
     <comment>78976</comment>
   </data>
+  <data name="RNGKeno" xml:space="preserve">
+    <value>快樂彩</value>
+  </data>
 </root>

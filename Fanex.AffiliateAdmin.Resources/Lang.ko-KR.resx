@@ -2296,4 +2296,7 @@
   <data name="Currentmonthstatistics" xml:space="preserve">
     <value>Current month statistics</value>
   </data>
+  <data name="RNGKeno" xml:space="preserve">
+    <value>케노</value>
+  </data>
 </root>

@@ -2769,4 +2769,7 @@
     <value>输赢的进位值仅供参考。因此，所有输赢相加的总计有可能和小计有差数。</value>
     <comment>78976</comment>
   </data>
+  <data name="RNGKeno" xml:space="preserve">
+    <value>快乐彩</value>
+  </data>
 </root>

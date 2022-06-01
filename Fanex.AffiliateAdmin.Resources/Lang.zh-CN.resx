@@ -2457,8 +2457,8 @@
   <data name="RemoveFromMyFavorite" xml:space="preserve">
     <value>从我的最爱移除</value>
   </data>
-  <data name="RNGCasino" xml:space="preserve">
-    <value>电子娱乐</value>
+  <data name="SabaCasino" xml:space="preserve">
+    <value>沙巴娱乐城</value>
   </data>
   <data name="SelectAtLeastOneAffiliate" xml:space="preserve">
     <value>请最少选择一个合作伙伴</value>
@@ -2768,5 +2768,8 @@
   <data name="SystemParlayDetailNote" xml:space="preserve">
     <value>输赢的进位值仅供参考。因此，所有输赢相加的总计有可能和小计有差数。</value>
     <comment>78976</comment>
+  </data>
+  <data name="RNGKeno" xml:space="preserve">
+    <value>快乐彩</value>
   </data>
 </root>

@@ -46,7 +46,7 @@ report
     </div>
     @RazorHelper.SearchPanel("#SearchForm .search-form", string.Format(Lang.AffiliateWinLossReportInfo, string.Empty), false, true)
     @using (Html.BeginForm("AffiliateWinLoss", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
-    {            
+    {
         <div class="span12 search-form search-company-winloss">
             <div class="row-fluid row-form">
                 <div class="cell">
@@ -144,7 +144,7 @@ report
             Sportsbook: "@Lang.Sportsbook",
             NumberGame: "@Lang.NumberGame",
             LiveCasino: "@Lang.LiveCasino",
-            RNGCasino: "@Lang.RNGCasino",
+            RNGCasino: "@Lang.SabaCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
             VirtualSport: "@Lang.VirtualSports",
             SubTotal: "@Lang.SubTotal",
@@ -186,15 +186,15 @@ report
                         { HeaderText: "@Lang.Month", Name: "WinlostDateStr", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.AffType", Name: "AffType", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Language", Name: "Language", MergeRowNumber: 2 },
-                        { 
+                        {
                             HeaderCaption: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
                             HeaderText: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
                             Name: "GroupName", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Currency", Name: "Currency", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Name: "Deposit", NameCache: "Deposit", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Withdrawal", HeaderText: "@Lang.Withdrawal", IsCurrency: true, Name: "Withdrawal", NameCache: "Withdrawal", MergeRowNumber: 2 },
-                        { HeaderCaption: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>", 
-                            HeaderText: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>", 
+                        { HeaderCaption: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>",
+                            HeaderText: "<span title='@Lang.PSPTooltip'>@Lang.PSP</span>",
                             IsCurrency: true, Name: "PSP", NameCache: "PSP", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Name: "Bonus", NameCache: "Bonus", MergeRowNumber: 2 },
                         { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Name: "Adjustment", NameCache: "Adjustment", MergeRowNumber: 2 },
@@ -244,7 +244,7 @@ report
                     HeaderAlign: "center",
                     Formatter: function(rIndex, record, cell, cellFormated) {
                         if (cellFormated)
-                            return hasCommGroupPolicy ? 
+                            return hasCommGroupPolicy ?
                                 "<a class='commgroup' data-date='" + moment(record.WinlostDate).format("MMM-YYYY") + "' data-groupid='" + record.GroupID + "' href='javascript:void(0)'>" + cellFormated + "</a>":
                                 cellFormated;
                         return null;
@@ -253,7 +253,7 @@ report
                 { HeaderText: "@Lang.Currency", Width: 80, Name: "Currency", HeaderAlign: "center", CellAlign: "center" },
                 { HeaderCaption: "@Lang.Deposit", HeaderText: "@Lang.Deposit", IsCurrency: true, Width: 90, Name: "Deposit", NameCache: "Deposit", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderCaption: "@Lang.Withdrawal", HeaderText: "@Lang.Withdrawal", IsCurrency: true, Width: 90, Name: "Withdrawal", NameCache: "Withdrawal", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
-                { HeaderCaption: "@Lang.PSP", HeaderText: "@Lang.PSP", 
+                { HeaderCaption: "@Lang.PSP", HeaderText: "@Lang.PSP",
                     IsCurrency: true, Width: 90, Name: "PSP", NameCache: "PSP", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderCaption: "@Lang.Bonus", HeaderText: "@Lang.Bonus", IsCurrency: true, Width: 90, Name: "Bonus", NameCache: "Bonus", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
                 { HeaderCaption: "@Lang.Adjustment", HeaderText: "@Lang.Adjustment", IsCurrency: true, Width: 90, Name: "Adjustment", NameCache: "Adjustment", HeaderAlign: "center", CellAlign: "right", FormatNumber: AFFILIATE.FORMATNUMBER, FormatNegative: '($)', IsAbs: true },
@@ -288,7 +288,7 @@ report
             },
             bodyRowHeight: 27
         };
-        
+
         var sampleProductGridOption = {
             language: '@AppSession.Language',
             showTitle: true,
@@ -304,7 +304,7 @@ report
                         { HeaderText: "@Lang.Month", Name: "WinlostDateStr", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.AffType", Name: "AffType", MergeRowNumber: 2 },
                         { HeaderText: "@Lang.Language", Name: "Language", MergeRowNumber: 2 },
-                        { 
+                        {
                             HeaderCaption: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
                             HeaderText: "<span title='@Lang.CommissionGroup'>@Lang.CommGroup</span>",
                             Name: "GroupName", MergeRowNumber: 2 },
@@ -326,7 +326,7 @@ report
                 }
             ],
             columns: [
-                {   HeaderText: "@Lang.Affiliate", Width: 80, Name: "Username", HeaderAlign: "center", CellAlign: "left", 
+                {   HeaderText: "@Lang.Affiliate", Width: 80, Name: "Username", HeaderAlign: "center", CellAlign: "left",
                     Formatter: function(rIndex, record, cell, cellFormated) {
                         return "<a class='afflink' data-affname='" + record.Username + "' href='javascript:void(0)'>" + cellFormated + "</a>";
                     }
@@ -384,7 +384,7 @@ report
             headerColumnHeight: 30,
             bodyRowHeight: 27
         };
-        
+
         var samplePlaytechCasinoHeader = { HeaderCaption: "@Lang.PlaytechCasino", HeaderAlign: "center", IsCurrency: true, Name: "PShare", NameCache: "PShare", MergeColNumber: 3 };
 
         var samplePShareCol = {
@@ -425,7 +425,7 @@ report
             FormatNegative: '($)',
             IsAbs: true
         };
-        
+
     </script>
     @Scripts.Render("~/bundles/affiliatewinloss")
 }

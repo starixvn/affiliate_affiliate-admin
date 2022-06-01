@@ -1922,8 +1922,8 @@
   <data name="RmbRate" xml:space="preserve">
     <value>RMB rate</value>
   </data>
-  <data name="RNGCasino" xml:space="preserve">
-    <value>RNG Casino</value>
+  <data name="SabaCasino" xml:space="preserve">
+    <value>Saba Casino</value>
   </data>
   <data name="Role" xml:space="preserve">
     <value>Role</value>
@@ -2827,8 +2827,8 @@
   <data name="GoldDeluxe" xml:space="preserve">
     <value>Gold Deluxe</value>
   </data>
-  <data name="Keno" xml:space="preserve">
-    <value>Keno</value>
+  <data name="RNGKeno" xml:space="preserve">
+    <value>RNG Keno</value>
   </data>
   <data name="Macau" xml:space="preserve">
     <value>Macau</value>

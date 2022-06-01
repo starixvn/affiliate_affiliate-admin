@@ -19,7 +19,7 @@ namespace Fanex.AffiliateAdmin.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Lang {
@@ -1199,7 +1199,7 @@ namespace Fanex.AffiliateAdmin.Resources {
                 return ResourceManager.GetString("BetCount", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Bet Type List.
         /// </summary>
@@ -4392,15 +4392,6 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keno.
-        /// </summary>
-        public static string Keno {
-            get {
-                return ResourceManager.GetString("Keno", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Key.
         /// </summary>
         public static string Key {
@@ -6553,11 +6544,11 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RNG Casino.
+        ///   Looks up a localized string similar to RNG Keno.
         /// </summary>
-        public static string RNGCasino {
+        public static string RNGKeno {
             get {
-                return ResourceManager.GetString("RNGCasino", resourceCulture);
+                return ResourceManager.GetString("RNGKeno", resourceCulture);
             }
         }
         
@@ -6603,6 +6594,15 @@ namespace Fanex.AffiliateAdmin.Resources {
         public static string Sa {
             get {
                 return ResourceManager.GetString("Sa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saba Casino.
+        /// </summary>
+        public static string SabaCasino {
+            get {
+                return ResourceManager.GetString("SabaCasino", resourceCulture);
             }
         }
         

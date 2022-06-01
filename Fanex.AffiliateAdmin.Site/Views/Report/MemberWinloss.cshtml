@@ -46,7 +46,7 @@ report
     </div>
     @RazorHelper.SearchPanel("#SearchForm .search-form", string.Format(Lang.MemberWinLessReportInfo, string.Empty), false, true)
     @using (Html.BeginForm("MemberWinloss", "Report", FormMethod.Post, new { id = "SearchForm", @class = "row-fluid" }))
-    {            
+    {
         <div class="span12 search-form">
             <div class="row-fluid row-form">
                 <div class="cell">
@@ -139,7 +139,7 @@ report
             Sportsbook: "@Lang.Sportsbook",
             NumberGame: "@Lang.NumberGame",
             LiveCasino: "@Lang.LiveCasino",
-            RNGCasino: "@Lang.RNGCasino",
+            RNGCasino: "@Lang.SabaCasino",
             PlaytechCasino: "@Lang.PlaytechCasino",
             VirtualSport: "@Lang.VirtualSports",
             CustomerWL: "@Lang.MemberWL",
@@ -255,7 +255,7 @@ report
                     FormatNumber: AFFILIATE.FORMATNUMBER,
                     FormatNegative: '($)',
                     IsAbs: true
-                    
+
                 },
                 {
                     HeaderCaption: "<span title='@Lang.MemberCommission'>@Lang.MemberComm</span>",
@@ -295,17 +295,17 @@ report
                                 productNames.push(item.Name);
                             }
                         });
-                        
+
                         // handle the number format.
                         var currentValue = record[cell.Name];
-                    
+
                         if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
                             if (currentValue < 0) {
                                 currentValue = -1 * currentValue;
                             }
                             currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
                         }
-                    
+
                         if (record[cell.Name] < 0) {
                             currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
                         }
@@ -454,17 +454,17 @@ report
                     IsAbs: true,
                     Formatter: function(rIndex, record, cell, cellFormated) {
                         var groupBy = $('#GroupBy').val();
-                        
+
                         // handle the number format.
                         var currentValue = record[cell.Name];
-                    
+
                         if (!isNaN(currentValue) && currentValue !== '' && currentValue !== null) {
                             if (currentValue < 0) {
                                 currentValue = -1 * currentValue;
                             }
                             currentValue = numeral(currentValue).format(AFFILIATE.FORMATNUMBER);
                         }
-                    
+
                         if (record[cell.Name] < 0) {
                             currentValue = '<span class="format-negative">' + "($)".replace('$', currentValue) + '</span>';
                         }
@@ -564,6 +564,6 @@ report
         };
     </script>
 @* ReSharper restore AssignedValueIsNeverUsed *@
-    
+
     @Scripts.Render("~/bundles/memberwinloss")
 }

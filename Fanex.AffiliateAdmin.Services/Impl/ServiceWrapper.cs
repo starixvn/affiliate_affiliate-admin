@@ -3,6 +3,7 @@
     using System;
     using System.Xml.Linq;
     using DTO.PaymentRequest;
+    using Fanex.AffiliateAdmin.Core.Helpers;
     using Helpers;
 
     /// <summary>
@@ -56,7 +57,7 @@
             }
             catch (Exception ex)
             {
-                Logging.LogService.Error(ex.Message, ex);
+                LogHelper.WriteError(ex);
             }
 
             return custInfo;
@@ -90,7 +91,7 @@
             }
             catch (Exception ex)
             {
-                Logging.LogService.Error(ex.Message, ex);
+                LogHelper.WriteError(ex);
             }
 
             return transferInfo;

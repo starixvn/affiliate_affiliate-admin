@@ -2,7 +2,7 @@
 {
     using System.Runtime.Serialization;
     using System.Web;
-    using Logging;
+    using Fanex.AffiliateAdmin.Core.Helpers;
 
     /// <summary>
     /// Session Manager.
@@ -24,7 +24,7 @@
                 }
                 catch (SerializationException exception)
                 {
-                    LogService.Info("Session Error: " + exception.Message);
+                    LogHelper.WriteInfo("Session Error: " + exception.Message);
                 }
 
                 return null;

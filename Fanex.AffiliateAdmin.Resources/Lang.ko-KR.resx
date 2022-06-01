@@ -1776,8 +1776,8 @@
   <data name="RmbRate" xml:space="preserve">
     <value>중국화율</value>
   </data>
-  <data name="RNGCasino" xml:space="preserve">
-    <value>RNG Casino</value>
+  <data name="SabaCasino" xml:space="preserve">
+    <value>Saba Casino</value>
   </data>
   <data name="Role" xml:space="preserve">
     <value>역할</value>
@@ -2295,5 +2295,8 @@
   </data>
   <data name="Currentmonthstatistics" xml:space="preserve">
     <value>Current month statistics</value>
+  </data>
+  <data name="RNGKeno" xml:space="preserve">
+    <value>케노</value>
   </data>
 </root>

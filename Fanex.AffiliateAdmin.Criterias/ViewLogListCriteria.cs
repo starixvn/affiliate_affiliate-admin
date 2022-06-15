@@ -12,7 +12,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ViewLogListCriteria : BaseCriteria
+    public class ViewLogListCriteria : PagingCriteriaBase
     {
         public int AffId { get; set; }
 

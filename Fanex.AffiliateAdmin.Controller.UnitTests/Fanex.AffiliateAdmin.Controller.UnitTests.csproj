@@ -127,13 +127,23 @@
   <ItemGroup>
     <Compile Include="AccountControllerTest.cs" />
     <Compile Include="AffiliateInfoControllerTest.cs" />
+    <Compile Include="CommGroupControllerTest.cs" />
+    <Compile Include="ConfigurationControllerTest.cs" />
     <Compile Include="Constants\Constants.cs" />
+    <Compile Include="DomainControllerTest.cs" />
     <Compile Include="Helpers\MockingHelpers.cs" />
     <Compile Include="Helpers\SimpleLifetimeScopeProvider.cs" />
     <Compile Include="HomeControllerTest.cs" />
     <Compile Include="NotifyControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AdjustmentControllerTest.cs" />
+    <Compile Include="Reports\AffiliateCommissionControllerTest.cs" />
+    <Compile Include="Reports\AffiliateWinLossByOverviewControllerTest.cs" />
+    <Compile Include="Reports\AffiliateWinLossByProductControllerTest.cs" />
+    <Compile Include="Reports\CompanyWinLossByOverviewControllerTest.cs" />
+    <Compile Include="Reports\CompanyWinLossByProductControllerTest.cs" />
+    <Compile Include="Reports\MemberWinLossByOverviewControllerTest.cs" />
+    <Compile Include="Reports\MemberWinLossByProductControllerTest.cs" />
     <Compile Include="Reports\ReportControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>

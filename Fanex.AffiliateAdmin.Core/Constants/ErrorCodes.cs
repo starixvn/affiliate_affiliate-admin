@@ -3,7 +3,7 @@
     public static class ErrorCodes
     {
         public const int Success = 0;
-        public const int GeneralErrorCode = 1;
+        public const int GeneralErrorCode = 9999;
         public const int InvalidRequest = 16;
         public const int AccessDeniedErrorCode = 500;
         public const int WrongUserPasswordErrorCode = 500;

@@ -7,11 +7,13 @@
     using System.Web.Mvc;
     using Core.DbConstants;
     using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Constants;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
 
@@ -53,10 +55,8 @@
 
             var model = new CommGroupInfo
             {
-                DepositPercent =
-                        (double)(defaultPspExchange.DepositPercent.HasValue ? defaultPspExchange.DepositPercent : 0),
-                WithdrawalPercent =
-                        (double)(defaultPspExchange.WithdrawalPercent.HasValue ? defaultPspExchange.WithdrawalPercent : 0)
+                DepositPercent = defaultPspExchange.DepositPercent ?? 0,
+                WithdrawalPercent = defaultPspExchange.WithdrawalPercent ?? 0
             };
 
             return View(model);
@@ -65,34 +65,13 @@
         [HttpPost]
         public ActionResult Add(CommGroupInsertCriteria criteria)
         {
-            CopyTierSettingsForAllProducts(criteria);
-
             var session = SessionManager.CurrentSession;
             criteria.AdminUserName = session.Username;
-            criteria.UserId = session.CustID;
-            criteria.IP = Remote.GetClientIPAddress();
-            criteria.GroupName = criteria.GroupName.Encode();
-            criteria.Description = criteria.Description.Encode();
-            criteria.DeductionList = BuildDeductionListXml(criteria.DeductionSettingList);
+            AssignCommGroupInsertUpdateCriteria(criteria, session);
 
             _commGroupService.ExecuteOutput(criteria);
 
-            var errorMsg = string.Empty;
-
-            if (criteria.ErrCode == 9999)
-            {
-                errorMsg = criteria.ErrMsg;
-            }
-            else if (criteria.ErrCode != 0)
-            {
-                errorMsg = Common.GetErrorMsg(criteria.ErrCode);
-                if (errorMsg.Contains("{0}"))
-                {
-                    errorMsg = string.Format(errorMsg, string.IsNullOrEmpty(criteria.ErrMsg) ? criteria.GroupId.ToString() : criteria.ErrMsg);
-                }
-            }
-
-            return Json(GetResultViewModel(criteria.ErrCode, Lang.AddSucc, errorMsg));
+            return Json(GetCommGroupInsertUpdateResult(criteria, Lang.AddSucc));
         }
 
         [HttpPost]
@@ -147,48 +126,12 @@
         [HttpPost]
         public ActionResult Edit(CommGroupUpdateCriteria criteria)
         {
-            var productCount = _systemSettings.Products.Count();
-
-            if (criteria.CopyForAllProducts)
-            {
-                criteria.MinAmountList = string.Concat(Enumerable.Repeat(criteria.MinAmountList, productCount));
-                criteria.MaxAmountList = string.Concat(Enumerable.Repeat(criteria.MaxAmountList, productCount));
-                criteria.MinQMList = string.Concat(Enumerable.Repeat(criteria.MinQMList, productCount));
-                criteria.MaxQMList = string.Concat(Enumerable.Repeat(criteria.MaxQMList, productCount));
-                criteria.TierList = string.Concat(Enumerable.Repeat(criteria.TierList, productCount));
-                criteria.CommissionList = string.Concat(Enumerable.Repeat(criteria.CommissionList, productCount));
-            }
-
-            criteria.UserId = SessionManager.CurrentSession.CustID;
-
-            criteria.IP = Remote.GetClientIPAddress();
-
-            criteria.GroupName = criteria.GroupName.Encode();
-
-            criteria.Description = criteria.Description.Encode();
-
             criteria.LicenseeId = _systemSettings.LicenseeID;
-
-            criteria.DeductionList = BuildDeductionListXml(criteria.DeductionSettingList);
+            AssignCommGroupInsertUpdateCriteria(criteria);
 
             _commGroupService.ExecuteOutput(criteria);
 
-            var errorMsg = string.Empty;
-
-            if (criteria.ErrCode == 9999)
-            {
-                errorMsg = criteria.ErrMsg;
-            }
-            else if (criteria.ErrCode != 0)
-            {
-                errorMsg = Common.GetErrorMsg(criteria.ErrCode);
-                if (errorMsg.Contains("{0}"))
-                {
-                    errorMsg = string.Format(errorMsg, string.IsNullOrEmpty(criteria.ErrMsg) ? criteria.GroupId.ToString() : criteria.ErrMsg);
-                }
-            }
-
-            return Json(GetResultViewModel(criteria.ErrCode, Lang.UpdateSucc, errorMsg));
+            return Json(GetCommGroupInsertUpdateResult(criteria, Lang.UpdateSucc));
         }
 
         [HttpGet]
@@ -218,10 +161,9 @@
             var session = SessionManager.CurrentSession;
 
             criteria.UserId = session.CustID;
-            criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSetting.PageSize : criteria.PageSize;
             criteria.LicenseeId = _systemSettings.LicenseeID;
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
+            AssignPagingCriteriaBase(criteria);
 
             var groups = GetGridData(criteria);
 
@@ -252,11 +194,43 @@
             criteria.UserCurrencies = session.BuildUserCurrencyParam();
 
             var groups = _commGroupService.GetById(criteria);
-            var date = criteria.Date == null ? _systemSettings.SystemDateTime : criteria.Date.Value;
+            var date = criteria.Date ?? _systemSettings.SystemDateTime;
 
             _commGroupService.BuildGroupData(groups, date, criteria.GroupID.ToString());
 
             return View(groups.FirstOrDefault());
+        }
+
+        private ResultViewModel GetCommGroupInsertUpdateResult(CommGroupInsertUpdateCriteria criteria, string message)
+        {
+            var errorMsg = string.Empty;
+
+            if (criteria.ErrCode == ErrorCodes.GeneralErrorCode)
+            {
+                errorMsg = criteria.ErrMsg;
+            }
+            else if (criteria.ErrCode != ErrorCodes.Success)
+            {
+                errorMsg = Common.GetErrorMsg(criteria.ErrCode);
+                if (errorMsg.Contains("{0}"))
+                {
+                    errorMsg = string.Format(errorMsg, string.IsNullOrEmpty(criteria.ErrMsg) ? criteria.GroupId.ToString() : criteria.ErrMsg);
+                }
+            }
+
+            return GetResultViewModel(criteria.ErrCode, message, errorMsg);
+        }
+
+        private void AssignCommGroupInsertUpdateCriteria(CommGroupInsertUpdateCriteria criteria, ICurrentSession currentSession = null)
+        {
+            CopyTierSettingsForAllProducts(criteria);
+
+            var session = currentSession ?? SessionManager.CurrentSession;
+            criteria.UserId = session.CustID;
+            criteria.IP = Remote.GetClientIPAddress();
+            criteria.GroupName = criteria.GroupName.Encode();
+            criteria.Description = criteria.Description.Encode();
+            criteria.DeductionList = BuildDeductionListXml(criteria.DeductionSettingList);
         }
 
         private static string BuildDeductionListXml(string deductionSettingList)
@@ -286,7 +260,7 @@
         /// Copy Tier Settings For All Enabled Products.
         /// </summary>
         /// <param name="criteria">Criteria input.</param>
-        private void CopyTierSettingsForAllProducts(CommGroupInsertCriteria criteria)
+        private void CopyTierSettingsForAllProducts(CommGroupInsertUpdateCriteria criteria)
         {
             var productCount = _systemSettings.Products.Count();
 

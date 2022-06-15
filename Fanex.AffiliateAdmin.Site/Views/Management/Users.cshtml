@@ -5,9 +5,7 @@
     var title = SessionManager.CurrentSession.IsIT ? Lang.AddNewITUser : Lang.AddNewUser;
 }
 @using Fanex.AffiliateAdmin.Core.Utilities
-@using Fanex.AffiliateAdmin.DTO
-@using Fanex.AffiliateAdmin.Core.Mvc
-@model Fanex.AffiliateAdmin.Models.UserManagementViewModel
+@model Fanex.AffiliateAdmin.Models.UserManagement.UserManagementViewModel
 @section iconcss{
 management
 }
@@ -56,7 +54,7 @@ management
             ChangePassword: "@Lang.ChangePassword",
             Group: "@Lang.Group"
         };
-        
+
         var canUpdateData = @(ViewBag.CanUpdateData ? "true" : "false");
 
         var gridOption = {

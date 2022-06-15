@@ -1,7 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.DTO
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Company win loss.
@@ -44,7 +43,7 @@
         public decimal TotalTurnoverBase { get; set; }
 
         public decimal CompanyWinLoss { get; set; }
-       
+
         public decimal DepositBase { get; set; }
 
         public decimal WithdrawalBase { get; set; }
@@ -57,25 +56,18 @@
 
         public decimal CompanyWinLossBase { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal Deposit_Aff { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal Withdrawal_Aff { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal Bonus_Aff { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal Adjustment_Aff { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal PSP_Aff { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal TotalTurnover_Aff { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal CompanyWinLoss_Aff { get; set; }
 
         public decimal PShare { get; set; }
@@ -84,13 +76,10 @@
 
         public decimal NetGaming { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal PShare_Aff { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal PWin_Aff { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal NetGaming_Aff { get; set; }
 
         public decimal PShareBase { get; set; }
@@ -103,7 +92,6 @@
 
         public decimal PlayerCommBase { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Accept contain underscores")]
         public decimal PlayerComm_Aff { get; set; }
     }
 }

@@ -7,7 +7,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MemberWinlossByProductCriteria : BaseCriteria
+    public class MemberWinlossByProductCriteria : PagingCriteriaBase
     {
         [SpParam(Ignored = true)]
         public bool ByAffiliate { get; set; }

@@ -7,7 +7,7 @@
     /// <summary>
     /// AffiliateList Criteria class.
     /// </summary>
-    public class AffiliateListCriteria : BaseCriteria
+    public class AffiliateListCriteria : PagingCriteriaBase
     {
         public int UserId { get; set; }
 

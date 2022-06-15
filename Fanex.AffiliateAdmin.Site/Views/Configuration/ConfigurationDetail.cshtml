@@ -2,7 +2,7 @@
     ViewBag.Title = Lang.UpdateConfiguration;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
-@model Fanex.AffiliateAdmin.Models.SystemSettingUpdateViewModel
+@model Fanex.AffiliateAdmin.Models.Configurations.SystemSettingUpdateViewModel
 @using (Html.BeginForm("UpdateConfiguration", "Configuration", FormMethod.Post, new { @class = "form-horizontal form-popup" }))
 {
     @Html.ValidationSummary()
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    
+
 }
 @section scripts{
     @if (ViewBag.Result != null)

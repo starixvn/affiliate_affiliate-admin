@@ -319,17 +319,11 @@
         {
             var model = new DomainControlViewModel
             {
-                Status = true
+                Status = true,
+                CountryList = _systemSettings.Countries,
+                AffDomainList = _domainService.AffDomainList(new DomainAffSelCriteria()),
+                MemberDomainList = _domainService.MemDomainList(new DomainMemSelCriteria())
             };
-
-            model.AddCountryList(_systemSettingService.GetCountryList(new CountrySelectCriteria
-            {
-                PageSize = 300,
-                PageIndex = 1
-            }).ToList());
-
-            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria()).ToList());
-            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria()).ToList());
 
             return View(model);
         }
@@ -384,18 +378,11 @@
                 Status = result.Status,
                 Country = result.CountryId,
                 MemberDomain = result.MemberDomainId,
-                AffDomain = result.AffDomainId
+                AffDomain = result.AffDomainId,
+                CountryList = _systemSettings.Countries,
+                AffDomainList = _domainService.AffDomainList(new DomainAffSelCriteria()),
+                MemberDomainList = _domainService.MemDomainList(new DomainMemSelCriteria())
             };
-
-            model.AddCountryList(_systemSettingService.GetCountryList(new CountrySelectCriteria
-            {
-                PageSize = 300,
-                PageIndex = 1
-            }).ToList());
-
-            model.AddAffDomainList(_domainService.AffDomainList(new DomainAffSelCriteria()).ToList());
-
-            model.AddMemberDomainList(_domainService.MemDomainList(new DomainMemSelCriteria()).ToList());
 
             return View(model);
         }

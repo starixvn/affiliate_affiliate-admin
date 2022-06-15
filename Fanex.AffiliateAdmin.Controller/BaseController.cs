@@ -102,7 +102,7 @@
             return Json(result);
         }
 
-        protected void AssignBaseCriteria(BaseCriteria criteria)
+        protected void AssignPagingCriteriaBase(PagingCriteriaBase criteria)
         {
             criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
             criteria.PageSize = criteria.PageSize == 0 ? _appSetting.PageSize : criteria.PageSize;

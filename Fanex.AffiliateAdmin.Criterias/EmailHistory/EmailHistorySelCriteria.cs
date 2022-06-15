@@ -6,7 +6,7 @@
     /// <summary>
     /// Email History Select Criteria.
     /// </summary>
-    public class EmailHistorySelCriteria : BaseCriteria
+    public class EmailHistorySelCriteria : PagingCriteriaBase
     {
         public int? MID { get; set; }
 

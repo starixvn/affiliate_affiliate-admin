@@ -11,7 +11,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class CountryCriteria : BaseCriteria
+    public class CountryCriteria : PagingCriteriaBase
     {
         public CountryCriteria()
         {

@@ -6,7 +6,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BannerListCriteria : BaseCriteria
+    public class BannerListCriteria : PagingCriteriaBase
     {
         public short? Category { get; set; }
 

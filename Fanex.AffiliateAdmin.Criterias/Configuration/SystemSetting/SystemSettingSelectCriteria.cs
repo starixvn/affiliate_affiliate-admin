@@ -5,7 +5,7 @@
     /// <summary>
     /// SystemSettingSelect Criteria class.
     /// </summary>
-    public class SystemSettingSelectCriteria : BaseCriteria
+    public class SystemSettingSelectCriteria : PagingCriteriaBase
     {
         public string Type { get; set; }
 

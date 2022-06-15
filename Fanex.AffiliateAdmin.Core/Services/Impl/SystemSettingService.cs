@@ -164,7 +164,7 @@
             this.ExecuteOutput(criteria);
         }
 
-        public void InsertCountry(CountryAddCriteria criteria)
+        public void InsertCountry(CountryInsertCriteria criteria)
         {
             this.ExecuteOutput(criteria);
         }

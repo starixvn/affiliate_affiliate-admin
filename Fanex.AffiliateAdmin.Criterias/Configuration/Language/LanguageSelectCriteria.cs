@@ -5,7 +5,7 @@
     /// <summary>
     /// LanguageSelect Criteria class.
     /// </summary>
-    public class LanguageSelectCriteria : BaseCriteria
+    public class LanguageSelectCriteria : PagingCriteriaBase
     {
         public string Name { get; set; }
 

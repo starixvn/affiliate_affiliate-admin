@@ -58,7 +58,7 @@
                 FromDate = model.DateChecked ? (DateTime?)model.FromDate : null,
                 ToDate = model.DateChecked ? (DateTime?)model.ToDate : null
             };
-            AssignBaseCriteria(criteria);
+            AssignPagingCriteriaBase(criteria);
 
             var data = _messageService.GetMessages(criteria);
             return Json(new

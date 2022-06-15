@@ -5,7 +5,7 @@
     /// <summary>
     /// Select criteria class.
     /// </summary>
-    public class AffTypeSelectCriteria : BaseCriteria
+    public class AffTypeSelectCriteria : PagingCriteriaBase
     {
         public string Name { get; set; }
 

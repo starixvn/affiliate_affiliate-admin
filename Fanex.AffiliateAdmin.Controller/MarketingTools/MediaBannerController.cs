@@ -44,7 +44,7 @@
         [HttpPost]
         public ActionResult DataList(BannerListCriteria criteria)
         {
-            AssignBaseCriteria(criteria);
+            AssignPagingCriteriaBase(criteria);
             var data = MediaBannerService.GetBanners(criteria);
 
             foreach (var banner in data)

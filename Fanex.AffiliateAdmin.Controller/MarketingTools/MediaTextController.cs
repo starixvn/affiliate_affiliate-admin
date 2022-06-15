@@ -36,7 +36,7 @@
         [HttpPost]
         public ActionResult DataList(BannerListCriteria criteria)
         {
-            AssignBaseCriteria(criteria);
+            AssignPagingCriteriaBase(criteria);
             var data = MediaBannerService.GetTexts(criteria);
 
             return GetJsonResult(data, criteria);

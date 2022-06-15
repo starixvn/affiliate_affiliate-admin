@@ -35,6 +35,8 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
 
         IEnumerable<Product> Products { get; }
 
+        IEnumerable<Country> Countries { get; }
+
         string SystemName { get; }
 
         string SystemDisplayName { get; }

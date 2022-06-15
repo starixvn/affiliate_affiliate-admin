@@ -6,7 +6,7 @@
     /// <summary>
     /// Commission group criteria class.
     /// </summary>
-    public class CommGroupCriteria : BaseCriteria
+    public class CommGroupCriteria : PagingCriteriaBase
     {
         public string GroupName { get; set; }
 

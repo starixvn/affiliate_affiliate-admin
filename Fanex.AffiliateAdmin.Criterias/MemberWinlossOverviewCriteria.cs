@@ -7,7 +7,7 @@
     /// <summary>
     /// Member Win Loss Overview Criteria.
     /// </summary>
-    public class MemberWinLossOverviewCriteria : BaseCriteria
+    public class MemberWinLossOverviewCriteria : PagingCriteriaBase
     {
         [SpParam(Ignored = true)]
         public bool ByAffiliate { get; set; }

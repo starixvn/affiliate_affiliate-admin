@@ -1,6 +1,7 @@
-﻿@using Fanex.AffiliateAdmin.Core.Configurations
-@using Fanex.AffiliateAdmin.Core.Mvc
+﻿@using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Models
+@using Fanex.AffiliateAdmin.Models.MarketingTools
+@using Fanex.AffiliateAdmin.Core.Configurations
 
 @model BannerAddViewModel
 @{
@@ -13,13 +14,15 @@
     {
         style = string.Empty;
     }
+
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
 }
 
 @using (Html.BeginForm("AddBanner", "MediaBanner", FormMethod.Post, new { id = "ActionBannerForm", @class = "form-horizontal form-popup", enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary()
     <div class="popup-content">
-        <div  class="control-group">
+        <div class="control-group">
             <div class="controls">
                 <strong>
                     [@Lang.ValidTypes: .gif, .jpg, .png, .jpeg, .swf]
@@ -71,7 +74,7 @@
         <div class="control-group">
             @Html.LabelFor(m => m.ImageType, new { @class = "control-label" })
             <div class="controls">
-                @Html.DropDownCheckList("ImageType", Model.BannerTypeOptionList, false, false, new { disabled="disabled" })
+                @Html.DropDownCheckList("ImageType", Model.BannerTypeOptionList, false, false, new { disabled = "disabled" })
             </div>
         </div>
         <div class="control-group">
@@ -98,8 +101,8 @@
     <script type="text/javascript">
         var MSG = {
             errFileExtension: "@Html.Raw(Lang.errFileExtension)",
-            MaxFileSize: "@MediaSettings.MaxImageSize",
-            MaxFileSizeMsg: "@string.Format(Lang.MaxFileSizeLimit, string.Format("{0:#,##0}", MediaSettings.MaxImageSize))",
+            MaxFileSize: "@appSetting.MaxImageSize",
+            MaxFileSizeMsg: "@string.Format(Lang.MaxFileSizeLimit, string.Format("{0:#,##0}", appSetting.MaxImageSize))",
             BannerFileRequiredMsg: "@Lang.BannerFileRequiredMsg"
         };
     </script>

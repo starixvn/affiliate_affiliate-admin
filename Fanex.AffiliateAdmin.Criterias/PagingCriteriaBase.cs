@@ -2,7 +2,7 @@
 {
     using Fanex.Data.Repository;
 
-    public abstract class BaseCriteria : CriteriaBase
+    public abstract class PagingCriteriaBase : CriteriaBase
     {
         public int PageSize { get; set; }
 

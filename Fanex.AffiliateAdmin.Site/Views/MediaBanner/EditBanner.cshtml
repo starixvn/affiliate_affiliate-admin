@@ -1,7 +1,8 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Configurations
 @using Fanex.AffiliateAdmin.Models
+@using Fanex.AffiliateAdmin.Models.MarketingTools
 @using Fanex.AffiliateAdmin.Core.Mvc
-@using Fanex.AffiliateAdmin.Core.Services.Impl
+@using Fanex.AffiliateAdmin.Core.Configurations
 @model BannerEditViewModel
 @{
     ViewBag.Title = Lang.EditBanner;
@@ -13,6 +14,8 @@
     {
         style = string.Empty;
     }
+
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
 }
 
 @using (Html.BeginForm("EditBanner", "MediaBanner", FormMethod.Post, new { id = "ActionBannerForm", @class = "form-horizontal form-popup", enctype = "multipart/form-data" }))
@@ -22,9 +25,11 @@
         @Html.HiddenFor(m => m.BannerId)
         <div class="control-group">
             <div class="controls">
-                <strong>[@Lang.ValidTypes: .gif, .jpg, .png, .jpeg, .swf]
+                <strong>
+                    [@Lang.ValidTypes: .gif, .jpg, .png, .jpeg, .swf]
                     <br />
-                    [@Lang.FileSizeLimit: 3MB] </strong>
+                    [@Lang.FileSizeLimit: 3MB]
+                </strong>
             </div>
         </div>
         <div class="control-group">
@@ -92,8 +97,8 @@
     <script type="text/javascript">
         var MSG = {
             errFileExtension: "@Html.Raw(Lang.errFileExtension)",
-            MaxFileSize: "@MediaSettings.MaxImageSize",
-            MaxFileSizeMsg: "@string.Format(Lang.MaxFileSizeLimit, string.Format("{0:#,##0}", MediaSettings.MaxImageSize))"
+            MaxFileSize: "@appSetting.MaxImageSize",
+            MaxFileSizeMsg: "@string.Format(Lang.MaxFileSizeLimit, string.Format("{0:#,##0}", appSetting.MaxImageSize))"
         };
 
     </script>

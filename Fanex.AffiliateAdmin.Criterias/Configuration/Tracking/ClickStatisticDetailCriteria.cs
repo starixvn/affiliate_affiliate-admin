@@ -12,7 +12,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ClickStatisticDetailCriteria : BaseCriteria
+    public class ClickStatisticDetailCriteria : PagingCriteriaBase
     {
         public int AffId { get; set; }
 

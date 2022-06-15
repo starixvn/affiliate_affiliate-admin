@@ -21,16 +21,13 @@
     [FunctionAuth(Function = FunctionPolicyNames.SystemSettings)]
     public class ConfigurationController : BaseController
     {
-        private readonly ISystemSettings _systemSettings;
         private readonly ISystemSettingService _systemSettingService;
         #region Constructors
 
         public ConfigurationController(
             IAppSetting appSetting,
-            ISystemSettings systemSettings,
             ISystemSettingService systemSettingService) : base(appSetting)
         {
-            _systemSettings = systemSettings;
             _systemSettingService = systemSettingService;
         }
 
@@ -66,9 +63,7 @@
         [HttpPost]
         public ActionResult GetSystemSettingList(SystemSettingSelectCriteria criteria)
         {
-            criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSetting.PageSize : criteria.PageSize;
-
+            AssignPagingCriteriaBase(criteria);
             var data = _systemSettingService.GetSystemSettingList(criteria);
 
             return Json(new
@@ -193,10 +188,15 @@
         {
             if (ModelState.IsValid && criteria.IsValid())
             {
+                var licensee = _systemSettingService.GetSystemSetting(new SystemSettingsSelByNameCriteria
+                {
+                    Name = "LicenseeID",
+                });
+
                 criteria.IP = Remote.GetClientIPAddress();
                 criteria.Updatedby = SessionManager.CurrentSession.CustID;
                 criteria.Language = AppSession.Language;
-                criteria.LicenseeId = _systemSettings.LicenseeID;
+                criteria.LicenseeId = int.Parse(licensee.SValue);
 
                 _systemSettingService.InsertSystemSetting(criteria);
                 ViewBag.Result = GetResultViewModel(criteria.ErrCode, Lang.AddSucc);
@@ -229,9 +229,7 @@
         [HttpPost]
         public ActionResult GetCountryList(CountrySelectCriteria criteria)
         {
-            criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSetting.PageSize : criteria.PageSize;
-
+            AssignPagingCriteriaBase(criteria);
             var data = _systemSettingService.GetCountryList(criteria);
 
             return Json(new
@@ -296,7 +294,7 @@
         /// <param name="criteria">Input para.</param>
         /// <returns>Add country result.</returns>
         [HttpPost]
-        public ActionResult AddCountry(CountryAddCriteria criteria)
+        public ActionResult AddCountry(CountryInsertCriteria criteria)
         {
             if (ModelState.IsValid && criteria.IsValid())
             {
@@ -492,9 +490,7 @@
         [HttpPost]
         public ActionResult GetLanguageList(LanguageSelectCriteria criteria)
         {
-            criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSetting.PageSize : criteria.PageSize;
-
+            AssignPagingCriteriaBase(criteria);
             var data = _systemSettingService.GetLanguageList(criteria);
 
             return Json(new
@@ -648,9 +644,7 @@
         [HttpPost]
         public ActionResult GetAffTypeList(AffTypeSelectCriteria criteria)
         {
-            criteria.PageIndex = criteria.PageIndex == 0 ? 1 : criteria.PageIndex;
-            criteria.PageSize = criteria.PageSize == 0 ? AppSetting.PageSize : criteria.PageSize;
-
+            AssignPagingCriteriaBase(criteria);
             var data = _systemSettingService.GetAffTypeList(criteria);
 
             return Json(new

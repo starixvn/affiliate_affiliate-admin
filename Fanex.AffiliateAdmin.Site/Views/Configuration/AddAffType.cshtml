@@ -2,7 +2,7 @@
     ViewBag.Title = Lang.AddNewAffType;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
-@model Fanex.AffiliateAdmin.Models.AffTypeAddViewModel
+@model Fanex.AffiliateAdmin.Models.Configurations.AffTypeAddViewModel
 @using (Html.BeginForm("AddAffType", "Configuration", FormMethod.Post, new { @class = "form-horizontal form-popup" }))
 {
     @Html.ValidationSummary()

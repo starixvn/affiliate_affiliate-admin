@@ -7,7 +7,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MessageCriteria : BaseCriteria
+    public class MessageCriteria : PagingCriteriaBase
     {
         [SpParam(Ignored = true)]
         public int SearchBy { get; set; }

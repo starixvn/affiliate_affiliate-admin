@@ -8,7 +8,6 @@
     using System.Web.Script.Serialization;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
-    using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
@@ -238,10 +237,7 @@
                         return changeType != null ? (int)changeType : 0;
                     });
 
-                    if (property.CanWrite)
-                    {
-                        property.SetValue(totalCompanlyWinloss, Convert.ChangeType(value1, property.PropertyType), null);
-                    }
+                    property.SetValue(totalCompanlyWinloss, Convert.ChangeType(value1, property.PropertyType), null);
 
                     continue;
                 }
@@ -252,10 +248,7 @@
                     return changeType != null ? (decimal)changeType : 0;
                 });
 
-                if (property.CanWrite)
-                {
-                    property.SetValue(totalCompanlyWinloss, Convert.ChangeType(value, property.PropertyType), null);
-                }
+                property.SetValue(totalCompanlyWinloss, Convert.ChangeType(value, property.PropertyType), null);
             }
 
             return totalCompanlyWinloss;

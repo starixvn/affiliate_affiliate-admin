@@ -7,7 +7,7 @@
     /// <summary>
     /// Company Win loss Report Criteria.
     /// </summary>
-    public class CompanyWinlossByProductCriteria : BaseCriteria
+    public class CompanyWinlossByProductCriteria : PagingCriteriaBase
     {
         public string AffName { get; set; }
 

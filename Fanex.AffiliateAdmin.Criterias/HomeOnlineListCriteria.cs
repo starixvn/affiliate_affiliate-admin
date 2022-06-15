@@ -5,7 +5,7 @@
     /// <summary>
     /// Home Online List Criteria.
     /// </summary>
-    public class HomeOnlineListCriteria : BaseCriteria
+    public class HomeOnlineListCriteria : PagingCriteriaBase
     {
         public bool IsIT { get; set; }
 

@@ -1,13 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias.Configuration.Country
 {
-    using System.ComponentModel.DataAnnotations;
-    using Fanex.Data.Repository;
     using Resources;
+    using Data.Repository;
+    using System.ComponentModel.DataAnnotations;
 
-    /// <summary>
-    /// CountryAdd Criteria class.
-    /// </summary>
-    public class CountryAddCriteria : CriteriaBase
+    public abstract class CountryInsertUpdateCriteria : CriteriaBase
     {
         public int Updatedby { get; set; }
 
@@ -34,11 +31,6 @@
         public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
-
-        public override string GetSettingKey()
-        {
-            return "AffAdmin_CountryIns";
-        }
 
         public override bool IsValid()
         {

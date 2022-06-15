@@ -4,32 +4,32 @@
 }
 @using Fanex.AffiliateAdmin.Models
 
-@model Fanex.AffiliateAdmin.Models.DomainControlViewModel
+@model Fanex.AffiliateAdmin.Models.Domain.DomainControlViewModel
 
 @using (Html.BeginForm("DomainControlUpd", "Domain", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.ValidationSummary()
     <fieldset>
          <div class="control-group">
-            @Html.LabelFor(m => m.Country, new { @class = "control-label" })            
+            @Html.LabelFor(m => m.Country, new { @class = "control-label" })
             <div class="controls">
                 @Html.DropDownListFor(m => m.Country, Model.CountryListSelectItem)
             </div>
         </div>
          <div class="control-group">
-            @Html.LabelFor(m => m.AffDomain, new { @class = "control-label" })            
+            @Html.LabelFor(m => m.AffDomain, new { @class = "control-label" })
             <div class="controls">
                 @Html.DropDownListFor(m => m.AffDomain, Model.AffDomainListSelectItem)
             </div>
         </div>
          <div class="control-group">
-            @Html.LabelFor(m => m.MemberDomain, new { @class = "control-label" })            
+            @Html.LabelFor(m => m.MemberDomain, new { @class = "control-label" })
             <div class="controls">
                 @Html.DropDownListFor(m => m.MemberDomain, Model.MemberDomainListSelectItem)
             </div>
         </div>
          <div class="control-group">
-            @Html.LabelFor(m => m.Status, new { @class = "control-label" })            
+            @Html.LabelFor(m => m.Status, new { @class = "control-label" })
             <div class="controls">
                 @Html.CheckBoxFor(m => m.Status)
             </div>
@@ -41,11 +41,11 @@
                 <button type="button" id="btnCancel" class="btn">@Lang.Cancel</button>
             </div>
         </div>
-    </fieldset>    
+    </fieldset>
 }
 
 
-@section scripts{ 
+@section scripts{
     @Scripts.Render("~/scripts/domaincontrol")
     @if (ViewBag.Result != null){
         var result = (ResultViewModel)ViewBag.Result;

@@ -4,7 +4,7 @@
     using Fanex.Data;
     using Fanex.Data.Repository;
 
-    public class MemberListCriteria : BaseCriteria
+    public class MemberListCriteria : PagingCriteriaBase
     {
         public string AffUsername { get; set; }
 

@@ -80,7 +80,7 @@
 
         void UpdateCountry(CountryUpdateCriteria criteria);
 
-        void InsertCountry(CountryAddCriteria criteria);
+        void InsertCountry(CountryInsertCriteria criteria);
 
         void DeleteCountry(CountryDeleteCriteria criteria);
 

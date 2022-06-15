@@ -2,7 +2,7 @@
     ViewBag.Title = Lang.AddNewConfiguration;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
-@model Fanex.AffiliateAdmin.Models.AddConfigurationViewModel
+@model Fanex.AffiliateAdmin.Models.Configurations.AddConfigurationViewModel
 @using (Html.BeginForm("AddConfiguration", "Configuration", FormMethod.Post, new { @class = "form-horizontal form-popup"  }))
 {
     @Html.ValidationSummary()

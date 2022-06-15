@@ -7,7 +7,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class AffiliateWinLossOverviewCriteria : BaseCriteria
+    public class AffiliateWinLossOverviewCriteria : PagingCriteriaBase
     {
         public string AffName { get; set; }
 

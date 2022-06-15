@@ -2,7 +2,7 @@
     ViewBag.Title = Lang.AddNewLanguage;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
-@model Fanex.AffiliateAdmin.Models.LanguageAddViewModel
+@model Fanex.AffiliateAdmin.Models.Configurations.LanguageAddViewModel
 @using (Html.BeginForm("AddLanguage", "Configuration", FormMethod.Post, new { @class = "form-horizontal form-popup" }))
 {
     @Html.ValidationSummary()

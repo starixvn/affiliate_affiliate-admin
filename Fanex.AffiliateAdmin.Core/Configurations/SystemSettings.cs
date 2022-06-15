@@ -1,6 +1,7 @@
 ﻿using Fanex.AffiliateAdmin.Core.Services.Interface;
 using Fanex.AffiliateAdmin.Core.Session;
 using Fanex.AffiliateAdmin.Criterias;
+using Fanex.AffiliateAdmin.Criterias.Configuration.Country;
 using Fanex.AffiliateAdmin.Criterias.Configuration.Product;
 using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
 using Fanex.AffiliateAdmin.DTO;
@@ -81,6 +82,12 @@ namespace Fanex.AffiliateAdmin.Core.Configurations
         public IEnumerable<Currency> PlayerCurrencies => _systemSettingService.GetPlayerCurrencyList(new PlayerCurrencyCriteria());
 
         public IEnumerable<Product> Products => _systemSettingService.GetProductList(new ProductSelectCriteria());
+
+        public IEnumerable<DTO.Country> Countries => _systemSettingService.GetCountryList(new CountrySelectCriteria
+        {
+            PageSize = 300,
+            PageIndex = 1
+        });
 
         public string SystemName => GetSettingValue(new SystemSettingsSelByNameCriteria { Name = "SystemName" });
 

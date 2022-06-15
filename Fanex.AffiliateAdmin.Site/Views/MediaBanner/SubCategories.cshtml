@@ -1,5 +1,5 @@
 ﻿@using Fanex.AffiliateAdmin.Core.Mvc
-@using Fanex.AffiliateAdmin.Models
+@using Fanex.AffiliateAdmin.Models.MarketingTools
 @model SubCategoriesViewModel
 
 @if (Model.SubCategories.Any())
@@ -8,14 +8,14 @@
      {
          <!-- for search panel -->
          @Html.Label("SubCategory", Lang.SubCategory, new {@class = "txt"})
-         @Html.DropDownCheckList("SubCategory", Model.SubCategoryOptionList, false, false, new { @class = "width-140" })         
+         @Html.DropDownCheckList("SubCategory", Model.SubCategoryOptionList, false, false, new { @class = "width-140" })
      }
      else
      {
          <!-- for add, update action-->
          @Html.Label("SubCategory", Lang.SubCategory, new { @class = "control-label" })
          <div class="controls">
-             @Html.DropDownCheckList("SubCategory", Model.SubCategoryOptionList, false, false)         
+             @Html.DropDownCheckList("SubCategory", Model.SubCategoryOptionList, false, false)
          </div>
      }
 }

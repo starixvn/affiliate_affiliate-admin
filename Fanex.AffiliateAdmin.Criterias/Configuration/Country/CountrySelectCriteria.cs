@@ -5,7 +5,7 @@
     /// <summary>
     /// CountrySelect Criteria class.
     /// </summary>
-    public class CountrySelectCriteria : BaseCriteria
+    public class CountrySelectCriteria : PagingCriteriaBase
     {
         public string Name { get; set; }
 

@@ -2,9 +2,8 @@
     ViewBag.Title = Lang.UserManagement;
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
-@using Fanex.AffiliateAdmin.Core.Utilities
-@using Fanex.AffiliateAdmin.DTO
-@model Fanex.AffiliateAdmin.Models.UserManagementViewModel
+
+@model Fanex.AffiliateAdmin.Models.UserManagement.UserManagementViewModel
 <div class="search-panel search-userMgr">
     @RazorHelper.SearchPanel("#SearchForm .search-form", "Information text", false, false)
     @using (Html.BeginForm("UserInGroup", "Management", FormMethod.Get, new { @class = "row-fluid", id = "SearchForm" }))

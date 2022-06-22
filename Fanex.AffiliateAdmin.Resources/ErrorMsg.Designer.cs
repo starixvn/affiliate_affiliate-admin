@@ -268,6 +268,24 @@ namespace Fanex.AffiliateAdmin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bitcoin (API Product ID: 69) has been included in Sportsbook&apos;s figures..
+        /// </summary>
+        public static string Msg107 {
+            get {
+                return ResourceManager.GetString("Msg107", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to API Product ID has been removed already..
+        /// </summary>
+        public static string Msg108 {
+            get {
+                return ResourceManager.GetString("Msg108", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Old password is incorrect.
         /// </summary>
         public static string Msg11 {

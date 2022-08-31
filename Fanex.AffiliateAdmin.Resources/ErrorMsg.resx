@@ -407,4 +407,10 @@
   <data name="Msg106" xml:space="preserve">
     <value>Cash Out (API Product ID: 25) has been included in Sportsbook's figures.</value>
   </data>
+  <data name="Msg107" xml:space="preserve">
+    <value>Bitcoin (API Product ID: 69) has been included in Sportsbook's figures.</value>
+  </data>
+  <data name="Msg108" xml:space="preserve">
+    <value>API Product ID has been removed already.</value>
+  </data>
 </root>

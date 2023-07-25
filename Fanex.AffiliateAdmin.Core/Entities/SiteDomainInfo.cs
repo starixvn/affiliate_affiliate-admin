@@ -41,6 +41,11 @@
                 {
                     if(words.Length > 3 && string.Equals("bpadmin999", words[2], StringComparison.CurrentCultureIgnoreCase))
                     {
+                        if(string.Equals("itc303", words[1], StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            return GetSiteDomainInfo(scheme, isKiosk, "itcbetgame", words[3]);
+                        }
+
                         return GetSiteDomainInfo(scheme, isKiosk, words[1], words[3]);
                     }
 

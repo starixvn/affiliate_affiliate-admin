@@ -176,8 +176,6 @@
             {
                 var bannerDir = Path.Combine(folder, bannerFolder);
 
-                LogHelper.WriteInfo($"BannerDir: {bannerDir}");
-
                 if (Directory.Exists(bannerDir) == false)
                 {
                     try
@@ -186,8 +184,7 @@
                     }
                     catch (Exception ex)
                     {
-                        LogHelper.WriteInfo($"BannerDir failed: {bannerDir}");
-                        LogHelper.WriteInfo(ex.Message);
+                        LogHelper.WriteError(ex);
                         return false;
                     }
                 }

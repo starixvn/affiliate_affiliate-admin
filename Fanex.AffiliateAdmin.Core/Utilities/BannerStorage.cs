@@ -1,4 +1,4 @@
-﻿namespace Fanex.AffiliateAdmin.Core.Utilities
+namespace Fanex.AffiliateAdmin.Core.Utilities
 {
     using System;
     using System.Collections.Generic;
@@ -184,6 +184,7 @@
                     }
                     catch (Exception ex)
                     {
+                        LogHelper.WriteInfo($"BannerDir failed: {bannerDir}");
                         LogHelper.WriteError(ex);
                         return false;
                     }

@@ -17,9 +17,11 @@
     using Criterias;
     using DTO;
     using DTO.PaymentRequest;
+    using Fanex.AffiliateAdmin.Core.Helpers;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Models;
+    using Newtonsoft.Json;
 
     [FunctionAuth(Function = FunctionPolicyNames.Payment, CurrenciesRequired = true)]
     public class PaymentController : BaseController
@@ -253,10 +255,11 @@
                     Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
                 });
 
+                var transferAmount = Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount));
                 var transferInfo = ProcessTransfer(
                     playerPayoutInfo,
                     paymentDetail.Transid,
-                    Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount)),
+                    transferAmount,
                     balAccCustId);
 
                 if (IsTransferCompleted(transferInfo))
@@ -275,17 +278,30 @@
                         criteria.IbcTransId = transferInfo.IbcTransId;
                         criteria.IbcUsername = ibcUsername;
                     }
+                } else
+                {
+                    LogHelper.WriteInfo($"The Transfer Proccess is failed:" +
+                        $"\n Params: Transid: {paymentDetail.Transid}, PlayerUsername: {playerPayoutInfo.PlayerUsername}, Amount: {transferAmount}, DummyBalAcc: {playerPayoutInfo.DummyBalAcc}, BalAccCustId: {balAccCustId}, IbcUserName: {custInfo.IbcUserName}" +
+                        $"\n Result: IbcRefNo: {transferInfo.IbcRefNo}, IbcTransId: {transferInfo.IbcTransId}, ErrorMessage: {transferInfo.ErrorMessage}");
                 }
             }
 
             if (paymentIsUpdated)
             {
                 _paymentService.UpdatePayment(criteria);
-                return new ResultViewModel
+
+                var result = new ResultViewModel
                 {
                     ErrorCode = criteria.ErrCode,
                     Success = criteria.ErrCode == 0,
                 };
+
+                if(!result.Success)
+                {
+                    LogHelper.WriteInfo($"Update Payment Info: {JsonConvert.SerializeObject(criteria)}");
+                }    
+
+                return result;
             }
 
             return new ResultViewModel

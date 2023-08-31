@@ -5,6 +5,7 @@
     using System.Text;
     using Core.Session;
     using Criterias;
+    using Fanex.AffiliateAdmin.Core.Helpers;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
 
@@ -21,6 +22,7 @@
         {
             var userId = SessionManager.CurrentSession.CustID;
             var resultLogContent = BuildLogContentByResult(methodName, userId, transId, paramInfo, xmlData);
+            LogHelper.WriteInfo(resultLogContent);
             DbLogger.WritePaymentLog(new PaymentLogCriteria { UserId = userId, LogContent = resultLogContent });
         }
 

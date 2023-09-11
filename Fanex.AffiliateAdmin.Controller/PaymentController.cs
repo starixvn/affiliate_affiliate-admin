@@ -255,11 +255,10 @@
                     Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
                 });
 
-                var transferAmount = Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount));
                 var transferInfo = ProcessTransfer(
                     playerPayoutInfo,
                     paymentDetail.Transid,
-                    transferAmount,
+                    Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount)),
                     balAccCustId);
 
                 if (IsTransferCompleted(transferInfo))
@@ -278,11 +277,6 @@
                         criteria.IbcTransId = transferInfo.IbcTransId;
                         criteria.IbcUsername = ibcUsername;
                     }
-                } else
-                {
-                    LogHelper.WriteInfo($"The Transfer Proccess is failed:" +
-                        $"\n Params: Transid: {paymentDetail.Transid}, PlayerUsername: {playerPayoutInfo.PlayerUsername}, Amount: {transferAmount}, DummyBalAcc: {playerPayoutInfo.DummyBalAcc}, BalAccCustId: {balAccCustId}, IbcUserName: {custInfo.IbcUserName}" +
-                        $"\n Result: IbcRefNo: {transferInfo.IbcRefNo}, IbcTransId: {transferInfo.IbcTransId}, ErrorMessage: {transferInfo.ErrorMessage}");
                 }
             }
 

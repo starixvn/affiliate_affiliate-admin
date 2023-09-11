@@ -41,8 +41,6 @@
             try
             {
                 var xml = Client.GetLicenseeCustInfo(siteName, licenseeUserName);
-                WriteLogAfterGettingCustInfo(siteName, licenseeUserName, transId, xml);
-
                 var isValid = IsValidApiResult(xml);
 
                 if (isValid)
@@ -52,11 +50,13 @@
                 }
                 else
                 {
+                    WriteLogAfterGettingCustInfo(siteName, licenseeUserName, transId, xml);
                     custInfo.ErrorMessage = xml.Element("ReturnMessage")?.Value;
                 }
             }
             catch (Exception ex)
             {
+                WriteLogAfterGettingCustInfo(siteName, licenseeUserName, transId);
                 LogHelper.WriteError(ex);
             }
 
@@ -75,8 +75,6 @@
             try
             {
                 var xml = Client.Transfer(siteName, licenseeUserName, amount, dummyAccount);
-                WriteLogAfterTransfering(siteName, licenseeUserName, amount, dummyAccount, transId, xml);
-
                 var isValid = IsValidApiResult(xml);
 
                 if (isValid)
@@ -86,11 +84,13 @@
                 }
                 else
                 {
+                    WriteLogAfterTransfering(siteName, licenseeUserName, amount, dummyAccount, transId, xml);
                     transferInfo.ErrorMessage = xml.Element("ReturnMessage")?.Value;
                 }
             }
             catch (Exception ex)
             {
+                WriteLogAfterTransfering(siteName, licenseeUserName, amount, dummyAccount, transId);
                 LogHelper.WriteError(ex);
             }
 
@@ -113,14 +113,14 @@
             return true;
         }
 
-        private static void WriteLogAfterGettingCustInfo(string siteName, string licenseeUserName, long transId, XElement xml)
+        private static void WriteLogAfterGettingCustInfo(string siteName, string licenseeUserName, long transId, XElement xml = null)
         {
             var methodName = "GetLicenseeCustInfo";
             var paramInfo = $"siteName={siteName},userName={licenseeUserName}";
             PaymentLogHelper.WriteLog(methodName, paramInfo, transId, xml?.ToString());
         }
 
-        private static void WriteLogAfterTransfering(string siteName, string licenseeUserName, double amount, int dummyAccount, long transId, XElement xml)
+        private static void WriteLogAfterTransfering(string siteName, string licenseeUserName, double amount, int dummyAccount, long transId, XElement xml = null)
         {
             var methodName = "Transfer";
             var paramInfo = $"siteName={siteName},licenseeUserName={licenseeUserName},Transfer Amount={amount},dummyAccount={dummyAccount}";

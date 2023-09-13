@@ -17,9 +17,11 @@
     using Criterias;
     using DTO;
     using DTO.PaymentRequest;
+    using Fanex.AffiliateAdmin.Core.Helpers;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Models;
+    using Newtonsoft.Json;
 
     [FunctionAuth(Function = FunctionPolicyNames.Payment, CurrenciesRequired = true)]
     public class PaymentController : BaseController
@@ -281,11 +283,19 @@
             if (paymentIsUpdated)
             {
                 _paymentService.UpdatePayment(criteria);
-                return new ResultViewModel
+
+                var result = new ResultViewModel
                 {
                     ErrorCode = criteria.ErrCode,
                     Success = criteria.ErrCode == 0,
                 };
+
+                if(!result.Success)
+                {
+                    LogHelper.WriteInfo($"Update Payment Info: {JsonConvert.SerializeObject(criteria)}");
+                }    
+
+                return result;
             }
 
             return new ResultViewModel

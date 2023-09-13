@@ -8,12 +8,6 @@
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.sit.xml
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aoncash.sit.xml
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.sit.xml
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.9bet.mnl.xml
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.mnl.xml
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.mnl.xml
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.athena000.mnl.xml
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.aoncash.mnl.xml
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.spondemo.mnl.xml
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.9bet.production.xml
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.macaubet.production.xml
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\SpNames\SpName.itcbet.production.xml

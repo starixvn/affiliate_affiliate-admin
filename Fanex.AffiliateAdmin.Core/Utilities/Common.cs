@@ -6,6 +6,7 @@
     using System.Resources;
     using System.Text;
     using Fanex.AffiliateAdmin.Resources;
+    using Fanex.MailDeliver.MailClient;
     using Fanex.MailDeliver.MailClient.API;
 
     public static class Common
@@ -48,6 +49,9 @@
                 MailBcc = mailBcc,
                 MailCc = mailCC,
             };
+
+            AppSettings.AppMailId = Configurations.AppSettings.AppMailId;
+            AppSettings.AppMailAddress = Configurations.AppSettings.AppMailAddress;
 
             using (var client = new MailDeliver())
             {

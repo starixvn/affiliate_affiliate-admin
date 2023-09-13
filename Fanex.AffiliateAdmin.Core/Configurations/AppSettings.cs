@@ -334,6 +334,22 @@
             }
         }
 
+        public static string AppMailId
+        {
+            get
+            {
+                return GetValue("app_mail_id");
+            }
+        }
+
+        public static string AppMailAddress
+        {
+            get
+            {
+                return GetValue("app_mail_address");
+            }
+        }
+
         public static string MailContact
         {
             get

@@ -23,11 +23,11 @@
 		{
 			var fileName = string.Format("Web.ConnectionString.{0}.{1}.config", licenseeDbName.Key, environment);
 			manager.StartNewFile(fileName);
-			var licenseeDb = string.Format("<add name=\"{0}\" connectionString=\"packet size=4096; Data Source=10.40.40.92;Initial Catalog=Affiliate_{1};integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;\" providerName=\"System.Data.SqlClient\" />", licenseeDbName.Value, licenseeDbName.Key);
+			var licenseeDb = string.Format("<add name=\"{0}\" connectionString=\"packet size=4096; Data Source=10.40.40.86;Initial Catalog=Affiliate_{1};integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;\" providerName=\"System.Data.SqlClient\" />", licenseeDbName.Value, licenseeDbName.Key);
 #>
 <connectionStrings>
 	<#= licenseeDb #>
-	<add name="DBEXT.bodb02.bodbAdminNet" connectionString="packet size=4096; Data Source=10.40.40.92;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;" providerName="System.Data.SqlClient" />
+	<add name="DBEXT.bodb02.bodbAdminNet" connectionString="packet size=4096; Data Source=10.40.40.86;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;" providerName="System.Data.SqlClient" />
 	<add name="DBCUST.bodb_Licensee.bodbLicenseeNet" connectionString="Data Source=10.40.40.191;Initial Catalog=bodb_Licensee;User Id=bodbLicenseeNet;Password=rQdgyA7UNg5isU2wtrRVyRrWEq1gYCANdd3I4UUfIHA==" providerName="System.Data.SqlClient"/>
 	<add name="DBLOG_bodbLicenseeNet" connectionString="packet size=4096; Data Source=10.40.40.227;Initial Catalog=bodb_CustomerLog;integrated security=false; User Id=bodbLicenseeNet;Password=rQdgyA7UNg5isU2wtrRVyRrWEq1gYCANdd3I4UUfIHA==" providerName="System.Data.SqlClient" />
 	<add name="ConnectionString_ClearinghouseDB" connectionString="Data Source=10.40.40.191;Initial Catalog=SiteConfig;User Id=Dot_Admin_Portal;Password=H1Uo%&amp;*5" />

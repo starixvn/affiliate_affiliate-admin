@@ -9,19 +9,19 @@
 @functions{
     public static string GetBannerUrl()
     {
-        var url = MediaSettings.BannerDomain;
-        if (AppSettings.IsProduction)
-        {
-            //var secondLevelDomain = Request.Url.Host.Split('.')[1];
-            //var defaultSecondLevelDomain = url.Split('.')[1];
-            //url = url.Replace("." + defaultSecondLevelDomain + ".", "." + secondLevelDomain + ".");
+        //var url = MediaSettings.BannerDomain;
+        //if (AppSettings.IsProduction)
+        //{
+        //    //var secondLevelDomain = Request.Url.Host.Split('.')[1];
+        //    //var defaultSecondLevelDomain = url.Split('.')[1];
+        //    //url = url.Replace("." + defaultSecondLevelDomain + ".", "." + secondLevelDomain + ".");
 
-            var scheme = Request.UrlReferrer != null ? Request.UrlReferrer.Scheme : Request.Url.Scheme;
+        //    var scheme = Request.UrlReferrer != null ? Request.UrlReferrer.Scheme : Request.Url.Scheme;
 
-            url = string.IsNullOrEmpty(scheme) ? url : url.Replace("https", scheme);
-        }
+        //    url = string.IsNullOrEmpty(scheme) ? url : url.Replace("https", scheme);
+        //}
 
-        return url;
+        return MediaSettings.BannerDomain;
     }
 
     public static string GetStatus(string status)

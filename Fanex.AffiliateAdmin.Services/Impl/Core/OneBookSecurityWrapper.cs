@@ -11,7 +11,7 @@
         {
             OneAuthToken result = null;
 
-            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString_ClearinghouseDB"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["DBCUST.SiteConfig.Dot_Admin_Portal"].ConnectionString;
             Auth<OneAuthToken> oneBookSecurity = new Auth<OneAuthToken>(connectionString);
             oneBookSecurity.Authenticate(token, ref result);
 

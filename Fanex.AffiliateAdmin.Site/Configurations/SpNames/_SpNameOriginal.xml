@@ -222,6 +222,6 @@
   </Function>
 
   <Function name="Log">
-    <Setting Key="Aff_WebAPI_WriteLog" SpName="Aff_WebAPI_WriteLog" DbName="DBLOG_bodbLicenseeNet" Plain="0" />
+    <Setting Key="Aff_WebAPI_WriteLog" SpName="Aff_WebAPI_WriteLog" DbName="DBLOG.bodb_CustomerLog.bodbLicenseeNet" Plain="0" />
   </Function>
 </Functions>

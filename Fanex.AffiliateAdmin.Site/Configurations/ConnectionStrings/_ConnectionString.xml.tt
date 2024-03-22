@@ -8,12 +8,12 @@
 
 	var licenseeDbNameList = new System.Collections.Generic.Dictionary<string, string>
 	{
-		{"spondemo", "DBAFFSPONDEMO.Affiliate_Spondemo.bodbAdminNet"},
-		{"aoncash", "DBAFFAONCASH.Affiliate_Aoncash.bodbAdminNet"},
-		{"athena000", "DBAFFATHENA000.Affiliate_Athena000.bodbAdminNet"},
-		{"itcbet", "DBAFFITCBET.Affiliate_itcbet.bodbAdminNet"},
-		{"macaubet", "DBAFFMACAUBET.Affiliate_MacauBet.bodbAdminNet"},
-		{"9bet", "DBAFF9BET.Affiliate_9bet.bodbAdminNet"}
+		{"spondemo", "DBAFFSPONDEMO.Affiliate_Spondemo.wsv_aff"},
+		{"aoncash", "DBAFFAONCASH.Affiliate_Aoncash.wsv_aff"},
+		{"athena000", "DBAFFATHENA000.Affiliate_Athena000.wsv_aff"},
+		{"itcbet", "DBAFFITCBET.Affiliate_itcbet.wsv_aff"},
+		{"macaubet", "DBAFFMACAUBET.Affiliate_MacauBet.wsv_aff"},
+		{"9bet", "DBAFF9BET.Affiliate_9bet.wsv_aff"}
 	};
 
 	var environments = new string[] { "uat", "production" };
@@ -23,13 +23,13 @@
 		{
 			var fileName = string.Format("Web.ConnectionString.{0}.{1}.config", licenseeDbName.Key, environment);
 			manager.StartNewFile(fileName);
-			var licenseeDb = string.Format("<add name=\"{0}\" connectionString=\"packet size=4096; Data Source=10.40.40.86;Initial Catalog=Affiliate_{1};integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;\" providerName=\"System.Data.SqlClient\" />", licenseeDbName.Value, licenseeDbName.Key);
+			var licenseeDb = string.Format("<add name=\"{0}\" connectionString=\"packet size=4096; Data Source=10.40.40.86;Initial Catalog=Affiliate_{1};integrated security=false; user id=wsv_aff; password=AGanu0JlCxksz7ug9dD8oNOVh4x7pEOjEcMOU8yhb9s=;\" providerName=\"System.Data.SqlClient\" />", licenseeDbName.Value, licenseeDbName.Key);
 #>
 <connectionStrings>
 	<#= licenseeDb #>
-	<add name="DBEXT.bodb02.bodbAdminNet" connectionString="packet size=4096; Data Source=10.40.40.92;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;" providerName="System.Data.SqlClient" />
-	<add name="DBCUST.bodb_Licensee.bodbLicenseeNet" connectionString="Data Source=10.40.40.191;Initial Catalog=bodb_Licensee;User Id=bodbLicenseeNet;Password=rQdgyA7UNg5isU2wtrRVyRrWEq1gYCANdd3I4UUfIHA==" providerName="System.Data.SqlClient"/>
-	<add name="DBLOG.bodb_CustomerLog.bodbLicenseeNet" connectionString="packet size=4096; Data Source=10.40.40.227;Initial Catalog=bodb_CustomerLog;integrated security=false; User Id=bodbLicenseeNet;Password=rQdgyA7UNg5isU2wtrRVyRrWEq1gYCANdd3I4UUfIHA==" providerName="System.Data.SqlClient" />
+	<add name="DBEXT.bodb02.wsv_aff" connectionString="packet size=4096; Data Source=10.40.40.92;Initial Catalog=bodb02;integrated security=false; user id=wsv_aff; password=AGanu0JlCxksz7ug9dD8oNOVh4x7pEOjEcMOU8yhb9s=;" providerName="System.Data.SqlClient" />
+	<add name="DBCUST.bodb_Licensee.wsv_lap" connectionString="Data Source=10.40.40.191;Initial Catalog=bodb_Licensee;User Id=wsv_lap;Password=q8q1HJdJZ0Gwmsn0v+Nxh0vYYaB11Tnfr8z5K1OWcRc=" providerName="System.Data.SqlClient"/>
+	<add name="DBLOG.bodb_CustomerLog.wsv_lap" connectionString="packet size=4096; Data Source=10.40.40.227;Initial Catalog=bodb_CustomerLog;integrated security=false; User Id=wsv_lap;Password=q8q1HJdJZ0Gwmsn0v+Nxh0vYYaB11Tnfr8z5K1OWcRc=" providerName="System.Data.SqlClient" />
 	<add name="DBCUST.SiteConfig.Dot_Admin_Portal" connectionString="Data Source=10.40.40.191;Initial Catalog=SiteConfig;User Id=Dot_Admin_Portal;Password=H1Uo%&amp;*5" />
 </connectionStrings>
 		<#

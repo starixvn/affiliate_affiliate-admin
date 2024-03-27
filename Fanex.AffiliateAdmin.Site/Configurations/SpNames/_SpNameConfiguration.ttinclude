@@ -6,12 +6,12 @@
 <#
 	var licenseeDbNameList = new System.Collections.Generic.Dictionary<string, string>
 	{
-		{"spondemo", "DBAFFSPONDEMO.Affiliate_Spondemo.wsv_aff"},
-		{"aoncash", "DBAFFAONCASH.Affiliate_Aoncash.wsv_aff"},
-		{"athena000", "DBAFFATHENA000.Affiliate_Athena000.wsv_aff"},
-		{"itcbet", "DBAFFITCBET.Affiliate_itcbet.wsv_aff"},
-		{"macaubet", "DBAFFMACAUBET.Affiliate_MacauBet.wsv_aff"},
-		{"9bet", "DBAFF9BET.Affiliate_9bet.wsv_aff"}
+		{"spondemo", "DBAFFSPONDEMO.Affiliate_Spondemo.wsv_afinet"},
+		{"aoncash", "DBAFFAONCASH.Affiliate_Aoncash.wsv_afinet"},
+		{"athena000", "DBAFFATHENA000.Affiliate_Athena000.wsv_afinet"},
+		{"itcbet", "DBAFFITCBET.Affiliate_itcbet.wsv_afinet"},
+		{"macaubet", "DBAFFMACAUBET.Affiliate_MacauBet.wsv_afinet"},
+		{"9bet", "DBAFF9BET.Affiliate_9bet.wsv_afinet"}
 	};
 
 	var environments = new string[] { "local", "uat", "production", "sit" };

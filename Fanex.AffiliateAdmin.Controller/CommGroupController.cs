@@ -304,13 +304,15 @@
         private IEnumerable<CommGroup> GetGridData(CommGroupCriteria criteria)
         {
             var groups = _commGroupService.GetListData<CommGroup>(criteria);
-
-            if (!string.IsNullOrEmpty(criteria.GroupIDList) && criteria.GroupIDList.IndexOf(',') == 0)
+            if (groups.Any())
             {
-                criteria.GroupIDList = criteria.GroupIDList.Substring(1);
-            }
+                if (!string.IsNullOrEmpty(criteria.GroupIDList) && criteria.GroupIDList.IndexOf(',') == 0)
+                {
+                    criteria.GroupIDList = criteria.GroupIDList.Substring(1);
+                }
 
-            _commGroupService.BuildGroupData(groups, criteria.Date, criteria.GroupIDList);
+                _commGroupService.BuildGroupData(groups, criteria.Date, criteria.GroupIDList);
+            }    
 
             return groups;
         }

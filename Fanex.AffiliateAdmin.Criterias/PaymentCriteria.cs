@@ -39,7 +39,7 @@
 
         public override bool IsValid()
         {
-            if (DateOption > 0 && Fromdate == null && Todate == null)
+            if ((DateOption > 0 && (Fromdate == null || Todate == null)) || Currency == null)
             {
                 return false;
             }

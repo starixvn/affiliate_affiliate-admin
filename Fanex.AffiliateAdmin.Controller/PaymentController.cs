@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Core.Configurations;
@@ -60,34 +59,47 @@
         [HttpPost]
         public ActionResult DataList(PaymentCriteria criteria)
         {
-            criteria.IsITAdmin = SessionManager.CurrentSession.IsIT;
-            criteria.LicenseeId = AppSettings.LicenseeID;
+            if (criteria.IsValid())
+            {
+                criteria.IsITAdmin = SessionManager.CurrentSession.IsIT;
+                criteria.LicenseeId = AppSettings.LicenseeID;
 
-            var data = _paymentService.GetPayments(criteria).ToList();
+                var data = _paymentService.GetPayments(criteria).ToList();
 
-            var subTotalRow =
-                from p in data
-                group p by p.Currency into g
-                select new { Currency = g.Key, Amt = g.Sum(p => p.Amt), ConvertedAmt = g.Sum(p => p.ConvertedAmt) };
+                var subTotalRow =
+                    from p in data
+                    group p by p.Currency into g
+                    select new { Currency = g.Key, Amt = g.Sum(p => p.Amt), ConvertedAmt = g.Sum(p => p.ConvertedAmt) };
 
-            var totalRow = from x in data
-                           group x by 1
-                               into g
-                           select new
-                           {
-                               Currency = AppSettings.BaseExchange.Code,
-                               Amt = g.Sum(y => y.ConvertedAmt),
-                               ConvertedAmt = g.Sum(p => p.ConvertedAmt)
-                           };
+                var totalRow = from x in data
+                               group x by 1
+                                   into g
+                               select new
+                               {
+                                   Currency = AppSettings.BaseExchange.Code,
+                                   Amt = g.Sum(y => y.ConvertedAmt),
+                                   ConvertedAmt = g.Sum(p => p.ConvertedAmt)
+                               };
+
+                return Json(
+                    new
+                    {
+                        List = data,
+                        SubTotal = subTotalRow,
+                        Total = totalRow
+                    },
+                JsonRequestBehavior.AllowGet);
+            }
 
             return Json(
-                new
-                {
-                    List = data,
-                    SubTotal = subTotalRow,
-                    Total = totalRow
-                },
-            JsonRequestBehavior.AllowGet);
+                    new
+                    {
+                        List = new List<PaymentInfo>(),
+                        SubTotal = 0,
+                        Total = 0
+                    },
+                JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]

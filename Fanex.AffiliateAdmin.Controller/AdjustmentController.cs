@@ -65,6 +65,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 AffName = affiliate.UserName,
                 Adjustment = adjustment,
                 Description = string.Empty,
+                AffDescription = string.Empty,
                 CurrencyCode = affiliate.CurrencyCode
             });
         }
@@ -85,6 +86,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 AdminId = session.CustID,
                 Amount = model.Amount,
                 Description = HttpUtility.UrlDecode(model.Description),
+                AffDescription = HttpUtility.UrlDecode(model.AffDescription),
                 LicenseeId = AppSettings.LicenseeID,
                 AdminUserName = session.Username
             };

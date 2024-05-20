@@ -21,6 +21,8 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public string Description { get; set; }
 
+        public string AffDescription { get; set; }
+
         public string Ip { get; set; }
 
         public string Language { get; set; }

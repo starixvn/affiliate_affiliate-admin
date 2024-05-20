@@ -3,7 +3,6 @@
     Layout = "~/Views/Shared/_LayoutFrame.cshtml";
 }
 
-@using Fanex.AffiliateAdmin.Core.Mvc
 @using Fanex.AffiliateAdmin.Core.Utilities
 @using Fanex.AffiliateAdmin.Models
 
@@ -31,7 +30,7 @@
                 <div class="clearfix"></div>
                     <table>
                         <colgroup>
-                            <col style="width: 160px;"/>
+                            <col style="width: 160px;" />
                             <col />
                         </colgroup>
                         <tr>
@@ -44,7 +43,18 @@
                         </tr>
                         <tr>
                             <td>@Html.LabelFor(m => m.Description, Lang.Description, new { @class = "control-label" }) </td>
-                            <td>@Html.TextAreaFor(m => m.Description, new { @class = "small-textarea" })</td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>@Html.LabelFor(m => m.Description, Lang.VisibleOnlyToAdmin, new { @class = "control-label", style = "margin-bottom: -5px;" })</td>
+                                        <td>@Html.LabelFor(m => m.AffDescription, Lang.VisibleAlsoToAffiliate, new { @class = "control-label", style = "margin-bottom: -5px;" })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.TextAreaFor(m => m.Description, new { @class = "xsmall-textarea" })</td>
+                                        <td>@Html.TextAreaFor(m => m.AffDescription, new { @class = "xsmall-textarea" })</td>
+                                    </tr>
+                                </table>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2" class="required">

@@ -19,9 +19,9 @@ namespace Fanex.AffiliateAdmin.Criterias
 
         public decimal Amount { get; set; }
 
-        public string Description { get; set; }
+        public string AdminDesc { get; set; }
 
-        public string AffDescription { get; set; }
+        public string AffDesc { get; set; }
 
         public string Ip { get; set; }
 

@@ -22,6 +22,8 @@ namespace Fanex.AffiliateAdmin.Models
 
         public string Description { get; set; }
 
+        public string AffDescription { get; set; }
+
         public Adjustment Adjustment { get; set; }
 
         public string CurrencyCode { get; set; }

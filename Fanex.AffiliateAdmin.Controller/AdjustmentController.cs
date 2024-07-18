@@ -65,6 +65,7 @@ namespace Fanex.AffiliateAdmin.Controller
                 AffName = affiliate.UserName,
                 Adjustment = adjustment,
                 Description = string.Empty,
+                AffDescription = string.Empty,
                 CurrencyCode = affiliate.CurrencyCode
             });
         }
@@ -78,13 +79,14 @@ namespace Fanex.AffiliateAdmin.Controller
         public ActionResult Index(AdjustmentViewModel model)
         {
             var session = SessionManager.CurrentSession;
-            var criteria = new AdjustmentEditCriteria()
+            var criteria = new AdjustmentEditCriteria
             {
                 Ip = Remote.GetClientIPAddress(),
                 AffId = AffiliateInfoCookieHelper.GetAffiliate(HttpContext).AffId,
                 AdminId = session.CustID,
                 Amount = model.Amount,
-                Description = HttpUtility.UrlDecode(model.Description),
+                AdminDesc = HttpUtility.UrlDecode(model.Description),
+                AffDesc = HttpUtility.UrlDecode(model.AffDescription),
                 LicenseeId = AppSettings.LicenseeID,
                 AdminUserName = session.Username
             };

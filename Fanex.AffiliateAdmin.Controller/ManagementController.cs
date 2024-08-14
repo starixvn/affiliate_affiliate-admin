@@ -5,6 +5,8 @@
     using System.Web.Mvc;
     using System.Xml;
     using Core.Enumerations;
+    using Core.Services;
+    using Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -16,6 +18,7 @@
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Common;
+    using Services.Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -384,14 +387,17 @@
                 var criteria = new ChangePasswordCriteria
                 {
                     CustId = model.CustId,
-                    UserName = model.UserName,
-                    UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress(),
-                    Password = Cryptography.CreateHash(model.Password, salt),
+                    LicenseeId = AppSettings.LicenseeID,
+                    UserPwd = Cryptography.CreateHash(model.Password, salt),
                     UserSalt = salt
                 };
 
                 _accountService.AccountUpdatePassword(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    AffWriteLogHelper.WriteLog("Password", criteria.GetSettingKey(), $"Changed password CustID: {model.CustId}");
+                }
 
                 ViewBag.Result = new ResultViewModel
                 {

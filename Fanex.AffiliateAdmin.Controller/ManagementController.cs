@@ -195,14 +195,20 @@
                 var criteria = new AccountInsCriteria
                 {
                     UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress(),
                     Password = Cryptography.CreateHash(model.Password, salt),
                     CustId = model.CustID,
                     UserName = model.Username,
-                    UserSalt = salt
+                    UserSalt = salt,
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _accountService.AccountInsert(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    var logDetails = $"NEW AFFILIATE Admin custid: {criteria.CustId} username: {model.Username}";
+                    AffWriteLogHelper.WriteLog("UserControl", criteria.GetSettingKey(), logDetails, criteria.CustId);
+                }
 
                 ViewBag.Result = new ResultViewModel
                 {

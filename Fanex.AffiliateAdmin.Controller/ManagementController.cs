@@ -508,6 +508,7 @@
         [HttpPost]
         public ActionResult ListPolicyGroup(GroupPolicySelCriteria criteria)
         {
+            criteria.LicenseeId = AppSettings.LicenseeID;
             return Json(new { List = _policyService.GetGroupPolicyList(criteria) });
         }
 

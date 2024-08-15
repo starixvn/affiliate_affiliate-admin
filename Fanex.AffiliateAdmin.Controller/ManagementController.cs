@@ -580,10 +580,14 @@
             if (ModelState.IsValid)
             {
                 criteria.UserId = SessionManager.CurrentSession.CustID;
-                criteria.Ip = Remote.GetClientIPAddress();
                 criteria.LicenseeId = AppSettings.LicenseeID;
 
                 _groupService.GroupUpdate(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    AffWriteLogHelper.WriteLog("UserControl", criteria.GetSettingKey(), $"[AFFILIATE] Update groupinfo: {criteria.GroupId}");
+                }
 
                 ViewBag.Result = new ResultViewModel
                 {

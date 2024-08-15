@@ -606,10 +606,13 @@
         [HttpPost]
         public ActionResult DeleteGroup(GroupInfoDelCriteria criteria)
         {
-            criteria.UserId = SessionManager.CurrentSession.CustID;
-            criteria.Ip = Remote.GetClientIPAddress();
-
+            criteria.LicenseeId = AppSettings.LicenseeID;
             _groupService.GroupDelete(criteria);
+
+            if (criteria.ErrCode == 0)
+            {
+                AffWriteLogHelper.WriteLog("UserControl", criteria.GetSettingKey(), $"[AFFILIATE] Delete GroupID: {criteria.GroupId}");
+            }
 
             return Json(new
             {

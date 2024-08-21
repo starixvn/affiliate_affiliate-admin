@@ -475,11 +475,15 @@
                     GroupName = model.GroupName,
                     GroupDesc = model.Description,
                     UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress(),
                     LicenseeId = AppSettings.LicenseeID
                 };
 
                 _groupService.GroupInsert(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    AffWriteLogHelper.WriteLog("UserControl", criteria.GetSettingKey(), $"[AFFILIATE] add groupinfo: {criteria.GroupId}");
+                }
 
                 ViewBag.Result = new ResultViewModel
                 {

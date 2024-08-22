@@ -171,5 +171,7 @@
         /// <param name="criteria">System setting detail criteria.</param>
         /// <returns>List system setting.</returns>
         IEnumerable<SystemSetting> GetCustomerPages(SystemSettingsSelByTypeCriteria criteria);
+
+        string GetPartnerExchangeId(GetPartnerExchangeIdCriteria criteria);
     }
 }

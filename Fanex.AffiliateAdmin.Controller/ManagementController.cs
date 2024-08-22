@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using System.Web.Mvc;
-    using System.Xml;
     using Core.Enumerations;
     using Core.Services;
     using Core.Services.Interface;
@@ -43,12 +43,14 @@
 
         private readonly IPermissionCurrencyService _permissionService;
 
+        private readonly ISystemSettingService _systemSettingService;
+
         #endregion Services
 
         #region Constructor
 
         public ManagementController()
-            : this(null, null, null, null)
+            : this(null, null, null, null, null)
         {
         }
 
@@ -63,12 +65,14 @@
             IAccountService accountService,
             IGroupService groupService,
             IPolicyService policyService,
-            IPermissionCurrencyService permissionService)
+            IPermissionCurrencyService permissionService,
+            ISystemSettingService systemSettingService)
         {
             _accountService = accountService ?? new AccountService();
             _groupService = groupService ?? new GroupService();
             _policyService = policyService ?? new PolicyService();
             _permissionService = permissionService ?? new PermissionCurrencyService();
+            _systemSettingService = systemSettingService ?? new SystemSettingService();
         }
 
         #endregion Constructor
@@ -317,38 +321,22 @@
         [HttpPost]
         public ActionResult ChangeCurrencyUser(int custId, string currencies)
         {
-            var doc = new XmlDocument();
-
-            var root = doc.CreateElement("currencies");
-
-            doc.AppendChild(root);
-
-            if (!string.IsNullOrEmpty(currencies))
-            {
-                var currencyList = currencies.Split(';');
-
-                foreach (string currency in currencyList)
-                {
-                    var transNode = doc.CreateElement("currency");
-
-                    transNode.SetAttribute("currencyid", currency);
-
-                    transNode.SetAttribute("status", "1");
-
-                    root.AppendChild(transNode);
-                }
-            }
+            var currencyIds = _systemSettingService.GetPartnerExchangeId(new GetPartnerExchangeIdCriteria(currencies, 0));
 
             var criteria = new UserCurrencyInsCriteria
             {
-                ModifyBy = SessionManager.CurrentSession.CustID,
+                CurrencyIds = currencyIds,
                 UserId = custId,
-                Ip = Remote.GetClientIPAddress(),
-                CurrencyXML = doc.OuterXml,
                 LicenseeId = AppSettings.LicenseeID
             };
 
             _permissionService.UpdatePermissionCurrency(criteria);
+
+            if (criteria.ErrCode == 0)
+            {
+                var logDetails = BuildUserCurrencyInsLogDetails(criteria);
+                AffWriteLogHelper.WriteLog(string.Empty, criteria.GetSettingKey(), logDetails, custId, LogCriteriaType.AffWriteLogUserLogRunSp);
+            }
 
             ViewBag.Result = new ResultViewModel
             {
@@ -546,7 +534,7 @@
             return ChangePolicyGroup(new GroupPolicySelCriteria { GroupId = groupId });
         }
 
-        #endregion Change Policy
+        #endregion Change Policy 
 
         #region Edit Group
 
@@ -695,6 +683,20 @@
             };
 
             return _accountService.GetAccountInfo(criteria);
+        }
+
+        private static string BuildUserCurrencyInsLogDetails(UserCurrencyInsCriteria criteria)
+        {
+            var logDetails = new StringBuilder("<Aff_Admin_UserCurrencyIns");
+            logDetails.Append($" GroupID=\"{criteria.GroupId}\"");
+            logDetails.Append($" UserID=\"{criteria.UserId}\"");
+            logDetails.Append($" Modifyby=\"{SessionManager.CurrentSession.CustID}\"");
+            logDetails.Append($" CurrencyID=\"{criteria.CurrencyIds}\"");
+            logDetails.Append($" Language=\"{AppSettings.DefaultLanguage}\"");
+            logDetails.Append($" IP=\"{Remote.GetClientIPAddress()}\"");
+            logDetails.Append($" ErrCode=\"{criteria.ErrCode}\"");
+
+            return logDetails.ToString();
         }
 
         #endregion Private Method

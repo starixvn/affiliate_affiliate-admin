@@ -193,6 +193,7 @@
     <Compile Include="EmailHistory\EmailHistorySelCriteria.cs" />
     <Compile Include="ExchangeAutoRefreshUpdCriteria.cs" />
     <Compile Include="ExchangeRate\ExchangeUpdateCriteria.cs" />
+    <Compile Include="GetPartnerExchangeIdCriteria.cs" />
     <Compile Include="GroupInfoDelCriteria.cs" />
     <Compile Include="GroupInfoInsCriteria.cs" />
     <Compile Include="GroupInfoUpdCriteria.cs" />

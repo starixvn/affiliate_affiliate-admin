@@ -47,7 +47,7 @@ var Policy = (function ($) {
                     }
                 }
 
-                $("#Currencies").val(currencies.join(';'));
+                $("#Currencies").val(currencies.join(','));
 
                 return true;
             });

@@ -345,5 +345,10 @@
 
             return this.GetData<SystemSetting>(criteria);
         }
+
+        public string GetPartnerExchangeId(GetPartnerExchangeIdCriteria criteria)
+        {
+            return GetEntity<string>(criteria);
+        }
     }
 }

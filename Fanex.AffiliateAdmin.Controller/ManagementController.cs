@@ -150,13 +150,20 @@
             {
                 var criteria = new AccountUpdateCriteria
                 {
-                    CustId = model.CustID,
+                    UserId = model.CustID,
                     GroupId = model.GroupID,
-                    UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress(),
+                    ModifyBy = SessionManager.CurrentSession.CustID,
+                    LicenseeId = AppSettings.LicenseeID,
+                    CurrencyIds = AppSettings.PartnerExchangeId
                 };
 
                 _accountService.AccountUpdate(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    var logDetails = $"AFFILIATE UPDATE AccAdmin custid: {criteria.UserId}  GroupID: {criteria.GroupId}";
+                    AffWriteLogHelper.WriteLog("UserControl", criteria.GetSettingKey(), logDetails, criteria.UserId);
+                }
 
                 ViewBag.Result = new ResultViewModel
                 {

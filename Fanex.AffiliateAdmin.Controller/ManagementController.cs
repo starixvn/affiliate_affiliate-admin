@@ -2,9 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using System.Web.Mvc;
-    using System.Xml;
     using Core.Enumerations;
+    using Core.Services;
+    using Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -16,6 +18,7 @@
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Common;
+    using Services.Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -40,12 +43,14 @@
 
         private readonly IPermissionCurrencyService _permissionService;
 
+        private readonly ISystemSettingService _systemSettingService;
+
         #endregion Services
 
         #region Constructor
 
         public ManagementController()
-            : this(null, null, null, null)
+            : this(null, null, null, null, null)
         {
         }
 
@@ -60,12 +65,14 @@
             IAccountService accountService,
             IGroupService groupService,
             IPolicyService policyService,
-            IPermissionCurrencyService permissionService)
+            IPermissionCurrencyService permissionService,
+            ISystemSettingService systemSettingService)
         {
             _accountService = accountService ?? new AccountService();
             _groupService = groupService ?? new GroupService();
             _policyService = policyService ?? new PolicyService();
             _permissionService = permissionService ?? new PermissionCurrencyService();
+            _systemSettingService = systemSettingService ?? new SystemSettingService();
         }
 
         #endregion Constructor
@@ -143,13 +150,20 @@
             {
                 var criteria = new AccountUpdateCriteria
                 {
-                    CustId = model.CustID,
+                    UserId = model.CustID,
                     GroupId = model.GroupID,
-                    UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress(),
+                    ModifyBy = SessionManager.CurrentSession.CustID,
+                    LicenseeId = AppSettings.LicenseeID,
+                    CurrencyIds = AppSettings.PartnerExchangeId
                 };
 
                 _accountService.AccountUpdate(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    var logDetails = $"AFFILIATE UPDATE AccAdmin custid: {criteria.UserId}  GroupID: {criteria.GroupId}";
+                    AffWriteLogHelper.WriteLog("UserControl", criteria.GetSettingKey(), logDetails, criteria.UserId);
+                }
 
                 ViewBag.Result = new ResultViewModel
                 {
@@ -192,14 +206,20 @@
                 var criteria = new AccountInsCriteria
                 {
                     UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress(),
                     Password = Cryptography.CreateHash(model.Password, salt),
                     CustId = model.CustID,
                     UserName = model.Username,
-                    UserSalt = salt
+                    UserSalt = salt,
+                    LicenseeId = AppSettings.LicenseeID
                 };
 
                 _accountService.AccountInsert(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    var logDetails = $"NEW AFFILIATE Admin custid: {criteria.CustId} username: {model.Username}";
+                    AffWriteLogHelper.WriteLog("UserControl", criteria.GetSettingKey(), logDetails, criteria.CustId);
+                }
 
                 ViewBag.Result = new ResultViewModel
                 {
@@ -308,38 +328,22 @@
         [HttpPost]
         public ActionResult ChangeCurrencyUser(int custId, string currencies)
         {
-            var doc = new XmlDocument();
-
-            var root = doc.CreateElement("currencies");
-
-            doc.AppendChild(root);
-
-            if (!string.IsNullOrEmpty(currencies))
-            {
-                var currencyList = currencies.Split(';');
-
-                foreach (string currency in currencyList)
-                {
-                    var transNode = doc.CreateElement("currency");
-
-                    transNode.SetAttribute("currencyid", currency);
-
-                    transNode.SetAttribute("status", "1");
-
-                    root.AppendChild(transNode);
-                }
-            }
+            var currencyIds = _systemSettingService.GetPartnerExchangeId(new GetPartnerExchangeIdCriteria(currencies, 0));
 
             var criteria = new UserCurrencyInsCriteria
             {
-                ModifyBy = SessionManager.CurrentSession.CustID,
+                CurrencyIds = currencyIds,
                 UserId = custId,
-                Ip = Remote.GetClientIPAddress(),
-                CurrencyXML = doc.OuterXml,
                 LicenseeId = AppSettings.LicenseeID
             };
 
             _permissionService.UpdatePermissionCurrency(criteria);
+
+            if (criteria.ErrCode == 0)
+            {
+                var logDetails = BuildUserCurrencyInsLogDetails(criteria);
+                AffWriteLogHelper.WriteLog(string.Empty, criteria.GetSettingKey(), logDetails, custId, LogCriteriaType.AffWriteLogUserLogRunSp);
+            }
 
             ViewBag.Result = new ResultViewModel
             {
@@ -384,14 +388,17 @@
                 var criteria = new ChangePasswordCriteria
                 {
                     CustId = model.CustId,
-                    UserName = model.UserName,
-                    UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress(),
-                    Password = Cryptography.CreateHash(model.Password, salt),
+                    LicenseeId = AppSettings.LicenseeID,
+                    UserPwd = Cryptography.CreateHash(model.Password, salt),
                     UserSalt = salt
                 };
 
                 _accountService.AccountUpdatePassword(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    AffWriteLogHelper.WriteLog("Password", criteria.GetSettingKey(), $"Changed password CustID: {model.CustId}");
+                }
 
                 ViewBag.Result = new ResultViewModel
                 {
@@ -463,11 +470,15 @@
                     GroupName = model.GroupName,
                     GroupDesc = model.Description,
                     UserId = SessionManager.CurrentSession.CustID,
-                    Ip = Remote.GetClientIPAddress(),
                     LicenseeId = AppSettings.LicenseeID
                 };
 
                 _groupService.GroupInsert(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    AffWriteLogHelper.WriteLog("UserControl", criteria.GetSettingKey(), $"[AFFILIATE] add groupinfo: {criteria.GroupId}");
+                }
 
                 ViewBag.Result = new ResultViewModel
                 {
@@ -496,6 +507,7 @@
         [HttpPost]
         public ActionResult ListPolicyGroup(GroupPolicySelCriteria criteria)
         {
+            criteria.LicenseeId = AppSettings.LicenseeID;
             return Json(new { List = _policyService.GetGroupPolicyList(criteria) });
         }
 
@@ -529,7 +541,7 @@
             return ChangePolicyGroup(new GroupPolicySelCriteria { GroupId = groupId });
         }
 
-        #endregion Change Policy
+        #endregion Change Policy 
 
         #region Edit Group
 
@@ -568,10 +580,14 @@
             if (ModelState.IsValid)
             {
                 criteria.UserId = SessionManager.CurrentSession.CustID;
-                criteria.Ip = Remote.GetClientIPAddress();
                 criteria.LicenseeId = AppSettings.LicenseeID;
 
                 _groupService.GroupUpdate(criteria);
+
+                if (criteria.ErrCode == 0)
+                {
+                    AffWriteLogHelper.WriteLog("UserControl", criteria.GetSettingKey(), $"[AFFILIATE] Update groupinfo: {criteria.GroupId}");
+                }
 
                 ViewBag.Result = new ResultViewModel
                 {
@@ -594,10 +610,13 @@
         [HttpPost]
         public ActionResult DeleteGroup(GroupInfoDelCriteria criteria)
         {
-            criteria.UserId = SessionManager.CurrentSession.CustID;
-            criteria.Ip = Remote.GetClientIPAddress();
-
+            criteria.LicenseeId = AppSettings.LicenseeID;
             _groupService.GroupDelete(criteria);
+
+            if (criteria.ErrCode == 0)
+            {
+                AffWriteLogHelper.WriteLog("UserControl", criteria.GetSettingKey(), $"[AFFILIATE] Delete GroupID: {criteria.GroupId}");
+            }
 
             return Json(new
             {
@@ -671,6 +690,20 @@
             };
 
             return _accountService.GetAccountInfo(criteria);
+        }
+
+        private static string BuildUserCurrencyInsLogDetails(UserCurrencyInsCriteria criteria)
+        {
+            var logDetails = new StringBuilder("<Aff_Admin_UserCurrencyIns");
+            logDetails.Append($" GroupID=\"{criteria.GroupId}\"");
+            logDetails.Append($" UserID=\"{criteria.UserId}\"");
+            logDetails.Append($" Modifyby=\"{SessionManager.CurrentSession.CustID}\"");
+            logDetails.Append($" CurrencyID=\"{criteria.CurrencyIds}\"");
+            logDetails.Append($" Language=\"{AppSettings.DefaultLanguage}\"");
+            logDetails.Append($" IP=\"{Remote.GetClientIPAddress()}\"");
+            logDetails.Append($" ErrCode=\"{criteria.ErrCode}\"");
+
+            return logDetails.ToString();
         }
 
         #endregion Private Method

@@ -2,7 +2,7 @@
 <Functions SiteId="34" SiteName="Affiliate - Athena - Admin">
   <Function Name="Core">
     <Setting Key="AffAdmin_Logout" SpName="AffAdmin_Logout" DbName="" Plain="0" />
-    <Setting Key="AffAdmin_AdminUpdPwd" SpName="AffAdmin_AdminUpdPwd" DbName="" Plain="0" />
+    <Setting Key="Aff_Admin_AdminUpdPwd" SpName="Aff_Admin_AdminUpdPwd" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
   </Function>
   <Function Name="ExchangeRate">
     <Setting Key="AffAdmin_ExchangeSel" SpName="AffAdmin_ExchangeSel" DbName="" Plain="0" />
@@ -12,11 +12,11 @@
     <Setting Key="AffAdmin_GetDefaultPSPExchange" SpName="AffAdmin_GetDefaultPSPExchange" DbName="" Plain="0" />
   </Function>
   <Function Name="Aff-Account">
-    <Setting Key="AffAdmin_CheckIn" SpName="AffAdmin_CheckIn" DbName="DBCUST.bodb_Licensee.wsv_lap" Plain="0" />
-    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBCUST.bodb_Licensee.wsv_lap" Plain="0" />
-    <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBCUST.bodb_Licensee.wsv_lap" Plain="0" />
-    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBCUST.bodb_Licensee.wsv_lap" Plain="0" />
-    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName" DbName="DBCUST.bodb_Licensee.wsv_lap" Plain="0" >
+    <Setting Key="AffAdmin_CheckIn" SpName="AffAdmin_CheckIn" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="AffAdmin_Recheckin" SpName="AffAdmin_Recheckin" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="Aff_UserLogin" SpName="Aff_UserLogin" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="AffAdmin_Con_AdminPolicySelByCustID" SpName="AffAdmin_Con_AdminPolicySelByCustID" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="AffAdmin_UserInfoSelByUserName" SpName="AffAdmin_UserInfoSelByUserName" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" >
       <Mapping DataField="UserID" ObjectProperty="CustID"/>
     </Setting>
   </Function>
@@ -95,6 +95,7 @@
     <Setting Key="AffAdmin_SystemSettingsExchange" SpName="AffAdmin_SystemSettingsExchange" DbName="" Plain="0" />
     <Setting Key="AffAdmin_MemberSupportedLanguagesSel" SpName="AffAdmin_MemberSupportedLanguagesSel" DbName="" Plain="0" />
     <Setting Key="AffAdmin_PlayersCurrenciesSel" SpName="AffAdmin_PlayersCurrenciesSel" DbName="" Plain="0" />
+    <Setting Key="Aff_Get_PartnerExchangeID" SpName="Aff_Get_PartnerExchangeID" DbName="" Plain="0" />
   </Function>
   <Function Name="Payment">
     <Setting Key="AffAdmin_PaymentRequestSelList" SpName="AffAdmin_PaymentRequestSelList" DbName="" Plain="0" />
@@ -132,22 +133,22 @@
     <Setting Key="AffAdmin_DomainControlSelById" SpName="AffAdmin_DomainControlSelById" DbName="" Plain="0" />
   </Function>
   <Function Name="Management">
-    <Setting Key="AffAdmin_Con_AccountUpd" SpName="AffAdmin_Con_AccountUpd" DbName="" Plain="0" />
+    <Setting Key="Aff_Admin_Con_AccountUpd" SpName="Aff_Admin_Con_AccountUpd" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
     <Setting Key="AffAdmin_Con_SelByCustID" SpName="AffAdmin_Con_SelByCustID" DbName="" Plain="0" />
-    <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="DBCUST.bodb_Licensee.wsv_lap" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="DBCUST.bodb_Licensee.wsv_lap" Plain="0" />
-    <Setting Key="AffAdmin_Con_AccountIns" SpName="AffAdmin_Con_AccountIns" DbName="" Plain="0" />
-    <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID" DbName="DBCUST.bodb_Licensee.wsv_lap" Plain="0" />
-    <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd" DbName="DBCUST.bodb_Licensee.wsv_lap" Plain="0" />
-    <Setting Key="AffAdmin_AccountUpdPwd" SpName="AffAdmin_AccountUpdPwd" DbName="" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupInfoIns" SpName="AffAdmin_Con_GroupInfoIns" DbName="" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupInfoUpd" SpName="AffAdmin_Con_GroupInfoUpd" DbName="" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupInfoDel" SpName="AffAdmin_Con_GroupInfoDel" DbName="" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupPolicyUpd" SpName="AffAdmin_Con_GroupPolicyUpd" DbName="DBCUST.bodb_Licensee.wsv_lap" Plain="0" />
-    <Setting Key="AffAdmin_Con_GroupPolicySel" SpName="AffAdmin_Con_GroupPolicySel" DbName="" Plain="0" />
-    <Setting Key="AffAdmin_Con_Batch_PolicySel" SpName="AffAdmin_Con_Batch_PolicySel" DbName="DBCUST.bodb_Licensee.wsv_lap" Plain="0" />
+    <Setting Key="AffAdmin_Con_SelByGroupID" SpName="AffAdmin_Con_SelByGroupID" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupInfoSel" SpName="AffAdmin_Con_GroupInfoSel" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="Aff_Admin_Con_AccountIns" SpName="Aff_Admin_Con_AccountIns" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="AffAdmin_Con_PolicySelByCustID" SpName="AffAdmin_Con_PolicySelByCustID" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="AffAdmin_Con_PolicyUpd" SpName="AffAdmin_Con_PolicyUpd" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="Aff_Admin_AccountUpdPwd" SpName="Aff_Admin_AccountUpdPwd" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="Aff_Admin_Con_GroupInfoIns" SpName="Aff_Admin_Con_GroupInfoIns" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="Aff_Admin_Con_GroupInfoUpd" SpName="Aff_Admin_Con_GroupInfoUpd" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="Aff_Admin_Con_GroupInfoDel" SpName="Aff_Admin_Con_GroupInfoDel" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="AffAdmin_Con_GroupPolicyUpd" SpName="AffAdmin_Con_GroupPolicyUpd" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="Aff_Admin_Con_GroupPolicySel" SpName="Aff_Admin_Con_GroupPolicySel" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
+    <Setting Key="AffAdmin_Con_Batch_PolicySel" SpName="AffAdmin_Con_Batch_PolicySel" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
     <Setting Key="AffAdmin_UserCurrencySel" SpName="AffAdmin_UserCurrencySel" DbName="" Plain="0" />
-    <Setting Key="AffAdmin_UserCurrencyIns" SpName="AffAdmin_UserCurrencyIns" DbName="" Plain="0" />
+    <Setting Key="Aff_Admin_UserCurrencyIns" SpName="Aff_Admin_UserCurrencyIns" DbName="DBCUST.bodb_Licensee.wsv_afinet" Plain="0" />
   </Function>
   <Function Name="Media">
     <Setting Key="AffAdmin_BannerSelType" SpName="AffAdmin_BannerSelType" DbName="" Plain="0" />
@@ -222,6 +223,8 @@
   </Function>
 
   <Function name="Log">
-    <Setting Key="Aff_WebAPI_WriteLog" SpName="Aff_WebAPI_WriteLog" DbName="DBLOG.bodb_CustomerLog.wsv_lap" Plain="0" />
+    <Setting Key="Aff_WebAPI_WriteLog" SpName="Aff_WebAPI_WriteLog" DbName="DBLOG.bodb_CustomerLog.wsv_afinet" Plain="0" />
+    <Setting Key="Aff_WriteLog" SpName="Aff_WriteLog" DbName="" Plain="0" />
+    <Setting Key="Aff_WriteLog_UserLog_RunSP" SpName="Aff_WriteLog_UserLog_RunSP" DbName="" Plain="0" />
   </Function>
 </Functions>

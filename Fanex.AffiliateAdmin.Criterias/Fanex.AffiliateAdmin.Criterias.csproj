@@ -168,6 +168,7 @@
     <Compile Include="Adjustment\Affiliate\AffiliateUpdCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AffiliateUpdLanguageCriteria.cs" />
     <Compile Include="Adjustment\Affiliate\AffiliateUpdStatusCriteria.cs" />
+    <Compile Include="Log\AffWriteLogCriteria.cs" />
     <Compile Include="AllSystemCurrencyCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingsSelByIdCriteria.cs" />
     <Compile Include="Configuration\SystemSetting\SystemSettingsSelByNameCriteria.cs" />
@@ -192,9 +193,13 @@
     <Compile Include="EmailHistory\EmailHistorySelCriteria.cs" />
     <Compile Include="ExchangeAutoRefreshUpdCriteria.cs" />
     <Compile Include="ExchangeRate\ExchangeUpdateCriteria.cs" />
+    <Compile Include="GetPartnerExchangeIdCriteria.cs" />
     <Compile Include="GroupInfoDelCriteria.cs" />
     <Compile Include="GroupInfoInsCriteria.cs" />
     <Compile Include="GroupInfoUpdCriteria.cs" />
+    <Compile Include="Log\LogCriteriaType.cs" />
+    <Compile Include="Log\AffWriteLogUserLogRunSpCriteria.cs" />
+    <Compile Include="Log\WriteLogBaseCriteria.cs" />
     <Compile Include="PaymentCheckInProgressCriteria.cs" />
     <Compile Include="Policy\GroupPolicySelCriteria.cs" />
     <Compile Include="Policy\GroupPolicyUpdCriteria.cs" />

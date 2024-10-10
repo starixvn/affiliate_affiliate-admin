@@ -1,33 +1,24 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="AccountUpdateCriteria.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Fanex.AffiliateAdmin.Criterias.Account
+﻿namespace Fanex.AffiliateAdmin.Criterias.Account
 {
     using Fanex.Data.Repository;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class AccountUpdateCriteria : CriteriaBase
     {
-        public int CustId { get; set; }
+        public int ModifyBy { get; set; }
 
         public int UserId { get; set; }
 
         public int GroupId { get; set; }
 
-        public string Ip { get; set; }
+        public int LicenseeId { get; set; }
 
-        public string Language { get; set; }
+        public string CurrencyIds{ get; set; }
 
         public int ErrCode { get; set; }
 
         public override string GetSettingKey()
         {
-            return "AffAdmin_Con_AccountUpd";
+            return "Aff_Admin_Con_AccountUpd";
         }
 
         public override bool IsValid()

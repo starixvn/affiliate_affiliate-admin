@@ -19,6 +19,7 @@
     using Models;
     using ONEbook.UM.AspNetMVC.Filters;
     using Resources;
+    using Services.Helpers;
 
     public class AccountController : Controller
     {
@@ -148,10 +149,16 @@
                         CustId = SessionManager.CurrentSession.CustID,
                         OldPassword = Cryptography.CreateHash(model.OldPassword, oldSalt),
                         NewPassword = Cryptography.CreateHash(model.NewPassword, oldSalt),
-                        Ip = Remote.GetClientIPAddress()
+                        LicenseeId = AppSettings.LicenseeID
                     };
 
                     _accountService.AccountUpdatePassword(criteria);
+
+                    if (criteria.ErrCode == 0)
+                    {
+                        AffWriteLogHelper.WriteLog("Password", criteria.GetSettingKey(), $"Changed password CustID: {SessionManager.CurrentSession.CustID}");
+                    }
+
                     ViewBag.Result = GetResultViewModel(criteria.ErrCode);
                 }
             }

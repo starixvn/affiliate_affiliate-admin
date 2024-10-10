@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Configuration;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Criterias;
@@ -41,6 +40,8 @@
 
         private static readonly Lazy<string> _systemName;
         private static readonly Lazy<string> _systemDisplayName;
+
+        private static readonly Lazy<string> _partnerExchangeId;
 
         #endregion Define variable
 
@@ -107,6 +108,15 @@
                 return string.IsNullOrEmpty(systemSetting.SValue)
                                            ? SystemTimeService.GetSystemDateTime()
                                            : Convert.ToDateTime(systemSetting.SValue);
+            });
+
+            _partnerExchangeId = new Lazy<string>(() =>
+            {
+                var currencySetting = SystemSetting.GetSystemSetting(new SystemSettingsSelByNameCriteria { Name = "AffiliateCurrencies" });
+                var currencies = currencySetting?.SValue ?? string.Empty;
+                var partnerExchangeId = SystemSetting.GetPartnerExchangeId(new GetPartnerExchangeIdCriteria(currencies));
+
+                return partnerExchangeId;
             });
         }
 
@@ -503,6 +513,8 @@
 
             return value;
         }
+
+        public static string PartnerExchangeId => _partnerExchangeId.Value;
 
         /// <summary>
         /// Get key value of resource.

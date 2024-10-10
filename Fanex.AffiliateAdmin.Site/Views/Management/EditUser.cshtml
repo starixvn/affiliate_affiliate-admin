@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
 
+@using Fanex.AffiliateAdmin.Models
 @model Fanex.AffiliateAdmin.Models.EditUserViewModel
 
 @using (Html.BeginForm("EditUser", "Management", FormMethod.Post, new { @class = "form-horizontal" }))

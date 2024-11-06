@@ -13,6 +13,7 @@ namespace Fanex.AffiliateAdmin.Core.Helpers
     using System.Text;
     using System.Web;
     using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.Data;
     using Fanex.Logging;
 
@@ -58,7 +59,8 @@ namespace Fanex.AffiliateAdmin.Core.Helpers
                    .AppendLine("Browser: " + request.Browser.Type)
                    .AppendLine("BrowserVer: " + request.Browser.Version)
                    .AppendLine("Agent: " + request.UserAgent)
-                   .AppendLine("IP Address: " + request.UserHostAddress);
+                   .AppendLine("IP Address: " + request.UserHostAddress)
+                   .AppendLine("Actual IP Address: " + Remote.GetClientIPAddress());
 
             var session = SessionManager.CurrentSession;
             if (session != null)

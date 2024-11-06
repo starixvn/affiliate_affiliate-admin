@@ -6,6 +6,7 @@
 
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
+    using Fanex.AffiliateAdmin.Core.Constants;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -53,19 +54,19 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
 
         public static string GetClientIPAddress()
         {
-            var context = HttpContext.Current;
-            string ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            var request = HttpContext.Current.Request;
 
-            if (!string.IsNullOrEmpty(ipAddress))
+            var xActualIP = request.ServerVariables[HeaderKey.HTTP_X_ACTUAL_IP];
+            var xForwardedFor = !string.IsNullOrWhiteSpace(xActualIP) ? xActualIP : request.ServerVariables[HeaderKey.HTTP_X_FORWARDED_FOR];
+
+            var clientIP = xForwardedFor?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0]?.Trim();
+
+            if (string.IsNullOrWhiteSpace(clientIP))
             {
-                string[] addresses = ipAddress.Split(',');
-                if (addresses.Length != 0)
-                {
-                    return addresses[0];
-                }
+                clientIP = request.UserHostAddress;
             }
 
-            return context.Request.ServerVariables["REMOTE_ADDR"];
+            return clientIP.Equals("::1") ? "127.0.0.1" : clientIP;
         }
 
         /// <summary>

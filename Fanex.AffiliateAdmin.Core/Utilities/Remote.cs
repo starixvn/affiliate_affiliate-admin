@@ -10,6 +10,8 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Web;
 
     /// <summary>
@@ -18,6 +20,8 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
     [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public static class Remote
     {
+        private const string IPv4Regex = "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$";
+
         /// <summary>
         /// Contains all operating system mapping.
         /// </summary>
@@ -59,14 +63,27 @@ namespace Fanex.AffiliateAdmin.Core.Utilities
             var xActualIP = request.ServerVariables[HeaderKey.HTTP_X_ACTUAL_IP];
             var xForwardedFor = !string.IsNullOrWhiteSpace(xActualIP) ? xActualIP : request.ServerVariables[HeaderKey.HTTP_X_FORWARDED_FOR];
 
-            var clientIP = xForwardedFor?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0]?.Trim();
+            var clientValidIP = GetValidIPAddress(xForwardedFor);
 
-            if (string.IsNullOrWhiteSpace(clientIP))
+            if (string.IsNullOrWhiteSpace(clientValidIP))
             {
-                clientIP = request.UserHostAddress;
+                clientValidIP = request.UserHostAddress;
             }
 
-            return clientIP.Equals("::1") ? "127.0.0.1" : clientIP;
+            return clientValidIP.Equals("::1") ? "127.0.0.1" : clientValidIP;
+        }
+
+        private static string GetValidIPAddress(string ips)
+        {
+            if (string.IsNullOrEmpty(ips))
+            {
+                return null;
+            }
+
+            var ipList = ips.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(i => i.Trim())
+                        .Where(i => Regex.IsMatch(i, IPv4Regex, RegexOptions.None, TimeSpan.FromSeconds(2)));
+
+            return ipList.FirstOrDefault();
         }
 
         /// <summary>

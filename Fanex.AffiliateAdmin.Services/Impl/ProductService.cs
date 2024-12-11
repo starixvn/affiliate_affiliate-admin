@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
     using Common.Helper;
     using Core.Services;
     using Criterias;
     using Fanex.AffiliateAdmin.DTO;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Product Service.

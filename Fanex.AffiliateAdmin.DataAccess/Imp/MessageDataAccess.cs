@@ -1,14 +1,12 @@
 ﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
     using Common.Helper;
     using Core.Configurations;
     using Criterias;
-    using Data;
     using DTO;
     using Fanex.Data.SqlServer;
+    using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.

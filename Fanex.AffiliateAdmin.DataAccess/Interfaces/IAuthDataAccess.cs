@@ -1,6 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
-    using System.Diagnostics.CodeAnalysis;
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Models;
@@ -10,7 +9,6 @@
     /// </summary>
     public interface IAuthDataAccess
     {
-        [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "Reviewed.")]
         ResultViewModel Login(LoginCriteria criteria, out Account account);
 
         /// <summary>

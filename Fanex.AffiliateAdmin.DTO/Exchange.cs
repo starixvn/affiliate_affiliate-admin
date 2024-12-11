@@ -8,7 +8,7 @@
     [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     [Serializable]
     public class Exchange
-    {                
+    {
         public short ExchangeID { get; set; }
 
         public string Code { get; set; }

@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Utilities
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Resources;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// SubMenu class.

@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
-    using System.Collections.Generic;
-    using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Resources;
+    using System.Collections.Generic;
+    using System.Web.Mvc;
 
     /// <summary>
     /// TODO: Update summary.

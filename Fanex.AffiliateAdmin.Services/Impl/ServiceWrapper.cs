@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System;
-    using System.Xml.Linq;
     using DTO.PaymentRequest;
     using Fanex.AffiliateAdmin.Core.Helpers;
     using Helpers;
+    using System;
+    using System.Xml.Linq;
 
     /// <summary>
     /// Service Wrapper.

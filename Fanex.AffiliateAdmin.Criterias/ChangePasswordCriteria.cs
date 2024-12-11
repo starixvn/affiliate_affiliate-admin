@@ -11,7 +11,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     public class ChangePasswordCriteria : CriteriaBase
     {
         public int CustId { get; set; }
-        
+
         public string UserPwd { get; set; }
 
         public string UserSalt { get; set; }

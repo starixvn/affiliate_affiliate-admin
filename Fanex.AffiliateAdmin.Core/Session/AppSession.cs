@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Session
 {
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using System;
     using System.Web;
-    using Fanex.AffiliateAdmin.Core.Configurations;
 
     /// <summary>
     /// App Session.

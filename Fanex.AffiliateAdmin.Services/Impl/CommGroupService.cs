@@ -1,8 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Common.Helper;
     using Core.Configurations;
     using Core.Services;
@@ -10,6 +7,9 @@
     using DTO;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class CommGroupService : QueryService, ICommGroupService
     {

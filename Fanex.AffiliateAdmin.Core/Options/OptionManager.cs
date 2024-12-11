@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Options
 {
+    using Fanex.AffiliateAdmin.Resources;
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// Manage the hard-code options.

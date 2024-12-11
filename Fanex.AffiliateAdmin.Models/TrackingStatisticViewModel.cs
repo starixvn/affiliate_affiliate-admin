@@ -6,13 +6,12 @@
 
 namespace Fanex.AffiliateAdmin.Models
 {
+    using DTO;
+    using Fanex.AffiliateAdmin.Resources;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
     using System.Web.Mvc;
-    using DTO;
-    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -55,10 +54,10 @@ namespace Fanex.AffiliateAdmin.Models
                 {
                     var translated = Lang.ResourceManager.GetString(item.SValue);
                     list.Add(new SelectListItem
-                        {
-                            Value = item.SValue,
-                            Text = string.IsNullOrEmpty(translated) ? item.SValue : translated
-                        });
+                    {
+                        Value = item.SValue,
+                        Text = string.IsNullOrEmpty(translated) ? item.SValue : translated
+                    });
                 }
 
                 return list;

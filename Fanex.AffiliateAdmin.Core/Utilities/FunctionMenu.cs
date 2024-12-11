@@ -6,8 +6,8 @@
 
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
-    using System;
     using Fanex.AffiliateAdmin.Resources;
+    using System;
 
     /// <summary>
     /// TODO: Update summary.

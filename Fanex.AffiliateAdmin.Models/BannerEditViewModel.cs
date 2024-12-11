@@ -1,12 +1,12 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
+    using Core.Configurations;
+    using DTO;
+    using Resources;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
     using System.Web.Mvc;
-    using Core.Configurations;
-    using DTO;
-    using Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -68,7 +68,7 @@
                     });
                 }
 
-                return optionList; 
+                return optionList;
             }
         }
 
@@ -80,7 +80,7 @@
             }
         }
 
-         public SelectList PlayerCurrencyOptionList
+        public SelectList PlayerCurrencyOptionList
         {
             get
             {
@@ -151,7 +151,7 @@
                     return SubCategory.Value;
                 }
 
-                return Category;    
+                return Category;
             }
         }
 

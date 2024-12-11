@@ -1,6 +1,5 @@
 namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
     using Criterias;
     using DTO;
 

@@ -1,8 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Resources;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -12,7 +11,7 @@
         public int Id { get; set; }
 
         public string Username { get; set; }
-        
+
         [DataType(DataType.Password)]
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "PasswordIsRequired")]
         [Display(ResourceType = typeof(Lang), Name = "Password")]

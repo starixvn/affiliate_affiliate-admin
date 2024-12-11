@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Services.Impl
 {
-    using System.Linq;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.Common.Helper;
+    using System.Linq;
 
     /// <summary>
     /// Service Service.

@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias
 {
-    using System;
     using Fanex.Data;
     using Fanex.Data.Repository;
+    using System;
 
     /// <summary>
     /// AffiliateList Criteria class.

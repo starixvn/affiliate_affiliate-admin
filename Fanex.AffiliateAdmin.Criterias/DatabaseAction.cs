@@ -16,7 +16,7 @@
         /// Insert Data.
         /// </summary>
         Insert = 2,
-        
+
         /// <summary>
         /// Update Data.
         /// </summary>

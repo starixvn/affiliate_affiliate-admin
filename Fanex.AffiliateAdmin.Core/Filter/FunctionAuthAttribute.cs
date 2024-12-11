@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Filter
 {
+    using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Resources;
     using System;
     using System.Linq;
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Core.Session;
-    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// Authorization Attribute class.

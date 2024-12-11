@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
-    using System.Collections.Generic;
-    using System.Data;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Common.Extensions;
+    using System.Collections.Generic;
+    using System.Data;
 
     /// <summary>
     /// Affiliate Commission Data Access.
@@ -77,13 +77,13 @@
                 while (reader.Read())
                 {
                     var commission = new AffiliateCommission
-                        {
-                            Currency = reader.ToString("Currency"),
-                            ProductId = reader.ToInt("ProductId"),
-                            ProductName = reader.ToString("ProductName"),
-                            TotalQM = reader.ToInt("TotalQM"),
-                            CommissionPercent = reader.ToDecimal("CommissionPercent")
-                        };
+                    {
+                        Currency = reader.ToString("Currency"),
+                        ProductId = reader.ToInt("ProductId"),
+                        ProductName = reader.ToString("ProductName"),
+                        TotalQM = reader.ToInt("TotalQM"),
+                        CommissionPercent = reader.ToDecimal("CommissionPercent")
+                    };
 
                     var productName = commission.ProductName;
                     var translatedProduct = Lang.ResourceManager.GetString(productName.Replace(" ", string.Empty));
@@ -116,12 +116,12 @@
                 while (reader.Read())
                 {
                     var commission = new AffiliateCommission
-                        {
-                            ProductId = reader.ToInt("ProductId"),
-                            ProductName = reader.ToString("ProductName"),
-                            TotalQM = reader.ToInt("TotalQM"),
-                            CommissionPercent = reader.ToDecimal("CommissionPercent")
-                        };
+                    {
+                        ProductId = reader.ToInt("ProductId"),
+                        ProductName = reader.ToString("ProductName"),
+                        TotalQM = reader.ToInt("TotalQM"),
+                        CommissionPercent = reader.ToDecimal("CommissionPercent")
+                    };
 
                     var productName = commission.ProductName;
                     var translatedProduct = Lang.ResourceManager.GetString(productName.Replace(" ", string.Empty));

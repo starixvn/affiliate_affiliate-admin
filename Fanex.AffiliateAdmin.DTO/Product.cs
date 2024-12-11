@@ -1,9 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.DTO
 {
+    using Resources;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Diagnostics.CodeAnalysis;
-    using Resources;
 
     /// <summary>
     /// Product class.
@@ -23,7 +23,7 @@
         public int? Creator { get; set; }
 
         public string CreatorName { get; set; }
-        
+
         public DateTime? CreatedDate { get; set; }
 
         public string CreatedDateStr

@@ -1,7 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias
 {
-    using System;
     using Fanex.Data.Repository;
+    using System;
 
     /// <summary>
     /// Email History Select Criteria.

@@ -6,11 +6,11 @@
 
 namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Linq;
     using Fanex.AffiliateAdmin.Core.Services;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.Common.Helper;
+    using System.Linq;
 
     /// <summary>
     /// TODO: Update summary.

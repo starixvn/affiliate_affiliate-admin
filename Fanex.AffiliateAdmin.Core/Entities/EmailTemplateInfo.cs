@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Entities
 {
-    using System;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Mailinator;
+    using System;
 
     /// <summary>
     /// TODO: Update summary.

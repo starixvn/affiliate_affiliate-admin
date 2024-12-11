@@ -1,7 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
-    using System;
     using Fanex.AffiliateAdmin.Services;
+    using System;
 
     /// <summary>
     /// Email History ViewModel.

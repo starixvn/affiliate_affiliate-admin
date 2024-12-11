@@ -1,11 +1,11 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
+    using Core.Configurations;
+    using Resources;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Web.Mvc;
-    using Core.Configurations;
-    using Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -13,7 +13,7 @@
     public class TextListViewModel
     {
         #region Fields
-        
+
         private IEnumerable<SelectListItem> _bannerCategoryOptions;
 
         private IEnumerable<SelectListItem> _memberSiteSupportedLanguageOptions;
@@ -42,16 +42,16 @@
             get
             {
                 var selectItemList = new List<SelectListItem>();
-                
+
                 foreach (var item in MediaSettings.BannerCategories)
                 {
                     var value = Lang.ResourceManager.GetString(item.Value.Replace(" ", string.Empty));
 
                     selectItemList.Add(new SelectListItem
-                        {
-                            Text = string.IsNullOrEmpty(value) ? item.Value : value,
-                            Value = item.TypeId.ToString()
-                        });
+                    {
+                        Text = string.IsNullOrEmpty(value) ? item.Value : value,
+                        Value = item.TypeId.ToString()
+                    });
                 }
 
                 selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
@@ -68,10 +68,10 @@
                 if (_memberSiteSupportedLanguageOptions == null)
                 {
                     var selectItemList = AppSettings.MemberSiteSiteSupportedLanguages.Select(t => new SelectListItem
-                        {
-                            Text = t.LanguageName,
-                            Value = t.LanguageID
-                        }).ToList();
+                    {
+                        Text = t.LanguageName,
+                        Value = t.LanguageID
+                    }).ToList();
 
                     selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
                     _memberSiteSupportedLanguageOptions = selectItemList;
@@ -88,10 +88,10 @@
                 if (_playerCurrencyOptions == null)
                 {
                     var selectItemList = AppSettings.PlayerCurrencies.Select(t => new SelectListItem
-                        {
-                            Text = t.CurrencyCode,
-                            Value = t.CurrencyID.ToString()
-                        }).ToList();
+                    {
+                        Text = t.CurrencyCode,
+                        Value = t.CurrencyID.ToString()
+                    }).ToList();
 
                     if (selectItemList.Count > 1)
                     {

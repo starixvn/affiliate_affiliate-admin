@@ -1,13 +1,14 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Utilities
 {
+    using Fanex.AffiliateAdmin.Resources;
+    using Fanex.MailDeliver.MailClient;
+    using Fanex.MailDeliver.MailClient.API;
+    using Fanex.MailDeliver.MailClient.Model;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Resources;
     using System.Text;
-    using Fanex.AffiliateAdmin.Resources;
-    using Fanex.MailDeliver.MailClient;
-    using Fanex.MailDeliver.MailClient.API;
 
     public static class Common
     {
@@ -41,7 +42,7 @@
 
         public static void SendEmail(string message, string mailTo, string subject, string mailBcc = "", string mailCC = "")
         {
-            var mailItem = new Fanex.MailDeliver.Model.MailRecord
+            var mailItem = new MailRecord
             {
                 MailTo = mailTo,
                 Subject = subject,

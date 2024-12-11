@@ -1,11 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
-    using System.Data;
-    using System.Linq;
     using Criterias;
     using DTO;
-    using Fanex.Data;
     using Fanex.Data.SqlServer;
+    using System.Data;
+    using System.Linq;
 
     /// <summary>
     /// Account data access.

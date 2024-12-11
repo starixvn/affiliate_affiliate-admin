@@ -1,7 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
-    using System.Collections.Generic;
     using DTO;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Home page ViewModel.
@@ -89,7 +89,7 @@
         public decimal NetWinlostMonth { get; set; }
 
         public decimal PSPFeeMonth { get; set; }
-        
+
         public int MemInProAllNum { get; set; }
 
         public int MemInProMonthNum { get; set; }
@@ -102,7 +102,7 @@
             {
                 return _onlineList ?? new List<UserOnline>();
             }
-        } 
+        }
 
         #region Methods
 

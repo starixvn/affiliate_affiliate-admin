@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Utilities
 {
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using System;
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Core.Configurations;
 
     /// <summary>
     /// TODO: Update summary.

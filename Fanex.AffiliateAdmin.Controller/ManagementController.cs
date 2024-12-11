@@ -1,9 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    using System.Web.Mvc;
     using Core.Enumerations;
     using Core.Services;
     using Core.Services.Interface;
@@ -19,6 +15,10 @@
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Common;
     using Services.Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Web.Mvc;
 
     /// <summary>
     /// TODO: Update summary.

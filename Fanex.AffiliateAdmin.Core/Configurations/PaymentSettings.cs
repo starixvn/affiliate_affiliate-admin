@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Configurations
 {
+    using Resources;
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using Resources;
 
     /// <summary>
     /// TODO: Update summary.

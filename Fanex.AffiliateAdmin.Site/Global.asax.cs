@@ -1,21 +1,21 @@
 ﻿namespace Fanex.AffiliateAdmin.Site
 {
+    using Core.Mvc;
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.Core.Helpers;
+    using Fanex.Data;
+    using Fanex.Data.SqlServer;
     using System;
     using System.Web;
     using System.Web.Helpers;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
-    using Core.Mvc;
-    using Fanex.AffiliateAdmin.Core.Configurations;
-    using Fanex.AffiliateAdmin.Core.Helpers;
-    using Fanex.Data;
-    using Fanex.Data.SqlServer;
 
     /// <summary>
     /// Global configuration.
     /// </summary>
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         /// <summary>
         /// Application start.
@@ -51,8 +51,7 @@
         {
             var exception = Server.GetLastError();
 
-            var httpException = exception as HttpException;
-            if (httpException != null && httpException.GetHttpCode() == 404)
+            if (exception is HttpException httpException && httpException.GetHttpCode() == 404)
             {
                 return;
             }

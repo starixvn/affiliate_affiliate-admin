@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
+    using DTO;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Web.Mvc;
-    using DTO;
 
     /// <summary>
     /// Affiliate domain control view model.

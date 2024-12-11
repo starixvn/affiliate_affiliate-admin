@@ -1,11 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Web.Mvc;
-    using System.Web.Script.Serialization;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -14,6 +8,12 @@
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web.Mvc;
+    using System.Web.Script.Serialization;
 
     /// <summary>
     /// Report Controller.

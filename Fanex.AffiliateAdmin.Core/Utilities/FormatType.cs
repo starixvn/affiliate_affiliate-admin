@@ -35,7 +35,7 @@
         /// <summary>
         /// Integer format.
         /// </summary>
-        [StringValue("{0:#,##0}")]        
+        [StringValue("{0:#,##0}")]
         INTERGER_FORMAT,
 
         /// <summary>
@@ -85,7 +85,7 @@
         /// </summary>
         [StringValue("dd MMM yyyy hh:mm:ss")]
         FULL_DATETIME_FORMAT,
-        
+
         /// <summary>
         /// Date Time format follow IBC.
         /// </summary>

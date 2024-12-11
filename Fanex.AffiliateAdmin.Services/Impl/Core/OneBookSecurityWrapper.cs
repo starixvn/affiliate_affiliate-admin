@@ -1,9 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Services.Impl.Core
 {
-    using System.Configuration;
     using DTO.OneAuth;
     using Interfaces;
     using ONEbook.Security;
+    using System.Configuration;
 
     public class OneBookSecurityWrapper : IOneBookSecurityWrapper
     {

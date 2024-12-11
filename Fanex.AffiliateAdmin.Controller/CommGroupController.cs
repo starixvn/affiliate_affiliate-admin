@@ -1,10 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using System.Text;
-    using System.Web.Mvc;
     using Core.DbConstants;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
@@ -14,6 +9,11 @@
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Text;
+    using System.Web.Mvc;
 
     [FunctionAuth(Function = FunctionPolicyNames.CommissionGroup, CurrenciesRequired = true)]
     public partial class CommGroupController : BaseController
@@ -312,7 +312,7 @@
                 }
 
                 _commGroupService.BuildGroupData(groups, criteria.Date, criteria.GroupIDList);
-            }    
+            }
 
             return groups;
         }

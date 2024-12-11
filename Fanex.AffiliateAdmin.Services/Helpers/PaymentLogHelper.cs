@@ -1,13 +1,13 @@
 ﻿namespace Fanex.AffiliateAdmin.Services.Helpers
 {
-    using System;
-    using System.Globalization;
-    using System.Text;
     using Core.Session;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Helpers;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
+    using System;
+    using System.Globalization;
+    using System.Text;
 
     public static class PaymentLogHelper
     {

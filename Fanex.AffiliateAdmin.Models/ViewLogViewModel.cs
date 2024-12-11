@@ -6,15 +6,15 @@
 
 namespace Fanex.AffiliateAdmin.Models
 {
+    using Fanex.AffiliateAdmin.Core.Configurations;
+    using Fanex.AffiliateAdmin.DTO;
+    using Fanex.AffiliateAdmin.Resources;
+    using Fanex.AffiliateAdmin.Services;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Core.Configurations;
-    using Fanex.AffiliateAdmin.DTO;
-    using Fanex.AffiliateAdmin.Resources;
-    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// TODO: Update summary.

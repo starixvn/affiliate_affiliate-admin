@@ -1,10 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
-    using System.Globalization;
-    using System.Text.RegularExpressions;
-    using System.Web.Mvc;
-    using System.Web.Security;
     using Common;
     using Core.Configurations;
     using Core.Filter;
@@ -20,6 +15,11 @@
     using ONEbook.UM.AspNetMVC.Filters;
     using Resources;
     using Services.Helpers;
+    using System;
+    using System.Globalization;
+    using System.Text.RegularExpressions;
+    using System.Web.Mvc;
+    using System.Web.Security;
 
     public class AccountController : Controller
     {
@@ -72,8 +72,6 @@
         public ActionResult Login(string username, string password, string logInToken)
         {
             ResultViewModel result = null;
-            Account user = null;
-
             if (ModelState.IsValid)
             {
                 var criteria = new LoginCriteria
@@ -84,7 +82,7 @@
                     LoginDomain = Request.UserHostName,
                 };
 
-                result = _authService.Login(criteria, out user, logInToken);
+                result = _authService.Login(criteria, out Account user, logInToken);
                 result.Success = result.ErrorCode == 0;
                 if (result.ErrorCode == 0 && user.CustID > 0)
                 {

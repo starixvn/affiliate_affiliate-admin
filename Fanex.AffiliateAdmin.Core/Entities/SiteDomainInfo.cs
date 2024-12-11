@@ -1,9 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Entities
 {
-    using System;
-    using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Utilities;
+    using System;
+    using System.Web.Mvc;
 
     /// <summary>
     /// TODO: Update summary.
@@ -39,9 +39,9 @@
                 var words = host.Split('.');
                 if (words.Length > 2)
                 {
-                    if(words.Length > 3 && string.Equals("bpadmin999", words[2], StringComparison.CurrentCultureIgnoreCase))
+                    if (words.Length > 3 && string.Equals("bpadmin999", words[2], StringComparison.CurrentCultureIgnoreCase))
                     {
-                        if(string.Equals("itc303", words[1], StringComparison.CurrentCultureIgnoreCase))
+                        if (string.Equals("itc303", words[1], StringComparison.CurrentCultureIgnoreCase))
                         {
                             return GetSiteDomainInfo(scheme, isKiosk, "itcbetgame", words[3]);
                         }

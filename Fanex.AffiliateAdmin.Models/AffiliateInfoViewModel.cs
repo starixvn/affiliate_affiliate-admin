@@ -6,11 +6,11 @@
 
 namespace Fanex.AffiliateAdmin.Models
 {
-    using System;
-    using System.Collections.Generic;
     using DTO;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Session;
+    using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.
@@ -44,7 +44,7 @@ namespace Fanex.AffiliateAdmin.Models
                 return SessionManager.CurrentSession.HasHostPolicy(FunctionPolicyNames.Affiliate);
             }
         }
-        
+
         public void AddOnlineUsers(IList<AffiliateOnUser> onlineUsers)
         {
             _onlineUsers = onlineUsers;

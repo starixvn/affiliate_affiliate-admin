@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Services.Interfaces
 {
-    using System.Web;
     using DTO.OneAuth;
     using Fanex.AffiliateAdmin.DTO.Common;
+    using System.Web;
 
     public interface IOneAuthenticationService
     {

@@ -1,11 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
-    using System.Data;
-    using System.Linq;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
-    using Fanex.Data;
     using Fanex.Data.SqlServer;
+    using System.Data;
+    using System.Linq;
 
     /// <summary>
     /// Affiliate Win Loss Overview Data Access.

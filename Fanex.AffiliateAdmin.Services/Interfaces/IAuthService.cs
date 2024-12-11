@@ -1,12 +1,11 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Diagnostics.CodeAnalysis;
     using Core.Session;
     using Criterias;
     using DTO;
     using DTO.OneAuth;
-    using Fanex.AffiliateAdmin.DTO.Common;
     using Fanex.AffiliateAdmin.Models;
+    using System.Diagnostics.CodeAnalysis;
 
     public interface IAuthService
     {

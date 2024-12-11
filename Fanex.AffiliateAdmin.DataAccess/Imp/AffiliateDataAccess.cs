@@ -1,9 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
     using Core.Configurations;
     using Criterias;
     using Data;
@@ -14,6 +10,9 @@
     using Fanex.Common.Helper;
     using Fanex.Data.SqlServer;
     using Models;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
 
     /// <summary>
     /// Account data access.

@@ -1,16 +1,15 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Filter
 {
+    using Enumerations;
+    using Session;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Enumerations;
-    using Session;
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class XFrameOptionAttribute : ActionFilterAttribute
     {
-        private const string XFrameOptionAppSettingKey = "XFrameOption";
         private const string XFrameOptionHeaderName = "X-Frame-Options";
 
         public XFrameOptionAttribute()

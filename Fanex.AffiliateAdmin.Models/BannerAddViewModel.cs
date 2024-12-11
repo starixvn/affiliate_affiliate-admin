@@ -1,12 +1,12 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
+    using Core.Configurations;
+    using DTO;
+    using Resources;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
     using System.Web.Mvc;
-    using Core.Configurations;
-    using DTO;
-    using Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -59,14 +59,14 @@
                     var text = Lang.ResourceManager.GetString(banner.Value.Replace(" ", string.Empty));
 
                     optionList.Add(new SelectListItem()
-                        {
-                            Value = banner.TypeId.ToString(),
-                            Text = string.IsNullOrEmpty(text) ? banner.Value : text,
-                            Selected = Category == banner.TypeId
-                        }); 
+                    {
+                        Value = banner.TypeId.ToString(),
+                        Text = string.IsNullOrEmpty(text) ? banner.Value : text,
+                        Selected = Category == banner.TypeId
+                    });
                 }
 
-                return optionList; 
+                return optionList;
             }
         }
 
@@ -74,7 +74,7 @@
         {
             get
             {
-                return new SelectList(AppSettings.MemberSiteSiteSupportedLanguages, "LanguageID", "LanguageName", Language); 
+                return new SelectList(AppSettings.MemberSiteSiteSupportedLanguages, "LanguageID", "LanguageName", Language);
             }
         }
 
@@ -90,7 +90,7 @@
         {
             get
             {
-                return new SelectList(AppSettings.AffTypes, "TypeID", "Name", AffType.ToString()); 
+                return new SelectList(AppSettings.AffTypes, "TypeID", "Name", AffType.ToString());
             }
         }
 
@@ -105,11 +105,11 @@
                     var text = Lang.ResourceManager.GetString(item.Value.Replace(" ", string.Empty));
 
                     optionList.Add(new SelectListItem
-                        {
-                            Value = item.TypeId.ToString(),
-                            Text = string.IsNullOrEmpty(text) ? item.Value : text,
-                            Selected = item.TypeId == ImageType
-                        }); 
+                    {
+                        Value = item.TypeId.ToString(),
+                        Text = string.IsNullOrEmpty(text) ? item.Value : text,
+                        Selected = item.TypeId == ImageType
+                    });
                 }
 
                 return optionList;
@@ -129,11 +129,11 @@
                     var text = Lang.ResourceManager.GetString(category.Value.Replace(" ", string.Empty));
 
                     optionList.Add(new SelectListItem()
-                        {
-                            Value = category.TypeId.ToString(),
-                            Text = string.IsNullOrEmpty(text) ? category.Value : text,
-                            Selected = category.TypeId == SubCategory
-                        }); 
+                    {
+                        Value = category.TypeId.ToString(),
+                        Text = string.IsNullOrEmpty(text) ? category.Value : text,
+                        Selected = category.TypeId == SubCategory
+                    });
                 }
 
                 return optionList;

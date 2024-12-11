@@ -1,7 +1,6 @@
 ﻿namespace Fanex.AffiliateAdmin.DTO
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// TODO: Update summary.
@@ -26,7 +25,7 @@
 
         public DateTime? Lastupdate { get; set; }
 
-        public string LastUpdateStr 
+        public string LastUpdateStr
         {
             get
             {
@@ -36,7 +35,6 @@
 
         public string Currency { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Allow Type Property")]
         public byte? Type { get; set; }
 
         public int? Version { get; set; }

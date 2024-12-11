@@ -1,12 +1,12 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
+    using Core.Configurations;
+    using Resources;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Web.Mvc;
-    using Core.Configurations;
-    using Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -67,11 +67,11 @@
                 if (_statusOptions == null)
                 {
                     _statusOptions = PaymentSettings.ListStatus.Select(status => new SelectListItem
-                        {
-                            Value = status.Value,
-                            Text = status.Text,
-                            Selected = status.Value == Status
-                        }).ToList();
+                    {
+                        Value = status.Value,
+                        Text = status.Text,
+                        Selected = status.Value == Status
+                    }).ToList();
                 }
 
                 return _statusOptions.AsReadOnly();

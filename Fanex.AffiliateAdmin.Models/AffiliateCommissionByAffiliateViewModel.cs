@@ -1,13 +1,13 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
+    using Core.Configurations;
+    using Fanex.AffiliateAdmin.DTO;
+    using Resources;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Web.Mvc;
-    using Core.Configurations;
-    using Fanex.AffiliateAdmin.DTO;
-    using Resources;
 
     /// <summary>
     /// TODO: Update summary.

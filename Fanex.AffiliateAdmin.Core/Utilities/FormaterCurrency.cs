@@ -91,9 +91,8 @@
         /// <returns>Return number after format.</returns>
         public static string Format(object value, CultureInfo culture, bool checkMinus)
         {
-            double d;
-            
-            if (double.TryParse(value.ToString(), out d))
+
+            if (double.TryParse(value.ToString(), out double d))
             {
                 var currencySymbol = culture.NumberFormat.CurrencySymbol ?? _defaultCulture.NumberFormat.CurrencySymbol;
                 var newValue = string.Format("{0}{1}", currencySymbol, string.Format(DecimalFormat20, value));
@@ -144,9 +143,7 @@
         /// <returns>Format result.</returns>
         public static string FormatNoCurrncySymbol(object value, bool checkMinus = true)
         {
-            double d;
-
-            if (double.TryParse(value.ToString(), out d))
+            if (double.TryParse(value.ToString(), out double d))
             {
                 var currencySymbol = string.Empty;
                 var newValue = string.Format("{0}{1}", currencySymbol, string.Format(DecimalFormat20, value));

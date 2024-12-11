@@ -1,7 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias
 {
-    using System.ComponentModel.DataAnnotations;
     using Fanex.Data.Repository;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// Note Update Criteria.

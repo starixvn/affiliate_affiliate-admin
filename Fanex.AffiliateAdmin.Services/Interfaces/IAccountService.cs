@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.Data.Repository;
+    using System.Collections.Generic;
 
     public interface IAccountService
     {

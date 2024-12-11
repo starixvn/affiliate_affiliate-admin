@@ -1,9 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Session
 {
-    using System.Collections.Generic;
     using Enumerations;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
+    using System.Collections.Generic;
 
     public interface ICurrentSession
     {

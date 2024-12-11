@@ -13,7 +13,7 @@ namespace Fanex.AffiliateAdmin.Criterias
     /// </summary>
     public class PaymentMethodCriteria : CriteriaBase
     {
-         /// <summary>
+        /// <summary>
         /// Get Setting Key.
         /// </summary>
         /// <returns>Setting Key.</returns>

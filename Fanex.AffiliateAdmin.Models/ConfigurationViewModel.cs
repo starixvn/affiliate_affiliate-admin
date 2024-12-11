@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
+    using DTO;
+    using Resources;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using DTO;
-    using Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -19,14 +19,14 @@
 
         public IEnumerable<SelectListItem> TypeOptionList
         {
-            get 
+            get
             {
                 var selectItemList = TypeList.SValue.Split(',').Select(t => new SelectListItem
-                { 
+                {
                     Text = t,
                     Value = t
                 }).ToList();
-                
+
                 selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });
 
                 return selectItemList;

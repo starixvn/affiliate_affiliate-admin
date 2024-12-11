@@ -5,7 +5,7 @@
     public class AccountPasswordCriteria : CriteriaBase
     {
         public int CustId { get; set; }
-        
+
         public string OldPassword { get; set; }
 
         public string NewPassword { get; set; }

@@ -1,12 +1,12 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Utilities
 {
-    using System.IO;
-    using System.Web;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Entities;
     using Fanex.AffiliateAdmin.Core.Enumerations;
     using RazorEngine;
     using RazorEngine.Templating;
+    using System.IO;
+    using System.Web;
 
     /// <summary>
     /// TODO: Update summary.

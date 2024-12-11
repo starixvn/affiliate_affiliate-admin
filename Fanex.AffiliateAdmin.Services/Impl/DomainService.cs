@@ -1,9 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
     using Core.Services;
     using Criterias;
     using DTO;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Affiliate Service.

@@ -1,16 +1,1 @@
-﻿
-
-// Generated helper templates
-// Generated items
-// D:\Project\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.9bet.production.config
-// D:\Project\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.9bet.uat.config
-// D:\Project\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.production.config
-// D:\Project\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.uat.config
-// D:\Project\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.production.config
-// D:\Project\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.uat.config
-// D:\Project\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.production.config
-// D:\Project\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.uat.config
-// D:\Project\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config
-// D:\Project\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.uat.config
-// D:\Project\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.production.config
-// D:\Project\Affiliate\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.uat.config
+﻿ErrorGeneratingOutput

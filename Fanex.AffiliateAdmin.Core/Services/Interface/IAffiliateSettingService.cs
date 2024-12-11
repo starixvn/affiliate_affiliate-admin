@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Services.Interface
 {
-    using System.Collections.Generic;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Affiliate Setting Service.

@@ -6,10 +6,9 @@
 
 namespace Fanex.AffiliateAdmin.Core.Utilities
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Web.Security;
     using Fanex.AffiliateAdmin.Core.Entities;
+    using System;
+    using System.Web.Security;
 
     /// <summary>
     /// TODO: Update summary.

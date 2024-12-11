@@ -1,5 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Mvc
 {
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.AffiliateAdmin.Services;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -9,8 +11,6 @@
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
     using System.Web.Routing;
-    using Fanex.AffiliateAdmin.Core.Utilities;
-    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Implement html extension.

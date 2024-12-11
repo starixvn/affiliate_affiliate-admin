@@ -1,7 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias
 {
-    using System;
     using Fanex.Data.Repository;
+    using System;
 
     /// <summary>
     /// TODO: Update summary.
@@ -31,7 +31,7 @@
         public bool ExcludeTest { get; set; }
 
         public int LicenseeId { get; set; }
-        
+
         public override string GetSettingKey()
         {
             return "AffAdmin_PaymentRequestSelList";

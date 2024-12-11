@@ -6,8 +6,8 @@
 
 namespace Fanex.AffiliateAdmin.Models
 {
-    using System.ComponentModel.DataAnnotations;
     using Fanex.AffiliateAdmin.DTO;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.

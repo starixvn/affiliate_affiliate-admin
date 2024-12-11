@@ -1,9 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
     using Criterias;
     using DTO;
     using Models;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Interface Affiliate service.
@@ -84,20 +84,20 @@
         /// </summary>
         /// <param name="criteria">Affiliate language criteria.</param>
         void ChangeAffiliateLanguage(AffiliateUpdLanguageCriteria criteria);
-        
+
         /// <summary>
         /// Change affiliate's account type.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
-        void ChangeAccountType(AffiliateUpdAccountTypeCriteria criteria);       
-        
+        void ChangeAccountType(AffiliateUpdAccountTypeCriteria criteria);
+
         /// <summary>
         /// Change affiliate's commission group.
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         void ChangeCommissionGroup(CommGroupAssignCriteria criteria);
-        
-         /// <summary>
+
+        /// <summary>
         /// Change affiliate status.
         /// </summary>
         /// <param name="criteria">Affiliate status criteria.</param>
@@ -126,6 +126,6 @@
         /// </summary>
         /// <param name="criteria">Input Criteria.</param>
         /// <returns>Customer Info.</returns>
-        Customer GetCustomer(CustomerSelByUserNameCriteria criteria);  
+        Customer GetCustomer(CustomerSelByUserNameCriteria criteria);
     }
 }

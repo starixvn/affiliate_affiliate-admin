@@ -6,16 +6,16 @@
 
 namespace Fanex.AffiliateAdmin.Core.Helpers
 {
+    using Fanex.AffiliateAdmin.Core.Session;
+    using Fanex.AffiliateAdmin.Core.Utilities;
+    using Fanex.Data;
+    using Fanex.Logging;
     using System;
     using System.Collections.Generic;
     using System.Data.SqlClient;
     using System.Linq;
     using System.Text;
     using System.Web;
-    using Fanex.AffiliateAdmin.Core.Session;
-    using Fanex.AffiliateAdmin.Core.Utilities;
-    using Fanex.Data;
-    using Fanex.Logging;
 
     /// <summary>
     /// TODO: Update summary.

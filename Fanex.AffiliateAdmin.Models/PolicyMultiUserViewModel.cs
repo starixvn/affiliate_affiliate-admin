@@ -6,8 +6,8 @@
 
 namespace Fanex.AffiliateAdmin.Models
 {
-    using System.Collections.Generic;
     using DTO;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.

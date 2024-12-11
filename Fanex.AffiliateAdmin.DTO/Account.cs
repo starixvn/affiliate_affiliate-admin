@@ -9,8 +9,6 @@
 
 namespace Fanex.AffiliateAdmin.DTO
 {
-    using System;
-
     public class Account
     {
         public int CustID { get; set; }

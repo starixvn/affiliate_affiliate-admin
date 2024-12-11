@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
-    using System.Data;
     using Common.Extensions;
     using Core.Utilities;
     using Data;
     using Fanex.Data.Repository;
+    using System.Data;
 
     /// <summary>
     /// Account data access.

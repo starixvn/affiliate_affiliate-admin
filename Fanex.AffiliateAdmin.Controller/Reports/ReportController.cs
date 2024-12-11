@@ -1,12 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using System.Web.Mvc;
-    using System.Web.Script.Serialization;
-    using System.Web.SessionState;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -16,6 +9,13 @@
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Web.Mvc;
+    using System.Web.Script.Serialization;
+    using System.Web.SessionState;
 
     /// <summary>
     /// Report Controller.
@@ -24,9 +24,9 @@
     [FunctionAuth(Function = FunctionPolicyNames.AffReport, CurrenciesRequired = true)]
     public class ReportController : BaseController
     {
-        private ICommGroupService _commGroupService;
+        private readonly ICommGroupService _commGroupService;
 
-        private IReportService _reportService;
+        private readonly IReportService _reportService;
 
         public ReportController()
             : this(null, null)

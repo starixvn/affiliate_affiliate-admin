@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Mvc
 {
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using System.Threading;
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Core.Configurations;
 
     /// <summary>
     /// Custom Razor View Engine.
@@ -14,13 +14,13 @@
         /// </summary>
         public CustomRazorViewEngine()
         {
-            this.ViewLocationFormats = new string[] 
+            this.ViewLocationFormats = new string[]
                                                 {
                                                  "~/Views/Layout%1/{1}/{0}.cshtml",
                                                  "~/Views/Layout%1/{1}/{0}.vbhtml",
                                                };
 
-            this.MasterLocationFormats = new string[] 
+            this.MasterLocationFormats = new string[]
                                                     {
                                                    "~/Views/Layout%1/{1}/{0}.cshtml",
                                                    "~/Views/Layout%1/{1}/{0}.vbhtml",

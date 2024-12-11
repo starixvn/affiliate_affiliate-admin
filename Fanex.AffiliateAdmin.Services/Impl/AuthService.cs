@@ -1,26 +1,22 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.IO;
-    using System.Linq;
-    using System.Web.Hosting;
-    using Common;
     using Common.Helper;
     using Core.Enumerations;
     using Core.Services;
     using Core.Services.Interface;
     using Core.Session;
     using Criterias;
-    using Data;
     using DataAccess;
     using DTO;
-    using DTO.Common;
     using DTO.OneAuth;
     using Fanex.Data.SqlServer;
     using Models;
     using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Web.Hosting;
 
     public class AuthService : QueryService, IAuthService
     {
@@ -137,7 +133,7 @@
         {
             var allCurrencies = _systemSettingService.GetLicenseeSupportedCurrencyList(new LicenseeSupportedCurrencyCriteria());
 
-            return  allCurrencies.Where(x => token.Currency.Any(y => y.CurrencyId == x.OriginalCurrencyID)).ToList();
+            return allCurrencies.Where(x => token.Currency.Any(y => y.CurrencyId == x.OriginalCurrencyID)).ToList();
         }
 
         private IEnumerable<FunctionPolicy> GetPolicyList(OneAuthToken token)

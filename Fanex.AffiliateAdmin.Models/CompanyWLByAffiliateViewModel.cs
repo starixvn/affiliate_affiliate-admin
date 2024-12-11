@@ -1,13 +1,13 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Options;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
 
     /// <summary>
     /// Affiliate List View Model.
@@ -113,10 +113,10 @@
                     var name = Lang.ResourceManager.GetString(product.ProductName.Replace(" ", string.Empty));
 
                     translatedProducts.Add(new Product
-                        {
-                            ProductID = product.ProductID,
-                            ProductName = string.IsNullOrEmpty(name) ? product.ProductName : name
-                        });
+                    {
+                        ProductID = product.ProductID,
+                        ProductName = string.IsNullOrEmpty(name) ? product.ProductName : name
+                    });
                 }
 
                 return new MultiSelectList(translatedProducts, "ProductID", "ProductName", selectedValues);

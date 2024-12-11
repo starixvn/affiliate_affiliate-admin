@@ -6,8 +6,8 @@
 
 namespace Fanex.AffiliateAdmin.Criterias
 {
-    using System;
     using Fanex.Data.Repository;
+    using System;
 
     /// <summary>
     /// TODO: Update summary.

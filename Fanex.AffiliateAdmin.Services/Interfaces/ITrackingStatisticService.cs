@@ -6,9 +6,9 @@
 
 namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.

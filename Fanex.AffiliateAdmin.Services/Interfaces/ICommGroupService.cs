@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System;
-    using System.Collections.Generic;
     using Criterias;
     using DTO;
     using Fanex.Data.Repository;
+    using System;
+    using System.Collections.Generic;
 
     public interface ICommGroupService
     {

@@ -44,7 +44,7 @@
         public decimal TotalTurnoverBase { get; set; }
 
         public decimal CompanyWinLoss { get; set; }
-       
+
         public decimal DepositBase { get; set; }
 
         public decimal WithdrawalBase { get; set; }

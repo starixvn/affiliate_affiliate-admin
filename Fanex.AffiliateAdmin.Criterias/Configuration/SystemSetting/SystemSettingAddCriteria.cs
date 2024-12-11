@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting
 {
-    using System.ComponentModel.DataAnnotations;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// SystemSettingAdd Criteria class.

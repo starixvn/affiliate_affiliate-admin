@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.902
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.AffiliateAdmin.Controller", "Fanex.AffiliateAdmin.Controller\Fanex.AffiliateAdmin.Controller.csproj", "{D7E60D7D-CD3D-40A7-AB59-B7281AA7A579}"
 EndProject
@@ -20,8 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.AffiliateAdmin.Resources", "Fanex.AffiliateAdmin.Resources\Fanex.AffiliateAdmin.Resources.csproj", "{791B3B16-82E3-43E7-A1F9-9EE3DD81C290}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.AffiliateAdmin.Site", "Fanex.AffiliateAdmin.Site\Fanex.AffiliateAdmin.Site.csproj", "{36FEEA64-4934-4FAF-A8AE-1B25865C704F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AC3A092A-0803-4297-90BA-E3095020C6CD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{D04B69A5-CC6F-4C5C-A4DC-ED21D8FA57C9}"
 	ProjectSection(SolutionItems) = preProject
@@ -134,7 +132,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {BF430EE1-8B14-48CD-89C2-52FEDCB303AC}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45
 		BuildVersion_UseGlobalSettings = True
+		SolutionGuid = {BF430EE1-8B14-48CD-89C2-52FEDCB303AC}
 	EndGlobalSection
 EndGlobal

@@ -2,7 +2,6 @@
 {
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
-    using Fanex.Data;
     using Fanex.Data.SqlServer;
 
     /// <summary>

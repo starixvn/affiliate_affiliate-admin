@@ -1,12 +1,12 @@
-﻿using System;
-using System.Web.Mvc;
-using Fanex.AffiliateAdmin.Core.Configurations;
+﻿using Fanex.AffiliateAdmin.Core.Configurations;
 using Fanex.AffiliateAdmin.Core.Entities;
 using Fanex.AffiliateAdmin.Core.Enumerations;
 using Fanex.AffiliateAdmin.Core.Filter;
 using Fanex.AffiliateAdmin.Core.Mailinator;
 using Fanex.AffiliateAdmin.Core.Session;
 using Fanex.AffiliateAdmin.Core.Utilities;
+using System;
+using System.Web.Mvc;
 
 namespace Fanex.AffiliateAdmin.Controller
 {

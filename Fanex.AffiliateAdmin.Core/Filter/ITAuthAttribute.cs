@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Filter
 {
+    using Fanex.AffiliateAdmin.Core.Session;
     using System;
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Core.Session;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class ITAuthAttribute : ActionFilterAttribute

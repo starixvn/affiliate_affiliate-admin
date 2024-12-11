@@ -1,9 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Services;
@@ -12,6 +8,10 @@
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Web.Mvc;
 
     /// <summary>
     /// Currency Rate Controller.
@@ -157,12 +157,12 @@
             ViewBag.Result = GetResultViewModel(validCriteria.ErrCode);
 
             return View(new ExchangeRateViewModel
-                {
-                    ExchangeId = criteria.ExchangeId,
-                    Rate = criteria.Rate,
-                    CodeFrom = criteria.FromCurrency,
-                    CodeTo = criteria.ToCurrency
-                });
+            {
+                ExchangeId = criteria.ExchangeId,
+                Rate = criteria.Rate,
+                CodeFrom = criteria.FromCurrency,
+                CodeTo = criteria.ToCurrency
+            });
         }
 
         /// <summary>

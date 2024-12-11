@@ -74,7 +74,7 @@
             {
                 return _details;
             }
-        } 
+        }
 
         #endregion
 

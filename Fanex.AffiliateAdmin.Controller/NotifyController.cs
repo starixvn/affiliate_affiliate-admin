@@ -1,13 +1,13 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Web.Mvc;
-    using System.Web.Security;
-    using System.Web.SessionState;
     using Core.Constants;
     using Fanex.AffiliateAdmin.Core.Session;
     using ONEbook.UM;
     using ONEbook.UM.Services;
     using Resources;
+    using System.Web.Mvc;
+    using System.Web.Security;
+    using System.Web.SessionState;
 
     /// <summary>
     /// Notify Controller class.

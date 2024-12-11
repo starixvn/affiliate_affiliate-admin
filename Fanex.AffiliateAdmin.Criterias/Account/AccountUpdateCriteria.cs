@@ -12,7 +12,7 @@
 
         public int LicenseeId { get; set; }
 
-        public string CurrencyIds{ get; set; }
+        public string CurrencyIds { get; set; }
 
         public int ErrCode { get; set; }
 

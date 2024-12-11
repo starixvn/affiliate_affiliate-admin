@@ -1,18 +1,15 @@
 ﻿namespace Fanex.AffiliateAdmin.Services.Impl.Core
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Security;
-    using AffiliateAdmin.Core.Configurations;
     using AffiliateAdmin.Core.Enumerations;
     using AffiliateAdmin.Core.Session;
     using DTO;
     using DTO.Common;
     using DTO.OneAuth;
-    using Fanex.AffiliateAdmin.Core.Constants;
-    using Fanex.AffiliateAdmin.Resources;
     using Interfaces;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Security;
 
     public class OneAuthenticationService : IOneAuthenticationService
     {

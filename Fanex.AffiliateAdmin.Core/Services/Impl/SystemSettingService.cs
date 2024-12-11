@@ -1,6 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Services
 {
-    using System.Collections.Generic;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Criterias.Configuration.AffType;
@@ -12,6 +11,7 @@
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Common.Helper;
     using Fanex.Data.Repository;
+    using System.Collections.Generic;
 
     /// <summary>
     /// System setting service class.

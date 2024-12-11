@@ -1,8 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Threading;
     using Common.Helper;
     using Core.Services;
     using Criterias;
@@ -10,6 +7,9 @@
     using Fanex.AffiliateAdmin.DataAccess;
     using Fanex.AffiliateAdmin.Resources;
     using Models;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Threading;
 
     /// <summary>
     /// Affiliate Service.

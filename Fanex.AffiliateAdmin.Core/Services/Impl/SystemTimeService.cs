@@ -1,10 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Criterias;
+    using System;
 
     /// <summary>
     /// System Time Service.
@@ -17,7 +16,6 @@
         /// Get System Date time.
         /// </summary>
         /// <returns>System date time.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Accept it")]
         public static DateTime GetSystemDateTime()
         {
             var serverTime = ServerService.GetSystemDateTime(new SystemDateTimeCriteria());

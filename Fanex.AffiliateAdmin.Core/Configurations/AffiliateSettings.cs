@@ -1,20 +1,20 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Configurations
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public static class AffiliateSettings
     {
-        private static IAffiliateSettingService _affiliateSettingService = new AffiliateSettingService();
+        private readonly static IAffiliateSettingService _affiliateSettingService = new AffiliateSettingService();
 
         public static IEnumerable<AccountType> AccountTypes
         {
@@ -26,10 +26,10 @@
                 });
 
                 var translated = accountTypes.Select(t => new AccountType()
-                    {
-                        TypeID = t.TypeID,
-                        TypeName = Lang.ResourceManager.GetString(t.TypeName.Replace(" ", string.Empty).Replace("-", string.Empty))
-                    });
+                {
+                    TypeID = t.TypeID,
+                    TypeName = Lang.ResourceManager.GetString(t.TypeName.Replace(" ", string.Empty).Replace("-", string.Empty))
+                });
 
                 return translated;
             }

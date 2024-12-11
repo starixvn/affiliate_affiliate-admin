@@ -6,12 +6,12 @@
 
 namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
     using Common.Helper;
     using Core.Services;
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.Resources;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.

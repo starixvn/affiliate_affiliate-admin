@@ -6,9 +6,8 @@
 
 namespace Fanex.AffiliateAdmin.Models
 {
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
     using Resources;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -26,7 +25,7 @@ namespace Fanex.AffiliateAdmin.Models
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "PassConfirm")]
+        [Compare("NewPassword", ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "PassConfirm")]
         [Display(ResourceType = typeof(Lang), Name = "ConfirmPass")]
         public string ConfirmPassword { get; set; }
     }

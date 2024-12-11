@@ -1,10 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Configurations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Configuration;
-    using System.Linq;
-    using System.Web.Mvc;
     using Criterias;
     using Criterias.Configuration.Product;
     using Criterias.Configuration.SystemSetting;
@@ -14,6 +9,11 @@
     using Services;
     using Services.Interface;
     using Session;
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Linq;
+    using System.Web.Mvc;
 
     public static class AppSettings
     {

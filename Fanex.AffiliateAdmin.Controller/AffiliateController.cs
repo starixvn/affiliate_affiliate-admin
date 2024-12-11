@@ -1,10 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using System.Xml.Linq;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -15,6 +10,11 @@
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Common;
     using Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using System.Xml.Linq;
 
     /// <summary>
     /// Affiliate Controller.
@@ -500,7 +500,7 @@
         /// <returns>The result message.</returns>
         private static string GetMessageFromAffiliateStatus(string affiliateStatus)
         {
-            var message = string.Empty;
+            string message;
             switch (affiliateStatus.ToLower())
             {
                 case "closed":
@@ -666,16 +666,14 @@
             }
             else
             {
-                DateTime tempCreatedDate;
-                if (DateTime.TryParse(customerInfo.Element("FirstDepositDate").Value, out tempCreatedDate))
+                if (DateTime.TryParse(customerInfo.Element("FirstDepositDate").Value, out DateTime tempCreatedDate))
                 {
                     createdate = tempCreatedDate;
                 }
             }
 
             DateTime? registerDate = null;
-            DateTime tempRegisterDate;
-            if (DateTime.TryParse(customerInfo.Element("RegisterDate").Value, out tempRegisterDate))
+            if (DateTime.TryParse(customerInfo.Element("RegisterDate").Value, out DateTime tempRegisterDate))
             {
                 registerDate = tempRegisterDate;
             }

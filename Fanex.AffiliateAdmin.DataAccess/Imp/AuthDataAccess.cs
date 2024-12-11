@@ -1,13 +1,12 @@
 ﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
-    using System;
     using Common;
     using Common.Helper;
     using Criterias;
-    using Data;
     using DTO;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.Data.SqlServer;
+    using System;
 
     public class AuthDataAccess : IAuthDataAccess
     {

@@ -1,8 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
     using Core.Configurations;
     using Core.Session;
     using Core.Utilities;
@@ -11,6 +8,9 @@
     using Models;
     using Resources;
     using Services;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
 
     [FunctionAuth(Function = FunctionPolicyNames.Media)]
     public class MediaTextController : BaseController

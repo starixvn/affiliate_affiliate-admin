@@ -1,15 +1,15 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Web.Mvc;
-    using System.Web.SessionState;
     using Core;
     using Core.Filter;
     using Core.Session;
     using Models;
     using ONEbook.UM.AspNetMVC.Filters;
     using Resources;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Web.Mvc;
+    using System.Web.SessionState;
 
     /// <summary>
     /// Base Controller.

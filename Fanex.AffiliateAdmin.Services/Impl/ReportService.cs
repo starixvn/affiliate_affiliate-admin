@@ -1,14 +1,13 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
     using Core.Services;
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.DataAccess;
     using Fanex.Common.Extensions;
     using Fanex.Common.Helper;
-    using Fanex.Data;
     using Fanex.Data.SqlServer;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.
@@ -116,12 +115,12 @@
                         member.QualifiedMemberProducts.Add(
                             productId,
                             new QualifiedMemberProduct()
-                        {
-                            ProductId = productId,
-                            ProductName = reader.ToString("ProductName"),
-                            Turnover = reader.ToDouble("Turnover"),
-                            TurnoverBase = reader.ToDouble("TurnoverBase")
-                        });
+                            {
+                                ProductId = productId,
+                                ProductName = reader.ToString("ProductName"),
+                                Turnover = reader.ToDouble("Turnover"),
+                                TurnoverBase = reader.ToDouble("TurnoverBase")
+                            });
                     }
 
                     return dataList;

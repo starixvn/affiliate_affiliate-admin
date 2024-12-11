@@ -1,9 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
     using Criterias;
     using DTO;
     using Models;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Interface Account service.

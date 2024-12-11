@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Core
 {
+    using Configurations;
+    using Resources;
     using System.Globalization;
     using System.Resources;
     using System.Threading;
-    using Configurations;
-    using Resources;
 
     /// <summary>
     /// Language Mapper.
@@ -15,7 +15,7 @@
         /// Culture USA.
         /// </summary>
         private static readonly CultureInfo _DefaultCulture = CultureInfo.CreateSpecificCulture(AppSettings.DefaultLanguage);
-        
+
         /// <summary>
         /// Resource mapper language.
         /// </summary>

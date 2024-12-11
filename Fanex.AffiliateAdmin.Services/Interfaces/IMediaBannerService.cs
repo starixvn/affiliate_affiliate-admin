@@ -1,9 +1,9 @@
 namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
     using Criterias;
     using DTO;
-    
+    using System.Collections.Generic;
+
     public interface IMediaBannerService
     {
         IEnumerable<Banner> GetBanners(BannerListCriteria criteria);

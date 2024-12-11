@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fanex.AffiliateAdmin.Resources</RootNamespace>
     <AssemblyName>Fanex.AffiliateAdmin.Resources</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -76,109 +76,32 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Country.resx</DependentUpon>
     </Compile>
-    <Compile Include="Country.ko-KR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Country.ko-KR.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Country.zh-CN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Country.zh-CN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Country.zh-TW.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Country.zh-TW.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Error.ko-KR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Error.ko-KR.resx</DependentUpon>
-    </Compile>
     <Compile Include="ErrorMsg.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMsg.resx</DependentUpon>
     </Compile>
-    <Compile Include="ErrorMsg.zh-TW.Designer.cs">
+    <Compile Include="Lang2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ErrorMsg.zh-TW.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Lang.Designer.cs">
       <DependentUpon>Lang.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Lang.ko-KR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang.ko-KR.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Lang.zh-CN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang.zh-CN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Lang.zh-TW.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang.zh-TW.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Country.ko-KR.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Country.ko-KR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Country.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Country.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Country.zh-CN.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Country.zh-CN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Country.zh-TW.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Country.zh-TW.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Error.ko-KR.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Error.ko-KR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ErrorMsg.zh-TW.resx">
-      <SubType>Designer</SubType>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ErrorMsg.zh-TW.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ErrorMsg.zh-CN.resx">
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorMsg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMsg.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Lang.ko-KR.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Lang.ko-KR.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Lang.resx">
       <SubType>Designer</SubType>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang2.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Lang.zh-TW.resx">
-      <SubType>Designer</SubType>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Lang.zh-TW.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Lang.zh-CN.resx">
-      <SubType>Designer</SubType>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Lang.zh-CN.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

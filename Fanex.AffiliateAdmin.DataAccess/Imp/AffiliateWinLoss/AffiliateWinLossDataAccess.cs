@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
-    using System.Collections.Generic;
-    using System.Data;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Common.Extensions;
+    using System.Collections.Generic;
+    using System.Data;
 
     /// <summary>
     /// Affiliate Win Loss Data Access.
@@ -78,12 +78,12 @@
                 while (reader.Read())
                 {
                     var commission = new AffiliateWinLossItem
-                        {
-                            CurrencyId = reader.ToInt("CurrencyId"),
-                            Currency = reader.ToString("Currency"),
-                            BetCount = reader.ToInt("BetCount"),
-                            ActivePlayers = reader.ToInt("ActivePlayers")
-                        };
+                    {
+                        CurrencyId = reader.ToInt("CurrencyId"),
+                        Currency = reader.ToString("Currency"),
+                        BetCount = reader.ToInt("BetCount"),
+                        ActivePlayers = reader.ToInt("ActivePlayers")
+                    };
 
                     GetColumnExtra(reader, commission);
 
@@ -112,10 +112,10 @@
                 while (reader.Read())
                 {
                     var commission = new AffiliateWinLossItem
-                        {
-                            BetCount = reader.ToInt("BetCount"),
-                            ActivePlayers = reader.ToInt("ActivePlayers")
-                        };
+                    {
+                        BetCount = reader.ToInt("BetCount"),
+                        ActivePlayers = reader.ToInt("ActivePlayers")
+                    };
 
                     GetColumnExtra(reader, commission);
 

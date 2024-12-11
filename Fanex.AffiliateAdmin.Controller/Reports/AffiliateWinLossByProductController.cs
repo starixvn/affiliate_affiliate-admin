@@ -1,8 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -10,6 +7,9 @@
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.AffiliateAdmin.Services;
     using Helpers;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
 
     /// <summary>
     /// Report Controller.

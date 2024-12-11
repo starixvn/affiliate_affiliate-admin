@@ -6,10 +6,10 @@
 
 namespace Fanex.AffiliateAdmin.Criterias
 {
-    using System.ComponentModel.DataAnnotations;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data;
     using Fanex.Data.Repository;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// TODO: Update summary.

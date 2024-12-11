@@ -1,11 +1,11 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
+    using Core.Configurations;
+    using Resources;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Web.Mvc;
-    using Core.Configurations;
-    using Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -13,12 +13,12 @@
     public class TextAddViewModel
     {
         #region Fields
-        
+
         private IEnumerable<SelectListItem> _bannerCategoryOptions;
 
         private IEnumerable<SelectListItem> _memberSiteSupportedLanguageOptions;
 
-        private IEnumerable<SelectListItem> _playerCurrencyOptions; 
+        private IEnumerable<SelectListItem> _playerCurrencyOptions;
 
         #endregion
 
@@ -73,10 +73,10 @@
                 if (_memberSiteSupportedLanguageOptions == null)
                 {
                     _memberSiteSupportedLanguageOptions = AppSettings.MemberSiteSiteSupportedLanguages.Select(t => new SelectListItem
-                        {
-                            Text = t.LanguageName,
-                            Value = t.LanguageID
-                        }).ToList();
+                    {
+                        Text = t.LanguageName,
+                        Value = t.LanguageID
+                    }).ToList();
                 }
 
                 return _memberSiteSupportedLanguageOptions;
@@ -90,10 +90,10 @@
                 if (_playerCurrencyOptions == null)
                 {
                     var selectItemList = AppSettings.PlayerCurrencies.Select(t => new SelectListItem
-                        {
-                            Text = t.CurrencyCode,
-                            Value = t.CurrencyID.ToString()
-                        }).ToList();
+                    {
+                        Text = t.CurrencyCode,
+                        Value = t.CurrencyID.ToString()
+                    }).ToList();
 
                     if (selectItemList.Count > 1)
                     {

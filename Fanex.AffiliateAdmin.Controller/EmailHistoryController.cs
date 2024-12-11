@@ -1,8 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
-    using System.Linq;
-    using System.Web.Mvc;
     using Core.Configurations;
     using Core.Session;
     using Core.Utilities;
@@ -11,6 +8,9 @@
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.AffiliateAdmin.Services;
     using Models;
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
 
     /// <summary>
     /// Email History Controller.
@@ -68,7 +68,7 @@
             var criteria = new EmailHistorySelCriteria();
             if (!viewModel.IsAll)
             {
-                criteria.Fromdate = viewModel.FromDate.HasValue ? viewModel.FromDate.Value : DateTime.Now;
+                criteria.Fromdate = viewModel.FromDate ?? DateTime.Now;
                 criteria.Todate = viewModel.ToDate.HasValue
                     ? viewModel.ToDate.Value.AddDays(1).AddMilliseconds(-1)
                     : DateTime.Now.AddDays(1).AddMilliseconds(-1);

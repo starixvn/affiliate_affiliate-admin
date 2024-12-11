@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.DTO
 {
+    using Resources;
     using System;
     using System.ComponentModel.DataAnnotations;
-    using Resources;
 
     /// <summary>
     /// TODO: Update summary.

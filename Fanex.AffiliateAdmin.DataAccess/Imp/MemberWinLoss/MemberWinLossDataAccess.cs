@@ -1,9 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.DataAccess
 {
-    using System.Collections.Generic;
-    using System.Data;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.Common.Extensions;
+    using System.Collections.Generic;
+    using System.Data;
 
     /// <summary>
     /// Member Win Loss Data Access.

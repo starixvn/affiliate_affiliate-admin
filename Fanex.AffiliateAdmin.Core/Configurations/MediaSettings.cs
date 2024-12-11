@@ -1,19 +1,19 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Configurations
 {
-    using System;
-    using System.Collections.Generic;
     using Fanex.AffiliateAdmin.Core.Services.Impl;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.DTO;
+    using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public static class MediaSettings
     {
-        private static IMediaSettingService _mediaSettingService = new MediaSettingService();
-        private static IEnumerable<MediaType> _bannerCategories = _mediaSettingService.GetBannerCategories();
-        private static IEnumerable<MediaType> _bannerTypes = _mediaSettingService.GetBannerTypes();
+        private readonly static IMediaSettingService _mediaSettingService = new MediaSettingService();
+        private readonly static IEnumerable<MediaType> _bannerCategories = _mediaSettingService.GetBannerCategories();
+        private readonly static IEnumerable<MediaType> _bannerTypes = _mediaSettingService.GetBannerTypes();
         private static IEnumerable<MediaType> _bannerSizes = _mediaSettingService.GetBannerSizes();
 
         public static IEnumerable<MediaType> BannerCategories

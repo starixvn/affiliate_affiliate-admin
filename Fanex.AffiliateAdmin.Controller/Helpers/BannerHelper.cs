@@ -1,13 +1,13 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller.Helpers
 {
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
     using Core.Configurations;
     using Core.Utilities;
     using DTO;
     using Models;
     using Resources;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
 
     public static class BannerHelper
     {

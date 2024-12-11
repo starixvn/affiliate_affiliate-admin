@@ -1,7 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias.Configuration.Language
 {
-    using System.ComponentModel.DataAnnotations;
     using Fanex.Data.Repository;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// LanguageUpdate Criteria class.

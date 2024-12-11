@@ -1,9 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Services.Impl
 {
-    using System.Collections.Generic;
     using Fanex.AffiliateAdmin.Core.Services.Interface;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.DTO;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.

@@ -1,7 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using Common.Helper;
     using Core.Services;
     using Criterias;
@@ -9,6 +7,8 @@
     using Fanex.AffiliateAdmin.Criterias.Account;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class AccountService : QueryService, IAccountService
     {

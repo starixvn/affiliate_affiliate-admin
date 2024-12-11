@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Session
 {
+    using Fanex.AffiliateAdmin.Core.Helpers;
     using System.Runtime.Serialization;
     using System.Web;
-    using Fanex.AffiliateAdmin.Core.Helpers;
 
     /// <summary>
     /// Session Manager.

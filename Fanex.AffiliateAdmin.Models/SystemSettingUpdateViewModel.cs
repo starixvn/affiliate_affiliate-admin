@@ -1,12 +1,11 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Web.Mvc;
     using DTO;
     using Resources;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Web.Mvc;
 
     /// <summary>
     /// TODO: Update summary.
@@ -15,7 +14,6 @@
     {
         public int SId { get; set; }
 
-[SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Allow Type Property")]
         public string Type { get; set; }
 
         public string SName { get; set; }
@@ -31,10 +29,10 @@
 
         public IEnumerable<SelectListItem> EnvironmentOptionList
         {
-            get 
+            get
             {
                 var selectItemList = EnvironmentList.Select(t => new SelectListItem
-                { 
+                {
                     Text = t.SValue,
                     Value = t.SValue,
                     Selected = !string.IsNullOrEmpty(Environment) && t.SValue.Equals(Environment)

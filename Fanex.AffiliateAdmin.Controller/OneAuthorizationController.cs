@@ -1,6 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Web.Mvc;
     using Core.Configurations;
     using Core.Constants;
     using DTO.OneAuth;
@@ -9,6 +8,7 @@
     using ONEbook.UM.AspNetMVC.Filters;
     using Services.Impl.Core;
     using Services.Interfaces;
+    using System.Web.Mvc;
 
     public class OneAuthorizationController : Controller
     {

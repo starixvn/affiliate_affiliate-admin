@@ -6,8 +6,6 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
-    using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Entities;
     using Fanex.AffiliateAdmin.Core.Enumerations;
@@ -23,6 +21,8 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Services;
     using Fanex.Common;
     using Helpers;
+    using System;
+    using System.Web.Mvc;
 
     [FunctionAuth(Function = FunctionPolicyNames.Affiliate, CurrenciesRequired = true)]
     public class AffiliateInfoController : BaseController

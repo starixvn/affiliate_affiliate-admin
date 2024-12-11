@@ -6,9 +6,6 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Core.Session;
@@ -16,6 +13,9 @@ namespace Fanex.AffiliateAdmin.Controller
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
     using Helpers;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
 
     /// <summary>
     /// TODO: Update summary.

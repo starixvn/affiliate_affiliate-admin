@@ -1,9 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Core.Configurations;
     using Core.Constants;
     using Core.Entities;
@@ -21,6 +17,10 @@
     using Fanex.AffiliateAdmin.Services;
     using Models;
     using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
 
     [FunctionAuth(Function = FunctionPolicyNames.Payment, CurrenciesRequired = true)]
     public class PaymentController : BaseController
@@ -302,10 +302,10 @@
                     Success = criteria.ErrCode == 0,
                 };
 
-                if(!result.Success)
+                if (!result.Success)
                 {
                     LogHelper.WriteInfo($"Update Payment Info: {JsonConvert.SerializeObject(criteria)}");
-                }    
+                }
 
                 return result;
             }

@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Services;
+    using System.Web.Mvc;
 
     /// <summary>
     /// TODO: Update summary.

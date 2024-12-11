@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
+    using Fanex.AffiliateAdmin.Services;
     using System;
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Services;
 
     /// <summary>
     /// Refresh Web Config.

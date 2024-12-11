@@ -1,6 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Services.Interface
 {
-    using System.Collections.Generic;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Criterias.Configuration.AffType;
     using Fanex.AffiliateAdmin.Criterias.Configuration.Country;
@@ -9,6 +8,7 @@
     using Fanex.AffiliateAdmin.Criterias.Configuration.SystemSetting;
     using Fanex.AffiliateAdmin.DTO;
     using Fanex.Data.Repository;
+    using System.Collections.Generic;
 
     public interface ISystemSettingService
     {
@@ -119,7 +119,7 @@
         /// <param name="criteria">Deduction Type Criteria.</param>
         /// <returns>Return List Deduction Type.</returns>
         IEnumerable<DeductionType> GetDeductionTypes(DeductionTypeCriteria criteria);
-        
+
         /// <summary>
         /// Gets Affiliate Exchange.
         /// </summary>
@@ -149,7 +149,7 @@
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Currency list.</returns>
         IEnumerable<Currency> GetAffSystemAllSupportedCurrencyList(AllSystemCurrencyCriteria criteria);
-        
+
         IEnumerable<AffType> GetAffTypeList(AffTypeCriteria criteria);
 
         IEnumerable<CommGroup> GetCommGroups(CommGroupCurrencyCriteria criteria);

@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias
 {
-    using System;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
+    using System;
 
     /// <summary>
     /// Note Delete Criteria.

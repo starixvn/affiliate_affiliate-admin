@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Filter
 {
+    using Enumerations;
+    using Session;
     using System;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Enumerations;
-    using Session;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class AuthorizeRestrictionAttribute : AuthorizeAttribute

@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Criterias.Configuration.Country
 {
-    using System.ComponentModel.DataAnnotations;
     using Fanex.Data.Repository;
     using Resources;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// CountryUpdate Criteria class.

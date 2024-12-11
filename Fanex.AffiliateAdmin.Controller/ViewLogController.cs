@@ -6,14 +6,14 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Linq;
-    using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Models;
     using Fanex.AffiliateAdmin.Services;
     using Helpers;
+    using System.Linq;
+    using System.Web.Mvc;
 
     /// <summary>
     /// TODO: Update summary.

@@ -1,8 +1,5 @@
 ﻿namespace Fanex.AffiliateAdmin.Controller
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Web.Mvc;
     using Core.Configurations;
     using Core.Enumerations;
     using Core.Filter;
@@ -18,6 +15,8 @@
     using Fanex.AffiliateAdmin.Core.Services;
     using Models;
     using Resources;
+    using System.Linq;
+    using System.Web.Mvc;
 
     [AuthorizeRestriction(AppMode.Self)]
     [FunctionAuth(Function = FunctionPolicyNames.SystemSettings)]

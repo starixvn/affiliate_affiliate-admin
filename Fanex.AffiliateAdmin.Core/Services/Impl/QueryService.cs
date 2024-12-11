@@ -1,13 +1,11 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.Common.Helper;
-    using Fanex.Data;
     using Fanex.Data.Repository;
     using Fanex.Data.SqlServer;
     using Helpers;
+    using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Query Service class.

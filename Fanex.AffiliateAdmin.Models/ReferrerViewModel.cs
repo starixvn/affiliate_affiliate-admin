@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
+    using Fanex.AffiliateAdmin.Resources;
     using System;
     using System.ComponentModel.DataAnnotations;
-    using Fanex.AffiliateAdmin.Resources;
 
     /// <summary>
     /// TODO: Update summary.

@@ -1,11 +1,11 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
+    using Core.Configurations;
+    using Resources;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Web.Mvc;
-    using Core.Configurations;
-    using Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -39,7 +39,7 @@
                 {
                     Text = t.Name,
                     Value = t.TypeID.ToString(),
-                    Selected = AffType.HasValue ? t.TypeID == AffType.Value : false
+                    Selected = AffType.HasValue && t.TypeID == AffType.Value
                 }).ToList();
 
                 return selectItemList;
@@ -56,7 +56,7 @@
                     {
                         Text = t.Value,
                         Value = t.TypeId.ToString(),
-                        Selected = ImageType.HasValue ? t.TypeId == ImageType.Value : false
+                        Selected = ImageType.HasValue && t.TypeId == ImageType.Value
                     }).ToList();
 
                     selectItemList.Insert(0, new SelectListItem { Text = Lang.All, Value = string.Empty });

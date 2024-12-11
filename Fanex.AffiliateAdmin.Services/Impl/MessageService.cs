@@ -1,10 +1,10 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
     using Core.Services;
     using Criterias;
     using DTO;
     using Fanex.AffiliateAdmin.DataAccess;
+    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.

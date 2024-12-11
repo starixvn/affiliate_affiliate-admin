@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.DTO
 {
-    using System.ComponentModel.DataAnnotations;
     using Resources;
-    
+    using System.ComponentModel.DataAnnotations;
+
     /// <summary>
     /// Country class.
     /// </summary>

@@ -1,11 +1,11 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Utilities
 {
+    using Fanex.Common.Extensions;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Web;
     using System.Web.Script.Serialization;
-    using Fanex.Common.Extensions;
 
     /// <summary>
     /// TODO: Update summary.

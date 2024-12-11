@@ -1,10 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.DTO
 {
+    using Resources;
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Diagnostics.CodeAnalysis;
-    using Resources;
 
     /// <summary>
     /// Affiliate class.
@@ -24,8 +23,8 @@
         public string LastName { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrEmail")]
-        [RegularExpression(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$", 
-            ErrorMessageResourceType = typeof(Lang), 
+        [RegularExpression(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$",
+            ErrorMessageResourceType = typeof(Lang),
             ErrorMessageResourceName = "ErrEmailValid")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
@@ -105,7 +104,6 @@
 
         public string PreferredPayment { get; set; }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Allow underscores")]
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrUserNamePlayer")]
         [DisplayName("PlayerUsername")]
         public string Player_Username { get; set; }

@@ -21,7 +21,7 @@ namespace Fanex.AffiliateAdmin.DTO
 
         public bool IsChecked
         {
-            get 
+            get
             {
                 if (this.IsActive == 1)
                 {

@@ -8,7 +8,7 @@
     public class UserOnline
     {
         public string Username { get; set; }
-        
+
         public DateTime LoggedIn { get; set; }
 
         public string LoggedInStr

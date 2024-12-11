@@ -1,8 +1,8 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
     using Criterias;
     using DTO;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Interface Email History service.

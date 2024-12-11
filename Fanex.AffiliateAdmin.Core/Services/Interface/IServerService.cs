@@ -10,6 +10,6 @@
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Return System DateTime.</returns>
-        SystemDateTime GetSystemDateTime(SystemDateTimeCriteria criteria); 
+        SystemDateTime GetSystemDateTime(SystemDateTimeCriteria criteria);
     }
 }

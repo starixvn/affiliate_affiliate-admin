@@ -1,7 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.DTO
 {
     using System.Collections.Generic;
-    
+
     /// <summary>
     /// Affiliate Commission Result.
     /// </summary>
@@ -11,6 +11,6 @@
 
         public IEnumerable<AffiliateCommission> AffiliateCommissionInAffiliateCurrency { get; set; }
 
-        public IEnumerable<AffiliateCommission> AffiliateCommissionInSystemCurrency { get; set; } 
+        public IEnumerable<AffiliateCommission> AffiliateCommissionInSystemCurrency { get; set; }
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace Fanex.AffiliateAdmin.Models
 {
+    using Fanex.AffiliateAdmin.Core.Configurations;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Fanex.AffiliateAdmin.Core.Configurations;
 
     /// <summary>
     /// Change Account Type View Model.
@@ -21,11 +21,11 @@
             get
             {
                 return AffiliateSettings.AccountTypes.Select(t => new SelectListItem
-                    {
-                        Value = t.TypeID.ToString(),
-                        Text = t.TypeName,
-                        Selected = t.TypeID == TestLevel
-                    });
+                {
+                    Value = t.TypeID.ToString(),
+                    Text = t.TypeName,
+                    Selected = t.TypeID == TestLevel
+                });
             }
         }
     }

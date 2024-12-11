@@ -1,12 +1,12 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Session
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Configurations;
     using Enumerations;
     using Fanex.AffiliateAdmin.Core.Utilities;
     using Fanex.AffiliateAdmin.DTO;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     [Serializable]
     public class CurrentSession : ICurrentSession
@@ -67,12 +67,14 @@
 
         private IEnumerable<FunctionMenu> CreateFunctionMenus()
         {
-            var menuList = new List<FunctionMenu>();
-            menuList.Add(new FunctionMenu
+            var menuList = new List<FunctionMenu>
             {
-                Name = "Home",
-                Link = "~/"
-            });
+                new FunctionMenu
+                {
+                    Name = "Home",
+                    Link = "~/"
+                }
+            };
 
             if (!_policyList.Any())
             {

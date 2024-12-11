@@ -6,8 +6,6 @@
 
 namespace Fanex.AffiliateAdmin.Services
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using Common.Helper;
     using Core.Services;
     using Criterias;
@@ -16,6 +14,8 @@ namespace Fanex.AffiliateAdmin.Services
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.Data.Repository;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// TODO: Update summary.
@@ -34,7 +34,7 @@ namespace Fanex.AffiliateAdmin.Services
             };
 
             var result = GetEntity<GroupInfo>(criteria);
-            return result == null ? false : result.GroupName.Equals(ItGroupName, System.StringComparison.OrdinalIgnoreCase);
+            return result != null && result.GroupName.Equals(ItGroupName, System.StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>

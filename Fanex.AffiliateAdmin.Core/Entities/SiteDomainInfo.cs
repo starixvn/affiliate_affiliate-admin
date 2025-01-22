@@ -43,7 +43,7 @@
                     {
                         if(string.Equals("itc303", words[1], StringComparison.CurrentCultureIgnoreCase))
                         {
-                            return GetSiteDomainInfo(scheme, isKiosk, "itcbetgame", words[3]);
+                            return GetSiteDomainInfo(scheme, isKiosk, "itcbetok", words[3]);
                         }
 
                         return GetSiteDomainInfo(scheme, isKiosk, words[1], words[3]);

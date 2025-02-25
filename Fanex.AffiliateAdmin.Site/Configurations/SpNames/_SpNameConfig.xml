@@ -1,4 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item LicenseeName="spondemo" Environment="SIT" SpName="test" Suffix="_xtest"></item>
+  <item LicenseeName="9bet" Environment="LOCAL" SpName="Aff_UserLogin" Suffix="_UAT3"></item>
+  <item LicenseeName="aoncash" Environment="LOCAL" SpName="Aff_UserLogin" Suffix="_UAT3"></item>
+  <item LicenseeName="athena000" Environment="LOCAL" SpName="Aff_UserLogin" Suffix="_UAT3"></item>
+  <item LicenseeName="itcbet" Environment="LOCAL" SpName="Aff_UserLogin" Suffix="_UAT3"></item>
+  <item LicenseeName="macaubet" Environment="LOCAL" SpName="Aff_UserLogin" Suffix="_UAT3"></item>
+  <item LicenseeName="spondemo" Environment="LOCAL" SpName="Aff_UserLogin" Suffix="_UAT3"></item>
 </Root>

@@ -1,10 +1,15 @@
 ﻿namespace Fanex.AffiliateAdmin.Services
 {
     using System;
+    using System.Configuration;
+    using System.Net.Http;
+    using System.Net;
     using System.Xml.Linq;
     using DTO.PaymentRequest;
     using Fanex.AffiliateAdmin.Core.Helpers;
+    using Fanex.AffiliateAdmin.Services.Api;
     using Helpers;
+    using Refit;
 
     /// <summary>
     /// Service Wrapper.
@@ -12,26 +17,84 @@
     [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public class ServiceWrapper
     {
-        private static MemberSiteService.ServiceSoapClient _client;
+        private static ISagaApi _sagaApi;
 
-        private static MemberSiteService.ServiceSoapClient Client
+        private static readonly Lazy<ISagaApi> _instance = new Lazy<ISagaApi>(() =>
         {
-            get { return _client ?? (_client = new MemberSiteService.ServiceSoapClient("ServiceSoap")); }
+            try
+            {
+                var apiUrl = ConfigurationManager.AppSettings["SagaApiUrl"];
+                if (string.IsNullOrEmpty(apiUrl))
+                {
+                    throw new ConfigurationErrorsException("SagaApiUrl is not configured in AppSettings");
+                }
+
+                var isUsingProxy = Convert.ToBoolean(ConfigurationManager.AppSettings["IsUseProxyToGetSagaApi"]);
+                var httpClientHandler = new HttpClientHandler
+                {
+                    Proxy = isUsingProxy ? GetConfiguredProxy() : null,
+                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
+                    UseCookies = false
+                };
+
+                var httpClient = new HttpClient(httpClientHandler)
+                {
+                    BaseAddress = new Uri(apiUrl)
+                };
+
+                return RestService.For<ISagaApi>(httpClient);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Failed to initialize SagaApi client", ex);
+            }
+        });
+
+        private static ISagaApi SagaApi
+        {
+            get {
+                return _sagaApi ?? (_sagaApi = _instance.Value);
+            }
         }
 
         public static XElement GetRegList(string siteName, DateTime targetDate)
         {
-            return Client.GetRegList(siteName, targetDate);
+            var param = new RegParam
+            {
+                StrSiteName = siteName,
+                DtimeTargetDate = targetDate
+            };
+
+            var rawXml = SagaApi.GetRegList(param).Result;
+
+            return GetXElement(rawXml);
         }
 
         public static XElement UpdateBtage(string siteName, string licenseeUserName, string newBtag)
         {
-            return Client.UpdateBtage(siteName, licenseeUserName, newBtag);
+            var param = new UpdateBtageParam
+            {
+                StrSiteName = siteName,
+                StrLicenseeUserName = licenseeUserName,
+                StrNewBtag = newBtag
+            };
+
+            var rawXml = SagaApi.UpdateBtage(param).Result;
+
+            return GetXElement(rawXml);
         }
 
         public static XElement GetLicenseeCustInfo(string siteName, string licenseeUserName)
         {
-            return Client.GetLicenseeCustInfo(siteName, licenseeUserName);
+            var param = new LicenseCustInfoParam
+            {
+                StrSiteName = siteName,
+                StrLicenseeUserName = licenseeUserName
+            };
+
+            var rawXml = SagaApi.GetLicenseeCustInfo(param).Result;
+
+            return GetXElement(rawXml);
         }
 
         public static ApiCustInfo GetLicenseeCustInfo(string siteName, string licenseeUserName, long transId)
@@ -40,7 +103,7 @@
 
             try
             {
-                var xml = Client.GetLicenseeCustInfo(siteName, licenseeUserName);
+                var xml = GetLicenseeCustInfo(siteName, licenseeUserName);
                 var isValid = IsValidApiResult(xml);
 
                 if (isValid)
@@ -65,7 +128,17 @@
 
         public static XElement Transfer(string siteName, string licenseeUserName, double amount, int dummyAccount)
         {
-            return Client.Transfer(siteName, licenseeUserName, amount, dummyAccount);
+            var param = new TranferParam
+            {
+                SiteName = siteName,
+                LicenseeUserName = licenseeUserName,
+                Amount = amount,
+                DummyAccount = dummyAccount
+            };
+
+            var rawXml = SagaApi.Transfer(param).Result;
+
+            return GetXElement(rawXml);
         }
 
         public static ApiTransferInfo Transfer(string siteName, string licenseeUserName, double amount, int dummyAccount, long transId)
@@ -74,7 +147,7 @@
 
             try
             {
-                var xml = Client.Transfer(siteName, licenseeUserName, amount, dummyAccount);
+                var xml = Transfer(siteName, licenseeUserName, amount, dummyAccount);
                 var isValid = IsValidApiResult(xml);
 
                 if (isValid)
@@ -125,6 +198,29 @@
             var methodName = "Transfer";
             var paramInfo = $"siteName={siteName},licenseeUserName={licenseeUserName},Transfer Amount={amount},dummyAccount={dummyAccount}";
             PaymentLogHelper.WriteLog(methodName, paramInfo, transId, xml?.ToString());
+        }
+
+        private static IWebProxy GetConfiguredProxy()
+        {
+            var proxyUrl = ConfigurationManager.AppSettings["ApiProxyUrl"];
+            if (string.IsNullOrEmpty(proxyUrl))
+            {
+                throw new ConfigurationErrorsException("ApiProxyUrl is not configured in AppSettings when proxy is enabled");
+            }
+
+            return new WebProxy(new Uri(proxyUrl));
+        }
+
+        private static XElement GetXElement(string xmlString)
+        {
+            try
+            {
+                return XDocument.Parse(xmlString).Root;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

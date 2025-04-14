@@ -65,7 +65,7 @@ namespace Fanex.AffiliateAdmin.Core.Helpers
             var session = SessionManager.CurrentSession;
             if (session != null)
             {
-                builder.AppendLine("\r\nUser Info: Id = " + session.CustID + ", Username -" + session.Username);
+                builder.AppendLine("\r\nUser Info: Id = " + session.CustID + ", Username = " + session.Username);
             }
 
             return builder;

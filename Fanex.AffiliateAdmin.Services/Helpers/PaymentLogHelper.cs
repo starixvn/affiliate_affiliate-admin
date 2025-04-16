@@ -3,6 +3,7 @@
     using System;
     using System.Globalization;
     using System.Text;
+    using System.Threading.Tasks;
     using Core.Session;
     using Criterias;
     using Fanex.AffiliateAdmin.Core.Helpers;
@@ -18,11 +19,11 @@
             get { return _logger ?? (_logger = new DbLogger()); }
         }
 
-        public static void WriteLog(string methodName, string paramInfo, long transId, string xmlData)
+        public static async Task WriteLogAsync(string methodName, string paramInfo, long transId, string xmlData)
         {
             var userId = SessionManager.CurrentSession.CustID;
             var resultLogContent = BuildLogContentByResult(methodName, userId, transId, paramInfo, xmlData);
-            LogHelper.WriteInfo(resultLogContent);
+            await LogHelper.WriteInfoAsync(resultLogContent);
             DbLogger.WritePaymentLog(new PaymentLogCriteria { UserId = userId, LogContent = resultLogContent });
         }
 

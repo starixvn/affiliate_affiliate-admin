@@ -10,6 +10,7 @@
     using Fanex.AffiliateAdmin.Services.Api;
     using Helpers;
     using Refit;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Service Wrapper.
@@ -17,8 +18,6 @@
     [System.CodeDom.Compiler.GeneratedCodeAttribute("T4", "1.0.0.0")]
     public class ServiceWrapper
     {
-        private static ISagaApi _sagaApi;
-
         private static readonly Lazy<ISagaApi> _instance = new Lazy<ISagaApi>(() =>
         {
             try
@@ -39,7 +38,8 @@
 
                 var httpClient = new HttpClient(httpClientHandler)
                 {
-                    BaseAddress = new Uri(apiUrl)
+                    BaseAddress = new Uri(apiUrl),
+                    Timeout = TimeSpan.FromSeconds(60)
                 };
 
                 return RestService.For<ISagaApi>(httpClient);
@@ -50,14 +50,9 @@
             }
         });
 
-        private static ISagaApi SagaApi
-        {
-            get {
-                return _sagaApi ?? (_sagaApi = _instance.Value);
-            }
-        }
+        private static ISagaApi SagaApi => _instance.Value;
 
-        public static XElement GetRegList(string siteName, DateTime targetDate)
+        public static async Task<XElement> GetRegList(string siteName, DateTime targetDate)
         {
             var param = new RegParam
             {
@@ -65,12 +60,11 @@
                 DtimeTargetDate = targetDate
             };
 
-            var rawXml = SagaApi.GetRegList(param).Result;
-
-            return GetXElement(rawXml);
+            var xmlString = await SagaApi.GetRegList(param);
+            return ParseXml(xmlString);
         }
 
-        public static XElement UpdateBtage(string siteName, string licenseeUserName, string newBtag)
+        public static async Task<XElement> UpdateBtage(string siteName, string licenseeUserName, string newBtag)
         {
             var param = new UpdateBtageParam
             {
@@ -79,12 +73,11 @@
                 StrNewBtag = newBtag
             };
 
-            var rawXml = SagaApi.UpdateBtage(param).Result;
-
-            return GetXElement(rawXml);
+            var xmlString = await SagaApi.UpdateBtage(param);
+            return ParseXml(xmlString);
         }
 
-        public static XElement GetLicenseeCustInfo(string siteName, string licenseeUserName)
+        public static async Task<XElement> GetLicenseeCustInfo(string siteName, string licenseeUserName)
         {
             var param = new LicenseCustInfoParam
             {
@@ -92,18 +85,17 @@
                 StrLicenseeUserName = licenseeUserName
             };
 
-            var rawXml = SagaApi.GetLicenseeCustInfo(param).Result;
-
-            return GetXElement(rawXml);
+            var xmlString = await SagaApi.GetLicenseeCustInfo(param);
+            return ParseXml(xmlString);
         }
 
-        public static ApiCustInfo GetLicenseeCustInfo(string siteName, string licenseeUserName, long transId)
+        public static async Task<ApiCustInfo> GetLicenseeCustInfo(string siteName, string licenseeUserName, long transId)
         {
             var custInfo = new ApiCustInfo();
 
             try
             {
-                var xml = GetLicenseeCustInfo(siteName, licenseeUserName);
+                var xml = await GetLicenseeCustInfo(siteName, licenseeUserName);
                 var isValid = IsValidApiResult(xml);
 
                 if (isValid)
@@ -113,20 +105,20 @@
                 }
                 else
                 {
-                    WriteLogAfterGettingCustInfo(siteName, licenseeUserName, transId, xml);
+                    await WriteLogAfterGettingCustInfo(siteName, licenseeUserName, transId, xml);
                     custInfo.ErrorMessage = xml.Element("ReturnMessage")?.Value;
                 }
             }
             catch (Exception ex)
             {
-                WriteLogAfterGettingCustInfo(siteName, licenseeUserName, transId);
+                await WriteLogAfterGettingCustInfo(siteName, licenseeUserName, transId);
                 LogHelper.WriteError(ex);
             }
 
             return custInfo;
         }
 
-        public static XElement Transfer(string siteName, string licenseeUserName, double amount, int dummyAccount)
+        public static async Task<XElement> Transfer(string siteName, string licenseeUserName, double amount, int dummyAccount)
         {
             var param = new TranferParam
             {
@@ -136,34 +128,33 @@
                 DummyAccount = dummyAccount
             };
 
-            var rawXml = SagaApi.Transfer(param).Result;
-
-            return GetXElement(rawXml);
+            var xmlString = await SagaApi.Transfer(param);
+            return ParseXml(xmlString);
         }
 
-        public static ApiTransferInfo Transfer(string siteName, string licenseeUserName, double amount, int dummyAccount, long transId)
+        public static async Task<ApiTransferInfo> Transfer(string siteName, string licenseeUserName, double amount, int dummyAccount, long transId)
         {
             var transferInfo = new ApiTransferInfo();
 
             try
             {
-                var xml = Transfer(siteName, licenseeUserName, amount, dummyAccount);
+                var xml = await Transfer(siteName, licenseeUserName, amount, dummyAccount);
                 var isValid = IsValidApiResult(xml);
 
                 if (isValid)
                 {
-                    transferInfo.IbcRefNo = Convert.ToInt64(xml.Element("IBCRefNo").Value);
-                    transferInfo.IbcTransId = Convert.ToInt64(xml.Element("IBCTransId").Value);
+                    transferInfo.IbcRefNo = Convert.ToInt64(xml.Element("IBCRefNo")?.Value);
+                    transferInfo.IbcTransId = Convert.ToInt64(xml.Element("IBCTransId")?.Value);
                 }
                 else
                 {
-                    WriteLogAfterTransfering(siteName, licenseeUserName, amount, dummyAccount, transId, xml);
+                    await WriteLogAfterTransfering(siteName, licenseeUserName, amount, dummyAccount, transId, xml);
                     transferInfo.ErrorMessage = xml.Element("ReturnMessage")?.Value;
                 }
             }
             catch (Exception ex)
             {
-                WriteLogAfterTransfering(siteName, licenseeUserName, amount, dummyAccount, transId);
+                await WriteLogAfterTransfering(siteName, licenseeUserName, amount, dummyAccount, transId);
                 LogHelper.WriteError(ex);
             }
 
@@ -177,27 +168,22 @@
                 return false;
             }
 
-            var xmlElement = xmlResult.Element("ReturnCode");
-            if (xmlElement == null || Convert.ToInt32(xmlElement.Value) != 0)
-            {
-                return false;
-            }
-
-            return true;
+            var returnCode = xmlResult.Element("ReturnCode")?.Value;
+            return returnCode != null && Convert.ToInt32(returnCode) == 0;
         }
 
-        private static void WriteLogAfterGettingCustInfo(string siteName, string licenseeUserName, long transId, XElement xml = null)
+        private static async Task WriteLogAfterGettingCustInfo(string siteName, string licenseeUserName, long transId, XElement xml = null)
         {
             var methodName = "GetLicenseeCustInfo";
             var paramInfo = $"siteName={siteName},userName={licenseeUserName}";
-            PaymentLogHelper.WriteLog(methodName, paramInfo, transId, xml?.ToString());
+            await PaymentLogHelper.WriteLogAsync(methodName, paramInfo, transId, xml?.ToString());
         }
 
-        private static void WriteLogAfterTransfering(string siteName, string licenseeUserName, double amount, int dummyAccount, long transId, XElement xml = null)
+        private static async Task WriteLogAfterTransfering(string siteName, string licenseeUserName, double amount, int dummyAccount, long transId, XElement xml = null)
         {
             var methodName = "Transfer";
             var paramInfo = $"siteName={siteName},licenseeUserName={licenseeUserName},Transfer Amount={amount},dummyAccount={dummyAccount}";
-            PaymentLogHelper.WriteLog(methodName, paramInfo, transId, xml?.ToString());
+            await PaymentLogHelper.WriteLogAsync(methodName, paramInfo, transId, xml?.ToString());
         }
 
         private static IWebProxy GetConfiguredProxy()
@@ -211,14 +197,16 @@
             return new WebProxy(new Uri(proxyUrl));
         }
 
-        private static XElement GetXElement(string xmlString)
+        private static XElement ParseXml(string xmlString)
         {
             try
             {
                 return XDocument.Parse(xmlString).Root;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogHelper.WriteError(ex);
+
                 return null;
             }
         }

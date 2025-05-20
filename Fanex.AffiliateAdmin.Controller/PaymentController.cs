@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using Core.Configurations;
     using Core.Constants;
@@ -127,7 +128,7 @@
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FunctionAuth(Function = FunctionPolicyNames.Payment, IsHostPolicy = true)]
-        public ActionResult UpdatePayment(PaymentUpdateViewModel model)
+        public async Task<ActionResult> UpdatePayment(PaymentUpdateViewModel model)
         {
             var paymentDetail = _paymentService.GetPaymentDetail(new PaymentDetailCriteria
             {
@@ -151,7 +152,7 @@
                     RefId = paymentDetail.RefId
                 });
 
-                var custInfo = GetCustInfo(paymentDetail.Transid, playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername);
+                var custInfo = await GetCustInfo(paymentDetail.Transid, playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername);
                 if (string.IsNullOrEmpty(playerPayoutInfo.DummyBalAcc) || !IsValidCustomer(custInfo))
                 {
                     ModelState.AddModelError(ModelErrorKey, Common.GetErrorMsg(UserNotExistedCode));
@@ -173,7 +174,7 @@
                 }
 
                 var criteria = GetPaymentUpdateCriteria(model, paymentDetail);
-                var result = ProcessUpdatePayment(criteria, paymentDetail, playerPayoutInfo, custInfo);
+                var result = await ProcessUpdatePayment(criteria, paymentDetail, playerPayoutInfo, custInfo);
 
                 if (result.Success)
                 {
@@ -238,21 +239,21 @@
                                         string.IsNullOrEmpty(transferInfo.ErrorMessage));
         }
 
-        private ApiCustInfo GetCustInfo(long transId, string siteName, string userName)
+        private async Task<ApiCustInfo> GetCustInfo(long transId, string siteName, string userName)
         {
             return AppSettings.LocalTest ?
                 new ApiCustInfo { PlayerCurrency = AppSettings.DefaultCurrency, IbcUserName = "ninatest" } :
-                ServiceWrapper.GetLicenseeCustInfo(siteName, userName, transId);
+                await ServiceWrapper.GetLicenseeCustInfo(siteName, userName, transId);
         }
 
-        private ApiTransferInfo ProcessTransfer(PlayerPayoutInfo playerPayoutInfo, long transId, double amount, int balAccCustId)
+        private async Task<ApiTransferInfo> ProcessTransfer(PlayerPayoutInfo playerPayoutInfo, long transId, double amount, int balAccCustId)
         {
             return AppSettings.LocalTest ?
                 new ApiTransferInfo() :
-                ServiceWrapper.Transfer(playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername, amount, balAccCustId, transId);
+                await ServiceWrapper.Transfer(playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername, amount, balAccCustId, transId);
         }
 
-        private ResultViewModel ProcessUpdatePayment(
+        private async Task<ResultViewModel> ProcessUpdatePayment(
             PaymentUpdateCriteria criteria,
             PaymentDetail paymentDetail,
             PlayerPayoutInfo playerPayoutInfo,
@@ -267,7 +268,7 @@
                     Username = AppSettings.LocalTest ? "i668betUS$011117" : playerPayoutInfo.DummyBalAcc
                 });
 
-                var transferInfo = ProcessTransfer(
+                var transferInfo = await ProcessTransfer(
                     playerPayoutInfo,
                     paymentDetail.Transid,
                     Math.Abs(Convert.ToDouble(paymentDetail.TransferAmount)),
@@ -278,7 +279,7 @@
                     var ibcUsername = custInfo.IbcUserName;
                     if (string.IsNullOrEmpty(ibcUsername))
                     {
-                        var newCustInfo = GetCustInfo(paymentDetail.Transid, playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername);
+                        var newCustInfo = await GetCustInfo(paymentDetail.Transid, playerPayoutInfo.SystemName, playerPayoutInfo.PlayerUsername);
                         ibcUsername = IsValidCustomer(newCustInfo) ? newCustInfo.IbcUserName : string.Empty;
                     }
 

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Xml.Linq;
     using Fanex.AffiliateAdmin.Core.Configurations;
@@ -397,7 +398,7 @@
         /// <returns>Result Message.</returns>
         [FunctionAuth(Function = FunctionPolicyNames.Affiliate, IsHostPolicy = true)]
         [HttpPost]
-        public ActionResult AssignMember(CheckMemberExistCriteria criteria)
+        public async Task<ActionResult> AssignMember(CheckMemberExistCriteria criteria)
         {
             _service.CheckMemberExist(criteria);
             var result = new ResultViewModel();
@@ -414,31 +415,31 @@
                 });
             }
 
-            var message = string.Empty;
-            var errorCode = 0;
+            result.ErrorMessage = string.Empty;
+            result.ErrorCode = 0;
 
             if (AppSettings.LocalTest)
             {
-                errorCode = TestInsertMember(criteria.AffID, criteria.AffName, criteria.MemberName);
+                result.ErrorCode = TestInsertMember(criteria.AffID, criteria.AffName, criteria.MemberName);
             }
             else
             {
                 if (criteria.MemberAffID > 0)
                 {
-                    errorCode = AssignOldMemberToAffiliate(criteria);
+                    result.ErrorCode = AssignOldMemberToAffiliate(criteria);
                 }
                 else
                 {
-                    AssignNewMemberToAffiliate(criteria, ref message, ref errorCode);
+                    await AssignNewMemberToAffiliate(criteria, result);
                 }
 
-                if (errorCode == 0 && string.IsNullOrEmpty(message))
+                if (result.ErrorCode == 0 && string.IsNullOrEmpty(result.ErrorMessage))
                 {
-                    ServiceWrapper.UpdateBtage(AppSettings.SystemName, criteria.MemberName, string.Format("{0}_{1}_0", AppSettings.LicenseeID, criteria.AffID));
+                    await ServiceWrapper.UpdateBtage(AppSettings.SystemName, criteria.MemberName, string.Format("{0}_{1}_0", AppSettings.LicenseeID, criteria.AffID));
                 }
             }
 
-            ViewBag.Result = errorCode == 0 ? GetResultViewModel(string.IsNullOrEmpty(message) ? 0 : 1, null, message) : GetResultViewModel(errorCode);
+            ViewBag.Result = result.ErrorCode == 0 ? GetResultViewModel(string.IsNullOrEmpty(result.ErrorMessage) ? 0 : 1, null, result.ErrorMessage) : GetResultViewModel(result.ErrorCode);
 
             return AssignMember(new AssignMemberViewModel
             {
@@ -500,7 +501,7 @@
         /// <returns>The result message.</returns>
         private static string GetMessageFromAffiliateStatus(string affiliateStatus)
         {
-            var message = string.Empty;
+            string message;
             switch (affiliateStatus.ToLower())
             {
                 case "closed":
@@ -577,20 +578,20 @@
         /// <param name="criteria">Input criteria.</param>
         /// <param name="message">Error message.</param>
         /// <param name="errorCode">Error code.</param>
-        private void AssignNewMemberToAffiliate(CheckMemberExistCriteria criteria, ref string message, ref int errorCode)
+        private async Task AssignNewMemberToAffiliate(CheckMemberExistCriteria criteria, ResultViewModel result)
         {
-            var xml = ServiceWrapper.GetLicenseeCustInfo(AppSettings.SystemName, criteria.MemberName);
+            var xml = await ServiceWrapper.GetLicenseeCustInfo(AppSettings.SystemName, criteria.MemberName);
 
             if (xml.Element("ReturnCode").Value != "0")
             {
-                message = xml.Element("ReturnMessage").Value;
+                result.ErrorMessage = xml.Element("ReturnMessage").Value;
 
                 return;
             }
 
             if (!HasFirstDepositDate(xml))
             {
-                message = string.Format(Lang.MemberNotDepositOnMemberSite, criteria.MemberName);
+                result.ErrorMessage = string.Format(Lang.MemberNotDepositOnMemberSite, criteria.MemberName);
                 return;
             }
 
@@ -615,7 +616,7 @@
 
             GetMoreCustomerInfo(xml, insertCriteria);
             _service.InsertMember(insertCriteria);
-            errorCode = insertCriteria.ErrCode;
+            result.ErrorCode = insertCriteria.ErrCode;
         }
 
         /// <summary>
@@ -666,16 +667,14 @@
             }
             else
             {
-                DateTime tempCreatedDate;
-                if (DateTime.TryParse(customerInfo.Element("FirstDepositDate").Value, out tempCreatedDate))
+                if (DateTime.TryParse(customerInfo.Element("FirstDepositDate").Value, out DateTime tempCreatedDate))
                 {
                     createdate = tempCreatedDate;
                 }
             }
 
             DateTime? registerDate = null;
-            DateTime tempRegisterDate;
-            if (DateTime.TryParse(customerInfo.Element("RegisterDate").Value, out tempRegisterDate))
+            if (DateTime.TryParse(customerInfo.Element("RegisterDate").Value, out DateTime tempRegisterDate))
             {
                 registerDate = tempRegisterDate;
             }

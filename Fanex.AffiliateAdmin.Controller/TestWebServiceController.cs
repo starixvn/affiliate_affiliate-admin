@@ -9,6 +9,7 @@
 
 namespace Fanex.AffiliateAdmin.Controller
 {
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
@@ -28,7 +29,7 @@ namespace Fanex.AffiliateAdmin.Controller
             return View();
         }
 
-        public ActionResult CallWebSerive(TestWebServiceCriteria criteria)
+        public async Task<ActionResult> CallWebSerive(TestWebServiceCriteria criteria)
         {
             var responseText = string.Empty;
 
@@ -36,22 +37,22 @@ namespace Fanex.AffiliateAdmin.Controller
             {
                 case "GetRegList":
                     {
-                        responseText = ServiceWrapper.GetRegList(AppSettings.SystemName, criteria.Date).ToString();
+                        responseText = (await ServiceWrapper.GetRegList(AppSettings.SystemName, criteria.Date)).ToString();
                         break;
                     }
                 case "UpdateBtage":
                     {
-                        responseText = ServiceWrapper.UpdateBtage(AppSettings.SystemName, criteria.Licensee, criteria.Btag).ToString();
+                        responseText = (await ServiceWrapper.UpdateBtage(AppSettings.SystemName, criteria.Licensee, criteria.Btag)).ToString();
                         break;
                     }
                 case "GetLicenseeCustInfo":
                     {
-                        responseText = ServiceWrapper.GetLicenseeCustInfo(AppSettings.SystemName, criteria.Licensee).ToString();
+                        responseText = (await ServiceWrapper.GetLicenseeCustInfo(AppSettings.SystemName, criteria.Licensee)).ToString();
                         break;
                     }
                 case "Transfer":
                     {
-                        responseText = ServiceWrapper.Transfer(AppSettings.SystemName, criteria.Licensee, criteria.Amount, criteria.DummyAccount).ToString();
+                        responseText = (await ServiceWrapper.Transfer(AppSettings.SystemName, criteria.Licensee, criteria.Amount, criteria.DummyAccount)).ToString();
                         break;
                     }
                 default:

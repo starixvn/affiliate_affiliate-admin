@@ -11,6 +11,7 @@ namespace Fanex.AffiliateAdmin.Core.Helpers
     using System.Data.SqlClient;
     using System.Linq;
     using System.Text;
+    using System.Threading.Tasks;
     using System.Web;
     using Fanex.AffiliateAdmin.Core.Session;
     using Fanex.AffiliateAdmin.Core.Utilities;
@@ -27,6 +28,11 @@ namespace Fanex.AffiliateAdmin.Core.Helpers
         public static void WriteInfo(string message)
         {
             LogService.Info(message);
+        }
+
+        public static async Task WriteInfoAsync(string message)
+        {
+            await LogService.InfoAsync(message);
         }
 
         public static void WriteError(string message)
@@ -65,7 +71,7 @@ namespace Fanex.AffiliateAdmin.Core.Helpers
             var session = SessionManager.CurrentSession;
             if (session != null)
             {
-                builder.AppendLine("\r\nUser Info: Id = " + session.CustID + ", Username -" + session.Username);
+                builder.AppendLine("\r\nUser Info: Id = " + session.CustID + ", Username = " + session.Username);
             }
 
             return builder;

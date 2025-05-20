@@ -1,6 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Site
 {
     using System;
+    using System.Net;
     using System.Web;
     using System.Web.Helpers;
     using System.Web.Mvc;
@@ -28,6 +29,8 @@
                 .StartNewSession()
                 .WithSqlServer("~/Configurations/SpNames/SpName.xml")
                 .Run();
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             AreaRegistration.RegisterAllAreas();
 

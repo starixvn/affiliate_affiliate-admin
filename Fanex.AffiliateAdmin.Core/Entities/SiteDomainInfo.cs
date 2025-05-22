@@ -46,6 +46,11 @@
                             return GetSiteDomainInfo(scheme, isKiosk, "itcbetok", words[3]);
                         }
 
+                        if (string.Equals("macaubet", words[1], StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            return GetSiteDomainInfo(scheme, isKiosk, "resomer", "my");
+                        }
+
                         return GetSiteDomainInfo(scheme, isKiosk, words[1], words[3]);
                     }
 

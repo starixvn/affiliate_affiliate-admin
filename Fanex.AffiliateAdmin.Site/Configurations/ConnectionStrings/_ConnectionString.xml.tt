@@ -1,7 +1,7 @@
 ﻿<#@ template debug="true" hostSpecific="true" #>
 <#@ output extension=".txt" #>
 <#@ import namespace="System" #>
-<#@ include file="$(SolutionDir)\Packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
+<#@ include file="$(SolutionDir)\Fanex.AffiliateAdmin.Site\Configurations\TemplateFilemanager.CS.ttinclude" #>
 
 <#
 	var manager = TemplateFileManager.Create(this);
@@ -16,7 +16,7 @@
 		{"9bet", "DBAFF9BET.Affiliate_9bet.wsv_afinet"}
 	};
 
-	var environments = new string[] { "uat", "production" };
+	var environments = new string[] { "uat", "production", "kldr" };
 	foreach(var licenseeDbName in licenseeDbNameList)
 	{
 		foreach(var environment in environments)

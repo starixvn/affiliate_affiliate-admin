@@ -2,21 +2,27 @@
 
 // Generated helper templates
 // Generated items
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.9bet.kldr.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.9bet.sit.config
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.9bet.production.config
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.9bet.uat.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.9bet.sit.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.macaubet.kldr.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.macaubet.sit.config
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.macaubet.production.config
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.macaubet.uat.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.macaubet.sit.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.itcbet.kldr.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.itcbet.sit.config
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.itcbet.production.config
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.itcbet.uat.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.itcbet.sit.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.athena000.kldr.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.athena000.sit.config
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.athena000.production.config
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.athena000.uat.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.athena000.sit.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aoncash.kldr.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aoncash.sit.config
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aoncash.production.config
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aoncash.uat.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.aoncash.sit.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.spondemo.kldr.config
+// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.spondemo.sit.config
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.spondemo.production.config
 // D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.spondemo.uat.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\WebConfigs\Web.spondemo.sit.config

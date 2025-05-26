@@ -1,7 +1,7 @@
 ﻿<#@ template debug="true" hostSpecific="true" #>
 <#@ output extension=".txt" #>
 <#@ import namespace="System" #>
-<#@ include file="$(SolutionDir)\Packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
+<#@ include file="$(SolutionDir)\Fanex.AffiliateAdmin.Site\Configurations\TemplateFilemanager.CS.ttinclude" #>
 
 <#
 	string path = Host.ResolveAssemblyReference("$(SolutionDir)");
@@ -17,7 +17,7 @@
 			"9bet"
 		};
 
-	var environments = new string[] { "sit", "uat", "production" };
+	var environments = new string[] { "uat", "production", "sit", "kldr" };
 
 	foreach(var licenseeName in licenseeNames)
 	{

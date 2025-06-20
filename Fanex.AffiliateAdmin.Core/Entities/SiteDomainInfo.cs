@@ -54,6 +54,17 @@
                         return GetSiteDomainInfo(scheme, isKiosk, words[1], words[3]);
                     }
 
+                    if(string.Equals("starixplay", words[1], StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        return new SiteDomainInfo
+                        {
+                            MemberSiteDomain = string.Format("www.{0}.{1}", AppSettings.SystemName, words[2]),
+                            MemberSiteUrl = new Uri(string.Format("{0}://www.{1}.{2}/vender.aspx", scheme, AppSettings.SystemName, words[2])),
+                            AffiliateSiteUrl = new Uri(string.Format("{0}://{1}.{2}.{3}", scheme, words[0].Replace("admin", "user"), words[1], words[2])),
+                            AdminSiteUrl = new Uri(string.Format("{0}://{1}.{2}.{3}", scheme, words[0], words[1], words[2]))
+                        };
+                    }
+
                     return GetSiteDomainInfo(scheme, isKiosk, words[1], words[2]);
                 }
             }

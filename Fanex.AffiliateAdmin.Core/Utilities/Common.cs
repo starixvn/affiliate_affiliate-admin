@@ -5,7 +5,6 @@
     using System.IO;
     using System.Resources;
     using System.Text;
-    using Fanex.AffiliateAdmin.Core.Helpers;
     using Fanex.AffiliateAdmin.Resources;
     using Fanex.MailDeliver.MailClient;
     using Fanex.MailDeliver.MailClient.API;
@@ -42,12 +41,6 @@
 
         public static void SendEmail(string message, string mailTo, string subject, string mailBcc = "", string mailCC = "")
         {
-            if (!Configurations.AppSettings.IsApiDataModifiable)
-            {
-                LogHelper.WriteInfo($"The Aff Admin doesn't send the mail to {mailTo}: {subject}");
-                return;
-            }
-
             var mailItem = new Fanex.MailDeliver.Model.MailRecord
             {
                 MailTo = mailTo,

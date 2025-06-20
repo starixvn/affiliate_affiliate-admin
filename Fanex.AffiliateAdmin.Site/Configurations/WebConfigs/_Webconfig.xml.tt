@@ -17,7 +17,7 @@
 			"9bet"
 		};
 
-	var environments = new string[] { "uat", "production", "sit", "kldr" };
+	var environments = new string[] { "uat", "production", "sit", "kldr", "klprod" };
 
 	foreach(var licenseeName in licenseeNames)
 	{

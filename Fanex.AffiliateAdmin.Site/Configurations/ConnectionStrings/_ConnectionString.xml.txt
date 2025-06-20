@@ -2,21 +2,27 @@
 
 // Generated helper templates
 // Generated items
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.9bet.kldr.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.9bet.production.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.9bet.uat.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.kldr.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.production.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.uat.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.kldr.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.production.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.uat.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.kldr.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.production.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.uat.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.kldr.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.uat.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.kldr.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.production.config
-// D:\Nexcel\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.uat.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.9bet.klprod.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.9bet.kldr.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.9bet.production.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.9bet.uat.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.klprod.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.kldr.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.production.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.macaubet.uat.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.klprod.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.kldr.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.production.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.itcbet.uat.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.klprod.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.kldr.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.production.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.athena000.uat.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.klprod.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.kldr.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.production.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.aoncash.uat.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.klprod.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.kldr.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.production.config
+// D:\Nexdev\Athena\affiliate-admin\Fanex.AffiliateAdmin.Site\Configurations\ConnectionStrings\Web.ConnectionString.spondemo.uat.config

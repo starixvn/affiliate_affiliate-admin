@@ -11,14 +11,12 @@ namespace Fanex.AffiliateAdmin.Controller
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using System.Web.SessionState;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Filter;
     using Fanex.AffiliateAdmin.Criterias;
     using Fanex.AffiliateAdmin.Services;
 
-    [SessionState(SessionStateBehavior.Default)]
-    [AllowAnonymous]
+    [FunctionAuth(Function = FunctionPolicyNames.SystemSettings)]
     public class TestWebServiceController : BaseController
     {
         /// <summary>

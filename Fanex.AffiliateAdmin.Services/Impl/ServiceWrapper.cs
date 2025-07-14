@@ -67,11 +67,6 @@
 
         public static async Task<XElement> UpdateBtage(string siteName, string licenseeUserName, string newBtag)
         {
-            if (!AppSettings.IsApiDataModifiable)
-            {
-                return null;
-            }
-
             var param = new UpdateBtageParam
             {
                 StrSiteName = siteName,
@@ -126,11 +121,6 @@
 
         public static async Task<XElement> Transfer(string siteName, string licenseeUserName, double amount, int dummyAccount)
         {
-            if (!AppSettings.IsApiDataModifiable)
-            {
-                return null;
-            }
-
             var param = new TranferParam
             {
                 SiteName = siteName,
@@ -146,11 +136,6 @@
         public static async Task<ApiTransferInfo> Transfer(string siteName, string licenseeUserName, double amount, int dummyAccount, long transId)
         {
             var transferInfo = new ApiTransferInfo();
-
-            if (!AppSettings.IsApiDataModifiable)
-            {
-                return new ApiTransferInfo();
-            }    
 
             try
             {

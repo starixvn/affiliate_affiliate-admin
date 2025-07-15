@@ -1,6 +1,7 @@
 ﻿namespace Fanex.AffiliateAdmin.Core.Entities
 {
     using System;
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using Fanex.AffiliateAdmin.Core.Configurations;
     using Fanex.AffiliateAdmin.Core.Utilities;
@@ -10,6 +11,14 @@
     /// </summary>
     public class SiteDomainInfo
     {
+        private static readonly IDictionary<string, string> _mappingBpadmin999Domains = new Dictionary<string, string>
+        {
+            { "itc303", "itcbetok.com" },
+            { "macaubet", "resomer.my" },
+            { "aoncash", "aoncashh88.net" },
+            { "9bet", "9bet1.com" },
+        };
+
         public string MemberSiteDomain { get; set; }
 
         public Uri MemberSiteUrl { get; set; }
@@ -41,14 +50,11 @@
                 {
                     if(words.Length > 3 && string.Equals("bpadmin999", words[2], StringComparison.CurrentCultureIgnoreCase))
                     {
-                        if(string.Equals("itc303", words[1], StringComparison.CurrentCultureIgnoreCase))
+                        if(_mappingBpadmin999Domains.TryGetValue(words[1].ToLowerInvariant(), out string memberDomain))
                         {
-                            return GetSiteDomainInfo(scheme, isKiosk, "itcbetok", words[3]);
-                        }
+                            var items = memberDomain.Split('.');
 
-                        if (string.Equals("macaubet", words[1], StringComparison.CurrentCultureIgnoreCase))
-                        {
-                            return GetSiteDomainInfo(scheme, isKiosk, "resomer", "my");
+                            return GetSiteDomainInfo(scheme, isKiosk, items[0], items[1]);
                         }
 
                         return GetSiteDomainInfo(scheme, isKiosk, words[1], words[3]);

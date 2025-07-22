@@ -1,7 +1,7 @@
 ﻿<#@ template debug="true" hostSpecific="true" #>
 <#@ output extension=".txt" #>
 <#@ import namespace="System" #>
-<#@ include file="$(SolutionDir)\Packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
+<#@ include file="$(SolutionDir)\Fanex.AffiliateAdmin.Site\Configurations\TemplateFilemanager.CS.ttinclude" #>
 
 <#
 	var manager = TemplateFileManager.Create(this);
@@ -16,14 +16,29 @@
 		{"9bet", "DBAFF9BET.Affiliate_9bet.wsv_afinet"}
 	};
 
-	var environments = new string[] { "uat", "production" };
+	var environments = new string[] { "uat", "production", "kldr", "klprod" };
 	foreach(var licenseeDbName in licenseeDbNameList)
 	{
 		foreach(var environment in environments)
 		{
 			var fileName = string.Format("Web.ConnectionString.{0}.{1}.config", licenseeDbName.Key, environment);
 			manager.StartNewFile(fileName);
-			var licenseeDb = string.Format("<add name=\"{0}\" connectionString=\"packet size=4096; Data Source=10.40.40.86;Initial Catalog=Affiliate_{1};integrated security=false; user id=wsv_afinet; password=f+awB9jKK5+xmdsaTqyG3ZfH4GyRjZF1UDI07Xk0y04=;\" providerName=\"System.Data.SqlClient\" />", licenseeDbName.Value, licenseeDbName.Key);
+			if(environment.Equals("kldr", StringComparison.OrdinalIgnoreCase) || environment.Equals("klprod", StringComparison.OrdinalIgnoreCase))
+			{
+				var licenseeDb = string.Format("<add name=\"{0}\" connectionString=\"packet size=4096; Data Source=db052.dp.gamora.prod,7109;Initial Catalog=Affiliate_{1};integrated security=false; user id=wsv_afinet; password=f+awB9jKK5+xmdsaTqyG3ZfH4GyRjZF1UDI07Xk0y04=;\" providerName=\"System.Data.SqlClient\" />", licenseeDbName.Value, licenseeDbName.Key);
+#>
+<connectionStrings>
+	<#= licenseeDb #>
+	<add name="DBEXT.bodb02.wsv_afinet" connectionString="packet size=4096; Data Source=db052.dp.gamora.prod,7109;Initial Catalog=bodb02;integrated security=false; user id=wsv_afinet; password=f+awB9jKK5+xmdsaTqyG3ZfH4GyRjZF1UDI07Xk0y04=;" providerName="System.Data.SqlClient" />
+	<add name="DBLOG.bodb_CustomerLog.wsv_afinet" connectionString="packet size=4096; Data Source=db055.dp.gamora.prod,7112;Initial Catalog=bodb_CustomerLog;integrated security=false; User Id=wsv_afinet;Password=f+awB9jKK5+xmdsaTqyG3ZfH4GyRjZF1UDI07Xk0y04=;" providerName="System.Data.SqlClient" />
+	<add name="DBCUST.SiteConfig.Dot_Admin_Portal" connectionString="Data Source=dbcust.dp.gamora.prod,7105;Initial Catalog=SiteConfig;User Id=Dot_Admin_Portal;Password=H1Uo%&amp;*5" />
+	<add name="DBCUST.bodb_Licensee.wsv_afinet" connectionString="Data Source=dbcust.dp.gamora.prod,7105;Initial Catalog=bodb_Licensee;User Id=wsv_afinet;Password=f+awB9jKK5+xmdsaTqyG3ZfH4GyRjZF1UDI07Xk0y04=;" providerName="System.Data.SqlClient"/>
+</connectionStrings>
+		<#
+			}
+			else
+			{
+				var licenseeDb = string.Format("<add name=\"{0}\" connectionString=\"packet size=4096; Data Source=10.40.40.86;Initial Catalog=Affiliate_{1};integrated security=false; user id=wsv_afinet; password=f+awB9jKK5+xmdsaTqyG3ZfH4GyRjZF1UDI07Xk0y04=;\" providerName=\"System.Data.SqlClient\" />", licenseeDbName.Value, licenseeDbName.Key);
 #>
 <connectionStrings>
 	<#= licenseeDb #>
@@ -33,6 +48,7 @@
 	<add name="DBCUST.bodb_Licensee.wsv_afinet" connectionString="Data Source=10.40.40.191;Initial Catalog=bodb_Licensee;User Id=wsv_afinet;Password=f+awB9jKK5+xmdsaTqyG3ZfH4GyRjZF1UDI07Xk0y04=;" providerName="System.Data.SqlClient"/>
 </connectionStrings>
 		<#
+			}
 		}
 	}
 	manager.Process();

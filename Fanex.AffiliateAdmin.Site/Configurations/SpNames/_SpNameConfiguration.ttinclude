@@ -14,7 +14,7 @@
 		{"9bet", "DBAFF9BET.Affiliate_9bet.wsv_afinet"}
 	};
 
-	var environments = new string[] { "local", "uat", "production", "sit" };
+	var environments = new string[] { "local", "uat", "production", "sit", "kldr", "klprod" };
 
 	var sites = new List<SiteInfo>();
 

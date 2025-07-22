@@ -11,6 +11,7 @@
     using Helpers;
     using Refit;
     using System.Threading.Tasks;
+    using Fanex.AffiliateAdmin.Core.Configurations;
 
     /// <summary>
     /// Service Wrapper.
@@ -22,13 +23,13 @@
         {
             try
             {
-                var apiUrl = ConfigurationManager.AppSettings["SagaApiUrl"];
+                var apiUrl = AppSettings.SagaApiUrl;
                 if (string.IsNullOrEmpty(apiUrl))
                 {
                     throw new ConfigurationErrorsException("SagaApiUrl is not configured in AppSettings");
                 }
 
-                var isUsingProxy = Convert.ToBoolean(ConfigurationManager.AppSettings["IsUseProxyToGetSagaApi"]);
+                var isUsingProxy = AppSettings.IsUseProxyToGetSagaApi;
                 var httpClientHandler = new HttpClientHandler
                 {
                     Proxy = isUsingProxy ? GetConfiguredProxy() : null,
@@ -188,7 +189,7 @@
 
         private static IWebProxy GetConfiguredProxy()
         {
-            var proxyUrl = ConfigurationManager.AppSettings["ApiProxyUrl"];
+            var proxyUrl = AppSettings.ApiProxyUrl;
             if (string.IsNullOrEmpty(proxyUrl))
             {
                 throw new ConfigurationErrorsException("ApiProxyUrl is not configured in AppSettings when proxy is enabled");

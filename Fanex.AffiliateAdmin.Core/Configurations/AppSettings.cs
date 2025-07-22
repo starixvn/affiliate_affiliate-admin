@@ -473,6 +473,38 @@
             }
         }
 
+        public static string SagaApiUrl
+        {
+            get
+            {
+                return GetValue("SagaApiUrl");
+            }
+        }
+
+        public static bool IsUseProxyToGetSagaApi
+        {
+            get
+            {
+                return Convert.ToBoolean(GetValue("IsUseProxyToGetSagaApi"));
+            }
+        }
+
+        public static bool IsApiDataModifiable
+        {
+            get
+            {
+                return Convert.ToBoolean(GetValue("IsApiDataModifiable"));
+            }
+        }
+
+        public static string ApiProxyUrl
+        {
+            get
+            {
+                return GetValue("ApiProxyUrl");
+            }
+        }
+
         public static IEnumerable<CommGroup> GetActiveCommGroups(CommGroupSelActiveListCriteria criteria)
         {
             return SystemSetting.GetActiveCommGroups(criteria);
